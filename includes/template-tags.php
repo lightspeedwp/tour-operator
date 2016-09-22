@@ -459,50 +459,6 @@ function lsx_accommodation_display_connected_tours(){
 	return $return;
  }
 
-
-/* ================  Activity =========================== */
-/**
- * Outputs the activities tours
- *
- * @package 	lsx-tour-operators
- * @subpackage	template-tags
- * @category 	activity
- */
-function lsx_activity_tours(){
-	global $wp_query;
-	if(post_type_exists('tour') && is_singular('activity')){
-		$args = array(
-				'from'			=>	'tour',
-				'to'			=>	'accommodation',
-				'content_part'	=> 	'widget-accommodation',
-				'column'		=>	'4',
-				'before'		=>	'<section id="tours"><h2 class="section-title">'.__(lsx_get_post_type_section_title('tour', '', 'Featured Tours'),'lsx-tour-operators').'</h2>',
-				'after'			=>	'</section>'
-		);
-		lsx_connected_panel_query($args);
-	}
-}
-/**
- * Outputs the activites accommodation
- *
- * @package 	lsx-tour-operators
- * @subpackage	template-tags
- * @category 	activity
- */
-function lsx_activity_accommodation(){
-	global $wp_query;
-	if(post_type_exists('accommodation') && is_singular('activity')){
-		$args = array(
-				'from'			=>	'activity',
-				'to'			=>	'accommodation',
-				'content_part'	=> 	'widget-accommodation',
-				'column'		=>	'4',
-				'before'		=>	'<section id="accommodation"><h2 class="section-title">'.__(lsx_get_post_type_section_title('accommodation', '', 'Featured Accommodations'),'lsx-tour-operators').'</h2>',
-				'after'			=>	'</section>'
-		);
-		lsx_connected_panel_query($args);
-	}
-}
 /* ================  Tours =========================== */
 
 /**
