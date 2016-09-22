@@ -389,7 +389,7 @@ class LSX_Widget extends WP_Widget {
 			<input id="<?php echo $this->get_field_id('buttons'); ?>"
 				name="<?php echo $this->get_field_name('buttons'); ?>" type="checkbox"
 				value="1" <?php checked( '1', $buttons ); ?> /> <label
-				for="<?php echo $this->get_field_id('buttons'); ?>"><?php _e('Show Buttons'); ?></label>
+				for="<?php echo $this->get_field_id('buttons'); ?>"><?php _e('Display Button'); ?></label>
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id('button_text'); ?>"><?php _e('Button Text:'); ?></label>
