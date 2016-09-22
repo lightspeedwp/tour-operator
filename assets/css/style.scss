@@ -2195,3 +2195,73 @@ body:not(.home) {
 		}
 	}
 }
+
+
+// ---------- Default Gallery ----------
+
+
+body.single-tour-operator {
+	#gallery {
+		.gallery {
+			margin: 0 auto;
+
+			.gallery-item {
+				float: left;
+				margin-top: 0;
+				text-align: center;
+				width: 100%;
+
+				@media only screen and (min-width: 768px) {
+					width: 33%;
+				}
+			}
+
+			&.gallery-columns-2 {
+				@media only screen and (min-width: 768px) {
+					.gallery-item {
+						width: 50%;
+					}
+
+					.attachment-medium {
+						max-width: 92%;
+						height: auto;
+					}
+				}
+			}
+
+			&.gallery-columns-4 {
+				@media only screen and (min-width: 768px) {
+					.gallery-item {
+						width: 25%;
+					}
+
+					.attachment-thumbnail {
+						max-width: 84%;
+						height: auto;
+					}
+				}
+			}
+
+			.gallery-icon {
+				border: none;
+			}
+
+			img {
+				padding: 8px;
+
+				&:hover {
+					background: white;
+				}
+			}
+
+			.gallery-caption {
+				//color: #888;
+				font-size: 12px;
+				margin: 0 0 12px;
+			}
+
+			dl, dt { margin: 0; }
+			br + br { display: none; }
+		}
+	}
+}

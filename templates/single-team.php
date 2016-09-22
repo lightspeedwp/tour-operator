@@ -87,7 +87,7 @@ get_header(); ?>
 					if ( function_exists( 'Envira_Gallery' ) ) {
 						lsx_tour_operator_content('content', 'envira');
 					} else {
-						echo do_shortcode( '[gallery ids="'. implode(',',$gallery_id) .'" type="square" size="medium" columns="4"]' );
+						echo do_shortcode( '[gallery ids="'. implode(',',$gallery_id) .'" type="square" size="medium" columns="4" link="file"]' );
 					}
 				?>
 			</section>

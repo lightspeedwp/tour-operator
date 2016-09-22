@@ -83,7 +83,7 @@ get_header(); ?>
 					if ( function_exists( 'envira_dynamic' ) ) {
 						envira_dynamic( array( 'id' => 'custom', 'images' => implode(',',$gallery_ids), 'isotope' => false, 'pagination' => true ,'pagination_images_per_page' => 9 ) );
 					} else {
-						echo do_shortcode( '[gallery ids="'. implode(',',$gallery_ids) .'" type="square" size="medium" columns="4"]' );
+						echo do_shortcode( '[gallery ids="'. implode(',',$gallery_ids) .'" type="square" size="medium" columns="4" link="file"]' );
 					}
 				?>
 			</section>

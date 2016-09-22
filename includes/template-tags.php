@@ -2168,3 +2168,12 @@ function lsx_travel_styles($before="",$after="",$echo=true) {
 		return $return;
 	}	
 }
+
+/**
+ * Remove Default Gallery Styling
+ *
+ * @package 	lsx-tour-operators
+ * @subpackage	template-tags
+ * @category 	gallery
+ */
+add_filter( 'use_default_gallery_style', '__return_false' );
