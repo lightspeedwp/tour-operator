@@ -2680,7 +2680,7 @@ body.single-tour-operator #highlights .best-time-to-visit .best-time-to-visit-co
     padding-right: 15px; }
   body.single-tour-operator #highlights .best-time-to-visit .best-time-to-visit-content [class^="col-"] br {
     display: none; }
-  body.single-tour-operator #highlights .best-time-to-visit .best-time-to-visit-content [class^="col-"] .genericon {
+  body.single-tour-operator #highlights .best-time-to-visit .best-time-to-visit-content [class^="col-"] .fa {
     font-size: 25px;
     color: #555;
     padding: 10px 0; }
