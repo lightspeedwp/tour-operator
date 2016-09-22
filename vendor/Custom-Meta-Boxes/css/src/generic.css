@@ -1,0 +1,139 @@
+.CMB_Title h3 {
+	font-size: 14px;
+    padding: 5px 0px;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.cmb_metabox .field-item {
+	position: relative;
+	display: inline-block;
+}
+.cmb_metabox .field-item.hidden {
+	display:none !important;
+}
+
+.cmb_metabox .cmb-cell-12 .field-item {
+	width: 80%;
+}
+.cmb_metabox .CMB_Group_Field.repeatable > .cmb-cell-12 .field-item {
+	width: 60% !important;
+}
+.cmb_metabox .cmb-cell-12 .CMB_Image_Field .field-item {
+	width: 150px;
+}
+.cmb_metabox .cmb-cell-12 .CMB_Post_Select.repeatable .field-item {
+	width: 175px;
+}
+.cmb_metabox .cmb-cell-12 .CMB_Post_Select.repeatable.cmb-sortable .field-item {
+	width: 195px;
+}
+
+@media screen and (max-width: 1147px) {
+	/*.cmb_metabox .field-item {
+		width: 100% !important;
+	}*/
+	.cmb_metabox .cmb-cell-12 .CMB_Group_Field.repeatable > .field-item {
+		width: 92% !important;
+	}
+}
+
+@media screen and (min-width: 1148px) and (max-width: 1400px) {
+	/*.cmb_metabox .field-item {
+		width: 70% !important;
+	}*/
+	.cmb_metabox .cmb-cell-12 .CMB_Group_Field.repeatable > .field-item {
+		width: 95% !important;
+	}	
+}
+
+.cmb_metabox_description { 
+	color: #AAA; 
+	font-style: italic; 
+	margin: 0 0 16px !important;
+}
+.cmb_metabox input[type=text], 
+.cmb_metabox textarea, 
+.cmb_metabox select { 
+	width: 100%;
+	margin: 0;
+}
+
+.cmb_metabox .cmb-cell-12 input[type=text], 
+.cmb_metabox .cmb-cell-12 textarea, 
+.cmb_metabox .cmb-cell-12 select{ 
+	width: 25%;
+	margin: 0;
+}
+.cmb_metabox .cmb-cell-12 .select2-container {
+	width: 25% !important;
+}
+
+@media screen and (max-width: 1147px) {
+	.cmb_metabox .cmb-cell-12 input[type=text], 
+	.cmb_metabox .cmb-cell-12 textarea, 
+	.cmb_metabox .cmb-cell-12 select { 
+		width: 100%;
+		margin: 0;
+	}
+	
+	.cmb_metabox .cmb-cell-12 .select2-container { 
+		width: 100% !important;
+	}	
+}
+
+@media screen and (min-width: 1148px) and (max-width: 1400px) {
+	.cmb_metabox .cmb-cell-12 input[type=text], 
+	.cmb_metabox .cmb-cell-12 textarea, 
+	.cmb_metabox .cmb-cell-12 select { 
+		width: 75%;
+		margin: 0;
+	}
+	
+	.cmb_metabox .cmb-cell-12 .select2-container { 
+		width: 75% !important;
+	}	
+}
+
+.cmb_metabox input.cmb_text_small { 
+	width: 100px; 
+}
+
+.cmb_metabox input.cmb_text_medium {
+	width: 230px; 
+	margin-right: 15px;
+}
+
+.cmb_metabox input[type="radio"] { 
+	margin: 0 5px 0 0; 
+	padding: 0;
+}
+
+.cmb_metabox input[type="checkbox"] { 
+	margin: 0 5px 0 0; 
+	padding: 0;
+}
+
+.cmb_metabox .field-title { 
+	margin-top: -4px; 
+	margin-bottom: 11px; 
+	margin-top: 0; 
+	width: 166px;
+    display: inline-block;	
+    vertical-align: top;
+}
+
+.cmb_metabox .field-title label {
+	vertical-align: baseline;
+	display: block;
+	margin-top: 5px;
+}
+.cmb_metabox .select2-search-choice-close {
+	-webkit-transition: none;
+	        transition: none;
+	top: 3px;
+}
+
+.cmb_metabox [disabled] {
+	background: #F7F7F7;
+}

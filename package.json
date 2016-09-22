@@ -1,0 +1,37 @@
+{
+  "name": "lsx-tour-operators",
+  "version": "1.0.0",
+  "description": "Tour Operators for LSX",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lightspeeddevelopment/lsx-tour-operators"
+  },
+  "keywords": [
+    "lsx",
+    "tours",
+    "safaris",
+    "accommodation"
+  ],
+  "author": "LightSpeed",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lightspeeddevelopment/lsx-tour-operators/issues"
+  },
+  "homepage": "https://github.com/lightspeeddevelopment/lsx-tour-operators#readme",
+  "devDependencies": {
+    "flag-icon-css": "^2.4.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-gettext": "^0.3.0",
+    "gulp-jshint": "^2.0.0",
+    "gulp-sass": "^2.2.0",
+    "gulp-sort": "^2.0.0",
+    "gulp-uglify": "^1.2.0",
+    "gulp-wp-pot": "^1.2.2",
+    "jshint": "^2.9.1"
+  }
+}

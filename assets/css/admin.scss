@@ -1,0 +1,35 @@
+/*
+ * LSX Tour Operators Administrator
+ */
+ @import 'flag-icon-css/flag-icon';
+ 
+ #banners .CMB_Group_Field {
+ 	display:block;
+ }
+ 
+  .CMB_Group_Field.active {
+ 	display:block;
+ }
+ 
+ #lsx-tab-headings {
+	width: 10%;
+	display: block;
+	float: left;
+ }
+ 
+ #details .cmb_metabox {
+	width: 85%;
+	display: block;
+	float: right;
+ }
+ #details .cmb_metabox .cmb_metabox {
+ 	width: 98%;
+ 	float:none;
+ }
+ 
+ #lsx-tab-headings .tab-heading {
+ 	text-transform:capitalize;
+	width: 100%;
+	display: block;
+	padding: 10px 15px; 	
+ }
