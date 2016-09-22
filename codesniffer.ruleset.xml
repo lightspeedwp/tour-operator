@@ -15,5 +15,8 @@
 
 		<exclude name="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceBeforeOpenParenthesis" />
 		<exclude name="Squiz.Commenting" />
+		<exclude name="Squiz.WhiteSpace" />
+		<exclude name="Generic.Commenting" />
+		
 	</rule>
 </ruleset>
