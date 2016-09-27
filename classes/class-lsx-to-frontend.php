@@ -62,7 +62,9 @@ class LSX_TO_Frontend extends LSX_Tour_Operators {
 		}	
 
 		add_filter( 'lsx_connected_list_item', array( $this,'add_modal_attributes') , 10, 3 );
-		add_action( 'wp_footer', array( $this,'output_modals') , 10 );		
+		add_action( 'wp_footer', array( $this,'output_modals') , 10 );
+
+		add_filter( 'the_terms', array( $this,'links_new_window') , 10, 2);		
 
 		if(!class_exists('LSX_Template_Redirects')){
 			require_once( LSX_TOUR_OPERATORS_PATH . 'classes/class-template-redirects.php' );
@@ -74,7 +76,7 @@ class LSX_TO_Frontend extends LSX_Tour_Operators {
 	 * Initate some boolean flags
 	 */
 	public function wp_head() {
-		if(is_singular($this->active_post_types)
+		if((is_singular($this->active_post_types) || is_post_type_archive($this->active_post_types))
 			&& false !== $this->options
 			&& isset($this->options[get_post_type()]['enable_modals'])
 			&& 'on' === $this->options[get_post_type()]['enable_modals']){
@@ -206,5 +208,15 @@ class LSX_TO_Frontend extends LSX_Tour_Operators {
 			$classes[] = 'archive-tour-operator';
 		}
 		return $classes;
-	}	
+	}
+
+	/**
+	 * add target="_blank" to the travel style links
+	 */
+	public function links_new_window($terms,$taxonomy) {
+		if('travel-style' === $taxonomy){
+			$terms = str_replace('<a','<a target="_blank"',$terms);
+		}	
+		return $terms;
+	}		
 }
