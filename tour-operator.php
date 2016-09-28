@@ -6,7 +6,8 @@
  * Author: LightSpeed
  * Version: 1.0.0
  * Author URI: https://www.lsdev.biz/products/
- * License: GPL2+
+ * License:     GPL3
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain: lsx-tour-operators
  * Domain Path: /languages/
  */

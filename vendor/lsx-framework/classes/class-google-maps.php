@@ -4,7 +4,7 @@
  *
  * @package		LSX Framework
  * @author		LightSpeed Team
- * @license		GPL-2.0+
+ * @license		GPL3
  * @copyright	2015  LightSpeed Team
  */
 

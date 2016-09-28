@@ -2,7 +2,7 @@
 /**
  * @package   LSX_Template_Redirects
  * @author    LightSpeed
- * @license   GPL-2.0+
+ * @license   GPL3
  * @link      
  * @copyright 2016 LightSpeed
  *

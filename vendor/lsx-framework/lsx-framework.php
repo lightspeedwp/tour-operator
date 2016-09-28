@@ -2,7 +2,7 @@
 /**
  * @package   LSX Framework
  * @author     LightSpeed Team
- * @license   GPL-2.0+
+ * @license   GPL3
  * @link      
  * @copyright 2015  LightSpeed Team
  *
@@ -14,7 +14,7 @@
  * Author:      LightSpeed Team
  * Author URI:  https://www.lsdev.biz/
  * Text Domain: lsx
- * License:     GPL-2.0+
+ * License:     GPL3
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  * Domain Path: /languages
  */

@@ -4,9 +4,9 @@
  *
  * @package   LSX_Taxonomy_Admin
  * @author    LightSpeed
- * @license   GPL-2.0+
+ * @license   GPL3
  * @link      
- * @copyright 2015 LightSpeedDevelopment
+ * @copyright 2016 LightSpeedDevelopment
  */
 
 /**

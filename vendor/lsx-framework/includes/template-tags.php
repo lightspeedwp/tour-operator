@@ -5,9 +5,9 @@
 *
 * @package   lsx-framework
 * @author    LightSpeed
-* @license   GPL-2.0+
+* @license   GPL3
 * @link
-* @copyright 2015 LightSpeed
+* @copyright 2016 LightSpeed
 */
 
 /**

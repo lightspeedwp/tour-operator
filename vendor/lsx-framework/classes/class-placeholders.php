@@ -4,7 +4,7 @@
  *
  * @package   Placeholders
  * @author    LightSpeed https://lsdev.biz
- * @license   GPL-2.0+
+ * @license   GPL3
  * @link      
  */
 

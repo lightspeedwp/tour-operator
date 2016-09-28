@@ -4,7 +4,7 @@
  *
  * @package   LSX_Accommodation
  * @author     LightSpeed Team
- * @license   GPL-2.0+
+ * @license   GPL3
  * @link      
  * @copyright 2015  LightSpeed Team
  */

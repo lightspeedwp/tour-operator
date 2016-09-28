@@ -4,7 +4,7 @@
  *
  * @package   uix
  * @author    David Cramer
- * @license   GPL-2.0+
+ * @license   GPL3
  * @link
  * @copyright 2016 David Cramer
  */

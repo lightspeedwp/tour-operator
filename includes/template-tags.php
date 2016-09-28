@@ -3,7 +3,7 @@
  * Template Tags
  *
  * @package   Lsx_Tour_Operators
- * @license   GPL-2.0+
+ * @license   GPL3
  */
 
 
