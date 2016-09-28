@@ -214,7 +214,7 @@ class LSX_TO_Frontend extends LSX_Tour_Operators {
 	 * add target="_blank" to the travel style links
 	 */
 	public function links_new_window($terms,$taxonomy) {
-		if('travel-style' === $taxonomy){
+		if('travel-style' === $taxonomy || 'accommodation-type' === $taxonomy){
 			$terms = str_replace('<a','<a target="_blank"',$terms);
 		}	
 		return $terms;

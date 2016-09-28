@@ -135,8 +135,10 @@ class LSX_Framework {
 		include_once('classes/class-placeholders.php');
 		$this->placeholders = new LSX_Placeholders($this->post_types);
 
-		include_once('classes/class-taxonomy-administration.php');
-		$this->taxonomy_admin = new LSX_Taxonomy_Admin($this->taxonomies);		
+		if(!class_exists('LSX_Taxonomy_Admin')){
+			include_once('classes/class-taxonomy-administration.php');
+		}
+		$this->taxonomy_admin = new LSX_Taxonomy_Admin($this->taxonomies);	
 		
 		
 		include_once('includes/lsx-post-type-widget.php');
