@@ -39,7 +39,7 @@ class LSX_Banner_Integration {
 	 * Init
 	 */
 	public function init() {
-		if(class_exists('Lsx_Banners')){			
+		if(class_exists('LSX_Banners')){			
 			add_filter( 'lsx_banner_allowed_post_types', array( $this, 'enable_banners'));
 			add_filter( 'lsx_banner_allowed_taxonomies', array( $this, 'enable_taxonomy_banners'));
 			add_action('lsx_banner_content',array( $this, 'banner_content'));	

@@ -98,7 +98,7 @@ class LSX_TO_Frontend extends LSX_Tour_Operators {
 			add_action('lsx_content_wrap_before','lsx_tour_operator_single_header',100);
 		}
 		
-		if(class_exists('Lsx_Banners')){
+		if(class_exists('LSX_Banners')){
 			remove_action('lsx_content_top', 'lsx_breadcrumbs',100);
 			add_action('lsx_banner_container_top', 'lsx_breadcrumbs');
 		}		
@@ -108,7 +108,7 @@ class LSX_TO_Frontend extends LSX_Tour_Operators {
 	 * This runs on the lsx_header_after action
 	 */
 	public function header_after() {
-		if(class_exists('Lsx_Banners') && lsx_has_banner()){
+		if(class_exists('LSX_Banners') && lsx_has_banner()){
 			remove_action('lsx_content_wrap_before','lsx_tour_operator_archive_header',100);
 			remove_action('lsx_content_wrap_before','lsx_tour_operator_single_header',100);
 			add_action('lsx_banner_content','lsx_tour_operator_banner_content');

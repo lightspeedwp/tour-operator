@@ -287,7 +287,7 @@ class LSX_Framework_Admin {
 				<th scope="row" colspan="2"><label><h3>Archive</h3></label></th>
 			</tr>	
 			<?php do_action('lsx_framework_'.$post_type.'_tab_archive_settings_top',$post_type); ?>		
-			<?php if(class_exists('Lsx_Banners')) { ?>
+			<?php if(class_exists('LSX_Banners')) { ?>
 				<tr class="form-field banner-wrap">
 					<th scope="row">
 						<label for="banner"> Banner</label>

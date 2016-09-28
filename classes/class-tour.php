@@ -166,7 +166,7 @@ class Lsx_Tour {
 	
 		// Example of all available fields
 		$fields[] = array( 'id' => 'featured',  'name' => _x( 'Featured', 'lsx-tour-operators' ), 'type' => 'checkbox', 'cols' => 12 );
-		if(!class_exists('Lsx_Banners')){
+		if(!class_exists('LSX_Banners')){
 			$fields[] = array( 'id' => 'tagline',  'name' => 'Tagline', 'type' => 'text' );
 		}
 		$fields[] = array( 'id' => 'duration',  	'name' => _x( 'Duration', 'lsx-tour-operators' ), 'type' => 'text', 'cols' => 12 );

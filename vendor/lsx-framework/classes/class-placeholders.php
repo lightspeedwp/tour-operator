@@ -367,7 +367,7 @@ class LSX_Placeholders {
 			<label><h3 style="margin-bottom:0px;"> Placeholders</h3></label>			
 		</th>
 
-		<?php if(class_exists('Lsx_Banners')) { ?>
+		<?php if(class_exists('LSX_Banners')) { ?>
 			<tr class="form-field banner-placeholder-wrap">
 				<th scope="row">
 					<label for="banner"> Banner Placeholder</label>
@@ -439,7 +439,7 @@ class LSX_Placeholders {
 	 * The placeholder settings that output on the frameworks tabs.
 	 */
 	public function settings_page_html() { ?>
-		<?php if(class_exists('Lsx_Banners')) { ?>
+		<?php if(class_exists('LSX_Banners')) { ?>
 			<tr class="form-field banner-placeholder-wrap">
 				<th scope="row">
 					<label for="banner"> Banner</label>
