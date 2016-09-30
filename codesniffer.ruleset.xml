@@ -8,13 +8,13 @@
 
 	<!-- Include the WordPress ruleset, with exclusions. -->
 	<rule ref="WordPress">
-		<!-- <exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact" /> -->
-		<!-- <exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect" /> -->
-		<!-- <exclude name="PEAR.Functions.FunctionCallSignature.Indent" /> -->
+		<exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact" />
+		<exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect" />
+		<exclude name="PEAR.Functions.FunctionCallSignature.Indent" />
 
-		<!-- <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceBeforeOpenParenthesis" /> -->
-		<!-- <exclude name="Squiz.Commenting" /> -->
-		<!-- <exclude name="Squiz.WhiteSpace" /> -->
-		<!-- <exclude name="Generic.Commenting" /> -->
+		<exclude name="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceBeforeOpenParenthesis" />
+		<exclude name="Squiz.Commenting" />
+		<exclude name="Squiz.WhiteSpace" />
+		<exclude name="Generic.Commenting" />
 	</rule>
 </ruleset>
