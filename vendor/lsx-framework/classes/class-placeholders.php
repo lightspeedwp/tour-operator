@@ -442,7 +442,7 @@ class LSX_Placeholders {
 		<?php if(class_exists('LSX_Banners')) { ?>
 			<tr class="form-field banner-placeholder-wrap">
 				<th scope="row">
-					<label for="banner"> Banner</label>
+					<label for="banner"> Banner Placeholder</label>
 				</th>
 				<td>
 					<input type="hidden" {{#if banner_placeholder_id}} value="{{banner_placeholder_id}}" {{/if}} name="banner_placeholder_id" />

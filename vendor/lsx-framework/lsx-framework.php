@@ -136,6 +136,7 @@ class LSX_Framework {
 			include_once('classes/class-placeholders.php');
 			$this->placeholders = new LSX_Placeholders($this->post_types);
 		}
+		
 
 		if(!class_exists('LSX_Taxonomy_Admin') && !class_exists('LSX_Banners')){
 			include_once('classes/class-taxonomy-administration.php');
