@@ -288,6 +288,7 @@ class LSX_Framework_Admin {
 			</tr>
 		{{/unless}}
 	<?php
+	}
 
 	/**
 	 * Adds in the settings neccesary for the archives
