@@ -199,7 +199,7 @@ function lsx_tour_itinerary_title() {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
 		if(false !== $tour_itinerary->itinerary['title']){
-			echo apply_filters('the_title',$tour_itinerary->itinerary['title']);
+			echo esc_html_e(apply_filters('the_title',$tour_itinerary->itinerary['title']),'lsx-tour-operators');
 		}
 	}
 }
@@ -215,7 +215,7 @@ function lsx_tour_itinerary_slug() {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
 		if(false !== $tour_itinerary->itinerary['title']){
-			echo sanitize_title($tour_itinerary->itinerary['title']);
+			echo esc_html_e(sanitize_title($tour_itinerary->itinerary['title']),'lsx-tour-operators');
 		}
 	}
 }
@@ -231,7 +231,7 @@ function lsx_tour_itinerary_tagline() {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
 		if(false !== $tour_itinerary->itinerary['tagline']){
-			echo apply_filters('the_title',$tour_itinerary->itinerary['tagline']);
+			echo esc_html_e(apply_filters('the_title',$tour_itinerary->itinerary['tagline']),'lsx-tour-operators');
 		}
 	}
 }
@@ -247,7 +247,7 @@ function lsx_tour_itinerary_description() {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
 		if(false !== $tour_itinerary->itinerary['description']){
-			echo apply_filters('the_content',$tour_itinerary->itinerary['description']);
+			echo esc_html_e(apply_filters('the_content',$tour_itinerary->itinerary['description']),'lsx-tour-operators');
 		}
 	}
 }
@@ -299,7 +299,7 @@ function lsx_tour_itinerary_thumbnail() {
 		if(false === $thumbnail_src || '' === $thumbnail_src){
 			$thumbnail_src = LSX_Placeholders::placeholder_url(null,'tour');
 		}
-		echo apply_filters( 'lsx_lazyload_filter_images', '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="'.$thumbnail_src.'" />' );
+		echo esc_html_e(apply_filters( 'lsx_lazyload_filter_images', '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="'.$thumbnail_src.'" />' ),'lsx-tour-operators');
 	}
 }
 
@@ -314,7 +314,7 @@ function lsx_tour_itinerary_destinations($before='',$after='') {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
 		if(is_array($tour_itinerary->itinerary['destination_to_tour']) && !empty($tour_itinerary->itinerary['destination_to_tour'])){
-			echo $before.lsx_connected_list($tour_itinerary->itinerary['destination_to_tour'],'destination',true,', ').$after;
+			echo esc_html_e($before.lsx_connected_list($tour_itinerary->itinerary['destination_to_tour'],'destination',true,', ').$after,'lsx-tour-operators');
 		}
 	}	
 }
@@ -330,7 +330,7 @@ function lsx_tour_itinerary_accommodation($before='',$after='') {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
 		if(is_array($tour_itinerary->itinerary['accommodation_to_tour']) && !empty($tour_itinerary->itinerary['accommodation_to_tour'])){
-			echo $before.lsx_connected_list($tour_itinerary->itinerary['accommodation_to_tour'],'accommodation',true,', ').$after;
+			echo esc_html_e($before.lsx_connected_list($tour_itinerary->itinerary['accommodation_to_tour'],'accommodation',true,', ').$after,'lsx-tour-operators');
 		}
 
 		//display the additional accommodation information.
@@ -353,7 +353,7 @@ function lsx_tour_itinerary_activities($before='',$after='') {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
 		if(isset($tour_itinerary->itinerary['activity_to_tour']) && is_array($tour_itinerary->itinerary['activity_to_tour']) && !empty($tour_itinerary->itinerary['activity_to_tour'])){
-			echo $before.lsx_connected_list($tour_itinerary->itinerary['activity_to_tour'],'activity',true,', ').$after;
+			echo esc_html_e($before.lsx_connected_list($tour_itinerary->itinerary['activity_to_tour'],'activity',true,', ').$after,'lsx-tour-operators');
 		}
 	}
 }
@@ -376,7 +376,7 @@ function lsx_itinerary_class($classes = false) {
 		}
 		$classes = apply_filters( 'lsx_itinerary_class', $classes, $post->ID );
 	}
-	echo 'class="'.implode(' ',$classes).'"';
+	echo esc_html_e('class="'.implode(' ',$classes).'"','lsx-tour-operators');
 }
 
 
@@ -390,7 +390,7 @@ function lsx_itinerary_class($classes = false) {
 function lsx_itinerary_read_more(){
 	if(lsx_itinerary_needs_read_more($label=__('Read More','lsx-tour-operators'))){ ?>
 		<div class="view-more aligncenter">
-			<a href="#" class="btn"><?php echo $label; ?></a>
+			<a href="#" class="btn"><?php echo esc_html_e($label,'lsx-tour-operators'); ?></a>
 		</div>		
 	<?php
 	}
