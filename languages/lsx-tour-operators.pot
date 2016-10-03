@@ -158,6 +158,10 @@ msgstr ""
 msgid "LSX Tour Operators"
 msgstr ""
 
+#: classes/class-accommodation.php:435
+msgid "Disable \"Contact Details\" panel"
+msgstr ""
+
 #: classes/class-accommodation.php:451
 msgid "Display Connected Tours"
 msgstr ""
@@ -233,23 +237,59 @@ msgstr ""
 msgid "Activites"
 msgstr ""
 
-#: classes/class-itinerary.php:338, includes/template-tags.php:435, templates/content-accommodation.php:42, templates/content-widget-accommodation.php:29
+#: classes/class-itinerary.php:219
+msgid "sanitize_title$tour_itinerary->itinerary[title]"
+msgstr ""
+
+#: classes/class-itinerary.php:235
+msgid "apply_filtersthe_title"
+msgstr ""
+
+#: classes/class-itinerary.php:251
+msgid "apply_filtersthe_content"
+msgstr ""
+
+#: classes/class-itinerary.php:303
+msgid "apply_filterslsx_lazyload_filter_images"
+msgstr ""
+
+#: classes/class-itinerary.php:318
+msgid "$before.lsx_connected_list$tour_itinerary->itinerary[destination_to_tour]"
+msgstr ""
+
+#: classes/class-itinerary.php:334
+msgid "$before.lsx_connected_list$tour_itinerary->itinerary[accommodation_to_tour]"
+msgstr ""
+
+#: classes/class-itinerary.php:339, includes/template-tags.php:435, templates/content-accommodation.php:42, templates/content-widget-accommodation.php:29
 msgid "Rating"
 msgstr ""
 
-#: classes/class-itinerary.php:339, includes/template-tags.php:438, templates/content-accommodation.php:45
+#: classes/class-itinerary.php:340, includes/template-tags.php:438, templates/content-accommodation.php:45
 msgid "Type"
 msgstr ""
 
-#: classes/class-itinerary.php:340, includes/template-tags.php:441, templates/content-accommodation.php:48
+#: classes/class-itinerary.php:341, includes/template-tags.php:441, templates/content-accommodation.php:48
 msgid "Special Interests"
 msgstr ""
 
-#: classes/class-itinerary.php:391
+#: classes/class-itinerary.php:357
+msgid "$before.lsx_connected_list$tour_itinerary->itinerary[activity_to_tour]"
+msgstr ""
+
+#: classes/class-itinerary.php:380
+msgid "class=\".implode "
+msgstr ""
+
+#: classes/class-itinerary.php:392
 msgid "Read More"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:101, vendor/lsx-framework/classes/class-framework-admin.php:143
+#: classes/class-itinerary.php:394
+msgid "$label"
+msgstr ""
+
+#: classes/class-lsx-to-admin.php:101, vendor/lsx-framework/classes/class-framework-admin.php:144
 msgid "General Enquiry"
 msgstr ""
 
@@ -257,11 +297,11 @@ msgstr ""
 msgid "Disable Enquire Modal"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:135, vendor/lsx-framework/classes/class-framework-admin.php:177
+#: classes/class-lsx-to-admin.php:135, vendor/lsx-framework/classes/class-framework-admin.php:178
 msgid "This disables the enquire modal, and instead redirects to the link you provide below."
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:140, vendor/lsx-framework/classes/class-framework-admin.php:182
+#: classes/class-lsx-to-admin.php:140, vendor/lsx-framework/classes/class-framework-admin.php:183
 msgid "Enquire Link"
 msgstr ""
 
@@ -742,7 +782,7 @@ msgstr ""
 msgid "Destination"
 msgstr ""
 
-#: vendor/lsx-framework/classes/class-framework-admin.php:173
+#: vendor/lsx-framework/classes/class-framework-admin.php:174
 msgid "Disable Modal"
 msgstr ""
 
