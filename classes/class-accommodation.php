@@ -432,7 +432,7 @@ class LSX_Accommodation {
 		?>
 			<tr class="form-field">
 				<th scope="row">
-					<label for="contact_details_disabled">Disable "Contact Details" panel</label>
+					<label for="contact_details_disabled"><?php esc_html_e('Disable "Contact Details" panel','lsx-tour-operators'); ?></label>
 				</th>
 				<td>
 					<input type="checkbox" {{#if contact_details_disabled}} checked="checked" {{/if}} name="contact_details_disabled" />
@@ -448,11 +448,11 @@ class LSX_Accommodation {
 		?>
 			<tr class="form-field">
 				<th scope="row">
-					<label for="display_connected_tours"><?php _e('Display Connected Tours','lsx-tour-operators'); ?></label>
+					<label for="display_connected_tours"><?php esc_html_e('Display Connected Tours','lsx-tour-operators'); ?></label>
 				</th>
 				<td>
 					<input type="checkbox" {{#if display_connected_tours}} checked="checked" {{/if}} name="display_connected_tours" />
-					<small><?php _e('This will replace the related accommodation with the connected tours instead.','lsx-tour-operators'); ?>
+					<small><?php esc_html_e('This will replace the related accommodation with the connected tours instead.','lsx-tour-operators'); ?>
 				</td>
 			</tr>	
 		<?php

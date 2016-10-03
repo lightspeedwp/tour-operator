@@ -31,5 +31,7 @@
 		<exclude name="WordPress.PHP.YodaConditions.NotYoda" />
 		<exclude name="WordPress.WhiteSpace" />
 		<exclude name="WordPress.WP.I18n.MissingSingularPlaceholder" />
+
+		<exclude name="WordPress.VIP.PostsPerPage.posts_per_page" />
 	</rule>
 </ruleset>
