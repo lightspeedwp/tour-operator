@@ -4,7 +4,7 @@
  *
  * @package   uix
  * @author    David Cramer
- * @license   GPL3
+ * @license   GPL-2.0+
  * @link
  * @copyright 2016 David Cramer
  */
@@ -61,6 +61,15 @@ class uix{
 	 * @var      string
 	 */
 	protected $plugin_screen_hook_suffix = null;
+
+	/**
+	 * Holds the current_tab being rendered
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var      string
+	 */
+	public $current_tab = null;		
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -525,7 +534,8 @@ class uix{
 			<?php wp_nonce_field( $this->plugin_slug, 'uix_setup' ); ?>
 			<?php 
 			if( !empty( $uix['tabs'] ) ){
-				foreach( (array) $uix['tabs'] as $tab_slug => $tab ){ ?>
+				$this->current_tab = false;
+				foreach( (array) $uix['tabs'] as $tab_slug => $tab ){ $this->current_tab = $tab_slug; ?>
 					<div class="uix-tab-canvas" data-app="<?php echo esc_attr( $tab_slug ); ?>"></div>
 					<script type="text/html" data-template="<?php echo esc_attr( $tab_slug ); ?>">
 						<?php 
@@ -557,6 +567,7 @@ class uix{
 						}
 					}
 				}
+				$this->current_tab = false;
 			}else{
 				if( !empty( $uix['template'] ) && file_exists( $uix['template'] ) ){
 					include $uix['template'];
