@@ -68,6 +68,7 @@ class LSX_Framework_Admin {
 
 			foreach($this->post_types as $post_type){
 				add_action( 'lsx_framework_'.$post_type.'_tab_content_top', array( $this, 'general_settings' ), 5 , 1 );
+				add_action( 'lsx_framework_'.$post_type.'_tab_content_top', array( $this, 'archive_settings_header' ), 10 , 1 );
 				add_action( 'lsx_framework_'.$post_type.'_tab_content_top', array( $this, 'archive_settings' ), 12 , 1 );
 				add_action( 'lsx_framework_'.$post_type.'_tab_content_top', array( $this, 'single_settings' ), 15 , 1 );
 				add_action( 'lsx_framework_'.$post_type.'_tab_bottom', array( $this, 'settings_page_scripts' ), 100 );
@@ -278,14 +279,22 @@ class LSX_Framework_Admin {
 	}	
 
 	/**
+	 * Adds in the settings neccesary for the archive heading
+	 */
+	public function archive_settings_header($post_type=false){ ?>
+		{{#unless disable_archives}}
+			<tr class="form-field">
+				<th scope="row" colspan="2"><label><h3>Archive</h3></label></th>
+			</tr>
+		{{/unless}}
+	<?php
+
+	/**
 	 * Adds in the settings neccesary for the archives
 	 */
 	public function archive_settings($post_type=false){ ?>
 
 		{{#unless disable_archives}}
-			<tr class="form-field">
-				<th scope="row" colspan="2"><label><h3>Archive</h3></label></th>
-			</tr>	
 			<?php do_action('lsx_framework_'.$post_type.'_tab_archive_settings_top',$post_type); ?>		
 			<?php if(class_exists('LSX_Banners')) { ?>
 				<tr class="form-field banner-wrap">
