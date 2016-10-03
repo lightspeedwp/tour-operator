@@ -253,7 +253,7 @@ class LSX_Accommodation {
 		$fields[] = array( 'id' => 'included',  'name' => 'Included', 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ) );
 		$fields[] = array( 'id' => 'excluded',  'name' => 'Excluded', 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ) );
 
-		$fields[] = array( 'id' => 'team_to_accommodation', 'name' => 'Accommodation Expert', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12 );
+		$fields[] = array( 'id' => 'team_to_accommodation', 'name' => 'Accommodation Expert', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12 );
 		$fields[] = array( 'id' => 'gallery_title',  'name' => 'Gallery', 'type' => 'title' );
 		$fields[] = array( 'id' => 'gallery', 'name' => 'Gallery images', 'type' => 'image', 'repeatable' => true, 'show_size' => false );		
 		
@@ -400,17 +400,17 @@ class LSX_Accommodation {
 		
 		//Connections
 		$fields[] = array( 'id' => 'activity_title',  'name' => 'Activities', 'type' => 'title', 'cols' => 12 );
-		$fields[] = array( 'id' => 'activity_to_accommodation', 'name' => 'Activities related with this accommodation', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'activity','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
+		$fields[] = array( 'id' => 'activity_to_accommodation', 'name' => 'Activities related with this accommodation', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'activity','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
 		$fields[] = array( 'id' => 'destinations_title',  'name' => 'Destinations', 'type' => 'title', 'cols' => 12 );
-		$fields[] = array( 'id' => 'destination_to_accommodation', 'name' => 'Destinations related with this accommodation', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'destination','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
+		$fields[] = array( 'id' => 'destination_to_accommodation', 'name' => 'Destinations related with this accommodation', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'destination','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
 		$fields[] = array( 'id' => 'review_title',  'name' => 'Reviews', 'type' => 'title', 'cols' => 12);
-		$fields[] = array( 'id' => 'review_to_accommodation', 'name' => 'Reviews related with this accommodation', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'review','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
+		$fields[] = array( 'id' => 'review_to_accommodation', 'name' => 'Reviews related with this accommodation', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'review','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
 		$fields[] = array( 'id' => 'specials_title',  'name' => 'Specials', 'type' => 'title', 'cols' => 12 );
-		$fields[] = array( 'id' => 'special_to_accommodation', 'name' => 'Specials related with this accommodation', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'special','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'allow_none'=>true, 'cols' => 12 );
+		$fields[] = array( 'id' => 'special_to_accommodation', 'name' => 'Specials related with this accommodation', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'special','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'allow_none'=>true, 'cols' => 12 );
 		$fields[] = array( 'id' => 'tours_title',  'name' => 'Tours', 'type' => 'title', 'cols' => 12 );
-		$fields[] = array( 'id' => 'tour_to_accommodation', 'name' => 'Tours related with this accommodation', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'tour','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
+		$fields[] = array( 'id' => 'tour_to_accommodation', 'name' => 'Tours related with this accommodation', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'tour','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
 		$fields[] = array( 'id' => 'vehicle_title',  'name' => 'Vehicles', 'type' => 'title', 'cols' => 12 );
-		$fields[] = array( 'id' => 'vehicle_to_accommodation', 'name' => 'Vehicles related with this accommodation', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'vehicle','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
+		$fields[] = array( 'id' => 'vehicle_to_accommodation', 'name' => 'Vehicles related with this accommodation', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'vehicle','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
 		
 		
 	

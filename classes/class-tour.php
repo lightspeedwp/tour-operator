@@ -170,7 +170,7 @@ class Lsx_Tour {
 			$fields[] = array( 'id' => 'tagline',  'name' => 'Tagline', 'type' => 'text' );
 		}
 		$fields[] = array( 'id' => 'duration',  	'name' => _x( 'Duration', 'lsx-tour-operators' ), 'type' => 'text', 'cols' => 12 );
-		$fields[] = array( 'id' => 'departs_from', 'name' => 'Departs From', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'destination','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ),'allow_none'=>true, 'cols' => 12,'sortable'=>true,'repeatable'=>true );
+		$fields[] = array( 'id' => 'departs_from', 'name' => 'Departs From', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'destination','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ),'allow_none'=>true, 'cols' => 12,'sortable'=>true,'repeatable'=>true );
 		$fields[] = array( 'id' => 'ends_in', 'name' => 'Ends In', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'destination','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ),'allow_none'=>true, 'cols' => 12,'sortable'=>true,'repeatable'=>true );
 		$fields[] = array( 
 					'id' => 'best_time_to_visit',
@@ -195,7 +195,7 @@ class Lsx_Tour {
 				);
 		
 		if(post_type_exists('team')){
-			$fields[] = array( 'id' => 'team_to_tour', 'name' => 'Tour Expert', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12);
+			$fields[] = array( 'id' => 'team_to_tour', 'name' => 'Tour Expert', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12);
 		}
 		$fields[] = array( 'id' => 'hightlights',  'name' => 'Hightlights', 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
 		
@@ -206,12 +206,12 @@ class Lsx_Tour {
 		$fields[] = array( 'id' => 'not_included',  'name' => 'Not Included', 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
 		
 		if(post_type_exists('special')){
-			$fields[] = array( 'id' => 'special_to_tour', 'name' => 'Specials related with this tour', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'special','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none' => true , 'repeatable' => true, 'sortable' => true, 'cols' => 12 );
+			$fields[] = array( 'id' => 'special_to_tour', 'name' => 'Specials related with this tour', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'special','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none' => true , 'repeatable' => true, 'sortable' => true, 'cols' => 12 );
 		}
 		
 		$fields[] = array( 'id' => 'gallery_title',  'name' => 'Gallery', 'type' => 'title' );
 		if(class_exists('Envira_Gallery')){
-			$fields[] = array( 'id' => 'envira_to_tour', 'name' => 'Gallery from  Envira Gallery plugin', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
+			$fields[] = array( 'id' => 'envira_to_tour', 'name' => 'Gallery from  Envira Gallery plugin', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
 		}else{
 			$fields[] = array( 'id' => 'gallery', 'name' => 'Gallery images', 'type' => 'image', 'repeatable' => true, 'show_size' => false );
 		}
@@ -222,11 +222,11 @@ class Lsx_Tour {
 		//Connections
 		if(post_type_exists('review')){
 			$fields[] = array( 'id' => 'review_title',  'name' => 'Reviews', 'type' => 'title', 'cols' => 12);
-			$fields[] = array( 'id' => 'review_to_tour', 'name' => 'Reviews related with this tour', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'review','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true,'allow_none'=>true, 'cols' => 12 );
+			$fields[] = array( 'id' => 'review_to_tour', 'name' => 'Reviews related with this tour', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'review','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true,'allow_none'=>true, 'cols' => 12 );
 		}
 		if(post_type_exists('vehicle')){
 			$fields[] = array( 'id' => 'vehicle_title',  'name' => 'Vehicles', 'type' => 'title', 'cols' => 12 );
-			$fields[] = array( 'id' => 'vehicle_to_tour', 'name' => 'Vehicles related with this tour', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'vehicle','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true, 'allow_none'=>true, 'cols' => 12 );
+			$fields[] = array( 'id' => 'vehicle_to_tour', 'name' => 'Vehicles related with this tour', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'vehicle','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true, 'allow_none'=>true, 'cols' => 12 );
 		}
 		
 		//Itinerary Details
@@ -312,13 +312,13 @@ class Lsx_Tour {
 		$fields[] = array( 'id' => 'description', 'name' => 'Description', 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ) );
 		$fields[] = array( 'id' => 'featured_image', 'name' => 'Featured Image', 'type' => 'image', 'show_size' => false );
 		if(post_type_exists('accommodation')){
-			$fields[] = array( 'id' => 'accommodation_to_tour', 'name' => 'Accommodations related with this itinerary', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'accommodation','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true,'allow_none'=>true, 'cols' => 12 );
+			$fields[] = array( 'id' => 'accommodation_to_tour', 'name' => 'Accommodations related with this itinerary', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'accommodation','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true,'allow_none'=>true, 'cols' => 12 );
 		}
 		if(post_type_exists('activity')){
-			$fields[] = array( 'id' => 'activity_to_tour', 'name' => 'Activities related with this itinerary', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'activity','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true,'allow_none'=>true, 'cols' => 12 );
+			$fields[] = array( 'id' => 'activity_to_tour', 'name' => 'Activities related with this itinerary', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'activity','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true,'allow_none'=>true, 'cols' => 12 );
 		}
 		if(post_type_exists('destination')){
-			$fields[] = array( 'id' => 'destination_to_tour', 'name' => 'Destinations related with this itinerary', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'destination','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true,'allow_none'=>true, 'cols' => 12 );
+			$fields[] = array( 'id' => 'destination_to_tour', 'name' => 'Destinations related with this itinerary', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'destination','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true,'allow_none'=>true, 'cols' => 12 );
 		}
 		if($this->is_wetu_active){
 			$fields[] = array( 'id' => 'included', 'name' => 'Included', 'type' => 'textarea', 'options' => array( 'editor_height' => '100' ) );
