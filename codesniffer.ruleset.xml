@@ -8,15 +8,28 @@
 
 	<!-- Include the WordPress ruleset, with exclusions. -->
 	<rule ref="WordPress">
-		<exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact" />
-		<exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect" />
-		<exclude name="PEAR.Functions.FunctionCallSignature.Indent" />
-
-
-		<exclude name="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceBeforeOpenParenthesis" />
-		<exclude name="Squiz.Commenting" />
-		<exclude name="Squiz.WhiteSpace" />
+		<exclude name="Generic.Classes.OpeningBraceSameLine" />
 		<exclude name="Generic.Commenting" />
-		
+		<exclude name="Generic.ControlStructures.InlineControlStructure.NotAllowed" />
+		<exclude name="Generic.Files.EndFileNewline" />
+		<exclude name="Generic.Formatting.DisallowMultipleStatements.SameLine" />
+		<exclude name="Generic.Functions" />
+		<exclude name="Generic.PHP.LowerCaseConstant.Found" />
+		<exclude name="Generic.Strings.UnnecessaryStringConcat.Found" />
+		<exclude name="Generic.WhiteSpace" />
+
+		<exclude name="PEAR.Functions.FunctionCallSignature" />
+
+		<exclude name="Squiz.Commenting" />
+		<exclude name="Squiz.ControlStructures.ControlSignature" />
+		<exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing" />
+		<exclude name="Squiz.Strings" />
+		<exclude name="Squiz.WhiteSpace" />
+
+		<exclude name="WordPress.Arrays" />
+		<exclude name="WordPress.NamingConventions.ValidVariableName.NotSnakeCase" />
+		<exclude name="WordPress.PHP.YodaConditions.NotYoda" />
+		<exclude name="WordPress.WhiteSpace" />
+		<exclude name="WordPress.WP.I18n.MissingSingularPlaceholder" />
 	</rule>
 </ruleset>
