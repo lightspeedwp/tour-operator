@@ -199,7 +199,8 @@ function lsx_tour_itinerary_title() {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
 		if(false !== $tour_itinerary->itinerary['title']){
-			echo esc_html_e(apply_filters('the_title',$tour_itinerary->itinerary['title']),'lsx-tour-operators');
+			$title = apply_filters('the_title',$tour_itinerary->itinerary['title']);
+			echo esc_html_e($title,'lsx-tour-operators');
 		}
 	}
 }
