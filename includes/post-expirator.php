@@ -37,7 +37,7 @@ add_action('add_meta_boxes','lsx_to_expirationdate_meta_custom');
 function lsx_to_expirationdate_meta_box($post) { 
 	$expirationdatets = get_post_meta($post->ID,'_lsx_to_expiration-date',true);
 	$firstsave = get_post_meta($post->ID,'_lsx_to_expiration-date-status',true);
-	$expireType = '';
+	$expiretype = '';
 	
 	if (empty($expirationdatets)) {
 		$defaultmonth 	=	date_i18n('m');
@@ -58,8 +58,8 @@ function lsx_to_expirationdate_meta_box($post) {
 		$disabled 	= 	'';
 		$opts 		= 	get_post_meta($post->ID,'_lsx_to_expiration-date-options',true);
 		
-		if (isset($opts['expireType'])) {
-			$expireType = $opts['expireType'];
+		if (isset($opts['expiretype'])) {
+			$expiretype = $opts['expiretype'];
 		}
 	}
 
@@ -124,7 +124,7 @@ function lsx_to_expirationdate_meta_box($post) {
 	echo implode("\n",$rv);
 
 	echo '<br/>'.__('How to expire','lsx-tour-operators').': ';
-	echo lsx_to_post_expirator_expire_type(array('type' => $post->post_type, 'name'=>'lsx_to_expirationdate_expiretype','selected'=>$expireType,'disabled'=>$disabled));
+	echo lsx_to_post_expirator_expire_type(array('type' => $post->post_type, 'name'=>'lsx_to_expirationdate_expiretype','selected'=>$expiretype,'disabled'=>$disabled));
 }
 
 function lsx_to_expirationdate_js_admin_header() {
@@ -186,7 +186,7 @@ function lsx_to_expirationdate_update_post_meta($id) {
 		$opts = array();
 		$ts = get_gmt_from_date("$year-$month-$day $hour:$minute:0",'U');
 
-		$opts['expireType'] = $_POST['lsx_to_expirationdate_expiretype'];
+		$opts['expiretype'] = $_POST['lsx_to_expirationdate_expiretype'];
 		$opts['id'] = $id;
 	
 		lsx_to_schedule_expirator_event($id,$ts,$opts);
@@ -231,19 +231,19 @@ function lsx_to_post_expirator_expire($id) {
 	$postoptions = get_post_meta($id,'_lsx_to_expiration-date-options',true);
 	extract($postoptions);
 
-	if (empty($expireType)) {
+	if (empty($expiretype)) {
 		$posttype = get_post_type($id);
-		$expireType = apply_filters('lsx_to_postexpirator_custom_posttype_expire', $expireType, $posttype);
+		$expiretype = apply_filters('lsx_to_postexpirator_custom_posttype_expire', $expiretype, $posttype);
 	}
 
 	kses_remove_filters();
 
 	// Do Work
-	if ($expireType == 'draft') {
+	if ($expiretype == 'draft') {
 		wp_update_post(array('ID' => $id, 'post_status' => 'draft'));
-	} elseif ($expireType == 'private') {
+	} elseif ($expiretype == 'private') {
 		wp_update_post(array('ID' => $id, 'post_status' => 'private'));
-	} elseif ($expireType == 'delete') {
+	} elseif ($expiretype == 'delete') {
 		wp_delete_post($id);
 	}
 }
