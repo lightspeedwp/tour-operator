@@ -34,7 +34,10 @@
 		<exclude name="WordPress.WhiteSpace" />
 		<exclude name="WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet" />
 		<exclude name="WordPress.WP.I18n.MissingSingularPlaceholder" />
+		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralDomain" />
+		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralText" />
 		
+		<exclude name="WordPress.VIP.DirectDatabaseQuery.NoCaching" />
 		<exclude name="WordPress.VIP.RestrictedFunctions.get_adjacent_post" />
 		<exclude name="WordPress.VIP.RestrictedFunctions.get_term_link" />
 		<exclude name="WordPress.VIP.RestrictedFunctions.wp_get_post_terms" />

@@ -200,7 +200,7 @@ function lsx_tour_itinerary_title() {
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
 		if(false !== $tour_itinerary->itinerary['title']){
 			$title = apply_filters('the_title',$tour_itinerary->itinerary['title']);
-			printf('%s',$title);
+			echo esc_html($title);
 		}
 	}
 }

@@ -423,7 +423,7 @@ class LSX_TO_Admin extends LSX_Tour_Operators {
 	 */
 	public function post_relations($post_id, $field, $value) {
 		
-		if($field['type'] === 'group' && array_key_exists($field['id'], $this->single_fields)){
+		if('group' === $field['type'] && array_key_exists($field['id'], $this->single_fields)){
 				
 			$delete_counter = array();
 			foreach($this->single_fields[$field['id']] as $fields_to_save){
