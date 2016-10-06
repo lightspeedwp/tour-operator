@@ -140,11 +140,11 @@ class LSX_TO_Frontend extends LSX_Tour_Operators {
 			foreach($this->modal_ids as $post_id){
 			$post = get_post($post_id);
 			?>	
-				<div class="lsx-modal modal fade" id="lsx-modal-<?php echo $post_id; ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo get_the_title($post_id); ?>">
+				<div class="lsx-modal modal fade" id="lsx-modal-<?php echo esc_attr( $post_id ); ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo get_the_title($post_id); ?>">
 				  <div class="modal-dialog" role="document">
 				    <div class="modal-content">
 				      <div class="modal-body">
-				      	<button type="button" class="close" data-dismiss="modal" aria-label="<?php _e('Close','lsx-tour-operators'); ?>"><span aria-hidden="true">×</span></button>
+				      	<button type="button" class="close" data-dismiss="modal" aria-label="<?php esc_html_e('Close','lsx-tour-operators'); ?>"><span aria-hidden="true">×</span></button>
 				        <?php lsx_tour_operator_content( 'content', 'modal' ); ?>
 				      </div>
 				    </div>

@@ -58,7 +58,7 @@ class LSX_TO_Admin extends LSX_Tour_Operators {
 					if('envira' === $slug){ continue; }
 					?>
 					<li>
-						<input type="checkbox" <?php if(in_array($slug,$this->active_post_types)){ echo 'checked="checked"'; } ?> name="post_types[<?php echo $slug; ?>]" /> <label for="post_types"><?php echo $label; ?></label> 
+						<input type="checkbox" <?php if(in_array($slug,$this->active_post_types)){ echo 'checked="checked"'; } ?> name="post_types[<?php echo esc_attr( $slug ); ?>]" /> <label for="post_types"><?php echo esc_html( $label ); ?></label> 
 					</li>
 				<?php }
 			}else{
@@ -98,7 +98,7 @@ class LSX_TO_Admin extends LSX_Tour_Operators {
 
 			<tr class="form-field-wrap">
 				<th scope="row">
-					<label for="currency"><?php _e('General Enquiry','lsx-tour-operators'); ?></label>
+					<label for="currency"><?php esc_html_e('General Enquiry','lsx-tour-operators'); ?></label>
 				</th>
 				<?php
 					if(true === $this->show_default_form()){
@@ -110,7 +110,7 @@ class LSX_TO_Admin extends LSX_Tour_Operators {
 								<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}>Select a form</option>
 								<?php
 								foreach($forms as $form_id => $form_data){ ?>
-									<option value="<?php echo $form_id; ?>" {{#is enquiry value="<?php echo $form_id; ?>"}} selected="selected"{{/is}}><?php echo $form_data; ?></option>
+									<option value="<?php echo esc_attr( $form_id ); ?>" {{#is enquiry value="<?php echo esc_attr( $form_id ); ?>"}} selected="selected"{{/is}}><?php echo esc_html( $form_data ); ?></option>
 								<?php
 								}
 							}else{ ?>
@@ -128,16 +128,16 @@ class LSX_TO_Admin extends LSX_Tour_Operators {
 			</tr>
 			<tr class="form-field">
 				<th scope="row">
-					<label for="description"><?php _e('Disable Enquire Modal','lsx-tour-operators'); ?></label>
+					<label for="description"><?php esc_html_e('Disable Enquire Modal','lsx-tour-operators'); ?></label>
 				</th>
 				<td>
 					<input type="checkbox" {{#if disable_enquire_modal}} checked="checked" {{/if}} name="disable_enquire_modal" />
-					<small><?php _e('This disables the enquire modal, and instead redirects to the link you provide below.','lsx-tour-operators'); ?></small>
+					<small><?php esc_html_e('This disables the enquire modal, and instead redirects to the link you provide below.','lsx-tour-operators'); ?></small>
 				</td>
 			</tr>
 			<tr class="form-field">
 				<th scope="row">
-					<label for="title"><?php _e('Enquire Link','lsx-tour-operators'); ?></label>
+					<label for="title"><?php esc_html_e('Enquire Link','lsx-tour-operators'); ?></label>
 				</th>
 				<td>
 					<input type="text" {{#if enquire_link}} value="{{enquire_link}}" {{/if}} name="enquire_link" />
@@ -159,11 +159,11 @@ class LSX_TO_Admin extends LSX_Tour_Operators {
 	public function modal_setting() { ?>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="description"><?php _e('Enable Connected Modals','lsx-tour-operators'); ?></label>
+				<label for="description"><?php esc_html_e('Enable Connected Modals','lsx-tour-operators'); ?></label>
 			</th>
 			<td>
 				<input type="checkbox" {{#if enable_modals}} checked="checked" {{/if}} name="enable_modals" />
-				<small><?php _e('Any connected item showing on a single will display a preview in a modal.','lsx-tour-operators'); ?></small>
+				<small><?php esc_html_e('Any connected item showing on a single will display a preview in a modal.','lsx-tour-operators'); ?></small>
 			</td>
 		</tr>
 	<?php

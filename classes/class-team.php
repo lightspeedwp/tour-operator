@@ -211,7 +211,7 @@ class Lsx_Team {
 				</th>
 				<td>
 					<?php foreach ( $experts as $expert ) : ?>
-						<label for="expert-<?php echo $expert->ID ?>"><input type="checkbox" {{#if expert-<?php echo $expert->ID ?>}} checked="checked" {{/if}} name="expert-<?php echo $expert->ID ?>" id="expert-<?php echo $expert->ID ?>" value="<?php echo $expert->ID ?>" /> <?php echo $expert->post_title ?></label><br>
+						<label for="expert-<?php echo esc_attr( $expert->ID ); ?>"><input type="checkbox" {{#if expert-<?php echo esc_attr( $expert->ID ); ?>}} checked="checked" {{/if}} name="expert-<?php echo esc_attr( $expert->ID ); ?>" id="expert-<?php echo esc_attr( $expert->ID ); ?>" value="<?php echo esc_attr( $expert->ID ); ?>" /> <?php echo esc_html( $expert->post_title ); ?></label><br>
 					<?php endforeach ?>
 				</td>
 			</tr>	

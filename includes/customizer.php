@@ -342,5 +342,3 @@ CSS;
 	return $css;
 }
 add_filter( 'lsx_customizer_colour_selectors_body', 'lsx_tour_operators_customizer_colour_selectors_body', 10, 2 );
-
-?>

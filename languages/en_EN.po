@@ -590,7 +590,7 @@ msgstr ""
 msgid "Destinations"
 msgstr ""
 
-#: classes/class-units.php:407, includes/template-tags.php:858, includes/template-tags.php:1609, templates/archive-accommodation.php:48, templates/single-accommodation.php:94
+#: classes/class-units.php:374, classes/class-units.php:407, includes/template-tags.php:858, includes/template-tags.php:1609, templates/archive-accommodation.php:48, templates/single-accommodation.php:94
 msgid "lsx_get_post_type_section_titleaccommodation"
 msgstr ""
 

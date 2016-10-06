@@ -384,7 +384,7 @@ class Lsx_Tour {
 	 */
 	public function price_filter($html='',$meta_key=false,$value=false,$before="",$after=""){
 		if(get_post_type() === 'tour' && 'price' === $meta_key){
-			$value = number_format((int)$value);
+			$value = number_format((int) $value);
 			global $lsx_tour_operators;
 			$currency = '';
 			if ( is_object( $lsx_tour_operators ) && isset( $lsx_tour_operators->options['general'] ) && is_array( $lsx_tour_operators->options['general'] ) ) {

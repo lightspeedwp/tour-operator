@@ -158,7 +158,7 @@ class Lsx_Unit_Query {
 			if(false !== $this->query_item['title']){
 				$return = $before.apply_filters('the_title',$this->query_item['title']).$after;
 				if($echo){
-					echo $return;
+					echo wp_kses_post( $return );
 				}else{
 					return $return;
 				}
@@ -174,7 +174,7 @@ class Lsx_Unit_Query {
 			if(false !== $this->query_item['description']){
 				$return = $before.apply_filters('the_content',$this->query_item['description']).$after;
 				if($echo){
-					echo $return;
+					echo wp_kses_post( $return );
 				}else{
 					return $return;
 				}				
@@ -202,7 +202,7 @@ class Lsx_Unit_Query {
 			if(false !== $thumbnail_src){
 				$return = $before.apply_filters( 'lsx_lazyload_filter_images', '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="'.$thumbnail_src.'" />' ).$after;
 				if($echo){
-					echo $return;
+					echo wp_kses_post( $return );
 				}else{
 					return $return;
 				}				
@@ -371,11 +371,11 @@ function lsx_accommodation_units_nav_links($before="",$after="",$echo=true) {
 
 	foreach($unit_types as $type_key => $type_label){
 		if(lsx_accommodation_check_type($type_key)){
-			$return .= str_replace('{units}',$type_key.'s',$before)._(lsx_get_post_type_section_title('accommodation', $type_key.'s', $type_label.'s'),'lsx-tour-operators').str_replace('{units}',$type_key.'s',$after);
+			$return .= str_replace('{units}',$type_key.'s',$before).__(lsx_get_post_type_section_title('accommodation', $type_key.'s', $type_label.'s'),'lsx-tour-operators').str_replace('{units}',$type_key.'s',$after);
 		}
 	}	
 	if(true === $echo){
-		echo $return;
+		echo wp_kses_post( $return );
 	}else{
 		return $return;
 	}
@@ -403,9 +403,9 @@ function lsx_accommodation_units($before="",$after=""){
 		foreach($unit_types as $type_key => $type_label){
 			if(lsx_accommodation_check_type($type_key)){
 			?>
-				<section id="<?php echo $type_key; ?>s">
-					<h2 class="section-title"><?php _e(lsx_get_post_type_section_title('accommodation', $type_key.'s', $type_label.'s'),'lsx-tour-operators');?></h2>
-					<div class="<?php echo $type_key; ?>s-content rooms-content row">		
+				<section id="<?php echo esc_attr( $type_key ); ?>s">
+					<h2 class="section-title"><?php esc_html_e(lsx_get_post_type_section_title('accommodation', $type_key.'s', $type_label.'s'),'lsx-tour-operators');?></h2>
+					<div class="<?php echo esc_attr( $type_key ); ?>s-content rooms-content row">		
 					<?php while(lsx_accommodation_room_loop()){ ?>
 
 						<?php if(!lsx_accommodation_room_loop_item($type_key)) { continue; } ?>

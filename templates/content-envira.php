@@ -10,4 +10,4 @@ if(false !== $gallery_id && '' !== $gallery_id){
 	if ( function_exists( 'envira_gallery' ) ) {
 		envira_gallery( $gallery_id );
 	}
-} ?>
+}

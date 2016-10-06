@@ -395,5 +395,3 @@ function lsx_to_scporder_uninstall_db() {
 
 	delete_option('lsx_to_scporder_install');
 }
-
-?>
