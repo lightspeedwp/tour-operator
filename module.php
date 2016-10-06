@@ -327,6 +327,7 @@ class LSX_Tour_Operators {
 		$allowedtags['a']['data-slide'] = true;
 		$allowedtags['a']['data-collapsed'] = true;
 
+		$allowedtags['div']['style'] = true;
 		$allowedtags['div']['aria-labelledby'] = true;
 		$allowedtags['div']['data-interval'] = true;
 		$allowedtags['div']['data-icon'] = true;
@@ -341,6 +342,7 @@ class LSX_Tour_Operators {
 		$allowedtags['div']['data-type'] = true;
 		$allowedtags['div']['data-cluster-small'] = true;
 		$allowedtags['div']['data-cluster-medium'] = true;
+		$allowedtags['div']['data-cluster-large'] = true;
 
 		// New tags
 
