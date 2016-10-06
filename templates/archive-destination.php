@@ -11,7 +11,7 @@
 
 	<?php lsx_content_wrap_before(); ?>
 
-	<section id="primary" class="content-area <?php echo esc_attr( lsx_main_class() ); ?>">">
+	<section id="primary" class="content-area <?php echo esc_attr( lsx_main_class() ); ?>">
 
 		<?php lsx_content_before() ?>
 
