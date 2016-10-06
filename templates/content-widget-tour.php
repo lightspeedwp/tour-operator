@@ -27,7 +27,7 @@ global $disable_placeholder;
 		<?php lsx_connected_destinations('<div class="meta destination">'.__('Destinations','lsx-tour-operators').': ','</div>'); ?>	
 		<?php lsx_connected_activities('<div class="meta activities">'.__('Activites','lsx-tour-operators').': ','</div>'); ?>
 		<div class="view-more" style="text-align:center;">
-			<a href="<?php the_permalink(); ?>" class="btn btn-primary text-center"><?php _e('View Tour','lsx-tour-operators'); ?></a>
+			<a href="<?php the_permalink(); ?>" class="btn btn-primary text-center"><?php _esc_html_e('View Tour','lsx-tour-operators'); ?></a>
 		</div>	
 	</div>
 	

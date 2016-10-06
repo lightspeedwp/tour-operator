@@ -45,7 +45,7 @@
 			<div <?php lsx_entry_class('entry-content'); ?>>
 				<?php if(is_single() || lsx_is_single_disabled()) { ?>
 					<div class="single-main-info">
-						<h3><?php _e('Summary','lsx-tour-operators');?></h3>
+						<h3><?php _esc_html_e('Summary','lsx-tour-operators');?></h3>
 						<div class="meta taxonomies">
 							<?php lsx_tour_team_role('<div class="meta role">'.__('Role','lsx-tour-operators').': ','</div>'); ?>
 							<?php lsx_connected_tours('<div class="meta tours">'.__('Tours','lsx-tour-operators').': ','</div>'); ?>

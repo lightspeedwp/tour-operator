@@ -35,7 +35,7 @@ if(1 !== $lsx_archive){$lsx_archive = false;}
 			<div <?php lsx_entry_class('entry-content'); ?>>
 				<?php if(is_singular() && !$lsx_archive) { ?>
 					<div class="single-main-info">
-						<h3><?php _e('Summary','lsx-tour-operators');?></h3>
+						<h3><?php _esc_html_e('Summary','lsx-tour-operators');?></h3>
 						<?php lsx_tour_price('<div class="meta info"><span class="price">from ','</span></div>'); ?>
 						<div class="meta taxonomies">
 							<?php lsx_accommodation_room_total('<div class="meta rooms">'.__('Rooms','lsx-tour-operators').': <span>','</span></div>'); ?>

@@ -28,7 +28,7 @@ global $disable_placeholder;
 		<?php lsx_accommodation_room_total('<div class="meta rooms">'.__('Rooms','lsx-tour-operators').': <span>','</span></div>'); ?>
 		<?php lsx_accommodation_rating('<div class="meta rating">'.__('Rating','lsx-tour-operators').': ','</div>'); ?>		
 		<div class="view-more" style="text-align:center;">
-			<a href="<?php the_permalink(); ?>" class="btn btn-primary text-center"><?php _e('View Accommodation','lsx-tour-operators'); ?></a>
+			<a href="<?php the_permalink(); ?>" class="btn btn-primary text-center"><?php _esc_html_e('View Accommodation','lsx-tour-operators'); ?></a>
 		</div>	
 	</div>
 	

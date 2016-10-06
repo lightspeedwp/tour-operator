@@ -48,12 +48,12 @@ get_header(); ?>
 						$gallery_id = get_post_meta(get_the_ID(),'gallery',true);
 					}
 					if(false !== $gallery_id && '' !== $gallery_id){ ?>
-						<li><a href="#gallery"><?php _e('Gallery','lsx-tour-operators');?></a></li>
+						<li><a href="#gallery"><?php _esc_html_e('Gallery','lsx-tour-operators');?></a></li>
 					<?php } ?>
 					<?php 
 					$videos = get_post_meta(get_the_ID(),'videos',true);
 					if(false !== $videos && '' !== $videos){ ?>
-						<li><a href="#videos"><?php _e('Videos','lsx-tour-operators');?></a></li>
+						<li><a href="#videos"><?php _esc_html_e('Videos','lsx-tour-operators');?></a></li>
 					<?php } ?>								
 				</ul>
 			</div>
@@ -82,7 +82,7 @@ get_header(); ?>
 		if($test){
 			?>
 			<section id="gallery">
-				<h2 class="section-title"><?php _e('Gallery','lsx-tour-operators'); ?></h2>	
+				<h2 class="section-title"><?php _esc_html_e('Gallery','lsx-tour-operators'); ?></h2>	
 				<?php 
 					if ( function_exists( 'Envira_Gallery' ) ) {
 						lsx_tour_operator_content('content', 'envira');

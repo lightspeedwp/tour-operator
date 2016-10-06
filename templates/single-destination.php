@@ -56,7 +56,7 @@ get_header(); ?>
 								<li><a href="#activity">Activities</a></li>
 							<?php
 						}} ?>						
-						<li><a href="#destination-map"><?php _e('Map','lsx-tour-operators');?></a></li>
+						<li><a href="#destination-map"><?php _esc_html_e('Map','lsx-tour-operators');?></a></li>
 						<?php 
 						if(class_exists('Envira_Gallery')){
 							$gallery_id = get_post_meta(get_the_ID(),'envira_to_destination',true);
@@ -64,12 +64,12 @@ get_header(); ?>
 							$gallery_id = get_post_meta(get_the_ID(),'gallery',true);
 						}
 						if(false !== $gallery_id && '' !== $gallery_id){ ?>
-							<li><a href="#gallery"><?php _e('Gallery','lsx-tour-operators');?></a></li>
+							<li><a href="#gallery"><?php _esc_html_e('Gallery','lsx-tour-operators');?></a></li>
 						<?php } ?>
 						<?php 
 						$videos = get_post_meta(get_the_ID(),'videos',true);
 						if(false !== $videos && '' !== $videos){ ?>
-							<li><a href="#videos"><?php _e('Videos','lsx-tour-operators');?></a></li>
+							<li><a href="#videos"><?php _esc_html_e('Videos','lsx-tour-operators');?></a></li>
 						<?php } ?>								
 					</ul>
 				</div>
@@ -98,7 +98,7 @@ get_header(); ?>
 			
 			<?php if(lsx_has_map()){ ?>
 				<section id="destination-map">
-					<h2 class="section-title"><?php _e('Map','lsx-tour-operators'); ?></h2>
+					<h2 class="section-title"><?php _esc_html_e('Map','lsx-tour-operators'); ?></h2>
 					<?php lsx_map(); ?>
 				</section>			
 			<?php }	?>		
@@ -114,7 +114,7 @@ get_header(); ?>
 			if($test){
 				?>
 				<section id="gallery">
-					<h2 class="section-title"><?php _e('Gallery','lsx-tour-operators'); ?></h2>	
+					<h2 class="section-title"><?php _esc_html_e('Gallery','lsx-tour-operators'); ?></h2>	
 					<?php 
 					if ( function_exists( 'Envira_Gallery' ) ) {
 						lsx_tour_operator_content('content', 'envira');

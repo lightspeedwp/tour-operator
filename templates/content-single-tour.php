@@ -228,7 +228,7 @@
 			    <div id="price" class="tab-pane fade col-sm-12">
 				    <div class="row">
 					    <div class="col-sm-12 center">
-						    <h3 class="price"><?php _e('Cette offre &agrave; partir de &euro;','lsx-tour-operators'); echo$price;?></h3>
+						    <h3 class="price"><?php _esc_html_e('Cette offre &agrave; partir de &euro;','lsx-tour-operators'); echo$price;?></h3>
 					    </div>
 					    
 					    <hr class="divider voyages">

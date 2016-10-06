@@ -36,7 +36,7 @@ if(1 !== $lsx_archive){$lsx_archive = false;}
 	
 		<?php if(is_single() && false === $lsx_archive) { ?>
 			<div class="single-main-info">
-				<h3><?php _e('Summary','lsx-tour-operators');?></h3>
+				<h3><?php _esc_html_e('Summary','lsx-tour-operators');?></h3>
 				<div class="meta taxonomies">
 					<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.__('Travel Style','lsx-tour-operators').': ', ', ', '</div>' ); ?>
 					<?php lsx_connected_activities('<div class="meta activities">'.__('Activites','lsx-tour-operators').': ','</div>'); ?>	
