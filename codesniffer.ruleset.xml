@@ -35,6 +35,7 @@
 		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralText" />
 		
 		<exclude name="WordPress.VIP.DirectDatabaseQuery.NoCaching" />
+		<exclude name="WordPress.VIP.DirectDatabaseQuery.SchemaChange" />
 		<exclude name="WordPress.VIP.RestrictedFunctions.get_adjacent_post" />
 		<exclude name="WordPress.VIP.RestrictedFunctions.get_term_link" />
 		<exclude name="WordPress.VIP.RestrictedFunctions.switch_to_blog" />

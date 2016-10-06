@@ -47,20 +47,20 @@ class LSX_TO_SCPO_Engine {
 		if (empty($objects) && empty($tags))
 			return false;
 
-		if (isset($_GET['orderby']) || strstr($_SERVER['REQUEST_URI'], 'action=edit') || strstr($_SERVER['REQUEST_URI'], 'wp-admin/post-new.php'))
+		if (isset($_GET['orderby']) || strstr(esc_url(wp_unslash($_SERVER['REQUEST_URI'])), 'action=edit') || strstr(esc_url(wp_unslash($_SERVER['REQUEST_URI'])), 'wp-admin/post-new.php'))
 			return false;
 
 		if (!empty($objects)) {
-			if (isset($_GET['post_type']) && !isset($_GET['taxonomy']) && array_key_exists($_GET['post_type'], $objects)) { // if page or custom post types
+			if (isset($_GET['post_type']) && !isset($_GET['taxonomy']) && array_key_exists(esc_html(wp_unslash($_GET['post_type'])), $objects)) { // if page or custom post types
 				$active = true;
 			}
-			if (!isset($_GET['post_type']) && strstr($_SERVER['REQUEST_URI'], 'wp-admin/edit.php') && array_key_exists('post', $objects)) { // if post
+			if (!isset($_GET['post_type']) && strstr(esc_url(wp_unslash($_SERVER['REQUEST_URI'])), 'wp-admin/edit.php') && array_key_exists('post', $objects)) { // if post
 				$active = true;
 			}
 		}
 
 		if (!empty($tags)) {
-			if (isset($_GET['taxonomy']) && array_key_exists($_GET['taxonomy'], $tags)) {
+			if (isset($_GET['taxonomy']) && array_key_exists(esc_html(wp_unslash($_GET['taxonomy'])), $tags)) {
 				$active = true;
 			}
 		}
@@ -92,21 +92,21 @@ class LSX_TO_SCPO_Engine {
 
 		if (!empty($objects)) {
 			foreach ($objects as $object => $object_data) {
-				$result = $wpdb->get_results("
+				$result = $wpdb->get_results($wpdb->prepare("
 					SELECT count(*) as cnt, max(menu_order) as max, min(menu_order) as min 
 					FROM $wpdb->posts 
-					WHERE post_type = '" . $object . "' AND post_status IN ('publish', 'pending', 'draft', 'private', 'future')
-				");
+					WHERE post_type = '%s' AND post_status IN ('publish', 'pending', 'draft', 'private', 'future')
+				", $object));
 				
-				if ($result[0]->cnt == 0 || $result[0]->cnt == $result[0]->max)
+				if (0 == $result[0]->cnt || $result[0]->cnt == $result[0]->max)
 					continue;
 
-				$results = $wpdb->get_results("
+				$results = $wpdb->get_results($wpdb->prepare("
 					SELECT ID 
 					FROM $wpdb->posts 
-					WHERE post_type = '" . $object . "' AND post_status IN ('publish', 'pending', 'draft', 'private', 'future') 
+					WHERE post_type = '%s' AND post_status IN ('publish', 'pending', 'draft', 'private', 'future') 
 					ORDER BY menu_order ASC
-				");
+				", $object));
 
 				foreach ($results as $key => $result) {
 					$wpdb->update($wpdb->posts, array('menu_order' => $key + 1), array('ID' => $result->ID));
@@ -116,23 +116,23 @@ class LSX_TO_SCPO_Engine {
 
 		if (!empty($tags)) {
 			foreach ($tags as $taxonomy => $taxonomy_data) {
-				$result = $wpdb->get_results("
+				$result = $wpdb->get_results($wpdb->prepare("
 					SELECT count(*) as cnt, max(lsx_to_term_order) as max, min(lsx_to_term_order) as min 
 					FROM $wpdb->terms AS terms 
 					INNER JOIN $wpdb->term_taxonomy AS term_taxonomy ON ( terms.term_id = term_taxonomy.term_id ) 
-					WHERE term_taxonomy.taxonomy = '" . $taxonomy . "'
-				");
+					WHERE term_taxonomy.taxonomy = '%s'
+				", $taxonomy));
 				
-				if ($result[0]->cnt == 0 || $result[0]->cnt == $result[0]->max)
+				if (0 == $result[0]->cnt || $result[0]->cnt == $result[0]->max)
 					continue;
 
-				$results = $wpdb->get_results("
+				$results = $wpdb->get_results($wpdb->prepare("
 					SELECT terms.term_id 
 					FROM $wpdb->terms AS terms 
 					INNER JOIN $wpdb->term_taxonomy AS term_taxonomy ON ( terms.term_id = term_taxonomy.term_id ) 
-					WHERE term_taxonomy.taxonomy = '" . $taxonomy . "' 
+					WHERE term_taxonomy.taxonomy = '%s' 
 					ORDER BY lsx_to_term_order ASC
-				");
+				", $taxonomy));
 
 				foreach ($results as $key => $result) {
 					$wpdb->update($wpdb->terms, array('lsx_to_term_order' => $key + 1), array('term_id' => $result->term_id));
