@@ -19,7 +19,7 @@ global $term,$taxonomy,$disable_placeholder;
 		<?php else: ?>	
 			<div class="thumbnail">
 				<a href="<?php echo home_url($taxonomy.'/'.$term->slug.'/'); ?>">
-					<img alt="Placeholder" class="attachment-responsive wp-post-image lsx-responsive" src="<?php echo LSX_Placeholders::placeholder_url(); ?>&w=350&h=230">
+					<img alt="Placeholder" class="attachment-responsive wp-post-image lsx-responsive" src="<?php echo LSX_Placeholders::placeholder_url() . ( parse_url( LSX_Placeholders::placeholder_url(), PHP_URL_QUERY ) ? '&' : '?' ); ?>w=350&amp;h=230">
 				</a>	
 			</div>				
 		<?php endif; ?>	
