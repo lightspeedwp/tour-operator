@@ -6,8 +6,9 @@
 		'helper': fixHelper,
 		
 		'update' : function(e, ui) {
-			$.post( ajaxurl, {
+			$.post( scporderjs_params.ajax_url, {
 				action: 'update-menu-order',
+				security: scporderjs_params.ajax_nonce,
 				order: $('#the-list').sortable('serialize'),
 			});
 		}
@@ -19,8 +20,9 @@
 		'helper': fixHelper,
 		
 		'update' : function(e, ui) {
-			$.post( ajaxurl, {
+			$.post( scporderjs_params.ajax_url, {
 				action: 'update-menu-order-tags',
+				security: scporderjs_params.ajax_nonce,
 				order: $('#the-list').sortable('serialize'),
 			});
 		}

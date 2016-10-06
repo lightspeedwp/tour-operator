@@ -191,7 +191,7 @@ function lsx_to_expirationdate_update_post_meta($id) {
 	$opts = array();
 	$ts = get_gmt_from_date("$year-$month-$day $hour:$minute:0",'U');
 
-	$opts['expiretype'] = $_POST['lsx_to_expirationdate_expiretype'];
+	$opts['expiretype'] = sanitize_text_field(wp_unslash($_POST['lsx_to_expirationdate_expiretype']));
 	$opts['id'] = $id;
 
 	lsx_to_schedule_expirator_event($id,$ts,$opts);
