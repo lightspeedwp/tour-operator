@@ -231,21 +231,20 @@ function lsx_to_post_expirator_expire($id) {
 	}
 
 	$postoptions = get_post_meta($id,'_lsx_to_expiration-date-options',true);
-	extract($postoptions);
-
-	if (empty($expiretype)) {
+	
+	if (empty($postoptions['expiretype'])) {
 		$posttype = get_post_type($id);
-		$expiretype = apply_filters('lsx_to_postexpirator_custom_posttype_expire', $expiretype, $posttype);
+		$postoptions['expiretype'] = apply_filters('lsx_to_postexpirator_custom_posttype_expire', $postoptions['expiretype'], $posttype);
 	}
 
 	kses_remove_filters();
 
 	// Do Work
-	if ('draft' == $expiretype) {
+	if ('draft' == $postoptions['expiretype']) {
 		wp_update_post(array('ID' => $id, 'post_status' => 'draft'));
-	} elseif ('private' == $expiretype) {
+	} elseif ('private' == $postoptions['expiretype']) {
 		wp_update_post(array('ID' => $id, 'post_status' => 'private'));
-	} elseif ('delete' == $expiretype) {
+	} elseif ('delete' == $postoptions['expiretype']) {
 		wp_delete_post($id);
 	}
 }

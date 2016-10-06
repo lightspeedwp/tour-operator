@@ -638,15 +638,15 @@ msgstr ""
 msgid "How to expire"
 msgstr ""
 
-#: includes/post-expirator.php:265
+#: includes/post-expirator.php:264
 msgid "Draft"
 msgstr ""
 
-#: includes/post-expirator.php:266
+#: includes/post-expirator.php:265
 msgid "Delete"
 msgstr ""
 
-#: includes/post-expirator.php:267
+#: includes/post-expirator.php:266
 msgid "Private"
 msgstr ""
 
@@ -682,11 +682,11 @@ msgstr ""
 msgid "Excluded"
 msgstr ""
 
-#: includes/template-tags.php:816, includes/template-tags.php:2040, vendor/lsx-framework/includes/lsx-post-type-widget.php:688, vendor/lsx-framework/includes/lsx-taxonomy-widget.php:609
+#: includes/template-tags.php:816, includes/template-tags.php:2039, vendor/lsx-framework/includes/lsx-post-type-widget.php:688, vendor/lsx-framework/includes/lsx-taxonomy-widget.php:609
 msgid "Previous"
 msgstr ""
 
-#: includes/template-tags.php:820, includes/template-tags.php:2044, vendor/lsx-framework/includes/lsx-post-type-widget.php:692, vendor/lsx-framework/includes/lsx-taxonomy-widget.php:613
+#: includes/template-tags.php:820, includes/template-tags.php:2043, vendor/lsx-framework/includes/lsx-post-type-widget.php:692, vendor/lsx-framework/includes/lsx-taxonomy-widget.php:613
 msgid "Next"
 msgstr ""
 

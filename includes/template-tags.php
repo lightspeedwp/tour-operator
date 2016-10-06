@@ -1881,16 +1881,15 @@ function lsx_connected_panel_query($args=false){
 			'echo'			=>	true,
 		);
 		$args = wp_parse_args($args,$defaults);
-		extract($args);
 		$return = false;
 		
-		if(false === $content_part){$content_part = $from; }
+		if(false === $args['content_part']){$args['content_part'] = $args['from']; }
 		
-		$items_array = get_post_meta(get_the_ID(),$from.'_to_'.$to,false);
+		$items_array = get_post_meta(get_the_ID(),$args['from'].'_to_'.$args['to'],false);
 		
 		if(false !== $items_array && is_array($items_array) && !empty($items_array)){
 			$items_query_args = array(
-					'post_type'	=>	$from,
+					'post_type'	=>	$args['from'],
 					'post_status' => 'publish',
 					'post__in' => $items_array
 			);
@@ -1898,20 +1897,20 @@ function lsx_connected_panel_query($args=false){
 			if ( $items->have_posts() ): 
 				$lsx_archive = 1;
 				ob_start();
-				echo wp_kses_post( $before ).'<div class="row">'; 
+				echo wp_kses_post( $args['before'] ).'<div class="row">'; 
 				while ( $items->have_posts() ) : $items->the_post();
-					echo '<div class="panel col-sm-'.esc_attr($column).'">';
-					lsx_tour_operator_content('content',$content_part);
+					echo '<div class="panel col-sm-'.esc_attr($args['column']).'">';
+					lsx_tour_operator_content('content',$args['content_part']);
 					echo '</div>';
 				endwhile;
-				echo '</div>'.wp_kses_post( $after );
+				echo '</div>'.wp_kses_post( $args['after'] );
 				$return = ob_get_clean();
 				$lsx_archive = 0;
 				wp_reset_query();
 				wp_reset_postdata();
 			endif; // end of the loop. 
 		}
-		if($echo){
+		if($args['echo']){
 			echo wp_kses_post( $return );
 		}else{
 			return $return;
