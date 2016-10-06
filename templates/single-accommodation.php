@@ -20,7 +20,7 @@ get_header(); ?>
 			<div class="container">
 				<ul class="scroll-easing">
 					<li><a href="#summary"><?php _esc_html_e('Summary','lsx-tour-operators');?></a></li>
-					<?php if(lsx_accommodation_has_rooms()) { echo lsx_accommodation_units_nav_links('<li><a href="#{units}">','</a></li>'); } ?>
+					<?php if(lsx_accommodation_has_rooms()) { echo wp_kses_post( lsx_accommodation_units_nav_links('<li><a href="#{units}">','</a></li>') ); } ?>
 					<?php
 					$facilities = wp_get_object_terms(get_the_ID(),'facility');
 					if ( ! empty( $facilities ) && ! is_wp_error( $facilities ) ) {					

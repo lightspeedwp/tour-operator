@@ -25,7 +25,7 @@
 			the_excerpt();
 			$excerpt = ob_get_clean();
 			$excerpt = str_replace('moretag','moretag btn cta-btn',$excerpt);
-			echo $excerpt;
+			echo wp_kses_post( $excerpt );
 		?>
 	</div><!-- .entry-content -->					
 	

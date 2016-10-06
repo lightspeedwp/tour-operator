@@ -16,7 +16,7 @@
 		<div class="row">
 			<article class="hentry taxonomy-description">
 				<div class="<?php echo lsx_has_team_member() ? 'col-sm-9' : 'col-sm-12' ?> entry-content">
-					<?php echo $description ?>
+					<?php echo wp_kses_post( $description ); ?>
 				</div>
 
 				<?php if ( lsx_has_team_member() ) : ?>
