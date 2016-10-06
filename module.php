@@ -118,9 +118,11 @@ class LSX_Tour_Operators {
 		//Add our action to init to set up our vars first.	
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 		//Allow extra tags and attributes to wp_kses_post()
-		add_filter( 'wp_kses_allowed_html', array( $this, 'kses_allowed_html' ), 10, 2 );
+		add_filter( 'wp_kses_allowed_html', array( $this, 'wp_kses_allowed_html' ), 10, 2 );
 		//Allow extra protocols to wp_kses_post()
 		add_filter( 'kses_allowed_protocols', array( $this, 'kses_allowed_protocols' ) );
+		//Allow extra style attributes to wp_kses_post()
+		add_filter( 'safe_style_css', array( $this, 'safe_style_css' ) );
 		
 		if(!class_exists('LSX_Framework')){
 			require_once( LSX_TOUR_OPERATORS_PATH . 'vendor/lsx-framework/lsx-framework.php' );
@@ -310,7 +312,7 @@ class LSX_Tour_Operators {
 	/**
 	 * Allow extra tags and attributes to wp_kses_post()
 	 */
-	public function kses_allowed_html( $allowedtags, $context ) {
+	public function wp_kses_allowed_html( $allowedtags, $context ) {
 		// Tags exist, only adding new attributes
 
 		$allowedtags['i']['aria-hidden'] = true;
@@ -327,7 +329,6 @@ class LSX_Tour_Operators {
 		$allowedtags['a']['data-slide'] = true;
 		$allowedtags['a']['data-collapsed'] = true;
 
-		$allowedtags['div']['style'] = true;
 		$allowedtags['div']['aria-labelledby'] = true;
 		$allowedtags['div']['data-interval'] = true;
 		$allowedtags['div']['data-icon'] = true;
@@ -382,6 +383,14 @@ class LSX_Tour_Operators {
 	public function kses_allowed_protocols( $allowedprotocols ) {
 		$allowedprotocols[] = 'tel';
 		return $allowedprotocols;
+	}
+
+	/**
+	 * Allow extra style attributes to wp_kses_post()
+	 */
+	public function safe_style_css( $allowedstyles ) {
+		$allowedstyles[] = 'display';
+		return $allowedstyles;
 	}
 
 }
