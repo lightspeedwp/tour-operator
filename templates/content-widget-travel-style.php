@@ -30,7 +30,7 @@ global $term,$taxonomy,$disable_placeholder;
 	
 	<div class="widget-content">
 		<div class="view-more" style="text-align:center;">
-			<a href="<?php echo home_url($taxonomy.'/'.$term->slug.'/'); ?>" class="btn btn-primary text-center"><?php _esc_html_e('View','lsx-tour-operators'); ?> <?php echo apply_filters('the_title', $term->name); ?> <?php _esc_html_e('tours','lsx-tour-operators'); ?></a>
+			<a href="<?php echo home_url($taxonomy.'/'.$term->slug.'/'); ?>" class="btn btn-primary text-center"><?php esc_html_e('View','lsx-tour-operators'); ?> <?php echo apply_filters('the_title', $term->name); ?> <?php esc_html_e('tours','lsx-tour-operators'); ?></a>
 		</div>	
 	</div>
 	

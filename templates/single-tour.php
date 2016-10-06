@@ -39,12 +39,12 @@ get_header(); ?>
 						$gallery_id = get_post_meta(get_the_ID(),'gallery',true);
 					}
 					if(false !== $gallery_id && '' !== $gallery_id){ ?>
-						<li><a href="#gallery"><?php _esc_html_e('Gallery','lsx-tour-operators');?></a></li>
+						<li><a href="#gallery"><?php esc_html_e('Gallery','lsx-tour-operators');?></a></li>
 					<?php } ?>
 					<?php 
 					$videos = get_post_meta(get_the_ID(),'videos',true);
 					if(false !== $videos && '' !== $videos){ ?>
-						<li><a href="#videos"><?php _esc_html_e('Videos','lsx-tour-operators');?></a></li>
+						<li><a href="#videos"><?php esc_html_e('Videos','lsx-tour-operators');?></a></li>
 					<?php } ?>					
 				</ul>
 			</div>
@@ -71,7 +71,7 @@ get_header(); ?>
 		
 		<?php if(lsx_tour_has_itinerary()){ ?>
 			<section id="itinerary">
-				<h2 class="section-title"><?php _esc_html_e('Full Day by Day Itinerary','lsx-tour-operators');?></h2>
+				<h2 class="section-title"><?php esc_html_e('Full Day by Day Itinerary','lsx-tour-operators');?></h2>
 				<?php while(lsx_tour_itinerary_loop()){ ?>
 					<?php lsx_tour_itinerary_loop_item(); ?>
 					<div <?php lsx_itinerary_class('itinerary-item'); ?>>
@@ -112,7 +112,7 @@ get_header(); ?>
 
 		<?php if(lsx_has_map()){ ?>
 			<section id="tour-map">
-				<h2 class="section-title"><?php _esc_html_e('Map','lsx-tour-operators'); ?></h2>
+				<h2 class="section-title"><?php esc_html_e('Map','lsx-tour-operators'); ?></h2>
 				<?php lsx_map(); ?>
 			</section>			
 		<?php }	?>			
@@ -128,7 +128,7 @@ get_header(); ?>
 		if($test){
 			?>
 			<section id="gallery">
-				<h2 class="section-title"><?php _esc_html_e('Gallery','lsx-tour-operators'); ?></h2>	
+				<h2 class="section-title"><?php esc_html_e('Gallery','lsx-tour-operators'); ?></h2>	
 				<?php 
 					if ( function_exists( 'Envira_Gallery' ) ) {
 						lsx_tour_operator_content('content', 'envira');

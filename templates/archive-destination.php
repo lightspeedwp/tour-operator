@@ -108,7 +108,7 @@
 								?>
 
 								<div class="regions">
-									<h3 class="section-title"><?php _esc_html_e( 'Travel Regions Within ', 'lsx-tour-operators' ) ?><a href="<?php the_permalink() ?>" title="<?php the_title() ?>"><?php the_title() ?></a></h3>
+									<h3 class="section-title"><?php esc_html_e( 'Travel Regions Within ', 'lsx-tour-operators' ) ?><a href="<?php the_permalink() ?>" title="<?php the_title() ?>"><?php the_title() ?></a></h3>
 									
 									<div class="slider-container">
 										<div id="slider-<?php echo $slider_id ?>" class="carousel slide" data-interval="false">
@@ -229,7 +229,7 @@
 			<?php if ( lsx_has_map() ) : ?>
 				<section id="destination-map">
 					<?php if ( ! lsx_has_destination_banner_map() ) : ?>
-						<h2 class="section-title"><?php _esc_html_e( 'Map','lsx-tour-operators' ) ?></h2>
+						<h2 class="section-title"><?php esc_html_e( 'Map','lsx-tour-operators' ) ?></h2>
 					<?php endif ?>
 					<?php lsx_map() ?>
 				</section>

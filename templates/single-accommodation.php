@@ -19,33 +19,33 @@ get_header(); ?>
 		<section class="accommodation-navigation">
 			<div class="container">
 				<ul class="scroll-easing">
-					<li><a href="#summary"><?php _esc_html_e('Summary','lsx-tour-operators');?></a></li>
+					<li><a href="#summary"><?php esc_html_e('Summary','lsx-tour-operators');?></a></li>
 					<?php if(lsx_accommodation_has_rooms()) { echo wp_kses_post( lsx_accommodation_units_nav_links('<li><a href="#{units}">','</a></li>') ); } ?>
 					<?php
 					$facilities = wp_get_object_terms(get_the_ID(),'facility');
 					if ( ! empty( $facilities ) && ! is_wp_error( $facilities ) ) {					
 					?>
-						<li><a href="#facilities"><?php _esc_html_e('Facilities','lsx-tour-operators');?></a></li>
+						<li><a href="#facilities"><?php esc_html_e('Facilities','lsx-tour-operators');?></a></li>
 					<?php } ?>					
 					<?php if(lsx_has_map()){ ?>					
-						<li><a href="#accommodation-map"><?php _esc_html_e('Map','lsx-tour-operators');?></a></li>
+						<li><a href="#accommodation-map"><?php esc_html_e('Map','lsx-tour-operators');?></a></li>
 					<?php } ?>
 					<?php 
 					$gallery_id = get_post_meta(get_the_ID(),'gallery',true);
 					if(false !== $gallery_id && '' !== $gallery_id){ ?>
-						<li><a href="#gallery"><?php _esc_html_e('Gallery','lsx-tour-operators');?></a></li>
+						<li><a href="#gallery"><?php esc_html_e('Gallery','lsx-tour-operators');?></a></li>
 					<?php } ?>
 					<?php 
 					$videos = get_post_meta(get_the_ID(),'videos',true);
 					if(false !== $videos && '' !== $videos){ ?>
-						<li><a href="#videos"><?php _esc_html_e('Videos','lsx-tour-operators');?></a></li>
+						<li><a href="#videos"><?php esc_html_e('Videos','lsx-tour-operators');?></a></li>
 					<?php } ?>	
-					<li><a href="#related-accommodation"><?php _esc_html_e('Accommodation','lsx-tour-operators');?></a></li>
+					<li><a href="#related-accommodation"><?php esc_html_e('Accommodation','lsx-tour-operators');?></a></li>
 					<?php
 						$connected_tours = get_post_meta(get_the_ID(),'tour_to_accommodation',false);
 						if(post_type_exists('tour') && is_array($connected_tours) && !empty($connected_tours) ) {
 							?>					
-							<li><a href="#related-tours"><?php _esc_html_e('Tours','lsx-tour-operators');?></a></li>
+							<li><a href="#related-tours"><?php esc_html_e('Tours','lsx-tour-operators');?></a></li>
 						<?php
 					} ?>										
 				</ul>
@@ -69,7 +69,7 @@ get_header(); ?>
 
 		<?php if(lsx_has_map()){ ?>
 			<section id="accommodation-map">
-				<h2 class="section-title"><?php _esc_html_e('Map','lsx-tour-operators'); ?></h2>
+				<h2 class="section-title"><?php esc_html_e('Map','lsx-tour-operators'); ?></h2>
 				<?php lsx_map(); ?>
 			</section>			
 		<?php }	?>			
@@ -78,7 +78,7 @@ get_header(); ?>
 		$gallery_ids = get_post_meta(get_the_ID(),'gallery',false);
 		if(false !== $gallery_ids && '' !== $gallery_ids && is_array($gallery_ids) && !empty($gallery_ids)){ ?>
 			<section id="gallery">
-				<h2 class="section-title"><?php _esc_html_e('Gallery','lsx-tour-operators'); ?></h2>	
+				<h2 class="section-title"><?php esc_html_e('Gallery','lsx-tour-operators'); ?></h2>	
 				<?php 
 					if ( function_exists( 'envira_dynamic' ) ) {
 						envira_dynamic( array( 'id' => 'custom', 'images' => implode(',',$gallery_ids), 'isotope' => false, 'pagination' => true ,'pagination_images_per_page' => 9 ) );
