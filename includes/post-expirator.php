@@ -17,9 +17,9 @@ function lsx_to_expirationdate_show_value($column_name) {
 	global $post;
 	$id = $post->ID;
 	
-	if ($column_name === 'lsx_to_expirationdate') {
+	if ('lsx_to_expirationdate' === $column_name) {
 		$ed = get_post_meta($id,'_lsx_to_expiration-date',true);
-		echo ($ed ? get_date_from_gmt(gmdate('Y-m-d H:i:s',$ed),get_option('date_format').' '.get_option('time_format')) : __("Never",'lsx-tour-operators'));
+		echo esc_html($ed ? get_date_from_gmt(gmdate('Y-m-d H:i:s',$ed),get_option('date_format').' '.get_option('time_format')) : __("Never",'lsx-tour-operators'));
   	}
 }
 add_action ('manage_posts_custom_column', 'lsx_to_expirationdate_show_value');
@@ -38,7 +38,7 @@ function lsx_to_expirationdate_meta_box($post) {
 	$expirationdatets = get_post_meta($post->ID,'_lsx_to_expiration-date',true);
 	$firstsave = get_post_meta($post->ID,'_lsx_to_expiration-date-status',true);
 	$expiretype = '';
-	
+
 	if (empty($expirationdatets)) {
 		$defaultmonth 	=	date_i18n('m');
 		$defaultday 	=	date_i18n('d');
@@ -90,7 +90,7 @@ function lsx_to_expirationdate_meta_box($post) {
 	$rv[] = '<select name="lsx_to_expirationdate_month" id="lsx_to_expirationdate_month"'.$disabled.'>';
 
 	for($i = 1; $i <= 12; $i++) {
-		if ($defaultmonth == date_i18n('m',mktime(0, 0, 0, $i, 1, date_i18n('Y'))))
+		if (date_i18n('m',mktime(0, 0, 0, $i, 1, date_i18n('Y'))) == $defaultmonth)
 			$selected = ' selected="selected"';
 		else
 			$selected = '';
@@ -109,7 +109,7 @@ function lsx_to_expirationdate_meta_box($post) {
  	$rv[] = '<select name="lsx_to_expirationdate_hour" id="lsx_to_expirationdate_hour"'.$disabled.'>';
 
 	for($i = 1; $i <= 24; $i++) {
-		if ($defaulthour == date_i18n('H',mktime($i, 0, 0, date_i18n('n'), date_i18n('j'), date_i18n('Y'))))
+		if (date_i18n('H',mktime($i, 0, 0, date_i18n('n'), date_i18n('j'), date_i18n('Y'))) == $defaulthour)
 			$selected = ' selected="selected"';
 		else
 			$selected = '';
@@ -120,11 +120,11 @@ function lsx_to_expirationdate_meta_box($post) {
 	$rv[] = '<input type="text" id="lsx_to_expirationdate_minute" name="lsx_to_expirationdate_minute" value="'.$defaultminute.'" size="2"'.$disabled.' />';
 	$rv[] = '</td></tr></table>';
 	
-	$rv[] = '<input type="hidden" name="lsx_to_expirationdate_formcheck" value="true" />';
-	echo implode("\n",$rv);
+	$rv[] = wp_nonce_field( 'lsx_to_expirationdate_update_post_meta', '_lsx_to_expirationdate_update_post_meta_nonce', true, false );
+	echo wp_kses_post(implode("\n",$rv));
 
-	echo '<br/>'.__('How to expire','lsx-tour-operators').': ';
-	echo lsx_to_post_expirator_expire_type(array('type' => $post->post_type, 'name'=>'lsx_to_expirationdate_expiretype','selected'=>$expiretype,'disabled'=>$disabled));
+	echo '<br/>'.esc_html__('How to expire','lsx-tour-operators').': ';
+	echo wp_kses_post(lsx_to_post_expirator_expire_type(array('type' => $post->post_type, 'name'=>'lsx_to_expirationdate_expiretype','selected'=>$expiretype,'disabled'=>$disabled)));
 }
 
 function lsx_to_expirationdate_js_admin_header() {
@@ -165,34 +165,36 @@ function lsx_to_expirationdate_js_admin_header() {
 add_action('admin_head', 'lsx_to_expirationdate_js_admin_header' );
 
 function lsx_to_expirationdate_update_post_meta($id) {
-	if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE )
+	if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
 		return;
-
-	$posttype = get_post_type($id);
-	
-	if ( $posttype == 'revision' )
-		return;
-
-	if (!isset($_POST['lsx_to_expirationdate_formcheck']))
-		return;
-
-	if (isset($_POST['enable-lsx-to-expirationdate'])) {
-		$month	 = intval($_POST['lsx_to_expirationdate_month']);
-		$day 	 = intval($_POST['lsx_to_expirationdate_day']);
-		$year 	 = intval($_POST['lsx_to_expirationdate_year']);
-   		$hour 	 = intval($_POST['lsx_to_expirationdate_hour']);
-		$minute  = intval($_POST['lsx_to_expirationdate_minute']);
-		
-		$opts = array();
-		$ts = get_gmt_from_date("$year-$month-$day $hour:$minute:0",'U');
-
-		$opts['expiretype'] = $_POST['lsx_to_expirationdate_expiretype'];
-		$opts['id'] = $id;
-	
-		lsx_to_schedule_expirator_event($id,$ts,$opts);
-	} else {
-		lsx_to_unschedule_expirator_event($id);
 	}
+
+	if ( ! isset( $_POST['enable-lsx-to-expirationdate'] ) ) {
+		lsx_to_unschedule_expirator_event($id);
+		return;
+	}
+
+	$posttype = get_post_type( $id );
+	
+	if ( 'revision' == $posttype ) {
+		return;
+	}
+
+	check_admin_referer( 'lsx_to_expirationdate_update_post_meta', '_lsx_to_expirationdate_update_post_meta_nonce' );
+
+	$month	 = intval(wp_unslash($_POST['lsx_to_expirationdate_month']));
+	$day 	 = intval(wp_unslash($_POST['lsx_to_expirationdate_day']));
+	$year 	 = intval(wp_unslash($_POST['lsx_to_expirationdate_year']));
+	$hour 	 = intval(wp_unslash($_POST['lsx_to_expirationdate_hour']));
+	$minute  = intval(wp_unslash($_POST['lsx_to_expirationdate_minute']));
+	
+	$opts = array();
+	$ts = get_gmt_from_date("$year-$month-$day $hour:$minute:0",'U');
+
+	$opts['expiretype'] = $_POST['lsx_to_expirationdate_expiretype'];
+	$opts['id'] = $id;
+
+	lsx_to_schedule_expirator_event($id,$ts,$opts);
 }
 add_action('save_post','lsx_to_expirationdate_update_post_meta');
 
@@ -239,11 +241,11 @@ function lsx_to_post_expirator_expire($id) {
 	kses_remove_filters();
 
 	// Do Work
-	if ($expiretype == 'draft') {
+	if ('draft' == $expiretype) {
 		wp_update_post(array('ID' => $id, 'post_status' => 'draft'));
-	} elseif ($expiretype == 'private') {
+	} elseif ('private' == $expiretype) {
 		wp_update_post(array('ID' => $id, 'post_status' => 'private'));
-	} elseif ($expiretype == 'delete') {
+	} elseif ('delete' == $expiretype) {
 		wp_delete_post($id);
 	}
 }
@@ -252,20 +254,45 @@ add_action('lsxToPostExpiratorExpire','lsx_to_post_expirator_expire');
 function lsx_to_post_expirator_expire_type($opts) {
 	if (empty($opts)) return false;
 
-	extract($opts);
-	
-	if (!isset($name)) return false;
-	if (!isset($id)) $id = $name;
-	if (!isset($disabled)) $disabled = false;
-	if (!isset($onchange)) $onchange = '';
-	if (!isset($type)) $type = '';
+	if (!isset($opts['name'])) return false;
+	if (!isset($opts['id'])) $opts['id'] = $opts['name'];
+	if (!isset($opts['disabled'])) $opts['disabled'] = false;
+	if (!isset($opts['onchange'])) $opts['onchange'] = '';
+	if (!isset($opts['type'])) $opts['type'] = '';
 
 	$rv = array();
-	$rv[] = '<select name="'.$name.'" id="'.$id.'"'.($disabled == true ? ' disabled="disabled"' : '').' onchange="'.$onchange.'">';
-	$rv[] = '<option value="draft" '. ($selected == 'draft' ? 'selected="selected"' : '') . '>'.__('Draft','lsx-tour-operators').'</option>';
-	$rv[] = '<option value="delete" '. ($selected == 'delete' ? 'selected="selected"' : '') . '>'.__('Delete','lsx-tour-operators').'</option>';
-	$rv[] = '<option value="private" '. ($selected == 'private' ? 'selected="selected"' : '') . '>'.__('Private','lsx-tour-operators').'</option>';
+	$rv[] = '<select name="'.$opts['name'].'" id="'.$opts['id'].'"'.(true == $opts['disabled'] ? ' disabled="disabled"' : '').' onchange="'.$opts['onchange'].'">';
+	$rv[] = '<option value="draft" '. ('draft' == $opts['selected'] ? 'selected="selected"' : '') . '>'.__('Draft','lsx-tour-operators').'</option>';
+	$rv[] = '<option value="delete" '. ('delete' == $opts['selected'] ? 'selected="selected"' : '') . '>'.__('Delete','lsx-tour-operators').'</option>';
+	$rv[] = '<option value="private" '. ('private' == $opts['selected'] ? 'selected="selected"' : '') . '>'.__('Private','lsx-tour-operators').'</option>';
 	
 	$rv[] = '</select>';
 	return implode("<br/>/n",$rv);
 }
+
+function lsx_to_expirationdate_kses_allowed_html( $allowedtags, $context ) {
+	$allowedtags['input'] = array();
+	
+	$allowedtags['input']['type'] = true;
+	$allowedtags['input']['id'] = true;
+	$allowedtags['input']['name'] = true;
+	$allowedtags['input']['value'] = true;
+	$allowedtags['input']['size'] = true;
+	$allowedtags['input']['checked'] = true;
+	$allowedtags['input']['onclick'] = true;
+
+	$allowedtags['select'] = array();
+	
+	$allowedtags['select']['name'] = true;
+	$allowedtags['select']['id'] = true;
+	$allowedtags['select']['disabled'] = true;
+	$allowedtags['select']['onchange'] = true;
+
+	$allowedtags['option'] = array();
+	
+	$allowedtags['option']['value'] = true;
+	$allowedtags['option']['selected'] = true;
+
+	return $allowedtags;
+}
+add_filter( 'wp_kses_allowed_html', 'lsx_to_expirationdate_kses_allowed_html', 10, 2 );
