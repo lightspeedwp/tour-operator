@@ -58,7 +58,7 @@ function lsx_tour_operator_banner_content() {
  * @category 	tagline
  */
 function lsx_tour_operator_tagline($before='',$after='') {
-	echo apply_filters('lsx_tour_operator_tagline','',$before,$after);
+	echo wp_kses_post( apply_filters('lsx_tour_operator_tagline','',$before,$after) );
 }
 
 /**
@@ -69,7 +69,7 @@ function lsx_tour_operator_tagline($before='',$after='') {
  * @category 	description
  */
 function lsx_tour_operator_archive_description() {
-	echo apply_filters('lsx_tour_operator_archive_description','','<div class="row"><div class="col-sm-12"><article class="archive-description hentry">','</article></div></div>');
+	echo wp_kses_post( apply_filters('lsx_tour_operator_archive_description','','<div class="row"><div class="col-sm-12"><article class="archive-description hentry">','</article></div></div>') );
 }
 
 /**
@@ -98,7 +98,7 @@ function lsx_tour_sharing() {
 	
 	if ( class_exists( 'Jetpack_Likes' ) ) {
 		$custom_likes = new Jetpack_Likes;
-		echo $custom_likes->post_likes( '' );
+		echo wp_kses_post( $custom_likes->post_likes( '' ) );
 	}
 	echo '</section>';
 }
@@ -120,7 +120,7 @@ function lsx_widget_class($return=false){
 		$class = 'panel col-sm-'.$md_col_width;
 	}
 	if(false === $return){
-		echo 'class="'.$class.'"';
+		echo 'class="'.esc_attr($class).'"';
 	}else{
 		return 'class="'.$class.'"';
 	}
@@ -283,7 +283,7 @@ function lsx_accommodation_facilities($before="",$after="",$echo=true){
 		
 		$return = $before.$return.$after;
 		if($echo){
-			echo $return;
+			echo wp_kses_post( $return );
 		}else{
 			return $return;
 		}		
@@ -315,7 +315,7 @@ function lsx_accommodation_spoken_languages($before="",$after="",$echo=true){
 		foreach ( $spoken_languages as $i => $spoken_language ) {
 			$return .= ucwords( str_replace( '_', ' / ', str_replace( '-', ' ', str_replace( '-and-', ' & ', $spoken_language ) ) ) );
 
-			if ( ( $i + 1 ) < sizeof( $spoken_languages ) ) {
+			if ( ( $i + 1 ) < count( $spoken_languages ) ) {
 				$return .= ', ';
 			}
 		}
@@ -324,7 +324,7 @@ function lsx_accommodation_spoken_languages($before="",$after="",$echo=true){
 		$return = $before.$return.$after;
 
 		if ( $echo ) {
-			echo $return;
+			echo wp_kses_post( $return );
 		} else {
 			return $return;
 		}		
@@ -359,7 +359,7 @@ function lsx_accommodation_special_interests($before="",$after="",$echo=true,$po
 		foreach ( $special_interests as $i => $special_interest ) {
 			$return .= ucwords( str_replace( '_', ' / ', str_replace( '-', ' ', str_replace( '-and-', ' & ', $special_interest ) ) ) );
 
-			if ( ( $i + 1 ) < sizeof( $special_interests ) ) {
+			if ( ( $i + 1 ) < count( $special_interests ) ) {
 				$return .= ', ';
 			}
 		}
@@ -368,7 +368,7 @@ function lsx_accommodation_special_interests($before="",$after="",$echo=true,$po
 		$return = $before.$return.$after;
 
 		if ( $echo ) {
-			echo $return;
+			echo wp_kses_post( $return );
 		} else {
 			return $return;
 		}		
@@ -401,7 +401,7 @@ function lsx_accommodation_activity_friendly($before="",$after="",$echo=true){
 		foreach ( $friendly as $i => $friendly_item ) {
 			$return .= ucwords( str_replace( '_', ' / ', str_replace( '-', ' ', str_replace( '-and-', ' & ', $friendly_item ) ) ) );
 
-			if ( ( $i + 1 ) < sizeof( $friendly ) ) {
+			if ( ( $i + 1 ) < count( $friendly ) ) {
 				$return .= ', ';
 			}
 		}
@@ -410,7 +410,7 @@ function lsx_accommodation_activity_friendly($before="",$after="",$echo=true){
 		$return = $before.$return.$after;
 
 		if ( $echo ) {
-			echo $return;
+			echo wp_kses_post( $return );
 		} else {
 			return $return;
 		}		
@@ -561,7 +561,7 @@ function lsx_tour_departure_point($before="",$after="",$echo=true){
 		}
 		$return = $before.lsx_connected_list($departs_from,'destination',true,', ').$after;
 		if($echo){
-			echo $return;
+			echo wp_kses_post( $return );
 		}else{
 			return $return;
 		}
@@ -588,7 +588,7 @@ function lsx_tour_end_point($before="",$after="",$echo=true){
 		}
 		$return = $before.lsx_connected_list($end_point,'destination',true,', ').$after;
 		if($echo){
-			echo $return;
+			echo wp_kses_post( $return );
 		}else{
 			return $return;
 		}
@@ -616,18 +616,18 @@ function lsx_tour_pricing_block(){
 	<section id="included-excluded">
 		<div class="row">
 			<?php if(null !== $tour_included) { ?>
-				<div class="<?php echo $class; ?>">
-					<h2 class="section-title"><?php _e('Included','lsx-tour-operators'); ?></h2>
+				<div class="<?php echo esc_attr( $class ); ?>">
+					<h2 class="section-title"><?php esc_html_e('Included','lsx-tour-operators'); ?></h2>
 					<div class="entry-content">
-						<?php echo apply_filters('the_content',wpautop($tour_included)); ?>
+						<?php echo wp_kses_post( apply_filters('the_content',wpautop($tour_included)) ); ?>
 					</div>
 				</div>
 			<?php } ?>
 			<?php if(null !== $tour_not_included) { ?>
-				<div class="<?php echo $class; ?>">
-					<h2 class="section-title"><?php _e('Excluded','lsx-tour-operators'); ?></h2>
+				<div class="<?php echo esc_attr( $class ); ?>">
+					<h2 class="section-title"><?php esc_html_e('Excluded','lsx-tour-operators'); ?></h2>
 					<div class="entry-content">
-						<?php echo apply_filters('the_content',wpautop($tour_not_included)); ?>
+						<?php echo wp_kses_post( apply_filters('the_content',wpautop($tour_not_included)) ); ?>
 					</div>
 				</div>	
 			<?php } ?>			
@@ -654,7 +654,7 @@ function lsx_tour_highlights($before="",$after="",$echo=true){
 	if(false !== $highlights && '' !== $highlights){
 		$return = $before.'<div class="entry-content">'.apply_filters('the_content',wpautop($highlights)).'</div>'.$after;
 		if($echo){
-			echo $return;
+			echo wp_kses_post($return);
 		}else{
 			return $return;
 		}
@@ -700,7 +700,7 @@ function lsx_tour_best_time_to_visit($before="",$after="",$echo=true){
 		};
 		$return = $before.implode($best_times).$after;		
 		if($echo){
-			echo $return;
+			echo wp_kses_post($return);
 		}else{
 			return $return;
 		}
@@ -749,12 +749,12 @@ function lsx_tour_videos($before="",$after="",$echo=true){
 			//generate the pagination
 			$i = 0;
 			while ( $i < $pages ) {
-				$pagination .= "<li data-target='#slider-{$carousel_id}' data-slide-to='{$i}' class='". ( $i == 0 ? 'active' : '' ) ."'></li>";
+				$pagination .= '<li data-target="#slider-'.esc_attr($carousel_id).'" data-slide-to="'.esc_attr($i).'" class="'. esc_attr( 0 == $i ? 'active' : '' ) .'"></li>';
 				$i++;
 			}
 
-			$video_array .= "<div class='slider-container'>";
-			$video_array .= "<div id='slider-{$carousel_id}' class='carousel slide' data-interval='{$interval}'>";
+			$video_array .= '<div class="slider-container">';
+			$video_array .= '<div id="slider-'.esc_attr($carousel_id).'" class="carousel slide" data-interval="'.esc_attr($interval).'">';
 			$video_array .= '<div class="carousel-wrap">';
 			$video_array .= '<div class="carousel-inner" role="listbox">';
 		}
@@ -762,12 +762,12 @@ function lsx_tour_videos($before="",$after="",$echo=true){
 		foreach($videos as $video){
 
 			//The opening of the carousel
-			if ($count === 1) {
+			if (1 === $count) {
 				if (true === $carousel) {
-					$video_array .= "<div class='item active row'>";
-					$video_array .= "<div class='lsx-video'>";							
+					$video_array .= '<div class="item active row">';
+					$video_array .= '<div class="lsx-video">';							
 				} else {
-					$video_array .= "<div class='row lsx-video'>";
+					$video_array .= '<div class="row lsx-video">';
 				}
 
 			}
@@ -791,7 +791,7 @@ function lsx_tour_videos($before="",$after="",$echo=true){
 			$video_array .= '</article></div>';
 
 			//Closing carousel loop inner
-			if ($count % $columns == 0 || $count === $video_count) {
+			if (0 == $count % $columns || $count === $video_count) {
 				if (true === $carousel) {
 					$video_array .= "</div></div>";
 					if ($count < $video_count) {
@@ -832,7 +832,7 @@ function lsx_tour_videos($before="",$after="",$echo=true){
 		$temp_width = $content_width;
 		$content_width = $temp_width;
 		if($echo){
-			echo $return;
+			echo wp_kses_post( $return );
 		}else{
 			return $return;
 		}		
@@ -885,7 +885,7 @@ function lsx_tour_country_regions(){
 		$total_counter = 0;
 		if ( $regions->have_posts() ): ?>
 			<section id="regions">
-				<h2 class="section-title"><?php _e(lsx_get_post_type_section_title('destination', 'regions', 'Regions'),'lsx-tour-operators'); ?></h2>		
+				<h2 class="section-title"><?php esc_html_e(lsx_get_post_type_section_title('destination', 'regions', 'Regions'),'lsx-tour-operators'); ?></h2>		
 				<div class="row">		
 					<?php $lsx_archive = 1; $wp_query->is_single = 0;$wp_query->is_singular = 0;$wp_query->is_post_type_archive = 1;?>
 					<?php while ( $regions->have_posts() ) : $regions->the_post(); ?>
@@ -999,7 +999,7 @@ function lsx_tour_team_contact_number($before="",$after="",$echo=true){
 	if(false !== $contact_number && '' !== $contact_number){
 		$contact_html = $before.'<a href="tel:+'.$contact_number.'">'.$contact_number.'</a>'.$after;
 		if($echo){
-			echo $contact_html;
+			echo wp_kses_post( $contact_html );
 		}else{
 			return $contact_html;
 		}
@@ -1023,7 +1023,7 @@ function lsx_tour_team_contact_email($before="",$after="",$echo=true){
 	if(false !== $contact_email && '' !== $contact_email){
 		$contact_html = $before.'<a href="mailto:'.$contact_email.'">'.$contact_email.'</a>'.$after;
 		if($echo){
-			echo $contact_html;
+			echo wp_kses_post( $contact_html );
 		}else{
 			return $contact_html;
 		}
@@ -1079,7 +1079,7 @@ function lsx_tour_team_social_profiles($before="",$after="",$echo=true){
 	if(false !== $social_profile_html && '' !== $social_profile_html){
 		$social_profile_html = $before.$social_profile_html.$after;
 		if($echo){
-			echo $social_profile_html;
+			echo wp_kses_post( $social_profile_html );
 		}else{
 			return $social_profile_html;
 		}
@@ -1158,7 +1158,7 @@ function lsx_specials_validity($before="",$after="",$echo=true){
 	if(false !== $valid_from && '' !== $valid_from){
 		$return = $before.$valid_from.$after;
 		if($echo){
-			echo $return;
+			echo wp_kses_post( $return );
 		}else{
 			return $return;
 		}
@@ -1189,7 +1189,7 @@ function lsx_travel_dates($before="",$after="",$echo=true){
 	if(false !== $valid_from && '' !== $valid_from){
 		$return = $before.$valid_from.$after;
 		if($echo){
-			echo $return;
+			echo wp_kses_post( $return );
 		}else{
 			return $return;
 		}
@@ -1250,7 +1250,7 @@ function lsx_enquire_modal($before="",$after="",$echo=true){
 
 	?>
 	<div class="enquire-form">
-		<p class="aligncenter" style="text-align:center;"><a href="<?php echo $link; ?>" class="btn cta-btn" <?php if(false === $disable_modal){ ?>data-toggle="modal" data-target="#lsx-enquire-modal"<?php } ?> >Enquire</a></p>
+		<p class="aligncenter" style="text-align:center;"><a href="<?php echo esc_url( $link ); ?>" class="btn cta-btn" <?php if(false === $disable_modal){ ?>data-toggle="modal" data-target="#lsx-enquire-modal"<?php } ?> >Enquire</a></p>
 		
 		<?php 
 		if(false === $disable_modal){
@@ -1272,7 +1272,7 @@ function lsx_enquire_modal($before="",$after="",$echo=true){
 					}elseif(class_exists('Caldera_Forms_Forms')) {
 						echo do_shortcode('[caldera_form id="'.$form_id.'"]');
 					}else{
-						echo apply_filters('the_content',$form_id);
+						echo wp_kses_post( apply_filters('the_content',$form_id) );
 					}
 		        ?>
 		      </div>
@@ -1434,7 +1434,7 @@ function lsx_map($before="",$after="",$echo=true){
 					'height' => '500px',
 			);			
 		}
-		echo $lsx_tour_operators->framework->maps->map_output(get_the_ID(),$args);
+		echo wp_kses_post( $lsx_tour_operators->framework->maps->map_output(get_the_ID(),$args) );
 	}
 }
 
@@ -1457,7 +1457,7 @@ function lsx_term_tagline($term_id=false,$before="",$after="",$echo=true){
 		if(false !== $taxonomy_tagline && '' !== $taxonomy_tagline){
 			$return = $before.$taxonomy_tagline.$after;
 			if($echo){
-				echo $return;
+				echo wp_kses_post( $return );
 			}else{
 				return $return;
 			}		
@@ -1536,7 +1536,7 @@ function lsx_team_member_panel($before="",$after=""){
 			}
 		}
 
-		if ( sizeof( $team_ids ) > 0 ) {
+		if ( count( $team_ids ) > 0 ) {
 			$team_id = $team_ids[ array_rand( $team_ids ) ];
 		}
 	}
@@ -1551,7 +1551,7 @@ function lsx_team_member_panel($before="",$after=""){
 		$team = new WP_Query($team_args);
 
 		if ( $team->have_posts() ):
-			echo $before;
+			echo wp_kses_post( $before );
 			while($team->have_posts()):
 				$team->the_post();
 				?>
@@ -1584,7 +1584,7 @@ function lsx_team_member_panel($before="",$after=""){
 				<?php			
 			endwhile;
 			
-			echo $after;
+			echo wp_kses_post( $after );
 			
 			wp_reset_query();
 			wp_reset_postdata();
@@ -1811,7 +1811,7 @@ function lsx_custom_field_query($meta_key=false,$before="",$after="",$echo=false
 			$return_html = $before.'<span class="values">'.$value.'</span>'.$after;
 			$return = apply_filters('lsx_custom_field_query',$return_html,$meta_key,$value,$before,$after);
 			if($echo){
-				echo $return;
+				echo wp_kses_post( $return );
 			}else{
 				return $return;
 			}
@@ -1842,7 +1842,7 @@ function lsx_connected_items_query($from=false,$to=false,$before="",$after="",$e
 			}
 			$return = $before.lsx_connected_list($connected_ids,$from,true,', ').$after;
 			if($echo){
-				echo $return;
+				echo wp_kses_post( $return );
 			}else{
 				return $return;
 			}
@@ -1898,13 +1898,13 @@ function lsx_connected_panel_query($args=false){
 			if ( $items->have_posts() ): 
 				$lsx_archive = 1;
 				ob_start();
-				echo $before.'<div class="row">'; 
+				echo wp_kses_post( $before ).'<div class="row">'; 
 				while ( $items->have_posts() ) : $items->the_post();
-					echo '<div class="panel col-sm-'.$column.'">';
+					echo '<div class="panel col-sm-'.esc_attr($column).'">';
 					lsx_tour_operator_content('content',$content_part);
 					echo '</div>';
 				endwhile;
-				echo '</div>'.$after;
+				echo '</div>'.wp_kses_post( $after );
 				$return = ob_get_clean();
 				$lsx_archive = 0;
 				wp_reset_query();
@@ -1912,7 +1912,7 @@ function lsx_connected_panel_query($args=false){
 			endif; // end of the loop. 
 		}
 		if($echo){
-			echo $return;
+			echo wp_kses_post( $return );
 		}else{
 			return $return;
 		}		
@@ -1982,14 +1982,14 @@ function lsx_related_items($taxonomy=false,$before="",$after="",$echo=true,$post
 		//generate the pagination
 		$i = 0;
 		while ( $i < $pages ) {
-			$pagination .= "<li data-target='#slider-{$carousel_id}' data-slide-to='{$i}' class='". ( $i == 0 ? 'active' : '' ) ."'></li>";
+			$pagination .= '<li data-target="#slider-'.esc_attr($carousel_id).'" data-slide-to="'.esc_attr($i).'" class="'. esc_attr( 0 == $i ? 'active' : '' ) .'"></li>';
 			$i++;
 		}			
 	
 		//The start of the carousel output
 		if($carousel){
-			echo "<div class='slider-container'>";
-			echo "<div id='slider-{$carousel_id}' class='carousel slide' data-interval='{$interval}'>";
+			echo '<div class="slider-container">';
+			echo '<div id="slider-'.esc_attr($carousel_id).'" class="carousel slide" data-interval="'.esc_attr($interval).'">';
 			echo '<div class="carousel-wrap">';
 			echo '<div class="carousel-inner" role="listbox">';
 		}
@@ -1998,12 +1998,12 @@ function lsx_related_items($taxonomy=false,$before="",$after="",$echo=true,$post
 				$related_query->the_post();
 
 				//The opening of the carousel
-				if ($count === 1) {
+				if (1 === $count) {
 					if ($carousel) {
-						echo "<div class='item active row'>";
-						echo "<div class='lsx-{$post_type}'>";							
+						echo '<div class="item active row">';
+						echo '<div class="lsx-'.esc_attr($post_type).'">';					
 					} else {
-						echo "<div class='row lsx-{$post_type}'>";
+						echo '<div class="row lsx-'.esc_attr($post_type).'">';
 					}
 
 				}				
@@ -2015,16 +2015,16 @@ function lsx_related_items($taxonomy=false,$before="",$after="",$echo=true,$post
 				echo '</div>';
 
 				//Closing carousel loop inner
-				if ($count % $columns == 0 || $count === $related_query->post_count) {
+				if (0 == $count % $columns || $count === $related_query->post_count) {
 					if ($carousel) {
 						echo "</div></div>";
 						if ($count < $related_query->post_count) {
-							echo "<div class='item row'><div class='lsx-{$post_type}'>";
+							echo '<div class="item row"><div class="lsx-'.esc_attr($post_type).'">';
 						}
 					} else {
 						echo "</div>";
 						if ($count < $related_query->post_count) {
-							echo "<div class='row lsx-{$post_type}'>";
+							echo '<div class="row lsx-'.esc_attr($post_type).'">';
 						}
 					}
 				}
@@ -2035,18 +2035,18 @@ function lsx_related_items($taxonomy=false,$before="",$after="",$echo=true,$post
 		if ($carousel) {
 			echo "</div>";
 			if ( $pages > 1 ) {
-				echo '<a class="left carousel-control" href="#slider-'.$carousel_id.'" role="button" data-slide="prev">';
+				echo '<a class="left carousel-control" href="#slider-'.esc_attr($carousel_id).'" role="button" data-slide="prev">';
 				echo '<span class="fa fa-chevron-left" aria-hidden="true"></span>';
-				echo '<span class="sr-only">'.__('Previous','lsx-tour-operators').'</span>';
+				echo '<span class="sr-only">'.esc_html__('Previous','lsx-tour-operators').'</span>';
 				echo '</a>';
-				echo '<a class="right carousel-control" href="#slider-'.$carousel_id.'" role="button" data-slide="next">';
+				echo '<a class="right carousel-control" href="#slider-'.esc_attr($carousel_id).'" role="button" data-slide="next">';
 				echo '<span class="fa fa-chevron-right" aria-hidden="true"></span>';
-				echo '<span class="sr-only">'.__('Next','lsx-tour-operators').'</span>';
+				echo '<span class="sr-only">'.esc_html__('Next','lsx-tour-operators').'</span>';
 				echo '</a>';
 			}
 			echo "</div>";
 			if ( $pages > 1 ) {
-				echo '<ol class="carousel-indicators">'.$pagination.'</ol>';
+				echo '<ol class="carousel-indicators">'.wp_kses_post($pagination).'</ol>';
 			}
 			echo "</div>";
 			echo "</div>";			
@@ -2062,7 +2062,7 @@ function lsx_related_items($taxonomy=false,$before="",$after="",$echo=true,$post
 		endif;
 		
 		if($echo){
-			echo $return;
+			echo wp_kses_post( $return );
 		}else{
 			return $return;
 		}
@@ -2113,7 +2113,7 @@ function lsx_safari_brands($before="",$after="",$echo=true) {
 	$return = ob_get_clean();
 	$return = $before.$return.$after;
 	if($echo){
-		echo $return;
+		echo wp_kses_post( $return );
 	}else{
 		return $return;
 	}	
@@ -2163,7 +2163,7 @@ function lsx_travel_styles($before="",$after="",$echo=true) {
 	$return = ob_get_clean();
 	$return = $before.$return.$after;
 	if($echo){
-		echo $return;
+		echo wp_kses_post( $return );
 	}else{
 		return $return;
 	}	

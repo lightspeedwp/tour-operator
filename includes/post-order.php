@@ -31,8 +31,7 @@ class LSX_TO_SCPO_Engine {
 		$result = $wpdb->query("DESCRIBE $wpdb->terms `lsx_to_term_order`");
 		
 		if (!$result) {
-			$query = "ALTER TABLE $wpdb->terms ADD `lsx_to_term_order` INT( 4 ) NULL DEFAULT '0'";
-			$result = $wpdb->query($query);
+			$result = $wpdb->query("ALTER TABLE $wpdb->terms ADD `lsx_to_term_order` INT(4) NULL DEFAULT '0'");
 		}
 
 		update_option('lsx_to_scporder_install', 1);
@@ -47,20 +46,20 @@ class LSX_TO_SCPO_Engine {
 		if (empty($objects) && empty($tags))
 			return false;
 
-		if (isset($_GET['orderby']) || strstr(esc_url(wp_unslash($_SERVER['REQUEST_URI'])), 'action=edit') || strstr(esc_url(wp_unslash($_SERVER['REQUEST_URI'])), 'wp-admin/post-new.php'))
+		if (isset($_GET['orderby']) || strstr(sanitize_text_field(wp_unslash($_SERVER['REQUEST_URI'])), 'action=edit') || strstr(sanitize_text_field(wp_unslash($_SERVER['REQUEST_URI'])), 'wp-admin/post-new.php'))
 			return false;
 
 		if (!empty($objects)) {
-			if (isset($_GET['post_type']) && !isset($_GET['taxonomy']) && array_key_exists(esc_html(wp_unslash($_GET['post_type'])), $objects)) { // if page or custom post types
+			if (isset($_GET['post_type']) && !isset($_GET['taxonomy']) && array_key_exists(sanitize_text_field(wp_unslash($_GET['post_type'])), $objects)) { // if page or custom post types
 				$active = true;
 			}
-			if (!isset($_GET['post_type']) && strstr(esc_url(wp_unslash($_SERVER['REQUEST_URI'])), 'wp-admin/edit.php') && array_key_exists('post', $objects)) { // if post
+			if (!isset($_GET['post_type']) && strstr(sanitize_text_field(wp_unslash($_SERVER['REQUEST_URI'])), 'wp-admin/edit.php') && array_key_exists('post', $objects)) { // if post
 				$active = true;
 			}
 		}
 
 		if (!empty($tags)) {
-			if (isset($_GET['taxonomy']) && array_key_exists(esc_html(wp_unslash($_GET['taxonomy'])), $tags)) {
+			if (isset($_GET['taxonomy']) && array_key_exists(sanitize_text_field(wp_unslash($_GET['taxonomy'])), $tags)) {
 				$active = true;
 			}
 		}
@@ -324,8 +323,10 @@ class LSX_TO_SCPO_Engine {
 
 		if (!isset($args['taxonomy']))
 			return $orderby;
-
+ 
 		$taxonomy = $args['taxonomy'];
+		if (is_array($taxonomy) && count($taxonomy) == 1)
+			$taxonomy = $taxonomy[0];
 		if (!array_key_exists($taxonomy, $tags))
 			return $orderby;
 

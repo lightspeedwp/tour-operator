@@ -117,6 +117,10 @@ class LSX_Tour_Operators {
 
 		//Add our action to init to set up our vars first.	
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
+		//Allow extra tags and attributes to wp_kses_post()
+		add_filter( 'wp_kses_allowed_html', array( $this, 'kses_allowed_html' ), 10, 2 );
+		//Allow extra protocols to wp_kses_post()
+		add_filter( 'kses_allowed_protocols', array( $this, 'kses_allowed_protocols' ) );
 		
 		if(!class_exists('LSX_Framework')){
 			require_once( LSX_TOUR_OPERATORS_PATH . 'vendor/lsx-framework/lsx-framework.php' );
@@ -301,6 +305,81 @@ class LSX_Tour_Operators {
 
 		$output = apply_filters( 'the_content', $output );
 		return $output;
+	}
+
+	/**
+	 * Allow extra tags and attributes to wp_kses_post()
+	 */
+	public function kses_allowed_html( $allowedtags, $context ) {
+		// Tags exist, only adding new attributes
+
+		$allowedtags['i']['aria-hidden'] = true;
+		$allowedtags['span']['aria-hidden'] = true;
+
+		$allowedtags['button']['aria-label'] = true;
+		$allowedtags['button']['data-dismiss'] = true;
+
+		$allowedtags['li']['data-target'] = true;
+		$allowedtags['li']['data-slide-to'] = true;
+
+		$allowedtags['a']['data-toggle'] = true;
+		$allowedtags['a']['data-target'] = true;
+		$allowedtags['a']['data-slide'] = true;
+		$allowedtags['a']['data-collapsed'] = true;
+
+		$allowedtags['div']['aria-labelledby'] = true;
+		$allowedtags['div']['data-interval'] = true;
+		$allowedtags['div']['data-icon'] = true;
+		$allowedtags['div']['data-id'] = true;
+		$allowedtags['div']['data-class'] = true;
+		$allowedtags['div']['data-long'] = true;
+		$allowedtags['div']['data-lat'] = true;
+		$allowedtags['div']['data-zoom'] = true;
+		$allowedtags['div']['data-link'] = true;
+		$allowedtags['div']['data-thumbnail'] = true;
+		$allowedtags['div']['data-title'] = true;
+		$allowedtags['div']['data-type'] = true;
+		$allowedtags['div']['data-cluster-small'] = true;
+		$allowedtags['div']['data-cluster-medium'] = true;
+
+		// New tags
+
+		$allowedtags['input'] = array();
+		$allowedtags['input']['type'] = true;
+		$allowedtags['input']['id'] = true;
+		$allowedtags['input']['name'] = true;
+		$allowedtags['input']['value'] = true;
+		$allowedtags['input']['size'] = true;
+		$allowedtags['input']['checked'] = true;
+		$allowedtags['input']['onclick'] = true;
+
+		$allowedtags['select'] = array();
+		$allowedtags['select']['name'] = true;
+		$allowedtags['select']['id'] = true;
+		$allowedtags['select']['disabled'] = true;
+		$allowedtags['select']['onchange'] = true;
+
+		$allowedtags['option'] = array();
+		$allowedtags['option']['value'] = true;
+		$allowedtags['option']['selected'] = true;
+
+		$allowedtags['iframe'] = array();
+		$allowedtags['iframe']['src'] = true;
+		$allowedtags['iframe']['width'] = true;
+		$allowedtags['iframe']['height'] = true;
+		$allowedtags['iframe']['frameborder'] = true;
+		$allowedtags['iframe']['allowfullscreen'] = true;
+		$allowedtags['iframe']['style'] = true;
+
+		return $allowedtags;
+	}
+
+	/**
+	 * Allow extra protocols to wp_kses_post()
+	 */
+	public function kses_allowed_protocols( $allowedprotocols ) {
+		$allowedprotocols[] = 'tel';
+		return $allowedprotocols;
 	}
 
 }

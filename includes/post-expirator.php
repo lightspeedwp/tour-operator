@@ -269,30 +269,3 @@ function lsx_to_post_expirator_expire_type($opts) {
 	$rv[] = '</select>';
 	return implode("<br/>/n",$rv);
 }
-
-function lsx_to_expirationdate_kses_allowed_html( $allowedtags, $context ) {
-	$allowedtags['input'] = array();
-	
-	$allowedtags['input']['type'] = true;
-	$allowedtags['input']['id'] = true;
-	$allowedtags['input']['name'] = true;
-	$allowedtags['input']['value'] = true;
-	$allowedtags['input']['size'] = true;
-	$allowedtags['input']['checked'] = true;
-	$allowedtags['input']['onclick'] = true;
-
-	$allowedtags['select'] = array();
-	
-	$allowedtags['select']['name'] = true;
-	$allowedtags['select']['id'] = true;
-	$allowedtags['select']['disabled'] = true;
-	$allowedtags['select']['onchange'] = true;
-
-	$allowedtags['option'] = array();
-	
-	$allowedtags['option']['value'] = true;
-	$allowedtags['option']['selected'] = true;
-
-	return $allowedtags;
-}
-add_filter( 'wp_kses_allowed_html', 'lsx_to_expirationdate_kses_allowed_html', 10, 2 );
