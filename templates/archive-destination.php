@@ -37,7 +37,7 @@
 										$slug = sanitize_title( the_title( '', '', FALSE ) );
 									?>
 									
-									<li><a href="#<?php echo $slug ?>" title="<?php the_title() ?>"><?php the_title() ?></a></li>
+									<li><a href="#<?php echo esc_attr( $slug ); ?>" title="<?php the_title() ?>"><?php the_title() ?></a></li>
 								
 								<?php endwhile ?>
 
@@ -60,7 +60,7 @@
 							$slug = sanitize_title( the_title( '', '', FALSE ) );
 						?>
 						
-						<section class="countries" id="<?php echo $slug ?>">
+						<section class="countries" id="<?php echo esc_attr( $slug ); ?>">
 							<?php if ( $counter > 1 ) : ?>
 								<div class="lsx-breaker"></div>
 							<?php endif ?>
@@ -78,7 +78,7 @@
 									<div class="col-sm-6">
 										<h2 class="section-title"><a href="<?php the_permalink() ?>" title="<?php the_title() ?>"><?php the_title() ?></a></h2>
 										<?php lsx_tour_tagline( '<p class="tagline">', '</p>') ?>
-										<div class="entry-content"><?php echo $lsx_tour_operators->apply_filters_the_content( $post->post_content, 'Continue Reading', get_permalink() ) ?></div>
+										<div class="entry-content"><?php echo wp_kses_post( $lsx_tour_operators->apply_filters_the_content( $post->post_content, 'Continue Reading', get_permalink() ) ); ?></div>
 									</div>
 								</div>
 							</div>
@@ -94,7 +94,7 @@
 									)
 								);
 
-								$regions_size = sizeof( $regions );
+								$regions_size = count( $regions );
 							?>
 
 							<?php if ( $regions_size > 0 ) : ?>
@@ -111,7 +111,7 @@
 									<h3 class="section-title"><?php esc_html_e( 'Travel Regions Within ', 'lsx-tour-operators' ) ?><a href="<?php the_permalink() ?>" title="<?php the_title() ?>"><?php the_title() ?></a></h3>
 									
 									<div class="slider-container">
-										<div id="slider-<?php echo $slider_id ?>" class="carousel slide" data-interval="false">
+										<div id="slider-<?php echo esc_attr( $slider_id ); ?>" class="carousel slide" data-interval="false">
 											<div class="carousel-wrap">
 												<div class="carousel-inner" role="listbox">
 													<div class="item row active">
@@ -143,7 +143,7 @@
 																					$excerpt = ob_get_clean();
 																					$excerpt = strip_tags( $excerpt );
 																					$excerpt = preg_replace( '/Continue reading$/', '', $excerpt );
-																					echo $excerpt;
+																					echo wp_kses_post( $excerpt );
 																				?>
 																			</div>
 																			
@@ -168,7 +168,7 @@
 															?>
 														
 															<?php
-																if ( $inner_counter !== 0 ) {
+																if ( 0 !== $inner_counter ) {
 																	$column_counter++;
 																	echo '</div>';
 																}
@@ -177,12 +177,12 @@
 												
 												<?php if ( $column_counter > 1 ) : ?>
 
-													<a class="left carousel-control" href="#slider-<?php echo $slider_id ?>" role="button" data-slide="prev">
+													<a class="left carousel-control" href="#slider-<?php echo esc_attr( $slider_id ); ?>" role="button" data-slide="prev">
 														<span class="fa fa-chevron-left" aria-hidden="true"></span>
 														<span class="sr-only">Previous</span>
 													</a>
 
-													<a class="right carousel-control" href="#slider-<?php echo $slider_id ?>" role="button" data-slide="next">
+													<a class="right carousel-control" href="#slider-<?php echo esc_attr( $slider_id ); ?>" role="button" data-slide="next">
 														<span class="fa fa-chevron-right" aria-hidden="true"></span>
 														<span class="sr-only">Next</span>
 													</a>
@@ -197,8 +197,8 @@
 														$i = 0;
 
 														while ( $i < $column_counter ) {
-															$class = $i == 0 ? 'active' : '';
-															echo '<li data-target="#slider-'. $slider_id .'" data-slide-to="'. $i .'" class="'. $class .'"></li>';
+															$class = 0 == $i ? 'active' : '';
+															echo '<li data-target="#slider-'. esc_attr( $slider_id ) .'" data-slide-to="'. esc_attr( $i ) .'" class="'. esc_attr( $class ) .'"></li>';
 															$i++;
 														}
 													?>

@@ -83,29 +83,29 @@
 		    
 	    		$team_info = get_post_meta($team_member[0],'general',true);
 	    	
-				echo '.<a href="'.home_url('equipe/').'">'.get_the_post_thumbnail( $team_member[0], 'thumbnail' ).'</a>';
-			    echo '<h4><a href="'.home_url('equipe/').'">'.get_the_title($team_member[0]).'</a></h4>';
+				echo '.<a href="'.esc_url( home_url('equipe/') ).'">'.get_the_post_thumbnail( $team_member[0], 'thumbnail' ).'</a>';
+			    echo '<h4><a href="'.esc_url( home_url('equipe/') ).'">'.get_the_title($team_member[0]).'</a></h4>';
 			    
 			    ?>
 	
 				<?php if(isset($team_info['designation'])){ ?>
 					<h6 class="contact-designation contact">
-					    <i class="fa fa-user"></i> <?php echo $team_info['designation']; ?>
+					    <i class="fa fa-user"></i> <?php echo esc_attr( $team_info['designation'] ); ?>
 					</h6>
 				<?php } ?>
 				<?php if(isset($team_info['skype'])){ ?>
 					<h6 class="contact-skype contact">
-					    <i class="fa fa-skype"></i> <?php echo $team_info['skype']; ?>
+					    <i class="fa fa-skype"></i> <?php echo esc_attr( $team_info['skype'] ); ?>
 					</h6>
 				<?php } ?>
 				<?php if(isset($team_info['contact_number'])){ ?>
 				    <h6 class="contact-number contact">
-				    	<i class="fa fa-phone orange"></i> <a href="tel:<?php echo $team_info['contact_number']; ?>"><?php echo $team_info['contact_number']; ?></a>
+				    	<i class="fa fa-phone orange"></i> <a href="tel:<?php echo esc_attr( $team_info['contact_number'] ); ?>"><?php echo esc_html( $team_info['contact_number'] ); ?></a>
 				    </h6>
 				<?php } ?>
 				<?php if(isset($team_info['contact_email'])){ ?>
 				    <h6 class="contact-email contact">
-				    	<i class="fa fa-envelope orange"></i> <a href="mailto:<?php echo $team_info['contact_email']; ?>"><?php echo $team_info['contact_email']; ?></a>
+				    	<i class="fa fa-envelope orange"></i> <a href="mailto:<?php echo esc_attr( $team_info['contact_email'] ); ?>"><?php echo esc_html( $team_info['contact_email'] ); ?></a>
 				    </h6>
 				<?php } ?>
 			    
@@ -116,17 +116,17 @@
 	      <section class="meta tour col-sm-9 intro">
 	      
 		      <?php if($price) { ?>
-			  <div class="price">&Agrave; partir de &euro;<?php echo $price;?></div>
+			  <div class="price">&Agrave; partir de &euro;<?php echo wp_kses_post( $price );?></div>
 		      <?php }?>
 		      
 		      <?php if($duration) { ?>
-			  <div class="duration"><?php echo $duration;?></div>
+			  <div class="duration"><?php echo wp_kses_post( $duration );?></div>
 		      <?php }?>
 		      
 		      <?php if(false != $travel_styles){ ?>
 				<div class="travel-styles">
 				   Voyage:
-				  <?php echo implode(',', $travel_styles); ?>
+				  <?php echo wp_kses_post( implode(',', $travel_styles) ); ?>
 				  </div>
 			  
 			<?php } ?>
@@ -141,12 +141,12 @@
 						  $best_times[] = ucfirst($month);
 					  }; 
 						  
-					  echo implode(', ', $best_times);
+					  echo wp_kses_post( implode(', ', $best_times) );
 				  ?></div>
 		      <?php }?> 
 		      
 		      <?php if($contact_details) { ?>
-			  <div class="contact-details"><?php echo wpautop($contact_details); ?></div>
+			  <div class="contact-details"><?php echo wp_kses_post( wpautop($contact_details) ); ?></div>
 		      <?php }?>
 		      
 	      <div class="sharing">
@@ -157,7 +157,7 @@
 			 
 			if ( class_exists( 'Jetpack_Likes' ) ) {
 			    $custom_likes = new Jetpack_Likes;
-			    echo $custom_likes->post_likes( '' );
+			    echo wp_kses_post( $custom_likes->post_likes( '' ) );
 			}
 			?>
 	      </div>
@@ -198,14 +198,14 @@
 				    <?php
 				     if($itinerary_map){
 					    $itinerary_map = wp_get_attachment_image_src($itinerary_map,'full');
-					    echo apply_filters( 'lsx_lazyload_filter_images', '<img src="'.$itinerary_map[0].'" />' );
+					    echo wp_kses_post( apply_filters( 'lsx_lazyload_filter_images', '<img src="'.$itinerary_map[0].'" />' ) );
 				    } ?>
 				
 					<?php
 				    if($steps){ ?>
 				    </div>
 				    <div class="col-sm-3 etapes">
-						<?php echo apply_filters('the_content',$steps); ?>
+						<?php echo wp_kses_post( apply_filters('the_content',$steps) ); ?>
 					</div>
 					<?php }
 				    ?>
@@ -228,19 +228,19 @@
 			    <div id="price" class="tab-pane fade col-sm-12">
 				    <div class="row">
 					    <div class="col-sm-12 center">
-						    <h3 class="price"><?php esc_html_e('Cette offre &agrave; partir de &euro;','lsx-tour-operators'); echo$price;?></h3>
+						    <h3 class="price"><?php esc_html_e('Cette offre &agrave; partir de &euro;','lsx-tour-operators'); echo wp_kses_post( $price ); ?></h3>
 					    </div>
 					    
 					    <hr class="divider voyages">
 				    
 					    <div class="col-sm-6 inclus">
 					    	<h4 style="text-align:left;">Inclus</h4>
-						    <?php echo $included; ?>
+						    <?php echo wp_kses_post( $included ); ?>
 					    </div>
 					    
 					    <div class="col-sm-6 inclus">
 					    	<h4 style="text-align:left;">Non-inclus</h4>
-						    <?php echo $not_included; ?>
+						    <?php echo wp_kses_post( $not_included ); ?>
 					    </div>
 				    </div>
 			    </div>
@@ -293,37 +293,37 @@
 		    
 	    		$team_info = get_post_meta($team_member[0],'general',true);
 	    	
-				echo '.<a href="'.home_url('equipe/').'">'.get_the_post_thumbnail( $team_member[0], 'thumbnail' ).'</a>';
-			    echo '<h4><a href="'.home_url('equipe/').'">'.get_the_title($team_member[0]).'</a></h4>';
+				echo '.<a href="'.esc_url( home_url('equipe/') ).'">'.get_the_post_thumbnail( $team_member[0], 'thumbnail' ).'</a>';
+			    echo '<h4><a href="'.esc_url( home_url('equipe/') ).'">'.get_the_title($team_member[0]).'</a></h4>';
 			    
 			    ?>
 	
 				<?php if(isset($team_info['designation'])){ ?>
 					<h6 class="contact-designation contact">
-					    <i class="fa fa-user"></i> <?php echo $team_info['designation']; ?>
+					    <i class="fa fa-user"></i> <?php echo esc_html( $team_info['designation'] ); ?>
 					</h6>
 				<?php } ?>
 				<?php if(isset($team_info['skype'])){ ?>
 					<h6 class="contact-skype contact">
-					    <i class="fa fa-skype"></i> <?php echo $team_info['skype']; ?>
+					    <i class="fa fa-skype"></i> <?php echo esc_html( $team_info['skype'] ); ?>
 					</h6>
 				<?php } ?>
 				<?php if(isset($team_info['contact_number'])){ ?>
 				    <h6 class="contact-number contact">
-				    	<i class="fa fa-phone orange"></i> <a href="tel:<?php echo $team_info['contact_number']; ?>"><?php echo $team_info['contact_number']; ?></a>
+				    	<i class="fa fa-phone orange"></i> <a href="tel:<?php echo esc_attr( $team_info['contact_number'] ); ?>"><?php echo esc_html( $team_info['contact_number'] ); ?></a>
 				    </h6>
 				<?php } ?>
 				<?php if(isset($team_info['contact_email'])){ ?>
 				    <h6 class="contact-email contact">
-				    	<i class="fa fa-envelope orange"></i> <a href="mailto:<?php echo $team_info['contact_email']; ?>"><?php echo $team_info['contact_email']; ?></a>
+				    	<i class="fa fa-envelope orange"></i> <a href="mailto:<?php echo esc_attr( $team_info['contact_email'] ); ?>"><?php echo esc_html( $team_info['contact_email'] ); ?></a>
 				    </h6>
 				<?php } ?>
 			    
 	<?php } ?>
 					</div>
 					<div class="col-sm-9 content-comments">
-						<h4 style="padding-bottom: 10px; border-bottom: 1px solid #ff6600;"><a style="text-decoration:none;" href="<?php echo home_url('/equipe/')?>">Les points forts de ce voyage, mon opinion:</a></h4>
-						<?php echo apply_filters('the_content',$advisor_comments); ?>
+						<h4 style="padding-bottom: 10px; border-bottom: 1px solid #ff6600;"><a style="text-decoration:none;" href="<?php echo esc_url( home_url('/equipe/') ); ?>">Les points forts de ce voyage, mon opinion:</a></h4>
+						<?php echo wp_kses_post( apply_filters('the_content',$advisor_comments) ); ?>
 					</div>
 				    </div>	
 			    <?php } ?>	  		  
