@@ -1,0 +1,2 @@
+filter:
+    excluded_paths: [vendor/*, assets/css/flag-icon-css/* ]
