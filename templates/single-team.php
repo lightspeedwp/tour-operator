@@ -2,15 +2,15 @@
 /**
  * Team Single Template
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @category	team
  */
 
 get_header(); ?>
 
-	<div id="primary" class="content-area <?php echo esc_attr( lsx_main_class() ); ?>">
+	<div id="primary" class="content-area <?php echo esc_attr( to_main_class() ); ?>">
 
-		<?php lsx_content_before(); ?>
+		<?php to_content_before(); ?>
 		
 		<main id="main" class="site-main" role="main">
 
@@ -18,9 +18,9 @@ get_header(); ?>
 		/**
 		 * Hooked
 		 * 
-		 *  - Lsx_Tour_Operators::lsx_tour_operator_single_header() - 100
+		 *  - Lsx_Tour_Operators::to_single_header() - 100
 		 */
-			lsx_content_top();
+			to_content_top();
 		?>
 		
 		<section class="team-navigation">
@@ -48,12 +48,12 @@ get_header(); ?>
 						$gallery_id = get_post_meta(get_the_ID(),'gallery',true);
 					}
 					if(false !== $gallery_id && '' !== $gallery_id){ ?>
-						<li><a href="#gallery"><?php esc_html_e('Gallery','lsx-tour-operators');?></a></li>
+						<li><a href="#gallery"><?php esc_html_e('Gallery','tour-operator');?></a></li>
 					<?php } ?>
 					<?php 
 					$videos = get_post_meta(get_the_ID(),'videos',true);
 					if(false !== $videos && '' !== $videos){ ?>
-						<li><a href="#videos"><?php esc_html_e('Videos','lsx-tour-operators');?></a></li>
+						<li><a href="#videos"><?php esc_html_e('Videos','tour-operator');?></a></li>
 					<?php } ?>								
 				</ul>
 			</div>
@@ -62,14 +62,14 @@ get_header(); ?>
 		<?php while ( have_posts() ) : the_post(); ?>
 			<section id="summary">
 				<div class="row">
-					<?php lsx_tour_operator_content('content', 'team'); ?>
+					<?php to_content('content', 'team'); ?>
 				</div>
 			</section>
 		<?php endwhile; // end of the loop. ?>
 		
-		<?php lsx_team_accommodation(); ?>
+		<?php to_team_accommodation(); ?>
 		
-		<?php lsx_team_tours(); ?>		
+		<?php to_team_tours(); ?>		
 		
 		<?php 
 		if(class_exists('Envira_Gallery')){
@@ -82,10 +82,10 @@ get_header(); ?>
 		if($test){
 			?>
 			<section id="gallery">
-				<h2 class="section-title"><?php esc_html_e('Gallery','lsx-tour-operators'); ?></h2>	
+				<h2 class="section-title"><?php esc_html_e('Gallery','tour-operator'); ?></h2>	
 				<?php 
 					if ( function_exists( 'Envira_Gallery' ) ) {
-						lsx_tour_operator_content('content', 'envira');
+						to_content('content', 'envira');
 					} else {
 						echo do_shortcode( '[gallery ids="'. implode(',',$gallery_id) .'" type="square" size="medium" columns="4" link="file"]' );
 					}
@@ -95,13 +95,13 @@ get_header(); ?>
 		}
 		?>		
 		
-		<?php lsx_tour_videos('<section id="videos"><h2 class="section-title">'.__('Videos','lsx-tour-operators').'</h2>','</section>'); ?>
+		<?php to_videos('<section id="videos"><h2 class="section-title">'.__('Videos','tour-operator').'</h2>','</section>'); ?>
 		
-		<?php lsx_content_bottom(); ?>
+		<?php to_content_bottom(); ?>
 
 		</main><!-- #main -->			
 
-		<?php lsx_content_after(); ?>
+		<?php to_content_after(); ?>
 
 	</div><!-- #primary -->
 

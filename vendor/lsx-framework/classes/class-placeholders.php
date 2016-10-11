@@ -11,7 +11,7 @@
 /**
  * Plugin class.
  */
-class LSX_Placeholders {
+class TO_Placeholders {
 
 	/**
 	 * The slug for this plugin
@@ -58,10 +58,10 @@ class LSX_Placeholders {
 		$this->post_types[] = 'post';
 		$this->post_types[] = 'page';
 
-		add_action('lsx_framework_dashboard_tab_content',array($this,'dashboard_settings'),15);
+		add_action('to_framework_dashboard_tab_content',array($this,'dashboard_settings'),15);
 
 		foreach($this->post_types as $post_type){
-			add_action( 'lsx_framework_'.$post_type.'_tab_general_settings_top', array( $this, 'settings_page_html' ) );
+			add_action( 'to_framework_'.$post_type.'_tab_general_settings_top', array( $this, 'settings_page_html' ) );
 		}
 		
 		if( !is_admin() ){
@@ -73,14 +73,14 @@ class LSX_Placeholders {
 			add_filter( 'wp_calculate_image_srcset', array($this,'super_placeholder_calculate_image_srcset_filter') , 20, 5 );	
 		}
 
-		$this->super_placeholder = LSX_Placeholders::placeholder_url();
+		$this->super_placeholder = TO_Placeholders::placeholder_url();
 	}
 
 	/**
 	 * Returns the placeholder call.
 	 */
 	public static function placeholder_url($text_size = 24,$post_type='general',$size='lsx-thumbnail-wide'){
-		$options = get_option('_lsx_lsx-settings',false);
+		$options = get_option('_to_lsx-settings',false);
 		$holdit_width = '';
 		switch($size){
 			case 'thumbnail':
@@ -140,7 +140,7 @@ class LSX_Placeholders {
 	 * The post default placeholder call.
 	 */
 	public function default_post_thumbnail( $meta, $post_id, $meta_key ){
-		$options = get_option('_lsx_lsx-settings',false);
+		$options = get_option('_to_lsx-settings',false);
 		if($meta_key === '_thumbnail_id' && false !== $options){
 			
 			$post_type = get_post_field( 'post_type', $post_id );
@@ -195,7 +195,7 @@ class LSX_Placeholders {
 	public function default_term_thumbnail( $meta, $post_id, $meta_key ){
 
 		if($meta_key === 'thumbnail'){
-			$options = get_option('_lsx_lsx-settings',false);
+			$options = get_option('_to_lsx-settings',false);
 			$placeholder = 'lsx-placeholder';
 
 			//First Check for a default, then check if there is one set by post type.
@@ -271,7 +271,7 @@ class LSX_Placeholders {
 
 			} 
 
-			$image = apply_filters('lsx_placeholder_url',$image);
+			$image = apply_filters('to_placeholder_url',$image);
 
 		}
 		return $image;
@@ -367,7 +367,7 @@ class LSX_Placeholders {
 			<label><h3 style="margin-bottom:0px;"> Placeholders</h3></label>			
 		</th>
 
-		<?php if(class_exists('LSX_Banners')) { ?>
+		<?php if(class_exists('TO_Banners')) { ?>
 			<tr class="form-field banner-placeholder-wrap">
 				<th scope="row">
 					<label for="banner"> Banner Placeholder</label>
@@ -439,7 +439,7 @@ class LSX_Placeholders {
 	 * The placeholder settings that output on the frameworks tabs.
 	 */
 	public function settings_page_html() { ?>
-		<?php if(class_exists('LSX_Banners')) { ?>
+		<?php if(class_exists('TO_Banners')) { ?>
 			<tr class="form-field banner-placeholder-wrap">
 				<th scope="row">
 					<label for="banner"> Banner Placeholder</label>

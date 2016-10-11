@@ -1,6 +1,6 @@
 <?php
 /**
- * @package   LSX_Widget
+ * @package   TO_Widget
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -8,7 +8,7 @@
  *
  **/
 
-class LSX_Widget extends WP_Widget {
+class TO_Widget extends WP_Widget {
 	
 	/**
 	 * Sets up the widgets name etc
@@ -18,7 +18,7 @@ class LSX_Widget extends WP_Widget {
 			'classname' => 'lsx-widget',
 			'description' => 'LSX',
 		);
-		parent::__construct( 'LSX_Widget', 'LSX Post Types', $widget_ops );
+		parent::__construct( 'TO_Widget', 'LSX Post Types', $widget_ops );
 	}
  
     /** @see WP_Widget::widget -- do not rename this */
@@ -167,7 +167,7 @@ class LSX_Widget extends WP_Widget {
 	        
 	        	if ($post_type != 'video') {
 	        		$title = $before_title . $link_open . $title . $link_close . $after_title;
-	        		echo apply_filters('lsx_post_type_widget_title', $title);
+	        		echo apply_filters('to_post_type_widget_title', $title);
 	        	}
 	        	if ( false != $tagline ) {
 	        		echo '<p class="tagline">'.$tagline.'</p>';
@@ -200,7 +200,7 @@ class LSX_Widget extends WP_Widget {
 			$args['carousel'] = $carousel;  
 			echo $this->output($args);  
 		}else{
-		 	echo '<p>'.__('That post type does not exist.','lsx-tour-operators').'</p>';
+		 	echo '<p>'.__('That post type does not exist.','tour-operator').'</p>';
 		}
 
         echo $after_widget;    
@@ -537,7 +537,7 @@ class LSX_Widget extends WP_Widget {
 		if ($widget_query->have_posts()) {
 
 			if('review' === $post_type){
-				add_filter('lsx_placeholder_url', array($this,'placeholder') , 10 , 1 );
+				add_filter('to_placeholder_url', array($this,'placeholder') , 10 , 1 );
 			}
 			
 			$count = 1;
@@ -549,7 +549,7 @@ class LSX_Widget extends WP_Widget {
 				$widget_query->the_post();
 				
 				$this->loop_start($columns,$carousel,$post_type,$widget_query->post_count,$count,$interval);
-				echo '<div '.lsx_widget_class(true).'>';
+				echo '<div '.to_widget_class(true).'>';
 				$this->content_part('content','widget-'.$post_type);
 				echo '</div>';
 				$this->loop_end($columns,$carousel,$post_type,$widget_query->post_count,$count);
@@ -573,7 +573,7 @@ class LSX_Widget extends WP_Widget {
 			wp_reset_postdata();
 
 			if('review' === $post_type){
-				remove_filter('lsx_placeholder_url', array($this,'placeholder') , 10 , 1 );
+				remove_filter('to_placeholder_url', array($this,'placeholder') , 10 , 1 );
 			}				
 		}
 	}
@@ -685,11 +685,11 @@ class LSX_Widget extends WP_Widget {
 			if ( $pages > 1 ) {
 				$output .= '<a class="left carousel-control" href="#slider-'.$this->carousel_id.'" role="button" data-slide="prev">';
 				$output .= '<span class="fa fa-chevron-left" aria-hidden="true"></span>';
-				$output .= '<span class="sr-only">'.__('Previous','lsx-tour-operators').'</span>';
+				$output .= '<span class="sr-only">'.__('Previous','tour-operator').'</span>';
 				$output .= '</a>';
 				$output .= '<a class="right carousel-control" href="#slider-'.$this->carousel_id.'" role="button" data-slide="next">';
 				$output .= '<span class="fa fa-chevron-right" aria-hidden="true"></span>';
-				$output .= '<span class="sr-only">'.__('Next','lsx-tour-operators').'</span>';
+				$output .= '<span class="sr-only">'.__('Next','tour-operator').'</span>';
 				$output .= '</a>';
 			}
 
@@ -724,7 +724,7 @@ class LSX_Widget extends WP_Widget {
 			$template = "{$slug}.php";
 		}
 		$original_name = $template;
-		$path = apply_filters('lsx_widget_path','',get_post_type());
+		$path = apply_filters('to_widget_path','',get_post_type());
 		
 		if ( '' == locate_template( array( $template ) ) && file_exists( $path.'templates/'.$template) ) {
 			$template = $path.'templates/'.$template;

@@ -5,7 +5,7 @@ var infowindow;
 var $gmap = '';
 var gmap_markers = [];
 var icons = [];
-var LSX_MAPS = {
+var TO_MAPS = {
 
     initThis: function(){
         var $map = jQuery('.lsx-map:eq(0)');
@@ -164,7 +164,7 @@ var LSX_MAPS = {
 
         jQuery.get('https://roads.googleapis.com/v1/snapToRoads', {
             interpolate: true,
-            key: lsx_maps_params.apiKey,
+            key: to_maps_params.apiKey,
             path: coordinates.join('|')
         }, function(data) {
             /*processSnapToRoadResponse(data);
@@ -241,9 +241,9 @@ var LSX_MAPS = {
                 console.log($this.type);
                 if('route' == $this.type && (0==counter || marker_length == counter)){
                     if(0==counter){
-                        icon_url = lsx_maps_params.start_marker;
+                        icon_url = to_maps_params.start_marker;
                     }else{
-                        icon_url = lsx_maps_params.end_marker;
+                        icon_url = to_maps_params.end_marker;
                     }
                 }
                 icons.push(icon_url);
@@ -307,12 +307,12 @@ var LSX_MAPS = {
     },
 
 }
-LSX_Elementz_Map = {
+TO_Elementz_Map = {
     changeMapStyleInit: function() {
         if ('undefined' != typeof google && 'undefined' != typeof google.maps) {
             google.maps.event.addDomListener(window, 'load', function() {
                 if ('undefined' != typeof $gmap && 'undefined' != typeof $gmap.mapTypes) {
-                    setTimeout(LSX_Elementz_Map.changeMapColors, 200);
+                    setTimeout(TO_Elementz_Map.changeMapColors, 200);
                 }
             });
         }
@@ -332,7 +332,7 @@ LSX_Elementz_Map = {
 
 jQuery(document).ready( function($) {
 	if(jQuery('.lsx-map').length){
-		LSX_MAPS.initThis();
-        LSX_Elementz_Map.changeMapStyleInit();
+		TO_MAPS.initThis();
+        TO_Elementz_Map.changeMapStyleInit();
 	}
 });

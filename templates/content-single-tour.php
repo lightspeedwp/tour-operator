@@ -198,7 +198,7 @@
 				    <?php
 				     if($itinerary_map){
 					    $itinerary_map = wp_get_attachment_image_src($itinerary_map,'full');
-					    echo wp_kses_post( apply_filters( 'lsx_lazyload_filter_images', '<img src="'.$itinerary_map[0].'" />' ) );
+					    echo wp_kses_post( apply_filters( 'to_lazyload_filter_images', '<img src="'.$itinerary_map[0].'" />' ) );
 				    } ?>
 				
 					<?php
@@ -228,7 +228,7 @@
 			    <div id="price" class="tab-pane fade col-sm-12">
 				    <div class="row">
 					    <div class="col-sm-12 center">
-						    <h3 class="price"><?php esc_html_e('Cette offre &agrave; partir de &euro;','lsx-tour-operators'); echo wp_kses_post( $price ); ?></h3>
+						    <h3 class="price"><?php esc_html_e('Cette offre &agrave; partir de &euro;','tour-operator'); echo wp_kses_post( $price ); ?></h3>
 					    </div>
 					    
 					    <hr class="divider voyages">
@@ -341,7 +341,7 @@
   <section class="related-tours row">
   		<div class="col-sm-12">
 			<h2>Circuits Similaires</h2>
-			<?php lsx_related_items('tour'); ?>
+			<?php to_related_items('tour'); ?>
 		</div>
   </section>
   

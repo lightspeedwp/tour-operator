@@ -2,7 +2,7 @@
 /**
  * Frontend actions for the framework
  *
- * @package   LSX_Framework_Frontend
+ * @package   TO_Framework_Frontend
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -12,10 +12,10 @@
 /**
  * Main plugin class.
  *
- * @package LSX_Framework_Frontend
+ * @package TO_Framework_Frontend
  * @author  LightSpeed
  */
-class LSX_Framework_Frontend {
+class TO_Framework_Frontend {
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -29,7 +29,7 @@ class LSX_Framework_Frontend {
 		$this->post_types = $post_types;
 		$this->framework_path = $framework_path;
 		$this->framework_url = $framework_url;
-		$options = get_option('_lsx_lsx-settings',false);	
+		$options = get_option('_to_lsx-settings',false);	
 		if(false !== $options){
 			$this->options = $options;
 		}
@@ -45,8 +45,8 @@ class LSX_Framework_Frontend {
 		add_action( 'template_redirect', array( $this, 'redirect_archive') );
 
 		//LSX
-		add_action( 'lsx_content_before', array( $this, 'remove_jetpack_share' ));
-		add_action( 'lsx_content_wrap_before', array( $this, 'remove_jetpack_share' ));
+		add_action( 'to_content_before', array( $this, 'remove_jetpack_share' ));
+		add_action( 'to_content_wrap_before', array( $this, 'remove_jetpack_share' ));
 
 		//Jetpack
 		add_filter( 'sharing_show', array( $this, 'show_jetpack_sharing_filter'),2,100 );	

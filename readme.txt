@@ -47,7 +47,7 @@ Report any bugs via github issues.
 
 
 = Where can I find Tour Operator plugin documentation and user guides? =
-For help setting up and configuring the Tour Operator plugin please refer to our [user guide](https://www.lsdev.biz/documentation/lsx-tour-operators/)
+For help setting up and configuring the Tour Operator plugin please refer to our [user guide](https://www.lsdev.biz/documentation/tour-operator/)
 
 = Where can I get support or talk to other users =
 

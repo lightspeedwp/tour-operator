@@ -2,7 +2,7 @@
 /**
  * Adminitration settings for the framework
  *
- * @package   LSX_Field_Patterns
+ * @package   TO_Field_Patterns
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -12,10 +12,10 @@
 /**
  * Main plugin class.
  *
- * @package LSX_Field_Patterns
+ * @package TO_Field_Patterns
  * @author  LightSpeed
  */
-class LSX_Framework_Admin {
+class TO_Framework_Admin {
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -30,7 +30,7 @@ class LSX_Framework_Admin {
 
 		$this->framework_path = $framework_path;
 		$this->framework_url = $framework_url;
-		$options = get_option('_lsx_lsx-settings',false);	
+		$options = get_option('_to_lsx-settings',false);	
 		if(false !== $options){
 			$this->options = $options;
 		}
@@ -67,11 +67,11 @@ class LSX_Framework_Admin {
 			$uix->register_pages( $pages );
 
 			foreach($this->post_types as $post_type){
-				add_action( 'lsx_framework_'.$post_type.'_tab_content_top', array( $this, 'general_settings' ), 5 , 1 );
-				add_action( 'lsx_framework_'.$post_type.'_tab_content_top', array( $this, 'archive_settings_header' ), 10 , 1 );
-				add_action( 'lsx_framework_'.$post_type.'_tab_content_top', array( $this, 'archive_settings' ), 12 , 1 );
-				add_action( 'lsx_framework_'.$post_type.'_tab_content_top', array( $this, 'single_settings' ), 15 , 1 );
-				add_action( 'lsx_framework_'.$post_type.'_tab_bottom', array( $this, 'settings_page_scripts' ), 100 );
+				add_action( 'to_framework_'.$post_type.'_tab_content_top', array( $this, 'general_settings' ), 5 , 1 );
+				add_action( 'to_framework_'.$post_type.'_tab_content_top', array( $this, 'archive_settings_header' ), 10 , 1 );
+				add_action( 'to_framework_'.$post_type.'_tab_content_top', array( $this, 'archive_settings' ), 12 , 1 );
+				add_action( 'to_framework_'.$post_type.'_tab_content_top', array( $this, 'single_settings' ), 15 , 1 );
+				add_action( 'to_framework_'.$post_type.'_tab_bottom', array( $this, 'settings_page_scripts' ), 100 );
 			}			
 		}
 	}
@@ -105,7 +105,7 @@ class LSX_Framework_Admin {
 		}
 	
 		$additional_tabs = false;
-		$additional_tabs = apply_filters('lsx_framework_settings_tabs',$additional_tabs);
+		$additional_tabs = apply_filters('to_framework_settings_tabs',$additional_tabs);
 		if(false !== $additional_tabs && is_array($additional_tabs) && !empty($additional_tabs)){
 			$tabs = array_merge($tabs,$additional_tabs);
 		}
@@ -137,11 +137,11 @@ class LSX_Framework_Admin {
 	 * Adds in the settings neccesary for the archives
 	 */
 	public function general_settings($post_type=false){ 
-		do_action('lsx_framework_'.$post_type.'_tab_general_settings_top',$post_type);
+		do_action('to_framework_'.$post_type.'_tab_general_settings_top',$post_type);
 		?>
 		<tr class="form-field-wrap">
 			<th scope="row">
-				<label for="currency"><?php _e('General Enquiry','lsx-tour-operators'); ?></label>
+				<label for="currency"><?php _e('General Enquiry','tour-operator'); ?></label>
 			</th>
 			<?php
 				if(true === $this->show_default_form()){
@@ -171,16 +171,16 @@ class LSX_Framework_Admin {
 		</tr>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="description"><?php _e('Disable Modal','lsx-tour-operators'); ?></label>
+				<label for="description"><?php _e('Disable Modal','tour-operator'); ?></label>
 			</th>
 			<td>
 				<input type="checkbox" {{#if disable_enquire_modal}} checked="checked" {{/if}} name="disable_enquire_modal" />
-				<small><?php _e('This disables the enquire modal, and instead redirects to the link you provide below.','lsx-tour-operators'); ?></small>
+				<small><?php _e('This disables the enquire modal, and instead redirects to the link you provide below.','tour-operator'); ?></small>
 			</td>
 		</tr>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="title"><?php _e('Enquire Link','lsx-tour-operators'); ?></label>
+				<label for="title"><?php _e('Enquire Link','tour-operator'); ?></label>
 			</th>
 			<td>
 				<input type="text" {{#if enquire_link}} value="{{enquire_link}}" {{/if}} name="enquire_link" />
@@ -206,7 +206,7 @@ class LSX_Framework_Admin {
 		</tr>
 
 		<?php	
-			do_action('lsx_framework_'.$post_type.'_tab_general_settings_bottom',$post_type);	
+			do_action('to_framework_'.$post_type.'_tab_general_settings_bottom',$post_type);	
 	}
 
 	/**
@@ -296,7 +296,7 @@ class LSX_Framework_Admin {
 	public function archive_settings($post_type=false){ ?>
 
 		{{#unless disable_archives}}
-			<?php do_action('lsx_framework_'.$post_type.'_tab_archive_settings_top',$post_type); ?>
+			<?php do_action('to_framework_'.$post_type.'_tab_archive_settings_top',$post_type); ?>
 			<tr class="form-field">
 				<th scope="row">
 					<label for="title"> Title</label>
@@ -321,7 +321,7 @@ class LSX_Framework_Admin {
 					<textarea class="description" name="description" rows="10">{{#if description}}{{{description}}}{{/if}}</textarea>
 				</td>
 			</tr>
-			<?php do_action('lsx_framework_'.$post_type.'_tab_archive_settings_bottom',$post_type); ?>
+			<?php do_action('to_framework_'.$post_type.'_tab_archive_settings_bottom',$post_type); ?>
 		{{/unless}}
 	<?php
 	}
@@ -331,7 +331,7 @@ class LSX_Framework_Admin {
 	 */
 	public function single_settings($post_type=false){ ?>
 		<?php 
-		do_action('lsx_framework_'.$post_type.'_tab_single_settings_top',$post_type);
+		do_action('to_framework_'.$post_type.'_tab_single_settings_top',$post_type);
 		if ( $post_type == 'tour' || $post_type == 'accommodation' || $post_type == 'destination' || $post_type == 'activity' ) : ?>
 			<tr class="form-field">
 				<th scope="row" colspan="2"><label><h3>Single</h3></label></th>
@@ -407,7 +407,7 @@ class LSX_Framework_Admin {
 				</tr>
 			<?php endif ?>
 		<?php endif ?>
-	<?php do_action('lsx_framework_'.$post_type.'_tab_single_settings_bottom',$post_type);
+	<?php do_action('to_framework_'.$post_type.'_tab_single_settings_bottom',$post_type);
 	}
 
 	/**

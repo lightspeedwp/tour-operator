@@ -1,6 +1,6 @@
 <?php
 /**
- * @package   LSX_CTA_Widget
+ * @package   TO_CTA_Widget
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -8,7 +8,7 @@
  *
  **/
 
-class LSX_CTA_Widget extends WP_Widget {	
+class TO_CTA_Widget extends WP_Widget {	
 	
 	/**
 	 * Sets up the widgets name etc
@@ -18,7 +18,7 @@ class LSX_CTA_Widget extends WP_Widget {
 			'classname' => 'lsx-widget',
 			'description' => 'Displays a nifty call to action.',
 		);
-		parent::__construct( 'LSX_CTA_Widget', 'LSX CTA', $widget_ops );
+		parent::__construct( 'TO_CTA_Widget', 'LSX CTA', $widget_ops );
         add_action('admin_enqueue_scripts', array($this, 'upload_scripts'));
     }
 
@@ -63,7 +63,7 @@ class LSX_CTA_Widget extends WP_Widget {
         
         if ( false != $title ) {
         	$title = $before_title . $title . $after_title;
-        	echo apply_filters('lsx_cta_widget_title', $title);
+        	echo apply_filters('to_cta_widget_title', $title);
         }    
 
         if ( false != $widget_text ) {

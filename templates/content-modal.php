@@ -2,7 +2,7 @@
 /**
  * Modal Content
  * 
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @category	modals
  */
 ?>
@@ -10,7 +10,7 @@
 
 	<div class="thumbnail">	
 		<a href="<?php the_permalink(); ?>">
-			<?php lsx_thumbnail( 'lsx-thumbnail-single' ); ?>
+			<?php to_thumbnail( 'lsx-thumbnail-single' ); ?>
 		</a>
 	</div>
 
@@ -18,7 +18,7 @@
 
 	<div class="entry-content">
 
-		<?php lsx_modal_meta(); ?>
+		<?php to_modal_meta(); ?>
 
 		<?php 
 			ob_start();

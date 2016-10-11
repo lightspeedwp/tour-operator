@@ -2,7 +2,7 @@
 /**
  * Module Template.
  *
- * @package   LSX_Banner_Integration
+ * @package   TO_Banner_Integration
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -12,10 +12,10 @@
 /**
  * Main plugin class.
  *
- * @package LSX_Banner_Integration
+ * @package TO_Banner_Integration
  * @author  LightSpeed
  */
-class LSX_Banner_Integration {
+class TO_Banner_Integration {
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -28,24 +28,24 @@ class LSX_Banner_Integration {
 		$this->post_types = $post_types;
 		$this->taxonomies = $taxonomies;
 		add_action( 'init', array( $this, 'init' ) );
-		add_filter('lsx_banner_enable_placeholder', function( $bool ) { return true; });
-		add_filter('lsx_banner_placeholder_url', array($this,'banner_placeholder_url'));
+		add_filter('to_banner_enable_placeholder', function( $bool ) { return true; });
+		add_filter('to_banner_placeholder_url', array($this,'banner_placeholder_url'));
 
-		add_filter('lsx_banner_enable_title', function( $bool ) { return true; });	
-		add_filter('lsx_banner_enable_subtitle', function( $bool ) { return true; });
+		add_filter('to_banner_enable_title', function( $bool ) { return true; });	
+		add_filter('to_banner_enable_subtitle', function( $bool ) { return true; });
 	}
 	
 	/**
 	 * Init
 	 */
 	public function init() {
-		if(class_exists('LSX_Banners')){			
-			add_filter( 'lsx_banner_allowed_post_types', array( $this, 'enable_banners'));
-			add_filter( 'lsx_banner_allowed_taxonomies', array( $this, 'enable_taxonomy_banners'));
-			add_action('lsx_banner_content',array( $this, 'banner_content'));	
-			add_filter( 'lsx_banner_post_type_archive_url', array( $this, 'banner_archive_url'));
-			add_action('lsx_banner_content',array( $this, 'posts_page_banner_tagline'));
-			add_filter('lsx_banner_title', array($this,'banner_title'),100 );
+		if(class_exists('TO_Banners')){			
+			add_filter( 'to_banner_allowed_post_types', array( $this, 'enable_banners'));
+			add_filter( 'to_banner_allowed_taxonomies', array( $this, 'enable_taxonomy_banners'));
+			add_action('to_banner_content',array( $this, 'banner_content'));	
+			add_filter( 'to_banner_post_type_archive_url', array( $this, 'banner_archive_url'));
+			add_action('to_banner_content',array( $this, 'posts_page_banner_tagline'));
+			add_filter('to_banner_title', array($this,'banner_title'),100 );
 		}
 	}	
 	
@@ -73,10 +73,10 @@ class LSX_Banner_Integration {
 	 * A filter that outputs the description for the post_type and taxonomy archives.
 	 */
 	public function banner_archive_url($image=false) {
-		global $lsx_tour_operators;
-		if(is_post_type_archive($lsx_tour_operators->active_post_types) && isset($lsx_tour_operators->options[get_post_type()])){
-			if(isset($lsx_tour_operators->options[get_post_type()]['banner']) && '' !== $lsx_tour_operators->options[get_post_type()]['banner']){
-				$image = $lsx_tour_operators->options[get_post_type()]['banner'];
+		global $to_operators;
+		if(is_post_type_archive($to_operators->active_post_types) && isset($to_operators->options[get_post_type()])){
+			if(isset($to_operators->options[get_post_type()]['banner']) && '' !== $to_operators->options[get_post_type()]['banner']){
+				$image = $to_operators->options[get_post_type()]['banner'];
 			}
 		}
 		return $image;
@@ -86,12 +86,12 @@ class LSX_Banner_Integration {
 	 *  Picks the placeholder from a specific post type setting, if its there
 	 */
 	public function banner_placeholder_url($image=false) {
-		global $lsx_tour_operators;
-		if(isset($lsx_tour_operators->options['general']) && isset($lsx_tour_operators->options['general']['banner_placeholder']) && '' !== $lsx_tour_operators->options['general']['banner_placeholder']){
-				$image = $lsx_tour_operators->options['general']['banner_placeholder'];
+		global $to_operators;
+		if(isset($to_operators->options['general']) && isset($to_operators->options['general']['banner_placeholder']) && '' !== $to_operators->options['general']['banner_placeholder']){
+				$image = $to_operators->options['general']['banner_placeholder'];
 		}			
-		if(isset($lsx_tour_operators->options[get_post_type()]) && isset($lsx_tour_operators->options[get_post_type()]['banner_placeholder']) && '' !== $lsx_tour_operators->options[get_post_type()]['banner_placeholder']){
-				$image = $lsx_tour_operators->options[get_post_type()]['banner_placeholder'];
+		if(isset($to_operators->options[get_post_type()]) && isset($to_operators->options[get_post_type()]['banner_placeholder']) && '' !== $to_operators->options[get_post_type()]['banner_placeholder']){
+				$image = $to_operators->options[get_post_type()]['banner_placeholder'];
 		}
 		return $image;
 	}	
@@ -100,9 +100,9 @@ class LSX_Banner_Integration {
 	 * A filter that outputs the description for the post_type and taxonomy archives.
 	 */
 	public function posts_page_banner_tagline(){
-		global $lsx_tour_operators;
-		if(is_home() && isset($lsx_tour_operators->options[get_post_type()]) && isset($lsx_tour_operators->options[get_post_type()]['tagline'])){
-			$tagline = $lsx_tour_operators->options[get_post_type()]['tagline'];
+		global $to_operators;
+		if(is_home() && isset($to_operators->options[get_post_type()]) && isset($to_operators->options[get_post_type()]['tagline'])){
+			$tagline = $to_operators->options[get_post_type()]['tagline'];
 			?>
 			<p class="tagline"><?php echo $tagline; ?></p>
 			<?php 
@@ -113,9 +113,9 @@ class LSX_Banner_Integration {
 	 * A filter that outputs the title for the post_type_archives.
 	 */
 	public function banner_title($title) {
-		global $lsx_tour_operators;
-		if(is_post_type_archive() && isset($lsx_tour_operators->options[get_post_type()]) && isset($lsx_tour_operators->options[get_post_type()]['title']) && '' !== $lsx_tour_operators->options[get_post_type()]['title'] ){
-			$title = '<h1 class="page-title">'.$lsx_tour_operators->options[get_post_type()]['title'].'</h1>';
+		global $to_operators;
+		if(is_post_type_archive() && isset($to_operators->options[get_post_type()]) && isset($to_operators->options[get_post_type()]['title']) && '' !== $to_operators->options[get_post_type()]['title'] ){
+			$title = '<h1 class="page-title">'.$to_operators->options[get_post_type()]['title'].'</h1>';
 		}
 		return $title;
 	}	
@@ -131,7 +131,7 @@ class LSX_Banner_Integration {
 		}
 		if(is_singular('post')){
 			?>
-			<div class="banner-content"><?php lsx_post_meta(); ?></div>
+			<div class="banner-content"><?php to_post_meta(); ?></div>
 			<?php 		
 		}
 	}

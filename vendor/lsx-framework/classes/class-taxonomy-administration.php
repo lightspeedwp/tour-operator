@@ -2,7 +2,7 @@
 /**
  * Module Template.
  *
- * @package   LSX_Taxonomy_Admin
+ * @package   TO_Taxonomy_Admin
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -12,10 +12,10 @@
 /**
  * Adds in the Featured Image, the Tagline and the Select and Expert field
  *
- * @package LSX_Taxonomy_Admin
+ * @package TO_Taxonomy_Admin
  * @author  LightSpeed
  */
-class LSX_Taxonomy_Admin {
+class TO_Taxonomy_Admin {
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -35,8 +35,8 @@ class LSX_Taxonomy_Admin {
 	 * @since 0.1.0
 	 */
 	public function init() {
-		$this->taxonomies = apply_filters('lsx_taxonomy_admin_taxonomies',$this->taxonomies);
-		add_filter('lsx_taxonomy_widget_taxonomies', array( $this, 'widget_taxonomies' ),10,1 );
+		$this->taxonomies = apply_filters('to_taxonomy_admin_taxonomies',$this->taxonomies);
+		add_filter('to_taxonomy_widget_taxonomies', array( $this, 'widget_taxonomies' ),10,1 );
 
 		//die('hello2');
 
@@ -81,15 +81,15 @@ class LSX_Taxonomy_Admin {
 		}
 		?>
 		<tr class="form-field form-required term-thumbnail-wrap">
-			<th scope="row"><label for="thumbnail"><?php _e('Featured Image','lsx-tour-operators');?></label></th>
+			<th scope="row"><label for="thumbnail"><?php _e('Featured Image','tour-operator');?></label></th>
 			<td>
 				<input style="display:none;" name="thumbnail" id="thumbnail" type="text" value="<?php echo $value; ?>" size="40" aria-required="true">
 				<div class="thumbnail-preview">
 					<?php echo $image_preview; ?>
 				</div>				
 
-				<a style="<?php if('' !== $value && false !== $value) { ?>display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-add"><?php _e('Choose Image','lsx-tour-operators');?></a>				
-				<a style="<?php if('' === $value || false === $value) { ?>display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-remove"><?php _e('Remove Image','lsx-tour-operators');?></a>
+				<a style="<?php if('' !== $value && false !== $value) { ?>display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-add"><?php _e('Choose Image','tour-operator');?></a>				
+				<a style="<?php if('' === $value || false === $value) { ?>display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-remove"><?php _e('Remove Image','tour-operator');?></a>
 			</td>
 		</tr>
 		
@@ -168,7 +168,7 @@ class LSX_Taxonomy_Admin {
 		}
 		?>
 		<tr class="form-field form-required term-tagline-wrap">
-			<th scope="row"><label for="tagline"><?php _e('Tagline','lsx-tour-operators');?></label></th>
+			<th scope="row"><label for="tagline"><?php _e('Tagline','tour-operator');?></label></th>
 			<td>
 				<input name="tagline" id="tagline" type="text" value="<?php echo $value; ?>" size="40" aria-required="true">
 			</td>
@@ -200,12 +200,12 @@ class LSX_Taxonomy_Admin {
 
 		<tr class="form-field form-required term-expert-wrap">
 			<th scope="row">
-				<label for="expert"><?php _e( 'Expert','lsx-tour-operators' ) ?></label>
+				<label for="expert"><?php _e( 'Expert','tour-operator' ) ?></label>
 			</th>
 
 			<td>
 				<select name="expert" id="expert" aria-required="true">
-					<option value=""><?php _e( 'None','lsx-tour-operators' ) ?></option>
+					<option value=""><?php _e( 'None','tour-operator' ) ?></option>
 
 					<?php
 						foreach ( $experts as $expert ) {
@@ -224,7 +224,7 @@ class LSX_Taxonomy_Admin {
  *
  * @param	$term_id
  */
-function lsx_has_term_thumbnail($term_id = false) {
+function to_has_term_thumbnail($term_id = false) {
 	if(false !== $term_id){
 		$term_thumbnail = get_term_meta($term_id, 'thumbnail', true);
 		if(false !== $term_thumbnail && '' !== $term_thumbnail){
@@ -239,9 +239,9 @@ function lsx_has_term_thumbnail($term_id = false) {
  *
  * @param	$term_id string
  */
-function lsx_term_thumbnail($term_id = false,$size='lsx-thumbnail-wide') {
+function to_term_thumbnail($term_id = false,$size='lsx-thumbnail-wide') {
 	if(false !== $term_id){
-		echo lsx_get_term_thumbnail($term_id,$size);
+		echo to_get_term_thumbnail($term_id,$size);
 	}
 }
 
@@ -250,10 +250,10 @@ function lsx_term_thumbnail($term_id = false,$size='lsx-thumbnail-wide') {
  *
  * @param	$term_id string
  */
-function lsx_get_term_thumbnail($term_id = false,$size='lsx-thumbnail-wide') {
+function to_get_term_thumbnail($term_id = false,$size='lsx-thumbnail-wide') {
 	if(false !== $term_id){
 		$term_thumbnail_id = get_term_meta($term_id, 'thumbnail', true);
 		$img = wp_get_attachment_image_src($term_thumbnail_id,$size);
-		return apply_filters( 'lsx_lazyload_filter_images', '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="'.$img[0].'" />' );
+		return apply_filters( 'to_lazyload_filter_images', '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="'.$img[0].'" />' );
 	}
 }

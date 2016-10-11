@@ -53,7 +53,7 @@ class Lsx_Team {
 	 * @access private
 	 */
 	private function __construct() {
-		$this->options = get_option('_lsx_lsx-settings',false);
+		$this->options = get_option('_to_lsx-settings',false);
 		if(false !== $this->options && isset($this->options[$this->plugin_slug]) && !empty($this->options[$this->plugin_slug])){
 			$this->options = $this->options[$this->plugin_slug];
 		}
@@ -65,9 +65,9 @@ class Lsx_Team {
 		add_action( 'init', array( $this, 'register_post_types' ) );		
 		add_filter( 'cmb_meta_boxes', array( $this, 'register_metaboxes') );
 
-		add_action( 'lsx_framework_team_tab_general_settings_bottom', array($this,'general_settings'), 10 , 1 );
+		add_action( 'to_framework_team_tab_general_settings_bottom', array($this,'general_settings'), 10 , 1 );
 		
-		add_filter( 'lsx_entry_class', array( $this, 'entry_class') );
+		add_filter( 'to_entry_class', array( $this, 'entry_class') );
 	}
 
 	/**
@@ -95,23 +95,23 @@ class Lsx_Team {
 	public function register_post_types() {
 	
 		$labels = array(
-		    'name'               => _x( 'Team', 'lsx-tour-operators' ),
-		    'singular_name'      => _x( 'Team Member', 'lsx-tour-operators' ),
-		    'add_new'            => _x( 'Add New', 'lsx-tour-operators' ),
-		    'add_new_item'       => _x( 'Add New Team Member', 'lsx-tour-operators' ),
-		    'edit_item'          => _x( 'Edit', 'lsx-tour-operators' ),
-		    'new_item'           => _x( 'New', 'lsx-tour-operators' ),
-		    'all_items'          => _x( 'Team Members', 'lsx-tour-operators' ),
-		    'view_item'          => _x( 'View', 'lsx-tour-operators' ),
-		    'search_items'       => _x( 'Search the Team', 'lsx-tour-operators' ),
-		    'not_found'          => _x( 'No team members found', 'lsx-tour-operators' ),
-		    'not_found_in_trash' => _x( 'No team members found in Trash', 'lsx-tour-operators' ),
+		    'name'               => _x( 'Team', 'tour-operator' ),
+		    'singular_name'      => _x( 'Team Member', 'tour-operator' ),
+		    'add_new'            => _x( 'Add New', 'tour-operator' ),
+		    'add_new_item'       => _x( 'Add New Team Member', 'tour-operator' ),
+		    'edit_item'          => _x( 'Edit', 'tour-operator' ),
+		    'new_item'           => _x( 'New', 'tour-operator' ),
+		    'all_items'          => _x( 'Team Members', 'tour-operator' ),
+		    'view_item'          => _x( 'View', 'tour-operator' ),
+		    'search_items'       => _x( 'Search the Team', 'tour-operator' ),
+		    'not_found'          => _x( 'No team members found', 'tour-operator' ),
+		    'not_found_in_trash' => _x( 'No team members found in Trash', 'tour-operator' ),
 		    'parent_item_colon'  => '',
-		    'menu_name'          => _x( 'Team', 'lsx-tour-operators' ),
-			'featured_image'	=> _x( 'Profile Picture', 'lsx-tour-operators' ),
-			'set_featured_image'	=> _x( 'Set Profile Picture', 'lsx-tour-operators' ),
-			'remove_featured_image'	=> _x( 'Remove profile picture', 'lsx-tour-operators' ),
-			'use_featured_image'	=> _x( 'Use as profile picture', 'lsx-tour-operators' ),								
+		    'menu_name'          => _x( 'Team', 'tour-operator' ),
+			'featured_image'	=> _x( 'Profile Picture', 'tour-operator' ),
+			'set_featured_image'	=> _x( 'Set Profile Picture', 'tour-operator' ),
+			'remove_featured_image'	=> _x( 'Remove profile picture', 'tour-operator' ),
+			'use_featured_image'	=> _x( 'Use as profile picture', 'tour-operator' ),								
 		);
 
 		$args = array(
@@ -138,7 +138,7 @@ class Lsx_Team {
 		
 		$fields[] = array( 'id' => 'general_title',  'name' => 'General', 'type' => 'title' );
 		$fields[] = array( 'id' => 'featured',  'name' => 'Featured', 'type' => 'checkbox' );
-		if(!class_exists('LSX_Banners')){
+		if(!class_exists('TO_Banners')){
 			$fields[] = array( 'id' => 'tagline',  'name' => 'Tagline', 'type' => 'text' );
 		}
 		$fields[] = array( 'id' => 'role', 'name' => 'Role', 'type' => 'text' );
@@ -160,7 +160,7 @@ class Lsx_Team {
 			$fields[] = array( 'id' => 'gallery', 'name' => 'Gallery images', 'type' => 'image', 'repeatable' => true, 'show_size' => false );
 		}
 		
-		if(class_exists('LSX_Field_Pattern')){ $fields = array_merge($fields,LSX_Field_Pattern::videos()); }		
+		if(class_exists('TO_Field_Pattern')){ $fields = array_merge($fields,TO_Field_Pattern::videos()); }		
 	
 		/*$fields[] = array( 'id' => 'accommodation_title',  'name' => 'Accommodation', 'type' => 'title' );
 		$fields[] = array( 'id' => 'accommodation_to_team', 'name' => 'Accommodation', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'accommodation','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true, 'allow_none'=>true );
@@ -222,12 +222,12 @@ class Lsx_Team {
 	 * A filter to set the content area to a small column on single
 	 */
 	public function entry_class( $classes ) {
-		global $lsx_archive;
-		if(1 !== $lsx_archive){$lsx_archive = false;}
-		if(is_main_query() && is_singular($this->plugin_slug) && false === $lsx_archive){
+		global $to_archive;
+		if(1 !== $to_archive){$to_archive = false;}
+		if(is_main_query() && is_singular($this->plugin_slug) && false === $to_archive){
 			$classes[] = 'col-sm-9';
 		}
 		return $classes;
 	}	
 }
-$lsx_team = Lsx_Team::get_instance();
+$to_team = Lsx_Team::get_instance();

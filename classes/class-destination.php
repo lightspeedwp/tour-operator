@@ -54,7 +54,7 @@ class Lsx_Destination{
 	 */
 	private function __construct() {
 		// activate property post type
-		$temp = get_option('_lsx_lsx-settings',false);
+		$temp = get_option('_to_lsx-settings',false);
 		if(false !== $temp && isset($temp[$this->plugin_slug]) && !empty($temp[$this->plugin_slug])){
 			$this->options = $temp[$this->plugin_slug];
 		}
@@ -65,16 +65,16 @@ class Lsx_Destination{
 		if(!is_admin()){
 			add_action( 'pre_get_posts', array( $this, 'pre_get_posts' ) );
 		}
-		add_filter( 'lsx_entry_class', array( $this, 'entry_class') );
+		add_filter( 'to_entry_class', array( $this, 'entry_class') );
 		
-		add_action( 'lsx_content_bottom', 'lsx_tour_country_regions', 70 );
-		add_action( 'lsx_content_bottom', 'lsx_tour_destination_tours', 80 );
-		add_action( 'lsx_content_bottom', 'lsx_tour_region_accommodation', 90 );
+		add_action( 'to_content_bottom', 'to_country_regions', 70 );
+		add_action( 'to_content_bottom', 'to_destination_tours', 80 );
+		add_action( 'to_content_bottom', 'to_region_accommodation', 90 );
 
-		add_action('lsx_map_meta',array($this, 'content_meta'));
-		add_action('lsx_modal_meta',array($this, 'content_meta'));		
+		add_action('to_map_meta',array($this, 'content_meta'));
+		add_action('to_modal_meta',array($this, 'content_meta'));		
 
-		add_action( 'lsx_framework_destination_tab_general_settings_bottom', array($this,'general_settings'), 10 , 1 );	
+		add_action( 'to_framework_destination_tab_general_settings_bottom', array($this,'general_settings'), 10 , 1 );	
 	}
 
 	/**
@@ -102,19 +102,19 @@ class Lsx_Destination{
 	public function register_post_types() {
 	
 		$labels = array(
-		    'name'               => _x( 'Destinations', 'lsx-tour-operators' ),
-		    'singular_name'      => _x( 'Destination', 'lsx-tour-operators' ),
-		    'add_new'            => _x( 'Add New', 'lsx-tour-operators' ),
-		    'add_new_item'       => _x( 'Add New Destination', 'lsx-tour-operators' ),
-		    'edit_item'          => _x( 'Edit Destination', 'lsx-tour-operators' ),
-		    'new_item'           => _x( 'New Destination', 'lsx-tour-operators' ),
-		    'all_items'          => _x( 'All Destinations', 'lsx-tour-operators' ),
-		    'view_item'          => _x( 'View Destination', 'lsx-tour-operators' ),
-		    'search_items'       => _x( 'Search Destinations', 'lsx-tour-operators' ),
-		    'not_found'          => _x( 'No destinations found', 'lsx-tour-operators' ),
-		    'not_found_in_trash' => _x( 'No destinations found in Trash', 'lsx-tour-operators' ),
+		    'name'               => _x( 'Destinations', 'tour-operator' ),
+		    'singular_name'      => _x( 'Destination', 'tour-operator' ),
+		    'add_new'            => _x( 'Add New', 'tour-operator' ),
+		    'add_new_item'       => _x( 'Add New Destination', 'tour-operator' ),
+		    'edit_item'          => _x( 'Edit Destination', 'tour-operator' ),
+		    'new_item'           => _x( 'New Destination', 'tour-operator' ),
+		    'all_items'          => _x( 'All Destinations', 'tour-operator' ),
+		    'view_item'          => _x( 'View Destination', 'tour-operator' ),
+		    'search_items'       => _x( 'Search Destinations', 'tour-operator' ),
+		    'not_found'          => _x( 'No destinations found', 'tour-operator' ),
+		    'not_found_in_trash' => _x( 'No destinations found in Trash', 'tour-operator' ),
 		    'parent_item_colon'  => '',
-		    'menu_name'          => _x( 'Destinations', 'lsx-tour-operators' )
+		    'menu_name'          => _x( 'Destinations', 'tour-operator' )
 		);
 
 		$args = array(
@@ -140,7 +140,7 @@ class Lsx_Destination{
 	
 
 		$fields[] = array( 'id' => 'featured',  'name' => 'Featured', 'type' => 'checkbox' );
-		if(!class_exists('LSX_Banners')){
+		if(!class_exists('TO_Banners')){
 			$fields[] = array( 'id' => 'tagline',  'name' => 'Tagline', 'type' => 'text' );
 		}
 		$fields[] = array( 'id' => 'team_to_destination', 'name' => 'Destination Expert', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12, 'allow_none' => true );
@@ -154,7 +154,7 @@ class Lsx_Destination{
 		}	
 		
 		//videos
-		if(class_exists('LSX_Field_Pattern')){ $fields = array_merge($fields,LSX_Field_Pattern::videos()); }		
+		if(class_exists('TO_Field_Pattern')){ $fields = array_merge($fields,TO_Field_Pattern::videos()); }		
 		
 		$fields[] = array( 'id' => 'connections_title',  'name' => 'Connections', 'type' => 'title' );
 		if(post_type_exists('accommodation')){
@@ -201,9 +201,9 @@ class Lsx_Destination{
 	 * A filter to set the content area to a small column on single
 	 */
 	public function entry_class( $classes ) {
-		global $lsx_archive;
-		if(1 !== $lsx_archive){$lsx_archive = false;}
-		if(is_main_query() && is_singular($this->plugin_slug) && false === $lsx_archive){
+		global $to_archive;
+		if(1 !== $to_archive){$to_archive = false;}
+		if(is_main_query() && is_singular($this->plugin_slug) && false === $to_archive){
 			$classes[] = 'col-sm-9';
 		}
 		return $classes;
@@ -233,9 +233,9 @@ class Lsx_Destination{
 		if('destination' === get_post_type()){
 		?>
 		<div class="destination-details meta taxonomies">
-			<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.__('Travel Style','lsx-tour-operators').': ', ', ', '</div>' ); ?>				
-			<?php lsx_connected_activities('<div class="meta activities">'.__('Activites','lsx-tour-operators').': ','</div>'); ?>				
+			<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>				
+			<?php to_connected_activities('<div class="meta activities">'.__('Activites','tour-operator').': ','</div>'); ?>				
 		</div>
 	<?php } }		
 }
-$lsx_destination = Lsx_Destination::get_instance();
+$to_destination = Lsx_Destination::get_instance();

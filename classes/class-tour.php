@@ -52,7 +52,7 @@ class Lsx_Tour {
 	 * @access private
 	 */
 	private function __construct() {
-		$this->options = get_option('_lsx_lsx-settings',false);
+		$this->options = get_option('_to_lsx-settings',false);
 		if(false !== $this->options && isset($this->options[$this->plugin_slug]) && !empty($this->options[$this->plugin_slug])){
 			$this->options = $this->options[$this->plugin_slug];
 		}
@@ -64,23 +64,23 @@ class Lsx_Tour {
 		add_action( 'init', array( $this, 'register_post_types' ) );		
 		add_filter( 'cmb_meta_boxes', array( $this, 'metaboxes') );
 		
-		add_filter( 'lsx_entry_class', array( $this, 'entry_class') );
+		add_filter( 'to_entry_class', array( $this, 'entry_class') );
 		
-		add_filter( 'lsx_tour_operators_search_fields', array( $this, 'single_fields_indexing' ));
+		add_filter( 'to_search_fields', array( $this, 'single_fields_indexing' ));
 
-		add_action( 'lsx_framework_tour_tab_general_settings_bottom', array($this,'general_settings'), 10 , 1 );	
+		add_action( 'to_framework_tour_tab_general_settings_bottom', array($this,'general_settings'), 10 , 1 );	
 		
-		add_filter( 'lsx_itinerary_class', array( $this, 'itinerary_class' ));
-		add_filter( 'lsx_itinerary_needs_read_more', array( $this, 'itinerary_needs_read_more' ));
+		add_filter( 'to_itinerary_class', array( $this, 'itinerary_class' ));
+		add_filter( 'to_itinerary_needs_read_more', array( $this, 'itinerary_needs_read_more' ));
 		
 		$this->is_wetu_active = false;
 		
-		if(!class_exists('LSX_Currency')){
-			add_filter('lsx_custom_field_query',array( $this, 'price_filter'),5,10);
+		if(!class_exists('TO_Currency')){
+			add_filter('to_custom_field_query',array( $this, 'price_filter'),5,10);
 		}
-		add_filter('lsx_custom_field_query',array( $this, 'rating'),5,10);
+		add_filter('to_custom_field_query',array( $this, 'rating'),5,10);
 
-		add_action('lsx_modal_meta',array($this, 'content_meta'));		
+		add_action('to_modal_meta',array($this, 'content_meta'));		
 		
 		include('class-itinerary.php');
 	}
@@ -109,19 +109,19 @@ class Lsx_Tour {
 	public function register_post_types() {
 	
 		$labels = array(
-		    'name'               => _x( 'Tours', 'lsx-tour-operators' ),
-		    'singular_name'      => _x( 'Tour', 'lsx-tour-operators' ),
-		    'add_new'            => _x( 'Add New', 'lsx-tour-operators' ),
-		    'add_new_item'       => _x( 'Add New Tour', 'lsx-tour-operators' ),
-		    'edit_item'          => _x( 'Edit Tour', 'lsx-tour-operators' ),
-		    'new_item'           => _x( 'New Tour', 'lsx-tour-operators' ),
-		    'all_items'          => _x( 'All Tours', 'lsx-tour-operators' ),
-		    'view_item'          => _x( 'View Tour', 'lsx-tour-operators' ),
-		    'search_items'       => _x( 'Search Tours', 'lsx-tour-operators' ),
-		    'not_found'          => _x( 'No tours found', 'lsx-tour-operators' ),
-		    'not_found_in_trash' => _x( 'No tours found in Trash', 'lsx-tour-operators' ),
+		    'name'               => _x( 'Tours', 'tour-operator' ),
+		    'singular_name'      => _x( 'Tour', 'tour-operator' ),
+		    'add_new'            => _x( 'Add New', 'tour-operator' ),
+		    'add_new_item'       => _x( 'Add New Tour', 'tour-operator' ),
+		    'edit_item'          => _x( 'Edit Tour', 'tour-operator' ),
+		    'new_item'           => _x( 'New Tour', 'tour-operator' ),
+		    'all_items'          => _x( 'All Tours', 'tour-operator' ),
+		    'view_item'          => _x( 'View Tour', 'tour-operator' ),
+		    'search_items'       => _x( 'Search Tours', 'tour-operator' ),
+		    'not_found'          => _x( 'No tours found', 'tour-operator' ),
+		    'not_found_in_trash' => _x( 'No tours found in Trash', 'tour-operator' ),
 		    'parent_item_colon'  => '',
-		    'menu_name'          => _x( 'Tours', 'lsx-tour-operators' )
+		    'menu_name'          => _x( 'Tours', 'tour-operator' )
 		);
 
 		$args = array(
@@ -165,16 +165,16 @@ class Lsx_Tour {
 	public function metaboxes( array $meta_boxes ) {
 	
 		// Example of all available fields
-		$fields[] = array( 'id' => 'featured',  'name' => _x( 'Featured', 'lsx-tour-operators' ), 'type' => 'checkbox', 'cols' => 12 );
-		if(!class_exists('LSX_Banners')){
+		$fields[] = array( 'id' => 'featured',  'name' => _x( 'Featured', 'tour-operator' ), 'type' => 'checkbox', 'cols' => 12 );
+		if(!class_exists('TO_Banners')){
 			$fields[] = array( 'id' => 'tagline',  'name' => 'Tagline', 'type' => 'text' );
 		}
-		$fields[] = array( 'id' => 'duration',  	'name' => _x( 'Duration', 'lsx-tour-operators' ), 'type' => 'text', 'cols' => 12 );
+		$fields[] = array( 'id' => 'duration',  	'name' => _x( 'Duration', 'tour-operator' ), 'type' => 'text', 'cols' => 12 );
 		$fields[] = array( 'id' => 'departs_from', 'name' => 'Departs From', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'destination','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ),'allow_none'=>true, 'cols' => 12,'sortable'=>true,'repeatable'=>true );
 		$fields[] = array( 'id' => 'ends_in', 'name' => 'Ends In', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'destination','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ),'allow_none'=>true, 'cols' => 12,'sortable'=>true,'repeatable'=>true );
 		$fields[] = array( 
 					'id' => 'best_time_to_visit',
-					'name' => _x( 'Best months to visit', 'lsx-tour-operators' ),
+					'name' => _x( 'Best months to visit', 'tour-operator' ),
 					'type' => 'select',
 					'options' => array(
 									'january' => 'January',
@@ -199,9 +199,9 @@ class Lsx_Tour {
 		}
 		$fields[] = array( 'id' => 'hightlights',  'name' => 'Hightlights', 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
 		
-		$fields[] = array( 'id' => 'price_title',  'name' => __('Price','lsx-tour-operators'), 'type' => 'title', 'cols' => 12 );
-		$fields[] = array( 'id' => 'price',  'name' => __('Price','lsx-tour-operators'), 'type' => 'text', 'cols' => 6 );
-		$fields[] = array( 'id' => 'single_supplement',  'name' => __('Single Supplement','lsx-tour-operators'), 'type' => 'text', 'cols' => 12 );
+		$fields[] = array( 'id' => 'price_title',  'name' => __('Price','tour-operator'), 'type' => 'title', 'cols' => 12 );
+		$fields[] = array( 'id' => 'price',  'name' => __('Price','tour-operator'), 'type' => 'text', 'cols' => 6 );
+		$fields[] = array( 'id' => 'single_supplement',  'name' => __('Single Supplement','tour-operator'), 'type' => 'text', 'cols' => 12 );
 		$fields[] = array( 'id' => 'included',  'name' => 'Included', 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
 		$fields[] = array( 'id' => 'not_included',  'name' => 'Not Included', 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
 		
@@ -217,7 +217,7 @@ class Lsx_Tour {
 		}
 		
 		//videos
-		if(class_exists('LSX_Field_Pattern')){ $fields = array_merge($fields,LSX_Field_Pattern::videos()); }
+		if(class_exists('TO_Field_Pattern')){ $fields = array_merge($fields,TO_Field_Pattern::videos()); }
 		
 		//Connections
 		if(post_type_exists('review')){
@@ -231,7 +231,7 @@ class Lsx_Tour {
 		
 		//Itinerary Details
 		$fields[] = array( 'id' => 'itinerary_title',  'name' => 'Itinerary', 'type' => 'title' );
-		$fields[] = array( 'id' => 'itinerary_kml', 'name' => _x( 'Itinerary KML File', 'lsx-tour-operators' ), 'type' => 'file', 'show_size' => true, 'cols' => 12 );
+		$fields[] = array( 'id' => 'itinerary_kml', 'name' => _x( 'Itinerary KML File', 'tour-operator' ), 'type' => 'file', 'show_size' => true, 'cols' => 12 );
 		$fields[] = array(
 				'id' => 'itinerary',
 				'name' => '',
@@ -244,7 +244,7 @@ class Lsx_Tour {
 		);		
 		
 		$meta_boxes[] = array(
-				'title' => __('LSX Tour Operators','lsx-tour-operators'),
+				'title' => __('LSX Tour Operators','tour-operator'),
 				'pages' => 'tour',
 				'fields' => $fields
 		);	
@@ -287,9 +287,9 @@ class Lsx_Tour {
 	 * A filter to set the content area to a small column on single
 	 */
 	public function entry_class( $classes ) {
-		global $lsx_archive;
-		if(1 !== $lsx_archive){$lsx_archive = false;}
-		if(is_main_query() && is_singular($this->plugin_slug) && false === $lsx_archive){
+		global $to_archive;
+		if(1 !== $to_archive){$to_archive = false;}
+		if(is_main_query() && is_singular($this->plugin_slug) && false === $to_archive){
 			$classes[] = 'col-sm-9';
 		}
 		return $classes;
@@ -385,11 +385,11 @@ class Lsx_Tour {
 	public function price_filter($html='',$meta_key=false,$value=false,$before="",$after=""){
 		if(get_post_type() === 'tour' && 'price' === $meta_key){
 			$value = number_format((int) $value);
-			global $lsx_tour_operators;
+			global $to_operators;
 			$currency = '';
-			if ( is_object( $lsx_tour_operators ) && isset( $lsx_tour_operators->options['general'] ) && is_array( $lsx_tour_operators->options['general'] ) ) {
-				if ( isset( $lsx_tour_operators->options['general']['currency'] ) && ! empty( $lsx_tour_operators->options['general']['currency'] ) ) {
-					$currency = $lsx_tour_operators->options['general']['currency'];
+			if ( is_object( $to_operators ) && isset( $to_operators->options['general'] ) && is_array( $to_operators->options['general'] ) ) {
+				if ( isset( $to_operators->options['general']['currency'] ) && ! empty( $to_operators->options['general']['currency'] ) ) {
+					$currency = $to_operators->options['general']['currency'];
 					$currency = '<span class="currency-icon '. mb_strtolower( $currency ) .'">'. $currency .'</span>';
 				}
 			}
@@ -434,12 +434,12 @@ class Lsx_Tour {
 		if('tour' === get_post_type()){
 		?>
 		<div class="tour-details">
-			<div class="meta info"><?php lsx_tour_price('<span class="price">from ','</span>'); lsx_tour_duration('<span class="duration">','</span>'); ?></div>
-			<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.__('Travel Style','lsx-tour-operators').': ', ', ', '</div>' ); ?>
-			<?php lsx_connected_destinations('<div class="meta destination">'.__('Destinations','lsx-tour-operators').': ','</div>'); ?>				
-			<?php lsx_connected_activities('<div class="meta activities">'.__('Activites','lsx-tour-operators').': ','</div>'); ?>				
+			<div class="meta info"><?php to_price('<span class="price">from ','</span>'); to_duration('<span class="duration">','</span>'); ?></div>
+			<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>
+			<?php to_connected_destinations('<div class="meta destination">'.__('Destinations','tour-operator').': ','</div>'); ?>				
+			<?php to_connected_activities('<div class="meta activities">'.__('Activites','tour-operator').': ','</div>'); ?>				
 		</div>
 	<?php } }	
 	
 }
-$lsx_tour = Lsx_Tour::get_instance();
+$to_tour = Lsx_Tour::get_instance();

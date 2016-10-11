@@ -2,29 +2,29 @@
 /**
  * Destination Archive
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @category	destination
  */
 ?>
 
 <?php get_header() ?>
 
-	<?php lsx_content_wrap_before(); ?>
+	<?php to_content_wrap_before(); ?>
 
-	<section id="primary" class="content-area <?php echo esc_attr( lsx_main_class() ); ?>">
+	<section id="primary" class="content-area <?php echo esc_attr( to_main_class() ); ?>">
 
-		<?php lsx_content_before() ?>
+		<?php to_content_before() ?>
 
 		<main id="main" class="site-main" role="main">
 		
 			<?php if ( have_posts() ) : ?>
 
 				<?php
-					global $lsx_tour_operators;
-					if ( ! isset( $lsx_tour_operators->search )
-						|| empty( $lsx_tour_operators->search )
-						|| false === $lsx_tour_operators->search->options
-						|| ! isset( $lsx_tour_operators->search->options['destination']['enable_search'] ) ) :
+					global $to_operators;
+					if ( ! isset( $to_operators->search )
+						|| empty( $to_operators->search )
+						|| false === $to_operators->search->options
+						|| ! isset( $to_operators->search->options['destination']['enable_search'] ) ) :
 					?>
 
 					<section class="destinations-navigation">
@@ -70,15 +70,15 @@
 									<div class="col-sm-6">
 										<div class="thumbnail">
 											<a href="<?php the_permalink() ?>" title="<?php the_title() ?>">
-												<?php lsx_thumbnail( 'lsx-single-thumbnail' ) ?>
+												<?php to_thumbnail( 'lsx-single-thumbnail' ) ?>
 											</a>
 										</div>
 									</div>
 
 									<div class="col-sm-6">
 										<h2 class="section-title"><a href="<?php the_permalink() ?>" title="<?php the_title() ?>"><?php the_title() ?></a></h2>
-										<?php lsx_tour_tagline( '<p class="tagline">', '</p>') ?>
-										<div class="entry-content"><?php echo wp_kses_post( $lsx_tour_operators->apply_filters_the_content( $post->post_content, 'Continue Reading', get_permalink() ) ); ?></div>
+										<?php to_tagline( '<p class="tagline">', '</p>') ?>
+										<div class="entry-content"><?php echo wp_kses_post( $to_operators->apply_filters_the_content( $post->post_content, 'Continue Reading', get_permalink() ) ); ?></div>
 									</div>
 								</div>
 							</div>
@@ -108,7 +108,7 @@
 								?>
 
 								<div class="regions">
-									<h3 class="section-title"><?php esc_html_e( 'Travel Regions Within ', 'lsx-tour-operators' ) ?><a href="<?php the_permalink() ?>" title="<?php the_title() ?>"><?php the_title() ?></a></h3>
+									<h3 class="section-title"><?php esc_html_e( 'Travel Regions Within ', 'tour-operator' ) ?><a href="<?php the_permalink() ?>" title="<?php the_title() ?>"><?php the_title() ?></a></h3>
 									
 									<div class="slider-container">
 										<div id="slider-<?php echo esc_attr( $slider_id ); ?>" class="carousel slide" data-interval="false">
@@ -129,7 +129,7 @@
 																	<article id="post-<?php the_ID() ?>" <?php post_class() ?>>
 																		<div class="thumbnail">
 																			<a href="<?php the_permalink() ?>">
-																				<?php lsx_thumbnail( 'lsx-thumbnail-wide' ) ?>
+																				<?php to_thumbnail( 'lsx-thumbnail-wide' ) ?>
 																			</a>
 																		</div>
 																		
@@ -224,28 +224,28 @@
 
 			<?php endif ?>
 			
-			<?php lsx_travel_styles( '<section id="travel-styles"><h2 class="section-title">'. __( 'Travel Styles','lsx-tour-operators' ) .'</h2>', '</section>' ) ?>
+			<?php to_travel_styles( '<section id="travel-styles"><h2 class="section-title">'. __( 'Travel Styles','tour-operator' ) .'</h2>', '</section>' ) ?>
 			
-			<?php if ( lsx_has_map() ) : ?>
+			<?php if ( to_has_map() ) : ?>
 				<section id="destination-map">
-					<?php if ( ! lsx_has_destination_banner_map() ) : ?>
-						<h2 class="section-title"><?php esc_html_e( 'Map','lsx-tour-operators' ) ?></h2>
+					<?php if ( ! to_has_destination_banner_map() ) : ?>
+						<h2 class="section-title"><?php esc_html_e( 'Map','tour-operator' ) ?></h2>
 					<?php endif ?>
-					<?php lsx_map() ?>
+					<?php to_map() ?>
 				</section>
 			<?php endif	?>
 			
-			<?php lsx_tour_sharing() ?>
+			<?php to_sharing() ?>
 
-			<?php lsx_content_bottom() ?>
+			<?php to_content_bottom() ?>
 
 		</main><!-- #main -->
 
-		<?php lsx_content_after() ?>
+		<?php to_content_after() ?>
 		
 	</section><!-- #primary -->
 
-<?php lsx_content_wrap_after(); ?>	
+<?php to_content_wrap_after(); ?>	
 
 <?php get_sidebar() ?>
 

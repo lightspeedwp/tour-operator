@@ -15,14 +15,14 @@
  *
  * @param	$classes string or array
  */
-function lsx_entry_class($classes = false) {
+function to_entry_class($classes = false) {
 	global $post;
 
 	if(false !== $classes){
 		if(!is_array($classes)) {
 			$classes = explode(' ',$classes);
 		}
-		$classes = apply_filters( 'lsx_entry_class', $classes, $post->ID );
+		$classes = apply_filters( 'to_entry_class', $classes, $post->ID );
 	}
 	echo 'class="'.implode(' ',$classes).'"';
 }
@@ -32,14 +32,14 @@ function lsx_entry_class($classes = false) {
  *
  * @param	$classes string or array
  */
-function lsx_column_class($classes = false) {
+function to_column_class($classes = false) {
 	global $post;
 
 	if(false !== $classes){
 		if(!is_array($classes)) {
 			$classes = explode(' ',$classes);
 		}
-		$classes = apply_filters( 'lsx_column_class', $classes, $post->ID );
+		$classes = apply_filters( 'to_column_class', $classes, $post->ID );
 	}
 	echo 'class="'.implode(' ',$classes).'"';
 }
@@ -50,7 +50,7 @@ function lsx_column_class($classes = false) {
  * @param	$post_id string
  * @param	$post_type string
  */
-function lsx_item_has_children($post_id = false,$post_type = false) {
+function to_item_has_children($post_id = false,$post_type = false) {
 	global $wpdb;
 	if(false == $post_id){return false;}
 	if(false == $post_type){$post_type = 'page';}
@@ -86,7 +86,7 @@ function lsx_item_has_children($post_id = false,$post_type = false) {
  * @subpackage	template-tags
  * @category 	helper
  */
-function lsx_connected_list($connected_ids = false,$type = false,$link = true,$seperator=', ',$parent=false) {
+function to_connected_list($connected_ids = false,$type = false,$link = true,$seperator=', ',$parent=false) {
 
 	if(false === $connected_ids || false === $type){
 		return false;
@@ -120,7 +120,7 @@ function lsx_connected_list($connected_ids = false,$type = false,$link = true,$s
 				if($link){
 					$html .= '</a>';
 				}				
-				$html = apply_filters('lsx_connected_list_item',$html,$cp->ID,$link);
+				$html = apply_filters('to_connected_list_item',$html,$cp->ID,$link);
 				$connected_list[] = $html;
 
 			}
@@ -137,6 +137,6 @@ function lsx_connected_list($connected_ids = false,$type = false,$link = true,$s
  * @subpackage	hook
  * @category 	modal
  */
-function lsx_modal_meta(){
-	do_action('lsx_modal_meta');
+function to_modal_meta(){
+	do_action('to_modal_meta');
 }

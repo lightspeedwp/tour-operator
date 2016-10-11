@@ -10,16 +10,16 @@
 /**
  * Checks if a caldera form with your slug exists
  *
- * @package 	lsx-tour-operator
+ * @package 	tour-operator
  * @subpackage	template-tag
  * @category 	archive-header
  */
-function lsx_tour_operator_archive_header() { ?>
+function to_archive_header() { ?>
 	<header class="archive-header">
 		<h1 class="archive-title">
 			<?php the_archive_title(); ?>
 		</h1>
-		<?php lsx_tour_operator_tagline('<p class="tagline">','</p>'); ?>
+		<?php to_tagline('<p class="tagline">','</p>'); ?>
 	</header><!-- .archive-header -->
 <?php
 }
@@ -27,14 +27,14 @@ function lsx_tour_operator_archive_header() { ?>
 /**
  * Checks if a caldera form with your slug exists
  *
- * @package 	lsx-tour-operator
+ * @package 	tour-operator
  * @subpackage	template-tag
  * @category 	single-header
  */
-function lsx_tour_operator_single_header() { ?>
+function to_single_header() { ?>
 	<header class="page-header">
 		<?php the_title( '<h1 class="page-title">', '</h1>' ); ?>
-		<?php lsx_tour_operator_tagline('<p class="tagline">','</p>'); ?>
+		<?php to_tagline('<p class="tagline">','</p>'); ?>
 	</header><!-- .entry-header -->	
 <?php
 }
@@ -42,55 +42,55 @@ function lsx_tour_operator_single_header() { ?>
 /**
  * Banner Content
  *
- * @package 	lsx-tour-operator
+ * @package 	tour-operator
  * @subpackage	template-tag
  * @category 	banner-content
  */
-function lsx_tour_operator_banner_content() { 
-	lsx_tour_operator_tagline('<p class="tagline">','</p>');
+function to_banner_content() { 
+	to_tagline('<p class="tagline">','</p>');
 }
 
 /**
  * Taglines
  *
- * @package 	lsx-tour-operator
+ * @package 	tour-operator
  * @subpackage	template-tag
  * @category 	tagline
  */
-function lsx_tour_operator_tagline($before='',$after='') {
-	echo wp_kses_post( apply_filters('lsx_tour_operator_tagline','',$before,$after) );
+function to_tagline($before='',$after='') {
+	echo wp_kses_post( apply_filters('to_tagline','',$before,$after) );
 }
 
 /**
  * Archive Descriptions
  *
- * @package 	lsx-tour-operator
+ * @package 	tour-operator
  * @subpackage	template-tag
  * @category 	description
  */
-function lsx_tour_operator_archive_description() {
-	echo wp_kses_post( apply_filters('lsx_tour_operator_archive_description','','<div class="row"><div class="col-sm-12"><article class="archive-description hentry">','</article></div></div>') );
+function to_archive_description() {
+	echo wp_kses_post( apply_filters('to_archive_description','','<div class="row"><div class="col-sm-12"><article class="archive-description hentry">','</article></div></div>') );
 }
 
 /**
  * Checks if a caldera form with your slug exists
  *
- * @package 	lsx-tour-operator
+ * @package 	tour-operator
  * @subpackage	setup
  * @category 	helper
  */
-function lsx_tour_operator_content($slug, $name = null) {
-	do_action('lsx_tour_operator_content',$slug, $name);
+function to_content($slug, $name = null) {
+	do_action('to_content',$slug, $name);
 }
 
 /**
  * outputs the sharing
  *
- * @package 	lsx-tour-operator
+ * @package 	tour-operator
  * @subpackage	setup
  * @category 	helper
  */
-function lsx_tour_sharing() { 
+function to_sharing() { 
 	echo '<section id="sharing">';
 	if ( function_exists( 'sharing_display' ) ) {
 		sharing_display( '', true );
@@ -106,11 +106,11 @@ function lsx_tour_sharing() {
 /**
  * Checks if a caldera form with your slug exists
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	class
  */
-function lsx_widget_class($return=false){
+function to_widget_class($return=false){
 	global $columns;
 	$md_col_width = 12 / $columns;
 
@@ -132,14 +132,14 @@ function lsx_widget_class($return=false){
  * @param		$post_type | string
  * @return		boolean
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	class
  */
-function lsx_is_single_disabled($post_type=false){
-	global $lsx_tour_operators;
+function to_is_single_disabled($post_type=false){
+	global $to_operators;
 	if(false === $post_type) {$post_type = get_post_type(); }
-	if(is_object($lsx_tour_operators) && isset($lsx_tour_operators->options[$post_type]) && isset($lsx_tour_operators->options[$post_type]['disable_single'])){
+	if(is_object($to_operators) && isset($to_operators->options[$post_type]) && isset($to_operators->options[$post_type]['disable_single'])){
 		return true;
 	}else{
 		return false;
@@ -152,16 +152,16 @@ function lsx_is_single_disabled($post_type=false){
  * @param		$post_type | string
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	class
  */
-function lsx_get_post_type_section_title($post_type=false,$section='',$default=''){
+function to_get_post_type_section_title($post_type=false,$section='',$default=''){
 	$section_title = (!empty($section)) ? ($section.'_section_title') : 'section_title';
-	global $lsx_tour_operators;
+	global $to_operators;
 	if(false === $post_type) {$post_type = get_post_type(); }
-	if(is_object($lsx_tour_operators) && isset($lsx_tour_operators->options[$post_type]) && isset($lsx_tour_operators->options[$post_type][$section_title]) && !empty($lsx_tour_operators->options[$post_type][$section_title]) && '' !== $lsx_tour_operators->options[$post_type][$section_title]){
-		return $lsx_tour_operators->options[$post_type][$section_title];
+	if(is_object($to_operators) && isset($to_operators->options[$post_type]) && isset($to_operators->options[$post_type][$section_title]) && !empty($to_operators->options[$post_type][$section_title]) && '' !== $to_operators->options[$post_type][$section_title]){
+		return $to_operators->options[$post_type][$section_title];
 	}else{
 		return $default;
 	}
@@ -176,12 +176,12 @@ function lsx_get_post_type_section_title($post_type=false,$section='',$default='
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function lsx_accommodation_room_total($before="",$after="",$echo=true){
-	lsx_custom_field_query('number_of_rooms',$before,$after,$echo);
+function to_accommodation_room_total($before="",$after="",$echo=true){
+	to_custom_field_query('number_of_rooms',$before,$after,$echo);
 }
 
 /**
@@ -193,12 +193,12 @@ function lsx_accommodation_room_total($before="",$after="",$echo=true){
  * @param		$post_id	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function lsx_accommodation_rating($before="",$after="",$echo=true,$post_id=false){
-	lsx_custom_field_query('rating',$before,$after,$echo,$post_id);
+function to_accommodation_rating($before="",$after="",$echo=true,$post_id=false){
+	to_custom_field_query('rating',$before,$after,$echo,$post_id);
 }
 
 /**
@@ -209,11 +209,11 @@ function lsx_accommodation_rating($before="",$after="",$echo=true,$post_id=false
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function lsx_has_facilities(){
+function to_has_facilities(){
 	// Get any existing copy of our transient data
 	if ( false === ( $facilities = get_transient( get_the_ID().'_facilities' ) ) ) {
 		// It wasn't there, so regenerate the data and save the transient
@@ -249,11 +249,11 @@ function lsx_has_facilities(){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function lsx_accommodation_facilities($before="",$after="",$echo=true){
+function to_accommodation_facilities($before="",$after="",$echo=true){
 	$facilities = wp_get_object_terms(get_the_ID(),'facility');
 	$main_facilities = false;
 	$child_facilities = false;
@@ -300,11 +300,11 @@ function lsx_accommodation_facilities($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function lsx_accommodation_spoken_languages($before="",$after="",$echo=true){
+function to_accommodation_spoken_languages($before="",$after="",$echo=true){
 	$spoken_languages = get_post_meta( get_the_ID(), 'spoken_languages', true );
 	if ( is_string( $spoken_languages ) && ! empty( $spoken_languages ) ) $spoken_languages = array( $spoken_languages );
 	$return = '';
@@ -341,11 +341,11 @@ function lsx_accommodation_spoken_languages($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function lsx_accommodation_special_interests($before="",$after="",$echo=true,$post_id=false){
+function to_accommodation_special_interests($before="",$after="",$echo=true,$post_id=false){
 	if(false === $post_id){
 		$post_id = get_the_ID();
 	}
@@ -385,12 +385,12 @@ function lsx_accommodation_special_interests($before="",$after="",$echo=true,$po
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	accommodation
  * @category 	activity
  */
-function lsx_accommodation_activity_friendly($before="",$after="",$echo=true){
+function to_accommodation_activity_friendly($before="",$after="",$echo=true){
 	$friendly = get_post_meta( get_the_ID(), 'suggested_visitor_types', true );
 	if ( is_string( $friendly ) && ! empty( $friendly ) ) $friendly = array( $friendly );
 	$return = '';
@@ -422,38 +422,38 @@ function lsx_accommodation_activity_friendly($before="",$after="",$echo=true){
 /**
  * Outputs the accommodation meta
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function lsx_accommodation_meta(){ 
+function to_accommodation_meta(){ 
 	if('accommodation' === get_post_type()){
 	?>
 	<div class="accommodation-details meta taxonomies">
-		<?php lsx_tour_price('<div class="meta info"><span class="price">from ','</span></div>'); ?>
-		<?php lsx_accommodation_room_total('<div class="meta rooms">'.__('Rooms','lsx-tour-operators').': <span>','</span></div>'); ?>	
-		<?php lsx_accommodation_rating('<div class="meta rating">'.__('Rating','lsx-tour-operators').': ','</div>'); ?>			
-		<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.__('Accommodation Style','lsx-tour-operators').': ', ', ', '</div>' ); ?>
-		<?php the_terms( get_the_ID(), 'accommodation-brand', '<div class="meta accommodation-brand">'.__('Brand','lsx-tour-operators').': ', ', ', '</div>' ); ?>
-		<?php the_terms( get_the_ID(), 'accommodation-type', '<div class="meta accommodation-type">'.__('Type','lsx-tour-operators').': ', ', ', '</div>' ); ?>
-		<?php lsx_accommodation_spoken_languages('<div class="meta spoken_languages">'.__('Spoken Languages','lsx-tour-operators').': <span>','</span></div>'); ?>
-		<?php lsx_accommodation_activity_friendly('<div class="meta friendly">'.__('Friendly','lsx-tour-operators').': <span>','</span></div>'); ?>
-		<?php lsx_accommodation_special_interests('<div class="meta special_interests">'.__('Special Interests','lsx-tour-operators').': <span>','</span></div>'); ?>
-		<?php lsx_connected_destinations('<div class="meta destination">'.__('Location','lsx-tour-operators').': ','</div>'); ?>		
+		<?php to_price('<div class="meta info"><span class="price">from ','</span></div>'); ?>
+		<?php to_accommodation_room_total('<div class="meta rooms">'.__('Rooms','tour-operator').': <span>','</span></div>'); ?>	
+		<?php to_accommodation_rating('<div class="meta rating">'.__('Rating','tour-operator').': ','</div>'); ?>			
+		<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.__('Accommodation Style','tour-operator').': ', ', ', '</div>' ); ?>
+		<?php the_terms( get_the_ID(), 'accommodation-brand', '<div class="meta accommodation-brand">'.__('Brand','tour-operator').': ', ', ', '</div>' ); ?>
+		<?php the_terms( get_the_ID(), 'accommodation-type', '<div class="meta accommodation-type">'.__('Type','tour-operator').': ', ', ', '</div>' ); ?>
+		<?php to_accommodation_spoken_languages('<div class="meta spoken_languages">'.__('Spoken Languages','tour-operator').': <span>','</span></div>'); ?>
+		<?php to_accommodation_activity_friendly('<div class="meta friendly">'.__('Friendly','tour-operator').': <span>','</span></div>'); ?>
+		<?php to_accommodation_special_interests('<div class="meta special_interests">'.__('Special Interests','tour-operator').': <span>','</span></div>'); ?>
+		<?php to_connected_destinations('<div class="meta destination">'.__('Location','tour-operator').': ','</div>'); ?>		
 	</div>	
 <?php } }
 
 /**
  * Checks weather or not the conencted tours should display.
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function lsx_accommodation_display_connected_tours(){
-	global $lsx_tour_operators;
+function to_accommodation_display_connected_tours(){
+	global $to_operators;
 	$return = false;
-	if(isset($lsx_tour_operators->options['accommodation']['display_connected_tours']) && 'on' === $lsx_tour_operators->options['accommodation']['display_connected_tours']){
+	if(isset($to_operators->options['accommodation']['display_connected_tours']) && 'on' === $to_operators->options['accommodation']['display_connected_tours']){
 		$return = true;
 	}
 	return $return;
@@ -469,12 +469,12 @@ function lsx_accommodation_display_connected_tours(){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_tour_tagline($before="",$after="",$echo=true){
-	lsx_custom_field_query('tagline',$before,$after,$echo);
+function to_tagline($before="",$after="",$echo=true){
+	to_custom_field_query('tagline',$before,$after,$echo);
 }
 
 /**
@@ -485,12 +485,12 @@ function lsx_tour_tagline($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_tour_price($before="",$after="",$echo=true){
-	lsx_custom_field_query('price',$before,$after,$echo);
+function to_price($before="",$after="",$echo=true){
+	to_custom_field_query('price',$before,$after,$echo);
 }
 
 /**
@@ -501,12 +501,12 @@ function lsx_tour_price($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_tour_duration($before="",$after="",$echo=true){
-	lsx_custom_field_query('duration',$before,$after,$echo);
+function to_duration($before="",$after="",$echo=true){
+	to_custom_field_query('duration',$before,$after,$echo);
 }
 
 /**
@@ -517,12 +517,12 @@ function lsx_tour_duration($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_tour_included($before="",$after="",$echo=true){
-	return lsx_custom_field_query('included',$before,$after,$echo);
+function to_included($before="",$after="",$echo=true){
+	return to_custom_field_query('included',$before,$after,$echo);
 }
 
 /**
@@ -533,12 +533,12 @@ function lsx_tour_included($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_tour_not_included($before="",$after="",$echo=true){
-	return lsx_custom_field_query('not_included',$before,$after,$echo);
+function to_not_included($before="",$after="",$echo=true){
+	return to_custom_field_query('not_included',$before,$after,$echo);
 }
 
 /**
@@ -549,17 +549,17 @@ function lsx_tour_not_included($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_tour_departure_point($before="",$after="",$echo=true){
+function to_departure_point($before="",$after="",$echo=true){
 	$departs_from = get_post_meta(get_the_ID(),'departs_from',false);
 	if(false !== $departs_from && '' !== $departs_from){
 		if(!is_array($departs_from)){
 			$departs_from = array($departs_from);
 		}
-		$return = $before.lsx_connected_list($departs_from,'destination',true,', ').$after;
+		$return = $before.to_connected_list($departs_from,'destination',true,', ').$after;
 		if($echo){
 			echo wp_kses_post( $return );
 		}else{
@@ -576,17 +576,17 @@ function lsx_tour_departure_point($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_tour_end_point($before="",$after="",$echo=true){
+function to_end_point($before="",$after="",$echo=true){
 	$end_point = get_post_meta(get_the_ID(),'ends_in',false);
 	if(false !== $end_point && '' !== $end_point){
 		if(!is_array($end_point)){
 			$end_point = array($end_point);
 		}
-		$return = $before.lsx_connected_list($end_point,'destination',true,', ').$after;
+		$return = $before.to_connected_list($end_point,'destination',true,', ').$after;
 		if($echo){
 			echo wp_kses_post( $return );
 		}else{
@@ -598,14 +598,14 @@ function lsx_tour_end_point($before="",$after="",$echo=true){
 /**
  * Outputs the tours pricing block
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_tour_pricing_block(){
+function to_pricing_block(){
 
-	$tour_included = lsx_tour_included('','',false);
-	$tour_not_included = lsx_tour_not_included('','',false);
+	$tour_included = to_included('','',false);
+	$tour_not_included = to_not_included('','',false);
 	if(null !== $tour_included || null !== $tour_not_included) { 
 	
 	$class="col-sm-6";
@@ -617,7 +617,7 @@ function lsx_tour_pricing_block(){
 		<div class="row">
 			<?php if(null !== $tour_included) { ?>
 				<div class="<?php echo esc_attr( $class ); ?>">
-					<h2 class="section-title"><?php esc_html_e('Included','lsx-tour-operators'); ?></h2>
+					<h2 class="section-title"><?php esc_html_e('Included','tour-operator'); ?></h2>
 					<div class="entry-content">
 						<?php echo wp_kses_post( apply_filters('the_content',wpautop($tour_included)) ); ?>
 					</div>
@@ -625,7 +625,7 @@ function lsx_tour_pricing_block(){
 			<?php } ?>
 			<?php if(null !== $tour_not_included) { ?>
 				<div class="<?php echo esc_attr( $class ); ?>">
-					<h2 class="section-title"><?php esc_html_e('Excluded','lsx-tour-operators'); ?></h2>
+					<h2 class="section-title"><?php esc_html_e('Excluded','tour-operator'); ?></h2>
 					<div class="entry-content">
 						<?php echo wp_kses_post( apply_filters('the_content',wpautop($tour_not_included)) ); ?>
 					</div>
@@ -645,11 +645,11 @@ function lsx_tour_pricing_block(){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_tour_highlights($before="",$after="",$echo=true){
+function to_highlights($before="",$after="",$echo=true){
 	$highlights = get_post_meta(get_the_ID(),'hightlights',true);
 	if(false !== $highlights && '' !== $highlights){
 		$return = $before.'<div class="entry-content">'.apply_filters('the_content',wpautop($highlights)).'</div>'.$after;
@@ -669,11 +669,11 @@ function lsx_tour_highlights($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_tour_best_time_to_visit($before="",$after="",$echo=true){
+function to_best_time_to_visit($before="",$after="",$echo=true){
 	$best_time_to_visit = get_post_meta(get_the_ID(),'best_time_to_visit',true);
 	if(false !== $best_time_to_visit && '' !== $best_time_to_visit && is_array($best_time_to_visit) && !empty($best_time_to_visit)){
 		
@@ -715,11 +715,11 @@ function lsx_tour_best_time_to_visit($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_tour_videos($before="",$after="",$echo=true){
+function to_videos($before="",$after="",$echo=true){
 	global $content_width;
 
 	$videos = get_post_meta(get_the_ID(),'videos',false);
@@ -813,11 +813,11 @@ function lsx_tour_videos($before="",$after="",$echo=true){
 			if ( $pages > 1 ) {
 				$video_array .= '<a class="left carousel-control" href="#slider-'.$carousel_id.'" role="button" data-slide="prev">';
 				$video_array .= '<span class="fa fa-chevron-left" aria-hidden="true"></span>';
-				$video_array .= '<span class="sr-only">'.__('Previous','lsx-tour-operators').'</span>';
+				$video_array .= '<span class="sr-only">'.__('Previous','tour-operator').'</span>';
 				$video_array .= '</a>';
 				$video_array .= '<a class="right carousel-control" href="#slider-'.$carousel_id.'" role="button" data-slide="next">';
 				$video_array .= '<span class="fa fa-chevron-right" aria-hidden="true"></span>';
-				$video_array .= '<span class="sr-only">'.__('Next','lsx-tour-operators').'</span>';
+				$video_array .= '<span class="sr-only">'.__('Next','tour-operator').'</span>';
 				$video_array .= '</a>';
 			}
 			$video_array .= "</div>";
@@ -844,33 +844,33 @@ function lsx_tour_videos($before="",$after="",$echo=true){
 /**
  * Outputs the connected accommodation only on a "region"
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	destination
  */
-function lsx_tour_region_accommodation(){
-	global $lsx_archive;
-	if(post_type_exists('accommodation') && is_singular('destination') && !lsx_item_has_children(get_the_ID(),'destination')) { 
+function to_region_accommodation(){
+	global $to_archive;
+	if(post_type_exists('accommodation') && is_singular('destination') && !to_item_has_children(get_the_ID(),'destination')) { 
 		$args = array(
 			'from'			=>	'accommodation',
 			'to'			=>	'destination',
 			'column'		=>	'12',
-			'before'		=>	'<section id="accommodation"><h2 class="section-title">'.__(lsx_get_post_type_section_title('accommodation', '', 'Featured Accommodations'),'lsx-tour-operators').'</h2>',
+			'before'		=>	'<section id="accommodation"><h2 class="section-title">'.__(to_get_post_type_section_title('accommodation', '', 'Featured Accommodations'),'tour-operator').'</h2>',
 			'after'			=>	'</section>'
 		);
-		lsx_connected_panel_query($args);
+		to_connected_panel_query($args);
 	}
 }
 /**
  * Outputs the child destinations
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	destination
  */
-function lsx_tour_country_regions(){
-	global $lsx_archive,$wp_query;
-	if(is_singular('destination') && lsx_item_has_children(get_the_ID(),'destination')) {
+function to_country_regions(){
+	global $to_archive,$wp_query;
+	if(is_singular('destination') && to_item_has_children(get_the_ID(),'destination')) {
 		$region_args = array(
 			'post_type'	=>	'destination',
 			'post_status' => 'publish',
@@ -885,15 +885,15 @@ function lsx_tour_country_regions(){
 		$total_counter = 0;
 		if ( $regions->have_posts() ): ?>
 			<section id="regions">
-				<h2 class="section-title"><?php esc_html_e(lsx_get_post_type_section_title('destination', 'regions', 'Regions'),'lsx-tour-operators'); ?></h2>		
+				<h2 class="section-title"><?php esc_html_e(to_get_post_type_section_title('destination', 'regions', 'Regions'),'tour-operator'); ?></h2>		
 				<div class="row">		
-					<?php $lsx_archive = 1; $wp_query->is_single = 0;$wp_query->is_singular = 0;$wp_query->is_post_type_archive = 1;?>
+					<?php $to_archive = 1; $wp_query->is_single = 0;$wp_query->is_singular = 0;$wp_query->is_post_type_archive = 1;?>
 					<?php while ( $regions->have_posts() ) : $regions->the_post(); ?>
 						<div class="panel col-sm-12">
-							<?php lsx_tour_operator_content('content','destination'); ?>
+							<?php to_content('content','destination'); ?>
 						</div>
 					<?php endwhile; // end of the loop. ?>
-					<?php $lsx_archive = 0; $wp_query->is_single = 1;$wp_query->is_singular = 1;$wp_query->is_post_type_archive = 0;?>
+					<?php $to_archive = 0; $wp_query->is_single = 1;$wp_query->is_singular = 1;$wp_query->is_post_type_archive = 0;?>
 				</div>
 			</section>		
 			<?php
@@ -906,55 +906,55 @@ function lsx_tour_country_regions(){
 /**
  * Outputs the destinations attached tours
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	destination
  */
-function lsx_tour_destination_tours(){
-	global $lsx_archive,$wp_query;
+function to_destination_tours(){
+	global $to_archive,$wp_query;
 	if(post_type_exists('tour') && is_singular('destination')){
 		$args = array(
 			'from'			=>	'tour',
 			'to'			=>	'destination',
 			'column'		=>	'12',
-			'before'		=>	'<section id="tours"><h2 class="section-title">'.__(lsx_get_post_type_section_title('tour', '', 'Featured Tours'),'lsx-tour-operators').'</h2>',
+			'before'		=>	'<section id="tours"><h2 class="section-title">'.__(to_get_post_type_section_title('tour', '', 'Featured Tours'),'tour-operator').'</h2>',
 			'after'			=>	'</section>'
 		);
-		lsx_connected_panel_query($args);
+		to_connected_panel_query($args);
 	}
 }
 
 /**
  * Outputs the destinations attached activites
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	destination
  */
-function lsx_tour_destination_activities(){
-	global $lsx_archive;
-	if(post_type_exists('activity') && is_singular('destination') && !lsx_item_has_children(get_the_ID(),'destination')){
+function to_destination_activities(){
+	global $to_archive;
+	if(post_type_exists('activity') && is_singular('destination') && !to_item_has_children(get_the_ID(),'destination')){
 		$args = array(
 			'from'			=>	'activity',
 			'to'			=>	'destination',
 			'content_part'	=>	'widget-activity',
 			'column'		=>	'4',				
-			'before'		=>	'<section id="activities"><h2 class="section-title">'.__(lsx_get_post_type_section_title('activity', '', 'Featured Activities'),'lsx-tour-operators').'</h2>',
+			'before'		=>	'<section id="activities"><h2 class="section-title">'.__(to_get_post_type_section_title('activity', '', 'Featured Activities'),'tour-operator').'</h2>',
 			'after'			=>	'</section>',
 		);
-		lsx_connected_panel_query($args);
+		to_connected_panel_query($args);
 	}
 }
 
 /**
  * Outputs the destinations attached activites
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	destination
  */
-function lsx_has_destination_banner_map(){
-	$temp = get_option('_lsx_lsx-settings',false);
+function to_has_destination_banner_map(){
+	$temp = get_option('_to_lsx-settings',false);
 	if(false !== $temp && isset($temp['destination']) && !empty($temp['destination'])){
 		if(isset($temp['destination']['enable_banner_map'])){
 			return true;
@@ -974,12 +974,12 @@ function lsx_has_destination_banner_map(){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	team
  */
-function lsx_tour_team_role($before="",$after="",$echo=true){
-	lsx_custom_field_query('role',$before,$after,$echo);
+function to_team_role($before="",$after="",$echo=true){
+	to_custom_field_query('role',$before,$after,$echo);
 }
 
 /**
@@ -990,11 +990,11 @@ function lsx_tour_team_role($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	team
  */
-function lsx_tour_team_contact_number($before="",$after="",$echo=true){
+function to_team_contact_number($before="",$after="",$echo=true){
 	$contact_number = get_post_meta(get_the_ID(),'contact_number',true);
 	if(false !== $contact_number && '' !== $contact_number){
 		$contact_html = $before.'<a href="tel:+'.$contact_number.'">'.$contact_number.'</a>'.$after;
@@ -1014,11 +1014,11 @@ function lsx_tour_team_contact_number($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	team
  */
-function lsx_tour_team_contact_email($before="",$after="",$echo=true){
+function to_team_contact_email($before="",$after="",$echo=true){
 	$contact_email = get_post_meta(get_the_ID(),'contact_email',true);
 	if(false !== $contact_email && '' !== $contact_email){
 		$contact_html = $before.'<a href="mailto:'.$contact_email.'">'.$contact_email.'</a>'.$after;
@@ -1038,11 +1038,11 @@ function lsx_tour_team_contact_email($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	team
  */
-function lsx_tour_team_social_profiles($before="",$after="",$echo=true){
+function to_team_social_profiles($before="",$after="",$echo=true){
 	$social_profiles = array('facebook','twitter','googleplus','linkedin','pinterest','skype');
 	$social_profile_html = false;
 	foreach($social_profiles as $meta_key){
@@ -1094,12 +1094,12 @@ function lsx_tour_team_social_profiles($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	class
  */
-function lsx_tour_team_tagline($before="",$after="",$echo=true){
-	lsx_tour_tagline($before,$after,$echo);
+function to_team_tagline($before="",$after="",$echo=true){
+	to_tagline($before,$after,$echo);
 }
 
 /* ================  SPECIALS =========================== */
@@ -1112,12 +1112,12 @@ function lsx_tour_team_tagline($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	specials
  */
-function lsx_tour_special_tagline($before="",$after="",$echo=true){
-	lsx_tour_tagline($before,$after,$echo);
+function to_special_tagline($before="",$after="",$echo=true){
+	to_tagline($before,$after,$echo);
 }
 
 /**
@@ -1128,12 +1128,12 @@ function lsx_tour_special_tagline($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	specials
  */
-function lsx_specials_terms_conditions($before="",$after="",$echo=true){
-	lsx_custom_field_query('terms_conditions',$before,$after,$echo);
+function to_specials_terms_conditions($before="",$after="",$echo=true){
+	to_custom_field_query('terms_conditions',$before,$after,$echo);
 }
 
 
@@ -1145,11 +1145,11 @@ function lsx_specials_terms_conditions($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	specials
  */
-function lsx_specials_validity($before="",$after="",$echo=true){
+function to_specials_validity($before="",$after="",$echo=true){
 	$valid_from = get_the_date( 'd M Y', get_the_ID() );
 	$valid_to = get_post_meta(get_the_ID(),'_expiration-date',true);
 	if(false !== $valid_to && '' !== $valid_to){
@@ -1173,11 +1173,11 @@ function lsx_specials_validity($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	specials
  */
-function lsx_travel_dates($before="",$after="",$echo=true){
+function to_travel_dates($before="",$after="",$echo=true){
 	$valid_from = get_post_meta(get_the_ID(),'travel_dates_start',true);
 	$valid_to = get_post_meta(get_the_ID(),'travel_dates_end',true);
 	if(false !== $valid_from && '' !== $valid_from){
@@ -1205,42 +1205,42 @@ function lsx_travel_dates($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_enquire_modal($before="",$after="",$echo=true){ 
-	global $lsx_tour_operators;
+function to_enquire_modal($before="",$after="",$echo=true){ 
+	global $to_operators;
 
 	$form_id = 'false';
 	// First set the general form
-	if(isset($lsx_tour_operators->options['general']) && isset($lsx_tour_operators->options['general']['enquiry']) && '' !== $lsx_tour_operators->options['general']['enquiry']){
-		$form_id = $lsx_tour_operators->options['general']['enquiry'];
+	if(isset($to_operators->options['general']) && isset($to_operators->options['general']['enquiry']) && '' !== $to_operators->options['general']['enquiry']){
+		$form_id = $to_operators->options['general']['enquiry'];
 	}
 
-	if(is_singular($lsx_tour_operators->active_post_types)){		
-		if(isset($lsx_tour_operators->options[get_post_type()]) && isset($lsx_tour_operators->options[get_post_type()]['enquiry']) && '' !== $lsx_tour_operators->options[get_post_type()]['enquiry']){
-			$form_id = $lsx_tour_operators->options[get_post_type()]['enquiry'];
+	if(is_singular($to_operators->active_post_types)){		
+		if(isset($to_operators->options[get_post_type()]) && isset($to_operators->options[get_post_type()]['enquiry']) && '' !== $to_operators->options[get_post_type()]['enquiry']){
+			$form_id = $to_operators->options[get_post_type()]['enquiry'];
 		}
 	}
 
 	$disable_modal = false;
 	$link = '#';
 
-	if(isset($lsx_tour_operators->options['general']) && isset($lsx_tour_operators->options['general']['disable_enquire_modal']) && 'on' === $lsx_tour_operators->options['general']['disable_enquire_modal']){
+	if(isset($to_operators->options['general']) && isset($to_operators->options['general']['disable_enquire_modal']) && 'on' === $to_operators->options['general']['disable_enquire_modal']){
 		$disable_modal = true;
 
-		if('' !== $lsx_tour_operators->options['general']['enquire_link']){
-			$link = $lsx_tour_operators->options['general']['enquire_link'];
+		if('' !== $to_operators->options['general']['enquire_link']){
+			$link = $to_operators->options['general']['enquire_link'];
 		}
 	}
 
-	if(is_singular($lsx_tour_operators->active_post_types)){		
-		if(isset($lsx_tour_operators->options[get_post_type()]) && isset($lsx_tour_operators->options[get_post_type()]['disable_enquire_modal']) && 'on' === $lsx_tour_operators->options[get_post_type()]['disable_enquire_modal']){
+	if(is_singular($to_operators->active_post_types)){		
+		if(isset($to_operators->options[get_post_type()]) && isset($to_operators->options[get_post_type()]['disable_enquire_modal']) && 'on' === $to_operators->options[get_post_type()]['disable_enquire_modal']){
 			$disable_modal = true;
 
-			if('' !== $lsx_tour_operators->options[get_post_type()]['enquire_link']){
-				$link = $lsx_tour_operators->options[get_post_type()]['enquire_link'];
+			if('' !== $to_operators->options[get_post_type()]['enquire_link']){
+				$link = $to_operators->options[get_post_type()]['enquire_link'];
 			}
 		}
 	}	
@@ -1293,11 +1293,11 @@ function lsx_enquire_modal($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	general
  */
-function lsx_has_map(){
+function to_has_map(){
 	// Get any existing copy of our transient data
 	if ( false === ( $location = get_transient( get_the_ID().'_location' ) ) ) {
 		// It wasn't there, so regenerate the data and save the transient
@@ -1351,17 +1351,17 @@ function lsx_has_map(){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_map($before="",$after="",$echo=true){
-	global $lsx_tour_operators;
+function to_map($before="",$after="",$echo=true){
+	global $to_operators;
 	if ( false !== ( $location = get_transient( get_the_ID().'_location' ) ) ) {
 		$zoom = 15;
 		if(is_array($location) && isset($location['zoom'])){$zoom = $location['zoom']; }
 		
-		$zoom = apply_filters('lsx_map_zoom',$zoom);
+		$zoom = apply_filters('to_map_zoom',$zoom);
 			
 		if(is_post_type_archive('destination')){
 
@@ -1379,13 +1379,13 @@ function lsx_map($before="",$after="",$echo=true){
 					if(isset($regions->posts) && !empty($regions->posts)){
 						$connections = $regions->posts;
 					}	
-					if(lsx_has_destination_banner_map()) {
+					if(to_has_destination_banner_map()) {
 						$args['selector'] = '#lsx-banner .page-banner';		
 					}
 
 					$args['content'] = 'excerpt';
 			}/*else{
-				if(lsx_item_has_children(get_the_ID(),'destination')){
+				if(to_item_has_children(get_the_ID(),'destination')){
 					$region_args = array(
 							'post_type'	=>	'destination',
 							'post_status' => 'publish',
@@ -1434,7 +1434,7 @@ function lsx_map($before="",$after="",$echo=true){
 					'height' => '500px',
 			);			
 		}
-		echo wp_kses_post( $lsx_tour_operators->framework->maps->map_output(get_the_ID(),$args) );
+		echo wp_kses_post( $to_operators->framework->maps->map_output(get_the_ID(),$args) );
 	}
 }
 
@@ -1447,11 +1447,11 @@ function lsx_map($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_term_tagline($term_id=false,$before="",$after="",$echo=true){
+function to_term_tagline($term_id=false,$before="",$after="",$echo=true){
 	if(false !== $term_id){
 		$taxonomy_tagline = get_term_meta($term_id, 'tagline', true);
 		if(false !== $taxonomy_tagline && '' !== $taxonomy_tagline){
@@ -1469,26 +1469,26 @@ function lsx_term_tagline($term_id=false,$before="",$after="",$echo=true){
  * Gets the current connected team member panel
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	team
  */
-function lsx_has_team_member() {
+function to_has_team_member() {
 	$has_team = false;
 
 	if ( is_tax() ) {
-		$has_team = lsx_has_custom_field_query( 'expert', get_queried_object()->term_id, true );
+		$has_team = to_has_custom_field_query( 'expert', get_queried_object()->term_id, true );
 	} else {
-		$has_team = lsx_has_custom_field_query( 'team_to_'. get_post_type(), get_the_ID() );
+		$has_team = to_has_custom_field_query( 'team_to_'. get_post_type(), get_the_ID() );
 	}
 
 	if ( false === $has_team ) {
-		global $lsx_tour_operators;
+		global $to_operators;
 		$tab = 'team';
 		$start_with = 'expert-';
 		
-		if ( is_object( $lsx_tour_operators ) && isset( $lsx_tour_operators->options[$tab] ) && is_array( $lsx_tour_operators->options[$tab] ) ) {
-			foreach ( $lsx_tour_operators->options[$tab] as $key => $value ) {
+		if ( is_object( $to_operators ) && isset( $to_operators->options[$tab] ) && is_array( $to_operators->options[$tab] ) ) {
+			foreach ( $to_operators->options[$tab] as $key => $value ) {
 				if ( substr( $key, 0, strlen( $start_with ) ) === $start_with ) {
 					$has_team = true;
 					break;
@@ -1507,11 +1507,11 @@ function lsx_has_team_member() {
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	team
  */
-function lsx_team_member_panel($before="",$after=""){
+function to_team_member_panel($before="",$after=""){
 	$team_id = false;
 
 	if ( is_tax() ) {
@@ -1523,13 +1523,13 @@ function lsx_team_member_panel($before="",$after=""){
 	}
 
 	if ( false === $team_id ) {
-		global $lsx_tour_operators;
+		global $to_operators;
 		$tab = 'team';
 		$start_with = 'expert-';
 		$team_ids = array();
 		
-		if ( is_object( $lsx_tour_operators ) && isset( $lsx_tour_operators->options[$tab] ) && is_array( $lsx_tour_operators->options[$tab] ) ) {
-			foreach ( $lsx_tour_operators->options[$tab] as $key => $value ) {
+		if ( is_object( $to_operators ) && isset( $to_operators->options[$tab] ) && is_array( $to_operators->options[$tab] ) ) {
+			foreach ( $to_operators->options[$tab] as $key => $value ) {
 				if ( substr( $key, 0, strlen( $start_with ) ) === $start_with ) {
 					$team_ids[] = $value;
 				}
@@ -1558,27 +1558,27 @@ function lsx_team_member_panel($before="",$after=""){
 				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 					<div class="thumbnail">
-						<?php if(!lsx_is_single_disabled()){ ?>
+						<?php if(!to_is_single_disabled()){ ?>
 							<a href="<?php the_permalink(); ?>">
 						<?php } ?>
-							<?php lsx_thumbnail( 'lsx-thumbnail-wide' ); ?>
-						<?php if(!lsx_is_single_disabled()){ ?>
+							<?php to_thumbnail( 'lsx-thumbnail-wide' ); ?>
+						<?php if(!to_is_single_disabled()){ ?>
 							</a>
 						<?php } ?>
 					</div>
 
 					<h4 class="title">
-						<?php if(!lsx_is_single_disabled()){ ?>
+						<?php if(!to_is_single_disabled()){ ?>
 							<a href="<?php the_permalink(); ?>">
 						<?php } ?>
 							<?php the_title(); ?>
-						<?php if(!lsx_is_single_disabled()){ ?>
+						<?php if(!to_is_single_disabled()){ ?>
 							</a>
 						<?php } ?>
 					</h4>
 					<div class="team-details">
-						<?php lsx_tour_team_contact_number('<div class="meta contact-number"><i class="fa fa-phone orange"></i> ','</div>'); ?>
-						<?php lsx_tour_team_contact_email('<div class="meta email"><i class="fa fa-envelope orange"></i> ','</div>'); ?> 
+						<?php to_team_contact_number('<div class="meta contact-number"><i class="fa fa-phone orange"></i> ','</div>'); ?>
+						<?php to_team_contact_email('<div class="meta email"><i class="fa fa-envelope orange"></i> ','</div>'); ?> 
 					</div>
 				</article>
 				<?php			
@@ -1595,42 +1595,42 @@ function lsx_team_member_panel($before="",$after=""){
 /**
  * Outputs the connected accommodation for a team member
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	team
  */
-function lsx_team_accommodation(){
-	global $lsx_archive;
+function to_team_accommodation(){
+	global $to_archive;
 	if(post_type_exists('accommodation') && is_singular('team')) {
 		$args = array(
 				'from'			=>	'accommodation',
 				'to'			=>	'team',
 				'column'		=>	'12',
-				'before'		=>	'<section id="accommodation"><h2 class="section-title">'.__(lsx_get_post_type_section_title('accommodation', '', 'Featured Accommodations'),'lsx-tour-operators').'</h2>',
+				'before'		=>	'<section id="accommodation"><h2 class="section-title">'.__(to_get_post_type_section_title('accommodation', '', 'Featured Accommodations'),'tour-operator').'</h2>',
 				'after'			=>	'</section>'
 		);
-		lsx_connected_panel_query($args);
+		to_connected_panel_query($args);
 	}
 }
 
 /**
  * Outputs the connected tour for a team member
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	team
  */
-function lsx_team_tours(){
-	global $lsx_archive;
+function to_team_tours(){
+	global $to_archive;
 	if(post_type_exists('tour') && is_singular('team')) {
 		$args = array(
 				'from'			=>	'tour',
 				'to'			=>	'team',
 				'column'		=>	'12',
-				'before'		=>	'<section id="tours"><h2 class="section-title">'.__(lsx_get_post_type_section_title('tour', '', 'Featured Tours'),'lsx-tour-operators').'</h2>',
+				'before'		=>	'<section id="tours"><h2 class="section-title">'.__(to_get_post_type_section_title('tour', '', 'Featured Tours'),'tour-operator').'</h2>',
 				'after'			=>	'</section>'
 		);
-		lsx_connected_panel_query($args);
+		to_connected_panel_query($args);
 	}
 }
 
@@ -1643,12 +1643,12 @@ function lsx_team_tours(){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	connections
  */
-function lsx_connected_accommodation($before="",$after="",$echo=true){
-	lsx_connected_items_query('accommodation',get_post_type(),$before,$after,$echo);
+function to_connected_accommodation($before="",$after="",$echo=true){
+	to_connected_items_query('accommodation',get_post_type(),$before,$after,$echo);
 }
 
 /**
@@ -1659,12 +1659,12 @@ function lsx_connected_accommodation($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	connections
  */
-function lsx_connected_activities($before="",$after="",$echo=true){
-	lsx_connected_items_query('activity',get_post_type(),$before,$after,$echo);
+function to_connected_activities($before="",$after="",$echo=true){
+	to_connected_items_query('activity',get_post_type(),$before,$after,$echo);
 }
 
 /**
@@ -1675,12 +1675,12 @@ function lsx_connected_activities($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	connections
  */
-function lsx_connected_destinations($before="",$after="",$echo=true){
-	lsx_connected_items_query('destination',get_post_type(),$before,$after,$echo);
+function to_connected_destinations($before="",$after="",$echo=true){
+	to_connected_items_query('destination',get_post_type(),$before,$after,$echo);
 }
 
 /**
@@ -1691,12 +1691,12 @@ function lsx_connected_destinations($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	connections
  */
-function lsx_connected_reviews($before="",$after="",$echo=true){
-	lsx_connected_items_query('review',get_post_type(),$before,$after,$echo);
+function to_connected_reviews($before="",$after="",$echo=true){
+	to_connected_items_query('review',get_post_type(),$before,$after,$echo);
 }
 
 /**
@@ -1707,12 +1707,12 @@ function lsx_connected_reviews($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	connections
  */
-function lsx_connected_team($before="",$after="",$echo=true){
-	lsx_connected_items_query('team',get_post_type(),$before,$after,$echo);
+function to_connected_team($before="",$after="",$echo=true){
+	to_connected_items_query('team',get_post_type(),$before,$after,$echo);
 }
 
 /**
@@ -1723,12 +1723,12 @@ function lsx_connected_team($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	connections
  */
-function lsx_connected_tours($before="",$after="",$echo=true){
-	lsx_connected_items_query('tour',get_post_type(),$before,$after,$echo);
+function to_connected_tours($before="",$after="",$echo=true){
+	to_connected_items_query('tour',get_post_type(),$before,$after,$echo);
 }
 
 /**
@@ -1739,12 +1739,12 @@ function lsx_connected_tours($before="",$after="",$echo=true){
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	connections
  */
-function lsx_connected_vehicles($before="",$after="",$echo=true){
-	lsx_connected_items_query('vehicle',get_post_type(),$before,$after,$echo);
+function to_connected_vehicles($before="",$after="",$echo=true){
+	to_connected_items_query('vehicle',get_post_type(),$before,$after,$echo);
 }
 
 
@@ -1758,11 +1758,11 @@ function lsx_connected_vehicles($before="",$after="",$echo=true){
  * @param		$single		| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	helper
  */
-function lsx_has_custom_field_query( $meta_key = false, $id = false, $is_tax = false ) {
+function to_has_custom_field_query( $meta_key = false, $id = false, $is_tax = false ) {
 	if ( false !== $meta_key ) {
 		if ( false === ( $custom_field = get_transient( $id .'_'. $meta_key ) ) ) {
 			if ( $is_tax ) {
@@ -1792,14 +1792,14 @@ function lsx_has_custom_field_query( $meta_key = false, $id = false, $is_tax = f
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	helper
  */
-function lsx_custom_field_query($meta_key=false,$before="",$after="",$echo=false,$post_id=false){
+function to_custom_field_query($meta_key=false,$before="",$after="",$echo=false,$post_id=false){
 	if(false !== $meta_key){
 		//Check to see if we already have a transient set for this.
-		// TODO Need to move this to enclose the entire function and change to a !==,  that way you have to set up the custom field via the lsx_has_{custom_field} function
+		// TODO Need to move this to enclose the entire function and change to a !==,  that way you have to set up the custom field via the to_has_{custom_field} function
 		if(false === $post_id){
 			$post_id = get_the_ID();
 		}
@@ -1809,7 +1809,7 @@ function lsx_custom_field_query($meta_key=false,$before="",$after="",$echo=false
 		}
 		if(false !== $value && '' !== $value){
 			$return_html = $before.'<span class="values">'.$value.'</span>'.$after;
-			$return = apply_filters('lsx_custom_field_query',$return_html,$meta_key,$value,$before,$after);
+			$return = apply_filters('to_custom_field_query',$return_html,$meta_key,$value,$before,$after);
 			if($echo){
 				echo wp_kses_post( $return );
 			}else{
@@ -1829,18 +1829,18 @@ function lsx_custom_field_query($meta_key=false,$before="",$after="",$echo=false
  * @param		$echo	| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	helper
  */
-function lsx_connected_items_query($from=false,$to=false,$before="",$after="",$echo=false){
+function to_connected_items_query($from=false,$to=false,$before="",$after="",$echo=false){
 	if(post_type_exists($from) && post_type_exists($to)){
 		$connected_ids = get_post_meta(get_the_ID(),$from.'_to_'.$to,false);
 		if(false !== $connected_ids && '' !== $connected_ids && !empty($connected_ids)){
 			if(!is_array($connected_ids)){
 				$connected_ids = array($connected_ids);
 			}
-			$return = $before.lsx_connected_list($connected_ids,$from,true,', ').$after;
+			$return = $before.to_connected_list($connected_ids,$from,true,', ').$after;
 			if($echo){
 				echo wp_kses_post( $return );
 			}else{
@@ -1863,12 +1863,12 @@ function lsx_connected_items_query($from=false,$to=false,$before="",$after="",$e
  * @param		$echo				| boolean
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	helper
  */
-function lsx_connected_panel_query($args=false){
-	global $lsx_archive;
+function to_connected_panel_query($args=false){
+	global $to_archive;
 	if(false !== $args && is_array($args)){
 		$defaults = array(
 			'from'			=>	false,
@@ -1895,17 +1895,17 @@ function lsx_connected_panel_query($args=false){
 			);
 			$items = new WP_Query($items_query_args);
 			if ( $items->have_posts() ): 
-				$lsx_archive = 1;
+				$to_archive = 1;
 				ob_start();
 				echo wp_kses_post( $args['before'] ).'<div class="row">'; 
 				while ( $items->have_posts() ) : $items->the_post();
 					echo '<div class="panel col-sm-'.esc_attr($args['column']).'">';
-					lsx_tour_operator_content('content',$args['content_part']);
+					to_content('content',$args['content_part']);
 					echo '</div>';
 				endwhile;
 				echo '</div>'.wp_kses_post( $args['after'] );
 				$return = ob_get_clean();
-				$lsx_archive = 0;
+				$to_archive = 0;
 				wp_reset_query();
 				wp_reset_postdata();
 			endif; // end of the loop. 
@@ -1924,11 +1924,11 @@ function lsx_connected_panel_query($args=false){
  * @param		$taxonomy	| string
  * @return		string
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	helper
  */
-function lsx_related_items($taxonomy=false,$before="",$after="",$echo=true,$post_type=false) {
+function to_related_items($taxonomy=false,$before="",$after="",$echo=true,$post_type=false) {
 	if(false !== $taxonomy){
 		$return = false;
 		$filters = array();
@@ -2009,7 +2009,7 @@ function lsx_related_items($taxonomy=false,$before="",$after="",$echo=true,$post
 
 				echo '<div class="panel col-sm-4">';
 
-				lsx_tour_operator_content('content','widget-'.get_post_type());
+				to_content('content','widget-'.get_post_type());
 
 				echo '</div>';
 
@@ -2036,11 +2036,11 @@ function lsx_related_items($taxonomy=false,$before="",$after="",$echo=true,$post
 			if ( $pages > 1 ) {
 				echo '<a class="left carousel-control" href="#slider-'.esc_attr($carousel_id).'" role="button" data-slide="prev">';
 				echo '<span class="fa fa-chevron-left" aria-hidden="true"></span>';
-				echo '<span class="sr-only">'.esc_html__('Previous','lsx-tour-operators').'</span>';
+				echo '<span class="sr-only">'.esc_html__('Previous','tour-operator').'</span>';
 				echo '</a>';
 				echo '<a class="right carousel-control" href="#slider-'.esc_attr($carousel_id).'" role="button" data-slide="next">';
 				echo '<span class="fa fa-chevron-right" aria-hidden="true"></span>';
-				echo '<span class="sr-only">'.esc_html__('Next','lsx-tour-operators').'</span>';
+				echo '<span class="sr-only">'.esc_html__('Next','tour-operator').'</span>';
 				echo '</a>';
 			}
 			echo "</div>";
@@ -2071,21 +2071,21 @@ function lsx_related_items($taxonomy=false,$before="",$after="",$echo=true,$post
 /**
  * Outputs the widget with some styling
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	helper
  */
-function lsx_safari_brands($before="",$after="",$echo=true) {
+function to_safari_brands($before="",$after="",$echo=true) {
 	$args = array(
 			'name' => 'Home',
 			'id' => 'sidebar-home',
 			'description' => '',
 			'class' => '',
-			'before_widget' => '<aside id="lsx_taxonomy_widget-6" class="widget lsx-widget">',
+			'before_widget' => '<aside id="to_taxonomy_widget-6" class="widget lsx-widget">',
 			'after_widget' => '</aside>',
 			'before_title' => '<h3 class="widget-title">',
 			'after_title' => '</h3>',
-			'widget_id' => 'lsx_taxonomy_widget-6',
+			'widget_id' => 'to_taxonomy_widget-6',
 			'widget_name' => 'LSX Taxonomies',
 	);
 	$instance = array(
@@ -2106,7 +2106,7 @@ function lsx_safari_brands($before="",$after="",$echo=true) {
 			'interval' => '7000',
 			'indicators' => '1'
 	);
-	$safari_brands = new LSX_Taxonomy_Widget();
+	$safari_brands = new TO_Taxonomy_Widget();
 	ob_start();
 	$safari_brands->widget($args, $instance);
 	$return = ob_get_clean();
@@ -2121,21 +2121,21 @@ function lsx_safari_brands($before="",$after="",$echo=true) {
 /**
  * Outputs the travel styles widget with some styling
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	helper
  */
-function lsx_travel_styles($before="",$after="",$echo=true) {
+function to_travel_styles($before="",$after="",$echo=true) {
 	$args = array(
 			'name' => 'Home',
 			'id' => 'sidebar-home',
 			'description' => '',
 			'class' => '',
-			'before_widget' => '<aside id="lsx_taxonomy_widget-6" class="widget lsx-widget">',
+			'before_widget' => '<aside id="to_taxonomy_widget-6" class="widget lsx-widget">',
 			'after_widget' => '</aside>',
 			'before_title' => '<h3 class="widget-title">',
 			'after_title' => '</h3>',
-			'widget_id' => 'lsx_taxonomy_widget-6',
+			'widget_id' => 'to_taxonomy_widget-6',
 			'widget_name' => 'LSX Taxonomies',
 	);
 	$instance = array(
@@ -2156,7 +2156,7 @@ function lsx_travel_styles($before="",$after="",$echo=true) {
 			'interval' => '7000',
 			'indicators' => '1'
 	);
-	$travel_styles = new LSX_Taxonomy_Widget();
+	$travel_styles = new TO_Taxonomy_Widget();
 	ob_start();
 	$travel_styles->widget($args, $instance);
 	$return = ob_get_clean();
@@ -2171,7 +2171,7 @@ function lsx_travel_styles($before="",$after="",$echo=true) {
 /**
  * Remove Default Gallery Styling
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	gallery
  */

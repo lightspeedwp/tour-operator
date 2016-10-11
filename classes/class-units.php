@@ -188,7 +188,7 @@ class Lsx_Unit_Query {
 	public function item_thumbnail($before="",$after="",$echo=false) {
 		if($this->have_query && false !== $this->query_item) {
 			$thumbnail_src = false;
-			$thumbnail_src = apply_filters('lsx_accommodation_room_thumbnail',$thumbnail_src);
+			$thumbnail_src = apply_filters('to_accommodation_room_thumbnail',$thumbnail_src);
 			if(false !== $this->query_item['gallery']){
 				$images = array_values($this->query_item['gallery']);
 				$thumbnail = wp_get_attachment_image_src($images[0],'lsx-thumbnail-wide');
@@ -197,10 +197,10 @@ class Lsx_Unit_Query {
 				}
 			}
 			if(false === $thumbnail_src || '' === $thumbnail_src){
-				$thumbnail_src = LSX_Placeholders::placeholder_url(null,'accommodation');
+				$thumbnail_src = TO_Placeholders::placeholder_url(null,'accommodation');
 			}			
 			if(false !== $thumbnail_src){
-				$return = $before.apply_filters( 'lsx_lazyload_filter_images', '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="'.$thumbnail_src.'" />' ).$after;
+				$return = $before.apply_filters( 'to_lazyload_filter_images', '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="'.$thumbnail_src.'" />' ).$after;
 				if($echo){
 					echo wp_kses_post( $return );
 				}else{
@@ -213,11 +213,11 @@ class Lsx_Unit_Query {
 /**
  * Checks if the current accommodation has rooms
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function lsx_accommodation_has_rooms() {
+function to_accommodation_has_rooms() {
 	global $rooms;
 	$have_rooms = false;
 	if(null === $rooms){
@@ -232,13 +232,13 @@ function lsx_accommodation_has_rooms() {
 /**
  * Runs the current room loop, used in a "while" statement
  *
- * e.g  while(lsx_accommodation_room_loop()) {lsx_accommodation_room_loop_item();}
+ * e.g  while(to_accommodation_room_loop()) {to_accommodation_room_loop_item();}
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	room
  */
-function lsx_accommodation_room_loop() {
+function to_accommodation_room_loop() {
 	global $rooms;
 	if(is_object($rooms)){
 		return $rooms->while_query();
@@ -250,13 +250,13 @@ function lsx_accommodation_room_loop() {
 /**
  * Sets up the current room
  *
- * e.g  while(lsx_accommodation_room_loop()) {lsx_accommodation_room_loop_item();}
+ * e.g  while(to_accommodation_room_loop()) {to_accommodation_room_loop_item();}
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	room
  */
-function lsx_accommodation_room_loop_item($type=false) {
+function to_accommodation_room_loop_item($type=false) {
 	global $rooms;
 	if(is_object($rooms)){
 		return $rooms->current_queried_item($type);
@@ -272,11 +272,11 @@ function lsx_accommodation_room_loop_item($type=false) {
  * @param		$after	| string
  * @param		$echo	| boolean
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	room
  */
-function lsx_accommodation_room_title($before="",$after="",$echo=true) {
+function to_accommodation_room_title($before="",$after="",$echo=true) {
 	global $rooms;
 	if(is_object($rooms)){
 		$rooms->item_title($before,$after,$echo);	
@@ -289,11 +289,11 @@ function lsx_accommodation_room_title($before="",$after="",$echo=true) {
  * @param		$after	| string
  * @param		$echo	| boolean
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	room
  */
-function lsx_accommodation_room_description($before="",$after="",$echo=true) {
+function to_accommodation_room_description($before="",$after="",$echo=true) {
 	global $rooms;
 	if(is_object($rooms)){
 		$rooms->item_description($before,$after,$echo);
@@ -303,11 +303,11 @@ function lsx_accommodation_room_description($before="",$after="",$echo=true) {
 /**
  * Checks if the current room item has a thumbnail.
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	room
  */
-function lsx_accommodation_room_has_thumbnail() {
+function to_accommodation_room_has_thumbnail() {
 	global $rooms;
 	if($rooms && $rooms->have_query) {
 		return true;
@@ -316,11 +316,11 @@ function lsx_accommodation_room_has_thumbnail() {
 /**
  * Outputs The current Room thumbnail
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	room
  */
-function lsx_accommodation_room_thumbnail($before="",$after="",$echo=true) {
+function to_accommodation_room_thumbnail($before="",$after="",$echo=true) {
 	global $rooms;
 	if(is_object($rooms)){
 		$rooms->item_thumbnail($before,$after,$echo);
@@ -330,11 +330,11 @@ function lsx_accommodation_room_thumbnail($before="",$after="",$echo=true) {
 /**
  * Checks if the current type has units.
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	room
  */
-function lsx_accommodation_check_type($type=false) {
+function to_accommodation_check_type($type=false) {
 	global $rooms;
 	return $rooms->check_type($type);
 }
@@ -342,11 +342,11 @@ function lsx_accommodation_check_type($type=false) {
 /**
  * Resets the loop
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	room
  */
-function lsx_accommodation_reset_units_loop() {
+function to_accommodation_reset_units_loop() {
 	global $rooms;
 	return $rooms->reset_loop();
 }
@@ -354,11 +354,11 @@ function lsx_accommodation_reset_units_loop() {
 /**
  * Outputs the navigation links
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	room
  */
-function lsx_accommodation_units_nav_links($before="",$after="",$echo=true) {
+function to_accommodation_units_nav_links($before="",$after="",$echo=true) {
 	global $rooms;
 	$unit_types = array(
 		'chalet' => 'Chalet',
@@ -370,8 +370,8 @@ function lsx_accommodation_units_nav_links($before="",$after="",$echo=true) {
 	$return = false;
 
 	foreach($unit_types as $type_key => $type_label){
-		if(lsx_accommodation_check_type($type_key)){
-			$return .= str_replace('{units}',$type_key.'s',$before).__(lsx_get_post_type_section_title('accommodation', $type_key.'s', $type_label.'s'),'lsx-tour-operators').str_replace('{units}',$type_key.'s',$after);
+		if(to_accommodation_check_type($type_key)){
+			$return .= str_replace('{units}',$type_key.'s',$before).__(to_get_post_type_section_title('accommodation', $type_key.'s', $type_label.'s'),'tour-operator').str_replace('{units}',$type_key.'s',$after);
 		}
 	}	
 	if(true === $echo){
@@ -384,14 +384,14 @@ function lsx_accommodation_units_nav_links($before="",$after="",$echo=true) {
 /**
  * Outputs various units attached to the accommodation
  *
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	unit
  */
-function lsx_accommodation_units($before="",$after=""){
+function to_accommodation_units($before="",$after=""){
 	global $rooms;
 
-	if(lsx_accommodation_has_rooms()) { 
+	if(to_accommodation_has_rooms()) { 
 
 		$unit_types = array(
 			'chalet' => 'Chalet',
@@ -401,34 +401,34 @@ function lsx_accommodation_units($before="",$after=""){
 			'villa' => 'Villa'
 		);
 		foreach($unit_types as $type_key => $type_label){
-			if(lsx_accommodation_check_type($type_key)){
+			if(to_accommodation_check_type($type_key)){
 			?>
 				<section id="<?php echo esc_attr( $type_key ); ?>s">
-					<h2 class="section-title"><?php esc_html_e(lsx_get_post_type_section_title('accommodation', $type_key.'s', $type_label.'s'),'lsx-tour-operators');?></h2>
+					<h2 class="section-title"><?php esc_html_e(to_get_post_type_section_title('accommodation', $type_key.'s', $type_label.'s'),'tour-operator');?></h2>
 					<div class="<?php echo esc_attr( $type_key ); ?>s-content rooms-content row">		
-					<?php while(lsx_accommodation_room_loop()){ ?>
+					<?php while(to_accommodation_room_loop()){ ?>
 
-						<?php if(!lsx_accommodation_room_loop_item($type_key)) { continue; } ?>
+						<?php if(!to_accommodation_room_loop_item($type_key)) { continue; } ?>
 							
 						<div class="panel col-sm-6">
 							<article class="unit type-unit">
 								<div class="col-sm-4">
-									<?php if(lsx_accommodation_room_has_thumbnail()) { ?>
+									<?php if(to_accommodation_room_has_thumbnail()) { ?>
 										<div class="thumbnail">
-											<?php lsx_accommodation_room_thumbnail(); ?>
+											<?php to_accommodation_room_thumbnail(); ?>
 										</div>							
 									<?php } ?>	
 								</div>
 								<div class="col-sm-8">					
 									<div class="unit-info">
-										<?php lsx_accommodation_room_title('<h3>','</h3>'); ?>
-										<?php lsx_accommodation_room_description('<div class="entry-content">','</div>'); ?>
+										<?php to_accommodation_room_title('<h3>','</h3>'); ?>
+										<?php to_accommodation_room_description('<div class="entry-content">','</div>'); ?>
 									</div>
 								</div>
 							</article>
 						</div>						
 							
-					<?php } lsx_accommodation_reset_units_loop(); ?>
+					<?php } to_accommodation_reset_units_loop(); ?>
 					</div>
 				</section>
 		<?php }

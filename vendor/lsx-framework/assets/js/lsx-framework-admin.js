@@ -1,4 +1,4 @@
-var LSX_Settings_Media_Uploader = {
+var TO_Settings_Media_Uploader = {
 	initThis: function(){
 		console.log('test');
 		jQuery( '.lsx-thumbnail-image-add' ).on( 'click', function() {
@@ -39,5 +39,5 @@ var LSX_Settings_Media_Uploader = {
 }
 
 jQuery(document).ready( function() {
-	LSX_Settings_Media_Uploader.initThis(); 
+	TO_Settings_Media_Uploader.initThis(); 
 });

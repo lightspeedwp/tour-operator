@@ -1,4 +1,4 @@
-var LSX_Read_More = {
+var TO_Read_More = {
 	initThis: function(){
 		jQuery('.entry-content .more-link, .archive-description .more-link').each(function() {
 			if ('Read More' == jQuery(this).html()) {
@@ -24,7 +24,7 @@ var LSX_Read_More = {
 	}
 }
 
-var LSX_Scrollable = {
+var TO_Scrollable = {
 	initThis: function(){
 		jQuery('.scroll-easing a').on('click',function(e) {
 			e.preventDefault();
@@ -55,6 +55,6 @@ var LSX_Scrollable = {
 }
 
 jQuery(document).ready( function() {
-	LSX_Read_More.initThis(); 
-	LSX_Scrollable.initThis();
+	TO_Read_More.initThis(); 
+	TO_Scrollable.initThis();
 });

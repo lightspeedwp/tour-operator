@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) return; // Exit if accessed directly
 /**
  * Add new selectors in "button" group of colours
  */
-function lsx_tour_operators_customizer_colour_selectors_button( $css, $colors ) {
+function to_customizer_colour_selectors_button( $css, $colors ) {
 	$css .= <<<CSS
 		/*
 		 *
@@ -46,12 +46,12 @@ CSS;
 
 	return $css;
 }
-add_filter( 'lsx_customizer_colour_selectors_button', 'lsx_tour_operators_customizer_colour_selectors_button', 10, 2 );
+add_filter( 'to_customizer_colour_selectors_button', 'to_customizer_colour_selectors_button', 10, 2 );
 
 /**
  * Add new selectors in "header" group of colours
  */
-function lsx_tour_operators_customizer_colour_selectors_header( $css, $colors ) {
+function to_customizer_colour_selectors_header( $css, $colors ) {
 	$css .= <<<CSS
 		/*
 		 *
@@ -71,12 +71,12 @@ CSS;
 
 	return $css;
 }
-add_filter( 'lsx_customizer_colour_selectors_header', 'lsx_tour_operators_customizer_colour_selectors_header', 10, 2 );
+add_filter( 'to_customizer_colour_selectors_header', 'to_customizer_colour_selectors_header', 10, 2 );
 
 /**
  * Add new selectors in "main meun" group of colours
  */
-function lsx_tour_operators_customizer_colour_selectors_main_menu( $css, $colors ) {
+function to_customizer_colour_selectors_main_menu( $css, $colors ) {
 	$css .= <<<CSS
 		/*
 		 *
@@ -104,12 +104,12 @@ CSS;
 
 	return $css;
 }
-add_filter( 'lsx_customizer_colour_selectors_main_menu', 'lsx_tour_operators_customizer_colour_selectors_main_menu', 10, 2 );
+add_filter( 'to_customizer_colour_selectors_main_menu', 'to_customizer_colour_selectors_main_menu', 10, 2 );
 
 /**
  * Add new selectors in "body" group of colours
  */
-function lsx_tour_operators_customizer_colour_selectors_body( $css, $colors ) {
+function to_customizer_colour_selectors_body( $css, $colors ) {
 	$css .= <<<CSS
 		/*
 		 *
@@ -341,4 +341,4 @@ CSS;
 
 	return $css;
 }
-add_filter( 'lsx_customizer_colour_selectors_body', 'lsx_tour_operators_customizer_colour_selectors_body', 10, 2 );
+add_filter( 'to_customizer_colour_selectors_body', 'to_customizer_colour_selectors_body', 10, 2 );

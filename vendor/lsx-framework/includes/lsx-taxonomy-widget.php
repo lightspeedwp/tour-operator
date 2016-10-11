@@ -1,6 +1,6 @@
 <?php
 /**
- * @package   LSX_Taxonomy_Widget
+ * @package   TO_Taxonomy_Widget
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -8,7 +8,7 @@
  *
  **/
 
-class LSX_Taxonomy_Widget extends WP_Widget {	
+class TO_Taxonomy_Widget extends WP_Widget {	
 	
 	/**
 	 * Sets up the widgets name etc
@@ -18,7 +18,7 @@ class LSX_Taxonomy_Widget extends WP_Widget {
 			'classname' => 'lsx-widget',
 			'description' => 'LSX Taxonomy',
 		);
-		parent::__construct( 'LSX_Taxonomy_Widget', 'LSX Taxonomies', $widget_ops );
+		parent::__construct( 'TO_Taxonomy_Widget', 'LSX Taxonomies', $widget_ops );
 	}
  
     /** @see WP_Widget::widget -- do not rename this */
@@ -161,7 +161,7 @@ class LSX_Taxonomy_Widget extends WP_Widget {
         
         if ( false != $title ) {
         	$title = $before_title . $link_open . $title . $link_close . $after_title;
-        	echo apply_filters('lsx_taxonomy_widget_title', $title);
+        	echo apply_filters('to_taxonomy_widget_title', $title);
         }  
         if ( false != $tagline ) {
         	echo '<p class="tagline">'.$tagline.'</p>';
@@ -297,7 +297,7 @@ class LSX_Taxonomy_Widget extends WP_Widget {
 			<select name="<?php echo $this->get_field_name('taxonomy'); ?>" id="<?php echo $this->get_field_id('taxonomy'); ?>"	class="widefat layout">
 	            <?php
 	            $options = array();	            
-	            $options = apply_filters('lsx_taxonomy_widget_taxonomies',$options);
+	            $options = apply_filters('to_taxonomy_widget_taxonomies',$options);
 	            if(empty($options)){
 	            	$options[] = 'none';
 	            }
@@ -494,7 +494,7 @@ class LSX_Taxonomy_Widget extends WP_Widget {
 			
 			foreach ( $widget_query as $term ) {
 				$this->loop_start($columns,$carousel,$taxonomy,count($widget_query),$count,$interval);
-				echo '<div '.lsx_widget_class(true).'>';
+				echo '<div '.to_widget_class(true).'>';
 				$this->content_part('content','widget-'.$taxonomy);
 				echo '</div>';
 				$this->loop_end($columns,$carousel,$taxonomy,count($widget_query),$count);
@@ -606,11 +606,11 @@ class LSX_Taxonomy_Widget extends WP_Widget {
 			if ( $pages > 1 ) {
 				$output .= '<a class="left carousel-control" href="#slider-'.$this->carousel_id.'" role="button" data-slide="prev">';
 				$output .= '<span class="fa fa-chevron-left" aria-hidden="true"></span>';
-				$output .= '<span class="sr-only">'.__('Previous','lsx-tour-operators').'</span>';
+				$output .= '<span class="sr-only">'.__('Previous','tour-operator').'</span>';
 				$output .= '</a>';
 				$output .= '<a class="right carousel-control" href="#slider-'.$this->carousel_id.'" role="button" data-slide="next">';
 				$output .= '<span class="fa fa-chevron-right" aria-hidden="true"></span>';
-				$output .= '<span class="sr-only">'.__('Next','lsx-tour-operators').'</span>';
+				$output .= '<span class="sr-only">'.__('Next','tour-operator').'</span>';
 				$output .= '</a>';
 			}
 
@@ -646,7 +646,7 @@ class LSX_Taxonomy_Widget extends WP_Widget {
 			$template = "{$slug}.php";
 		}
 		$original_name = $template;
-		$path = apply_filters('lsx_widget_path','',$taxonomy);
+		$path = apply_filters('to_widget_path','',$taxonomy);
 
 		if ( '' == locate_template( array( $template ) ) && file_exists( $path.'templates/'.$template) ) {
 			$template = $path.'templates/'.$template;

@@ -11,7 +11,7 @@ gulp.task('default', function() {
 	console.log('gulp scporder-js		to compile the scporder.js to scporder.min.js');
 	console.log('gulp compile-js		to compile both of the above.');
 	console.log('gulp watch				to continue watching all files for changes, and build when changed');
-	console.log('gulp wordpress-lang	to compile the lsx-tour-operators.pot, en_EN.po and en_EN.mo');
+	console.log('gulp wordpress-lang	to compile the tour-operator.pot, en_EN.po and en_EN.mo');
 	console.log('gulp reload-node-flag-icon-css		copy the scss and svg files for the flag-icon-css');
 });
 
@@ -74,10 +74,10 @@ gulp.task('wordpress-pot', function () {
 	return gulp.src('**/*.php')
 		.pipe(sort())
 		.pipe(wppot({
-			domain: 'lsx-tour-operators',
-			destFile: 'lsx-tour-operators.pot',
-			package: 'lsx-tour-operators',
-			bugReport: 'https://github.com/lightspeeddevelopment/lsx-tour-operators/issues',
+			domain: 'tour-operator',
+			destFile: 'tour-operator.pot',
+			package: 'tour-operator',
+			bugReport: 'https://github.com/lightspeeddevelopment/tour-operator/issues',
 			team: 'LightSpeed <webmaster@lsdev.biz>'
 		}))
 		.pipe(gulp.dest('languages'));
@@ -87,10 +87,10 @@ gulp.task('wordpress-po', function () {
 	return gulp.src('**/*.php')
 		.pipe(sort())
 		.pipe(wppot({
-			domain: 'lsx-tour-operators',
+			domain: 'tour-operator',
 			destFile: 'en_EN.po',
-			package: 'lsx-tour-operators',
-			bugReport: 'https://github.com/lightspeeddevelopment/lsx-tour-operators/issues',
+			package: 'tour-operator',
+			bugReport: 'https://github.com/lightspeeddevelopment/tour-operator/issues',
 			team: 'LightSpeed <webmaster@lsdev.biz>'
 		}))
 		.pipe(gulp.dest('languages'));

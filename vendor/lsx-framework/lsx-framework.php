@@ -19,7 +19,7 @@
  * Domain Path: /languages
  */
 
-class LSX_Framework {
+class TO_Framework {
 	
 	/**
 	 * Holds class instance
@@ -93,7 +93,7 @@ class LSX_Framework {
 	
 	
 	/**
-	 * Hold the LSX_Maps Instance
+	 * Hold the TO_Maps Instance
 	 *
 	 * @since 1.0.0
 	 *
@@ -106,13 +106,13 @@ class LSX_Framework {
 	 */
 	public function __construct($plugin_path=false,$all_post_types=false,$post_types=false,$taxonomies=false) {
 		$this->plugin_path = $plugin_path;
-		$this->post_types = apply_filters('lsx_framework_post_type_slugs',$post_types);
-		$this->all_post_types = apply_filters('lsx_framework_post_type_slugs',array_keys($all_post_types));
-		$this->taxonomies = apply_filters('lsx_framework_taxonomies',$taxonomies);
+		$this->post_types = apply_filters('to_framework_post_type_slugs',$post_types);
+		$this->all_post_types = apply_filters('to_framework_post_type_slugs',array_keys($all_post_types));
+		$this->taxonomies = apply_filters('to_framework_taxonomies',$taxonomies);
 		$this->framework_path = plugin_dir_path( __FILE__ );
 		$this->framework_url = plugin_dir_url( __FILE__ );
 		
-		$options = get_option('_lsx_lsx-settings',false);
+		$options = get_option('_to_lsx-settings',false);
 		if(false !== $options){
 			$this->options = $options;
 		}
@@ -132,16 +132,16 @@ class LSX_Framework {
 		include_once('classes/class-fields.php');
 
 		//Placeholders for all of the post types.
-		if(!class_exists('LSX_Placeholders')){
+		if(!class_exists('TO_Placeholders')){
 			include_once('classes/class-placeholders.php');
-			$this->placeholders = new LSX_Placeholders($this->post_types);
+			$this->placeholders = new TO_Placeholders($this->post_types);
 		}
 		
 
-		if(!class_exists('LSX_Taxonomy_Admin') && !class_exists('LSX_Banners')){
+		if(!class_exists('TO_Taxonomy_Admin') && !class_exists('TO_Banners')){
 			include_once('classes/class-taxonomy-administration.php');
 		}
-		$this->taxonomy_admin = new LSX_Taxonomy_Admin($this->taxonomies);	
+		$this->taxonomy_admin = new TO_Taxonomy_Admin($this->taxonomies);	
 		
 		
 		include_once('includes/lsx-post-type-widget.php');
@@ -150,7 +150,7 @@ class LSX_Framework {
 		add_action( 'widgets_init', array( $this, 'register_widget'));
 		
 		include_once('classes/class-google-maps.php');
-		$this->maps = new LSX_Maps($this->framework_url,array('accommodation','activity','destination'));
+		$this->maps = new TO_Maps($this->framework_url,array('accommodation','activity','destination'));
 		
 		include_once('includes/template-tags.php');
 
@@ -158,32 +158,32 @@ class LSX_Framework {
 		
 		//These need to run after the plugins have all been read.
 		include_once('classes/class-lsx-banner-integration.php');
-		$this->lsx_banners = new LSX_Banner_Integration($this->post_types,$this->taxonomies);
+		$this->to_banners = new TO_Banner_Integration($this->post_types,$this->taxonomies);
 	}
 
 	/**
 	 * Allow plugins to add in their own vars
 	 */
 	public function filter_class_vars() {
-		$this->post_types = apply_filters('lsx_framework_post_type_slugs',$this->post_types);
-		$this->all_post_types = apply_filters('lsx_framework_post_type_slugs',$this->all_post_types);
-		$this->taxonomies = apply_filters('lsx_framework_taxonomies',$this->taxonomies);
+		$this->post_types = apply_filters('to_framework_post_type_slugs',$this->post_types);
+		$this->all_post_types = apply_filters('to_framework_post_type_slugs',$this->all_post_types);
+		$this->taxonomies = apply_filters('to_framework_taxonomies',$this->taxonomies);
 
 		if(is_admin()){
-			$this->admin = new LSX_Framework_Admin($this->post_types,$this->framework_path,$this->framework_url);	
+			$this->admin = new TO_Framework_Admin($this->post_types,$this->framework_path,$this->framework_url);	
 		}else{
-			$this->frontend = new LSX_Framework_Frontend($this->all_post_types,$this->framework_path,$this->framework_url);	
+			$this->frontend = new TO_Framework_Frontend($this->all_post_types,$this->framework_path,$this->framework_url);	
 		}
 	}
 
 	
 	/**
-	 * Register the LSX_Widget
+	 * Register the TO_Widget
 	 */
 	public function register_widget() {
-		register_widget( 'LSX_Widget' );
-		register_widget( 'LSX_Taxonomy_Widget' );
-		register_widget( 'LSX_CTA_Widget' );
+		register_widget( 'TO_Widget' );
+		register_widget( 'TO_Taxonomy_Widget' );
+		register_widget( 'TO_CTA_Widget' );
 	}	
 	
 	/**

@@ -1,6 +1,6 @@
 <?php
 /**
- * @package   LSX_Tour_Operators
+ * @package   TO_Tour_Operators
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -8,18 +8,18 @@
  *
  **/
 if(!function_exists('cmb_init')){
-	if ( is_file( LSX_TOUR_OPERATORS_PATH . 'vendor/Custom-Meta-Boxes/custom-meta-boxes.php' ) ) {
-		require_once( LSX_TOUR_OPERATORS_PATH . 'vendor/Custom-Meta-Boxes/custom-meta-boxes.php' );
+	if ( is_file( TO_PATH . 'vendor/Custom-Meta-Boxes/custom-meta-boxes.php' ) ) {
+		require_once( TO_PATH . 'vendor/Custom-Meta-Boxes/custom-meta-boxes.php' );
 	}
 }
 
-require_once( LSX_TOUR_OPERATORS_PATH . 'includes/template-tags.php' );
-require_once( LSX_TOUR_OPERATORS_PATH . 'includes/post-expirator.php' );
-require_once( LSX_TOUR_OPERATORS_PATH . 'includes/post-order.php' );
-require_once( LSX_TOUR_OPERATORS_PATH . 'includes/customizer.php' );
+require_once( TO_PATH . 'includes/template-tags.php' );
+require_once( TO_PATH . 'includes/post-expirator.php' );
+require_once( TO_PATH . 'includes/post-order.php' );
+require_once( TO_PATH . 'includes/customizer.php' );
 
 // Setup the post connections
-class LSX_Tour_Operators {
+class TO_Tour_Operators {
 	
 	/**
 	 * Holds class instance
@@ -40,7 +40,7 @@ class LSX_Tour_Operators {
 	public $options = false;	
 	
 	/**
-	 * Holds the LSX_Framework class
+	 * Holds the TO_Framework class
 	 *
 	 * @since 1.0.0
 	 *
@@ -100,7 +100,7 @@ class LSX_Tour_Operators {
 	 *
 	 * @var      array()
 	 */
-	public $plugin_slug = 'lsx-tour-operators';	
+	public $plugin_slug = 'tour-operator';	
 	
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -112,7 +112,7 @@ class LSX_Tour_Operators {
 	private function __construct() {
 		
 		//Set the options
-		$this->options = get_option('_lsx_lsx-settings',false);	
+		$this->options = get_option('_to_lsx-settings',false);	
 		$this->set_vars();
 
 		//Add our action to init to set up our vars first.	
@@ -124,24 +124,24 @@ class LSX_Tour_Operators {
 		//Allow extra style attributes to wp_kses_post()
 		add_filter( 'safe_style_css', array( $this, 'safe_style_css' ) );
 		
-		if(!class_exists('LSX_Framework')){
-			require_once( LSX_TOUR_OPERATORS_PATH . 'vendor/lsx-framework/lsx-framework.php' );
+		if(!class_exists('TO_Framework')){
+			require_once( TO_PATH . 'vendor/lsx-framework/lsx-framework.php' );
 		}
-		$this->framework = new LSX_Framework(LSX_TOUR_OPERATORS_PATH,$this->post_types,$this->active_post_types,array_keys($this->taxonomies));
+		$this->framework = new TO_Framework(TO_PATH,$this->post_types,$this->active_post_types,array_keys($this->taxonomies));
 		
-		require_once( LSX_TOUR_OPERATORS_PATH . 'classes/class-lsx-to-admin.php' );
-		if(class_exists('LSX_TO_Admin')){
-			$this->admin = new LSX_TO_Admin();
+		require_once( TO_PATH . 'classes/class-lsx-to-admin.php' );
+		if(class_exists('TO_Admin')){
+			$this->admin = new TO_Admin();
 		}
-		require_once( LSX_TOUR_OPERATORS_PATH . 'classes/class-lsx-to-frontend.php' );
-		if(class_exists('LSX_TO_Frontend')){
-			$this->frontend = new LSX_TO_Frontend();
+		require_once( TO_PATH . 'classes/class-lsx-to-frontend.php' );
+		if(class_exists('TO_Frontend')){
+			$this->frontend = new TO_Frontend();
 		}
 
 		//Integrations
-		$this->lsx_search_integration();
+		$this->to_search_integration();
 		
-		add_action( 'lsx_tour_operator_content', array( $this->frontend->redirects, 'content_part' ), 10 , 2 );
+		add_action( 'to_content', array( $this->frontend->redirects, 'content_part' ), 10 , 2 );
 	}
 	
 	/**
@@ -165,7 +165,7 @@ class LSX_Tour_Operators {
 	 * @since 0.0.1
 	 */
 	public function load_plugin_textdomain() {
-		load_plugin_textdomain( 'lsx-tour-operators', FALSE, basename( LSX_TOUR_OPERATORS_PATH ) . '/languages');
+		load_plugin_textdomain( 'tour-operator', FALSE, basename( TO_PATH ) . '/languages');
 	}
 
 	/**
@@ -213,9 +213,9 @@ class LSX_Tour_Operators {
 	/**
 	 * Include the post type for the search integration
 	 */
-	public function lsx_search_integration(){
-		add_filter( 'lsx_search_post_types', array( $this, 'post_types_filter') );
-		add_filter( 'lsx_search_taxonomies', array( $this, 'taxonomies_filter') );	
+	public function to_search_integration(){
+		add_filter( 'to_search_post_types', array( $this, 'post_types_filter') );
+		add_filter( 'to_search_taxonomies', array( $this, 'taxonomies_filter') );	
 	}	
 
 	/**
@@ -394,4 +394,4 @@ class LSX_Tour_Operators {
 	}
 
 }
-$lsx_tour_operators = LSX_Tour_Operators::get_instance();
+$to_operators = TO_Tour_Operators::get_instance();

@@ -2,7 +2,7 @@
 /**
  * CMB Field Patterns for LSX
  *
- * @package   LSX_Field_Patterns
+ * @package   TO_Field_Patterns
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -12,10 +12,10 @@
 /**
  * Main plugin class.
  *
- * @package LSX_Field_Patterns
+ * @package TO_Field_Patterns
  * @author  LightSpeed
  */
-class LSX_Field_Pattern {
+class TO_Field_Pattern {
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -32,7 +32,7 @@ class LSX_Field_Pattern {
 	 * Returns the fields needed for a videos, repeatable box.
 	 */
 	public static function price() {
-		return apply_filters('lsx_price_field_pattern',array(
+		return apply_filters('to_price_field_pattern',array(
 			array( 'id' => 'price',  'name' => 'Price', 'type' => 'text' )			
 		));
 	}	
@@ -42,7 +42,7 @@ class LSX_Field_Pattern {
 	 */
 	public static function videos() {
 		return array(
-			array( 'id' => 'video_title',  'name' => __('Videos','lsx-tour-operators'), 'type' => 'title' ),
+			array( 'id' => 'video_title',  'name' => __('Videos','tour-operator'), 'type' => 'title' ),
 			array(
 					'id' => 'videos',
 					'name' => '',

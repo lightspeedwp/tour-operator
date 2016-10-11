@@ -2,7 +2,7 @@
 /**
  * Properties.
  *
- * @package   LSX_Accommodation
+ * @package   TO_Accommodation
  * @author     LightSpeed Team
  * @license   GPL3
  * @link      
@@ -12,10 +12,10 @@
 
 /**
  * Plugin class.
- * @package LSX_Accommodation
+ * @package TO_Accommodation
  * @author   LightSpeed Team
  */
-class LSX_Accommodation {
+class TO_Accommodation {
 
 	/**
 	 * The slug for this plugin
@@ -31,7 +31,7 @@ class LSX_Accommodation {
 	 *
 	 * @since 0.0.1
 	 *
-	 * @var      object|LSX_Accommodation
+	 * @var      object|TO_Accommodation
 	 */
 	protected static $instance = null;
 
@@ -55,7 +55,7 @@ class LSX_Accommodation {
 		$this->is_wetu_active = false;
 		$this->display_connected_tours = false;
 
-		$this->options = get_option('_lsx_lsx-settings',false);
+		$this->options = get_option('_to_lsx-settings',false);
 		if(false !== $this->options && isset($this->options[$this->plugin_slug]) && !empty($this->options[$this->plugin_slug])){
 			$this->options = $this->options[$this->plugin_slug];
 		}
@@ -68,21 +68,21 @@ class LSX_Accommodation {
 		add_action( 'init', array( $this, 'register_taxonomies') );
 		add_filter( 'cmb_meta_boxes', array( $this, 'metaboxes') );	
 
-		add_action( 'lsx_framework_accommodation_tab_general_settings_bottom', array($this,'general_settings'), 10 , 1 );
-		add_action( 'lsx_framework_accommodation_tab_single_settings_bottom', array($this,'single_settings'), 10 , 1 );
+		add_action( 'to_framework_accommodation_tab_general_settings_bottom', array($this,'general_settings'), 10 , 1 );
+		add_action( 'to_framework_accommodation_tab_single_settings_bottom', array($this,'single_settings'), 10 , 1 );
 		
-		add_filter( 'lsx_entry_class', array( $this, 'entry_class') );
+		add_filter( 'to_entry_class', array( $this, 'entry_class') );
 
-		if(!class_exists('LSX_Currency')){
-			add_filter('lsx_custom_field_query',array( $this, 'price_filter'),5,10);
+		if(!class_exists('TO_Currency')){
+			add_filter('to_custom_field_query',array( $this, 'price_filter'),5,10);
 		}
 
-		add_filter('lsx_custom_field_query',array( $this, 'rating'),5,10);	
+		add_filter('to_custom_field_query',array( $this, 'rating'),5,10);	
 		
 		include('class-units.php');
 
-		add_action('lsx_map_meta','lsx_accommodation_meta');
-		add_action('lsx_modal_meta','lsx_accommodation_meta');
+		add_action('to_map_meta','to_accommodation_meta');
+		add_action('to_modal_meta','to_accommodation_meta');
 	}
 
 	/**
@@ -90,7 +90,7 @@ class LSX_Accommodation {
 	 *
 	 * @since 0.0.1
 	 *
-	 * @return    object|LSX_Accommodation    A single instance of this class.
+	 * @return    object|TO_Accommodation    A single instance of this class.
 	 */
 	public static function get_instance() {
 
@@ -113,18 +113,18 @@ class LSX_Accommodation {
 		// define the properties post type
 		$args = array(
 			'labels' 				=> array(
-				'name' 				=> __('Accommodation', 'lsx-tour-operators'),
-				'singular_name' 	=> __('Accommodation', 'lsx-tour-operators'),
-				'add_new' 			=> __('Add New', 'lsx-tour-operators'),
-				'add_new_item' 		=> __('Add New Accommodation', 'lsx-tour-operators'),
-				'edit_item' 		=> __('Edit Accommodation', 'lsx-tour-operators'),
-				'all_items' 		=> __('All Accommodation', 'lsx-tour-operators'),
-				'view_item' 		=> __('View Accommodation', 'lsx-tour-operators'),
-				'search_items' 		=> __('Search Accommodation', 'lsx-tour-operators'),
-				'not_found' 		=> __('No accommodation defined', 'lsx-tour-operators'),
-				'not_found_in_trash'=> __('No accommodation in trash', 'lsx-tour-operators'),
+				'name' 				=> __('Accommodation', 'tour-operator'),
+				'singular_name' 	=> __('Accommodation', 'tour-operator'),
+				'add_new' 			=> __('Add New', 'tour-operator'),
+				'add_new_item' 		=> __('Add New Accommodation', 'tour-operator'),
+				'edit_item' 		=> __('Edit Accommodation', 'tour-operator'),
+				'all_items' 		=> __('All Accommodation', 'tour-operator'),
+				'view_item' 		=> __('View Accommodation', 'tour-operator'),
+				'search_items' 		=> __('Search Accommodation', 'tour-operator'),
+				'not_found' 		=> __('No accommodation defined', 'tour-operator'),
+				'not_found_in_trash'=> __('No accommodation in trash', 'tour-operator'),
 				'parent_item_colon' => '',
-				'menu_name' 		=> __('Accommodation', 'lsx-tour-operators')
+				'menu_name' 		=> __('Accommodation', 'tour-operator')
 			),
 			'public' 				=>	true,
 			'publicly_queryable'	=>	true,
@@ -162,17 +162,17 @@ class LSX_Accommodation {
 	 */
 	public function register_taxonomies() {
 		$labels = array(
-				'name' => _x( 'Facilities', 'lsx-tour-operators' ),
-				'singular_name' => _x( 'Facility', 'lsx-tour-operators' ),
-				'search_items' =>  __( 'Search Facilities' , 'lsx-tour-operators' ),
-				'all_items' => __( 'Facilities' , 'lsx-tour-operators' ),
-				'parent_item' => __( 'Parent' , 'lsx-tour-operators' ),
-				'parent_item_colon' => __( 'Parent:' , 'lsx-tour-operators' ),
-				'edit_item' => __( 'Edit Facility' , 'lsx-tour-operators' ),
-				'update_item' => __( 'Update Facility' , 'lsx-tour-operators' ),
-				'add_new_item' => __( 'Add New Facility' , 'lsx-tour-operators' ),
-				'new_item_name' => __( 'New Facility' , 'lsx-tour-operators' ),
-				'menu_name' => __( 'Facilities' , 'lsx-tour-operators' ),
+				'name' => _x( 'Facilities', 'tour-operator' ),
+				'singular_name' => _x( 'Facility', 'tour-operator' ),
+				'search_items' =>  __( 'Search Facilities' , 'tour-operator' ),
+				'all_items' => __( 'Facilities' , 'tour-operator' ),
+				'parent_item' => __( 'Parent' , 'tour-operator' ),
+				'parent_item_colon' => __( 'Parent:' , 'tour-operator' ),
+				'edit_item' => __( 'Edit Facility' , 'tour-operator' ),
+				'update_item' => __( 'Update Facility' , 'tour-operator' ),
+				'add_new_item' => __( 'Add New Facility' , 'tour-operator' ),
+				'new_item_name' => __( 'New Facility' , 'tour-operator' ),
+				'menu_name' => __( 'Facilities' , 'tour-operator' ),
 		);
 		
 		// Now register the taxonomy
@@ -190,17 +190,17 @@ class LSX_Accommodation {
 		));
 		
 		$labels = array(
-				'name' => _x( 'Accommodation Type', 'lsx-tour-operators' ),
-				'singular_name' => _x( 'Accommodation Type', 'lsx-tour-operators' ),
-				'search_items' =>  __( 'Search Accommodation Types' , 'lsx-tour-operators' ),
-				'all_items' => __( 'Accommodation Types' , 'lsx-tour-operators' ),
-				'parent_item' => __( 'Parent Accommodation Type' , 'lsx-tour-operators' ),
-				'parent_item_colon' => __( 'Parent Accommodation Type:' , 'lsx-tour-operators' ),
-				'edit_item' => __( 'Edit Accommodation Type' , 'lsx-tour-operators' ),
-				'update_item' => __( 'Update Accommodation Type' , 'lsx-tour-operators' ),
-				'add_new_item' => __( 'Add New Accommodation Type' , 'lsx-tour-operators' ),
-				'new_item_name' => __( 'New Accommodation Type' , 'lsx-tour-operators' ),
-				'menu_name' => __( 'Accommodation Types' , 'lsx-tour-operators' ),
+				'name' => _x( 'Accommodation Type', 'tour-operator' ),
+				'singular_name' => _x( 'Accommodation Type', 'tour-operator' ),
+				'search_items' =>  __( 'Search Accommodation Types' , 'tour-operator' ),
+				'all_items' => __( 'Accommodation Types' , 'tour-operator' ),
+				'parent_item' => __( 'Parent Accommodation Type' , 'tour-operator' ),
+				'parent_item_colon' => __( 'Parent Accommodation Type:' , 'tour-operator' ),
+				'edit_item' => __( 'Edit Accommodation Type' , 'tour-operator' ),
+				'update_item' => __( 'Update Accommodation Type' , 'tour-operator' ),
+				'add_new_item' => __( 'Add New Accommodation Type' , 'tour-operator' ),
+				'new_item_name' => __( 'New Accommodation Type' , 'tour-operator' ),
+				'menu_name' => __( 'Accommodation Types' , 'tour-operator' ),
 		);
 		
 		// Now register the taxonomy
@@ -231,22 +231,22 @@ class LSX_Accommodation {
 		
 		// Info Panel
 		$fields[] = array( 'id' => 'featured',  'name' => 'Featured', 'type' => 'checkbox' );
-		if(!class_exists('LSX_Banners')){
+		if(!class_exists('TO_Banners')){
 			$fields[] = array( 'id' => 'tagline',  'name' => 'Tagline', 'type' => 'text' );
 		}
 
-		if(class_exists('LSX_Field_Pattern')){ $fields = array_merge($fields,LSX_Field_Pattern::price()); }
+		if(class_exists('TO_Field_Pattern')){ $fields = array_merge($fields,TO_Field_Pattern::price()); }
 
 		$fields[] = array( 
 				'id' => 'price_type',
-				'name' => __('Price Type','lsx-tour-operators'),
+				'name' => __('Price Type','tour-operator'),
 				'type' => 'select',
 				'options' => array(
 					'none' => 'Select a type',
-					'per_person_per_night' => __('Per Person Per Night','lsx-tour-operators'),
-					'per_person_sharing' => __('Per Person Sharing','lsx-tour-operators'),
-					'per_person_sharing_per_night' => __('Per Person Sharing Per Night','lsx-tour-operators'),
-					'total_percentage' => __('Percentage Off Your Price.','lsx-tour-operators')
+					'per_person_per_night' => __('Per Person Per Night','tour-operator'),
+					'per_person_sharing' => __('Per Person Sharing','tour-operator'),
+					'per_person_sharing_per_night' => __('Per Person Sharing Per Night','tour-operator'),
+					'total_percentage' => __('Percentage Off Your Price.','tour-operator')
 				)
 			);
 
@@ -367,7 +367,7 @@ class LSX_Accommodation {
 		$fields = array_merge($fields,$fast_facts_fields);
 		
 		//Rooms
-		$fields[] = array( 'id' => 'units_title',  'name' => __('Units','lsx-tour-operators'), 'type' => 'title' );
+		$fields[] = array( 'id' => 'units_title',  'name' => __('Units','tour-operator'), 'type' => 'title' );
 		$fields[] = array(
 				'id' => 'units',
 				'name' => '',
@@ -396,7 +396,7 @@ class LSX_Accommodation {
 		);
 		
 		//videos
-		if(class_exists('LSX_Field_Pattern')){ $fields = array_merge($fields,LSX_Field_Pattern::videos()); }
+		if(class_exists('TO_Field_Pattern')){ $fields = array_merge($fields,TO_Field_Pattern::videos()); }
 		
 		//Connections
 		$fields[] = array( 'id' => 'activity_title',  'name' => 'Activities', 'type' => 'title', 'cols' => 12 );
@@ -416,7 +416,7 @@ class LSX_Accommodation {
 	
 		//Register the actual metabox
 		$meta_boxes[] = array(
-				'title' => __('LSX Tour Operators','lsx-tour-operators'),
+				'title' => __('LSX Tour Operators','tour-operator'),
 				'pages' => 'accommodation',
 				'fields' => $fields
 		);		
@@ -432,7 +432,7 @@ class LSX_Accommodation {
 		?>
 			<tr class="form-field">
 				<th scope="row">
-					<label for="contact_details_disabled"><?php esc_html_e('Disable "Contact Details" panel','lsx-tour-operators'); ?></label>
+					<label for="contact_details_disabled"><?php esc_html_e('Disable "Contact Details" panel','tour-operator'); ?></label>
 				</th>
 				<td>
 					<input type="checkbox" {{#if contact_details_disabled}} checked="checked" {{/if}} name="contact_details_disabled" />
@@ -448,11 +448,11 @@ class LSX_Accommodation {
 		?>
 			<tr class="form-field">
 				<th scope="row">
-					<label for="display_connected_tours"><?php esc_html_e('Display Connected Tours','lsx-tour-operators'); ?></label>
+					<label for="display_connected_tours"><?php esc_html_e('Display Connected Tours','tour-operator'); ?></label>
 				</th>
 				<td>
 					<input type="checkbox" {{#if display_connected_tours}} checked="checked" {{/if}} name="display_connected_tours" />
-					<small><?php esc_html_e('This will replace the related accommodation with the connected tours instead.','lsx-tour-operators'); ?>
+					<small><?php esc_html_e('This will replace the related accommodation with the connected tours instead.','tour-operator'); ?>
 				</td>
 			</tr>	
 		<?php
@@ -483,11 +483,11 @@ class LSX_Accommodation {
 		if(get_post_type() === 'accommodation' && 'price' === $meta_key){
 			$price_type = get_post_meta(get_the_ID(),'price_type',true);
 			$value = number_format($value);
-			global $lsx_tour_operators;
+			global $to_operators;
 			$currency = '';
-			if ( is_object( $lsx_tour_operators ) && isset( $lsx_tour_operators->options['general'] ) && is_array( $lsx_tour_operators->options['general'] ) ) {
-				if ( isset( $lsx_tour_operators->options['general']['currency'] ) && ! empty( $lsx_tour_operators->options['general']['currency'] ) ) {
-					$currency = $lsx_tour_operators->options['general']['currency'];
+			if ( is_object( $to_operators ) && isset( $to_operators->options['general'] ) && is_array( $to_operators->options['general'] ) ) {
+				if ( isset( $to_operators->options['general']['currency'] ) && ! empty( $to_operators->options['general']['currency'] ) ) {
+					$currency = $to_operators->options['general']['currency'];
 					$currency = '<span class="currency-icon '. mb_strtolower( $currency ) .'">'. $currency .'</span>';
 				}
 			}
@@ -500,7 +500,7 @@ class LSX_Accommodation {
 				break;
 
 				case 'total_percentage':
-					$value .= '% '.__('Off','lsx-tour-operators');
+					$value .= '% '.__('Off','tour-operator');
 					$before = str_replace('from', '', $before);
 				break;
 
@@ -542,4 +542,4 @@ class LSX_Accommodation {
 		return $html;
 	}	
 }
-$lsx_accommodation = LSX_Accommodation::get_instance();
+$to_accommodation = TO_Accommodation::get_instance();

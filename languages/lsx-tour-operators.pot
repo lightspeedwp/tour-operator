@@ -1,9 +1,9 @@
-# Copyright (C) 2016 lsx-tour-operators
-# This file is distributed under the same license as the lsx-tour-operators package.
+# Copyright (C) 2016 tour-operator
+# This file is distributed under the same license as the tour-operator package.
 msgid ""
 msgstr ""
-"Project-Id-Version: lsx-tour-operators\n"
-"Report-Msgid-Bugs-To: https://github.com/lightspeeddevelopment/lsx-tour-operators/issues\n"
+"Project-Id-Version: tour-operator\n"
+"Report-Msgid-Bugs-To: https://github.com/lightspeeddevelopment/tour-operator/issues\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -52,12 +52,12 @@ msgid "No accommodation in trash"
 msgstr ""
 
 #: classes/class-accommodation.php:165
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Facilities"
 msgstr ""
 
 #: classes/class-accommodation.php:166
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Facility"
 msgstr ""
 
@@ -94,7 +94,7 @@ msgid "New Facility"
 msgstr ""
 
 #: classes/class-accommodation.php:193, classes/class-accommodation.php:194
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Accommodation Type"
 msgstr ""
 
@@ -175,57 +175,57 @@ msgid "Off"
 msgstr ""
 
 #: classes/class-destination.php:105, classes/class-destination.php:117
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Destinations"
 msgstr ""
 
 #: classes/class-destination.php:106
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Destination"
 msgstr ""
 
 #: classes/class-destination.php:107, classes/class-team.php:100, classes/class-tour.php:114
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Add New"
 msgstr ""
 
 #: classes/class-destination.php:108
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Add New Destination"
 msgstr ""
 
 #: classes/class-destination.php:109
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Edit Destination"
 msgstr ""
 
 #: classes/class-destination.php:110
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "New Destination"
 msgstr ""
 
 #: classes/class-destination.php:111
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "All Destinations"
 msgstr ""
 
 #: classes/class-destination.php:112
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "View Destination"
 msgstr ""
 
 #: classes/class-destination.php:113
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Search Destinations"
 msgstr ""
 
 #: classes/class-destination.php:114
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "No destinations found"
 msgstr ""
 
 #: classes/class-destination.php:115
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "No destinations found in Trash"
 msgstr ""
 
@@ -250,15 +250,15 @@ msgid "apply_filtersthe_content"
 msgstr ""
 
 #: classes/class-itinerary.php:303
-msgid "apply_filterslsx_lazyload_filter_images"
+msgid "apply_filtersto_lazyload_filter_images"
 msgstr ""
 
 #: classes/class-itinerary.php:318
-msgid "$before.lsx_connected_list$tour_itinerary->itinerary[destination_to_tour]"
+msgid "$before.to_connected_list$tour_itinerary->itinerary[destination_to_tour]"
 msgstr ""
 
 #: classes/class-itinerary.php:334
-msgid "$before.lsx_connected_list$tour_itinerary->itinerary[accommodation_to_tour]"
+msgid "$before.to_connected_list$tour_itinerary->itinerary[accommodation_to_tour]"
 msgstr ""
 
 #: classes/class-itinerary.php:339, includes/template-tags.php:435, templates/content-accommodation.php:42, templates/content-widget-accommodation.php:29
@@ -274,7 +274,7 @@ msgid "Special Interests"
 msgstr ""
 
 #: classes/class-itinerary.php:357
-msgid "$before.lsx_connected_list$tour_itinerary->itinerary[activity_to_tour]"
+msgid "$before.to_connected_list$tour_itinerary->itinerary[activity_to_tour]"
 msgstr ""
 
 #: classes/class-itinerary.php:380
@@ -314,12 +314,12 @@ msgid "Any connected item showing on a single will display a preview in a modal.
 msgstr ""
 
 #: classes/class-lsx-to-admin.php:263
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Travel Styles"
 msgstr ""
 
 #: classes/class-lsx-to-admin.php:264
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Travel Style"
 msgstr ""
 
@@ -356,12 +356,12 @@ msgid "New Travel Style"
 msgstr ""
 
 #: classes/class-lsx-to-admin.php:289
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Brands"
 msgstr ""
 
 #: classes/class-lsx-to-admin.php:290
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Brand"
 msgstr ""
 
@@ -398,7 +398,7 @@ msgid "New Brand"
 msgstr ""
 
 #: classes/class-lsx-to-admin.php:316, classes/class-lsx-to-admin.php:317
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Location"
 msgstr ""
 
@@ -439,137 +439,137 @@ msgid "Close"
 msgstr ""
 
 #: classes/class-team.php:98, classes/class-team.php:110
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Team"
 msgstr ""
 
 #: classes/class-team.php:99
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Team Member"
 msgstr ""
 
 #: classes/class-team.php:101
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Add New Team Member"
 msgstr ""
 
 #: classes/class-team.php:102
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Edit"
 msgstr ""
 
 #: classes/class-team.php:103
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "New"
 msgstr ""
 
 #: classes/class-team.php:104
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Team Members"
 msgstr ""
 
 #: classes/class-team.php:105
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "View"
 msgstr ""
 
 #: classes/class-team.php:106
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Search the Team"
 msgstr ""
 
 #: classes/class-team.php:107
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "No team members found"
 msgstr ""
 
 #: classes/class-team.php:108
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "No team members found in Trash"
 msgstr ""
 
 #: classes/class-team.php:111
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Profile Picture"
 msgstr ""
 
 #: classes/class-team.php:112
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Set Profile Picture"
 msgstr ""
 
 #: classes/class-team.php:113
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Remove profile picture"
 msgstr ""
 
 #: classes/class-team.php:114
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Use as profile picture"
 msgstr ""
 
 #: classes/class-tour.php:112, classes/class-tour.php:124
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Tours"
 msgstr ""
 
 #: classes/class-tour.php:113
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Tour"
 msgstr ""
 
 #: classes/class-tour.php:115
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Add New Tour"
 msgstr ""
 
 #: classes/class-tour.php:116
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Edit Tour"
 msgstr ""
 
 #: classes/class-tour.php:117
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "New Tour"
 msgstr ""
 
 #: classes/class-tour.php:118
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "All Tours"
 msgstr ""
 
 #: classes/class-tour.php:119
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "View Tour"
 msgstr ""
 
 #: classes/class-tour.php:120
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Search Tours"
 msgstr ""
 
 #: classes/class-tour.php:121
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "No tours found"
 msgstr ""
 
 #: classes/class-tour.php:122
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "No tours found in Trash"
 msgstr ""
 
 #: classes/class-tour.php:168
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Featured"
 msgstr ""
 
 #: classes/class-tour.php:172
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Duration"
 msgstr ""
 
 #: classes/class-tour.php:177
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Best months to visit"
 msgstr ""
 
@@ -582,7 +582,7 @@ msgid "Single Supplement"
 msgstr ""
 
 #: classes/class-tour.php:234
-msgctxt "lsx-tour-operators"
+msgctxt "tour-operator"
 msgid "Itinerary KML File"
 msgstr ""
 
@@ -591,7 +591,7 @@ msgid "Destinations"
 msgstr ""
 
 #: classes/class-units.php:374, classes/class-units.php:407, includes/template-tags.php:858, includes/template-tags.php:1609, templates/archive-accommodation.php:48, templates/single-accommodation.php:94
-msgid "lsx_get_post_type_section_titleaccommodation"
+msgid "to_get_post_type_section_titleaccommodation"
 msgstr ""
 
 #: includes/post-expirator.php:3
@@ -691,15 +691,15 @@ msgid "Next"
 msgstr ""
 
 #: includes/template-tags.php:888
-msgid "lsx_get_post_type_section_titledestination"
+msgid "to_get_post_type_section_titledestination"
 msgstr ""
 
 #: includes/template-tags.php:920, includes/template-tags.php:1630, templates/single-tour.php:146
-msgid "lsx_get_post_type_section_titletour"
+msgid "to_get_post_type_section_titletour"
 msgstr ""
 
 #: includes/template-tags.php:942
-msgid "lsx_get_post_type_section_titleactivity"
+msgid "to_get_post_type_section_titleactivity"
 msgstr ""
 
 #: templates/archive-destination.php:111

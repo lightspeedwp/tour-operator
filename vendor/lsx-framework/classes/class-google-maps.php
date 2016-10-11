@@ -14,7 +14,7 @@
  * @subpackage	classes
  * @category	maps
  */
-class LSX_Maps {
+class TO_Maps {
 	/**
 	 * Holds class the framework url includeing the class.
 	 *
@@ -43,7 +43,7 @@ class LSX_Maps {
 	public function __construct($framework_url=false,$post_types=array()) {	
 		$this->framework_url = $framework_url;
 
-		$this->options = get_option('_lsx_lsx-settings',false);
+		$this->options = get_option('_to_lsx-settings',false);
 		if(!empty($post_types)){
 			$this->post_types = $post_types;
 		}else{
@@ -84,9 +84,9 @@ class LSX_Maps {
 		
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
-		add_action('lsx_framework_dashboard_tab_content_api',array($this,'api_key_settings'),5);
+		add_action('to_framework_dashboard_tab_content_api',array($this,'api_key_settings'),5);
 
-		add_action('lsx_framework_dashboard_tab_content',array($this,'map_marker'),12);
+		add_action('to_framework_dashboard_tab_content',array($this,'map_marker'),12);
 		if(!empty($post_types)){
 			foreach($this->post_types as $post_type){
 
@@ -96,7 +96,7 @@ class LSX_Maps {
 					$this->markers->post_types[$post_type] = $this->framework_url.'assets/img/'.$post_type.'-marker.png';
 				}	
 
-				add_action('lsx_framework_'.$post_type.'_tab_content',array($this,'map_marker'),10,1);
+				add_action('to_framework_'.$post_type.'_tab_content',array($this,'map_marker'),10,1);
 			}
 		}
 
@@ -114,8 +114,8 @@ class LSX_Maps {
 	public function enqueue_scripts() {
 		wp_enqueue_script('googlemaps_api', 'https://maps.googleapis.com/maps/api/js?key='.$this->api_key.'&libraries=places', array('jquery'), null, true);
 		wp_enqueue_script('googlemaps_api_markercluster', $this->framework_url . '/assets/js/google-markerCluster.js', array('googlemaps_api'), null, true);
-		wp_enqueue_script('lsx_maps', $this->framework_url . '/assets/js/lsx-maps.js', array('jquery','googlemaps_api','googlemaps_api_markercluster'), null, true);
-		wp_localize_script( 'lsx_maps', 'lsx_maps_params', array(
+		wp_enqueue_script('to_maps', $this->framework_url . '/assets/js/lsx-maps.js', array('jquery','googlemaps_api','googlemaps_api_markercluster'), null, true);
+		wp_localize_script( 'to_maps', 'to_maps_params', array(
 			'apiKey' => $this->api_key,
 			'start_marker' => $this->markers->start,
 			'end_marker' => $this->markers->end,
@@ -203,7 +203,7 @@ class LSX_Maps {
 								$map .= '<div class="map-data" data-icon="'.$icon.'" data-id="'.$connection.'" data-long="'.$location['long'].'" data-lat="'.$location['lat'].'" data-link="'.get_permalink($connection).'" data-thumbnail="'.$thumbnail.'" data-title="'.get_the_title($connection).'">';
 
 								ob_start();
-									lsx_tour_operator_content( 'content', 'map-marker');
+									to_content( 'content', 'map-marker');
 								$tooltip = ob_get_clean();
 
 								$map .= $tooltip;
@@ -234,7 +234,7 @@ class LSX_Maps {
 					$icon = $this->markers->post_types[$connection_type];
 				}
 			}else{
-				$icon = apply_filters('lsx_default_map_marker',$this->markers->default_marker);
+				$icon = apply_filters('to_default_map_marker',$this->markers->default_marker);
 			}
 
 		}
@@ -246,7 +246,7 @@ class LSX_Maps {
 	 */
 	public function api_key_settings() { ?>
 		<tr class="form-field-wrap">
-			<th class="lsx-tour-operators_table_heading" style="padding-bottom:0px;" scope="row" colspan="2">
+			<th class="tour-operator_table_heading" style="padding-bottom:0px;" scope="row" colspan="2">
 				<h4 style="margin-bottom:0px;"><span>Google Maps API</span></h4>
 			</th>
 		</tr>	
@@ -344,6 +344,6 @@ class LSX_Maps {
 /**
  * Outputs the map meta
  */
-function lsx_map_meta(){
-	do_action('lsx_map_meta');
+function to_map_meta(){
+	do_action('to_map_meta');
 }

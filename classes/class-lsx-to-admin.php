@@ -2,7 +2,7 @@
 /**
  * Backend actions for the LSX TO Plugin
  *
- * @package   LSX_TO_Admin
+ * @package   TO_Admin
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -12,10 +12,10 @@
 /**
  * Main plugin class.
  *
- * @package LSX_TO_Admin
+ * @package TO_Admin
  * @author  LightSpeed
  */
-class LSX_TO_Admin extends LSX_Tour_Operators {
+class TO_Admin extends TO_Tour_Operators {
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -25,19 +25,19 @@ class LSX_TO_Admin extends LSX_Tour_Operators {
 	 * @access private
 	 */
 	public function __construct() {
-		$this->options = get_option('_lsx_lsx-settings',false);	
+		$this->options = get_option('_to_lsx-settings',false);	
 		$this->set_vars();
 
 		add_action( 'init', array( $this, 'require_post_type_classes' ) , 1 );
 		add_action( 'init', array( $this, 'global_taxonomies') );
-		add_filter( 'lsx_framework_settings_tabs', array( $this, 'settings_page_array') );
+		add_filter( 'to_framework_settings_tabs', array( $this, 'settings_page_array') );
 
-		add_action('lsx_framework_dashboard_tab_content',array($this,'dashboard_tab_content'));
+		add_action('to_framework_dashboard_tab_content',array($this,'dashboard_tab_content'));
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_stylescripts' ) );
 		add_action( 'cmb_save_custom', array( $this, 'post_relations' ), 3 , 20 );
 
-		add_filter( 'plugin_action_links_' . plugin_basename(LSX_TOUR_OPERATORS_CORE), array($this,'add_action_links'));		
+		add_filter( 'plugin_action_links_' . plugin_basename(TO_CORE), array($this,'add_action_links'));		
 	}		
 
 	/**
@@ -51,7 +51,7 @@ class LSX_TO_Admin extends LSX_Tour_Operators {
 			</th>
 			<td><ul>
 			<?php 	
-			$post_types = apply_filters('lsx_tour_operators_post_types',$this->post_types);
+			$post_types = apply_filters('to_post_types',$this->post_types);
 			if(is_array($post_types) && !empty($post_types)){
 
 				foreach($post_types as $slug => $label){
@@ -74,7 +74,7 @@ class LSX_TO_Admin extends LSX_Tour_Operators {
 
 		<?php $this->modal_setting(); ?>
 
-		<?php if(!class_exists('LSX_Currency')) { ?>
+		<?php if(!class_exists('TO_Currency')) { ?>
 			<tr class="form-field-wrap">
 				<th scope="row">
 					<label for="currency"> Currency</label>
@@ -98,7 +98,7 @@ class LSX_TO_Admin extends LSX_Tour_Operators {
 
 			<tr class="form-field-wrap">
 				<th scope="row">
-					<label for="currency"><?php esc_html_e('General Enquiry','lsx-tour-operators'); ?></label>
+					<label for="currency"><?php esc_html_e('General Enquiry','tour-operator'); ?></label>
 				</th>
 				<?php
 					if(true === $this->show_default_form()){
@@ -128,16 +128,16 @@ class LSX_TO_Admin extends LSX_Tour_Operators {
 			</tr>
 			<tr class="form-field">
 				<th scope="row">
-					<label for="description"><?php esc_html_e('Disable Enquire Modal','lsx-tour-operators'); ?></label>
+					<label for="description"><?php esc_html_e('Disable Enquire Modal','tour-operator'); ?></label>
 				</th>
 				<td>
 					<input type="checkbox" {{#if disable_enquire_modal}} checked="checked" {{/if}} name="disable_enquire_modal" />
-					<small><?php esc_html_e('This disables the enquire modal, and instead redirects to the link you provide below.','lsx-tour-operators'); ?></small>
+					<small><?php esc_html_e('This disables the enquire modal, and instead redirects to the link you provide below.','tour-operator'); ?></small>
 				</td>
 			</tr>
 			<tr class="form-field">
 				<th scope="row">
-					<label for="title"><?php esc_html_e('Enquire Link','lsx-tour-operators'); ?></label>
+					<label for="title"><?php esc_html_e('Enquire Link','tour-operator'); ?></label>
 				</th>
 				<td>
 					<input type="text" {{#if enquire_link}} value="{{enquire_link}}" {{/if}} name="enquire_link" />
@@ -159,11 +159,11 @@ class LSX_TO_Admin extends LSX_Tour_Operators {
 	public function modal_setting() { ?>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="description"><?php esc_html_e('Enable Connected Modals','lsx-tour-operators'); ?></label>
+				<label for="description"><?php esc_html_e('Enable Connected Modals','tour-operator'); ?></label>
 			</th>
 			<td>
 				<input type="checkbox" {{#if enable_modals}} checked="checked" {{/if}} name="enable_modals" />
-				<small><?php esc_html_e('Any connected item showing on a single will display a preview in a modal.','lsx-tour-operators'); ?></small>
+				<small><?php esc_html_e('Any connected item showing on a single will display a preview in a modal.','tour-operator'); ?></small>
 			</td>
 		</tr>
 	<?php
@@ -248,7 +248,7 @@ class LSX_TO_Admin extends LSX_Tour_Operators {
 		if( !is_object( $screen ) ){
 			return;
 		}
-		wp_enqueue_style( 'lsx-tour-operators-admin-style', LSX_TOUR_OPERATORS_URL . '/assets/css/admin.css');
+		wp_enqueue_style( 'tour-operator-admin-style', TO_URL . '/assets/css/admin.css');
 	}
 
 	/**
@@ -260,17 +260,17 @@ class LSX_TO_Admin extends LSX_Tour_Operators {
 	public function global_taxonomies() {
 			
 		$labels = array(
-				'name' => _x( 'Travel Styles', 'lsx-tour-operators' ),
-				'singular_name' => _x( 'Travel Style', 'lsx-tour-operators' ),
-				'search_items' =>  __( 'Search Travel Styles' , 'lsx-tour-operators' ),
-				'all_items' => __( 'Travel Styles' , 'lsx-tour-operators' ),
-				'parent_item' => __( 'Parent Travel Style' , 'lsx-tour-operators' ),
-				'parent_item_colon' => __( 'Parent Travel Style:' , 'lsx-tour-operators' ),
-				'edit_item' => __( 'Edit Travel Style' , 'lsx-tour-operators' ),
-				'update_item' => __( 'Update Travel Style' , 'lsx-tour-operators' ),
-				'add_new_item' => __( 'Add New Travel Style' , 'lsx-tour-operators' ),
-				'new_item_name' => __( 'New Travel Style' , 'lsx-tour-operators' ),
-				'menu_name' => __( 'Travel Styles' , 'lsx-tour-operators' ),
+				'name' => _x( 'Travel Styles', 'tour-operator' ),
+				'singular_name' => _x( 'Travel Style', 'tour-operator' ),
+				'search_items' =>  __( 'Search Travel Styles' , 'tour-operator' ),
+				'all_items' => __( 'Travel Styles' , 'tour-operator' ),
+				'parent_item' => __( 'Parent Travel Style' , 'tour-operator' ),
+				'parent_item_colon' => __( 'Parent Travel Style:' , 'tour-operator' ),
+				'edit_item' => __( 'Edit Travel Style' , 'tour-operator' ),
+				'update_item' => __( 'Update Travel Style' , 'tour-operator' ),
+				'add_new_item' => __( 'Add New Travel Style' , 'tour-operator' ),
+				'new_item_name' => __( 'New Travel Style' , 'tour-operator' ),
+				'menu_name' => __( 'Travel Styles' , 'tour-operator' ),
 		);
 		
 		// Now register the taxonomy
@@ -286,17 +286,17 @@ class LSX_TO_Admin extends LSX_Tour_Operators {
 		));	
 		
 		$labels = array(
-				'name' => _x( 'Brands', 'lsx-tour-operators' ),
-				'singular_name' => _x( 'Brand', 'lsx-tour-operators' ),
-				'search_items' =>  __( 'Search Brands' , 'lsx-tour-operators' ),
-				'all_items' => __( 'Brands' , 'lsx-tour-operators' ),
-				'parent_item' => __( 'Parent Brand' , 'lsx-tour-operators' ),
-				'parent_item_colon' => __( 'Parent Brand:' , 'lsx-tour-operators' ),
-				'edit_item' => __( 'Edit Brand' , 'lsx-tour-operators' ),
-				'update_item' => __( 'Update Brand' , 'lsx-tour-operators' ),
-				'add_new_item' => __( 'Add New Brand' , 'lsx-tour-operators' ),
-				'new_item_name' => __( 'New Brand' , 'lsx-tour-operators' ),
-				'menu_name' => __( 'Brands' , 'lsx-tour-operators' ),
+				'name' => _x( 'Brands', 'tour-operator' ),
+				'singular_name' => _x( 'Brand', 'tour-operator' ),
+				'search_items' =>  __( 'Search Brands' , 'tour-operator' ),
+				'all_items' => __( 'Brands' , 'tour-operator' ),
+				'parent_item' => __( 'Parent Brand' , 'tour-operator' ),
+				'parent_item_colon' => __( 'Parent Brand:' , 'tour-operator' ),
+				'edit_item' => __( 'Edit Brand' , 'tour-operator' ),
+				'update_item' => __( 'Update Brand' , 'tour-operator' ),
+				'add_new_item' => __( 'Add New Brand' , 'tour-operator' ),
+				'new_item_name' => __( 'New Brand' , 'tour-operator' ),
+				'menu_name' => __( 'Brands' , 'tour-operator' ),
 		);
 		
 		
@@ -313,17 +313,17 @@ class LSX_TO_Admin extends LSX_Tour_Operators {
 		));	
 
 		$labels = array(
-				'name' => _x( 'Location', 'lsx-tour-operators' ),
-				'singular_name' => _x( 'Location', 'lsx-tour-operators' ),
-				'search_items' =>  __( 'Search Locations' , 'lsx-tour-operators' ),
-				'all_items' => __( 'Locations' , 'lsx-tour-operators' ),
-				'parent_item' => __( 'Parent Location' , 'lsx-tour-operators' ),
-				'parent_item_colon' => __( 'Parent Location:' , 'lsx-tour-operators' ),
-				'edit_item' => __( 'Edit Location' , 'lsx-tour-operators' ),
-				'update_item' => __( 'Update Location' , 'lsx-tour-operators' ),
-				'add_new_item' => __( 'Add New Location' , 'lsx-tour-operators' ),
-				'new_item_name' => __( 'New Location' , 'lsx-tour-operators' ),
-				'menu_name' => __( 'Locations' , 'lsx-tour-operators' ),
+				'name' => _x( 'Location', 'tour-operator' ),
+				'singular_name' => _x( 'Location', 'tour-operator' ),
+				'search_items' =>  __( 'Search Locations' , 'tour-operator' ),
+				'all_items' => __( 'Locations' , 'tour-operator' ),
+				'parent_item' => __( 'Parent Location' , 'tour-operator' ),
+				'parent_item_colon' => __( 'Parent Location:' , 'tour-operator' ),
+				'edit_item' => __( 'Edit Location' , 'tour-operator' ),
+				'update_item' => __( 'Update Location' , 'tour-operator' ),
+				'add_new_item' => __( 'Add New Location' , 'tour-operator' ),
+				'new_item_name' => __( 'New Location' , 'tour-operator' ),
+				'menu_name' => __( 'Locations' , 'tour-operator' ),
 		);
 		// Now register the taxonomy
 		register_taxonomy('location',array('accommodation'), array(
@@ -345,7 +345,7 @@ class LSX_TO_Admin extends LSX_Tour_Operators {
 	public function settings_page_array($tabs){
 		// This array is for the Admin Pages. each element defines a page that is seen in the admin
 		
-		$post_types = apply_filters('lsx_tour_operators_post_types',$this->post_types);
+		$post_types = apply_filters('to_post_types',$this->post_types);
 		
 		if(false !== $post_types && !empty($post_types)){
 			foreach($post_types as $index => $title){
@@ -359,7 +359,7 @@ class LSX_TO_Admin extends LSX_Tour_Operators {
 					'page_title'        => 'General',
 					'page_description'  => '',
 					'menu_title'        => $title,
-					'template'          => apply_filters('lsx_tour_operators_settings_path',LSX_TOUR_OPERATORS_PATH,$index).'includes/settings/'.$index.'.php',
+					'template'          => apply_filters('to_settings_path',TO_PATH,$index).'includes/settings/'.$index.'.php',
 					'default'	 		=> false,
 					'disabled'			=> $disabled
 				);
@@ -379,21 +379,21 @@ class LSX_TO_Admin extends LSX_Tour_Operators {
 			
 			foreach($this->post_types as $post_type => $label){
 				if(in_array($post_type,$this->active_post_types)){
-					require_once( LSX_TOUR_OPERATORS_PATH . 'classes/class-'.$post_type.'.php' );		
+					require_once( TO_PATH . 'classes/class-'.$post_type.'.php' );		
 				}
 			}
 			
 			//If The Envira Plugin has been activated.
 			if(class_exists('Envira_Gallery') && 'accommodation' !== $post_type){
-				require_once( LSX_TOUR_OPERATORS_PATH . 'classes/class-envira-integration.php' );
+				require_once( TO_PATH . 'classes/class-envira-integration.php' );
 				$this->post_types['envira'] = 'Envira'; 
 			}
 			$this->connections = $this->create_post_connections();	
-			$this->single_fields = apply_filters('lsx_tour_operators_search_fields',array());
+			$this->single_fields = apply_filters('to_search_fields',array());
 
 			if(is_admin()){
 				foreach($this->active_post_types as $pt){
-					add_action('lsx_framework_'.$pt.'_tab_single_settings_bottom', array($this,'single_settings'),40);
+					add_action('to_framework_'.$pt.'_tab_single_settings_bottom', array($this,'single_settings'),40);
 				}	
 			}
 		}
@@ -404,7 +404,7 @@ class LSX_TO_Admin extends LSX_Tour_Operators {
 	 */
 	public function create_post_connections() {
 		$connections = array();
-		$post_types = apply_filters('lsx_tour_operators_post_types',$this->post_types);
+		$post_types = apply_filters('to_post_types',$this->post_types);
 		foreach($post_types as $key_a => $values_a){
 			foreach($this->post_types as $key_b => $values_b){
 				// Make sure we dont try connect a post type to itself.
@@ -522,7 +522,7 @@ class LSX_TO_Admin extends LSX_Tour_Operators {
 	public function add_action_links ( $links ) {
 		 $mylinks = array(
 		 	'<a href="' . admin_url( 'options-general.php?page=lsx-lsx-settings' ) . '">'.__('Settings',$this->plugin_slug).'</a>',
-		 	'<a href="https://www.lsdev.biz/documentation/lsx-tour-operator-plugin/" target="_blank">'.__('Documentation',$this->plugin_slug).'</a>',
+		 	'<a href="https://www.lsdev.biz/documentation/tour-operator-plugin/" target="_blank">'.__('Documentation',$this->plugin_slug).'</a>',
 		 	'<a href="https://feedmysupport.zendesk.com/home" target="_blank">'.__('Support',$this->plugin_slug).'</a>',
 		 );
 		return array_merge( $links, $mylinks );

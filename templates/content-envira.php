@@ -2,7 +2,7 @@
 /**
  * Envira Gallery Content Part
  * 
- * @package 	lsx-tour-operators
+ * @package 	tour-operator
  * @category	team
  */
 $gallery_id = get_post_meta(get_the_ID(),'envira_to_'.get_post_type(),true);

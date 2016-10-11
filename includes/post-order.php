@@ -1,12 +1,12 @@
 <?php
  
-$lsx_to_scporder = new LSX_TO_SCPO_Engine();
+$to_scporder = new TO_SCPO_Engine();
 
-class LSX_TO_SCPO_Engine {
+class TO_SCPO_Engine {
 
 	function __construct() {
-		if (!get_option('lsx_to_scporder_install'))
-			$this->lsx_to_scporder_install();
+		if (!get_option('to_scporder_install'))
+			$this->to_scporder_install();
 
 		add_action('admin_init', array($this, 'refresh'));
 		add_action('admin_init', array($this, 'load_script_css'));
@@ -14,34 +14,34 @@ class LSX_TO_SCPO_Engine {
 		add_action('wp_ajax_update-menu-order', array($this, 'update_menu_order'));
 		add_action('wp_ajax_update-menu-order-tags', array($this, 'update_menu_order_tags'));
 
-		add_action('pre_get_posts', array($this, 'lsx_to_scporder_pre_get_posts'));
+		add_action('pre_get_posts', array($this, 'to_scporder_pre_get_posts'));
 
-		add_filter('get_previous_post_where', array($this, 'lsx_to_scporder_previous_post_where'));
-		add_filter('get_previous_post_sort', array($this, 'lsx_to_scporder_previous_post_sort'));
-		add_filter('get_next_post_where', array($this, 'lsx_to_scporder_next_post_where'));
-		add_filter('get_next_post_sort', array($this, 'lsx_to_scporder_next_post_sort'));
+		add_filter('get_previous_post_where', array($this, 'to_scporder_previous_post_where'));
+		add_filter('get_previous_post_sort', array($this, 'to_scporder_previous_post_sort'));
+		add_filter('get_next_post_where', array($this, 'to_scporder_next_post_where'));
+		add_filter('get_next_post_sort', array($this, 'to_scporder_next_post_sort'));
 
-		add_filter('get_terms_orderby', array($this, 'lsx_to_scporder_get_terms_orderby'), 10, 3);
-		add_filter('wp_get_object_terms', array($this, 'lsx_to_scporder_get_object_terms'), 10, 3);
-		add_filter('get_terms', array($this, 'lsx_to_scporder_get_object_terms'), 10, 3);
+		add_filter('get_terms_orderby', array($this, 'to_scporder_get_terms_orderby'), 10, 3);
+		add_filter('wp_get_object_terms', array($this, 'to_scporder_get_object_terms'), 10, 3);
+		add_filter('get_terms', array($this, 'to_scporder_get_object_terms'), 10, 3);
 	}
 
-	function lsx_to_scporder_install() {
+	function to_scporder_install() {
 		global $wpdb;
-		$result = $wpdb->query("DESCRIBE $wpdb->terms `lsx_to_term_order`");
+		$result = $wpdb->query("DESCRIBE $wpdb->terms `to_term_order`");
 		
 		if (!$result) {
-			$result = $wpdb->query("ALTER TABLE $wpdb->terms ADD `lsx_to_term_order` INT(4) NULL DEFAULT '0'");
+			$result = $wpdb->query("ALTER TABLE $wpdb->terms ADD `to_term_order` INT(4) NULL DEFAULT '0'");
 		}
 
-		update_option('lsx_to_scporder_install', 1);
+		update_option('to_scporder_install', 1);
 	}
 
 	function _check_load_script_css() {
 		$active = false;
 
-		$objects = $this->get_lsx_to_scporder_options_objects();
-		$tags = $this->get_lsx_to_scporder_options_tags();
+		$objects = $this->get_to_scporder_options_objects();
+		$tags = $this->get_to_scporder_options_tags();
 
 		if (empty($objects) && empty($tags))
 			return false;
@@ -71,7 +71,7 @@ class LSX_TO_SCPO_Engine {
 		if ($this->_check_load_script_css()) {
 			wp_enqueue_script('jquery');
 			wp_enqueue_script('jquery-ui-sortable');
-			wp_enqueue_script('scporderjs', LSX_TOUR_OPERATORS_URL . '/assets/js/scporder.min.js', array('jquery'), null, true);
+			wp_enqueue_script('scporderjs', TO_URL . '/assets/js/scporder.min.js', array('jquery'), null, true);
 
 			$scporderjs_params = array(
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
@@ -80,14 +80,14 @@ class LSX_TO_SCPO_Engine {
 
 			wp_localize_script( 'scporderjs', 'scporderjs_params', $scporderjs_params );
 
-			wp_enqueue_style('scporder', LSX_TOUR_OPERATORS_URL . '/assets/css/scporder.css', array(), null);
+			wp_enqueue_style('scporder', TO_URL . '/assets/css/scporder.css', array(), null);
 		}
 	}
 
 	function refresh() {
 		global $wpdb;
-		$objects = $this->get_lsx_to_scporder_options_objects();
-		$tags = $this->get_lsx_to_scporder_options_tags();
+		$objects = $this->get_to_scporder_options_objects();
+		$tags = $this->get_to_scporder_options_tags();
 
 		if (!empty($objects)) {
 			foreach ($objects as $object => $object_data) {
@@ -116,7 +116,7 @@ class LSX_TO_SCPO_Engine {
 		if (!empty($tags)) {
 			foreach ($tags as $taxonomy => $taxonomy_data) {
 				$result = $wpdb->get_results($wpdb->prepare("
-					SELECT count(*) as cnt, max(lsx_to_term_order) as max, min(lsx_to_term_order) as min 
+					SELECT count(*) as cnt, max(to_term_order) as max, min(to_term_order) as min 
 					FROM $wpdb->terms AS terms 
 					INNER JOIN $wpdb->term_taxonomy AS term_taxonomy ON ( terms.term_id = term_taxonomy.term_id ) 
 					WHERE term_taxonomy.taxonomy = '%s'
@@ -130,11 +130,11 @@ class LSX_TO_SCPO_Engine {
 					FROM $wpdb->terms AS terms 
 					INNER JOIN $wpdb->term_taxonomy AS term_taxonomy ON ( terms.term_id = term_taxonomy.term_id ) 
 					WHERE term_taxonomy.taxonomy = '%s' 
-					ORDER BY lsx_to_term_order ASC
+					ORDER BY to_term_order ASC
 				", $taxonomy));
 
 				foreach ($results as $key => $result) {
-					$wpdb->update($wpdb->terms, array('lsx_to_term_order' => $key + 1), array('term_id' => $result->term_id));
+					$wpdb->update($wpdb->terms, array('to_term_order' => $key + 1), array('term_id' => $result->term_id));
 				}
 			}
 		}
@@ -197,9 +197,9 @@ class LSX_TO_SCPO_Engine {
 		$menu_order_arr = array();
 		
 		foreach ($id_arr as $key => $id) {
-			$results = $wpdb->get_results("SELECT lsx_to_term_order FROM $wpdb->terms WHERE term_id = " . intval($id));
+			$results = $wpdb->get_results("SELECT to_term_order FROM $wpdb->terms WHERE term_id = " . intval($id));
 			foreach ($results as $result) {
-				$menu_order_arr[] = $result->lsx_to_term_order;
+				$menu_order_arr[] = $result->to_term_order;
 			}
 		}
 		
@@ -207,14 +207,14 @@ class LSX_TO_SCPO_Engine {
 
 		foreach ($data as $key => $values) {
 			foreach ($values as $position => $id) {
-				$wpdb->update($wpdb->terms, array('lsx_to_term_order' => $menu_order_arr[$position]), array('term_id' => intval($id)));
+				$wpdb->update($wpdb->terms, array('to_term_order' => $menu_order_arr[$position]), array('term_id' => intval($id)));
 			}
 		}
 	}
 
-	function lsx_to_scporder_previous_post_where($where) {
+	function to_scporder_previous_post_where($where) {
 		global $post;
-		$objects = $this->get_lsx_to_scporder_options_objects();
+		$objects = $this->get_to_scporder_options_objects();
 		
 		if (empty($objects))
 			return $where;
@@ -227,9 +227,9 @@ class LSX_TO_SCPO_Engine {
 		return $where;
 	}
 
-	function lsx_to_scporder_previous_post_sort($orderby) {
+	function to_scporder_previous_post_sort($orderby) {
 		global $post;
-		$objects = $this->get_lsx_to_scporder_options_objects();
+		$objects = $this->get_to_scporder_options_objects();
 		
 		if (empty($objects))
 			return $orderby;
@@ -241,9 +241,9 @@ class LSX_TO_SCPO_Engine {
 		return $orderby;
 	}
 
-	function lsx_to_scporder_next_post_where($where) {
+	function to_scporder_next_post_where($where) {
 		global $post;
-		$objects = $this->get_lsx_to_scporder_options_objects();
+		$objects = $this->get_to_scporder_options_objects();
 		
 		if (empty($objects))
 			return $where;
@@ -256,9 +256,9 @@ class LSX_TO_SCPO_Engine {
 		return $where;
 	}
 
-	function lsx_to_scporder_next_post_sort($orderby) {
+	function to_scporder_next_post_sort($orderby) {
 		global $post;
-		$objects = $this->get_lsx_to_scporder_options_objects();
+		$objects = $this->get_to_scporder_options_objects();
 		
 		if (empty($objects))
 			return $orderby;
@@ -270,8 +270,8 @@ class LSX_TO_SCPO_Engine {
 		return $orderby;
 	}
 
-	function lsx_to_scporder_pre_get_posts($wp_query) {
-		$objects = $this->get_lsx_to_scporder_options_objects();
+	function to_scporder_pre_get_posts($wp_query) {
+		$objects = $this->get_to_scporder_options_objects();
 		
 		if (empty($objects))
 			return false;
@@ -315,11 +315,11 @@ class LSX_TO_SCPO_Engine {
 		}
 	}
 
-	function lsx_to_scporder_get_terms_orderby($orderby, $args) {
+	function to_scporder_get_terms_orderby($orderby, $args) {
 		if (is_admin())
 			return $orderby;
 
-		$tags = $this->get_lsx_to_scporder_options_tags();
+		$tags = $this->get_to_scporder_options_tags();
 
 		if (!isset($args['taxonomy']))
 			return $orderby;
@@ -330,12 +330,12 @@ class LSX_TO_SCPO_Engine {
 		if (!array_key_exists($taxonomy, $tags))
 			return $orderby;
 
-		$orderby = 't.lsx_to_term_order';
+		$orderby = 't.to_term_order';
 		return $orderby;
 	}
 
-	function lsx_to_scporder_get_object_terms($terms) {
-		$tags = $this->get_lsx_to_scporder_options_tags();
+	function to_scporder_get_object_terms($terms) {
+		$tags = $this->get_to_scporder_options_tags();
 
 		if (is_admin() && isset($_GET['orderby']))
 			return $terms;
@@ -355,20 +355,20 @@ class LSX_TO_SCPO_Engine {
 	}
 
 	function taxcmp($a, $b) {
-		if ($a->lsx_to_term_order == $b->lsx_to_term_order)
+		if ($a->to_term_order == $b->to_term_order)
 			return 0;
 		
-		return ( $a->lsx_to_term_order < $b->lsx_to_term_order ) ? -1 : 1;
+		return ( $a->to_term_order < $b->to_term_order ) ? -1 : 1;
 	}
 
-	function get_lsx_to_scporder_options_objects() {
-		global $lsx_tour_operators;
-		return $lsx_tour_operators->post_types;
+	function get_to_scporder_options_objects() {
+		global $to_operators;
+		return $to_operators->post_types;
 	}
 
-	function get_lsx_to_scporder_options_tags() {
-		global $lsx_tour_operators;
-		return $lsx_tour_operators->taxonomies;
+	function get_to_scporder_options_tags() {
+		global $to_operators;
+		return $to_operators->taxonomies;
 	}
 
 }
@@ -376,9 +376,9 @@ class LSX_TO_SCPO_Engine {
 /**
  * SCP Order Uninstall hook
  */
-register_uninstall_hook(__FILE__, 'lsx_to_scporder_uninstall');
+register_uninstall_hook(__FILE__, 'to_scporder_uninstall');
 
-function lsx_to_scporder_uninstall() {
+function to_scporder_uninstall() {
 	global $wpdb;
 	
 	if (function_exists('is_multisite') && is_multisite()) {
@@ -387,22 +387,22 @@ function lsx_to_scporder_uninstall() {
 		
 		foreach ($blogids as $blog_id) {
 			switch_to_blog($blog_id);
-			lsx_to_scporder_uninstall_db();
+			to_scporder_uninstall_db();
 		}
 
 		switch_to_blog($curr_blog);
 	} else {
-		lsx_to_scporder_uninstall_db();
+		to_scporder_uninstall_db();
 	}
 }
 
-function lsx_to_scporder_uninstall_db() {
+function to_scporder_uninstall_db() {
 	global $wpdb;
-	$result = $wpdb->query("DESCRIBE $wpdb->terms `lsx_to_term_order`");
+	$result = $wpdb->query("DESCRIBE $wpdb->terms `to_term_order`");
 	
 	if ($result) {
-		$result = $wpdb->query("ALTER TABLE $wpdb->terms DROP `lsx_to_term_order`");
+		$result = $wpdb->query("ALTER TABLE $wpdb->terms DROP `to_term_order`");
 	}
 
-	delete_option('lsx_to_scporder_install');
+	delete_option('to_scporder_install');
 }
