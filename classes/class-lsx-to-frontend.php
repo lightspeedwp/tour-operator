@@ -109,9 +109,9 @@ class TO_Frontend extends TO_Tour_Operators {
 	 */
 	public function header_after() {
 		if(class_exists('TO_Banners') && to_has_banner()){
-			remove_action('to_content_wrap_before','to_archive_header',100);
-			remove_action('to_content_wrap_before','to_single_header',100);
-			add_action('to_banner_content','to_banner_content');
+			remove_action('lsx_content_wrap_before','to_archive_header',100);
+			remove_action('lsx_content_wrap_before','to_single_header',100);
+			add_action('lsx_banner_content','to_banner_content');
 			add_filter('to_tagline',array($this,'get_tagline'),1,3);
 		}
 	}		

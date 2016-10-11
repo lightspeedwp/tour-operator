@@ -173,22 +173,17 @@ class TO_Tour_Operators {
 	 */
 	public function set_vars(){
 		// This is the array of enabled post types.
-		$this->active_post_types = $this->get_active_post_types();
 		$this->post_types = array(
-				//'activity'		=> 'Activites',
 				'accommodation'	=> 'Accommodation',
 				'destination'	=> 'Destinations',
-				//'review'		=> 'Reviews',
-				//'special'		=> 'Specials',
-				'team'			=> 'Team',
 				'tour'			=> 'Tours',
-				//'vehicle'		=> 'Vehicles'
 		);	
+		$this->post_types = apply_filters('to_post_types',$this->post_types);
+		$this->active_post_types = array_keys($this->post_types);
 		$this->taxonomies = array(
 				'travel-style'			=> __('Travel Style',$this->plugin_slug),
 				'accommodation-brand'			=> __('Brand',$this->plugin_slug),
 				'accommodation-type'	=> __('Accommodation Type',$this->plugin_slug),
-				//'special-type'	=> __('Special Type',$this->plugin_slug),
 				'facility'	=> __('Facility',$this->plugin_slug),
 				'location'	=> __('Location',$this->plugin_slug)
 		);		
@@ -200,14 +195,7 @@ class TO_Tour_Operators {
 	 * @since 0.0.1
 	 */
 	public function get_active_post_types() {
-		$active_post_types = array();
-
-		//print_r(); die();
-		if(false !== $this->options && isset($this->options['general']['post_types']) && is_array($this->options['general']['post_types']) && !empty($this->options['general']['post_types'])){
-
-			$active_post_types = array_keys($this->options['general']['post_types']);
-		} 
-		return $active_post_types;
+		return $this->active_post_types;
 	}
 
 	/**

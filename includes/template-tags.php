@@ -57,7 +57,7 @@ function to_banner_content() {
  * @subpackage	template-tag
  * @category 	tagline
  */
-function to_tagline($before='',$after='') {
+function to_tagline($before='',$after='',$echo=false) {
 	echo wp_kses_post( apply_filters('to_tagline','',$before,$after) );
 }
 
@@ -460,22 +460,6 @@ function to_accommodation_display_connected_tours(){
  }
 
 /* ================  Tours =========================== */
-
-/**
- * Gets the current items tagline
- *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
- *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	tour
- */
-function to_tagline($before="",$after="",$echo=true){
-	to_custom_field_query('tagline',$before,$after,$echo);
-}
 
 /**
  * Gets the current tours price
