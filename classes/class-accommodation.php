@@ -73,7 +73,7 @@ class TO_Accommodation {
 		
 		add_filter( 'to_entry_class', array( $this, 'entry_class') );
 
-		if(!class_exists('TO_Currency')){
+		if(!class_exists('LSX_Currency')){
 			add_filter('to_custom_field_query',array( $this, 'price_filter'),5,10);
 		}
 

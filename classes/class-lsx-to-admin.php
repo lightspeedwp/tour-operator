@@ -44,37 +44,10 @@ class TO_Admin extends TO_Tour_Operators {
 	 * outputs the dashboard tabs settings
 	 */
 	public function dashboard_tab_content() {
-		?>	
-		<tr class="form-field-wrap">
-			<th scope="row">
-				<label for="modules"> Modules</label>
-			</th>
-			<td><ul>
-			<?php 	
-			$post_types = apply_filters('to_post_types',$this->post_types);
-			if(is_array($post_types) && !empty($post_types)){
-
-				foreach($post_types as $slug => $label){
-					if('envira' === $slug){ continue; }
-					?>
-					<li>
-						<input type="checkbox" <?php if(in_array($slug,$this->active_post_types)){ echo 'checked="checked"'; } ?> name="post_types[<?php echo esc_attr( $slug ); ?>]" /> <label for="post_types"><?php echo esc_html( $label ); ?></label> 
-					</li>
-				<?php }
-			}else{
-				?>
-					<li>
-						You have no modules active. 
-					</li>
-				<?php
-			}
-			?>
-			</ul></td>
-		</tr>	
-
+		?>
 		<?php $this->modal_setting(); ?>
 
-		<?php if(!class_exists('TO_Currency')) { ?>
+		<?php if(!class_exists('LSX_Currency')) { ?>
 			<tr class="form-field-wrap">
 				<th scope="row">
 					<label for="currency"> Currency</label>
