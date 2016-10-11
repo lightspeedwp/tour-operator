@@ -348,28 +348,12 @@ class TO_Admin extends TO_Tour_Operators {
 	 * @since 0.0.1
 	 */
 	public function require_post_type_classes() {
-		if(!empty($this->active_post_types)){
-			
-			foreach($this->post_types as $post_type => $label){
-				if(in_array($post_type,$this->active_post_types)){
-					require_once( TO_PATH . 'classes/class-'.$post_type.'.php' );		
-				}
-			}
-			
-			//If The Envira Plugin has been activated.
-			if(class_exists('Envira_Gallery') && 'accommodation' !== $post_type){
-				require_once( TO_PATH . 'classes/class-envira-integration.php' );
-				$this->post_types['envira'] = 'Envira'; 
-			}
-			$this->connections = $this->create_post_connections();	
-			$this->single_fields = apply_filters('to_search_fields',array());
-
-			if(is_admin()){
-				foreach($this->active_post_types as $pt){
-					add_action('to_framework_'.$pt.'_tab_single_settings_bottom', array($this,'single_settings'),40);
-				}	
-			}
+		foreach($this->post_types as $post_type => $label){
+			require_once( TO_PATH . 'classes/class-'.$post_type.'.php' );	
+			add_action('to_framework_'.$pt.'_tab_single_settings_bottom', array($this,'single_settings'),40);
 		}
+		$this->connections = $this->create_post_connections();	
+		$this->single_fields = apply_filters('to_search_fields',array());
 	}
 
 	/**
