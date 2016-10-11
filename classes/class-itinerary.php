@@ -216,7 +216,7 @@ function lsx_tour_itinerary_slug() {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
 		if(false !== $tour_itinerary->itinerary['title']){
-			echo sanitize_title($tour_itinerary->itinerary['title']);
+			echo wp_kses_post(sanitize_title($tour_itinerary->itinerary['title']));
 		}
 	}
 }
@@ -232,7 +232,7 @@ function lsx_tour_itinerary_tagline() {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
 		if(false !== $tour_itinerary->itinerary['tagline']){
-			echo apply_filters('the_title',$tour_itinerary->itinerary['tagline']);
+			echo wp_kses_post(apply_filters('the_title',$tour_itinerary->itinerary['tagline']));
 		}
 	}
 }
@@ -248,7 +248,7 @@ function lsx_tour_itinerary_description() {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
 		if(false !== $tour_itinerary->itinerary['description']){
-			echo apply_filters('the_content',$tour_itinerary->itinerary['description']);
+			echo wp_kses_post(apply_filters('the_content',$tour_itinerary->itinerary['description']));
 		}
 	}
 }
@@ -300,7 +300,7 @@ function lsx_tour_itinerary_thumbnail() {
 		if(false === $thumbnail_src || '' === $thumbnail_src){
 			$thumbnail_src = LSX_Placeholders::placeholder_url(null,'tour');
 		}
-		echo apply_filters( 'lsx_lazyload_filter_images', '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="'.$thumbnail_src.'" />' );
+		echo wp_kses_post(apply_filters( 'lsx_lazyload_filter_images', '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="'.$thumbnail_src.'" />' ));
 	}
 }
 
@@ -315,7 +315,7 @@ function lsx_tour_itinerary_destinations($before='',$after='') {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
 		if(is_array($tour_itinerary->itinerary['destination_to_tour']) && !empty($tour_itinerary->itinerary['destination_to_tour'])){
-			echo $before.lsx_connected_list($tour_itinerary->itinerary['destination_to_tour'],'destination',true,', ').$after;
+			echo wp_kses_post($before.lsx_connected_list($tour_itinerary->itinerary['destination_to_tour'],'destination',true,', ').$after);
 		}
 	}	
 }
@@ -331,7 +331,7 @@ function lsx_tour_itinerary_accommodation($before='',$after='') {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
 		if(is_array($tour_itinerary->itinerary['accommodation_to_tour']) && !empty($tour_itinerary->itinerary['accommodation_to_tour'])){
-			echo $before.lsx_connected_list($tour_itinerary->itinerary['accommodation_to_tour'],'accommodation',true,', ').$after;
+			echo wp_kses_post($before.lsx_connected_list($tour_itinerary->itinerary['accommodation_to_tour'],'accommodation',true,', ').$after);
 		}
 
 		//display the additional accommodation information.
@@ -354,7 +354,7 @@ function lsx_tour_itinerary_activities($before='',$after='') {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
 		if(isset($tour_itinerary->itinerary['activity_to_tour']) && is_array($tour_itinerary->itinerary['activity_to_tour']) && !empty($tour_itinerary->itinerary['activity_to_tour'])){
-			echo $before.lsx_connected_list($tour_itinerary->itinerary['activity_to_tour'],'activity',true,', ').$after;
+			echo wp_kses_post($before.lsx_connected_list($tour_itinerary->itinerary['activity_to_tour'],'activity',true,', ').$after);
 		}
 	}
 }
@@ -377,7 +377,7 @@ function lsx_itinerary_class($classes = false) {
 		}
 		$classes = apply_filters( 'lsx_itinerary_class', $classes, $post->ID );
 	}
-	echo 'class="'.implode(' ',$classes).'"';
+	echo 'class="'.esc_attr(implode(' ',$classes)).'"';
 }
 
 
