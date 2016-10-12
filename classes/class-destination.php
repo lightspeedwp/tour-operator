@@ -137,21 +137,15 @@ class Lsx_Destination{
 	}
 	
 	function register_metaboxes( array $meta_boxes ) {
-	
 
 		$fields[] = array( 'id' => 'featured',  'name' => 'Featured', 'type' => 'checkbox' );
+
 		if(!class_exists('TO_Banners')){
 			$fields[] = array( 'id' => 'tagline',  'name' => 'Tagline', 'type' => 'text' );
 		}
 		$fields[] = array( 'id' => 'team_to_destination', 'name' => 'Destination Expert', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12, 'allow_none' => true );
-		$fields[] = array( 'id' => 'location',  'name' => 'Location', 'type' => 'gmap' );			
 
-		$fields[] = array( 'id' => 'gallery_title',  'name' => 'Gallery', 'type' => 'title' );
-		if(class_exists('Envira_Gallery')){
-			$fields[] = array( 'id' => 'envira_to_destination', 'name' => 'Gallery from  Envira Gallery plugin', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
-		}else{
-			$fields[] = array( 'id' => 'gallery', 'name' => 'Gallery images', 'type' => 'image', 'repeatable' => true, 'show_size' => false );
-		}	
+		$fields[] = array( 'id' => 'location',  'name' => 'Location', 'type' => 'gmap' );			
 		
 		//videos
 		if(class_exists('TO_Field_Pattern')){ $fields = array_merge($fields,TO_Field_Pattern::videos()); }		
@@ -175,6 +169,9 @@ class Lsx_Destination{
 		if(post_type_exists('vehicle')){		
 			$fields[] = array( 'id' => 'vehicle_to_destination', 'name' => 'Vehicles related with this destination', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'vehicle','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true );
 		}
+
+		//Allow the addons to add additional fields.
+		$fields = apply_filters('to_destination_custom_fields',$fields);
 		
 		$meta_boxes[] = array(
 				'title' => 'LSX Tour Operators',
@@ -183,7 +180,6 @@ class Lsx_Destination{
 		);		
 	
 		return $meta_boxes;
-	
 	}
 	
 	/**

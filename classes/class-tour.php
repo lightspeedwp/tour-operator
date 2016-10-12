@@ -209,13 +209,6 @@ class Lsx_Tour {
 			$fields[] = array( 'id' => 'special_to_tour', 'name' => 'Specials related with this tour', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'special','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none' => true , 'repeatable' => true, 'sortable' => true, 'cols' => 12 );
 		}
 		
-		$fields[] = array( 'id' => 'gallery_title',  'name' => 'Gallery', 'type' => 'title' );
-		if(class_exists('Envira_Gallery')){
-			$fields[] = array( 'id' => 'envira_to_tour', 'name' => 'Gallery from  Envira Gallery plugin', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
-		}else{
-			$fields[] = array( 'id' => 'gallery', 'name' => 'Gallery images', 'type' => 'image', 'repeatable' => true, 'show_size' => false );
-		}
-		
 		//videos
 		if(class_exists('TO_Field_Pattern')){ $fields = array_merge($fields,TO_Field_Pattern::videos()); }
 		
@@ -242,6 +235,8 @@ class Lsx_Tour {
 				'fields' => $this->itinerary_fields(),
 				'desc' => ''
 		);		
+
+		$fields = apply_filters('to_tour_custom_fields',$fields);
 		
 		$meta_boxes[] = array(
 				'title' => __('LSX Tour Operators','tour-operator'),

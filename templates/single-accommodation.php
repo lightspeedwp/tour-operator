@@ -74,20 +74,7 @@ get_header(); ?>
 			</section>			
 		<?php }	?>			
 		
-		<?php 
-		$gallery_ids = get_post_meta(get_the_ID(),'gallery',false);
-		if(false !== $gallery_ids && '' !== $gallery_ids && is_array($gallery_ids) && !empty($gallery_ids)){ ?>
-			<section id="gallery">
-				<h2 class="section-title"><?php esc_html_e('Gallery','tour-operator'); ?></h2>	
-				<?php 
-					if ( function_exists( 'envira_dynamic' ) ) {
-						envira_dynamic( array( 'id' => 'custom', 'images' => implode(',',$gallery_ids), 'isotope' => false, 'pagination' => true ,'pagination_images_per_page' => 9 ) );
-					} else {
-						echo do_shortcode( '[gallery ids="'. implode(',',$gallery_ids) .'" type="square" size="medium" columns="4" link="file"]' );
-					}
-				?>
-			</section>
-		<?php }	?>	
+		<?php if(function_exists('to_gallery')) { to_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>'); } ?>	
 		
 		<?php to_videos('<section id="videos"><h2 class="section-title">'.__('Videos','tour-operator').'</h2>','</section>'); ?>	
 

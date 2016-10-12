@@ -253,9 +253,7 @@ class TO_Accommodation {
 		$fields[] = array( 'id' => 'included',  'name' => 'Included', 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ) );
 		$fields[] = array( 'id' => 'excluded',  'name' => 'Excluded', 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ) );
 
-		$fields[] = array( 'id' => 'team_to_accommodation', 'name' => 'Accommodation Expert', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12 );
-		$fields[] = array( 'id' => 'gallery_title',  'name' => 'Gallery', 'type' => 'title' );
-		$fields[] = array( 'id' => 'gallery', 'name' => 'Gallery images', 'type' => 'image', 'repeatable' => true, 'show_size' => false );		
+		$fields[] = array( 'id' => 'team_to_accommodation', 'name' => 'Accommodation Expert', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12 );	
 		
 		if(false !== $this->options && isset($this->options['contact_details_disabled'])){
 			$fields[] = array( 'id' => 'location_title',  'name' => 'Location', 'type' => 'title' );
@@ -412,7 +410,8 @@ class TO_Accommodation {
 		$fields[] = array( 'id' => 'vehicle_title',  'name' => 'Vehicles', 'type' => 'title', 'cols' => 12 );
 		$fields[] = array( 'id' => 'vehicle_to_accommodation', 'name' => 'Vehicles related with this accommodation', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'vehicle','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
 		
-		
+		//Allow the addons to add additional fields.
+		$fields = apply_filters('to_accommodation_custom_fields',$fields);		
 	
 		//Register the actual metabox
 		$meta_boxes[] = array(
