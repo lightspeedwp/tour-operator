@@ -103,29 +103,7 @@ get_header(); ?>
 				</section>			
 			<?php }	?>		
 			
-			<?php 
-			if(class_exists('Envira_Gallery')){
-				$gallery_id = get_post_meta(get_the_ID(),'envira_to_destination',true);
-				$test = false !== $gallery_id && '' !== $gallery_id;
-			} else {
-				$gallery_id = get_post_meta(get_the_ID(),'gallery',false);
-				$test = false !== $gallery_id && '' !== $gallery_id && is_array($gallery_id) && !empty($gallery_id);
-			}
-			if($test){
-				?>
-				<section id="gallery">
-					<h2 class="section-title"><?php esc_html_e('Gallery','tour-operator'); ?></h2>	
-					<?php 
-					if ( function_exists( 'Envira_Gallery' ) ) {
-						to_content('content', 'envira');
-					} else {
-						echo do_shortcode( '[gallery ids="'. implode(',',$gallery_id) .'" type="square" size="medium" columns="4" link="file"]' );
-					}
-				?>
-				</section>
-				<?php 
-			}
-			?>
+			<?php if(function_exists('to_gallery')) { to_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>'); } ?>
 			
 			<?php to_videos('<section id="videos"><h2 class="section-title">'.__('Videos','tour-operator').'</h2>','</section>'); ?>
 			
