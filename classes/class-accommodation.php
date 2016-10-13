@@ -55,7 +55,7 @@ class TO_Accommodation {
 		$this->is_wetu_active = false;
 		$this->display_connected_tours = false;
 
-		$this->options = get_option('_to_lsx-settings',false);
+		$this->options = get_option('_lsx_lsx-settings',false);
 		if(false !== $this->options && isset($this->options[$this->plugin_slug]) && !empty($this->options[$this->plugin_slug])){
 			$this->options = $this->options[$this->plugin_slug];
 		}
@@ -392,9 +392,6 @@ class TO_Accommodation {
 							),
 				'desc' => ''
 		);
-		
-		//videos
-		if(class_exists('TO_Field_Pattern')){ $fields = array_merge($fields,TO_Field_Pattern::videos()); }
 		
 		//Connections
 		$fields[] = array( 'id' => 'activity_title',  'name' => 'Activities', 'type' => 'title', 'cols' => 12 );

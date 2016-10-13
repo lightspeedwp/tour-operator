@@ -29,7 +29,7 @@ class TO_Framework_Frontend {
 		$this->post_types = $post_types;
 		$this->framework_path = $framework_path;
 		$this->framework_url = $framework_url;
-		$options = get_option('_to_lsx-settings',false);	
+		$options = get_option('_lsx_lsx-settings',false);	
 		if(false !== $options){
 			$this->options = $options;
 		}
@@ -45,7 +45,7 @@ class TO_Framework_Frontend {
 		add_action( 'template_redirect', array( $this, 'redirect_archive') );
 
 		//LSX
-		add_action( 'to_content_before', array( $this, 'remove_jetpack_share' ));
+		add_action( 'lsx_content_before', array( $this, 'remove_jetpack_share' ));
 		add_action( 'to_content_wrap_before', array( $this, 'remove_jetpack_share' ));
 
 		//Jetpack

@@ -11,9 +11,9 @@ get_header();
 
 	<?php to_content_wrap_before(); ?>
 
-	<section id="primary" class="content-area <?php echo esc_attr( to_main_class() ); ?>">
+	<section id="primary" class="content-area <?php echo esc_attr( lsx_main_class() ); ?>">
 
-		<?php to_content_before(); ?>
+		<?php lsx_content_before(); ?>
 
 			<main id="main" class="site-main" role="main">
 
@@ -24,7 +24,7 @@ get_header();
 				 *  - to_archive_header() - 100
 				 *  - to_archive_description() - 100
 				 */
-					to_content_top();
+					lsx_content_top();
 					global $to_archive;
 					$to_archive = 1;
 					?>
@@ -47,13 +47,13 @@ get_header();
 					
 					<?php $to_archive = 0; ?>
 
-				<?php to_content_bottom(); ?>
+				<?php lsx_content_bottom(); ?>
 				
 				<?php to_sharing(); ?>
 
 			</main><!-- #main -->
 
-		<?php to_content_after(); ?>
+		<?php lsx_content_after(); ?>
 		
 	</section><!-- #primary -->
 

@@ -43,7 +43,7 @@ class TO_Maps {
 	public function __construct($framework_url=false,$post_types=array()) {	
 		$this->framework_url = $framework_url;
 
-		$this->options = get_option('_to_lsx-settings',false);
+		$this->options = get_option('_lsx_lsx-settings',false);
 		if(!empty($post_types)){
 			$this->post_types = $post_types;
 		}else{

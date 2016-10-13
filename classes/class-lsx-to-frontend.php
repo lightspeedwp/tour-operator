@@ -48,7 +48,7 @@ class TO_Frontend extends TO_Tour_Operators {
 	 * @access private
 	 */
 	public function __construct() {
-		$this->options = get_option('_to_lsx-settings',false);	
+		$this->options = get_option('_lsx_lsx-settings',false);	
 		$this->set_vars();
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ) );	
@@ -99,7 +99,7 @@ class TO_Frontend extends TO_Tour_Operators {
 		}
 		
 		if(class_exists('TO_Banners')){
-			remove_action('to_content_top', 'to_breadcrumbs',100);
+			remove_action('lsx_content_top', 'to_breadcrumbs',100);
 			add_action('to_banner_container_top', 'to_breadcrumbs');
 		}		
 	}

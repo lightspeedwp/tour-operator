@@ -54,7 +54,7 @@ class Lsx_Destination{
 	 */
 	private function __construct() {
 		// activate property post type
-		$temp = get_option('_to_lsx-settings',false);
+		$temp = get_option('_lsx_lsx-settings',false);
 		if(false !== $temp && isset($temp[$this->plugin_slug]) && !empty($temp[$this->plugin_slug])){
 			$this->options = $temp[$this->plugin_slug];
 		}
@@ -67,10 +67,6 @@ class Lsx_Destination{
 		}
 		add_filter( 'to_entry_class', array( $this, 'entry_class') );
 		
-		add_action( 'to_content_bottom', 'to_country_regions', 70 );
-		add_action( 'to_content_bottom', 'to_destination_tours', 80 );
-		add_action( 'to_content_bottom', 'to_region_accommodation', 90 );
-
 		add_action('to_map_meta',array($this, 'content_meta'));
 		add_action('to_modal_meta',array($this, 'content_meta'));		
 
@@ -145,10 +141,7 @@ class Lsx_Destination{
 		}
 		$fields[] = array( 'id' => 'team_to_destination', 'name' => 'Destination Expert', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12, 'allow_none' => true );
 
-		$fields[] = array( 'id' => 'location',  'name' => 'Location', 'type' => 'gmap' );			
-		
-		//videos
-		if(class_exists('TO_Field_Pattern')){ $fields = array_merge($fields,TO_Field_Pattern::videos()); }		
+		$fields[] = array( 'id' => 'location',  'name' => 'Location', 'type' => 'gmap' );	
 		
 		$fields[] = array( 'id' => 'connections_title',  'name' => 'Connections', 'type' => 'title' );
 		if(post_type_exists('accommodation')){

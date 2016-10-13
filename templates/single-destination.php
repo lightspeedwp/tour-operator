@@ -8,9 +8,9 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area <?php echo esc_attr( to_main_class() ); ?>">
+	<div id="primary" class="content-area <?php echo esc_attr( lsx_main_class() ); ?>">
 
-		<?php to_content_before(); ?>
+		<?php lsx_content_before(); ?>
 		
 		<main id="main" class="site-main" role="main">
 
@@ -20,7 +20,7 @@ get_header(); ?>
 			 * 
 			 * - to_single_header() - 100
 			 */
-				to_content_top();
+				lsx_content_top();
 			?>
 			
 			<section class="destination-navigation">
@@ -91,25 +91,11 @@ get_header(); ?>
 			 *  - to_destination_tours() - 80
 			 *  - to_region_accommodation() - 90
 			 */			
-			to_content_bottom();
-			?>
-			
-			<?php to_destination_activities(); ?>
-			
-			<?php if(to_has_map()){ ?>
-				<section id="destination-map">
-					<h2 class="section-title"><?php esc_html_e('Map','tour-operator'); ?></h2>
-					<?php to_map(); ?>
-				</section>			
-			<?php }	?>		
-			
-			<?php if(function_exists('to_gallery')) { to_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>'); } ?>
-			
-			<?php to_videos('<section id="videos"><h2 class="section-title">'.__('Videos','tour-operator').'</h2>','</section>'); ?>
+			lsx_content_bottom(); ?>
 			
 		</main><!-- #main -->	
 
-		<?php to_content_after();?>
+		<?php lsx_content_after();?>
 
 	</div><!-- #primary -->
 

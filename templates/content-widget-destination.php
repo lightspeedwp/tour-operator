@@ -12,7 +12,7 @@ global $disable_placeholder;
 	<?php if('1' !== $disable_placeholder && true !== $disable_placeholder) { ?>
 		<div class="thumbnail">
 			<a href="<?php the_permalink(); ?>">
-				<?php to_thumbnail( 'lsx-thumbnail-wide' ); ?>
+				<?php lsx_thumbnail( 'lsx-thumbnail-wide' ); ?>
 			</a>
 		</div>
 	<?php } ?>

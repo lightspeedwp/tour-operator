@@ -8,13 +8,13 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area <?php echo esc_attr( to_main_class() ); ?>">
+	<div id="primary" class="content-area <?php echo esc_attr( lsx_main_class() ); ?>">
 
-		<?php to_content_before(); ?>
+		<?php lsx_content_before(); ?>
 		
 		<main id="main" class="site-main" role="main">
 
-		<?php to_content_top(); ?>
+		<?php lsx_content_top(); ?>
 		
 		<section class="accommodation-navigation">
 			<div class="container">
@@ -62,35 +62,11 @@ get_header(); ?>
 			
 		<?php endwhile; // end of the loop. ?>
 		
-		
-		<?php to_accommodation_units('<section id="{units}"><h2 class="section-title">'.__('{units}','tour-operator').'</h2><div class="info row">','</div></section>'); ?>	
-		
-		<?php to_accommodation_facilities('<section id="facilities"><h2 class="section-title">'.__('Facilities','tour-operator').'</h2><div class="info row">','</div></section>'); ?>	
-
-		<?php if(to_has_map()){ ?>
-			<section id="accommodation-map">
-				<h2 class="section-title"><?php esc_html_e('Map','tour-operator'); ?></h2>
-				<?php to_map(); ?>
-			</section>			
-		<?php }	?>			
-		
-		<?php if(function_exists('to_gallery')) { to_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>'); } ?>	
-		
-		<?php to_videos('<section id="videos"><h2 class="section-title">'.__('Videos','tour-operator').'</h2>','</section>'); ?>	
-
-		<?php to_related_items('travel-style','<section id="related-items"><h2 class="section-title">'.__(to_get_post_type_section_title('accommodation', 'similar', 'Related Accommodation'),'tour-operator').'</h2>','</section>'); ?>		
-
-		<?php
-		$connected_tours = get_post_meta(get_the_ID(),'tour_to_accommodation',false); 
-		if(to_accommodation_display_connected_tours() && post_type_exists('tour') && is_array($connected_tours) && !empty($connected_tours)){
-			to_related_items($connected_tours,'<section id="related-items"><h2 class="section-title">'.__('Related Tours','tour-operator').'</h2>','</section>',true,'tour');
-		}?>
-		
-		<?php to_content_bottom(); ?>
+		<?php lsx_content_bottom(); ?>
 
 		</main><!-- #main -->			
 
-		<?php to_content_after(); ?>
+		<?php lsx_content_after(); ?>
 
 	</div><!-- #primary -->
 

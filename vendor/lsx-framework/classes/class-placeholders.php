@@ -80,7 +80,7 @@ class TO_Placeholders {
 	 * Returns the placeholder call.
 	 */
 	public static function placeholder_url($text_size = 24,$post_type='general',$size='lsx-thumbnail-wide'){
-		$options = get_option('_to_lsx-settings',false);
+		$options = get_option('_lsx_lsx-settings',false);
 		$holdit_width = '';
 		switch($size){
 			case 'thumbnail':
@@ -140,7 +140,7 @@ class TO_Placeholders {
 	 * The post default placeholder call.
 	 */
 	public function default_post_thumbnail( $meta, $post_id, $meta_key ){
-		$options = get_option('_to_lsx-settings',false);
+		$options = get_option('_lsx_lsx-settings',false);
 		if($meta_key === '_thumbnail_id' && false !== $options){
 			
 			$post_type = get_post_field( 'post_type', $post_id );
@@ -195,7 +195,7 @@ class TO_Placeholders {
 	public function default_term_thumbnail( $meta, $post_id, $meta_key ){
 
 		if($meta_key === 'thumbnail'){
-			$options = get_option('_to_lsx-settings',false);
+			$options = get_option('_lsx_lsx-settings',false);
 			$placeholder = 'lsx-placeholder';
 
 			//First Check for a default, then check if there is one set by post type.

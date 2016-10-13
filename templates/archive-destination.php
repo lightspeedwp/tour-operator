@@ -11,9 +11,9 @@
 
 	<?php to_content_wrap_before(); ?>
 
-	<section id="primary" class="content-area <?php echo esc_attr( to_main_class() ); ?>">
+	<section id="primary" class="content-area <?php echo esc_attr( lsx_main_class() ); ?>">
 
-		<?php to_content_before() ?>
+		<?php lsx_content_before() ?>
 
 		<main id="main" class="site-main" role="main">
 		
@@ -70,7 +70,7 @@
 									<div class="col-sm-6">
 										<div class="thumbnail">
 											<a href="<?php the_permalink() ?>" title="<?php the_title() ?>">
-												<?php to_thumbnail( 'lsx-single-thumbnail' ) ?>
+												<?php lsx_thumbnail( 'lsx-single-thumbnail' ) ?>
 											</a>
 										</div>
 									</div>
@@ -129,7 +129,7 @@
 																	<article id="post-<?php the_ID() ?>" <?php post_class() ?>>
 																		<div class="thumbnail">
 																			<a href="<?php the_permalink() ?>">
-																				<?php to_thumbnail( 'lsx-thumbnail-wide' ) ?>
+																				<?php lsx_thumbnail( 'lsx-thumbnail-wide' ) ?>
 																			</a>
 																		</div>
 																		
@@ -237,11 +237,11 @@
 			
 			<?php to_sharing() ?>
 
-			<?php to_content_bottom() ?>
+			<?php lsx_content_bottom() ?>
 
 		</main><!-- #main -->
 
-		<?php to_content_after() ?>
+		<?php lsx_content_after() ?>
 		
 	</section><!-- #primary -->
 

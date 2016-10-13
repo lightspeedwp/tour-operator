@@ -17,6 +17,7 @@ require_once( TO_PATH . 'includes/template-tags.php' );
 require_once( TO_PATH . 'includes/post-expirator.php' );
 require_once( TO_PATH . 'includes/post-order.php' );
 require_once( TO_PATH . 'includes/customizer.php' );
+require_once( TO_PATH . 'includes/layout.php' );
 
 // Setup the post connections
 class TO_Tour_Operators {
@@ -112,7 +113,7 @@ class TO_Tour_Operators {
 	private function __construct() {
 		
 		//Set the options
-		$this->options = get_option('_to_lsx-settings',false);	
+		$this->options = get_option('_lsx_lsx-settings',false);	
 		$this->set_vars();
 
 		//Add our action to init to set up our vars first.	

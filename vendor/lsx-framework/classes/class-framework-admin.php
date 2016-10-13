@@ -30,7 +30,7 @@ class TO_Framework_Admin {
 
 		$this->framework_path = $framework_path;
 		$this->framework_url = $framework_url;
-		$options = get_option('_to_lsx-settings',false);	
+		$options = get_option('_lsx_lsx-settings',false);	
 		if(false !== $options){
 			$this->options = $options;
 		}

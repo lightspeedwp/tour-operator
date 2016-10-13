@@ -112,7 +112,7 @@ class TO_Framework {
 		$this->framework_path = plugin_dir_path( __FILE__ );
 		$this->framework_url = plugin_dir_url( __FILE__ );
 		
-		$options = get_option('_to_lsx-settings',false);
+		$options = get_option('_lsx_lsx-settings',false);
 		if(false !== $options){
 			$this->options = $options;
 		}

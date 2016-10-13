@@ -10,7 +10,7 @@
 
 	<div class="thumbnail">	
 		<a href="<?php the_permalink(); ?>">
-			<?php to_thumbnail( 'lsx-thumbnail-single' ); ?>
+			<?php lsx_thumbnail( 'lsx-thumbnail-single' ); ?>
 		</a>
 	</div>
 

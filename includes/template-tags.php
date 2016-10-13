@@ -691,139 +691,6 @@ function to_best_time_to_visit($before="",$after="",$echo=true){
 	}
 }
 
-/**
- * Outputs the Tours Videos
- *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
- *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	tour
- */
-function to_videos($before="",$after="",$echo=true){
-	global $content_width;
-
-	$videos = get_post_meta(get_the_ID(),'videos',false);
-	if(false !== $videos && '' !== $videos && is_array($videos) && !empty($videos)){
-		$temp_width = $content_width;
-		$content_width = '350';		
-		$video_count = count($videos);
-
-		$carousel = false;
-		if($video_count > 3){
-			$carousel = true;
-		}
-
-		$columns = 3;
-		$class=12/$columns;
-
-		$count = 1;
-		$video_array = '';		
-
-		//Set some carousel values
-		if(true === $carousel){
-			$carousel_id = rand ( 20, 20000 );
-			$interval = '5000';
-			$pagination = '';
-			$pages = ceil( $video_count / $columns );	
-
-			//generate the pagination
-			$i = 0;
-			while ( $i < $pages ) {
-				$pagination .= '<li data-target="#slider-'.esc_attr($carousel_id).'" data-slide-to="'.esc_attr($i).'" class="'. esc_attr( 0 == $i ? 'active' : '' ) .'"></li>';
-				$i++;
-			}
-
-			$video_array .= '<div class="slider-container">';
-			$video_array .= '<div id="slider-'.esc_attr($carousel_id).'" class="carousel slide" data-interval="'.esc_attr($interval).'">';
-			$video_array .= '<div class="carousel-wrap">';
-			$video_array .= '<div class="carousel-inner" role="listbox">';
-		}
-
-		foreach($videos as $video){
-
-			//The opening of the carousel
-			if (1 === $count) {
-				if (true === $carousel) {
-					$video_array .= '<div class="item active row">';
-					$video_array .= '<div class="lsx-video">';							
-				} else {
-					$video_array .= '<div class="row lsx-video">';
-				}
-
-			}
-			
-			$video_array .= '<div class="panel col-sm-'.$class.'">';
-
-			$video_array .= '<article class="video type-video">';
-			if(isset($video['url']) && ''!==$video['url']){
-				//$video_array .= '<div class="video thumbnail">'.apply_filters('the_content',$video['url']).'</div>';
-				$video_array .= wp_oembed_get($video['url']);
-						
-				if(isset($video['title']) && ''!==$video['title']){ 
-					$video_array .= '<h3>'.$video['title'].'</h3>';
-				}
-				if(isset($video['description']) && ''!==$video['description']){
-					$video_array .= '<div class="entry-content">'.apply_filters('the_content',$video['description']).'</div>';
-
-
-				}	
-			}
-			$video_array .= '</article></div>';
-
-			//Closing carousel loop inner
-			if (0 == $count % $columns || $count === $video_count) {
-				if (true === $carousel) {
-					$video_array .= "</div></div>";
-					if ($count < $video_count) {
-						$video_array .= "<div class='item row'><div class='lsx-video'>";
-					}
-				} else {
-					$video_array .= "</div>";
-					if ($count < $video_count) {
-						$video_array .= "<div class='row lsx-video'>";
-					}
-				}
-			}
-			$count++;
-		}
-
-		//This is the closing carousel output.
-		if (true === $carousel) {
-			$video_array .= "</div>";
-			if ( $pages > 1 ) {
-				$video_array .= '<a class="left carousel-control" href="#slider-'.$carousel_id.'" role="button" data-slide="prev">';
-				$video_array .= '<span class="fa fa-chevron-left" aria-hidden="true"></span>';
-				$video_array .= '<span class="sr-only">'.__('Previous','tour-operator').'</span>';
-				$video_array .= '</a>';
-				$video_array .= '<a class="right carousel-control" href="#slider-'.$carousel_id.'" role="button" data-slide="next">';
-				$video_array .= '<span class="fa fa-chevron-right" aria-hidden="true"></span>';
-				$video_array .= '<span class="sr-only">'.__('Next','tour-operator').'</span>';
-				$video_array .= '</a>';
-			}
-			$video_array .= "</div>";
-			if ( $pages > 1 ) {
-				$video_array .= '<ol class="carousel-indicators">'.$pagination.'</ol>';
-			}
-			$video_array .= "</div>";
-			$video_array .= "</div>";			
-		}
-		
-		$return = $before.$video_array.$after;
-		$temp_width = $content_width;
-		$content_width = $temp_width;
-		if($echo){
-			echo wp_kses_post( $return );
-		}else{
-			return $return;
-		}		
-	}
-}
-
-
 /* ================  Destinations =========================== */
 /**
  * Outputs the connected accommodation only on a "region"
@@ -938,7 +805,7 @@ function to_destination_activities(){
  * @category 	destination
  */
 function to_has_destination_banner_map(){
-	$temp = get_option('_to_lsx-settings',false);
+	$temp = get_option('_lsx_lsx-settings',false);
 	if(false !== $temp && isset($temp['destination']) && !empty($temp['destination'])){
 		if(isset($temp['destination']['enable_banner_map'])){
 			return true;
@@ -1545,7 +1412,7 @@ function to_team_member_panel($before="",$after=""){
 						<?php if(!to_is_single_disabled()){ ?>
 							<a href="<?php the_permalink(); ?>">
 						<?php } ?>
-							<?php to_thumbnail( 'lsx-thumbnail-wide' ); ?>
+							<?php lsx_thumbnail( 'lsx-thumbnail-wide' ); ?>
 						<?php if(!to_is_single_disabled()){ ?>
 							</a>
 						<?php } ?>

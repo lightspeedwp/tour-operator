@@ -10,9 +10,9 @@ get_header(); ?>
 
 	<?php to_content_wrap_before(); ?>
 
-	<section id="primary" class="content-area <?php echo esc_attr( to_main_class() ); ?>">
+	<section id="primary" class="content-area <?php echo esc_attr( lsx_main_class() ); ?>">
 
-		<?php to_content_before(); ?>
+		<?php lsx_content_before(); ?>
 
 		<main id="main" class="site-main" role="main">
 
@@ -23,7 +23,7 @@ get_header(); ?>
 		 *  - to_archive_header() - 100
 		 *  - to_archive_description() - 100
 		 */
-			to_content_top();
+			lsx_content_top();
 		?>
 		
 		<?php if ( have_posts() ) : ?>
@@ -43,7 +43,7 @@ get_header(); ?>
 
 		<?php endif; ?>
 
-		<?php to_content_bottom(); ?>
+		<?php lsx_content_bottom(); ?>
 		
 		<?php to_safari_brands('<section id="safari-brands"><h2 class="section-title">'.__(to_get_post_type_section_title('accommodation', 'brands', 'Accommodation Brands'),'tour-operator').'</h2>','</section>');?>
 		
@@ -51,7 +51,7 @@ get_header(); ?>
 
 		</main><!-- #main -->
 
-		<?php to_content_after(); ?>
+		<?php lsx_content_after(); ?>
 		
 	</section><!-- #primary -->
 

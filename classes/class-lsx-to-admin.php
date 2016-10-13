@@ -25,7 +25,7 @@ class TO_Admin extends TO_Tour_Operators {
 	 * @access private
 	 */
 	public function __construct() {
-		$this->options = get_option('_to_lsx-settings',false);	
+		$this->options = get_option('_lsx_lsx-settings',false);	
 		$this->set_vars();
 
 		add_action( 'init', array( $this, 'require_post_type_classes' ) , 1 );

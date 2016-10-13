@@ -52,7 +52,7 @@ class Lsx_Tour {
 	 * @access private
 	 */
 	private function __construct() {
-		$this->options = get_option('_to_lsx-settings',false);
+		$this->options = get_option('_lsx_lsx-settings',false);
 		if(false !== $this->options && isset($this->options[$this->plugin_slug]) && !empty($this->options[$this->plugin_slug])){
 			$this->options = $this->options[$this->plugin_slug];
 		}
@@ -208,9 +208,6 @@ class Lsx_Tour {
 		if(post_type_exists('special')){
 			$fields[] = array( 'id' => 'special_to_tour', 'name' => 'Specials related with this tour', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'special','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none' => true , 'repeatable' => true, 'sortable' => true, 'cols' => 12 );
 		}
-		
-		//videos
-		if(class_exists('TO_Field_Pattern')){ $fields = array_merge($fields,TO_Field_Pattern::videos()); }
 		
 		//Connections
 		if(post_type_exists('review')){

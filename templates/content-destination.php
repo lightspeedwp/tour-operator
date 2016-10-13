@@ -9,16 +9,16 @@ global $to_archive;
 if(1 !== $to_archive){$to_archive = false;}
 ?>
 
-<?php to_entry_before(); ?>
+<?php lsx_entry_before(); ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php to_entry_top(); ?>
+	<?php lsx_entry_top(); ?>
 	
 	<?php if(is_archive() || is_post_type_archive('destination') || $to_archive) { ?>
 		<div class="col-sm-3">
 			<div class="thumbnail">
 				<a href="<?php the_permalink(); ?>">
-					<?php to_thumbnail( 'lsx-thumbnail-wide' ); ?>
+					<?php lsx_thumbnail( 'lsx-thumbnail-wide' ); ?>
 				</a>
 			</div>
 		</div>				
@@ -70,8 +70,8 @@ if(1 !== $to_archive){$to_archive = false;}
 	</div>
 	<?php }	?>		
 	
-	<?php to_entry_bottom(); ?>
+	<?php lsx_entry_bottom(); ?>
 	
 </article><!-- #post-## -->
 
-<?php to_entry_after();
+<?php lsx_entry_after();
