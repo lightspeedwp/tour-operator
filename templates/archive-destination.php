@@ -9,7 +9,7 @@
 
 <?php get_header() ?>
 
-	<?php to_content_wrap_before(); ?>
+	<?php lsx_content_wrap_before(); ?>
 
 	<section id="primary" class="content-area <?php echo esc_attr( lsx_main_class() ); ?>">
 
@@ -245,7 +245,7 @@
 		
 	</section><!-- #primary -->
 
-<?php to_content_wrap_after(); ?>	
+<?php lsx_content_wrap_after(); ?>	
 
 <?php get_sidebar() ?>
 

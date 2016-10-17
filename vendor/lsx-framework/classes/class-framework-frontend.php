@@ -46,7 +46,7 @@ class TO_Framework_Frontend {
 
 		//LSX
 		add_action( 'lsx_content_before', array( $this, 'remove_jetpack_share' ));
-		add_action( 'to_content_wrap_before', array( $this, 'remove_jetpack_share' ));
+		add_action( 'lsx_content_wrap_before', array( $this, 'remove_jetpack_share' ));
 
 		//Jetpack
 		add_filter( 'sharing_show', array( $this, 'show_jetpack_sharing_filter'),2,100 );	
