@@ -73,10 +73,10 @@ class TO_Banner_Integration {
 	 * A filter that outputs the description for the post_type and taxonomy archives.
 	 */
 	public function banner_archive_url($image=false) {
-		global $to_operators;
-		if(is_post_type_archive($to_operators->active_post_types) && isset($to_operators->options[get_post_type()])){
-			if(isset($to_operators->options[get_post_type()]['banner']) && '' !== $to_operators->options[get_post_type()]['banner']){
-				$image = $to_operators->options[get_post_type()]['banner'];
+		global $tour_operator;
+		if(is_post_type_archive($tour_operator->active_post_types) && isset($tour_operator->options[get_post_type()])){
+			if(isset($tour_operator->options[get_post_type()]['banner']) && '' !== $tour_operator->options[get_post_type()]['banner']){
+				$image = $tour_operator->options[get_post_type()]['banner'];
 			}
 		}
 		return $image;
@@ -86,12 +86,12 @@ class TO_Banner_Integration {
 	 *  Picks the placeholder from a specific post type setting, if its there
 	 */
 	public function banner_placeholder_url($image=false) {
-		global $to_operators;
-		if(isset($to_operators->options['general']) && isset($to_operators->options['general']['banner_placeholder']) && '' !== $to_operators->options['general']['banner_placeholder']){
-				$image = $to_operators->options['general']['banner_placeholder'];
+		global $tour_operator;
+		if(isset($tour_operator->options['general']) && isset($tour_operator->options['general']['banner_placeholder']) && '' !== $tour_operator->options['general']['banner_placeholder']){
+				$image = $tour_operator->options['general']['banner_placeholder'];
 		}			
-		if(isset($to_operators->options[get_post_type()]) && isset($to_operators->options[get_post_type()]['banner_placeholder']) && '' !== $to_operators->options[get_post_type()]['banner_placeholder']){
-				$image = $to_operators->options[get_post_type()]['banner_placeholder'];
+		if(isset($tour_operator->options[get_post_type()]) && isset($tour_operator->options[get_post_type()]['banner_placeholder']) && '' !== $tour_operator->options[get_post_type()]['banner_placeholder']){
+				$image = $tour_operator->options[get_post_type()]['banner_placeholder'];
 		}
 		return $image;
 	}	
@@ -100,9 +100,9 @@ class TO_Banner_Integration {
 	 * A filter that outputs the description for the post_type and taxonomy archives.
 	 */
 	public function posts_page_banner_tagline(){
-		global $to_operators;
-		if(is_home() && isset($to_operators->options[get_post_type()]) && isset($to_operators->options[get_post_type()]['tagline'])){
-			$tagline = $to_operators->options[get_post_type()]['tagline'];
+		global $tour_operator;
+		if(is_home() && isset($tour_operator->options[get_post_type()]) && isset($tour_operator->options[get_post_type()]['tagline'])){
+			$tagline = $tour_operator->options[get_post_type()]['tagline'];
 			?>
 			<p class="tagline"><?php echo $tagline; ?></p>
 			<?php 
@@ -113,9 +113,9 @@ class TO_Banner_Integration {
 	 * A filter that outputs the title for the post_type_archives.
 	 */
 	public function banner_title($title) {
-		global $to_operators;
-		if(is_post_type_archive() && isset($to_operators->options[get_post_type()]) && isset($to_operators->options[get_post_type()]['title']) && '' !== $to_operators->options[get_post_type()]['title'] ){
-			$title = '<h1 class="page-title">'.$to_operators->options[get_post_type()]['title'].'</h1>';
+		global $tour_operator;
+		if(is_post_type_archive() && isset($tour_operator->options[get_post_type()]) && isset($tour_operator->options[get_post_type()]['title']) && '' !== $tour_operator->options[get_post_type()]['title'] ){
+			$title = '<h1 class="page-title">'.$tour_operator->options[get_post_type()]['title'].'</h1>';
 		}
 		return $title;
 	}	

@@ -47,7 +47,7 @@ class TO_Admin extends TO_Tour_Operators {
 	 * @since 0.1.0
 	 */
 	public function init() {
-		$this->taxonomies = apply_filters('to_taxonomy_admin_taxonomies',$this->taxonomies);
+		$this->taxonomies = apply_filters('to_taxonomies',$this->taxonomies);
 		add_filter('to_taxonomy_widget_taxonomies', array( $this, 'widget_taxonomies' ),10,1 );
 
 		if(false !== $this->taxonomies){

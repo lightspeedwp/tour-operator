@@ -377,11 +377,11 @@ class Lsx_Tour {
 	public function price_filter($html='',$meta_key=false,$value=false,$before="",$after=""){
 		if(get_post_type() === 'tour' && 'price' === $meta_key){
 			$value = number_format((int) $value);
-			global $to_operators;
+			global $tour_operator;
 			$currency = '';
-			if ( is_object( $to_operators ) && isset( $to_operators->options['general'] ) && is_array( $to_operators->options['general'] ) ) {
-				if ( isset( $to_operators->options['general']['currency'] ) && ! empty( $to_operators->options['general']['currency'] ) ) {
-					$currency = $to_operators->options['general']['currency'];
+			if ( is_object( $tour_operator ) && isset( $tour_operator->options['general'] ) && is_array( $tour_operator->options['general'] ) ) {
+				if ( isset( $tour_operator->options['general']['currency'] ) && ! empty( $tour_operator->options['general']['currency'] ) ) {
+					$currency = $tour_operator->options['general']['currency'];
 					$currency = '<span class="currency-icon '. mb_strtolower( $currency ) .'">'. $currency .'</span>';
 				}
 			}

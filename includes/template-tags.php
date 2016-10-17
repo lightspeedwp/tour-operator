@@ -137,9 +137,9 @@ function to_widget_class($return=false){
  * @category 	class
  */
 function to_is_single_disabled($post_type=false){
-	global $to_operators;
+	global $tour_operator;
 	if(false === $post_type) {$post_type = get_post_type(); }
-	if(is_object($to_operators) && isset($to_operators->options[$post_type]) && isset($to_operators->options[$post_type]['disable_single'])){
+	if(is_object($tour_operator) && isset($tour_operator->options[$post_type]) && isset($tour_operator->options[$post_type]['disable_single'])){
 		return true;
 	}else{
 		return false;
@@ -158,10 +158,10 @@ function to_is_single_disabled($post_type=false){
  */
 function to_get_post_type_section_title($post_type=false,$section='',$default=''){
 	$section_title = (!empty($section)) ? ($section.'_section_title') : 'section_title';
-	global $to_operators;
+	global $tour_operator;
 	if(false === $post_type) {$post_type = get_post_type(); }
-	if(is_object($to_operators) && isset($to_operators->options[$post_type]) && isset($to_operators->options[$post_type][$section_title]) && !empty($to_operators->options[$post_type][$section_title]) && '' !== $to_operators->options[$post_type][$section_title]){
-		return $to_operators->options[$post_type][$section_title];
+	if(is_object($tour_operator) && isset($tour_operator->options[$post_type]) && isset($tour_operator->options[$post_type][$section_title]) && !empty($tour_operator->options[$post_type][$section_title]) && '' !== $tour_operator->options[$post_type][$section_title]){
+		return $tour_operator->options[$post_type][$section_title];
 	}else{
 		return $default;
 	}
@@ -451,9 +451,9 @@ function to_accommodation_meta(){
  * @category 	accommodation
  */
 function to_accommodation_display_connected_tours(){
-	global $to_operators;
+	global $tour_operator;
 	$return = false;
-	if(isset($to_operators->options['accommodation']['display_connected_tours']) && 'on' === $to_operators->options['accommodation']['display_connected_tours']){
+	if(isset($tour_operator->options['accommodation']['display_connected_tours']) && 'on' === $tour_operator->options['accommodation']['display_connected_tours']){
 		$return = true;
 	}
 	return $return;
@@ -922,37 +922,37 @@ function to_travel_dates($before="",$after="",$echo=true){
  * @category 	tour
  */
 function to_enquire_modal($before="",$after="",$echo=true){ 
-	global $to_operators;
+	global $tour_operator;
 
 	$form_id = 'false';
 	// First set the general form
-	if(isset($to_operators->options['general']) && isset($to_operators->options['general']['enquiry']) && '' !== $to_operators->options['general']['enquiry']){
-		$form_id = $to_operators->options['general']['enquiry'];
+	if(isset($tour_operator->options['general']) && isset($tour_operator->options['general']['enquiry']) && '' !== $tour_operator->options['general']['enquiry']){
+		$form_id = $tour_operator->options['general']['enquiry'];
 	}
 
-	if(is_singular($to_operators->active_post_types)){		
-		if(isset($to_operators->options[get_post_type()]) && isset($to_operators->options[get_post_type()]['enquiry']) && '' !== $to_operators->options[get_post_type()]['enquiry']){
-			$form_id = $to_operators->options[get_post_type()]['enquiry'];
+	if(is_singular($tour_operator->active_post_types)){		
+		if(isset($tour_operator->options[get_post_type()]) && isset($tour_operator->options[get_post_type()]['enquiry']) && '' !== $tour_operator->options[get_post_type()]['enquiry']){
+			$form_id = $tour_operator->options[get_post_type()]['enquiry'];
 		}
 	}
 
 	$disable_modal = false;
 	$link = '#';
 
-	if(isset($to_operators->options['general']) && isset($to_operators->options['general']['disable_enquire_modal']) && 'on' === $to_operators->options['general']['disable_enquire_modal']){
+	if(isset($tour_operator->options['general']) && isset($tour_operator->options['general']['disable_enquire_modal']) && 'on' === $tour_operator->options['general']['disable_enquire_modal']){
 		$disable_modal = true;
 
-		if('' !== $to_operators->options['general']['enquire_link']){
-			$link = $to_operators->options['general']['enquire_link'];
+		if('' !== $tour_operator->options['general']['enquire_link']){
+			$link = $tour_operator->options['general']['enquire_link'];
 		}
 	}
 
-	if(is_singular($to_operators->active_post_types)){		
-		if(isset($to_operators->options[get_post_type()]) && isset($to_operators->options[get_post_type()]['disable_enquire_modal']) && 'on' === $to_operators->options[get_post_type()]['disable_enquire_modal']){
+	if(is_singular($tour_operator->active_post_types)){		
+		if(isset($tour_operator->options[get_post_type()]) && isset($tour_operator->options[get_post_type()]['disable_enquire_modal']) && 'on' === $tour_operator->options[get_post_type()]['disable_enquire_modal']){
 			$disable_modal = true;
 
-			if('' !== $to_operators->options[get_post_type()]['enquire_link']){
-				$link = $to_operators->options[get_post_type()]['enquire_link'];
+			if('' !== $tour_operator->options[get_post_type()]['enquire_link']){
+				$link = $tour_operator->options[get_post_type()]['enquire_link'];
 			}
 		}
 	}	
@@ -1068,7 +1068,7 @@ function to_has_map(){
  * @category 	tour
  */
 function to_map($before="",$after="",$echo=true){
-	global $to_operators;
+	global $tour_operator;
 	if ( false !== ( $location = get_transient( get_the_ID().'_location' ) ) ) {
 		$zoom = 15;
 		if(is_array($location) && isset($location['zoom'])){$zoom = $location['zoom']; }
@@ -1146,7 +1146,7 @@ function to_map($before="",$after="",$echo=true){
 					'height' => '500px',
 			);			
 		}
-		echo wp_kses_post( $to_operators->framework->maps->map_output(get_the_ID(),$args) );
+		echo wp_kses_post( $tour_operator->framework->maps->map_output(get_the_ID(),$args) );
 	}
 }
 

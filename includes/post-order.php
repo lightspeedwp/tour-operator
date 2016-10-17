@@ -362,13 +362,13 @@ class TO_SCPO_Engine {
 	}
 
 	function get_to_scporder_options_objects() {
-		global $to_operators;
-		return $to_operators->post_types;
+		global $tour_operator;
+		return $tour_operator->post_types;
 	}
 
 	function get_to_scporder_options_tags() {
-		global $to_operators;
-		return $to_operators->taxonomies;
+		global $tour_operator;
+		return $tour_operator->taxonomies;
 	}
 
 }

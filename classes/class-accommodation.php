@@ -483,11 +483,11 @@ class TO_Accommodation {
 		if(get_post_type() === 'accommodation' && 'price' === $meta_key){
 			$price_type = get_post_meta(get_the_ID(),'price_type',true);
 			$value = number_format($value);
-			global $to_operators;
+			global $tour_operator;
 			$currency = '';
-			if ( is_object( $to_operators ) && isset( $to_operators->options['general'] ) && is_array( $to_operators->options['general'] ) ) {
-				if ( isset( $to_operators->options['general']['currency'] ) && ! empty( $to_operators->options['general']['currency'] ) ) {
-					$currency = $to_operators->options['general']['currency'];
+			if ( is_object( $tour_operator ) && isset( $tour_operator->options['general'] ) && is_array( $tour_operator->options['general'] ) ) {
+				if ( isset( $tour_operator->options['general']['currency'] ) && ! empty( $tour_operator->options['general']['currency'] ) ) {
+					$currency = $tour_operator->options['general']['currency'];
 					$currency = '<span class="currency-icon '. mb_strtolower( $currency ) .'">'. $currency .'</span>';
 				}
 			}

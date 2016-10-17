@@ -20,11 +20,11 @@
 			<?php if ( have_posts() ) : ?>
 
 				<?php
-					global $to_operators;
-					if ( ! isset( $to_operators->search )
-						|| empty( $to_operators->search )
-						|| false === $to_operators->search->options
-						|| ! isset( $to_operators->search->options['destination']['enable_search'] ) ) :
+					global $tour_operator;
+					if ( ! isset( $tour_operator->search )
+						|| empty( $tour_operator->search )
+						|| false === $tour_operator->search->options
+						|| ! isset( $tour_operator->search->options['destination']['enable_search'] ) ) :
 					?>
 
 					<section class="destinations-navigation">
@@ -78,7 +78,7 @@
 									<div class="col-sm-6">
 										<h2 class="section-title"><a href="<?php the_permalink() ?>" title="<?php the_title() ?>"><?php the_title() ?></a></h2>
 										<?php to_tagline( '<p class="tagline">', '</p>') ?>
-										<div class="entry-content"><?php echo wp_kses_post( $to_operators->apply_filters_the_content( $post->post_content, 'Continue Reading', get_permalink() ) ); ?></div>
+										<div class="entry-content"><?php echo wp_kses_post( $tour_operator->apply_filters_the_content( $post->post_content, 'Continue Reading', get_permalink() ) ); ?></div>
 									</div>
 								</div>
 							</div>
