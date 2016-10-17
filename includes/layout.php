@@ -7,6 +7,70 @@
  * @license   	GPL3
  */
 
+
+// Archive
+add_action('lsx_entry_top','to_archive_entry_top');
+
+add_action('lsx_entry_bottom','to_accommodation_archive_entry_bottom');
+add_action('lsx_entry_bottom','to_destination_archive_entry_bottom');
+add_action('lsx_entry_bottom','to_tour_archive_entry_bottom');
+
+
+// Single
+add_action('lsx_entry_bottom','to_single_entry_bottom');
+
+add_action('lsx_content_bottom','to_accommodation_single_content_bottom');
+add_action('lsx_content_bottom','to_destination_single_content_bottom');
+add_action('lsx_content_bottom','to_tour_single_content_bottom');
+
+/**
+ * Adds the template tags to the top of the content-accommodation
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tag
+ * @category 	general
+ */
+function to_archive_entry_top() {
+	global $to_archive;
+	if(in_array(get_post_type(),array('accommodation','tour','destination')) && (is_archive() || $to_archive)) { ?>
+		<div class="col-sm-3">
+			<div class="thumbnail">
+				<a href="<?php the_permalink(); ?>">
+					<?php lsx_thumbnail( 'lsx-thumbnail-wide' ); ?>
+				</a>
+			</div>
+		</div>				
+
+		<div class="col-sm-9">
+			<div class="col-sm-8">
+			
+				<header class="page-header">
+					<?php the_title( '<h3 class="page-title"><a href="'.get_permalink().'" title="'.__('Read more','tour-operator').'">', '</a></h3>' ); ?>
+					<?php to_tagline('<p class="tagline">','</p>'); ?>
+				</header><!-- .entry-header -->				
+	<?php }
+}
+
+/**
+ * Adds the template tags to the top of the content-{post-type}
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tag
+ * @category 	general
+ */
+function to_single_entry_bottom() {
+	global $to_archive;
+	if(function_exists('to_has_team_member') && is_singular(array('accommodation','destination','tour')) && false === $to_archive && to_has_team_member()) { ?>
+		<div class="col-sm-3">
+			<div class="team-member-widget">
+				<?php to_team_member_panel( '<div class="team-member">', '</div>' ) ?>
+				<?php to_enquire_modal() ?>
+			</div>
+		</div>
+<?php }	
+}
+
+
 /**
  * Adds the template tags to the bottom of the single accommodation
  *
@@ -14,7 +78,7 @@
  * @subpackage	template-tag
  * @category 	accommodation
  */
-function to_single_accommodation_content_bottom() {
+function to_accommodation_single_content_bottom() {
 	if(is_singular('accommodation')){
 		to_accommodation_units('<section id="{units}"><h2 class="section-title">'.__('{units}','tour-operator').'</h2><div class="info row">','</div></section>');
 		
@@ -39,7 +103,25 @@ function to_single_accommodation_content_bottom() {
 		}	
 	}
 }
-add_action('lsx_content_bottom','to_single_accommodation_content_bottom');
+
+/**
+ * Adds the template tags to the bottom of the content-accommodation
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tag
+ * @category 	accommodation
+ */
+function to_accommodation_archive_entry_bottom() {
+	global $to_archive;
+	if('accommodation' === get_post_type() && (is_archive() || $to_archive)) { ?>		
+		</div>
+		<div class="col-sm-4">
+			<?php to_accommodation_meta(); ?>
+		</div>
+	</div>
+	<?php }
+}
+
 
 /**
  * Adds the template tags to the bottom of the single destination
@@ -48,7 +130,7 @@ add_action('lsx_content_bottom','to_single_accommodation_content_bottom');
  * @subpackage	template-tag
  * @category 	destination
  */
-function to_single_destination_content_bottom() {
+function to_destination_single_content_bottom() {
 	if(is_singular('destination')){
 
 		to_country_regions();
@@ -71,7 +153,27 @@ function to_single_destination_content_bottom() {
 		if(function_exists('to_videos')) { to_videos('<div id="videos"><h2 class="section-title">'.__('Videos','tour-operator').'</h2>','</div>'); }		
 	}	
 }
-add_action('lsx_content_bottom','to_single_destination_content_bottom');
+
+/**
+ * Adds the template tags to the bottom of the content-destination.php
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tag
+ * @category 	destination
+ */
+function to_destination_archive_entry_bottom() {
+	global $to_archive;
+	if('destination' === get_post_type() && (is_archive() || $to_archive)) { ?>		
+		</div>
+		<div class="col-sm-4">
+			<div class="destination-details">
+				<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>				
+				<?php to_connected_activities('<div class="meta activities">'.__('Activites','tour-operator').': ','</div>'); ?>				
+			</div>
+		</div>
+	</div>
+	<?php }
+}
 
 /**
  * Adds the template tags to the bottom of the single tour
@@ -80,7 +182,7 @@ add_action('lsx_content_bottom','to_single_destination_content_bottom');
  * @subpackage	template-tag
  * @category 	tour
  */
-function to_single_tour_content_bottom() {
+function to_tour_single_content_bottom() {
 	if(is_singular('tour')){ ?>
 		<section id="highlights">
 			<div class="row">
@@ -148,4 +250,26 @@ function to_single_tour_content_bottom() {
 		to_related_items('travel-style','<section id="related-items"><h2 class="section-title">'.__(to_get_post_type_section_title('tour', 'related', 'Related Tours'),'tour-operator').'</h2>','</section>');		
 	}	
 }
-add_action('lsx_content_bottom','to_single_tour_content_bottom');
+
+/**
+ * Adds the template tags to the bottom of the content-tour.php
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tag
+ * @category 	tour
+ */
+function to_tour_archive_entry_bottom() {
+	global $to_archive;
+	if('tour' === get_post_type() && (is_archive() || $to_archive)) { ?>		
+		</div>
+		<div class="col-sm-4">
+			<div class="tour-details">
+				<div class="meta info"><?php to_price('<span class="price">from ','</span>'); to_duration('<span class="duration">','</span>'); ?></div>
+				<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>
+				<?php to_connected_destinations('<div class="meta destination">'.__('Destinations','tour-operator').': ','</div>'); ?>				
+				<?php to_connected_activities('<div class="meta activities">'.__('Activites','tour-operator').': ','</div>'); ?>				
+			</div>
+		</div>
+	</div>
+<?php }
+}

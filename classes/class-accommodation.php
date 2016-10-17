@@ -467,7 +467,11 @@ class TO_Accommodation {
 	function entry_class( $classes ) {
 		global $post;
 		if(is_main_query() && is_singular($this->plugin_slug)){
-			$classes[] = 'col-sm-9';
+			if(function_exists('to_has_team_member') && to_has_team_member()){
+				$classes[] = 'col-sm-9';
+			}else{
+				$classes[] = 'col-sm-12';
+			}
 		}
 		return $classes;
 	}
