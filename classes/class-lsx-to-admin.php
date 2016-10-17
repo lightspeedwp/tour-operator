@@ -590,7 +590,7 @@ class TO_Admin extends TO_Tour_Operators {
 	public function save_meta( $term_id = 0, $taxonomy = '' ) {
 
 		if(check_admin_referer( 'to_save_term_thumbnail', 'to_term_thumbnail_nonce' )){
-			$thumbnail_meta = ! empty( wp_unslash($_POST[ 'thumbnail' ]) ) ? wp_unslash($_POST[ 'thumbnail' ])	: '';
+			$thumbnail_meta = ! empty( sanitize_text_field($_POST[ 'thumbnail' ]) ) ? sanitize_text_field($_POST[ 'thumbnail' ])	: '';
 			if ( empty( $thumbnail_meta ) ) {
 				delete_term_meta( $term_id, 'thumbnail' );
 			} else {
@@ -599,7 +599,7 @@ class TO_Admin extends TO_Tour_Operators {
 		}
 		
 		if(check_admin_referer( 'to_save_term_tagline', 'to_term_tagline_nonce' )){
-			$meta = ! empty( wp_unslash($_POST[ 'tagline' ]) ) ? wp_unslash($_POST[ 'tagline' ]) : '';
+			$meta = ! empty( sanitize_text_field($_POST[ 'tagline' ]) ) ? sanitize_text_field($_POST[ 'tagline' ]) : '';
 			if ( empty( $meta ) ) {
 				delete_term_meta( $term_id, 'tagline' );
 			} else {
