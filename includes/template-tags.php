@@ -1746,7 +1746,7 @@ if(!function_exists('to_has_term_thumbnail')){
 if(!function_exists('to_term_thumbnail')){
 	function to_term_thumbnail($term_id = false,$size='lsx-thumbnail-wide') {
 		if(false !== $term_id){
-			echo to_get_term_thumbnail($term_id,$size);
+			echo wp_kses_post(to_get_term_thumbnail($term_id,$size));
 		}
 	}
 }

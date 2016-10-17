@@ -53,7 +53,7 @@ class TO_Admin extends TO_Tour_Operators {
 		if(false !== $this->taxonomies){
 			add_action( 'create_term', array( $this, 'save_meta' ), 10, 2 );
 			add_action( 'edit_term',   array( $this, 'save_meta' ), 10, 2 );
-			foreach($this->taxonomies as $taxonomy){
+			foreach(array_keys($this->taxonomies) as $taxonomy){
 				add_action( "{$taxonomy}_edit_form_fields", array( $this, 'add_thumbnail_form_field' ),3,1 );
 				add_action( "{$taxonomy}_edit_form_fields", array( $this, 'add_tagline_form_field' ),3,1 );				
 			}			
@@ -534,15 +534,17 @@ class TO_Admin extends TO_Tour_Operators {
 		}
 		?>
 		<tr class="form-field form-required term-thumbnail-wrap">
-			<th scope="row"><label for="thumbnail"><?php _e('Featured Image','tour-operator');?></label></th>
+			<th scope="row"><label for="thumbnail"><?php esc_html_e('Featured Image','tour-operator');?></label></th>
 			<td>
-				<input style="display:none;" name="thumbnail" id="thumbnail" type="text" value="<?php echo $value; ?>" size="40" aria-required="true">
+				<input style="display:none;" name="thumbnail" id="thumbnail" type="text" value="<?php echo wp_kses_post($value); ?>" size="40" aria-required="true">
 				<div class="thumbnail-preview">
-					<?php echo $image_preview; ?>
+					<?php echo wp_kses_post($image_preview); ?>
 				</div>				
 
-				<a style="<?php if('' !== $value && false !== $value) { ?>display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-add"><?php _e('Choose Image','tour-operator');?></a>				
-				<a style="<?php if('' === $value || false === $value) { ?>display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-remove"><?php _e('Remove Image','tour-operator');?></a>
+				<a style="<?php if('' !== $value && false !== $value) { ?>display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e('Choose Image','tour-operator');?></a>				
+				<a style="<?php if('' === $value || false === $value) { ?>display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-remove"><?php esc_html_e('Remove Image','tour-operator');?></a>
+
+				<?php wp_nonce_field( 'to_save_term_thumbnail', 'to_term_thumbnail_nonce' ); ?>
 			</td>
 		</tr>
 		
@@ -586,18 +588,23 @@ class TO_Admin extends TO_Tour_Operators {
 	 * @param  string  $taxonomy
 	 */
 	public function save_meta( $term_id = 0, $taxonomy = '' ) {
-		$thumbnail_meta = ! empty( $_POST[ 'thumbnail' ] ) ? $_POST[ 'thumbnail' ]	: '';
-		if ( empty( $thumbnail_meta ) ) {
-			delete_term_meta( $term_id, 'thumbnail' );
-		} else {
-			update_term_meta( $term_id, 'thumbnail', $thumbnail_meta );
+
+		if(check_admin_referer( 'to_save_term_thumbnail', 'to_term_thumbnail_nonce' )){
+			$thumbnail_meta = ! empty( wp_unslash($_POST[ 'thumbnail' ]) ) ? wp_unslash($_POST[ 'thumbnail' ])	: '';
+			if ( empty( $thumbnail_meta ) ) {
+				delete_term_meta( $term_id, 'thumbnail' );
+			} else {
+				update_term_meta( $term_id, 'thumbnail', $thumbnail_meta );
+			}
 		}
 		
-		$meta = ! empty( $_POST[ 'tagline' ] ) ? $_POST[ 'tagline' ] : '';
-		if ( empty( $meta ) ) {
-			delete_term_meta( $term_id, 'tagline' );
-		} else {
-			update_term_meta( $term_id, 'tagline', $meta );
+		if(check_admin_referer( 'to_save_term_tagline', 'to_term_tagline_nonce' )){
+			$meta = ! empty( wp_unslash($_POST[ 'tagline' ]) ) ? wp_unslash($_POST[ 'tagline' ]) : '';
+			if ( empty( $meta ) ) {
+				delete_term_meta( $term_id, 'tagline' );
+			} else {
+				update_term_meta( $term_id, 'tagline', $meta );
+			}
 		}
 	}
 	
@@ -614,10 +621,12 @@ class TO_Admin extends TO_Tour_Operators {
 		}
 		?>
 		<tr class="form-field form-required term-tagline-wrap">
-			<th scope="row"><label for="tagline"><?php _e('Tagline','tour-operator');?></label></th>
+			<th scope="row"><label for="tagline"><?php esc_html_e('Tagline','tour-operator');?></label></th>
 			<td>
-				<input name="tagline" id="tagline" type="text" value="<?php echo $value; ?>" size="40" aria-required="true">
+				<input name="tagline" id="tagline" type="text" value="<?php echo wp_kses_post($value); ?>" size="40" aria-required="true">
 			</td>
+
+			<?php wp_nonce_field( 'to_save_term_tagline', 'to_term_tagline_nonce' ); ?>
 		</tr>
 		<?php
 	}					

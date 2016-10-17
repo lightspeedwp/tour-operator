@@ -135,14 +135,7 @@ class TO_Framework {
 		if(!class_exists('TO_Placeholders')){
 			include_once('classes/class-placeholders.php');
 			$this->placeholders = new TO_Placeholders($this->post_types);
-		}
-		
-
-		if(!class_exists('TO_Taxonomy_Admin') && !class_exists('TO_Banners')){
-			include_once('classes/class-taxonomy-administration.php');
-		}
-		$this->taxonomy_admin = new TO_Taxonomy_Admin($this->taxonomies);	
-		
+		}	
 		
 		include_once('includes/lsx-post-type-widget.php');
 		include_once('includes/lsx-taxonomy-widget.php');
