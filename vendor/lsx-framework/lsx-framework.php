@@ -148,10 +148,6 @@ class TO_Framework {
 		include_once('includes/template-tags.php');
 
 		add_filter( 'get_the_archive_title', array( $this, 'get_the_archive_title') );
-		
-		//These need to run after the plugins have all been read.
-		include_once('classes/class-lsx-banner-integration.php');
-		$this->to_banners = new TO_Banner_Integration($this->post_types,$this->taxonomies);
 	}
 
 	/**
@@ -168,7 +164,6 @@ class TO_Framework {
 			$this->frontend = new TO_Framework_Frontend($this->all_post_types,$this->framework_path,$this->framework_url);	
 		}
 	}
-
 	
 	/**
 	 * Register the TO_Widget

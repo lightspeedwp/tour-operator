@@ -139,6 +139,10 @@ class TO_Tour_Operators {
 			$this->frontend = new TO_Frontend();
 		}
 
+		//These need to run after the plugins have all been read.
+		include_once('classes/class-lsx-banner-integration.php');
+		$this->lsx_banners = new TO_LSX_Banner_Integration($this->post_types,$this->taxonomies);
+
 		//Integrations
 		$this->to_search_integration();
 		
