@@ -15,6 +15,5 @@
 			<?php echo do_action('to_framework_dashboard_tab_content','general'); ?>			
 		</tbody>
 	</table>
-	<?php do_action('to_framework_accommodation_tab_bottom','accommodation'); ?>
 	<?php do_action('to_framework_dashboard_tab_bottom','genral'); ?>
 </div>

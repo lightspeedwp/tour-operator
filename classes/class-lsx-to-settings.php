@@ -55,7 +55,7 @@ class TO_Settings extends TO_Tour_Operators {
 			$uix = \lsx\ui\uix::get_instance( 'lsx' );
 			$uix->register_pages( $pages );
 
-			foreach(array_$this->post_types as $post_type => $label){
+			foreach($this->post_types as $post_type => $label){
 				add_action( 'to_framework_'.$post_type.'_tab_content_top', array( $this, 'general_settings' ), 5 , 1 );
 				add_action( 'to_framework_'.$post_type.'_tab_content_top', array( $this, 'archive_settings_header' ), 10 , 1 );
 				add_action( 'to_framework_'.$post_type.'_tab_content_top', array( $this, 'archive_settings' ), 12 , 1 );
@@ -403,7 +403,7 @@ class TO_Settings extends TO_Tour_Operators {
 	 * Allows the settings pages to upload images
 	 */
 	public function settings_page_scripts(){ ?>
-	{{#script src="<?php echo $this->framework_url.'assets/js/tinymce/tinymce.min.js'; ?>"}}{{/script}}
+	{{#script src="<?php echo TO_PATH.'assets/js/tinymce/tinymce.min.js'; ?>"}}{{/script}}
 
 	{{#script}}
 		jQuery( function( $ ){

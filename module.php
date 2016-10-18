@@ -18,9 +18,9 @@ require_once( TO_PATH . 'includes/post-expirator.php' );
 require_once( TO_PATH . 'includes/post-order.php' );
 require_once( TO_PATH . 'includes/customizer.php' );
 require_once( TO_PATH . 'includes/layout.php' );
-require_once('includes/lsx-post-type-widget.php');
-require_once('includes/lsx-taxonomy-widget.php');
-require_once('includes/lsx-cta-widget.php');
+require_once('includes/widgets/post-type-widget.php');
+require_once('includes/widgets/taxonomy-widget.php');
+require_once('includes/widgets/cta-widget.php');
 require_once('classes/class-fields.php');
 
 // Setup the post connections
