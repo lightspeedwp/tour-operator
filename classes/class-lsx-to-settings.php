@@ -130,7 +130,7 @@ class TO_Settings extends TO_Tour_Operators {
 		?>
 		<tr class="form-field-wrap">
 			<th scope="row">
-				<label for="currency"><?php _e('General Enquiry','tour-operator'); ?></label>
+				<label for="currency"><?php esc_attr_e('General Enquiry','tour-operator'); ?></label>
 			</th>
 			<?php
 				if(true === $this->show_default_form()){
@@ -142,7 +142,7 @@ class TO_Settings extends TO_Tour_Operators {
 							<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}>Select a form</option>
 							<?php
 							foreach($forms as $form_id => $form_data){ ?>
-								<option value="<?php echo $form_id; ?>" {{#is enquiry value="<?php echo $form_id; ?>"}} selected="selected"{{/is}}><?php echo $form_data; ?></option>
+								<option value="<?php echo wp_kses_post($form_id); ?>" {{#is enquiry value="<?php echo wp_kses_post($form_id); ?>"}} selected="selected"{{/is}}><?php echo wp_kses_post($form_data); ?></option>
 							<?php
 							}
 						}else{ ?>
@@ -160,16 +160,16 @@ class TO_Settings extends TO_Tour_Operators {
 		</tr>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="description"><?php _e('Disable Modal','tour-operator'); ?></label>
+				<label for="description"><?php esc_attr_e('Disable Modal','tour-operator'); ?></label>
 			</th>
 			<td>
 				<input type="checkbox" {{#if disable_enquire_modal}} checked="checked" {{/if}} name="disable_enquire_modal" />
-				<small><?php _e('This disables the enquire modal, and instead redirects to the link you provide below.','tour-operator'); ?></small>
+				<small><?php esc_attr_e('This disables the enquire modal, and instead redirects to the link you provide below.','tour-operator'); ?></small>
 			</td>
 		</tr>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="title"><?php _e('Enquire Link','tour-operator'); ?></label>
+				<label for="title"><?php esc_attr_e('Enquire Link','tour-operator'); ?></label>
 			</th>
 			<td>
 				<input type="text" {{#if enquire_link}} value="{{enquire_link}}" {{/if}} name="enquire_link" />
@@ -403,7 +403,7 @@ class TO_Settings extends TO_Tour_Operators {
 	 * Allows the settings pages to upload images
 	 */
 	public function settings_page_scripts(){ ?>
-	{{#script src="<?php echo TO_PATH.'assets/js/tinymce/tinymce.min.js'; ?>"}}{{/script}}
+	{{#script src="<?php echo wp_kses_post(TO_PATH.'assets/js/tinymce/tinymce.min.js'); ?>"}}{{/script}}
 
 	{{#script}}
 		jQuery( function( $ ){

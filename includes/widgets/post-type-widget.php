@@ -284,13 +284,13 @@ class TO_Widget extends WP_Widget {
 
         ?>
 		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
+			<label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_attr_e('Title:'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>"
 				name="<?php echo $this->get_field_name('title'); ?>" type="text"
 				value="<?php echo $title; ?>" />
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('title_link'); ?>"><?php _e( 'Title Link:' ); ?></label>
+			<label for="<?php echo $this->get_field_id('title_link'); ?>"><?php esc_attr_e( 'Title Link:' ); ?></label>
 			<input class="widefat"
 				id="<?php echo $this->get_field_id('title_link'); ?>"
 				name="<?php echo $this->get_field_name('title_link'); ?>" type="text"
@@ -298,14 +298,14 @@ class TO_Widget extends WP_Widget {
 				a URL</small>
 		</p>		
 		<p>
-			<label for="<?php echo $this->get_field_id('tagline'); ?>"><?php _e('Tagline:'); ?></label>
+			<label for="<?php echo $this->get_field_id('tagline'); ?>"><?php esc_attr_e('Tagline:'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('tagline'); ?>"
 				name="<?php echo $this->get_field_name('tagline'); ?>" type="text"
 				value="<?php echo $tagline; ?>" />
 		</p>		
 
 		<p>
-			<label for="<?php echo $this->get_field_id('columns'); ?>"><?php _e('Columns:'); ?></label>
+			<label for="<?php echo $this->get_field_id('columns'); ?>"><?php esc_attr_e('Columns:'); ?></label>
 			<select name="<?php echo $this->get_field_name('columns'); ?>"
 				id="<?php echo $this->get_field_id('columns'); ?>"
 				class="widefat layout">
@@ -318,7 +318,7 @@ class TO_Widget extends WP_Widget {
 		            </select>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('orderby'); ?>"><?php _e('Order By:'); ?></label>
+			<label for="<?php echo $this->get_field_id('orderby'); ?>"><?php esc_attr_e('Order By:'); ?></label>
 			<select name="<?php echo $this->get_field_name('orderby'); ?>"
 				id="<?php echo $this->get_field_id('orderby'); ?>" class="widefat">
 		            <?php
@@ -338,7 +338,7 @@ class TO_Widget extends WP_Widget {
 		            </select>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('order'); ?>"><?php _e('Order:'); ?></label>
+			<label for="<?php echo $this->get_field_id('order'); ?>"><?php esc_attr_e('Order:'); ?></label>
 			<select name="<?php echo $this->get_field_name('order'); ?>"
 				id="<?php echo $this->get_field_id('order'); ?>" class="widefat">
 		            <?php
@@ -353,34 +353,34 @@ class TO_Widget extends WP_Widget {
 		    </select>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('limit'); ?>"><?php _e('Maximum amount:'); ?></label>
+			<label for="<?php echo $this->get_field_id('limit'); ?>"><?php esc_attr_e('Maximum amount:'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('limit'); ?>"
 				name="<?php echo $this->get_field_name('limit'); ?>" type="text"
-				value="<?php echo $limit; ?>" /> <small><?php _e('Leave empty to display all'); ?></small>
+				value="<?php echo $limit; ?>" /> <small><?php esc_attr_e('Leave empty to display all'); ?></small>
 		</p>
 		
 		<p class="bs-tourism-specify">
-			<label for="<?php echo $this->get_field_id('include'); ?>"><?php _e('Specify Tours by ID:'); ?></label>
+			<label for="<?php echo $this->get_field_id('include'); ?>"><?php esc_attr_e('Specify Tours by ID:'); ?></label>
 			<input class="widefat"
 				id="<?php echo $this->get_field_id('include'); ?>"
 				name="<?php echo $this->get_field_name('include'); ?>" type="text"
-				value="<?php echo $include; ?>" /> <small><?php _e('Comma separated list, overrides limit setting'); ?></small>
+				value="<?php echo $include; ?>" /> <small><?php esc_attr_e('Comma separated list, overrides limit setting'); ?></small>
 		</p>
 		
 		<p>
 			<input id="<?php echo $this->get_field_id('featured'); ?>"
 				name="<?php echo $this->get_field_name('featured'); ?>"
 				type="checkbox" value="1" <?php checked( '1', $featured ); ?> /> <label
-				for="<?php echo $this->get_field_id('featured'); ?>"><?php _e('Featured Items'); ?></label>
+				for="<?php echo $this->get_field_id('featured'); ?>"><?php esc_attr_e('Featured Items'); ?></label>
 		</p>
 		<p>
 			<input id="<?php echo $this->get_field_id('disable_placeholder'); ?>"
 				name="<?php echo $this->get_field_name('disable_placeholder'); ?>" type="checkbox"
 				value="1" <?php checked( '1', $disable_placeholder ); ?> /> <label
-				for="<?php echo $this->get_field_id('disable_placeholder'); ?>"><?php _e('Disable Featured Image'); ?></label>
+				for="<?php echo $this->get_field_id('disable_placeholder'); ?>"><?php esc_attr_e('Disable Featured Image'); ?></label>
 		</p>		
 		<p>
-			<label for="<?php echo $this->get_field_id('size'); ?>"><?php _e('Icon size:'); ?></label>
+			<label for="<?php echo $this->get_field_id('size'); ?>"><?php esc_attr_e('Icon size:'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('size'); ?>"
 				name="<?php echo $this->get_field_name('size'); ?>" type="text"
 				value="<?php echo $size; ?>" />
@@ -389,10 +389,10 @@ class TO_Widget extends WP_Widget {
 			<input id="<?php echo $this->get_field_id('buttons'); ?>"
 				name="<?php echo $this->get_field_name('buttons'); ?>" type="checkbox"
 				value="1" <?php checked( '1', $buttons ); ?> /> <label
-				for="<?php echo $this->get_field_id('buttons'); ?>"><?php _e('Display Button'); ?></label>
+				for="<?php echo $this->get_field_id('buttons'); ?>"><?php esc_attr_e('Display Button'); ?></label>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('button_text'); ?>"><?php _e('Button Text:'); ?></label>
+			<label for="<?php echo $this->get_field_id('button_text'); ?>"><?php esc_attr_e('Button Text:'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('button_text'); ?>"
 				name="<?php echo $this->get_field_name('button_text'); ?>" type="text"
 				value="<?php echo $button_text; ?>" />
@@ -401,18 +401,18 @@ class TO_Widget extends WP_Widget {
 			<input id="<?php echo $this->get_field_id('responsive'); ?>"
 				name="<?php echo $this->get_field_name('responsive'); ?>"
 				type="checkbox" value="1" <?php checked( '1', $responsive ); ?> /> <label
-				for="<?php echo $this->get_field_id('responsive'); ?>"><?php _e('Responsive Images'); ?></label>
+				for="<?php echo $this->get_field_id('responsive'); ?>"><?php esc_attr_e('Responsive Images'); ?></label>
 		</p>
 
 		<p>
 			<input id="<?php echo $this->get_field_id('carousel'); ?>"
 				name="<?php echo $this->get_field_name('carousel'); ?>"
 				type="checkbox" value="1" <?php checked( '1', $carousel ); ?> /> <label
-				for="<?php echo $this->get_field_id('carousel'); ?>"><?php _e('Enable Carousel'); ?></label>
+				for="<?php echo $this->get_field_id('carousel'); ?>"><?php esc_attr_e('Enable Carousel'); ?></label>
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('interval'); ?>"><?php _e('Slide Interval:'); ?></label>
+			<label for="<?php echo $this->get_field_id('interval'); ?>"><?php esc_attr_e('Slide Interval:'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('size'); ?>"
 				name="<?php echo $this->get_field_name('interval'); ?>" type="text"
 				value="<?php echo $interval; ?>" />
@@ -423,11 +423,11 @@ class TO_Widget extends WP_Widget {
 			<input id="<?php echo $this->get_field_id('indicators'); ?>"
 				name="<?php echo $this->get_field_name('indicators'); ?>" type="checkbox"
 				value="1" <?php checked( '1', $indicators ); ?> /> <label
-				for="<?php echo $this->get_field_id('indicators'); ?>"><?php _e('Show Indicators'); ?></label>
+				for="<?php echo $this->get_field_id('indicators'); ?>"><?php esc_attr_e('Show Indicators'); ?></label>
 		</p>			
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('post_type'); ?>"><?php _e( 'Post Type:', 'lsx-theme' ); ?></label>
+			<label for="<?php echo $this->get_field_id('post_type'); ?>"><?php esc_attr_e( 'Post Type:', 'lsx-theme' ); ?></label>
 			<select name="<?php echo $this->get_field_name('post_type'); ?>" id="<?php echo $this->get_field_id('post_type'); ?>"	class="widefat layout">
 	            <?php
 	            $options = get_post_types();
@@ -440,7 +440,7 @@ class TO_Widget extends WP_Widget {
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('class'); ?>"><?php _e('Class:'); ?></label>
+			<label for="<?php echo $this->get_field_id('class'); ?>"><?php esc_attr_e('Class:'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('class'); ?>"
 				name="<?php echo $this->get_field_name('class'); ?>" type="text"
 				value="<?php echo $class; ?>" />

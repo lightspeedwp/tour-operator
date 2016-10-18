@@ -1608,7 +1608,7 @@ function to_entry_class($classes = false) {
 		}
 		$classes = apply_filters( 'to_entry_class', $classes, $post->ID );
 	}
-	echo 'class="'.implode(' ',$classes).'"';
+	echo wp_kses_post('class="'.implode(' ',$classes).'"');
 }
 
 /**
@@ -1625,7 +1625,7 @@ function to_column_class($classes = false) {
 		}
 		$classes = apply_filters( 'to_column_class', $classes, $post->ID );
 	}
-	echo 'class="'.implode(' ',$classes).'"';
+	echo wp_kses_post('class="'.implode(' ',$classes).'"');
 }
 
 /**
