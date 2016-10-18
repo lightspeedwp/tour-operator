@@ -141,7 +141,9 @@ class Lsx_Destination{
 		}
 		$fields[] = array( 'id' => 'team_to_destination', 'name' => 'Destination Expert', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12, 'allow_none' => true );
 
-		$fields[] = array( 'id' => 'location',  'name' => 'Location', 'type' => 'gmap' );	
+		if(!class_exists('TO_Maps')){
+			$fields[] = array( 'id' => 'location',  'name' => 'Location', 'type' => 'gmap' );	
+		}
 		
 		$fields[] = array( 'id' => 'connections_title',  'name' => 'Connections', 'type' => 'title' );
 		if(post_type_exists('accommodation')){
