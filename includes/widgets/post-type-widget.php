@@ -311,7 +311,8 @@ class TO_Widget extends WP_Widget {
 		            <?php
 		            $options = array('1', '2', '3', '4', '5', '6');
 		            foreach ($options as $option) {
-		                echo wp_kses_post('<option value="' . lcfirst($option) . '" id="' . $option . '"', $columns == lcfirst($option) ? ' selected="selected"' : '', '>', $option, '</option>');
+		            	$key = lcfirst($option);
+		                echo wp_kses_post('<option value="' . $key . '" id="' . $option . '"', $columns == $key ? ' selected="selected"' : '', '>', $option, '</option>');
 		            }
 		            ?>
 		            </select>
@@ -380,7 +381,7 @@ class TO_Widget extends WP_Widget {
 		</p>		
 		<p>
 			<label for="<?php echo wp_kses_post($this->get_field_id('size')); ?>"><?php esc_attr_e('Icon size:'); ?></label>
-			<input class="widefat" id="<?php echo ($this->get_field_id('size')); ?>"
+			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('size')); ?>"
 				name="<?php echo wp_kses_post($this->get_field_name('size')); ?>" type="text"
 				value="<?php echo wp_kses_post($size); ?>" />
 		</p>
@@ -635,7 +636,7 @@ class TO_Widget extends WP_Widget {
 				
 				$i = 0;
 				while ( $i < $pages ) {
-					$this->pagination .= "<li data-target='#slider-{$this->carousel_id}' data-slide-to='{$i}' class='". ( $i == 0 ? 'active' : '' ) ."'></li>";
+					$this->pagination .= "<li data-target='#slider-{$this->carousel_id}' data-slide-to='{$i}' class='". ( 0 == $i ? 'active' : '' ) ."'></li>";
 					$i++;
 				}
 			}

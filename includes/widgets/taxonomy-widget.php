@@ -23,8 +23,7 @@ class TO_Taxonomy_Widget extends WP_Widget {
  
     /** @see WP_Widget::widget -- do not rename this */
     public function widget( $args, $instance ) {
-        extract( $args );
-        
+
     	if (isset($instance['title'])) {
 			$title = apply_filters('widget_title', $instance['title']);
 		} else {
@@ -128,20 +127,20 @@ class TO_Taxonomy_Widget extends WP_Widget {
 		}                                                     
         
         // Disregard specific ID setting if specific group is defined
-        if ( $group != 'all' ) {
+        if ( 'all' != $group ) {
             $include = '';
         } else {
             $group = '';
         }
         
-        if ( $include != '' ) $limit = "-1";
+        if ( '' != $include ) $limit = "-1";
               
-        if ( $responsive == '1' )
+        if ( '1' == $responsive )
             $responsive = true;
         else
             $responsive = false;
 
-        if ( $buttons == '1' )
+        if ( '1' == $buttons )
             $buttons = true;
         else
             $buttons = false;
@@ -155,16 +154,16 @@ class TO_Taxonomy_Widget extends WP_Widget {
         }
 
         $class = 'class="'.$class.' ';
-        echo str_replace('class="',$class,$before_widget);  
+        echo wp_kses_post(str_replace('class="',$class,$before_widget));  
               
         
         
         if ( false != $title ) {
         	$title = $before_title . $link_open . $title . $link_close . $after_title;
-        	echo apply_filters('to_taxonomy_widget_title', $title);
+        	echo wp_kses_post(apply_filters('to_taxonomy_widget_title', $title));
         }  
         if ( false != $tagline ) {
-        	echo '<p class="tagline">'.$tagline.'</p>';
+        	echo wp_kses_post('<p class="tagline">'.$tagline.'</p>');
         }        
 
 		$args = array( 
@@ -191,9 +190,9 @@ class TO_Taxonomy_Widget extends WP_Widget {
 
 		$args['carousel'] = $carousel;               
 		              
-		echo $this->output($args);                 
+		echo wp_kses_post($this->output($args));                 
 
-        echo $after_widget;    
+        echo wp_kses_post($after_widget);    
     }
  
     /** @see WP_Widget::update -- do not rename this */
@@ -271,30 +270,30 @@ class TO_Taxonomy_Widget extends WP_Widget {
 
         ?>
 		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_attr_e('Title:'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>"
-				name="<?php echo $this->get_field_name('title'); ?>" type="text"
-				value="<?php echo $title; ?>" />
+			<label for="<?php echo wp_kses_post($this->get_field_id('title')); ?>"><?php esc_attr_e('Title:'); ?></label>
+			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('title')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('title')); ?>" type="text"
+				value="<?php echo wp_kses_post($title); ?>" />
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('title_link'); ?>"><?php esc_attr_e( 'Title Link:' ); ?></label>
+			<label for="<?php echo wp_kses_post($this->get_field_id('title_link')); ?>"><?php esc_attr_e( 'Title Link:' ); ?></label>
 			<input class="widefat"
-				id="<?php echo $this->get_field_id('title_link'); ?>"
-				name="<?php echo $this->get_field_name('title_link'); ?>" type="text"
-				value="<?php echo $title_link; ?>" /> <small>Link the widget title to
+				id="<?php echo wp_kses_post($this->get_field_id('title_link')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('title_link')); ?>" type="text"
+				value="<?php echo wp_kses_post($title_link); ?>" /> <small>Link the widget title to
 				a URL</small>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('tagline'); ?>"><?php esc_attr_e('Tagline:'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('tagline'); ?>"
-				name="<?php echo $this->get_field_name('tagline'); ?>" type="text"
-				value="<?php echo $tagline; ?>" />
+			<label for="<?php echo wp_kses_post($this->get_field_id('tagline')); ?>"><?php esc_attr_e('Tagline:'); ?></label>
+			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('tagline')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('tagline')); ?>" type="text"
+				value="<?php echo wp_kses_post($tagline); ?>" />
 		</p>
 		
 		<h4 class="widget-title" style="border-top: 1px solid #e5e5e5;padding-top:10px;"><?php esc_attr_e('Query','lsx-framework');?></h4>
 		<p>
-			<label for="<?php echo $this->get_field_id('taxonomy'); ?>"><?php esc_attr_e( 'Taxonomy:', 'lsx-framework' ); ?></label>
-			<select name="<?php echo $this->get_field_name('taxonomy'); ?>" id="<?php echo $this->get_field_id('taxonomy'); ?>"	class="widefat layout">
+			<label for="<?php echo wp_kses_post($this->get_field_id('taxonomy')); ?>"><?php esc_attr_e( 'Taxonomy:', 'lsx-framework' ); ?></label>
+			<select name="<?php echo wp_kses_post($this->get_field_name('taxonomy')); ?>" id="<?php echo wp_kses_post($this->get_field_id('taxonomy')); ?>"	class="widefat layout">
 	            <?php
 	            $options = array();	            
 	            $options = apply_filters('to_taxonomy_widget_taxonomies',$options);
@@ -304,16 +303,16 @@ class TO_Taxonomy_Widget extends WP_Widget {
 
 	            foreach ($options as $option) {
 	            	$title = ucwords(str_replace("-",' ',$option));
-	                echo '<option value="' . $option . '" id="' . $option . '"', $taxonomy == $option ? ' selected="selected"' : '', '>', $title, '</option>';
+	                echo wp_kses_post('<option value="' . $option . '" id="' . $option . '"', $taxonomy == $option ? ' selected="selected"' : '', '>', $title, '</option>');
 	            }
 	            ?>
 		    </select>
 		</p>		
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('orderby'); ?>"><?php esc_attr_e('Order By:','lsx-framework'); ?></label>
-			<select name="<?php echo $this->get_field_name('orderby'); ?>"
-				id="<?php echo $this->get_field_id('orderby'); ?>" class="widefat">
+			<label for="<?php echo wp_kses_post($this->get_field_id('orderby')); ?>"><?php esc_attr_e('Order By:','lsx-framework'); ?></label>
+			<select name="<?php echo wp_kses_post($this->get_field_name('orderby')); ?>"
+				id="<?php echo wp_kses_post($this->get_field_id('orderby')); ?>" class="widefat">
 		            <?php
 		            $options = array(
 		                'Name' => 'name', 
@@ -323,114 +322,115 @@ class TO_Taxonomy_Widget extends WP_Widget {
 		                'Admin (custom order)' => 'none'
 		                );
 		            foreach ($options as $name=>$value) {
-		                echo '<option value="' . $value . '" id="' . $value . '"', $orderby == $value ? ' selected="selected"' : '', '>', $name, '</option>';
+		                echo wp_kses_post('<option value="' . $value . '" id="' . $value . '"', $orderby == $value ? ' selected="selected"' : '', '>', $name, '</option>');
 		            }
 		            ?>
 		            </select>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('order'); ?>"><?php esc_attr_e('Order:','lsx-framework'); ?></label>
-			<select name="<?php echo $this->get_field_name('order'); ?>"
-				id="<?php echo $this->get_field_id('order'); ?>" class="widefat">
+			<label for="<?php echo wp_kses_post($this->get_field_id('order')); ?>"><?php esc_attr_e('Order:','lsx-framework'); ?></label>
+			<select name="<?php echo wp_kses_post($this->get_field_name('order')); ?>"
+				id="<?php echo wp_kses_post($this->get_field_id('order')); ?>" class="widefat">
 		            <?php
 		            $options = array(
 		                'Ascending' => 'ASC', 
 		                'Descending' => 'DESC'
 		                );
 		            foreach ($options as $name=>$value) {
-		                echo '<option value="' . $value . '" id="' . $value . '"', $order == $value ? ' selected="selected"' : '', '>', $name, '</option>';
+		                echo wp_kses_post('<option value="' . $value . '" id="' . $value . '"', $order == $value ? ' selected="selected"' : '', '>', $name, '</option>');
 		            }
 		            ?>
 		    </select>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('limit'); ?>"><?php esc_attr_e('Maximum amount:','lsx-framework'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('limit'); ?>"
-				name="<?php echo $this->get_field_name('limit'); ?>" type="text"
-				value="<?php echo $limit; ?>" /> <small><?php esc_attr_e('Leave empty to display all','lsx-framework'); ?></small>
+			<label for="<?php echo wp_kses_post($this->get_field_id('limit')); ?>"><?php esc_attr_e('Maximum amount:','lsx-framework'); ?></label>
+			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('limit')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('limit')); ?>" type="text"
+				value="<?php echo wp_kses_post($limit); ?>" /> <small><?php esc_attr_e('Leave empty to display all','lsx-framework'); ?></small>
 		</p>
 		
 		<p class="bs-tourism-specify">
-			<label for="<?php echo $this->get_field_id('include'); ?>"><?php esc_attr_e('Specify by ID:','lsx-framework'); ?></label>
+			<label for="<?php echo wp_kses_post($this->get_field_id('include')); ?>"><?php esc_attr_e('Specify by ID:','lsx-framework'); ?></label>
 			<input class="widefat"
-				id="<?php echo $this->get_field_id('include'); ?>"
-				name="<?php echo $this->get_field_name('include'); ?>" type="text"
-				value="<?php echo $include; ?>" /> <small><?php esc_attr_e('Comma separated list, overrides limit setting','lsx-framework'); ?></small>
+				id="<?php echo wp_kses_post($this->get_field_id('include')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('include')); ?>" type="text"
+				value="<?php echo wp_kses_post($include); ?>" /> <small><?php esc_attr_e('Comma separated list, overrides limit setting','lsx-framework'); ?></small>
 		</p>
 		
 						
 		
 		<h4 class="widget-title" style="border-top: 1px solid #e5e5e5;padding-top:10px;"><?php esc_attr_e('Layout','lsx-framework');?></h4>		
 		<p>
-			<label for="<?php echo $this->get_field_id('columns'); ?>"><?php esc_attr_e('Columns:','lsx-framework'); ?></label>
-			<select name="<?php echo $this->get_field_name('columns'); ?>"
-				id="<?php echo $this->get_field_id('columns'); ?>"
+			<label for="<?php echo wp_kses_post($this->get_field_id('columns')); ?>"><?php esc_attr_e('Columns:','lsx-framework'); ?></label>
+			<select name="<?php echo wp_kses_post($this->get_field_name('columns')); ?>"
+				id="<?php echo wp_kses_post($this->get_field_id('columns')); ?>"
 				class="widefat layout">
 		            <?php
 		            $options = array('1', '2', '3', '4', '5', '6');
 		            foreach ($options as $option) {
-		                echo '<option value="' . lcfirst($option) . '" id="' . $option . '"', $columns == lcfirst($option) ? ' selected="selected"' : '', '>', $option, '</option>';
+		            	$key = lcfirst($option);
+		                echo wp_kses_post('<option value="' . $key . '" id="' . $option . '"', $columns == $key ? ' selected="selected"' : '', '>', $option, '</option>');
 		            }
 		            ?>
 		     </select>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('class'); ?>"><?php esc_attr_e('Class:','lsx-framework'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('class'); ?>"
-				name="<?php echo $this->get_field_name('class'); ?>" type="text"
-				value="<?php echo $class; ?>" />
+			<label for="<?php echo wp_kses_post($this->get_field_id('class')); ?>"><?php esc_attr_e('Class:','lsx-framework'); ?></label>
+			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('class')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('class')); ?>" type="text"
+				value="<?php echo wp_kses_post($class); ?>" />
 			<small>Add your own class to the opening element of the widget</small>	
 		</p>
 		<p>
-			<input id="<?php echo $this->get_field_id('disable_placeholder'); ?>"
-				name="<?php echo $this->get_field_name('disable_placeholder'); ?>" type="checkbox"
+			<input id="<?php echo wp_kses_post($this->get_field_id('disable_placeholder')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('disable_placeholder')); ?>" type="checkbox"
 				value="1" <?php checked( '1', $disable_placeholder ); ?> /> <label
-				for="<?php echo $this->get_field_id('disable_placeholder'); ?>"><?php esc_attr_e('Disable Featured Image'); ?></label>
+				for="<?php echo wp_kses_post($this->get_field_id('disable_placeholder')); ?>"><?php esc_attr_e('Disable Featured Image'); ?></label>
 		</p>		
 		<p>
-			<label for="<?php echo $this->get_field_id('size'); ?>"><?php esc_attr_e('Thumbnail size:','lsx-framework'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('size'); ?>"
-				name="<?php echo $this->get_field_name('size'); ?>" type="text"
-				value="<?php echo $size; ?>" />
+			<label for="<?php echo wp_kses_post($this->get_field_id('size')); ?>"><?php esc_attr_e('Thumbnail size:','lsx-framework'); ?></label>
+			<input class="widefat" id="<?php echo ($this->get_field_id('size')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('size')); ?>" type="text"
+				value="<?php echo wp_kses_post($size); ?>" />
 		</p>
 		<p>
-			<input id="<?php echo $this->get_field_id('buttons'); ?>"
-				name="<?php echo $this->get_field_name('buttons'); ?>" type="checkbox"
+			<input id="<?php echo wp_kses_post($this->get_field_id('buttons')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('buttons')); ?>" type="checkbox"
 				value="1" <?php checked( '1', $buttons ); ?> /> <label
-				for="<?php echo $this->get_field_id('buttons'); ?>"><?php esc_attr_e('Display Button','lsx-framework'); ?></label>
+				for="<?php echo wp_kses_post($this->get_field_id('buttons')); ?>"><?php esc_attr_e('Display Button','lsx-framework'); ?></label>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('button_text'); ?>"><?php esc_attr_e('Button Text:','lsx-framework'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('button_text'); ?>"
-				name="<?php echo $this->get_field_name('button_text'); ?>" type="text"
-				value="<?php echo $button_text; ?>" />
+			<label for="<?php echo wp_kses_post($this->get_field_id('button_text')); ?>"><?php esc_attr_e('Button Text:','lsx-framework'); ?></label>
+			<input class="widefat" id="<?php echo ($this->get_field_id('button_text')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('button_text')); ?>" type="text"
+				value="<?php echo wp_kses_post($button_text); ?>" />
 		</p>		
 		<p>
-			<input id="<?php echo $this->get_field_id('responsive'); ?>"
-				name="<?php echo $this->get_field_name('responsive'); ?>"
+			<input id="<?php echo wp_kses_post($this->get_field_id('responsive')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('responsive')); ?>"
 				type="checkbox" value="1" <?php checked( '1', $responsive ); ?> /> <label
-				for="<?php echo $this->get_field_id('responsive'); ?>"><?php esc_attr_e('Responsive Images'); ?></label>
+				for="<?php echo wp_kses_post($this->get_field_id('responsive')); ?>"><?php esc_attr_e('Responsive Images'); ?></label>
 		</p>		
 		
 		<h4 class="widget-title" style="border-top: 1px solid #e5e5e5;padding-top:10px;"><?php esc_attr_e('Slider','lsx-framework');?></h4>
 		<p>
-			<input id="<?php echo $this->get_field_id('carousel'); ?>"
-				name="<?php echo $this->get_field_name('carousel'); ?>"
+			<input id="<?php echo wp_kses_post($this->get_field_id('carousel')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('carousel')); ?>"
 				type="checkbox" value="1" <?php checked( '1', $carousel ); ?> /> <label
-				for="<?php echo $this->get_field_id('carousel'); ?>"><?php esc_attr_e('Enable Carousel','lsx-framework'); ?></label>
+				for="<?php echo wp_kses_post($this->get_field_id('carousel')); ?>"><?php esc_attr_e('Enable Carousel','lsx-framework'); ?></label>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('interval'); ?>"><?php esc_attr_e('Slide Interval:','lsx-framework'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('size'); ?>"
-				name="<?php echo $this->get_field_name('interval'); ?>" type="text"
-				value="<?php echo $interval; ?>" />
+			<label for="<?php echo wp_kses_post($this->get_field_id('interval')); ?>"><?php esc_attr_e('Slide Interval:','lsx-framework'); ?></label>
+			<input class="widefat" id="<?php echo ($this->get_field_id('size')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('interval')); ?>" type="text"
+				value="<?php echo wp_kses_post($interval); ?>" />
 			<small>Type "false" to disable.</small>				
 		</p>
 		<p>
-			<input id="<?php echo $this->get_field_id('indicators'); ?>"
-				name="<?php echo $this->get_field_name('indicators'); ?>" type="checkbox"
+			<input id="<?php echo wp_kses_post($this->get_field_id('indicators')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('indicators')); ?>" type="checkbox"
 				value="1" <?php checked( '1', $indicators ); ?> /> <label
-				for="<?php echo $this->get_field_id('indicators'); ?>"><?php esc_attr_e('Show Indicators','lsx-framework'); ?></label>
+				for="<?php echo wp_kses_post($this->get_field_id('indicators')); ?>"><?php esc_attr_e('Show Indicators','lsx-framework'); ?></label>
 		</p>
 		<?php
         
@@ -462,13 +462,13 @@ class TO_Taxonomy_Widget extends WP_Widget {
     
     	$output = "";
     
-    	if ( $responsive == 'true' ) {
+    	if ( 'true' == $responsive ) {
     		$responsive = 'img-responsive';
     	} else {
     		$responsive = '';
     	}
     
-    	if ( $include != '' ) {
+    	if ( '' != $include ) {
     		$include = explode( ',', $include );
     		$args = array(
     				'number' => $limit,

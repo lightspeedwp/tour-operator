@@ -151,7 +151,7 @@ class TO_CTA_Widget extends WP_Widget {
 			<label for="<?php echo wp_kses_post($this->get_field_id('pos_x')); ?>"><?php esc_attr_e('Position X:'); ?></label>
 			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('pos_x')); ?>"
 				name="<?php echo wp_kses_post($this->get_field_name('pos_x')); ?>" type="text"
-				value="<?php echo wp_kses_post($pos_x;) ?>" />
+				value="<?php echo wp_kses_post($pos_x); ?>" />
 		</p>
 		<p>
 			<label for="<?php echo wp_kses_post($this->get_field_id('pos_y')); ?>"><?php esc_attr_e('Position Y:'); ?></label>
