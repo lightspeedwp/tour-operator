@@ -27,7 +27,7 @@ get_header(); ?>
 					?>
 						<li><a href="#facilities"><?php esc_html_e('Facilities','tour-operator');?></a></li>
 					<?php } ?>					
-					<?php if(to_has_map()){ ?>					
+					<?php if(function_exists('to_has_map') && to_has_map()){ ?>					
 						<li><a href="#accommodation-map"><?php esc_html_e('Map','tour-operator');?></a></li>
 					<?php } ?>
 					<?php 

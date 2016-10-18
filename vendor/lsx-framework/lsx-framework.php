@@ -142,9 +142,6 @@ class TO_Framework {
 		include_once('includes/lsx-cta-widget.php');
 		add_action( 'widgets_init', array( $this, 'register_widget'));
 		
-		include_once('classes/class-google-maps.php');
-		$this->maps = new TO_Maps($this->framework_url,array('accommodation','activity','destination'));
-		
 		include_once('includes/template-tags.php');
 
 		add_filter( 'get_the_archive_title', array( $this, 'get_the_archive_title') );

@@ -84,7 +84,7 @@ function to_accommodation_single_content_bottom() {
 		
 		to_accommodation_facilities('<section id="facilities"><h2 class="section-title">'.__('Facilities','tour-operator').'</h2><div class="info row">','</div></section>');	
 
-		if(to_has_map()){ ?>
+		if(function_exists('to_has_map') && to_has_map()){ ?>
 			<section id="accommodation-map">
 				<h2 class="section-title"><?php esc_html_e('Map','tour-operator'); ?></h2>
 				<?php to_map(); ?>
@@ -141,14 +141,14 @@ function to_destination_single_content_bottom() {
 
 		to_destination_activities();
 			
-		if(to_has_map()){ ?>
+		if(function_exists('to_has_map') && to_has_map()){ ?>
 			<section id="destination-map">
 				<h2 class="section-title"><?php esc_html_e('Map','tour-operator'); ?></h2>
 				<?php to_map(); ?>
 			</section>			
 		<?php }		
 		
-		if(function_exists('to_gallery')) { to_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>'); }
+		//if(function_exists('to_gallery')) { to_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>'); }
 		
 		if(function_exists('to_videos')) { to_videos('<div id="videos"><h2 class="section-title">'.__('Videos','tour-operator').'</h2>','</div>'); }		
 	}	
@@ -236,18 +236,18 @@ function to_tour_single_content_bottom() {
 		
 		to_pricing_block();
 
-		if(to_has_map()){ ?>
+		if(function_exists('to_has_map') && to_has_map()){ ?>
 			<section id="tour-map">
 				<h2 class="section-title"><?php esc_html_e('Map','tour-operator'); ?></h2>
 				<?php to_map(); ?>
 			</section>			
 		<?php }			
 		
-		if(function_exists('to_gallery')) { to_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>'); }
+		//if(function_exists('to_gallery')) { to_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>'); }
 		
 		if(function_exists('to_videos')) { to_videos('<div id="videos"><h2 class="section-title">'.__('Videos','tour-operator').'</h2>','</div>'); }
 		
-		to_related_items('travel-style','<section id="related-items"><h2 class="section-title">'.__(to_get_post_type_section_title('tour', 'related', 'Related Tours'),'tour-operator').'</h2>','</section>');		
+		to_related_items('travel-style','<section id="related-items"><h2 class="section-title">'.__(to_get_post_type_section_title('tour', 'related', 'Related Tours'),'tour-operator').'</h2>','</section>');
 	}	
 }
 
