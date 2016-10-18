@@ -494,9 +494,9 @@ class TO_Taxonomy_Widget extends WP_Widget {
 			
 			foreach ( $widget_query as $term ) {
 				$this->loop_start($columns,$carousel,$taxonomy,count($widget_query),$count,$interval);
-				echo '<div '.to_widget_class(true).'>';
+				echo wp_kses_post('<div '.to_widget_class(true).'>');
 				$this->content_part('content','widget-'.$taxonomy);
-				echo '</div>';
+				echo wp_kses_post('</div>');
 				$this->loop_end($columns,$carousel,$taxonomy,count($widget_query),$count);
 				
 				$count++;
@@ -504,11 +504,11 @@ class TO_Taxonomy_Widget extends WP_Widget {
 			$this->after_while($columns,$carousel,$taxonomy,count($widget_query));
 			
 			if(false !== $buttons && false != $link){
-				echo '
-					<div class="view-more">
-					<a href="'.$link.'" class="btn">'.$button_text.'</a>
-					</div>
-				';
+				echo wp_kses_post('
+									<div class="view-more">
+									<a href="'.$link.'" class="btn">'.$button_text.'</a>
+									</div>
+								');
 			}			
 		}
 		return $output;
@@ -533,7 +533,7 @@ class TO_Taxonomy_Widget extends WP_Widget {
 		} else {
 			$output .= "<div class='row lsx-{$taxonomy}'>";
 		}
-		echo $output;
+		echo wp_kses_post($output);
 	}
 	
 	/**
@@ -543,7 +543,7 @@ class TO_Taxonomy_Widget extends WP_Widget {
 		$output = '';
 		// Get the call for the active slide
 		if ($carousel) {
-			if ($count == 1) {
+			if (1 == $count) {
 				$slide_active = 'active';
 			} else {
 				$slide_active = '';
@@ -551,7 +551,7 @@ class TO_Taxonomy_Widget extends WP_Widget {
 			
 			$pages = ceil( $post_count / $columns );
 	
-			if ($count == 1) {
+			if (1 == $count) {
 				$output .= "<div class='item $slide_active row'>";
 				$output .= "<div class='lsx-{$taxonomy}'>";
 
@@ -562,12 +562,12 @@ class TO_Taxonomy_Widget extends WP_Widget {
 				}
 			}
 		} else {
-			if ($count == 1) {
+			if (1 == $count) {
 				$output .= "<div class='row lsx-{$taxonomy}'>";
 			}
 		}
 		
-		echo $output;
+		echo wp_kses_post($output);
 	}
 	
 	/**
@@ -576,7 +576,7 @@ class TO_Taxonomy_Widget extends WP_Widget {
 	public function loop_end($columns = 1,$carousel = 0,$taxonomy='',$post_count = 0,$count = 0){
 		$output = '';
 		// Close the current slide panel
-		if ($count % $columns == 0 || $count === $post_count) {
+		if (0 == $count % $columns || $count === $post_count) {
 			if ($carousel) {
 				$output .= "</div></div>";
 				if ($count < $post_count) {
@@ -589,7 +589,7 @@ class TO_Taxonomy_Widget extends WP_Widget {
 				}
 			}
 		}
-		echo $output;
+		echo wp_kses_post($output);
 	}
 	
 	/**
@@ -625,7 +625,7 @@ class TO_Taxonomy_Widget extends WP_Widget {
 		} else {
 			$output .= "</div>";
 		}
-		echo $output;
+		echo wp_kses_post($output);
 	}	
 	
 	/**
@@ -659,7 +659,7 @@ class TO_Taxonomy_Widget extends WP_Widget {
 		if(false !== $template){
 			load_template( $template, false );
 		}else {
-			echo '<p>No '.$original_name.' can be found.</p>';
+			echo wp_kses_post('<p>No '.$original_name.' can be found.</p>');
 		}
 	}	
 }
