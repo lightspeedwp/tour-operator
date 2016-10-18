@@ -18,6 +18,10 @@ require_once( TO_PATH . 'includes/post-expirator.php' );
 require_once( TO_PATH . 'includes/post-order.php' );
 require_once( TO_PATH . 'includes/customizer.php' );
 require_once( TO_PATH . 'includes/layout.php' );
+require_once('includes/lsx-post-type-widget.php');
+require_once('includes/lsx-taxonomy-widget.php');
+require_once('includes/lsx-cta-widget.php');
+require_once('classes/class-fields.php');
 
 // Setup the post connections
 class TO_Tour_Operators {
@@ -139,6 +143,13 @@ class TO_Tour_Operators {
 			$this->frontend = new TO_Frontend();
 		}
 
+		if(!class_exists('TO_Placeholders')){
+			include_once('classes/class-placeholders.php');
+			$this->placeholders = new TO_Placeholders(array_keys($this->post_types));
+		}		
+
+		add_action( 'widgets_init', array( $this, 'register_widget'));
+
 		//These need to run after the plugins have all been read.
 		include_once('classes/class-lsx-banner-integration.php');
 		$this->lsx_banners = new TO_LSX_Banner_Integration(array_keys($this->post_types),array_keys($this->taxonomies));
@@ -147,7 +158,7 @@ class TO_Tour_Operators {
 		$this->to_search_integration();
 		
 		add_action( 'to_content', array( $this->frontend->redirects, 'content_part' ), 10 , 2 );
-	}
+	}	
 	
 	/**
 	 * Return an instance of this class.
@@ -192,6 +203,15 @@ class TO_Tour_Operators {
 				'facility'	=> __('Facility',$this->plugin_slug),
 				'location'	=> __('Location',$this->plugin_slug)
 		);		
+	}	
+
+	/**
+	 * Register the TO_Widget
+	 */
+	public function register_widget() {
+		register_widget( 'TO_Widget' );
+		register_widget( 'TO_Taxonomy_Widget' );
+		register_widget( 'TO_CTA_Widget' );
 	}		
 	
 	/**

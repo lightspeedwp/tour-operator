@@ -120,8 +120,6 @@ class TO_Framework {
 			$this->options = false;
 		}
 
-		add_action('init',array($this,'filter_class_vars'),0);
-
 		//A class for the settings pages
 		include_once('classes/class-framework-admin.php');
 
@@ -129,62 +127,7 @@ class TO_Framework {
 		include_once('classes/class-framework-frontend.php');
 
 		// A helper for the CMB Meta Fields
-		include_once('classes/class-fields.php');
-
-		//Placeholders for all of the post types.
-		if(!class_exists('TO_Placeholders')){
-			include_once('classes/class-placeholders.php');
-			$this->placeholders = new TO_Placeholders($this->post_types);
-		}	
-		
-		include_once('includes/lsx-post-type-widget.php');
-		include_once('includes/lsx-taxonomy-widget.php');
-		include_once('includes/lsx-cta-widget.php');
-		add_action( 'widgets_init', array( $this, 'register_widget'));
-		
-		include_once('includes/template-tags.php');
-
-		add_filter( 'get_the_archive_title', array( $this, 'get_the_archive_title') );
+		include_once('classes/class-fields.php');		
 	}
-
-	/**
-	 * Allow plugins to add in their own vars
-	 */
-	public function filter_class_vars() {
-		$this->post_types = apply_filters('to_framework_post_type_slugs',$this->post_types);
-		$this->all_post_types = apply_filters('to_framework_post_type_slugs',$this->all_post_types);
-		$this->taxonomies = apply_filters('to_framework_taxonomies',$this->taxonomies);
-
-		if(is_admin()){
-			$this->admin = new TO_Framework_Admin($this->post_types,$this->framework_path,$this->framework_url);	
-		}else{
-			$this->frontend = new TO_Framework_Frontend($this->all_post_types,$this->framework_path,$this->framework_url);	
-		}
-	}
-	
-	/**
-	 * Register the TO_Widget
-	 */
-	public function register_widget() {
-		register_widget( 'TO_Widget' );
-		register_widget( 'TO_Taxonomy_Widget' );
-		register_widget( 'TO_CTA_Widget' );
-	}	
-	
-	/**
-	 * Remove the "Archives:" from the post type archives.
-	 *
-	 * @param	$title
-	 *
-	 * @return	$title
-	 */
-	public function get_the_archive_title($title) {
-		if(is_post_type_archive($this->post_types)){
-			$title = post_type_archive_title( '', false );
-		}
-		if(is_tax($this->taxonomies)){
-			$title = single_term_title( '', false );
-		}
-		return $title;
-	}		
+			
 }

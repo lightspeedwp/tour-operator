@@ -70,6 +70,8 @@ class TO_Frontend extends TO_Tour_Operators {
 			require_once( TO_PATH . 'classes/class-template-redirects.php' );
 		}
 		$this->redirects = new TO_Template_Redirects(TO_PATH,array_keys($this->post_types),array_keys($this->taxonomies));
+
+		add_filter( 'get_the_archive_title', array( $this, 'get_the_archive_title') );
 	}	
 
 	/**
@@ -214,5 +216,22 @@ class TO_Frontend extends TO_Tour_Operators {
 			$terms = str_replace('<a','<a target="_blank"',$terms);
 		}	
 		return $terms;
-	}		
+	}
+
+	/**
+	 * Remove the "Archives:" from the post type archives.
+	 *
+	 * @param	$title
+	 *
+	 * @return	$title
+	 */
+	public function get_the_archive_title($title) {
+		if(is_post_type_archive($this->post_types)){
+			$title = post_type_archive_title( '', false );
+		}
+		if(is_tax($this->taxonomies)){
+			$title = single_term_title( '', false );
+		}
+		return $title;
+	}			
 }
