@@ -23,7 +23,6 @@ class TO_Widget extends WP_Widget {
  
     /** @see WP_Widget::widget -- do not rename this */
     public function widget( $args, $instance ) { 
-        extract( $args );
         
     	if (isset($instance['title'])) {
 			$title = apply_filters('widget_title', $instance['title']);
@@ -132,20 +131,20 @@ class TO_Widget extends WP_Widget {
 
         
         // Disregard specific ID setting if specific group is defined
-        if ( $group != 'all' ) {
+        if ( 'all' != $group ) {
             $include = '';
         } else {
             $group = '';
         }
         
-        if ( $include != '' ) $limit = "-1";
+        if ( '' != $include ) $limit = "-1";
               
-        if ( $responsive == '1' )
+        if ( '1' == $responsive )
             $responsive = true;
         else
             $responsive = false;
 
-        if ( $buttons == '1' )
+        if ( '1' == $buttons )
             $buttons = true;
         else
             $buttons = false;
@@ -159,18 +158,18 @@ class TO_Widget extends WP_Widget {
         }
 
         $class = 'class="'.$class.' ';
-        echo str_replace('class="',$class,$before_widget);  
+        echo wp_kses_post(str_replace('class="',$class,$before_widget));  
               
         
         if(post_type_exists($post_type)){
 	        if ( false != $title ) {
 	        
-	        	if ($post_type != 'video') {
+	        	if ('video' != $post_type) {
 	        		$title = $before_title . $link_open . $title . $link_close . $after_title;
-	        		echo apply_filters('to_post_type_widget_title', $title);
+	        		echo wp_kses_post(apply_filters('to_post_type_widget_title', $title));
 	        	}
 	        	if ( false != $tagline ) {
-	        		echo '<p class="tagline">'.$tagline.'</p>';
+	        		echo wp_kses_post('<p class="tagline">'.$tagline.'</p>');
 	        	}	        	
 	        }   
 	
@@ -198,12 +197,12 @@ class TO_Widget extends WP_Widget {
 			                
 	
 			$args['carousel'] = $carousel;  
-			echo $this->output($args);  
+			echo wp_kses_post($this->output($args));  
 		}else{
-		 	echo '<p>'.__('That post type does not exist.','tour-operator').'</p>';
+		 	echo wp_kses_post('<p>'.__('That post type does not exist.','tour-operator').'</p>');
 		}
 
-        echo $after_widget;    
+        echo wp_kses_post($after_widget);    
     }
  
     /** @see WP_Widget::update -- do not rename this */
@@ -284,43 +283,43 @@ class TO_Widget extends WP_Widget {
 
         ?>
 		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_attr_e('Title:'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>"
-				name="<?php echo $this->get_field_name('title'); ?>" type="text"
-				value="<?php echo $title; ?>" />
+			<label for="<?php echo wp_kses_post($this->get_field_id('title')); ?>"><?php esc_attr_e('Title:'); ?></label>
+			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('title')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('title')); ?>" type="text"
+				value="<?php echo wp_kses_post($title); ?>" />
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('title_link'); ?>"><?php esc_attr_e( 'Title Link:' ); ?></label>
+			<label for="<?php echo wp_kses_post($this->get_field_id('title_link')); ?>"><?php esc_attr_e( 'Title Link:' ); ?></label>
 			<input class="widefat"
-				id="<?php echo $this->get_field_id('title_link'); ?>"
-				name="<?php echo $this->get_field_name('title_link'); ?>" type="text"
-				value="<?php echo $title_link; ?>" /> <small>Link the widget title to
+				id="<?php echo wp_kses_post($this->get_field_id('title_link')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('title_link')); ?>" type="text"
+				value="<?php echo wp_kses_post($title_link); ?>" /> <small>Link the widget title to
 				a URL</small>
 		</p>		
 		<p>
-			<label for="<?php echo $this->get_field_id('tagline'); ?>"><?php esc_attr_e('Tagline:'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('tagline'); ?>"
-				name="<?php echo $this->get_field_name('tagline'); ?>" type="text"
-				value="<?php echo $tagline; ?>" />
+			<label for="<?php echo wp_kses_post($this->get_field_id('tagline')); ?>"><?php esc_attr_e('Tagline:'); ?></label>
+			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('tagline')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('tagline')); ?>" type="text"
+				value="<?php echo wp_kses_post($tagline); ?>" />
 		</p>		
 
 		<p>
-			<label for="<?php echo $this->get_field_id('columns'); ?>"><?php esc_attr_e('Columns:'); ?></label>
-			<select name="<?php echo $this->get_field_name('columns'); ?>"
-				id="<?php echo $this->get_field_id('columns'); ?>"
+			<label for="<?php echo wp_kses_post($this->get_field_id('columns')); ?>"><?php esc_attr_e('Columns:'); ?></label>
+			<select name="<?php echo wp_kses_post($this->get_field_name('columns')); ?>"
+				id="<?php echo wp_kses_post($this->get_field_id('columns')); ?>"
 				class="widefat layout">
 		            <?php
 		            $options = array('1', '2', '3', '4', '5', '6');
 		            foreach ($options as $option) {
-		                echo '<option value="' . lcfirst($option) . '" id="' . $option . '"', $columns == lcfirst($option) ? ' selected="selected"' : '', '>', $option, '</option>';
+		                echo wp_kses_post('<option value="' . lcfirst($option) . '" id="' . $option . '"', $columns == lcfirst($option) ? ' selected="selected"' : '', '>', $option, '</option>');
 		            }
 		            ?>
 		            </select>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('orderby'); ?>"><?php esc_attr_e('Order By:'); ?></label>
-			<select name="<?php echo $this->get_field_name('orderby'); ?>"
-				id="<?php echo $this->get_field_id('orderby'); ?>" class="widefat">
+			<label for="<?php echo wp_kses_post($this->get_field_id('orderby')); ?>"><?php esc_attr_e('Order By:'); ?></label>
+			<select name="<?php echo wp_kses_post($this->get_field_name('orderby')); ?>"
+				id="<?php echo wp_kses_post($this->get_field_id('orderby')); ?>" class="widefat">
 		            <?php
 		            $options = array(
 		                'None' => 'none', 
@@ -332,118 +331,118 @@ class TO_Widget extends WP_Widget {
 		                'Admin (custom order)' => 'menu_order'
 		                );
 		            foreach ($options as $name=>$value) {
-		                echo '<option value="' . $value . '" id="' . $value . '"', $orderby == $value ? ' selected="selected"' : '', '>', $name, '</option>';
+		                echo wp_kses_post('<option value="' . $value . '" id="' . $value . '"', $orderby == $value ? ' selected="selected"' : '', '>', $name, '</option>');
 		            }
 		            ?>
 		            </select>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('order'); ?>"><?php esc_attr_e('Order:'); ?></label>
-			<select name="<?php echo $this->get_field_name('order'); ?>"
-				id="<?php echo $this->get_field_id('order'); ?>" class="widefat">
+			<label for="<?php echo wp_kses_post($this->get_field_id('order')); ?>"><?php esc_attr_e('Order:'); ?></label>
+			<select name="<?php echo wp_kses_post($this->get_field_name('order')); ?>"
+				id="<?php echo wp_kses_post($this->get_field_id('order')); ?>" class="widefat">
 		            <?php
 		            $options = array(
 		                'Ascending' => 'ASC', 
 		                'Descending' => 'DESC'
 		                );
 		            foreach ($options as $name=>$value) {
-		                echo '<option value="' . $value . '" id="' . $value . '"', $order == $value ? ' selected="selected"' : '', '>', $name, '</option>';
+		                echo wp_kses_post('<option value="' . $value . '" id="' . $value . '"', $order == $value ? ' selected="selected"' : '', '>', $name, '</option>');
 		            }
 		            ?>
 		    </select>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('limit'); ?>"><?php esc_attr_e('Maximum amount:'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('limit'); ?>"
-				name="<?php echo $this->get_field_name('limit'); ?>" type="text"
-				value="<?php echo $limit; ?>" /> <small><?php esc_attr_e('Leave empty to display all'); ?></small>
+			<label for="<?php echo wp_kses_post($this->get_field_id('limit')); ?>"><?php esc_attr_e('Maximum amount:'); ?></label>
+			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('limit')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('limit')); ?>" type="text"
+				value="<?php echo wp_kses_post($limit); ?>" /> <small><?php esc_attr_e('Leave empty to display all'); ?></small>
 		</p>
 		
 		<p class="bs-tourism-specify">
-			<label for="<?php echo $this->get_field_id('include'); ?>"><?php esc_attr_e('Specify Tours by ID:'); ?></label>
+			<label for="<?php echo wp_kses_post($this->get_field_id('include')); ?>"><?php esc_attr_e('Specify Tours by ID:'); ?></label>
 			<input class="widefat"
-				id="<?php echo $this->get_field_id('include'); ?>"
-				name="<?php echo $this->get_field_name('include'); ?>" type="text"
-				value="<?php echo $include; ?>" /> <small><?php esc_attr_e('Comma separated list, overrides limit setting'); ?></small>
+				id="<?php echo wp_kses_post($this->get_field_id('include')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('include')); ?>" type="text"
+				value="<?php echo wp_kses_post($include); ?>" /> <small><?php esc_attr_e('Comma separated list, overrides limit setting'); ?></small>
 		</p>
 		
 		<p>
-			<input id="<?php echo $this->get_field_id('featured'); ?>"
-				name="<?php echo $this->get_field_name('featured'); ?>"
+			<input id="<?php echo wp_kses_post($this->get_field_id('featured')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('featured')); ?>"
 				type="checkbox" value="1" <?php checked( '1', $featured ); ?> /> <label
-				for="<?php echo $this->get_field_id('featured'); ?>"><?php esc_attr_e('Featured Items'); ?></label>
+				for="<?php echo wp_kses_post($this->get_field_id('featured')); ?>"><?php esc_attr_e('Featured Items'); ?></label>
 		</p>
 		<p>
-			<input id="<?php echo $this->get_field_id('disable_placeholder'); ?>"
-				name="<?php echo $this->get_field_name('disable_placeholder'); ?>" type="checkbox"
+			<input id="<?php echo wp_kses_post($this->get_field_id('disable_placeholder')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('disable_placeholder')); ?>" type="checkbox"
 				value="1" <?php checked( '1', $disable_placeholder ); ?> /> <label
-				for="<?php echo $this->get_field_id('disable_placeholder'); ?>"><?php esc_attr_e('Disable Featured Image'); ?></label>
+				for="<?php echo wp_kses_post($this->get_field_id('disable_placeholder')); ?>"><?php esc_attr_e('Disable Featured Image'); ?></label>
 		</p>		
 		<p>
-			<label for="<?php echo $this->get_field_id('size'); ?>"><?php esc_attr_e('Icon size:'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('size'); ?>"
-				name="<?php echo $this->get_field_name('size'); ?>" type="text"
-				value="<?php echo $size; ?>" />
+			<label for="<?php echo wp_kses_post($this->get_field_id('size')); ?>"><?php esc_attr_e('Icon size:'); ?></label>
+			<input class="widefat" id="<?php echo ($this->get_field_id('size')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('size')); ?>" type="text"
+				value="<?php echo wp_kses_post($size); ?>" />
 		</p>
 		<p>
-			<input id="<?php echo $this->get_field_id('buttons'); ?>"
-				name="<?php echo $this->get_field_name('buttons'); ?>" type="checkbox"
+			<input id="<?php echo wp_kses_post($this->get_field_id('buttons')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('buttons')); ?>" type="checkbox"
 				value="1" <?php checked( '1', $buttons ); ?> /> <label
-				for="<?php echo $this->get_field_id('buttons'); ?>"><?php esc_attr_e('Display Button'); ?></label>
+				for="<?php echo wp_kses_post($this->get_field_id('buttons')); ?>"><?php esc_attr_e('Display Button'); ?></label>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('button_text'); ?>"><?php esc_attr_e('Button Text:'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('button_text'); ?>"
-				name="<?php echo $this->get_field_name('button_text'); ?>" type="text"
-				value="<?php echo $button_text; ?>" />
+			<label for="<?php echo wp_kses_post($this->get_field_id('button_text')); ?>"><?php esc_attr_e('Button Text:'); ?></label>
+			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('button_text')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('button_text')); ?>" type="text"
+				value="<?php echo wp_kses_post($button_text); ?>" />
 		</p>		
 		<p>
-			<input id="<?php echo $this->get_field_id('responsive'); ?>"
-				name="<?php echo $this->get_field_name('responsive'); ?>"
+			<input id="<?php echo wp_kses_post($this->get_field_id('responsive')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('responsive')); ?>"
 				type="checkbox" value="1" <?php checked( '1', $responsive ); ?> /> <label
-				for="<?php echo $this->get_field_id('responsive'); ?>"><?php esc_attr_e('Responsive Images'); ?></label>
+				for="<?php echo wp_kses_post($this->get_field_id('responsive')); ?>"><?php esc_attr_e('Responsive Images'); ?></label>
 		</p>
 
 		<p>
-			<input id="<?php echo $this->get_field_id('carousel'); ?>"
-				name="<?php echo $this->get_field_name('carousel'); ?>"
+			<input id="<?php echo wp_kses_post($this->get_field_id('carousel')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('carousel')); ?>"
 				type="checkbox" value="1" <?php checked( '1', $carousel ); ?> /> <label
-				for="<?php echo $this->get_field_id('carousel'); ?>"><?php esc_attr_e('Enable Carousel'); ?></label>
+				for="<?php echo wp_kses_post($this->get_field_id('carousel')); ?>"><?php esc_attr_e('Enable Carousel'); ?></label>
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('interval'); ?>"><?php esc_attr_e('Slide Interval:'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('size'); ?>"
-				name="<?php echo $this->get_field_name('interval'); ?>" type="text"
-				value="<?php echo $interval; ?>" />
+			<label for="<?php echo wp_kses_post($this->get_field_id('interval')); ?>"><?php esc_attr_e('Slide Interval:'); ?></label>
+			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('size')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('interval')); ?>" type="text"
+				value="<?php echo wp_kses_post($interval); ?>" />
 			<small>Type "false" to disable.</small>				
 		</p>
 		
 		<p>
-			<input id="<?php echo $this->get_field_id('indicators'); ?>"
-				name="<?php echo $this->get_field_name('indicators'); ?>" type="checkbox"
+			<input id="<?php echo wp_kses_post($this->get_field_id('indicators')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('indicators')); ?>" type="checkbox"
 				value="1" <?php checked( '1', $indicators ); ?> /> <label
-				for="<?php echo $this->get_field_id('indicators'); ?>"><?php esc_attr_e('Show Indicators'); ?></label>
+				for="<?php echo wp_kses_post($this->get_field_id('indicators')); ?>"><?php esc_attr_e('Show Indicators'); ?></label>
 		</p>			
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('post_type'); ?>"><?php esc_attr_e( 'Post Type:', 'lsx-theme' ); ?></label>
-			<select name="<?php echo $this->get_field_name('post_type'); ?>" id="<?php echo $this->get_field_id('post_type'); ?>"	class="widefat layout">
+			<label for="<?php echo wp_kses_post($this->get_field_id('post_type')); ?>"><?php esc_attr_e( 'Post Type:', 'lsx-theme' ); ?></label>
+			<select name="<?php echo wp_kses_post($this->get_field_name('post_type')); ?>" id="<?php echo wp_kses_post($this->get_field_id('post_type')); ?>"	class="widefat layout">
 	            <?php
 	            $options = get_post_types();
 	            foreach ($options as $key => $option) {
 	            	if(in_array($key,array('attachment','revision','nav_menu_item'))) { continue; }
-	                echo '<option value="' . $key . '" id="' . $option . '"', $post_type == $key ? ' selected="selected"' : '', '>', ucfirst($option), '</option>';
+	                echo wp_kses_post('<option value="' . $key . '" id="' . $option . '"', $post_type == $key ? ' selected="selected"' : '', '>', ucfirst($option), '</option>');
 	            }
 	            ?>
 		    </select>
 		</p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id('class'); ?>"><?php esc_attr_e('Class:'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('class'); ?>"
-				name="<?php echo $this->get_field_name('class'); ?>" type="text"
-				value="<?php echo $class; ?>" />
+			<label for="<?php echo wp_kses_post($this->get_field_id('class')); ?>"><?php esc_attr_e('Class:'); ?></label>
+			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('class')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('class')); ?>" type="text"
+				value="<?php echo wp_kses_post($class); ?>" />
 			<small>Add your own class to the opening element of the widget</small>	
 		</p>		
 		
@@ -499,7 +498,7 @@ class TO_Widget extends WP_Widget {
     
     	$output = "";
     
-    	if ( $responsive == 'true' ) {
+    	if ( 'true'  == $responsive) {
     		$responsive = 'img-responsive';
     	} else {
     		$responsive = '';
@@ -510,7 +509,7 @@ class TO_Widget extends WP_Widget {
 			$paper = '';
 		}
     
-    	if ( $include != '' ) {
+    	if ( '' != $include ) {
     		$include = explode( ',', $include );
     		$args = array(
     				'post_type' => $post_type,
@@ -549,9 +548,9 @@ class TO_Widget extends WP_Widget {
 				$widget_query->the_post();
 				
 				$this->loop_start($columns,$carousel,$post_type,$widget_query->post_count,$count,$interval);
-				echo '<div '.to_widget_class(true).'>';
+				echo wp_kses_post('<div '.to_widget_class(true).'>');
 				$this->content_part('content','widget-'.$post_type);
-				echo '</div>';
+				echo wp_kses_post('</div>');
 				$this->loop_end($columns,$carousel,$post_type,$widget_query->post_count,$count);
 				
 				$count++;
@@ -562,11 +561,11 @@ class TO_Widget extends WP_Widget {
 			
 			if(false !== $buttons && false !== $link){
 				
-				echo '
-					<div class="view-more">
-					<a href="'.$link.'" class="btn">'.$button_text.'</a>
-					</div>
-				';
+				echo wp_kses_post('
+									<div class="view-more">
+									<a href="'.$link.'" class="btn">'.$button_text.'</a>
+									</div>
+								');
 			}
 			
 			wp_reset_query();
@@ -612,7 +611,7 @@ class TO_Widget extends WP_Widget {
 		} else {
 			$output .= "<div class='row lsx-{$post_type}'>";
 		}
-		echo $output;
+		echo wp_kses_post($output);
 	}
 	
 	/**
@@ -622,7 +621,7 @@ class TO_Widget extends WP_Widget {
 		$output = '';
 		// Get the call for the active slide
 		if ($carousel) {
-			if ($count == 1) {
+			if (1 == $count) {
 				$slide_active = 'active';
 			} else {
 				$slide_active = '';
@@ -630,7 +629,7 @@ class TO_Widget extends WP_Widget {
 			
 			$pages = ceil( $post_count / $columns );
 	
-			if ($count == 1) {
+			if (1 == $count) {
 				$output .= "<div class='item $slide_active row'>";
 				$output .= "<div class='lsx-{$post_type}'>";
 				
@@ -641,12 +640,12 @@ class TO_Widget extends WP_Widget {
 				}
 			}
 		} else {
-			if ($count == 1) {
+			if ( 1 == $count) {
 				$output .= "<div class='row lsx-{$taxonomy}'>";
 			}
 		}
 		
-		echo $output;
+		echo wp_kses_post($output);
 	}
 	
 	/**
@@ -655,7 +654,7 @@ class TO_Widget extends WP_Widget {
 	public function loop_end($columns = 1,$carousel = 0,$post_type='',$post_count = 0,$count = 0){
 		$output = '';
 		// Close the current slide panel
-		if ($count % $columns == 0 || $count === $post_count) {
+		if (0 == $count % $columns || $count === $post_count) {
 			if ($carousel) {
 				$output .= "</div></div>";
 				if ($count < $post_count) {
@@ -668,7 +667,7 @@ class TO_Widget extends WP_Widget {
 				}
 			}
 		}
-		echo $output;
+		echo wp_kses_post($output);
 	}
 	
 	/**
@@ -705,7 +704,7 @@ class TO_Widget extends WP_Widget {
 			$output .= "</div>";
 		}
 		
-		echo $output;
+		echo wp_kses_post($output);
 	}	
 	
 	/**
@@ -737,7 +736,7 @@ class TO_Widget extends WP_Widget {
 		if(false !== $template){
 			load_template( $template, false );
 		}else {
-			echo '<p>No '.$original_name.' can be found.</p>';
+			echo wp_kses_post('<p>No '.$original_name.' can be found.</p>');
 		}
 	}	
 }
