@@ -389,7 +389,7 @@ class TO_Taxonomy_Widget extends WP_Widget {
 		</p>		
 		<p>
 			<label for="<?php echo wp_kses_post($this->get_field_id('size')); ?>"><?php esc_attr_e('Thumbnail size:','lsx-framework'); ?></label>
-			<input class="widefat" id="<?php echo ($this->get_field_id('size')); ?>"
+			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('size')); ?>"
 				name="<?php echo wp_kses_post($this->get_field_name('size')); ?>" type="text"
 				value="<?php echo wp_kses_post($size); ?>" />
 		</p>
@@ -401,7 +401,7 @@ class TO_Taxonomy_Widget extends WP_Widget {
 		</p>
 		<p>
 			<label for="<?php echo wp_kses_post($this->get_field_id('button_text')); ?>"><?php esc_attr_e('Button Text:','lsx-framework'); ?></label>
-			<input class="widefat" id="<?php echo ($this->get_field_id('button_text')); ?>"
+			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('button_text')); ?>"
 				name="<?php echo wp_kses_post($this->get_field_name('button_text')); ?>" type="text"
 				value="<?php echo wp_kses_post($button_text); ?>" />
 		</p>		
@@ -421,7 +421,7 @@ class TO_Taxonomy_Widget extends WP_Widget {
 		</p>
 		<p>
 			<label for="<?php echo wp_kses_post($this->get_field_id('interval')); ?>"><?php esc_attr_e('Slide Interval:','lsx-framework'); ?></label>
-			<input class="widefat" id="<?php echo ($this->get_field_id('size')); ?>"
+			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('size')); ?>"
 				name="<?php echo wp_kses_post($this->get_field_name('interval')); ?>" type="text"
 				value="<?php echo wp_kses_post($interval); ?>" />
 			<small>Type "false" to disable.</small>				
@@ -557,7 +557,7 @@ class TO_Taxonomy_Widget extends WP_Widget {
 
 				$i = 0;
 				while ( $i < $pages ) {
-					$this->pagination .= "<li data-target='#slider-{$this->carousel_id}' data-slide-to='{$i}' class='". ( $i == 0 ? 'active' : '' ) ."'></li>";
+					$this->pagination .= "<li data-target='#slider-{$this->carousel_id}' data-slide-to='{$i}' class='". ( 0 == $i ? 'active' : '' ) ."'></li>";
 					$i++;
 				}
 			}
