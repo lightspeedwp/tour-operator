@@ -129,15 +129,17 @@ class TO_Tour_Operators {
 		//Allow extra style attributes to wp_kses_post()
 		add_filter( 'safe_style_css', array( $this, 'safe_style_css' ) );
 		
-		if(!class_exists('TO_Framework')){
-			require_once( TO_PATH . 'vendor/lsx-framework/lsx-framework.php' );
-		}
-		$this->framework = new TO_Framework(TO_PATH,$this->post_types,$this->active_post_types,array_keys($this->taxonomies));
 		
 		require_once( TO_PATH . 'classes/class-lsx-to-admin.php' );
 		if(class_exists('TO_Admin')){
 			$this->admin = new TO_Admin();
 		}
+
+		require_once( TO_PATH . 'classes/class-lsx-to-settings.php' );
+		if(class_exists('TO_Settings')){
+			$this->settings = new TO_Settings();
+		}
+
 		require_once( TO_PATH . 'classes/class-lsx-to-frontend.php' );
 		if(class_exists('TO_Frontend')){
 			$this->frontend = new TO_Frontend();

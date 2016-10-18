@@ -12,10 +12,10 @@
 /**
  * Main plugin class.
  *
- * @package TO_Admin
+ * @package TO_Settings
  * @author  LightSpeed
  */
-class TO_Admin extends TO_Tour_Operators {
+class TO_Settings extends TO_Tour_Operators {
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -28,138 +28,174 @@ class TO_Admin extends TO_Tour_Operators {
 		$this->options = get_option('_lsx_lsx-settings',false);	
 		$this->set_vars();
 
-		add_action('init',array($this,'init'));
-		add_action( 'init', array( $this, 'require_post_type_classes' ) , 1 );
-		add_action( 'init', array( $this, 'global_taxonomies') );
-		add_filter( 'to_framework_settings_tabs', array( $this, 'settings_page_array') );
-
-		add_action('to_framework_dashboard_tab_content',array($this,'dashboard_tab_content'));
-
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_stylescripts' ) );
-		add_action( 'cmb_save_custom', array( $this, 'post_relations' ), 3 , 20 );
-
-		add_filter( 'plugin_action_links_' . plugin_basename(TO_CORE), array($this,'add_action_links'));		
+		add_action( 'init', array( $this, 'create_settings_page'),100 );
+		add_action( 'default_hidden_meta_boxes', array($this,'default_hidden_meta_boxes'), 10, 2 );
+		add_filter('upload_mimes', array($this,'allow_svgimg_types'));	
 	}	
 
 	/**
-	 * Output the form field for this metadata when adding a new term
-	 *
-	 * @since 0.1.0
+	 * Allow SVG files for upload
 	 */
-	public function init() {
-		$this->taxonomies = apply_filters('to_taxonomies',$this->taxonomies);
-		add_filter('to_taxonomy_widget_taxonomies', array( $this, 'widget_taxonomies' ),10,1 );
+	public 	function allow_svgimg_types($mimes) {
+	  $mimes['svg'] = 'image/svg+xml';
+	  $mimes['kml'] = 'image/kml+xml';
+	  return $mimes;
+	}
 
-		if(false !== $this->taxonomies){
-			add_action( 'create_term', array( $this, 'save_meta' ), 10, 2 );
-			add_action( 'edit_term',   array( $this, 'save_meta' ), 10, 2 );
-			foreach(array_keys($this->taxonomies) as $taxonomy){
-				add_action( "{$taxonomy}_edit_form_fields", array( $this, 'add_thumbnail_form_field' ),3,1 );
-				add_action( "{$taxonomy}_edit_form_fields", array( $this, 'add_tagline_form_field' ),3,1 );				
-			}			
-		}		
-	}		
 
 	/**
-	 * outputs the dashboard tabs settings
+	 * Returns the array of settings to the UIX Class
 	 */
-	public function dashboard_tab_content() {
-		?>
-		<?php $this->modal_setting(); ?>
+	public function create_settings_page(){
+		if(is_admin()){
+			if(!class_exists('\lsx\ui\uix')){
+				include_once TO_PATH.'vendor/uix/uix.php';
+			}
+			$pages = $this->settings_page_array();
+			$uix = \lsx\ui\uix::get_instance( 'lsx' );
+			$uix->register_pages( $pages );
 
-		<?php if(!class_exists('LSX_Currency')) { ?>
-			<tr class="form-field-wrap">
-				<th scope="row">
-					<label for="currency"> Currency</label>
-				</th>
-				<td>
-					<select value="{{currency}}" name="currency">
-						<option value="USD" {{#is currency value=""}}selected="selected"{{/is}} {{#is currency value="USD"}} selected="selected"{{/is}}>USD (united states dollar)</option>
-						<option value="GBP" {{#is currency value="GBP"}} selected="selected"{{/is}}>GBP (british pound)</option>
-						<option value="ZAR" {{#is currency value="ZAR"}} selected="selected"{{/is}}>ZAR (south african rand)</option>
-						<option value="NAD" {{#is currency value="NAD"}} selected="selected"{{/is}}>NAD (namibian dollar)</option>
-						<option value="CAD" {{#is currency value="CAD"}} selected="selected"{{/is}}>CAD (canadian dollar)</option>
-						<option value="EUR" {{#is currency value="EUR"}} selected="selected"{{/is}}>EUR (euro)</option>
-						<option value="HKD" {{#is currency value="HKD"}} selected="selected"{{/is}}>HKD (hong kong dollar)</option>
-						<option value="SGD" {{#is currency value="SGD"}} selected="selected"{{/is}}>SGD (singapore dollar)</option>
-						<option value="NZD" {{#is currency value="NZD"}} selected="selected"{{/is}}>NZD (new zealand dollar)</option>
-						<option value="AUD" {{#is currency value="AUD"}} selected="selected"{{/is}}>AUD (australian dollar)</option>
-					</select>
-				</td>
-			</tr>
-		<?php } ?>
-
-			<tr class="form-field-wrap">
-				<th scope="row">
-					<label for="currency"><?php esc_html_e('General Enquiry','tour-operator'); ?></label>
-				</th>
-				<?php
-					if(true === $this->show_default_form()){
-						$forms = $this->get_activated_forms(); ?>
-						<td>
-							<select value="{{enquiry}}" name="enquiry">
-							<?php
-							if(false !== $forms && '' !== $forms){ ?>
-								<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}>Select a form</option>
-								<?php
-								foreach($forms as $form_id => $form_data){ ?>
-									<option value="<?php echo esc_attr( $form_id ); ?>" {{#is enquiry value="<?php echo esc_attr( $form_id ); ?>"}} selected="selected"{{/is}}><?php echo esc_html( $form_data ); ?></option>
-								<?php
-								}
-							}else{ ?>
-								<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}>You have no form available</option>
-							<?php } ?>
-							</select>
-						</td>
-					<?php }else{ ?>
-						<td>
-							<textarea class="description enquiry" name="enquiry" rows="10">{{#if enquiry}}{{{enquiry}}}{{/if}}</textarea>
-						</td>
-					<?php
-					}
-				?>
-			</tr>
-			<tr class="form-field">
-				<th scope="row">
-					<label for="description"><?php esc_html_e('Disable Enquire Modal','tour-operator'); ?></label>
-				</th>
-				<td>
-					<input type="checkbox" {{#if disable_enquire_modal}} checked="checked" {{/if}} name="disable_enquire_modal" />
-					<small><?php esc_html_e('This disables the enquire modal, and instead redirects to the link you provide below.','tour-operator'); ?></small>
-				</td>
-			</tr>
-			<tr class="form-field">
-				<th scope="row">
-					<label for="title"><?php esc_html_e('Enquire Link','tour-operator'); ?></label>
-				</th>
-				<td>
-					<input type="text" {{#if enquire_link}} value="{{enquire_link}}" {{/if}} name="enquire_link" />
-				</td>
-			</tr>							
-		<?php  
+			foreach(array_$this->post_types as $post_type => $label){
+				add_action( 'to_framework_'.$post_type.'_tab_content_top', array( $this, 'general_settings' ), 5 , 1 );
+				add_action( 'to_framework_'.$post_type.'_tab_content_top', array( $this, 'archive_settings_header' ), 10 , 1 );
+				add_action( 'to_framework_'.$post_type.'_tab_content_top', array( $this, 'archive_settings' ), 12 , 1 );
+				add_action( 'to_framework_'.$post_type.'_tab_content_top', array( $this, 'single_settings' ), 15 , 1 );
+				add_action( 'to_framework_'.$post_type.'_tab_bottom', array( $this, 'settings_page_scripts' ), 100 );
+			}			
+		}
 	}
 
 	/**
-	 * outputs the dashboard tabs settings
+	 * Returns the array of settings to the UIX Class
 	 */
-	public function single_settings() { 
-		$this->modal_setting();
-	}		
+	public function settings_page_array(){
+		// This array is for the Admin Pages. each element defines a page that is seen in the admin
+	
+		$tabs = array( // tabs array are for setting the tab / section templates
+				// each array element is a tab with the key as the slug that will be the saved object property
+				'general'		=> array(
+						'page_title'        => '',
+						'page_description'  => '',
+						'menu_title'        => 'General',
+						'template'          => TO_PATH.'includes/settings/general.php',
+						'default'	 		=> true
+				)
+		);
 
+		$posts_page = get_option('page_for_posts',false);
+		if(false === $posts_page){
+			$tabs['post'] = array(
+				'page_title'        => 'Posts',
+				'page_description'  => '',
+				'menu_title'        => 'Posts',
+				'template'          => TO_PATH.'includes/settings/post.php',
+				'default'	 		=> false
+			);
+		}
+	
+		$additional_tabs = false;
+		$additional_tabs = apply_filters('to_framework_settings_tabs',$additional_tabs);
+		if(false !== $additional_tabs && is_array($additional_tabs) && !empty($additional_tabs)){
+			$tabs = array_merge($tabs,$additional_tabs);
+		}
+	
+		return array(
+				'lsx-settings'  => array(                                                         // this is the settings array. The key is the page slug
+						'page_title'  =>  'LSX Settings',                                                  // title of the page
+						'menu_title'  =>  'LSX Settings',                                                  // title seen on the menu link
+						'capability'  =>  'manage_options',                                              // required capability to access page
+						'icon'        =>  'dashicons-book-alt',                                          // Icon or image to be used on admin menu
+						'parent'      =>  'options-general.php',                                         // Position priority on admin menu)
+						'save_button' =>  'Save Changes',                                                // If the page required saving settings, Set the text here.
+						'tabs'        =>  $tabs,
+						/*'help'	=> array(	// the wordpress contextual help is also included
+								// key is the help slug
+								'default-help' => array(
+										'title'		=> 	esc_html__( 'Easy to add Help' , 'uix' ),
+										'content'	=>	"Just add more items to this array with a unique slug/key."
+								),
+								'more-help' => array(
+										'title'		=> 	esc_html__( 'Makes things Easy' , 'uix' ),
+										'content'	=>	"the content can also be a file path to a template"
+								)
+						),*/
+				),
+		);
+	}
 	/**
-	 * outputs the modal setting field
+	 * Adds in the settings neccesary for the archives
 	 */
-	public function modal_setting() { ?>
+	public function general_settings($post_type=false){ 
+		do_action('to_framework_'.$post_type.'_tab_general_settings_top',$post_type);
+		?>
+		<tr class="form-field-wrap">
+			<th scope="row">
+				<label for="currency"><?php _e('General Enquiry','tour-operator'); ?></label>
+			</th>
+			<?php
+				if(true === $this->show_default_form()){
+					$forms = $this->get_activated_forms(); ?>
+					<td>
+						<select value="{{enquiry}}" name="enquiry">
+						<?php
+						if(false !== $forms && '' !== $forms){ ?>
+							<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}>Select a form</option>
+							<?php
+							foreach($forms as $form_id => $form_data){ ?>
+								<option value="<?php echo $form_id; ?>" {{#is enquiry value="<?php echo $form_id; ?>"}} selected="selected"{{/is}}><?php echo $form_data; ?></option>
+							<?php
+							}
+						}else{ ?>
+							<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}>You have no form available</option>
+						<?php } ?>
+						</select>
+					</td>
+				<?php }else{ ?>
+					<td>
+						<textarea class="description enquiry" name="enquiry" rows="10">{{#if enquiry}}{{{enquiry}}}{{/if}}</textarea>
+					</td>
+				<?php
+				}
+			?>
+		</tr>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="description"><?php esc_html_e('Enable Connected Modals','tour-operator'); ?></label>
+				<label for="description"><?php _e('Disable Modal','tour-operator'); ?></label>
 			</th>
 			<td>
-				<input type="checkbox" {{#if enable_modals}} checked="checked" {{/if}} name="enable_modals" />
-				<small><?php esc_html_e('Any connected item showing on a single will display a preview in a modal.','tour-operator'); ?></small>
+				<input type="checkbox" {{#if disable_enquire_modal}} checked="checked" {{/if}} name="disable_enquire_modal" />
+				<small><?php _e('This disables the enquire modal, and instead redirects to the link you provide below.','tour-operator'); ?></small>
 			</td>
 		</tr>
-	<?php
+		<tr class="form-field">
+			<th scope="row">
+				<label for="title"><?php _e('Enquire Link','tour-operator'); ?></label>
+			</th>
+			<td>
+				<input type="text" {{#if enquire_link}} value="{{enquire_link}}" {{/if}} name="enquire_link" />
+			</td>
+		</tr>		
+		<tr class="form-field">
+			<th scope="row">
+				<label for="description">Disable Archives</label>
+			</th>
+			<td>
+				<input type="checkbox" {{#if disable_archives}} checked="checked" {{/if}} name="disable_archives" />
+				<small>This disables the "post type archive", if you create your own custom loop it will still work.</small>
+			</td>
+		</tr>		
+		<tr class="form-field">
+			<th scope="row">
+				<label for="description">Disable Singles</label>
+			</th>
+			<td>
+				<input type="checkbox" {{#if disable_single}} checked="checked" {{/if}} name="disable_single" />
+				<small>When disabled you will be redirected to the homepage when trying to access a single tour page.</small>
+			</td>
+		</tr>
+
+		<?php	
+			do_action('to_framework_'.$post_type.'_tab_general_settings_bottom',$post_type);	
 	}
 
 	/**
@@ -229,405 +265,222 @@ class TO_Admin extends TO_Tour_Operators {
 			}
 		}
 		return $forms;
-	}		
-
-	/**
-	 * Register and enqueue admin-specific style sheet.
-	 *
-	 * @return    null
-	 */
-	public function enqueue_admin_stylescripts() {
-		$screen = get_current_screen();
-		if( !is_object( $screen ) ){
-			return;
-		}
-		wp_enqueue_style( 'tour-operator-admin-style', TO_URL . '/assets/css/admin.css');
-	}
-
-	/**
-	 * Register the global post types.
-	 *
-	 *
-	 * @return    null
-	 */
-	public function global_taxonomies() {
-			
-		$labels = array(
-				'name' => _x( 'Travel Styles', 'tour-operator' ),
-				'singular_name' => _x( 'Travel Style', 'tour-operator' ),
-				'search_items' =>  __( 'Search Travel Styles' , 'tour-operator' ),
-				'all_items' => __( 'Travel Styles' , 'tour-operator' ),
-				'parent_item' => __( 'Parent Travel Style' , 'tour-operator' ),
-				'parent_item_colon' => __( 'Parent Travel Style:' , 'tour-operator' ),
-				'edit_item' => __( 'Edit Travel Style' , 'tour-operator' ),
-				'update_item' => __( 'Update Travel Style' , 'tour-operator' ),
-				'add_new_item' => __( 'Add New Travel Style' , 'tour-operator' ),
-				'new_item_name' => __( 'New Travel Style' , 'tour-operator' ),
-				'menu_name' => __( 'Travel Styles' , 'tour-operator' ),
-		);
-		
-		// Now register the taxonomy
-		register_taxonomy('travel-style',array('accommodation','tour','destination','review','vehicle','special'), array(
-			'hierarchical' => true,
-			'labels' => $labels,
-			'show_ui' => true,
-			'public' => true,
-			'exclude_from_search' => true,
-			'show_admin_column' => true,
-			'query_var' => true,
-			'rewrite' => array('travel-style'),
-		));	
-		
-		$labels = array(
-				'name' => _x( 'Brands', 'tour-operator' ),
-				'singular_name' => _x( 'Brand', 'tour-operator' ),
-				'search_items' =>  __( 'Search Brands' , 'tour-operator' ),
-				'all_items' => __( 'Brands' , 'tour-operator' ),
-				'parent_item' => __( 'Parent Brand' , 'tour-operator' ),
-				'parent_item_colon' => __( 'Parent Brand:' , 'tour-operator' ),
-				'edit_item' => __( 'Edit Brand' , 'tour-operator' ),
-				'update_item' => __( 'Update Brand' , 'tour-operator' ),
-				'add_new_item' => __( 'Add New Brand' , 'tour-operator' ),
-				'new_item_name' => __( 'New Brand' , 'tour-operator' ),
-				'menu_name' => __( 'Brands' , 'tour-operator' ),
-		);
-		
-		
-		// Now register the taxonomy
-		register_taxonomy('accommodation-brand',array('accommodation'), array(
-				'hierarchical' => true,
-				'labels' => $labels,
-				'show_ui' => true,
-				'public' => true,
-				'exclude_from_search' => true,
-				'show_admin_column' => true,
-				'query_var' => true,
-				'rewrite' => array('slug'=>'brand'),
-		));	
-
-		$labels = array(
-				'name' => _x( 'Location', 'tour-operator' ),
-				'singular_name' => _x( 'Location', 'tour-operator' ),
-				'search_items' =>  __( 'Search Locations' , 'tour-operator' ),
-				'all_items' => __( 'Locations' , 'tour-operator' ),
-				'parent_item' => __( 'Parent Location' , 'tour-operator' ),
-				'parent_item_colon' => __( 'Parent Location:' , 'tour-operator' ),
-				'edit_item' => __( 'Edit Location' , 'tour-operator' ),
-				'update_item' => __( 'Update Location' , 'tour-operator' ),
-				'add_new_item' => __( 'Add New Location' , 'tour-operator' ),
-				'new_item_name' => __( 'New Location' , 'tour-operator' ),
-				'menu_name' => __( 'Locations' , 'tour-operator' ),
-		);
-		// Now register the taxonomy
-		register_taxonomy('location',array('accommodation'), array(
-				'hierarchical' => true,
-				'labels' => $labels,
-				'show_ui' => true,
-				'public' => true,
-				'exclude_from_search' => true,
-				'show_admin_column' => true,
-				'query_var' => true,
-				'rewrite' => array('slug'=>'location'),
-		));			
-
-	}
-
-	/**
-	 * Returns the array of settings to the UIX Class in the lsx framework
-	 */	
-	public function settings_page_array($tabs){
-		// This array is for the Admin Pages. each element defines a page that is seen in the admin
-		
-		$post_types = apply_filters('to_post_types',$this->post_types);
-		
-		if(false !== $post_types && !empty($post_types)){
-			foreach($post_types as $index => $title){
-
-				$disabled = false;
-				if(!in_array($index,$this->active_post_types)){
-					$disabled = true;
-				}
-
-				$tabs[$index] = array(
-					'page_title'        => 'General',
-					'page_description'  => '',
-					'menu_title'        => $title,
-					'template'          => apply_filters('to_settings_path',TO_PATH,$index).'includes/settings/'.$index.'.php',
-					'default'	 		=> false,
-					'disabled'			=> $disabled
-				);
-			}
-			ksort($tabs);
-		}
-		return $tabs;
 	}	
 
 	/**
-	 * Requires the post type classes
-	 *
-	 * @since 0.0.1
+	 * Adds in the settings neccesary for the archive heading
 	 */
-	public function require_post_type_classes() {
-		foreach($this->post_types as $post_type => $label){
-			require_once( TO_PATH . 'classes/class-'.$post_type.'.php' );	
-			add_action('to_framework_'.$post_type.'_tab_single_settings_bottom', array($this,'single_settings'),40);
-		}
-		$this->connections = $this->create_post_connections();	
-		$this->single_fields = apply_filters('to_search_fields',array());
+	public function archive_settings_header($post_type=false){ ?>
+		{{#unless disable_archives}}
+			<tr class="form-field">
+				<th scope="row" colspan="2"><label><h3>Archive</h3></label></th>
+			</tr>
+		{{/unless}}
+	<?php
 	}
 
 	/**
-	 * Generates the post_connections used in the metabox fields
+	 * Adds in the settings neccesary for the archives
 	 */
-	public function create_post_connections() {
-		$connections = array();
-		$post_types = apply_filters('to_post_types',$this->post_types);
-		foreach($post_types as $key_a => $values_a){
-			foreach($this->post_types as $key_b => $values_b){
-				// Make sure we dont try connect a post type to itself.
-				if($key_a !== $key_b){
-					$connections[] = $key_a.'_to_'.$key_b;
-				}
-			}
-		}
-		return $connections;
-	}	
+	public function archive_settings($post_type=false){ ?>
+
+		{{#unless disable_archives}}
+			<?php do_action('to_framework_'.$post_type.'_tab_archive_settings_top',$post_type); ?>
+			<tr class="form-field">
+				<th scope="row">
+					<label for="title"> Title</label>
+				</th>
+				<td>
+					<input type="text" {{#if title}} value="{{title}}" {{/if}} name="title" />
+				</td>
+			</tr>			
+			<tr class="form-field">
+				<th scope="row">
+					<label for="tagline"> Tagline</label>
+				</th>
+				<td>
+					<input type="text" {{#if tagline}} value="{{tagline}}" {{/if}} name="tagline" />
+				</td>
+			</tr>
+			<tr class="form-field">
+				<th scope="row">
+					<label for="description"> Description</label>
+				</th>
+				<td>
+					<textarea class="description" name="description" rows="10">{{#if description}}{{{description}}}{{/if}}</textarea>
+				</td>
+			</tr>
+			<?php do_action('to_framework_'.$post_type.'_tab_archive_settings_bottom',$post_type); ?>
+		{{/unless}}
+	<?php
+	}
 
 	/**
-	 * Sets up the "post relations"
-	 *
-	 * @return    object|Module_Template    A single instance of this class.
+	 * Adds in the settings neccesary for the single
 	 */
-	public function post_relations($post_id, $field, $value) {
-		
-		if('group' === $field['type'] && array_key_exists($field['id'], $this->single_fields)){
-				
-			$delete_counter = array();
-			foreach($this->single_fields[$field['id']] as $fields_to_save){
-				$delete_counter[$fields_to_save] = 0;
-			}
-			
-			//Loop through each group in case of repeatable fields
-			$relations = $previous_relations = false;
+	public function single_settings($post_type=false){ ?>
+		<?php 
+		do_action('to_framework_'.$post_type.'_tab_single_settings_top',$post_type);
+		if ( $post_type == 'tour' || $post_type == 'accommodation' || $post_type == 'destination' || $post_type == 'activity' ) : ?>
+			<tr class="form-field">
+				<th scope="row" colspan="2"><label><h3>Single</h3></label></th>
+			</tr>
+			<tr class="form-field">
+				<th scope="row">
+					<label for="section_title">Default Section Title</label>
+				</th>
+				<td>
+					<input type="text" {{#if section_title}} value="{{section_title}}" {{/if}} name="section_title" />
+				</td>
+			</tr>
+			<?php if ( $post_type == 'tour' ) : ?>
+				<tr class="form-field">
+					<th scope="row">
+						<label for="related_section_title">"Related Tours" Section Title</label>
+					</th>
+					<td>
+						<input type="text" {{#if related_section_title}} value="{{related_section_title}}" {{/if}} name="related_section_title" />
+					</td>
+				</tr>
+			<?php endif ?>
+			<?php if ( $post_type == 'accommodation' ) : ?>
+				<tr class="form-field">
+					<th scope="row">
+						<label for="brands_section_title">"Accommodation Brands" Section Title</label>
+					</th>
+					<td>
+						<input type="text" {{#if brands_section_title}} value="{{brands_section_title}}" {{/if}} name="brands_section_title" />
+					</td>
+				</tr>
+				<tr class="form-field">
+					<th scope="row">
+						<label for="rooms_section_title">"Rooms" Section Title</label>
+					</th>
+					<td>
+						<input type="text" {{#if rooms_section_title}} value="{{rooms_section_title}}" {{/if}} name="rooms_section_title" />
+					</td>
+				</tr>
+				<tr class="form-field">
+					<th scope="row">
+						<label for="similar_section_title">"Similar Accommodations" Section Title</label>
+					</th>
+					<td>
+						<input type="text" {{#if similar_section_title}} value="{{similar_section_title}}" {{/if}} name="similar_section_title" />
+					</td>
+				</tr>
+			<?php endif ?>
+			<?php if ( $post_type == 'destination' ) : ?>
+				<tr class="form-field">
+					<th scope="row">
+						<label for="countries_section_title">"Countries" Section Title</label>
+					</th>
+					<td>
+						<input type="text" {{#if countries_section_title}} value="{{countries_section_title}}" {{/if}} name="countries_section_title" />
+					</td>
+				</tr>
+				<tr class="form-field">
+					<th scope="row">
+						<label for="regions_section_title">"Regions" Section Title</label>
+					</th>
+					<td>
+						<input type="text" {{#if regions_section_title}} value="{{regions_section_title}}" {{/if}} name="regions_section_title" />
+					</td>
+				</tr>
+				<tr class="form-field">
+					<th scope="row">
+						<label for="travel_styles_section_title">"Travel Styles" Section Title</label>
+					</th>
+					<td>
+						<input type="text" {{#if travel_styles_section_title}} value="{{travel_styles_section_title}}" {{/if}} name="travel_styles_section_title" />
+					</td>
+				</tr>
+			<?php endif ?>
+		<?php endif ?>
+	<?php do_action('to_framework_'.$post_type.'_tab_single_settings_bottom',$post_type);
+	}
 
-			foreach($value as $group){
-		
-				//loop through each of the fields in the group that need to be saved and grab their values.
-				foreach($this->single_fields[$field['id']] as $fields_to_save){
+	/**
+	 * Allows the settings pages to upload images
+	 */
+	public function settings_page_scripts(){ ?>
+	{{#script src="<?php echo $this->framework_url.'assets/js/tinymce/tinymce.min.js'; ?>"}}{{/script}}
+
+	{{#script}}
+		jQuery( function( $ ){
+			$( '.lsx-thumbnail-image-add' ).on( 'click', function() {
+
+				var slug = $(this).attr('data-slug');
+				tb_show('Choose a Featured Image', 'media-upload.php?type=image&TB_iframe=1');
+				var image_thumbnail = '';
+				var thisObj = $(this);
+				window.send_to_editor = function( html ) 
+				{
+
+					var image_thumbnail = $( 'img',html ).html();
+
+					$( thisObj ).parent('td').find('.thumbnail-preview' ).append('<img width="150" height="150" src="'+$( 'img',html ).attr( 'src' )+'" />');
+					$( thisObj ).parent('td').find('input[name="'+slug+'"]').val($( 'img',html ).attr( 'src' ));
 					
-					//Check if its an empty group
-					if(isset($group[$fields_to_save]) && !empty($group[$fields_to_save])){;
-						if($delete_counter[$fields_to_save]<1){
-							//If this is a relation field, then we need to save the previous relations to remove any items if need be.
-							if(in_array($fields_to_save,$this->connections)){
-								$previous_relations[$fields_to_save] = get_post_meta($post_id,$fields_to_save,false);
-							}							
-							delete_post_meta( $post_id, $fields_to_save );
-							$delete_counter[$fields_to_save]++;
-						}
-						
-						//Run through each group
-						foreach($group[$fields_to_save] as $field_value){
-								
-							if(null !== $field_value){
-			
-								if(1 === $field_value){ $field_value = true; }
-								add_post_meta($post_id,$fields_to_save,$field_value);
-							
-								//If its a related connection the save that
-								if(in_array($fields_to_save,$this->connections)){
-									$relations[$fields_to_save][$field_value] = $field_value;
-								}
-							}
-						}
-					}
-				}// end of the inner foreach
-				
-			}//end of the repeatable group foreach
-			
-			//If we have relations, loop through them and save the meta
-			if(false!==$relations){
-				foreach($relations as $relation_key => $relation_values){
-					$temp_field = array('id'=>$relation_key);
-					$this->save_related_post($post_id, $temp_field, $relation_values,$previous_relations[$relation_key]);
-				}
-			}			
-			
-		}else{			
-			if(in_array($field['id'],$this->connections)){
-				$this->save_related_post($post_id, $field, $value);
-			}
-		}
-	}
-
-	/**
-	 * Save the reverse post relation.
-	 *
-	 *
-	 * @return    null
-	 */
-	public function save_related_post($post_id, $field, $value,$previous_values=false) {
-		$ids = explode('_to_',$field['id']);
-			
-		$relation = $ids[1].'_to_'.$ids[0];
-
-		if(in_array($relation,$this->connections)){
-			
-			if(false===$previous_values){
-				$previous_values = get_post_meta($post_id,$field['id'],false);
-			}
-		
-			if(false !== $previous_values && !empty($previous_values)){
-				foreach($previous_values as $tr){
-					delete_post_meta( $tr, $relation, $post_id );
-				}
-			}		
-
-			if(is_array($value)){
-				foreach($value as $v){
-					if('' !== $v && null !== $v && false !== $v){
-						add_post_meta($v,$relation,$post_id);
-					}
-				}
-			}
-		}		
-	}
-
-	/**
-	 * Adds in the "settings" link for the plugins.php page
-	 */
-	public function add_action_links ( $links ) {
-		 $mylinks = array(
-		 	'<a href="' . admin_url( 'options-general.php?page=lsx-lsx-settings' ) . '">'.__('Settings',$this->plugin_slug).'</a>',
-		 	'<a href="https://www.lsdev.biz/documentation/tour-operator-plugin/" target="_blank">'.__('Documentation',$this->plugin_slug).'</a>',
-		 	'<a href="https://feedmysupport.zendesk.com/home" target="_blank">'.__('Support',$this->plugin_slug).'</a>',
-		 );
-		return array_merge( $links, $mylinks );
-	}	
-
-	/**
-	 * Output the form field for this metadata when adding a new term
-	 *
-	 * @since 0.1.0
-	 */
-	public function widget_taxonomies($taxonomies) {
-		if(false !== $this->taxonomies){ $taxonomies = array_merge($taxonomies,$this->taxonomies); }
-		return $taxonomies;
-	}
-
-	/**
-	 * Output the form field for this metadata when adding a new term
-	 *
-	 * @since 0.1.0
-	 */
-	public function add_thumbnail_form_field($term = false) {
-	
-		if(is_object($term)){
-			$value = get_term_meta( $term->term_id, 'thumbnail', true );
-			$image_preview = wp_get_attachment_image_src($value,'thumbnail');
-			if(is_array($image_preview)){
-				$image_preview = '<img src="'.$image_preview[0].'" width="'.$image_preview[1].'" height="'.$image_preview[2].'" class="alignnone size-thumbnail wp-image-'.$value.'" />';
-			}
-		}else{
-			$image_preview = false;
-			$value = false;
-		}
-		?>
-		<tr class="form-field form-required term-thumbnail-wrap">
-			<th scope="row"><label for="thumbnail"><?php esc_html_e('Featured Image','tour-operator');?></label></th>
-			<td>
-				<input style="display:none;" name="thumbnail" id="thumbnail" type="text" value="<?php echo wp_kses_post($value); ?>" size="40" aria-required="true">
-				<div class="thumbnail-preview">
-					<?php echo wp_kses_post($image_preview); ?>
-				</div>				
-
-				<a style="<?php if('' !== $value && false !== $value) { ?>display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e('Choose Image','tour-operator');?></a>				
-				<a style="<?php if('' === $value || false === $value) { ?>display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-remove"><?php esc_html_e('Remove Image','tour-operator');?></a>
-
-				<?php wp_nonce_field( 'to_save_term_thumbnail', 'to_term_thumbnail_nonce' ); ?>
-			</td>
-		</tr>
-		
-		<script type="text/javascript">
-			(function( $ ) {
-				$( '.lsx-thumbnail-image-add' ).on( 'click', function() {
-					tb_show('Choose a Featured Image', 'media-upload.php?type=image&TB_iframe=1');
-					var image_thumbnail = '';
-					window.send_to_editor = function( html ) 
-					{
-						var image_thumbnail = $( 'img',html ).html();
-						$( '.thumbnail-preview' ).append(html);
-						var imgClasses = $( 'img',html ).attr( 'class' );
-						imgClasses = imgClasses.split('wp-image-');
-						$( '#thumbnail' ).val(imgClasses[1]);
-						tb_remove();
-					}
+					var imgClasses = $( 'img',html ).attr( 'class' );
+					imgClasses = imgClasses.split('wp-image-');
+					
+					$( thisObj ).parent('td').find('input[name="'+slug+'_id"]').val(imgClasses[1]);
+					$( thisObj ).hide();
+					$( thisObj ).parent('td').find('.lsx-thumbnail-image-delete' ).show();
+					tb_remove();
 					$( this ).hide();
-					$( '.lsx-thumbnail-image-remove' ).show();
-					
-					return false;
+				}
+				return false;
+			});
+			$( '.lsx-thumbnail-image-delete' ).on( 'click', function() {
+				var slug = $(this).attr('data-slug');
+				$( this ).parent('td').find('input[name="'+slug+'_id"]').val('');
+				$( this ).parent('td').find('input[name="'+slug+'"]').val('');
+				$( this ).parent('td').find('.thumbnail-preview' ).html('');
+				$( this ).hide();
+				$( this ).parent('td').find('.lsx-thumbnail-image-add' ).show();
+			});
+
+			if($( 'textarea.description' ).length){
+				tinymce.init({
+					selector:'textarea.description',
+					plugins: [
+					    'link hr anchor code',
+					  ],
+					menu: {},				
+					toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright justify | link code',
+				    setup: function (editor) {
+				        editor.on('change', function () {
+				            editor.save();
+				        });
+				    }
 				});
 
-				$( '.lsx-thumbnail-image-remove' ).on( 'click', function() {
-					$( '.thumbnail-preview' ).html('');
-					$( '#thumbnail' ).val('');
-					$( this ).hide();
-					$( '.lsx-thumbnail-image-add' ).show();					
-					return false;
-				});	
-			})(jQuery);
-		</script>		
-		<?php
+				/*tinymce.get('textarea.description').on('click', function(e) {
+				   ed.windowManager.alert('Hello world!');
+				});	*/	
+			}			
+		});
+	{{/script}}
+	<?php
 	}
-	/**
-	 * Saves the Taxnomy term banner image
-	 *
-	 * @since 0.1.0
-	 *
-	 * @param  int     $term_id
-	 * @param  string  $taxonomy
-	 */
-	public function save_meta( $term_id = 0, $taxonomy = '' ) {
 
-		if(check_admin_referer( 'to_save_term_thumbnail', 'to_term_thumbnail_nonce' )){
-			$thumbnail_meta = ! empty( sanitize_text_field(wp_unslash($_POST[ 'thumbnail' ])) ) ? sanitize_text_field(wp_unslash($_POST[ 'thumbnail' ]))	: '';
-			if ( empty( $thumbnail_meta ) ) {
-				delete_term_meta( $term_id, 'thumbnail' );
-			} else {
-				update_term_meta( $term_id, 'thumbnail', $thumbnail_meta );
-			}
-		}
-		
-		if(check_admin_referer( 'to_save_term_tagline', 'to_term_tagline_nonce' )){
-			$meta = ! empty( sanitize_text_field(wp_unslash($_POST[ 'tagline' ])) ) ? sanitize_text_field(wp_unslash($_POST[ 'tagline' ])) : '';
-			if ( empty( $meta ) ) {
-				delete_term_meta( $term_id, 'tagline' );
-			} else {
-				update_term_meta( $term_id, 'tagline', $meta );
-			}
-		}
-	}
-	
 	/**
-	 * Output the form field for this metadata when adding a new term
-	 *
-	 * @since 0.1.0
+	 * Hide a few of the meta boxes by default
 	 */
-	public function add_tagline_form_field($term = false) {
-		if(is_object($term)){
-			$value = get_term_meta( $term->term_id, 'tagline', true );
-		}else{
-			$value = false;
-		}
-		?>
-		<tr class="form-field form-required term-tagline-wrap">
-			<th scope="row"><label for="tagline"><?php esc_html_e('Tagline','tour-operator');?></label></th>
-			<td>
-				<input name="tagline" id="tagline" type="text" value="<?php echo wp_kses_post($value); ?>" size="40" aria-required="true">
-			</td>
+	public function default_hidden_meta_boxes( $hidden, $screen ) {
 
-			<?php wp_nonce_field( 'to_save_term_tagline', 'to_term_tagline_nonce' ); ?>
-		</tr>
-		<?php
-	}					
+		$post_type = $screen->post_type;
+
+		if ( in_array($post_type,$this->post_types) ) {
+			$hidden = array(
+					'authordiv',
+					'revisionsdiv',
+					'slugdiv',
+					'sharing_meta'
+			);
+			return $hidden;
+		}
+		return $hidden;
+	}	
 }
