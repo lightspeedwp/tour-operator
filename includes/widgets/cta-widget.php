@@ -34,7 +34,6 @@ class TO_CTA_Widget extends WP_Widget {
  
     /** @see WP_Widget::widget -- do not rename this */
     public function widget( $args, $instance ) {
-        extract( $args );
 
 		if (isset($instance['class'])) {
 			$class = $instance['class'];
@@ -59,20 +58,20 @@ class TO_CTA_Widget extends WP_Widget {
 		$before_widget = str_replace('lsx-widget"', 'lsx-widget image-'.$instance['pos_x'].'"', $before_widget);
         $class = 'class="'.$class.' ';
 
-        echo str_replace('class="',$class,$before_widget);
+        echo wp_kses_post(str_replace('class="',$class,$before_widget));
         
         if ( false != $title ) {
         	$title = $before_title . $title . $after_title;
-        	echo apply_filters('to_cta_widget_title', $title);
+        	echo wp_kses_post(apply_filters('to_cta_widget_title', $title));
         }    
 
         if ( false != $widget_text ) {
         	$text = apply_filters( 'widget_text', $widget_text, $instance, $this );
         	?>
         	<div class="textwidget">
-				<div class="lsx-full-width-alt" style="<?php echo $styletag; ?>">
+				<div class="lsx-full-width-alt" style="<?php echo wp_kses_post($styletag); ?>">
 					<div class="lsx-hero-unit">        	
-        				<?php echo !empty( $instance['filter'] ) ? wpautop( $text ) : $text; ?>
+        				<?php echo !empty( $instance['filter'] ) ? wp_kses_post(wpautop( $text )) : wp_kses_post($text); ?>
         			</div>
         		</div>
         	</div> 
@@ -80,7 +79,7 @@ class TO_CTA_Widget extends WP_Widget {
         }
                     
 
-        echo $after_widget;    
+        echo wp_kses_post($after_widget);    
     }
  
     /** @see WP_Widget::update -- do not rename this */
@@ -119,66 +118,66 @@ class TO_CTA_Widget extends WP_Widget {
         extract( $instance );
         ?>
 		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_attr_e('Title:'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>"
-				name="<?php echo $this->get_field_name('title'); ?>" type="text"
-				value="<?php echo $title; ?>" />
+			<label for="<?php echo wp_kses_post($this->get_field_id('title')); ?>"><?php esc_attr_e('Title:'); ?></label>
+			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('title')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('title')); ?>" type="text"
+				value="<?php echo wp_kses_post($title); ?>" />
 		</p>
-		<p><label for="<?php echo $this->get_field_id( 'text' ); ?>"><?php esc_attr_e( 'Content:' ); ?></label>
-		<textarea class="widefat" rows="16" cols="20" id="<?php echo $this->get_field_id('text'); ?>" name="<?php echo $this->get_field_name('text'); ?>"><?php echo esc_textarea( $text ); ?></textarea></p>		
+		<p><label for="<?php echo wp_kses_post($this->get_field_id( 'text' )); ?>"><?php esc_attr_e( 'Content:' ); ?></label>
+		<textarea class="widefat" rows="16" cols="20" id="<?php echo wp_kses_post($this->get_field_id('text')); ?>" name="<?php echo wp_kses_post($this->get_field_name('text')); ?>"><?php echo esc_textarea( $text ); ?></textarea></p>		
 		<p>
-			<label for="<?php echo $this->get_field_id('image'); ?>"><?php esc_attr_e('Background Image:'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('image'); ?>"
-				name="<?php echo $this->get_field_name('image'); ?>" type="text"
-				value="<?php echo $image; ?>" />
+			<label for="<?php echo wp_kses_post($this->get_field_id('image')); ?>"><?php esc_attr_e('Background Image:'); ?></label>
+			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('image')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('image')); ?>" type="text"
+				value="<?php echo wp_kses_post($image); ?>" />
 			<input class="upload_image_button button button-primary" type="button" value="Upload Image" />	
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('class'); ?>"><?php esc_attr_e('Class:','lsx-framework'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('class'); ?>"
-				name="<?php echo $this->get_field_name('class'); ?>" type="text"
-				value="<?php echo $class; ?>" />
+			<label for="<?php echo wp_kses_post($this->get_field_id('class')); ?>"><?php esc_attr_e('Class:','lsx-framework'); ?></label>
+			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('class')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('class')); ?>" type="text"
+				value="<?php echo wp_kses_post($class); ?>" />
 			<small>Add your own class to the opening element of the widget</small>	
 		</p>	
 		
 		<h4 class="widget-title" style="border-top: 1px solid #e5e5e5;padding-top:10px;"><?php esc_attr_e('Background CSS','lsx-framework');?></h4>
 		<p>
-			<label for="<?php echo $this->get_field_id('color'); ?>"><?php esc_attr_e('Colour:'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('color'); ?>"
-				name="<?php echo $this->get_field_name('color'); ?>" type="text"
-				value="<?php echo $color; ?>" />
+			<label for="<?php echo wp_kses_post($this->get_field_id('color')); ?>"><?php esc_attr_e('Colour:'); ?></label>
+			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('color')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('color')); ?>" type="text"
+				value="<?php echo wp_kses_post($color); ?>" />
 		</p>		
 		<p>
-			<label for="<?php echo $this->get_field_id('pos_x'); ?>"><?php esc_attr_e('Position X:'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('pos_x'); ?>"
-				name="<?php echo $this->get_field_name('pos_x'); ?>" type="text"
-				value="<?php echo $pos_x; ?>" />
+			<label for="<?php echo wp_kses_post($this->get_field_id('pos_x')); ?>"><?php esc_attr_e('Position X:'); ?></label>
+			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('pos_x')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('pos_x')); ?>" type="text"
+				value="<?php echo wp_kses_post($pos_x;) ?>" />
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('pos_y'); ?>"><?php esc_attr_e('Position Y:'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('pos_y'); ?>"
-				name="<?php echo $this->get_field_name('pos_y'); ?>" type="text"
-				value="<?php echo $pos_y; ?>" />
+			<label for="<?php echo wp_kses_post($this->get_field_id('pos_y')); ?>"><?php esc_attr_e('Position Y:'); ?></label>
+			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('pos_y')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('pos_y')); ?>" type="text"
+				value="<?php echo wp_kses_post($pos_y); ?>" />
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('size'); ?>"><?php esc_attr_e('Size:','lsx-framework'); ?></label>
-			<select name="<?php echo $this->get_field_name('size'); ?>"
-				id="<?php echo $this->get_field_id('size'); ?>" class="widefat">
+			<label for="<?php echo wp_kses_post($this->get_field_id('size')); ?>"><?php esc_attr_e('Size:','lsx-framework'); ?></label>
+			<select name="<?php echo wp_kses_post($this->get_field_name('size')); ?>"
+				id="<?php echo wp_kses_post($this->get_field_id('size')); ?>" class="widefat">
 		            <?php
 		            $options = array(
 		                'Contain' => 'contain', 
 		                'Cover' => 'cover'
 		                );
 		            foreach ($options as $name=>$value) {
-		                echo '<option value="' . $value . '" id="' . $value . '"', $size == $value ? ' selected="selected"' : '', '>', $name, '</option>';
+		                echo wp_kses_post('<option value="' . $value . '" id="' . $value . '"', $size == $value ? ' selected="selected"' : '', '>', $name, '</option>');
 		            }
 		            ?>
 		    </select>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('repeat'); ?>"><?php esc_attr_e('Repeat:','lsx-framework'); ?></label>
-			<select name="<?php echo $this->get_field_name('repeat'); ?>"
-				id="<?php echo $this->get_field_id('repeat'); ?>" class="widefat">
+			<label for="<?php echo wp_kses_post($this->get_field_id('repeat')); ?>"><?php esc_attr_e('Repeat:','lsx-framework'); ?></label>
+			<select name="<?php echo wp_kses_post($this->get_field_name('repeat')); ?>"
+				id="<?php echo wp_kses_post($this->get_field_id('repeat')); ?>" class="widefat">
 		            <?php
 		            $options = array(
 		                'No Repeat' => 'no-repeat', 
@@ -186,7 +185,7 @@ class TO_CTA_Widget extends WP_Widget {
 		                'Repeat Y' => 'repeat-y'
 		                );
 		            foreach ($options as $name=>$value) {
-		                echo '<option value="' . $value . '" id="' . $value . '"', $size == $value ? ' selected="selected"' : '', '>', $name, '</option>';
+		                echo wp_kses_post('<option value="' . $value . '" id="' . $value . '"', $size == $value ? ' selected="selected"' : '', '>', $name, '</option>');
 		            }
 		            ?>
 		    </select>
