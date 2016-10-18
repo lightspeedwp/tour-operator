@@ -321,7 +321,7 @@ class TO_Settings extends TO_Tour_Operators {
 	public function single_settings($post_type=false){ ?>
 		<?php 
 		do_action('to_framework_'.$post_type.'_tab_single_settings_top',$post_type);
-		if ( $post_type == 'tour' || $post_type == 'accommodation' || $post_type == 'destination' || $post_type == 'activity' ) : ?>
+		if ( 'tour' == $post_type || 'accommodation' == $post_type || 'destination' == $post_type || 'activity' == $post_type ) : ?>
 			<tr class="form-field">
 				<th scope="row" colspan="2"><label><h3>Single</h3></label></th>
 			</tr>
@@ -333,7 +333,7 @@ class TO_Settings extends TO_Tour_Operators {
 					<input type="text" {{#if section_title}} value="{{section_title}}" {{/if}} name="section_title" />
 				</td>
 			</tr>
-			<?php if ( $post_type == 'tour' ) : ?>
+			<?php if ( 'tour' == $post_type ) : ?>
 				<tr class="form-field">
 					<th scope="row">
 						<label for="related_section_title">"Related Tours" Section Title</label>
@@ -343,7 +343,7 @@ class TO_Settings extends TO_Tour_Operators {
 					</td>
 				</tr>
 			<?php endif ?>
-			<?php if ( $post_type == 'accommodation' ) : ?>
+			<?php if ( 'accommodation' == $post_type ) : ?>
 				<tr class="form-field">
 					<th scope="row">
 						<label for="brands_section_title">"Accommodation Brands" Section Title</label>
@@ -369,7 +369,7 @@ class TO_Settings extends TO_Tour_Operators {
 					</td>
 				</tr>
 			<?php endif ?>
-			<?php if ( $post_type == 'destination' ) : ?>
+			<?php if ( 'destination' == $post_type ) : ?>
 				<tr class="form-field">
 					<th scope="row">
 						<label for="countries_section_title">"Countries" Section Title</label>

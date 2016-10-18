@@ -141,7 +141,7 @@ class TO_Placeholders {
 	 */
 	public function default_post_thumbnail( $meta, $post_id, $meta_key ){
 		$options = get_option('_lsx_lsx-settings',false);
-		if($meta_key === '_thumbnail_id' && false !== $options){
+		if('_thumbnail_id' === $meta_key && false !== $options){
 			
 			$post_type = get_post_field( 'post_type', $post_id );
 
@@ -174,7 +174,7 @@ class TO_Placeholders {
 			}
 		}
 
-		if( $meta_key === '_thumbnail_id' && false === $this->checking_for_thumb ){
+		if( '_thumbnail_id' === $meta_key && false === $this->checking_for_thumb ){
 			$this->checking_for_thumb = true;
 			$image = get_post_meta( $post_id, '_thumbnail_id', true );
 			$this->checking_for_thumb = false;
@@ -194,7 +194,7 @@ class TO_Placeholders {
 	 */
 	public function default_term_thumbnail( $meta, $post_id, $meta_key ){
 
-		if($meta_key === 'thumbnail'){
+		if('thumbnail' === $meta_key){
 			$options = get_option('_lsx_lsx-settings',false);
 			$placeholder = 'lsx-placeholder';
 
@@ -208,7 +208,7 @@ class TO_Placeholders {
 
 		}
 
-		if( $meta_key === 'thumbnail' && false === $this->checking_for_thumb ){
+		if( 'thumbnail' === $meta_key && false === $this->checking_for_thumb ){
 			$this->checking_for_thumb = true;
 			$image = get_term_meta( $post_id, 'thumbnail', true );
 			$this->checking_for_thumb = false;
