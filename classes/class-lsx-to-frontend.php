@@ -101,15 +101,16 @@ class TO_Frontend extends TO_Tour_Operators {
 				$this->enable_modals = true;				
 		}
 
-		if((is_post_type_archive($this->active_post_types)) || (false !== $this->taxonomies && is_tax(array_keys($this->taxonomies)))){
+		if((is_post_type_archive($this->active_post_types)) || (is_tax(array_keys($this->taxonomies)))){
 			remove_action('lsx_content_wrap_before','lsx_global_header');
-			add_action('lsx_content_wrap_before','to_archive_header',100);
+			add_action('lsx_content_wrap_before','to_global_header',100);
 			add_action('lsx_content_wrap_before','to_archive_description',100);
 			add_filter('to_archive_description',array($this,'get_post_type_archive_description'),1,3);
 		}
 		
 		if(is_singular($this->active_post_types)){
-			add_action('lsx_content_wrap_before','to_single_header',100);
+			remove_action('lsx_content_wrap_before','lsx_global_header');
+			add_action('lsx_content_wrap_before','to_global_header',100);
 		}
 		
 		if(class_exists('TO_Banners')){

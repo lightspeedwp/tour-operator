@@ -6,36 +6,20 @@
  * @license   GPL3
  */
 
-
 /**
  * Checks if a caldera form with your slug exists
  *
  * @package 	tour-operator
  * @subpackage	template-tag
- * @category 	archive-header
+ * @category 	header
  */
-function to_archive_header() { ?>
+function to_global_header() { ?>
 	<header class="archive-header">
 		<h1 class="archive-title">
 			<?php the_archive_title(); ?>
 		</h1>
 		<?php to_tagline('<p class="tagline">','</p>'); ?>
 	</header><!-- .archive-header -->
-<?php
-}
-
-/**
- * Checks if a caldera form with your slug exists
- *
- * @package 	tour-operator
- * @subpackage	template-tag
- * @category 	single-header
- */
-function to_single_header() { ?>
-	<header class="page-header">
-		<?php the_title( '<h1 class="page-title">', '</h1>' ); ?>
-		<?php to_tagline('<p class="tagline">','</p>'); ?>
-	</header><!-- .entry-header -->	
 <?php
 }
 

@@ -8,6 +8,8 @@
 
 get_header(); ?>
 
+<?php lsx_content_wrap_before(); ?>
+
 	<div id="primary" class="content-area <?php echo esc_attr( lsx_main_class() ); ?>">
 
 		<?php lsx_content_before(); ?>
@@ -65,6 +67,8 @@ get_header(); ?>
 		<?php lsx_content_after(); ?>
 
 	</div><!-- #primary -->
+
+<?php lsx_content_wrap_after(); ?>	
 
 <?php get_sidebar(); ?>
 <?php get_sidebar( 'alt' ); ?>
