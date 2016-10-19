@@ -29,16 +29,19 @@ class TO_Admin extends TO_Tour_Operators {
 		$this->set_vars();
 
 		add_action('init',array($this,'init'));
-		add_action( 'init', array( $this, 'require_post_type_classes' ) , 1 );
-		add_action( 'init', array( $this, 'global_taxonomies') );
-		add_filter( 'to_framework_settings_tabs', array( $this, 'settings_page_array') );
+		add_action( 'admin_menu', array($this,'register_menu_pages') );
 
-		add_action('to_framework_dashboard_tab_content',array($this,'dashboard_tab_content'));
+		add_action( 'init', array( $this, 'require_post_type_classes' ) , 1 );
+
+		add_action( 'init', array( $this, 'global_taxonomies') );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_stylescripts' ) );
 		add_action( 'cmb_save_custom', array( $this, 'post_relations' ), 3 , 20 );
 
-		add_filter( 'plugin_action_links_' . plugin_basename(TO_CORE), array($this,'add_action_links'));		
+		add_filter( 'plugin_action_links_' . plugin_basename(TO_CORE), array($this,'add_action_links'));
+
+		add_action( 'default_hidden_meta_boxes', array($this,'default_hidden_meta_boxes'), 10, 2 );
+		add_filter('upload_mimes', array($this,'allow_svgimg_types'));		
 	}	
 
 	/**
@@ -61,177 +64,6 @@ class TO_Admin extends TO_Tour_Operators {
 	}		
 
 	/**
-	 * outputs the dashboard tabs settings
-	 */
-	public function dashboard_tab_content() {
-		?>
-		<?php $this->modal_setting(); ?>
-
-		<?php if(!class_exists('LSX_Currency')) { ?>
-			<tr class="form-field-wrap">
-				<th scope="row">
-					<label for="currency"> Currency</label>
-				</th>
-				<td>
-					<select value="{{currency}}" name="currency">
-						<option value="USD" {{#is currency value=""}}selected="selected"{{/is}} {{#is currency value="USD"}} selected="selected"{{/is}}>USD (united states dollar)</option>
-						<option value="GBP" {{#is currency value="GBP"}} selected="selected"{{/is}}>GBP (british pound)</option>
-						<option value="ZAR" {{#is currency value="ZAR"}} selected="selected"{{/is}}>ZAR (south african rand)</option>
-						<option value="NAD" {{#is currency value="NAD"}} selected="selected"{{/is}}>NAD (namibian dollar)</option>
-						<option value="CAD" {{#is currency value="CAD"}} selected="selected"{{/is}}>CAD (canadian dollar)</option>
-						<option value="EUR" {{#is currency value="EUR"}} selected="selected"{{/is}}>EUR (euro)</option>
-						<option value="HKD" {{#is currency value="HKD"}} selected="selected"{{/is}}>HKD (hong kong dollar)</option>
-						<option value="SGD" {{#is currency value="SGD"}} selected="selected"{{/is}}>SGD (singapore dollar)</option>
-						<option value="NZD" {{#is currency value="NZD"}} selected="selected"{{/is}}>NZD (new zealand dollar)</option>
-						<option value="AUD" {{#is currency value="AUD"}} selected="selected"{{/is}}>AUD (australian dollar)</option>
-					</select>
-				</td>
-			</tr>
-		<?php } ?>
-
-			<tr class="form-field-wrap">
-				<th scope="row">
-					<label for="currency"><?php esc_html_e('General Enquiry','tour-operator'); ?></label>
-				</th>
-				<?php
-					if(true === $this->show_default_form()){
-						$forms = $this->get_activated_forms(); ?>
-						<td>
-							<select value="{{enquiry}}" name="enquiry">
-							<?php
-							if(false !== $forms && '' !== $forms){ ?>
-								<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}>Select a form</option>
-								<?php
-								foreach($forms as $form_id => $form_data){ ?>
-									<option value="<?php echo esc_attr( $form_id ); ?>" {{#is enquiry value="<?php echo esc_attr( $form_id ); ?>"}} selected="selected"{{/is}}><?php echo esc_html( $form_data ); ?></option>
-								<?php
-								}
-							}else{ ?>
-								<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}>You have no form available</option>
-							<?php } ?>
-							</select>
-						</td>
-					<?php }else{ ?>
-						<td>
-							<textarea class="description enquiry" name="enquiry" rows="10">{{#if enquiry}}{{{enquiry}}}{{/if}}</textarea>
-						</td>
-					<?php
-					}
-				?>
-			</tr>
-			<tr class="form-field">
-				<th scope="row">
-					<label for="description"><?php esc_html_e('Disable Enquire Modal','tour-operator'); ?></label>
-				</th>
-				<td>
-					<input type="checkbox" {{#if disable_enquire_modal}} checked="checked" {{/if}} name="disable_enquire_modal" />
-					<small><?php esc_html_e('This disables the enquire modal, and instead redirects to the link you provide below.','tour-operator'); ?></small>
-				</td>
-			</tr>
-			<tr class="form-field">
-				<th scope="row">
-					<label for="title"><?php esc_html_e('Enquire Link','tour-operator'); ?></label>
-				</th>
-				<td>
-					<input type="text" {{#if enquire_link}} value="{{enquire_link}}" {{/if}} name="enquire_link" />
-				</td>
-			</tr>							
-		<?php  
-	}
-
-	/**
-	 * outputs the dashboard tabs settings
-	 */
-	public function single_settings() { 
-		$this->modal_setting();
-	}		
-
-	/**
-	 * outputs the modal setting field
-	 */
-	public function modal_setting() { ?>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="description"><?php esc_html_e('Enable Connected Modals','tour-operator'); ?></label>
-			</th>
-			<td>
-				<input type="checkbox" {{#if enable_modals}} checked="checked" {{/if}} name="enable_modals" />
-				<small><?php esc_html_e('Any connected item showing on a single will display a preview in a modal.','tour-operator'); ?></small>
-			</td>
-		</tr>
-	<?php
-	}
-
-	/**
-	 * checks which plugin is active, and grabs those forms.
-	 */
-	public function show_default_form() {
-		if(class_exists('Caldera_Forms_Forms') || class_exists('GFForms') || class_exists('Ninja_Forms')) {
-			return true;
-		}else{
-			return false;
-		}		
-	}
-
-	/**
-	 * checks which plugin is active, and grabs those forms.
-	 */
-	public function get_activated_forms() {
-		$all_forms = false;
-		if(class_exists('Ninja_Forms')){
-			$all_forms = $this->get_ninja_forms();
-		}elseif(class_exists('GFForms')){
-			$all_forms = $this->get_gravity_forms();
-		}elseif(class_exists('Caldera_Forms_Forms')) {
-			$all_forms = $this->get_caldera_forms();
-		}
-		return $all_forms;
-	}
-
-	/**
-	 * gets the currenct ninja forms
-	 */
-	public function get_ninja_forms() {
-		global $wpdb;
-		$results = $wpdb->get_results("SELECT id,title FROM {$wpdb->prefix}nf3_forms");
-		$forms = false;
-		if(!empty($results)){
-			foreach($results as $form){
-				$forms[$form->id] = $form->title;
-			}
-		}
-		return $forms;
-	}
-	/**
-	 * gets the currenct gravity forms
-	 */
-	public function get_gravity_forms() {
-		global $wpdb;
-		$results = RGFormsModel::get_forms( null, 'title' );
-		$forms = false;
-		if(!empty($results)){
-			foreach($results as $form){
-				$forms[$form->id] = $form->title;
-			}
-		}
-		return $forms;
-	}
-	/**
-	 * gets the currenct caldera forms
-	 */
-	public function get_caldera_forms() {
-		global $wpdb;
-		$results = Caldera_Forms_Forms::get_forms(true);
-		$forms = false;
-		if(!empty($results)){
-			foreach($results as $form => $form_data){
-				$forms[$form] = $form_data['name'];
-			}
-		}
-		return $forms;
-	}		
-
-	/**
 	 * Register and enqueue admin-specific style sheet.
 	 *
 	 * @return    null
@@ -243,6 +75,32 @@ class TO_Admin extends TO_Tour_Operators {
 		}
 		wp_enqueue_style( 'tour-operator-admin-style', TO_URL . '/assets/css/admin.css');
 	}
+
+	/**
+	 * Register a custom menu page.
+	 */
+	function register_menu_pages(){
+	    add_menu_page( 
+	        __( 'Dashboard', 'tour-operator' ),
+	        __( 'Tour Operator', 'tour-operator' ),
+	        'edit_posts',
+	        'tour-operator',
+	        array($this,'menu_dashboard'),
+	        null,
+	        6
+	    );
+	}
+	 
+	/**
+	 * Display a custom menu page
+	 */
+	function menu_dashboard(){
+	    ?>
+	    <div class="wrap">
+	    	<h1><?php esc_html_e( 'Dashboard', 'tour-operator' ); ?></h1> 
+	    </div>
+	    <?php
+	}	
 
 	/**
 	 * Register the global post types.
@@ -331,36 +189,6 @@ class TO_Admin extends TO_Tour_Operators {
 		));			
 
 	}
-
-	/**
-	 * Returns the array of settings to the UIX Class in the lsx framework
-	 */	
-	public function settings_page_array($tabs){
-		// This array is for the Admin Pages. each element defines a page that is seen in the admin
-		
-		$post_types = apply_filters('to_post_types',$this->post_types);
-		
-		if(false !== $post_types && !empty($post_types)){
-			foreach($post_types as $index => $title){
-
-				$disabled = false;
-				if(!in_array($index,$this->active_post_types)){
-					$disabled = true;
-				}
-
-				$tabs[$index] = array(
-					'page_title'        => 'General',
-					'page_description'  => '',
-					'menu_title'        => $title,
-					'template'          => apply_filters('to_settings_path',TO_PATH,$index).'includes/settings/'.$index.'.php',
-					'default'	 		=> false,
-					'disabled'			=> $disabled
-				);
-			}
-			ksort($tabs);
-		}
-		return $tabs;
-	}	
 
 	/**
 	 * Requires the post type classes
@@ -629,5 +457,33 @@ class TO_Admin extends TO_Tour_Operators {
 			<?php wp_nonce_field( 'to_save_term_tagline', 'to_term_tagline_nonce' ); ?>
 		</tr>
 		<?php
-	}					
+	}
+
+	/**
+	 * Allow SVG files for upload
+	 */
+	public 	function allow_svgimg_types($mimes) {
+	  $mimes['svg'] = 'image/svg+xml';
+	  $mimes['kml'] = 'image/kml+xml';
+	  return $mimes;
+	}	
+
+	/**
+	 * Hide a few of the meta boxes by default
+	 */
+	public function default_hidden_meta_boxes( $hidden, $screen ) {
+
+		$post_type = $screen->post_type;
+
+		if ( in_array($post_type,$this->post_types) ) {
+			$hidden = array(
+					'authordiv',
+					'revisionsdiv',
+					'slugdiv',
+					'sharing_meta'
+			);
+			return $hidden;
+		}
+		return $hidden;
+	}						
 }

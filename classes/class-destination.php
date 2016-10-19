@@ -119,7 +119,7 @@ class Lsx_Destination{
 		    'public'             => true,
 		    'publicly_queryable' => true,
 		    'show_ui'            => true,
-		    'show_in_menu'       => true,
+		    'show_in_menu'       => 'tour-operator',
 		    'query_var'          => true,
 		    'rewrite'            => array('slug'=>'destination'),
 		    'capability_type'    => 'page',

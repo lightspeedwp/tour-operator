@@ -130,7 +130,7 @@ class Lsx_Tour {
 		    'public'             => true,
 		    'publicly_queryable' => true,
 		    'show_ui'            => true,
-		    'show_in_menu'       => true,
+		    'show_in_menu'       => 'tour-operator',
 		    'query_var'          => true,
 		    'rewrite'            => array( 'slug' => 'tour' ),
 		    'capability_type'    => 'post',

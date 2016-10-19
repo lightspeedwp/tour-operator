@@ -415,6 +415,75 @@ class TO_Tour_Operators {
 		return $allowedstyles;
 	}
 
+	/**
+	 * checks which plugin is active, and grabs those forms.
+	 */
+	public function show_default_form() {
+		if(class_exists('Caldera_Forms_Forms') || class_exists('GFForms') || class_exists('Ninja_Forms')) {
+			return true;
+		}else{
+			return false;
+		}		
+	}
+
+	/**
+	 * checks which plugin is active, and grabs those forms.
+	 */
+	public function get_activated_forms() {
+		$all_forms = false;
+		if(class_exists('Ninja_Forms')){
+			$all_forms = $this->get_ninja_forms();
+		}elseif(class_exists('GFForms')){
+			$all_forms = $this->get_gravity_forms();
+		}elseif(class_exists('Caldera_Forms_Forms')) {
+			$all_forms = $this->get_caldera_forms();
+		}
+		return $all_forms;
+	}
+
+	/**
+	 * gets the currenct ninja forms
+	 */
+	public function get_ninja_forms() {
+		global $wpdb;
+		$results = $wpdb->get_results("SELECT id,title FROM {$wpdb->prefix}nf3_forms");
+		$forms = false;
+		if(!empty($results)){
+			foreach($results as $form){
+				$forms[$form->id] = $form->title;
+			}
+		}
+		return $forms;
+	}
+	/**
+	 * gets the currenct gravity forms
+	 */
+	public function get_gravity_forms() {
+		global $wpdb;
+		$results = RGFormsModel::get_forms( null, 'title' );
+		$forms = false;
+		if(!empty($results)){
+			foreach($results as $form){
+				$forms[$form->id] = $form->title;
+			}
+		}
+		return $forms;
+	}
+	/**
+	 * gets the currenct caldera forms
+	 */
+	public function get_caldera_forms() {
+		global $wpdb;
+		$results = Caldera_Forms_Forms::get_forms(true);
+		$forms = false;
+		if(!empty($results)){
+			foreach($results as $form => $form_data){
+				$forms[$form] = $form_data['name'];
+			}
+		}
+		return $forms;
+	}	
+
 }
 $tour_operator = TO_Tour_Operators::get_instance();
 

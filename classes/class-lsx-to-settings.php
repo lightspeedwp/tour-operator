@@ -28,20 +28,9 @@ class TO_Settings extends TO_Tour_Operators {
 		$this->options = get_option('_lsx_lsx-settings',false);	
 		$this->set_vars();
 
-		add_action( 'init', array( $this, 'create_settings_page'),100 );
-		add_action( 'default_hidden_meta_boxes', array($this,'default_hidden_meta_boxes'), 10, 2 );
-		add_filter('upload_mimes', array($this,'allow_svgimg_types'));	
+		add_filter( 'to_framework_settings_tabs', array( $this, 'register_settings_tabs') );
+		add_action( 'init', array( $this, 'create_settings_page'),100 );	
 	}	
-
-	/**
-	 * Allow SVG files for upload
-	 */
-	public 	function allow_svgimg_types($mimes) {
-	  $mimes['svg'] = 'image/svg+xml';
-	  $mimes['kml'] = 'image/kml+xml';
-	  return $mimes;
-	}
-
 
 	/**
 	 * Returns the array of settings to the UIX Class
@@ -61,9 +50,44 @@ class TO_Settings extends TO_Tour_Operators {
 				add_action( 'to_framework_'.$post_type.'_tab_content_top', array( $this, 'archive_settings' ), 12 , 1 );
 				add_action( 'to_framework_'.$post_type.'_tab_content_top', array( $this, 'single_settings' ), 15 , 1 );
 				add_action( 'to_framework_'.$post_type.'_tab_bottom', array( $this, 'settings_page_scripts' ), 100 );
-			}			
+			}
+
+			
+			add_action('to_framework_dashboard_tab_content',array($this,'dashboard_tab_content'));
+			add_action( 'to_framework_api_tab_bottom', array( $this, 'settings_page_scripts' ), 100 );
+
 		}
 	}
+
+	/**
+	 * Returns the array of settings to the UIX Class in the lsx framework
+	 */	
+	public function register_settings_tabs($tabs){
+		// This array is for the Admin Pages. each element defines a page that is seen in the admin
+		
+		$post_types = apply_filters('to_post_types',$this->post_types);
+		
+		if(false !== $post_types && !empty($post_types)){
+			foreach($post_types as $index => $title){
+
+				$disabled = false;
+				if(!in_array($index,$this->active_post_types)){
+					$disabled = true;
+				}
+
+				$tabs[$index] = array(
+					'page_title'        => 'General',
+					'page_description'  => '',
+					'menu_title'        => $title,
+					'template'          => apply_filters('to_settings_path',TO_PATH,$index).'includes/settings/'.$index.'.php',
+					'default'	 		=> false,
+					'disabled'			=> $disabled
+				);
+			}
+			ksort($tabs);
+		}
+		return $tabs;
+	}	
 
 	/**
 	 * Returns the array of settings to the UIX Class
@@ -76,18 +100,26 @@ class TO_Settings extends TO_Tour_Operators {
 				'general'		=> array(
 						'page_title'        => '',
 						'page_description'  => '',
-						'menu_title'        => 'General',
+						'menu_title'        => esc_html__('General','tour-operator'),
 						'template'          => TO_PATH.'includes/settings/general.php',
 						'default'	 		=> true
 				)
 		);
 
+		$tabs['api'] = array(
+			'page_title'        => '',
+			'page_description'  => '',
+			'menu_title'        => esc_html__('API Keys','tour-operator'),
+			'template'          => TO_PATH.'includes/settings/api.php',
+			'default'	 		=> false
+		);		
+
 		$posts_page = get_option('page_for_posts',false);
 		if(false === $posts_page){
 			$tabs['post'] = array(
-				'page_title'        => 'Posts',
+				'page_title'        => esc_html__('Posts','tour-operator'),
 				'page_description'  => '',
-				'menu_title'        => 'Posts',
+				'menu_title'        => esc_html__('Posts','tour-operator'),
 				'template'          => TO_PATH.'includes/settings/post.php',
 				'default'	 		=> false
 			);
@@ -101,12 +133,12 @@ class TO_Settings extends TO_Tour_Operators {
 	
 		return array(
 				'lsx-settings'  => array(                                                         // this is the settings array. The key is the page slug
-						'page_title'  =>  'LSX Settings',                                                  // title of the page
-						'menu_title'  =>  'LSX Settings',                                                  // title seen on the menu link
+						'page_title'  =>  esc_html__('LSX Settings','tour-operator'),                                                  // title of the page
+						'menu_title'  =>  esc_html__('LSX Settings','tour-operator'),                                                  // title seen on the menu link
 						'capability'  =>  'manage_options',                                              // required capability to access page
 						'icon'        =>  'dashicons-book-alt',                                          // Icon or image to be used on admin menu
 						'parent'      =>  'options-general.php',                                         // Position priority on admin menu)
-						'save_button' =>  'Save Changes',                                                // If the page required saving settings, Set the text here.
+						'save_button' =>  esc_html__('Save Changes','tour-operator'),                                                // If the page required saving settings, Set the text here.
 						'tabs'        =>  $tabs,
 						/*'help'	=> array(	// the wordpress contextual help is also included
 								// key is the help slug
@@ -122,6 +154,86 @@ class TO_Settings extends TO_Tour_Operators {
 				),
 		);
 	}
+
+	/**
+	 * outputs the dashboard tabs settings
+	 */
+	public function dashboard_tab_content() {
+		?>
+		<?php $this->modal_setting(); ?>
+
+		<?php if(!class_exists('LSX_Currency')) { ?>
+			<tr class="form-field-wrap">
+				<th scope="row">
+					<label for="currency"> Currency</label>
+				</th>
+				<td>
+					<select value="{{currency}}" name="currency">
+						<option value="USD" {{#is currency value=""}}selected="selected"{{/is}} {{#is currency value="USD"}} selected="selected"{{/is}}>USD (united states dollar)</option>
+						<option value="GBP" {{#is currency value="GBP"}} selected="selected"{{/is}}>GBP (british pound)</option>
+						<option value="ZAR" {{#is currency value="ZAR"}} selected="selected"{{/is}}>ZAR (south african rand)</option>
+						<option value="NAD" {{#is currency value="NAD"}} selected="selected"{{/is}}>NAD (namibian dollar)</option>
+						<option value="CAD" {{#is currency value="CAD"}} selected="selected"{{/is}}>CAD (canadian dollar)</option>
+						<option value="EUR" {{#is currency value="EUR"}} selected="selected"{{/is}}>EUR (euro)</option>
+						<option value="HKD" {{#is currency value="HKD"}} selected="selected"{{/is}}>HKD (hong kong dollar)</option>
+						<option value="SGD" {{#is currency value="SGD"}} selected="selected"{{/is}}>SGD (singapore dollar)</option>
+						<option value="NZD" {{#is currency value="NZD"}} selected="selected"{{/is}}>NZD (new zealand dollar)</option>
+						<option value="AUD" {{#is currency value="AUD"}} selected="selected"{{/is}}>AUD (australian dollar)</option>
+					</select>
+				</td>
+			</tr>
+		<?php } ?>
+
+			<tr class="form-field-wrap">
+				<th scope="row">
+					<label for="currency"><?php esc_html_e('General Enquiry','tour-operator'); ?></label>
+				</th>
+				<?php
+					if(true === $this->show_default_form()){
+						$forms = $this->get_activated_forms(); ?>
+						<td>
+							<select value="{{enquiry}}" name="enquiry">
+							<?php
+							if(false !== $forms && '' !== $forms){ ?>
+								<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}>Select a form</option>
+								<?php
+								foreach($forms as $form_id => $form_data){ ?>
+									<option value="<?php echo esc_attr( $form_id ); ?>" {{#is enquiry value="<?php echo esc_attr( $form_id ); ?>"}} selected="selected"{{/is}}><?php echo esc_html( $form_data ); ?></option>
+								<?php
+								}
+							}else{ ?>
+								<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}>You have no form available</option>
+							<?php } ?>
+							</select>
+						</td>
+					<?php }else{ ?>
+						<td>
+							<textarea class="description enquiry" name="enquiry" rows="10">{{#if enquiry}}{{{enquiry}}}{{/if}}</textarea>
+						</td>
+					<?php
+					}
+				?>
+			</tr>
+			<tr class="form-field">
+				<th scope="row">
+					<label for="description"><?php esc_html_e('Disable Enquire Modal','tour-operator'); ?></label>
+				</th>
+				<td>
+					<input type="checkbox" {{#if disable_enquire_modal}} checked="checked" {{/if}} name="disable_enquire_modal" />
+					<small><?php esc_html_e('This disables the enquire modal, and instead redirects to the link you provide below.','tour-operator'); ?></small>
+				</td>
+			</tr>
+			<tr class="form-field">
+				<th scope="row">
+					<label for="title"><?php esc_html_e('Enquire Link','tour-operator'); ?></label>
+				</th>
+				<td>
+					<input type="text" {{#if enquire_link}} value="{{enquire_link}}" {{/if}} name="enquire_link" />
+				</td>
+			</tr>							
+		<?php  
+	}
+
 	/**
 	 * Adds in the settings neccesary for the archives
 	 */
@@ -197,75 +309,6 @@ class TO_Settings extends TO_Tour_Operators {
 		<?php	
 			do_action('to_framework_'.$post_type.'_tab_general_settings_bottom',$post_type);	
 	}
-
-	/**
-	 * checks which plugin is active, and grabs those forms.
-	 */
-	public function show_default_form() {
-		if(class_exists('Caldera_Forms_Forms') || class_exists('GFForms') || class_exists('Ninja_Forms')) {
-			return true;
-		}else{
-			return false;
-		}		
-	}
-
-	/**
-	 * checks which plugin is active, and grabs those forms.
-	 */
-	public function get_activated_forms() {
-		$all_forms = false;
-		if(class_exists('Ninja_Forms')){
-			$all_forms = $this->get_ninja_forms();
-		}elseif(class_exists('GFForms')){
-			$all_forms = $this->get_gravity_forms();
-		}elseif(class_exists('Caldera_Forms_Forms')) {
-			$all_forms = $this->get_caldera_forms();
-		}
-		return $all_forms;
-	}
-
-	/**
-	 * gets the currenct ninja forms
-	 */
-	public function get_ninja_forms() {
-		global $wpdb;
-		$results = $wpdb->get_results("SELECT id,title FROM {$wpdb->prefix}nf3_forms");
-		$forms = false;
-		if(!empty($results)){
-			foreach($results as $form){
-				$forms[$form->id] = $form->title;
-			}
-		}
-		return $forms;
-	}
-	/**
-	 * gets the currenct gravity forms
-	 */
-	public function get_gravity_forms() {
-		global $wpdb;
-		$results = RGFormsModel::get_forms( null, 'title' );
-		$forms = false;
-		if(!empty($results)){
-			foreach($results as $form){
-				$forms[$form->id] = $form->title;
-			}
-		}
-		return $forms;
-	}
-	/**
-	 * gets the currenct caldera forms
-	 */
-	public function get_caldera_forms() {
-		global $wpdb;
-		$results = Caldera_Forms_Forms::get_forms(true);
-		$forms = false;
-		if(!empty($results)){
-			foreach($results as $form => $form_data){
-				$forms[$form] = $form_data['name'];
-			}
-		}
-		return $forms;
-	}	
 
 	/**
 	 * Adds in the settings neccesary for the archive heading
@@ -396,15 +439,18 @@ class TO_Settings extends TO_Tour_Operators {
 				</tr>
 			<?php endif ?>
 		<?php endif ?>
+
+		<?php $this->modal_setting(); ?>
+
 	<?php do_action('to_framework_'.$post_type.'_tab_single_settings_bottom',$post_type);
 	}
 
 	/**
 	 * Allows the settings pages to upload images
 	 */
-	public function settings_page_scripts(){ ?>
-	{{#script src="<?php echo wp_kses_post(TO_PATH.'assets/js/tinymce/tinymce.min.js'); ?>"}}{{/script}}
-
+	public function settings_page_scripts(){ 
+	/*{{#script src="<?php echo wp_kses_post(TO_PATH.'assets/js/tinymce/tinymce.min.js'); ?>"}}{{/script}}*/
+	?>
 	{{#script}}
 		jQuery( function( $ ){
 			$( '.lsx-thumbnail-image-add' ).on( 'click', function() {
@@ -441,7 +487,7 @@ class TO_Settings extends TO_Tour_Operators {
 				$( this ).parent('td').find('.lsx-thumbnail-image-add' ).show();
 			});
 
-			if($( 'textarea.description' ).length){
+			<?php /*if($( 'textarea.description' ).length){
 				tinymce.init({
 					selector:'textarea.description',
 					plugins: [
@@ -459,28 +505,35 @@ class TO_Settings extends TO_Tour_Operators {
 				/*tinymce.get('textarea.description').on('click', function(e) {
 				   ed.windowManager.alert('Hello world!');
 				});	*/	
-			}			
+			/*}*/ ?>
+
+			$( '.ui-tab-nav a' ).on( 'click', function(event) {
+				event.preventDefault();
+
+				$('.ui-tab-nav a.active').removeClass('active');
+				$(this).addClass('active');
+
+				$('.ui-tab.active').removeClass('active');
+				$($(this).attr('href')).addClass('active');
+			});			
 		});
 	{{/script}}
 	<?php
 	}
 
 	/**
-	 * Hide a few of the meta boxes by default
+	 * outputs the modal setting field
 	 */
-	public function default_hidden_meta_boxes( $hidden, $screen ) {
-
-		$post_type = $screen->post_type;
-
-		if ( in_array($post_type,$this->post_types) ) {
-			$hidden = array(
-					'authordiv',
-					'revisionsdiv',
-					'slugdiv',
-					'sharing_meta'
-			);
-			return $hidden;
-		}
-		return $hidden;
+	public function modal_setting() { ?>
+		<tr class="form-field">
+			<th scope="row">
+				<label for="description"><?php esc_html_e('Enable Connected Modals','tour-operator'); ?></label>
+			</th>
+			<td>
+				<input type="checkbox" {{#if enable_modals}} checked="checked" {{/if}} name="enable_modals" />
+				<small><?php esc_html_e('Any connected item showing on a single will display a preview in a modal.','tour-operator'); ?></small>
+			</td>
+		</tr>
+	<?php
 	}	
 }

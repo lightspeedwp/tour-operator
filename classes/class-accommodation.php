@@ -129,7 +129,7 @@ class TO_Accommodation {
 			'public' 				=>	true,
 			'publicly_queryable'	=>	true,
 			'show_ui' 				=>	true,
-			'show_in_menu' 			=>	true,
+			'show_in_menu' 			=>	'tour-operator',
 			'query_var' 			=>	true,
 			'rewrite' 				=>	array('slug' => 'accommodation','with_front'=>false),		
 			'exclude_from_search' 	=>	false,
@@ -150,7 +150,6 @@ class TO_Accommodation {
 		
 		// register post type
 		register_post_type('accommodation', $args);
-
 	}
 	
 	
