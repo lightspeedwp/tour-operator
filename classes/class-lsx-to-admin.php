@@ -87,6 +87,8 @@ class TO_Admin extends TO_Tour_Operators {
 	        null,
 	        6
 	    );
+	    add_submenu_page('tour-operator', esc_html__('Dashboard','tour-operator'), esc_html__('Dashboard','tour-operator'), 'manage_options', 'tour-operator',array($this,'menu_dashboard'));
+
 	    foreach($this->post_types_singular as $type_key => $type_label){
 	    	add_submenu_page('tour-operator', esc_html__('Add '.$type_label,'tour-operator'), esc_html__('Add '.$type_label,'tour-operator'), 'manage_options', 'post-new.php?post_type='.$type_key);
 		}
