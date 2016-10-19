@@ -133,11 +133,11 @@ class TO_Settings extends TO_Tour_Operators {
 	
 		return array(
 				'lsx-settings'  => array(                                                         // this is the settings array. The key is the page slug
-						'page_title'  =>  esc_html__('LSX Settings','tour-operator'),                                                  // title of the page
-						'menu_title'  =>  esc_html__('LSX Settings','tour-operator'),                                                  // title seen on the menu link
+						'page_title'  =>  esc_html__('Settings','tour-operator'),                                                  // title of the page
+						'menu_title'  =>  esc_html__('Settings','tour-operator'),                                                  // title seen on the menu link
 						'capability'  =>  'manage_options',                                              // required capability to access page
-						'icon'        =>  'dashicons-book-alt',                                          // Icon or image to be used on admin menu
-						'parent'      =>  'options-general.php',                                         // Position priority on admin menu)
+						'icon'        =>  'dashicons-book-alt',                                      // Icon or image to be used on admin menu
+						'parent'      =>  'tour-operator',                                         // Position priority on admin menu)
 						'save_button' =>  esc_html__('Save Changes','tour-operator'),                                                // If the page required saving settings, Set the text here.
 						'tabs'        =>  $tabs,
 						/*'help'	=> array(	// the wordpress contextual help is also included
@@ -160,8 +160,6 @@ class TO_Settings extends TO_Tour_Operators {
 	 */
 	public function dashboard_tab_content() {
 		?>
-		<?php $this->modal_setting(); ?>
-
 		<?php if(!class_exists('LSX_Currency')) { ?>
 			<tr class="form-field-wrap">
 				<th scope="row">
@@ -230,7 +228,9 @@ class TO_Settings extends TO_Tour_Operators {
 				<td>
 					<input type="text" {{#if enquire_link}} value="{{enquire_link}}" {{/if}} name="enquire_link" />
 				</td>
-			</tr>							
+			</tr>
+				
+			<?php $this->modal_setting(); ?>									
 		<?php  
 	}
 

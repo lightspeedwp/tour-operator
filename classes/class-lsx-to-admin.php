@@ -31,8 +31,6 @@ class TO_Admin extends TO_Tour_Operators {
 		add_action('init',array($this,'init'));
 		add_action( 'admin_menu', array($this,'register_menu_pages') );
 
-		add_action( 'init', array( $this, 'require_post_type_classes' ) , 1 );
-
 		add_action( 'init', array( $this, 'global_taxonomies') );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_stylescripts' ) );
@@ -89,6 +87,15 @@ class TO_Admin extends TO_Tour_Operators {
 	        null,
 	        6
 	    );
+	    foreach($this->post_types_singular as $type_key => $type_label){
+	    	add_submenu_page('tour-operator', esc_html__('Add '.$type_label,'tour-operator'), esc_html__('Add '.$type_label,'tour-operator'), 'manage_options', 'post-new.php?post_type='.$type_key);
+		}
+	    foreach($this->taxonomies_plural as $tax_key => $tax_label_plural){
+	    	add_submenu_page('tour-operator', esc_html__($tax_label_plural,'tour-operator'), esc_html__($tax_label_plural,'tour-operator'), 'manage_options', 'edit-tags.php?taxonomy='.$tax_key);
+		}
+
+		add_submenu_page('tour-operator', esc_html__('Licenses','tour-operator'), esc_html__('Licenses','tour-operator'), 'manage_options', 'licenses', array($this,'menu_licenses'));
+		add_submenu_page('tour-operator', esc_html__('Addons','tour-operator'), esc_html__('Addons','tour-operator'), 'manage_options', 'addons', array($this,'menu_licenses'));
 	}
 	 
 	/**
@@ -100,7 +107,18 @@ class TO_Admin extends TO_Tour_Operators {
 	    	<h1><?php esc_html_e( 'Dashboard', 'tour-operator' ); ?></h1> 
 	    </div>
 	    <?php
-	}	
+	}
+
+	/**
+	 * Display the licenses
+	 */
+	function menu_licenses(){
+	    ?>
+	    <div class="wrap">
+	    	<h1><?php esc_html_e( 'Licenses', 'tour-operator' ); ?></h1> 
+	    </div>
+	    <?php
+	}		
 
 	/**
 	 * Register the global post types.
@@ -128,7 +146,7 @@ class TO_Admin extends TO_Tour_Operators {
 		register_taxonomy('travel-style',array('accommodation','tour','destination','review','vehicle','special'), array(
 			'hierarchical' => true,
 			'labels' => $labels,
-			'show_ui' => true,
+			'show_ui' => false,
 			'public' => true,
 			'exclude_from_search' => true,
 			'show_admin_column' => true,
@@ -155,7 +173,7 @@ class TO_Admin extends TO_Tour_Operators {
 		register_taxonomy('accommodation-brand',array('accommodation'), array(
 				'hierarchical' => true,
 				'labels' => $labels,
-				'show_ui' => true,
+				'show_ui' => false,
 				'public' => true,
 				'exclude_from_search' => true,
 				'show_admin_column' => true,
@@ -180,7 +198,7 @@ class TO_Admin extends TO_Tour_Operators {
 		register_taxonomy('location',array('accommodation'), array(
 				'hierarchical' => true,
 				'labels' => $labels,
-				'show_ui' => true,
+				'show_ui' => false,
 				'public' => true,
 				'exclude_from_search' => true,
 				'show_admin_column' => true,
@@ -189,37 +207,6 @@ class TO_Admin extends TO_Tour_Operators {
 		));			
 
 	}
-
-	/**
-	 * Requires the post type classes
-	 *
-	 * @since 0.0.1
-	 */
-	public function require_post_type_classes() {
-		foreach($this->post_types as $post_type => $label){
-			require_once( TO_PATH . 'classes/class-'.$post_type.'.php' );	
-			add_action('to_framework_'.$post_type.'_tab_single_settings_bottom', array($this,'single_settings'),40);
-		}
-		$this->connections = $this->create_post_connections();	
-		$this->single_fields = apply_filters('to_search_fields',array());
-	}
-
-	/**
-	 * Generates the post_connections used in the metabox fields
-	 */
-	public function create_post_connections() {
-		$connections = array();
-		$post_types = apply_filters('to_post_types',$this->post_types);
-		foreach($post_types as $key_a => $values_a){
-			foreach($this->post_types as $key_b => $values_b){
-				// Make sure we dont try connect a post type to itself.
-				if($key_a !== $key_b){
-					$connections[] = $key_a.'_to_'.$key_b;
-				}
-			}
-		}
-		return $connections;
-	}	
 
 	/**
 	 * Sets up the "post relations"

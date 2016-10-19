@@ -124,7 +124,29 @@ class TO_Taxonomy_Widget extends WP_Widget {
 			$indicators = $instance['indicators'];
 		} else {
 			$indicators = false;
+		} 
+
+		//arguments
+		if (isset($args['before_widget'])) {
+			$before_widget = $args['before_widget'];
+		} else {
+			$before_widget = '';
 		}                                                     
+		if (isset($args['after_widget'])) {
+			$after_widget = $args['after_widget'];
+		} else {
+			$after_widget = '';
+		}
+		if (isset($args['before_title'])) {
+			$before_title = $args['before_title'];
+		} else {
+			$before_title = '';
+		}
+		if (isset($args['after_title'])) {
+			$after_title = $args['after_title'];
+		} else {
+			$after_title = '';
+		}		                                                    
         
         // Disregard specific ID setting if specific group is defined
         if ( 'all' != $group ) {

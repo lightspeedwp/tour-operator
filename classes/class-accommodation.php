@@ -178,7 +178,7 @@ class TO_Accommodation {
 		register_taxonomy('facility',$this->plugin_slug, array(
 				'hierarchical' => true,
 				'labels' => $labels,
-				'show_ui' => true,
+				'show_ui' => false,
 				'public' => true,
 				'show_in_nav_menus' => false,
 				'show_tagcloud' => false,
@@ -206,7 +206,7 @@ class TO_Accommodation {
 		register_taxonomy('accommodation-type',$this->plugin_slug, array(
 				'hierarchical' => true,
 				'labels' => $labels,
-				'show_ui' => true,
+				'show_ui' => false,
 				'public' => true,
 				'show_in_nav_menus' => false,
 				'show_tagcloud' => false,

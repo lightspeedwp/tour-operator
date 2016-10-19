@@ -18,10 +18,10 @@ require_once( TO_PATH . 'includes/post-expirator.php' );
 require_once( TO_PATH . 'includes/post-order.php' );
 require_once( TO_PATH . 'includes/customizer.php' );
 require_once( TO_PATH . 'includes/layout.php' );
-require_once('includes/widgets/post-type-widget.php');
-require_once('includes/widgets/taxonomy-widget.php');
-require_once('includes/widgets/cta-widget.php');
-require_once('classes/class-fields.php');
+require_once( TO_PATH . 'includes/widgets/post-type-widget.php');
+require_once( TO_PATH . 'includes/widgets/taxonomy-widget.php');
+require_once( TO_PATH . 'includes/widgets/cta-widget.php');
+require_once( TO_PATH . 'classes/class-fields.php');
 
 // Setup the post connections
 class TO_Tour_Operators {
@@ -122,6 +122,7 @@ class TO_Tour_Operators {
 
 		//Add our action to init to set up our vars first.	
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
+		add_action( 'init', array( $this, 'require_post_type_classes' ) , 1 );
 		//Allow extra tags and attributes to wp_kses_post()
 		add_filter( 'wp_kses_allowed_html', array( $this, 'wp_kses_allowed_html' ), 10, 2 );
 		//Allow extra protocols to wp_kses_post()
@@ -129,6 +130,7 @@ class TO_Tour_Operators {
 		//Allow extra style attributes to wp_kses_post()
 		add_filter( 'safe_style_css', array( $this, 'safe_style_css' ) );
 		
+
 		
 		require_once( TO_PATH . 'classes/class-lsx-to-admin.php' );
 		if(class_exists('TO_Admin')){
@@ -143,6 +145,7 @@ class TO_Tour_Operators {
 		require_once( TO_PATH . 'classes/class-lsx-to-frontend.php' );
 		if(class_exists('TO_Frontend')){
 			$this->frontend = new TO_Frontend();
+			add_action( 'to_content', array( $this->frontend->redirects, 'content_part' ), 10 , 2 );
 		}
 
 		if(!class_exists('TO_Placeholders')){
@@ -158,8 +161,6 @@ class TO_Tour_Operators {
 
 		//Integrations
 		$this->to_search_integration();
-		
-		add_action( 'to_content', array( $this->frontend->redirects, 'content_part' ), 10 , 2 );
 	}	
 	
 	/**
@@ -192,19 +193,32 @@ class TO_Tour_Operators {
 	public function set_vars(){
 		// This is the array of enabled post types.
 		$this->post_types = array(
-				'accommodation'	=> 'Accommodation',
-				'destination'	=> 'Destinations',
-				'tour'			=> 'Tours',
+				'accommodation'	=> esc_html__('Accommodation','tour-operator'),
+				'destination'	=> esc_html__('Destinations','tour-operator'),
+				'tour'			=> esc_html__('Tours','tour-operator'),
 		);	
+		$this->post_types_singular = array(
+				'accommodation'	=> esc_html__('Accommodation','tour-operator'),
+				'destination'	=> esc_html__('Destination','tour-operator'),
+				'tour'			=> esc_html__('Tour','tour-operator'),
+		);		
 		$this->post_types = apply_filters('to_post_types',$this->post_types);
 		$this->active_post_types = array_keys($this->post_types);
+
 		$this->taxonomies = array(
 				'travel-style'			=> __('Travel Style',$this->plugin_slug),
 				'accommodation-brand'			=> __('Brand',$this->plugin_slug),
 				'accommodation-type'	=> __('Accommodation Type',$this->plugin_slug),
 				'facility'	=> __('Facility',$this->plugin_slug),
 				'location'	=> __('Location',$this->plugin_slug)
-		);		
+		);
+		$this->taxonomies_plural = array(
+				'travel-style'			=> __('Travel Styles',$this->plugin_slug),
+				'accommodation-brand'			=> __('Brands',$this->plugin_slug),
+				'accommodation-type'	=> __('Accommodation Types',$this->plugin_slug),
+				'facility'	=> __('Facilities',$this->plugin_slug),
+				'location'	=> __('Locations',$this->plugin_slug)
+		);				
 	}	
 
 	/**
@@ -224,6 +238,36 @@ class TO_Tour_Operators {
 	public function get_active_post_types() {
 		return $this->active_post_types;
 	}
+
+	/**
+	 * Requires the post type classes
+	 *
+	 * @since 0.0.1
+	 */
+	public function require_post_type_classes() {
+		foreach($this->post_types as $post_type => $label){
+			require_once( TO_PATH . 'classes/class-'.$post_type.'.php' );
+		}
+		$this->connections = $this->create_post_connections();	
+		$this->single_fields = apply_filters('to_search_fields',array());
+	}
+
+	/**
+	 * Generates the post_connections used in the metabox fields
+	 */
+	public function create_post_connections() {
+		$connections = array();
+		$post_types = apply_filters('to_post_types',$this->post_types);
+		foreach($post_types as $key_a => $values_a){
+			foreach($this->post_types as $key_b => $values_b){
+				// Make sure we dont try connect a post type to itself.
+				if($key_a !== $key_b){
+					$connections[] = $key_a.'_to_'.$key_b;
+				}
+			}
+		}
+		return $connections;
+	}		
 
 	/**
 	 * Include the post type for the search integration
