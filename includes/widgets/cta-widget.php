@@ -18,7 +18,7 @@ class TO_CTA_Widget extends WP_Widget {
 			'classname' => 'lsx-widget',
 			'description' => 'Displays a nifty call to action.',
 		);
-		parent::__construct( 'TO_CTA_Widget', 'LSX CTA', $widget_ops );
+		parent::__construct( 'TO_CTA_Widget', 'TO CTA', $widget_ops );
         add_action('admin_enqueue_scripts', array($this, 'upload_scripts'));
     }
 

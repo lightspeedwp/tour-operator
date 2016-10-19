@@ -16,9 +16,9 @@ class TO_Widget extends WP_Widget {
 	public function __construct() {
 		$widget_ops = array( 
 			'classname' => 'lsx-widget',
-			'description' => 'LSX',
+			'description' => 'TO',
 		);
-		parent::__construct( 'TO_Widget', 'LSX Post Types', $widget_ops );
+		parent::__construct( 'TO_Widget', 'TO Post Types', $widget_ops );
 	}
  
     /** @see WP_Widget::widget -- do not rename this */

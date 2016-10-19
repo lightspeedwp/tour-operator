@@ -16,9 +16,9 @@ class TO_Taxonomy_Widget extends WP_Widget {
 	public function __construct() {
 		$widget_ops = array( 
 			'classname' => 'lsx-widget',
-			'description' => 'LSX Taxonomy',
+			'description' => 'TO Taxonomy',
 		);
-		parent::__construct( 'TO_Taxonomy_Widget', 'LSX Taxonomies', $widget_ops );
+		parent::__construct( 'TO_Taxonomy_Widget', 'TO Taxonomies', $widget_ops );
 	}
  
     /** @see WP_Widget::widget -- do not rename this */
