@@ -109,7 +109,7 @@ class TO_Settings extends TO_Tour_Operators {
 		$tabs['api'] = array(
 			'page_title'        => '',
 			'page_description'  => '',
-			'menu_title'        => esc_html__('API Keys','tour-operator'),
+			'menu_title'        => esc_html__('API','tour-operator'),
 			'template'          => TO_PATH.'includes/settings/api.php',
 			'default'	 		=> false
 		);		

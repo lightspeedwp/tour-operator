@@ -333,7 +333,8 @@ class TO_Widget extends WP_Widget {
 		            $options = array('1', '2', '3', '4', '5', '6');
 		            foreach ($options as $option) {
 		            	$key = lcfirst($option);
-		                echo wp_kses_post('<option value="' . $key . '" id="' . $option . '"', $columns == $key ? ' selected="selected"' : '', '>', $option, '</option>');
+		            	$selected = ($columns == $key) ? ' selected="selected"' : '';
+		                ?><option value="<?php echo wp_kses_post($key); ?>" id="<?php echo wp_kses_post($option); ?>" <?php echo wp_kses_post($selected); ?>><?php echo wp_kses_post($option); ?></option><?php 
 		            }
 		            ?>
 		            </select>
