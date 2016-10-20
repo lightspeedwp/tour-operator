@@ -318,15 +318,14 @@ class TO_Taxonomy_Widget extends WP_Widget {
 			<select name="<?php echo wp_kses_post($this->get_field_name('taxonomy')); ?>" id="<?php echo wp_kses_post($this->get_field_id('taxonomy')); ?>"	class="widefat layout">
 	            <?php
 	            $options = array();	            
-	            $options = apply_filters('to_taxonomy_widget_taxonomies',$options);
+	            $options = to_get_taxonomies();
 	            if(empty($options)){
-	            	$options[] = 'none';
+	            	$options['none'] = esc_attr__('None','tour-operator');
 	            }
 
-	            foreach ($options as $option) {
-	            	$title = ucwords(str_replace("-",' ',$option));
-	            	$selected = ($taxonomy == $option) ? ' selected="selected"' : '';
-	                ?><option value="<?php echo wp_kses_post($option); ?>" id="<?php echo wp_kses_post($option); ?>" <?php echo wp_kses_post($selected); ?>><?php echo wp_kses_post($title); ?></option><?php 		                
+	            foreach ($options as $key => $name) {
+	            	$selected = ($taxonomy == $key) ? ' selected="selected"' : '';
+	                ?><option value="<?php echo wp_kses_post($key); ?>" id="<?php echo wp_kses_post($key); ?>" <?php echo wp_kses_post($selected); ?>><?php echo wp_kses_post($name); ?></option><?php 		                
 	            }
 	            ?>
 		    </select>

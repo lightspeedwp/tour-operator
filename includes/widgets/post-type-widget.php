@@ -665,7 +665,7 @@ class TO_Widget extends WP_Widget {
 			}
 		} else {
 			if ( 1 == $count) {
-				$output .= "<div class='row lsx-{$taxonomy}'>";
+				$output .= "<div class='row lsx-{$post_type}'>";
 			}
 		}
 		
