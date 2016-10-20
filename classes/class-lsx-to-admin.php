@@ -89,12 +89,12 @@ class TO_Admin extends TO_Tour_Operators {
 	    );
 
 	    foreach($this->post_types_singular as $type_key => $type_label){
-	    	add_submenu_page('tour-operator', esc_html__('Add '.$type_label,'tour-operator'), esc_html__('Add '.$type_label,'tour-operator'), 'manage_options', 'post-new.php?post_type='.$type_key);
+	    	add_submenu_page('tour-operator', esc_html__('Add '.$type_label,'tour-operator'), esc_html__('Add '.$type_label,'tour-operator'), 'edit_posts', 'post-new.php?post_type='.$type_key);
 		}
 	    foreach($this->taxonomies_plural as $tax_key => $tax_label_plural){
-	    	add_submenu_page('tour-operator', esc_html__($tax_label_plural,'tour-operator'), esc_html__($tax_label_plural,'tour-operator'), 'manage_options', 'edit-tags.php?taxonomy='.$tax_key);
+	    	add_submenu_page('tour-operator', esc_html__($tax_label_plural,'tour-operator'), esc_html__($tax_label_plural,'tour-operator'), 'edit_posts', 'edit-tags.php?taxonomy='.$tax_key);
 		}
-		
+
 		add_submenu_page('tour-operator', esc_html__('Add-ons','tour-operator'), esc_html__('Add-ons','tour-operator'), 'manage_options', 'to-addons', array($this,'menu_licenses'));
 	}
 	 
@@ -146,7 +146,7 @@ class TO_Admin extends TO_Tour_Operators {
 		register_taxonomy('travel-style',array('accommodation','tour','destination','review','vehicle','special'), array(
 			'hierarchical' => true,
 			'labels' => $labels,
-			'show_ui' => false,
+			'show_ui' => true,
 			'public' => true,
 			'exclude_from_search' => true,
 			'show_admin_column' => true,
@@ -173,7 +173,7 @@ class TO_Admin extends TO_Tour_Operators {
 		register_taxonomy('accommodation-brand',array('accommodation'), array(
 				'hierarchical' => true,
 				'labels' => $labels,
-				'show_ui' => false,
+				'show_ui' => true,
 				'public' => true,
 				'exclude_from_search' => true,
 				'show_admin_column' => true,
@@ -198,7 +198,7 @@ class TO_Admin extends TO_Tour_Operators {
 		register_taxonomy('location',array('accommodation'), array(
 				'hierarchical' => true,
 				'labels' => $labels,
-				'show_ui' => false,
+				'show_ui' => true,
 				'public' => true,
 				'exclude_from_search' => true,
 				'show_admin_column' => true,
