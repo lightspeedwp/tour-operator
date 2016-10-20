@@ -404,6 +404,6 @@ function to_itinerary_read_more(){
  * @subpackage	template-tags
  * @category 	itinerary
  */
-function lsx_itinerary_needs_read_more(){
+function to_itinerary_needs_read_more(){
 	return apply_filters('lsx_itinerary_needs_read_more',false);
 }
