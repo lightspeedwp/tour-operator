@@ -87,7 +87,6 @@ class TO_Admin extends TO_Tour_Operators {
 	        null,
 	        6
 	    );
-	    add_submenu_page('tour-operator', esc_html__('Dashboard','tour-operator'), esc_html__('Dashboard','tour-operator'), 'manage_options', 'tour-operator',array($this,'menu_dashboard'));
 
 	    foreach($this->post_types_singular as $type_key => $type_label){
 	    	add_submenu_page('tour-operator', esc_html__('Add '.$type_label,'tour-operator'), esc_html__('Add '.$type_label,'tour-operator'), 'manage_options', 'post-new.php?post_type='.$type_key);
@@ -95,9 +94,8 @@ class TO_Admin extends TO_Tour_Operators {
 	    foreach($this->taxonomies_plural as $tax_key => $tax_label_plural){
 	    	add_submenu_page('tour-operator', esc_html__($tax_label_plural,'tour-operator'), esc_html__($tax_label_plural,'tour-operator'), 'manage_options', 'edit-tags.php?taxonomy='.$tax_key);
 		}
-
-		add_submenu_page('tour-operator', esc_html__('Licenses','tour-operator'), esc_html__('Licenses','tour-operator'), 'manage_options', 'licenses', array($this,'menu_licenses'));
-		add_submenu_page('tour-operator', esc_html__('Addons','tour-operator'), esc_html__('Addons','tour-operator'), 'manage_options', 'addons', array($this,'menu_licenses'));
+		
+		add_submenu_page('tour-operator', esc_html__('Add-ons','tour-operator'), esc_html__('Add-ons','tour-operator'), 'manage_options', 'to-addons', array($this,'menu_licenses'));
 	}
 	 
 	/**
