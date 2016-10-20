@@ -557,7 +557,6 @@ function to_get_taxonomies() {
  */
 function to_get_post_types() {
 	global $tour_operator;
-	print_r($tour_operator);
 	if(false !== $tour_operator){
 		return $tour_operator->get_post_types();
 	}
