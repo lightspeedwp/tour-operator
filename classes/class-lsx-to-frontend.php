@@ -71,7 +71,7 @@ class TO_Frontend extends TO_Tour_Operators {
 		}
 		$this->redirects = new TO_Template_Redirects(TO_PATH,array_keys($this->post_types),array_keys($this->taxonomies));
 
-		add_filter( 'get_the_archive_title', array( $this, 'get_the_archive_title') );
+		add_filter( 'get_the_archive_title', array( $this, 'get_the_archive_title'),100 );
 
 		//Redirects if disabled
 		add_action( 'template_redirect', array( $this, 'redirect_singles') );
@@ -243,10 +243,10 @@ class TO_Frontend extends TO_Tour_Operators {
 	 * @return	$title
 	 */
 	public function get_the_archive_title($title) {
-		if(is_post_type_archive($this->post_types)){
+		if(is_post_type_archive(array_keys($this->post_types))){
 			$title = post_type_archive_title( '', false );
 		}
-		if(is_tax($this->taxonomies)){
+		if(is_tax(array_keys($this->taxonomies))){
 			$title = single_term_title( '', false );
 		}
 		return $title;
