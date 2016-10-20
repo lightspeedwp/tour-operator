@@ -282,7 +282,11 @@ class Lsx_Tour {
 		global $to_archive;
 		if(1 !== $to_archive){$to_archive = false;}
 		if(is_main_query() && is_singular($this->plugin_slug) && false === $to_archive){
-			$classes[] = 'col-sm-9';
+			if(function_exists('to_has_team_member') && to_has_team_member()){
+				$classes[] = 'col-sm-9';
+			}else{
+				$classes[] = 'col-sm-12';
+			}
 		}
 		return $classes;
 	}
