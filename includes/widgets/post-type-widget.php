@@ -228,27 +228,26 @@ class TO_Widget extends WP_Widget {
  
     /** @see WP_Widget::update -- do not rename this */
     function update($new_instance, $old_instance) {   
-    $instance = $old_instance;
-    $instance['title'] = strip_tags( $new_instance['title'] );
-    $instance['title_link'] = strip_tags( $new_instance['title_link'] );
-    $instance['tagline'] = strip_tags( $new_instance['tagline'] );
-    $instance['columns'] = strip_tags( $new_instance['columns'] );
-    $instance['orderby'] = strip_tags( $new_instance['orderby'] );
-    $instance['order'] = strip_tags( $new_instance['order'] );
-    $instance['limit'] = strip_tags( $new_instance['limit'] );
-    $instance['include'] = strip_tags( $new_instance['include'] );
-    $instance['size'] = strip_tags( $new_instance['size'] );
-    $instance['disable_placeholder'] = strip_tags( $new_instance['disable_placeholder'] );
-    $instance['buttons'] = strip_tags( $new_instance['buttons'] );
-    $instance['button_text'] = $new_instance['button_text'];
-    $instance['responsive'] = strip_tags( $new_instance['responsive'] );
-    $instance['carousel'] = strip_tags( $new_instance['carousel'] );
-    $instance['featured'] = strip_tags( $new_instance['featured'] );
-    $instance['post_type'] = strip_tags( $new_instance['post_type'] );
-    $instance['class'] = strip_tags( $new_instance['class'] );
-    $instance['interval'] = strip_tags( $new_instance['interval'] );
-    $instance['indicators'] = strip_tags( $new_instance['indicators'] );
-    
+	    $instance = $old_instance;
+	    $instance['title'] = strip_tags( $new_instance['title'] );
+	    $instance['title_link'] = strip_tags( $new_instance['title_link'] );
+	    $instance['tagline'] = strip_tags( $new_instance['tagline'] );
+	    $instance['columns'] = strip_tags( $new_instance['columns'] );
+	    $instance['orderby'] = strip_tags( $new_instance['orderby'] );
+	    $instance['order'] = strip_tags( $new_instance['order'] );
+	    $instance['limit'] = strip_tags( $new_instance['limit'] );
+	    $instance['include'] = strip_tags( $new_instance['include'] );
+	    $instance['size'] = strip_tags( $new_instance['size'] );
+	    $instance['disable_placeholder'] = strip_tags( $new_instance['disable_placeholder'] );
+	    $instance['buttons'] = strip_tags( $new_instance['buttons'] );
+	    $instance['button_text'] = $new_instance['button_text'];
+	    $instance['responsive'] = strip_tags( $new_instance['responsive'] );
+	    $instance['carousel'] = strip_tags( $new_instance['carousel'] );
+	    $instance['featured'] = strip_tags( $new_instance['featured'] );
+	    $instance['post_type'] = strip_tags( $new_instance['post_type'] );
+	    $instance['class'] = strip_tags( $new_instance['class'] );
+	    $instance['interval'] = strip_tags( $new_instance['interval'] );
+	    $instance['indicators'] = strip_tags( $new_instance['indicators'] );
     return $instance;
     }
  
@@ -354,7 +353,8 @@ class TO_Widget extends WP_Widget {
 		                'Admin (custom order)' => 'menu_order'
 		                );
 		            foreach ($options as $name=>$value) {
-		                echo wp_kses_post('<option value="' . $value . '" id="' . $value . '"', $orderby == $value ? ' selected="selected"' : '', '>', $name, '</option>');
+		            	$selected = ($orderby == $value) ? ' selected="selected"' : '';
+		                ?><option value="<?php echo wp_kses_post($value); ?>" id="<?php echo wp_kses_post($value); ?>" <?php echo wp_kses_post($selected); ?>><?php echo wp_kses_post($name); ?></option><?php 		                
 		            }
 		            ?>
 		            </select>
@@ -369,7 +369,8 @@ class TO_Widget extends WP_Widget {
 		                'Descending' => 'DESC'
 		                );
 		            foreach ($options as $name=>$value) {
-		                echo wp_kses_post('<option value="' . $value . '" id="' . $value . '"', $order == $value ? ' selected="selected"' : '', '>', $name, '</option>');
+		            	$selected = ($order == $value) ? ' selected="selected"' : '';
+		                ?><option value="<?php echo wp_kses_post($value); ?>" id="<?php echo wp_kses_post($value); ?>" <?php echo wp_kses_post($selected); ?>><?php echo wp_kses_post($name); ?></option><?php 				                
 		            }
 		            ?>
 		    </select>
@@ -452,10 +453,10 @@ class TO_Widget extends WP_Widget {
 			<label for="<?php echo wp_kses_post($this->get_field_id('post_type')); ?>"><?php esc_attr_e( 'Post Type:', 'lsx-theme' ); ?></label>
 			<select name="<?php echo wp_kses_post($this->get_field_name('post_type')); ?>" id="<?php echo wp_kses_post($this->get_field_id('post_type')); ?>"	class="widefat layout">
 	            <?php
-	            $options = get_post_types();
-	            foreach ($options as $key => $option) {
-	            	if(in_array($key,array('attachment','revision','nav_menu_item'))) { continue; }
-	                echo wp_kses_post('<option value="' . $key . '" id="' . $option . '"', $post_type == $key ? ' selected="selected"' : '', '>', ucfirst($option), '</option>');
+	            $options = to_get_post_types();
+	            foreach ($options as $value => $name) {
+	            	$selected = ($post_type == $value) ? ' selected="selected"' : '';
+	                ?><option value="<?php echo wp_kses_post($value); ?>" id="<?php echo wp_kses_post($value); ?>" <?php echo wp_kses_post($selected); ?>><?php echo wp_kses_post($name); ?></option><?php 			                
 	            }
 	            ?>
 		    </select>

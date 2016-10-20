@@ -294,7 +294,14 @@ class TO_Tour_Operators {
 	 */
 	public function get_taxonomies(){
 		return $this->taxonomies;
-	}	
+	}
+
+	/**
+	 * Returns the post types for use in the addons.
+	 */
+	public function get_post_types(){
+		return $this->post_types;
+	}		
 
 	/**
 	 * Adds our taxonomies to an array via a filter
@@ -540,5 +547,18 @@ function to_get_taxonomies() {
 	global $tour_operator;
 	if(false !== $tour_operator){
 		return $tour_operator->get_taxonomies();
+	}
+}
+
+/**
+ * Returns an array of the tour post types.
+ *
+ * @param	$term_id
+ */
+function to_get_post_types() {
+	global $tour_operator;
+	print_r($tour_operator);
+	if(false !== $tour_operator){
+		return $tour_operator->get_post_types();
 	}
 }
