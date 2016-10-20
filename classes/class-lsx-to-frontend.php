@@ -114,8 +114,8 @@ class TO_Frontend extends TO_Tour_Operators {
 		}
 		
 		if(class_exists('TO_Banners')){
-			remove_action('lsx_content_top', 'to_breadcrumbs',100);
-			add_action('to_banner_container_top', 'to_breadcrumbs');
+			remove_action('lsx_content_top', 'lsx_breadcrumbs',100);
+			add_action('to_banner_container_top', 'lsx_breadcrumbs');
 		}		
 	}
 

@@ -510,6 +510,10 @@ class TO_Taxonomy_Widget extends WP_Widget {
     				'hide_empty' => 0 
 			);
 		}
+
+		if('none' !== $orderby){
+			$args['suppress_filters'] = true;
+		}
 		
 		$widget_query = get_terms( $taxonomy,$args );
 

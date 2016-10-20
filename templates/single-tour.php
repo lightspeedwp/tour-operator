@@ -20,7 +20,7 @@ get_header(); ?>
 		/**
 		 * Hooked
 		 * 
-		 *  - Lsx_Tour_Operators::to_single_header() - 100
+		 *  - to_global_header() - 100
 		 */
 			lsx_content_top();
 		?>

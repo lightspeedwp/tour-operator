@@ -16,6 +16,15 @@
 		<?php lsx_content_before() ?>
 
 		<main id="main" class="site-main" role="main">
+
+			<?php 
+			/**
+			 * Hooked
+			 * 
+			 *  - to_global_header() - 100
+			 */
+				lsx_content_top();
+			?>		
 		
 			<?php if ( have_posts() ) : ?>
 

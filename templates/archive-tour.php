@@ -20,7 +20,7 @@ get_header(); ?>
 		/**
 		 * Hooked
 		 * 
-		 *  - to_archive_header() - 100
+		 *  - to_global_header() - 100
 		 *  - to_archive_description() - 100
 		 */
 			lsx_content_top();
