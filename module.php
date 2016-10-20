@@ -193,13 +193,13 @@ class TO_Tour_Operators {
 	public function set_vars(){
 		// This is the array of enabled post types.
 		$this->post_types = array(
-				'accommodation'	=> esc_html__('Accommodation','tour-operator'),
 				'destination'	=> esc_html__('Destinations','tour-operator'),
+				'accommodation'	=> esc_html__('Accommodation','tour-operator'),
 				'tour'			=> esc_html__('Tours','tour-operator'),
 		);	
 		$this->post_types_singular = array(
-				'accommodation'	=> esc_html__('Accommodation','tour-operator'),
 				'destination'	=> esc_html__('Destination','tour-operator'),
+				'accommodation'	=> esc_html__('Accommodation','tour-operator'),
 				'tour'			=> esc_html__('Tour','tour-operator'),
 		);		
 		$this->post_types = apply_filters('to_post_types',$this->post_types);
