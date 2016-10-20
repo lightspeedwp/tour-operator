@@ -113,7 +113,7 @@ class TO_Frontend extends TO_Tour_Operators {
 			add_action('lsx_content_wrap_before','to_global_header',100);
 		}
 		
-		if(class_exists('TO_Banners')){
+		if(class_exists('LSX_Banners')){
 			remove_action('lsx_content_top', 'lsx_breadcrumbs',100);
 			add_action('to_banner_container_top', 'lsx_breadcrumbs');
 		}		
@@ -123,7 +123,7 @@ class TO_Frontend extends TO_Tour_Operators {
 	 * This runs on the to_header_after action
 	 */
 	public function header_after() {
-		if(class_exists('TO_Banners') && to_has_banner()){
+		if(class_exists('LSX_Banners') && to_has_banner()){
 			remove_action('lsx_content_wrap_before','to_archive_header',100);
 			remove_action('lsx_content_wrap_before','to_single_header',100);
 			add_action('lsx_banner_content','to_banner_content');
