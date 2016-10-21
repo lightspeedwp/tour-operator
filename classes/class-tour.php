@@ -315,7 +315,7 @@ class Lsx_Tour {
 		$fields = array();
 		$fields[] = array( 'id' => 'title',  'name' => 'Title', 'type' => 'text' );
 		if(!class_exists('LSX_Banners')){
-			$fields[] = array( 'id' => 'banner_subtitle',  'name' => 'Tagline', 'type' => 'text' );
+			$fields[] = array( 'id' => 'tagline',  'name' => 'Tagline', 'type' => 'text' );
 		}
 
 		$fields[] = array( 'id' => 'description', 'name' => 'Description', 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ) );

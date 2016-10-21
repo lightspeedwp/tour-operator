@@ -170,7 +170,7 @@ function to_get_post_type_section_title($post_type=false,$section='',$default=''
  */
 function to_envira_gallery($before="",$after="",$echo=true){
 	$envira_gallery = get_post_meta(get_the_ID(),'envira_gallery',true);
-	if(false !== $envira_gallery && false === to_enable_envira_banner()){ 
+	if(false !== $envira_gallery){ 
 		ob_start();
 		if(function_exists('envira_gallery')){envira_gallery( $envira_gallery );}
 		$return = ob_get_clean();
@@ -212,22 +212,6 @@ function to_envira_videos($before="",$after="",$echo=true){
 		}else{
 			return $return;
 		}		
-	}
-}
-
-/**
- * Output the envira gallery in the 
- *
- * @package 	lsx-framework
- * @subpackage	hook
- * @category 	modal
- */
-function to_enable_envira_banner(){
-	global $tour_operator;
-	if(isset($tour_operator->options) && isset($tour_operator->options['display']) && isset($tour_operator->options['display']['enable_galleries_in_banner'])){
-		return true;
-	}else{
-		return false;
 	}
 }
 
@@ -1787,4 +1771,20 @@ function to_connected_list($connected_ids = false,$type = false,$link = true,$se
  */
 function to_modal_meta(){
 	do_action('to_modal_meta');
+}
+
+/**
+ * Outputs a list of the ids you give it
+ *
+ * @package 	lsx-framework
+ * @subpackage	hook
+ * @category 	modal
+ */
+function to_envira_banner(){
+	global $tour_operator;
+	if(isset($tour_operator->options) && isset($tour_operator->options['display']) && isset($tour_operator->options['display']['enable_galleries_in_banner'])){
+		return true;
+	}else{
+		return false;
+	}
 }

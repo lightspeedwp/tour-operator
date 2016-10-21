@@ -27,6 +27,8 @@ class TO_LSX_Banner_Integration {
 	public function __construct($post_types=array(),$taxonomies=array()) {
 		$this->post_types = $post_types;
 		$this->taxonomies = $taxonomies;
+		$this->options = get_option('_lsx_lsx-settings',false);
+
 		add_action( 'init', array( $this, 'init' ) );
 		add_filter('lsx_banner_enable_placeholder', function( $bool ) { return true; });
 		add_filter('lsx_banner_placeholder_url', array($this,'banner_placeholder_url'));
@@ -46,6 +48,11 @@ class TO_LSX_Banner_Integration {
 			add_filter( 'lsx_banner_post_type_archive_url', array( $this, 'banner_archive_url'));
 			add_action('lsx_banner_content',array( $this, 'posts_page_banner_tagline'));
 			add_filter('lsx_banner_title', array($this,'banner_title'),100 );
+
+
+			if(false !== $this->options && !isset($this->options['display']['enable_galleries_in_banner'])){
+				add_filter('lsx_banners_envira_enable', function( $bool ) { return false; });
+			}
 		}
 	}	
 	

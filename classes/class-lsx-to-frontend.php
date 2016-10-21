@@ -15,7 +15,7 @@
  * @package TO_Frontend
  * @author  LightSpeed
  */
-class TO_Frontend extends TO_Tour_Operators {
+class TO_Frontend extends Tour_Operator {
 
 	/**
 	 * This holds the class OBJ of TO_Template_Redirects

@@ -15,7 +15,7 @@
  * @package TO_Admin
  * @author  LightSpeed
  */
-class TO_Admin extends TO_Tour_Operators {
+class TO_Admin extends Tour_Operator {
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.

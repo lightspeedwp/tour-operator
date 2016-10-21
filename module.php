@@ -1,6 +1,6 @@
 <?php
 /**
- * @package   TO_Tour_Operators
+ * @package   Tour_Operator
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -24,7 +24,7 @@ require_once( TO_PATH . 'includes/widgets/cta-widget.php');
 require_once( TO_PATH . 'classes/class-fields.php');
 
 // Setup the post connections
-class TO_Tour_Operators {
+class Tour_Operator {
 	
 	/**
 	 * Holds class instance
@@ -536,7 +536,7 @@ class TO_Tour_Operators {
 	}	
 
 }
-$tour_operator = TO_Tour_Operators::get_instance();
+$tour_operator = Tour_Operator::get_instance();
 
 /**
  * Returns an array of the tour taxonomies.

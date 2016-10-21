@@ -15,7 +15,7 @@
  * @package TO_Settings
  * @author  LightSpeed
  */
-class TO_Settings extends TO_Tour_Operators {
+class TO_Settings extends Tour_Operator {
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
