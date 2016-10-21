@@ -181,7 +181,9 @@ class TO_Settings extends Tour_Operator {
 					<input type="checkbox" {{#if enable_galleries_in_banner}} checked="checked" {{/if}} name="enable_galleries_in_banner" />
 					<small><?php esc_html_e('Move the gallery on a page into the banner.','tour-operator'); ?></small>
 				</td>
-			</tr>		
+			</tr>	
+
+			<?php $this->modal_setting(); ?>	
 		<?php }
 		}
 		if('advanced'===$subtab){
@@ -281,9 +283,7 @@ class TO_Settings extends Tour_Operator {
 				<td>
 					<input type="text" {{#if enquire_link}} value="{{enquire_link}}" {{/if}} name="enquire_link" />
 				</td>
-			</tr>
-				
-			<?php $this->modal_setting(); ?>									
+			</tr>									
 		<?php  
 	}
 
@@ -492,8 +492,6 @@ class TO_Settings extends Tour_Operator {
 				</tr>
 			<?php endif ?>
 		<?php endif ?>
-
-		<?php $this->modal_setting(); ?>
 
 	<?php do_action('to_framework_'.$post_type.'_tab_single_settings_bottom',$post_type);
 	}

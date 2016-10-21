@@ -97,8 +97,8 @@ class TO_Frontend extends Tour_Operator {
 	public function wp_head() {
 		if((is_singular($this->active_post_types) || is_post_type_archive($this->active_post_types))
 			&& false !== $this->options
-			&& isset($this->options[get_post_type()]['enable_modals'])
-			&& 'on' === $this->options[get_post_type()]['enable_modals']){
+			&& isset($this->options['display']['enable_modals'])
+			&& 'on' === $this->options['display']['enable_modals']){
 				$this->enable_modals = true;				
 		}
 
