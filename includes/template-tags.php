@@ -156,6 +156,35 @@ function to_get_post_type_section_title($post_type=false,$section='',$default=''
 	}
 }
 
+
+/**
+ * Outputs the TO Gallery
+ * 
+ * @param		$before	| string
+ * @param		$after	| string
+ * @param		$echo	| boolean
+ * @return		string
+ *
+ * @package 	to-galleries
+ * @subpackage	template-tags
+ */
+function to_envira_gallery($before="",$after="",$echo=true){
+	$envira_gallery = get_post_meta(get_the_ID(),'envira_gallery',true);
+	if(false !== $envira_gallery){ 
+		ob_start();
+		envira_gallery( $envira_gallery );
+		$return = ob_get_clean();
+
+		$return = $before.$return.$after;
+
+		if($echo){
+			echo wp_kses_post( $return );
+		}else{
+			return $return;
+		}
+	}	
+}
+
 /* ================  Accommodation =========================== */
 /**
  * Outputs the current accommodations room total
