@@ -48,17 +48,22 @@ class TO_Admin extends TO_Tour_Operators {
 	 * @since 0.1.0
 	 */
 	public function init() {
-		$this->taxonomies = apply_filters('to_taxonomies',$this->taxonomies);
-		add_filter('to_taxonomy_widget_taxonomies', array( $this, 'widget_taxonomies' ),10,1 );
+		if(is_admin()){
+			$this->connections = $this->create_post_connections();	
+			$this->single_fields = apply_filters('to_search_fields',array());			
+			
+			$this->taxonomies = apply_filters('to_taxonomies',$this->taxonomies);
+			add_filter('to_taxonomy_widget_taxonomies', array( $this, 'widget_taxonomies' ),10,1 );
 
-		if(false !== $this->taxonomies){
-			add_action( 'create_term', array( $this, 'save_meta' ), 10, 2 );
-			add_action( 'edit_term',   array( $this, 'save_meta' ), 10, 2 );
-			foreach(array_keys($this->taxonomies) as $taxonomy){
-				add_action( "{$taxonomy}_edit_form_fields", array( $this, 'add_thumbnail_form_field' ),3,1 );
-				add_action( "{$taxonomy}_edit_form_fields", array( $this, 'add_tagline_form_field' ),3,1 );				
-			}			
-		}		
+			if(false !== $this->taxonomies){
+				add_action( 'create_term', array( $this, 'save_meta' ), 10, 2 );
+				add_action( 'edit_term',   array( $this, 'save_meta' ), 10, 2 );
+				foreach(array_keys($this->taxonomies) as $taxonomy){
+					add_action( "{$taxonomy}_edit_form_fields", array( $this, 'add_thumbnail_form_field' ),3,1 );
+					add_action( "{$taxonomy}_edit_form_fields", array( $this, 'add_tagline_form_field' ),3,1 );				
+				}			
+			}	
+		}	
 	}		
 
 	/**
@@ -215,7 +220,7 @@ class TO_Admin extends TO_Tour_Operators {
 	 */
 	public function post_relations($post_id, $field, $value) {
 		
-		if('group' === $field['type'] && array_key_exists($field['id'], $this->single_fields)){
+		if('group' === $field['type'] && isset($this->single_fields) && array_key_exists($field['id'], $this->single_fields)){
 				
 			$delete_counter = array();
 			foreach($this->single_fields[$field['id']] as $fields_to_save){

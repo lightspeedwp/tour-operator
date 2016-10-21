@@ -137,9 +137,15 @@ class Lsx_Destination{
 		$fields[] = array( 'id' => 'featured',  'name' => 'Featured', 'type' => 'checkbox' );
 
 		if(!class_exists('LSX_Banners')){
-			$fields[] = array( 'id' => 'tagline',  'name' => 'Tagline', 'type' => 'text' );
+			$fields[] = array( 'id' => 'banner_subtitle',  'name' => 'Tagline', 'type' => 'text' );
 		}
-		$fields[] = array( 'id' => 'team_to_destination', 'name' => 'Destination Expert', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12, 'allow_none' => true );
+		//if(class_exists('TO_Team')){
+			$fields[] = array( 'id' => 'team_to_destination', 'name' => 'Destination Expert', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12, 'allow_none' => true );
+		//}
+
+		if(class_exists('Envira_Gallery')){
+			$fields[] = array( 'id' => 'envira_gallery', 'name' => __('Envira Gallery','to-galleries'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
+		}		
 
 		if(!class_exists('TO_Maps')){
 			$fields[] = array( 'id' => 'location',  'name' => 'Location', 'type' => 'gmap' );	

@@ -1,8 +1,8 @@
 <?php
 /*
- * Plugin Name: LSX Tour Operators 
+ * Plugin Name: Tour Operators 
  * Plugin URI: https://www.lsdev.biz/product/tour-operator-plugin/
- * Description: By integrating with the Wetu Tour Operator system, the LSX Tourism Operators plugin brings dynamic features like live availability and bookings, digital itineraries and more to your WordPress website.
+ * Description: By integrating with the Wetu Tour Operator system, the Tour Operator plugin brings dynamic features like live availability and bookings, digital itineraries and more to your WordPress website.
  * Author: LightSpeed
  * Version: 1.0.0
  * Author URI: https://www.lsdev.biz/products/

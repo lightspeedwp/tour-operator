@@ -198,7 +198,14 @@ class Lsx_Tour {
 			$fields[] = array( 'id' => 'team_to_tour', 'name' => 'Tour Expert', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12);
 		}
 		$fields[] = array( 'id' => 'hightlights',  'name' => 'Hightlights', 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
-		
+
+		if(class_exists('Envira_Gallery')){
+			if(!class_exists('TO_Galleries')){
+				$new_fields[] = array( 'id' => 'gallery_title',  'name' => __('Gallery','tour-operator'), 'type' => 'title' );
+			}
+			$fields[] = array( 'id' => 'envira_gallery', 'name' => __('Envira Gallery','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
+		}
+
 		$fields[] = array( 'id' => 'price_title',  'name' => __('Price','tour-operator'), 'type' => 'title', 'cols' => 12 );
 		$fields[] = array( 'id' => 'price',  'name' => __('Price','tour-operator'), 'type' => 'text', 'cols' => 6 );
 		$fields[] = array( 'id' => 'single_supplement',  'name' => __('Single Supplement','tour-operator'), 'type' => 'text', 'cols' => 12 );
@@ -304,7 +311,10 @@ class Lsx_Tour {
 	public function itinerary_fields() {
 		$fields = array();
 		$fields[] = array( 'id' => 'title',  'name' => 'Title', 'type' => 'text' );
-		$fields[] = array( 'id' => 'tagline',  'name' => 'Tagline', 'type' => 'text' );
+		if(!class_exists('LSX_Banners')){
+			$fields[] = array( 'id' => 'banner_subtitle',  'name' => 'Tagline', 'type' => 'text' );
+		}
+
 		$fields[] = array( 'id' => 'description', 'name' => 'Description', 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ) );
 		$fields[] = array( 'id' => 'featured_image', 'name' => 'Featured Image', 'type' => 'image', 'show_size' => false );
 		if(post_type_exists('accommodation')){

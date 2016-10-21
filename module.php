@@ -324,7 +324,7 @@ class TO_Tour_Operators {
 			$tagline = $this->options[get_post_type()]['tagline'];
 		}	
 		if(is_singular($this->active_post_types)){
-			$tagline_value = get_post_meta(get_the_ID(),'tagline',true);
+			$tagline_value = get_post_meta(get_the_ID(),'banner_subtitle',true);
 			if(false !== $tagline_value){
 				$tagline = $tagline_value;
 			}

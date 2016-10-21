@@ -231,7 +231,7 @@ class TO_Accommodation {
 		// Info Panel
 		$fields[] = array( 'id' => 'featured',  'name' => 'Featured', 'type' => 'checkbox' );
 		if(!class_exists('LSX_Banners')){
-			$fields[] = array( 'id' => 'tagline',  'name' => 'Tagline', 'type' => 'text' );
+			$fields[] = array( 'id' => 'banner_subtitle',  'name' => 'Tagline', 'type' => 'text' );
 		}
 
 		if(class_exists('TO_Field_Pattern')){ $fields = array_merge($fields,TO_Field_Pattern::price()); }
@@ -362,6 +362,10 @@ class TO_Accommodation {
 				),
 		);
 		$fields = array_merge($fields,$fast_facts_fields);
+
+		if(class_exists('Envira_Gallery')){
+			$fields[] = array( 'id' => 'envira_gallery', 'name' => __('Envira Gallery','to-galleries'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
+		}		
 		
 		//Rooms
 		$fields[] = array( 'id' => 'units_title',  'name' => __('Units','tour-operator'), 'type' => 'title' );
