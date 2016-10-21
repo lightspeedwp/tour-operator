@@ -172,7 +172,7 @@ function to_envira_gallery($before="",$after="",$echo=true){
 	$envira_gallery = get_post_meta(get_the_ID(),'envira_gallery',true);
 	if(false !== $envira_gallery){ 
 		ob_start();
-		envira_gallery( $envira_gallery );
+		if(function_exists('envira_gallery')){envira_gallery( $envira_gallery );}
 		$return = ob_get_clean();
 
 		$return = $before.$return.$after;
@@ -183,6 +183,36 @@ function to_envira_gallery($before="",$after="",$echo=true){
 			return $return;
 		}
 	}	
+}
+
+/**
+ * Outputs the Envira Video Gallery
+ *
+ * @param		$before	| string
+ * @param		$after	| string
+ * @param		$echo	| boolean
+ * @return		string
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tags
+ * @category 	tour
+ */
+function to_envira_videos($before="",$after="",$echo=true){
+	global $content_width;
+	$envira_video = get_post_meta(get_the_ID(),'envira_video',true);
+	$return = false;
+
+	if(false !== $envira_video && '' !== $envira_video){
+		$return = do_shortcode('[envira-gallery id="'.$envira_video.'"]');
+		$return = $before.$return.$after;
+		$temp_width = $content_width;
+		$content_width = $temp_width;
+		if($echo){
+			echo wp_kses_post( $return );
+		}else{
+			return $return;
+		}		
+	}
 }
 
 /* ================  Accommodation =========================== */

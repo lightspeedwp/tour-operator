@@ -178,8 +178,12 @@ class TO_Frontend extends TO_Tour_Operators {
 	 * @return    null
 	 */
 	public function enqueue_stylescripts() {
-		wp_enqueue_script( 'tour-operator-script', TO_URL . 'assets/js/custom.min.js', array( 'jquery' ) , false, true );
-		wp_enqueue_style( 'tour-operator-style', TO_URL . 'assets/css/style.css');
+		if(!isset($this->options['display']['disable_js'])){
+			wp_enqueue_script( 'tour-operator-script', TO_URL . 'assets/js/custom.min.js', array( 'jquery' ) , false, true );
+		}
+		if(!isset($this->options['display']['disable_css'])){
+			wp_enqueue_style( 'tour-operator-style', TO_URL . 'assets/css/style.css');
+		}
 		if(defined('WP_SHARING_PLUGIN_URL')){
 			wp_enqueue_style( 'sharing', WP_SHARING_PLUGIN_URL.'sharing.css', false, JETPACK__VERSION );
 		}

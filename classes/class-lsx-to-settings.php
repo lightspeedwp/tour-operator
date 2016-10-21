@@ -54,8 +54,10 @@ class TO_Settings extends TO_Tour_Operators {
 
 			
 			add_action('to_framework_dashboard_tab_content',array($this,'dashboard_tab_content'));
-			add_action( 'to_framework_api_tab_bottom', array( $this, 'settings_page_scripts' ), 100 );
+			add_action('to_framework_display_tab_content',array($this,'display_tab_content'),10,1);
 
+			add_action( 'to_framework_api_tab_bottom', array( $this, 'settings_page_scripts' ), 100 );
+			add_action( 'to_framework_display_tab_bottom', array( $this, 'settings_page_scripts' ), 100 );
 		}
 	}
 
@@ -105,14 +107,22 @@ class TO_Settings extends TO_Tour_Operators {
 						'default'	 		=> true
 				)
 		);
-
-		$tabs['api'] = array(
+		$tabs['display'] = array(
 			'page_title'        => '',
 			'page_description'  => '',
-			'menu_title'        => esc_html__('API','tour-operator'),
-			'template'          => TO_PATH.'includes/settings/api.php',
+			'menu_title'        => esc_html__('Display','tour-operator'),
+			'template'          => TO_PATH.'includes/settings/display.php',
 			'default'	 		=> false
-		);		
+		);
+		if(in_array(array('LSX_Banners'),get_declared_classes())){
+			$tabs['api'] = array(
+				'page_title'        => '',
+				'page_description'  => '',
+				'menu_title'        => esc_html__('API','tour-operator'),
+				'template'          => TO_PATH.'includes/settings/api.php',
+				'default'	 		=> false
+			);	
+		}	
 
 		$posts_page = get_option('page_for_posts',false);
 		if(false === $posts_page){
@@ -154,6 +164,49 @@ class TO_Settings extends TO_Tour_Operators {
 				),
 		);
 	}
+
+	/**
+	 * outputs the display tabs settings
+	 */
+	public function display_tab_content($subtab='basic') { 
+
+		if('basic'===$subtab){
+			if(class_exists('LSX_Banners') && class_exists('Envira_Gallery')){
+			?>
+			<tr class="form-field">
+				<th scope="row">
+					<label for="description"><?php esc_html_e('Display galleries in the banner','tour-operator'); ?></label>
+				</th>
+				<td>
+					<input type="checkbox" {{#if enable_galleries_in_banner}} checked="checked" {{/if}} name="enable_galleries_in_banner" />
+					<small><?php esc_html_e('Move the gallery on a page into the banner.','tour-operator'); ?></small>
+				</td>
+			</tr>		
+		<?php }
+		}
+		if('advanced'===$subtab){
+		?>
+			<tr class="form-field">
+				<th scope="row">
+					<label for="description"><?php esc_html_e('Disable CSS','tour-operator'); ?></label>
+				</th>
+				<td>
+					<input type="checkbox" {{#if disable_css}} checked="checked" {{/if}} name="disable_css" />
+					<small><?php esc_html_e('Disable the CSS if you want to include your own.','tour-operator'); ?></small>
+				</td>
+			</tr>	
+			<tr class="form-field">
+				<th scope="row">
+					<label for="description"><?php esc_html_e('Disable Javascript','tour-operator'); ?></label>
+				</th>
+				<td>
+					<input type="checkbox" {{#if disable_js}} checked="checked" {{/if}} name="disable_js" />
+					<small><?php esc_html_e('Only disable the JS if you are debugging an error.','tour-operator'); ?></small>
+				</td>
+			</tr>				
+		<?php
+		}
+	}	
 
 	/**
 	 * outputs the dashboard tabs settings

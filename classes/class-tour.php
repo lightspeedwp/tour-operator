@@ -201,9 +201,12 @@ class Lsx_Tour {
 
 		if(class_exists('Envira_Gallery')){
 			if(!class_exists('TO_Galleries')){
-				$new_fields[] = array( 'id' => 'gallery_title',  'name' => __('Gallery','tour-operator'), 'type' => 'title' );
+				$fields[] = array( 'id' => 'gallery_title',  'name' => __('Gallery','tour-operator'), 'type' => 'title' );
 			}
 			$fields[] = array( 'id' => 'envira_gallery', 'name' => __('Envira Gallery','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
+			if(class_exists('Envira_Videos')){
+				$fields[] = array( 'id' => 'envira_video', 'name' => __('Envira Video Gallery','to-galleries'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
+			}			
 		}
 
 		$fields[] = array( 'id' => 'price_title',  'name' => __('Price','tour-operator'), 'type' => 'title', 'cols' => 12 );
