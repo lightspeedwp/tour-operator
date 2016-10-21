@@ -244,7 +244,7 @@ function to_tour_single_content_bottom() {
 		<?php }			
 		
 		if(function_exists('envira_gallery')) {
-			to_envira_gallery();
+			to_envira_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>');
 		}
 
 		//if(function_exists('to_gallery')) { to_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>'); }
