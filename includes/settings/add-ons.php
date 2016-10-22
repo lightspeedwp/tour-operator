@@ -1,4 +1,6 @@
 <div class="wrap to_addons_wrap">
+	<h1><?php esc_html_e( 'Tour Operator Add-ons', 'tour-operator' ); ?></h1>
+
 	<ul class="addons-nav">
 		<li><a class="active" href="#all" title="All Addons">All</a></li>
 		<li><a href="#post-types" title="Post Types">Post Types</a></li>
