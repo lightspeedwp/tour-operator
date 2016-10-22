@@ -100,7 +100,7 @@ class TO_Admin extends Tour_Operator {
 	    	add_submenu_page('tour-operator', esc_html__($tax_label_plural,'tour-operator'), esc_html__($tax_label_plural,'tour-operator'), 'edit_posts', 'edit-tags.php?taxonomy='.$tax_key);
 		}
 
-		add_submenu_page('tour-operator', esc_html__('Add-ons','tour-operator'), esc_html__('Add-ons','tour-operator'), 'manage_options', 'to-addons', array($this,'menu_licenses'));
+		add_submenu_page('tour-operator', esc_html__('Add-ons','tour-operator'), esc_html__('Add-ons','tour-operator'), 'manage_options', 'to-addons', array($this,'addons_page'));
 	}
 	 
 	/**
@@ -115,14 +115,10 @@ class TO_Admin extends Tour_Operator {
 	}
 
 	/**
-	 * Display the licenses
+	 * Display the addons page
 	 */
-	function menu_licenses(){
-	    ?>
-	    <div class="wrap">
-	    	<h1><?php esc_html_e( 'Licenses', 'tour-operator' ); ?></h1> 
-	    </div>
-	    <?php
+	function addons_page(){
+	    include(TO_PATH.'includes/settings/add-ons.php');
 	}		
 
 	/**
