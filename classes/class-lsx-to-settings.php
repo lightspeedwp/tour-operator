@@ -113,8 +113,9 @@ class TO_Settings extends Tour_Operator {
 			'menu_title'        => esc_html__('Display','tour-operator'),
 			'template'          => TO_PATH.'includes/settings/display.php',
 			'default'	 		=> false
-		);
-		if(in_array(array('LSX_Banners'),get_declared_classes())){
+		);	
+
+		if(in_array('LSX_Banners',get_declared_classes())){
 			$tabs['api'] = array(
 				'page_title'        => '',
 				'page_description'  => '',
@@ -122,7 +123,7 @@ class TO_Settings extends Tour_Operator {
 				'template'          => TO_PATH.'includes/settings/api.php',
 				'default'	 		=> false
 			);	
-		}	
+		}
 
 		$posts_page = get_option('page_for_posts',false);
 		if(false === $posts_page){

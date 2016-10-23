@@ -100,6 +100,7 @@ class TO_Admin extends Tour_Operator {
 	    	add_submenu_page('tour-operator', esc_html__($tax_label_plural,'tour-operator'), esc_html__($tax_label_plural,'tour-operator'), 'edit_posts', 'edit-tags.php?taxonomy='.$tax_key);
 		}
 
+		add_submenu_page('tour-operator', esc_html__('Help','tour-operator'), esc_html__('Help','tour-operator'), 'manage_options', 'to-help', array($this,'help_page'));
 		add_submenu_page('tour-operator', esc_html__('Add-ons','tour-operator'), esc_html__('Add-ons','tour-operator'), 'manage_options', 'to-addons', array($this,'addons_page'));
 	}
 	 
@@ -119,7 +120,14 @@ class TO_Admin extends Tour_Operator {
 	 */
 	function addons_page(){
 	    include(TO_PATH.'includes/settings/add-ons.php');
-	}		
+	}	
+
+	/**
+	 * Display the addons page
+	 */
+	function help_page(){
+	    include(TO_PATH.'includes/settings/help.php');
+	}
 
 	/**
 	 * Register the global post types.
