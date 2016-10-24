@@ -100,6 +100,7 @@ class TO_Admin extends Tour_Operator {
 	    	add_submenu_page('tour-operator', esc_html__($tax_label_plural,'tour-operator'), esc_html__($tax_label_plural,'tour-operator'), 'edit_posts', 'edit-tags.php?taxonomy='.$tax_key);
 		}
 
+		add_submenu_page('tour-operator', esc_html__('Welcome','tour-operator'), esc_html__('Welcome','tour-operator'), 'manage_options', 'to-welcome', array($this,'welcome_page'));
 		add_submenu_page('tour-operator', esc_html__('Help','tour-operator'), esc_html__('Help','tour-operator'), 'manage_options', 'to-help', array($this,'help_page'));
 		add_submenu_page('tour-operator', esc_html__('Add-ons','tour-operator'), esc_html__('Add-ons','tour-operator'), 'manage_options', 'to-addons', array($this,'addons_page'));
 	}
@@ -128,6 +129,13 @@ class TO_Admin extends Tour_Operator {
 	function help_page(){
 	    include(TO_PATH.'includes/settings/help.php');
 	}
+
+	/**
+	 * Display the welcome page
+	 */
+	function welcome_page(){
+	    include(TO_PATH.'includes/settings/welcome.php');
+	}	
 
 	/**
 	 * Register the global post types.

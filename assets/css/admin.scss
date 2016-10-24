@@ -1,7 +1,47 @@
 /*
  * LSX Tour Operators Administrator
  */
- @import 'flag-icon-css/flag-icon';
+@import 'flag-icon-css/flag-icon';
+
+/* Variables */
+$bg-grey: #f9f9f9;
+$bdr-grey: #cccccc;
+
+/* Variables */
+%white-box {
+	background-color: $bg-grey;
+	border: 1px solid $bdr-grey;
+	border-radius: 4px;
+	padding: 8px 20px 12px;	
+}
+
+%heading-box {
+    background-color: $bg-grey;
+    margin-bottom: 10px;
+    padding: 6px 0 6px 12px;
+}
+
+%lists {
+    margin-bottom: 20px;
+    margin-left: 35px;
+}
+
+%error-hide {
+	.error {
+    	display:none;
+    }
+}
+%float-block {
+	float:left;
+	display:block;
+}
+%column-layout {
+	.primary, .secondary {
+		@extend %float-block;
+	}
+}
+
+ /* General */
  
  #banners .CMB_Group_Field {
  	display:block;
@@ -34,6 +74,7 @@
 	padding: 10px 15px; 	
  }
 
+
 /* Menu Styling */
 #adminmenu {
 	.toplevel_page_tour-operator {
@@ -52,6 +93,40 @@
 		}
 	}
 }
+
+/* The Welcome Page Styling */
+.to_welcome_wrap {
+	@extend %error-hide;
+
+	.title {
+		h1,h2,h3,h4,h5,h6 {
+			@extend %heading-box;
+		}
+	}
+
+	@extend %column-layout;
+
+	.primary {
+		width: 60%;
+		margin-top:15px;
+	}
+
+	.secondary {
+	    margin: 15px 0 0 3%;
+	    width: 37%;	
+	}	
+
+	.plugin-info {
+		@extend %white-box;
+
+		margin-top: 15px;
+
+		&:first-child {
+			margin-top:0px;
+		}
+	}
+}
+
 
 /* The Tab Styling */
 body.tour-operator_page_lsx-lsx-settings {
@@ -93,6 +168,7 @@ body.tour-operator_page_lsx-lsx-settings {
 	}
 }
 
+/* The Addons Styling */
 .to_addons_wrap {
 	.products {
 		overflow: hidden;
@@ -104,7 +180,7 @@ body.tour-operator_page_lsx-lsx-settings {
 			vertical-align: top;
 			width: 300px;
 
-			.error{ display:none;}
+			@extend %error-hide;
 
 			a {
 				text-decoration: none;
@@ -197,34 +273,24 @@ body.tour-operator_page_lsx-lsx-settings {
 }
 
 .to_help_wrap {
-	.primary, .secondary {
-		float:left;
-		display:block;
-	}
+	@extend %column-layout;
+
 	.primary {
 		width: 65%;
 		margin-top:15px;
 
-		.error {
-			display:none;
-		}
+		@extend %error-hide;
 
 		.feature-box {
-			background-color: #f9f9f9;
-			border: 1px solid #ccc;
-			border-radius: 4px;
-			padding: 8px 20px 12px;		
+			@extend %white-box;	
 		}
 
 		.to-help-section{
 			h3 {
-			    background-color: #f9f9f9;
-			    margin-bottom: 10px;
-			    padding: 6px 0 6px 12px;
+				@extend %heading-box;
 			}		
 			ul,ol {
-			    margin-bottom: 20px;
-			    margin-left: 35px;
+			    @extend %lists;
 			}
 			ul{
 				list-style-type: square;
