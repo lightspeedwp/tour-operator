@@ -1289,6 +1289,31 @@
   .flag-icon-un.flag-icon-squared {
     background-image: url(../flags/1x1/un.svg); }
 
+/* Variables */
+/* Variables */
+.to_welcome_wrap .plugin-info, .to_help_wrap .primary .feature-box {
+  background-color: #f9f9f9;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  padding: 8px 20px 12px; }
+
+.to_welcome_wrap .title h1, .to_welcome_wrap .title h2, .to_welcome_wrap .title h3, .to_welcome_wrap .title h4, .to_welcome_wrap .title h5, .to_welcome_wrap .title h6, .to_help_wrap .primary .to-help-section h3 {
+  background-color: #f9f9f9;
+  margin-bottom: 10px;
+  padding: 6px 0 6px 12px; }
+
+.to_help_wrap .primary .to-help-section ul, .to_help_wrap .primary .to-help-section ol {
+  margin-bottom: 20px;
+  margin-left: 35px; }
+
+.to_welcome_wrap .error, .to_addons_wrap .products li .error, .to_help_wrap .primary .error {
+  display: none; }
+
+.to_welcome_wrap .primary, .to_help_wrap .primary, .to_welcome_wrap .secondary, .to_help_wrap .secondary {
+  float: left;
+  display: block; }
+
+/* General */
 #banners .CMB_Group_Field {
   display: block; }
 
@@ -1325,6 +1350,20 @@
 #adminmenu .toplevel_page_tour-operator:hover .toplevel_page_tour-operator div.wp-menu-image img {
   fill: #00b9eb; }
 
+/* The Welcome Page Styling */
+.to_welcome_wrap .primary {
+  width: 60%;
+  margin-top: 15px; }
+
+.to_welcome_wrap .secondary {
+  margin: 15px 0 0 3%;
+  width: 37%; }
+
+.to_welcome_wrap .plugin-info {
+  margin-top: 15px; }
+  .to_welcome_wrap .plugin-info:first-child {
+    margin-top: 0px; }
+
 /* The Tab Styling */
 body.tour-operator_page_lsx-lsx-settings .uix-field-wrapper .ui-tab-nav li {
   display: inline-block; }
@@ -1347,6 +1386,7 @@ body.tour-operator_page_lsx-lsx-settings .uix-field-wrapper .ui-tab {
   body.tour-operator_page_lsx-lsx-settings .uix-field-wrapper .ui-tab.active {
     display: block; }
 
+/* The Addons Styling */
 .to_addons_wrap .products {
   overflow: hidden; }
   .to_addons_wrap .products li {
@@ -1355,8 +1395,6 @@ body.tour-operator_page_lsx-lsx-settings .uix-field-wrapper .ui-tab {
     padding: 0;
     vertical-align: top;
     width: 300px; }
-    .to_addons_wrap .products li .error {
-      display: none; }
     .to_addons_wrap .products li a {
       text-decoration: none;
       color: inherit;
@@ -1412,27 +1450,9 @@ body.tour-operator_page_lsx-lsx-settings .uix-field-wrapper .ui-tab {
   .to_addons_wrap .hidden.active {
     display: block; }
 
-.to_help_wrap .primary, .to_help_wrap .secondary {
-  float: left;
-  display: block; }
-
 .to_help_wrap .primary {
   width: 65%;
   margin-top: 15px; }
-  .to_help_wrap .primary .error {
-    display: none; }
-  .to_help_wrap .primary .feature-box {
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 8px 20px 12px; }
-  .to_help_wrap .primary .to-help-section h3 {
-    background-color: #f9f9f9;
-    margin-bottom: 10px;
-    padding: 6px 0 6px 12px; }
-  .to_help_wrap .primary .to-help-section ul, .to_help_wrap .primary .to-help-section ol {
-    margin-bottom: 20px;
-    margin-left: 35px; }
   .to_help_wrap .primary .to-help-section ul {
     list-style-type: square; }
   .to_help_wrap .primary .to-help-section ol {
