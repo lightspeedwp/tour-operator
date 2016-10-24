@@ -28,7 +28,7 @@
 
 		<div class="plugin-info">
 			<h3>Please consider signing up to our Tourism Industry newsletter</h3>
-			<?php echo wp_kses_post(do_shortcode('[ninja_form id=2]')); ?>
+			<?php echo do_shortcode('[ninja_form id=2]'); ?>
 		</div>		
 	</div>	
 
