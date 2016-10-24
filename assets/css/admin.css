@@ -1315,6 +1315,16 @@
   display: block;
   padding: 10px 15px; }
 
+/* Menu Styling */
+#adminmenu .toplevel_page_tour-operator div.wp-menu-image {
+  width: 20px;
+  padding: 0 9px 0 7px; }
+  #adminmenu .toplevel_page_tour-operator div.wp-menu-image img {
+    padding-top: 7px; }
+
+#adminmenu .toplevel_page_tour-operator:hover .toplevel_page_tour-operator div.wp-menu-image img {
+  fill: #00b9eb; }
+
 /* The Tab Styling */
 body.tour-operator_page_lsx-lsx-settings .uix-field-wrapper .ui-tab-nav li {
   display: inline-block; }

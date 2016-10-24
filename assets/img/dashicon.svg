@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" style="enable-background:new 0 0 20 20;" xml:space="preserve" width="20" height="20"><rect id="backgroundrect" width="100%" height="100%" x="0" y="0" fill="none" stroke="none"/>
+
+<g class="currentLayer"><title>Layer 1</title><g id="XMLID_11_" class="selected" fill="#eeeeee" fill-opacity="1">
+	<path id="XMLID_18_" d="M10,0C4.5,0,0,4.5,0,10s4.5,10,10,10s10-4.5,10-10S15.5,0,10,0z M10,18.3c-4.6,0-8.3-3.7-8.3-8.3   c0-4.6,3.7-8.3,8.3-8.3c4.6,0,8.3,3.7,8.3,8.3C18.3,14.6,14.6,18.3,10,18.3z" fill="#eeeeee" fill-opacity="1"/>
+	<path id="XMLID_19_" d="M10.8,8.9L10.8,8.9L10.8,8.9c-0.1-0.1-0.2-0.1-0.3-0.2L6.1,6.1l2.7,4.5c0,0.1,0.1,0.1,0.1,0.2l0,0l0,0   c0.2,0.3,0.6,0.6,1.1,0.6c0.8,0,1.4-0.6,1.4-1.4C11.4,9.6,11.2,9.2,10.8,8.9z M10,10.7c-0.4,0-0.7-0.3-0.7-0.7   c0-0.4,0.3-0.7,0.7-0.7s0.7,0.3,0.7,0.7C10.7,10.4,10.4,10.7,10,10.7z" fill="#eeeeee" fill-opacity="1"/>
+	<g id="XMLID_16_" fill="#eeeeee" fill-opacity="1">
+		<rect id="XMLID_8_" x="9.699999809265137" y="2.9000000953674316" width="0.6000000238418579" height="1.2999999523162842" fill="#eeeeee" fill-opacity="1"/>
+		<rect id="XMLID_7_" x="5.099999904632568" y="4.800000190734863" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -2.2594 5.4186)" width="0.6000000238418579" height="1.2999999523162842" fill="#eeeeee" fill-opacity="1"/>
+		
+			<rect id="XMLID_6_" x="13.899999618530273" y="5.099999904632568" transform="matrix(0.7071 -0.7071 0.7071 0.7071 0.4169 11.8797)" width="1.2999999523162842" height="0.6000000238418579" fill="#eeeeee" fill-opacity="1"/>
+		<rect id="XMLID_5_" x="2.9000000953674316" y="9.699999809265137" width="1.2999999523162842" height="0.6000000238418579" fill="#eeeeee" fill-opacity="1"/>
+		<rect id="XMLID_4_" x="15.800000190734863" y="9.699999809265137" width="1.2999999523162842" height="0.6000000238418579" fill="#eeeeee" fill-opacity="1"/>
+		
+			<rect id="XMLID_3_" x="4.800000190734863" y="14.300000190734863" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -8.7214 8.0952)" width="1.2999999523162842" height="0.6000000238418579" fill="#eeeeee" fill-opacity="1"/>
+		
+			<rect id="XMLID_2_" x="14.199999809265137" y="13.899999618530273" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -6.0451 14.5563)" width="0.6000000238418579" height="1.2999999523162842" fill="#eeeeee" fill-opacity="1"/>
+		<rect id="XMLID_1_" x="9.699999809265137" y="15.800000190734863" width="0.6000000238418579" height="1.2999999523162842" fill="#eeeeee" fill-opacity="1"/>
+	</g>
+	<path id="XMLID_47_" d="M11.3,9.5c0-0.1-0.1-0.1-0.1-0.2l0,0l0,0c-0.2-0.3-0.6-0.6-1.1-0.6c-0.8,0-1.4,0.6-1.4,1.4   c0,0.4,0.2,0.8,0.5,1.1l0,0l0,0c0.1,0.1,0.2,0.1,0.3,0.2l4.4,2.6L11.3,9.5z M10,10.7c-0.4,0-0.7-0.3-0.7-0.7c0-0.4,0.3-0.7,0.7-0.7   s0.7,0.3,0.7,0.7C10.7,10.4,10.4,10.7,10,10.7z" fill="#eeeeee" fill-opacity="1"/>
+</g></g></svg>

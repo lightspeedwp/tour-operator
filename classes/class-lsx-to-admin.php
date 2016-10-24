@@ -89,7 +89,7 @@ class TO_Admin extends Tour_Operator {
 	        'edit_posts',
 	        'tour-operator',
 	        array($this,'menu_dashboard'),
-	        null,
+	        TO_URL.'assets/img/dashicon.svg',
 	        6
 	    );
 
