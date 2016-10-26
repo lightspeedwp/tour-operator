@@ -152,7 +152,7 @@ class TO_Admin extends Tour_Operator {
 					
 					$page = 'edit.php';
 
-					if ( $page === substr( $item_page, 0, strlen( $page ) ) ) {
+					if ( substr( $item_page, 0, strlen( $page ) ) === $page ) {
 						$type_key = str_replace( 'edit.php?post_type=', '', $item_page );
 						$type_obj = get_post_type_object( $type_key );
 
@@ -171,7 +171,7 @@ class TO_Admin extends Tour_Operator {
 
 					$page = 'post-new.php';
 
-					if ( $page === substr( $item_page, 0, strlen( $page ) ) ) {
+					if ( substr( $item_page, 0, strlen( $page ) ) === $page ) {
 						$type_key = str_replace( 'post-new.php?post_type=', '', $item_page );
 						$type_obj = get_post_type_object( $type_key );
 
