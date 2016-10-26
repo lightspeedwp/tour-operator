@@ -1341,15 +1341,23 @@
   padding: 10px 15px; }
 
 /* Menu Styling */
-#adminmenu .toplevel_page_tour-operator div.wp-menu-image {
-  width: 20px;
-  padding: 0 9px 0 7px; }
-  #adminmenu .toplevel_page_tour-operator div.wp-menu-image img {
-    padding-top: 7px; }
+/*#adminmenu {
+	.toplevel_page_tour-operator {
 
-#adminmenu .toplevel_page_tour-operator:hover .toplevel_page_tour-operator div.wp-menu-image img {
-  fill: #00b9eb; }
+		div.wp-menu-image {
+		    width: 20px;
+		    padding: 0 9px 0 7px;
 
+			img {
+				padding-top: 7px;
+			}
+		}
+
+		&:hover .toplevel_page_tour-operator div.wp-menu-image img {
+			fill:#00b9eb;
+		}
+	}
+}*/
 /* The Welcome Page Styling */
 .to_welcome_wrap .primary {
   width: 60%;
