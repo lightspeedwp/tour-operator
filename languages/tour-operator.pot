@@ -265,164 +265,168 @@ msgstr ""
 msgid "$label"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:87, classes/class-lsx-to-admin.php:113
+#: classes/class-lsx-to-admin.php:89, classes/class-lsx-to-admin.php:116
 msgid "Dashboard"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:88
+#: classes/class-lsx-to-admin.php:90
 msgid "Tour Operator"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:97, classes/class-lsx-to-admin.php:97
+#: classes/class-lsx-to-admin.php:99, classes/class-lsx-to-admin.php:99
 msgid "Add .$type_label"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:100, classes/class-lsx-to-admin.php:100
+#: classes/class-lsx-to-admin.php:102, classes/class-lsx-to-admin.php:102
 msgid "$tax_label_plural"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:103, classes/class-lsx-to-admin.php:103
+#: classes/class-lsx-to-admin.php:105, classes/class-lsx-to-admin.php:105
+msgid "Welcome"
+msgstr ""
+
+#: classes/class-lsx-to-admin.php:106, classes/class-lsx-to-admin.php:106
 msgid "Help"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:104, classes/class-lsx-to-admin.php:104
+#: classes/class-lsx-to-admin.php:107, classes/class-lsx-to-admin.php:107
 msgid "Add-ons"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:141
+#: classes/class-lsx-to-admin.php:151
 msgctxt "tour-operator"
 msgid "Travel Styles"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:142
+#: classes/class-lsx-to-admin.php:152
 msgctxt "tour-operator"
 msgid "Travel Style"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:143
+#: classes/class-lsx-to-admin.php:153
 msgid "Search Travel Styles"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:144, classes/class-lsx-to-admin.php:151, templates/archive-destination.php:236
+#: classes/class-lsx-to-admin.php:154, classes/class-lsx-to-admin.php:161, templates/archive-destination.php:236
 msgid "Travel Styles"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:145
+#: classes/class-lsx-to-admin.php:155
 msgid "Parent Travel Style"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:146
+#: classes/class-lsx-to-admin.php:156
 msgid "Parent Travel Style:"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:147
+#: classes/class-lsx-to-admin.php:157
 msgid "Edit Travel Style"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:148
+#: classes/class-lsx-to-admin.php:158
 msgid "Update Travel Style"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:149
+#: classes/class-lsx-to-admin.php:159
 msgid "Add New Travel Style"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:150
+#: classes/class-lsx-to-admin.php:160
 msgid "New Travel Style"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:167
+#: classes/class-lsx-to-admin.php:177
 msgctxt "tour-operator"
 msgid "Brands"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:168
+#: classes/class-lsx-to-admin.php:178
 msgctxt "tour-operator"
 msgid "Brand"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:169
+#: classes/class-lsx-to-admin.php:179
 msgid "Search Brands"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:170, classes/class-lsx-to-admin.php:177
+#: classes/class-lsx-to-admin.php:180, classes/class-lsx-to-admin.php:187
 msgid "Brands"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:171
+#: classes/class-lsx-to-admin.php:181
 msgid "Parent Brand"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:172
+#: classes/class-lsx-to-admin.php:182
 msgid "Parent Brand:"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:173
+#: classes/class-lsx-to-admin.php:183
 msgid "Edit Brand"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:174
+#: classes/class-lsx-to-admin.php:184
 msgid "Update Brand"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:175
+#: classes/class-lsx-to-admin.php:185
 msgid "Add New Brand"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:176
+#: classes/class-lsx-to-admin.php:186
 msgid "New Brand"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:194, classes/class-lsx-to-admin.php:195
+#: classes/class-lsx-to-admin.php:204, classes/class-lsx-to-admin.php:205
 msgctxt "tour-operator"
 msgid "Location"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:196
+#: classes/class-lsx-to-admin.php:206
 msgid "Search Locations"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:197, classes/class-lsx-to-admin.php:204
+#: classes/class-lsx-to-admin.php:207, classes/class-lsx-to-admin.php:214
 msgid "Locations"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:198
+#: classes/class-lsx-to-admin.php:208
 msgid "Parent Location"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:199
+#: classes/class-lsx-to-admin.php:209
 msgid "Parent Location:"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:200
+#: classes/class-lsx-to-admin.php:210
 msgid "Edit Location"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:201
+#: classes/class-lsx-to-admin.php:211
 msgid "Update Location"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:202
+#: classes/class-lsx-to-admin.php:212
 msgid "Add New Location"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:203
+#: classes/class-lsx-to-admin.php:213
 msgid "New Location"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:361
+#: classes/class-lsx-to-admin.php:371
 msgid "Featured Image"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:368
+#: classes/class-lsx-to-admin.php:378
 msgid "Choose Image"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:369
+#: classes/class-lsx-to-admin.php:379
 msgid "Remove Image"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:448
+#: classes/class-lsx-to-admin.php:458
 msgid "Tagline"
 msgstr ""
 
