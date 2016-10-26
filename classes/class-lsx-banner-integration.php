@@ -27,7 +27,7 @@ class TO_LSX_Banner_Integration {
 	public function __construct($post_types=array(),$taxonomies=array()) {
 		$this->post_types = $post_types;
 		$this->taxonomies = $taxonomies;
-		$this->options = get_option('_lsx_lsx-settings',false);
+		$this->options = get_option('_to_settings',false);
 
 		add_action( 'init', array( $this, 'init' ) );
 		add_filter('lsx_banner_enable_placeholder', function( $bool ) { return true; });

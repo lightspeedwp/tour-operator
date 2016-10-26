@@ -25,7 +25,7 @@ class TO_Settings extends Tour_Operator {
 	 * @access private
 	 */
 	public function __construct() {
-		$this->options = get_option('_lsx_lsx-settings',false);	
+		$this->options = get_option('_to_settings',false);	
 		$this->set_vars();
 
 		add_filter( 'to_framework_settings_tabs', array( $this, 'register_settings_tabs') );
@@ -37,11 +37,11 @@ class TO_Settings extends Tour_Operator {
 	 */
 	public function create_settings_page(){
 		if(is_admin()){
-			if(!class_exists('\lsx\ui\uix')){
+			if(!class_exists('\to\ui\uix')){
 				include_once TO_PATH.'vendor/uix/uix.php';
 			}
 			$pages = $this->settings_page_array();
-			$uix = \lsx\ui\uix::get_instance( 'lsx' );
+			$uix = \to\ui\uix::get_instance( 'to' );
 			$uix->register_pages( $pages );
 
 			foreach($this->post_types as $post_type => $label){
@@ -143,8 +143,8 @@ class TO_Settings extends Tour_Operator {
 		}
 	
 		return array(
-				'lsx-settings'  => array(                                                         // this is the settings array. The key is the page slug
-						'page_title'  =>  esc_html__('Settings','tour-operator'),                                                  // title of the page
+				'settings'  => array(                                                         // this is the settings array. The key is the page slug
+						'page_title'  =>  esc_html__('Tour Operator Settings','tour-operator'),                                                  // title of the page
 						'menu_title'  =>  esc_html__('Settings','tour-operator'),                                                  // title seen on the menu link
 						'capability'  =>  'manage_options',                                              // required capability to access page
 						'icon'        =>  'dashicons-book-alt',                                      // Icon or image to be used on admin menu

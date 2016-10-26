@@ -52,7 +52,7 @@ class Lsx_Tour {
 	 * @access private
 	 */
 	private function __construct() {
-		$this->options = get_option('_lsx_lsx-settings',false);
+		$this->options = get_option('_to_settings',false);
 		if(false !== $this->options && isset($this->options[$this->plugin_slug]) && !empty($this->options[$this->plugin_slug])){
 			$this->options = $this->options[$this->plugin_slug];
 		}
@@ -131,6 +131,7 @@ class Lsx_Tour {
 		    'publicly_queryable' => true,
 		    'show_ui'            => true,
 		    'show_in_menu'       => 'tour-operator',
+			'menu_position'      => 20,
 		    'query_var'          => true,
 		    'rewrite'            => array( 'slug' => 'tour' ),
 		    'capability_type'    => 'post',

@@ -1373,25 +1373,25 @@
     margin-top: 0px; }
 
 /* The Tab Styling */
-body.tour-operator_page_lsx-lsx-settings .uix-field-wrapper .ui-tab-nav li {
+body.tour-operator_page_to-settings .uix-field-wrapper .ui-tab-nav li {
   display: inline-block; }
-  body.tour-operator_page_lsx-lsx-settings .uix-field-wrapper .ui-tab-nav li::after {
+  body.tour-operator_page_to-settings .uix-field-wrapper .ui-tab-nav li::after {
     content: "|"; }
-  body.tour-operator_page_lsx-lsx-settings .uix-field-wrapper .ui-tab-nav li:last-child:after {
+  body.tour-operator_page_to-settings .uix-field-wrapper .ui-tab-nav li:last-child:after {
     content: ""; }
-  body.tour-operator_page_lsx-lsx-settings .uix-field-wrapper .ui-tab-nav li a {
+  body.tour-operator_page_to-settings .uix-field-wrapper .ui-tab-nav li a {
     padding: 0 5px;
     text-decoration: none; }
-    body.tour-operator_page_lsx-lsx-settings .uix-field-wrapper .ui-tab-nav li a.active {
+    body.tour-operator_page_to-settings .uix-field-wrapper .ui-tab-nav li a.active {
       color: black; }
-    body.tour-operator_page_lsx-lsx-settings .uix-field-wrapper .ui-tab-nav li a:first-child {
+    body.tour-operator_page_to-settings .uix-field-wrapper .ui-tab-nav li a:first-child {
       padding-left: 0px; }
-    body.tour-operator_page_lsx-lsx-settings .uix-field-wrapper .ui-tab-nav li a:focus {
+    body.tour-operator_page_to-settings .uix-field-wrapper .ui-tab-nav li a:focus {
       box-shadow: none; }
 
-body.tour-operator_page_lsx-lsx-settings .uix-field-wrapper .ui-tab {
+body.tour-operator_page_to-settings .uix-field-wrapper .ui-tab {
   display: none; }
-  body.tour-operator_page_lsx-lsx-settings .uix-field-wrapper .ui-tab.active {
+  body.tour-operator_page_to-settings .uix-field-wrapper .ui-tab.active {
     display: block; }
 
 /* The Addons Styling */

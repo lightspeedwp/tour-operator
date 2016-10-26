@@ -55,7 +55,7 @@ class TO_Accommodation {
 		$this->is_wetu_active = false;
 		$this->display_connected_tours = false;
 
-		$this->options = get_option('_lsx_lsx-settings',false);
+		$this->options = get_option('_to_settings',false);
 		if(false !== $this->options && isset($this->options[$this->plugin_slug]) && !empty($this->options[$this->plugin_slug])){
 			$this->options = $this->options[$this->plugin_slug];
 		}
@@ -130,13 +130,13 @@ class TO_Accommodation {
 			'publicly_queryable'	=>	true,
 			'show_ui' 				=>	true,
 			'show_in_menu' 			=>	'tour-operator',
+			'menu_position' 		=>	30,
 			'query_var' 			=>	true,
 			'rewrite' 				=>	array('slug' => 'accommodation','with_front'=>false),		
 			'exclude_from_search' 	=>	false,
 			'capability_type' 		=>	'post',
 			'has_archive' 			=>	'accommodation',
 			'hierarchical' 			=>	false,
-			'menu_position' 		=>	null,
 			'menu_icon'				=>	"dashicons-admin-multisite",
 			'supports' 				=> array(
 				'title',

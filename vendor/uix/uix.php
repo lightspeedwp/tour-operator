@@ -8,7 +8,7 @@
  * @link
  * @copyright 2016 David Cramer
  */
-namespace lsx\ui;
+namespace to\ui;
 
 /**
  * Settings class

@@ -48,7 +48,7 @@ class TO_Frontend extends Tour_Operator {
 	 * @access private
 	 */
 	public function __construct() {
-		$this->options = get_option('_lsx_lsx-settings',false);	
+		$this->options = get_option('_to_settings',false);	
 		$this->set_vars();
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ) );	

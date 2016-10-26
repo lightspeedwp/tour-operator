@@ -76,6 +76,15 @@ class Tour_Operator {
 	public $post_types = array();	
 	
 	/**
+	 * Holds the array of post_types_singular
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var      array()
+	 */
+	public $post_types_singular = array();	
+	
+	/**
 	 * Holds the array of taxonomies
 	 *
 	 * @since 1.0.0
@@ -130,7 +139,7 @@ class Tour_Operator {
 	private function __construct() {
 		
 		//Set the options
-		$this->options = get_option('_lsx_lsx-settings',false);	
+		$this->options = get_option('_to_settings',false);	
 		$this->set_vars();
 
 		//Add our action to init to set up our vars first.	
@@ -216,6 +225,7 @@ class Tour_Operator {
 				'tour'			=> esc_html__('Tour','tour-operator'),
 		);		
 		$this->post_types = apply_filters('to_post_types',$this->post_types);
+		$this->post_types_singular = apply_filters('to_post_types_singular',$this->post_types_singular);
 		$this->active_post_types = array_keys($this->post_types);
 
 		$this->taxonomies = array(
@@ -232,6 +242,8 @@ class Tour_Operator {
 				'facility'	=> __('Facilities',$this->plugin_slug),
 				'location'	=> __('Locations',$this->plugin_slug)
 		);				
+		$this->taxonomies = apply_filters('to_framework_taxonomies',$this->taxonomies);
+		$this->taxonomies_plural = apply_filters('to_framework_taxonomies_plural',$this->taxonomies_plural);
 	}	
 
 	/**
@@ -259,7 +271,9 @@ class Tour_Operator {
 	 */
 	public function require_post_type_classes() {
 		foreach($this->post_types as $post_type => $label){
-			require_once( TO_PATH . 'classes/class-'.$post_type.'.php' );
+			if ( file_exists( TO_PATH . 'classes/class-'.$post_type.'.php' ) ) {
+				require_once( TO_PATH . 'classes/class-'.$post_type.'.php' );
+			}
 		}
 		$this->connections = $this->create_post_connections();	
 		$this->single_fields = apply_filters('to_search_fields',array());

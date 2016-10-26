@@ -25,11 +25,13 @@ class TO_Admin extends Tour_Operator {
 	 * @access private
 	 */
 	public function __construct() {
-		$this->options = get_option('_lsx_lsx-settings',false);	
+		$this->options = get_option('_to_settings',false);	
 		$this->set_vars();
 
 		add_action('init',array($this,'init'));
 		add_action( 'admin_menu', array($this,'register_menu_pages') );
+		add_action( 'custom_menu_order', array($this,'reorder_menu_pages') );
+		add_action( 'admin_head', array( $this, 'select_submenu_pages' ) );
 
 		add_action( 'init', array( $this, 'global_taxonomies') );
 
@@ -105,6 +107,164 @@ class TO_Admin extends Tour_Operator {
 		add_submenu_page('tour-operator', esc_html__('Welcome','tour-operator'), esc_html__('Welcome','tour-operator'), 'manage_options', 'to-welcome', array($this,'welcome_page'));
 		add_submenu_page('tour-operator', esc_html__('Help','tour-operator'), esc_html__('Help','tour-operator'), 'manage_options', 'to-help', array($this,'help_page'));
 		add_submenu_page('tour-operator', esc_html__('Add-ons','tour-operator'), esc_html__('Add-ons','tour-operator'), 'manage_options', 'to-addons', array($this,'addons_page'));
+	}
+
+	/**
+	 * Reorder custom menu pages.
+	 *
+	 * - [1] Welcome
+	 * - [10] All Destinations
+	 * - [+1] Add Destination
+	 * - [20] All Tours
+	 * - [+1] Add Tour
+	 * - [22] Travel Styles
+	 * - [30] All Accommodation
+	 * - [+1] Add Accommodation
+	 * - [32] Accommodation Types
+	 * - [33] Brands
+	 * - [34] Locations
+	 * - [35] Facilities
+	 * - [40] All Team
+	 * - [+1] Add Team Member
+	 * - [50] All Activities
+	 * - [+1] Add Activity
+	 * - [60] All Reviews
+	 * - [+1] Add Review
+	 * - [70] All Specials
+	 * - [+1] Add Special
+	 * - [72] Special Types
+	 * - [80] All Vehicles
+	 * - [+1] Add Vehicle
+	 * - [90] Settings
+	 * - [91] Help 
+	 * - [92] Add-ons
+	 */
+	function reorder_menu_pages() {
+		global $submenu;
+		$new_submenu = array();
+
+		foreach ( $submenu as $page => $items ) {
+			if ( 'tour-operator' === $page ) {
+				foreach ( $items as $key => $item ) {
+					$item_page = $item[2];
+					
+					// ***** All {post_type} *****
+					
+					$page = 'edit.php';
+
+					if ( $page === substr( $item_page, 0, strlen( $page ) ) ) {
+						$type_key = str_replace( 'edit.php?post_type=', '', $item_page );
+						$type_obj = get_post_type_object( $type_key );
+
+						if ( is_object( $type_obj ) ) {
+							$menu_position = $type_obj->menu_position;
+
+							if ( is_numeric( $menu_position ) ) {
+								$new_submenu[ $menu_position ] = $item;
+							}
+						}
+						
+						continue;
+					}
+
+					// ***** Add {post_type} *****
+
+					$page = 'post-new.php';
+
+					if ( $page === substr( $item_page, 0, strlen( $page ) ) ) {
+						$type_key = str_replace( 'post-new.php?post_type=', '', $item_page );
+						$type_obj = get_post_type_object( $type_key );
+
+						if ( is_object( $type_obj ) ) {
+							$menu_position = $type_obj->menu_position + 1;
+
+							if ( is_numeric( $menu_position ) ) {
+								$new_submenu[ $menu_position ] = $item;
+							}
+						}
+						
+						continue;
+					}
+
+					// ***** Static pages *****
+
+					$static_pages = array(
+						1   => 'to-welcome',
+						90 => 'to-settings',
+						91 => 'to-help',
+						92 => 'to-addons',
+					);
+
+					$static_pages_found = false;
+
+					foreach ( $static_pages as $menu_position => $page ) {
+						if ( $page === $item_page ) {
+							$new_submenu[ $menu_position ] = $item;
+							$static_pages_found = true;
+							break;
+						}
+					}
+
+					if ( $static_pages_found ) {
+						continue;
+					}
+
+					// ***** Taxonomies *****
+
+					// @TODO - make $taxonomies_pages dynamic
+					$taxonomies_pages = array(
+						22  => 'edit-tags.php?taxonomy=travel-style',
+						32  => 'edit-tags.php?taxonomy=accommodation-type',
+						33  => 'edit-tags.php?taxonomy=accommodation-brand',
+						34  => 'edit-tags.php?taxonomy=location',
+						35  => 'edit-tags.php?taxonomy=facility',
+						72  => 'edit-tags.php?taxonomy=special-type',
+					);
+
+					$taxonomies_pages_found = false;
+
+					foreach ( $taxonomies_pages as $menu_position => $page ) {
+						if ( $page === $item_page ) {
+							$new_submenu[ $menu_position ] = $item;
+							$taxonomies_pages_found = true;
+							break;
+						}
+					}
+
+					if ( $taxonomies_pages_found ) {
+						continue;
+					}
+
+					// ***** With no menu order set (send to final positions) *****
+
+					$new_submenu[ $key + 1000 ] = $item;
+				}
+			}
+		}
+
+		ksort( $new_submenu );
+		$submenu[ 'tour-operator' ] = $new_submenu;
+	}
+	
+	/**
+	 * Keep TO main menu item active for all subitems
+	 */
+	function select_submenu_pages() {
+		global $parent_file, $submenu_file;
+
+		// @TODO - make $taxonomies_pages dynamic
+		$taxonomies_pages = array(
+			'edit-tags.php?taxonomy=travel-style',
+			'edit-tags.php?taxonomy=accommodation-type',
+			'edit-tags.php?taxonomy=accommodation-brand',
+			'edit-tags.php?taxonomy=location',
+			'edit-tags.php?taxonomy=facility',
+			'edit-tags.php?taxonomy=special-type',
+		);
+
+		if ( in_array( $submenu_file, $taxonomies_pages ) ) {
+			$parent_file = 'tour-operator';
+		}
 	}
 	 
 	/**
@@ -332,7 +492,7 @@ class TO_Admin extends Tour_Operator {
 	 */
 	public function add_action_links ( $links ) {
 		 $mylinks = array(
-		 	'<a href="' . admin_url( 'options-general.php?page=lsx-lsx-settings' ) . '">'.__('Settings',$this->plugin_slug).'</a>',
+		 	'<a href="' . admin_url( 'admin.php?page=to-settings' ) . '">'.__('Settings',$this->plugin_slug).'</a>',
 		 	'<a href="https://www.lsdev.biz/documentation/tour-operator-plugin/" target="_blank">'.__('Documentation',$this->plugin_slug).'</a>',
 		 	'<a href="https://feedmysupport.zendesk.com/home" target="_blank">'.__('Support',$this->plugin_slug).'</a>',
 		 );

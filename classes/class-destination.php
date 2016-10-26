@@ -54,7 +54,7 @@ class Lsx_Destination{
 	 */
 	private function __construct() {
 		// activate property post type
-		$temp = get_option('_lsx_lsx-settings',false);
+		$temp = get_option('_to_settings',false);
 		if(false !== $temp && isset($temp[$this->plugin_slug]) && !empty($temp[$this->plugin_slug])){
 			$this->options = $temp[$this->plugin_slug];
 		}
@@ -120,6 +120,7 @@ class Lsx_Destination{
 		    'publicly_queryable' => true,
 		    'show_ui'            => true,
 		    'show_in_menu'       => 'tour-operator',
+			'menu_position'      => 10,
 		    'query_var'          => true,
 		    'rewrite'            => array('slug'=>'destination'),
 		    'capability_type'    => 'page',
