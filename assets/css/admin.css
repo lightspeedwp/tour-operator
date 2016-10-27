@@ -1291,13 +1291,13 @@
 
 /* Variables */
 /* Variables */
-.to_welcome_wrap .plugin-info, .to_help_wrap .primary .feature-box {
+.to_welcome_wrap .plugin-info, .to_help_wrap .primary .feature-box, .to_licenses_wrap .primary .feature-box {
   background-color: #f9f9f9;
   border: 1px solid #cccccc;
   border-radius: 4px;
   padding: 8px 20px 12px; }
 
-.to_welcome_wrap .title h1, .to_welcome_wrap .title h2, .to_welcome_wrap .title h3, .to_welcome_wrap .title h4, .to_welcome_wrap .title h5, .to_welcome_wrap .title h6, .to_help_wrap .primary .to-help-section h3 {
+.to_welcome_wrap .title h1, .to_welcome_wrap .title h2, .to_welcome_wrap .title h3, .to_welcome_wrap .title h4, .to_welcome_wrap .title h5, .to_welcome_wrap .title h6, .to_help_wrap .primary .to-help-section h3, .to_licenses_wrap .primary .to-licenses-section h3 {
   background-color: #f9f9f9;
   margin-bottom: 10px;
   padding: 6px 0 6px 12px; }
@@ -1306,10 +1306,10 @@
   margin-bottom: 20px;
   margin-left: 35px; }
 
-.to_welcome_wrap .error, .to_addons_wrap .products li .error, .to_help_wrap .primary .error {
+.to_welcome_wrap .error, .to_addons_wrap .products li .error, .to_help_wrap .primary .error, .to_licenses_wrap .primary .error {
   display: none; }
 
-.to_welcome_wrap .primary, .to_help_wrap .primary, .to_welcome_wrap .secondary, .to_help_wrap .secondary {
+.to_welcome_wrap .primary, .to_help_wrap .primary, .to_licenses_wrap .primary, .to_welcome_wrap .secondary, .to_help_wrap .secondary, .to_licenses_wrap .secondary {
   float: left;
   display: block; }
 
@@ -1494,3 +1494,9 @@ body.tour-operator_page_to-settings .uix-field-wrapper .ui-tab {
       margin-bottom: 10px;
       margin-top: 10px;
       padding-left: 4px; }
+
+.to_licenses_wrap .primary {
+  width: 65%;
+  margin-top: 15px; }
+  .to_licenses_wrap .primary .to-licenses-section p {
+    margin-left: 15px; }

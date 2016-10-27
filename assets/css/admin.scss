@@ -127,7 +127,6 @@ $bdr-grey: #cccccc;
 	}
 }
 
-
 /* The Tab Styling */
 body.tour-operator_page_to-settings {
 	.uix-field-wrapper {
@@ -342,5 +341,30 @@ body.tour-operator_page_to-settings {
 			    padding-left: 4px;
 			}				    
 		}		
+	}
+}
+
+.to_licenses_wrap {
+	@extend %column-layout;
+
+	.primary {
+		width: 65%;
+		margin-top: 15px;
+
+		@extend %error-hide;
+
+		.feature-box {
+			@extend %white-box;	
+		}
+
+		.to-licenses-section {
+			h3 {
+				@extend %heading-box;
+			}
+
+			p {
+				margin-left: 15px;
+			}
+		}
 	}
 }

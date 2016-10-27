@@ -98,46 +98,44 @@ class TO_Admin extends Tour_Operator {
 	    );
 
 	    foreach($this->post_types_singular as $type_key => $type_label){
-	    	add_submenu_page('tour-operator', esc_html__('Add '.$type_label,'tour-operator'), esc_html__('Add '.$type_label,'tour-operator'), 'edit_posts', 'post-new.php?post_type='.$type_key);
-		}
+	    	if ( in_array( $type_key , array( 'destination', 'tour', 'accommodation' ) ) ) {
+				add_submenu_page('tour-operator', esc_html__('Add '.$type_label,'tour-operator'), esc_html__('Add '.$type_label,'tour-operator'), 'edit_posts', 'post-new.php?post_type='.$type_key);
+	    	}
+	    }
 	    foreach($this->taxonomies_plural as $tax_key => $tax_label_plural){
 	    	add_submenu_page('tour-operator', esc_html__($tax_label_plural,'tour-operator'), esc_html__($tax_label_plural,'tour-operator'), 'edit_posts', 'edit-tags.php?taxonomy='.$tax_key);
 		}
 
-		add_submenu_page('tour-operator', esc_html__('Welcome','tour-operator'), esc_html__('Welcome','tour-operator'), 'manage_options', 'to-welcome', array($this,'welcome_page'));
 		add_submenu_page('tour-operator', esc_html__('Help','tour-operator'), esc_html__('Help','tour-operator'), 'manage_options', 'to-help', array($this,'help_page'));
+		add_submenu_page('tour-operator', esc_html__('Licenses','tour-operator'), esc_html__('Licenses','tour-operator'), 'manage_options', 'to-licenses', array($this,'licenses_page'));
 		add_submenu_page('tour-operator', esc_html__('Add-ons','tour-operator'), esc_html__('Add-ons','tour-operator'), 'manage_options', 'to-addons', array($this,'addons_page'));
 	}
 
 	/**
 	 * Reorder custom menu pages.
 	 *
-	 * - [1] Welcome
-	 * - [10] All Destinations
+	 *      - [1] Welcome
+	 * - [10] Destinations
 	 * - [+1] Add Destination
-	 * - [20] All Tours
+	 * - [20] Tours
 	 * - [+1] Add Tour
 	 * - [22] Travel Styles
-	 * - [30] All Accommodation
+	 * - [30] Accommodation
 	 * - [+1] Add Accommodation
 	 * - [32] Accommodation Types
 	 * - [33] Brands
 	 * - [34] Locations
 	 * - [35] Facilities
-	 * - [40] All Team
-	 * - [+1] Add Team Member
-	 * - [50] All Activities
-	 * - [+1] Add Activity
-	 * - [60] All Reviews
-	 * - [+1] Add Review
-	 * - [70] All Specials
-	 * - [+1] Add Special
+	 * - [40] Team
+	 * - [50] Activities
+	 * - [60] Reviews
+	 * - [70] Specials
 	 * - [72] Special Types
-	 * - [80] All Vehicles
-	 * - [+1] Add Vehicle
+	 * - [80] Vehicles
 	 * - [90] Settings
-	 * - [91] Help 
-	 * - [92] Add-ons
+	 * - [91] Help
+	 * - [92] Licenses
+	 * - [93] Add-ons
 	 */
 	function reorder_menu_pages() {
 		global $submenu;
@@ -189,10 +187,10 @@ class TO_Admin extends Tour_Operator {
 					// ***** Static pages *****
 
 					$static_pages = array(
-						1   => 'to-welcome',
 						90 => 'to-settings',
 						91 => 'to-help',
-						92 => 'to-addons',
+						92 => 'to-licenses',
+						93 => 'to-addons',
 					);
 
 					$static_pages_found = false;
@@ -286,18 +284,18 @@ class TO_Admin extends Tour_Operator {
 	}	
 
 	/**
-	 * Display the addons page
+	 * Display the help page
 	 */
 	function help_page(){
 	    include(TO_PATH.'includes/settings/help.php');
 	}
 
 	/**
-	 * Display the welcome page
+	 * Display the licenses page
 	 */
-	function welcome_page(){
-	    include(TO_PATH.'includes/settings/welcome.php');
-	}	
+	function licenses_page(){
+	    include(TO_PATH.'includes/settings/licenses.php');
+	}
 
 	/**
 	 * Register the global post types.
@@ -583,7 +581,19 @@ class TO_Admin extends Tour_Operator {
 	 */
 	public function save_meta( $term_id = 0, $taxonomy = '' ) {
 
+		if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
+			return;
+		}
+
+		if ( ! isset( $_POST['thumbnail'] ) || ! isset( $_POST['tagline'] ) ) {
+			return;
+		}
+
 		if(check_admin_referer( 'to_save_term_thumbnail', 'to_term_thumbnail_nonce' )){
+			if ( ! isset( $_POST['thumbnail'] ) ) {
+				return;
+			}
+
 			$thumbnail_meta = ! empty( sanitize_text_field(wp_unslash($_POST[ 'thumbnail' ])) ) ? sanitize_text_field(wp_unslash($_POST[ 'thumbnail' ]))	: '';
 			if ( empty( $thumbnail_meta ) ) {
 				delete_term_meta( $term_id, 'thumbnail' );
@@ -593,6 +603,10 @@ class TO_Admin extends Tour_Operator {
 		}
 		
 		if(check_admin_referer( 'to_save_term_tagline', 'to_term_tagline_nonce' )){
+			if ( ! isset( $_POST['tagline'] ) ) {
+				return;
+			}
+
 			$meta = ! empty( sanitize_text_field(wp_unslash($_POST[ 'tagline' ])) ) ? sanitize_text_field(wp_unslash($_POST[ 'tagline' ])) : '';
 			if ( empty( $meta ) ) {
 				delete_term_meta( $term_id, 'tagline' );

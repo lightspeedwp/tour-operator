@@ -118,7 +118,7 @@ class TO_Accommodation {
 				'add_new' 			=> __('Add New', 'tour-operator'),
 				'add_new_item' 		=> __('Add New Accommodation', 'tour-operator'),
 				'edit_item' 		=> __('Edit Accommodation', 'tour-operator'),
-				'all_items' 		=> __('All Accommodation', 'tour-operator'),
+				'all_items' 		=> __('Accommodation', 'tour-operator'),
 				'view_item' 		=> __('View Accommodation', 'tour-operator'),
 				'search_items' 		=> __('Search Accommodation', 'tour-operator'),
 				'not_found' 		=> __('No accommodation defined', 'tour-operator'),

@@ -104,7 +104,7 @@ class Lsx_Destination{
 		    'add_new_item'       => _x( 'Add New Destination', 'tour-operator' ),
 		    'edit_item'          => _x( 'Edit Destination', 'tour-operator' ),
 		    'new_item'           => _x( 'New Destination', 'tour-operator' ),
-		    'all_items'          => _x( 'All Destinations', 'tour-operator' ),
+		    'all_items'          => _x( 'Destinations', 'tour-operator' ),
 		    'view_item'          => _x( 'View Destination', 'tour-operator' ),
 		    'search_items'       => _x( 'Search Destinations', 'tour-operator' ),
 		    'not_found'          => _x( 'No destinations found', 'tour-operator' ),

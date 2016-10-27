@@ -15,7 +15,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-#: classes/class-accommodation.php:116, classes/class-accommodation.php:117, classes/class-accommodation.php:127, includes/layout.php:240, module.php:219, module.php:224, templates/single-accommodation.php:45
+#: classes/class-accommodation.php:116, classes/class-accommodation.php:117, classes/class-accommodation.php:121, classes/class-accommodation.php:127, includes/layout.php:240, module.php:249, module.php:254, templates/single-accommodation.php:45
 msgid "Accommodation"
 msgstr ""
 
@@ -29,10 +29,6 @@ msgstr ""
 
 #: classes/class-accommodation.php:120
 msgid "Edit Accommodation"
-msgstr ""
-
-#: classes/class-accommodation.php:121
-msgid "All Accommodation"
 msgstr ""
 
 #: classes/class-accommodation.php:122, templates/content-widget-accommodation.php:31
@@ -178,7 +174,7 @@ msgstr ""
 msgid "Off"
 msgstr ""
 
-#: classes/class-destination.php:101, classes/class-destination.php:113
+#: classes/class-destination.php:101, classes/class-destination.php:107, classes/class-destination.php:113
 msgctxt "tour-operator"
 msgid "Destinations"
 msgstr ""
@@ -206,11 +202,6 @@ msgstr ""
 #: classes/class-destination.php:106
 msgctxt "tour-operator"
 msgid "New Destination"
-msgstr ""
-
-#: classes/class-destination.php:107
-msgctxt "tour-operator"
-msgid "All Destinations"
 msgstr ""
 
 #: classes/class-destination.php:108
@@ -265,7 +256,7 @@ msgstr ""
 msgid "$label"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:91, classes/class-lsx-to-admin.php:276
+#: classes/class-lsx-to-admin.php:91, classes/class-lsx-to-admin.php:274
 msgid "Dashboard"
 msgstr ""
 
@@ -273,160 +264,160 @@ msgstr ""
 msgid "Tour Operator"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:101, classes/class-lsx-to-admin.php:101
+#: classes/class-lsx-to-admin.php:102, classes/class-lsx-to-admin.php:102
 msgid "Add .$type_label"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:104, classes/class-lsx-to-admin.php:104
+#: classes/class-lsx-to-admin.php:106, classes/class-lsx-to-admin.php:106
 msgid "$tax_label_plural"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:107, classes/class-lsx-to-admin.php:107
-msgid "Welcome"
-msgstr ""
-
-#: classes/class-lsx-to-admin.php:108, classes/class-lsx-to-admin.php:108
+#: classes/class-lsx-to-admin.php:109, classes/class-lsx-to-admin.php:109
 msgid "Help"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:109, classes/class-lsx-to-admin.php:109
+#: classes/class-lsx-to-admin.php:110, classes/class-lsx-to-admin.php:110
+msgid "Licenses"
+msgstr ""
+
+#: classes/class-lsx-to-admin.php:111, classes/class-lsx-to-admin.php:111
 msgid "Add-ons"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:311
+#: classes/class-lsx-to-admin.php:309
 msgctxt "tour-operator"
 msgid "Travel Styles"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:312
+#: classes/class-lsx-to-admin.php:310
 msgctxt "tour-operator"
 msgid "Travel Style"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:313
+#: classes/class-lsx-to-admin.php:311
 msgid "Search Travel Styles"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:314, classes/class-lsx-to-admin.php:321, templates/archive-destination.php:236
+#: classes/class-lsx-to-admin.php:312, classes/class-lsx-to-admin.php:319, templates/archive-destination.php:236
 msgid "Travel Styles"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:315
+#: classes/class-lsx-to-admin.php:313
 msgid "Parent Travel Style"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:316
+#: classes/class-lsx-to-admin.php:314
 msgid "Parent Travel Style:"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:317
+#: classes/class-lsx-to-admin.php:315
 msgid "Edit Travel Style"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:318
+#: classes/class-lsx-to-admin.php:316
 msgid "Update Travel Style"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:319
+#: classes/class-lsx-to-admin.php:317
 msgid "Add New Travel Style"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:320
+#: classes/class-lsx-to-admin.php:318
 msgid "New Travel Style"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:337
+#: classes/class-lsx-to-admin.php:335
 msgctxt "tour-operator"
 msgid "Brands"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:338
+#: classes/class-lsx-to-admin.php:336
 msgctxt "tour-operator"
 msgid "Brand"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:339
+#: classes/class-lsx-to-admin.php:337
 msgid "Search Brands"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:340, classes/class-lsx-to-admin.php:347
+#: classes/class-lsx-to-admin.php:338, classes/class-lsx-to-admin.php:345
 msgid "Brands"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:341
+#: classes/class-lsx-to-admin.php:339
 msgid "Parent Brand"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:342
+#: classes/class-lsx-to-admin.php:340
 msgid "Parent Brand:"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:343
+#: classes/class-lsx-to-admin.php:341
 msgid "Edit Brand"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:344
+#: classes/class-lsx-to-admin.php:342
 msgid "Update Brand"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:345
+#: classes/class-lsx-to-admin.php:343
 msgid "Add New Brand"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:346
+#: classes/class-lsx-to-admin.php:344
 msgid "New Brand"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:364, classes/class-lsx-to-admin.php:365
+#: classes/class-lsx-to-admin.php:362, classes/class-lsx-to-admin.php:363
 msgctxt "tour-operator"
 msgid "Location"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:366
+#: classes/class-lsx-to-admin.php:364
 msgid "Search Locations"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:367, classes/class-lsx-to-admin.php:374
+#: classes/class-lsx-to-admin.php:365, classes/class-lsx-to-admin.php:372
 msgid "Locations"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:368
+#: classes/class-lsx-to-admin.php:366
 msgid "Parent Location"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:369
+#: classes/class-lsx-to-admin.php:367
 msgid "Parent Location:"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:370
+#: classes/class-lsx-to-admin.php:368
 msgid "Edit Location"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:371
+#: classes/class-lsx-to-admin.php:369
 msgid "Update Location"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:372
+#: classes/class-lsx-to-admin.php:370
 msgid "Add New Location"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:373
+#: classes/class-lsx-to-admin.php:371
 msgid "New Location"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:531
+#: classes/class-lsx-to-admin.php:529
 msgid "Featured Image"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:538
+#: classes/class-lsx-to-admin.php:536
 msgid "Choose Image"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:539
+#: classes/class-lsx-to-admin.php:537
 msgid "Remove Image"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:618
+#: classes/class-lsx-to-admin.php:632
 msgid "Tagline"
 msgstr ""
 
@@ -434,87 +425,87 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:105
-msgid "General"
-msgstr ""
-
-#: classes/class-lsx-to-settings.php:113
-msgid "Display"
-msgstr ""
-
-#: classes/class-lsx-to-settings.php:122
-msgid "API"
-msgstr ""
-
-#: classes/class-lsx-to-settings.php:131, classes/class-lsx-to-settings.php:133
-msgid "Posts"
-msgstr ""
-
-#: classes/class-lsx-to-settings.php:147
-msgid "Tour Operator Settings"
-msgstr ""
-
-#: classes/class-lsx-to-settings.php:148, includes/settings/api.php:4, includes/settings/api.php:9
+#: classes/class-lsx-to-settings.php:76, classes/class-lsx-to-settings.php:76, classes/class-lsx-to-settings.php:170, includes/settings/api.php:4, includes/settings/api.php:9
 msgid "Settings"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:152
+#: classes/class-lsx-to-settings.php:127
+msgid "General"
+msgstr ""
+
+#: classes/class-lsx-to-settings.php:135
+msgid "Display"
+msgstr ""
+
+#: classes/class-lsx-to-settings.php:144
+msgid "API"
+msgstr ""
+
+#: classes/class-lsx-to-settings.php:153, classes/class-lsx-to-settings.php:155
+msgid "Posts"
+msgstr ""
+
+#: classes/class-lsx-to-settings.php:169
+msgid "Tour Operator Settings"
+msgstr ""
+
+#: classes/class-lsx-to-settings.php:174
 msgid "Save Changes"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:179
+#: classes/class-lsx-to-settings.php:201
 msgid "Display galleries in the banner"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:183
+#: classes/class-lsx-to-settings.php:205
 msgid "Move the gallery on a page into the banner."
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:194
+#: classes/class-lsx-to-settings.php:216
 msgid "Disable CSS"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:198
+#: classes/class-lsx-to-settings.php:220
 msgid "Disable the CSS if you want to include your own."
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:203
+#: classes/class-lsx-to-settings.php:225
 msgid "Disable Javascript"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:207
+#: classes/class-lsx-to-settings.php:229
 msgid "Only disable the JS if you are debugging an error."
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:243, classes/class-lsx-to-settings.php:299
+#: classes/class-lsx-to-settings.php:265, classes/class-lsx-to-settings.php:321
 msgid "General Enquiry"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:273
+#: classes/class-lsx-to-settings.php:295
 msgid "Disable Enquire Modal"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:277, classes/class-lsx-to-settings.php:333
+#: classes/class-lsx-to-settings.php:299, classes/class-lsx-to-settings.php:355
 msgid "This disables the enquire modal, and instead redirects to the link you provide below."
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:282, classes/class-lsx-to-settings.php:338
+#: classes/class-lsx-to-settings.php:304, classes/class-lsx-to-settings.php:360
 msgid "Enquire Link"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:329
+#: classes/class-lsx-to-settings.php:351
 msgid "Disable Modal"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:582
+#: classes/class-lsx-to-settings.php:604
 msgid "Enable Connected Modals"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:586
+#: classes/class-lsx-to-settings.php:608
 msgid "Any connected item showing on a single will display a preview in a modal."
 msgstr ""
 
-#: classes/class-tour.php:112, classes/class-tour.php:124
+#: classes/class-tour.php:112, classes/class-tour.php:118, classes/class-tour.php:124
 msgctxt "tour-operator"
 msgid "Tours"
 msgstr ""
@@ -537,11 +528,6 @@ msgstr ""
 #: classes/class-tour.php:117
 msgctxt "tour-operator"
 msgid "New Tour"
-msgstr ""
-
-#: classes/class-tour.php:118
-msgctxt "tour-operator"
-msgid "All Tours"
 msgstr ""
 
 #: classes/class-tour.php:119
@@ -596,7 +582,7 @@ msgctxt "tour-operator"
 msgid "Itinerary KML File"
 msgstr ""
 
-#: classes/class-tour.php:449, includes/layout.php:295, module.php:218, templates/content-tour.php:26, templates/content-widget-tour.php:27
+#: classes/class-tour.php:449, includes/layout.php:295, module.php:248, templates/content-tour.php:26, templates/content-widget-tour.php:27
 msgid "Destinations"
 msgstr ""
 
@@ -632,7 +618,7 @@ msgstr ""
 msgid "Full Day by Day Itinerary"
 msgstr ""
 
-#: includes/layout.php:239, module.php:223
+#: includes/layout.php:239, module.php:253
 msgid "Destination"
 msgstr ""
 
@@ -768,11 +754,11 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: module.php:220, templates/single-accommodation.php:50
+#: module.php:250, templates/single-accommodation.php:50
 msgid "Tours"
 msgstr ""
 
-#: module.php:225
+#: module.php:255
 msgid "Tour"
 msgstr ""
 

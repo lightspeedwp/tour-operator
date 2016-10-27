@@ -29,7 +29,15 @@ class TO_Settings extends Tour_Operator {
 		$this->set_vars();
 
 		add_filter( 'to_framework_settings_tabs', array( $this, 'register_settings_tabs') );
-		add_action( 'init', array( $this, 'create_settings_page'),100 );	
+		
+
+		$display_page = ! empty( sanitize_text_field( wp_unslash( $_GET[ 'welcome-page' ] ) ) ) ? sanitize_text_field( wp_unslash( $_GET[ 'welcome-page' ] ) ) : '';
+			
+		if ( ! empty( $display_page ) ) {
+			add_action( 'admin_menu', array( $this, 'create_welcome_page' ) );
+		} else {
+			add_action( 'init', array( $this, 'create_settings_page'),100 );
+		}
 	}	
 
 	/**
@@ -59,6 +67,20 @@ class TO_Settings extends Tour_Operator {
 			add_action( 'to_framework_api_tab_bottom', array( $this, 'settings_page_scripts' ), 100 );
 			add_action( 'to_framework_display_tab_bottom', array( $this, 'settings_page_scripts' ), 100 );
 		}
+	}
+
+	/**
+	 * Add the welcome page
+	 */
+	public function create_welcome_page() {
+	    add_submenu_page( 'tour-operator', esc_html__( 'Settings', 'tour-operator' ), esc_html__( 'Settings', 'tour-operator' ), 'manage_options', 'to-settings', array( $this, 'welcome_page' ) );
+	}
+
+	/**
+	 * Display the welcome page
+	 */
+	public function welcome_page() {
+	    include( TO_PATH . 'includes/settings/welcome.php' );
 	}
 
 	/**

@@ -115,7 +115,7 @@ class Lsx_Tour {
 		    'add_new_item'       => _x( 'Add New Tour', 'tour-operator' ),
 		    'edit_item'          => _x( 'Edit Tour', 'tour-operator' ),
 		    'new_item'           => _x( 'New Tour', 'tour-operator' ),
-		    'all_items'          => _x( 'All Tours', 'tour-operator' ),
+		    'all_items'          => _x( 'Tours', 'tour-operator' ),
 		    'view_item'          => _x( 'View Tour', 'tour-operator' ),
 		    'search_items'       => _x( 'Search Tours', 'tour-operator' ),
 		    'not_found'          => _x( 'No tours found', 'tour-operator' ),

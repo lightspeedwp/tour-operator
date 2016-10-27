@@ -152,7 +152,6 @@ class Tour_Operator {
 		//Allow extra style attributes to wp_kses_post()
 		add_filter( 'safe_style_css', array( $this, 'safe_style_css' ) );
 		
-
 		
 		require_once( TO_PATH . 'classes/class-lsx-to-admin.php' );
 		if(class_exists('TO_Admin')){
@@ -183,6 +182,11 @@ class Tour_Operator {
 
 		//Integrations
 		$this->to_search_integration();
+
+		// Welcome page redirect
+		error_log( TO_CORE );
+		register_activation_hook( TO_CORE, array( $this, 'on_activation' ) );
+		add_action( 'admin_init', array( $this, 'on_activation_redirect' ) );
 	}	
 	
 	/**
@@ -198,6 +202,32 @@ class Tour_Operator {
 			self::$instance = new self;
 		}
 		return self::$instance;
+	}
+	
+	/**
+	 * On plugin activation
+	 *
+	 * @since 1.0.0
+	 */
+	public function on_activation() {
+		if ( ! is_network_admin() && ! isset( $_GET['activate-multi'] ) ) {
+			set_transient( '_tour_operators_welcome_redirect', 1, 30 );
+		}
+	}
+	
+	/**
+	 * Redirect on plugin activation
+	 *
+	 * @since 1.0.0
+	 */
+	public function on_activation_redirect() {
+		if ( ! get_transient( '_tour_operators_welcome_redirect' ) ) {
+			return;
+		}
+
+		delete_transient( '_tour_operators_welcome_redirect' );
+		wp_safe_redirect( 'admin.php?page=to-settings&welcome-page=1' );
+		exit();
 	}
 	
 	/**
