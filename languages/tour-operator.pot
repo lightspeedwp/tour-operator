@@ -15,7 +15,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-#: classes/class-accommodation.php:116, classes/class-accommodation.php:117, classes/class-accommodation.php:121, classes/class-accommodation.php:127, includes/layout.php:240, module.php:249, module.php:254, templates/single-accommodation.php:45
+#: classes/class-accommodation.php:116, classes/class-accommodation.php:117, classes/class-accommodation.php:121, classes/class-accommodation.php:127, includes/layout.php:240, module.php:248, module.php:253, templates/single-accommodation.php:45
 msgid "Accommodation"
 msgstr ""
 
@@ -582,7 +582,7 @@ msgctxt "tour-operator"
 msgid "Itinerary KML File"
 msgstr ""
 
-#: classes/class-tour.php:449, includes/layout.php:295, module.php:248, templates/content-tour.php:26, templates/content-widget-tour.php:27
+#: classes/class-tour.php:449, includes/layout.php:295, module.php:247, templates/content-tour.php:26, templates/content-widget-tour.php:27
 msgid "Destinations"
 msgstr ""
 
@@ -618,7 +618,7 @@ msgstr ""
 msgid "Full Day by Day Itinerary"
 msgstr ""
 
-#: includes/layout.php:239, module.php:253
+#: includes/layout.php:239, module.php:252
 msgid "Destination"
 msgstr ""
 
@@ -754,11 +754,11 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: module.php:250, templates/single-accommodation.php:50
+#: module.php:249, templates/single-accommodation.php:50
 msgid "Tours"
 msgstr ""
 
-#: module.php:255
+#: module.php:254
 msgid "Tour"
 msgstr ""
 

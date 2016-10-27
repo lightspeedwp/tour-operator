@@ -184,7 +184,6 @@ class Tour_Operator {
 		$this->to_search_integration();
 
 		// Welcome page redirect
-		error_log( TO_CORE );
 		register_activation_hook( TO_CORE, array( $this, 'on_activation' ) );
 		add_action( 'admin_init', array( $this, 'on_activation_redirect' ) );
 	}	
