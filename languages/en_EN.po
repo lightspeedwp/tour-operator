@@ -429,7 +429,7 @@ msgstr ""
 msgid "Tagline"
 msgstr ""
 
-#: classes/class-lsx-to-frontend.php:163
+#: classes/class-lsx-to-frontend.php:165
 msgid "Close"
 msgstr ""
 

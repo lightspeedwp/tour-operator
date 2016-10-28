@@ -54,7 +54,7 @@ class TO_Frontend extends Tour_Operator {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ) );	
 		add_action( 'wp_head', array( $this,'wp_head') , 10 );
 		add_filter( 'body_class', array( $this, 'body_class') );
-		add_action('to_header_after',array( $this, 'header_after'));
+		add_action('lsx_header_after',array( $this, 'header_after'));
 
 		if(!is_admin()){
 			add_filter( 'pre_get_posts', array( $this,'taxonomy_pre_get_posts') , 10, 1 );
@@ -121,10 +121,12 @@ class TO_Frontend extends Tour_Operator {
 	}
 
 	/**
-	 * This runs on the to_header_after action
+	 * This runs on the lsx_header_after action
 	 */
 	public function header_after() {
-		if(class_exists('LSX_Banners') && to_has_banner()){
+		$classes = get_body_class();
+		
+		if(class_exists('LSX_Banners') && in_array( 'page-has-banner', $classes )){
 			remove_action('lsx_content_wrap_before','to_archive_header',100);
 			remove_action('lsx_content_wrap_before','to_single_header',100);
 			add_action('lsx_banner_content','to_banner_content');

@@ -100,7 +100,7 @@ class TO_Settings extends Tour_Operator {
 				}
 
 				$tabs[$index] = array(
-					'page_title'        => 'General',
+					'page_title'        => $title,
 					'page_description'  => '',
 					'menu_title'        => $title,
 					'template'          => apply_filters('to_settings_path',TO_PATH,$index).'includes/settings/'.$index.'.php',

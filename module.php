@@ -388,9 +388,9 @@ class Tour_Operator {
 	 * A filter that outputs the tagline for the current page.
 	 */
 	public function get_tagline($tagline=false,$before='',$after='') {
-
-		if(is_post_type_archive($this->active_post_types) && isset($this->options[get_post_type()]) && isset($this->options[get_post_type()]['tagline'])){
-			$tagline = $this->options[get_post_type()]['tagline'];
+		$post_type = get_query_var( 'post_type' );
+		if(is_post_type_archive($this->active_post_types) && isset($this->options[$post_type]) && isset($this->options[$post_type]['tagline'])){
+			$tagline = $this->options[$post_type]['tagline'];
 		}	
 		if(is_singular($this->active_post_types)){
 			$tagline_value = get_post_meta(get_the_ID(),'banner_subtitle',true);
