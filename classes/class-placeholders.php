@@ -364,13 +364,13 @@ class TO_Placeholders {
 	 */
 	public function dashboard_settings() { ?>
 		<th class="" style="padding-bottom:0px;" scope="row" colspan="2">
-			<label><h3 style="margin-bottom:0px;"> Placeholders</h3></label>			
+			<label><h3 style="margin-bottom:0px;"> <?php esc_html_e( 'Placeholders', 'tour-operator' ); ?></h3></label>			
 		</th>
 
 		<?php if(class_exists('LSX_Banners')) { ?>
 			<tr class="form-field banner-placeholder-wrap">
 				<th scope="row">
-					<label for="banner"> Banner Placeholder</label>
+					<label for="banner"> <?php esc_html_e( 'Banner Placeholder', 'tour-operator' ); ?></label>
 				</th>
 				<td>
 					<input type="hidden" {{#if banner_placeholder_id}} value="{{banner_placeholder_id}}" {{/if}} name="banner_placeholder_id" />
@@ -388,7 +388,7 @@ class TO_Placeholders {
 		<?php } ?>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="banner"> Featured Placeholder</label>
+				<label for="banner"> <?php esc_html_e( 'Featured Placeholder', 'tour-operator' ); ?></label>
 			</th>
 			<td>
 				<input type="hidden" {{#if default_placeholder_id}} value="{{default_placeholder_id}}" {{/if}} name="default_placeholder_id" />
@@ -406,7 +406,7 @@ class TO_Placeholders {
 		{{#unless disable_blog_placeholder}}
 			<tr class="form-field">
 				<th scope="row">
-					<label for="posts_placeholder"> Blog Placeholder</label>
+					<label for="posts_placeholder"> <?php esc_html_e( 'Blog Placeholder', 'tour-operator' ); ?></label>
 				</th>
 				<td>
 					<input type="hidden" {{#if posts_placeholder_id}} value="{{posts_placeholder_id}}" {{/if}} name="posts_placeholder_id" />
@@ -424,11 +424,11 @@ class TO_Placeholders {
 		{{/unless}}	
 		<tr class="form-field">
 			<th scope="row">
-				<label for="description">Disable Placeholder on Blog Posts</label>
+				<label for="description"><?php esc_html_e( 'Disable Placeholder on Blog Posts', 'tour-operator' ); ?></label>
 			</th>
 			<td>
 				<input type="checkbox" {{#if disable_blog_placeholder}} checked="checked" {{/if}} name="disable_blog_placeholder" />
-				<small>This disables the placeholder on blog posts.</small>
+				<small><?php esc_html_e( 'This disables the placeholder on blog posts.', 'tour-operator' ); ?></small>
 			</td>
 		</tr>
 		<script type="text/javascript">
@@ -475,7 +475,7 @@ class TO_Placeholders {
 		<?php if(class_exists('LSX_Banners')) { ?>
 			<tr class="form-field banner-placeholder-wrap">
 				<th scope="row">
-					<label for="banner"> Banner Placeholder</label>
+					<label for="banner"> <?php esc_html_e( 'Banner Placeholder', 'tour-operator' ); ?></label>
 				</th>
 				<td>
 					<input type="hidden" {{#if banner_placeholder_id}} value="{{banner_placeholder_id}}" {{/if}} name="banner_placeholder_id" />
@@ -494,7 +494,7 @@ class TO_Placeholders {
 		
 		<tr class="form-field featured-placeholder-wrap">
 			<th scope="row">
-				<label for="featured_placeholder">Featured Image</label>
+				<label for="featured_placeholder"><?php esc_html_e( 'Featured Image', 'tour-operator' ); ?></label>
 			</th>
 			<td>
 				<input type="hidden" {{#if featured_placeholder_id}} value="{{featured_placeholder_id}}" {{/if}} name="featured_placeholder_id" />

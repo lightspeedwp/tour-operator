@@ -413,7 +413,7 @@ msgstr ""
 msgid "Support"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:525
+#: classes/class-lsx-to-admin.php:525, classes/class-placeholders.php:497
 msgid "Featured Image"
 msgstr ""
 
@@ -507,6 +507,30 @@ msgstr ""
 
 #: classes/class-lsx-to-settings.php:608
 msgid "Any connected item showing on a single will display a preview in a modal."
+msgstr ""
+
+#: classes/class-placeholders.php:367
+msgid "Placeholders"
+msgstr ""
+
+#: classes/class-placeholders.php:373, classes/class-placeholders.php:478
+msgid "Banner Placeholder"
+msgstr ""
+
+#: classes/class-placeholders.php:391
+msgid "Featured Placeholder"
+msgstr ""
+
+#: classes/class-placeholders.php:409
+msgid "Blog Placeholder"
+msgstr ""
+
+#: classes/class-placeholders.php:427
+msgid "Disable Placeholder on Blog Posts"
+msgstr ""
+
+#: classes/class-placeholders.php:431
+msgid "This disables the placeholder on blog posts."
 msgstr ""
 
 #: classes/class-tour.php:112, classes/class-tour.php:118, classes/class-tour.php:124
