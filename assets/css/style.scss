@@ -216,8 +216,8 @@ $orange-dark: #f7741d;
 		display: none;
 	}
 
-	&:first-child {
-		padding-top: 10px;
+	&:first-child:not(.taxonomies) {
+		//padding-top: 10px;
 		border-top: 1px solid $border-grey;
 	}
 
@@ -732,7 +732,7 @@ $orange-dark: #f7741d;
 	@extend %clear-div;
 
 	@media only screen and (max-width: 767px) {
-		max-width: 360px;
+		//max-width: 360px;
 		
 		margin: {
 			left: auto;
