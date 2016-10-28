@@ -23,7 +23,7 @@
 				<div class="star star-full" aria-hidden="true"></div>
 				<div class="star star-full" aria-hidden="true"></div>
 			</div>	
-			<p><a class="button button-primary button-large" href="#">Rate It!</a></p>		
+			<p><a class="button button-primary button-large" href="https://www.lsdev.biz/product/tour-operator-plugin/">Rate It!</a></p>		
 		</div>
 
 		<div class="plugin-info">
