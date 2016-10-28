@@ -113,7 +113,6 @@ class TO_Admin extends Tour_Operator {
 	/**
 	 * Reorder custom menu pages.
 	 *
-	 *      - [1] Welcome
 	 * - [10] Destinations
 	 * - [+1] Add Destination
 	 * - [20] Tours

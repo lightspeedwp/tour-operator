@@ -142,7 +142,7 @@ class Tour_Operator {
 		$this->options = get_option('_to_settings',false);	
 		$this->set_vars();
 
-		// Make TO last plugin to load + flush_rewrite_rules()
+		// Make TO last plugin to load
 		add_action( 'activated_plugin', array( $this, 'activated_plugin' ) );
 
 		//Add our action to init to set up our vars first.	
@@ -185,9 +185,9 @@ class Tour_Operator {
 		//Integrations
 		$this->to_search_integration();
 
-		// Welcome page redirect
-		register_activation_hook( TO_CORE, array( $this, 'on_activation' ) );
-		add_action( 'admin_init', array( $this, 'on_activation_redirect' ) );
+		// Welcome page redirect + flush_rewrite_rules()
+		register_activation_hook( TO_CORE, array( $this, 'register_activation_hook' ) );
+		add_action( 'admin_init', array( $this, 'register_activation_hook_check' ) );
 	}	
 	
 	/**
@@ -210,25 +210,36 @@ class Tour_Operator {
 	 *
 	 * @since 1.0.0
 	 */
-	public function on_activation() {
+	public function register_activation_hook() {
+		if ( ! is_network_admin() && ! isset( $_GET['activate-multi'] ) ) {
+			set_transient( '_tour_operators_flush_rewrite_rules', 1, 30 );
+		}
+
 		if ( ! is_network_admin() && ! isset( $_GET['activate-multi'] ) ) {
 			set_transient( '_tour_operators_welcome_redirect', 1, 30 );
 		}
 	}
 	
 	/**
-	 * Redirect on plugin activation
+	 * On plugin activation (check)
 	 *
 	 * @since 1.0.0
 	 */
-	public function on_activation_redirect() {
-		if ( ! get_transient( '_tour_operators_welcome_redirect' ) ) {
+	public function register_activation_hook_check() {
+		if ( ! get_transient( '_tour_operators_flush_rewrite_rules' ) && ! get_transient( '_tour_operators_welcome_redirect' ) ) {
 			return;
 		}
 
-		delete_transient( '_tour_operators_welcome_redirect' );
-		wp_safe_redirect( 'admin.php?page=to-settings&welcome-page=1' );
-		exit();
+		if ( get_transient( '_tour_operators_flush_rewrite_rules' ) ) {
+			delete_transient( '_tour_operators_flush_rewrite_rules' );
+			flush_rewrite_rules();
+		}
+
+		if ( get_transient( '_tour_operators_welcome_redirect' ) ) {
+			delete_transient( '_tour_operators_welcome_redirect' );
+			wp_safe_redirect( 'admin.php?page=to-settings&welcome-page=1' );
+			exit();
+		}
 	}
 	
 	/**
@@ -594,7 +605,7 @@ class Tour_Operator {
 	}	
 	
 	/**
-	 * Make TO last plugin to load + flush_rewrite_rules().
+	 * Make TO last plugin to load.
 	 */
 	public function activated_plugin() {
 		if ( $plugins = get_option( 'active_plugins' ) ) {
@@ -609,8 +620,6 @@ class Tour_Operator {
 				}
 			}
 		}
-
-		flush_rewrite_rules();
 	}
 
 }
