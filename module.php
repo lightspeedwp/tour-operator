@@ -516,6 +516,8 @@ class Tour_Operator {
 		$allowedtags['iframe']['allowfullscreen'] = true;
 		$allowedtags['iframe']['style'] = true;
 
+		$allowedtags['noscript'] = array();
+
 		return $allowedtags;
 	}
 
