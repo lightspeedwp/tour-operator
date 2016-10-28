@@ -2527,10 +2527,11 @@ body.single-tour-operator .wrap {
   @media only screen and (max-width: 767px) {
     body.single-tour-operator .wrap {
       margin-bottom: 20px; } }
-  body.single-tour-operator .wrap > .content {
-    padding-top: 0; }
   body.single-tour-operator .wrap #primary.col-sm-12 {
     max-width: 100% !important; }
+
+body.page-has-banner.single-tour-operator .wrap > .content {
+  padding-top: 0; }
 
 body.single-tour-operator #main {
   padding-top: 0 !important; }
@@ -2840,6 +2841,9 @@ body.single-tour-operator #facetwp-top .wp-pagenavi-wrapper.facetwp-custom {
   margin-bottom: 15px;
   margin-top: 2px; }
 
+body.archive-tour-operator:not(.page-has-banner) #main > section[class$="-navigation"] {
+  margin-top: 30px; }
+
 body.archive-tour-operator #summary {
   margin-bottom: 40px; }
   @media only screen and (min-width: 768px) {
@@ -2880,6 +2884,9 @@ body.archive.post-type-archive-destination .countries {
 
 body.single-tour-operator #main > section[class$="-navigation"] {
   margin-top: 0; }
+
+body.single-tour-operator:not(.page-has-banner) #main > section[class$="-navigation"] {
+  margin-top: 30px; }
 
 @media only screen and (min-width: 768px) {
   body.single-tour-operator #rooms .panel > .unit .unit-info, body.single-tour-operator #chalets .panel > .unit .unit-info, body.single-tour-operator #tents .panel > .unit .unit-info, body.single-tour-operator #spas .panel > .unit .unit-info, body.single-tour-operator #villas .panel > .unit .unit-info {
@@ -2999,7 +3006,8 @@ body:not(.home) .page-banner .post-meta {
 body:not(.home) .page-banner .breadcrumbs-container {
   display: inline-block !important;
   padding: 8px 16px;
-  color: #fff; }
+  color: #fff;
+  margin-bottom: 0; }
 
 body:not(.home) .page-banner .page-header {
   line-height: 1; }
@@ -3012,6 +3020,11 @@ body:not(.home) .page-banner .page-header {
     box-shadow: none; }
   body:not(.home) .page-banner .page-header:last-child h1.page-title {
     padding-bottom: 10px !important; }
+
+body:not(.home) .page-banner .banner-content {
+  margin: 0 !important;
+  text-align: left !important;
+  max-width: 100% !important; }
 
 body:not(.home) .page-banner .tagline,
 body:not(.home) .page-banner .post-meta {
