@@ -332,34 +332,34 @@ class Lsx_Tour {
 		}
 		if($this->is_wetu_active){
 			$fields[] = array( 'id' => 'included', 'name' => 'Included', 'type' => 'textarea', 'options' => array( 'editor_height' => '100' ) );
-			$fields[] = array( 'id' => 'excluded', 'name' => 'Excluded', 'type' => 'textarea', 'options' => array( 'editor_height' => '100' ) );
+			$fields[] = array( 'id' => 'not_included', 'name' => 'Not Included', 'type' => 'textarea', 'options' => array( 'editor_height' => '100' ) );
 			$fields[] = array(
-					'id' => 'drinks_basis',
-					'name' => 'Drinks Basis',
-					'type' => 'select',
-					'options' => array(
-							'' => 'None',
-							'No Drinks' => 'No Drinks',
-							'Drinks (local brands)' => 'Drinks (local brands)',
-							'Drinks (excl spirits)' => 'Drinks (excl spirits)',
-							'All Drinks' => 'All Drinks',
-					)
+				'id' => 'drinks_basis',
+				'name' => 'Drinks Basis',
+				'type' => 'select',
+				'options' => array(
+						'' => 'None',
+						'No Drinks' => 'No Drinks',
+						'Drinks (local brands)' => 'Drinks (local brands)',
+						'Drinks (excl spirits)' => 'Drinks (excl spirits)',
+						'All Drinks' => 'All Drinks',
+				)
 			);
 			$fields[] = array(
-					'id' => 'meal_basis',
-					'name' => 'Meal Basis',
-					'type' => 'select',
-					'options' => array(
-							'' => 'None',
-							'Room Only' => 'Room Only',
-							'Self Catering' => 'Self Catering',
-							'Half Board' => 'Half Board',
-							'Bed & Breakfast' => 'Bed & Breakfast',
-							'Dinner, Bed and Breakfast' => 'Dinner, Bed and Breakfast',
-							'Dinner, Bed, Breakfast and Lunch' => 'Dinner, Bed, Breakfast and Lunch',
-							'Dinner, Bed, Breakfast, Lunch and Activites' => 'Dinner, Bed, Breakfast, Lunch and Activites',
-							'Bed, All Meals, Most Drinks (local), Fees, Activites' => 'Bed, All Meals, Most Drinks (local), Fees, Activites',
-					)
+				'id' => 'meal_basis',
+				'name' => 'Meal Basis',
+				'type' => 'select',
+				'options' => array(
+						'' => 'None',
+						'Room Only' => 'Room Only',
+						'Self Catering' => 'Self Catering',
+						'Half Board' => 'Half Board',
+						'Bed & Breakfast' => 'Bed & Breakfast',
+						'Dinner, Bed and Breakfast' => 'Dinner, Bed and Breakfast',
+						'Dinner, Bed, Breakfast and Lunch' => 'Dinner, Bed, Breakfast and Lunch',
+						'Dinner, Bed, Breakfast, Lunch and Activites' => 'Dinner, Bed, Breakfast, Lunch and Activites',
+						'Bed, All Meals, Most Drinks (local), Fees, Activites' => 'Bed, All Meals, Most Drinks (local), Fees, Activites',
+				)
 			);
 		}
 		

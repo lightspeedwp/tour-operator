@@ -82,7 +82,9 @@ function to_accommodation_single_content_bottom() {
 	if(is_singular('accommodation')){
 		to_accommodation_units('<section id="{units}"><h2 class="section-title">'.__('{units}','tour-operator').'</h2><div class="info row">','</div></section>');
 		
-		to_accommodation_facilities('<section id="facilities"><h2 class="section-title">'.__('Facilities','tour-operator').'</h2><div class="info row">','</div></section>');	
+		to_accommodation_facilities('<section id="facilities"><h2 class="section-title">'.__('Facilities','tour-operator').'</h2><div class="info row">','</div></section>');
+		
+		to_included_block();
 
 		if(function_exists('to_has_map') && to_has_map()){ ?>
 			<section id="accommodation-map">
@@ -250,7 +252,7 @@ function to_tour_single_content_bottom() {
 			</section>
 		<?php }
 		
-		to_pricing_block();
+		to_included_block();
 
 		if(function_exists('to_has_map') && to_has_map()){ ?>
 			<section id="tour-map">

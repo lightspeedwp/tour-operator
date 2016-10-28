@@ -30,7 +30,7 @@ get_header(); ?>
 				<ul class="scroll-easing">
 					<li><a href="#summary">Summary</a></li>
 					<li><a href="#itinerary">Itinerary</a></li>
-					<li><a href="#included-excluded">Included / Excluded</a></li>
+					<li><a href="#included-excluded">Included / Not Included</a></li>
 					<?php if(function_exists('to_has_map') && to_has_map()){ ?>					
 						<li><a href="#tour-map">Map</a></li>
 					<?php } ?>

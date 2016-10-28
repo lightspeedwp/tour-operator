@@ -237,20 +237,20 @@ class TO_Accommodation {
 		if(class_exists('TO_Field_Pattern')){ $fields = array_merge($fields,TO_Field_Pattern::price()); }
 
 		$fields[] = array( 
-				'id' => 'price_type',
-				'name' => __('Price Type','tour-operator'),
-				'type' => 'select',
-				'options' => array(
-					'none' => 'Select a type',
-					'per_person_per_night' => __('Per Person Per Night','tour-operator'),
-					'per_person_sharing' => __('Per Person Sharing','tour-operator'),
-					'per_person_sharing_per_night' => __('Per Person Sharing Per Night','tour-operator'),
-					'total_percentage' => __('Percentage Off Your Price.','tour-operator')
-				)
-			);
+			'id' => 'price_type',
+			'name' => __('Price Type','tour-operator'),
+			'type' => 'select',
+			'options' => array(
+				'none' => 'Select a type',
+				'per_person_per_night' => __('Per Person Per Night','tour-operator'),
+				'per_person_sharing' => __('Per Person Sharing','tour-operator'),
+				'per_person_sharing_per_night' => __('Per Person Sharing Per Night','tour-operator'),
+				'total_percentage' => __('Percentage Off Your Price.','tour-operator')
+			)
+		);
 
 		$fields[] = array( 'id' => 'included',  'name' => 'Included', 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ) );
-		$fields[] = array( 'id' => 'excluded',  'name' => 'Excluded', 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ) );
+		$fields[] = array( 'id' => 'not_included',  'name' => 'Not Included', 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ) );
 
 		$fields[] = array( 'id' => 'team_to_accommodation', 'name' => 'Accommodation Expert', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12 );	
 		

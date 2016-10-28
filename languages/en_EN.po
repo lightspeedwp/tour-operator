@@ -15,7 +15,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-#: classes/class-accommodation.php:116, classes/class-accommodation.php:117, classes/class-accommodation.php:121, classes/class-accommodation.php:127, includes/layout.php:240, module.php:261, module.php:266, templates/single-accommodation.php:45
+#: classes/class-accommodation.php:116, classes/class-accommodation.php:117, classes/class-accommodation.php:121, classes/class-accommodation.php:127, includes/layout.php:242, module.php:261, module.php:266, templates/single-accommodation.php:45
 msgid "Accommodation"
 msgstr ""
 
@@ -146,7 +146,7 @@ msgstr ""
 msgid "Percentage Off Your Price."
 msgstr ""
 
-#: classes/class-accommodation.php:368, classes/class-destination.php:149, classes/class-tour.php:205, includes/layout.php:95, includes/layout.php:97, includes/layout.php:160, includes/layout.php:162, includes/layout.php:263, includes/layout.php:265, templates/single-accommodation.php:38, templates/single-destination.php:69, templates/single-tour.php:44
+#: classes/class-accommodation.php:368, classes/class-destination.php:149, classes/class-tour.php:205, includes/layout.php:97, includes/layout.php:99, includes/layout.php:162, includes/layout.php:164, includes/layout.php:265, includes/layout.php:267, templates/single-accommodation.php:38, templates/single-destination.php:69, templates/single-tour.php:44
 msgid "Gallery"
 msgstr ""
 
@@ -224,15 +224,15 @@ msgctxt "tour-operator"
 msgid "No destinations found in Trash"
 msgstr ""
 
-#: classes/class-destination.php:245, classes/class-tour.php:448, includes/layout.php:186, includes/layout.php:294, module.php:274, templates/content-destination.php:23, templates/content-tour.php:25, templates/content-widget-tour.php:26
+#: classes/class-destination.php:245, classes/class-tour.php:448, includes/layout.php:188, includes/layout.php:296, module.php:274, templates/content-destination.php:23, templates/content-tour.php:25, templates/content-widget-tour.php:26
 msgid "Travel Style"
 msgstr ""
 
-#: classes/class-destination.php:246, classes/class-tour.php:450, includes/layout.php:187, includes/layout.php:241, includes/layout.php:296, templates/content-destination.php:24, templates/content-tour.php:27, templates/content-widget-tour.php:28
+#: classes/class-destination.php:246, classes/class-tour.php:450, includes/layout.php:189, includes/layout.php:243, includes/layout.php:298, templates/content-destination.php:24, templates/content-tour.php:27, templates/content-widget-tour.php:28
 msgid "Activites"
 msgstr ""
 
-#: classes/class-fields.php:45, includes/layout.php:101, includes/layout.php:103, includes/layout.php:166, includes/layout.php:168, includes/layout.php:269, includes/layout.php:271, templates/single-accommodation.php:43, templates/single-destination.php:74, templates/single-tour.php:49
+#: classes/class-fields.php:45, includes/layout.php:103, includes/layout.php:105, includes/layout.php:168, includes/layout.php:170, includes/layout.php:271, includes/layout.php:273, templates/single-accommodation.php:43, templates/single-destination.php:74, templates/single-tour.php:49
 msgid "Videos"
 msgstr ""
 
@@ -586,11 +586,11 @@ msgctxt "tour-operator"
 msgid "Itinerary KML File"
 msgstr ""
 
-#: classes/class-tour.php:449, includes/layout.php:295, module.php:260, templates/content-tour.php:26, templates/content-widget-tour.php:27
+#: classes/class-tour.php:449, includes/layout.php:297, module.php:260, templates/content-tour.php:26, templates/content-widget-tour.php:27
 msgid "Destinations"
 msgstr ""
 
-#: classes/class-units.php:374, classes/class-units.php:407, includes/layout.php:106, includes/template-tags/destination.php:25, templates/archive-accommodation.php:48
+#: classes/class-units.php:374, classes/class-units.php:407, includes/layout.php:108, includes/template-tags/destination.php:25, templates/archive-accommodation.php:48
 msgid "to_get_post_type_section_titleaccommodation"
 msgstr ""
 
@@ -602,31 +602,31 @@ msgstr ""
 msgid "{units}"
 msgstr ""
 
-#: includes/layout.php:89, includes/layout.php:154, includes/layout.php:257, templates/archive-destination.php:241, templates/single-accommodation.php:33, templates/single-destination.php:61
+#: includes/layout.php:91, includes/layout.php:156, includes/layout.php:259, templates/archive-destination.php:241, templates/single-accommodation.php:33, templates/single-destination.php:61
 msgid "Map"
 msgstr ""
 
-#: includes/layout.php:110
+#: includes/layout.php:112
 msgid "Related Tours"
 msgstr ""
 
-#: includes/layout.php:206
+#: includes/layout.php:208
 msgid "Highlights"
 msgstr ""
 
-#: includes/layout.php:209
+#: includes/layout.php:211
 msgid "Best time to visit"
 msgstr ""
 
-#: includes/layout.php:216
+#: includes/layout.php:218
 msgid "Full Day by Day Itinerary"
 msgstr ""
 
-#: includes/layout.php:239, module.php:265
+#: includes/layout.php:241, module.php:265
 msgid "Destination"
 msgstr ""
 
-#: includes/layout.php:276, includes/template-tags/destination.php:87
+#: includes/layout.php:278, includes/template-tags/destination.php:87
 msgid "to_get_post_type_section_titletour"
 msgstr ""
 
@@ -747,7 +747,7 @@ msgid "Included"
 msgstr ""
 
 #: includes/template-tags/tour.php:159
-msgid "Excluded"
+msgid "Not Included"
 msgstr ""
 
 #: includes/widgets/post-type-widget.php:223

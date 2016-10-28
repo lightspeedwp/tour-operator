@@ -127,13 +127,13 @@ function to_end_point($before="",$after="",$echo=true){
 }
 
 /**
- * Outputs the tours pricing block
+ * Outputs the tours included / not included block
  *
  * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	tour
  */
-function to_pricing_block(){
+function to_included_block(){
 
 	$tour_included = to_included('','',false);
 	$tour_not_included = to_not_included('','',false);
@@ -156,7 +156,7 @@ function to_pricing_block(){
 			<?php } ?>
 			<?php if(null !== $tour_not_included) { ?>
 				<div class="<?php echo esc_attr( $class ); ?>">
-					<h2 class="section-title"><?php esc_html_e('Excluded','tour-operator'); ?></h2>
+					<h2 class="section-title"><?php esc_html_e('Not Included','tour-operator'); ?></h2>
 					<div class="entry-content">
 						<?php echo wp_kses_post( apply_filters('the_content',wpautop($tour_not_included)) ); ?>
 					</div>
