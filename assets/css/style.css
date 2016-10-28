@@ -2104,7 +2104,7 @@ body.home aside.lsx-widget > .widget-title, body.archive-tour-operator #safari-b
 body.archive-tour-operator #travel-styles > .widget-title, body.home aside.lsx-widget > .section-title, body.archive-tour-operator #safari-brands > .section-title,
 body.archive-tour-operator #travel-styles > .section-title {
   margin: 0;
-  padding: 50px 0 40px;
+  padding: 10px 0 40px;
   font-size: 32px;
   text-align: center; }
   body.home aside.lsx-widget > .widget-title a, body.archive-tour-operator #safari-brands > .widget-title a,
@@ -2134,7 +2134,6 @@ body.archive-tour-operator #travel-styles > .tagline {
 
 body.home aside.lsx-widget > .view-more, body.archive-tour-operator #safari-brands > .view-more,
 body.archive-tour-operator #travel-styles > .view-more {
-  margin-bottom: 80px;
   text-align: center; }
 
 body.home aside.lsx-widget .slider-container + .view-more, body.archive-tour-operator #safari-brands .slider-container + .view-more,
@@ -2955,7 +2954,7 @@ body.home .page-banner .tagline {
 
 body.home #home-widgets aside.widget_text:first-child .page-title {
   color: #333;
-  margin: 50px 0 40px;
+  margin: 10px 0 40px;
   font-size: 32px;
   text-align: center; }
   body.home #home-widgets aside.widget_text:first-child .page-title a {

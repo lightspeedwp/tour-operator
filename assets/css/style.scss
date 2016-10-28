@@ -826,7 +826,7 @@ $orange-dark: #f7741d;
 	& > .widget-title,
 	& > .section-title {
 		margin: 0;
-		padding: 50px 0 40px;
+		padding: 10px 0 40px;
 		font-size: 32px;
 		text-align: center;
 
@@ -855,7 +855,7 @@ $orange-dark: #f7741d;
 	}
 
 	& > .view-more {
-		margin-bottom: 80px;
+		//margin-bottom: 80px;
 		text-align: center;
 	}
 
@@ -2095,7 +2095,7 @@ body.home {
 		aside.widget_text:first-child {
 			.page-title {
 				color: $black;
-				margin: 50px 0 40px;
+				margin: 10px 0 40px;
 				font-size: 32px;
 				text-align: center;
 
