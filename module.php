@@ -142,6 +142,9 @@ class Tour_Operator {
 		$this->options = get_option('_to_settings',false);	
 		$this->set_vars();
 
+		// Make TO last plugin to load + flush_rewrite_rules()
+		add_action( 'activated_plugin', array( $this, 'activated_plugin' ) );
+
 		//Add our action to init to set up our vars first.	
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 		add_action( 'init', array( $this, 'require_post_type_classes' ) , 1 );
@@ -151,7 +154,6 @@ class Tour_Operator {
 		add_filter( 'kses_allowed_protocols', array( $this, 'kses_allowed_protocols' ) );
 		//Allow extra style attributes to wp_kses_post()
 		add_filter( 'safe_style_css', array( $this, 'safe_style_css' ) );
-		
 		
 		require_once( TO_PATH . 'classes/class-lsx-to-admin.php' );
 		if(class_exists('TO_Admin')){
@@ -258,22 +260,22 @@ class Tour_Operator {
 		$this->active_post_types = array_keys($this->post_types);
 
 		$this->taxonomies = array(
-				'travel-style'			=> __('Travel Style',$this->plugin_slug),
-				'accommodation-brand'			=> __('Brand',$this->plugin_slug),
-				'accommodation-type'	=> __('Accommodation Type',$this->plugin_slug),
-				'facility'	=> __('Facility',$this->plugin_slug),
-				'location'	=> __('Location',$this->plugin_slug)
+				'travel-style'			=> __('Travel Style','tour-operator'),
+				'accommodation-brand'			=> __('Brand','tour-operator'),
+				'accommodation-type'	=> __('Accommodation Type','tour-operator'),
+				'facility'	=> __('Facility','tour-operator'),
+				'location'	=> __('Location','tour-operator')
 		);
 		$this->taxonomies_plural = array(
-				'travel-style'			=> __('Travel Styles',$this->plugin_slug),
-				'accommodation-brand'			=> __('Brands',$this->plugin_slug),
-				'accommodation-type'	=> __('Accommodation Types',$this->plugin_slug),
-				'facility'	=> __('Facilities',$this->plugin_slug),
-				'location'	=> __('Locations',$this->plugin_slug)
+				'travel-style'			=> __('Travel Styles','tour-operator'),
+				'accommodation-brand'			=> __('Brands','tour-operator'),
+				'accommodation-type'	=> __('Accommodation Types','tour-operator'),
+				'facility'	=> __('Facilities','tour-operator'),
+				'location'	=> __('Locations','tour-operator')
 		);				
 		$this->taxonomies = apply_filters('to_framework_taxonomies',$this->taxonomies);
 		$this->taxonomies_plural = apply_filters('to_framework_taxonomies_plural',$this->taxonomies_plural);
-	}	
+	}
 
 	/**
 	 * Register the TO_Widget
@@ -590,6 +592,26 @@ class Tour_Operator {
 		}
 		return $forms;
 	}	
+	
+	/**
+	 * Make TO last plugin to load + flush_rewrite_rules().
+	 */
+	public function activated_plugin() {
+		if ( $plugins = get_option( 'active_plugins' ) ) {
+			$search = preg_grep( '/.*\/tour-operator\.php/', $plugins );
+			$key = array_search( $search, $plugins );
+
+			if ( is_array( $search ) && count( $search ) ) {
+				foreach ( $search as $key => $path ) {
+					array_splice( $plugins, $key, 1 );
+					array_push( $plugins, $path );
+					update_option( 'active_plugins', $plugins );
+				}
+			}
+		}
+
+		flush_rewrite_rules();
+	}
 
 }
 $tour_operator = Tour_Operator::get_instance();

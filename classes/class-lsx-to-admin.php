@@ -490,9 +490,9 @@ class TO_Admin extends Tour_Operator {
 	 */
 	public function add_action_links ( $links ) {
 		 $mylinks = array(
-		 	'<a href="' . admin_url( 'admin.php?page=to-settings' ) . '">'.__('Settings',$this->plugin_slug).'</a>',
-		 	'<a href="https://www.lsdev.biz/documentation/tour-operator-plugin/" target="_blank">'.__('Documentation',$this->plugin_slug).'</a>',
-		 	'<a href="https://feedmysupport.zendesk.com/home" target="_blank">'.__('Support',$this->plugin_slug).'</a>',
+		 	'<a href="' . admin_url( 'admin.php?page=to-settings' ) . '">'.__('Settings','tour-operator').'</a>',
+		 	'<a href="https://www.lsdev.biz/documentation/tour-operator-plugin/" target="_blank">'.__('Documentation','tour-operator').'</a>',
+		 	'<a href="https://feedmysupport.zendesk.com/home" target="_blank">'.__('Support','tour-operator').'</a>',
 		 );
 		return array_merge( $links, $mylinks );
 	}	
