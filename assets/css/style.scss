@@ -1114,10 +1114,7 @@ $orange-dark: #f7741d;
 
 %single-root {
 	.wrap {
-		margin: {
-			top: 0 !important;
-			bottom: 40px;
-		}
+		margin-bottom: 40px;
 
 		@media only screen and (max-width: 767px) {
 			margin-bottom: 20px;
@@ -1125,6 +1122,12 @@ $orange-dark: #f7741d;
 
 		#primary.col-sm-12 {
 			max-width: 100% !important;
+		}
+	}
+
+	&:not(.top-menu-fixed) {
+		.wrap {
+			margin-top: 0 !important;
 		}
 	}
 

@@ -2522,13 +2522,15 @@ body.archive-tour-operator #sharing {
   display: none; }
 
 body.single-tour-operator .wrap {
-  margin-top: 0 !important;
   margin-bottom: 40px; }
   @media only screen and (max-width: 767px) {
     body.single-tour-operator .wrap {
       margin-bottom: 20px; } }
   body.single-tour-operator .wrap #primary.col-sm-12 {
     max-width: 100% !important; }
+
+body.single-tour-operator:not(.top-menu-fixed) .wrap {
+  margin-top: 0 !important; }
 
 body.page-has-banner.single-tour-operator .wrap > .content {
   padding-top: 0; }
