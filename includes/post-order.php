@@ -22,8 +22,8 @@ class TO_SCPO_Engine {
 		add_filter('get_next_post_sort', array($this, 'to_scporder_next_post_sort'));
 
 		add_filter('get_terms_orderby', array($this, 'to_scporder_get_terms_orderby'), 10, 3);
-		add_filter('wp_get_object_terms', array($this, 'to_scporder_get_object_terms'), 10, 3);
-		add_filter('get_terms', array($this, 'to_scporder_get_object_terms'), 10, 3);
+		add_filter('wp_get_object_terms', array($this, 'to_scporder_get_object_terms'), 10, 4);
+		add_filter('get_terms', array($this, 'to_scporder_get_object_terms'), 10, 4);
 	}
 
 	function to_scporder_install() {
@@ -301,6 +301,9 @@ class TO_SCPO_Engine {
 			if (!$active)
 				return false;
 
+			if (isset($wp_query->query['disabled_custom_post_order']))
+				return false;
+			
 			if (isset($wp_query->query['suppress_filters'])) {
 				if ($wp_query->get('orderby') == 'date')
 					$wp_query->set('orderby', 'menu_order');
@@ -319,6 +322,9 @@ class TO_SCPO_Engine {
 		if (is_admin())
 			return $orderby;
 
+		if (isset($args['disabled_custom_post_order']))
+			return $orderby;
+
 		$tags = $this->get_to_scporder_options_tags();
 
 		if (!isset($args['taxonomy']))
@@ -334,10 +340,15 @@ class TO_SCPO_Engine {
 		return $orderby;
 	}
 
-	function to_scporder_get_object_terms($terms) {
+	function to_scporder_get_object_terms($terms, $not_used, $args_1, $args_2 = null) {
 		$tags = $this->get_to_scporder_options_tags();
 
 		if (is_admin() && isset($_GET['orderby']))
+			return $terms;
+		
+		$args = is_null( $args_2 ) || ! is_array( $args_2 ) ? $args_1 : $args_2;
+
+		if (isset($args['disabled_custom_post_order']))
 			return $terms;
 
 		foreach ($terms as $key => $term) {

@@ -556,6 +556,10 @@ class TO_Widget extends WP_Widget {
 			$args ['meta_value'] = 1;
 		}		
 
+		if('none' !== $orderby){
+			$args['disabled_custom_post_order'] = true;
+		}
+
 		$widget_query = new WP_Query( $args );
 		if ($widget_query->have_posts()) {
 

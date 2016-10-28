@@ -513,6 +513,7 @@ class TO_Taxonomy_Widget extends WP_Widget {
 
 		if('none' !== $orderby){
 			$args['suppress_filters'] = true;
+			$args['disabled_custom_post_order'] = true;
 		}
 		
 		$widget_query = get_terms( $taxonomy,$args );

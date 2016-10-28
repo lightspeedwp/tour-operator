@@ -734,11 +734,11 @@ msgstr ""
 msgid "to_get_post_type_section_titleactivity"
 msgstr ""
 
-#: includes/template-tags/helpers.php:474, includes/widgets/post-type-widget.php:711, includes/widgets/taxonomy-widget.php:638
+#: includes/template-tags/helpers.php:474, includes/widgets/post-type-widget.php:715, includes/widgets/taxonomy-widget.php:639
 msgid "Previous"
 msgstr ""
 
-#: includes/template-tags/helpers.php:478, includes/widgets/post-type-widget.php:715, includes/widgets/taxonomy-widget.php:642
+#: includes/template-tags/helpers.php:478, includes/widgets/post-type-widget.php:719, includes/widgets/taxonomy-widget.php:643
 msgid "Next"
 msgstr ""
 
