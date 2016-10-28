@@ -65,7 +65,7 @@
 
 	<div class="secondary">
 		<div class="to-help-info">
-			<h3><a href="http://wordpress.org/plugins/tour-operator/">Tour Operator</a></h3>
+			<h3><a href="https://www.lsdev.biz/product/tour-operator-plugin/">Tour Operator</a></h3>
 			<dl>
 				<dt>Latest Version:</dt>
 				<dd>1.0</dd>
