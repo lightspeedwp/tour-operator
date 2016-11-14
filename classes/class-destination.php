@@ -243,7 +243,7 @@ class Lsx_Destination{
 		?>
 		<div class="destination-details meta taxonomies">
 			<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>				
-			<?php to_connected_activities('<div class="meta activities">'.__('Activites','tour-operator').': ','</div>'); ?>				
+			<?php if(function_exists('to_connected_activities')){ to_connected_activities('<div class="meta activities">'.__('Activities','tour-operator').': ','</div>'); } ?>
 		</div>
 	<?php } }		
 }

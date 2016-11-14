@@ -9,24 +9,6 @@
  */
 
 /**
- * Gets the current specials connected activities
- *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
- *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	connections
- */
-function to_connected_activities($before="",$after="",$echo=true){
-	to_connected_items_query('activity',get_post_type(),$before,$after,$echo);
-}
-
-
-
-/**
  * Gets the current specials connected reviews
  *
  * @param		$before	| string

@@ -24,7 +24,7 @@ if(1 !== $to_archive){$to_archive = false;}
 					<?php to_end_point('<div class="meta end-point destination">'.__('Ends in','tour-operator').': ','</div>'); ?>						
 					<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>
 					<?php to_connected_destinations('<div class="meta destination">'.__('Destinations','tour-operator').': ','</div>'); ?>	
-					<?php to_connected_activities('<div class="meta activities">'.__('Activites','tour-operator').': ','</div>'); ?>
+					<?php if(function_exists('to_connected_activities')){ to_connected_activities('<div class="meta activities">'.__('Activities','tour-operator').': ','</div>'); } ?>
 				</div>
 				<?php to_sharing(); ?>
 			</div>

@@ -29,9 +29,10 @@ class TO_Settings extends Tour_Operator {
 		$this->set_vars();
 
 		add_filter( 'to_framework_settings_tabs', array( $this, 'register_settings_tabs') );
-		
 
-		$display_page = ! empty( sanitize_text_field( wp_unslash( $_GET[ 'welcome-page' ] ) ) ) ? sanitize_text_field( wp_unslash( $_GET[ 'welcome-page' ] ) ) : '';
+		if(isset($_GET['welcome-page'])) {
+			$display_page = !empty(sanitize_text_field(wp_unslash($_GET['welcome-page']))) ? sanitize_text_field(wp_unslash($_GET['welcome-page'])) : '';
+		}
 			
 		if ( ! empty( $display_page ) ) {
 			add_action( 'admin_menu', array( $this, 'create_welcome_page' ) );

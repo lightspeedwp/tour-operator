@@ -141,15 +141,15 @@ class TO_Placeholders {
 	 */
 	public function default_post_thumbnail( $meta, $post_id, $meta_key ){
 		$options = get_option('_to_settings',false);
+
+		//This ensures our "super" placeholder will always show.
+		$placeholder = 'lsx-placeholder';
 		if('_thumbnail_id' === $meta_key && false !== $options){
 			
 			$post_type = get_post_field( 'post_type', $post_id );
 
 			//If the post types posts placeholder has been disabled then skip.
 			if('post' === $post_type && isset($options['general']) && isset($options['general']['disable_blog_placeholder'])){ return $meta; }
-
-			//This ensures our "super" placeholder will always show.
-			$placeholder = 'lsx-placeholder';
 
 			//First Check for a default, then check if there is one set by post type.
 			if(isset($options['general']) 

@@ -21,7 +21,7 @@ if(1 !== $to_archive){$to_archive = false;}
 				<h3><?php esc_html_e('Summary','tour-operator');?></h3>
 				<div class="meta taxonomies">
 					<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>
-					<?php to_connected_activities('<div class="meta activities">'.__('Activites','tour-operator').': ','</div>'); ?>	
+					<?php if(function_exists('to_connected_activities')){ to_connected_activities('<div class="meta activities">'.__('Activities','tour-operator').': ','</div>'); } ?>
 				</div>
 				<?php to_sharing(); ?>
 			</div>

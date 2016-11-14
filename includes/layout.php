@@ -186,7 +186,7 @@ function to_destination_archive_entry_bottom() {
 		<div class="col-sm-4">
 			<div class="destination-details">
 				<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>				
-				<?php to_connected_activities('<div class="meta activities">'.__('Activites','tour-operator').': ','</div>'); ?>				
+				<?php if(function_exists('to_connected_activities')){ to_connected_activities('<div class="meta activities">'.__('Activities','tour-operator').': ','</div>'); } ?>
 			</div>
 		</div>
 	</div>
@@ -295,7 +295,7 @@ function to_tour_archive_entry_bottom() {
 				<div class="meta info"><?php to_price('<span class="price">from ','</span>'); to_duration('<span class="duration">','</span>'); ?></div>
 				<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>
 				<?php to_connected_destinations('<div class="meta destination">'.__('Destinations','tour-operator').': ','</div>'); ?>				
-				<?php to_connected_activities('<div class="meta activities">'.__('Activites','tour-operator').': ','</div>'); ?>				
+				<?php if(function_exists('to_connected_activities')){ to_connected_activities('<div class="meta activities">'.__('Activities','tour-operator').': ','</div>'); } ?>
 			</div>
 		</div>
 	</div>
