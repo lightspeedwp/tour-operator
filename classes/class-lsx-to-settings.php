@@ -53,6 +53,7 @@ class TO_Settings extends Tour_Operator {
 			$uix = \to\ui\uix::get_instance( 'to' );
 			$uix->register_pages( $pages );
 
+
 			foreach($this->post_types as $post_type => $label){
 				add_action( 'to_framework_'.$post_type.'_tab_content_top', array( $this, 'general_settings' ), 5 , 1 );
 				add_action( 'to_framework_'.$post_type.'_tab_content_top', array( $this, 'archive_settings_header' ), 10 , 1 );

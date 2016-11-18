@@ -6,8 +6,8 @@
 					<label><h3 style="margin-bottom:0px;"> General</h3></label>			
 				</th>
 			</tr>		
-			<?php do_action('to_framework_dashboard_tab_content','general'); ?>			
+			<?php echo do_action('to_framework_dashboard_tab_content','general'); ?>
 		</tbody>
 	</table>
-	<?php do_action('to_framework_dashboard_tab_bottom','genral'); ?>
+	<?php do_action('to_framework_dashboard_tab_bottom','general'); ?>
 </div>

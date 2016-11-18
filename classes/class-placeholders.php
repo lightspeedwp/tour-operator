@@ -431,40 +431,40 @@ class TO_Placeholders {
 				<small><?php esc_html_e( 'This disables the placeholder on blog posts.', 'tour-operator' ); ?></small>
 			</td>
 		</tr>
-		<script type="text/javascript">
+		{{#script}}
 			(function( $ ) {
-				jQuery( '.lsx-thumbnail-image-add' ).on( 'click', function() {
+				$( '.lsx-thumbnail-image-add' ).on( 'click', function() {
 					tb_show('Choose a Featured Image', 'media-upload.php?type=image&TB_iframe=1');
 					var image_thumbnail = '';
-					var $this = jQuery(this);
-					window.send_to_editor = function( html ) 
+					var $this = $(this);
+					window.send_to_editor = function( html )
 					{
-						var image_thumbnail = jQuery( 'img',html ).html();
+						var image_thumbnail = $( 'img',html ).html();
 
-						jQuery( $this ).parent('td').find('.thumbnail-preview' ).append('<img width="150" height="150" src="'+jQuery( 'img',html ).attr( 'src' )+'" />');
-						jQuery( $this ).parent('td').find('input[name="banner"]').val(jQuery( 'img',html ).attr( 'src' ));
-						
-						var imgClasses = jQuery( 'img',html ).attr( 'class' );
+						$( $this ).parent('td').find('.thumbnail-preview' ).append('<img width="150" height="150" src="'+jQuery( 'img',html ).attr( 'src' )+'" />');
+						$( $this ).parent('td').find('input[name="banner"]').val($( 'img',html ).attr( 'src' ));
+
+						var imgClasses = $( 'img',html ).attr( 'class' );
 						imgClasses = imgClasses.split('wp-image-');
-						
-						jQuery( $this ).parent('td').find('input[name="banner_id"]').val(imgClasses[1]);
-						jQuery( $this ).hide();
-						jQuery( $this ).parent('td').find('.lsx-thumbnail-image-delete' ).show();
+
+						$( $this ).parent('td').find('input[name="banner_id"]').val(imgClasses[1]);
+						$( $this ).hide();
+						$( $this ).parent('td').find('.lsx-thumbnail-image-delete' ).show();
 						tb_remove();
 					}
-					jQuery( this ).hide();
-					
+					$( this ).hide();
+
 					return false;
-				});	
-				jQuery( '.lsx-thumbnail-image-delete' ).on( 'click', function() {
-					jQuery( this ).parent('td').find('input[name="banner_id"]').val('');
-					jQuery( this ).parent('td').find('input[name="banner"]').val('');
-					jQuery( this ).parent('td').find('.thumbnail-preview' ).html('');
-					jQuery( this ).hide();
-					jQuery( this ).parent('td').find('.lsx-thumbnail-image-add' ).show();
-				});	
+				});
+				$( '.lsx-thumbnail-image-delete' ).on( 'click', function() {
+					$( this ).parent('td').find('input[name="banner_id"]').val('');
+					$( this ).parent('td').find('input[name="banner"]').val('');
+					$( this ).parent('td').find('.thumbnail-preview' ).html('');
+					$( this ).hide();
+					$( this ).parent('td').find('.lsx-thumbnail-image-add' ).show();
+				});
 			})(jQuery);
-		</script>					
+		{{/script}}
 	<?php 
 	}
 
