@@ -240,7 +240,7 @@ class TO_Settings extends Tour_Operator {
 	 */
 	public function dashboard_tab_content() {
 		?>
-		<?php if(!class_exists('LSX_Currency')) { ?>
+		<?php if(!class_exists('LSX_Currencies')) { ?>
 			<tr class="form-field-wrap">
 				<th scope="row">
 					<label for="currency"> Currency</label>

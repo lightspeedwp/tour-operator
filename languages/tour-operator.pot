@@ -228,8 +228,8 @@ msgstr ""
 msgid "Travel Style"
 msgstr ""
 
-#: classes/class-destination.php:246, classes/class-tour.php:450, includes/layout.php:189, includes/layout.php:243, includes/layout.php:298, templates/content-destination.php:24, templates/content-tour.php:27, templates/content-widget-tour.php:28
-msgid "Activites"
+#: classes/class-destination.php:246, classes/class-tour.php:450, includes/layout.php:189, includes/layout.php:298, templates/content-accommodation.php:30, templates/content-destination.php:24, templates/content-tour.php:27, templates/content-widget-tour.php:28
+msgid "Activities"
 msgstr ""
 
 #: classes/class-fields.php:45, includes/layout.php:103, includes/layout.php:105, includes/layout.php:168, includes/layout.php:170, includes/layout.php:271, includes/layout.php:273, templates/single-accommodation.php:43, templates/single-destination.php:74, templates/single-tour.php:49
@@ -401,7 +401,7 @@ msgstr ""
 msgid "New Location"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:489, classes/class-lsx-to-settings.php:76, classes/class-lsx-to-settings.php:76, classes/class-lsx-to-settings.php:170, includes/settings/api.php:4, includes/settings/api.php:9
+#: classes/class-lsx-to-admin.php:489, classes/class-lsx-to-settings.php:77, classes/class-lsx-to-settings.php:77, classes/class-lsx-to-settings.php:171, includes/settings/api.php:4, includes/settings/api.php:9
 msgid "Settings"
 msgstr ""
 
@@ -433,79 +433,79 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:127
+#: classes/class-lsx-to-settings.php:128
 msgid "General"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:135
+#: classes/class-lsx-to-settings.php:136
 msgid "Display"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:144
+#: classes/class-lsx-to-settings.php:145
 msgid "API"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:153, classes/class-lsx-to-settings.php:155
+#: classes/class-lsx-to-settings.php:154, classes/class-lsx-to-settings.php:156
 msgid "Posts"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:169
+#: classes/class-lsx-to-settings.php:170
 msgid "Tour Operator Settings"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:174
+#: classes/class-lsx-to-settings.php:175
 msgid "Save Changes"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:201
+#: classes/class-lsx-to-settings.php:202
 msgid "Display galleries in the banner"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:205
+#: classes/class-lsx-to-settings.php:206
 msgid "Move the gallery on a page into the banner."
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:216
+#: classes/class-lsx-to-settings.php:217
 msgid "Disable CSS"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:220
+#: classes/class-lsx-to-settings.php:221
 msgid "Disable the CSS if you want to include your own."
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:225
+#: classes/class-lsx-to-settings.php:226
 msgid "Disable Javascript"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:229
+#: classes/class-lsx-to-settings.php:230
 msgid "Only disable the JS if you are debugging an error."
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:265, classes/class-lsx-to-settings.php:321
+#: classes/class-lsx-to-settings.php:266, classes/class-lsx-to-settings.php:322
 msgid "General Enquiry"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:295
+#: classes/class-lsx-to-settings.php:296
 msgid "Disable Enquire Modal"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:299, classes/class-lsx-to-settings.php:355
+#: classes/class-lsx-to-settings.php:300, classes/class-lsx-to-settings.php:356
 msgid "This disables the enquire modal, and instead redirects to the link you provide below."
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:304, classes/class-lsx-to-settings.php:360
+#: classes/class-lsx-to-settings.php:305, classes/class-lsx-to-settings.php:361
 msgid "Enquire Link"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:351
+#: classes/class-lsx-to-settings.php:352
 msgid "Disable Modal"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:604
+#: classes/class-lsx-to-settings.php:605
 msgid "Enable Connected Modals"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:608
+#: classes/class-lsx-to-settings.php:609
 msgid "Any connected item showing on a single will display a preview in a modal."
 msgstr ""
 
@@ -650,6 +650,10 @@ msgstr ""
 msgid "Destination"
 msgstr ""
 
+#: includes/layout.php:243
+msgid "Activites"
+msgstr ""
+
 #: includes/layout.php:278, includes/template-tags/destination.php:87
 msgid "to_get_post_type_section_titletour"
 msgstr ""
@@ -746,7 +750,7 @@ msgstr ""
 msgid "Friendly"
 msgstr ""
 
-#: includes/template-tags/accommodation.php:282, module.php:278, templates/content-accommodation.php:30, templates/content-widget-accommodation.php:27
+#: includes/template-tags/accommodation.php:282, module.php:278, templates/content-accommodation.php:31, templates/content-widget-accommodation.php:27
 msgid "Location"
 msgstr ""
 
