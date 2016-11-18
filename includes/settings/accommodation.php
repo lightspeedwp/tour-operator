@@ -1,23 +1,42 @@
 <div class="uix-field-wrapper">
-	<table class="form-table">
-		<tbody>
-			<?php
-				/* Hooked
-				 * - 5	| general_settings()					class-framework-admin.php
-				 * - 12	| archive_settings()					class-framework-admin.php
-				 * - 15	| single_settings()						class-framework-admin.php
-				 */
-			?>		
-			<?php do_action('to_framework_accommodation_tab_content_top','accommodation'); ?>
-			<?php
-				/* Hooked
-				 * - 10	| settings_page_html()					class-placeholders.php
-				 * - 10	| map_marker()							class-google-maps.php
-				 * - 10	| tab_settings()						lsx-search-integration.php
-				 */
-			?>			
-			<?php do_action('to_framework_accommodation_tab_content','accommodation'); ?>
-		</tbody>
-	</table>
+
+	<ul class="ui-tab-nav">
+		<li><a href="#ui-general" class="active"><?php esc_html_e('General','tour-operator'); ?></a></li>
+		<li><a href="#ui-placeholders"><?php esc_html_e('Placeholders','tour-operator'); ?></a></li>
+		<li><a href="#ui-archives"><?php esc_html_e('Archives','tour-operator'); ?></a></li>
+		<li><a href="#ui-single"><?php esc_html_e('Single','tour-operator'); ?></a></li>
+	</ul>
+
+	<div id="ui-general" class="ui-tab active">
+		<table class="form-table">
+			<tbody>
+			<?php do_action('to_framework_accommodation_tab_content','accommodation','general'); ?>
+			</tbody>
+		</table>
+	</div>
+
+	<div id="ui-placeholders" class="ui-tab">
+		<table class="form-table">
+			<tbody>
+			<?php do_action('to_framework_accommodation_tab_content','accommodation','placeholders'); ?>
+			</tbody>
+		</table>
+	</div>
+
+	<div id="ui-archives" class="ui-tab">
+		<table class="form-table">
+			<tbody>
+			<?php do_action('to_framework_accommodation_tab_content','accommodation','archives'); ?>
+			</tbody>
+		</table>
+	</div>
+
+	<div id="ui-single" class="ui-tab">
+		<table class="form-table">
+			<tbody>
+			<?php do_action('to_framework_accommodation_tab_content','accommodation','single'); ?>
+			</tbody>
+		</table>
+	</div>
 	<?php do_action('to_framework_accommodation_tab_bottom','accommodation'); ?>
 </div>

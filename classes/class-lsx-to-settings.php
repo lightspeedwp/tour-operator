@@ -55,10 +55,9 @@ class TO_Settings extends Tour_Operator {
 
 
 			foreach($this->post_types as $post_type => $label){
-				add_action( 'to_framework_'.$post_type.'_tab_content_top', array( $this, 'general_settings' ), 5 , 1 );
-				add_action( 'to_framework_'.$post_type.'_tab_content_top', array( $this, 'archive_settings_header' ), 10 , 1 );
-				add_action( 'to_framework_'.$post_type.'_tab_content_top', array( $this, 'archive_settings' ), 12 , 1 );
-				add_action( 'to_framework_'.$post_type.'_tab_content_top', array( $this, 'single_settings' ), 15 , 1 );
+				add_action( 'to_framework_'.$post_type.'_tab_content', array( $this, 'general_settings' ), 5 , 2 );
+				add_action( 'to_framework_'.$post_type.'_tab_content', array( $this, 'archive_settings' ), 12 , 2 );
+				add_action( 'to_framework_'.$post_type.'_tab_content', array( $this, 'single_settings' ), 15 , 2 );
 				add_action( 'to_framework_'.$post_type.'_tab_bottom', array( $this, 'settings_page_scripts' ), 100 );
 			}
 
@@ -103,7 +102,7 @@ class TO_Settings extends Tour_Operator {
 				}
 
 				$tabs[$index] = array(
-					'page_title'        => $title,
+					'page_title'        => '',
 					'page_description'  => '',
 					'menu_title'        => $title,
 					'template'          => apply_filters('to_settings_path',TO_PATH,$index).'includes/settings/'.$index.'.php',
@@ -318,9 +317,15 @@ class TO_Settings extends Tour_Operator {
 	}
 
 	/**
-	 * Adds in the settings neccesary for the archives
+	 * Adds in the settings necessary for the archives
+	 *
+	 * @param $post_type string
+	 * @param $tab string
+	 * @return null
 	 */
-	public function general_settings($post_type=false){ 
+	public function general_settings($post_type=false,$tab=false){
+		if('general' !== $tab){ return false; }
+
 		do_action('to_framework_'.$post_type.'_tab_general_settings_top',$post_type);
 		?>
 		<tr class="form-field-wrap">
@@ -328,39 +333,69 @@ class TO_Settings extends Tour_Operator {
 				<label for="currency"><?php esc_attr_e('General Enquiry','tour-operator'); ?></label>
 			</th>
 			<?php
-				if(true === $this->show_default_form()){
-					$forms = $this->get_activated_forms(); ?>
-					<td>
-						<select value="{{enquiry}}" name="enquiry">
+			if(true === $this->show_default_form()){
+				$forms = $this->get_activated_forms(); ?>
+				<td>
+					<select value="{{enquiry}}" name="enquiry">
 						<?php
 						if(false !== $forms && '' !== $forms){ ?>
 							<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}>Select a form</option>
 							<?php
 							foreach($forms as $form_id => $form_data){ ?>
 								<option value="<?php echo wp_kses_post($form_id); ?>" {{#is enquiry value="<?php echo wp_kses_post($form_id); ?>"}} selected="selected"{{/is}}><?php echo wp_kses_post($form_data); ?></option>
-							<?php
+								<?php
 							}
 						}else{ ?>
 							<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}>You have no form available</option>
 						<?php } ?>
-						</select>
-					</td>
-				<?php }else{ ?>
-					<td>
-						<textarea class="description enquiry" name="enquiry" rows="10">{{#if enquiry}}{{{enquiry}}}{{/if}}</textarea>
-					</td>
+					</select>
+				</td>
+			<?php }else{ ?>
+				<td>
+					<textarea class="description enquiry" name="enquiry" rows="10">{{#if enquiry}}{{{enquiry}}}{{/if}}</textarea>
+				</td>
 				<?php
-				}
+			}
 			?>
 		</tr>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="description"><?php esc_attr_e('Disable Modal','tour-operator'); ?></label>
+				<label for="description"><?php esc_attr_e('Disable Enquire Modal','tour-operator'); ?></label>
 			</th>
 			<td>
 				<input type="checkbox" {{#if disable_enquire_modal}} checked="checked" {{/if}} name="disable_enquire_modal" />
 				<small><?php esc_attr_e('This disables the enquire modal, and instead redirects to the link you provide below.','tour-operator'); ?></small>
 			</td>
+		</tr>
+		<tr class="form-field-wrap">
+			<th scope="row">
+				<label for="currency"><?php esc_attr_e('General Enquiry','tour-operator'); ?></label>
+			</th>
+			<?php
+			if(true === $this->show_default_form()){
+				$forms = $this->get_activated_forms(); ?>
+				<td>
+					<select value="{{enquiry}}" name="enquiry">
+						<?php
+						if(false !== $forms && '' !== $forms){ ?>
+							<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}>Select a form</option>
+							<?php
+							foreach($forms as $form_id => $form_data){ ?>
+								<option value="<?php echo wp_kses_post($form_id); ?>" {{#is enquiry value="<?php echo wp_kses_post($form_id); ?>"}} selected="selected"{{/is}}><?php echo wp_kses_post($form_data); ?></option>
+								<?php
+							}
+						}else{ ?>
+							<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}>You have no form available</option>
+						<?php } ?>
+					</select>
+				</td>
+			<?php }else{ ?>
+				<td>
+					<textarea class="description enquiry" name="enquiry" rows="10">{{#if enquiry}}{{{enquiry}}}{{/if}}</textarea>
+				</td>
+				<?php
+			}
+			?>
 		</tr>
 		<tr class="form-field">
 			<th scope="row">
@@ -369,7 +404,23 @@ class TO_Settings extends Tour_Operator {
 			<td>
 				<input type="text" {{#if enquire_link}} value="{{enquire_link}}" {{/if}} name="enquire_link" />
 			</td>
-		</tr>		
+		</tr>
+
+		<?php	
+			do_action('to_framework_'.$post_type.'_tab_general_settings_bottom',$post_type);	
+	}
+
+	/**
+	 * Adds in the settings necessary for the archives
+	 *
+	 * @param $post_type string
+	 * @param $tab string
+	 * @return null
+	 */
+	public function archive_settings($post_type=false,$tab=false){
+		if('archives' !== $tab){ return false; }
+		?>
+
 		<tr class="form-field">
 			<th scope="row">
 				<label for="description">Disable Archives</label>
@@ -378,7 +429,48 @@ class TO_Settings extends Tour_Operator {
 				<input type="checkbox" {{#if disable_archives}} checked="checked" {{/if}} name="disable_archives" />
 				<small>This disables the "post type archive", if you create your own custom loop it will still work.</small>
 			</td>
-		</tr>		
+		</tr>
+		<?php do_action('to_framework_'.$post_type.'_tab_archive_settings_top',$post_type); ?>
+		<tr class="form-field">
+			<th scope="row">
+				<label for="title"> Title</label>
+			</th>
+			<td>
+				<input type="text" {{#if title}} value="{{title}}" {{/if}} name="title" />
+			</td>
+		</tr>
+		<tr class="form-field">
+			<th scope="row">
+				<label for="tagline"> Tagline</label>
+			</th>
+			<td>
+				<input type="text" {{#if tagline}} value="{{tagline}}" {{/if}} name="tagline" />
+			</td>
+		</tr>
+		<tr class="form-field">
+			<th scope="row">
+				<label for="description"> Description</label>
+			</th>
+			<td>
+				<textarea class="description" name="description" rows="10">{{#if description}}{{{description}}}{{/if}}</textarea>
+			</td>
+		</tr>
+		<?php do_action('to_framework_'.$post_type.'_tab_archive_settings_bottom',$post_type); ?>
+
+	<?php
+	}
+
+	/**
+	 * Adds in the settings necessary for the single
+	 *
+	 * @param $post_type string
+	 * @param $tab string
+	 * @return null
+	 */
+	public function single_settings($post_type=false,$tab=false){
+		if('single' !== $tab){ return false; }
+
+		?>
 		<tr class="form-field">
 			<th scope="row">
 				<label for="description">Disable Singles</label>
@@ -388,69 +480,9 @@ class TO_Settings extends Tour_Operator {
 				<small>When disabled you will be redirected to the homepage when trying to access a single tour page.</small>
 			</td>
 		</tr>
-
-		<?php	
-			do_action('to_framework_'.$post_type.'_tab_general_settings_bottom',$post_type);	
-	}
-
-	/**
-	 * Adds in the settings neccesary for the archive heading
-	 */
-	public function archive_settings_header($post_type=false){ ?>
-		{{#unless disable_archives}}
-			<tr class="form-field">
-				<th scope="row" colspan="2"><label><h3>Archive</h3></label></th>
-			</tr>
-		{{/unless}}
-	<?php
-	}
-
-	/**
-	 * Adds in the settings neccesary for the archives
-	 */
-	public function archive_settings($post_type=false){ ?>
-
-		{{#unless disable_archives}}
-			<?php do_action('to_framework_'.$post_type.'_tab_archive_settings_top',$post_type); ?>
-			<tr class="form-field">
-				<th scope="row">
-					<label for="title"> Title</label>
-				</th>
-				<td>
-					<input type="text" {{#if title}} value="{{title}}" {{/if}} name="title" />
-				</td>
-			</tr>			
-			<tr class="form-field">
-				<th scope="row">
-					<label for="tagline"> Tagline</label>
-				</th>
-				<td>
-					<input type="text" {{#if tagline}} value="{{tagline}}" {{/if}} name="tagline" />
-				</td>
-			</tr>
-			<tr class="form-field">
-				<th scope="row">
-					<label for="description"> Description</label>
-				</th>
-				<td>
-					<textarea class="description" name="description" rows="10">{{#if description}}{{{description}}}{{/if}}</textarea>
-				</td>
-			</tr>
-			<?php do_action('to_framework_'.$post_type.'_tab_archive_settings_bottom',$post_type); ?>
-		{{/unless}}
-	<?php
-	}
-
-	/**
-	 * Adds in the settings neccesary for the single
-	 */
-	public function single_settings($post_type=false){ ?>
-		<?php 
+		<?php
 		do_action('to_framework_'.$post_type.'_tab_single_settings_top',$post_type);
 		if ( 'tour' == $post_type || 'accommodation' == $post_type || 'destination' == $post_type || 'activity' == $post_type ) : ?>
-			<tr class="form-field">
-				<th scope="row" colspan="2"><label><h3>Single</h3></label></th>
-			</tr>
 			<tr class="form-field">
 				<th scope="row">
 					<label for="section_title">Default Section Title</label>

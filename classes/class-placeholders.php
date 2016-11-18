@@ -61,7 +61,7 @@ class TO_Placeholders {
 		add_action('to_framework_display_tab_content',array($this,'display_settings'),15,1);
 
 		foreach($this->post_types as $post_type){
-			add_action( 'to_framework_'.$post_type.'_tab_general_settings_top', array( $this, 'settings_page_html' ) );
+			add_action( 'to_framework_'.$post_type.'_tab_content', array( $this, 'placeholder_settings' ),10,2 );
 		}
 		
 		if( !is_admin() ){
@@ -387,7 +387,7 @@ class TO_Placeholders {
 		<?php } ?>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="banner"> <?php esc_html_e( 'Featured Placeholder', 'tour-operator' ); ?></label>
+				<label for="banner"> <?php esc_html_e( 'Archive Placeholder', 'tour-operator' ); ?></label>
 			</th>
 			<td>
 				<input type="hidden" {{#if default_placeholder_id}} value="{{default_placeholder_id}}" {{/if}} name="default_placeholder_id" />
@@ -468,13 +468,19 @@ class TO_Placeholders {
 	}
 
 	/**
-	 * The placeholder settings that output on the frameworks tabs.
+	 * The placeholder settings that output on the post type tabs.
+	 *
+	 * @param $post_type string
+	 * @param $tab string
+	 * @return null
 	 */
-	public function settings_page_html() { ?>
+	public function placeholder_settings($post_type=false,$tab=false) {
+		if('placeholders' !== $tab){return false;}
+		?>
 		<?php if(class_exists('LSX_Banners')) { ?>
 			<tr class="form-field banner-placeholder-wrap">
 				<th scope="row">
-					<label for="banner"> <?php esc_html_e( 'Banner Placeholder', 'tour-operator' ); ?></label>
+					<label for="banner"> <?php esc_html_e( 'Banner', 'tour-operator' ); ?></label>
 				</th>
 				<td>
 					<input type="hidden" {{#if banner_placeholder_id}} value="{{banner_placeholder_id}}" {{/if}} name="banner_placeholder_id" />
@@ -493,7 +499,7 @@ class TO_Placeholders {
 		
 		<tr class="form-field featured-placeholder-wrap">
 			<th scope="row">
-				<label for="featured_placeholder"><?php esc_html_e( 'Featured Image', 'tour-operator' ); ?></label>
+				<label for="featured_placeholder"><?php esc_html_e( 'Archive Image', 'tour-operator' ); ?></label>
 			</th>
 			<td>
 				<input type="hidden" {{#if featured_placeholder_id}} value="{{featured_placeholder_id}}" {{/if}} name="featured_placeholder_id" />
