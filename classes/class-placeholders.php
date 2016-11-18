@@ -58,7 +58,7 @@ class TO_Placeholders {
 		$this->post_types[] = 'post';
 		$this->post_types[] = 'page';
 
-		add_action('to_framework_dashboard_tab_content',array($this,'dashboard_settings'),15);
+		add_action('to_framework_display_tab_content',array($this,'display_settings'),15,1);
 
 		foreach($this->post_types as $post_type){
 			add_action( 'to_framework_'.$post_type.'_tab_general_settings_top', array( $this, 'settings_page_html' ) );
@@ -152,17 +152,17 @@ class TO_Placeholders {
 			if('post' === $post_type && isset($options['general']) && isset($options['general']['disable_blog_placeholder'])){ return $meta; }
 
 			//First Check for a default, then check if there is one set by post type.
-			if(isset($options['general']) 
-			 && isset($options['general']['default_placeholder_id'])
-			 && !empty( $options['general']['default_placeholder_id'] )){
-				$placeholder = $options['general']['default_placeholder_id'];
+			if(isset($options['display'])
+			 && isset($options['display']['default_placeholder_id'])
+			 && !empty( $options['display']['default_placeholder_id'] )){
+				$placeholder = $options['display']['default_placeholder_id'];
 			}
 			if('post' === $post_type){
-				if(isset($options['general']) 
-				 && isset($options['general']['posts_placeholder_id'])
-				 && !empty( $options['general']['posts_placeholder_id'] )
-				 && '' !== $options['general']['posts_placeholder_id']){
-					$placeholder = $options['general']['posts_placeholder_id'];
+				if(isset($options['display'])
+				 && isset($options['display']['posts_placeholder_id'])
+				 && !empty( $options['display']['posts_placeholder_id'] )
+				 && '' !== $options['display']['posts_placeholder_id']){
+					$placeholder = $options['display']['posts_placeholder_id'];
 				}
 			}else{
 				if(isset($options[$post_type]) 
@@ -200,10 +200,10 @@ class TO_Placeholders {
 
 			//First Check for a default, then check if there is one set by post type.
 			if(false !== $options
-			 && isset($options['general']) 
-			 && isset($options['general']['default_placeholder_id'])
-			 && !empty( $options['general']['default_placeholder_id'] )){
-				$placeholder = $options['general']['default_placeholder_id'];
+			 && isset($options['display'])
+			 && isset($options['display']['default_placeholder_id'])
+			 && !empty( $options['display']['default_placeholder_id'] )){
+				$placeholder = $options['display']['default_placeholder_id'];
 			}
 
 		}
@@ -362,12 +362,11 @@ class TO_Placeholders {
 	/**
 	 * The placeholder settings that output on the frameworks tabs.
 	 */
-	public function dashboard_settings() { ?>
-		<th class="" style="padding-bottom:0px;" scope="row" colspan="2">
-			<label><h3 style="margin-bottom:0px;"> <?php esc_html_e( 'Placeholders', 'tour-operator' ); ?></h3></label>			
-		</th>
+	public function display_settings($tab=false) {
 
-		<?php if(class_exists('LSX_Banners')) { ?>
+		if('placeholders' !== $tab){ return false; }
+
+		if(class_exists('LSX_Banners')) { ?>
 			<tr class="form-field banner-placeholder-wrap">
 				<th scope="row">
 					<label for="banner"> <?php esc_html_e( 'Banner Placeholder', 'tour-operator' ); ?></label>
