@@ -63,11 +63,12 @@ class TO_Settings extends Tour_Operator {
 			}
 
 			
-			add_action('to_framework_dashboard_tab_content',array($this,'dashboard_tab_content'));
+			add_action('to_framework_dashboard_tab_content',array($this,'dashboard_tab_content'),10,1);
 			add_action('to_framework_display_tab_content',array($this,'display_tab_content'),10,1);
 
 			add_action( 'to_framework_api_tab_bottom', array( $this, 'settings_page_scripts' ), 100 );
 			add_action( 'to_framework_display_tab_bottom', array( $this, 'settings_page_scripts' ), 100 );
+			add_action( 'to_framework_dashboard_tab_bottom', array( $this, 'settings_page_scripts' ), 100 );
 		}
 	}
 
@@ -237,8 +238,12 @@ class TO_Settings extends Tour_Operator {
 
 	/**
 	 * outputs the dashboard tabs settings
+	 *
+	 * @param $tab string
+	 * @return null
 	 */
-	public function dashboard_tab_content() {
+	public function dashboard_tab_content($tab='general') {
+		if('general' !== $tab){ return false;}
 		?>
 		<?php if(!class_exists('LSX_Currencies')) { ?>
 			<tr class="form-field-wrap">
