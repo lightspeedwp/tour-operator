@@ -70,7 +70,7 @@ class Lsx_Destination{
 		add_action('to_map_meta',array($this, 'content_meta'));
 		add_action('to_modal_meta',array($this, 'content_meta'));		
 
-		add_action( 'to_framework_destination_tab_general_settings_bottom', array($this,'general_settings'), 10 , 1 );	
+		add_action( 'to_framework_destination_tab_general_settings_bottom', array($this,'general_settings'), 10 , 2 );
 	}
 
 	/**
@@ -221,7 +221,8 @@ class Lsx_Destination{
 	/**
 	 * Displays the destination specific settings
 	 */
-	public function general_settings( $post_type ) {
+	public function general_settings( $post_type='destination',$tab=false ) {
+		if('archives'!== $tab){return false;}
 		?>
 			<tr class="form-field -wrap">
 				<th scope="row">
