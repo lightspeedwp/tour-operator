@@ -6,22 +6,31 @@
 	</ul>
 
 	<div id="ui-settings" class="ui-tab active">
-	  <h3><?php esc_html_e('Settings','tour-operator'); ?></h3>
-	  <p>Enter your text here</p>
+		<table class="form-table" style="margin-top:-13px !important;">
+			<tbody>
+			<?php do_action('to_framework_api_tab_content','settings'); ?>
+			</tbody>
+		</table>
 	</div>
 
 	<div id="ui-keys" class="ui-tab">
 		<table class="form-table" style="margin-top:-13px !important;">
 			<tbody>
-			<tr class="form-field">
-				<th class="api_table_heading" style="padding-bottom:0px;" scope="row" colspan="2">
-					<label><h3 style="margin-bottom:0px;margin-top: -5px;"> API Settings</h3></label>			
-				</th>
-			</tr>
-			<?php do_action('to_framework_api_tab_content','api'); ?>		
+			<?php
+			$api_keys_content = false;
+			ob_start();
+			do_action('to_framework_api_tab_content','api');
+			$api_keys_content = ob_end_clean();
+			if(false === $api_keys_content){
+				?><p class="info"><?php esc_html_e('Enter the license keys for your add-ons in the boxes below.','tour-operator'); ?></p><?php
+				echo $api_keys_content;
+			}else{ ?>
+				<p class="info"><?php esc_html_e('You have not installed any add-ons yet. View our list of add-ons','tour-operator'); ?> <a href="<?php echo admin_url('admin.php'); ?>?page=to-addons"><?php esc_html_e('here','tour-operator'); ?></a>.</p>
+			<?php }	?>
 			</tbody>
 		</table>
-		<?php do_action('to_framework_api_tab_bottom','api'); ?>
+
 	</div>
 
+	<?php do_action('to_framework_api_tab_bottom','api'); ?>
 </div>
