@@ -25,7 +25,7 @@
 				?><p class="info"><?php esc_html_e('Enter the license keys for your add-ons in the boxes below.','tour-operator'); ?></p><?php
 				do_action('to_framework_api_tab_content','api');
 			}else{ ?>
-				<p class="info"><?php esc_html_e('You have not installed any add-ons yet. View our list of add-ons','tour-operator'); ?> <a href="<?php echo admin_url('admin.php'); ?>?page=to-addons"><?php esc_html_e('here','tour-operator'); ?></a>.</p>
+				<p class="info"><?php esc_html_e('You have not installed any add-ons yet. View our list of add-ons','tour-operator'); ?> <a href="<?php echo esc_url(admin_url('admin.php')); ?>?page=to-addons"><?php esc_html_e('here','tour-operator'); ?></a>.</p>
 			<?php }	?>
 			</tbody>
 		</table>
