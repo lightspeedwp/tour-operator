@@ -1,77 +1,69 @@
+<?php
+	$to_documentation = esc_url('http://lsdev.biz/documentation/');
+	$extensions_link = esc_url('http://lsdev.biz/product-category/tour-operator-extensions/');
+
+	//Product Urls
+	$tour_operator_link = esc_url('https://www.lsdev.biz/product/tour-operator-plugin/');
+	$map_link = esc_url('https://dev.lsdev.biz/product/tour-operator-maps/');
+	$galleries_link = esc_url('https://dev.lsdev.biz/product/tour-operator-galleries/');
+	$team_link = esc_url('https://dev.lsdev.biz/product/tour-operators-team/');
+	$activities_link = esc_url('https://dev.lsdev.biz/product/tour-operators-activities/');
+	$reviews_link = esc_url('https://dev.lsdev.biz/product/tour-operator-reviews/');
+	$specials_link = esc_url('https://dev.lsdev.biz/product/tour-operator-specials/');
+	$search_link = esc_url('https://dev.lsdev.biz/product/tour-operators-search/');
+	$vehicles_link = esc_url('https://dev.lsdev.biz/product/tour-operator-vehicles/');
+	$wetu_importer_link = esc_url('');
+?>
+
 <div class="wrap to_help_wrap">
 	<div class="primary">
 		<div class="feature-box">
-			<h1>Tour Operator</h1>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sit amet orci in massa pretium tincidunt sit amet vel diam. Mauris facilisis eu nulla eget vulputate. Etiam lobortis quam sed dolor scelerisque viverra. Duis id tincidunt ipsum. Pellentesque vehicula ligula massa, nec lobortis mauris ultrices eget. Nulla accumsan urna eu accumsan accumsan. Etiam fermentum semper condimentum. Ut placerat eget risus eu dapibus.</p>
+			<h1><?php esc_html_e( 'LightSpeed’s Tour Operator Plugin', 'tour-operator' ); ?></h1>
+			<p><?php esc_html_e( 'Thank you for using the Tour Operator plugin. All of us here at LightSpeed appreciate your ongoing support and we can\'t wait to see what people create with the plugin.', 'tour-operator' ); ?></p>
+			<p><?php esc_html_e( 'We\'re committed to ensuring you have all the help you need to make the most of the plugin.', 'tour-operator' ); ?></p>
 		</div>	
 
 		<div class="to-help-section">
-			<h3 class="help-title">Getting Support</h3>
-			<p>Our website’s <a href="#j9" target="_blank">Knowledgebase</a> is a great place to find tips and tricks for using and customizing our plugins.</p>
-			<p><strong>Support for Tour Operator</strong></p>
-			<ul>
-				<li>
-					<p><strong><a href="#" target="_blank">Help Topic 1</a></strong>: Nulla accumsan urna eu accumsan accumsan</p>
-				</li>
-				<li>
-					<p><strong><a href="#" target="_blank">Help Topic 2</a></strong>: Mauris quis odio eget ex posuere faucibus.</p>
-				</li>
-				<li>
-					<p><strong><a href="#" target="_blank">Help Topic 3</a></strong>: Sed nulla arcu, fringilla sit amet pulvinar et, aliquam in enim</p>
-				</li>
-				<li>
-					<p><strong><a href="#" target="_blank">Help Topic 4</a></strong>: Maecenas varius, lectus quis posuere suscipit, sapien nibh porttitor dolor, id mattis risus erat et arcu</p>
-				</li>
-				<li>
-					<p><strong><a href="#" target="_blank">Help Topic 5</a></strong>: Suspendisse elementum justo vel</p>
-				</li>
-				<li>
-					<p><strong><a href="#" target="_blank">Help Topic 6</a></strong>: Nunc consequat fringilla erat, ac consequat diam efficitur vel</p>
-				</li>
-				<li>
-					<p><strong><a href="#" target="_blank">Help Topic 7</a></strong>: Fusce faucibus ipsum eu justo</p>
-				</li>
-				<li>
-					<p><strong><a href="#" target="_blank">Help Topic 8</a></strong>: Nulla luctus turpis non fermentum aliquam.</p>
-				</li>																												
-			</ul>
-		</div>	
+			<h3 class="help-title"><?php esc_html_e( 'Getting Support', 'tour-operator' ); ?></h3>
+
+			<p><?php esc_html_e( 'Our website\'s','tour-operator' ); ?> <a href="<?php echo $to_documentation; ?>"><?php esc_html_e( 'documentation','tour-operator' ); ?></a> <?php esc_html_e( 'page is a great place to start to learn how to configure and customize our plugin and its extensions. Here are some links to some of the key settings and modules:', 'tour-operator' ); ?></p>
+
+			<p><strong><?php esc_html_e( 'General settings:', 'tour-operator' ); ?></strong> <?php esc_html_e( 'Configure the general settings of the plugin as well as some settings per-module.', 'tour-operator' ); ?></p>
+
+			<p><strong><?php esc_html_e( 'Destinations:', 'tour-operator' ); ?></strong> <?php esc_html_e( 'Create and configure your Destination single posts and archives', 'tour-operator' ); ?></p>
+
+			<p><strong><?php esc_html_e( 'Accommodations:', 'tour-operator' ); ?></strong> <?php esc_html_e( 'Create and configure your Accommodation single posts and archives', 'tour-operator' ); ?></p>
+
+			<p><strong><?php esc_html_e( 'Tours:', 'tour-operator' ); ?></strong> <?php esc_html_e( 'Create and configure your Tours single posts and archives', 'tour-operator' ); ?></p>
+
+		</div>
 
 		<div class="to-help-section">
-			<h3 class="tribe-help-title">Getting More Help</h3>
-			<p>While the resources above help solve a majority of the issues we see, there are times you might be looking for extra support. If you need assistance using our plugins and would like us to take a look, please follow these steps:</p>
-				<ol>
-					<li>
-					<p><strong><a href="#" target="_blank">Check our Knowledgebase</a></strong>. All of the common (and not-so-common) answers to questions we see are here. It’s often the fastest path to finding an answer!</p>
-					</li>
-					<li>
-					<p><strong><a href="#" target="_blank">Test for a theme or plugin conflict</a></strong>. Testing for an existing conflict is the best start for in-depth troubleshooting. We will often ask you to follow these steps when opening a new thread, so doing this ahead of time will be super helpful.</p>
-					</li>
-					<li>
-					<p><strong><a href="#" target="_blank">Search our support forum</a></strong>. There are very few issues we haven’t seen and it’s likely another user has already asked your question and gotten an answer from our support staff. While posting to the forums is open only to paid customers, they are open for anyone to search and review.</p>
-					</li>
-				</ol>
+			<h3 class="help-title"><?php esc_html_e( 'Documentation for Extensions', 'tour-operator' ); ?></h3>
 
-				<p>If you have tried the above steps and are still having trouble, you can post a new thread to our WordPress.org forums for <a href="https://wordpress.org/support/plugin/tour-operator/" target="_blank">Tour Operator</a>. Our support staff monitors these forums once a week and would be happy to assist you there. </p>
+			<p><a href="<?php echo $map_link; ?>"><strong><?php esc_html_e( 'Maps:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Integrate Google Map embeds into your site to specify the location of Destinations, Accommodations and points of Tours.', 'tour-operator' ); ?></p>
+			<p><a target="_blank" href="<?php echo $galleries_link; ?>"><strong><?php esc_html_e( 'Galleries:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Configure the way galleries display on singles and archives.', 'tour-operator' ); ?></p>
+			<p><a target="_blank" href="<?php echo $team_link; ?>"><strong><?php esc_html_e( 'Team:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Configure the Team extension to show off the people who make your Tour offerings possible.', 'tour-operator' ); ?></p>
+			<p><a target="_blank" href="<?php echo $activities_link; ?>"><strong><?php esc_html_e( 'Activities:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Create and configure your Activity listings which can then be set to display on Destinations, Accommodations and Tours.', 'tour-operator' ); ?></p>
+			<p><a target="_blank" href="<?php echo $reviews_link; ?>"><strong><?php esc_html_e( 'Reviews:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Gather reviews from your past clients and use this extension to display them proudly throughout your website. Associate the reviews with specific Accommodations and Tours to have them display on specific pages.', 'tour-operator' ); ?></p>
+			<p><a target="_blank" href="<?php echo $specials_link; ?>"><strong><?php esc_html_e( 'Specials:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Use the Specials module to specify time-sensitive special prices for your tour packages.', 'tour-operator' ); ?></p>
+			<p><a target="_blank" href="<?php echo $search_link; ?>"><strong><?php esc_html_e( 'Search:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Learn how to make the best use of the Search extension, which depends on the Facet WP extension and allows you to provide filterable search fields on your Tour Operator website.', 'tour-operator' ); ?></p>
+			<p><a target="_blank" href="<?php echo $vehicles_link; ?>"><strong><?php esc_html_e( 'Vehicles:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Specify your fleet\'s specifications with details such as type and number of gears, engine type (petrol/diesel), number of seats, vehicle code, and of course images and copy.', 'tour-operator' ); ?></p>
+			<p><a target="_blank" href="<?php echo $wetu_importer_link; ?>"><strong><?php esc_html_e( 'Wetu Importer:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Import accommodation data and entire tour itineraries from the WETU database to use in your day-by-day tour listings.', 'tour-operator' ); ?></p>
 
-				<p><strong>Looking for more immediate support?</strong> We offer <a href="#" target="_blank">premium support on our website</a> with the purchase of any of our premium plugins. Pick up a license and you can post there directly and expect a response within 24-48 hours during weekdays</p>
-
-				<p>Please note that all hands-on support is provided via the forums. You can email or tweet at us… ​but we will probably point you back to the forums <img draggable="false" class="emoji" alt="😄" src="https://s.w.org/images/core/emoji/2.2.1/svg/1f604.svg"></p>
-
-			<div style="text-align: right;"><a href="#" target="_blank" class="button">Read more about our support policy</a></div>
 		</div>
 
 	</div>
 
 	<div class="secondary">
 		<div class="to-help-info">
-			<h3><a href="https://www.lsdev.biz/product/tour-operator-plugin/">Tour Operator</a></h3>
+			<h3><a href="<?php echo $tour_operator_link; ?>"><?php esc_html_e( 'Tour Operator', 'tour-operator' ); ?></a></h3>
 			<dl>
-				<dt>Latest Version:</dt>
-				<dd>1.0</dd>
+				<dt><?php esc_html_e( 'Latest Version:', 'tour-operator' ); ?></dt>
+				<dd><?php esc_html_e( '1.0', 'tour-operator' ); ?></dd>
 
-				<dt>Requires:</dt>
-				<dd>WordPress 3.9+</dd>
+				<dt><?php esc_html_e( 'Requires:', 'tour-operator' ); ?></dt>
+				<dd><?php esc_html_e( 'WordPress 3.9+', 'tour-operator' ); ?></dd>
 
 				<?php /*<dt>Rating:</dt>
 				<dd>
@@ -88,26 +80,28 @@
 				</dd> */ ?>
 			</dl>
 
-			<?php /*<p style="text-align: center;"><a class="button" href="update.php?action=upgrade-plugin&amp;plugin=the-events-calendar%2Fthe-events-calendar.php&amp;_wpnonce=6f71b166ef">Upgrade Plugin</a></p> */ ?>
-
-			<h3>Premium Add-Ons</h3>
+			<h3><a href="<?php echo $extensions_link; ?>"><?php esc_html_e( 'Premium Add-Ons', 'tour-operator' ); ?></a></h3>
 			<ul class="tribe-list-addons">
-				<li title="Plugin Inactive" class=""><a href="https://lsdev.biz/shop/" title="Visit the Add-on Page" target="_blank">TO Maps</a></li>
-				<li title="Plugin Inactive" class=""><a href="https://lsdev.biz/shop/" title="Visit the Add-on Page" target="_blank">TO Search</a></li>
-				<li title="Plugin Inactive" class=""><a href="https://lsdev.biz/shop/" title="Visit the Add-on Page" target="_blank">TO Reviews</a></li>
-				<li title="Plugin Inactive" class=""><a href="https://lsdev.biz/shop/" title="Visit the Add-on Page" target="_blank">TO Specials</a></li>
-				<li title="Plugin Inactive" class=""><a href="https://lsdev.biz/shop/" title="Visit the Add-on Page" target="_blank">TO Activities</a></li>
+				<li><a href="<?php echo $map_link;?>" target="_blank"><?php esc_html_e( 'Maps', 'tour-operator' ); ?></a></li>
+				<li><a href="<?php echo $galleries_link;?>" target="_blank"><?php esc_html_e( 'Galleries', 'tour-operator' ); ?></a></li>
+				<li><a href="<?php echo $team_link;?>" target="_blank"><?php esc_html_e( 'Team', 'tour-operator' ); ?></a></li>
+				<li><a href="<?php echo $activities_link;?>" target="_blank"><?php esc_html_e( 'Activities', 'tour-operator' ); ?></a></li>
+				<li><a href="<?php echo $reviews_link;?>" target="_blank"><?php esc_html_e( 'Reviews', 'tour-operator' ); ?></a></li>
+				<li><a href="<?php echo $specials_link;?>" target="_blank"><?php esc_html_e( 'Specials', 'tour-operator' ); ?></a></li>
+				<li><a href="<?php echo $search_link;?>" target="_blank"><?php esc_html_e( 'Search', 'tour-operator' ); ?></a></li>
+				<li><a href="<?php echo $vehicles_link;?>" target="_blank"><?php esc_html_e( 'Vehicles', 'tour-operator' ); ?></a></li>
+				<li><a href="<?php echo $wetu_importer_link;?>" target="_blank"><?php esc_html_e( 'Wetu Importer', 'tour-operator' ); ?></a></li>
 			</ul>
 		</div>	
 
 		<div class="to-help-info">
-			<h3>News</h3>
-			<p>Suspendisse pretium quam quis metus luctus, et volutpat ipsum eleifend. Duis ornare ligula consectetur, sollicitudin nunc vel, dignissim orci. Aenean euismod eros enim. In non ante <strong>vitae nulla</strong> tincidunt tempus.</p>
-			<p>Sed dictum ante et nunc aliquet tincidunt. Curabitur cursus ex ac ligula vehicula, sit amet pellentesque dolor tristique.</p>
+			<h3><?php esc_html_e( 'News', 'tour-operator' ); ?></h3>
+			<p><?php esc_html_e( 'If the documentation is not getting you where you need to be, you can contact us directly for support and assistance.', 'tour-operator' ); ?></p>
+			<p><?php esc_html_e( 'Please view our support policy', 'tour-operator' ); ?> <a href="<?php echo esc_url('/');?> "><?php esc_html_e( 'here.', 'tour-operator' ); ?></a></p>
+			<p><?php esc_html_e( 'You can contact us for support at', 'tour-operator' ); ?> <a href="mailto:<?php echo esc_url('support@lsdev.biz');?> "><?php esc_html_e( 'support@lsdev.biz.', 'tour-operator' ); ?></a></p>
+			<p><?php esc_html_e( 'Support from the LightSpeed Team is only provided to user who have purchased one of our', 'tour-operator' ); ?> <strong><?php esc_html_e( 'Premium Add-ons', 'tour-operator' ); ?></strong></p>
 		</div>		
 	</div>
-
-
 
 	<br clear="both" />
 </div>
