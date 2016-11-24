@@ -42,7 +42,16 @@ class Lsx_Tour {
 	 *
 	 * @var      object|Module_Template
 	 */
-	public $search_fields = false;	
+	public $search_fields = false;
+
+	/**
+	 * Holds the $page_links array while its being built on the single accommodation page.
+	 *
+	 * @since 0.0.1
+	 *
+	 * @var      array
+	 */
+	public $page_links = false;
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -83,6 +92,8 @@ class Lsx_Tour {
 		add_action('to_modal_meta',array($this, 'content_meta'));		
 		
 		include('class-itinerary.php');
+
+		add_filter( 'to_page_navigation', array( $this, 'page_links') );
 	}
 
 	/**
@@ -449,7 +460,84 @@ class Lsx_Tour {
 			<?php to_connected_destinations('<div class="meta destination">'.__('Destinations','tour-operator').': ','</div>'); ?>				
 			<?php if(function_exists('to_connected_activities')){ to_connected_activities('<div class="meta activities">'.__('Activities','tour-operator').': ','</div>');} ?>
 		</div>
-	<?php } }	
-	
+	<?php } }
+
+	/**
+	 * Adds our navigation links to the accommodation single post
+	 *
+	 * @param $page_links array
+	 * @return $page_links array
+	 */
+	public function page_links($page_links){
+		if(is_singular('tour')){
+			$this->page_links = $page_links;
+			$this->get_itinerary_link();
+			$this->get_include_link();
+			$this->get_map_link();
+
+			$this->get_gallery_link();
+			$this->get_videos_link();
+			$page_links = $this->page_links;
+		}
+		return $page_links;
+	}
+
+	/**
+	 * Tests for the Itinerary links and adds it to the $page_links variable
+	 */
+	public function get_itinerary_link()	{
+		if(to_has_itinerary()) {
+			$this->page_links['itinerary'] = esc_html__('Itinerary','tour-operator');
+		}
+	}
+
+	/**
+	 * Tests for the Included / Not Included Block $page_links variable
+	 */
+	public function get_include_link()	{
+		$tour_included = to_included('','',false);
+		$tour_not_included = to_not_included('','',false);
+		if(null !== $tour_included || null !== $tour_not_included) {
+			$this->page_links['included-excluded'] = esc_html__('Included / Not Included','tour-operator');
+		}
+	}
+
+	/**
+	 * Tests for the Google Map and returns a link for the section
+	 */
+	public function get_map_link(){
+		if(function_exists('to_has_map') && to_has_map()){
+			$this->page_links['accommodation-map'] = esc_html__('Map','tour-operator');
+		}
+	}
+
+	/**
+	 * Tests for the Gallery and returns a link for the section
+	 */
+	public function get_gallery_link(){
+		if(class_exists('Envira_Gallery')){
+			$gallery_id = get_post_meta(get_the_ID(),'envira_to_tour',true);
+		} else {
+			$gallery_id = get_post_meta(get_the_ID(),'gallery',true);
+		}
+		if(false !== $gallery_id && '' !== $gallery_id){
+			$this->page_links['gallery'] = esc_html__('Gallery','tour-operator');
+		}
+	}
+
+	/**
+	 * Tests for the Videos and returns a link for the section
+	 */
+	public function get_videos_link(){
+		if(class_exists('Envira_Gallery')){
+			$videos_id = get_post_meta(get_the_ID(),'envira_videos',true);
+		}elseif(class_exists('TO_Videos')) {
+			$videos_id = get_post_meta(get_the_ID(),'videos',true);
+		}
+		if(false !== $videos_id && '' !== $videos_id){
+			$this->page_links['videos'] = esc_html__('Videos','tour-operator');
+		}
+	}
+
 }
 $to_tour = Lsx_Tour::get_instance();

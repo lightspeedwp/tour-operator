@@ -114,12 +114,14 @@ function to_banner_content() {
 	to_tagline('<p class="tagline">','</p>');
 }
 
+/* ==================    BODY    ================== */
+
 /**
- * Checks if a caldera form with your slug exists
+ * Outputs the tour Content
  *
  * @package 	tour-operator
- * @subpackage	setup
- * @category 	helper
+ * @subpackage	template-tag
+ * @category 	content
  */
 function to_content($slug, $name = null) {
 	do_action('to_content',$slug, $name);
@@ -140,6 +142,40 @@ function to_archive_description() {
 
 
 /* ==================   SINGLE   ================== */
+
+/**
+ * Outputs the Single pages navigation
+ *
+ * @param $echo
+ * @return string
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tag
+ * @category 	navigation
+ */
+function to_page_navigation($echo = true) {
+	$page_links = array('summary' => esc_html__('Summary', 'tour-operator'));
+	$page_links = apply_filters('to_page_navigation',$page_links);
+	$return = '<section class="'.get_post_type().'-navigation">
+					<div class="container">
+						<ul class="scroll-easing">';
+
+						if(!empty($page_links)){
+							foreach($page_links as $link_slug => $link_value){
+								$return .= '<li><a href="#'.$link_slug.'">'.$link_value.'</a></li>';
+							}
+						}
+
+	$return .= '		</ul>
+					</div>
+				</section>';
+
+	if($echo){
+		echo wp_kses_post( $return );
+	}else{
+		return $return;
+	}
+}
 
 /**
  * outputs the sharing

@@ -1,6 +1,6 @@
 <?php
 /**
- * Properties.
+ * Accommodation Class, this registers the post type and adds certain filters for layout.
  *
  * @package   TO_Accommodation
  * @author     LightSpeed Team
@@ -42,7 +42,25 @@ class TO_Accommodation {
 	 *
 	 * @var      boolean
 	 */
-	public $is_wetu_active = false;	
+	public $is_wetu_active = false;
+
+	/**
+	 * Holds and array of the Unit types available (slug => key)
+	 *
+	 * @since 0.0.1
+	 *
+	 * @var      array
+	 */
+	public $unit_types = false;
+
+	/**
+	 * Holds the $page_links array while its being built on the single accommodation page.
+	 *
+	 * @since 0.0.1
+	 *
+	 * @var      array
+	 */
+	public $page_links = false;
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -62,6 +80,14 @@ class TO_Accommodation {
 		else{
 			$this->options = false;
 		}
+
+		$this->unit_types = array(
+			'chalet' => 'Chalet',
+			'room' => 'Room',
+			'spa' => 'Spa',
+			'tent' => 'Tent',
+			'villa' => 'Villa'
+		);
 
 		// activate property post type
 		add_action( 'init', array( $this, 'activate_post_types' ) );
@@ -83,6 +109,8 @@ class TO_Accommodation {
 
 		add_action('to_map_meta','to_accommodation_meta');
 		add_action('to_modal_meta','to_accommodation_meta');
+
+		add_filter( 'to_page_navigation', array( $this, 'page_links') );
 	}
 
 	/**
@@ -386,13 +414,7 @@ class TO_Accommodation {
 										'id' => 'type',
 										'name' => 'Type',
 										'type' => 'select',
-										'options' => array(
-												'chalet' => 'Chalet',
-												'room' => 'Room',
-												'spa' => 'Spa',
-												'tent' => 'Tent',
-												'villa' => 'Villa'
-										)
+										'options' => $this->unit_types
 								),						
 								array( 'id' => 'title',  'name' => 'Title', 'type' => 'text' ),
 								array( 'id' => 'description', 'name' => 'Description', 'type' => 'textarea', 'options' => array( 'editor_height' => '100' ) ),
@@ -522,7 +544,7 @@ class TO_Accommodation {
 
 		}
 		return $html;
-	}	
+	}
 
 	/**
 	 * Filter and make the star ratings
@@ -539,7 +561,7 @@ class TO_Accommodation {
 				}
 				$counter--;
 				$value--;
-			}		
+			}
 			$rating_type = get_post_meta(get_the_ID(),'rating_type',true);
 			$rating_description = '';
 			if(false !== $rating_type && '' !== $rating_type && 'Unspecified' !== $rating_type){
@@ -549,6 +571,98 @@ class TO_Accommodation {
 
 		}
 		return $html;
-	}	
+	}
+
+	/**
+	 * Adds our navigation links to the accommodation single post
+	 *
+	 * @param $page_links array
+	 * @return $page_links array
+	 */
+	public function page_links($page_links){
+		if(is_singular('accommodation')){
+			$this->page_links = $page_links;
+			$this->get_unit_page_links();
+			$this->get_facility_link();
+			$this->get_map_link();
+			$this->get_gallery_link();
+			$this->get_videos_link();
+			$this->get_related_tours_link();
+			$page_links = $this->page_links;
+		}
+		return $page_links;
+	}
+
+	/**
+	 * Tests for the Unit links and adds them to the $page_links variable
+	 */
+	public function get_unit_page_links()	{
+		$links = false;
+		if(to_accommodation_has_rooms()) {
+			$return = false;
+			foreach($this->unit_types as $type_key => $type_label){
+				if(to_accommodation_check_type($type_key)){
+					$this->page_links[$type_key.'s'] = esc_html__(to_get_post_type_section_title('accommodation', $type_key.'s', $type_label.'s'),'tour-operator');
+				}
+			}
+		}
+	}
+
+	/**
+	 * Tests for the Facilities and returns a link for the section
+	 */
+	public function get_facility_link(){
+		$facilities = wp_get_object_terms(get_the_ID(),'facility');
+		if ( ! empty( $facilities ) && ! is_wp_error( $facilities ) ) {
+			$this->page_links['facilities'] = esc_html__('Facilities','tour-operator');
+		}
+	}
+
+	/**
+	 * Tests for the Google Map and returns a link for the section
+	 */
+	public function get_map_link(){
+		if(function_exists('to_has_map') && to_has_map()){
+			$this->page_links['accommodation-map'] = esc_html__('Map','tour-operator');
+		}
+	}
+
+	/**
+	 * Tests for the Gallery and returns a link for the section
+	 */
+	public function get_gallery_link(){
+		if(class_exists('Envira_Gallery')){
+			$gallery_id = get_post_meta(get_the_ID(),'envira_to_tour',true);
+		} else {
+			$gallery_id = get_post_meta(get_the_ID(),'gallery',true);
+		}
+		if(false !== $gallery_id && '' !== $gallery_id){
+			$this->page_links['gallery'] = esc_html__('Gallery','tour-operator');
+		}
+	}
+
+	/**
+	 * Tests for the Videos and returns a link for the section
+	 */
+	public function get_videos_link(){
+		if(class_exists('Envira_Gallery')){
+			$videos_id = get_post_meta(get_the_ID(),'envira_videos',true);
+		}elseif(class_exists('TO_Videos')) {
+			$videos_id = get_post_meta(get_the_ID(),'videos',true);
+		}
+		if(false !== $videos_id && '' !== $videos_id){
+			$this->page_links['videos'] = esc_html__('Videos','tour-operator');
+		}
+	}
+
+	/**
+	 * Tests for the Related Tours and returns a link for the section
+	 */
+	public function get_related_tours_link(){
+		$connected_tours = get_post_meta(get_the_ID(),'tour_to_accommodation',false);
+		if(post_type_exists('tour') && is_array($connected_tours) && !empty($connected_tours) ) {
+			$this->page_links['related-tours'] = esc_html__('Tours','tour-operator');
+		}
+	}
 }
 $to_accommodation = TO_Accommodation::get_instance();

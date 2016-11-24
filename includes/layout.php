@@ -8,17 +8,27 @@
  */
 
 
-// Archive
+/**
+ * Archive
+ */
 add_action('lsx_entry_top','to_archive_entry_top');
 
+/**
+ * Archive Post type Specific
+ */
 add_action('lsx_entry_bottom','to_accommodation_archive_entry_bottom');
 add_action('lsx_entry_bottom','to_destination_archive_entry_bottom');
 add_action('lsx_entry_bottom','to_tour_archive_entry_bottom');
 
-
-// Single
+/**
+ * Single
+ */
+add_action('lsx_content_top','to_single_content_top');
 add_action('lsx_entry_bottom','to_single_entry_bottom');
 
+/**
+ * Single Post type Specific
+ */
 add_action('lsx_content_bottom','to_accommodation_single_content_bottom');
 add_action('lsx_content_bottom','to_destination_single_content_bottom');
 add_action('lsx_content_bottom','to_tour_single_content_bottom');
@@ -49,6 +59,19 @@ function to_archive_entry_top() {
 					<?php to_tagline('<p class="tagline">','</p>'); ?>
 				</header><!-- .entry-header -->				
 	<?php }
+}
+
+/**
+ * Adds the template tags to the top of the lsx_content_top action
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tag
+ * @category 	general
+ */
+function to_single_content_top() {
+	if(is_singular(array_keys(to_get_post_types()))) {
+		to_page_navigation();
+	}
 }
 
 /**

@@ -43,7 +43,15 @@ class Lsx_Destination{
 	 * @var      string
 	 */
 	protected $plugin_screen_hook_suffix = null;
-	
+
+	/**
+	 * Holds the $page_links array while its being built on the single accommodation page.
+	 *
+	 * @since 0.0.1
+	 *
+	 * @var      array
+	 */
+	public $page_links = false;
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -71,6 +79,8 @@ class Lsx_Destination{
 		add_action('to_modal_meta',array($this, 'content_meta'));		
 
 		add_action( 'to_framework_destination_tab_general_settings_bottom', array($this,'general_settings'), 10 , 2 );
+
+		add_filter( 'to_page_navigation', array( $this, 'page_links') );
 	}
 
 	/**
@@ -132,7 +142,13 @@ class Lsx_Destination{
 		register_post_type( $this->plugin_slug, $args );	
 		
 	}
-	
+
+	/**
+	 * Define the metabox and field configurations.
+	 *
+	 * @param  array $meta_boxes
+	 * @return array
+	 */
 	function register_metaboxes( array $meta_boxes ) {
 
 		$fields[] = array( 'id' => 'featured',  'name' => 'Featured', 'type' => 'checkbox' );
@@ -235,7 +251,6 @@ class Lsx_Destination{
 		<?php
 	}
 
-
 	/**
 	 * Outputs the destination meta
 	 */
@@ -246,6 +261,103 @@ class Lsx_Destination{
 			<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>				
 			<?php if(function_exists('to_connected_activities')){ to_connected_activities('<div class="meta activities">'.__('Activities','tour-operator').': ','</div>'); } ?>
 		</div>
-	<?php } }		
+	<?php } }
+
+	/**
+	 * Adds our navigation links to the accommodation single post
+	 *
+	 * @param $page_links array
+	 * @return $page_links array
+	 */
+	public function page_links($page_links){
+		if(is_singular('destination')){
+			$this->page_links = $page_links;
+			$this->get_region_links();
+			$this->get_related_tours_link();
+			if(!to_item_has_children(get_the_ID(),'destination')) {
+				$this->get_related_accommodation_link();
+				$this->get_related_activities_link();
+			}
+			$this->get_map_link();
+			$this->get_gallery_link();
+			$this->get_videos_link();
+
+			$page_links = $this->page_links;
+		}
+		return $page_links;
+	}
+
+	/**
+	 * Tests for the Unit links and adds them to the $page_links variable
+	 */
+	public function get_region_links()	{
+		if(to_item_has_children(get_the_ID(),'destination')) {
+			$this->page_links['regions'] = esc_html__('Regions','tour-operator');
+		}
+	}
+	/**
+	 * Tests for the Google Map and returns a link for the section
+	 */
+	public function get_map_link(){
+		if(function_exists('to_has_map') && to_has_map()){
+			$this->page_links['destination-map'] = esc_html__('Map','tour-operator');
+		}
+	}
+	/**
+	 * Tests for the Gallery and returns a link for the section
+	 */
+	public function get_gallery_link(){
+		if(class_exists('Envira_Gallery')){
+			$gallery_id = get_post_meta(get_the_ID(),'envira_to_destination',true);
+		} else {
+			$gallery_id = get_post_meta(get_the_ID(),'gallery',true);
+		}
+		if(false !== $gallery_id && '' !== $gallery_id){
+			$this->page_links['gallery'] = esc_html__('Gallery','tour-operator');
+		}
+	}
+
+	/**
+	 * Tests for the Videos and returns a link for the section
+	 */
+	public function get_videos_link(){
+		if(class_exists('Envira_Gallery')){
+			$videos_id = get_post_meta(get_the_ID(),'envira_videos',true);
+		}elseif(class_exists('TO_Videos')) {
+			$videos_id = get_post_meta(get_the_ID(),'videos',true);
+		}
+		if(false !== $videos_id && '' !== $videos_id){
+			$this->page_links['videos'] = esc_html__('Videos','tour-operator');
+		}
+	}
+
+	/**
+	 * Tests for the Related Tours and returns a link for the section
+	 */
+	public function get_related_tours_link(){
+		$connected_tours = get_post_meta(get_the_ID(),'tour_to_destination',false);
+		if(post_type_exists('tour') && is_array($connected_tours) && !empty($connected_tours) ) {
+			$this->page_links['tours'] = esc_html__('Tours','tour-operator');
+		}
+	}
+	/**
+	 * Tests for the Related Accommodation and returns a link for the section
+	 */
+	public function get_related_accommodation_link(){
+		$connected_accommodation = get_post_meta(get_the_ID(),'accommodation_to_destination',false);
+		if(post_type_exists('accommodation') && is_array($connected_accommodation) && !empty($connected_accommodation) ) {
+			$this->page_links['accommodation'] = esc_html__('Accommodation','tour-operator');
+		}
+	}
+
+	/**
+	 * Tests for the Related Activities and returns a link for the section
+	 */
+	public function get_related_activities_link(){
+		$connected_activities = get_post_meta(get_the_ID(),'activity_to_destination',false);
+		if(post_type_exists('activity') && is_array($connected_activities) && !empty($connected_activities) ) {
+			$this->page_links['activity'] = esc_html__('Activities','tour-operator');
+		}
+	}
 }
 $to_destination = Lsx_Destination::get_instance();

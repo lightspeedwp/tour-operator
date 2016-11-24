@@ -352,36 +352,6 @@ function to_accommodation_reset_units_loop() {
 }
 
 /**
- * Outputs the navigation links
- *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	room
- */
-function to_accommodation_units_nav_links($before="",$after="",$echo=true) {
-	global $rooms;
-	$unit_types = array(
-		'chalet' => 'Chalet',
-		'room' => 'Room',
-		'spa' => 'Spa',
-		'tent' => 'Tent',
-		'villa' => 'Villa'
-	);	
-	$return = false;
-
-	foreach($unit_types as $type_key => $type_label){
-		if(to_accommodation_check_type($type_key)){
-			$return .= str_replace('{units}',$type_key.'s',$before).__(to_get_post_type_section_title('accommodation', $type_key.'s', $type_label.'s'),'tour-operator').str_replace('{units}',$type_key.'s',$after);
-		}
-	}	
-	if(true === $echo){
-		echo wp_kses_post( $return );
-	}else{
-		return $return;
-	}
-}
-
-/**
  * Outputs various units attached to the accommodation
  *
  * @package 	tour-operator
