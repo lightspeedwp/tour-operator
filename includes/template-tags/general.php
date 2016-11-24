@@ -355,7 +355,7 @@ function to_enquire_modal($before="",$after="",$echo=true){
 	if(isset($tour_operator->options['general']) && isset($tour_operator->options['general']['disable_enquire_modal']) && 'on' === $tour_operator->options['general']['disable_enquire_modal']){
 		$disable_modal = true;
 
-		if('' !== $tour_operator->options['general']['enquire_link']){
+		if(isset($tour_operator->options['general']['enquire_link']) && '' !== $tour_operator->options['general']['enquire_link']){
 			$link = $tour_operator->options['general']['enquire_link'];
 		}
 	}
@@ -364,7 +364,7 @@ function to_enquire_modal($before="",$after="",$echo=true){
 		if(isset($tour_operator->options[get_post_type()]) && isset($tour_operator->options[get_post_type()]['disable_enquire_modal']) && 'on' === $tour_operator->options[get_post_type()]['disable_enquire_modal']){
 			$disable_modal = true;
 
-			if('' !== $tour_operator->options[get_post_type()]['enquire_link']){
+			if(isset($tour_operator->options[get_post_type()]['enquire_link']) && '' !== $tour_operator->options[get_post_type()]['enquire_link']){
 				$link = $tour_operator->options[get_post_type()]['enquire_link'];
 			}
 		}
