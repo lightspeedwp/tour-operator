@@ -57,7 +57,7 @@
 
 	<div class="secondary">
 		<div class="to-help-info">
-			<h3><a href="<?php echo $tour_operator_link; ?>"><?php esc_html_e( 'Tour Operator', 'tour-operator' ); ?></a></h3>
+			<h3><a href="<?php echo $tour_operator_link; ?>" target="_blank"><?php esc_html_e( 'Tour Operator', 'tour-operator' ); ?></a></h3>
 			<dl>
 				<dt><?php esc_html_e( 'Latest Version:', 'tour-operator' ); ?></dt>
 				<dd><?php esc_html_e( '1.0', 'tour-operator' ); ?></dd>
@@ -80,7 +80,7 @@
 				</dd> */ ?>
 			</dl>
 
-			<h3><a href="<?php echo $extensions_link; ?>"><?php esc_html_e( 'Premium Add-Ons', 'tour-operator' ); ?></a></h3>
+			<h3><a href="<?php echo $extensions_link; ?>" target="_blank"><?php esc_html_e( 'Premium Add-Ons', 'tour-operator' ); ?></a></h3>
 			<ul class="tribe-list-addons">
 				<li><a href="<?php echo $map_link;?>" target="_blank"><?php esc_html_e( 'Maps', 'tour-operator' ); ?></a></li>
 				<li><a href="<?php echo $galleries_link;?>" target="_blank"><?php esc_html_e( 'Galleries', 'tour-operator' ); ?></a></li>
@@ -97,7 +97,7 @@
 		<div class="to-help-info">
 			<h3><?php esc_html_e( 'News', 'tour-operator' ); ?></h3>
 			<p><?php esc_html_e( 'If the documentation is not getting you where you need to be, you can contact us directly for support and assistance.', 'tour-operator' ); ?></p>
-			<p><?php esc_html_e( 'Please view our support policy', 'tour-operator' ); ?> <a href="<?php echo esc_url('/');?> "><?php esc_html_e( 'here.', 'tour-operator' ); ?></a></p>
+			<p><?php esc_html_e( 'Please view our support policy', 'tour-operator' ); ?> <a href="<?php echo esc_url('/');?> " target="_blank"><?php esc_html_e( 'here.', 'tour-operator' ); ?></a></p>
 			<p><?php esc_html_e( 'You can contact us for support at', 'tour-operator' ); ?> <a href="mailto:<?php echo esc_url('support@lsdev.biz');?> "><?php esc_html_e( 'support@lsdev.biz.', 'tour-operator' ); ?></a></p>
 			<p><?php esc_html_e( 'Support from the LightSpeed Team is only provided to user who have purchased one of our', 'tour-operator' ); ?> <strong><?php esc_html_e( 'Premium Add-ons', 'tour-operator' ); ?></strong></p>
 		</div>		
