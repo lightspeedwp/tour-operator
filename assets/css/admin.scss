@@ -623,24 +623,29 @@ body.tour-operator_page_to-settings {
 			li {
 				display: inline-block;
 
-				&::after {
-					content:"|";
+				&:after {
+					content: "|";
+					display: inline-block;
+					padding: 0 3px 0 8px;
 				}
-				&:last-child:after {
-					content:"";
+
+				&:last-child {
+					&:after {
+						content: "";
+						padding-left: 0;
+					}
 				}
+
 				a {
-					padding:0 5px;
-					text-decoration:none;
+					text-decoration: none;
 
 					&.active {
-						color:black;
+						color: black;
+						font-weight: bold;
 					}
-					&:first-child {
-						padding-left:0px;
-					}
+
 					&:focus {
-						box-shadow:none;
+						box-shadow: none;
 					}
 				}
 			}

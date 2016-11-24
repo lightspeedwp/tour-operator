@@ -1866,17 +1866,18 @@
 /* The Tab Styling */
 body.tour-operator_page_to-settings .uix-field-wrapper .ui-tab-nav li {
   display: inline-block; }
-  body.tour-operator_page_to-settings .uix-field-wrapper .ui-tab-nav li::after {
-    content: "|"; }
+  body.tour-operator_page_to-settings .uix-field-wrapper .ui-tab-nav li:after {
+    content: "|";
+    display: inline-block;
+    padding: 0 3px 0 8px; }
   body.tour-operator_page_to-settings .uix-field-wrapper .ui-tab-nav li:last-child:after {
-    content: ""; }
+    content: "";
+    padding-left: 0; }
   body.tour-operator_page_to-settings .uix-field-wrapper .ui-tab-nav li a {
-    padding: 0 5px;
     text-decoration: none; }
     body.tour-operator_page_to-settings .uix-field-wrapper .ui-tab-nav li a.active {
-      color: black; }
-    body.tour-operator_page_to-settings .uix-field-wrapper .ui-tab-nav li a:first-child {
-      padding-left: 0px; }
+      color: black;
+      font-weight: bold; }
     body.tour-operator_page_to-settings .uix-field-wrapper .ui-tab-nav li a:focus {
       box-shadow: none; }
 
