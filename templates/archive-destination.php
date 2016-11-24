@@ -24,39 +24,9 @@
 			 *  - to_global_header() - 100
 			 */
 				lsx_content_top();
-			?>		
-		
+			?>
+
 			<?php if ( have_posts() ) : ?>
-
-				<?php
-					global $tour_operator;
-					if ( ! isset( $tour_operator->search )
-						|| empty( $tour_operator->search )
-						|| false === $tour_operator->search->options
-						|| ! isset( $tour_operator->search->options['destination']['enable_search'] ) ) :
-					?>
-
-					<section class="destinations-navigation">
-						<div class="container">
-							<ul class="scroll-easing">
-								
-								<?php
-									while ( have_posts() ) :
-										the_post();
-										$slug = sanitize_title( the_title( '', '', FALSE ) );
-									?>
-									
-									<li><a href="#<?php echo esc_attr( $slug ); ?>" title="<?php the_title() ?>"><?php the_title() ?></a></li>
-								
-								<?php endwhile ?>
-
-							</ul>
-						</div>
-					</section>
-
-					<?php
-					endif;
-				?>
 
 				<section id="countries_custom-elementz">
 

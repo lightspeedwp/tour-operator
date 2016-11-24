@@ -69,7 +69,7 @@ function to_archive_entry_top() {
  * @category 	general
  */
 function to_single_content_top() {
-	if(is_singular(array_keys(to_get_post_types()))) {
+	if(is_singular(array_keys(to_get_post_types())) || is_post_type_archive('destination')) {
 		to_page_navigation();
 	}
 }

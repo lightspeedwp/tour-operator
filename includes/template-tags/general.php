@@ -154,26 +154,32 @@ function to_archive_description() {
  * @category 	navigation
  */
 function to_page_navigation($echo = true) {
-	$page_links = array('summary' => esc_html__('Summary', 'tour-operator'));
+	$page_links = array();
+	if(is_singular()) {
+		$page_links['summary'] = esc_html__('Summary', 'tour-operator');
+	}
 	$page_links = apply_filters('to_page_navigation',$page_links);
-	$return = '<section class="'.get_post_type().'-navigation">
+
+	if(!empty($page_links)) {
+		$return = '<section class="' . get_post_type() . '-navigation">
 					<div class="container">
 						<ul class="scroll-easing">';
 
-						if(!empty($page_links)){
-							foreach($page_links as $link_slug => $link_value){
-								$return .= '<li><a href="#'.$link_slug.'">'.$link_value.'</a></li>';
-							}
-						}
+		if (!empty($page_links)) {
+			foreach ($page_links as $link_slug => $link_value) {
+				$return .= '<li><a href="#' . $link_slug . '">' . $link_value . '</a></li>';
+			}
+		}
 
-	$return .= '		</ul>
+		$return .= '		</ul>
 					</div>
 				</section>';
 
-	if($echo){
-		echo wp_kses_post( $return );
-	}else{
-		return $return;
+		if($echo){
+			echo wp_kses_post( $return );
+		}else{
+			return $return;
+		}
 	}
 }
 

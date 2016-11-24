@@ -272,7 +272,7 @@ class Lsx_Destination{
 	public function page_links($page_links){
 		if(is_singular('destination')){
 			$this->page_links = $page_links;
-			$this->get_region_links();
+			$this->get_region_link();
 			$this->get_related_tours_link();
 			if(!to_item_has_children(get_the_ID(),'destination')) {
 				$this->get_related_accommodation_link();
@@ -283,17 +283,41 @@ class Lsx_Destination{
 			$this->get_videos_link();
 
 			$page_links = $this->page_links;
+		}elseif(is_post_type_archive('destination')){
+			$this->get_region_links();
 		}
 		return $page_links;
 	}
 
 	/**
-	 * Tests for the Unit links and adds them to the $page_links variable
+	 * Adds the Region to the $page_links variable
 	 */
-	public function get_region_links()	{
+	public function get_region_link()	{
 		if(to_item_has_children(get_the_ID(),'destination')) {
 			$this->page_links['regions'] = esc_html__('Regions','tour-operator');
 		}
+	}
+	/**
+	 * Tests Regions adds them to the $page_links variable
+	 */
+	public function get_region_links()	{
+		global $tour_operator;
+		if ( have_posts() ) :
+			print_r('hello');
+			if ( ! isset( $tour_operator->search )
+				|| empty( $tour_operator->search )
+				|| false === $tour_operator->search->options
+				|| ! isset( $tour_operator->search->options['destination']['enable_search'] ) ) :
+
+				while ( have_posts() ) :
+					print_r(the_title( '', '', FALSE ));
+					the_post();
+					$slug = sanitize_title( the_title( '', '', FALSE ) );
+					$this->page_links[$slug] = the_title( '', '', FALSE );
+				endwhile;
+			endif;
+			wp_reset_query();
+		endif;
 	}
 	/**
 	 * Tests for the Google Map and returns a link for the section
