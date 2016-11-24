@@ -26,7 +26,7 @@
 		<div class="to-help-section">
 			<h3 class="help-title"><?php esc_html_e( 'Getting Support', 'tour-operator' ); ?></h3>
 
-			<p><?php esc_html_e( 'Our website\'s','tour-operator' ); ?> <a href="<?php echo $to_documentation; ?>"><?php esc_html_e( 'documentation','tour-operator' ); ?></a> <?php esc_html_e( 'page is a great place to start to learn how to configure and customize our plugin and its extensions. Here are some links to some of the key settings and modules:', 'tour-operator' ); ?></p>
+			<p><?php esc_html_e( 'Our website\'s','tour-operator' ); ?> <a href="<?php echo wp_kses_post($to_documentation); ?>"><?php esc_html_e( 'documentation','tour-operator' ); ?></a> <?php esc_html_e( 'page is a great place to start to learn how to configure and customize our plugin and its extensions. Here are some links to some of the key settings and modules:', 'tour-operator' ); ?></p>
 
 			<p><strong><?php esc_html_e( 'General settings:', 'tour-operator' ); ?></strong> <?php esc_html_e( 'Configure the general settings of the plugin as well as some settings per-module.', 'tour-operator' ); ?></p>
 
