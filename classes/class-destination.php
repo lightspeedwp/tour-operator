@@ -270,8 +270,8 @@ class Lsx_Destination{
 	 * @return $page_links array
 	 */
 	public function page_links($page_links){
+		$this->page_links = $page_links;
 		if(is_singular('destination')){
-			$this->page_links = $page_links;
 			$this->get_region_link();
 			$this->get_related_tours_link();
 			if(!to_item_has_children(get_the_ID(),'destination')) {
@@ -282,10 +282,10 @@ class Lsx_Destination{
 			$this->get_gallery_link();
 			$this->get_videos_link();
 
-			$page_links = $this->page_links;
 		}elseif(is_post_type_archive('destination')){
 			$this->get_region_links();
 		}
+		$page_links = $this->page_links;
 		return $page_links;
 	}
 
@@ -303,14 +303,12 @@ class Lsx_Destination{
 	public function get_region_links()	{
 		global $tour_operator;
 		if ( have_posts() ) :
-			print_r('hello');
 			if ( ! isset( $tour_operator->search )
 				|| empty( $tour_operator->search )
 				|| false === $tour_operator->search->options
 				|| ! isset( $tour_operator->search->options['destination']['enable_search'] ) ) :
 
 				while ( have_posts() ) :
-					print_r(the_title( '', '', FALSE ));
 					the_post();
 					$slug = sanitize_title( the_title( '', '', FALSE ) );
 					$this->page_links[$slug] = the_title( '', '', FALSE );
