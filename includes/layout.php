@@ -83,7 +83,7 @@ function to_single_content_top() {
  */
 function to_single_entry_bottom() {
 	global $to_archive;
-	if(function_exists('to_has_team_member') && is_singular(array('accommodation','destination','tour')) && false === $to_archive && to_has_team_member()) { ?>
+	if(function_exists('to_has_team_member') && is_singular(array_keys(to_get_post_types())) && false === $to_archive && to_has_team_member()) { ?>
 		<div class="col-sm-3">
 			<div class="team-member-widget">
 				<?php to_team_member_panel( '<div class="team-member">', '</div>' ) ?>
