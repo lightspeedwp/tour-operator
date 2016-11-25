@@ -127,6 +127,7 @@ class TO_Frontend extends Tour_Operator {
 		$classes = get_body_class();
 		if(class_exists('LSX_Banners') && in_array( 'page-has-banner', $classes )){
 			add_action('lsx_banner_content','to_banner_content');
+		}else{
 			add_filter('to_tagline',array($this,'get_tagline'),1,3);
 		}
 	}		
