@@ -57,7 +57,7 @@ class TO_Admin extends Tour_Operator {
 			$this->taxonomies = apply_filters('to_taxonomies',$this->taxonomies);
 			add_filter('to_taxonomy_widget_taxonomies', array( $this, 'widget_taxonomies' ),10,1 );
 
-			if(false !== $this->taxonomies){
+			if(!class_exists('LSX_Banners') && false !== $this->taxonomies){
 				add_action( 'create_term', array( $this, 'save_meta' ), 10, 2 );
 				add_action( 'edit_term',   array( $this, 'save_meta' ), 10, 2 );
 				foreach(array_keys($this->taxonomies) as $taxonomy){
