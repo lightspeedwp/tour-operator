@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name: Tour Operators 
+ * Plugin Name: Tour Operator Plugin
  * Plugin URI: https://www.lsdev.biz/product/tour-operator-plugin/
  * Description: By integrating with the Wetu Tour Operator system, the Tour Operator plugin brings dynamic features like live availability and bookings, digital itineraries and more to your WordPress website.
  * Author: LightSpeed
