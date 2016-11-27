@@ -22,8 +22,4 @@ define('TO_CORE',  __FILE__ );
 define('TO_URL',  plugin_dir_url( __FILE__ ) );
 define('TO_VER',  '1.1.0' );
 
-if(!defined('TEAM_ARCHIVE_URL')){
-	define('TEAM_ARCHIVE_URL',  'team-members' );
-}
-
 require_once( TO_PATH . 'module.php' );
