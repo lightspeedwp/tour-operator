@@ -1,68 +1,86 @@
 <?php
-$to_documentation = esc_url('http://lsdev.biz/documentation/');
-$extensions_link = esc_url('http://lsdev.biz/product-category/tour-operator-extensions/');
-$tour_operator_link = esc_url('https://www.lsdev.biz/product/tour-operator-plugin/');
-$release_notes_link = esc_url('https://www.lsdev.biz/lsx/');
-$to_news_link = esc_url('https://www.lsdev.biz/tour-operators/');
+	$to_documentation = esc_url('http://lsdev.biz/documentation/');
+	$extensions_link = esc_url('http://lsdev.biz/product-category/tour-operator-extensions/');
+	$tour_operator_link = esc_url('https://www.lsdev.biz/product/tour-operator-plugin/');
+	$release_notes_link = esc_url('https://www.lsdev.biz/lsx/');
+	$to_news_link = esc_url('https://www.lsdev.biz/tour-operators/');
 
-$prefix = is_ssl() ? 'https://' : 'http://';
-wp_enqueue_script('mailchimpembed', $prefix.'s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js',array(),false,true);
+	$prefix = is_ssl() ? 'https://' : 'http://';
+	wp_enqueue_script('mailchimpembed', $prefix.'s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js',array(),false,true);
 ?>
 
-<div class="wrap to_welcome_wrap">
-
-	<div class="title">
-		<h1><?php esc_html_e( 'Welcome to the Tour Operator Plugin', 'tour-operator' ); ?></h1>
-		<h2><?php esc_html_e( 'You are running version 1.0 - Thanks for Keeping up to date!', 'tour-operator' ); ?></h2>
+<div class="wrap about-wrap">
+	<div class="row">
+		<div class="col-md-12 top-header">
+			<h1 class="small"><?php esc_html_e( 'Welcome to the Tour Operator Plugin', 'tour-operator' ); ?></h1>
+			<p><?php esc_html_e( 'You are running version 1.0 - Thanks for Keeping up to date!', 'tour-operator' ); ?></p>
+		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-md-8">
-			<div class="welcome-video">
+			<div class="video">
 				<iframe src="https://player.vimeo.com/video/174546330" width="100%" height="390" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 			</div>
 
-			<div class="row">
-				<div class="col-md-6">
-					<div class="links">
-						<h3><?php esc_html_e( 'Getting started', 'tour-operator' ); ?></h3>
-						<p><a target="_blank" href="<?php echo wp_kses_post($to_documentation); ?>"><?php esc_html_e( 'Check out the documentation', 'tour-operator' ); ?></a></p>
+			<div class="box info">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="box-clean">
+							<h3><?php esc_html_e( 'Getting started', 'tour-operator' ); ?></h3>
+							<p><a href="<?php echo wp_kses_post($to_documentation); ?>" target="_blank"><?php esc_html_e( 'Check out the documentation', 'tour-operator' ); ?></a></p>
+						</div>
 					</div>
-					<div class="links">
-						<h3><?php esc_html_e( 'Release notes', 'tour-operator' ); ?></h3>
-						<p><a target="_blank" href="<?php echo wp_kses_post($release_notes_link); ?>"><?php esc_html_e( 'Get the latest on updates to the Tour Operator plugin', 'tour-operator' ); ?></a></p>
+
+					<div class="col-md-6">
+						<div class="box-clean">
+							<h3><?php esc_html_e( 'Release notes', 'tour-operator' ); ?></h3>
+							<p><a href="<?php echo wp_kses_post($release_notes_link); ?>" target="_blank"><?php esc_html_e( 'Get the latest on updates to the Tour Operator plugin', 'tour-operator' ); ?></a></p>
+						</div>
 					</div>
 				</div>
-				<div class="col-md-5">
-					<div class="links">
-						<h3><?php esc_html_e( 'Looking for more features?', 'tour-operator' ); ?></h3>
-						<p><a target="_blank" href="<?php echo wp_kses_post($extensions_link); ?>"><?php esc_html_e( 'Check out our suite of add ons', 'tour-operator' ); ?></a></p>
+
+				<div class="row">
+					<div class="col-md-6">
+						<div class="box-clean">
+							<h3><?php esc_html_e( 'Looking for more features?', 'tour-operator' ); ?></h3>
+							<p><a href="<?php echo wp_kses_post($extensions_link); ?>" target="_blank"><?php esc_html_e( 'Check out our suite of add ons', 'tour-operator' ); ?></a></p>
+						</div>
 					</div>
-					<div class="links">
-						<h3><?php esc_html_e( 'News for Tour Operators', 'tour-operator' ); ?></h3>
-						<p><a target="_blank" href="<?php echo wp_kses_post($to_news_link); ?>"><?php esc_html_e( 'Check out our blog posts geared towards helping Tour Operators succeed online', 'tour-operator' ); ?></a></p>
+
+					<div class="col-md-6">
+						<div class="box-clean">
+							<h3><?php esc_html_e( 'News for Tour Operators', 'tour-operator' ); ?></h3>
+							<p><a href="<?php echo wp_kses_post($to_news_link); ?>" target="_blank"><?php esc_html_e( 'Check out our blog posts geared towards helping Tour Operators succeed online', 'tour-operator' ); ?></a></p>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
 		<div class="col-md-4">
-			<div class="plugin-info">
-				<h3><?php esc_html_e( 'Help us keep the Tour Operator core FREE', 'tour-operator' ); ?></h3>
+			<div class="box rate">
+				<h2><?php esc_html_e( 'Help us keep the Tour Operator core FREE', 'tour-operator' ); ?></h2>
 				<p><?php esc_html_e( '5-star ratings help us to bring the Tour Operator plugin to more users. The more users we have the more we get requests to add features to make the plugin even better for you. We couldn’t do it without your support.', 'tour-operator' ); ?></p>
-				<div class="star-rating">
-					<span><?php esc_html_e( 'Rate it 5 stars today', 'tour-operator' ); ?> - </span>
+				
+				<p class="star-rating">
+					<span><?php esc_html_e( 'Rate it 5 stars', 'tour-operator' ); ?> - </span>
 					<div class="star star-full" aria-hidden="true"></div>
 					<div class="star star-full" aria-hidden="true"></div>
 					<div class="star star-full" aria-hidden="true"></div>
 					<div class="star star-full" aria-hidden="true"></div>
 					<div class="star star-full" aria-hidden="true"></div>
+				</p>
+
+				<div class="more-button">
+					<a href="<?php echo wp_kses_post( $tour_operator_link ); ?>" target="_blank" class="button button-primary">
+						<?php esc_html_e( 'Rate It!', 'tour-operator' ); ?>
+					</a>
 				</div>
-				<p><a class="button button-primary button-large" href="<?php echo wp_kses_post($tour_operator_link); ?>"><?php esc_html_e( 'Rate It!', 'tour-operator' ); ?></a></p>
 			</div>
 
-			<div class="plugin-info">
-				<h3><?php esc_html_e( 'Please consider signing up to our Tourism Industry newsletter', 'tour-operator' ); ?></h3>
+			<div class="box newsletter">
+				<h2><?php esc_html_e( 'Please consider signing up to our Tourism Industry newsletter', 'tour-operator' ); ?></h2>
 
 				<!-- Begin MailChimp Signup Form -->
 				<link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">

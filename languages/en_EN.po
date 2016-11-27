@@ -244,7 +244,7 @@ msgstr ""
 msgid "Travel Style"
 msgstr ""
 
-#: classes/class-destination.php:262, classes/class-destination.php:381, classes/class-tour.php:461, includes/layout.php:212, includes/layout.php:321, includes/settings/help.php:88, templates/content-accommodation.php:30, templates/content-destination.php:24, templates/content-tour.php:27, templates/content-widget-tour.php:28
+#: classes/class-destination.php:262, classes/class-destination.php:381, classes/class-tour.php:461, includes/layout.php:212, includes/layout.php:321, includes/settings/add-ons.php:94, includes/settings/help.php:94, templates/content-accommodation.php:30, templates/content-destination.php:24, templates/content-tour.php:27, templates/content-widget-tour.php:28
 msgid "Activities"
 msgstr ""
 
@@ -276,7 +276,7 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:92, includes/settings/help.php:60
+#: classes/class-lsx-to-admin.php:92, includes/settings/help.php:69
 msgid "Tour Operator"
 msgstr ""
 
@@ -445,7 +445,7 @@ msgstr ""
 msgid "Tagline"
 msgstr ""
 
-#: classes/class-lsx-to-frontend.php:162
+#: classes/class-lsx-to-frontend.php:163
 msgid "Close"
 msgstr ""
 
@@ -666,7 +666,7 @@ msgstr ""
 msgid "Destination"
 msgstr ""
 
-#: includes/layout.php:266, includes/settings/add-ons.php:53
+#: includes/layout.php:266
 msgid "Activites"
 msgstr ""
 
@@ -742,79 +742,91 @@ msgstr ""
 msgid "Single"
 msgstr ""
 
-#: includes/settings/add-ons.php:2, includes/settings/add-ons.php:3, includes/settings/add-ons.php:3
+#: includes/settings/add-ons.php:21, includes/settings/add-ons.php:28, includes/settings/add-ons.php:29
 msgid "Tour Operator Add-ons"
 msgstr ""
 
-#: includes/settings/add-ons.php:5
+#: includes/settings/add-ons.php:38
+msgid "Enhance Tour Operator"
+msgstr ""
+
+#: includes/settings/add-ons.php:39
 msgid "Extend the functionality of the Tour Operator plugin with one of our many extensions!"
 msgstr ""
 
-#: includes/settings/add-ons.php:15, includes/settings/display.php:9, includes/settings/help.php:85
+#: includes/settings/add-ons.php:43, includes/settings/help.php:104
+msgid "View all extensions"
+msgstr ""
+
+#: includes/settings/add-ons.php:53, includes/settings/display.php:9, includes/settings/help.php:91
 msgid "Maps"
 msgstr ""
 
-#: includes/settings/add-ons.php:16
+#: includes/settings/add-ons.php:54
 msgid "The Maps extension gives you the ability to connect maps with location-marking pins to your Accommodation, Destination and Tour pages. You can also display maps with clusters of markers, to display the set of Accommodations in each Destination. Use the extension to show a mapped out trip itinerary that connects the dots of the accommodations you stay in on your tours. Maps will also integrate with the Activities post type, if you have that extension installed."
 msgstr ""
 
-#: includes/settings/add-ons.php:29, includes/settings/help.php:90
+#: includes/settings/add-ons.php:58, includes/settings/add-ons.php:71, includes/settings/add-ons.php:84, includes/settings/add-ons.php:99, includes/settings/add-ons.php:112, includes/settings/add-ons.php:125, includes/settings/add-ons.php:140, includes/settings/add-ons.php:153, includes/settings/add-ons.php:166
+msgid "Get this extension"
+msgstr ""
+
+#: includes/settings/add-ons.php:66, includes/settings/help.php:96
 msgid "Specials"
 msgstr ""
 
-#: includes/settings/add-ons.php:30
+#: includes/settings/add-ons.php:67
 msgid "With the Special Offers extension you’re able to set up time-sensitive prices that you can use to price your accommodations, activities and tours. Set up booking validity dates, specials per person sharing/per person sharing/per person sharing per night, team members per special and more."
 msgstr ""
 
-#: includes/settings/add-ons.php:41, includes/settings/help.php:89
+#: includes/settings/add-ons.php:79, includes/settings/help.php:95
 msgid "Reviews"
 msgstr ""
 
-#: includes/settings/add-ons.php:42
+#: includes/settings/add-ons.php:80
 msgid "People want to be sure that they’re making the right choice with the the right company. Your “trustability” will set you apart from the herd. The Tour Operators Reviews extension allows you to add reviews written by your previous guests and display them across your site."
 msgstr ""
 
-#: includes/settings/add-ons.php:54
+#: includes/settings/add-ons.php:95
 msgid "Get your visitors excited about what they’ll be doing when they travel with you, whether it’s river rafting, whale watching or sandboarding - use the Activities post type with beautiful imagery and well-crafted copy and then set the activities as connected to particular tours, destinations and accommodations."
 msgstr ""
 
-#: includes/settings/add-ons.php:68, includes/settings/help.php:91
+#: includes/settings/add-ons.php:107, includes/settings/help.php:97
 msgid "Search"
 msgstr ""
 
-#: includes/settings/add-ons.php:69
+#: includes/settings/add-ons.php:108
 msgid "The Search extension for the Tour Operators plugin adds robust search functionality to your WordPress Tour Operator site. It requires that you also have the FacetWP plugin installed, as that allows for much of the filtering functionality that the plugin provides."
 msgstr ""
 
-#: includes/settings/add-ons.php:83, includes/settings/help.php:86
+#: includes/settings/add-ons.php:120, includes/settings/help.php:92
 msgid "Galleries"
 msgstr ""
 
-#: includes/settings/add-ons.php:84
+#: includes/settings/add-ons.php:121
 msgid "If you have the gallery extension installed you can easily include photo galleries in your Accommodation, Destination and Tour pages, as well as other post types included in our various extensions, such as vehicles and activities. The galleries are built via meta boxes that are added to Tour Operator type posts. "
 msgstr ""
 
-#: includes/settings/add-ons.php:94, includes/settings/help.php:92
+#: includes/settings/add-ons.php:135, includes/settings/help.php:98
 msgid "Vehicles"
 msgstr ""
 
-#: includes/settings/add-ons.php:95
+#: includes/settings/add-ons.php:136
 msgid "To help convince travelers of their comfort and safety when traveling with you, we’ve created the Vehicles extension so that you can fill in your fleets’ specs with details such as type and number of gears, engine type (petrol/diesel), number of seats, vehicle code, and of course images and copy."
 msgstr ""
 
-#: includes/settings/add-ons.php:105, includes/settings/help.php:87
+#: includes/settings/add-ons.php:148, includes/settings/help.php:93
 msgid "Team"
 msgstr ""
 
-#: includes/settings/add-ons.php:106
+#: includes/settings/add-ons.php:149
 msgid "Real peoples' faces go a long way to building trust with your clients. The Team Extension allows your business's staff to be added as Team Members with their own profile which can be associated with specific destinations and tours."
 msgstr ""
 
-#: includes/settings/add-ons.php:119, includes/settings/help.php:93
+#: includes/settings/add-ons.php:161, includes/settings/help.php:99
 msgid "Wetu Importer"
 msgstr ""
 
-#: includes/settings/add-ons.php:120
+#: includes/settings/add-ons.php:162
 msgid "Quickly and easily import accommodation data as well as entire tour itineraries and associated images from the WETU database to use in your day-by-day tour listings."
 msgstr ""
 
@@ -851,187 +863,247 @@ msgid "LightSpeed’s Tour Operator Plugin"
 msgstr ""
 
 #: includes/settings/help.php:22
-msgid "Thank you for using the Tour Operator plugin. All of us here at LightSpeed appreciate your ongoing support and we can't wait to see what people create with the plugin."
+msgid "Thank you for using the Tour Operator plugin. All of us here at LightSpeed appreciate your ongoing support and we can't wait to see what people create with the plugin. We're committed to ensuring you have all the help you need to make the most of the plugin."
 msgstr ""
 
-#: includes/settings/help.php:23
-msgid "We're committed to ensuring you have all the help you need to make the most of the plugin."
-msgstr ""
-
-#: includes/settings/help.php:27
+#: includes/settings/help.php:31
 msgid "Getting Support"
 msgstr ""
 
-#: includes/settings/help.php:29
+#: includes/settings/help.php:32
 msgid "Our website's"
 msgstr ""
 
-#: includes/settings/help.php:29
+#: includes/settings/help.php:32
 msgid "documentation"
 msgstr ""
 
-#: includes/settings/help.php:29
+#: includes/settings/help.php:32
 msgid "page is a great place to start to learn how to configure and customize our plugin and its extensions. Here are some links to some of the key settings and modules:"
 msgstr ""
 
-#: includes/settings/help.php:31
+#: includes/settings/help.php:35
 msgid "General settings:"
 msgstr ""
 
-#: includes/settings/help.php:31
+#: includes/settings/help.php:35
 msgid "Configure the general settings of the plugin as well as some settings per-module."
 msgstr ""
 
-#: includes/settings/help.php:33
+#: includes/settings/help.php:36
 msgid "Destinations:"
 msgstr ""
 
-#: includes/settings/help.php:33
+#: includes/settings/help.php:36
 msgid "Create and configure your Destination single posts and archives"
 msgstr ""
 
-#: includes/settings/help.php:35
+#: includes/settings/help.php:37
 msgid "Accommodations:"
 msgstr ""
 
-#: includes/settings/help.php:35
+#: includes/settings/help.php:37
 msgid "Create and configure your Accommodation single posts and archives"
 msgstr ""
 
-#: includes/settings/help.php:37
+#: includes/settings/help.php:38
 msgid "Tours:"
 msgstr ""
 
-#: includes/settings/help.php:37
+#: includes/settings/help.php:38
 msgid "Create and configure your Tours single posts and archives"
 msgstr ""
 
-#: includes/settings/help.php:42
+#: includes/settings/help.php:47
 msgid "Documentation for Extensions"
 msgstr ""
 
-#: includes/settings/help.php:44
+#: includes/settings/help.php:50
 msgid "Maps:"
 msgstr ""
 
-#: includes/settings/help.php:44
+#: includes/settings/help.php:50
 msgid "Integrate Google Map embeds into your site to specify the location of Destinations, Accommodations and points of Tours."
 msgstr ""
 
-#: includes/settings/help.php:45
+#: includes/settings/help.php:51
 msgid "Galleries:"
 msgstr ""
 
-#: includes/settings/help.php:45
+#: includes/settings/help.php:51
 msgid "Configure the way galleries display on singles and archives."
 msgstr ""
 
-#: includes/settings/help.php:46
+#: includes/settings/help.php:52
 msgid "Team:"
 msgstr ""
 
-#: includes/settings/help.php:46
+#: includes/settings/help.php:52
 msgid "Configure the Team extension to show off the people who make your Tour offerings possible."
 msgstr ""
 
-#: includes/settings/help.php:47
+#: includes/settings/help.php:53
 msgid "Activities:"
 msgstr ""
 
-#: includes/settings/help.php:47
+#: includes/settings/help.php:53
 msgid "Create and configure your Activity listings which can then be set to display on Destinations, Accommodations and Tours."
 msgstr ""
 
-#: includes/settings/help.php:48
+#: includes/settings/help.php:54
 msgid "Reviews:"
 msgstr ""
 
-#: includes/settings/help.php:48
+#: includes/settings/help.php:54
 msgid "Gather reviews from your past clients and use this extension to display them proudly throughout your website. Associate the reviews with specific Accommodations and Tours to have them display on specific pages."
 msgstr ""
 
-#: includes/settings/help.php:49
+#: includes/settings/help.php:55
 msgid "Specials:"
 msgstr ""
 
-#: includes/settings/help.php:49
+#: includes/settings/help.php:55
 msgid "Use the Specials module to specify time-sensitive special prices for your tour packages."
 msgstr ""
 
-#: includes/settings/help.php:50
+#: includes/settings/help.php:56
 msgid "Search:"
 msgstr ""
 
-#: includes/settings/help.php:50
+#: includes/settings/help.php:56
 msgid "Learn how to make the best use of the Search extension, which depends on the Facet WP extension and allows you to provide filterable search fields on your Tour Operator website."
 msgstr ""
 
-#: includes/settings/help.php:51
+#: includes/settings/help.php:57
 msgid "Vehicles:"
 msgstr ""
 
-#: includes/settings/help.php:51
+#: includes/settings/help.php:57
 msgid "Specify your fleet's specifications with details such as type and number of gears, engine type (petrol/diesel), number of seats, vehicle code, and of course images and copy."
 msgstr ""
 
-#: includes/settings/help.php:52
+#: includes/settings/help.php:58
 msgid "Wetu Importer:"
 msgstr ""
 
-#: includes/settings/help.php:52
+#: includes/settings/help.php:58
 msgid "Import accommodation data and entire tour itineraries from the WETU database to use in your day-by-day tour listings."
 msgstr ""
 
-#: includes/settings/help.php:62
+#: includes/settings/help.php:72
 msgid "Latest Version:"
 msgstr ""
 
-#: includes/settings/help.php:63
+#: includes/settings/help.php:72
 msgid "1.0"
 msgstr ""
 
-#: includes/settings/help.php:65
+#: includes/settings/help.php:73
 msgid "Requires:"
 msgstr ""
 
-#: includes/settings/help.php:66
+#: includes/settings/help.php:73
 msgid "WordPress 3.9+"
 msgstr ""
 
-#: includes/settings/help.php:83
+#: includes/settings/help.php:78
+msgid "Visit plugin website"
+msgstr ""
+
+#: includes/settings/help.php:88
 msgid "Premium Add-Ons"
 msgstr ""
 
-#: includes/settings/help.php:98
+#: includes/settings/help.php:114
 msgid "News"
 msgstr ""
 
-#: includes/settings/help.php:99
+#: includes/settings/help.php:115
 msgid "If the documentation is not getting you where you need to be, you can contact us directly for support and assistance."
 msgstr ""
 
-#: includes/settings/help.php:100
+#: includes/settings/help.php:116
 msgid "Please view our support policy"
 msgstr ""
 
-#: includes/settings/help.php:100
+#: includes/settings/help.php:116
 msgid "here."
 msgstr ""
 
-#: includes/settings/help.php:101
+#: includes/settings/help.php:117
 msgid "You can contact us for support at"
 msgstr ""
 
-#: includes/settings/help.php:101
+#: includes/settings/help.php:117
 msgid "support@lsdev.biz."
 msgstr ""
 
-#: includes/settings/help.php:102
+#: includes/settings/help.php:118
 msgid "Support from the LightSpeed Team is only provided to user who have purchased one of our"
 msgstr ""
 
-#: includes/settings/help.php:102
+#: includes/settings/help.php:118
 msgid "Premium Add-ons"
+msgstr ""
+
+#: includes/settings/welcome.php:15
+msgid "Welcome to the Tour Operator Plugin"
+msgstr ""
+
+#: includes/settings/welcome.php:16
+msgid "You are running version 1.0 - Thanks for Keeping up to date!"
+msgstr ""
+
+#: includes/settings/welcome.php:30
+msgid "Getting started"
+msgstr ""
+
+#: includes/settings/welcome.php:31
+msgid "Check out the documentation"
+msgstr ""
+
+#: includes/settings/welcome.php:37
+msgid "Release notes"
+msgstr ""
+
+#: includes/settings/welcome.php:38
+msgid "Get the latest on updates to the Tour Operator plugin"
+msgstr ""
+
+#: includes/settings/welcome.php:46
+msgid "Looking for more features?"
+msgstr ""
+
+#: includes/settings/welcome.php:47
+msgid "Check out our suite of add ons"
+msgstr ""
+
+#: includes/settings/welcome.php:53
+msgid "News for Tour Operators"
+msgstr ""
+
+#: includes/settings/welcome.php:54
+msgid "Check out our blog posts geared towards helping Tour Operators succeed online"
+msgstr ""
+
+#: includes/settings/welcome.php:63
+msgid "Help us keep the Tour Operator core FREE"
+msgstr ""
+
+#: includes/settings/welcome.php:64
+msgid "5-star ratings help us to bring the Tour Operator plugin to more users. The more users we have the more we get requests to add features to make the plugin even better for you. We couldn’t do it without your support."
+msgstr ""
+
+#: includes/settings/welcome.php:67
+msgid "Rate it 5 stars"
+msgstr ""
+
+#: includes/settings/welcome.php:77
+msgid "Rate It!"
+msgstr ""
+
+#: includes/settings/welcome.php:83
+msgid "Please consider signing up to our Tourism Industry newsletter"
 msgstr ""
 
 #: includes/template-tags/accommodation.php:274, templates/content-accommodation.php:22, templates/content-widget-accommodation.php:28
