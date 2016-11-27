@@ -1,665 +1,465 @@
 <?php
 /**
- * Backend actions for the LSX TO Plugin
- *
- * @package   TO_Admin
- * @author    LightSpeed
- * @license   GPL3
- * @link      
- * @copyright 2016 LightSpeedDevelopment
+ * @package   LSX API Manager Class
+ * @author     LightSpeeds
+ * @license   GPL-2.0+
+ * @link
+ * @copyright 2015  LightSpeed Team
  */
 
-/**
- * Main plugin class.
- *
- * @package TO_Admin
- * @author  LightSpeed
- */
-class TO_Admin extends Tour_Operator {
+class LSX_API_Manager {
+
+	/**
+	 * Holds the API Key
+	 *
+	 * @var      string
+	 */
+	public $api_key = false;
+
+	/**
+	 * Holds the Email address used to purchase the API key
+	 *
+	 * @var      string
+	 */
+	public $email = false;
+
+	/**
+	 * Holds the Products Title
+	 *
+	 * @var      string
+	 */
+	public $product_id = false;
+
+	/**
+	 * Holds the Products Slug
+	 *
+	 * @var      string
+	 */
+	public $product_slug = false;
+
+	/**
+	 * Holds the current version of the plugin
+	 *
+	 * @var      string
+	 */
+	public $version = false;
+
+	/**
+	 * Holds the unique password for this site.
+	 *
+	 * @var      string
+	 */
+	public $password = false;
+
+	/**
+	 * Holds any messages for the user.
+	 *
+	 * @var      string
+	 */
+	public $messages = false;
+
+	/**
+	 * Holds any path to the plugin file.
+	 *
+	 * @var      string
+	 */
+	public $file = false;
+
+	/**
+	 * Holds the activate / deactivate button.
+	 *
+	 * @var      string
+	 */
+	public $button = false;
+
+	/**
+	 * Holds the documentation slug button.
+	 *
+	 * @var      string
+	 */
+	public $documentation = false;
+
+	/**
+	 * Holds class instance
+	 *
+	 * @var      string
+	 */
+	protected static $instance = null;
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
+	 */
+	public function __construct($api_array = array()) {
+
+		if(isset($api_array['api_key'])){
+			$this->api_key = trim($api_array['api_key']);
+		}
+		if(isset($api_array['email'])){
+			$this->email = trim($api_array['email']);
+		}
+		if(isset($api_array['product_id'])){
+			$this->product_id = $api_array['product_id'];
+			$this->product_slug = sanitize_title($api_array['product_id']);
+		}
+		if(isset($api_array['version'])){
+			$this->version = $api_array['version'];
+		}
+		if(isset($api_array['instance'])){
+			$this->password = $api_array['instance'];
+		}
+		if(isset($api_array['file'])){
+			$this->file = $api_array['file'];
+		}
+
+		if(isset($api_array['documentation'])){
+			$this->documentation = $api_array['documentation'];
+		}
+
+		$this->api_url = 'https://dev.lsdev.biz/wc-api/product-key-api';
+		$this->products_api_url = 'https://dev.lsdev.biz/';
+		$this->license_check_url = 'https://dev.lsdev.biz/wc-api/license-status-check';
+
+		add_filter( 'plugin_action_links_' . plugin_basename(str_replace('.php','',$this->file).'/'.$this->file), array($this,'add_action_links'));
+		$this->status = get_option($this->product_slug.'_status',false);
+
+		if(isset($_GET['page']) && in_array($_GET['page'],apply_filters('lsx_api_manager_options_pages',array(false)))){
+
+			//Maybe activate the software, do this before the status checks.
+			$this->activate_deactivate();
+
+			if(false === $this->status){
+				$this->status = $this->check_status();
+				update_option($this->product_slug.'_status',$this->status);
+			}
+
+			$button_url = '<a data-product="'.$this->product_slug.'" style="margin-top:-5px;" href="';
+			$button_label = '';
+			$admin_url_base = class_exists( 'Tour_Operator' ) ? 'admin.php?page=to-settings' : 'themes.php?page=lsx-settings';
+			if(false === $this->status || 'inactive' === $this->status){
+				$button_url .= admin_url($admin_url_base.'&action=activate&product='.$this->product_slug);
+				$button_label = 'Activate';
+			}elseif('active' === $this->status){
+				$button_url .= admin_url($admin_url_base.'&action=deactivate&product='.$this->product_slug);
+				$button_label = 'Deactivate';
+			}
+			$button_url .= '" class="button-secondary activate">'.$button_label.'</a>';
+			$this->button = $button_url;
+		}
+
+		add_filter('site_transient_update_plugins', array($this,'injectUpdate'));
+		add_action( "in_plugin_update_message-".$this->file,array($this,'plugin_update_message'),10,2);
+
+		if ( class_exists( 'Tour_Operator' ) ) {
+			add_action( 'to_framework_api_tab_content', array( $this, 'dashboard_tabs' ), 1, 1 );
+		} else {
+			add_action( 'lsx_framework_api_tab_content', array( $this, 'dashboard_tabs' ), 1, 1 );
+		}
+
+		add_action('wp_ajax_wc_api_'.$this->product_slug,array($this,'activate_deactivate'));
+		add_action('wp_ajax_nopriv_wc_api_'.$this->product_slug,array($this,'activate_deactivate'));
+	}
+
+	/**
+	 * Return an instance of this class.
 	 *
 	 * @since 1.0.0
 	 *
-	 * @access private
+	 * @return    object    A single instance of this class.
 	 */
-	public function __construct() {
-		$this->options = get_option('_to_settings',false);	
-		$this->set_vars();
-
-		add_action('init',array($this,'init'));
-		add_action( 'admin_menu', array($this,'register_menu_pages') );
-		add_action( 'custom_menu_order', array($this,'reorder_menu_pages') );
-		add_action( 'admin_head', array( $this, 'select_submenu_pages' ) );
-
-		add_action( 'init', array( $this, 'global_taxonomies') );
-
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_stylescripts' ) );
-		add_action( 'cmb_save_custom', array( $this, 'post_relations' ), 3 , 20 );
-
-		add_filter( 'plugin_action_links_' . plugin_basename(TO_CORE), array($this,'add_action_links'));
-
-		add_action( 'default_hidden_meta_boxes', array($this,'default_hidden_meta_boxes'), 10, 2 );
-		add_filter('upload_mimes', array($this,'allow_svgimg_types'));		
-	}	
-
-	/**
-	 * Output the form field for this metadata when adding a new term
-	 *
-	 * @since 0.1.0
-	 */
-	public function init() {
-		if(is_admin()){
-			$this->connections = $this->create_post_connections();	
-			$this->single_fields = apply_filters('to_search_fields',array());			
-			
-			$this->taxonomies = apply_filters('to_taxonomies',$this->taxonomies);
-			add_filter('to_taxonomy_widget_taxonomies', array( $this, 'widget_taxonomies' ),10,1 );
-
-			if(!class_exists('LSX_Banners') && false !== $this->taxonomies){
-				add_action( 'create_term', array( $this, 'save_meta' ), 10, 2 );
-				add_action( 'edit_term',   array( $this, 'save_meta' ), 10, 2 );
-				foreach(array_keys($this->taxonomies) as $taxonomy){
-					add_action( "{$taxonomy}_edit_form_fields", array( $this, 'add_thumbnail_form_field' ),3,1 );
-					add_action( "{$taxonomy}_edit_form_fields", array( $this, 'add_tagline_form_field' ),3,1 );				
-				}			
-			}	
-		}	
-	}		
-
-	/**
-	 * Register and enqueue admin-specific style sheet.
-	 *
-	 * @return    null
-	 */
-	public function enqueue_admin_stylescripts() {
-		$screen = get_current_screen();
-		if( !is_object( $screen ) ){
-			return;
+	public static function get_instance() {
+		// If the single instance hasn't been set, set it now.
+		if ( null == self::$instance ) {
+			self::$instance = new self;
 		}
-		wp_enqueue_style( 'tour-operator-admin-style', TO_URL . '/assets/css/admin.css');
+		return self::$instance;
 	}
 
 	/**
-	 * Register a custom menu page.
+	 * Outputs the dashboard tab pages.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return    object A single instance of this class.
 	 */
-	function register_menu_pages(){
-		$icon_64 = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDIwIDIwO2ZpbGw6IzgyODc4YzsiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxnIGlkPSJYTUxJRF8xMV8iPjxwYXRoIGlkPSJYTUxJRF8xOF8iIGQ9Ik0xMCwwQzQuNSwwLDAsNC41LDAsMTBzNC41LDEwLDEwLDEwczEwLTQuNSwxMC0xMFMxNS41LDAsMTAsMHogTTEwLDE4LjNjLTQuNiwwLTguMy0zLjctOC4zLTguM2MwLTQuNiwzLjctOC4zLDguMy04LjNjNC42LDAsOC4zLDMuNyw4LjMsOC4zQzE4LjMsMTQuNiwxNC42LDE4LjMsMTAsMTguM3oiLz48cGF0aCBpZD0iWE1MSURfMTlfIiBkPSJNMTAuOCw4LjlMMTAuOCw4LjlMMTAuOCw4LjljLTAuMS0wLjEtMC4yLTAuMS0wLjMtMC4yTDYuMSw2LjFsMi43LDQuNWMwLDAuMSwwLjEsMC4xLDAuMSwwLjJsMCwwbDAsMGMwLjIsMC4zLDAuNiwwLjYsMS4xLDAuNmMwLjgsMCwxLjQtMC42LDEuNC0xLjRDMTEuNCw5LjYsMTEuMiw5LjIsMTAuOCw4Ljl6IE0xMCwxMC43Yy0wLjQsMC0wLjctMC4zLTAuNy0wLjdjMC0wLjQsMC4zLTAuNywwLjctMC43czAuNywwLjMsMC43LDAuN0MxMC43LDEwLjQsMTAuNCwxMC43LDEwLDEwLjd6Ii8+PGcgaWQ9IlhNTElEXzE2XyI+PHJlY3QgaWQ9IlhNTElEXzhfIiB4PSI5LjciIHk9IjIuOSIgd2lkdGg9IjAuNiIgaGVpZ2h0PSIxLjMiLz48cmVjdCBpZD0iWE1MSURfN18iIHg9IjUuMSIgeT0iNC44IiB0cmFuc2Zvcm09Im1hdHJpeCgwLjcwNzEgLTAuNzA3MSAwLjcwNzEgMC43MDcxIC0yLjI1OTQgNS40MTg2KSIgd2lkdGg9IjAuNiIgaGVpZ2h0PSIxLjMiLz48cmVjdCBpZD0iWE1MSURfNl8iIHg9IjEzLjkiIHk9IjUuMSIgdHJhbnNmb3JtPSJtYXRyaXgoMC43MDcxIC0wLjcwNzEgMC43MDcxIDAuNzA3MSAwLjQxNjkgMTEuODc5NykiIHdpZHRoPSIxLjMiIGhlaWdodD0iMC42Ii8+PHJlY3QgaWQ9IlhNTElEXzVfIiB4PSIyLjkiIHk9IjkuNyIgd2lkdGg9IjEuMyIgaGVpZ2h0PSIwLjYiLz48cmVjdCBpZD0iWE1MSURfNF8iIHg9IjE1LjgiIHk9IjkuNyIgd2lkdGg9IjEuMyIgaGVpZ2h0PSIwLjYiLz48cmVjdCBpZD0iWE1MSURfM18iIHg9IjQuOCIgeT0iMTQuMyIgdHJhbnNmb3JtPSJtYXRyaXgoMC43MDcxIC0wLjcwNzEgMC43MDcxIDAuNzA3MSAtOC43MjE0IDguMDk1MikiIHdpZHRoPSIxLjMiIGhlaWdodD0iMC42Ii8+PHJlY3QgaWQ9IlhNTElEXzJfIiB4PSIxNC4yIiB5PSIxMy45IiB0cmFuc2Zvcm09Im1hdHJpeCgwLjcwNzEgLTAuNzA3MSAwLjcwNzEgMC43MDcxIC02LjA0NTEgMTQuNTU2MykiIHdpZHRoPSIwLjYiIGhlaWdodD0iMS4zIi8+PHJlY3QgaWQ9IlhNTElEXzFfIiB4PSI5LjciIHk9IjE1LjgiIHdpZHRoPSIwLjYiIGhlaWdodD0iMS4zIi8+PC9nPjxwYXRoIGlkPSJYTUxJRF80N18iIGQ9Ik0xMS4zLDkuNWMwLTAuMS0wLjEtMC4xLTAuMS0wLjJsMCwwbDAsMGMtMC4yLTAuMy0wLjYtMC42LTEuMS0wLjZjLTAuOCwwLTEuNCwwLjYtMS40LDEuNGMwLDAuNCwwLjIsMC44LDAuNSwxLjFsMCwwbDAsMGMwLjEsMC4xLDAuMiwwLjEsMC4zLDAuMmw0LjQsMi42TDExLjMsOS41eiBNMTAsMTAuN2MtMC40LDAtMC43LTAuMy0wLjctMC43YzAtMC40LDAuMy0wLjcsMC43LTAuN3MwLjcsMC4zLDAuNywwLjdDMTAuNywxMC40LDEwLjQsMTAuNywxMCwxMC43eiIvPjwvZz48L3N2Zz4=';
+	public function dashboard_tabs($tab='general') {
+		if('api' !== $tab){ return false;}
 
-	    add_menu_page( 
-	        __( 'Dashboard', 'tour-operator' ),
-	        __( 'Tour Operator', 'tour-operator' ),
-	        'edit_posts',
-	        'tour-operator',
-	        array($this,'menu_dashboard'),
-	        $icon_64,
-	        6
-	    );
-
-	    foreach($this->post_types_singular as $type_key => $type_label){
-	    	if ( in_array( $type_key , array( 'destination', 'tour', 'accommodation' ) ) ) {
-				add_submenu_page('tour-operator', esc_html__('Add '.$type_label,'tour-operator'), esc_html__('Add '.$type_label,'tour-operator'), 'edit_posts', 'post-new.php?post_type='.$type_key);
-	    	}
-	    }
-	    foreach($this->taxonomies_plural as $tax_key => $tax_label_plural){
-	    	add_submenu_page('tour-operator', esc_html__($tax_label_plural,'tour-operator'), esc_html__($tax_label_plural,'tour-operator'), 'edit_posts', 'edit-tags.php?taxonomy='.$tax_key);
+		if('active' === $this->status){
+			$description = __( '<span style="color:#008000;">Your license is now active</span>', $this->product_slug );
+		}else{
+			$description = __( 'You can find your key on your <a target="_blank" href="https://www.lsdev.biz/my-account/">My Account</a> page.', $this->product_slug );
 		}
 
-		add_submenu_page('tour-operator', esc_html__('Help','tour-operator'), esc_html__('Help','tour-operator'), 'manage_options', 'to-help', array($this,'help_page'));
-		add_submenu_page('tour-operator', esc_html__('Add-ons','tour-operator'), esc_html__('Add-ons','tour-operator'), 'manage_options', 'to-addons', array($this,'addons_page'));
+		?>
+		<tr class="form-field <?php echo $this->product_slug; ?>-wrap">
+			<th class="<?php echo $this->product_slug; ?>_table_heading" style="padding-bottom:0px;" scope="row" colspan="2">
+
+				<?php
+				$colour = 'red';
+				if('active' === $this->status){
+					$colour = 'green';
+				}
+				?>
+
+				<h4 style="margin-bottom:0px;">
+					<span><?php echo $this->product_id; ?></span>
+					- <span><?php echo $this->version; ?></span>
+					- <span style="color:<?php echo $colour;?>;"><?php echo $this->status; ?></span>
+					- <?php echo $this->button; ?>
+				</h4>
+
+				<?php /*if(is_array($this->messages)) { ?><p><small class="messages" style="font-weight:normal;"><?php echo implode('. ',$this->messages); ?></small></p><?php } */ ?>
+
+			</th>
+		</tr>
+
+		<tr class="form-field <?php echo $this->product_slug; ?>-api-email-wrap">
+			<th style="font-size:13px;" scope="row">
+				<i class="dashicons-before dashicons-email-alt"></i> <?php esc_html_e( 'Registered Email', $this->product_slug ); ?>
+			</th>
+			<td>
+				<input type="text" {{#if <?php echo $this->product_slug; ?>_email}} value="{{<?php echo $this->product_slug; ?>_email}}" {{/if}} name="<?php echo $this->product_slug; ?>_email" /><br />
+			</td>
+
+		</tr>
+		<tr class="form-field <?php echo $this->product_slug; ?>-api-key-wrap">
+			<th style="font-size:13px;" scope="row">
+				<i class="dashicons-before dashicons-admin-network"></i> <?php esc_html_e( 'API Key', $this->product_slug ); ?>
+			</th>
+			<td>
+				<input type="text" {{#if <?php echo $this->product_slug; ?>_api_key}} value="{{<?php echo $this->product_slug; ?>_api_key}}" {{/if}} name="<?php echo $this->product_slug; ?>_api_key" />
+			</td>
+		</tr>
+
+		<?php
+		$this->settings_page_scripts();
 	}
 
 	/**
-	 * Reorder custom menu pages.
-	 *
-	 * - [10] Destinations
-	 * - [+1] Add Destination
-	 * - [20] Tours
-	 * - [+1] Add Tour
-	 * - [22] Travel Styles
-	 * - [30] Accommodation
-	 * - [+1] Add Accommodation
-	 * - [32] Accommodation Types
-	 * - [33] Brands
-	 * - [34] Locations
-	 * - [35] Facilities
-	 * - [40] Team
-	 * - [50] Activities
-	 * - [60] Reviews
-	 * - [70] Specials
-	 * - [72] Special Types
-	 * - [80] Vehicles
-	 * - [90] Settings
-	 * - [91] Help
-	 * - [92] Add-ons
+	 * outputs the scripts for the dashboard settings pages.
 	 */
-	function reorder_menu_pages() {
-		global $submenu;
-		$new_submenu = array();
+	public function settings_page_scripts(){ ?>
+		{{#script}}
+		jQuery( function( $ ){
+		$( '.<?php echo $this->product_slug; ?>-api-email-wrap input' ).on( 'change', function() {
+		$('input[name="<?php echo $this->product_slug; ?>_api_action"]').remove();
 
-		foreach ( $submenu as $page => $items ) {
-			if ( 'tour-operator' === $page ) {
-				foreach ( $items as $key => $item ) {
-					$item_page = $item[2];
-					
-					// ***** All {post_type} *****
-					
-					$page = 'edit.php';
+		var action = 'activate';
+		if('' == $(this).val() || undefined == $(this).val()){
+		action = 'deactivate';
+		}
+		$('.<?php echo $this->product_slug; ?>-wrap').append('<input type="hidden" value="'+action+'" name="<?php echo $this->product_slug; ?>_api_action" />');
+		});
 
-					if ( substr( $item_page, 0, strlen( $page ) ) === $page ) {
-						$type_key = str_replace( 'edit.php?post_type=', '', $item_page );
-						$type_obj = get_post_type_object( $type_key );
+		$( '.activate[data-product="<?php echo $this->product_slug; ?>"]' ).on( 'click', function() {
 
-						if ( is_object( $type_obj ) ) {
-							$menu_position = $type_obj->menu_position;
+		var url = $(this).attr('href');
+		$( window ).on('uix.saved',function() {
+		window.location.href = url;
+		});
+		$('.page-title-action').click();
+		});
+		});
+		{{/script}}
+		<?php
+	}
 
-							if ( is_numeric( $menu_position ) ) {
-								$new_submenu[ $menu_position ] = $item;
-							}
-						}
-						
-						continue;
-					}
+	/**
+	 * Return an instance of this class.
+	 */
+	public function activate_deactivate(){
+		if(isset($_GET['action']) && 'activate' === $_GET['action']
+			&& isset($_GET['product']) && $this->product_slug === $_GET['product']
+			&& false !== $this->api_key && '' !== $this->api_key
+			&& false !== $this->email && '' !== $this->email){
 
-					// ***** Add {post_type} *****
 
-					$page = 'post-new.php';
+			$response = $this->query('activation');
+			if(is_object($response) && isset($response->activated) && true === $response->activated){
+				update_option($this->product_slug.'_status','active');
+			}
+		}
 
-					if ( substr( $item_page, 0, strlen( $page ) ) === $page ) {
-						$type_key = str_replace( 'post-new.php?post_type=', '', $item_page );
-						$type_obj = get_post_type_object( $type_key );
+		if((isset($_GET['action']) && 'deactivate' === $_GET['action'] && isset($_GET['product']) && $this->product_slug === $_GET['product'])
+			|| (false === $this->api_key || '' === $this->api_key || false === $this->email || '' === $this->email)){
 
-						if ( is_object( $type_obj ) ) {
-							$menu_position = $type_obj->menu_position + 1;
+			if('active' === $this->status) {
+				$this->query('deactivation');
+				update_option($this->product_slug.'_status','inactive');
+			}
+		}
+	}
 
-							if ( is_numeric( $menu_position ) ) {
-								$new_submenu[ $menu_position ] = $item;
-							}
-						}
-						
-						continue;
-					}
+	/**
+	 * Generates the API URL
+	 */
+	public function create_software_api_url( $args ) {
 
-					// ***** Static pages *****
+		$endpoint = 'am-software-api';
+		if('pluginupdatecheck' === $args['request']){
+			$endpoint = 'upgrade-api';
+		}
+		$api_url = add_query_arg( 'wc-api', $endpoint, $this->products_api_url );
+		return $api_url . '&' . http_build_query( $args );
+	}
 
-					$static_pages = array(
-						90 => 'to-settings',
-						91 => 'to-help',
-						92 => 'to-addons',
-					);
-
-					$static_pages_found = false;
-
-					foreach ( $static_pages as $menu_position => $page ) {
-						if ( $page === $item_page ) {
-							$new_submenu[ $menu_position ] = $item;
-							$static_pages_found = true;
-							break;
-						}
-					}
-
-					if ( $static_pages_found ) {
-						continue;
-					}
-
-					// ***** Taxonomies *****
-
-					// @TODO - make $taxonomies_pages dynamic
-					$taxonomies_pages = array(
-						22  => 'edit-tags.php?taxonomy=travel-style',
-						32  => 'edit-tags.php?taxonomy=accommodation-type',
-						33  => 'edit-tags.php?taxonomy=accommodation-brand',
-						34  => 'edit-tags.php?taxonomy=location',
-						35  => 'edit-tags.php?taxonomy=facility',
-						72  => 'edit-tags.php?taxonomy=special-type',
-					);
-
-					$taxonomies_pages_found = false;
-
-					foreach ( $taxonomies_pages as $menu_position => $page ) {
-						if ( $page === $item_page ) {
-							$new_submenu[ $menu_position ] = $item;
-							$taxonomies_pages_found = true;
-							break;
-						}
-					}
-
-					if ( $taxonomies_pages_found ) {
-						continue;
-					}
-
-					// ***** With no menu order set (send to final positions) *****
-
-					$new_submenu[ $key + 1000 ] = $item;
+	/**
+	 * Checks if the software is activated or deactivated
+	 * @return string
+	 */
+	public function check_status($response = false) {
+		if(false === $response){
+			$response = $this->query('status');
+		}
+		$status = 'inactive';
+		if(is_object($response)){
+			if(isset($response->error)){
+				$this->messages[] = $this->format_error_code($response->code);
+			}elseif(isset($response->status_check)){
+				$status = $response->status_check;
+				if(isset($response->activations_remaining)){
+					$this->messages[] = $response->activations_remaining;
+				}
+				if(isset($response->message)){
+					$this->messages[] = $response->message;
 				}
 			}
 		}
-
-		ksort( $new_submenu );
-		$submenu[ 'tour-operator' ] = $new_submenu;
+		return $status;
 	}
-	
+
 	/**
-	 * Keep TO main menu item active for all subitems
+	 * Does the actual contacting to the API.
+	 * @param  string $action
+	 * @return array
 	 */
-	function select_submenu_pages() {
-		global $parent_file, $submenu_file;
-
-		// @TODO - make $taxonomies_pages dynamic
-		$taxonomies_pages = array(
-			'edit-tags.php?taxonomy=travel-style',
-			'edit-tags.php?taxonomy=accommodation-type',
-			'edit-tags.php?taxonomy=accommodation-brand',
-			'edit-tags.php?taxonomy=location',
-			'edit-tags.php?taxonomy=facility',
-			'edit-tags.php?taxonomy=special-type',
+	public function query($action='status') {
+		$args = array(
+			'request' 		=> $action,
+			'email' 		=> $this->email,
+			'licence_key'	=> $this->api_key,
+			'product_id' 	=> $this->product_id,
+			'platform' 		=> home_url(),
+			'instance' 		=> $this->password
 		);
+		$target_url = esc_url_raw( $this->create_software_api_url( $args ) );
 
-		if ( in_array( $submenu_file, $taxonomies_pages ) ) {
-			$parent_file = 'tour-operator';
+		$request = wp_remote_get( $target_url );
+		if( is_wp_error( $request ) || wp_remote_retrieve_response_code( $request ) != 200 ) {
+			// Request failed
+			return false;
+		}
+		$response = wp_remote_retrieve_body( $request );
+		return json_decode($response);
+	}
+
+	/**
+	 * Formats the error code into a readable format.
+	 * @param  array $args
+	 * @return array
+	 */
+	public function format_error_code($code=false){
+		switch ( $code ) {
+			case '101' :
+				$error = array( 'error' => esc_html__( 'Invalid API License Key. Login to your My Account page to find a valid API License Key', $this->product_slug ), 'code' => '101' );
+				break;
+			case '102' :
+				$error = array( 'error' => esc_html__( 'Software has been deactivated', $this->product_slug ), 'code' => '102' );
+				break;
+			case '103' :
+				$error = array( 'error' => esc_html__( 'Exceeded maximum number of activations', $this->product_slug ), 'code' => '103' );
+				break;
+			case '104' :
+				$error = array( 'error' => esc_html__( 'Invalid Instance ID', $this->product_slug ), 'code' => '104' );
+				break;
+			case '105' :
+				$error = array( 'error' => esc_html__( 'Invalid API License Key', $this->product_slug ), 'code' => '105' );
+				break;
+			case '106' :
+				$error = array( 'error' => esc_html__( 'Subscription Is Not Active', $this->product_slug ), 'code' => '106' );
+				break;
+			default :
+				$error = array( 'error' => esc_html__( 'Invalid Request', $this->product_slug ), 'code' => '100' );
+				break;
 		}
 	}
-	 
-	/**
-	 * Display a custom menu page
-	 */
-	function menu_dashboard(){
-	    ?>
-	    <div class="wrap">
-	    	<h1><?php esc_html_e( 'Dashboard', 'tour-operator' ); ?></h1> 
-	    </div>
-	    <?php
+
+	public static function generatePassword($length = 20) {
+		$chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+		$count = mb_strlen($chars);
+
+		for ($i = 0, $result = ''; $i < $length; $i++) {
+			$index = rand(0, $count - 1);
+			$result .= mb_substr($chars, $index, 1);
+		}
+
+		return $result;
 	}
 
-	/**
-	 * Display the addons page
-	 */
-	function addons_page(){
-	    include(TO_PATH.'includes/settings/add-ons.php');
-	}	
+	public function set_update_status(){
+		$this->status = $this->check_status();
+		$this->upgrade_response = get_transient($this->product_slug.'_upgrade_response',false);
 
-	/**
-	 * Display the help page
-	 */
-	function help_page(){
-	    include(TO_PATH.'includes/settings/help.php');
-	}
+		if(false !== $this->upgrade_response){
+			$this->upgrade_response = maybe_unserialize($this->upgrade_response);
+		}
 
-	/**
-	 * Display the licenses page
-	 */
-	function licenses_page(){
-	    include(TO_PATH.'includes/settings/licenses.php');
-	}
-
-	/**
-	 * Register the global post types.
-	 *
-	 *
-	 * @return    null
-	 */
-	public function global_taxonomies() {
-			
-		$labels = array(
-				'name' => _x( 'Travel Styles', 'tour-operator' ),
-				'singular_name' => _x( 'Travel Style', 'tour-operator' ),
-				'search_items' =>  __( 'Search Travel Styles' , 'tour-operator' ),
-				'all_items' => __( 'Travel Styles' , 'tour-operator' ),
-				'parent_item' => __( 'Parent Travel Style' , 'tour-operator' ),
-				'parent_item_colon' => __( 'Parent Travel Style:' , 'tour-operator' ),
-				'edit_item' => __( 'Edit Travel Style' , 'tour-operator' ),
-				'update_item' => __( 'Update Travel Style' , 'tour-operator' ),
-				'add_new_item' => __( 'Add New Travel Style' , 'tour-operator' ),
-				'new_item_name' => __( 'New Travel Style' , 'tour-operator' ),
-				'menu_name' => __( 'Travel Styles' , 'tour-operator' ),
-		);
-		
-		// Now register the taxonomy
-		register_taxonomy('travel-style',array('accommodation','tour','destination','review','vehicle','special'), array(
-			'hierarchical' => true,
-			'labels' => $labels,
-			'show_ui' => true,
-			'public' => true,
-			'exclude_from_search' => true,
-			'show_admin_column' => true,
-			'query_var' => true,
-			'rewrite' => array('travel-style'),
-		));	
-		
-		$labels = array(
-				'name' => _x( 'Brands', 'tour-operator' ),
-				'singular_name' => _x( 'Brand', 'tour-operator' ),
-				'search_items' =>  __( 'Search Brands' , 'tour-operator' ),
-				'all_items' => __( 'Brands' , 'tour-operator' ),
-				'parent_item' => __( 'Parent Brand' , 'tour-operator' ),
-				'parent_item_colon' => __( 'Parent Brand:' , 'tour-operator' ),
-				'edit_item' => __( 'Edit Brand' , 'tour-operator' ),
-				'update_item' => __( 'Update Brand' , 'tour-operator' ),
-				'add_new_item' => __( 'Add New Brand' , 'tour-operator' ),
-				'new_item_name' => __( 'New Brand' , 'tour-operator' ),
-				'menu_name' => __( 'Brands' , 'tour-operator' ),
-		);
-		
-		
-		// Now register the taxonomy
-		register_taxonomy('accommodation-brand',array('accommodation'), array(
-				'hierarchical' => true,
-				'labels' => $labels,
-				'show_ui' => true,
-				'public' => true,
-				'exclude_from_search' => true,
-				'show_admin_column' => true,
-				'query_var' => true,
-				'rewrite' => array('slug'=>'brand'),
-		));	
-
-		$labels = array(
-				'name' => _x( 'Location', 'tour-operator' ),
-				'singular_name' => _x( 'Location', 'tour-operator' ),
-				'search_items' =>  __( 'Search Locations' , 'tour-operator' ),
-				'all_items' => __( 'Locations' , 'tour-operator' ),
-				'parent_item' => __( 'Parent Location' , 'tour-operator' ),
-				'parent_item_colon' => __( 'Parent Location:' , 'tour-operator' ),
-				'edit_item' => __( 'Edit Location' , 'tour-operator' ),
-				'update_item' => __( 'Update Location' , 'tour-operator' ),
-				'add_new_item' => __( 'Add New Location' , 'tour-operator' ),
-				'new_item_name' => __( 'New Location' , 'tour-operator' ),
-				'menu_name' => __( 'Locations' , 'tour-operator' ),
-		);
-		// Now register the taxonomy
-		register_taxonomy('location',array('accommodation'), array(
-				'hierarchical' => true,
-				'labels' => $labels,
-				'show_ui' => true,
-				'public' => true,
-				'exclude_from_search' => true,
-				'show_admin_column' => true,
-				'query_var' => true,
-				'rewrite' => array('slug'=>'location'),
-		));			
-
-	}
-
-	/**
-	 * Sets up the "post relations"
-	 *
-	 * @return    object|Module_Template    A single instance of this class.
-	 */
-	public function post_relations($post_id, $field, $value) {
-		
-		if('group' === $field['type'] && isset($this->single_fields) && array_key_exists($field['id'], $this->single_fields)){
-				
-			$delete_counter = array();
-			foreach($this->single_fields[$field['id']] as $fields_to_save){
-				$delete_counter[$fields_to_save] = 0;
+		if(isset($this->status) && 'active' === $this->status && false === $this->upgrade_response){
+			$args = array(
+				'request' 			=> 'pluginupdatecheck',
+				'plugin_name' 		=> $this->product_slug.'/'.$this->file,
+				'version' 			=> $this->product_slug,
+				'activation_email' 	=> $this->email,
+				'api_key'			=> $this->api_key,
+				'product_id' 		=> $this->product_id,
+				'domain' 			=> home_url(),
+				'instance' 			=> $this->password,
+				'software_version'	=> $this->version,
+			);
+			$target_url = esc_url_raw( $this->create_software_api_url( $args ) );
+			$request = wp_remote_get( $target_url );
+			if( is_wp_error( $request ) || wp_remote_retrieve_response_code( $request ) != 200 ) {
+				// Request failed
+				$this->upgrade_response=false;
 			}
-			
-			//Loop through each group in case of repeatable fields
-			$relations = $previous_relations = false;
-
-			foreach($value as $group){
-		
-				//loop through each of the fields in the group that need to be saved and grab their values.
-				foreach($this->single_fields[$field['id']] as $fields_to_save){
-					
-					//Check if its an empty group
-					if(isset($group[$fields_to_save]) && !empty($group[$fields_to_save])){;
-						if($delete_counter[$fields_to_save]<1){
-							//If this is a relation field, then we need to save the previous relations to remove any items if need be.
-							if(in_array($fields_to_save,$this->connections)){
-								$previous_relations[$fields_to_save] = get_post_meta($post_id,$fields_to_save,false);
-							}							
-							delete_post_meta( $post_id, $fields_to_save );
-							$delete_counter[$fields_to_save]++;
-						}
-						
-						//Run through each group
-						foreach($group[$fields_to_save] as $field_value){
-								
-							if(null !== $field_value){
-			
-								if(1 === $field_value){ $field_value = true; }
-								add_post_meta($post_id,$fields_to_save,$field_value);
-							
-								//If its a related connection the save that
-								if(in_array($fields_to_save,$this->connections)){
-									$relations[$fields_to_save][$field_value] = $field_value;
-								}
-							}
-						}
-					}
-				}// end of the inner foreach
-				
-			}//end of the repeatable group foreach
-			
-			//If we have relations, loop through them and save the meta
-			if(false!==$relations){
-				foreach($relations as $relation_key => $relation_values){
-					$temp_field = array('id'=>$relation_key);
-					$this->save_related_post($post_id, $temp_field, $relation_values,$previous_relations[$relation_key]);
-				}
-			}			
-			
-		}else{			
-			if(in_array($field['id'],$this->connections)){
-				$this->save_related_post($post_id, $field, $value);
-			}
+			$response = wp_remote_retrieve_body( $request );
+			$this->upgrade_response = maybe_unserialize($response);
+			set_transient($this->product_slug . '_upgrade_response', $response, 60 * 30);
 		}
 	}
 
 	/**
-	 * Save the reverse post relation.
+	 * Insert the latest update (if any) into the update list maintained by WP.
 	 *
-	 *
-	 * @return    null
+	 * @param StdClass $updates Update list.
+	 * @return StdClass Modified update list.
 	 */
-	public function save_related_post($post_id, $field, $value,$previous_values=false) {
-		$ids = explode('_to_',$field['id']);
-			
-		$relation = $ids[1].'_to_'.$ids[0];
+	public function injectUpdate($updates=false){
+		$this->set_update_status();
+		if(isset($this->status) && 'active' === $this->status && null !== $this->upgrade_response && is_object($this->upgrade_response) && isset($this->upgrade_response->new_version) && version_compare ( $this->upgrade_response->new_version , $this->version , '>' )){
 
-		if(in_array($relation,$this->connections)){
-			
-			if(false===$previous_values){
-				$previous_values = get_post_meta($post_id,$field['id'],false);
+			//setup the response if our plugin is the only one that needs updating.
+			if ( !is_object($updates) ) {
+				$updates = new StdClass();
+				$updates->response = array();
 			}
-		
-			if(false !== $previous_values && !empty($previous_values)){
-				foreach($previous_values as $tr){
-					delete_post_meta( $tr, $relation, $post_id );
-				}
-			}		
-
-			if(is_array($value)){
-				foreach($value as $v){
-					if('' !== $v && null !== $v && false !== $v){
-						add_post_meta($v,$relation,$post_id);
-					}
-				}
-			}
-		}		
+			$updates->response[$this->product_slug.'/'.$this->file] = $this->upgrade_response;
+		}
+		return $updates;
 	}
 
 	/**
 	 * Adds in the "settings" link for the plugins.php page
 	 */
 	public function add_action_links ( $links ) {
-		 $mylinks = array(
-		 	'<a href="' . admin_url( 'admin.php?page=to-settings' ) . '">'.__('Settings','tour-operator').'</a>',
-		 	'<a href="https://www.lsdev.biz/documentation/tour-operator-plugin/" target="_blank">'.__('Documentation','tour-operator').'</a>',
-		 	'<a href="https://www.lsdev.biz/contact-us/" target="_blank">'.__('Support','tour-operator').'</a>',
-		 );
+		$admin_url_base = class_exists( 'Tour_Operator' ) ? 'admin.php?page=to-settings' : 'themes.php?page=lsx-settings';
+		$documentation = $this->product_slug;
+		if(isset($this->documentation)){$documentation = $this->documentation; }
+		$mylinks = array(
+			'<a href="' . admin_url( $admin_url_base ) . '">'.esc_html__('Settings',$this->product_slug).'</a>',
+			'<a href="https://www.lsdev.biz/documentation/'.$documentation.'/" target="_blank">'.esc_html__('Documentation',$this->product_slug).'</a>',
+			'<a href="https://www.lsdev.biz/contact-us/" target="_blank">'.esc_html__('Support',$this->product_slug).'</a>',
+		);
 		return array_merge( $links, $mylinks );
-	}	
-
-	/**
-	 * Output the form field for this metadata when adding a new term
-	 *
-	 * @since 0.1.0
-	 */
-	public function widget_taxonomies($taxonomies) {
-		if(false !== $this->taxonomies){ $taxonomies = array_merge($taxonomies,$this->taxonomies); }
-		return $taxonomies;
 	}
-
-	/**
-	 * Output the form field for this metadata when adding a new term
-	 *
-	 * @since 0.1.0
-	 */
-	public function add_thumbnail_form_field($term = false) {
-	
-		if(is_object($term)){
-			$value = get_term_meta( $term->term_id, 'thumbnail', true );
-			$image_preview = wp_get_attachment_image_src($value,'thumbnail');
-			if(is_array($image_preview)){
-				$image_preview = '<img src="'.$image_preview[0].'" width="'.$image_preview[1].'" height="'.$image_preview[2].'" class="alignnone size-thumbnail wp-image-'.$value.'" />';
-			}
-		}else{
-			$image_preview = false;
-			$value = false;
-		}
-		?>
-		<tr class="form-field form-required term-thumbnail-wrap">
-			<th scope="row"><label for="thumbnail"><?php esc_html_e('Featured Image','tour-operator');?></label></th>
-			<td>
-				<input style="display:none;" name="thumbnail" id="thumbnail" type="text" value="<?php echo wp_kses_post($value); ?>" size="40" aria-required="true">
-				<div class="thumbnail-preview">
-					<?php echo wp_kses_post($image_preview); ?>
-				</div>				
-
-				<a style="<?php if('' !== $value && false !== $value) { ?>display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e('Choose Image','tour-operator');?></a>				
-				<a style="<?php if('' === $value || false === $value) { ?>display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-remove"><?php esc_html_e('Remove Image','tour-operator');?></a>
-
-				<?php wp_nonce_field( 'to_save_term_thumbnail', 'to_term_thumbnail_nonce' ); ?>
-			</td>
-		</tr>
-		
-		<script type="text/javascript">
-			(function( $ ) {
-				$( '.lsx-thumbnail-image-add' ).on( 'click', function() {
-					tb_show('Choose a Featured Image', 'media-upload.php?type=image&TB_iframe=1');
-					var image_thumbnail = '';
-					window.send_to_editor = function( html ) 
-					{
-						var image_thumbnail = $( 'img',html ).html();
-						$( '.thumbnail-preview' ).append(html);
-						var imgClasses = $( 'img',html ).attr( 'class' );
-						imgClasses = imgClasses.split('wp-image-');
-						$( '#thumbnail' ).val(imgClasses[1]);
-						tb_remove();
-					}
-					$( this ).hide();
-					$( '.lsx-thumbnail-image-remove' ).show();
-					
-					return false;
-				});
-
-				$( '.lsx-thumbnail-image-remove' ).on( 'click', function() {
-					$( '.thumbnail-preview' ).html('');
-					$( '#thumbnail' ).val('');
-					$( this ).hide();
-					$( '.lsx-thumbnail-image-add' ).show();					
-					return false;
-				});	
-			})(jQuery);
-		</script>		
-		<?php
-	}
-	/**
-	 * Saves the Taxnomy term banner image
-	 *
-	 * @since 0.1.0
-	 *
-	 * @param  int     $term_id
-	 * @param  string  $taxonomy
-	 */
-	public function save_meta( $term_id = 0, $taxonomy = '' ) {
-
-		if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
-			return;
-		}
-
-		if ( ! isset( $_POST['thumbnail'] ) || ! isset( $_POST['tagline'] ) ) {
-			return;
-		}
-
-		if(check_admin_referer( 'to_save_term_thumbnail', 'to_term_thumbnail_nonce' )){
-			if ( ! isset( $_POST['thumbnail'] ) ) {
-				return;
-			}
-
-			$thumbnail_meta = ! empty( sanitize_text_field(wp_unslash($_POST[ 'thumbnail' ])) ) ? sanitize_text_field(wp_unslash($_POST[ 'thumbnail' ]))	: '';
-			if ( empty( $thumbnail_meta ) ) {
-				delete_term_meta( $term_id, 'thumbnail' );
-			} else {
-				update_term_meta( $term_id, 'thumbnail', $thumbnail_meta );
-			}
-		}
-		
-		if(check_admin_referer( 'to_save_term_tagline', 'to_term_tagline_nonce' )){
-			if ( ! isset( $_POST['tagline'] ) ) {
-				return;
-			}
-
-			$meta = ! empty( sanitize_text_field(wp_unslash($_POST[ 'tagline' ])) ) ? sanitize_text_field(wp_unslash($_POST[ 'tagline' ])) : '';
-			if ( empty( $meta ) ) {
-				delete_term_meta( $term_id, 'tagline' );
-			} else {
-				update_term_meta( $term_id, 'tagline', $meta );
-			}
-		}
-	}
-	
-	/**
-	 * Output the form field for this metadata when adding a new term
-	 *
-	 * @since 0.1.0
-	 */
-	public function add_tagline_form_field($term = false) {
-		if(is_object($term)){
-			$value = get_term_meta( $term->term_id, 'tagline', true );
-		}else{
-			$value = false;
-		}
-		?>
-		<tr class="form-field form-required term-tagline-wrap">
-			<th scope="row"><label for="tagline"><?php esc_html_e('Tagline','tour-operator');?></label></th>
-			<td>
-				<input name="tagline" id="tagline" type="text" value="<?php echo wp_kses_post($value); ?>" size="40" aria-required="true">
-			</td>
-
-			<?php wp_nonce_field( 'to_save_term_tagline', 'to_term_tagline_nonce' ); ?>
-		</tr>
-		<?php
-	}
-
-	/**
-	 * Allow SVG files for upload
-	 */
-	public 	function allow_svgimg_types($mimes) {
-	  $mimes['svg'] = 'image/svg+xml';
-	  $mimes['kml'] = 'image/kml+xml';
-	  return $mimes;
-	}	
-
-	/**
-	 * Hide a few of the meta boxes by default
-	 */
-	public function default_hidden_meta_boxes( $hidden, $screen ) {
-
-		$post_type = $screen->post_type;
-
-		if ( in_array($post_type,$this->post_types) ) {
-			$hidden = array(
-					'authordiv',
-					'revisionsdiv',
-					'slugdiv',
-					'sharing_meta'
-			);
-			return $hidden;
-		}
-		return $hidden;
-	}						
 }
