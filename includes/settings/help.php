@@ -1,18 +1,18 @@
 <?php
-	$to_documentation = esc_url('http://lsdev.biz/documentation/');
-	$extensions_link = esc_url('http://lsdev.biz/product-category/tour-operator-extensions/');
+	$to_documentation = esc_url('https://www.lsdev.biz/documentation/');
+	$extensions_link = esc_url('https://www.lsdev.biz/product-category/tour-operator-extensions/');
 
 	//Product Urls
 	$tour_operator_link = esc_url('https://www.lsdev.biz/product/tour-operator-plugin/');
-	$map_link = esc_url('https://dev.lsdev.biz/product/tour-operator-maps/');
-	$galleries_link = esc_url('https://dev.lsdev.biz/product/tour-operator-galleries/');
-	$team_link = esc_url('https://dev.lsdev.biz/product/tour-operators-team/');
-	$activities_link = esc_url('https://dev.lsdev.biz/product/tour-operators-activities/');
-	$reviews_link = esc_url('https://dev.lsdev.biz/product/tour-operator-reviews/');
-	$specials_link = esc_url('https://dev.lsdev.biz/product/tour-operator-specials/');
-	$search_link = esc_url('https://dev.lsdev.biz/product/tour-operators-search/');
-	$vehicles_link = esc_url('https://dev.lsdev.biz/product/tour-operator-vehicles/');
-	$wetu_importer_link = esc_url('');
+	$map_link = esc_url('https://www.lsdev.biz/product/tour-operator-maps/');
+	$galleries_link = esc_url('https://www.lsdev.biz/product/tour-operator-galleries/');
+	$team_link = esc_url('https://www.lsdev.biz/product/tour-operators-team/');
+	$activities_link = esc_url('https://www.lsdev.biz/product/tour-operators-activities/');
+	$reviews_link = esc_url('https://www.lsdev.biz/product/tour-operator-reviews/');
+	$specials_link = esc_url('https://www.lsdev.biz/product/tour-operator-specials/');
+	$search_link = esc_url('https://www.lsdev.biz/product/tour-operators-search/');
+	$vehicles_link = esc_url('https://www.lsdev.biz/product/tour-operator-vehicles/');
+	$wetu_importer_link = esc_url('https://www.lsdev.biz/product/wetu-importer/');
 ?>
 
 <div class="wrap about-wrap">
