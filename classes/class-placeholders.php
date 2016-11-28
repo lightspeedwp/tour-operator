@@ -372,16 +372,13 @@ class TO_Placeholders {
 					<label for="banner"> <?php esc_html_e( 'Banner Placeholder', 'tour-operator' ); ?></label>
 				</th>
 				<td>
-					<input type="hidden" {{#if banner_placeholder_id}} value="{{banner_placeholder_id}}" {{/if}} name="banner_placeholder_id" />
-					<input type="hidden" {{#if banner_placeholder}} value="{{banner_placeholder}}" {{/if}} name="banner_placeholder" />
+					<input class="input_image_id" type="hidden" {{#if banner_placeholder_id}} value="{{banner_placeholder_id}}" {{/if}} name="banner_placeholder_id" />
+					<input class="input_image" type="hidden" {{#if banner_placeholder}} value="{{banner_placeholder}}" {{/if}} name="banner_placeholder" />
 					<div class="thumbnail-preview">
-						{{#if banner_placeholder}}<img src="{{banner_placeholder}}" width="300" height="150" />{{/if}}	
+						{{#if banner_placeholder}}<img src="{{banner_placeholder}}" width="150" />{{/if}}	
 					</div>
-
-					<a {{#if banner_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add" data-slug="banner_placeholder">Choose Image</a>
-
-					<a {{#unless banner_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete" data-slug="banner_placeholder">Delete</a>
-					
+					<a {{#if banner_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add">Choose Image</a>
+					<a {{#unless banner_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete">Delete</a>
 				</td>
 			</tr>
 		<?php } ?>
@@ -390,16 +387,13 @@ class TO_Placeholders {
 				<label for="banner"> <?php esc_html_e( 'Archive Placeholder', 'tour-operator' ); ?></label>
 			</th>
 			<td>
-				<input type="hidden" {{#if default_placeholder_id}} value="{{default_placeholder_id}}" {{/if}} name="default_placeholder_id" />
-				<input type="hidden" {{#if default_placeholder}} value="{{default_placeholder}}" {{/if}} name="default_placeholder" />
+				<input class="input_image_id" type="hidden" {{#if default_placeholder_id}} value="{{default_placeholder_id}}" {{/if}} name="default_placeholder_id" />
+				<input class="input_image" type="hidden" {{#if default_placeholder}} value="{{default_placeholder}}" {{/if}} name="default_placeholder" />
 				<div class="thumbnail-preview">
-					{{#if default_placeholder}}<img src="{{default_placeholder}}" width="150" height="150" />{{/if}}	
+					{{#if default_placeholder}}<img src="{{default_placeholder}}" width="150" />{{/if}}	
 				</div>
-
-				<a {{#if default_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add" data-slug="default_placeholder">Choose Image</a>
-
-				<a {{#unless default_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete" data-slug="default_placeholder">Delete</a>
-				
+				<a {{#if default_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add">Choose Image</a>
+				<a {{#unless default_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete">Delete</a>
 			</td>
 		</tr>
 		{{#unless disable_blog_placeholder}}
@@ -408,16 +402,13 @@ class TO_Placeholders {
 					<label for="posts_placeholder"> <?php esc_html_e( 'Blog Placeholder', 'tour-operator' ); ?></label>
 				</th>
 				<td>
-					<input type="hidden" {{#if posts_placeholder_id}} value="{{posts_placeholder_id}}" {{/if}} name="posts_placeholder_id" />
-					<input type="hidden" {{#if posts_placeholder}} value="{{posts_placeholder}}" {{/if}} name="posts_placeholder" />
+					<input class="input_image_id" type="hidden" {{#if posts_placeholder_id}} value="{{posts_placeholder_id}}" {{/if}} name="posts_placeholder_id" />
+					<input class="input_image" type="hidden" {{#if posts_placeholder}} value="{{posts_placeholder}}" {{/if}} name="posts_placeholder" />
 					<div class="thumbnail-preview">
-						{{#if posts_placeholder}}<img src="{{posts_placeholder}}" width="150" height="150" />{{/if}}	
+						{{#if posts_placeholder}}<img src="{{posts_placeholder}}" width="150" />{{/if}}	
 					</div>
-
-					<a {{#if posts_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add" data-slug="posts_placeholder">Choose Image</a>
-
-					<a {{#unless posts_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete" data-slug="posts_placeholder">Delete</a>
-					
+					<a {{#if posts_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add">Choose Image</a>
+					<a {{#unless posts_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete">Delete</a>
 				</td>
 			</tr>	
 		{{/unless}}	
@@ -430,40 +421,6 @@ class TO_Placeholders {
 				<small><?php esc_html_e( 'This disables the placeholder on blog posts.', 'tour-operator' ); ?></small>
 			</td>
 		</tr>
-		{{#script}}
-			(function( $ ) {
-				$( '.lsx-thumbnail-image-add' ).on( 'click', function() {
-					tb_show('Choose a Featured Image', 'media-upload.php?type=image&TB_iframe=1');
-					var image_thumbnail = '';
-					var $this = $(this);
-					window.send_to_editor = function( html )
-					{
-						var image_thumbnail = $( 'img',html ).html();
-
-						$( $this ).parent('td').find('.thumbnail-preview' ).append('<img width="150" height="150" src="'+jQuery( 'img',html ).attr( 'src' )+'" />');
-						$( $this ).parent('td').find('input[name="banner"]').val($( 'img',html ).attr( 'src' ));
-
-						var imgClasses = $( 'img',html ).attr( 'class' );
-						imgClasses = imgClasses.split('wp-image-');
-
-						$( $this ).parent('td').find('input[name="banner_id"]').val(imgClasses[1]);
-						$( $this ).hide();
-						$( $this ).parent('td').find('.lsx-thumbnail-image-delete' ).show();
-						tb_remove();
-					}
-					$( this ).hide();
-
-					return false;
-				});
-				$( '.lsx-thumbnail-image-delete' ).on( 'click', function() {
-					$( this ).parent('td').find('input[name="banner_id"]').val('');
-					$( this ).parent('td').find('input[name="banner"]').val('');
-					$( this ).parent('td').find('.thumbnail-preview' ).html('');
-					$( this ).hide();
-					$( this ).parent('td').find('.lsx-thumbnail-image-add' ).show();
-				});
-			})(jQuery);
-		{{/script}}
 	<?php 
 	}
 
@@ -483,16 +440,13 @@ class TO_Placeholders {
 					<label for="banner"> <?php esc_html_e( 'Banner', 'tour-operator' ); ?></label>
 				</th>
 				<td>
-					<input type="hidden" {{#if banner_placeholder_id}} value="{{banner_placeholder_id}}" {{/if}} name="banner_placeholder_id" />
-					<input type="hidden" {{#if banner_placeholder}} value="{{banner_placeholder}}" {{/if}} name="banner_placeholder" />
+					<input class="input_image_id" type="hidden" {{#if banner_placeholder_id}} value="{{banner_placeholder_id}}" {{/if}} name="banner_placeholder_id" />
+					<input class="input_image" type="hidden" {{#if banner_placeholder}} value="{{banner_placeholder}}" {{/if}} name="banner_placeholder" />
 					<div class="thumbnail-preview">
-						{{#if banner_placeholder}}<img src="{{banner_placeholder}}" width="300" height="150" />{{/if}}	
+						{{#if banner_placeholder}}<img src="{{banner_placeholder}}" width="150" />{{/if}}	
 					</div>
-
-					<a {{#if banner_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add" data-slug="banner_placeholder">Choose Image</a>
-
-					<a {{#unless banner_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete" data-slug="banner_placeholder">Delete</a>
-					
+					<a {{#if banner_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add">Choose Image</a>
+					<a {{#unless banner_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete">Delete</a>
 				</td>
 			</tr>	
 		<?php } ?>
@@ -502,16 +456,13 @@ class TO_Placeholders {
 				<label for="featured_placeholder"><?php esc_html_e( 'Archive Image', 'tour-operator' ); ?></label>
 			</th>
 			<td>
-				<input type="hidden" {{#if featured_placeholder_id}} value="{{featured_placeholder_id}}" {{/if}} name="featured_placeholder_id" />
-				<input type="hidden" {{#if featured_placeholder}} value="{{featured_placeholder}}" {{/if}} name="featured_placeholder" />
+				<input class="input_image_id" type="hidden" {{#if featured_placeholder_id}} value="{{featured_placeholder_id}}" {{/if}} name="featured_placeholder_id" />
+				<input class="input_image" type="hidden" {{#if featured_placeholder}} value="{{featured_placeholder}}" {{/if}} name="featured_placeholder" />
 				<div class="thumbnail-preview">
-					{{#if featured_placeholder}}<img src="{{featured_placeholder}}" width="150" height="150" />{{/if}}	
+					{{#if featured_placeholder}}<img src="{{featured_placeholder}}" width="150" />{{/if}}	
 				</div>
-
-				<a {{#if featured_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add" data-slug="featured_placeholder">Choose Image</a>
-
-				<a {{#unless featured_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete" data-slug="featured_placeholder">Delete</a>
-				
+				<a {{#if featured_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add">Choose Image</a>
+				<a {{#unless featured_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete">Delete</a>
 			</td>
 		</tr>
 	<?php

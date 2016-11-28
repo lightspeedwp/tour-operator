@@ -53,21 +53,14 @@ class TO_Settings extends Tour_Operator {
 			$uix = \to\ui\uix::get_instance( 'to' );
 			$uix->register_pages( $pages );
 
-
 			foreach($this->post_types as $post_type => $label){
 				add_action( 'to_framework_'.$post_type.'_tab_content', array( $this, 'general_settings' ), 5 , 2 );
 				add_action( 'to_framework_'.$post_type.'_tab_content', array( $this, 'archive_settings' ), 12 , 2 );
 				add_action( 'to_framework_'.$post_type.'_tab_content', array( $this, 'single_settings' ), 15 , 2 );
-				add_action( 'to_framework_'.$post_type.'_tab_bottom', array( $this, 'settings_page_scripts' ), 100 );
 			}
-
 			
 			add_action('to_framework_dashboard_tab_content',array($this,'dashboard_tab_content'),10,1);
 			add_action('to_framework_display_tab_content',array($this,'display_tab_content'),10,1);
-
-			add_action( 'to_framework_api_tab_bottom', array( $this, 'settings_page_scripts' ), 100 );
-			add_action( 'to_framework_display_tab_bottom', array( $this, 'settings_page_scripts' ), 100 );
-			add_action( 'to_framework_dashboard_tab_bottom', array( $this, 'settings_page_scripts' ), 100 );
 		}
 	}
 
@@ -556,82 +549,6 @@ class TO_Settings extends Tour_Operator {
 		<?php endif ?>
 
 	<?php do_action('to_framework_'.$post_type.'_tab_single_settings_bottom',$post_type);
-	}
-
-	/**
-	 * Allows the settings pages to upload images
-	 */
-	public function settings_page_scripts(){ 
-	/*{{#script src="<?php echo wp_kses_post(TO_PATH.'assets/js/tinymce/tinymce.min.js'); ?>"}}{{/script}}*/
-	?>
-	{{#script}}
-		jQuery( function( $ ){
-			$( '.lsx-thumbnail-image-add' ).on( 'click', function() {
-
-				var slug = $(this).attr('data-slug');
-				tb_show('Choose a Featured Image', 'media-upload.php?type=image&TB_iframe=1');
-				var image_thumbnail = '';
-				var thisObj = $(this);
-				window.send_to_editor = function( html ) 
-				{
-
-					var image_thumbnail = $( 'img',html ).html();
-
-					$( thisObj ).parent('td').find('.thumbnail-preview' ).append('<img width="150" height="150" src="'+$( 'img',html ).attr( 'src' )+'" />');
-					$( thisObj ).parent('td').find('input[name="'+slug+'"]').val($( 'img',html ).attr( 'src' ));
-					
-					var imgClasses = $( 'img',html ).attr( 'class' );
-					imgClasses = imgClasses.split('wp-image-');
-					
-					$( thisObj ).parent('td').find('input[name="'+slug+'_id"]').val(imgClasses[1]);
-					$( thisObj ).hide();
-					$( thisObj ).parent('td').find('.lsx-thumbnail-image-delete' ).show();
-					tb_remove();
-					$( this ).hide();
-				}
-				return false;
-			});
-			$( '.lsx-thumbnail-image-delete' ).on( 'click', function() {
-				var slug = $(this).attr('data-slug');
-				$( this ).parent('td').find('input[name="'+slug+'_id"]').val('');
-				$( this ).parent('td').find('input[name="'+slug+'"]').val('');
-				$( this ).parent('td').find('.thumbnail-preview' ).html('');
-				$( this ).hide();
-				$( this ).parent('td').find('.lsx-thumbnail-image-add' ).show();
-			});
-
-			<?php /*if($( 'textarea.description' ).length){
-				tinymce.init({
-					selector:'textarea.description',
-					plugins: [
-					    'link hr anchor code',
-					  ],
-					menu: {},				
-					toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright justify | link code',
-				    setup: function (editor) {
-				        editor.on('change', function () {
-				            editor.save();
-				        });
-				    }
-				});
-
-				/*tinymce.get('textarea.description').on('click', function(e) {
-				   ed.windowManager.alert('Hello world!');
-				});	*/	
-			/*}*/ ?>
-
-			$( '.ui-tab-nav a' ).on( 'click', function(event) {
-				event.preventDefault();
-
-				$('.ui-tab-nav a.active').removeClass('active');
-				$(this).addClass('active');
-
-				$('.ui-tab.active').removeClass('active');
-				$($(this).attr('href')).addClass('active');
-			});			
-		});
-	{{/script}}
-	<?php
 	}
 
 	/**
