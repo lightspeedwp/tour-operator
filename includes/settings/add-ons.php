@@ -50,7 +50,7 @@
 	<div class="row">
 		<div class="col-md-4">
 			<div class="box maps">
-				<h3><?php esc_html_e( 'Maps', 'tour-operator' ); ?> - <span class="price">$00.00</span></h3>
+				<h3><?php esc_html_e( 'Maps', 'tour-operator' ); ?> - <span class="price">$79.00</span></h3>
 				<p><?php esc_html_e( 'The Maps extension gives you the ability to connect maps with location-marking pins to your Accommodation, Destination and Tour pages. You can also display maps with clusters of markers, to display the set of Accommodations in each Destination. Use the extension to show a mapped out trip itinerary that connects the dots of the accommodations you stay in on your tours. Maps will also integrate with the Activities post type, if you have that extension installed.', 'tour-operator' ); ?></p>
 
 				<div class="more-button">
@@ -104,7 +104,7 @@
 
 		<div class="col-md-4">
 			<div class="box search">
-				<h3><?php esc_html_e( 'Search', 'tour-operator' ); ?> - <span class="price">$00.00</span></h3>
+				<h3><?php esc_html_e( 'Search', 'tour-operator' ); ?> - <span class="price">$79.00</span></h3>
 				<p><?php esc_html_e( 'The Search extension for the Tour Operators plugin adds robust search functionality to your WordPress Tour Operator site. It requires that you also have the FacetWP plugin installed, as that allows for much of the filtering functionality that the plugin provides.', 'tour-operator' ); ?></p>
 			
 				<div class="more-button">
