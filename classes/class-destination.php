@@ -88,7 +88,7 @@ class Lsx_Destination{
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return    object|Module_Template    A single instance of this class.
+	 * @return    object    A single instance of this class.
 	 */
 	public static function get_instance() {
 		// If the single instance hasn't been set, set it now.

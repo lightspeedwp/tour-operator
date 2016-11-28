@@ -216,7 +216,7 @@ function to_sharing() {
  */
 function to_envira_gallery($before="",$after="",$echo=true){
 	$envira_gallery = get_post_meta(get_the_ID(),'envira_gallery',true);
-	if(false !== $envira_gallery && false === to_enable_envira_banner()){ 
+	if(false !== $envira_gallery && '' !== $envira_gallery && false === to_enable_envira_banner()){
 		ob_start();
 		if(function_exists('envira_gallery')){envira_gallery( $envira_gallery );}
 		$return = ob_get_clean();
