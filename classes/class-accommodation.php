@@ -517,6 +517,7 @@ class TO_Accommodation {
 	public function price_filter($html='',$meta_key=false,$value=false,$before="",$after=""){
 		if(get_post_type() === 'accommodation' && 'price' === $meta_key){
 			$price_type = get_post_meta(get_the_ID(),'price_type',true);
+			$value = preg_replace("/[^0-9,.]/", "", $value);
 			$value = number_format($value);
 			global $tour_operator;
 			$currency = '';

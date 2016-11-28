@@ -401,6 +401,7 @@ class Lsx_Tour {
 	 */
 	public function price_filter($html='',$meta_key=false,$value=false,$before="",$after=""){
 		if(get_post_type() === 'tour' && 'price' === $meta_key){
+			$value = preg_replace("/[^0-9,.]/", "", $value);
 			$value = number_format((int) $value);
 			global $tour_operator;
 			$currency = '';
