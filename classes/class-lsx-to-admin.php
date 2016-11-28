@@ -78,7 +78,16 @@ class TO_Admin extends Tour_Operator {
 		if( !is_object( $screen ) ){
 			return;
 		}
-		wp_enqueue_style( 'tour-operator-admin-style', TO_URL . '/assets/css/admin.css');
+
+		if ( defined( 'WP_DEBUG' ) && true === WP_DEBUG ) {
+			$min = '';
+		} else {
+			$min = '.min';
+		}
+
+		wp_enqueue_media();
+		wp_enqueue_script( 'tour-operator-admin-script', TO_URL . 'assets/js/admin' . $min . '.js', array( 'jquery' ), TO_VER, true );
+		wp_enqueue_style( 'tour-operator-admin-style', TO_URL . 'assets/css/admin.css', array(), TO_VER );
 	}
 
 	/**
@@ -524,47 +533,15 @@ class TO_Admin extends Tour_Operator {
 		<tr class="form-field form-required term-thumbnail-wrap">
 			<th scope="row"><label for="thumbnail"><?php esc_html_e('Featured Image','tour-operator');?></label></th>
 			<td>
-				<input style="display:none;" name="thumbnail" id="thumbnail" type="text" value="<?php echo wp_kses_post($value); ?>" size="40" aria-required="true">
+				<input class="input_image_id" type="hidden" name="thumbnail" value="<?php echo wp_kses_post($value); ?>">
 				<div class="thumbnail-preview">
 					<?php echo wp_kses_post($image_preview); ?>
 				</div>
-
 				<a style="<?php if('' !== $value && false !== $value) { ?>display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e('Choose Image','tour-operator');?></a>
 				<a style="<?php if('' === $value || false === $value) { ?>display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-remove"><?php esc_html_e('Remove Image','tour-operator');?></a>
-
 				<?php wp_nonce_field( 'to_save_term_thumbnail', 'to_term_thumbnail_nonce' ); ?>
 			</td>
 		</tr>
-
-		<script type="text/javascript">
-			(function( $ ) {
-				$( '.lsx-thumbnail-image-add' ).on( 'click', function() {
-					tb_show('Choose a Featured Image', 'media-upload.php?type=image&TB_iframe=1');
-					var image_thumbnail = '';
-					window.send_to_editor = function( html )
-					{
-						var image_thumbnail = $( 'img',html ).html();
-						$( '.thumbnail-preview' ).append(html);
-						var imgClasses = $( 'img',html ).attr( 'class' );
-						imgClasses = imgClasses.split('wp-image-');
-						$( '#thumbnail' ).val(imgClasses[1]);
-						tb_remove();
-					}
-					$( this ).hide();
-					$( '.lsx-thumbnail-image-remove' ).show();
-
-					return false;
-				});
-
-				$( '.lsx-thumbnail-image-remove' ).on( 'click', function() {
-					$( '.thumbnail-preview' ).html('');
-					$( '#thumbnail' ).val('');
-					$( this ).hide();
-					$( '.lsx-thumbnail-image-add' ).show();
-					return false;
-				});
-			})(jQuery);
-		</script>
 		<?php
 	}
 	/**

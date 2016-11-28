@@ -8,6 +8,7 @@ gulp.task('default', function() {
 	console.log('gulp scporder-sass		to compile the scporder.scss to scporder.css');
 	console.log('gulp compile-sass		to compile both of the above.');
 	console.log('gulp js				to compile the custom.js to custom.min.js');
+	console.log('gulp admin-js			to compile the admin.js to admin.min.js');
 	console.log('gulp scporder-js		to compile the scporder.js to scporder.min.js');
 	console.log('gulp compile-js		to compile both of the above.');
 	console.log('gulp watch				to continue watching all files for changes, and build when changed');
@@ -50,6 +51,15 @@ gulp.task('js', function () {
 	.pipe(gulp.dest('assets/js'));
 });
 
+gulp.task('admin-js', function () {
+	gulp.src('assets/js/admin.js')	 
+	//.pipe(jshint())	 
+	//.pipe(jshint.reporter('fail'))	 
+	.pipe(concat('admin.min.js'))
+	.pipe(uglify())
+	.pipe(gulp.dest('assets/js'));
+});
+
 gulp.task('scporder-js', function () {
 	gulp.src('assets/js/scporder.js')	 
 	//.pipe(jshint())	 
@@ -60,13 +70,14 @@ gulp.task('scporder-js', function () {
 });
  
 gulp.task('compile-sass', (['sass', 'admin-sass', 'scporder-sass']));
-gulp.task('compile-js', (['js', 'scporder-js']));
+gulp.task('compile-js', (['js', 'admin-js', 'scporder-js']));
 
 gulp.task('watch', function() {	 
 	gulp.watch('assets/css/style.scss', ['sass']);	 
 	gulp.watch('assets/css/admin.scss', ['admin-sass']);
 	gulp.watch('assets/css/scporder.scss', ['scporder-sass']);
 	gulp.watch('assets/js/custom.js', ['js']);
+	gulp.watch('assets/js/admin.js', ['admin-js']);
 	gulp.watch('assets/js/scporder.js', ['scporder-js']);
 });
 

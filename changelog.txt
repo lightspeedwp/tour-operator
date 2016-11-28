@@ -1,27 +1,4 @@
 ## Change log
 
-### 1.1.0
-* Small fixes in admin style
-* Fixed back-end "Friendly" saving (accept multiple values) (Activity, Accommodation)
-* Fixed back-end "Spoken Languages" saving (accept multiple values) (Accommodation)
-* Fixed back-end "Special Interests" saving (accept multiple values) (Accommodation)
-* Show in front-end the information "Friendly" (Activity, Accommodation)
-* Show in front-end the information "Spoken Languages" (Accommodation)
-* Show in front-end the information "Special Interests" (Accommodation)
-* Implemented dynamic section titles inside singles (Accommodation, Activity, Destination and Tour)
-* Extended LSX Customizer (colour options)
-* Fixed HTML from post type and taxonomy widgets with 1 column carousel
-* Fixed width (white space behaviour) in buttons inside widgets
-* Fixed destinations map section margin (destinations archive)
-* Removed pagination for team archive
-* Fixed thumbnail WordPress test to remove/keep all thumbnail HTML
-* Fixed "read more" behaviour inside each single to hide correctly all elements below the button
-* Implemented new destinations archive page layout
-* Added in a Placeholdit Image with the Site title as a Default Placeholder Image
-* Changed the Destination Map markers to show the "excerpt" instead of the "address"
-* Added in the ability to define a custom map marker for Accommodation, Activites and Destinations.
-* Added in integration with the LSX Currency Plugin.
-* Included the Flag Icons Library - https://github.com/lipis/flag-icon-css.
-
 ### 1.0.0
 * First Version
