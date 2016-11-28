@@ -2,10 +2,10 @@
 /*
  * Plugin Name: Tour Operator Plugin
  * Plugin URI: https://www.lsdev.biz/product/tour-operator-plugin/
- * Description: By integrating with the Wetu Tour Operator system, the Tour Operator plugin brings dynamic features like live availability and bookings, digital itineraries and more to your WordPress website.
+ * Description: The Tour Operator plugin core contains the Accommodation, Destination and Tour post types. Use these core post types to build day-by-day tour itineraries that map out of the progress of each tour through the various accommodations and destinations that are stayed at along the way.
  * Author: LightSpeed
  * Version: 1.0.0
- * Author URI: https://www.lsdev.biz/products/
+ * Author URI: https://www.lsdev.biz/
  * License:     GPL3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain: tour-operator
