@@ -236,10 +236,6 @@ class Lsx_Tour {
 			$fields[] = array( 'id' => 'review_title',  'name' => 'Reviews', 'type' => 'title', 'cols' => 12);
 			$fields[] = array( 'id' => 'review_to_tour', 'name' => 'Reviews related with this tour', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'review','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true,'allow_none'=>true, 'cols' => 12 );
 		}
-		if(post_type_exists('vehicle')){
-			$fields[] = array( 'id' => 'vehicle_title',  'name' => 'Vehicles', 'type' => 'title', 'cols' => 12 );
-			$fields[] = array( 'id' => 'vehicle_to_tour', 'name' => 'Vehicles related with this tour', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'vehicle','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true, 'allow_none'=>true, 'cols' => 12 );
-		}
 		
 		//Itinerary Details
 		$fields[] = array( 'id' => 'itinerary_title',  'name' => 'Itinerary', 'type' => 'title' );

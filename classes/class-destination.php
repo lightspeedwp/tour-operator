@@ -191,9 +191,6 @@ class Lsx_Destination{
 		if(post_type_exists('tour')){		
 			$fields[] = array( 'id' => 'tour_to_destination', 'name' => 'Tours related with this destination', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'tour','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true );
 		}
-		if(post_type_exists('vehicle')){		
-			$fields[] = array( 'id' => 'vehicle_to_destination', 'name' => 'Vehicles related with this destination', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'vehicle','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true );
-		}
 
 		//Allow the addons to add additional fields.
 		$fields = apply_filters('to_destination_custom_fields',$fields);

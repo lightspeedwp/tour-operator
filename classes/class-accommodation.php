@@ -441,10 +441,6 @@ class TO_Accommodation {
 		}
 		$fields[] = array( 'id' => 'tours_title',  'name' => 'Tours', 'type' => 'title', 'cols' => 12 );
 		$fields[] = array( 'id' => 'tour_to_accommodation', 'name' => 'Tours related with this accommodation', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'tour','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
-		if(post_type_exists('vehicle')) {
-			$fields[] = array('id' => 'vehicle_title', 'name' => 'Vehicles', 'type' => 'title', 'cols' => 12);
-			$fields[] = array('id' => 'vehicle_to_accommodation', 'name' => 'Vehicles related with this accommodation', 'type' => 'post_select', 'use_ajax' => false, 'query' => array('post_type' => 'vehicle', 'nopagin' => true, 'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC'), 'repeatable' => true, 'allow_none' => true, 'cols' => 12);
-		}
 		
 		//Allow the addons to add additional fields.
 		$fields = apply_filters('to_accommodation_custom_fields',$fields);		
