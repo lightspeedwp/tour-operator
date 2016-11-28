@@ -360,36 +360,6 @@ class TO_Settings extends Tour_Operator {
 				<small><?php esc_attr_e('This disables the enquire modal, and instead redirects to the link you provide below.','tour-operator'); ?></small>
 			</td>
 		</tr>
-		<tr class="form-field-wrap">
-			<th scope="row">
-				<label for="currency"><?php esc_attr_e('General Enquiry','tour-operator'); ?></label>
-			</th>
-			<?php
-			if(true === $this->show_default_form()){
-				$forms = $this->get_activated_forms(); ?>
-				<td>
-					<select value="{{enquiry}}" name="enquiry">
-						<?php
-						if(false !== $forms && '' !== $forms){ ?>
-							<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}>Select a form</option>
-							<?php
-							foreach($forms as $form_id => $form_data){ ?>
-								<option value="<?php echo wp_kses_post($form_id); ?>" {{#is enquiry value="<?php echo wp_kses_post($form_id); ?>"}} selected="selected"{{/is}}><?php echo wp_kses_post($form_data); ?></option>
-								<?php
-							}
-						}else{ ?>
-							<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}>You have no form available</option>
-						<?php } ?>
-					</select>
-				</td>
-			<?php }else{ ?>
-				<td>
-					<textarea class="description enquiry" name="enquiry" rows="10">{{#if enquiry}}{{{enquiry}}}{{/if}}</textarea>
-				</td>
-				<?php
-			}
-			?>
-		</tr>
 		<tr class="form-field">
 			<th scope="row">
 				<label for="title"><?php esc_attr_e('Enquire Link','tour-operator'); ?></label>
