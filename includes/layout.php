@@ -114,18 +114,18 @@ function to_accommodation_single_content_bottom() {
 				<h2 class="section-title"><?php esc_html_e('Map','tour-operator'); ?></h2>
 				<?php to_map(); ?>
 			</section>			
-		<?php }			
-		
-		if(class_exists('envira_gallery')) {
-			to_envira_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>');
-		}elseif(function_exists('to_gallery')) {
+		<?php }
+
+		if(function_exists('to_gallery')) {
 			to_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>');
+		}elseif(class_exists('envira_gallery')) {
+			to_envira_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>');
 		}
 
-		if(class_exists('Envira_Videos')) {
-			to_envira_videos('<div id="videos"><h2 class="section-title">'.__('Videos','tour-operator').'</h2>','</div>');
-		}elseif(function_exists('to_videos')) {
+		if(function_exists('to_videos')) {
 			to_videos('<div id="videos"><h2 class="section-title">'.__('Videos','tour-operator').'</h2>','</div>');
+		}elseif(class_exists('Envira_Videos')) {
+			to_envira_videos('<div id="videos"><h2 class="section-title">'.__('Videos','tour-operator').'</h2>','</div>');
 		}
 
 		to_related_items('travel-style','<section id="related-items"><h2 class="section-title">'.__(to_get_post_type_section_title('accommodation', 'similar', 'Related Accommodation'),'tour-operator').'</h2>','</section>');	
@@ -179,19 +179,19 @@ function to_destination_single_content_bottom() {
 				<h2 class="section-title"><?php esc_html_e('Map','tour-operator'); ?></h2>
 				<?php to_map(); ?>
 			</section>			
-		<?php }		
-		
-		if(class_exists('envira_gallery')) {
-			to_envira_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>');
-		}elseif(function_exists('to_gallery')) {
+		<?php }
+
+		if(function_exists('to_gallery')) {
 			to_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>');
+		}elseif(class_exists('envira_gallery')) {
+			to_envira_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>');
 		}
 
-		if(class_exists('Envira_Videos')) {
-			to_envira_videos('<div id="videos"><h2 class="section-title">'.__('Videos','tour-operator').'</h2>','</div>');
-		}elseif(function_exists('to_videos')) {
+		if(function_exists('to_videos')) {
 			to_videos('<div id="videos"><h2 class="section-title">'.__('Videos','tour-operator').'</h2>','</div>');
-		}		
+		}elseif(class_exists('Envira_Videos')) {
+			to_envira_videos('<div id="videos"><h2 class="section-title">'.__('Videos','tour-operator').'</h2>','</div>');
+		}
 	}	
 }
 
@@ -282,18 +282,18 @@ function to_tour_single_content_bottom() {
 				<h2 class="section-title"><?php esc_html_e('Map','tour-operator'); ?></h2>
 				<?php to_map(); ?>
 			</section>			
-		<?php }			
-		
-		if(class_exists('envira_gallery')) {
-			to_envira_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>');
-		}elseif(function_exists('to_gallery')) {
+		<?php }
+
+		if(function_exists('to_gallery')) {
 			to_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>');
+		}elseif(class_exists('envira_gallery')) {
+			to_envira_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>');
 		}
 
-		if(class_exists('Envira_Videos')) {
-			to_envira_videos('<div id="videos"><h2 class="section-title">'.__('Videos','tour-operator').'</h2>','</div>');
-		}elseif(function_exists('to_videos')) {
+		if(function_exists('to_videos')) {
 			to_videos('<div id="videos"><h2 class="section-title">'.__('Videos','tour-operator').'</h2>','</div>');
+		}elseif(class_exists('Envira_Videos')) {
+			to_envira_videos('<div id="videos"><h2 class="section-title">'.__('Videos','tour-operator').'</h2>','</div>');
 		}
 
 		

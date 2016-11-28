@@ -329,9 +329,11 @@ class Lsx_Destination{
 	 * Tests for the Gallery and returns a link for the section
 	 */
 	public function get_gallery_link(){
+		$gallery_id = false;
 		if(class_exists('Envira_Gallery')){
-			$gallery_id = get_post_meta(get_the_ID(),'envira_to_destination',true);
-		} else {
+			$gallery_id = get_post_meta(get_the_ID(),'envira_to_tour',true);
+		}
+		if((false === $gallery_id || '' === $gallery_id) && class_exists('TO_Galleries')) {
 			$gallery_id = get_post_meta(get_the_ID(),'gallery',true);
 		}
 		if(false !== $gallery_id && '' !== $gallery_id){
@@ -343,9 +345,11 @@ class Lsx_Destination{
 	 * Tests for the Videos and returns a link for the section
 	 */
 	public function get_videos_link(){
-		if(class_exists('Envira_Gallery')){
-			$videos_id = get_post_meta(get_the_ID(),'envira_videos',true);
-		}elseif(class_exists('TO_Videos')) {
+		$videos_id = false;
+		if(class_exists('Envira_Videos')){
+			$videos_id = get_post_meta(get_the_ID(),'envira_video',true);
+		}
+		if((false === $videos_id || '' === $videos_id) && class_exists('TO_Videos')) {
 			$videos_id = get_post_meta(get_the_ID(),'videos',true);
 		}
 		if(false !== $videos_id && '' !== $videos_id){
