@@ -156,7 +156,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="col-md-4">
 			<div class="box video">
 				<h3><?php esc_html_e( 'Videos', 'tour-operator' ); ?> - <span class="price">$19.00</span></h3>
@@ -169,20 +168,24 @@
 				</div>
 			</div>
 		</div>
+	</div>
 
-
-
+	<div class="row">
 		<div class="col-md-4">
 			<div class="box wetu">
 				<h3><?php esc_html_e( 'Wetu Importer', 'tour-operator' ); ?> - <span class="price">$129.00</span></h3>
 				<p><?php esc_html_e( 'Quickly and easily import accommodation data as well as entire tour itineraries and associated images from the WETU database to use in your day-by-day tour listings.', 'tour-operator' ); ?></p>
-				
+
 				<div class="more-button">
 					<a href="<?php echo wp_kses_post( $wetu_importer_link ); ?>" target="_blank" class="button button-primary">
 						<?php esc_html_e( 'Get this extension', 'tour-operator' ); ?>
 					</a>
 				</div>
 			</div>
+		</div>
+		<div class="col-md-4">
+		</div>
+		<div class="col-md-4">
 		</div>
 	</div>
 </div>
