@@ -402,7 +402,9 @@ class Lsx_Tour {
 	public function price_filter($html='',$meta_key=false,$value=false,$before="",$after=""){
 		if(get_post_type() === 'tour' && 'price' === $meta_key){
 			$value = preg_replace("/[^0-9,.]/", "", $value);
-			$value = number_format((int) $value);
+			$value = ltrim($value, '.');
+			$value = str_replace(',','',$value);
+			$value = number_format((int) $value,2);
 			global $tour_operator;
 			$currency = '';
 			if ( is_object( $tour_operator ) && isset( $tour_operator->options['general'] ) && is_array( $tour_operator->options['general'] ) ) {

@@ -1,5 +1,5 @@
 <?php
-	$to_documentation = esc_url('https://www.lsdev.biz/documentation/');
+	$to_documentation = esc_url('https://www.lsdev.biz/documentation/tour-operator-plugin/');
 	$extensions_link = esc_url('https://www.lsdev.biz/product-category/tour-operator-extensions/');
 
 	//Product Urls
