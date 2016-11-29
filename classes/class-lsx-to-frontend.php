@@ -54,7 +54,6 @@ class TO_Frontend extends Tour_Operator {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ) );	
 		add_action( 'wp_head', array( $this,'wp_head') , 10 );
 		add_filter( 'body_class', array( $this, 'body_class') );
-		add_action('lsx_header_after',array( $this, 'header_after'));
 
 		if(!is_admin()){
 			add_filter( 'pre_get_posts', array( $this,'taxonomy_pre_get_posts') , 10, 1 );
@@ -64,6 +63,7 @@ class TO_Frontend extends Tour_Operator {
 		add_filter( 'to_connected_list_item', array( $this,'add_modal_attributes') , 10, 3 );
 		add_action( 'wp_footer', array( $this,'output_modals') , 10 );
 		add_filter( 'use_default_gallery_style', '__return_false' );
+		add_filter('to_tagline',array($this,'get_tagline'),1,3);
 
 		add_filter( 'the_terms', array( $this,'links_new_window') , 10, 2);		
 
@@ -119,18 +119,6 @@ class TO_Frontend extends Tour_Operator {
 			add_action('lsx_banner_container_top', 'lsx_breadcrumbs');
 		}		
 	}
-
-	/**
-	 * This runs on the lsx_header_after action
-	 */
-	public function header_after() {
-		$classes = get_body_class();
-		if(class_exists('LSX_Banners') && in_array( 'page-has-banner', $classes )){
-			add_action('lsx_banner_content','to_banner_content');
-		}else{
-			add_filter('to_tagline',array($this,'get_tagline'),1,3);
-		}
-	}		
 
 	/**
 	 * a filter to overwrite the links with modal tags.
