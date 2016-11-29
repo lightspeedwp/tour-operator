@@ -209,18 +209,18 @@ function to_best_time_to_visit($before="",$after="",$echo=true){
 	if(false !== $best_time_to_visit && '' !== $best_time_to_visit && is_array($best_time_to_visit) && !empty($best_time_to_visit)){
 		
 		$this_year = array(
-			'january' => 'January',
-			'february' => 'February',
-			'march' => 'March',
-			'april' => 'April',
-			'may' => 'May',
-			'june' => 'June',
-			'july' => 'July',
-			'august' => 'August',
-			'september' => 'September',
-			'october' => 'October',
-			'november' => 'November',
-			'december' => 'December'
+			'january' => esc_html__('January','tour-operator'),
+			'february' => esc_html__('February','tour-operator'),
+			'march' => esc_html__('March','tour-operator'),
+			'april' => esc_html__('April','tour-operator'),
+			'may' => esc_html__('May','tour-operator'),
+			'june' => esc_html__('June','tour-operator'),
+			'july' => esc_html__('July','tour-operator'),
+			'august' => esc_html__('August','tour-operator'),
+			'september' => esc_html__('September','tour-operator'),
+			'october' => esc_html__('October','tour-operator'),
+			'november' => esc_html__('November','tour-operator'),
+			'december' => esc_html__('December','tour-operator')
 		);
 
 		foreach($this_year as $month => $label){

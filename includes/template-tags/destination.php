@@ -22,7 +22,7 @@ function to_region_accommodation(){
 			'from'			=>	'accommodation',
 			'to'			=>	'destination',
 			'column'		=>	'12',
-			'before'		=>	'<section id="accommodation"><h2 class="section-title">'.__(to_get_post_type_section_title('accommodation', '', 'Featured Accommodations'),'tour-operator').'</h2>',
+			'before'		=>	'<section id="accommodation"><h2 class="section-title">'.__(to_get_post_type_section_title('accommodation', '', esc_html__('Featured Accommodation','tour-operator')),'tour-operator').'</h2>',
 			'after'			=>	'</section>'
 		);
 		to_connected_panel_query($args);
@@ -84,7 +84,7 @@ function to_destination_tours(){
 			'from'			=>	'tour',
 			'to'			=>	'destination',
 			'column'		=>	'12',
-			'before'		=>	'<section id="tours"><h2 class="section-title">'.__(to_get_post_type_section_title('tour', '', 'Featured Tours'),'tour-operator').'</h2>',
+			'before'		=>	'<section id="tours"><h2 class="section-title">'.__(to_get_post_type_section_title('tour', '', esc_html__('Featured Tours','tour-operator')),'tour-operator').'</h2>',
 			'after'			=>	'</section>'
 		);
 		to_connected_panel_query($args);
@@ -106,7 +106,7 @@ function to_destination_activities(){
 			'to'			=>	'destination',
 			'content_part'	=>	'widget-activity',
 			'column'		=>	'4',				
-			'before'		=>	'<section id="activities"><h2 class="section-title">'.__(to_get_post_type_section_title('activity', '', 'Featured Activities'),'tour-operator').'</h2>',
+			'before'		=>	'<section id="activities"><h2 class="section-title">'.__(to_get_post_type_section_title('activity', '', esc_html__('Featured Activities','tour-operator')),'tour-operator').'</h2>',
 			'after'			=>	'</section>',
 		);
 		to_connected_panel_query($args);

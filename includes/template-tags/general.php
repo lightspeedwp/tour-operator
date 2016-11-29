@@ -417,7 +417,7 @@ function to_enquire_modal($before="",$after="",$echo=true){
 
 	?>
 	<div class="enquire-form">
-		<p class="aligncenter" style="text-align:center;"><a href="<?php echo esc_url( $link ); ?>" class="btn cta-btn" <?php if(false === $disable_modal){ ?>data-toggle="modal" data-target="#lsx-enquire-modal"<?php } ?> >Enquire</a></p>
+		<p class="aligncenter" style="text-align:center;"><a href="<?php echo esc_url( $link ); ?>" class="btn cta-btn" <?php if(false === $disable_modal){ ?>data-toggle="modal" data-target="#lsx-enquire-modal"<?php } ?> ><?php esc_html_e('Enquire','tour-operator'); ?></a></p>
 		
 		<?php 
 		if(false === $disable_modal){
@@ -428,7 +428,7 @@ function to_enquire_modal($before="",$after="",$echo=true){
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-		        <h4 class="modal-title" id="myModalLabel">Enquire</h4>
+		        <h4 class="modal-title" id="myModalLabel"><?php esc_html_e('Enquire','tour-operator'); ?></h4>
 		      </div>
 		      <div class="modal-body">
 		        <?php 
