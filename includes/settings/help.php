@@ -12,7 +12,20 @@
 	$specials_link = esc_url('https://www.lsdev.biz/product/tour-operator-specials/');
 	$search_link = esc_url('https://www.lsdev.biz/product/tour-operators-search/');
 	$vehicles_link = esc_url('https://www.lsdev.biz/product/tour-operator-vehicles/');
+	$videos_link = esc_url('https://www.lsdev.biz/product/tour-operator-videos/');
 	$wetu_importer_link = esc_url('https://www.lsdev.biz/product/wetu-importer/');
+
+	//Documentation
+	$map_link_doc = esc_url('https://www.lsdev.biz/documentation/tour-operator-maps/');
+	$galleries_link_doc = esc_url('https://www.lsdev.biz/documentation/tour-operator-galleries/');
+	$team_link_doc = esc_url('https://www.lsdev.biz/documentation/tour-operator-team/');
+	$activities_link_doc = esc_url('https://www.lsdev.biz/documentation/tour-operator-activities/');
+	$reviews_link_doc = esc_url('https://www.lsdev.biz/documentation/tour-operator-reviews/');
+	$specials_link_doc = esc_url('https://www.lsdev.biz/documentation/tour-operator-specials/');
+	$search_link_doc = esc_url('https://www.lsdev.biz/documentation/tour-operators-search/');
+	$vehicles_link_doc = esc_url('https://www.lsdev.biz/documentation/tour-operator-vehicles/');
+	$wetu_importer_link_doc = esc_url('https://www.lsdev.biz/documentation/wetu-importer/');
+	$videos_link_doc = esc_url('https://www.lsdev.biz/documentation/tour-operator-videos/');
 ?>
 
 <div class="wrap about-wrap">
@@ -47,15 +60,16 @@
 						<h2 class="help-title"><?php esc_html_e( 'Documentation for Extensions', 'tour-operator' ); ?></h2>
 						
 						<ul>
-							<li><a href="<?php echo wp_kses_post($map_link); ?>" target="_blank"><strong><?php esc_html_e( 'Maps:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Integrate Google Map embeds into your site to specify the location of Destinations, Accommodations and points of Tours.', 'tour-operator' ); ?></li>
-							<li><a target="_blank" href="<?php echo wp_kses_post($galleries_link); ?> target="_blank""><strong><?php esc_html_e( 'Galleries:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Configure the way galleries display on singles and archives.', 'tour-operator' ); ?></li>
-							<li><a target="_blank" href="<?php echo wp_kses_post($team_link); ?>" target="_blank"><strong><?php esc_html_e( 'Team:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Configure the Team extension to show off the people who make your Tour offerings possible.', 'tour-operator' ); ?></li>
-							<li><a target="_blank" href="<?php echo wp_kses_post($activities_link); ?>" target="_blank"><strong><?php esc_html_e( 'Activities:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Create and configure your Activity listings which can then be set to display on Destinations, Accommodations and Tours.', 'tour-operator' ); ?></li>
-							<li><a target="_blank" href="<?php echo wp_kses_post($reviews_link); ?>" target="_blank"><strong><?php esc_html_e( 'Reviews:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Gather reviews from your past clients and use this extension to display them proudly throughout your website. Associate the reviews with specific Accommodations and Tours to have them display on specific pages.', 'tour-operator' ); ?></li>
-							<li><a target="_blank" href="<?php echo wp_kses_post($specials_link); ?>" target="_blank"><strong><?php esc_html_e( 'Specials:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Use the Specials module to specify time-sensitive special prices for your tour packages.', 'tour-operator' ); ?></li>
-							<li><a target="_blank" href="<?php echo wp_kses_post($search_link); ?>" target="_blank"><strong><?php esc_html_e( 'Search:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Learn how to make the best use of the Search extension, which depends on the Facet WP extension and allows you to provide filterable search fields on your Tour Operator website.', 'tour-operator' ); ?></li>
-							<li><a target="_blank" href="<?php echo wp_kses_post($vehicles_link); ?>" target="_blank"><strong><?php esc_html_e( 'Vehicles:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Specify your fleet\'s specifications with details such as type and number of gears, engine type (petrol/diesel), number of seats, vehicle code, and of course images and copy.', 'tour-operator' ); ?></li>
-							<li><a target="_blank" href="<?php echo wp_kses_post($wetu_importer_link); ?>" target="_blank"><strong><?php esc_html_e( 'Wetu Importer:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Import accommodation data and entire tour itineraries from the WETU database to use in your day-by-day tour listings.', 'tour-operator' ); ?></li>
+							<li><a href="<?php echo wp_kses_post($map_link_doc); ?>" target="_blank"><strong><?php esc_html_e( 'Maps:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Integrate Google Map embeds into your site to specify the location of Destinations, Accommodations and points of Tours.', 'tour-operator' ); ?></li>
+							<li><a href="<?php echo wp_kses_post($galleries_link_doc); ?>" target="_blank"><strong><?php esc_html_e( 'Galleries:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Configure the way galleries display on singles and archives.', 'tour-operator' ); ?></li>
+							<li><a href="<?php echo wp_kses_post($team_link_doc); ?>" target="_blank"><strong><?php esc_html_e( 'Team:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Configure the Team extension to show off the people who make your Tour offerings possible.', 'tour-operator' ); ?></li>
+							<li><a href="<?php echo wp_kses_post($activities_link_doc); ?>" target="_blank"><strong><?php esc_html_e( 'Activities:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Create and configure your Activity listings which can then be set to display on Destinations, Accommodations and Tours.', 'tour-operator' ); ?></li>
+							<li><a href="<?php echo wp_kses_post($reviews_link_doc); ?>" target="_blank"><strong><?php esc_html_e( 'Reviews:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Gather reviews from your past clients and use this extension to display them proudly throughout your website. Associate the reviews with specific Accommodations and Tours to have them display on specific pages.', 'tour-operator' ); ?></li>
+							<li><a href="<?php echo wp_kses_post($specials_link_doc); ?>" target="_blank"><strong><?php esc_html_e( 'Specials:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Use the Specials module to specify time-sensitive special prices for your tour packages.', 'tour-operator' ); ?></li>
+							<li><a href="<?php echo wp_kses_post($search_link_doc); ?>" target="_blank"><strong><?php esc_html_e( 'Search:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Learn how to make the best use of the Search extension, which depends on the Facet WP extension and allows you to provide filterable search fields on your Tour Operator website.', 'tour-operator' ); ?></li>
+							<li><a href="<?php echo wp_kses_post($vehicles_link_doc); ?>" target="_blank"><strong><?php esc_html_e( 'Vehicles:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Specify your fleet\'s specifications with details such as type and number of gears, engine type (petrol/diesel), number of seats, vehicle code, and of course images and copy.', 'tour-operator' ); ?></li>
+							<li><a href="<?php echo wp_kses_post($videos_link_doc); ?>" target="_blank"><strong><?php esc_html_e( 'Videos:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'With the Videos extension installed you’re able to display videos on all of your Tour Operator related post types.', 'tour-operator' ); ?></li>
+							<li><a href="<?php echo wp_kses_post($wetu_importer_link_doc); ?>" target="_blank"><strong><?php esc_html_e( 'Wetu Importer:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Import accommodation data and entire tour itineraries from the WETU database to use in your day-by-day tour listings.', 'tour-operator' ); ?></li>
 						</ul>
 					</div>
 				</div>
@@ -108,6 +122,7 @@
 							<li><a href="<?php echo wp_kses_post($specials_link);?>" target="_blank"><?php esc_html_e( 'Specials', 'tour-operator' ); ?></a></li>
 							<li><a href="<?php echo wp_kses_post($search_link);?>" target="_blank"><?php esc_html_e( 'Search', 'tour-operator' ); ?></a></li>
 							<li><a href="<?php echo wp_kses_post($vehicles_link);?>" target="_blank"><?php esc_html_e( 'Vehicles', 'tour-operator' ); ?></a></li>
+							<li><a href="<?php echo wp_kses_post($videos_link);?>" target="_blank"><?php esc_html_e( 'Videos', 'tour-operator' ); ?></a></li>
 							<li><a href="<?php echo wp_kses_post($wetu_importer_link);?>" target="_blank"><?php esc_html_e( 'Wetu Importer', 'tour-operator' ); ?></a></li>
 						</ul>
 
@@ -119,8 +134,6 @@
 					</div>
 				</div>
 			</div>
-
-
 		</div>
 	</div>
 </div>
