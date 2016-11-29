@@ -12,6 +12,7 @@
 	$specials_link = esc_url('https://www.lsdev.biz/product/tour-operator-specials/');
 	$search_link = esc_url('https://www.lsdev.biz/product/tour-operators-search/');
 	$vehicles_link = esc_url('https://www.lsdev.biz/product/tour-operator-vehicles/');
+	$video_link = esc_url('https://www.lsdev.biz/product/tour-operator-videos/');
 	$wetu_importer_link = esc_url('https://www.lsdev.biz/product/wetu-importer/');
 ?>
 
@@ -63,7 +64,7 @@
 
 		<div class="col-md-4">
 			<div class="box specials">
-				<h3><?php esc_html_e( 'Specials', 'tour-operator' ); ?> - <span class="price">$00.00</span></h3>
+				<h3><?php esc_html_e( 'Specials', 'tour-operator' ); ?> - <span class="price">$29.00</span></h3>
 				<p><?php esc_html_e( 'With the Special Offers extension you’re able to set up time-sensitive prices that you can use to price your accommodations, activities and tours. Set up booking validity dates, specials per person sharing/per person sharing/per person sharing per night, team members per special and more.', 'tour-operator' ); ?></p>
 			
 				<div class="more-button">
@@ -76,7 +77,7 @@
 
 		<div class="col-md-4">
 			<div class="box reviews">
-				<h3><?php esc_html_e( 'Reviews', 'tour-operator' ); ?> - <span class="price">$00.00</span></h3>
+				<h3><?php esc_html_e( 'Reviews', 'tour-operator' ); ?> - <span class="price">$29.00</span></h3>
 				<p><?php esc_html_e( 'People want to be sure that they’re making the right choice with the the right company. Your “trustability” will set you apart from the herd. The Tour Operators Reviews extension allows you to add reviews written by your previous guests and display them across your site.', 'tour-operator' ); ?></p>
 			
 				<div class="more-button">
@@ -91,7 +92,7 @@
 	<div class="row">
 		<div class="col-md-4">
 			<div class="box activities">
-				<h3><?php esc_html_e( 'Activities', 'tour-operator' ); ?> - <span class="price">$00.00</span></h3>
+				<h3><?php esc_html_e( 'Activities', 'tour-operator' ); ?> - <span class="price">$29.00</span></h3>
 				<p><?php esc_html_e( 'Get your visitors excited about what they’ll be doing when they travel with you, whether it’s river rafting, whale watching or sandboarding - use the Activities post type with beautiful imagery and well-crafted copy and then set the activities as connected to particular tours, destinations and accommodations.', 'tour-operator' ); ?></p>
 			
 				<div class="more-button">
@@ -117,7 +118,7 @@
 
 		<div class="col-md-4">
 			<div class="box galleries">
-				<h3><?php esc_html_e( 'Galleries', 'tour-operator' ); ?> - <span class="price">$00.00</span></h3>
+				<h3><?php esc_html_e( 'Galleries', 'tour-operator' ); ?> - <span class="price">$19.00</span></h3>
 				<p><?php esc_html_e( 'If you have the gallery extension installed you can easily include photo galleries in your Accommodation, Destination and Tour pages, as well as other post types included in our various extensions, such as vehicles and activities. The galleries are built via meta boxes that are added to Tour Operator type posts. ', 'tour-operator' ); ?></p>
 				
 				<div class="more-button">
@@ -132,7 +133,7 @@
 	<div class="row">
 		<div class="col-md-4">
 			<div class="box vehicles">
-				<h3><?php esc_html_e( 'Vehicles', 'tour-operator' ); ?> - <span class="price">$00.00</span></h3>
+				<h3><?php esc_html_e( 'Vehicles', 'tour-operator' ); ?> - <span class="price">$29.00</span></h3>
 				<p><?php esc_html_e( 'To help convince travelers of their comfort and safety when traveling with you, we’ve created the Vehicles extension so that you can fill in your fleets’ specs with details such as type and number of gears, engine type (petrol/diesel), number of seats, vehicle code, and of course images and copy.', 'tour-operator' ); ?></p>
 				
 				<div class="more-button">
@@ -145,7 +146,7 @@
 
 		<div class="col-md-4">
 			<div class="box team">
-				<h3><?php esc_html_e( 'Team', 'tour-operator' ); ?> - <span class="price">$00.00</span></h3>
+				<h3><?php esc_html_e( 'Team', 'tour-operator' ); ?> - <span class="price">$29.00</span></h3>
 				<p><?php esc_html_e( 'Real peoples\' faces go a long way to building trust with your clients. The Team Extension allows your business\'s staff to be added as Team Members with their own profile which can be associated with specific destinations and tours.', 'tour-operator' ); ?></p>
 				
 				<div class="more-button">
@@ -157,8 +158,23 @@
 		</div>
 
 		<div class="col-md-4">
+			<div class="box video">
+				<h3><?php esc_html_e( 'Videos', 'tour-operator' ); ?> - <span class="price">$19.00</span></h3>
+				<p><?php esc_html_e( 'With the Videos extension installed you’re able to display videos on all of your Tour Operator related post types. Whether you want to show a walk-through video of an accommodation or a highlights reel of a tour or destination, the videos extension takes care of all your video needs.', 'tour-operator' ); ?></p>
+
+				<div class="more-button">
+					<a href="<?php echo wp_kses_post( $video_link ); ?>" target="_blank" class="button button-primary">
+						<?php esc_html_e( 'Get this extension', 'tour-operator' ); ?>
+					</a>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="col-md-4">
 			<div class="box wetu">
-				<h3><?php esc_html_e( 'Wetu Importer', 'tour-operator' ); ?> - <span class="price">$00.00</span></h3>
+				<h3><?php esc_html_e( 'Wetu Importer', 'tour-operator' ); ?> - <span class="price">$129.00</span></h3>
 				<p><?php esc_html_e( 'Quickly and easily import accommodation data as well as entire tour itineraries and associated images from the WETU database to use in your day-by-day tour listings.', 'tour-operator' ); ?></p>
 				
 				<div class="more-button">
