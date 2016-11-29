@@ -2526,6 +2526,11 @@ body.tour-operator_page_to-help h2,
 body.tour-operator_page_to-addons h2 {
   margin-bottom: 20px; }
 
+body.tour-operator_page_to-settings img,
+body.tour-operator_page_to-help img,
+body.tour-operator_page_to-addons img {
+  width: 100%; }
+
 body.tour-operator_page_to-settings .thumbnail,
 body.tour-operator_page_to-settings .video,
 body.tour-operator_page_to-help .thumbnail,
@@ -2557,6 +2562,12 @@ body.tour-operator_page_to-addons .box {
   margin-bottom: 40px;
   padding: 25px 30px;
   position: relative; }
+  body.tour-operator_page_to-settings .box.box-top-image,
+  body.tour-operator_page_to-help .box.box-top-image,
+  body.tour-operator_page_to-addons .box.box-top-image {
+    border-top: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0; }
   body.tour-operator_page_to-settings .box h2, body.tour-operator_page_to-settings .box h3,
   body.tour-operator_page_to-help .box h2,
   body.tour-operator_page_to-help .box h3,
@@ -2611,6 +2622,10 @@ body.tour-operator_page_to-addons .box {
     font-family: 'Dashicons';
     font-weight: 400;
     -webkit-font-smoothing: antialiased; }
+  body.tour-operator_page_to-settings .box.box-top-image:before,
+  body.tour-operator_page_to-help .box.box-top-image:before,
+  body.tour-operator_page_to-addons .box.box-top-image:before {
+    display: none; }
   body.tour-operator_page_to-settings .box.featured,
   body.tour-operator_page_to-help .box.featured,
   body.tour-operator_page_to-addons .box.featured {
@@ -2659,6 +2674,10 @@ body.tour-operator_page_to-addons .box {
   body.tour-operator_page_to-help .box.team:before,
   body.tour-operator_page_to-addons .box.team:before {
     content: "\f307"; }
+  body.tour-operator_page_to-settings .box.videos:before,
+  body.tour-operator_page_to-help .box.videos:before,
+  body.tour-operator_page_to-addons .box.videos:before {
+    content: "\f236"; }
   body.tour-operator_page_to-settings .box.wetu:before,
   body.tour-operator_page_to-help .box.wetu:before,
   body.tour-operator_page_to-addons .box.wetu:before {
@@ -2700,61 +2719,3 @@ body.tour-operator_page_to-addons .box-clean {
   body.tour-operator_page_to-help .box-clean p:last-child,
   body.tour-operator_page_to-addons .box-clean p:last-child {
     margin-bottom: 0; }
-
-/*.to_help_wrap {
-	.feature-box {
-		@extend %white-box;	
-	}
-
-	.to-help-section{
-		h3 {
-			@extend %heading-box;
-		}		
-		ul,ol {
-		    @extend %lists;
-		}
-		ul{
-			list-style-type: square;
-		}
-		ol{
-			list-style-type: decimal;			
-		}
-		p{
-			margin-left: 15px;			
-		}
-	}
-
-	.to-help-info {
-	    border: 1px solid #ccc;
-	    padding: 0 12px 12px;	
-	    margin-top:25px;
-
-	    strong {
-	    	color:black;
-	    }
-
-	    &:first-child {
-	    	margin-top:0px;
-	    }
-
-		dt , dd {
-		    display: inline;
-		    margin: 0;
-		}	
-		dt {
-		    font-weight: 700;
-		}
-		dd:after {
-		    content: '';
-		    display: block;
-		    height: .4em;
-		}						
-
-		.tribe-list-addons {
-		    list-style: circle inside;
-		    margin-bottom: 10px;
-		    margin-top: 10px;
-		    padding-left: 4px;
-		}
-	}
-}*/
