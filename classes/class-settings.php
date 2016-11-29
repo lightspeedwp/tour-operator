@@ -168,17 +168,6 @@ class TO_Settings extends Tour_Operator {
 						'parent'      =>  'tour-operator',                                         // Position priority on admin menu)
 						'save_button' =>  esc_html__('Save Changes','tour-operator'),                                                // If the page required saving settings, Set the text here.
 						'tabs'        =>  $tabs,
-						/*'help'	=> array(	// the wordpress contextual help is also included
-								// key is the help slug
-								'default-help' => array(
-										'title'		=> 	esc_html__( 'Easy to add Help' , 'uix' ),
-										'content'	=>	"Just add more items to this array with a unique slug/key."
-								),
-								'more-help' => array(
-										'title'		=> 	esc_html__( 'Makes things Easy' , 'uix' ),
-										'content'	=>	"the content can also be a file path to a template"
-								)
-						),*/
 				),
 		);
 	}
@@ -240,20 +229,20 @@ class TO_Settings extends Tour_Operator {
 		<?php if(!class_exists('LSX_Currencies')) { ?>
 			<tr class="form-field-wrap">
 				<th scope="row">
-					<label for="currency"> Currency</label>
+					<label for="currency"> <?php esc_html_e('Currency','tour-operator'); ?></label>
 				</th>
 				<td>
 					<select value="{{currency}}" name="currency">
-						<option value="USD" {{#is currency value=""}}selected="selected"{{/is}} {{#is currency value="USD"}} selected="selected"{{/is}}>USD (united states dollar)</option>
-						<option value="GBP" {{#is currency value="GBP"}} selected="selected"{{/is}}>GBP (british pound)</option>
-						<option value="ZAR" {{#is currency value="ZAR"}} selected="selected"{{/is}}>ZAR (south african rand)</option>
-						<option value="NAD" {{#is currency value="NAD"}} selected="selected"{{/is}}>NAD (namibian dollar)</option>
-						<option value="CAD" {{#is currency value="CAD"}} selected="selected"{{/is}}>CAD (canadian dollar)</option>
-						<option value="EUR" {{#is currency value="EUR"}} selected="selected"{{/is}}>EUR (euro)</option>
-						<option value="HKD" {{#is currency value="HKD"}} selected="selected"{{/is}}>HKD (hong kong dollar)</option>
-						<option value="SGD" {{#is currency value="SGD"}} selected="selected"{{/is}}>SGD (singapore dollar)</option>
-						<option value="NZD" {{#is currency value="NZD"}} selected="selected"{{/is}}>NZD (new zealand dollar)</option>
-						<option value="AUD" {{#is currency value="AUD"}} selected="selected"{{/is}}>AUD (australian dollar)</option>
+						<option value="USD" {{#is currency value=""}}selected="selected"{{/is}} {{#is currency value="USD"}} selected="selected"{{/is}}><?php esc_html_e('USD (united states dollar)','tour-operator'); ?></option>
+						<option value="GBP" {{#is currency value="GBP"}} selected="selected"{{/is}}><?php esc_html_e('GBP (british pound)','tour-operator'); ?></option>
+						<option value="ZAR" {{#is currency value="ZAR"}} selected="selected"{{/is}}><?php esc_html_e('ZAR (south african rand)','tour-operator'); ?></option>
+						<option value="NAD" {{#is currency value="NAD"}} selected="selected"{{/is}}><?php esc_html_e('NAD (namibian dollar)','tour-operator'); ?></option>
+						<option value="CAD" {{#is currency value="CAD"}} selected="selected"{{/is}}><?php esc_html_e('CAD (canadian dollar)','tour-operator'); ?></option>
+						<option value="EUR" {{#is currency value="EUR"}} selected="selected"{{/is}}><?php esc_html_e('EUR (euro)','tour-operator'); ?></option>
+						<option value="HKD" {{#is currency value="HKD"}} selected="selected"{{/is}}><?php esc_html_e('HKD (hong kong dollar)','tour-operator'); ?></option>
+						<option value="SGD" {{#is currency value="SGD"}} selected="selected"{{/is}}><?php esc_html_e('SGD (singapore dollar)','tour-operator'); ?></option>
+						<option value="NZD" {{#is currency value="NZD"}} selected="selected"{{/is}}><?php esc_html_e('NZD (new zealand dollar)','tour-operator'); ?></option>
+						<option value="AUD" {{#is currency value="AUD"}} selected="selected"{{/is}}><?php esc_html_e('AUD (australian dollar)','tour-operator'); ?></option>
 					</select>
 				</td>
 			</tr>
@@ -270,14 +259,14 @@ class TO_Settings extends Tour_Operator {
 							<select value="{{enquiry}}" name="enquiry">
 							<?php
 							if(false !== $forms && '' !== $forms){ ?>
-								<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}>Select a form</option>
+								<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}><?php esc_html_e('Select a form','tour-operator'); ?></option>
 								<?php
 								foreach($forms as $form_id => $form_data){ ?>
 									<option value="<?php echo esc_attr( $form_id ); ?>" {{#is enquiry value="<?php echo esc_attr( $form_id ); ?>"}} selected="selected"{{/is}}><?php echo esc_html( $form_data ); ?></option>
 								<?php
 								}
 							}else{ ?>
-								<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}>You have no form available</option>
+								<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}><?php esc_html_e('You have no form available','tour-operator'); ?></option>
 							<?php } ?>
 							</select>
 						</td>
@@ -332,14 +321,14 @@ class TO_Settings extends Tour_Operator {
 					<select value="{{enquiry}}" name="enquiry">
 						<?php
 						if(false !== $forms && '' !== $forms){ ?>
-							<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}>Select a form</option>
+							<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}><?php esc_html_e('Select a form','tour-operator'); ?></option>
 							<?php
 							foreach($forms as $form_id => $form_data){ ?>
 								<option value="<?php echo wp_kses_post($form_id); ?>" {{#is enquiry value="<?php echo wp_kses_post($form_id); ?>"}} selected="selected"{{/is}}><?php echo wp_kses_post($form_data); ?></option>
 								<?php
 							}
 						}else{ ?>
-							<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}>You have no form available</option>
+							<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}><?php esc_html_e('You have no form available','tour-operator'); ?></option>
 						<?php } ?>
 					</select>
 				</td>
@@ -386,17 +375,17 @@ class TO_Settings extends Tour_Operator {
 
 		<tr class="form-field">
 			<th scope="row">
-				<label for="description">Disable Archives</label>
+				<label for="description"><?php esc_html_e('Disable Archives','tour-operator'); ?></label>
 			</th>
 			<td>
 				<input type="checkbox" {{#if disable_archives}} checked="checked" {{/if}} name="disable_archives" />
-				<small>This disables the "post type archive", if you create your own custom loop it will still work.</small>
+				<small><?php esc_html_e('This disables the "post type archive", if you create your own custom loop it will still work.','tour-operator'); ?></small>
 			</td>
 		</tr>
 		<?php do_action('to_framework_'.$post_type.'_tab_archive_settings_top',$post_type); ?>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="title"> Title</label>
+				<label for="title"> <?php esc_html_e('Title','tour-operator'); ?></label>
 			</th>
 			<td>
 				<input type="text" {{#if title}} value="{{title}}" {{/if}} name="title" />
@@ -404,7 +393,7 @@ class TO_Settings extends Tour_Operator {
 		</tr>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="tagline"> Tagline</label>
+				<label for="tagline"> <?php esc_html_e('Tagline','tour-operator'); ?></label>
 			</th>
 			<td>
 				<input type="text" {{#if tagline}} value="{{tagline}}" {{/if}} name="tagline" />
@@ -412,7 +401,7 @@ class TO_Settings extends Tour_Operator {
 		</tr>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="description"> Description</label>
+				<label for="description"> <?php esc_html_e('Description','tour-operator'); ?></label>
 			</th>
 			<td>
 				<textarea class="description" name="description" rows="10">{{#if description}}{{{description}}}{{/if}}</textarea>
@@ -436,11 +425,11 @@ class TO_Settings extends Tour_Operator {
 		?>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="description">Disable Singles</label>
+				<label for="description"><?php esc_html_e('Disable Singles','tour-operator'); ?></label>
 			</th>
 			<td>
 				<input type="checkbox" {{#if disable_single}} checked="checked" {{/if}} name="disable_single" />
-				<small>When disabled you will be redirected to the homepage when trying to access a single tour page.</small>
+				<small><?php esc_html_e('When disabled you will be redirected to the homepage when trying to access a single tour page.','tour-operator'); ?></small>
 			</td>
 		</tr>
 		<?php
@@ -448,7 +437,7 @@ class TO_Settings extends Tour_Operator {
 		if ( 'tour' == $post_type || 'accommodation' == $post_type || 'destination' == $post_type || 'activity' == $post_type ) : ?>
 			<tr class="form-field">
 				<th scope="row">
-					<label for="section_title">Default Section Title</label>
+					<label for="section_title"><?php esc_html_e('Default Section Title','tour-operator'); ?></label>
 				</th>
 				<td>
 					<input type="text" {{#if section_title}} value="{{section_title}}" {{/if}} name="section_title" />
@@ -457,7 +446,7 @@ class TO_Settings extends Tour_Operator {
 			<?php if ( 'tour' == $post_type ) : ?>
 				<tr class="form-field">
 					<th scope="row">
-						<label for="related_section_title">"Related Tours" Section Title</label>
+						<label for="related_section_title"><?php esc_html_e('"Related Tours" Section Title','tour-operator'); ?></label>
 					</th>
 					<td>
 						<input type="text" {{#if related_section_title}} value="{{related_section_title}}" {{/if}} name="related_section_title" />
@@ -467,7 +456,7 @@ class TO_Settings extends Tour_Operator {
 			<?php if ( 'accommodation' == $post_type ) : ?>
 				<tr class="form-field">
 					<th scope="row">
-						<label for="brands_section_title">"Accommodation Brands" Section Title</label>
+						<label for="brands_section_title"><?php esc_html_e('"Accommodation Brands" Section Title','tour-operator'); ?></label>
 					</th>
 					<td>
 						<input type="text" {{#if brands_section_title}} value="{{brands_section_title}}" {{/if}} name="brands_section_title" />
@@ -475,7 +464,7 @@ class TO_Settings extends Tour_Operator {
 				</tr>
 				<tr class="form-field">
 					<th scope="row">
-						<label for="rooms_section_title">"Rooms" Section Title</label>
+						<label for="rooms_section_title"><?php esc_html_e('"Rooms" Section Title','tour-operator'); ?></label>
 					</th>
 					<td>
 						<input type="text" {{#if rooms_section_title}} value="{{rooms_section_title}}" {{/if}} name="rooms_section_title" />
@@ -483,7 +472,7 @@ class TO_Settings extends Tour_Operator {
 				</tr>
 				<tr class="form-field">
 					<th scope="row">
-						<label for="similar_section_title">"Similar Accommodations" Section Title</label>
+						<label for="similar_section_title"><?php esc_html_e('"Similar Accommodations" Section Title','tour-operator'); ?></label>
 					</th>
 					<td>
 						<input type="text" {{#if similar_section_title}} value="{{similar_section_title}}" {{/if}} name="similar_section_title" />
@@ -493,7 +482,7 @@ class TO_Settings extends Tour_Operator {
 			<?php if ( 'destination' == $post_type ) : ?>
 				<tr class="form-field">
 					<th scope="row">
-						<label for="countries_section_title">"Countries" Section Title</label>
+						<label for="countries_section_title"><?php esc_html_e('"Countries" Section Title','tour-operator'); ?></label>
 					</th>
 					<td>
 						<input type="text" {{#if countries_section_title}} value="{{countries_section_title}}" {{/if}} name="countries_section_title" />
@@ -501,7 +490,7 @@ class TO_Settings extends Tour_Operator {
 				</tr>
 				<tr class="form-field">
 					<th scope="row">
-						<label for="regions_section_title">"Regions" Section Title</label>
+						<label for="regions_section_title"><?php esc_html_e('"Regions" Section Title','tour-operator'); ?></label>
 					</th>
 					<td>
 						<input type="text" {{#if regions_section_title}} value="{{regions_section_title}}" {{/if}} name="regions_section_title" />
@@ -509,7 +498,7 @@ class TO_Settings extends Tour_Operator {
 				</tr>
 				<tr class="form-field">
 					<th scope="row">
-						<label for="travel_styles_section_title">"Travel Styles" Section Title</label>
+						<label for="travel_styles_section_title"><?php esc_html_e('"Travel Styles" Section Title','tour-operator'); ?></label>
 					</th>
 					<td>
 						<input type="text" {{#if travel_styles_section_title}} value="{{travel_styles_section_title}}" {{/if}} name="travel_styles_section_title" />

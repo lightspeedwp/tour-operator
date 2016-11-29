@@ -2,7 +2,7 @@
 /**
  * Tours Unit Query
  *
- * @package   Lsx_Unit_Query
+ * @package   TO_Unit_Query
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -13,17 +13,17 @@
 /**
  * Main plugin class.
  *
- * @package Lsx_Unit_Query
+ * @package TO_Unit_Query
  * @author  LightSpeed
  */
-class Lsx_Unit_Query {
+class TO_Unit_Query {
 	
 	/**
 	 * Holds class instance
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var      object|Lsx_Unit_Query
+	 * @var      object
 	 */
 	public $have_query = false;	
 	
@@ -32,7 +32,7 @@ class Lsx_Unit_Query {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var      array|Lsx_Unit_Query
+	 * @var      array
 	 */
 	public $queried_items = false;	
 
@@ -41,7 +41,7 @@ class Lsx_Unit_Query {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var      array|Lsx_Unit_Query
+	 * @var      array
 	 */
 	public $titles = false;	
 	
@@ -50,7 +50,7 @@ class Lsx_Unit_Query {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var      array|Lsx_Unit_Query
+	 * @var      array
 	 */
 	public $query_item = false;	
 	
@@ -59,7 +59,7 @@ class Lsx_Unit_Query {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var      array|Lsx_Unit_Query
+	 * @var      array
 	 */
 	public $count = 0;
 	
@@ -68,7 +68,7 @@ class Lsx_Unit_Query {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var      array|Lsx_Unit_Query
+	 * @var      array
 	 */
 	public $index = 0;	
 	
@@ -77,7 +77,7 @@ class Lsx_Unit_Query {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var      string|Lsx_Unit_Query
+	 * @var      string
 	 */
 	public $post_id = false;	
 
@@ -221,7 +221,7 @@ function to_accommodation_has_rooms() {
 	global $rooms;
 	$have_rooms = false;
 	if(null === $rooms){
-		$rooms = new Lsx_Unit_Query();
+		$rooms = new TO_Unit_Query();
 	}
 	if(is_object($rooms)){
 		$have_rooms = $rooms->have_query();
@@ -364,11 +364,11 @@ function to_accommodation_units($before="",$after=""){
 	if(to_accommodation_has_rooms()) { 
 
 		$unit_types = array(
-			'chalet' => 'Chalet',
-			'room' => 'Room',
-			'spa' => 'Spa',
-			'tent' => 'Tent',
-			'villa' => 'Villa'
+			'chalet' => esc_html__('Chalet','tour-operator'),
+			'room' => esc_html__('Room','tour-operator'),
+			'spa' => esc_html__('Spa','tour-operator'),
+			'tent' => esc_html__('Tent','tour-operator'),
+			'villa' => esc_html__('Villa','tour-operator')
 		);
 		foreach($unit_types as $type_key => $type_label){
 			if(to_accommodation_check_type($type_key)){

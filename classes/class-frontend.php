@@ -179,7 +179,7 @@ class TO_Frontend extends Tour_Operator {
 		if(!isset($this->options['display']['disable_css'])){
 			wp_enqueue_style( 'tour-operator-style', TO_URL . 'assets/css/style.css', array(), TO_VER );
 		}
-		if(defined('WP_SHARING_PLUGIN_URL')){
+		if(defined('JETPACK__VERSION') && defined('WP_SHARING_PLUGIN_URL')){
 			wp_enqueue_style( 'sharing', WP_SHARING_PLUGIN_URL.'sharing.css', false, JETPACK__VERSION );
 		}
 	}
@@ -285,6 +285,9 @@ class TO_Frontend extends Tour_Operator {
 		}
 	}
 
+	/**
+	 *	Removes the Jetpack Sharing so we can add it in manually.
+	 */
 	public function remove_jetpack_share() {
 		
 		if(in_array(get_post_type(),$this->post_types)){
@@ -295,7 +298,14 @@ class TO_Frontend extends Tour_Operator {
 			}
 		}
 	}
-	
+
+	/**
+	 * Enables the Jetpack sharing on the TO post types
+	 *
+	 * @param $show
+	 * @param $post
+	 * @return bool
+	 */
 	public function show_jetpack_sharing_filter($show, $post) {
 		if(in_array($post->post_type,$this->post_types)){
 			$show = true;
@@ -305,30 +315,22 @@ class TO_Frontend extends Tour_Operator {
 	/**
 	 * Modify the read more link
 	 *
-	 * @package 	lsx-framework
-	 * @subpackage 	read-more
-	 * @category 	post-types
-	 *
 	 * @param 		string $content
 	 * @return   	string $content
 	 */
 	public function modify_read_more_link($content) {
-		$content = str_replace('<span id="more-'.get_the_ID().'"></span>','<a class="btn btn-default more-link" data-collapsed="true" href="' . get_permalink() . '">'.__('Read More','lsx-framework').'</a>',$content);
+		$content = str_replace('<span id="more-'.get_the_ID().'"></span>','<a class="btn btn-default more-link" data-collapsed="true" href="' . get_permalink() . '">'.esc_html__('Read More','tour-operator').'</a>',$content);
 		return $content;
 	}
 
 	/**
 	 * Modify term_description to use the_content filter
-	 * 
-	 * @package 	lsx-framework
-	 * @subpackage 	read-more
-	 * @category 	taxonomies
 	 *
 	 * @param 		string $content
 	 * @return   	string $content
 	 */
 	public function modify_term_description( $content ) {
-		$more_link_text = 'Read More';
+		$more_link_text = esc_html__('Read More','tour-operator');
 		$output = '';
 
 		if ( preg_match( '/<!--more(.*?)?-->/', $content, $matches ) ) {

@@ -37,7 +37,7 @@ class TO_Placeholders {
 	/**
 	 * Holds class isntance
 	 *
-	 * @var      object|Placeholders
+	 * @var      object
 	 */
 	protected static $instance = null;
 
@@ -377,8 +377,8 @@ class TO_Placeholders {
 					<div class="thumbnail-preview">
 						{{#if banner_placeholder}}<img src="{{banner_placeholder}}" width="150" />{{/if}}	
 					</div>
-					<a {{#if banner_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add">Choose Image</a>
-					<a {{#unless banner_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete">Delete</a>
+					<a {{#if banner_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image','tour-operator'); ?></a>
+					<a {{#unless banner_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete','tour-operator'); ?></a>
 				</td>
 			</tr>
 		<?php } ?>
@@ -392,8 +392,8 @@ class TO_Placeholders {
 				<div class="thumbnail-preview">
 					{{#if default_placeholder}}<img src="{{default_placeholder}}" width="150" />{{/if}}	
 				</div>
-				<a {{#if default_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add">Choose Image</a>
-				<a {{#unless default_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete">Delete</a>
+				<a {{#if default_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image','tour-operator'); ?></a>
+				<a {{#unless default_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete','tour-operator'); ?></a>
 			</td>
 		</tr>
 		{{#unless disable_blog_placeholder}}
@@ -407,8 +407,8 @@ class TO_Placeholders {
 					<div class="thumbnail-preview">
 						{{#if posts_placeholder}}<img src="{{posts_placeholder}}" width="150" />{{/if}}	
 					</div>
-					<a {{#if posts_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add">Choose Image</a>
-					<a {{#unless posts_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete">Delete</a>
+					<a {{#if posts_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image','tour-operator'); ?></a>
+					<a {{#unless posts_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete','tour-operator'); ?></a>
 				</td>
 			</tr>	
 		{{/unless}}	
@@ -445,8 +445,8 @@ class TO_Placeholders {
 					<div class="thumbnail-preview">
 						{{#if banner_placeholder}}<img src="{{banner_placeholder}}" width="150" />{{/if}}	
 					</div>
-					<a {{#if banner_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add">Choose Image</a>
-					<a {{#unless banner_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete">Delete</a>
+					<a {{#if banner_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image','tour-operator'); ?></a>
+					<a {{#unless banner_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete','tour-operator'); ?></a>
 				</td>
 			</tr>	
 		<?php } ?>
@@ -461,8 +461,8 @@ class TO_Placeholders {
 				<div class="thumbnail-preview">
 					{{#if featured_placeholder}}<img src="{{featured_placeholder}}" width="150" />{{/if}}	
 				</div>
-				<a {{#if featured_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add">Choose Image</a>
-				<a {{#unless featured_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete">Delete</a>
+				<a {{#if featured_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image','tour-operator'); ?></a>
+				<a {{#unless featured_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete','tour-operator'); ?></a>
 			</td>
 		</tr>
 	<?php

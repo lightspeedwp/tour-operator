@@ -55,7 +55,6 @@ class TO_Template_Redirects {
 	 * Redirect wordpress to the archive template located in the plugin
 	 *
 	 * @param	$template
-	 *
 	 * @return	$template
 	 */
 	public function post_type_archive_template_include( $template ) {

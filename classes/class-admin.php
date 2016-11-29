@@ -1,6 +1,6 @@
 <?php
 /**
- * Backend actions for the LSX TO Plugin
+ * Backend actions for the Tour Operator Plugin
  *
  * @package   TO_Admin
  * @author    LightSpeed
@@ -97,8 +97,8 @@ class TO_Admin extends Tour_Operator {
 		$icon_64 = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDIwIDIwO2ZpbGw6IzgyODc4YzsiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxnIGlkPSJYTUxJRF8xMV8iPjxwYXRoIGlkPSJYTUxJRF8xOF8iIGQ9Ik0xMCwwQzQuNSwwLDAsNC41LDAsMTBzNC41LDEwLDEwLDEwczEwLTQuNSwxMC0xMFMxNS41LDAsMTAsMHogTTEwLDE4LjNjLTQuNiwwLTguMy0zLjctOC4zLTguM2MwLTQuNiwzLjctOC4zLDguMy04LjNjNC42LDAsOC4zLDMuNyw4LjMsOC4zQzE4LjMsMTQuNiwxNC42LDE4LjMsMTAsMTguM3oiLz48cGF0aCBpZD0iWE1MSURfMTlfIiBkPSJNMTAuOCw4LjlMMTAuOCw4LjlMMTAuOCw4LjljLTAuMS0wLjEtMC4yLTAuMS0wLjMtMC4yTDYuMSw2LjFsMi43LDQuNWMwLDAuMSwwLjEsMC4xLDAuMSwwLjJsMCwwbDAsMGMwLjIsMC4zLDAuNiwwLjYsMS4xLDAuNmMwLjgsMCwxLjQtMC42LDEuNC0xLjRDMTEuNCw5LjYsMTEuMiw5LjIsMTAuOCw4Ljl6IE0xMCwxMC43Yy0wLjQsMC0wLjctMC4zLTAuNy0wLjdjMC0wLjQsMC4zLTAuNywwLjctMC43czAuNywwLjMsMC43LDAuN0MxMC43LDEwLjQsMTAuNCwxMC43LDEwLDEwLjd6Ii8+PGcgaWQ9IlhNTElEXzE2XyI+PHJlY3QgaWQ9IlhNTElEXzhfIiB4PSI5LjciIHk9IjIuOSIgd2lkdGg9IjAuNiIgaGVpZ2h0PSIxLjMiLz48cmVjdCBpZD0iWE1MSURfN18iIHg9IjUuMSIgeT0iNC44IiB0cmFuc2Zvcm09Im1hdHJpeCgwLjcwNzEgLTAuNzA3MSAwLjcwNzEgMC43MDcxIC0yLjI1OTQgNS40MTg2KSIgd2lkdGg9IjAuNiIgaGVpZ2h0PSIxLjMiLz48cmVjdCBpZD0iWE1MSURfNl8iIHg9IjEzLjkiIHk9IjUuMSIgdHJhbnNmb3JtPSJtYXRyaXgoMC43MDcxIC0wLjcwNzEgMC43MDcxIDAuNzA3MSAwLjQxNjkgMTEuODc5NykiIHdpZHRoPSIxLjMiIGhlaWdodD0iMC42Ii8+PHJlY3QgaWQ9IlhNTElEXzVfIiB4PSIyLjkiIHk9IjkuNyIgd2lkdGg9IjEuMyIgaGVpZ2h0PSIwLjYiLz48cmVjdCBpZD0iWE1MSURfNF8iIHg9IjE1LjgiIHk9IjkuNyIgd2lkdGg9IjEuMyIgaGVpZ2h0PSIwLjYiLz48cmVjdCBpZD0iWE1MSURfM18iIHg9IjQuOCIgeT0iMTQuMyIgdHJhbnNmb3JtPSJtYXRyaXgoMC43MDcxIC0wLjcwNzEgMC43MDcxIDAuNzA3MSAtOC43MjE0IDguMDk1MikiIHdpZHRoPSIxLjMiIGhlaWdodD0iMC42Ii8+PHJlY3QgaWQ9IlhNTElEXzJfIiB4PSIxNC4yIiB5PSIxMy45IiB0cmFuc2Zvcm09Im1hdHJpeCgwLjcwNzEgLTAuNzA3MSAwLjcwNzEgMC43MDcxIC02LjA0NTEgMTQuNTU2MykiIHdpZHRoPSIwLjYiIGhlaWdodD0iMS4zIi8+PHJlY3QgaWQ9IlhNTElEXzFfIiB4PSI5LjciIHk9IjE1LjgiIHdpZHRoPSIwLjYiIGhlaWdodD0iMS4zIi8+PC9nPjxwYXRoIGlkPSJYTUxJRF80N18iIGQ9Ik0xMS4zLDkuNWMwLTAuMS0wLjEtMC4xLTAuMS0wLjJsMCwwbDAsMGMtMC4yLTAuMy0wLjYtMC42LTEuMS0wLjZjLTAuOCwwLTEuNCwwLjYtMS40LDEuNGMwLDAuNCwwLjIsMC44LDAuNSwxLjFsMCwwbDAsMGMwLjEsMC4xLDAuMiwwLjEsMC4zLDAuMmw0LjQsMi42TDExLjMsOS41eiBNMTAsMTAuN2MtMC40LDAtMC43LTAuMy0wLjctMC43YzAtMC40LDAuMy0wLjcsMC43LTAuN3MwLjcsMC4zLDAuNywwLjdDMTAuNywxMC40LDEwLjQsMTAuNywxMCwxMC43eiIvPjwvZz48L3N2Zz4=';
 
 		add_menu_page(
-			__( 'Dashboard', 'tour-operator' ),
-			__( 'Tour Operator', 'tour-operator' ),
+			esc_html__( 'Dashboard', 'tour-operator' ),
+			esc_html__( 'Tour Operator', 'tour-operator' ),
 			'edit_posts',
 			'tour-operator',
 			array($this,'menu_dashboard'),
@@ -311,17 +311,17 @@ class TO_Admin extends Tour_Operator {
 	public function global_taxonomies() {
 
 		$labels = array(
-			'name' => _x( 'Travel Styles', 'tour-operator' ),
-			'singular_name' => _x( 'Travel Style', 'tour-operator' ),
-			'search_items' =>  __( 'Search Travel Styles' , 'tour-operator' ),
-			'all_items' => __( 'Travel Styles' , 'tour-operator' ),
-			'parent_item' => __( 'Parent Travel Style' , 'tour-operator' ),
-			'parent_item_colon' => __( 'Parent Travel Style:' , 'tour-operator' ),
-			'edit_item' => __( 'Edit Travel Style' , 'tour-operator' ),
-			'update_item' => __( 'Update Travel Style' , 'tour-operator' ),
-			'add_new_item' => __( 'Add New Travel Style' , 'tour-operator' ),
-			'new_item_name' => __( 'New Travel Style' , 'tour-operator' ),
-			'menu_name' => __( 'Travel Styles' , 'tour-operator' ),
+			'name' => esc_html__( 'Travel Styles', 'tour-operator' ),
+			'singular_name' => esc_html__( 'Travel Style', 'tour-operator' ),
+			'search_items' =>  esc_html__( 'Search Travel Styles' , 'tour-operator' ),
+			'all_items' => esc_html__( 'Travel Styles' , 'tour-operator' ),
+			'parent_item' => esc_html__( 'Parent Travel Style' , 'tour-operator' ),
+			'parent_item_colon' => esc_html__( 'Parent Travel Style:' , 'tour-operator' ),
+			'edit_item' => esc_html__( 'Edit Travel Style' , 'tour-operator' ),
+			'update_item' => esc_html__( 'Update Travel Style' , 'tour-operator' ),
+			'add_new_item' => esc_html__( 'Add New Travel Style' , 'tour-operator' ),
+			'new_item_name' => esc_html__( 'New Travel Style' , 'tour-operator' ),
+			'menu_name' => esc_html__( 'Travel Styles' , 'tour-operator' ),
 		);
 
 		// Now register the taxonomy
@@ -337,17 +337,17 @@ class TO_Admin extends Tour_Operator {
 		));
 
 		$labels = array(
-			'name' => _x( 'Brands', 'tour-operator' ),
-			'singular_name' => _x( 'Brand', 'tour-operator' ),
-			'search_items' =>  __( 'Search Brands' , 'tour-operator' ),
-			'all_items' => __( 'Brands' , 'tour-operator' ),
-			'parent_item' => __( 'Parent Brand' , 'tour-operator' ),
-			'parent_item_colon' => __( 'Parent Brand:' , 'tour-operator' ),
-			'edit_item' => __( 'Edit Brand' , 'tour-operator' ),
-			'update_item' => __( 'Update Brand' , 'tour-operator' ),
-			'add_new_item' => __( 'Add New Brand' , 'tour-operator' ),
-			'new_item_name' => __( 'New Brand' , 'tour-operator' ),
-			'menu_name' => __( 'Brands' , 'tour-operator' ),
+			'name' => esc_html__( 'Brands', 'tour-operator' ),
+			'singular_name' => esc_html__( 'Brand', 'tour-operator' ),
+			'search_items' =>  esc_html__( 'Search Brands' , 'tour-operator' ),
+			'all_items' => esc_html__( 'Brands' , 'tour-operator' ),
+			'parent_item' => esc_html__( 'Parent Brand' , 'tour-operator' ),
+			'parent_item_colon' => esc_html__( 'Parent Brand:' , 'tour-operator' ),
+			'edit_item' => esc_html__( 'Edit Brand' , 'tour-operator' ),
+			'update_item' => esc_html__( 'Update Brand' , 'tour-operator' ),
+			'add_new_item' => esc_html__( 'Add New Brand' , 'tour-operator' ),
+			'new_item_name' => esc_html__( 'New Brand' , 'tour-operator' ),
+			'menu_name' => esc_html__( 'Brands' , 'tour-operator' ),
 		);
 
 
@@ -364,17 +364,17 @@ class TO_Admin extends Tour_Operator {
 		));
 
 		$labels = array(
-			'name' => _x( 'Location', 'tour-operator' ),
-			'singular_name' => _x( 'Location', 'tour-operator' ),
-			'search_items' =>  __( 'Search Locations' , 'tour-operator' ),
-			'all_items' => __( 'Locations' , 'tour-operator' ),
-			'parent_item' => __( 'Parent Location' , 'tour-operator' ),
-			'parent_item_colon' => __( 'Parent Location:' , 'tour-operator' ),
-			'edit_item' => __( 'Edit Location' , 'tour-operator' ),
-			'update_item' => __( 'Update Location' , 'tour-operator' ),
-			'add_new_item' => __( 'Add New Location' , 'tour-operator' ),
-			'new_item_name' => __( 'New Location' , 'tour-operator' ),
-			'menu_name' => __( 'Locations' , 'tour-operator' ),
+			'name' => esc_html__( 'Location', 'tour-operator' ),
+			'singular_name' => esc_html__( 'Location', 'tour-operator' ),
+			'search_items' =>  esc_html__( 'Search Locations' , 'tour-operator' ),
+			'all_items' => esc_html__( 'Locations' , 'tour-operator' ),
+			'parent_item' => esc_html__( 'Parent Location' , 'tour-operator' ),
+			'parent_item_colon' => esc_html__( 'Parent Location:' , 'tour-operator' ),
+			'edit_item' => esc_html__( 'Edit Location' , 'tour-operator' ),
+			'update_item' => esc_html__( 'Update Location' , 'tour-operator' ),
+			'add_new_item' => esc_html__( 'Add New Location' , 'tour-operator' ),
+			'new_item_name' => esc_html__( 'New Location' , 'tour-operator' ),
+			'menu_name' => esc_html__( 'Locations' , 'tour-operator' ),
 		);
 		// Now register the taxonomy
 		register_taxonomy('location',array('accommodation'), array(
@@ -393,7 +393,7 @@ class TO_Admin extends Tour_Operator {
 	/**
 	 * Sets up the "post relations"
 	 *
-	 * @return    object|Module_Template    A single instance of this class.
+	 * @return    object
 	 */
 	public function post_relations($post_id, $field, $value) {
 
@@ -495,9 +495,9 @@ class TO_Admin extends Tour_Operator {
 	 */
 	public function add_action_links ( $links ) {
 		$mylinks = array(
-			'<a href="' . admin_url( 'admin.php?page=to-settings' ) . '">'.__('Settings','tour-operator').'</a>',
-			'<a href="https://www.lsdev.biz/documentation/tour-operator-plugin/" target="_blank">'.__('Documentation','tour-operator').'</a>',
-			'<a href="https://www.lsdev.biz/contact-us/" target="_blank">'.__('Support','tour-operator').'</a>',
+			'<a href="' . admin_url( 'admin.php?page=to-settings' ) . '">'.esc_html__('Settings','tour-operator').'</a>',
+			'<a href="https://www.lsdev.biz/documentation/tour-operator-plugin/" target="_blank">'.esc_html__('Documentation','tour-operator').'</a>',
+			'<a href="https://www.lsdev.biz/contact-us/" target="_blank">'.esc_html__('Support','tour-operator').'</a>',
 		);
 		return array_merge( $links, $mylinks );
 	}

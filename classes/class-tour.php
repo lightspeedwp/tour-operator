@@ -1,8 +1,8 @@
 <?php
 /**
- * Module Template.
+ * Tour Post Type Class
  *
- * @package   Lsx_Tour
+ * @package   TO_Tour
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -12,10 +12,10 @@
 /**
  * Main plugin class.
  *
- * @package Lsx_Tour
+ * @package TO_Tour
  * @author  LightSpeed
  */
-class Lsx_Tour {
+class TO_Tour {
 
 	/**
 	 * The slug for this plugin
@@ -31,7 +31,7 @@ class Lsx_Tour {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var      object|Module_Template
+	 * @var      object
 	 */
 	protected static $instance = null;
 	
@@ -40,7 +40,7 @@ class Lsx_Tour {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var      object|Module_Template
+	 * @var      object
 	 */
 	public $search_fields = false;
 
@@ -101,7 +101,7 @@ class Lsx_Tour {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return    object|Module_Template    A single instance of this class.
+	 * @return    object    A single instance of this class.
 	 */
 	public static function get_instance() {
 		// If the single instance hasn't been set, set it now.
@@ -120,19 +120,19 @@ class Lsx_Tour {
 	public function register_post_types() {
 	
 		$labels = array(
-		    'name'               => _x( 'Tours', 'tour-operator' ),
-		    'singular_name'      => _x( 'Tour', 'tour-operator' ),
-		    'add_new'            => _x( 'Add New', 'tour-operator' ),
-		    'add_new_item'       => _x( 'Add New Tour', 'tour-operator' ),
-		    'edit_item'          => _x( 'Edit Tour', 'tour-operator' ),
-		    'new_item'           => _x( 'New Tour', 'tour-operator' ),
-		    'all_items'          => _x( 'Tours', 'tour-operator' ),
-		    'view_item'          => _x( 'View Tour', 'tour-operator' ),
-		    'search_items'       => _x( 'Search Tours', 'tour-operator' ),
-		    'not_found'          => _x( 'No tours found', 'tour-operator' ),
-		    'not_found_in_trash' => _x( 'No tours found in Trash', 'tour-operator' ),
+		    'name'               => esc_html__( 'Tours', 'tour-operator' ),
+		    'singular_name'      => esc_html__( 'Tour', 'tour-operator' ),
+		    'add_new'            => esc_html__( 'Add New', 'tour-operator' ),
+		    'add_new_item'       => esc_html__( 'Add New Tour', 'tour-operator' ),
+		    'edit_item'          => esc_html__( 'Edit Tour', 'tour-operator' ),
+		    'new_item'           => esc_html__( 'New Tour', 'tour-operator' ),
+		    'all_items'          => esc_html__( 'Tours', 'tour-operator' ),
+		    'view_item'          => esc_html__( 'View Tour', 'tour-operator' ),
+		    'search_items'       => esc_html__( 'Search Tours', 'tour-operator' ),
+		    'not_found'          => esc_html__( 'No tours found', 'tour-operator' ),
+		    'not_found_in_trash' => esc_html__( 'No tours found in Trash', 'tour-operator' ),
 		    'parent_item_colon'  => '',
-		    'menu_name'          => _x( 'Tours', 'tour-operator' )
+		    'menu_name'          => esc_html__( 'Tours', 'tour-operator' )
 		);
 
 		$args = array(
@@ -177,16 +177,16 @@ class Lsx_Tour {
 	public function metaboxes( array $meta_boxes ) {
 	
 		// Example of all available fields
-		$fields[] = array( 'id' => 'featured',  'name' => _x( 'Featured', 'tour-operator' ), 'type' => 'checkbox', 'cols' => 12 );
+		$fields[] = array( 'id' => 'featured',  'name' => esc_html__( 'Featured', 'tour-operator' ), 'type' => 'checkbox', 'cols' => 12 );
 		if(!class_exists('LSX_Banners')){
-			$fields[] = array( 'id' => 'tagline',  'name' => 'Tagline', 'type' => 'text' );
+			$fields[] = array( 'id' => 'tagline',  'name' => esc_html__('Tagline','tour-operator'), 'type' => 'text' );
 		}
-		$fields[] = array( 'id' => 'duration',  	'name' => _x( 'Duration', 'tour-operator' ), 'type' => 'text', 'cols' => 12 );
-		$fields[] = array( 'id' => 'departs_from', 'name' => 'Departs From', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'destination','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ),'allow_none'=>true, 'cols' => 12,'sortable'=>true,'repeatable'=>true );
-		$fields[] = array( 'id' => 'ends_in', 'name' => 'Ends In', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'destination','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ),'allow_none'=>true, 'cols' => 12,'sortable'=>true,'repeatable'=>true );
+		$fields[] = array( 'id' => 'duration',  	'name' => esc_html__( 'Duration', 'tour-operator' ), 'type' => 'text', 'cols' => 12 );
+		$fields[] = array( 'id' => 'departs_from', 'name' => esc_html__('Departs From','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'destination','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ),'allow_none'=>true, 'cols' => 12,'sortable'=>true,'repeatable'=>true );
+		$fields[] = array( 'id' => 'ends_in', 'name' => esc_html__('Ends In','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'destination','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ),'allow_none'=>true, 'cols' => 12,'sortable'=>true,'repeatable'=>true );
 		$fields[] = array( 
 					'id' => 'best_time_to_visit',
-					'name' => _x( 'Best months to visit', 'tour-operator' ),
+					'name' => esc_html__( 'Best months to visit', 'tour-operator' ),
 					'type' => 'select',
 					'options' => array(
 									'january' => 'January',
@@ -207,39 +207,39 @@ class Lsx_Tour {
 				);
 		
 		if(post_type_exists('team')){
-			$fields[] = array( 'id' => 'team_to_tour', 'name' => 'Tour Expert', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12);
+			$fields[] = array( 'id' => 'team_to_tour', 'name' => esc_html__('Tour Expert','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12);
 		}
-		$fields[] = array( 'id' => 'hightlights',  'name' => 'Hightlights', 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
+		$fields[] = array( 'id' => 'hightlights',  'name' => esc_html__('Hightlights','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
 
 		if(class_exists('Envira_Gallery')){
 			if(!class_exists('TO_Galleries')){
-				$fields[] = array( 'id' => 'gallery_title',  'name' => __('Gallery','tour-operator'), 'type' => 'title' );
+				$fields[] = array( 'id' => 'gallery_title',  'name' => esc_html__('Gallery','tour-operator'), 'type' => 'title' );
 			}
-			$fields[] = array( 'id' => 'envira_gallery', 'name' => __('Envira Gallery','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
+			$fields[] = array( 'id' => 'envira_gallery', 'name' => esc_html__('Envira Gallery','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
 			if(class_exists('Envira_Videos')){
-				$fields[] = array( 'id' => 'envira_video', 'name' => __('Envira Video Gallery','to-galleries'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
+				$fields[] = array( 'id' => 'envira_video', 'name' => esc_html__('Envira Video Gallery','to-galleries'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
 			}			
 		}
 
-		$fields[] = array( 'id' => 'price_title',  'name' => __('Price','tour-operator'), 'type' => 'title', 'cols' => 12 );
-		$fields[] = array( 'id' => 'price',  'name' => __('Price','tour-operator'), 'type' => 'text', 'cols' => 6 );
-		$fields[] = array( 'id' => 'single_supplement',  'name' => __('Single Supplement','tour-operator'), 'type' => 'text', 'cols' => 12 );
-		$fields[] = array( 'id' => 'included',  'name' => 'Included', 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
-		$fields[] = array( 'id' => 'not_included',  'name' => 'Not Included', 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
+		$fields[] = array( 'id' => 'price_title',  'name' => esc_html__('Price','tour-operator'), 'type' => 'title', 'cols' => 12 );
+		$fields[] = array( 'id' => 'price',  'name' => esc_html__('Price','tour-operator'), 'type' => 'text', 'cols' => 6 );
+		$fields[] = array( 'id' => 'single_supplement',  'name' => esc_html__('Single Supplement','tour-operator'), 'type' => 'text', 'cols' => 12 );
+		$fields[] = array( 'id' => 'included',  'name' => esc_html__('Included','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
+		$fields[] = array( 'id' => 'not_included',  'name' => esc_html__('Not Included','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
 		
 		if(post_type_exists('special')){
-			$fields[] = array( 'id' => 'special_to_tour', 'name' => 'Specials related with this tour', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'special','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none' => true , 'repeatable' => true, 'sortable' => true, 'cols' => 12 );
+			$fields[] = array( 'id' => 'special_to_tour', 'name' => esc_html__('Specials related with this tour','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'special','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none' => true , 'repeatable' => true, 'sortable' => true, 'cols' => 12 );
 		}
 		
 		//Connections
 		if(post_type_exists('review')){
-			$fields[] = array( 'id' => 'review_title',  'name' => 'Reviews', 'type' => 'title', 'cols' => 12);
-			$fields[] = array( 'id' => 'review_to_tour', 'name' => 'Reviews related with this tour', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'review','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true,'allow_none'=>true, 'cols' => 12 );
+			$fields[] = array( 'id' => 'review_title',  'name' => esc_html__('Reviews','tour-operator'), 'type' => 'title', 'cols' => 12);
+			$fields[] = array( 'id' => 'review_to_tour', 'name' => esc_html__('Reviews related with this tour','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'review','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true,'allow_none'=>true, 'cols' => 12 );
 		}
 		
 		//Itinerary Details
-		$fields[] = array( 'id' => 'itinerary_title',  'name' => 'Itinerary', 'type' => 'title' );
-		$fields[] = array( 'id' => 'itinerary_kml', 'name' => _x( 'Itinerary KML File', 'tour-operator' ), 'type' => 'file', 'show_size' => true, 'cols' => 12 );
+		$fields[] = array( 'id' => 'itinerary_title',  'name' => esc_html__('Itinerary','tour-operator'), 'type' => 'title' );
+		$fields[] = array( 'id' => 'itinerary_kml', 'name' => esc_html__( 'Itinerary KML File', 'tour-operator' ), 'type' => 'file', 'show_size' => true, 'cols' => 12 );
 		$fields[] = array(
 				'id' => 'itinerary',
 				'name' => '',
@@ -254,7 +254,7 @@ class Lsx_Tour {
 		$fields = apply_filters('to_tour_custom_fields',$fields);
 		
 		$meta_boxes[] = array(
-				'title' => __('LSX Tour Operators','tour-operator'),
+				'title' => esc_html__('Tour Operator Plugin','tour-operator'),
 				'pages' => 'tour',
 				'fields' => $fields
 		);	
@@ -270,11 +270,11 @@ class Lsx_Tour {
 		?>
 			<tr class="form-field">
 				<th scope="row">
-					<label for="description">Compress Itineraries</label>
+					<label for="description"><?php esc_html_e('Compress Itineraries','tour-operator');?></label>
 				</th>
 				<td>
 					<input type="checkbox" {{#if shorten_itinerary}} checked="checked" {{/if}} name="shorten_itinerary" />
-					<small>If you have many Itinerary entries on your tours, then you may want to shorten the length of the page with a "read more" button.</small>
+					<small><?php esc_html_e('If you have many Itinerary entries on your tours, then you may want to shorten the length of the page with a "read more" button.','tour-operator');?></small>
 				</td>
 			</tr>		
 		<?php
@@ -285,7 +285,7 @@ class Lsx_Tour {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return    object|Module_Template    A single instance of this class.
+	 * @return    object    A single instance of this class.
 	 */
 	public function single_fields_indexing($search_fields) {
 		$search_fields['itinerary'] = array('destination_to_tour','activity_to_tour','accommodation_to_tour');
@@ -310,62 +310,55 @@ class Lsx_Tour {
 	}
 	
 	/**
-	 * returns the room metabox fields
-	 */
-	public function room_fields() {
-		
-	}
-	
-	/**
 	 * returns the itinerary metabox fields
 	 */
 	public function itinerary_fields() {
 		$fields = array();
-		$fields[] = array( 'id' => 'title',  'name' => 'Title', 'type' => 'text' );
+		$fields[] = array( 'id' => 'title',  'name' => esc_html__('Title','tour-operator'), 'type' => 'text' );
 		if(!class_exists('LSX_Banners')){
-			$fields[] = array( 'id' => 'tagline',  'name' => 'Tagline', 'type' => 'text' );
+			$fields[] = array( 'id' => 'tagline',  'name' => esc_html__('Tagline','tour-operator'), 'type' => 'text' );
 		}
 
-		$fields[] = array( 'id' => 'description', 'name' => 'Description', 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ) );
-		$fields[] = array( 'id' => 'featured_image', 'name' => 'Featured Image', 'type' => 'image', 'show_size' => false );
+		$fields[] = array( 'id' => 'description', 'name' => esc_html__('Description','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ) );
+		$fields[] = array( 'id' => 'featured_image', 'name' => esc_html__('Featured Image','tour-operator'), 'type' => 'image', 'show_size' => false );
 		if(post_type_exists('accommodation')){
-			$fields[] = array( 'id' => 'accommodation_to_tour', 'name' => 'Accommodations related with this itinerary', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'accommodation','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true,'allow_none'=>true, 'cols' => 12 );
+			$fields[] = array( 'id' => 'accommodation_to_tour', 'name' => esc_html__('Accommodations related with this itinerary','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'accommodation','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true,'allow_none'=>true, 'cols' => 12 );
 		}
 		if(post_type_exists('activity')){
-			$fields[] = array( 'id' => 'activity_to_tour', 'name' => 'Activities related with this itinerary', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'activity','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true,'allow_none'=>true, 'cols' => 12 );
+			$fields[] = array( 'id' => 'activity_to_tour', 'name' => esc_html__('Activities related with this itinerary','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'activity','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true,'allow_none'=>true, 'cols' => 12 );
 		}
 		if(post_type_exists('destination')){
-			$fields[] = array( 'id' => 'destination_to_tour', 'name' => 'Destinations related with this itinerary', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'destination','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true,'allow_none'=>true, 'cols' => 12 );
+			$fields[] = array( 'id' => 'destination_to_tour', 'name' => esc_html__('Destinations related with this itinerary','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'destination','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true,'allow_none'=>true, 'cols' => 12 );
 		}
 		if($this->is_wetu_active){
-			$fields[] = array( 'id' => 'included', 'name' => 'Included', 'type' => 'textarea', 'options' => array( 'editor_height' => '100' ) );
-			$fields[] = array( 'id' => 'not_included', 'name' => 'Not Included', 'type' => 'textarea', 'options' => array( 'editor_height' => '100' ) );
+			$fields[] = array( 'id' => 'included', 'name' => esc_html__('Included','tour-operator'), 'type' => 'textarea', 'options' => array( 'editor_height' => '100' ) );
+			$fields[] = array( 'id' => 'not_included', 'name' => esc_html__('Not Included','tour-operator'), 'type' => 'textarea', 'options' => array( 'editor_height' => '100' ) );
 			$fields[] = array(
 				'id' => 'drinks_basis',
-				'name' => 'Drinks Basis',
+				'name' => esc_html__('Drinks Basis','tour-operator'),
 				'type' => 'select',
 				'options' => array(
-						'' => 'None',
-						'No Drinks' => 'No Drinks',
-						'Drinks (local brands)' => 'Drinks (local brands)',
-						'Drinks (excl spirits)' => 'Drinks (excl spirits)',
-						'All Drinks' => 'All Drinks',
+						'' => esc_html__('None','tour-operator'),
+						esc_html__('No Drinks','tour-operator') => esc_html__('No Drinks','tour-operator'),
+						esc_html__('Drinks (local brands)','tour-operator') => esc_html__('Drinks (local brands)','tour-operator'),
+						esc_html__('Drinks (excl spirits)','tour-operator') => esc_html__('Drinks (excl spirits)','tour-operator'),
+						esc_html__('All Drinks','tour-operator') => esc_html__('All Drinks','tour-operator'),
 				)
 			);
 			$fields[] = array(
 				'id' => 'meal_basis',
-				'name' => 'Meal Basis',
+				'name' => esc_html__('Meal Basis','tour-operator'),
 				'type' => 'select',
 				'options' => array(
-						'' => 'None',
-						'Room Only' => 'Room Only',
-						'Self Catering' => 'Self Catering',
-						'Half Board' => 'Half Board',
-						'Bed & Breakfast' => 'Bed & Breakfast',
-						'Dinner, Bed and Breakfast' => 'Dinner, Bed and Breakfast',
-						'Dinner, Bed, Breakfast and Lunch' => 'Dinner, Bed, Breakfast and Lunch',
-						'Dinner, Bed, Breakfast, Lunch and Activites' => 'Dinner, Bed, Breakfast, Lunch and Activites',
-						'Bed, All Meals, Most Drinks (local), Fees, Activites' => 'Bed, All Meals, Most Drinks (local), Fees, Activites',
+						'' => esc_html__('None','tour-operator'),
+				esc_html__('Room Only','tour-operator') => esc_html__('Room Only','tour-operator'),
+				esc_html__('Self Catering','tour-operator') => esc_html__('Self Catering','tour-operator'),
+				esc_html__('Half Board','tour-operator') => esc_html__('Half Board','tour-operator'),
+				esc_html__('Bed & Breakfast','tour-operator') => esc_html__('Bed & Breakfast','tour-operator'),
+				esc_html__('Dinner, Bed and Breakfast','tour-operator') => esc_html__('Dinner, Bed and Breakfast','tour-operator'),
+				esc_html__('Dinner, Bed, Breakfast and Lunch','tour-operator') => esc_html__('Dinner, Bed, Breakfast and Lunch','tour-operator'),
+				esc_html__('Dinner, Bed, Breakfast, Lunch and Activites','tour-operator') => esc_html__('Dinner, Bed, Breakfast, Lunch and Activites','tour-operator'),
+				esc_html__('Bed, All Meals, Most Drinks (local), Fees, Activites','tour-operator') => esc_html__('Bed, All Meals, Most Drinks (local), Fees, Activites','tour-operator'),
 				)
 			);
 		}
@@ -438,7 +431,7 @@ class Lsx_Tour {
 			}
 			$rating_type = get_post_meta(get_the_ID(),'rating_type',true);
 			$rating_description = '';
-			if(false !== $rating_type && '' !== $rating_type && 'Unspecified' !== $rating_type){
+			if(false !== $rating_type && '' !== $rating_type && esc_html__('Unspecified','tour-operator') !== $rating_type){
 				$rating_description = ' <small>('.$rating_type.')</small>';
 			}
 			$html = $before.implode('',$ratings_array).$rating_description.$after;
@@ -454,10 +447,10 @@ class Lsx_Tour {
 		if('tour' === get_post_type()){
 		?>
 		<div class="tour-details">
-			<div class="meta info"><?php to_price('<span class="price">from ','</span>'); to_duration('<span class="duration">','</span>'); ?></div>
-			<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>
-			<?php to_connected_destinations('<div class="meta destination">'.__('Destinations','tour-operator').': ','</div>'); ?>				
-			<?php if(function_exists('to_connected_activities')){ to_connected_activities('<div class="meta activities">'.__('Activities','tour-operator').': ','</div>');} ?>
+			<div class="meta info"><?php to_price('<span class="price">'.esc_html__('from','tour-operator').' ','</span>'); to_duration('<span class="duration">','</span>'); ?></div>
+			<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.esc_html__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>
+			<?php to_connected_destinations('<div class="meta destination">'.esc_html__('Destinations','tour-operator').': ','</div>'); ?>
+			<?php if(function_exists('to_connected_activities')){ to_connected_activities('<div class="meta activities">'.esc_html__('Activities','tour-operator').': ','</div>');} ?>
 		</div>
 	<?php } }
 
@@ -543,4 +536,4 @@ class Lsx_Tour {
 	}
 
 }
-$to_tour = Lsx_Tour::get_instance();
+$to_tour = TO_Tour::get_instance();
