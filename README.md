@@ -20,20 +20,3 @@ Welcome to the LSX Tour Operator repository on GitHub. Here you can browse the s
 ## Support
 
 For support with using the Tour Operator plugin, please contact us at 
-
-## Hooks
-
-### Frontend
-
-### Backend
-
-#### Settings
-
-##### Post Type Tabs
-
- * 'to_framework_{post_type}_tab_general_settings_top'
- * 'to_framework_{post_type}_tab_general_settings_bottom' 
- * 'to_framework_{post_type}_tab_archive_settings_top'
- * 'to_framework_{post_type}_tab_archive_settings_bottom'
- * 'to_framework_{post_type}_tab_single_settings_top'
- * 'to_framework_{post_type}_tab_single_settings_bottom'
