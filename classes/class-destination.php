@@ -176,21 +176,10 @@ class Lsx_Destination{
 		}
 		
 		$fields[] = array( 'id' => 'connections_title',  'name' => 'Connections', 'type' => 'title' );
-		if(post_type_exists('accommodation')){
-			$fields[] = array( 'id' => 'accommodation_to_destination', 'name' => 'Accommodations related with this destination', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'accommodation','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true );
-		}
-		if(post_type_exists('activity')){
-			$fields[] = array( 'id' => 'activity_to_destination', 'name' => 'Activities related with this destination', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'activity','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true );
-		}
-		if(post_type_exists('special')){		
-			$fields[] = array( 'id' => 'special_to_destination', 'name' => 'Specials related with this destination', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'special','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true );
-		}
-		if(post_type_exists('review')){		
-			$fields[] = array( 'id' => 'review_to_destination', 'name' => 'Reviews related with this destination', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'review','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true );
-		}
-		if(post_type_exists('tour')){		
-			$fields[] = array( 'id' => 'tour_to_destination', 'name' => 'Tours related with this destination', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'tour','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true );
-		}
+
+		$fields[] = array( 'id' => 'accommodation_to_destination', 'name' => 'Accommodations related with this destination', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'accommodation','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true );
+		$fields[] = array( 'id' => 'tour_to_destination', 'name' => 'Tours related with this destination', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'tour','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true );
+
 
 		//Allow the addons to add additional fields.
 		$fields = apply_filters('to_destination_custom_fields',$fields);

@@ -425,20 +425,8 @@ class TO_Accommodation {
 		);
 		
 		//Connections
-		if(post_type_exists('activity')) {
-			$fields[] = array('id' => 'activity_title', 'name' => 'Activities', 'type' => 'title', 'cols' => 12);
-			$fields[] = array('id' => 'activity_to_accommodation', 'name' => 'Activities related with this accommodation', 'type' => 'post_select', 'use_ajax' => false, 'query' => array('post_type' => 'activity', 'nopagin' => true, 'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC'), 'repeatable' => true, 'allow_none' => true, 'cols' => 12);
-		}
 		$fields[] = array( 'id' => 'destinations_title',  'name' => 'Destinations', 'type' => 'title', 'cols' => 12 );
 		$fields[] = array( 'id' => 'destination_to_accommodation', 'name' => 'Destinations related with this accommodation', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'destination','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
-		if(post_type_exists('review')) {
-			$fields[] = array('id' => 'review_title', 'name' => 'Reviews', 'type' => 'title', 'cols' => 12);
-			$fields[] = array('id' => 'review_to_accommodation', 'name' => 'Reviews related with this accommodation', 'type' => 'post_select', 'use_ajax' => false, 'query' => array('post_type' => 'review', 'nopagin' => true, 'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC'), 'repeatable' => true, 'allow_none' => true, 'cols' => 12);
-		}
-		if(post_type_exists('special')) {
-			$fields[] = array('id' => 'specials_title', 'name' => 'Specials', 'type' => 'title', 'cols' => 12);
-			$fields[] = array('id' => 'special_to_accommodation', 'name' => 'Specials related with this accommodation', 'type' => 'post_select', 'use_ajax' => false, 'query' => array('post_type' => 'special', 'nopagin' => true, 'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC'), 'repeatable' => true, 'allow_none' => true, 'cols' => 12);
-		}
 		$fields[] = array( 'id' => 'tours_title',  'name' => 'Tours', 'type' => 'title', 'cols' => 12 );
 		$fields[] = array( 'id' => 'tour_to_accommodation', 'name' => 'Tours related with this accommodation', 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'tour','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
 		
