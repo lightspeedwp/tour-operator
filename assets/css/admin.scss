@@ -163,6 +163,10 @@ body.tour-operator_page_to-addons {
 		margin-bottom: 20px;
 	}
 
+	img {
+		width: 100%;
+	}
+
 	.thumbnail,
 	.video {
 		margin-bottom: 40px;
@@ -188,6 +192,12 @@ body.tour-operator_page_to-addons {
 		margin-bottom: 40px;
 		padding: 25px 30px;
 		position: relative;
+
+		&.box-top-image {
+			border-top: none;
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+		}
 
 		h2, h3 {
 			font-size: 17px;
@@ -231,6 +241,12 @@ body.tour-operator_page_to-addons {
 			font-family: 'Dashicons';
 			font-weight: 400;
 			-webkit-font-smoothing: antialiased;
+		}
+
+		&.box-top-image {
+			&:before {
+				display: none;
+			}
 		}
 
 		&.featured {
@@ -280,6 +296,10 @@ body.tour-operator_page_to-addons {
 			content: "\f307";
 		}
 
+		&.videos:before {
+			content: "\f236";
+		}
+
 		&.wetu:before {
 			content: "\f316";
 		}
@@ -321,61 +341,3 @@ body.tour-operator_page_to-addons {
 		}
 	}
 }
-
-/*.to_help_wrap {
-	.feature-box {
-		@extend %white-box;	
-	}
-
-	.to-help-section{
-		h3 {
-			@extend %heading-box;
-		}		
-		ul,ol {
-		    @extend %lists;
-		}
-		ul{
-			list-style-type: square;
-		}
-		ol{
-			list-style-type: decimal;			
-		}
-		p{
-			margin-left: 15px;			
-		}
-	}
-
-	.to-help-info {
-	    border: 1px solid #ccc;
-	    padding: 0 12px 12px;	
-	    margin-top:25px;
-
-	    strong {
-	    	color:black;
-	    }
-
-	    &:first-child {
-	    	margin-top:0px;
-	    }
-
-		dt , dd {
-		    display: inline;
-		    margin: 0;
-		}	
-		dt {
-		    font-weight: 700;
-		}
-		dd:after {
-		    content: '';
-		    display: block;
-		    height: .4em;
-		}						
-
-		.tribe-list-addons {
-		    list-style: circle inside;
-		    margin-bottom: 10px;
-		    margin-top: 10px;
-		    padding-left: 4px;
-		}
-	}
-}*/
