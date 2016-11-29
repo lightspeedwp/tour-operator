@@ -155,17 +155,17 @@ class Tour_Operator {
 		//Allow extra style attributes to wp_kses_post()
 		add_filter( 'safe_style_css', array( $this, 'safe_style_css' ) );
 		
-		require_once( TO_PATH . 'classes/class-lsx-to-admin.php' );
+		require_once( TO_PATH . 'classes/class-admin.php' );
 		if(class_exists('TO_Admin')){
 			$this->admin = new TO_Admin();
 		}
 
-		require_once( TO_PATH . 'classes/class-lsx-to-settings.php' );
+		require_once( TO_PATH . 'classes/class-settings.php' );
 		if(class_exists('TO_Settings')){
 			$this->settings = new TO_Settings();
 		}
 
-		require_once( TO_PATH . 'classes/class-lsx-to-frontend.php' );
+		require_once( TO_PATH . 'classes/class-frontend.php' );
 		if(class_exists('TO_Frontend')){
 			$this->frontend = new TO_Frontend();
 			add_action( 'to_content', array( $this->frontend->redirects, 'content_part' ), 10 , 2 );
@@ -195,7 +195,7 @@ class Tour_Operator {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @return    object|Module_Template    A single instance of this class.
+	 * @return    object    A single instance of this class.
 	 */
 	public static function get_instance() {
 		// If the single instance hasn't been set, set it now.

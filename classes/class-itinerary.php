@@ -2,7 +2,7 @@
 /**
  * Tours Itinerary Query
  *
- * @package   Lsx_Itinerary_Query
+ * @package   TO_Itinerary_Query
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -12,17 +12,17 @@
 /**
  * Main plugin class.
  *
- * @package Lsx_Itinerary_Query
+ * @package TO_Itinerary_Query
  * @author  LightSpeed
  */
-class Lsx_Itinerary_Query {
+class TO_Itinerary_Query {
 	
 	/**
 	 * Holds class instance
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var      object|Lsx_Itinerary_Query
+	 * @var      object
 	 */
 	public $has_itinerary = false;	
 	
@@ -31,7 +31,7 @@ class Lsx_Itinerary_Query {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var      array|Lsx_Itinerary_Query
+	 * @var      array
 	 */
 	public $itineraries = false;	
 	
@@ -40,7 +40,7 @@ class Lsx_Itinerary_Query {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var      array|Lsx_Itinerary_Query
+	 * @var      array
 	 */
 	public $itinerary = false;	
 	
@@ -49,7 +49,7 @@ class Lsx_Itinerary_Query {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var      array|Lsx_Itinerary_Query
+	 * @var      array
 	 */
 	public $count = 0;
 	
@@ -58,7 +58,7 @@ class Lsx_Itinerary_Query {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var      array|Lsx_Itinerary_Query
+	 * @var      array
 	 */
 	public $index = 0;	
 	
@@ -67,7 +67,7 @@ class Lsx_Itinerary_Query {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var      string|Lsx_Itinerary_Query
+	 * @var      string
 	 */
 	public $post_id = false;	
 
@@ -132,7 +132,7 @@ function to_has_itinerary() {
 	global $tour_itinerary;
 	$has_itinerary = false;
 	if(null === $tour_itinerary){
-		$tour_itinerary = new Lsx_Itinerary_Query();
+		$tour_itinerary = new TO_Itinerary_Query();
 	}
 	if(is_object($tour_itinerary)){
 		$has_itinerary = $tour_itinerary->has_itinerary();
@@ -389,9 +389,11 @@ function to_itinerary_class($classes = false) {
  * @category 	itinerary
  */
 function to_itinerary_read_more(){
-	if(to_itinerary_needs_read_more($label=__('Read More','tour-operator'))){ ?>
+	if(to_itinerary_needs_read_more()){
+		$label=esc_html__('Read More','tour-operator')
+		?>
 		<div class="view-more aligncenter">
-			<a href="#" class="btn"><?php echo esc_html_e($label,'tour-operator'); ?></a>
+			<a href="#" class="btn"><?php esc_html_e($label,'tour-operator'); ?></a>
 		</div>		
 	<?php
 	}

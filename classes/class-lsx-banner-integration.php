@@ -138,7 +138,7 @@ class TO_LSX_Banner_Integration {
 		}
 		if(is_singular('post')){
 			?>
-			<div class="banner-content"><?php to_post_meta(); ?></div>
+			<div class="banner-content"><?php lsx_post_meta(); ?></div>
 			<?php 		
 		}
 	}

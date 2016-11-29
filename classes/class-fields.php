@@ -1,6 +1,6 @@
 <?php
 /**
- * CMB Field Patterns for LSX
+ * CMB Field Patterns for the Tour Operator Plugin
  *
  * @package   TO_Field_Patterns
  * @author    LightSpeed
@@ -42,19 +42,19 @@ class TO_Field_Pattern {
 	 */
 	public static function videos() {
 		return array(
-			array( 'id' => 'video_title',  'name' => __('Videos','tour-operator'), 'type' => 'title' ),
+			array( 'id' => 'video_title',  'name' => esc_html__('Videos','tour-operator'), 'type' => 'title' ),
 			array(
 					'id' => 'videos',
 					'name' => '',
-					'single_name' => 'Video',
+					'single_name' => esc_html__('Video','tour-operator'),
 					'type' => 'group',
 					'repeatable' => true,
 					'sortable' => true,
 					'fields' => array(
-							array( 'id' => 'title',  'name' => 'Title', 'type' => 'text' ),
-							array( 'id' => 'description', 'name' => 'Description', 'type' => 'textarea', 'options' => array( 'editor_height' => '100' ) ),
-							array( 'id' => 'url',  'name' => 'Url', 'type' => 'text' ),
-							array( 'id' => 'thumbnail', 'name' => 'Thumbnail', 'type' => 'image', 'repeatable' => false, 'show_size' => false ),
+							array( 'id' => 'title',  'name' => esc_html__('Title','tour-operator'), 'type' => 'text' ),
+							array( 'id' => 'description', 'name' => esc_html__('Description','tour-operator'), 'type' => 'textarea', 'options' => array( 'editor_height' => '100' ) ),
+							array( 'id' => 'url',  'name' => esc_html__('Url','tour-operator'), 'type' => 'text' ),
+							array( 'id' => 'thumbnail', 'name' => esc_html__('Thumbnail','tour-operator'), 'type' => 'image', 'repeatable' => false, 'show_size' => false ),
 					),
 					'desc' => ''
 			)
@@ -66,8 +66,8 @@ class TO_Field_Pattern {
 	 */
 	public static function map() {
 		return array(
-				array( 'id' => 'location_title',  'name' => 'Location', 'type' => 'title', 'cols' => 12 ),
-				array( 'id' => 'location', 'name' => 'Address', 'type' => 'gmap', 'cols' => 12 )
+				array( 'id' => 'location_title',  'name' => esc_html__('Location','tour-operator'), 'type' => 'title', 'cols' => 12 ),
+				array( 'id' => 'location', 'name' => esc_html__('Address','tour-operator'), 'type' => 'gmap', 'cols' => 12 )
 		);
 	}	
 }
