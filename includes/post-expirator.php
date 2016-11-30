@@ -123,7 +123,7 @@ function to_expirationdate_meta_box($post) {
 	$rv[] = wp_nonce_field( 'to_expirationdate_update_post_meta', '_to_expirationdate_update_post_meta_nonce', true, false );
 	echo wp_kses_post(implode("\n",$rv));
 
-	echo '<br/>'.esc_htmlesc_html__('How to expire','tour-operator').': ';
+	echo '<br/>'.esc_html__('How to expire','tour-operator').': ';
 	echo wp_kses_post(to_post_expirator_expire_type(array('type' => $post->post_type, 'name'=>'to_expirationdate_expiretype','selected'=>$expiretype,'disabled'=>$disabled)));
 }
 
