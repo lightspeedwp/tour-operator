@@ -55,7 +55,7 @@ function to_archive_entry_top() {
 			<div class="col-sm-8">
 			
 				<header class="page-header">
-					<?php the_title( '<h3 class="page-title"><a href="'.get_permalink().'" title="'.__('Read more','tour-operator').'">', '</a></h3>' ); ?>
+					<?php the_title( '<h3 class="page-title"><a href="'.get_permalink().'" title="'.esc_html__('Read more','tour-operator').'">', '</a></h3>' ); ?>
 					<?php to_tagline('<p class="tagline">','</p>'); ?>
 				</header><!-- .entry-header -->				
 	<?php }
@@ -103,9 +103,9 @@ function to_single_entry_bottom() {
  */
 function to_accommodation_single_content_bottom() {
 	if(is_singular('accommodation')){
-		to_accommodation_units('<section id="{units}"><h2 class="section-title">'.__('{units}','tour-operator').'</h2><div class="info row">','</div></section>');
+		to_accommodation_units('<section id="{units}"><h2 class="section-title">'.esc_html__('{units}','tour-operator').'</h2><div class="info row">','</div></section>');
 		
-		to_accommodation_facilities('<section id="facilities"><h2 class="section-title">'.__('Facilities','tour-operator').'</h2><div class="info row">','</div></section>');
+		to_accommodation_facilities('<section id="facilities"><h2 class="section-title">'.esc_html__('Facilities','tour-operator').'</h2><div class="info row">','</div></section>');
 		
 		to_included_block();
 
@@ -117,22 +117,22 @@ function to_accommodation_single_content_bottom() {
 		<?php }
 
 		if(function_exists('to_gallery')) {
-			to_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>');
+			to_gallery('<section id="gallery"><h2 class="section-title">'.esc_html__('Gallery','tour-operator').'</h2>','</section>');
 		}elseif(class_exists('envira_gallery')) {
-			to_envira_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>');
+			to_envira_gallery('<section id="gallery"><h2 class="section-title">'.esc_html__('Gallery','tour-operator').'</h2>','</section>');
 		}
 
 		if(function_exists('to_videos')) {
-			to_videos('<div id="videos"><h2 class="section-title">'.__('Videos','tour-operator').'</h2>','</div>');
+			to_videos('<div id="videos"><h2 class="section-title">'.esc_html__('Videos','tour-operator').'</h2>','</div>');
 		}elseif(class_exists('Envira_Videos')) {
-			to_envira_videos('<div id="videos"><h2 class="section-title">'.__('Videos','tour-operator').'</h2>','</div>');
+			to_envira_videos('<div id="videos"><h2 class="section-title">'.esc_html__('Videos','tour-operator').'</h2>','</div>');
 		}
 
-		to_related_items('travel-style','<section id="related-items"><h2 class="section-title">'.__(to_get_post_type_section_title('accommodation', 'similar', 'Related Accommodation'),'tour-operator').'</h2>','</section>');	
+		to_related_items('travel-style','<section id="related-items"><h2 class="section-title">'.esc_html__(to_get_post_type_section_title('accommodation', 'similar', 'Related Accommodation'),'tour-operator').'</h2>','</section>');	
 
 		$connected_tours = get_post_meta(get_the_ID(),'tour_to_accommodation',false); 
 		if(to_accommodation_display_connected_tours() && post_type_exists('tour') && is_array($connected_tours) && !empty($connected_tours)){
-			to_related_items($connected_tours,'<section id="related-items"><h2 class="section-title">'.__('Related Tours','tour-operator').'</h2>','</section>',true,'tour');
+			to_related_items($connected_tours,'<section id="related-items"><h2 class="section-title">'.esc_html__('Related Tours','tour-operator').'</h2>','</section>',true,'tour');
 		}	
 	}
 }
@@ -182,15 +182,15 @@ function to_destination_single_content_bottom() {
 		<?php }
 
 		if(function_exists('to_gallery')) {
-			to_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>');
+			to_gallery('<section id="gallery"><h2 class="section-title">'.esc_html__('Gallery','tour-operator').'</h2>','</section>');
 		}elseif(class_exists('envira_gallery')) {
-			to_envira_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>');
+			to_envira_gallery('<section id="gallery"><h2 class="section-title">'.esc_html__('Gallery','tour-operator').'</h2>','</section>');
 		}
 
 		if(function_exists('to_videos')) {
-			to_videos('<div id="videos"><h2 class="section-title">'.__('Videos','tour-operator').'</h2>','</div>');
+			to_videos('<div id="videos"><h2 class="section-title">'.esc_html__('Videos','tour-operator').'</h2>','</div>');
 		}elseif(class_exists('Envira_Videos')) {
-			to_envira_videos('<div id="videos"><h2 class="section-title">'.__('Videos','tour-operator').'</h2>','</div>');
+			to_envira_videos('<div id="videos"><h2 class="section-title">'.esc_html__('Videos','tour-operator').'</h2>','</div>');
 		}
 	}	
 }
@@ -208,8 +208,8 @@ function to_destination_archive_entry_bottom() {
 		</div>
 		<div class="col-sm-4">
 			<div class="destination-details">
-				<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>				
-				<?php if(function_exists('to_connected_activities')){ to_connected_activities('<div class="meta activities">'.__('Activities','tour-operator').': ','</div>'); } ?>
+				<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.esc_html__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>				
+				<?php if(function_exists('to_connected_activities')){ to_connected_activities('<div class="meta activities">'.esc_html__('Activities','tour-operator').': ','</div>'); } ?>
 			</div>
 		</div>
 	</div>
@@ -228,10 +228,10 @@ function to_tour_single_content_bottom() {
 		<section id="highlights">
 			<div class="row">
 				<div class="col-sm-6">
-					<?php to_highlights('<div class="highlights"><h2 class="section-title">'.__('Highlights','tour-operator').'</h2>','</div>'); ?>
+					<?php to_highlights('<div class="highlights"><h2 class="section-title">'.esc_html__('Highlights','tour-operator').'</h2>','</div>'); ?>
 				</div>
 				<div class="col-sm-6">
-					<?php to_best_time_to_visit('<div class="best-time-to-visit"><h2 class="section-title">'.__('Best time to visit','tour-operator').'</h2><div class="best-time-to-visit-content">','</div></div>'); ?>
+					<?php to_best_time_to_visit('<div class="best-time-to-visit"><h2 class="section-title">'.esc_html__('Best time to visit','tour-operator').'</h2><div class="best-time-to-visit-content">','</div></div>'); ?>
 				</div>	
 			</div>				
 		</section>
@@ -261,9 +261,9 @@ function to_tour_single_content_bottom() {
 											</div>
 										</div>
 										<div class="col-sm-4">
-											<?php to_itinerary_destinations('<div class="meta destination">'.__('Destination','tour-operator').': ','</div>'); ?>
-											<?php to_itinerary_accommodation('<div class="meta accommodation">'.__('Accommodation','tour-operator').': ','</div>'); ?>
-											<?php to_itinerary_activities('<div class="meta activities">'.__('Activites','tour-operator').': ','</div>'); ?>
+											<?php to_itinerary_destinations('<div class="meta destination">'.esc_html__('Destination','tour-operator').': ','</div>'); ?>
+											<?php to_itinerary_accommodation('<div class="meta accommodation">'.esc_html__('Accommodation','tour-operator').': ','</div>'); ?>
+											<?php to_itinerary_activities('<div class="meta activities">'.esc_html__('Activites','tour-operator').': ','</div>'); ?>
 										</div>
 									</div>
 								</div>
@@ -285,20 +285,20 @@ function to_tour_single_content_bottom() {
 		<?php }
 
 		if(function_exists('to_gallery')) {
-			to_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>');
+			to_gallery('<section id="gallery"><h2 class="section-title">'.esc_html__('Gallery','tour-operator').'</h2>','</section>');
 		}elseif(class_exists('envira_gallery')) {
-			to_envira_gallery('<section id="gallery"><h2 class="section-title">'.__('Gallery','tour-operator').'</h2>','</section>');
+			to_envira_gallery('<section id="gallery"><h2 class="section-title">'.esc_html__('Gallery','tour-operator').'</h2>','</section>');
 		}
 
 		if(function_exists('to_videos')) {
-			to_videos('<div id="videos"><h2 class="section-title">'.__('Videos','tour-operator').'</h2>','</div>');
+			to_videos('<div id="videos"><h2 class="section-title">'.esc_html__('Videos','tour-operator').'</h2>','</div>');
 		}elseif(class_exists('Envira_Videos')) {
-			to_envira_videos('<div id="videos"><h2 class="section-title">'.__('Videos','tour-operator').'</h2>','</div>');
+			to_envira_videos('<div id="videos"><h2 class="section-title">'.esc_html__('Videos','tour-operator').'</h2>','</div>');
 		}
 
 		
 
-		to_related_items('travel-style','<section id="related-items"><h2 class="section-title">'.__(to_get_post_type_section_title('tour', 'related', 'Related Tours'),'tour-operator').'</h2>','</section>');
+		to_related_items('travel-style','<section id="related-items"><h2 class="section-title">'.esc_html__(to_get_post_type_section_title('tour', 'related', 'Related Tours'),'tour-operator').'</h2>','</section>');
 	}	
 }
 
@@ -316,9 +316,9 @@ function to_tour_archive_entry_bottom() {
 		<div class="col-sm-4">
 			<div class="tour-details">
 				<div class="meta info"><?php to_price('<span class="price">from ','</span>'); to_duration('<span class="duration">','</span>'); ?></div>
-				<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>
-				<?php to_connected_destinations('<div class="meta destination">'.__('Destinations','tour-operator').': ','</div>'); ?>				
-				<?php if(function_exists('to_connected_activities')){ to_connected_activities('<div class="meta activities">'.__('Activities','tour-operator').': ','</div>'); } ?>
+				<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.esc_html__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>
+				<?php to_connected_destinations('<div class="meta destination">'.esc_html__('Destinations','tour-operator').': ','</div>'); ?>				
+				<?php if(function_exists('to_connected_activities')){ to_connected_activities('<div class="meta activities">'.esc_html__('Activities','tour-operator').': ','</div>'); } ?>
 			</div>
 		</div>
 	</div>

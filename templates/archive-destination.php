@@ -203,7 +203,7 @@
 
 			<?php endif ?>
 			
-			<?php to_travel_styles( '<section id="travel-styles"><h2 class="section-title">'. __( 'Travel Styles','tour-operator' ) .'</h2>', '</section>' ) ?>
+			<?php to_travel_styles( '<section id="travel-styles"><h2 class="section-title">'. esc_html_e( 'Travel Styles','tour-operator' ) .'</h2>', '</section>' ) ?>
 			
 			<?php if(function_exists('to_has_map') && to_has_map()){ ?>
 				<section id="destination-map">

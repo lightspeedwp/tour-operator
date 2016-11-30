@@ -2,7 +2,7 @@
 /**
  * Template Tags
  *
- * @package   Lsx_Tour_Operators
+ * @package   Tour Operators
  * @license   GPL3
  */
 

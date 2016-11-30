@@ -20,11 +20,11 @@ if(1 !== $to_archive){$to_archive = false;}
 				<h3><?php esc_html_e('Summary','tour-operator');?></h3>
 				<div class="meta info"><?php to_price('<span class="price">from ','</span>'); to_duration('<span class="duration">','</span>'); ?></div>
 				<div class="meta taxonomies">
-					<?php to_departure_point('<div class="meta departure destination">'.__('Departs from','tour-operator').': ','</div>'); ?>
-					<?php to_end_point('<div class="meta end-point destination">'.__('Ends in','tour-operator').': ','</div>'); ?>						
-					<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>
-					<?php to_connected_destinations('<div class="meta destination">'.__('Destinations','tour-operator').': ','</div>'); ?>	
-					<?php if(function_exists('to_connected_activities')){ to_connected_activities('<div class="meta activities">'.__('Activities','tour-operator').': ','</div>'); } ?>
+					<?php to_departure_point('<div class="meta departure destination">'.esc_html_e('Departs from','tour-operator').': ','</div>'); ?>
+					<?php to_end_point('<div class="meta end-point destination">'.esc_html_e('Ends in','tour-operator').': ','</div>'); ?>
+					<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.esc_html_e('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>
+					<?php to_connected_destinations('<div class="meta destination">'.esc_html_e('Destinations','tour-operator').': ','</div>'); ?>
+					<?php if(function_exists('to_connected_activities')){ to_connected_activities('<div class="meta activities">'.esc_html_e('Activities','tour-operator').': ','</div>'); } ?>
 				</div>
 				<?php to_sharing(); ?>
 			</div>

@@ -1,7 +1,7 @@
 ﻿=== Tour Operators ===
 Contributors: feedmymedia
 Donate link: https://www.lsdev.biz/
-Tags: tour operator software, tour booking, tour operator, tour booking system, tour itineraries, tour, tours, trekking, destinations, accommodation, accommodation listings, online booking, google maps, 
+Tags: tour operator, tour operators, tour, tours, tour itinerary, tour itineraries, accommodation, accommodation listings, destinations, regions, tourism, lsx
 Requires at least: 4.3
 Tested up to: 4.6
 Stable tag: 1.0
