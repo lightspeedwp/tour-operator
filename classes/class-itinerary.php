@@ -300,7 +300,7 @@ function lsx_to_itinerary_thumbnail() {
 		if(false === $thumbnail_src || '' === $thumbnail_src){
 			$thumbnail_src = LSX_TO_PATHPlaceholders::placeholder_url(null,'tour');
 		}
-		echo wp_kses_post(apply_filters( 'to_lazyload_filter_images', '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="'.$thumbnail_src.'" />' ));
+		echo wp_kses_post(apply_filters( 'lsx_to_lazyload_filter_images', '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="'.$thumbnail_src.'" />' ));
 	}
 }
 
@@ -375,7 +375,7 @@ function lsx_to_itinerary_class($classes = false) {
 		if(!is_array($classes)) {
 			$classes = explode(' ',$classes);
 		}
-		$classes = apply_filters( 'to_itinerary_class', $classes, $post->ID );
+		$classes = apply_filters( 'lsx_to_itinerary_class', $classes, $post->ID );
 	}
 	echo 'class="'.esc_attr(implode(' ',$classes)).'"';
 }

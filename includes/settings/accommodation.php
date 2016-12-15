@@ -10,7 +10,7 @@
 	<div id="ui-general" class="ui-tab active">
 		<table class="form-table">
 			<tbody>
-			<?php do_action('to_framework_accommodation_tab_content','accommodation','general'); ?>
+			<?php do_action('lsx_to_framework_accommodation_tab_content','accommodation','general'); ?>
 			</tbody>
 		</table>
 	</div>
@@ -18,7 +18,7 @@
 	<div id="ui-placeholders" class="ui-tab">
 		<table class="form-table">
 			<tbody>
-			<?php do_action('to_framework_accommodation_tab_content','accommodation','placeholders'); ?>
+			<?php do_action('lsx_to_framework_accommodation_tab_content','accommodation','placeholders'); ?>
 			</tbody>
 		</table>
 	</div>
@@ -26,7 +26,7 @@
 	<div id="ui-archives" class="ui-tab">
 		<table class="form-table">
 			<tbody>
-			<?php do_action('to_framework_accommodation_tab_content','accommodation','archives'); ?>
+			<?php do_action('lsx_to_framework_accommodation_tab_content','accommodation','archives'); ?>
 			</tbody>
 		</table>
 	</div>
@@ -34,9 +34,9 @@
 	<div id="ui-single" class="ui-tab">
 		<table class="form-table">
 			<tbody>
-			<?php do_action('to_framework_accommodation_tab_content','accommodation','single'); ?>
+			<?php do_action('lsx_to_framework_accommodation_tab_content','accommodation','single'); ?>
 			</tbody>
 		</table>
 	</div>
-	<?php do_action('to_framework_accommodation_tab_bottom','accommodation'); ?>
+	<?php do_action('lsx_to_framework_accommodation_tab_bottom','accommodation'); ?>
 </div>

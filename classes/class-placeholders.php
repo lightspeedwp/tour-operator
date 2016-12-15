@@ -58,10 +58,10 @@ class LSX_TO_PATHPlaceholders {
 		$this->post_types[] = 'post';
 		$this->post_types[] = 'page';
 
-		add_action('to_framework_display_tab_content',array($this,'display_settings'),15,1);
+		add_action('lsx_to_framework_display_tab_content',array($this,'display_settings'),15,1);
 
 		foreach($this->post_types as $post_type){
-			add_action( 'to_framework_'.$post_type.'_tab_content', array( $this, 'placeholder_settings' ),10,2 );
+			add_action( 'lsx_to_framework_'.$post_type.'_tab_content', array( $this, 'placeholder_settings' ),10,2 );
 		}
 		
 		if( !is_admin() ){
@@ -271,7 +271,7 @@ class LSX_TO_PATHPlaceholders {
 
 			} 
 
-			$image = apply_filters('to_placeholder_url',$image);
+			$image = apply_filters('lsx_to_placeholder_url',$image);
 
 		}
 		return $image;

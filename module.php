@@ -168,7 +168,7 @@ class Tour_Operator {
 		require_once( LSX_TO_PATHPATH . 'classes/class-frontend.php' );
 		if(class_exists('LSX_TO_PATHFrontend')){
 			$this->frontend = new LSX_TO_PATHFrontend();
-			add_action( 'to_content', array( $this->frontend->redirects, 'content_part' ), 10 , 2 );
+			add_action( 'lsx_to_content', array( $this->frontend->redirects, 'content_part' ), 10 , 2 );
 		}
 
 		if(!class_exists('LSX_TO_PATHPlaceholders')){
@@ -266,8 +266,8 @@ class Tour_Operator {
 				'accommodation'	=> esc_html__('Accommodation','tour-operator'),
 				'tour'			=> esc_html__('Tour','tour-operator'),
 		);		
-		$this->post_types = apply_filters('to_post_types',$this->post_types);
-		$this->post_types_singular = apply_filters('to_post_types_singular',$this->post_types_singular);
+		$this->post_types = apply_filters('lsx_to_post_types',$this->post_types);
+		$this->post_types_singular = apply_filters('lsx_to_post_types_singular',$this->post_types_singular);
 		$this->active_post_types = array_keys($this->post_types);
 
 		$this->taxonomies = array(
@@ -284,8 +284,8 @@ class Tour_Operator {
 				'facility'	=> __('Facilities','tour-operator'),
 				'location'	=> __('Locations','tour-operator')
 		);				
-		$this->taxonomies = apply_filters('to_framework_taxonomies',$this->taxonomies);
-		$this->taxonomies_plural = apply_filters('to_framework_taxonomies_plural',$this->taxonomies_plural);
+		$this->taxonomies = apply_filters('lsx_to_framework_taxonomies',$this->taxonomies);
+		$this->taxonomies_plural = apply_filters('lsx_to_framework_taxonomies_plural',$this->taxonomies_plural);
 	}
 
 	/**
@@ -318,7 +318,7 @@ class Tour_Operator {
 			}
 		}
 		$this->connections = $this->create_post_connections();	
-		$this->single_fields = apply_filters('to_search_fields',array());
+		$this->single_fields = apply_filters('lsx_to_search_fields',array());
 	}
 
 	/**
@@ -326,7 +326,7 @@ class Tour_Operator {
 	 */
 	public function create_post_connections() {
 		$connections = array();
-		$post_types = apply_filters('to_post_types',$this->post_types);
+		$post_types = apply_filters('lsx_to_post_types',$this->post_types);
 		foreach($post_types as $key_a => $values_a){
 			foreach($this->post_types as $key_b => $values_b){
 				// Make sure we dont try connect a post type to itself.
@@ -342,8 +342,8 @@ class Tour_Operator {
 	 * Include the post type for the search integration
 	 */
 	public function lsx_to_search_integration(){
-		add_filter( 'to_search_post_types', array( $this, 'post_types_filter') );
-		add_filter( 'to_search_taxonomies', array( $this, 'taxonomies_filter') );	
+		add_filter( 'lsx_to_search_post_types', array( $this, 'post_types_filter') );
+		add_filter( 'lsx_to_search_taxonomies', array( $this, 'taxonomies_filter') );
 	}	
 
 	/**

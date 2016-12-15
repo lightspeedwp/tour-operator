@@ -10,7 +10,7 @@
 	<div id="ui-general" class="ui-tab active">
 		<table class="form-table" style="margin-top:-13px !important;">
 			<tbody>
-			<?php do_action('to_framework_dashboard_tab_content','general'); ?>
+			<?php do_action('lsx_to_framework_dashboard_tab_content','general'); ?>
 			</tbody>
 		</table>
 	</div>
@@ -19,11 +19,11 @@
 		<div id="ui-currencies" class="ui-tab">
 			<table class="form-table" style="margin-top:-13px !important;">
 				<tbody>
-				<?php do_action('to_framework_dashboard_tab_content','currency_switcher'); ?>
+				<?php do_action('lsx_to_framework_dashboard_tab_content','currency_switcher'); ?>
 				</tbody>
 			</table>
 		</div>
 	<?php } ?>
 
-	<?php do_action('to_framework_dashboard_tab_bottom','general'); ?>
+	<?php do_action('lsx_to_framework_dashboard_tab_bottom','general'); ?>
 </div>

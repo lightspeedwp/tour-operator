@@ -32,7 +32,7 @@ class LSX_TO_PATHField_Pattern {
 	 * Returns the fields needed for a videos, repeatable box.
 	 */
 	public static function price() {
-		return apply_filters('to_price_field_pattern',array(
+		return apply_filters('lsx_to_price_field_pattern',array(
 			array( 'id' => 'price',  'name' => 'Price', 'type' => 'text' )			
 		));
 	}	

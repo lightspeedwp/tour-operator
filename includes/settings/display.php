@@ -15,7 +15,7 @@
 	<div id="ui-general" class="ui-tab active">
 		<table class="form-table">
 			<tbody>
-			<?php do_action('to_framework_display_tab_content','basic'); ?>		
+			<?php do_action('lsx_to_framework_display_tab_content','basic'); ?>
 			</tbody>
 		</table>	  
 	</div>
@@ -24,7 +24,7 @@
 		<div id="ui-currencies" class="ui-tab">
 			<table class="form-table">
 				<tbody>
-				<?php do_action('to_framework_display_tab_content','currency_switcher'); ?>
+				<?php do_action('lsx_to_framework_display_tab_content','currency_switcher'); ?>
 				</tbody>
 			</table>
 		</div>
@@ -34,7 +34,7 @@
 		<div id="ui-maps" class="ui-tab">
 			<table class="form-table">
 				<tbody>
-				<?php do_action('to_framework_display_tab_content','maps'); ?>
+				<?php do_action('lsx_to_framework_display_tab_content','maps'); ?>
 				</tbody>
 			</table>
 		</div>
@@ -43,7 +43,7 @@
 	<div id="ui-placeholders" class="ui-tab">
 		<table class="form-table">
 			<tbody>
-			<?php do_action('to_framework_display_tab_content','placeholders'); ?>
+			<?php do_action('lsx_to_framework_display_tab_content','placeholders'); ?>
 			</tbody>
 		</table>
 	</div>
@@ -51,11 +51,11 @@
 	<div id="ui-advanced" class="ui-tab">
 		<table class="form-table">
 			<tbody>
-			<?php do_action('to_framework_display_tab_content','advanced'); ?>		
+			<?php do_action('lsx_to_framework_display_tab_content','advanced'); ?>
 			</tbody>
 		</table>
 	</div>
 
-	<?php do_action('to_framework_display_tab_bottom','display'); ?>
+	<?php do_action('lsx_to_framework_display_tab_bottom','display'); ?>
 
 </div>

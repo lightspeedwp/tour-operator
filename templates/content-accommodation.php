@@ -27,7 +27,7 @@ if(1 !== $to_archive){$to_archive = false;}
 						<?php to_accommodation_spoken_languages('<div class="meta spoken_languages">'.esc_html_e('Spoken Languages','tour-operator').': <span>','</span></div>'); ?>
 						<?php to_accommodation_activity_friendly('<div class="meta friendly">'.esc_html_e('Friendly','tour-operator').': <span>','</span></div>'); ?>
 						<?php to_accommodation_special_interests('<div class="meta special_interests">'.esc_html_e('Special Interests','tour-operator').': <span>','</span></div>'); ?>
-						<?php if(function_exists('to_connected_activities')) { to_connected_activities('<div class="meta activity">'.esc_html_e('Activities','tour-operator').': ','</div>'); } ?>
+						<?php if(function_exists('lsx_to_connected_activities')) { to_connected_activities('<div class="meta activity">'.esc_html_e('Activities','tour-operator').': ','</div>'); } ?>
 						<?php to_connected_destinations('<div class="meta destination">'.esc_html_e('Location','tour-operator').': ','</div>'); ?>
 					</div>
 					<?php to_sharing(); ?>

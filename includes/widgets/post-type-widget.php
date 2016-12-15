@@ -187,7 +187,7 @@ class LSX_TO_PATHWidget extends WP_Widget {
 	        
 	        	if ('video' != $post_type) {
 	        		$title = $before_title . $link_open . $title . $link_close . $after_title;
-	        		echo wp_kses_post(apply_filters('to_post_type_widget_title', $title));
+	        		echo wp_kses_post(apply_filters('lsx_to_post_type_widget_title', $title));
 	        	}
 	        	if ( false != $tagline ) {
 	        		echo wp_kses_post('<p class="tagline">'.$tagline.'</p>');
@@ -564,7 +564,7 @@ class LSX_TO_PATHWidget extends WP_Widget {
 		if ($widget_query->have_posts()) {
 
 			if('review' === $post_type){
-				add_filter('to_placeholder_url', array($this,'placeholder') , 10 , 1 );
+				add_filter('lsx_to_placeholder_url', array($this,'placeholder') , 10 , 1 );
 			}
 			
 			$count = 1;
@@ -600,7 +600,7 @@ class LSX_TO_PATHWidget extends WP_Widget {
 			wp_reset_postdata();
 
 			if('review' === $post_type){
-				remove_filter('to_placeholder_url', array($this,'placeholder') , 10 , 1 );
+				remove_filter('lsx_to_placeholder_url', array($this,'placeholder') , 10 , 1 );
 			}				
 		}
 	}
@@ -751,7 +751,7 @@ class LSX_TO_PATHWidget extends WP_Widget {
 			$template = "{$slug}.php";
 		}
 		$original_name = $template;
-		$path = apply_filters('to_widget_path','',get_post_type());
+		$path = apply_filters('lsx_to_widget_path','',get_post_type());
 		
 		if ( '' == locate_template( array( $template ) ) && file_exists( $path.'templates/'.$template) ) {
 			$template = $path.'templates/'.$template;

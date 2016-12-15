@@ -28,7 +28,7 @@ class LSX_TO_PATHSettings extends Tour_Operator {
 		$this->options = get_option('_to_settings',false);	
 		$this->set_vars();
 
-		add_filter( 'to_framework_settings_tabs', array( $this, 'register_settings_tabs') );
+		add_filter( 'lsx_to_framework_settings_tabs', array( $this, 'register_settings_tabs') );
 
 		if(isset($_GET['welcome-page'])) {
 			$display_page = !empty(sanitize_text_field(wp_unslash($_GET['welcome-page']))) ? sanitize_text_field(wp_unslash($_GET['welcome-page'])) : '';
@@ -54,13 +54,13 @@ class LSX_TO_PATHSettings extends Tour_Operator {
 			$uix->register_pages( $pages );
 
 			foreach($this->post_types as $post_type => $label){
-				add_action( 'to_framework_'.$post_type.'_tab_content', array( $this, 'general_settings' ), 5 , 2 );
-				add_action( 'to_framework_'.$post_type.'_tab_content', array( $this, 'archive_settings' ), 12 , 2 );
-				add_action( 'to_framework_'.$post_type.'_tab_content', array( $this, 'single_settings' ), 15 , 2 );
+				add_action( 'lsx_to_framework_'.$post_type.'_tab_content', array( $this, 'general_settings' ), 5 , 2 );
+				add_action( 'lsx_to_framework_'.$post_type.'_tab_content', array( $this, 'archive_settings' ), 12 , 2 );
+				add_action( 'lsx_to_framework_'.$post_type.'_tab_content', array( $this, 'single_settings' ), 15 , 2 );
 			}
 			
-			add_action('to_framework_dashboard_tab_content',array($this,'dashboard_tab_content'),10,1);
-			add_action('to_framework_display_tab_content',array($this,'display_tab_content'),10,1);
+			add_action('lsx_to_framework_dashboard_tab_content',array($this,'dashboard_tab_content'),10,1);
+			add_action('lsx_to_framework_display_tab_content',array($this,'display_tab_content'),10,1);
 		}
 	}
 
@@ -84,7 +84,7 @@ class LSX_TO_PATHSettings extends Tour_Operator {
 	public function register_settings_tabs($tabs){
 		// This array is for the Admin Pages. each element defines a page that is seen in the admin
 		
-		$post_types = apply_filters('to_post_types',$this->post_types);
+		$post_types = apply_filters('lsx_to_post_types',$this->post_types);
 		
 		if(false !== $post_types && !empty($post_types)){
 			foreach($post_types as $index => $title){
@@ -98,7 +98,7 @@ class LSX_TO_PATHSettings extends Tour_Operator {
 					'page_title'        => '',
 					'page_description'  => '',
 					'menu_title'        => $title,
-					'template'          => apply_filters('to_settings_path',LSX_TO_PATHPATH,$index).'includes/settings/'.$index.'.php',
+					'template'          => apply_filters('lsx_to_settings_path',LSX_TO_PATHPATH,$index).'includes/settings/'.$index.'.php',
 					'default'	 		=> false,
 					'disabled'			=> $disabled
 				);
@@ -154,7 +154,7 @@ class LSX_TO_PATHSettings extends Tour_Operator {
 		}
 	
 		$additional_tabs = false;
-		$additional_tabs = apply_filters('to_framework_settings_tabs',$additional_tabs);
+		$additional_tabs = apply_filters('lsx_to_framework_settings_tabs',$additional_tabs);
 		if(false !== $additional_tabs && is_array($additional_tabs) && !empty($additional_tabs)){
 			$tabs = array_merge($tabs,$additional_tabs);
 		}
@@ -308,7 +308,7 @@ class LSX_TO_PATHSettings extends Tour_Operator {
 	public function general_settings($post_type=false,$tab=false){
 		if('general' !== $tab){ return false; }
 
-		do_action('to_framework_'.$post_type.'_tab_general_settings_top',$post_type);
+		do_action('lsx_to_framework_'.$post_type.'_tab_general_settings_top',$post_type);
 		?>
 		<tr class="form-field-wrap">
 			<th scope="row">
@@ -359,7 +359,7 @@ class LSX_TO_PATHSettings extends Tour_Operator {
 		</tr>
 
 		<?php	
-			do_action('to_framework_'.$post_type.'_tab_general_settings_bottom',$post_type);	
+			do_action('lsx_to_framework_'.$post_type.'_tab_general_settings_bottom',$post_type);
 	}
 
 	/**
@@ -382,7 +382,7 @@ class LSX_TO_PATHSettings extends Tour_Operator {
 				<small><?php esc_html_e('This disables the "post type archive", if you create your own custom loop it will still work.','tour-operator'); ?></small>
 			</td>
 		</tr>
-		<?php do_action('to_framework_'.$post_type.'_tab_archive_settings_top',$post_type); ?>
+		<?php do_action('lsx_to_framework_'.$post_type.'_tab_archive_settings_top',$post_type); ?>
 		<tr class="form-field">
 			<th scope="row">
 				<label for="title"> <?php esc_html_e('Title','tour-operator'); ?></label>
@@ -407,7 +407,7 @@ class LSX_TO_PATHSettings extends Tour_Operator {
 				<textarea class="description" name="description" rows="10">{{#if description}}{{{description}}}{{/if}}</textarea>
 			</td>
 		</tr>
-		<?php do_action('to_framework_'.$post_type.'_tab_archive_settings_bottom',$post_type); ?>
+		<?php do_action('lsx_to_framework_'.$post_type.'_tab_archive_settings_bottom',$post_type); ?>
 
 	<?php
 	}
@@ -433,7 +433,7 @@ class LSX_TO_PATHSettings extends Tour_Operator {
 			</td>
 		</tr>
 		<?php
-		do_action('to_framework_'.$post_type.'_tab_single_settings_top',$post_type);
+		do_action('lsx_to_framework_'.$post_type.'_tab_single_settings_top',$post_type);
 		if ( 'tour' == $post_type || 'accommodation' == $post_type || 'destination' == $post_type || 'activity' == $post_type ) : ?>
 			<tr class="form-field">
 				<th scope="row">
@@ -507,7 +507,7 @@ class LSX_TO_PATHSettings extends Tour_Operator {
 			<?php endif ?>
 		<?php endif ?>
 
-	<?php do_action('to_framework_'.$post_type.'_tab_single_settings_bottom',$post_type);
+	<?php do_action('lsx_to_framework_'.$post_type.'_tab_single_settings_bottom',$post_type);
 	}
 
 	/**

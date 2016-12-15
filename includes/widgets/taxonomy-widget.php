@@ -182,7 +182,7 @@ class LSX_TO_PATHTaxonomy_Widget extends WP_Widget {
         
         if ( false != $title ) {
         	$title = $before_title . $link_open . $title . $link_close . $after_title;
-        	echo wp_kses_post(apply_filters('to_taxonomy_widget_title', $title));
+        	echo wp_kses_post(apply_filters('lsx_to_taxonomy_widget_title', $title));
         }  
         if ( false != $tagline ) {
         	echo wp_kses_post('<p class="tagline">'.$tagline.'</p>');
@@ -676,7 +676,7 @@ class LSX_TO_PATHTaxonomy_Widget extends WP_Widget {
 			$template = "{$slug}.php";
 		}
 		$original_name = $template;
-		$path = apply_filters('to_widget_path','',$taxonomy);
+		$path = apply_filters('lsx_to_widget_path','',$taxonomy);
 
 		if ( '' == locate_template( array( $template ) ) && file_exists( $path.'templates/'.$template) ) {
 			$template = $path.'templates/'.$template;

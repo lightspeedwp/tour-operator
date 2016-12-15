@@ -11,27 +11,27 @@
 /**
  * Archive
  */
-add_action('lsx_entry_top','to_archive_entry_top');
+add_action('lsx_entry_top','lsx_to_archive_entry_top');
 
 /**
  * Archive Post type Specific
  */
-add_action('lsx_entry_bottom','to_accommodation_archive_entry_bottom');
-add_action('lsx_entry_bottom','to_destination_archive_entry_bottom');
-add_action('lsx_entry_bottom','to_tour_archive_entry_bottom');
+add_action('lsx_entry_bottom','lsx_to_accommodation_archive_entry_bottom');
+add_action('lsx_entry_bottom','lsx_to_destination_archive_entry_bottom');
+add_action('lsx_entry_bottom','lsx_to_tour_archive_entry_bottom');
 
 /**
  * Single
  */
-add_action('lsx_content_top','to_single_content_top');
-add_action('lsx_entry_bottom','to_single_entry_bottom');
+add_action('lsx_content_top','lsx_to_single_content_top');
+add_action('lsx_entry_bottom','lsx_to_single_entry_bottom');
 
 /**
  * Single Post type Specific
  */
-add_action('lsx_content_bottom','to_accommodation_single_content_bottom');
-add_action('lsx_content_bottom','to_destination_single_content_bottom');
-add_action('lsx_content_bottom','to_tour_single_content_bottom');
+add_action('lsx_content_bottom','lsx_to_accommodation_single_content_bottom');
+add_action('lsx_content_bottom','lsx_to_destination_single_content_bottom');
+add_action('lsx_content_bottom','lsx_to_tour_single_content_bottom');
 
 /**
  * Adds the template tags to the top of the content-accommodation
@@ -83,7 +83,7 @@ function lsx_to_single_content_top() {
  */
 function lsx_to_single_entry_bottom() {
 	global $to_archive;
-	if(function_exists('to_has_team_member') && is_singular(array_keys(to_get_post_types())) && false === $to_archive && to_has_team_member()) { ?>
+	if(function_exists('lsx_to_has_team_member') && is_singular(array_keys(to_get_post_types())) && false === $to_archive && to_has_team_member()) { ?>
 		<div class="col-sm-3">
 			<div class="team-member-widget">
 				<?php to_team_member_panel( '<div class="team-member">', '</div>' ) ?>
@@ -109,20 +109,20 @@ function lsx_to_accommodation_single_content_bottom() {
 		
 		to_included_block();
 
-		if(function_exists('to_has_map') && to_has_map()){ ?>
+		if(function_exists('lsx_to_has_map') && to_has_map()){ ?>
 			<section id="accommodation-map">
 				<h2 class="section-title"><?php esc_html_e('Map','tour-operator'); ?></h2>
 				<?php to_map(); ?>
 			</section>			
 		<?php }
 
-		if(function_exists('to_gallery')) {
+		if(function_exists('lsx_to_gallery')) {
 			to_gallery('<section id="gallery"><h2 class="section-title">'.esc_html__('Gallery','tour-operator').'</h2>','</section>');
 		}elseif(class_exists('envira_gallery')) {
 			to_envira_gallery('<section id="gallery"><h2 class="section-title">'.esc_html__('Gallery','tour-operator').'</h2>','</section>');
 		}
 
-		if(function_exists('to_videos')) {
+		if(function_exists('lsx_to_videos')) {
 			to_videos('<div id="videos"><h2 class="section-title">'.esc_html__('Videos','tour-operator').'</h2>','</div>');
 		}elseif(class_exists('Envira_Videos')) {
 			to_envira_videos('<div id="videos"><h2 class="section-title">'.esc_html__('Videos','tour-operator').'</h2>','</div>');
@@ -174,20 +174,20 @@ function lsx_to_destination_single_content_bottom() {
 
 		to_destination_activities();
 			
-		if(function_exists('to_has_map') && to_has_map()){ ?>
+		if(function_exists('lsx_to_has_map') && to_has_map()){ ?>
 			<section id="destination-map">
 				<h2 class="section-title"><?php esc_html_e('Map','tour-operator'); ?></h2>
 				<?php to_map(); ?>
 			</section>			
 		<?php }
 
-		if(function_exists('to_gallery')) {
+		if(function_exists('lsx_to_gallery')) {
 			to_gallery('<section id="gallery"><h2 class="section-title">'.esc_html__('Gallery','tour-operator').'</h2>','</section>');
 		}elseif(class_exists('envira_gallery')) {
 			to_envira_gallery('<section id="gallery"><h2 class="section-title">'.esc_html__('Gallery','tour-operator').'</h2>','</section>');
 		}
 
-		if(function_exists('to_videos')) {
+		if(function_exists('lsx_to_videos')) {
 			to_videos('<div id="videos"><h2 class="section-title">'.esc_html__('Videos','tour-operator').'</h2>','</div>');
 		}elseif(class_exists('Envira_Videos')) {
 			to_envira_videos('<div id="videos"><h2 class="section-title">'.esc_html__('Videos','tour-operator').'</h2>','</div>');
@@ -209,7 +209,7 @@ function lsx_to_destination_archive_entry_bottom() {
 		<div class="col-sm-4">
 			<div class="destination-details">
 				<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.esc_html__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>				
-				<?php if(function_exists('to_connected_activities')){ to_connected_activities('<div class="meta activities">'.esc_html__('Activities','tour-operator').': ','</div>'); } ?>
+				<?php if(function_exists('lsx_to_connected_activities')){ to_connected_activities('<div class="meta activities">'.esc_html__('Activities','tour-operator').': ','</div>'); } ?>
 			</div>
 		</div>
 	</div>
@@ -277,20 +277,20 @@ function lsx_to_tour_single_content_bottom() {
 		
 		to_included_block();
 
-		if(function_exists('to_has_map') && to_has_map()){ ?>
+		if(function_exists('lsx_to_has_map') && to_has_map()){ ?>
 			<section id="tour-map">
 				<h2 class="section-title"><?php esc_html_e('Map','tour-operator'); ?></h2>
 				<?php to_map(); ?>
 			</section>			
 		<?php }
 
-		if(function_exists('to_gallery')) {
+		if(function_exists('lsx_to_gallery')) {
 			to_gallery('<section id="gallery"><h2 class="section-title">'.esc_html__('Gallery','tour-operator').'</h2>','</section>');
 		}elseif(class_exists('envira_gallery')) {
 			to_envira_gallery('<section id="gallery"><h2 class="section-title">'.esc_html__('Gallery','tour-operator').'</h2>','</section>');
 		}
 
-		if(function_exists('to_videos')) {
+		if(function_exists('lsx_to_videos')) {
 			to_videos('<div id="videos"><h2 class="section-title">'.esc_html__('Videos','tour-operator').'</h2>','</div>');
 		}elseif(class_exists('Envira_Videos')) {
 			to_envira_videos('<div id="videos"><h2 class="section-title">'.esc_html__('Videos','tour-operator').'</h2>','</div>');
@@ -318,7 +318,7 @@ function lsx_to_tour_archive_entry_bottom() {
 				<div class="meta info"><?php to_price('<span class="price">from ','</span>'); to_duration('<span class="duration">','</span>'); ?></div>
 				<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.esc_html__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>
 				<?php to_connected_destinations('<div class="meta destination">'.esc_html__('Destinations','tour-operator').': ','</div>'); ?>				
-				<?php if(function_exists('to_connected_activities')){ to_connected_activities('<div class="meta activities">'.esc_html__('Activities','tour-operator').': ','</div>'); } ?>
+				<?php if(function_exists('lsx_to_connected_activities')){ to_connected_activities('<div class="meta activities">'.esc_html__('Activities','tour-operator').': ','</div>'); } ?>
 			</div>
 		</div>
 	</div>

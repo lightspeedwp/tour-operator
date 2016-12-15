@@ -73,27 +73,27 @@ class LSX_TO_PATHTour {
 		add_action( 'init', array( $this, 'register_post_types' ) );		
 		add_filter( 'cmb_meta_boxes', array( $this, 'metaboxes') );
 		
-		add_filter( 'to_entry_class', array( $this, 'entry_class') );
+		add_filter( 'lsx_to_entry_class', array( $this, 'entry_class') );
 		
-		add_filter( 'to_search_fields', array( $this, 'single_fields_indexing' ));
+		add_filter( 'lsx_to_search_fields', array( $this, 'single_fields_indexing' ));
 
-		add_action( 'to_framework_tour_tab_general_settings_bottom', array($this,'general_settings'), 10 , 1 );	
+		add_action( 'lsx_to_framework_tour_tab_general_settings_bottom', array($this,'general_settings'), 10 , 1 );
 		
-		add_filter( 'to_itinerary_class', array( $this, 'itinerary_class' ));
-		add_filter( 'to_itinerary_needs_read_more', array( $this, 'itinerary_needs_read_more' ));
+		add_filter( 'lsx_to_itinerary_class', array( $this, 'itinerary_class' ));
+		add_filter( 'lsx_to_itinerary_needs_read_more', array( $this, 'itinerary_needs_read_more' ));
 		
 		$this->is_wetu_active = false;
 		
 		if(!class_exists('LSX_Currency')){
-			add_filter('to_custom_field_query',array( $this, 'price_filter'),5,10);
+			add_filter('lsx_to_custom_field_query',array( $this, 'price_filter'),5,10);
 		}
-		add_filter('to_custom_field_query',array( $this, 'rating'),5,10);
+		add_filter('lsx_to_custom_field_query',array( $this, 'rating'),5,10);
 
-		add_action('to_modal_meta',array($this, 'content_meta'));		
+		add_action('lsx_to_modal_meta',array($this, 'content_meta'));
 		
 		include('class-itinerary.php');
 
-		add_filter( 'to_page_navigation', array( $this, 'page_links') );
+		add_filter( 'lsx_to_page_navigation', array( $this, 'page_links') );
 	}
 
 	/**
@@ -251,7 +251,7 @@ class LSX_TO_PATHTour {
 				'desc' => ''
 		);		
 
-		$fields = apply_filters('to_tour_custom_fields',$fields);
+		$fields = apply_filters('lsx_to_tour_custom_fields',$fields);
 		
 		$meta_boxes[] = array(
 				'title' => esc_html__('Tour Operator Plugin','tour-operator'),
@@ -300,7 +300,7 @@ class LSX_TO_PATHTour {
 		global $to_archive;
 		if(1 !== $to_archive){$to_archive = false;}
 		if(is_main_query() && is_singular($this->plugin_slug) && false === $to_archive){
-			if(function_exists('to_has_team_member') && to_has_team_member()){
+			if(function_exists('lsx_to_has_team_member') && to_has_team_member()){
 				$classes[] = 'col-sm-9';
 			}else{
 				$classes[] = 'col-sm-12';
@@ -450,7 +450,7 @@ class LSX_TO_PATHTour {
 			<div class="meta info"><?php to_price('<span class="price">'.esc_html__('from','tour-operator').' ','</span>'); to_duration('<span class="duration">','</span>'); ?></div>
 			<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.esc_html__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>
 			<?php to_connected_destinations('<div class="meta destination">'.esc_html__('Destinations','tour-operator').': ','</div>'); ?>
-			<?php if(function_exists('to_connected_activities')){ to_connected_activities('<div class="meta activities">'.esc_html__('Activities','tour-operator').': ','</div>');} ?>
+			<?php if(function_exists('lsx_to_connected_activities')){ to_connected_activities('<div class="meta activities">'.esc_html__('Activities','tour-operator').': ','</div>');} ?>
 		</div>
 	<?php } }
 
@@ -498,7 +498,7 @@ class LSX_TO_PATHTour {
 	 * Tests for the Google Map and returns a link for the section
 	 */
 	public function get_map_link(){
-		if(function_exists('to_has_map') && to_has_map()){
+		if(function_exists('lsx_to_has_map') && to_has_map()){
 			$this->page_links['accommodation-map'] = esc_html__('Map','tour-operator');
 		}
 	}

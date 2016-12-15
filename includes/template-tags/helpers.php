@@ -122,7 +122,7 @@ function lsx_to_get_post_type_section_title($post_type=false,$section='',$defaul
  *
  * @param	$term_id
  */
-if(!function_exists('to_has_term_thumbnail')){
+if(!function_exists('lsx_to_has_term_thumbnail')){
 	function lsx_to_has_term_thumbnail($term_id = false) {
 		if(false !== $term_id){
 			$term_thumbnail = get_term_meta($term_id, 'thumbnail', true);
@@ -139,7 +139,7 @@ if(!function_exists('to_has_term_thumbnail')){
  *
  * @param	$term_id string
  */
-if(!function_exists('to_term_thumbnail')){
+if(!function_exists('lsx_to_term_thumbnail')){
 	function lsx_to_term_thumbnail($term_id = false,$size='lsx-thumbnail-wide') {
 		if(false !== $term_id){
 			echo wp_kses_post(to_get_term_thumbnail($term_id,$size));
@@ -151,12 +151,12 @@ if(!function_exists('to_term_thumbnail')){
  *
  * @param	$term_id string
  */
-if(!function_exists('to_get_term_thumbnail')){
+if(!function_exists('lsx_to_get_term_thumbnail')){
 	function lsx_to_get_term_thumbnail($term_id = false,$size='lsx-thumbnail-wide') {
 		if(false !== $term_id){
 			$term_thumbnail_id = get_term_meta($term_id, 'thumbnail', true);
 			$img = wp_get_attachment_image_src($term_thumbnail_id,$size);
-			return apply_filters( 'to_lazyload_filter_images', '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="'.$img[0].'" />' );
+			return apply_filters( 'lsx_to_lazyload_filter_images', '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="'.$img[0].'" />' );
 		}
 	}
 }
@@ -244,7 +244,7 @@ function lsx_to_custom_field_query($meta_key=false,$before="",$after="",$echo=fa
 		}
 		if(false !== $value && '' !== $value){
 			$return_html = $before.'<span class="values">'.$value.'</span>'.$after;
-			$return = apply_filters('to_custom_field_query',$return_html,$meta_key,$value,$before,$after);
+			$return = apply_filters('lsx_to_custom_field_query',$return_html,$meta_key,$value,$before,$after);
 			if($echo){
 				echo wp_kses_post( $return );
 			}else{
@@ -549,7 +549,7 @@ function lsx_to_connected_list($connected_ids = false,$type = false,$link = true
 				if($link){
 					$html .= '</a>';
 				}				
-				$html = apply_filters('to_connected_list_item',$html,$cp->ID,$link);
+				$html = apply_filters('lsx_to_connected_list_item',$html,$cp->ID,$link);
 				$connected_list[] = $html;
 
 			}

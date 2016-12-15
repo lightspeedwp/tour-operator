@@ -35,8 +35,8 @@ class LSX_TO_PATHTemplate_Redirects {
 		if(false !== $plugin_path){
 			$this->plugin_path = $plugin_path;
 
-			add_filter( 'to_widget_path', array( $this, 'widget_path'), 10, 2 );
-			add_filter( 'to_content_path', array( $this, 'content_path'), 10, 3 );			
+			add_filter( 'lsx_to_widget_path', array( $this, 'widget_path'), 10, 2 );
+			add_filter( 'lsx_to_content_path', array( $this, 'content_path'), 10, 3 );
 
 			if(false !== $post_types){
 				$this->post_types = $post_types;

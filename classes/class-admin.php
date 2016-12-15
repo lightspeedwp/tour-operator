@@ -52,10 +52,10 @@ class LSX_TO_PATHAdmin extends Tour_Operator {
 	public function init() {
 		if(is_admin()){
 			$this->connections = $this->create_post_connections();
-			$this->single_fields = apply_filters('to_search_fields',array());
+			$this->single_fields = apply_filters('lsx_to_search_fields',array());
 
-			$this->taxonomies = apply_filters('to_taxonomies',$this->taxonomies);
-			add_filter('to_taxonomy_widget_taxonomies', array( $this, 'widget_taxonomies' ),10,1 );
+			$this->taxonomies = apply_filters('lsx_to_taxonomies',$this->taxonomies);
+			add_filter('lsx_to_taxonomy_widget_taxonomies', array( $this, 'widget_taxonomies' ),10,1 );
 
 			if(!class_exists('LSX_Banners') && false !== $this->taxonomies){
 				add_action( 'create_term', array( $this, 'save_meta' ), 10, 2 );
@@ -539,7 +539,7 @@ class LSX_TO_PATHAdmin extends Tour_Operator {
 				</div>
 				<a style="<?php if('' !== $value && false !== $value) { ?>display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e('Choose Image','tour-operator');?></a>
 				<a style="<?php if('' === $value || false === $value) { ?>display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-remove"><?php esc_html_e('Remove Image','tour-operator');?></a>
-				<?php wp_nonce_field( 'to_save_term_thumbnail', 'to_term_thumbnail_nonce' ); ?>
+				<?php wp_nonce_field( 'lsx_to_save_term_thumbnail', 'lsx_to_term_thumbnail_nonce' ); ?>
 			</td>
 		</tr>
 		<?php
@@ -562,7 +562,7 @@ class LSX_TO_PATHAdmin extends Tour_Operator {
 			return;
 		}
 
-		if(check_admin_referer( 'to_save_term_thumbnail', 'to_term_thumbnail_nonce' )){
+		if(check_admin_referer( 'lsx_to_save_term_thumbnail', 'lsx_to_term_thumbnail_nonce' )){
 			if ( ! isset( $_POST['thumbnail'] ) ) {
 				return;
 			}
@@ -575,7 +575,7 @@ class LSX_TO_PATHAdmin extends Tour_Operator {
 			}
 		}
 
-		if(check_admin_referer( 'to_save_term_tagline', 'to_term_tagline_nonce' )){
+		if(check_admin_referer( 'lsx_to_save_term_tagline', 'lsx_to_term_tagline_nonce' )){
 			if ( ! isset( $_POST['tagline'] ) ) {
 				return;
 			}
@@ -607,7 +607,7 @@ class LSX_TO_PATHAdmin extends Tour_Operator {
 				<input name="tagline" id="tagline" type="text" value="<?php echo wp_kses_post($value); ?>" size="40" aria-required="true">
 			</td>
 
-			<?php wp_nonce_field( 'to_save_term_tagline', 'to_term_tagline_nonce' ); ?>
+			<?php wp_nonce_field( 'lsx_to_save_term_tagline', 'lsx_to_term_tagline_nonce' ); ?>
 		</tr>
 		<?php
 	}

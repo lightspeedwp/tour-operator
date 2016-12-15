@@ -10,7 +10,7 @@
 	<div id="ui-general" class="ui-tab active">
 		<table class="form-table">
 			<tbody>
-			<?php do_action('to_framework_destination_tab_content','destination','general'); ?>
+			<?php do_action('lsx_to_framework_destination_tab_content','destination','general'); ?>
 			</tbody>
 		</table>
 	</div>
@@ -18,7 +18,7 @@
 	<div id="ui-placeholders" class="ui-tab">
 		<table class="form-table">
 			<tbody>
-			<?php do_action('to_framework_destination_tab_content','destination','placeholders'); ?>
+			<?php do_action('lsx_to_framework_destination_tab_content','destination','placeholders'); ?>
 			</tbody>
 		</table>
 	</div>
@@ -26,7 +26,7 @@
 	<div id="ui-archives" class="ui-tab">
 		<table class="form-table">
 			<tbody>
-			<?php do_action('to_framework_destination_tab_content','destination','archives'); ?>
+			<?php do_action('lsx_to_framework_destination_tab_content','destination','archives'); ?>
 			</tbody>
 		</table>
 	</div>
@@ -34,9 +34,9 @@
 	<div id="ui-single" class="ui-tab">
 		<table class="form-table">
 			<tbody>
-			<?php do_action('to_framework_destination_tab_content','destination','single'); ?>
+			<?php do_action('lsx_to_framework_destination_tab_content','destination','single'); ?>
 			</tbody>
 		</table>
 	</div>
-	<?php do_action('to_framework_destination_tab_bottom','destination'); ?>
+	<?php do_action('lsx_to_framework_destination_tab_bottom','destination'); ?>
 </div>

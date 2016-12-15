@@ -62,7 +62,7 @@ class LSX_TO_PATHCTA_Widget extends WP_Widget {
         
         if ( false != $title ) {
         	$title = $before_title . $title . $after_title;
-        	echo wp_kses_post(apply_filters('to_cta_widget_title', $title));
+        	echo wp_kses_post(apply_filters('lsx_to_cta_widget_title', $title));
         }    
 
         if ( false != $widget_text ) {

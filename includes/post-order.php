@@ -5,7 +5,7 @@ $to_scporder = new LSX_TO_PATHSCPO_Engine();
 class LSX_TO_PATHSCPO_Engine {
 
 	function __construct() {
-		if (!get_option('to_scporder_install'))
+		if (!get_option('lsx_to_scporder_install'))
 			$this->to_scporder_install();
 
 		add_action('admin_init', array($this, 'refresh'));
@@ -14,16 +14,16 @@ class LSX_TO_PATHSCPO_Engine {
 		add_action('wp_ajax_update-menu-order', array($this, 'update_menu_order'));
 		add_action('wp_ajax_update-menu-order-tags', array($this, 'update_menu_order_tags'));
 
-		add_action('pre_get_posts', array($this, 'to_scporder_pre_get_posts'));
+		add_action('pre_get_posts', array($this, 'lsx_to_scporder_pre_get_posts'));
 
-		add_filter('get_previous_post_where', array($this, 'to_scporder_previous_post_where'));
-		add_filter('get_previous_post_sort', array($this, 'to_scporder_previous_post_sort'));
-		add_filter('get_next_post_where', array($this, 'to_scporder_next_post_where'));
-		add_filter('get_next_post_sort', array($this, 'to_scporder_next_post_sort'));
+		add_filter('get_previous_post_where', array($this, 'lsx_to_scporder_previous_post_where'));
+		add_filter('get_previous_post_sort', array($this, 'lsx_to_scporder_previous_post_sort'));
+		add_filter('get_next_post_where', array($this, 'lsx_to_scporder_next_post_where'));
+		add_filter('get_next_post_sort', array($this, 'lsx_to_scporder_next_post_sort'));
 
-		add_filter('get_terms_orderby', array($this, 'to_scporder_get_terms_orderby'), 10, 3);
-		add_filter('wp_get_object_terms', array($this, 'to_scporder_get_object_terms'), 10, 4);
-		add_filter('get_terms', array($this, 'to_scporder_get_object_terms'), 10, 4);
+		add_filter('get_terms_orderby', array($this, 'lsx_to_scporder_get_terms_orderby'), 10, 3);
+		add_filter('wp_get_object_terms', array($this, 'lsx_to_scporder_get_object_terms'), 10, 4);
+		add_filter('get_terms', array($this, 'lsx_to_scporder_get_object_terms'), 10, 4);
 	}
 
 	function lsx_to_scporder_install() {
@@ -34,7 +34,7 @@ class LSX_TO_PATHSCPO_Engine {
 			$result = $wpdb->query("ALTER TABLE $wpdb->terms ADD `to_term_order` INT(4) NULL DEFAULT '0'");
 		}
 
-		update_option('to_scporder_install', 1);
+		update_option('lsx_to_scporder_install', 1);
 	}
 
 	function _check_load_script_css() {
@@ -134,7 +134,7 @@ class LSX_TO_PATHSCPO_Engine {
 				", $taxonomy));
 
 				foreach ($results as $key => $result) {
-					$wpdb->update($wpdb->terms, array('to_term_order' => $key + 1), array('term_id' => $result->term_id));
+					$wpdb->update($wpdb->terms, array('lsx_to_term_order' => $key + 1), array('term_id' => $result->term_id));
 				}
 			}
 		}
@@ -207,7 +207,7 @@ class LSX_TO_PATHSCPO_Engine {
 
 		foreach ($data as $key => $values) {
 			foreach ($values as $position => $id) {
-				$wpdb->update($wpdb->terms, array('to_term_order' => $menu_order_arr[$position]), array('term_id' => intval($id)));
+				$wpdb->update($wpdb->terms, array('lsx_to_term_order' => $menu_order_arr[$position]), array('term_id' => intval($id)));
 			}
 		}
 	}
@@ -387,7 +387,7 @@ class LSX_TO_PATHSCPO_Engine {
 /**
  * SCP Order Uninstall hook
  */
-register_uninstall_hook(__FILE__, 'to_scporder_uninstall');
+register_uninstall_hook(__FILE__, 'lsx_to_scporder_uninstall');
 
 function lsx_to_scporder_uninstall() {
 	global $wpdb;
@@ -415,5 +415,5 @@ function lsx_to_scporder_uninstall_db() {
 		$result = $wpdb->query("ALTER TABLE $wpdb->terms DROP `to_term_order`");
 	}
 
-	delete_option('to_scporder_install');
+	delete_option('lsx_to_scporder_install');
 }

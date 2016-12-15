@@ -94,23 +94,23 @@ class TO_Accommodation {
 		add_action( 'init', array( $this, 'register_taxonomies') );
 		add_filter( 'cmb_meta_boxes', array( $this, 'metaboxes') );	
 
-		add_action( 'to_framework_accommodation_tab_general_settings_bottom', array($this,'general_settings'), 10 , 1 );
-		add_action( 'to_framework_accommodation_tab_single_settings_bottom', array($this,'single_settings'), 10 , 1 );
+		add_action( 'lsx_to_framework_accommodation_tab_general_settings_bottom', array($this,'general_settings'), 10 , 1 );
+		add_action( 'lsx_to_framework_accommodation_tab_single_settings_bottom', array($this,'single_settings'), 10 , 1 );
 		
-		add_filter( 'to_entry_class', array( $this, 'entry_class') );
+		add_filter( 'lsx_to_entry_class', array( $this, 'entry_class') );
 
 		if(!class_exists('LSX_Currency')){
-			add_filter('to_custom_field_query',array( $this, 'price_filter'),5,10);
+			add_filter('lsx_to_custom_field_query',array( $this, 'price_filter'),5,10);
 		}
 
-		add_filter('to_custom_field_query',array( $this, 'rating'),5,10);	
+		add_filter('lsx_to_custom_field_query',array( $this, 'rating'),5,10);
 		
 		include('class-units.php');
 
-		add_action('to_map_meta','to_accommodation_meta');
-		add_action('to_modal_meta','to_accommodation_meta');
+		add_action('lsx_to_map_meta','lsx_to_accommodation_meta');
+		add_action('lsx_to_modal_meta','lsx_to_accommodation_meta');
 
-		add_filter( 'to_page_navigation', array( $this, 'page_links') );
+		add_filter( 'lsx_to_page_navigation', array( $this, 'page_links') );
 	}
 
 	/**
@@ -431,7 +431,7 @@ class TO_Accommodation {
 		$fields[] = array( 'id' => 'tour_to_accommodation', 'name' => esc_html__('Tours related with this accommodation','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'tour','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
 		
 		//Allow the addons to add additional fields.
-		$fields = apply_filters('to_accommodation_custom_fields',$fields);		
+		$fields = apply_filters('lsx_to_accommodation_custom_fields',$fields);
 	
 		//Register the actual metabox
 		$meta_boxes[] = array(
@@ -490,7 +490,7 @@ class TO_Accommodation {
 	function entry_class( $classes ) {
 		global $post;
 		if(is_main_query() && is_singular($this->plugin_slug)){
-			if(function_exists('to_has_team_member') && to_has_team_member()){
+			if(function_exists('lsx_to_has_team_member') && to_has_team_member()){
 				$classes[] = 'col-sm-9';
 			}else{
 				$classes[] = 'col-sm-12';
@@ -615,7 +615,7 @@ class TO_Accommodation {
 	 * Tests for the Google Map and returns a link for the section
 	 */
 	public function get_map_link(){
-		if(function_exists('to_has_map') && to_has_map()){
+		if(function_exists('lsx_to_has_map') && to_has_map()){
 			$this->page_links['accommodation-map'] = esc_html__('Map','tour-operator');
 		}
 	}

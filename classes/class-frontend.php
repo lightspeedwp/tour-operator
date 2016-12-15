@@ -60,10 +60,10 @@ class LSX_TO_PATHFrontend extends Tour_Operator {
 			add_action( 'pre_get_posts', array( $this,'team_pre_get_posts') , 10, 1 );
 		}	
 
-		add_filter( 'to_connected_list_item', array( $this,'add_modal_attributes') , 10, 3 );
+		add_filter( 'lsx_to_connected_list_item', array( $this,'add_modal_attributes') , 10, 3 );
 		add_action( 'wp_footer', array( $this,'output_modals') , 10 );
 		add_filter( 'use_default_gallery_style', '__return_false' );
-		add_filter('to_tagline',array($this,'get_tagline'),1,3);
+		add_filter('lsx_to_tagline',array($this,'get_tagline'),1,3);
 
 		add_filter( 'the_terms', array( $this,'links_new_window') , 10, 2);		
 
@@ -104,14 +104,14 @@ class LSX_TO_PATHFrontend extends Tour_Operator {
 
 		if((is_post_type_archive($this->active_post_types)) || (is_tax(array_keys($this->taxonomies)))){
 			remove_action('lsx_content_wrap_before','lsx_global_header');
-			add_action('lsx_content_wrap_before','to_global_header',100);
-			add_action('lsx_content_wrap_before','to_archive_description',100);
-			add_filter('to_archive_description',array($this,'get_post_type_archive_description'),1,3);
+			add_action('lsx_content_wrap_before','lsx_to_global_header',100);
+			add_action('lsx_content_wrap_before','lsx_to_archive_description',100);
+			add_filter('lsx_to_archive_description',array($this,'get_post_type_archive_description'),1,3);
 		}
 		
 		if(is_singular($this->active_post_types)){
 			remove_action('lsx_content_wrap_before','lsx_global_header');
-			add_action('lsx_content_wrap_before','to_global_header',100);
+			add_action('lsx_content_wrap_before','lsx_to_global_header',100);
 		}
 		
 		if(class_exists('LSX_Banners')){

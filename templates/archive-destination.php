@@ -205,7 +205,7 @@
 			
 			<?php to_travel_styles( '<section id="travel-styles"><h2 class="section-title">'. esc_html_e( 'Travel Styles','tour-operator' ) .'</h2>', '</section>' ) ?>
 			
-			<?php if(function_exists('to_has_map') && to_has_map()){ ?>
+			<?php if(function_exists('lsx_to_has_map') && to_has_map()){ ?>
 				<section id="destination-map">
 					<?php if ( ! to_has_destination_banner_map() ) : ?>
 						<h2 class="section-title"><?php esc_html_e( 'Map','tour-operator' ) ?></h2>

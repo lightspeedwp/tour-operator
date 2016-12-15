@@ -45,7 +45,7 @@ function lsx_to_entry_class($classes = false) {
 		if(!is_array($classes)) {
 			$classes = explode(' ',$classes);
 		}
-		$classes = apply_filters( 'to_entry_class', $classes, $post->ID );
+		$classes = apply_filters( 'lsx_to_entry_class', $classes, $post->ID );
 	}
 	echo wp_kses_post('class="'.implode(' ',$classes).'"');
 }
@@ -62,7 +62,7 @@ function lsx_to_column_class($classes = false) {
 		if(!is_array($classes)) {
 			$classes = explode(' ',$classes);
 		}
-		$classes = apply_filters( 'to_column_class', $classes, $post->ID );
+		$classes = apply_filters( 'lsx_to_column_class', $classes, $post->ID );
 	}
 	echo wp_kses_post('class="'.implode(' ',$classes).'"');
 }
@@ -100,7 +100,7 @@ function lsx_to_global_header() { ?>
  * @category 	header
  */
 function lsx_to_tagline($before='',$after='',$echo=false) {
-	echo wp_kses_post( apply_filters('to_tagline','',$before,$after) );
+	echo wp_kses_post( apply_filters('lsx_to_tagline','',$before,$after) );
 }
 
 /**
@@ -124,7 +124,7 @@ function lsx_to_banner_content() {
  * @category 	content
  */
 function lsx_to_content($slug, $name = null) {
-	do_action('to_content',$slug, $name);
+	do_action('lsx_to_content',$slug, $name);
 }
 
 /* ==================   ARCHIVE   ================== */
@@ -137,7 +137,7 @@ function lsx_to_content($slug, $name = null) {
  * @category 	description
  */
 function lsx_to_archive_description() {
-	echo wp_kses_post( apply_filters('to_archive_description','','<div class="row"><div class="col-sm-12"><article class="archive-description hentry">','</article></div></div>') );
+	echo wp_kses_post( apply_filters('lsx_to_archive_description','','<div class="row"><div class="col-sm-12"><article class="archive-description hentry">','</article></div></div>') );
 }
 
 
@@ -158,7 +158,7 @@ function lsx_to_page_navigation($echo = true) {
 	if(is_singular()) {
 		$page_links['summary'] = esc_html__('Summary', 'tour-operator');
 	}
-	$page_links = apply_filters('to_page_navigation',$page_links);
+	$page_links = apply_filters('lsx_to_page_navigation',$page_links);
 
 	if(!empty($page_links)) {
 		$return = '<section class="' . get_post_type() . '-navigation">
@@ -280,7 +280,7 @@ function lsx_to_safari_brands($before="",$after="",$echo=true) {
 			'after_widget' => '</aside>',
 			'before_title' => '<h3 class="widget-title">',
 			'after_title' => '</h3>',
-			'widget_id' => 'to_taxonomy_widget-6',
+			'widget_id' => 'lsx_to_taxonomy_widget-6',
 			'widget_name' => 'LSX Taxonomies',
 	);
 	$instance = array(
@@ -330,7 +330,7 @@ function lsx_to_travel_styles($before="",$after="",$echo=true) {
 			'after_widget' => '</aside>',
 			'before_title' => '<h3 class="widget-title">',
 			'after_title' => '</h3>',
-			'widget_id' => 'to_taxonomy_widget-6',
+			'widget_id' => 'lsx_to_taxonomy_widget-6',
 			'widget_name' => 'LSX Taxonomies',
 	);
 	$instance = array(
@@ -459,5 +459,5 @@ function lsx_to_enquire_modal($before="",$after="",$echo=true){
  * @category 	modal
  */
 function lsx_to_modal_meta(){
-	do_action('to_modal_meta');
+	do_action('lsx_to_modal_meta');
 }

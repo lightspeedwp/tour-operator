@@ -188,7 +188,7 @@ class LSX_TO_PATHUnit_Query {
 	public function item_thumbnail($before="",$after="",$echo=false) {
 		if($this->have_query && false !== $this->query_item) {
 			$thumbnail_src = false;
-			$thumbnail_src = apply_filters('to_accommodation_room_thumbnail',$thumbnail_src);
+			$thumbnail_src = apply_filters('lsx_to_accommodation_room_thumbnail',$thumbnail_src);
 			if(false !== $this->query_item['gallery']){
 				$images = array_values($this->query_item['gallery']);
 				$thumbnail = wp_get_attachment_image_src($images[0],'lsx-thumbnail-wide');
@@ -200,7 +200,7 @@ class LSX_TO_PATHUnit_Query {
 				$thumbnail_src = LSX_TO_PATHPlaceholders::placeholder_url(null,'accommodation');
 			}			
 			if(false !== $thumbnail_src){
-				$return = $before.apply_filters( 'to_lazyload_filter_images', '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="'.$thumbnail_src.'" />' ).$after;
+				$return = $before.apply_filters( 'lsx_to_lazyload_filter_images', '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="'.$thumbnail_src.'" />' ).$after;
 				if($echo){
 					echo wp_kses_post( $return );
 				}else{
