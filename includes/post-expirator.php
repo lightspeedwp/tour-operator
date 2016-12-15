@@ -1,11 +1,11 @@
 <?php
 
-define('TO_POSTEXPIRATOR_DATEFORMAT',esc_html__('l F jS, Y','tour-operator'));
-define('TO_POSTEXPIRATOR_TIMEFORMAT',esc_html__('g:ia','tour-operator'));
-define('TO_POSTEXPIRATOR_TYPES',array('special','tour'));
+define('LSX_TO_PATHPOSTEXPIRATOR_DATEFORMAT',esc_html__('l F jS, Y','tour-operator'));
+define('LSX_TO_PATHPOSTEXPIRATOR_TIMEFORMAT',esc_html__('g:ia','tour-operator'));
+define('LSX_TO_PATHPOSTEXPIRATOR_TYPES',array('special','tour'));
 
 function to_expirationdate_add_column($columns,$type) {
-	if (in_array($type, TO_POSTEXPIRATOR_TYPES)) {
+	if (in_array($type, LSX_TO_PATHPOSTEXPIRATOR_TYPES)) {
 	  	$columns['to_expirationdate'] = esc_html__('Expires','tour-operator');
 	}
 
@@ -26,7 +26,7 @@ add_action ('manage_posts_custom_column', 'to_expirationdate_show_value');
 add_action ('manage_pages_custom_column', 'to_expirationdate_show_value');
 
 function to_expirationdate_meta_custom() {
-	$custom_post_types = TO_POSTEXPIRATOR_TYPES;
+	$custom_post_types = LSX_TO_PATHPOSTEXPIRATOR_TYPES;
 	
 	foreach ($custom_post_types as $t) {
 		add_meta_box('lsxtoexpirationdatediv', esc_html__('Expires','tour-operator'), 'to_expirationdate_meta_box', $t, 'side', 'core');

@@ -2,7 +2,7 @@
 /**
  * Backend actions for the LSX TO Plugin
  *
- * @package   TO_Admin
+ * @package   LSX_TO_PATHAdmin
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -12,10 +12,10 @@
 /**
  * Main plugin class.
  *
- * @package TO_Settings
+ * @package LSX_TO_PATHSettings
  * @author  LightSpeed
  */
-class TO_Settings extends Tour_Operator {
+class LSX_TO_PATHSettings extends Tour_Operator {
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -47,7 +47,7 @@ class TO_Settings extends Tour_Operator {
 	public function create_settings_page(){
 		if(is_admin()){
 			if(!class_exists('\to\ui\uix')){
-				include_once TO_PATH.'vendor/uix/uix.php';
+				include_once LSX_TO_PATHPATH.'vendor/uix/uix.php';
 			}
 			$pages = $this->settings_page_array();
 			$uix = \to\ui\uix::get_instance( 'to' );
@@ -75,7 +75,7 @@ class TO_Settings extends Tour_Operator {
 	 * Display the welcome page
 	 */
 	public function welcome_page() {
-	    include( TO_PATH . 'includes/settings/welcome.php' );
+	    include( LSX_TO_PATHPATH . 'includes/settings/welcome.php' );
 	}
 
 	/**
@@ -98,7 +98,7 @@ class TO_Settings extends Tour_Operator {
 					'page_title'        => '',
 					'page_description'  => '',
 					'menu_title'        => $title,
-					'template'          => apply_filters('to_settings_path',TO_PATH,$index).'includes/settings/'.$index.'.php',
+					'template'          => apply_filters('to_settings_path',LSX_TO_PATHPATH,$index).'includes/settings/'.$index.'.php',
 					'default'	 		=> false,
 					'disabled'			=> $disabled
 				);
@@ -120,7 +120,7 @@ class TO_Settings extends Tour_Operator {
 						'page_title'        => '',
 						'page_description'  => '',
 						'menu_title'        => esc_html__('General','tour-operator'),
-						'template'          => TO_PATH.'includes/settings/general.php',
+						'template'          => LSX_TO_PATHPATH.'includes/settings/general.php',
 						'default'	 		=> true
 				)
 		);
@@ -128,7 +128,7 @@ class TO_Settings extends Tour_Operator {
 			'page_title'        => '',
 			'page_description'  => '',
 			'menu_title'        => esc_html__('Display','tour-operator'),
-			'template'          => TO_PATH.'includes/settings/display.php',
+			'template'          => LSX_TO_PATHPATH.'includes/settings/display.php',
 			'default'	 		=> false
 		);	
 
@@ -137,7 +137,7 @@ class TO_Settings extends Tour_Operator {
 				'page_title'        => '',
 				'page_description'  => '',
 				'menu_title'        => esc_html__('API','tour-operator'),
-				'template'          => TO_PATH.'includes/settings/api.php',
+				'template'          => LSX_TO_PATHPATH.'includes/settings/api.php',
 				'default'	 		=> false
 			);	
 		//}
@@ -148,7 +148,7 @@ class TO_Settings extends Tour_Operator {
 				'page_title'        => esc_html__('Posts','tour-operator'),
 				'page_description'  => '',
 				'menu_title'        => esc_html__('Posts','tour-operator'),
-				'template'          => TO_PATH.'includes/settings/post.php',
+				'template'          => LSX_TO_PATHPATH.'includes/settings/post.php',
 				'default'	 		=> false
 			);
 		}

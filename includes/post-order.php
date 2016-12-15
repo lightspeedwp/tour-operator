@@ -1,8 +1,8 @@
 <?php
  
-$to_scporder = new TO_SCPO_Engine();
+$to_scporder = new LSX_TO_PATHSCPO_Engine();
 
-class TO_SCPO_Engine {
+class LSX_TO_PATHSCPO_Engine {
 
 	function __construct() {
 		if (!get_option('to_scporder_install'))
@@ -71,7 +71,7 @@ class TO_SCPO_Engine {
 		if ($this->_check_load_script_css()) {
 			wp_enqueue_script('jquery');
 			wp_enqueue_script('jquery-ui-sortable');
-			wp_enqueue_script('scporderjs', TO_URL . '/assets/js/scporder.min.js', array('jquery'), null, true);
+			wp_enqueue_script('scporderjs', LSX_TO_PATHURL . '/assets/js/scporder.min.js', array('jquery'), null, true);
 
 			$scporderjs_params = array(
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
@@ -80,7 +80,7 @@ class TO_SCPO_Engine {
 
 			wp_localize_script( 'scporderjs', 'scporderjs_params', $scporderjs_params );
 
-			wp_enqueue_style('scporder', TO_URL . '/assets/css/scporder.css', array(), null);
+			wp_enqueue_style('scporder', LSX_TO_PATHURL . '/assets/css/scporder.css', array(), null);
 		}
 	}
 

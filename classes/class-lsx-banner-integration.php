@@ -2,7 +2,7 @@
 /**
  * Module Template.
  *
- * @package   TO_Banner_Integration
+ * @package   LSX_TO_PATHBanner_Integration
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -12,10 +12,10 @@
 /**
  * Main plugin class.
  *
- * @package TO_Banner_Integration
+ * @package LSX_TO_PATHBanner_Integration
  * @author  LightSpeed
  */
-class TO_LSX_Banner_Integration {
+class LSX_TO_PATHLSX_Banner_Integration {
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.

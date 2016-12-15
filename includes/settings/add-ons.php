@@ -26,7 +26,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<a href="<?php echo wp_kses_post( $tour_operator_link ); ?>" target="_blank" title="<?php esc_html_e( 'Tour Operator Add-ons', 'tour-operator' ); ?>">
-				<img src="<?php echo esc_url( TO_URL . 'assets/img/tour-operators-banner.png' ); ?>" alt="<?php esc_html_e( 'Tour Operator Add-ons', 'tour-operator' ); ?>">
+				<img src="<?php echo esc_url( LSX_TO_PATHURL . 'assets/img/tour-operators-banner.png' ); ?>" alt="<?php esc_html_e( 'Tour Operator Add-ons', 'tour-operator' ); ?>">
 			</a>
 
 			<div class="box box-top-image enhance">
@@ -44,7 +44,7 @@
 
 	<div class="row">
 		<div class="col-md-4">
-			<img src="<?php echo esc_url( TO_URL . 'assets/img/tour-operators-maps.png' ); ?>">
+			<img src="<?php echo esc_url( LSX_TO_PATHURL . 'assets/img/tour-operators-maps.png' ); ?>">
 			
 			<div class="box box-top-image maps">
 				<h3><?php esc_html_e( 'Maps', 'tour-operator' ); ?> - <span class="price">$79.00</span></h3>
@@ -59,7 +59,7 @@
 		</div>
 
 		<div class="col-md-4">
-			<img src="<?php echo esc_url( TO_URL . 'assets/img/tour-operators-specials.png' ); ?>">
+			<img src="<?php echo esc_url( LSX_TO_PATHURL . 'assets/img/tour-operators-specials.png' ); ?>">
 			
 			<div class="box box-top-image specials">
 				<h3><?php esc_html_e( 'Specials', 'tour-operator' ); ?> - <span class="price">$29.00</span></h3>
@@ -74,7 +74,7 @@
 		</div>
 
 		<div class="col-md-4">
-			<img src="<?php echo esc_url( TO_URL . 'assets/img/tour-operators-reviews.png' ); ?>">
+			<img src="<?php echo esc_url( LSX_TO_PATHURL . 'assets/img/tour-operators-reviews.png' ); ?>">
 			
 			<div class="box box-top-image reviews">
 				<h3><?php esc_html_e( 'Reviews', 'tour-operator' ); ?> - <span class="price">$29.00</span></h3>
@@ -91,7 +91,7 @@
 
 	<div class="row">
 		<div class="col-md-4">
-			<img src="<?php echo esc_url( TO_URL . 'assets/img/tour-operators-activities.png' ); ?>">
+			<img src="<?php echo esc_url( LSX_TO_PATHURL . 'assets/img/tour-operators-activities.png' ); ?>">
 			
 			<div class="box box-top-image activities">
 				<h3><?php esc_html_e( 'Activities', 'tour-operator' ); ?> - <span class="price">$29.00</span></h3>
@@ -106,7 +106,7 @@
 		</div>
 
 		<div class="col-md-4">
-			<img src="<?php echo esc_url( TO_URL . 'assets/img/tour-operators-search.png' ); ?>">
+			<img src="<?php echo esc_url( LSX_TO_PATHURL . 'assets/img/tour-operators-search.png' ); ?>">
 			
 			<div class="box box-top-image search">
 				<h3><?php esc_html_e( 'Search', 'tour-operator' ); ?> - <span class="price">$79.00</span></h3>
@@ -121,7 +121,7 @@
 		</div>
 
 		<div class="col-md-4">
-			<img src="<?php echo esc_url( TO_URL . 'assets/img/tour-operators-galleries.png' ); ?>">
+			<img src="<?php echo esc_url( LSX_TO_PATHURL . 'assets/img/tour-operators-galleries.png' ); ?>">
 			
 			<div class="box box-top-image galleries">
 				<h3><?php esc_html_e( 'Galleries', 'tour-operator' ); ?> - <span class="price">$19.00</span></h3>
@@ -138,7 +138,7 @@
 
 	<div class="row">
 		<div class="col-md-4">
-			<img src="<?php echo esc_url( TO_URL . 'assets/img/tour-operators-vehicles.png' ); ?>">
+			<img src="<?php echo esc_url( LSX_TO_PATHURL . 'assets/img/tour-operators-vehicles.png' ); ?>">
 			
 			<div class="box box-top-image vehicles">
 				<h3><?php esc_html_e( 'Vehicles', 'tour-operator' ); ?> - <span class="price">$29.00</span></h3>
@@ -153,7 +153,7 @@
 		</div>
 
 		<div class="col-md-4">
-			<img src="<?php echo esc_url( TO_URL . 'assets/img/tour-operators-team.png' ); ?>">
+			<img src="<?php echo esc_url( LSX_TO_PATHURL . 'assets/img/tour-operators-team.png' ); ?>">
 			
 			<div class="box box-top-image team">
 				<h3><?php esc_html_e( 'Team', 'tour-operator' ); ?> - <span class="price">$29.00</span></h3>
@@ -168,7 +168,7 @@
 		</div>
 
 		<div class="col-md-4">
-			<img src="<?php echo esc_url( TO_URL . 'assets/img/tour-operators-videos.png' ); ?>">
+			<img src="<?php echo esc_url( LSX_TO_PATHURL . 'assets/img/tour-operators-videos.png' ); ?>">
 			
 			<div class="box box-top-image videos">
 				<h3><?php esc_html_e( 'Videos', 'tour-operator' ); ?> - <span class="price">$19.00</span></h3>
@@ -185,7 +185,7 @@
 
 	<div class="row">
 		<div class="col-md-4">
-			<img src="<?php echo esc_url( TO_URL . 'assets/img/wetu-importer.png' ); ?>">
+			<img src="<?php echo esc_url( LSX_TO_PATHURL . 'assets/img/wetu-importer.png' ); ?>">
 			
 			<div class="box box-top-image wetu">
 				<h3><?php esc_html_e( 'Wetu Importer', 'tour-operator' ); ?> - <span class="price">$129.00</span></h3>

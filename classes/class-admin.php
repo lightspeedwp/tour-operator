@@ -2,7 +2,7 @@
 /**
  * Backend actions for the Tour Operator Plugin
  *
- * @package   TO_Admin
+ * @package   LSX_TO_PATHAdmin
  * @author    LightSpeed
  * @license   GPL3
  * @link
@@ -12,10 +12,10 @@
 /**
  * Main plugin class.
  *
- * @package TO_Admin
+ * @package LSX_TO_PATHAdmin
  * @author  LightSpeed
  */
-class TO_Admin extends Tour_Operator {
+class LSX_TO_PATHAdmin extends Tour_Operator {
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -38,7 +38,7 @@ class TO_Admin extends Tour_Operator {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_stylescripts' ) );
 		add_action( 'cmb_save_custom', array( $this, 'post_relations' ), 3 , 20 );
 
-		add_filter( 'plugin_action_links_' . plugin_basename(TO_CORE), array($this,'add_action_links'));
+		add_filter( 'plugin_action_links_' . plugin_basename(LSX_TO_PATHCORE), array($this,'add_action_links'));
 
 		add_action( 'default_hidden_meta_boxes', array($this,'default_hidden_meta_boxes'), 10, 2 );
 		add_filter('upload_mimes', array($this,'allow_svgimg_types'));
@@ -86,8 +86,8 @@ class TO_Admin extends Tour_Operator {
 		}
 
 		wp_enqueue_media();
-		wp_enqueue_script( 'tour-operator-admin-script', TO_URL . 'assets/js/admin' . $min . '.js', array( 'jquery' ), TO_VER, true );
-		wp_enqueue_style( 'tour-operator-admin-style', TO_URL . 'assets/css/admin.css', array(), TO_VER );
+		wp_enqueue_script( 'tour-operator-admin-script', LSX_TO_PATHURL . 'assets/js/admin' . $min . '.js', array( 'jquery' ), LSX_TO_PATHVER, true );
+		wp_enqueue_style( 'tour-operator-admin-style', LSX_TO_PATHURL . 'assets/css/admin.css', array(), LSX_TO_PATHVER );
 	}
 
 	/**
@@ -285,21 +285,21 @@ class TO_Admin extends Tour_Operator {
 	 * Display the addons page
 	 */
 	function addons_page(){
-		include(TO_PATH.'includes/settings/add-ons.php');
+		include(LSX_TO_PATHPATH.'includes/settings/add-ons.php');
 	}
 
 	/**
 	 * Display the help page
 	 */
 	function help_page(){
-		include(TO_PATH.'includes/settings/help.php');
+		include(LSX_TO_PATHPATH.'includes/settings/help.php');
 	}
 
 	/**
 	 * Display the licenses page
 	 */
 	function licenses_page(){
-		include(TO_PATH.'includes/settings/licenses.php');
+		include(LSX_TO_PATHPATH.'includes/settings/licenses.php');
 	}
 
 	/**

@@ -2,7 +2,7 @@
 /**
  * Frontend actions for the LSX TO Plugin
  *
- * @package   TO_Frontend
+ * @package   LSX_TO_PATHFrontend
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -12,13 +12,13 @@
 /**
  * Main plugin class.
  *
- * @package TO_Frontend
+ * @package LSX_TO_PATHFrontend
  * @author  LightSpeed
  */
-class TO_Frontend extends Tour_Operator {
+class LSX_TO_PATHFrontend extends Tour_Operator {
 
 	/**
-	 * This holds the class OBJ of TO_Template_Redirects
+	 * This holds the class OBJ of LSX_TO_PATHTemplate_Redirects
 	 */
 	public $redirects = false;	
 
@@ -27,7 +27,7 @@ class TO_Frontend extends Tour_Operator {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var      boolean|TO_Frontend
+	 * @var      boolean|LSX_TO_PATHFrontend
 	 */
 	public $enable_modals = false;
 
@@ -36,7 +36,7 @@ class TO_Frontend extends Tour_Operator {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var      array|TO_Frontend
+	 * @var      array|LSX_TO_PATHFrontend
 	 */
 	public $modal_ids = array();
 
@@ -67,10 +67,10 @@ class TO_Frontend extends Tour_Operator {
 
 		add_filter( 'the_terms', array( $this,'links_new_window') , 10, 2);		
 
-		if(!class_exists('TO_Template_Redirects')){
-			require_once( TO_PATH . 'classes/class-template-redirects.php' );
+		if(!class_exists('LSX_TO_PATHTemplate_Redirects')){
+			require_once( LSX_TO_PATHPATH . 'classes/class-template-redirects.php' );
 		}
-		$this->redirects = new TO_Template_Redirects(TO_PATH,array_keys($this->post_types),array_keys($this->taxonomies));
+		$this->redirects = new LSX_TO_PATHTemplate_Redirects(LSX_TO_PATHPATH,array_keys($this->post_types),array_keys($this->taxonomies));
 
 		add_filter( 'get_the_archive_title', array( $this, 'get_the_archive_title'),100 );
 
@@ -174,10 +174,10 @@ class TO_Frontend extends Tour_Operator {
 		}
 
 		if(!isset($this->options['display']['disable_js'])){
-			wp_enqueue_script( 'tour-operator-script', TO_URL . 'assets/js/custom.min.js', array( 'jquery' ), TO_VER, true );
+			wp_enqueue_script( 'tour-operator-script', LSX_TO_PATHURL . 'assets/js/custom.min.js', array( 'jquery' ), LSX_TO_PATHVER, true );
 		}
 		if(!isset($this->options['display']['disable_css'])){
-			wp_enqueue_style( 'tour-operator-style', TO_URL . 'assets/css/style.css', array(), TO_VER );
+			wp_enqueue_style( 'tour-operator-style', LSX_TO_PATHURL . 'assets/css/style.css', array(), LSX_TO_PATHVER );
 		}
 		if(defined('JETPACK__VERSION') && defined('WP_SHARING_PLUGIN_URL')){
 			wp_enqueue_style( 'sharing', WP_SHARING_PLUGIN_URL.'sharing.css', false, JETPACK__VERSION );

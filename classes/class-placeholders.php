@@ -11,7 +11,7 @@
 /**
  * Plugin class.
  */
-class TO_Placeholders {
+class LSX_TO_PATHPlaceholders {
 
 	/**
 	 * The slug for this plugin
@@ -73,7 +73,7 @@ class TO_Placeholders {
 			add_filter( 'wp_calculate_image_srcset', array($this,'super_placeholder_calculate_image_srcset_filter') , 20, 5 );	
 		}
 
-		$this->super_placeholder = TO_Placeholders::placeholder_url();
+		$this->super_placeholder = LSX_TO_PATHPlaceholders::placeholder_url();
 	}
 
 	/**

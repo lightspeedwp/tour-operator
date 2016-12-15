@@ -2,7 +2,7 @@
 /**
  * Tours Itinerary Query
  *
- * @package   TO_Itinerary_Query
+ * @package   LSX_TO_PATHItinerary_Query
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -12,10 +12,10 @@
 /**
  * Main plugin class.
  *
- * @package TO_Itinerary_Query
+ * @package LSX_TO_PATHItinerary_Query
  * @author  LightSpeed
  */
-class TO_Itinerary_Query {
+class LSX_TO_PATHItinerary_Query {
 	
 	/**
 	 * Holds class instance
@@ -132,7 +132,7 @@ function to_has_itinerary() {
 	global $tour_itinerary;
 	$has_itinerary = false;
 	if(null === $tour_itinerary){
-		$tour_itinerary = new TO_Itinerary_Query();
+		$tour_itinerary = new LSX_TO_PATHItinerary_Query();
 	}
 	if(is_object($tour_itinerary)){
 		$has_itinerary = $tour_itinerary->has_itinerary();
@@ -298,7 +298,7 @@ function to_itinerary_thumbnail() {
 			}
 		}
 		if(false === $thumbnail_src || '' === $thumbnail_src){
-			$thumbnail_src = TO_Placeholders::placeholder_url(null,'tour');
+			$thumbnail_src = LSX_TO_PATHPlaceholders::placeholder_url(null,'tour');
 		}
 		echo wp_kses_post(apply_filters( 'to_lazyload_filter_images', '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="'.$thumbnail_src.'" />' ));
 	}

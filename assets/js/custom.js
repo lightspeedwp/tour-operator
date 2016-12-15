@@ -1,4 +1,4 @@
-var TO_Itinerary_Read_More = {
+var LSX_TO_PATHItinerary_Read_More = {
 	initThis: function() {
 		if('undefined' != jQuery('#itinerary .view-more')){
 			this.watchLink();
@@ -17,7 +17,7 @@ var TO_Itinerary_Read_More = {
 	}
 },
 
-TO_Bootstrap_Carousel = {
+LSX_TO_PATHBootstrap_Carousel = {
 	avoidInMobile: function() {
 		jQuery('.carousel.slide').on('slide.bs.carousel', function() {
 			var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -31,17 +31,17 @@ TO_Bootstrap_Carousel = {
 
 lsxTofacetWpLoadFirstTime = false,
 
-TO_FacetWP = {
+LSX_TO_PATHFacetWP = {
 	effect_loaded: function() {
 		jQuery(document).on('facetwp-loaded', function() {
-			TO_FacetWP.effect_clearButton();
+			LSX_TO_PATHFacetWP.effect_clearButton();
 
 			if (!lsxTofacetWpLoadFirstTime) {
 				lsxTofacetWpLoadFirstTime = true;
 				return;
 			}
 
-			TO_FacetWP.effect_scrollOnLoad();
+			LSX_TO_PATHFacetWP.effect_scrollOnLoad();
 		});
 	},
 
@@ -60,7 +60,7 @@ TO_FacetWP = {
 	},
 },
 
-TO_TO = {
+LSX_TO_PATHTO = {
 	removeEmptyWidgets: function() {
 		jQuery('.widget.lsx-widget').each(function() {
 			var $this = jQuery(this);
@@ -72,7 +72,7 @@ TO_TO = {
 	}
 };
 
-var TO_Read_More = {
+var LSX_TO_PATHRead_More = {
 	initThis: function(){
 		jQuery('.entry-content .more-link, .archive-description .more-link').each(function() {
 			if ('Read More' == jQuery(this).html()) {
@@ -98,7 +98,7 @@ var TO_Read_More = {
 	}
 }
 
-var TO_Scrollable = {
+var LSX_TO_PATHScrollable = {
 	initThis: function(){
 		jQuery('.scroll-easing a').on('click',function(e) {
 			e.preventDefault();
@@ -129,10 +129,10 @@ var TO_Scrollable = {
 }
 
 jQuery(document).ready( function() {
-	TO_Read_More.initThis(); 
-	TO_Scrollable.initThis();	
-	TO_Itinerary_Read_More.initThis();
-	TO_Bootstrap_Carousel.avoidInMobile();
-	TO_FacetWP.effect_loaded();
-	TO_TO.removeEmptyWidgets();
+	LSX_TO_PATHRead_More.initThis();
+	LSX_TO_PATHScrollable.initThis();
+	LSX_TO_PATHItinerary_Read_More.initThis();
+	LSX_TO_PATHBootstrap_Carousel.avoidInMobile();
+	LSX_TO_PATHFacetWP.effect_loaded();
+	LSX_TO_PATHTO.removeEmptyWidgets();
 });

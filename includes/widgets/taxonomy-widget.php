@@ -1,6 +1,6 @@
 <?php
 /**
- * @package   TO_Taxonomy_Widget
+ * @package   LSX_TO_PATHTaxonomy_Widget
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -8,7 +8,7 @@
  *
  **/
 
-class TO_Taxonomy_Widget extends WP_Widget {	
+class LSX_TO_PATHTaxonomy_Widget extends WP_Widget {
 	
 	/**
 	 * Sets up the widgets name etc
@@ -18,7 +18,7 @@ class TO_Taxonomy_Widget extends WP_Widget {
 			'classname' => 'lsx-widget',
 			'description' => 'TO Taxonomy',
 		);
-		parent::__construct( 'TO_Taxonomy_Widget', 'TO Taxonomies', $widget_ops );
+		parent::__construct( 'LSX_TO_PATHTaxonomy_Widget', 'TO Taxonomies', $widget_ops );
 	}
  
     /** @see WP_Widget::widget -- do not rename this */

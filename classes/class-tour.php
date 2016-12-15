@@ -2,7 +2,7 @@
 /**
  * Tour Post Type Class
  *
- * @package   TO_Tour
+ * @package   LSX_TO_PATHTour
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -12,10 +12,10 @@
 /**
  * Main plugin class.
  *
- * @package TO_Tour
+ * @package LSX_TO_PATHTour
  * @author  LightSpeed
  */
-class TO_Tour {
+class LSX_TO_PATHTour {
 
 	/**
 	 * The slug for this plugin
@@ -212,7 +212,7 @@ class TO_Tour {
 		$fields[] = array( 'id' => 'hightlights',  'name' => esc_html__('Hightlights','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
 
 		if(class_exists('Envira_Gallery')){
-			if(!class_exists('TO_Galleries')){
+			if(!class_exists('LSX_TO_PATHGalleries')){
 				$fields[] = array( 'id' => 'gallery_title',  'name' => esc_html__('Gallery','tour-operator'), 'type' => 'title' );
 			}
 			$fields[] = array( 'id' => 'envira_gallery', 'name' => esc_html__('Envira Gallery','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
@@ -511,7 +511,7 @@ class TO_Tour {
 		if(class_exists('Envira_Gallery')){
 			$gallery_id = get_post_meta(get_the_ID(),'envira_to_tour',true);
 		}
-		if((false === $gallery_id || '' === $gallery_id) && class_exists('TO_Galleries')) {
+		if((false === $gallery_id || '' === $gallery_id) && class_exists('LSX_TO_PATHGalleries')) {
 			$gallery_id = get_post_meta(get_the_ID(),'gallery',true);
 		}
 		if(false !== $gallery_id && '' !== $gallery_id){
@@ -527,7 +527,7 @@ class TO_Tour {
 		if(class_exists('Envira_Videos')){
 			$videos_id = get_post_meta(get_the_ID(),'envira_video',true);
 		}
-		if((false === $videos_id || '' === $videos_id) && class_exists('TO_Videos')) {
+		if((false === $videos_id || '' === $videos_id) && class_exists('LSX_TO_PATHVideos')) {
 			$videos_id = get_post_meta(get_the_ID(),'videos',true);
 		}
 		if(false !== $videos_id && '' !== $videos_id){
@@ -536,4 +536,4 @@ class TO_Tour {
 	}
 
 }
-$to_tour = TO_Tour::get_instance();
+$to_tour = LSX_TO_PATHTour::get_instance();

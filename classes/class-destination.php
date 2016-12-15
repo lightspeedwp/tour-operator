@@ -2,7 +2,7 @@
 /**
  * Destination Class
  *
- * @package   TO_Destination
+ * @package   LSX_TO_PATHDestination
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -12,10 +12,10 @@
 /**
  * Main plugin class.
  *
- * @package TO_Destination
+ * @package LSX_TO_PATHDestination
  * @author  LightSpeed
  */
-class TO_Destination{
+class LSX_TO_PATHDestination{
 
 	/**
 	 * The slug for this plugin
@@ -156,12 +156,12 @@ class TO_Destination{
 		if(!class_exists('LSX_Banners')){
 			$fields[] = array( 'id' => 'tagline',  'name' => esc_html__('Tagline','tour-operator'), 'type' => 'text' );
 		}
-		//if(class_exists('TO_Team')){
+		//if(class_exists('LSX_TO_PATHTeam')){
 			$fields[] = array( 'id' => 'team_to_destination', 'name' => esc_html__('Destination Expert','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12, 'allow_none' => true );
 		//}
 
 		if(class_exists('Envira_Gallery')){
-			if(!class_exists('TO_Galleries')){
+			if(!class_exists('LSX_TO_PATHGalleries')){
 				$fields[] = array( 'id' => 'gallery_title',  'name' => esc_html__('Gallery','tour-operator'), 'type' => 'title' );
 			}			
 			$fields[] = array( 'id' => 'envira_gallery', 'name' => esc_html__('Envira Gallery','to-galleries'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
@@ -171,7 +171,7 @@ class TO_Destination{
 		}	
 			
 
-		if(!class_exists('TO_Maps')){
+		if(!class_exists('LSX_TO_PATHMaps')){
 			$fields[] = array( 'id' => 'location',  'name' => esc_html__('Location','tour-operator'), 'type' => 'gmap' );
 		}
 		
@@ -328,7 +328,7 @@ class TO_Destination{
 		if(class_exists('Envira_Gallery')){
 			$gallery_id = get_post_meta(get_the_ID(),'envira_to_tour',true);
 		}
-		if((false === $gallery_id || '' === $gallery_id) && class_exists('TO_Galleries')) {
+		if((false === $gallery_id || '' === $gallery_id) && class_exists('LSX_TO_PATHGalleries')) {
 			$gallery_id = get_post_meta(get_the_ID(),'gallery',true);
 		}
 		if(false !== $gallery_id && '' !== $gallery_id){
@@ -344,7 +344,7 @@ class TO_Destination{
 		if(class_exists('Envira_Videos')){
 			$videos_id = get_post_meta(get_the_ID(),'envira_video',true);
 		}
-		if((false === $videos_id || '' === $videos_id) && class_exists('TO_Videos')) {
+		if((false === $videos_id || '' === $videos_id) && class_exists('LSX_TO_PATHVideos')) {
 			$videos_id = get_post_meta(get_the_ID(),'videos',true);
 		}
 		if(false !== $videos_id && '' !== $videos_id){
@@ -381,4 +381,4 @@ class TO_Destination{
 		}
 	}
 }
-$to_destination = TO_Destination::get_instance();
+$to_destination = LSX_TO_PATHDestination::get_instance();

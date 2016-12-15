@@ -301,7 +301,7 @@ function to_safari_brands($before="",$after="",$echo=true) {
 			'interval' => '7000',
 			'indicators' => '1'
 	);
-	$safari_brands = new TO_Taxonomy_Widget();
+	$safari_brands = new LSX_TO_PATHTaxonomy_Widget();
 	ob_start();
 	$safari_brands->widget($args, $instance);
 	$return = ob_get_clean();
@@ -351,7 +351,7 @@ function to_travel_styles($before="",$after="",$echo=true) {
 			'interval' => '7000',
 			'indicators' => '1'
 	);
-	$travel_styles = new TO_Taxonomy_Widget();
+	$travel_styles = new LSX_TO_PATHTaxonomy_Widget();
 	ob_start();
 	$travel_styles->widget($args, $instance);
 	$return = ob_get_clean();

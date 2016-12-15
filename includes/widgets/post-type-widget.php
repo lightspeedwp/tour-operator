@@ -1,6 +1,6 @@
 <?php
 /**
- * @package   TO_Widget
+ * @package   LSX_TO_PATHWidget
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -8,7 +8,7 @@
  *
  **/
 
-class TO_Widget extends WP_Widget {
+class LSX_TO_PATHWidget extends WP_Widget {
 	
 	/**
 	 * Sets up the widgets name etc
@@ -18,7 +18,7 @@ class TO_Widget extends WP_Widget {
 			'classname' => 'lsx-widget',
 			'description' => esc_html__('TO','tour-operator'),
 		);
-		parent::__construct( 'TO_Widget', 'TO Post Types', $widget_ops );
+		parent::__construct( 'LSX_TO_PATHWidget', 'TO Post Types', $widget_ops );
 	}
  
     /** @see WP_Widget::widget -- do not rename this */

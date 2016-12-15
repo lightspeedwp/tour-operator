@@ -2,7 +2,7 @@
 /**
  * Tours Unit Query
  *
- * @package   TO_Unit_Query
+ * @package   LSX_TO_PATHUnit_Query
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -13,10 +13,10 @@
 /**
  * Main plugin class.
  *
- * @package TO_Unit_Query
+ * @package LSX_TO_PATHUnit_Query
  * @author  LightSpeed
  */
-class TO_Unit_Query {
+class LSX_TO_PATHUnit_Query {
 	
 	/**
 	 * Holds class instance
@@ -197,7 +197,7 @@ class TO_Unit_Query {
 				}
 			}
 			if(false === $thumbnail_src || '' === $thumbnail_src){
-				$thumbnail_src = TO_Placeholders::placeholder_url(null,'accommodation');
+				$thumbnail_src = LSX_TO_PATHPlaceholders::placeholder_url(null,'accommodation');
 			}			
 			if(false !== $thumbnail_src){
 				$return = $before.apply_filters( 'to_lazyload_filter_images', '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="'.$thumbnail_src.'" />' ).$after;
@@ -221,7 +221,7 @@ function to_accommodation_has_rooms() {
 	global $rooms;
 	$have_rooms = false;
 	if(null === $rooms){
-		$rooms = new TO_Unit_Query();
+		$rooms = new LSX_TO_PATHUnit_Query();
 	}
 	if(is_object($rooms)){
 		$have_rooms = $rooms->have_query();

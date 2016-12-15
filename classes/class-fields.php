@@ -2,7 +2,7 @@
 /**
  * CMB Field Patterns for the Tour Operator Plugin
  *
- * @package   TO_Field_Patterns
+ * @package   LSX_TO_PATHField_Patterns
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -12,10 +12,10 @@
 /**
  * Main plugin class.
  *
- * @package TO_Field_Patterns
+ * @package LSX_TO_PATHField_Patterns
  * @author  LightSpeed
  */
-class TO_Field_Pattern {
+class LSX_TO_PATHField_Pattern {
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
