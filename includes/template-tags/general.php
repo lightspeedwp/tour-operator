@@ -17,7 +17,7 @@
  * @subpackage	template-tags
  * @category 	class
  */
-function to_widget_class($return=false){
+function lsx_to_widget_class($return=false){
 	global $columns;
 	$md_col_width = 12 / $columns;
 
@@ -38,7 +38,7 @@ function to_widget_class($return=false){
  *
  * @param	$classes string or array
  */
-function to_entry_class($classes = false) {
+function lsx_to_entry_class($classes = false) {
 	global $post;
 
 	if(false !== $classes){
@@ -55,7 +55,7 @@ function to_entry_class($classes = false) {
  *
  * @param	$classes string or array
  */
-function to_column_class($classes = false) {
+function lsx_to_column_class($classes = false) {
 	global $post;
 
 	if(false !== $classes){
@@ -77,7 +77,7 @@ function to_column_class($classes = false) {
  * @subpackage	template-tag
  * @category 	header
  */
-function to_global_header() { ?>
+function lsx_to_global_header() { ?>
 	<header class="archive-header">
 		<h1 class="archive-title">
 			<?php 
@@ -99,7 +99,7 @@ function to_global_header() { ?>
  * @subpackage	template-tag
  * @category 	header
  */
-function to_tagline($before='',$after='',$echo=false) {
+function lsx_to_tagline($before='',$after='',$echo=false) {
 	echo wp_kses_post( apply_filters('to_tagline','',$before,$after) );
 }
 
@@ -110,7 +110,7 @@ function to_tagline($before='',$after='',$echo=false) {
  * @subpackage	template-tag
  * @category 	banner
  */
-function to_banner_content() { 
+function lsx_to_banner_content() {
 	to_tagline('<p class="tagline">','</p>');
 }
 
@@ -123,7 +123,7 @@ function to_banner_content() {
  * @subpackage	template-tag
  * @category 	content
  */
-function to_content($slug, $name = null) {
+function lsx_to_content($slug, $name = null) {
 	do_action('to_content',$slug, $name);
 }
 
@@ -136,7 +136,7 @@ function to_content($slug, $name = null) {
  * @subpackage	template-tag
  * @category 	description
  */
-function to_archive_description() {
+function lsx_to_archive_description() {
 	echo wp_kses_post( apply_filters('to_archive_description','','<div class="row"><div class="col-sm-12"><article class="archive-description hentry">','</article></div></div>') );
 }
 
@@ -153,7 +153,7 @@ function to_archive_description() {
  * @subpackage	template-tag
  * @category 	navigation
  */
-function to_page_navigation($echo = true) {
+function lsx_to_page_navigation($echo = true) {
 	$page_links = array();
 	if(is_singular()) {
 		$page_links['summary'] = esc_html__('Summary', 'tour-operator');
@@ -190,7 +190,7 @@ function to_page_navigation($echo = true) {
  * @subpackage	setup
  * @category 	helper
  */
-function to_sharing() { 
+function lsx_to_sharing() {
 	echo '<section id="sharing">';
 	if ( function_exists( 'sharing_display' ) ) {
 		sharing_display( '', true );
@@ -214,7 +214,7 @@ function to_sharing() {
  * @package 	to-galleries
  * @subpackage	template-tags
  */
-function to_envira_gallery($before="",$after="",$echo=true){
+function lsx_to_envira_gallery($before="",$after="",$echo=true){
 	$envira_gallery = get_post_meta(get_the_ID(),'envira_gallery',true);
 	if(false !== $envira_gallery && '' !== $envira_gallery && false === to_enable_envira_banner()){
 		ob_start();
@@ -243,7 +243,7 @@ function to_envira_gallery($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	tour
  */
-function to_envira_videos($before="",$after="",$echo=true){
+function lsx_to_envira_videos($before="",$after="",$echo=true){
 	global $content_width;
 	$envira_video = get_post_meta(get_the_ID(),'envira_video',true);
 	$return = false;
@@ -270,7 +270,7 @@ function to_envira_videos($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	helper
  */
-function to_safari_brands($before="",$after="",$echo=true) {
+function lsx_to_safari_brands($before="",$after="",$echo=true) {
 	$args = array(
 			'name' => 'Home',
 			'id' => 'sidebar-home',
@@ -320,7 +320,7 @@ function to_safari_brands($before="",$after="",$echo=true) {
  * @subpackage	template-tags
  * @category 	helper
  */
-function to_travel_styles($before="",$after="",$echo=true) {
+function lsx_to_travel_styles($before="",$after="",$echo=true) {
 	$args = array(
 			'name' => 'Home',
 			'id' => 'sidebar-home',
@@ -376,7 +376,7 @@ function to_travel_styles($before="",$after="",$echo=true) {
  * @subpackage	template-tags
  * @category 	tour
  */
-function to_enquire_modal($before="",$after="",$echo=true){ 
+function lsx_to_enquire_modal($before="",$after="",$echo=true){
 	global $tour_operator;
 
 	$form_id = 'false';
@@ -458,6 +458,6 @@ function to_enquire_modal($before="",$after="",$echo=true){
  * @subpackage	hook
  * @category 	modal
  */
-function to_modal_meta(){
+function lsx_to_modal_meta(){
 	do_action('to_modal_meta');
 }

@@ -40,7 +40,7 @@ add_action('lsx_content_bottom','to_tour_single_content_bottom');
  * @subpackage	template-tag
  * @category 	general
  */
-function to_archive_entry_top() {
+function lsx_to_archive_entry_top() {
 	global $to_archive;
 	if(in_array(get_post_type(),array('accommodation','tour','destination')) && (is_archive() || $to_archive)) { ?>
 		<div class="col-sm-3">
@@ -68,7 +68,7 @@ function to_archive_entry_top() {
  * @subpackage	template-tag
  * @category 	general
  */
-function to_single_content_top() {
+function lsx_to_single_content_top() {
 	if(is_singular(array_keys(to_get_post_types())) || is_post_type_archive('destination')) {
 		to_page_navigation();
 	}
@@ -81,7 +81,7 @@ function to_single_content_top() {
  * @subpackage	template-tag
  * @category 	general
  */
-function to_single_entry_bottom() {
+function lsx_to_single_entry_bottom() {
 	global $to_archive;
 	if(function_exists('to_has_team_member') && is_singular(array_keys(to_get_post_types())) && false === $to_archive && to_has_team_member()) { ?>
 		<div class="col-sm-3">
@@ -101,7 +101,7 @@ function to_single_entry_bottom() {
  * @subpackage	template-tag
  * @category 	accommodation
  */
-function to_accommodation_single_content_bottom() {
+function lsx_to_accommodation_single_content_bottom() {
 	if(is_singular('accommodation')){
 		to_accommodation_units('<section id="{units}"><h2 class="section-title">'.esc_html__('{units}','tour-operator').'</h2><div class="info row">','</div></section>');
 		
@@ -144,7 +144,7 @@ function to_accommodation_single_content_bottom() {
  * @subpackage	template-tag
  * @category 	accommodation
  */
-function to_accommodation_archive_entry_bottom() {
+function lsx_to_accommodation_archive_entry_bottom() {
 	global $to_archive;
 	if('accommodation' === get_post_type() && (is_archive() || $to_archive)) { ?>		
 		</div>
@@ -163,7 +163,7 @@ function to_accommodation_archive_entry_bottom() {
  * @subpackage	template-tag
  * @category 	destination
  */
-function to_destination_single_content_bottom() {
+function lsx_to_destination_single_content_bottom() {
 	if(is_singular('destination')){
 
 		to_country_regions();
@@ -202,7 +202,7 @@ function to_destination_single_content_bottom() {
  * @subpackage	template-tag
  * @category 	destination
  */
-function to_destination_archive_entry_bottom() {
+function lsx_to_destination_archive_entry_bottom() {
 	global $to_archive;
 	if('destination' === get_post_type() && (is_archive() || $to_archive)) { ?>		
 		</div>
@@ -223,7 +223,7 @@ function to_destination_archive_entry_bottom() {
  * @subpackage	template-tag
  * @category 	tour
  */
-function to_tour_single_content_bottom() {
+function lsx_to_tour_single_content_bottom() {
 	if(is_singular('tour')){ ?>
 		<section id="highlights">
 			<div class="row">
@@ -309,7 +309,7 @@ function to_tour_single_content_bottom() {
  * @subpackage	template-tag
  * @category 	tour
  */
-function to_tour_archive_entry_bottom() {
+function lsx_to_tour_archive_entry_bottom() {
 	global $to_archive;
 	if('tour' === get_post_type() && (is_archive() || $to_archive)) { ?>		
 		</div>

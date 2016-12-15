@@ -20,7 +20,7 @@
  * @subpackage	template-tags
  * @category 	class
  */
-function to_is_single_disabled($post_type=false){
+function lsx_to_is_single_disabled($post_type=false){
 	global $tour_operator;
 	if(false === $post_type) {$post_type = get_post_type(); }
 	if(is_object($tour_operator) && isset($tour_operator->options[$post_type]) && isset($tour_operator->options[$post_type]['disable_single'])){
@@ -37,7 +37,7 @@ function to_is_single_disabled($post_type=false){
  * @subpackage	hook
  * @category 	modal
  */
-function to_enable_envira_banner(){
+function lsx_to_enable_envira_banner(){
 	global $tour_operator;
 	if(isset($tour_operator->options) && isset($tour_operator->options['display']) && isset($tour_operator->options['display']['enable_galleries_in_banner'])){
 		return true;
@@ -53,7 +53,7 @@ function to_enable_envira_banner(){
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function to_accommodation_display_connected_tours(){
+function lsx_to_accommodation_display_connected_tours(){
 	global $tour_operator;
 	$return = false;
 	if(isset($tour_operator->options['accommodation']['display_connected_tours']) && 'on' === $tour_operator->options['accommodation']['display_connected_tours']){
@@ -68,7 +68,7 @@ function to_accommodation_display_connected_tours(){
  * @param	$post_id string
  * @param	$post_type string
  */
-function to_item_has_children($post_id = false,$post_type = false) {
+function lsx_to_item_has_children($post_id = false,$post_type = false) {
 	global $wpdb;
 	if(false == $post_id){return false;}
 	if(false == $post_type){$post_type = 'page';}
@@ -105,7 +105,7 @@ function to_item_has_children($post_id = false,$post_type = false) {
  * @subpackage	template-tags
  * @category 	class
  */
-function to_get_post_type_section_title($post_type=false,$section='',$default=''){
+function lsx_to_get_post_type_section_title($post_type=false,$section='',$default=''){
 	$section_title = (!empty($section)) ? ($section.'_section_title') : 'section_title';
 	global $tour_operator;
 	if(false === $post_type) {$post_type = get_post_type(); }
@@ -123,7 +123,7 @@ function to_get_post_type_section_title($post_type=false,$section='',$default=''
  * @param	$term_id
  */
 if(!function_exists('to_has_term_thumbnail')){
-	function to_has_term_thumbnail($term_id = false) {
+	function lsx_to_has_term_thumbnail($term_id = false) {
 		if(false !== $term_id){
 			$term_thumbnail = get_term_meta($term_id, 'thumbnail', true);
 			if(false !== $term_thumbnail && '' !== $term_thumbnail){
@@ -140,7 +140,7 @@ if(!function_exists('to_has_term_thumbnail')){
  * @param	$term_id string
  */
 if(!function_exists('to_term_thumbnail')){
-	function to_term_thumbnail($term_id = false,$size='lsx-thumbnail-wide') {
+	function lsx_to_term_thumbnail($term_id = false,$size='lsx-thumbnail-wide') {
 		if(false !== $term_id){
 			echo wp_kses_post(to_get_term_thumbnail($term_id,$size));
 		}
@@ -152,7 +152,7 @@ if(!function_exists('to_term_thumbnail')){
  * @param	$term_id string
  */
 if(!function_exists('to_get_term_thumbnail')){
-	function to_get_term_thumbnail($term_id = false,$size='lsx-thumbnail-wide') {
+	function lsx_to_get_term_thumbnail($term_id = false,$size='lsx-thumbnail-wide') {
 		if(false !== $term_id){
 			$term_thumbnail_id = get_term_meta($term_id, 'thumbnail', true);
 			$img = wp_get_attachment_image_src($term_thumbnail_id,$size);
@@ -171,7 +171,7 @@ if(!function_exists('to_get_term_thumbnail')){
  * @subpackage	template-tags
  * @category 	tour
  */
-function to_term_tagline($term_id=false,$before="",$after="",$echo=true){
+function lsx_to_term_tagline($term_id=false,$before="",$after="",$echo=true){
 	if(false !== $term_id){
 		$taxonomy_tagline = get_term_meta($term_id, 'tagline', true);
 		if(false !== $taxonomy_tagline && '' !== $taxonomy_tagline){
@@ -198,7 +198,7 @@ function to_term_tagline($term_id=false,$before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	helper
  */
-function to_has_custom_field_query( $meta_key = false, $id = false, $is_tax = false ) {
+function lsx_to_has_custom_field_query( $meta_key = false, $id = false, $is_tax = false ) {
 	if ( false !== $meta_key ) {
 		if ( false === ( $custom_field = get_transient( $id .'_'. $meta_key ) ) ) {
 			if ( $is_tax ) {
@@ -231,7 +231,7 @@ function to_has_custom_field_query( $meta_key = false, $id = false, $is_tax = fa
  * @subpackage	template-tags
  * @category 	helper
  */
-function to_custom_field_query($meta_key=false,$before="",$after="",$echo=false,$post_id=false){
+function lsx_to_custom_field_query($meta_key=false,$before="",$after="",$echo=false,$post_id=false){
 	if(false !== $meta_key){
 		//Check to see if we already have a transient set for this.
 		// TODO Need to move this to enclose the entire function and change to a !==,  that way you have to set up the custom field via the to_has_{custom_field} function
@@ -268,7 +268,7 @@ function to_custom_field_query($meta_key=false,$before="",$after="",$echo=false,
  * @subpackage	template-tags
  * @category 	helper
  */
-function to_connected_items_query($from=false,$to=false,$before="",$after="",$echo=false){
+function lsx_to_connected_items_query($from=false,$to=false,$before="",$after="",$echo=false){
 	if(post_type_exists($from) && post_type_exists($to)){
 		$connected_ids = get_post_meta(get_the_ID(),$from.'_to_'.$to,false);
 		if(false !== $connected_ids && '' !== $connected_ids && !empty($connected_ids)){
@@ -302,7 +302,7 @@ function to_connected_items_query($from=false,$to=false,$before="",$after="",$ec
  * @subpackage	template-tags
  * @category 	helper
  */
-function to_connected_panel_query($args=false){
+function lsx_to_connected_panel_query($args=false){
 	global $to_archive;
 	if(false !== $args && is_array($args)){
 		$defaults = array(
@@ -363,7 +363,7 @@ function to_connected_panel_query($args=false){
  * @subpackage	template-tags
  * @category 	helper
  */
-function to_related_items($taxonomy=false,$before="",$after="",$echo=true,$post_type=false) {
+function lsx_to_related_items($taxonomy=false,$before="",$after="",$echo=true,$post_type=false) {
 	if(false !== $taxonomy){
 		$return = false;
 		$filters = array();
@@ -515,7 +515,7 @@ function to_related_items($taxonomy=false,$before="",$after="",$echo=true,$post_
  * @subpackage	template-tags
  * @category 	helper
  */
-function to_connected_list($connected_ids = false,$type = false,$link = true,$seperator=', ',$parent=false) {
+function lsx_to_connected_list($connected_ids = false,$type = false,$link = true,$seperator=', ',$parent=false) {
 
 	if(false === $connected_ids || false === $type){
 		return false;

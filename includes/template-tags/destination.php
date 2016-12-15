@@ -15,7 +15,7 @@
  * @subpackage	template-tags
  * @category 	destination
  */
-function to_region_accommodation(){
+function lsx_to_region_accommodation(){
 	global $to_archive;
 	if(post_type_exists('accommodation') && is_singular('destination') && !to_item_has_children(get_the_ID(),'destination')) { 
 		$args = array(
@@ -35,7 +35,7 @@ function to_region_accommodation(){
  * @subpackage	template-tags
  * @category 	destination
  */
-function to_country_regions(){
+function lsx_to_country_regions(){
 	global $to_archive,$wp_query;
 	if(is_singular('destination') && to_item_has_children(get_the_ID(),'destination')) {
 		$region_args = array(
@@ -77,7 +77,7 @@ function to_country_regions(){
  * @subpackage	template-tags
  * @category 	destination
  */
-function to_destination_tours(){
+function lsx_to_destination_tours(){
 	global $to_archive,$wp_query;
 	if(post_type_exists('tour') && is_singular('destination')){
 		$args = array(
@@ -98,7 +98,7 @@ function to_destination_tours(){
  * @subpackage	template-tags
  * @category 	destination
  */
-function to_destination_activities(){
+function lsx_to_destination_activities(){
 	global $to_archive;
 	if(post_type_exists('activity') && is_singular('destination') && !to_item_has_children(get_the_ID(),'destination')){
 		$args = array(
@@ -125,6 +125,6 @@ function to_destination_activities(){
  * @subpackage	template-tags
  * @category 	connections
  */
-function to_connected_destinations($before="",$after="",$echo=true){
+function lsx_to_connected_destinations($before="",$after="",$echo=true){
 	to_connected_items_query('destination',get_post_type(),$before,$after,$echo);
 }

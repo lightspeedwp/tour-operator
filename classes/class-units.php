@@ -217,7 +217,7 @@ class LSX_TO_PATHUnit_Query {
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function to_accommodation_has_rooms() {
+function lsx_to_accommodation_has_rooms() {
 	global $rooms;
 	$have_rooms = false;
 	if(null === $rooms){
@@ -238,7 +238,7 @@ function to_accommodation_has_rooms() {
  * @subpackage	template-tags
  * @category 	room
  */
-function to_accommodation_room_loop() {
+function lsx_to_accommodation_room_loop() {
 	global $rooms;
 	if(is_object($rooms)){
 		return $rooms->while_query();
@@ -256,7 +256,7 @@ function to_accommodation_room_loop() {
  * @subpackage	template-tags
  * @category 	room
  */
-function to_accommodation_room_loop_item($type=false) {
+function lsx_to_accommodation_room_loop_item($type=false) {
 	global $rooms;
 	if(is_object($rooms)){
 		return $rooms->current_queried_item($type);
@@ -276,7 +276,7 @@ function to_accommodation_room_loop_item($type=false) {
  * @subpackage	template-tags
  * @category 	room
  */
-function to_accommodation_room_title($before="",$after="",$echo=true) {
+function lsx_to_accommodation_room_title($before="",$after="",$echo=true) {
 	global $rooms;
 	if(is_object($rooms)){
 		$rooms->item_title($before,$after,$echo);	
@@ -293,7 +293,7 @@ function to_accommodation_room_title($before="",$after="",$echo=true) {
  * @subpackage	template-tags
  * @category 	room
  */
-function to_accommodation_room_description($before="",$after="",$echo=true) {
+function lsx_to_accommodation_room_description($before="",$after="",$echo=true) {
 	global $rooms;
 	if(is_object($rooms)){
 		$rooms->item_description($before,$after,$echo);
@@ -307,7 +307,7 @@ function to_accommodation_room_description($before="",$after="",$echo=true) {
  * @subpackage	template-tags
  * @category 	room
  */
-function to_accommodation_room_has_thumbnail() {
+function lsx_to_accommodation_room_has_thumbnail() {
 	global $rooms;
 	if($rooms && $rooms->have_query) {
 		return true;
@@ -320,7 +320,7 @@ function to_accommodation_room_has_thumbnail() {
  * @subpackage	template-tags
  * @category 	room
  */
-function to_accommodation_room_thumbnail($before="",$after="",$echo=true) {
+function lsx_to_accommodation_room_thumbnail($before="",$after="",$echo=true) {
 	global $rooms;
 	if(is_object($rooms)){
 		$rooms->item_thumbnail($before,$after,$echo);
@@ -334,7 +334,7 @@ function to_accommodation_room_thumbnail($before="",$after="",$echo=true) {
  * @subpackage	template-tags
  * @category 	room
  */
-function to_accommodation_check_type($type=false) {
+function lsx_to_accommodation_check_type($type=false) {
 	global $rooms;
 	return $rooms->check_type($type);
 }
@@ -346,7 +346,7 @@ function to_accommodation_check_type($type=false) {
  * @subpackage	template-tags
  * @category 	room
  */
-function to_accommodation_reset_units_loop() {
+function lsx_to_accommodation_reset_units_loop() {
 	global $rooms;
 	return $rooms->reset_loop();
 }
@@ -358,7 +358,7 @@ function to_accommodation_reset_units_loop() {
  * @subpackage	template-tags
  * @category 	unit
  */
-function to_accommodation_units($before="",$after=""){
+function lsx_to_accommodation_units($before="",$after=""){
 	global $rooms;
 
 	if(to_accommodation_has_rooms()) { 

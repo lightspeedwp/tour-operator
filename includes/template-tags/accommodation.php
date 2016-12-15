@@ -20,7 +20,7 @@
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function to_accommodation_room_total($before="",$after="",$echo=true){
+function lsx_to_accommodation_room_total($before="",$after="",$echo=true){
 	to_custom_field_query('number_of_rooms',$before,$after,$echo);
 }
 
@@ -37,7 +37,7 @@ function to_accommodation_room_total($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function to_accommodation_rating($before="",$after="",$echo=true,$post_id=false){
+function lsx_to_accommodation_rating($before="",$after="",$echo=true,$post_id=false){
 	to_custom_field_query('rating',$before,$after,$echo,$post_id);
 }
 
@@ -53,7 +53,7 @@ function to_accommodation_rating($before="",$after="",$echo=true,$post_id=false)
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function to_has_facilities(){
+function lsx_to_has_facilities(){
 	// Get any existing copy of our transient data
 	if ( false === ( $facilities = get_transient( get_the_ID().'_facilities' ) ) ) {
 		// It wasn't there, so regenerate the data and save the transient
@@ -93,7 +93,7 @@ function to_has_facilities(){
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function to_accommodation_facilities($before="",$after="",$echo=true){
+function lsx_to_accommodation_facilities($before="",$after="",$echo=true){
 	$facilities = wp_get_object_terms(get_the_ID(),'facility');
 	$main_facilities = false;
 	$child_facilities = false;
@@ -144,7 +144,7 @@ function to_accommodation_facilities($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function to_accommodation_spoken_languages($before="",$after="",$echo=true){
+function lsx_to_accommodation_spoken_languages($before="",$after="",$echo=true){
 	$spoken_languages = get_post_meta( get_the_ID(), 'spoken_languages', true );
 	if ( is_string( $spoken_languages ) && ! empty( $spoken_languages ) ) $spoken_languages = array( $spoken_languages );
 	$return = '';
@@ -185,7 +185,7 @@ function to_accommodation_spoken_languages($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function to_accommodation_special_interests($before="",$after="",$echo=true,$post_id=false){
+function lsx_to_accommodation_special_interests($before="",$after="",$echo=true,$post_id=false){
 	if(false === $post_id){
 		$post_id = get_the_ID();
 	}
@@ -230,7 +230,7 @@ function to_accommodation_special_interests($before="",$after="",$echo=true,$pos
  * @category 	accommodation
  * @category 	activity
  */
-function to_accommodation_activity_friendly($before="",$after="",$echo=true){
+function lsx_to_accommodation_activity_friendly($before="",$after="",$echo=true){
 	$friendly = get_post_meta( get_the_ID(), 'suggested_visitor_types', true );
 	if ( is_string( $friendly ) && ! empty( $friendly ) ) $friendly = array( $friendly );
 	$return = '';
@@ -266,7 +266,7 @@ function to_accommodation_activity_friendly($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function to_accommodation_meta(){ 
+function lsx_to_accommodation_meta(){
 	if('accommodation' === get_post_type()){
 	?>
 	<div class="accommodation-details meta taxonomies">
@@ -295,6 +295,6 @@ function to_accommodation_meta(){
  * @subpackage	template-tags
  * @category 	connections
  */
-function to_connected_accommodation($before="",$after="",$echo=true){
+function lsx_to_connected_accommodation($before="",$after="",$echo=true){
 	to_connected_items_query('accommodation',get_post_type(),$before,$after,$echo);
 }

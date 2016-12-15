@@ -26,7 +26,7 @@ class LSX_TO_PATHSCPO_Engine {
 		add_filter('get_terms', array($this, 'to_scporder_get_object_terms'), 10, 4);
 	}
 
-	function to_scporder_install() {
+	function lsx_to_scporder_install() {
 		global $wpdb;
 		$result = $wpdb->query("DESCRIBE $wpdb->terms `to_term_order`");
 		
@@ -212,7 +212,7 @@ class LSX_TO_PATHSCPO_Engine {
 		}
 	}
 
-	function to_scporder_previous_post_where($where) {
+	function lsx_to_scporder_previous_post_where($where) {
 		global $post;
 		$objects = $this->get_to_scporder_options_objects();
 		
@@ -227,7 +227,7 @@ class LSX_TO_PATHSCPO_Engine {
 		return $where;
 	}
 
-	function to_scporder_previous_post_sort($orderby) {
+	function lsx_to_scporder_previous_post_sort($orderby) {
 		global $post;
 		$objects = $this->get_to_scporder_options_objects();
 		
@@ -241,7 +241,7 @@ class LSX_TO_PATHSCPO_Engine {
 		return $orderby;
 	}
 
-	function to_scporder_next_post_where($where) {
+	function lsx_to_scporder_next_post_where($where) {
 		global $post;
 		$objects = $this->get_to_scporder_options_objects();
 		
@@ -256,7 +256,7 @@ class LSX_TO_PATHSCPO_Engine {
 		return $where;
 	}
 
-	function to_scporder_next_post_sort($orderby) {
+	function lsx_to_scporder_next_post_sort($orderby) {
 		global $post;
 		$objects = $this->get_to_scporder_options_objects();
 		
@@ -270,7 +270,7 @@ class LSX_TO_PATHSCPO_Engine {
 		return $orderby;
 	}
 
-	function to_scporder_pre_get_posts($wp_query) {
+	function lsx_to_scporder_pre_get_posts($wp_query) {
 		$objects = $this->get_to_scporder_options_objects();
 		
 		if (empty($objects))
@@ -318,7 +318,7 @@ class LSX_TO_PATHSCPO_Engine {
 		}
 	}
 
-	function to_scporder_get_terms_orderby($orderby, $args) {
+	function lsx_to_scporder_get_terms_orderby($orderby, $args) {
 		if (is_admin())
 			return $orderby;
 
@@ -340,7 +340,7 @@ class LSX_TO_PATHSCPO_Engine {
 		return $orderby;
 	}
 
-	function to_scporder_get_object_terms($terms, $not_used, $args_1, $args_2 = null) {
+	function lsx_to_scporder_get_object_terms($terms, $not_used, $args_1, $args_2 = null) {
 		$tags = $this->get_to_scporder_options_tags();
 
 		if (is_admin() && isset($_GET['orderby']))
@@ -389,7 +389,7 @@ class LSX_TO_PATHSCPO_Engine {
  */
 register_uninstall_hook(__FILE__, 'to_scporder_uninstall');
 
-function to_scporder_uninstall() {
+function lsx_to_scporder_uninstall() {
 	global $wpdb;
 	
 	if (function_exists('is_multisite') && is_multisite()) {
@@ -407,7 +407,7 @@ function to_scporder_uninstall() {
 	}
 }
 
-function to_scporder_uninstall_db() {
+function lsx_to_scporder_uninstall_db() {
 	global $wpdb;
 	$result = $wpdb->query("DESCRIBE $wpdb->terms `to_term_order`");
 	

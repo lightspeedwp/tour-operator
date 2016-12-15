@@ -20,7 +20,7 @@
  * @subpackage	template-tags
  * @category 	tour
  */
-function to_price($before="",$after="",$echo=true){
+function lsx_to_price($before="",$after="",$echo=true){
 	to_custom_field_query('price',$before,$after,$echo);
 }
 
@@ -36,7 +36,7 @@ function to_price($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	tour
  */
-function to_duration($before="",$after="",$echo=true){
+function lsx_to_duration($before="",$after="",$echo=true){
 	to_custom_field_query('duration',$before,$after,$echo);
 }
 
@@ -52,7 +52,7 @@ function to_duration($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	tour
  */
-function to_included($before="",$after="",$echo=true){
+function lsx_to_included($before="",$after="",$echo=true){
 	return to_custom_field_query('included',$before,$after,$echo);
 }
 
@@ -68,7 +68,7 @@ function to_included($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	tour
  */
-function to_not_included($before="",$after="",$echo=true){
+function lsx_to_not_included($before="",$after="",$echo=true){
 	return to_custom_field_query('not_included',$before,$after,$echo);
 }
 
@@ -84,7 +84,7 @@ function to_not_included($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	tour
  */
-function to_departure_point($before="",$after="",$echo=true){
+function lsx_to_departure_point($before="",$after="",$echo=true){
 	$departs_from = get_post_meta(get_the_ID(),'departs_from',false);
 	if(false !== $departs_from && '' !== $departs_from){
 		if(!is_array($departs_from)){
@@ -111,7 +111,7 @@ function to_departure_point($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	tour
  */
-function to_end_point($before="",$after="",$echo=true){
+function lsx_to_end_point($before="",$after="",$echo=true){
 	$end_point = get_post_meta(get_the_ID(),'ends_in',false);
 	if(false !== $end_point && '' !== $end_point){
 		if(!is_array($end_point)){
@@ -133,7 +133,7 @@ function to_end_point($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	tour
  */
-function to_included_block(){
+function lsx_to_included_block(){
 
 	$tour_included = to_included('','',false);
 	$tour_not_included = to_not_included('','',false);
@@ -180,7 +180,7 @@ function to_included_block(){
  * @subpackage	template-tags
  * @category 	tour
  */
-function to_highlights($before="",$after="",$echo=true){
+function lsx_to_highlights($before="",$after="",$echo=true){
 	$highlights = get_post_meta(get_the_ID(),'hightlights',true);
 	if(false !== $highlights && '' !== $highlights){
 		$return = $before.'<div class="entry-content">'.apply_filters('the_content',wpautop($highlights)).'</div>'.$after;
@@ -204,7 +204,7 @@ function to_highlights($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	tour
  */
-function to_best_time_to_visit($before="",$after="",$echo=true){
+function lsx_to_best_time_to_visit($before="",$after="",$echo=true){
 	$best_time_to_visit = get_post_meta(get_the_ID(),'best_time_to_visit',true);
 	if(false !== $best_time_to_visit && '' !== $best_time_to_visit && is_array($best_time_to_visit) && !empty($best_time_to_visit)){
 		
@@ -250,6 +250,6 @@ function to_best_time_to_visit($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	connections
  */
-function to_connected_tours($before="",$after="",$echo=true){
+function lsx_to_connected_tours($before="",$after="",$echo=true){
 	to_connected_items_query('tour',get_post_type(),$before,$after,$echo);
 }

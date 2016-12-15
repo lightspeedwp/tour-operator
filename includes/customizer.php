@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) return; // Exit if accessed directly
 /**
  * Add new selectors in "button" group of colours
  */
-function to_customizer_colour_selectors_button( $css, $colors ) {
+function lsx_to_customizer_colour_selectors_button( $css, $colors ) {
 	$css .= <<<CSS
 		/*
 		 *
@@ -51,7 +51,7 @@ add_filter( 'to_customizer_colour_selectors_button', 'to_customizer_colour_selec
 /**
  * Add new selectors in "header" group of colours
  */
-function to_customizer_colour_selectors_header( $css, $colors ) {
+function lsx_to_customizer_colour_selectors_header( $css, $colors ) {
 	$css .= <<<CSS
 		/*
 		 *
@@ -76,7 +76,7 @@ add_filter( 'to_customizer_colour_selectors_header', 'to_customizer_colour_selec
 /**
  * Add new selectors in "main meun" group of colours
  */
-function to_customizer_colour_selectors_main_menu( $css, $colors ) {
+function lsx_to_customizer_colour_selectors_main_menu( $css, $colors ) {
 	$css .= <<<CSS
 		/*
 		 *
@@ -109,7 +109,7 @@ add_filter( 'to_customizer_colour_selectors_main_menu', 'to_customizer_colour_se
 /**
  * Add new selectors in "body" group of colours
  */
-function to_customizer_colour_selectors_body( $css, $colors ) {
+function lsx_to_customizer_colour_selectors_body( $css, $colors ) {
 	$css .= <<<CSS
 		/*
 		 *

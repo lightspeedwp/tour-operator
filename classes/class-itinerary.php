@@ -128,7 +128,7 @@ class LSX_TO_PATHItinerary_Query {
  * @subpackage	template-tags
  * @category 	itinerary
  */
-function to_has_itinerary() {
+function lsx_to_has_itinerary() {
 	global $tour_itinerary;
 	$has_itinerary = false;
 	if(null === $tour_itinerary){
@@ -149,7 +149,7 @@ function to_has_itinerary() {
  * @subpackage	template-tags
  * @category 	itinerary
  */
-function to_itinerary_loop() {
+function lsx_to_itinerary_loop() {
 	global $tour_itinerary;
 	if(is_object($tour_itinerary)){
 		return $tour_itinerary->while_itinerary();
@@ -167,7 +167,7 @@ function to_itinerary_loop() {
  * @subpackage	template-tags
  * @category 	itinerary
  */
-function to_itinerary_loop_item() {
+function lsx_to_itinerary_loop_item() {
 	global $tour_itinerary;
 	if(is_object($tour_itinerary)){
 		$tour_itinerary->current_itinerary_item();
@@ -181,7 +181,7 @@ function to_itinerary_loop_item() {
  * @subpackage	template-tags
  * @category 	itinerary
  */
-function to_itinerary_loop_reset() {
+function lsx_to_itinerary_loop_reset() {
 	global $tour_itinerary;
 	if(is_object($tour_itinerary)){
 		$tour_itinerary->reset_loop();
@@ -195,7 +195,7 @@ function to_itinerary_loop_reset() {
  * @subpackage	template-tags
  * @category 	itinerary
  */
-function to_itinerary_title() {
+function lsx_to_itinerary_title() {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
 		if(false !== $tour_itinerary->itinerary['title']){
@@ -212,7 +212,7 @@ function to_itinerary_title() {
  * @subpackage	template-tags
  * @category 	itinerary
  */
-function to_itinerary_slug() {
+function lsx_to_itinerary_slug() {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
 		if(false !== $tour_itinerary->itinerary['title']){
@@ -228,7 +228,7 @@ function to_itinerary_slug() {
  * @subpackage	template-tags
  * @category 	itinerary
  */
-function to_itinerary_tagline() {
+function lsx_to_itinerary_tagline() {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
 		if(false !== $tour_itinerary->itinerary['tagline']){
@@ -244,7 +244,7 @@ function to_itinerary_tagline() {
  * @subpackage	template-tags
  * @category 	itinerary
  */
-function to_itinerary_description() {
+function lsx_to_itinerary_description() {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
 		if(false !== $tour_itinerary->itinerary['description']){
@@ -259,7 +259,7 @@ function to_itinerary_description() {
  * @subpackage	template-tags
  * @category 	itinerary
  */
-function to_itinerary_has_thumbnail() {
+function lsx_to_itinerary_has_thumbnail() {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary) {
 		return true;
@@ -272,7 +272,7 @@ function to_itinerary_has_thumbnail() {
  * @subpackage	template-tags
  * @category 	itinerary
  */
-function to_itinerary_thumbnail() {
+function lsx_to_itinerary_thumbnail() {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
 		$thumbnail_src = false;
@@ -311,7 +311,7 @@ function to_itinerary_thumbnail() {
  * @subpackage	template-tags
  * @category 	itinerary
  */
-function to_itinerary_destinations($before='',$after='') {
+function lsx_to_itinerary_destinations($before='',$after='') {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
 		if(is_array($tour_itinerary->itinerary['destination_to_tour']) && !empty($tour_itinerary->itinerary['destination_to_tour'])){
@@ -327,7 +327,7 @@ function to_itinerary_destinations($before='',$after='') {
  * @subpackage	template-tags
  * @category 	itinerary
  */
-function to_itinerary_accommodation($before='',$after='') {
+function lsx_to_itinerary_accommodation($before='',$after='') {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
 		if(is_array($tour_itinerary->itinerary['accommodation_to_tour']) && !empty($tour_itinerary->itinerary['accommodation_to_tour'])){
@@ -350,7 +350,7 @@ function to_itinerary_accommodation($before='',$after='') {
  * @subpackage	template-tags
  * @category 	itinerary
  */
-function to_itinerary_activities($before='',$after='') {
+function lsx_to_itinerary_activities($before='',$after='') {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
 		if(isset($tour_itinerary->itinerary['activity_to_tour']) && is_array($tour_itinerary->itinerary['activity_to_tour']) && !empty($tour_itinerary->itinerary['activity_to_tour'])){
@@ -368,7 +368,7 @@ function to_itinerary_activities($before='',$after='') {
  * @subpackage	template-tags
  * @category 	itinerary
  */
-function to_itinerary_class($classes = false) {
+function lsx_to_itinerary_class($classes = false) {
 	global $post;
 
 	if(false !== $classes){
@@ -388,7 +388,7 @@ function to_itinerary_class($classes = false) {
  * @subpackage	template-tags
  * @category 	itinerary
  */
-function to_itinerary_read_more(){
+function lsx_to_itinerary_read_more(){
 	if(to_itinerary_needs_read_more()){
 		$label=esc_html__('Read More','tour-operator')
 		?>
@@ -406,6 +406,6 @@ function to_itinerary_read_more(){
  * @subpackage	template-tags
  * @category 	itinerary
  */
-function to_itinerary_needs_read_more(){
+function lsx_to_itinerary_needs_read_more(){
 	return apply_filters('lsx_itinerary_needs_read_more',false);
 }

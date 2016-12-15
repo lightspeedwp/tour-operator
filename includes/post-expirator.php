@@ -4,7 +4,7 @@ define('LSX_TO_PATHPOSTEXPIRATOR_DATEFORMAT',esc_html__('l F jS, Y','tour-operat
 define('LSX_TO_PATHPOSTEXPIRATOR_TIMEFORMAT',esc_html__('g:ia','tour-operator'));
 define('LSX_TO_PATHPOSTEXPIRATOR_TYPES',array('special','tour'));
 
-function to_expirationdate_add_column($columns,$type) {
+function lsx_to_expirationdate_add_column($columns,$type) {
 	if (in_array($type, LSX_TO_PATHPOSTEXPIRATOR_TYPES)) {
 	  	$columns['to_expirationdate'] = esc_html__('Expires','tour-operator');
 	}
@@ -13,7 +13,7 @@ function to_expirationdate_add_column($columns,$type) {
 }
 add_filter('manage_posts_columns', 'to_expirationdate_add_column', 10, 2);
 
-function to_expirationdate_show_value($column_name) {
+function lsx_to_expirationdate_show_value($column_name) {
 	global $post;
 	$id = $post->ID;
 	
@@ -25,7 +25,7 @@ function to_expirationdate_show_value($column_name) {
 add_action ('manage_posts_custom_column', 'to_expirationdate_show_value');
 add_action ('manage_pages_custom_column', 'to_expirationdate_show_value');
 
-function to_expirationdate_meta_custom() {
+function lsx_to_expirationdate_meta_custom() {
 	$custom_post_types = LSX_TO_PATHPOSTEXPIRATOR_TYPES;
 	
 	foreach ($custom_post_types as $t) {
@@ -34,7 +34,7 @@ function to_expirationdate_meta_custom() {
 }
 add_action('add_meta_boxes','to_expirationdate_meta_custom');
 
-function to_expirationdate_meta_box($post) { 
+function lsx_to_expirationdate_meta_box($post) {
 	$expirationdatets = get_post_meta($post->ID,'_to_expiration-date',true);
 	$firstsave = get_post_meta($post->ID,'_to_expiration-date-status',true);
 	$expiretype = '';
@@ -127,11 +127,11 @@ function to_expirationdate_meta_box($post) {
 	echo wp_kses_post(to_post_expirator_expire_type(array('type' => $post->post_type, 'name'=>'to_expirationdate_expiretype','selected'=>$expiretype,'disabled'=>$disabled)));
 }
 
-function to_expirationdate_js_admin_header() {
+function lsx_to_expirationdate_js_admin_header() {
 	?>
 	<script type="text/javascript">
 		//<![CDATA[
-		function to_expirationdate_ajax_add_meta(expireenable) {
+		function lsx_to_expirationdate_ajax_add_meta(expireenable) {
 			var expire = document.getElementById(expireenable);
 
 			if (expire.checked == true) {
@@ -164,7 +164,7 @@ function to_expirationdate_js_admin_header() {
 }
 add_action('admin_head', 'to_expirationdate_js_admin_header' );
 
-function to_expirationdate_update_post_meta($id) {
+function lsx_to_expirationdate_update_post_meta($id) {
 	if ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) {
 		return;
 	}
@@ -198,7 +198,7 @@ function to_expirationdate_update_post_meta($id) {
 }
 add_action('save_post','to_expirationdate_update_post_meta');
 
-function to_schedule_expirator_event($id,$ts,$opts) {
+function lsx_to_schedule_expirator_event($id,$ts,$opts) {
 	if (wp_next_scheduled('lsxToPostExpiratorExpire',array($id)) !== false) {
 		wp_clear_scheduled_hook('lsxToPostExpiratorExpire',array($id));
 	}
@@ -210,7 +210,7 @@ function to_schedule_expirator_event($id,$ts,$opts) {
 	update_post_meta($id, '_to_expiration-date-status','saved');
 }
 
-function to_unschedule_expirator_event($id) {
+function lsx_to_unschedule_expirator_event($id) {
 	delete_post_meta($id, '_to_expiration-date'); 
 	delete_post_meta($id, '_to_expiration-date-options');
 
@@ -221,7 +221,7 @@ function to_unschedule_expirator_event($id) {
 	update_post_meta($id, '_to_expiration-date-status','saved');
 }
 
-function to_post_expirator_expire($id) {
+function lsx_to_post_expirator_expire($id) {
 	if (empty($id)) { 
 		return false;
 	}
@@ -250,7 +250,7 @@ function to_post_expirator_expire($id) {
 }
 add_action('lsxToPostExpiratorExpire','to_post_expirator_expire');
 
-function to_post_expirator_expire_type($opts) {
+function lsx_to_post_expirator_expire_type($opts) {
 	if (empty($opts)) return false;
 
 	if (!isset($opts['name'])) return false;

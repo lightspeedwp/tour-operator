@@ -341,7 +341,7 @@ class Tour_Operator {
 	/**
 	 * Include the post type for the search integration
 	 */
-	public function to_search_integration(){
+	public function lsx_to_search_integration(){
 		add_filter( 'to_search_post_types', array( $this, 'post_types_filter') );
 		add_filter( 'to_search_taxonomies', array( $this, 'taxonomies_filter') );	
 	}	
@@ -632,7 +632,7 @@ $tour_operator = Tour_Operator::get_instance();
  *
  * @param	$term_id
  */
-function to_get_taxonomies() {
+function lsx_to_get_taxonomies() {
 	global $tour_operator;
 	if(false !== $tour_operator){
 		return $tour_operator->get_taxonomies();
@@ -644,7 +644,7 @@ function to_get_taxonomies() {
  *
  * @param	$term_id
  */
-function to_get_post_types() {
+function lsx_to_get_post_types() {
 	global $tour_operator;
 	if(false !== $tour_operator){
 		return $tour_operator->get_post_types();
