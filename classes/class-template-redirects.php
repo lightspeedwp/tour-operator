@@ -1,6 +1,6 @@
 <?php
 /**
- * @package   LSX_TO_PATHTemplate_Redirects
+ * @package   LSX_TO_Template_Redirects
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -8,7 +8,7 @@
  *
  **/
 
-class LSX_TO_PATHTemplate_Redirects {
+class LSX_TO_Template_Redirects {
 
 	/**
 	 * Plugin Path

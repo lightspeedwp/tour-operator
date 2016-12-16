@@ -8,7 +8,7 @@
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> style="margin-bottom: 0px;">
 
-	<?php to_map_meta(); ?>		
+	<?php lsx_to_map_meta(); ?>		
 
 	<div class="entry-content">
 			<?php the_excerpt(); ?>

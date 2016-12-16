@@ -2,7 +2,7 @@
 /**
  * Tours Unit Query
  *
- * @package   LSX_TO_PATHUnit_Query
+ * @package   LSX_TO_Unit_Query
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -13,10 +13,10 @@
 /**
  * Main plugin class.
  *
- * @package LSX_TO_PATHUnit_Query
+ * @package LSX_TO_Unit_Query
  * @author  LightSpeed
  */
-class LSX_TO_PATHUnit_Query {
+class LSX_TO_Unit_Query {
 	
 	/**
 	 * Holds class instance
@@ -197,7 +197,7 @@ class LSX_TO_PATHUnit_Query {
 				}
 			}
 			if(false === $thumbnail_src || '' === $thumbnail_src){
-				$thumbnail_src = LSX_TO_PATHPlaceholders::placeholder_url(null,'accommodation');
+				$thumbnail_src = LSX_TO_Placeholders::placeholder_url(null,'accommodation');
 			}			
 			if(false !== $thumbnail_src){
 				$return = $before.apply_filters( 'lsx_to_lazyload_filter_images', '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="'.$thumbnail_src.'" />' ).$after;
@@ -221,7 +221,7 @@ function lsx_to_accommodation_has_rooms() {
 	global $rooms;
 	$have_rooms = false;
 	if(null === $rooms){
-		$rooms = new LSX_TO_PATHUnit_Query();
+		$rooms = new LSX_TO_Unit_Query();
 	}
 	if(is_object($rooms)){
 		$have_rooms = $rooms->have_query();
@@ -232,7 +232,7 @@ function lsx_to_accommodation_has_rooms() {
 /**
  * Runs the current room loop, used in a "while" statement
  *
- * e.g  while(to_accommodation_room_loop()) {to_accommodation_room_loop_item();}
+ * e.g  while(lsx_to_accommodation_room_loop()) {lsx_to_accommodation_room_loop_item();}
  *
  * @package 	tour-operator
  * @subpackage	template-tags
@@ -250,7 +250,7 @@ function lsx_to_accommodation_room_loop() {
 /**
  * Sets up the current room
  *
- * e.g  while(to_accommodation_room_loop()) {to_accommodation_room_loop_item();}
+ * e.g  while(lsx_to_accommodation_room_loop()) {lsx_to_accommodation_room_loop_item();}
  *
  * @package 	tour-operator
  * @subpackage	template-tags
@@ -361,7 +361,7 @@ function lsx_to_accommodation_reset_units_loop() {
 function lsx_to_accommodation_units($before="",$after=""){
 	global $rooms;
 
-	if(to_accommodation_has_rooms()) { 
+	if(lsx_to_accommodation_has_rooms()) { 
 
 		$unit_types = array(
 			'chalet' => esc_html__('Chalet','tour-operator'),
@@ -371,34 +371,34 @@ function lsx_to_accommodation_units($before="",$after=""){
 			'villa' => esc_html__('Villa','tour-operator')
 		);
 		foreach($unit_types as $type_key => $type_label){
-			if(to_accommodation_check_type($type_key)){
+			if(lsx_to_accommodation_check_type($type_key)){
 			?>
 				<section id="<?php echo esc_attr( $type_key ); ?>s">
-					<h2 class="section-title"><?php esc_html_e(to_get_post_type_section_title('accommodation', $type_key.'s', $type_label.'s'),'tour-operator');?></h2>
+					<h2 class="section-title"><?php esc_html_e(lsx_to_get_post_type_section_title('accommodation', $type_key.'s', $type_label.'s'),'tour-operator');?></h2>
 					<div class="<?php echo esc_attr( $type_key ); ?>s-content rooms-content row">		
-					<?php while(to_accommodation_room_loop()){ ?>
+					<?php while(lsx_to_accommodation_room_loop()){ ?>
 
-						<?php if(!to_accommodation_room_loop_item($type_key)) { continue; } ?>
+						<?php if(!lsx_to_accommodation_room_loop_item($type_key)) { continue; } ?>
 							
 						<div class="panel col-sm-6">
 							<article class="unit type-unit">
 								<div class="col-sm-4">
-									<?php if(to_accommodation_room_has_thumbnail()) { ?>
+									<?php if(lsx_to_accommodation_room_has_thumbnail()) { ?>
 										<div class="thumbnail">
-											<?php to_accommodation_room_thumbnail(); ?>
+											<?php lsx_to_accommodation_room_thumbnail(); ?>
 										</div>							
 									<?php } ?>	
 								</div>
 								<div class="col-sm-8">					
 									<div class="unit-info">
-										<?php to_accommodation_room_title('<h3>','</h3>'); ?>
-										<?php to_accommodation_room_description('<div class="entry-content">','</div>'); ?>
+										<?php lsx_to_accommodation_room_title('<h3>','</h3>'); ?>
+										<?php lsx_to_accommodation_room_description('<div class="entry-content">','</div>'); ?>
 									</div>
 								</div>
 							</article>
 						</div>						
 							
-					<?php } to_accommodation_reset_units_loop(); ?>
+					<?php } lsx_to_accommodation_reset_units_loop(); ?>
 					</div>
 				</section>
 		<?php }

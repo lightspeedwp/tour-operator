@@ -1,4 +1,4 @@
-var LSX_TO_PATHItinerary_Read_More = {
+var LSX_TO_Itinerary_Read_More = {
 	initThis: function() {
 		if('undefined' != jQuery('#itinerary .view-more')){
 			this.watchLink();
@@ -17,7 +17,7 @@ var LSX_TO_PATHItinerary_Read_More = {
 	}
 },
 
-LSX_TO_PATHBootstrap_Carousel = {
+LSX_TO_Bootstrap_Carousel = {
 	avoidInMobile: function() {
 		jQuery('.carousel.slide').on('slide.bs.carousel', function() {
 			var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -31,17 +31,17 @@ LSX_TO_PATHBootstrap_Carousel = {
 
 lsxTofacetWpLoadFirstTime = false,
 
-LSX_TO_PATHFacetWP = {
+LSX_TO_FacetWP = {
 	effect_loaded: function() {
 		jQuery(document).on('facetwp-loaded', function() {
-			LSX_TO_PATHFacetWP.effect_clearButton();
+			LSX_TO_FacetWP.effect_clearButton();
 
 			if (!lsxTofacetWpLoadFirstTime) {
 				lsxTofacetWpLoadFirstTime = true;
 				return;
 			}
 
-			LSX_TO_PATHFacetWP.effect_scrollOnLoad();
+			LSX_TO_FacetWP.effect_scrollOnLoad();
 		});
 	},
 
@@ -60,7 +60,7 @@ LSX_TO_PATHFacetWP = {
 	},
 },
 
-LSX_TO_PATHTO = {
+LSX_TO_TO = {
 	removeEmptyWidgets: function() {
 		jQuery('.widget.lsx-widget').each(function() {
 			var $this = jQuery(this);
@@ -72,7 +72,7 @@ LSX_TO_PATHTO = {
 	}
 };
 
-var LSX_TO_PATHRead_More = {
+var LSX_TO_Read_More = {
 	initThis: function(){
 		jQuery('.entry-content .more-link, .archive-description .more-link').each(function() {
 			if ('Read More' == jQuery(this).html()) {
@@ -98,7 +98,7 @@ var LSX_TO_PATHRead_More = {
 	}
 }
 
-var LSX_TO_PATHScrollable = {
+var LSX_TO_Scrollable = {
 	initThis: function(){
 		jQuery('.scroll-easing a').on('click',function(e) {
 			e.preventDefault();
@@ -129,10 +129,10 @@ var LSX_TO_PATHScrollable = {
 }
 
 jQuery(document).ready( function() {
-	LSX_TO_PATHRead_More.initThis();
-	LSX_TO_PATHScrollable.initThis();
-	LSX_TO_PATHItinerary_Read_More.initThis();
-	LSX_TO_PATHBootstrap_Carousel.avoidInMobile();
-	LSX_TO_PATHFacetWP.effect_loaded();
-	LSX_TO_PATHTO.removeEmptyWidgets();
+	LSX_TO_Read_More.initThis();
+	LSX_TO_Scrollable.initThis();
+	LSX_TO_Itinerary_Read_More.initThis();
+	LSX_TO_Bootstrap_Carousel.avoidInMobile();
+	LSX_TO_FacetWP.effect_loaded();
+	LSX_TO_TO.removeEmptyWidgets();
 });

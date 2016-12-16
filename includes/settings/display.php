@@ -5,7 +5,7 @@
 		<?php if(class_exists('LSX_Currencies')) { ?>
 			<li><a href="#ui-currencies"><?php esc_html_e('Currency Switcher','tour-operator'); ?></a></li>
 		<?php } ?>
-		<?php if(class_exists('LSX_TO_PATHMaps')) { ?>
+		<?php if(class_exists('LSX_TO_Maps')) { ?>
 			<li><a href="#ui-maps"><?php esc_html_e('Maps','tour-operator'); ?></a></li>
 		<?php } ?>
 		<li><a href="#ui-placeholders"><?php esc_html_e('Placeholders','tour-operator'); ?></a></li>
@@ -30,7 +30,7 @@
 		</div>
 	<?php } ?>
 
-	<?php if(class_exists('LSX_TO_PATHMaps')) { ?>
+	<?php if(class_exists('LSX_TO_Maps')) { ?>
 		<div id="ui-maps" class="ui-tab">
 			<table class="form-table">
 				<tbody>

@@ -2,7 +2,7 @@
 /**
  * Destination Class
  *
- * @package   LSX_TO_PATHDestination
+ * @package   LSX_TO_Destination
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -12,10 +12,10 @@
 /**
  * Main plugin class.
  *
- * @package LSX_TO_PATHDestination
+ * @package LSX_TO_Destination
  * @author  LightSpeed
  */
-class LSX_TO_PATHDestination{
+class LSX_TO_Destination{
 
 	/**
 	 * The slug for this plugin
@@ -156,12 +156,12 @@ class LSX_TO_PATHDestination{
 		if(!class_exists('LSX_Banners')){
 			$fields[] = array( 'id' => 'tagline',  'name' => esc_html__('Tagline','tour-operator'), 'type' => 'text' );
 		}
-		//if(class_exists('LSX_TO_PATHTeam')){
+		//if(class_exists('LSX_TO_Team')){
 			$fields[] = array( 'id' => 'team_to_destination', 'name' => esc_html__('Destination Expert','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12, 'allow_none' => true );
 		//}
 
 		if(class_exists('Envira_Gallery')){
-			if(!class_exists('LSX_TO_PATHGalleries')){
+			if(!class_exists('LSX_TO_Galleries')){
 				$fields[] = array( 'id' => 'gallery_title',  'name' => esc_html__('Gallery','tour-operator'), 'type' => 'title' );
 			}			
 			$fields[] = array( 'id' => 'envira_gallery', 'name' => esc_html__('Envira Gallery','to-galleries'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
@@ -171,7 +171,7 @@ class LSX_TO_PATHDestination{
 		}	
 			
 
-		if(!class_exists('LSX_TO_PATHMaps')){
+		if(!class_exists('LSX_TO_Maps')){
 			$fields[] = array( 'id' => 'location',  'name' => esc_html__('Location','tour-operator'), 'type' => 'gmap' );
 		}
 		
@@ -213,10 +213,10 @@ class LSX_TO_PATHDestination{
 	 * @return array
 	 */
 	public function entry_class( $classes ) {
-		global $to_archive;
-		if(1 !== $to_archive){$to_archive = false;}
-		if(is_main_query() && is_singular($this->plugin_slug) && false === $to_archive){
-			if(function_exists('lsx_to_has_team_member') && to_has_team_member()){
+		global $lsx_to_archive;
+		if(1 !== $lsx_to_archive){$lsx_to_archive = false;}
+		if(is_main_query() && is_singular($this->plugin_slug) && false === $lsx_to_archive){
+			if(function_exists('lsx_to_has_team_member') && lsx_to_has_team_member()){
 				$classes[] = 'col-sm-9';
 			}else{
 				$classes[] = 'col-sm-12';
@@ -254,7 +254,7 @@ class LSX_TO_PATHDestination{
 		?>
 		<div class="destination-details meta taxonomies">
 			<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.esc_html__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>
-			<?php if(function_exists('lsx_to_connected_activities')){ to_connected_activities('<div class="meta activities">'.esc_html__('Activities','tour-operator').': ','</div>'); } ?>
+			<?php if(function_exists('lsx_to_connected_activities')){ lsx_to_connected_activities('<div class="meta activities">'.esc_html__('Activities','tour-operator').': ','</div>'); } ?>
 		</div>
 	<?php } }
 
@@ -269,7 +269,7 @@ class LSX_TO_PATHDestination{
 		if(is_singular('destination')){
 			$this->get_region_link();
 			$this->get_related_tours_link();
-			if(!to_item_has_children(get_the_ID(),'destination')) {
+			if(!lsx_to_item_has_children(get_the_ID(),'destination')) {
 				$this->get_related_accommodation_link();
 				$this->get_related_activities_link();
 			}
@@ -288,7 +288,7 @@ class LSX_TO_PATHDestination{
 	 * Adds the Region to the $page_links variable
 	 */
 	public function get_region_link()	{
-		if(to_item_has_children(get_the_ID(),'destination')) {
+		if(lsx_to_item_has_children(get_the_ID(),'destination')) {
 			$this->page_links['regions'] = esc_html__('Regions','tour-operator');
 		}
 	}
@@ -316,7 +316,7 @@ class LSX_TO_PATHDestination{
 	 * Tests for the Google Map and returns a link for the section
 	 */
 	public function get_map_link(){
-		if(function_exists('lsx_to_has_map') && to_has_map()){
+		if(function_exists('lsx_to_has_map') && lsx_to_has_map()){
 			$this->page_links['destination-map'] = esc_html__('Map','tour-operator');
 		}
 	}
@@ -328,7 +328,7 @@ class LSX_TO_PATHDestination{
 		if(class_exists('Envira_Gallery')){
 			$gallery_id = get_post_meta(get_the_ID(),'envira_to_tour',true);
 		}
-		if((false === $gallery_id || '' === $gallery_id) && class_exists('LSX_TO_PATHGalleries')) {
+		if((false === $gallery_id || '' === $gallery_id) && class_exists('LSX_TO_Galleries')) {
 			$gallery_id = get_post_meta(get_the_ID(),'gallery',true);
 		}
 		if(false !== $gallery_id && '' !== $gallery_id){
@@ -344,7 +344,7 @@ class LSX_TO_PATHDestination{
 		if(class_exists('Envira_Videos')){
 			$videos_id = get_post_meta(get_the_ID(),'envira_video',true);
 		}
-		if((false === $videos_id || '' === $videos_id) && class_exists('LSX_TO_PATHVideos')) {
+		if((false === $videos_id || '' === $videos_id) && class_exists('LSX_TO_Videos')) {
 			$videos_id = get_post_meta(get_the_ID(),'videos',true);
 		}
 		if(false !== $videos_id && '' !== $videos_id){
@@ -381,4 +381,4 @@ class LSX_TO_PATHDestination{
 		}
 	}
 }
-$to_destination = LSX_TO_PATHDestination::get_instance();
+$lsx_to_destination = LSX_TO_Destination::get_instance();

@@ -1,6 +1,6 @@
 <?php
 /**
- * @package   LSX_TO_PATHWidget
+ * @package   LSX_TO_Widget
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -8,7 +8,7 @@
  *
  **/
 
-class LSX_TO_PATHWidget extends WP_Widget {
+class LSX_TO_Widget extends WP_Widget {
 	
 	/**
 	 * Sets up the widgets name etc
@@ -18,7 +18,7 @@ class LSX_TO_PATHWidget extends WP_Widget {
 			'classname' => 'lsx-widget',
 			'description' => esc_html__('TO','tour-operator'),
 		);
-		parent::__construct( 'LSX_TO_PATHWidget', 'TO Post Types', $widget_ops );
+		parent::__construct( 'LSX_TO_Widget', 'TO Post Types', $widget_ops );
 	}
  
     /** @see WP_Widget::widget -- do not rename this */
@@ -453,7 +453,7 @@ class LSX_TO_PATHWidget extends WP_Widget {
 			<label for="<?php echo wp_kses_post($this->get_field_id('post_type')); ?>"><?php esc_html_e( 'Post Type:', 'tour-operator' ); ?></label>
 			<select name="<?php echo wp_kses_post($this->get_field_name('post_type')); ?>" id="<?php echo wp_kses_post($this->get_field_id('post_type')); ?>"	class="widefat layout">
 	            <?php
-	            $options = to_get_post_types();
+	            $options = lsx_to_get_post_types();
 	            foreach ($options as $value => $name) {
 	            	$selected = ($post_type == $value) ? ' selected="selected"' : '';
 	                ?><option value="<?php echo wp_kses_post($value); ?>" id="<?php echo wp_kses_post($value); ?>" <?php echo wp_kses_post($selected); ?>><?php echo wp_kses_post($name); ?></option><?php 			                
@@ -576,7 +576,7 @@ class LSX_TO_PATHWidget extends WP_Widget {
 				$widget_query->the_post();
 				
 				$this->loop_start($columns,$carousel,$post_type,$widget_query->post_count,$count,$interval);
-				echo wp_kses_post('<div '.to_widget_class(true).'>');
+				echo wp_kses_post('<div '.lsx_to_widget_class(true).'>');
 				$this->content_part('content','widget-'.$post_type);
 				echo wp_kses_post('</div>');
 				$this->loop_end($columns,$carousel,$post_type,$widget_query->post_count,$count);

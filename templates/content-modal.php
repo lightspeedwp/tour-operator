@@ -18,7 +18,7 @@
 
 	<div class="entry-content">
 
-		<?php to_modal_meta(); ?>
+		<?php lsx_to_modal_meta(); ?>
 
 		<?php 
 			ob_start();

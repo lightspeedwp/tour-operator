@@ -87,7 +87,7 @@ function lsx_to_global_header() { ?>
 					the_title();
 				}?>
 		</h1>
-		<?php to_tagline('<p class="tagline">','</p>'); ?>
+		<?php lsx_to_tagline('<p class="tagline">','</p>'); ?>
 	</header><!-- .archive-header -->
 <?php
 }
@@ -111,7 +111,7 @@ function lsx_to_tagline($before='',$after='',$echo=false) {
  * @category 	banner
  */
 function lsx_to_banner_content() {
-	to_tagline('<p class="tagline">','</p>');
+	lsx_to_tagline('<p class="tagline">','</p>');
 }
 
 /* ==================    BODY    ================== */
@@ -216,7 +216,7 @@ function lsx_to_sharing() {
  */
 function lsx_to_envira_gallery($before="",$after="",$echo=true){
 	$envira_gallery = get_post_meta(get_the_ID(),'envira_gallery',true);
-	if(false !== $envira_gallery && '' !== $envira_gallery && false === to_enable_envira_banner()){
+	if(false !== $envira_gallery && '' !== $envira_gallery && false === lsx_to_enable_envira_banner()){
 		ob_start();
 		if(function_exists('envira_gallery')){envira_gallery( $envira_gallery );}
 		$return = ob_get_clean();
@@ -276,7 +276,7 @@ function lsx_to_safari_brands($before="",$after="",$echo=true) {
 			'id' => 'sidebar-home',
 			'description' => '',
 			'class' => '',
-			'before_widget' => '<aside id="to_taxonomy_widget-6" class="widget lsx-widget">',
+			'before_widget' => '<aside id="lsx_to_taxonomy_widget-6" class="widget lsx-widget">',
 			'after_widget' => '</aside>',
 			'before_title' => '<h3 class="widget-title">',
 			'after_title' => '</h3>',
@@ -301,7 +301,7 @@ function lsx_to_safari_brands($before="",$after="",$echo=true) {
 			'interval' => '7000',
 			'indicators' => '1'
 	);
-	$safari_brands = new LSX_TO_PATHTaxonomy_Widget();
+	$safari_brands = new LSX_TO_Taxonomy_Widget();
 	ob_start();
 	$safari_brands->widget($args, $instance);
 	$return = ob_get_clean();
@@ -326,7 +326,7 @@ function lsx_to_travel_styles($before="",$after="",$echo=true) {
 			'id' => 'sidebar-home',
 			'description' => '',
 			'class' => '',
-			'before_widget' => '<aside id="to_taxonomy_widget-6" class="widget lsx-widget">',
+			'before_widget' => '<aside id="lsx_to_taxonomy_widget-6" class="widget lsx-widget">',
 			'after_widget' => '</aside>',
 			'before_title' => '<h3 class="widget-title">',
 			'after_title' => '</h3>',
@@ -351,7 +351,7 @@ function lsx_to_travel_styles($before="",$after="",$echo=true) {
 			'interval' => '7000',
 			'indicators' => '1'
 	);
-	$travel_styles = new LSX_TO_PATHTaxonomy_Widget();
+	$travel_styles = new LSX_TO_Taxonomy_Widget();
 	ob_start();
 	$travel_styles->widget($args, $instance);
 	$return = ob_get_clean();

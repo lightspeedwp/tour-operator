@@ -1,6 +1,6 @@
 <?php
 /**
- * @package   LSX_TO_PATHTaxonomy_Widget
+ * @package   LSX_TO_Taxonomy_Widget
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -8,7 +8,7 @@
  *
  **/
 
-class LSX_TO_PATHTaxonomy_Widget extends WP_Widget {
+class LSX_TO_Taxonomy_Widget extends WP_Widget {
 	
 	/**
 	 * Sets up the widgets name etc
@@ -18,7 +18,7 @@ class LSX_TO_PATHTaxonomy_Widget extends WP_Widget {
 			'classname' => 'lsx-widget',
 			'description' => 'TO Taxonomy',
 		);
-		parent::__construct( 'LSX_TO_PATHTaxonomy_Widget', 'TO Taxonomies', $widget_ops );
+		parent::__construct( 'LSX_TO_Taxonomy_Widget', 'TO Taxonomies', $widget_ops );
 	}
  
     /** @see WP_Widget::widget -- do not rename this */
@@ -318,7 +318,7 @@ class LSX_TO_PATHTaxonomy_Widget extends WP_Widget {
 			<select name="<?php echo wp_kses_post($this->get_field_name('taxonomy')); ?>" id="<?php echo wp_kses_post($this->get_field_id('taxonomy')); ?>"	class="widefat layout">
 	            <?php
 	            $options = array();	            
-	            $options = to_get_taxonomies();
+	            $options = lsx_to_get_taxonomies();
 	            if(empty($options)){
 	            	$options['none'] = esc_attr__('None','tour-operator');
 	            }
@@ -524,7 +524,7 @@ class LSX_TO_PATHTaxonomy_Widget extends WP_Widget {
 			
 			foreach ( $widget_query as $term ) {
 				$this->loop_start($columns,$carousel,$taxonomy,count($widget_query),$count,$interval);
-				echo wp_kses_post('<div '.to_widget_class(true).'>');
+				echo wp_kses_post('<div '.lsx_to_widget_class(true).'>');
 				$this->content_part('content','widget-'.$taxonomy);
 				echo wp_kses_post('</div>');
 				$this->loop_end($columns,$carousel,$taxonomy,count($widget_query),$count);

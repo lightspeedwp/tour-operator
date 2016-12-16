@@ -142,7 +142,7 @@ if(!function_exists('lsx_to_has_term_thumbnail')){
 if(!function_exists('lsx_to_term_thumbnail')){
 	function lsx_to_term_thumbnail($term_id = false,$size='lsx-thumbnail-wide') {
 		if(false !== $term_id){
-			echo wp_kses_post(to_get_term_thumbnail($term_id,$size));
+			echo wp_kses_post(lsx_to_get_term_thumbnail($term_id,$size));
 		}
 	}
 }
@@ -234,7 +234,7 @@ function lsx_to_has_custom_field_query( $meta_key = false, $id = false, $is_tax 
 function lsx_to_custom_field_query($meta_key=false,$before="",$after="",$echo=false,$post_id=false){
 	if(false !== $meta_key){
 		//Check to see if we already have a transient set for this.
-		// TODO Need to move this to enclose the entire function and change to a !==,  that way you have to set up the custom field via the to_has_{custom_field} function
+		// TODO Need to move this to enclose the entire function and change to a !==,  that way you have to set up the custom field via the lsx_to_has_{custom_field} function
 		if(false === $post_id){
 			$post_id = get_the_ID();
 		}
@@ -275,7 +275,7 @@ function lsx_to_connected_items_query($from=false,$to=false,$before="",$after=""
 			if(!is_array($connected_ids)){
 				$connected_ids = array($connected_ids);
 			}
-			$return = $before.to_connected_list($connected_ids,$from,true,', ').$after;
+			$return = $before.lsx_to_connected_list($connected_ids,$from,true,', ').$after;
 			if($echo){
 				echo wp_kses_post( $return );
 			}else{
@@ -303,7 +303,7 @@ function lsx_to_connected_items_query($from=false,$to=false,$before="",$after=""
  * @category 	helper
  */
 function lsx_to_connected_panel_query($args=false){
-	global $to_archive;
+	global $lsx_to_archive;
 	if(false !== $args && is_array($args)){
 		$defaults = array(
 			'from'			=>	false,
@@ -330,17 +330,17 @@ function lsx_to_connected_panel_query($args=false){
 			);
 			$items = new WP_Query($items_query_args);
 			if ( $items->have_posts() ): 
-				$to_archive = 1;
+				$lsx_to_archive = 1;
 				ob_start();
 				echo wp_kses_post( $args['before'] ).'<div class="row">'; 
 				while ( $items->have_posts() ) : $items->the_post();
 					echo '<div class="panel col-sm-'.esc_attr($args['column']).'">';
-					to_content('content',$args['content_part']);
+					lsx_to_content('content',$args['content_part']);
 					echo '</div>';
 				endwhile;
 				echo '</div>'.wp_kses_post( $args['after'] );
 				$return = ob_get_clean();
-				$to_archive = 0;
+				$lsx_to_archive = 0;
 				wp_reset_query();
 				wp_reset_postdata();
 			endif; // end of the loop. 
@@ -444,7 +444,7 @@ function lsx_to_related_items($taxonomy=false,$before="",$after="",$echo=true,$p
 
 				echo '<div class="panel col-sm-4">';
 
-				to_content('content','widget-'.get_post_type());
+				lsx_to_content('content','widget-'.get_post_type());
 
 				echo '</div>';
 

@@ -2,7 +2,7 @@
 /**
  * Frontend actions for the LSX TO Plugin
  *
- * @package   LSX_TO_PATHFrontend
+ * @package   LSX_TO_Frontend
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -12,13 +12,13 @@
 /**
  * Main plugin class.
  *
- * @package LSX_TO_PATHFrontend
+ * @package LSX_TO_Frontend
  * @author  LightSpeed
  */
-class LSX_TO_PATHFrontend extends Tour_Operator {
+class LSX_TO_Frontend extends Tour_Operator {
 
 	/**
-	 * This holds the class OBJ of LSX_TO_PATHTemplate_Redirects
+	 * This holds the class OBJ of LSX_TO_Template_Redirects
 	 */
 	public $redirects = false;	
 
@@ -27,7 +27,7 @@ class LSX_TO_PATHFrontend extends Tour_Operator {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var      boolean|LSX_TO_PATHFrontend
+	 * @var      boolean|LSX_TO_Frontend
 	 */
 	public $enable_modals = false;
 
@@ -36,7 +36,7 @@ class LSX_TO_PATHFrontend extends Tour_Operator {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var      array|LSX_TO_PATHFrontend
+	 * @var      array|LSX_TO_Frontend
 	 */
 	public $modal_ids = array();
 
@@ -67,10 +67,10 @@ class LSX_TO_PATHFrontend extends Tour_Operator {
 
 		add_filter( 'the_terms', array( $this,'links_new_window') , 10, 2);		
 
-		if(!class_exists('LSX_TO_PATHTemplate_Redirects')){
-			require_once( LSX_TO_PATHPATH . 'classes/class-template-redirects.php' );
+		if(!class_exists('LSX_TO_Template_Redirects')){
+			require_once( LSX_TO_PATH . 'classes/class-template-redirects.php' );
 		}
-		$this->redirects = new LSX_TO_PATHTemplate_Redirects(LSX_TO_PATHPATH,array_keys($this->post_types),array_keys($this->taxonomies));
+		$this->redirects = new LSX_TO_Template_Redirects(LSX_TO_PATH,array_keys($this->post_types),array_keys($this->taxonomies));
 
 		add_filter( 'get_the_archive_title', array( $this, 'get_the_archive_title'),100 );
 
@@ -137,10 +137,10 @@ class LSX_TO_PATHFrontend extends Tour_Operator {
 	 * a filter to overwrite the links with modal tags.
 	 */
 	public function output_modals() {
-		global $to_archive,$post;
+		global $lsx_to_archive,$post;
 		if(true === $this->enable_modals && !empty($this->modal_ids)){
-			$temp = $to_archive;
-			$to_archive = 1;
+			$temp = $lsx_to_archive;
+			$lsx_to_archive = 1;
 			foreach($this->modal_ids as $post_id){
 			$post = get_post($post_id);
 			?>	
@@ -149,14 +149,14 @@ class LSX_TO_PATHFrontend extends Tour_Operator {
 				    <div class="modal-content">
 				      <div class="modal-body">
 				      	<button type="button" class="close" data-dismiss="modal" aria-label="<?php esc_html_e('Close','tour-operator'); ?>"><span aria-hidden="true">×</span></button>
-				        <?php to_content( 'content', 'modal' ); ?>
+				        <?php lsx_to_content( 'content', 'modal' ); ?>
 				      </div>
 				    </div>
 				  </div>
 				</div>
 			<?php
 			}
-			$to_archive = $temp;
+			$lsx_to_archive = $temp;
 			wp_reset_postdata();
 		}
 	}
@@ -174,10 +174,10 @@ class LSX_TO_PATHFrontend extends Tour_Operator {
 		}
 
 		if(!isset($this->options['display']['disable_js'])){
-			wp_enqueue_script( 'tour-operator-script', LSX_TO_PATHURL . 'assets/js/custom.min.js', array( 'jquery' ), LSX_TO_PATHVER, true );
+			wp_enqueue_script( 'tour-operator-script', LSX_TO_URL . 'assets/js/custom.min.js', array( 'jquery' ), LSX_TO_VER, true );
 		}
 		if(!isset($this->options['display']['disable_css'])){
-			wp_enqueue_style( 'tour-operator-style', LSX_TO_PATHURL . 'assets/css/style.css', array(), LSX_TO_PATHVER );
+			wp_enqueue_style( 'tour-operator-style', LSX_TO_URL . 'assets/css/style.css', array(), LSX_TO_VER );
 		}
 		if(defined('JETPACK__VERSION') && defined('WP_SHARING_PLUGIN_URL')){
 			wp_enqueue_style( 'sharing', WP_SHARING_PLUGIN_URL.'sharing.css', false, JETPACK__VERSION );

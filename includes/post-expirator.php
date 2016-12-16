@@ -1,11 +1,11 @@
 <?php
 
-define('LSX_TO_PATHPOSTEXPIRATOR_DATEFORMAT',esc_html__('l F jS, Y','tour-operator'));
-define('LSX_TO_PATHPOSTEXPIRATOR_TIMEFORMAT',esc_html__('g:ia','tour-operator'));
-define('LSX_TO_PATHPOSTEXPIRATOR_TYPES',array('special','tour'));
+define('LSX_TO_POSTEXPIRATOR_DATEFORMAT',esc_html__('l F jS, Y','tour-operator'));
+define('LSX_TO_POSTEXPIRATOR_TIMEFORMAT',esc_html__('g:ia','tour-operator'));
+define('LSX_TO_POSTEXPIRATOR_TYPES',array('special','tour'));
 
 function lsx_to_expirationdate_add_column($columns,$type) {
-	if (in_array($type, LSX_TO_PATHPOSTEXPIRATOR_TYPES)) {
+	if (in_array($type, LSX_TO_POSTEXPIRATOR_TYPES)) {
 	  	$columns['lsx_to_expirationdate'] = esc_html__('Expires','tour-operator');
 	}
 
@@ -26,7 +26,7 @@ add_action ('manage_posts_custom_column', 'lsx_to_expirationdate_show_value');
 add_action ('manage_pages_custom_column', 'lsx_to_expirationdate_show_value');
 
 function lsx_to_expirationdate_meta_custom() {
-	$custom_post_types = LSX_TO_PATHPOSTEXPIRATOR_TYPES;
+	$custom_post_types = LSX_TO_POSTEXPIRATOR_TYPES;
 	
 	foreach ($custom_post_types as $t) {
 		add_meta_box('lsxtoexpirationdatediv', esc_html__('Expires','tour-operator'), 'lsx_to_expirationdate_meta_box', $t, 'side', 'core');
@@ -64,7 +64,7 @@ function lsx_to_expirationdate_meta_box($post) {
 	}
 
 	$rv = array();
-	$rv[] = '<p><input type="checkbox" name="enable-lsx-to-expirationdate" id="enable-lsx-to-expirationdate" value="checked"'.$enabled.' onclick="to_expirationdate_ajax_add_meta(\'enable-lsx-to-expirationdate\')" />';
+	$rv[] = '<p><input type="checkbox" name="enable-lsx-to-expirationdate" id="enable-lsx-to-expirationdate" value="checked"'.$enabled.' onclick="lsx_to_expirationdate_ajax_add_meta(\'enable-lsx-to-expirationdate\')" />';
 	$rv[] = '<label for="enable-lsx-to-expirationdate">'.esc_html__('Enable Post Expiration','tour-operator').'</label></p>';
 
 	$rv[] = '<table><tr>';
@@ -73,7 +73,7 @@ function lsx_to_expirationdate_meta_box($post) {
 	$rv[] = '<th style="text-align: left;">'.esc_html__('Day','tour-operator').'</th>';
 	$rv[] = '</tr><tr>';
 	$rv[] = '<td>';	
-	$rv[] = '<select name="to_expirationdate_year" id="to_expirationdate_year"'.$disabled.'>';
+	$rv[] = '<select name="lsx_to_expirationdate_year" id="lsx_to_expirationdate_year"'.$disabled.'>';
 	$currentyear = date('Y');
 
 	if ($defaultyear < $currentyear) $currentyear = $defaultyear;
@@ -87,7 +87,7 @@ function lsx_to_expirationdate_meta_box($post) {
 	}
 	$rv[] = '</select>';
 	$rv[] = '</td><td>';
-	$rv[] = '<select name="to_expirationdate_month" id="to_expirationdate_month"'.$disabled.'>';
+	$rv[] = '<select name="lsx_to_expirationdate_month" id="lsx_to_expirationdate_month"'.$disabled.'>';
 
 	for($i = 1; $i <= 12; $i++) {
 		if (date_i18n('m',mktime(0, 0, 0, $i, 1, date_i18n('Y'))) == $defaultmonth)
@@ -99,14 +99,14 @@ function lsx_to_expirationdate_meta_box($post) {
 
 	$rv[] = '</select>';	 
 	$rv[] = '</td><td>';
-	$rv[] = '<input type="text" id="to_expirationdate_day" name="to_expirationdate_day" value="'.$defaultday.'" size="2"'.$disabled.' />,';
+	$rv[] = '<input type="text" id="lsx_to_expirationdate_day" name="lsx_to_expirationdate_day" value="'.$defaultday.'" size="2"'.$disabled.' />,';
 	$rv[] = '</td></tr><tr>';
 	$rv[] = '<th style="text-align: left;"></th>';
 	$rv[] = '<th style="text-align: left;">'.esc_html__('Hour','tour-operator').'('.date_i18n('T',mktime(0, 0, 0, $i, 1, date_i18n('Y'))).')</th>';
 	$rv[] = '<th style="text-align: left;">'.esc_html__('Minute','tour-operator').'</th>';
 	$rv[] = '</tr><tr>';
 	$rv[] = '<td>@</td><td>';
- 	$rv[] = '<select name="to_expirationdate_hour" id="to_expirationdate_hour"'.$disabled.'>';
+ 	$rv[] = '<select name="lsx_to_expirationdate_hour" id="lsx_to_expirationdate_hour"'.$disabled.'>';
 
 	for($i = 1; $i <= 24; $i++) {
 		if (date_i18n('H',mktime($i, 0, 0, date_i18n('n'), date_i18n('j'), date_i18n('Y'))) == $defaulthour)
@@ -117,14 +117,14 @@ function lsx_to_expirationdate_meta_box($post) {
 	}
 
 	$rv[] = '</select></td><td>';
-	$rv[] = '<input type="text" id="to_expirationdate_minute" name="to_expirationdate_minute" value="'.$defaultminute.'" size="2"'.$disabled.' />';
+	$rv[] = '<input type="text" id="lsx_to_expirationdate_minute" name="lsx_to_expirationdate_minute" value="'.$defaultminute.'" size="2"'.$disabled.' />';
 	$rv[] = '</td></tr></table>';
 	
 	$rv[] = wp_nonce_field( 'lsx_to_expirationdate_update_post_meta', '_to_expirationdate_update_post_meta_nonce', true, false );
 	echo wp_kses_post(implode("\n",$rv));
 
 	echo '<br/>'.esc_html__('How to expire','tour-operator').': ';
-	echo wp_kses_post(to_post_expirator_expire_type(array('type' => $post->post_type, 'name'=>'lsx_to_expirationdate_expiretype','selected'=>$expiretype,'disabled'=>$disabled)));
+	echo wp_kses_post(lsx_to_post_expirator_expire_type(array('type' => $post->post_type, 'name'=>'lsx_to_expirationdate_expiretype','selected'=>$expiretype,'disabled'=>$disabled)));
 }
 
 function lsx_to_expirationdate_js_admin_header() {
@@ -170,7 +170,7 @@ function lsx_to_expirationdate_update_post_meta($id) {
 	}
 
 	if ( ! isset( $_POST['enable-lsx-to-expirationdate'] ) ) {
-		to_unschedule_expirator_event($id);
+		lsx_to_unschedule_expirator_event($id);
 		return;
 	}
 
@@ -194,7 +194,7 @@ function lsx_to_expirationdate_update_post_meta($id) {
 	$opts['expiretype'] = sanitize_text_field(wp_unslash($_POST['lsx_to_expirationdate_expiretype']));
 	$opts['id'] = $id;
 
-	to_schedule_expirator_event($id,$ts,$opts);
+	lsx_to_schedule_expirator_event($id,$ts,$opts);
 }
 add_action('save_post','lsx_to_expirationdate_update_post_meta');
 

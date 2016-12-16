@@ -1,5 +1,5 @@
 <?php
-	$to_documentation = esc_url('https://www.lsdev.biz/documentation/tour-operator-plugin/');
+	$lsx_to_documentation = esc_url('https://www.lsdev.biz/documentation/tour-operator-plugin/');
 	$extensions_link = esc_url('https://www.lsdev.biz/product-category/tour-operator-extensions/');
 
 	//Product Urls
@@ -42,7 +42,7 @@
 				<div class="col-md-12">
 					<div class="box support">
 						<h2><?php esc_html_e( 'Getting Support', 'tour-operator' ); ?></h2>
-						<p><?php esc_html_e( 'Our website\'s','tour-operator' ); ?> <a href="<?php echo wp_kses_post($to_documentation); ?>" target="_blank"><?php esc_html_e( 'documentation','tour-operator' ); ?></a> <?php esc_html_e( 'page is a great place to start to learn how to configure and customize our plugin and its extensions. Here are some links to some of the key settings and modules:', 'tour-operator' ); ?></p>
+						<p><?php esc_html_e( 'Our website\'s','tour-operator' ); ?> <a href="<?php echo wp_kses_post($lsx_to_documentation); ?>" target="_blank"><?php esc_html_e( 'documentation','tour-operator' ); ?></a> <?php esc_html_e( 'page is a great place to start to learn how to configure and customize our plugin and its extensions. Here are some links to some of the key settings and modules:', 'tour-operator' ); ?></p>
 						
 						<ul>
 							<li><strong><?php esc_html_e( 'General settings:', 'tour-operator' ); ?></strong> <?php esc_html_e( 'Configure the general settings of the plugin as well as some settings per-module.', 'tour-operator' ); ?></li>

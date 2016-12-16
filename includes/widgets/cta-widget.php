@@ -1,6 +1,6 @@
 <?php
 /**
- * @package   LSX_TO_PATHCTA_Widget
+ * @package   LSX_TO_CTA_Widget
  * @author    LightSpeed
  * @license   GPL3
  * @link      
@@ -8,7 +8,7 @@
  *
  **/
 
-class LSX_TO_PATHCTA_Widget extends WP_Widget {
+class LSX_TO_CTA_Widget extends WP_Widget {
 	
 	/**
 	 * Sets up the widgets name etc
@@ -18,7 +18,7 @@ class LSX_TO_PATHCTA_Widget extends WP_Widget {
 			'classname' => 'lsx-widget',
 			'description' => esc_html__('Displays a nifty call to action.','tour-operator'),
 		);
-		parent::__construct( 'LSX_TO_PATHCTA_Widget', esc_html__('TO CTA','tour-operator'), $widget_ops );
+		parent::__construct( 'LSX_TO_CTA_Widget', esc_html__('TO CTA','tour-operator'), $widget_ops );
         add_action('admin_enqueue_scripts', array($this, 'upload_scripts'));
     }
 

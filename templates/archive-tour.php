@@ -20,8 +20,8 @@ get_header(); ?>
 		/**
 		 * Hooked
 		 * 
-		 *  - to_global_header() - 100
-		 *  - to_archive_description() - 100
+		 *  - lsx_to_global_header() - 100
+		 *  - lsx_to_archive_description() - 100
 		 */
 			lsx_content_top();
 		?>
@@ -31,11 +31,11 @@ get_header(); ?>
 			<div class="row">
 				<?php while ( have_posts() ) : the_post(); ?>
 					<div class="panel col-sm-12">
-						<?php to_content( 'content', get_post_type() ); ?>
+						<?php lsx_to_content( 'content', get_post_type() ); ?>
 					</div>
 				<?php endwhile; ?>
 			</div>
-			<?php //to_paging_nav(); ?>
+			<?php //lsx_to_paging_nav(); ?>
 
 		<?php else : ?>
 
@@ -45,7 +45,7 @@ get_header(); ?>
 
 		<?php lsx_content_bottom(); ?>
 		
-		<?php to_sharing(); ?>
+		<?php lsx_to_sharing(); ?>
 
 		</main><!-- #main -->
 

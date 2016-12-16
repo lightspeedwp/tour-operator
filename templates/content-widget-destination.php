@@ -18,5 +18,5 @@ global $disable_placeholder;
 	<?php } ?>
 
 	<h4 class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-	<?php to_tagline('<p class="tagline">','</p>'); ?>
+	<?php lsx_to_tagline('<p class="tagline">','</p>'); ?>
 </article>

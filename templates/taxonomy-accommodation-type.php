@@ -21,20 +21,20 @@ get_header(); ?>
 		/**
 		 * Hooked
 		 * 
-		 *  - to_archive_header() - 100
-		 *  - to_archive_description() - 100
+		 *  - lsx_to_archive_header() - 100
+		 *  - lsx_to_archive_description() - 100
 		 */
 			lsx_content_top();
 		?>
 
-		<?php to_content( 'content', get_queried_object()->taxonomy ) ?>
+		<?php lsx_to_content( 'content', get_queried_object()->taxonomy ) ?>
 
 		<?php if ( have_posts() ) : ?>	
 
 			<div class="row">
 				<?php while ( have_posts() ) : the_post(); ?>
 					<div class="panel col-sm-12">
-						<?php to_content( 'content', get_post_type()); ?>
+						<?php lsx_to_content( 'content', get_post_type()); ?>
 					</div>
 				<?php endwhile; ?>
 			</div>

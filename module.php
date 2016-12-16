@@ -8,32 +8,32 @@
  *
  **/
 if(!function_exists('cmb_init')){
-	if ( is_file( LSX_TO_PATHPATH . 'vendor/Custom-Meta-Boxes/custom-meta-boxes.php' ) ) {
-		require_once( LSX_TO_PATHPATH . 'vendor/Custom-Meta-Boxes/custom-meta-boxes.php' );
+	if ( is_file( LSX_TO_PATH . 'vendor/Custom-Meta-Boxes/custom-meta-boxes.php' ) ) {
+		require_once( LSX_TO_PATH . 'vendor/Custom-Meta-Boxes/custom-meta-boxes.php' );
 	}
 }
 
 // Classes
-require_once( LSX_TO_PATHPATH . 'classes/class-fields.php');
+require_once( LSX_TO_PATH . 'classes/class-fields.php');
 
 // Template Tags
-require_once( LSX_TO_PATHPATH . 'includes/template-tags/general.php' );
-require_once( LSX_TO_PATHPATH . 'includes/template-tags/helpers.php' );
-require_once( LSX_TO_PATHPATH . 'includes/template-tags/addons.php' );
-require_once( LSX_TO_PATHPATH . 'includes/template-tags/accommodation.php' );
-require_once( LSX_TO_PATHPATH . 'includes/template-tags/destination.php' );
-require_once( LSX_TO_PATHPATH . 'includes/template-tags/tour.php' );
+require_once( LSX_TO_PATH . 'includes/template-tags/general.php' );
+require_once( LSX_TO_PATH . 'includes/template-tags/helpers.php' );
+require_once( LSX_TO_PATH . 'includes/template-tags/addons.php' );
+require_once( LSX_TO_PATH . 'includes/template-tags/accommodation.php' );
+require_once( LSX_TO_PATH . 'includes/template-tags/destination.php' );
+require_once( LSX_TO_PATH . 'includes/template-tags/tour.php' );
 
 // General Includes
-require_once( LSX_TO_PATHPATH . 'includes/post-expirator.php' );
-require_once( LSX_TO_PATHPATH . 'includes/post-order.php' );
-require_once( LSX_TO_PATHPATH . 'includes/customizer.php' );
-require_once( LSX_TO_PATHPATH . 'includes/layout.php' );
+require_once( LSX_TO_PATH . 'includes/post-expirator.php' );
+require_once( LSX_TO_PATH . 'includes/post-order.php' );
+require_once( LSX_TO_PATH . 'includes/customizer.php' );
+require_once( LSX_TO_PATH . 'includes/layout.php' );
 
 // Widgets
-require_once( LSX_TO_PATHPATH . 'includes/widgets/post-type-widget.php');
-require_once( LSX_TO_PATHPATH . 'includes/widgets/taxonomy-widget.php');
-require_once( LSX_TO_PATHPATH . 'includes/widgets/cta-widget.php');
+require_once( LSX_TO_PATH . 'includes/widgets/post-type-widget.php');
+require_once( LSX_TO_PATH . 'includes/widgets/taxonomy-widget.php');
+require_once( LSX_TO_PATH . 'includes/widgets/cta-widget.php');
 
 
 // Setup the post connections
@@ -58,7 +58,7 @@ class Tour_Operator {
 	public $options = false;	
 	
 	/**
-	 * Holds the LSX_TO_PATHFramework class
+	 * Holds the LSX_TO_Framework class
 	 *
 	 * @since 1.0.0
 	 *
@@ -155,38 +155,38 @@ class Tour_Operator {
 		//Allow extra style attributes to wp_kses_post()
 		add_filter( 'safe_style_css', array( $this, 'safe_style_css' ) );
 		
-		require_once( LSX_TO_PATHPATH . 'classes/class-admin.php' );
-		if(class_exists('LSX_TO_PATHAdmin')){
-			$this->admin = new LSX_TO_PATHAdmin();
+		require_once( LSX_TO_PATH . 'classes/class-admin.php' );
+		if(class_exists('LSX_TO_Admin')){
+			$this->admin = new LSX_TO_Admin();
 		}
 
-		require_once( LSX_TO_PATHPATH . 'classes/class-settings.php' );
-		if(class_exists('LSX_TO_PATHSettings')){
-			$this->settings = new LSX_TO_PATHSettings();
+		require_once( LSX_TO_PATH . 'classes/class-settings.php' );
+		if(class_exists('LSX_TO_Settings')){
+			$this->settings = new LSX_TO_Settings();
 		}
 
-		require_once( LSX_TO_PATHPATH . 'classes/class-frontend.php' );
-		if(class_exists('LSX_TO_PATHFrontend')){
-			$this->frontend = new LSX_TO_PATHFrontend();
+		require_once( LSX_TO_PATH . 'classes/class-frontend.php' );
+		if(class_exists('LSX_TO_Frontend')){
+			$this->frontend = new LSX_TO_Frontend();
 			add_action( 'lsx_to_content', array( $this->frontend->redirects, 'content_part' ), 10 , 2 );
 		}
 
-		if(!class_exists('LSX_TO_PATHPlaceholders')){
+		if(!class_exists('LSX_TO_Placeholders')){
 			include_once('classes/class-placeholders.php');
-			$this->placeholders = new LSX_TO_PATHPlaceholders(array_keys($this->post_types));
+			$this->placeholders = new LSX_TO_Placeholders(array_keys($this->post_types));
 		}		
 
 		add_action( 'widgets_init', array( $this, 'register_widget'));
 
 		//These need to run after the plugins have all been read.
 		include_once('classes/class-lsx-banner-integration.php');
-		$this->lsx_banners = new LSX_TO_PATHLSX_Banner_Integration(array_keys($this->post_types),array_keys($this->taxonomies));
+		$this->lsx_banners = new LSX_TO_Banner_Integration(array_keys($this->post_types),array_keys($this->taxonomies));
 
 		//Integrations
-		$this->to_search_integration();
+		$this->lsx_to_search_integration();
 
 		// Welcome page redirect + flush_rewrite_rules()
-		register_activation_hook( LSX_TO_PATHCORE, array( $this, 'register_activation_hook' ) );
+		register_activation_hook( LSX_TO_CORE, array( $this, 'register_activation_hook' ) );
 		add_action( 'admin_init', array( $this, 'register_activation_hook_check' ) );
 	}	
 	
@@ -248,7 +248,7 @@ class Tour_Operator {
 	 * @since 0.0.1
 	 */
 	public function load_plugin_textdomain() {
-		load_plugin_textdomain( 'tour-operator', FALSE, basename( LSX_TO_PATHPATH ) . '/languages');
+		load_plugin_textdomain( 'tour-operator', FALSE, basename( LSX_TO_PATH ) . '/languages');
 	}
 
 	/**
@@ -289,12 +289,12 @@ class Tour_Operator {
 	}
 
 	/**
-	 * Register the LSX_TO_PATHWidget
+	 * Register the LSX_TO_Widget
 	 */
 	public function register_widget() {
-		register_widget( 'LSX_TO_PATHWidget' );
-		register_widget( 'LSX_TO_PATHTaxonomy_Widget' );
-		register_widget( 'LSX_TO_PATHCTA_Widget' );
+		register_widget( 'LSX_TO_Widget' );
+		register_widget( 'LSX_TO_Taxonomy_Widget' );
+		register_widget( 'LSX_TO_CTA_Widget' );
 	}		
 	
 	/**
@@ -313,8 +313,8 @@ class Tour_Operator {
 	 */
 	public function require_post_type_classes() {
 		foreach($this->post_types as $post_type => $label){
-			if ( file_exists( LSX_TO_PATHPATH . 'classes/class-'.$post_type.'.php' ) ) {
-				require_once( LSX_TO_PATHPATH . 'classes/class-'.$post_type.'.php' );
+			if ( file_exists( LSX_TO_PATH . 'classes/class-'.$post_type.'.php' ) ) {
+				require_once( LSX_TO_PATH . 'classes/class-'.$post_type.'.php' );
 			}
 		}
 		$this->connections = $this->create_post_connections();	

@@ -21,7 +21,7 @@ get_header(); ?>
 		<?php while ( have_posts() ) : the_post(); ?>
 			<section id="summary">
 				<div class="row">
-					<?php to_content('content', 'accommodation'); ?>
+					<?php lsx_to_content('content', 'accommodation'); ?>
 				</div>
 			</section>
 			

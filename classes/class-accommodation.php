@@ -2,7 +2,7 @@
 /**
  * Accommodation Class, this registers the post type and adds certain filters for layout.
  *
- * @package   TO_Accommodation
+ * @package   LSX_TO_Accommodation
  * @author     LightSpeed Team
  * @license   GPL3
  * @link      
@@ -12,10 +12,10 @@
 
 /**
  * Plugin class.
- * @package TO_Accommodation
+ * @package LSX_TO_Accommodation
  * @author   LightSpeed Team
  */
-class TO_Accommodation {
+class LSX_TO_Accommodation {
 
 	/**
 	 * The slug for this plugin
@@ -31,7 +31,7 @@ class TO_Accommodation {
 	 *
 	 * @since 0.0.1
 	 *
-	 * @var      object|TO_Accommodation
+	 * @var      object|LSX_TO_Accommodation
 	 */
 	protected static $instance = null;
 
@@ -118,7 +118,7 @@ class TO_Accommodation {
 	 *
 	 * @since 0.0.1
 	 *
-	 * @return    object|TO_Accommodation    A single instance of this class.
+	 * @return    object|LSX_TO_Accommodation    A single instance of this class.
 	 */
 	public static function get_instance() {
 
@@ -262,7 +262,7 @@ class TO_Accommodation {
 			$fields[] = array( 'id' => 'tagline',  'name' => esc_html__('Tagline','tour-operator'), 'type' => 'text' );
 		}
 
-		if(class_exists('TO_Field_Pattern')){ $fields = array_merge($fields,TO_Field_Pattern::price()); }
+		if(class_exists('LSX_TO_Field_Pattern')){ $fields = array_merge($fields,LSX_TO_Field_Pattern::price()); }
 
 		$fields[] = array( 
 			'id' => 'price_type',
@@ -282,7 +282,7 @@ class TO_Accommodation {
 
 		$fields[] = array( 'id' => 'team_to_accommodation', 'name' => esc_html__('Accommodation Expert','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12 );
 		
-		if(class_exists('TO_Maps') && false !== $this->options && isset($this->options['contact_details_disabled'])){
+		if(class_exists('LSX_TO_Maps') && false !== $this->options && isset($this->options['contact_details_disabled'])){
 			$fields[] = array( 'id' => 'location_title',  'name' => esc_html__('Location','tour-operator'), 'type' => 'title' );
 			$fields[] = array( 'id' => 'location',  'name' => esc_html__('Address','tour-operator'), 'type' => 'gmap' );
 		}
@@ -392,7 +392,7 @@ class TO_Accommodation {
 		$fields = array_merge($fields,$fast_facts_fields);
 
 		if(class_exists('Envira_Gallery')){
-			if(!class_exists('TO_Galleries')){
+			if(!class_exists('LSX_TO_Galleries')){
 				$fields[] = array( 'id' => 'gallery_title',  'name' => esc_html__('Gallery','tour-operator'), 'type' => 'title' );
 			}			
 			$fields[] = array( 'id' => 'envira_gallery', 'name' => esc_html__('Envira Gallery','to-galleries'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
@@ -490,7 +490,7 @@ class TO_Accommodation {
 	function entry_class( $classes ) {
 		global $post;
 		if(is_main_query() && is_singular($this->plugin_slug)){
-			if(function_exists('lsx_to_has_team_member') && to_has_team_member()){
+			if(function_exists('lsx_to_has_team_member') && lsx_to_has_team_member()){
 				$classes[] = 'col-sm-9';
 			}else{
 				$classes[] = 'col-sm-12';
@@ -591,11 +591,11 @@ class TO_Accommodation {
 	 */
 	public function get_unit_page_links()	{
 		$links = false;
-		if(to_accommodation_has_rooms()) {
+		if(lsx_to_accommodation_has_rooms()) {
 			$return = false;
 			foreach($this->unit_types as $type_key => $type_label){
-				if(to_accommodation_check_type($type_key)){
-					$this->page_links[$type_key.'s'] = esc_html__(to_get_post_type_section_title('accommodation', $type_key.'s', $type_label.'s'),'tour-operator');
+				if(lsx_to_accommodation_check_type($type_key)){
+					$this->page_links[$type_key.'s'] = esc_html__(lsx_to_get_post_type_section_title('accommodation', $type_key.'s', $type_label.'s'),'tour-operator');
 				}
 			}
 		}
@@ -615,7 +615,7 @@ class TO_Accommodation {
 	 * Tests for the Google Map and returns a link for the section
 	 */
 	public function get_map_link(){
-		if(function_exists('lsx_to_has_map') && to_has_map()){
+		if(function_exists('lsx_to_has_map') && lsx_to_has_map()){
 			$this->page_links['accommodation-map'] = esc_html__('Map','tour-operator');
 		}
 	}
@@ -628,7 +628,7 @@ class TO_Accommodation {
 		if(class_exists('Envira_Gallery')){
 			$gallery_id = get_post_meta(get_the_ID(),'envira_to_tour',true);
 		}
-		if((false === $gallery_id || '' === $gallery_id) && class_exists('TO_Galleries')) {
+		if((false === $gallery_id || '' === $gallery_id) && class_exists('LSX_TO_Galleries')) {
 			$gallery_id = get_post_meta(get_the_ID(),'gallery',true);
 		}
 		if(false !== $gallery_id && '' !== $gallery_id){
@@ -644,7 +644,7 @@ class TO_Accommodation {
 		if(class_exists('Envira_Videos')){
 			$videos_id = get_post_meta(get_the_ID(),'envira_video',true);
 		}
-		if((false === $videos_id || '' === $videos_id) && class_exists('TO_Videos')) {
+		if((false === $videos_id || '' === $videos_id) && class_exists('LSX_TO_Videos')) {
 			$videos_id = get_post_meta(get_the_ID(),'videos',true);
 		}
 		if(false !== $videos_id && '' !== $videos_id){
@@ -662,4 +662,4 @@ class TO_Accommodation {
 		}
 	}
 }
-$to_accommodation = TO_Accommodation::get_instance();
+$lsx_to_accommodation = LSX_TO_Accommodation::get_instance();

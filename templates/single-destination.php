@@ -21,7 +21,7 @@ get_header(); ?>
 			<?php while ( have_posts() ) : the_post(); ?>		
 				<section id="summary">
 					<div class="row">
-						<?php to_content('content', get_post_type()); ?>
+						<?php lsx_to_content('content', get_post_type()); ?>
 					</div>
 				</section>
 			<?php endwhile; // end of the loop. ?>

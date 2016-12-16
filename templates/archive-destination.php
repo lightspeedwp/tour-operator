@@ -21,7 +21,7 @@
 			/**
 			 * Hooked
 			 * 
-			 *  - to_global_header() - 100
+			 *  - lsx_to_global_header() - 100
 			 */
 				lsx_content_top();
 			?>
@@ -56,7 +56,7 @@
 
 									<div class="col-sm-6">
 										<h2 class="section-title"><a href="<?php the_permalink() ?>" title="<?php the_title() ?>"><?php the_title() ?></a></h2>
-										<?php to_tagline( '<p class="tagline">', '</p>') ?>
+										<?php lsx_to_tagline( '<p class="tagline">', '</p>') ?>
 										<div class="entry-content"><?php echo wp_kses_post( $tour_operator->apply_filters_the_content( $post->post_content, 'Continue Reading', get_permalink() ) ); ?></div>
 									</div>
 								</div>
@@ -113,7 +113,7 @@
 																		</div>
 																		
 																		<h4 class="title"><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h4>
-																		<?php to_tagline( '<p class="tagline">', '</p>') ?>
+																		<?php lsx_to_tagline( '<p class="tagline">', '</p>') ?>
 																		<div class="widget-content">
 																			<div class="entry-content">
 																				<?php 
@@ -203,18 +203,18 @@
 
 			<?php endif ?>
 			
-			<?php to_travel_styles( '<section id="travel-styles"><h2 class="section-title">'. esc_html_e( 'Travel Styles','tour-operator' ) .'</h2>', '</section>' ) ?>
+			<?php lsx_to_travel_styles( '<section id="travel-styles"><h2 class="section-title">'. esc_html_e( 'Travel Styles','tour-operator' ) .'</h2>', '</section>' ) ?>
 			
-			<?php if(function_exists('lsx_to_has_map') && to_has_map()){ ?>
+			<?php if(function_exists('lsx_to_has_map') && lsx_to_has_map()){ ?>
 				<section id="destination-map">
-					<?php if ( ! to_has_destination_banner_map() ) : ?>
+					<?php if ( ! lsx_to_has_destination_banner_map() ) : ?>
 						<h2 class="section-title"><?php esc_html_e( 'Map','tour-operator' ) ?></h2>
 					<?php endif ?>
-					<?php to_map() ?>
+					<?php lsx_to_map() ?>
 				</section>
 			<?php }	?>
 			
-			<?php to_sharing() ?>
+			<?php lsx_to_sharing() ?>
 
 			<?php lsx_content_bottom() ?>
 

@@ -21,7 +21,7 @@
  * @category 	tour
  */
 function lsx_to_price($before="",$after="",$echo=true){
-	to_custom_field_query('price',$before,$after,$echo);
+	lsx_to_custom_field_query('price',$before,$after,$echo);
 }
 
 /**
@@ -37,7 +37,7 @@ function lsx_to_price($before="",$after="",$echo=true){
  * @category 	tour
  */
 function lsx_to_duration($before="",$after="",$echo=true){
-	to_custom_field_query('duration',$before,$after,$echo);
+	lsx_to_custom_field_query('duration',$before,$after,$echo);
 }
 
 /**
@@ -53,7 +53,7 @@ function lsx_to_duration($before="",$after="",$echo=true){
  * @category 	tour
  */
 function lsx_to_included($before="",$after="",$echo=true){
-	return to_custom_field_query('included',$before,$after,$echo);
+	return lsx_to_custom_field_query('included',$before,$after,$echo);
 }
 
 /**
@@ -69,7 +69,7 @@ function lsx_to_included($before="",$after="",$echo=true){
  * @category 	tour
  */
 function lsx_to_not_included($before="",$after="",$echo=true){
-	return to_custom_field_query('not_included',$before,$after,$echo);
+	return lsx_to_custom_field_query('not_included',$before,$after,$echo);
 }
 
 /**
@@ -90,7 +90,7 @@ function lsx_to_departure_point($before="",$after="",$echo=true){
 		if(!is_array($departs_from)){
 			$departs_from = array($departs_from);
 		}
-		$return = $before.to_connected_list($departs_from,'destination',true,', ').$after;
+		$return = $before.lsx_to_connected_list($departs_from,'destination',true,', ').$after;
 		if($echo){
 			echo wp_kses_post( $return );
 		}else{
@@ -117,7 +117,7 @@ function lsx_to_end_point($before="",$after="",$echo=true){
 		if(!is_array($end_point)){
 			$end_point = array($end_point);
 		}
-		$return = $before.to_connected_list($end_point,'destination',true,', ').$after;
+		$return = $before.lsx_to_connected_list($end_point,'destination',true,', ').$after;
 		if($echo){
 			echo wp_kses_post( $return );
 		}else{
@@ -135,8 +135,8 @@ function lsx_to_end_point($before="",$after="",$echo=true){
  */
 function lsx_to_included_block(){
 
-	$tour_included = to_included('','',false);
-	$tour_not_included = to_not_included('','',false);
+	$tour_included = lsx_to_included('','',false);
+	$tour_not_included = lsx_to_not_included('','',false);
 	if(null !== $tour_included || null !== $tour_not_included) { 
 	
 	$class="col-sm-6";
@@ -251,5 +251,5 @@ function lsx_to_best_time_to_visit($before="",$after="",$echo=true){
  * @category 	connections
  */
 function lsx_to_connected_tours($before="",$after="",$echo=true){
-	to_connected_items_query('tour',get_post_type(),$before,$after,$echo);
+	lsx_to_connected_items_query('tour',get_post_type(),$before,$after,$echo);
 }

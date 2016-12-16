@@ -1,9 +1,9 @@
 <?php
-	$to_documentation = esc_url('https://www.lsdev.biz/documentation/tour-operator-plugin/');
+	$lsx_to_documentation = esc_url('https://www.lsdev.biz/documentation/tour-operator-plugin/');
 	$extensions_link = esc_url('https://ww.lsdev.biz/product-category/tour-operator-extensions/');
 	$tour_operator_link = esc_url('https://www.lsdev.biz/product/tour-operator-plugin/');
 	$release_notes_link = esc_url('https://www.lsdev.biz/lsx/');
-	$to_news_link = esc_url('https://www.lsdev.biz/tour-operators/');
+	$lsx_to_news_link = esc_url('https://www.lsdev.biz/tour-operators/');
 
 	$prefix = is_ssl() ? 'https://' : 'http://';
 	wp_enqueue_script('mailchimpembed', $prefix.'s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js',array(),false,true);
@@ -28,7 +28,7 @@
 					<div class="col-md-6">
 						<div class="box-clean">
 							<h3><?php esc_html_e( 'Getting started', 'tour-operator' ); ?></h3>
-							<p><a href="<?php echo wp_kses_post($to_documentation); ?>" target="_blank"><?php esc_html_e( 'Check out the documentation', 'tour-operator' ); ?></a></p>
+							<p><a href="<?php echo wp_kses_post($lsx_to_documentation); ?>" target="_blank"><?php esc_html_e( 'Check out the documentation', 'tour-operator' ); ?></a></p>
 						</div>
 					</div>
 
@@ -51,7 +51,7 @@
 					<div class="col-md-6">
 						<div class="box-clean">
 							<h3><?php esc_html_e( 'News for Tour Operators', 'tour-operator' ); ?></h3>
-							<p><a href="<?php echo wp_kses_post($to_news_link); ?>" target="_blank"><?php esc_html_e( 'Check out our blog posts geared towards helping Tour Operators succeed online', 'tour-operator' ); ?></a></p>
+							<p><a href="<?php echo wp_kses_post($lsx_to_news_link); ?>" target="_blank"><?php esc_html_e( 'Check out our blog posts geared towards helping Tour Operators succeed online', 'tour-operator' ); ?></a></p>
 						</div>
 					</div>
 				</div>
