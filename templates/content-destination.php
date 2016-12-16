@@ -20,8 +20,8 @@ if(1 !== $lsx_to_archive){$lsx_to_archive = false;}
 			<div class="single-main-info">
 				<h3><?php esc_html_e('Summary','tour-operator');?></h3>
 				<div class="meta taxonomies">
-					<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.esc_html_e('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>
-					<?php if(function_exists('lsx_to_connected_activities')){ lsx_to_connected_activities('<div class="meta activities">'.esc_html_e('Activities','tour-operator').': ','</div>'); } ?>
+					<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.esc_html__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>
+					<?php if(function_exists('lsx_to_connected_activities')){ lsx_to_connected_activities('<div class="meta activities">'.esc_html__('Activities','tour-operator').': ','</div>'); } ?>
 				</div>
 				<?php lsx_to_sharing(); ?>
 			</div>

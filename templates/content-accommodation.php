@@ -19,16 +19,16 @@ if(1 !== $lsx_to_archive){$lsx_to_archive = false;}
 					<h3><?php esc_html_e('Summary','tour-operator');?></h3>
 					<?php lsx_to_price('<div class="meta info"><span class="price">from ','</span></div>'); ?>
 					<div class="meta taxonomies">
-						<?php lsx_to_accommodation_room_total('<div class="meta rooms">'.esc_html_e('Rooms','tour-operator').': <span>','</span></div>'); ?>
-						<?php lsx_to_accommodation_rating('<div class="meta rating">'.esc_html_e('Rating','tour-operator').': ','</div>'); ?>
-						<?php the_terms( get_the_ID(), 'accommodation-brand', '<div class="meta accommodation-brand">'.esc_html_e('Brand','tour-operator').': ', ', ', '</div>' ); ?>
-						<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.esc_html_e('Accommodation Style','tour-operator').': ', ', ', '</div>' ); ?>
-						<?php the_terms( get_the_ID(), 'accommodation-type', '<div class="meta accommodation-type">'.esc_html_e('Type','tour-operator').': ', ', ', '</div>' ); ?>
-						<?php lsx_to_accommodation_spoken_languages('<div class="meta spoken_languages">'.esc_html_e('Spoken Languages','tour-operator').': <span>','</span></div>'); ?>
-						<?php lsx_to_accommodation_activity_friendly('<div class="meta friendly">'.esc_html_e('Friendly','tour-operator').': <span>','</span></div>'); ?>
-						<?php lsx_to_accommodation_special_interests('<div class="meta special_interests">'.esc_html_e('Special Interests','tour-operator').': <span>','</span></div>'); ?>
-						<?php if(function_exists('lsx_to_connected_activities')) { lsx_to_connected_activities('<div class="meta activity">'.esc_html_e('Activities','tour-operator').': ','</div>'); } ?>
-						<?php lsx_to_connected_destinations('<div class="meta destination">'.esc_html_e('Location','tour-operator').': ','</div>'); ?>
+						<?php lsx_to_accommodation_room_total('<div class="meta rooms">'.esc_html__('Rooms','tour-operator').': <span>','</span></div>'); ?>
+						<?php lsx_to_accommodation_rating('<div class="meta rating">'.esc_html__('Rating','tour-operator').': ','</div>'); ?>
+						<?php the_terms( get_the_ID(), 'accommodation-brand', '<div class="meta accommodation-brand">'.esc_html__('Brand','tour-operator').': ', ', ', '</div>' ); ?>
+						<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.esc_html__('Accommodation Style','tour-operator').': ', ', ', '</div>' ); ?>
+						<?php the_terms( get_the_ID(), 'accommodation-type', '<div class="meta accommodation-type">'.esc_html__('Type','tour-operator').': ', ', ', '</div>' ); ?>
+						<?php lsx_to_accommodation_spoken_languages('<div class="meta spoken_languages">'.esc_html__('Spoken Languages','tour-operator').': <span>','</span></div>'); ?>
+						<?php lsx_to_accommodation_activity_friendly('<div class="meta friendly">'.esc_html__('Friendly','tour-operator').': <span>','</span></div>'); ?>
+						<?php lsx_to_accommodation_special_interests('<div class="meta special_interests">'.esc_html__('Special Interests','tour-operator').': <span>','</span></div>'); ?>
+						<?php if(function_exists('lsx_to_connected_activities')) { lsx_to_connected_activities('<div class="meta activity">'.esc_html__('Activities','tour-operator').': ','</div>'); } ?>
+						<?php lsx_to_connected_destinations('<div class="meta destination">'.esc_html__('Location','tour-operator').': ','</div>'); ?>
 					</div>
 					<?php lsx_to_sharing(); ?>
 				</div>
