@@ -25,7 +25,7 @@ class LSX_TO_Settings extends Tour_Operator {
 	 * @access private
 	 */
 	public function __construct() {
-		$this->options = get_option('_to_settings',false);	
+		$this->options = get_option('_lsx-to_settings',false);	
 		$this->set_vars();
 
 		add_filter( 'lsx_to_framework_settings_tabs', array( $this, 'register_settings_tabs') );
@@ -46,11 +46,11 @@ class LSX_TO_Settings extends Tour_Operator {
 	 */
 	public function create_settings_page(){
 		if(is_admin()){
-			if(!class_exists('\to\ui\uix')){
+			if(!class_exists('\lsx_to\ui\uix')){
 				include_once LSX_TO_PATH.'vendor/uix/uix.php';
 			}
 			$pages = $this->settings_page_array();
-			$uix = \to\ui\uix::get_instance( 'to' );
+			$uix = \lsx_to\ui\uix::get_instance( 'lsx-to' );
 			$uix->register_pages( $pages );
 
 			foreach($this->post_types as $post_type => $label){
@@ -68,7 +68,7 @@ class LSX_TO_Settings extends Tour_Operator {
 	 * Add the welcome page
 	 */
 	public function create_welcome_page() {
-	    add_submenu_page( 'tour-operator', esc_html__( 'Settings', 'tour-operator' ), esc_html__( 'Settings', 'tour-operator' ), 'manage_options', 'to-settings', array( $this, 'welcome_page' ) );
+	    add_submenu_page( 'tour-operator', esc_html__( 'Settings', 'tour-operator' ), esc_html__( 'Settings', 'tour-operator' ), 'manage_options', 'lsx-to-settings', array( $this, 'welcome_page' ) );
 	}
 
 	/**

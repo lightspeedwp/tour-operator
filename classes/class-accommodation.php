@@ -73,7 +73,7 @@ class LSX_TO_Accommodation {
 		$this->is_wetu_active = false;
 		$this->display_connected_tours = false;
 
-		$this->options = get_option('_to_settings',false);
+		$this->options = get_option('_lsx-to_settings',false);
 		if(false !== $this->options && isset($this->options[$this->plugin_slug]) && !empty($this->options[$this->plugin_slug])){
 			$this->options = $this->options[$this->plugin_slug];
 		}

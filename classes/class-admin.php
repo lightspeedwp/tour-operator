@@ -25,7 +25,7 @@ class LSX_TO_Admin extends Tour_Operator {
 	 * @access private
 	 */
 	public function __construct() {
-		$this->options = get_option('_to_settings',false);
+		$this->options = get_option('_lsx-to_settings',false);
 		$this->set_vars();
 
 		add_action('init',array($this,'init'));
@@ -193,7 +193,7 @@ class LSX_TO_Admin extends Tour_Operator {
 					// ***** Static pages *****
 
 					$static_pages = array(
-						90 => 'to-settings',
+						90 => 'lsx-to-settings',
 						91 => 'to-help',
 						92 => 'to-addons',
 					);
@@ -495,7 +495,7 @@ class LSX_TO_Admin extends Tour_Operator {
 	 */
 	public function add_action_links ( $links ) {
 		$mylinks = array(
-			'<a href="' . admin_url( 'admin.php?page=to-settings' ) . '">'.esc_html__('Settings','tour-operator').'</a>',
+			'<a href="' . admin_url( 'admin.php?page=lsx-to-settings' ) . '">'.esc_html__('Settings','tour-operator').'</a>',
 			'<a href="https://www.lsdev.biz/documentation/tour-operator-plugin/" target="_blank">'.esc_html__('Documentation','tour-operator').'</a>',
 			'<a href="https://www.lsdev.biz/contact-us/" target="_blank">'.esc_html__('Support','tour-operator').'</a>',
 		);

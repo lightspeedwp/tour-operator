@@ -139,7 +139,7 @@ class Tour_Operator {
 	private function __construct() {
 		
 		//Set the options
-		$this->options = get_option('_to_settings',false);	
+		$this->options = get_option('_lsx-to_settings',false);	
 		$this->set_vars();
 
 		// Make TO last plugin to load
@@ -237,7 +237,7 @@ class Tour_Operator {
 
 		if ( get_transient( '_tour_operators_welcome_redirect' ) ) {
 			delete_transient( '_tour_operators_welcome_redirect' );
-			wp_safe_redirect( 'admin.php?page=to-settings&welcome-page=1' );
+			wp_safe_redirect( 'admin.php?page=lsx-to-settings&welcome-page=1' );
 			exit();
 		}
 	}

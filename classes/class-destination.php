@@ -62,7 +62,7 @@ class LSX_TO_Destination{
 	 */
 	private function __construct() {
 		// activate property post type
-		$temp = get_option('_to_settings',false);
+		$temp = get_option('_lsx-to_settings',false);
 		if(false !== $temp && isset($temp[$this->plugin_slug]) && !empty($temp[$this->plugin_slug])){
 			$this->options = $temp[$this->plugin_slug];
 		}
