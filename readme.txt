@@ -66,7 +66,10 @@ Yes you can! Join in on our [GitHub repository](https://github.com/lightspeeddev
 == Changelog ==
 
 = 1.0.1 =
+* Allowing the placeholder to overwrite any empty image on all post types
 * Fixed PHP warning notice, removed the constant LSX_TO_POSTEXPIRATOR_TYPES
+* Fixed the PHP warning with the post order class
+* Fixed the selecting of the global default placeholders
 
 = 1.0.0 =
 * Initial release

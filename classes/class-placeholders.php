@@ -227,7 +227,7 @@ class LSX_TO_Placeholders {
 	 */
 	public function super_placeholder_filter( $image, $attachment_id , $size , $icon ){
 
-		if('lsx-placeholder' === $attachment_id){
+		if('' === $attachment_id || false === $attachment_id){
 			$image = array();
 
 			switch($size){
@@ -282,7 +282,7 @@ class LSX_TO_Placeholders {
 	 */
 	public function super_placeholder_srcset_filter( $image_meta, $size_array, $image_src, $attachment_id ){
 
-		if('lsx-placeholder' === $attachment_id){
+		if('' === $attachment_id || false === $attachment_id){
 
 			$width = '750';
 			$height = '350';
@@ -330,7 +330,7 @@ class LSX_TO_Placeholders {
 	 */
 	public function super_placeholder_calculate_image_srcset_filter( $sources, $size_array, $image_src, $image_meta, $attachment_id ){
 
-		if('lsx-placeholder' === $attachment_id){
+		if('' === $attachment_id || false === $attachment_id){
 
 			$sources = array(
 				'1920' => array(
