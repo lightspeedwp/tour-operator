@@ -2,7 +2,6 @@
 
 define('LSX_TO_POSTEXPIRATOR_DATEFORMAT',esc_html__('l F jS, Y','tour-operator'));
 define('LSX_TO_POSTEXPIRATOR_TIMEFORMAT',esc_html__('g:ia','tour-operator'));
-define('LSX_TO_POSTEXPIRATOR_TYPES',array('special','tour'));
 
 function lsx_to_expirationdate_add_column($columns,$type) {
 	if (in_array($type, LSX_TO_POSTEXPIRATOR_TYPES)) {
@@ -26,7 +25,7 @@ add_action ('manage_posts_custom_column', 'lsx_to_expirationdate_show_value');
 add_action ('manage_pages_custom_column', 'lsx_to_expirationdate_show_value');
 
 function lsx_to_expirationdate_meta_custom() {
-	$custom_post_types = LSX_TO_POSTEXPIRATOR_TYPES;
+	$custom_post_types = array('special','tour');
 	
 	foreach ($custom_post_types as $t) {
 		add_meta_box('lsxtoexpirationdatediv', esc_html__('Expires','tour-operator'), 'lsx_to_expirationdate_meta_box', $t, 'side', 'core');

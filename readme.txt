@@ -3,8 +3,8 @@ Contributors: feedmymedia
 Donate link: https://www.lsdev.biz/
 Tags: tour operator, tour operators, tour, tours, tour itinerary, tour itineraries, accommodation, accommodation listings, destinations, regions, tourism, lsx
 Requires at least: 4.3
-Tested up to: 4.6
-Stable tag: 1.0
+Tested up to: 4.7
+Stable tag: 4.7
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -65,7 +65,10 @@ Yes you can! Join in on our [GitHub repository](https://github.com/lightspeeddev
 
 == Changelog ==
 
-= 1.0 =
+= 1.0.1 =
+* Fixed PHP warning notice, removed the constant LSX_TO_POSTEXPIRATOR_TYPES
+
+= 1.0.0 =
 * Initial release
 
 == Upgrade Notice ==

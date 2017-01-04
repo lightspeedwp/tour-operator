@@ -333,7 +333,7 @@ class LSX_TO_SCPO_Engine {
 		$taxonomy = $args['taxonomy'];
 		if (is_array($taxonomy) && count($taxonomy) == 1)
 			$taxonomy = $taxonomy[0];
-		if (!array_key_exists($taxonomy, $tags))
+		if (!is_array($taxonomy) && !array_key_exists($taxonomy, $tags))
 			return $orderby;
 
 		$orderby = 't.lsx_to_term_order';

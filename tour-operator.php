@@ -5,7 +5,7 @@
  * Description: The Tour Operator plugin core contains the Accommodation, Destination and Tour post types. Use these core post types to build day-by-day tour itineraries that map out of the progress of each tour through the various accommodations and destinations that are stayed at along the way.
  * Tags: tour operator, tour operators, tour, tours, tour itinerary, tour itineraries, accommodation, accommodation listings, destinations, regions, tourism, lsx
  * Author: LightSpeed
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author URI: https://www.lsdev.biz/
  * License:     GPL3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
