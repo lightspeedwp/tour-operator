@@ -70,6 +70,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/lightspeeddev
 * Fixed PHP warning notice, removed the constant LSX_TO_POSTEXPIRATOR_TYPES
 * Fixed the PHP warning with the post order class
 * Fixed the selecting of the global default placeholders
+* Fixed PHP compatibility errors
 
 = 1.0.0 =
 * Initial release
