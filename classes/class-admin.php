@@ -566,8 +566,8 @@ class LSX_TO_Admin extends Tour_Operator {
 			if ( ! isset( $_POST['thumbnail'] ) ) {
 				return;
 			}
-
-			$thumbnail_meta = ! empty( sanitize_text_field(wp_unslash($_POST[ 'thumbnail' ])) ) ? sanitize_text_field(wp_unslash($_POST[ 'thumbnail' ]))	: '';
+			$thumbnail_meta = sanitize_text_field(wp_unslash($_POST[ 'thumbnail' ]));
+			$thumbnail_meta = ! empty( $thumbnail_meta ) ? $thumbnail_meta	: '';
 			if ( empty( $thumbnail_meta ) ) {
 				delete_term_meta( $term_id, 'thumbnail' );
 			} else {
@@ -579,8 +579,8 @@ class LSX_TO_Admin extends Tour_Operator {
 			if ( ! isset( $_POST['tagline'] ) ) {
 				return;
 			}
-
-			$meta = ! empty( sanitize_text_field(wp_unslash($_POST[ 'tagline' ])) ) ? sanitize_text_field(wp_unslash($_POST[ 'tagline' ])) : '';
+			$meta = sanitize_text_field(wp_unslash($_POST[ 'tagline' ]));
+			$meta = ! empty( $meta ) ? $meta : '';
 			if ( empty( $meta ) ) {
 				delete_term_meta( $term_id, 'tagline' );
 			} else {

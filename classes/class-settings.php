@@ -31,7 +31,8 @@ class LSX_TO_Settings extends Tour_Operator {
 		add_filter( 'lsx_to_framework_settings_tabs', array( $this, 'register_settings_tabs') );
 
 		if(isset($_GET['welcome-page'])) {
-			$display_page = !empty(sanitize_text_field(wp_unslash($_GET['welcome-page']))) ? sanitize_text_field(wp_unslash($_GET['welcome-page'])) : '';
+			$display_page = sanitize_text_field(wp_unslash($_GET['welcome-page']));
+			$display_page = !empty($display_page) ? $display_page : '';
 		}
 			
 		if ( ! empty( $display_page ) ) {
