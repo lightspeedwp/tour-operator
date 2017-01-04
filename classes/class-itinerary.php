@@ -231,7 +231,7 @@ function lsx_to_itinerary_slug() {
 function lsx_to_itinerary_tagline() {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
-		if(false !== $tour_itinerary->itinerary['tagline']){
+		if(isset($tour_itinerary->itinerary['tagline']) && false !== $tour_itinerary->itinerary['tagline']){
 			echo wp_kses_post(apply_filters('the_title',$tour_itinerary->itinerary['tagline']));
 		}
 	}
