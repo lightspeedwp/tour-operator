@@ -7,7 +7,7 @@
  * @copyright 2016 LightSpeed
  *
  **/
-if(!function_exists('cmb_init')){
+if(!function_exists('cmb_init') && !class_exists('CMB_Meta_Box')){
 	if ( is_file( LSX_TO_PATH . 'vendor/Custom-Meta-Boxes/custom-meta-boxes.php' ) ) {
 		require_once( LSX_TO_PATH . 'vendor/Custom-Meta-Boxes/custom-meta-boxes.php' );
 	}
