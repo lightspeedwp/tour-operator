@@ -262,7 +262,9 @@ class LSX_TO_Accommodation {
 			$fields[] = array( 'id' => 'tagline',  'name' => esc_html__('Tagline','tour-operator'), 'type' => 'text' );
 		}
 
-		if(class_exists('LSX_TO_Field_Pattern')){ $fields = array_merge($fields,LSX_TO_Field_Pattern::price()); }
+		if(class_exists('LSX_TO_Field_Pattern')){
+			$fields = array_merge($fields,LSX_TO_Field_Pattern::price());
+		}
 
 		$fields[] = array( 
 			'id' => 'price_type',
