@@ -155,7 +155,8 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
             $group = '';
         }
         
-        if ( '' != $include ) $limit = "-1";
+        if ( '' != $include )
+        	$limit = "-1";
               
         if ( '1' == $responsive )
             $responsive = true;

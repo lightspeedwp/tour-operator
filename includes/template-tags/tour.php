@@ -225,7 +225,9 @@ function lsx_to_best_time_to_visit($before="",$after="",$echo=true){
 
 		foreach($this_year as $month => $label){
 			$checked = '';
-			if(in_array($month,$best_time_to_visit)){ $checked = '<i class="fa fa-check" aria-hidden="true"></i>'; }
+			if(in_array($month,$best_time_to_visit)){
+				$checked = '<i class="fa fa-check" aria-hidden="true"></i>';
+			}
 			$shortname = str_split($label,3);
 			$best_times[] = '<div class="col-sm-2"><small>'.$shortname[0].'</small><br />'.$checked.'</div>';
 		};

@@ -610,7 +610,8 @@ class Tour_Operator {
 	 * Make TO last plugin to load.
 	 */
 	public function activated_plugin() {
-		if ( $plugins = get_option( 'active_plugins' ) ) {
+		$plugins = get_option( 'active_plugins' );
+		if ( false != $plugins ) {
 			$search = preg_grep( '/.*\/tour-operator\.php/', $plugins );
 			$key = array_search( $search, $plugins );
 

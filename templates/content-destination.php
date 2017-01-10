@@ -6,7 +6,9 @@
  * @category	destination
  */
 global $lsx_to_archive;
-if(1 !== $lsx_to_archive){$lsx_to_archive = false;}
+if(1 !== $lsx_to_archive){
+	$lsx_to_archive = false;
+}
 ?>
 
 <?php lsx_entry_before(); ?>

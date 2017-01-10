@@ -75,7 +75,9 @@ function lsx_to_expirationdate_meta_box($post) {
 	$rv[] = '<select name="lsx_to_expirationdate_year" id="lsx_to_expirationdate_year"'.$disabled.'>';
 	$currentyear = date('Y');
 
-	if ($defaultyear < $currentyear) $currentyear = $defaultyear;
+	if ($defaultyear < $currentyear) {
+		$currentyear = $defaultyear;
+	}
 
 	for($i = $currentyear; $i < $currentyear + 8; $i++) {
 		if ($i == $defaultyear)
@@ -250,13 +252,25 @@ function lsx_to_post_expirator_expire($id) {
 add_action('lsxToPostExpiratorExpire','lsx_to_post_expirator_expire');
 
 function lsx_to_post_expirator_expire_type($opts) {
-	if (empty($opts)) return false;
+	if (empty($opts)){
+		return false;
+	}
 
-	if (!isset($opts['name'])) return false;
-	if (!isset($opts['id'])) $opts['id'] = $opts['name'];
-	if (!isset($opts['disabled'])) $opts['disabled'] = false;
-	if (!isset($opts['onchange'])) $opts['onchange'] = '';
-	if (!isset($opts['type'])) $opts['type'] = '';
+	if (!isset($opts['name'])){
+		return false;
+	}
+	if (!isset($opts['id'])){
+		$opts['id'] = $opts['name'];
+	}
+	if (!isset($opts['disabled'])){
+		$opts['disabled'] = false;
+	}
+	if (!isset($opts['onchange'])){
+		$opts['onchange'] = '';
+	}
+	if (!isset($opts['type'])){
+		$opts['type'] = '';
+	}
 
 	$rv = array();
 	$rv[] = '<select name="'.$opts['name'].'" id="'.$opts['id'].'"'.(true == $opts['disabled'] ? ' disabled="disabled"' : '').' onchange="'.$opts['onchange'].'">';

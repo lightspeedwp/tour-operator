@@ -405,7 +405,8 @@ class LSX_TO_Admin extends Tour_Operator {
 			}
 
 			//Loop through each group in case of repeatable fields
-			$relations = $previous_relations = false;
+			$relations = false;
+			$previous_relations = false;
 
 			foreach($value as $group){
 
@@ -428,7 +429,9 @@ class LSX_TO_Admin extends Tour_Operator {
 
 							if(null !== $field_value){
 
-								if(1 === $field_value){ $field_value = true; }
+								if(1 === $field_value){
+									$field_value = true;
+								}
 								add_post_meta($post_id,$fields_to_save,$field_value);
 
 								//If its a related connection the save that
@@ -508,7 +511,9 @@ class LSX_TO_Admin extends Tour_Operator {
 	 * @since 0.1.0
 	 */
 	public function widget_taxonomies($taxonomies) {
-		if(false !== $this->taxonomies){ $taxonomies = array_merge($taxonomies,$this->taxonomies); }
+		if(false !== $this->taxonomies){
+			$taxonomies = array_merge($taxonomies,$this->taxonomies);
+		}
 		return $taxonomies;
 	}
 

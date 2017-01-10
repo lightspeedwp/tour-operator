@@ -54,13 +54,23 @@ function lsx_to_country_regions(){
 			<section id="regions">
 				<h2 class="section-title"><?php esc_html_e(lsx_to_get_post_type_section_title('destination', 'regions', 'Regions'),'tour-operator'); ?></h2>		
 				<div class="row">		
-					<?php $lsx_to_archive = 1; $wp_query->is_single = 0;$wp_query->is_singular = 0;$wp_query->is_post_type_archive = 1;?>
+					<?php
+						$lsx_to_archive = 1;
+						$wp_query->is_single = 0;
+						$wp_query->is_singular = 0;
+						$wp_query->is_post_type_archive = 1;
+					?>
 					<?php while ( $regions->have_posts() ) : $regions->the_post(); ?>
 						<div class="panel col-sm-12">
 							<?php lsx_to_content('content','destination'); ?>
 						</div>
 					<?php endwhile; // end of the loop. ?>
-					<?php $lsx_to_archive = 0; $wp_query->is_single = 1;$wp_query->is_singular = 1;$wp_query->is_post_type_archive = 0;?>
+					<?php
+						$lsx_to_archive = 0;
+						$wp_query->is_single = 1;
+						$wp_query->is_singular = 1;
+						$wp_query->is_post_type_archive = 0;
+					?>
 				</div>
 			</section>		
 			<?php

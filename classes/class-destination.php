@@ -214,7 +214,9 @@ class LSX_TO_Destination{
 	 */
 	public function entry_class( $classes ) {
 		global $lsx_to_archive;
-		if(1 !== $lsx_to_archive){$lsx_to_archive = false;}
+		if(1 !== $lsx_to_archive){
+			$lsx_to_archive = false;
+		}
 		if(is_main_query() && is_singular($this->plugin_slug) && false === $lsx_to_archive){
 			if(function_exists('lsx_to_has_team_member') && lsx_to_has_team_member()){
 				$classes[] = 'col-sm-9';

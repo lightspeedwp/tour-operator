@@ -53,7 +53,9 @@ class LSX_TO_Placeholders {
 	 */
 	public function __construct($post_types=false) {
 
-		if(false !== $post_types){ $this->post_types = $post_types; }
+		if(false !== $post_types){
+			$this->post_types = $post_types;
+		}
 
 		$this->post_types[] = 'post';
 		$this->post_types[] = 'page';

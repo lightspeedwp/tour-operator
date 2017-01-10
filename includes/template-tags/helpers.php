@@ -22,7 +22,9 @@
  */
 function lsx_to_is_single_disabled($post_type=false){
 	global $tour_operator;
-	if(false === $post_type) {$post_type = get_post_type(); }
+	if(false === $post_type) {
+		$post_type = get_post_type();
+	}
 	if(is_object($tour_operator) && isset($tour_operator->options[$post_type]) && isset($tour_operator->options[$post_type]['disable_single'])){
 		return true;
 	}else{
@@ -70,8 +72,12 @@ function lsx_to_accommodation_display_connected_tours(){
  */
 function lsx_to_item_has_children($post_id = false,$post_type = false) {
 	global $wpdb;
-	if(false == $post_id){return false;}
-	if(false == $post_type){$post_type = 'page';}
+	if(false == $post_id){
+		return false;
+	}
+	if(false == $post_type){
+		$post_type = 'page';
+	}
 	$children = $wpdb->get_results(
 			$wpdb->prepare(
 					"

@@ -55,7 +55,8 @@ function lsx_to_accommodation_rating($before="",$after="",$echo=true,$post_id=fa
  */
 function lsx_to_has_facilities(){
 	// Get any existing copy of our transient data
-	if ( false === ( $facilities = get_transient( get_the_ID().'_facilities' ) ) ) {
+	$facilities = get_transient( get_the_ID().'_facilities' );
+	if ( false === $facilities ) {
 		// It wasn't there, so regenerate the data and save the transient
 		
 		$facilities = wp_get_object_terms(get_the_ID(),'facility');
@@ -146,7 +147,9 @@ function lsx_to_accommodation_facilities($before="",$after="",$echo=true){
  */
 function lsx_to_accommodation_spoken_languages($before="",$after="",$echo=true){
 	$spoken_languages = get_post_meta( get_the_ID(), 'spoken_languages', true );
-	if ( is_string( $spoken_languages ) && ! empty( $spoken_languages ) ) $spoken_languages = array( $spoken_languages );
+	if ( is_string( $spoken_languages ) && ! empty( $spoken_languages ) ) {
+		$spoken_languages = array( $spoken_languages );
+	}
 	$return = '';
 
 	if ( ! empty( $spoken_languages ) && ! is_wp_error( $spoken_languages ) ) {
@@ -190,7 +193,9 @@ function lsx_to_accommodation_special_interests($before="",$after="",$echo=true,
 		$post_id = get_the_ID();
 	}
 	$special_interests = get_post_meta( $post_id, 'special_interests', true );
-	if ( is_string( $special_interests ) && ! empty( $special_interests ) ) $special_interests = array( $special_interests );
+	if ( is_string( $special_interests ) && ! empty( $special_interests ) ) {
+		$special_interests = array( $special_interests );
+	}
 	$return = '';
 
 	if ( ! empty( $special_interests ) && ! is_wp_error( $special_interests ) ) {
@@ -232,7 +237,9 @@ function lsx_to_accommodation_special_interests($before="",$after="",$echo=true,
  */
 function lsx_to_accommodation_activity_friendly($before="",$after="",$echo=true){
 	$friendly = get_post_meta( get_the_ID(), 'suggested_visitor_types', true );
-	if ( is_string( $friendly ) && ! empty( $friendly ) ) $friendly = array( $friendly );
+	if ( is_string( $friendly ) && ! empty( $friendly ) ) {
+		$friendly = array( $friendly );
+	}
 	$return = '';
 
 	if ( ! empty( $friendly ) && ! is_wp_error( $friendly ) ) {

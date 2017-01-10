@@ -45,7 +45,9 @@ get_header();
 
 					<?php endif; ?>
 					
-					<?php $lsx_to_archive = 0; ?>
+					<?php
+						$lsx_to_archive = 0;
+					?>
 
 				<?php lsx_content_bottom(); ?>
 				
