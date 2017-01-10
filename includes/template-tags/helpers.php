@@ -114,7 +114,9 @@ function lsx_to_item_has_children($post_id = false,$post_type = false) {
 function lsx_to_get_post_type_section_title($post_type=false,$section='',$default=''){
 	$section_title = (!empty($section)) ? ($section.'_section_title') : 'section_title';
 	global $tour_operator;
-	if(false === $post_type) {$post_type = get_post_type(); }
+	if(false === $post_type) {
+		$post_type = get_post_type();
+	}
 	if(is_object($tour_operator) && isset($tour_operator->options[$post_type]) && isset($tour_operator->options[$post_type][$section_title]) && !empty($tour_operator->options[$post_type][$section_title]) && '' !== $tour_operator->options[$post_type][$section_title]){
 		return $tour_operator->options[$post_type][$section_title];
 	}else{
@@ -206,7 +208,8 @@ function lsx_to_term_tagline($term_id=false,$before="",$after="",$echo=true){
  */
 function lsx_to_has_custom_field_query( $meta_key = false, $id = false, $is_tax = false ) {
 	if ( false !== $meta_key ) {
-		if ( false === ( $custom_field = get_transient( $id .'_'. $meta_key ) ) ) {
+		$custom_field = get_transient( $id .'_'. $meta_key );
+		if ( false === $custom_field ) {
 			if ( $is_tax ) {
 				$custom_field = get_term_meta( $id, $meta_key, true );
 			} else {
@@ -244,8 +247,8 @@ function lsx_to_custom_field_query($meta_key=false,$before="",$after="",$echo=fa
 		if(false === $post_id){
 			$post_id = get_the_ID();
 		}
-		
-		if ( false === ( $value = get_transient( $post_id.'_'.$meta_key ) ) ) {
+		$value = get_transient( $post_id.'_'.$meta_key );
+		if ( false === $value ) {
 			$value = get_post_meta($post_id,$meta_key,true);
 		}
 		if(false !== $value && '' !== $value){
@@ -324,7 +327,9 @@ function lsx_to_connected_panel_query($args=false){
 		$args = wp_parse_args($args,$defaults);
 		$return = false;
 		
-		if(false === $args['content_part']){$args['content_part'] = $args['from']; }
+		if(false === $args['content_part']){
+			$args['content_part'] = $args['from'];
+		}
 		
 		$items_array = get_post_meta(get_the_ID(),$args['from'].'_to_'.$args['to'],false);
 		
