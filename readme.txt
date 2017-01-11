@@ -65,6 +65,9 @@ Yes you can! Join in on our [GitHub repository](https://github.com/lightspeeddev
 
 == Changelog ==
 
+= 1.0.2 =
+* Fixed a conflict with some plugins using https://github.com/humanmade/Custom-Meta-Boxes
+
 = 1.0.1 =
 * Allowing the placeholder to overwrite any empty image on all post types
 * Fixed PHP warning notice, removed the constant LSX_TO_POSTEXPIRATOR_TYPES
