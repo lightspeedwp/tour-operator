@@ -137,6 +137,13 @@ class Tour_Operator {
 	 * @access private
 	 */
 	private function __construct() {
+
+		add_action( 'admin_init', array( $this, 'compatible_version_check' ) );
+
+		// Don't run anything else in the plugin, if we're on an incompatible PHP version
+		if ( ! self::compatible_version() ) {
+			return;
+		}
 		
 		//Set the options
 		$this->options = get_option('_lsx-to_settings',false);	
@@ -185,8 +192,6 @@ class Tour_Operator {
 		//Integrations
 		$this->lsx_to_search_integration();
 
-		// Welcome page redirect + flush_rewrite_rules()
-		register_activation_hook( LSX_TO_CORE, array( $this, 'register_activation_hook' ) );
 		add_action( 'admin_init', array( $this, 'register_activation_hook_check' ) );
 	}	
 	
@@ -210,7 +215,9 @@ class Tour_Operator {
 	 *
 	 * @since 1.0.0
 	 */
-	public function register_activation_hook() {
+	public static function register_activation_hook() {
+		self::compatible_version_check_on_activation();
+
 		if ( ! is_network_admin() && ! isset( $_GET['activate-multi'] ) ) {
 			set_transient( '_tour_operators_flush_rewrite_rules', 1, 30 );
 		}
@@ -622,6 +629,62 @@ class Tour_Operator {
 					update_option( 'active_plugins', $plugins );
 				}
 			}
+		}
+	}
+	
+	/**
+	 * Check if the PHP version is compatible.
+	 *
+	 * @since 1.0.2
+	 */
+	public static function compatible_version() {
+		if ( version_compare( PHP_VERSION, '5.6', '<' ) ) {
+			return false;
+		}
+
+		return true;
+	}
+	
+	/**
+	 * The backup sanity check, in case the plugin is activated in a weird way,
+	 * or the versions change after activation.
+	 *
+	 * @since 1.0.2
+	 */
+	public function compatible_version_check() {
+		if ( ! self::compatible_version() ) {
+			if ( is_plugin_active( plugin_basename( LSX_TO_CORE ) ) ) {
+				deactivate_plugins( plugin_basename( LSX_TO_CORE ) );
+				add_action( 'admin_notices', array( $this, 'compatible_version_notice' ) );
+				
+				if ( isset( $_GET['activate'] ) ) {
+					unset( $_GET['activate'] );
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Display the notice related with the older version from PHP.
+	 *
+	 * @since 1.0.2
+	 */
+	public function compatible_version_notice() {
+		$class = 'notice notice-error';
+		$message = esc_html__( 'Tour Operator Plugin requires PHP 5.6 or higher.', 'tour-operator' );
+		printf( '<div class="%1$s"><p>%2$s</p></div>', $class, $message );
+	}
+	
+	/**
+	 * The primary sanity check, automatically disable the plugin on activation if it doesn't
+	 * meet minimum requirements.
+	 *
+	 * @since 1.0.2
+	 */
+	public static function compatible_version_check_on_activation() {
+		if ( ! self::compatible_version() ) {
+			deactivate_plugins( plugin_basename( LSX_TO_CORE ) );
+			wp_die( __( 'Tour Operator Plugin requires PHP 5.6 or higher.', 'tour-operator' ) );
 		}
 	}
 

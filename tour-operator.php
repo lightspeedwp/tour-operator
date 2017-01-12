@@ -23,4 +23,6 @@ define('LSX_TO_CORE',  __FILE__ );
 define('LSX_TO_URL',  plugin_dir_url( __FILE__ ) );
 define('LSX_TO_VER',  '1.0.2' );
 
+register_activation_hook( LSX_TO_CORE, array( 'Tour_Operator', 'register_activation_hook' ) );
+
 require_once( LSX_TO_PATH . 'module.php' );
