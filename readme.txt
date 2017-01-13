@@ -65,6 +65,9 @@ Yes you can! Join in on our [GitHub repository](https://github.com/lightspeeddev
 
 == Changelog ==
 
+= 1.0.3 =
+*
+
 = 1.0.2 =
 * Fixed a conflict with some plugins using https://github.com/humanmade/Custom-Meta-Boxes
 * Added a test to avoid the plugin activate with older versions from PHP than 5.6
