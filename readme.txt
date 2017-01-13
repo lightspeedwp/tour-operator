@@ -21,11 +21,10 @@ Its destination management features make featuring destinations super simple, an
 Detailed accommodation listings show off room facilities, image galleries, video material, reviews, interactive digital tours, special offers, team members and more.
 
 = Works with the free LSX Theme =
-Page Builder gives you complete freedom to choose any WordPress theme you like. It's not a commitment to a single theme or theme developer. The advantage is that you're free to change themes as often as you like. Your content will always come along with you.
-We've also made a fantastic [free theme] (https://www.lsdev.biz/product/lsx-wordpress-theme/) that work well with the Tour Operator plugin.
+We've also made a fantastic [free theme](https://www.lsdev.biz/product/lsx-wordpress-theme/) that work well with the Tour Operator plugin.
 
 = It's free, and always will be. =
-We’re firm believers in open source - that’s why we’re releasing the Tour Operators plugin for free, forever. We offer free support on the [Tour Operator support forums] (https://wordpress.org/support/plugin/tour-operator). 
+We’re firm believers in open source - that’s why we’re releasing the Tour Operators plugin for free, forever. We offer free support on the [Tour Operator support forums](https://wordpress.org/support/plugin/tour-operator). 
 
 = Actively Developed =
 The Tour Operator plugin is actively developed with new features and exciting enhancements all the time. Keep track on the [Tour Operator GitHub repository](https://github.com/lightspeeddevelopment/tour-operator).
