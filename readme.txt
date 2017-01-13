@@ -65,7 +65,9 @@ Yes you can! Join in on our [GitHub repository](https://github.com/lightspeeddev
 == Changelog ==
 
 = 1.0.3 =
-*
+* Fixed PHP errors when activating the plugin with a non LSX theme
+* Hid the "Contact Details" custom field panel from Accommodation, these fields don't output to the frontend yet
+* Updated the readme.txt content
 
 = 1.0.2 =
 * Fixed a conflict with some plugins using https://github.com/humanmade/Custom-Meta-Boxes

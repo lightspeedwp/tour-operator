@@ -290,7 +290,7 @@ class LSX_TO_Accommodation {
 		}
 
 		// Contact Fields
-		if(false === $this->options || !isset($this->options['contact_details_disabled'])){
+		/*if(false === $this->options || !isset($this->options['contact_details_disabled'])){
 			$contact_fields = array(
 					array( 'id' => 'contact_title',  'name' => esc_html__('Contact Details','tour-operator'), 'type' => 'title' ),
 					array( 'id' => 'name',  'name' => esc_html__('Name','tour-operator'), 'type' => 'text' ),
@@ -304,7 +304,7 @@ class LSX_TO_Accommodation {
 				$contact_fields[] = array( 'id' => 'location',  'name' => esc_html__('Address','tour-operator'), 'type' => 'textarea' );
 			}
 			$fields = array_merge($fields,$contact_fields);
-		}
+		}*/
 		
 		//Fast Facts
 		$fast_facts_fields = array(
