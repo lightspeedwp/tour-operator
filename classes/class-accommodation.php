@@ -297,8 +297,12 @@ class LSX_TO_Accommodation {
 					array( 'id' => 'email',  'name' => esc_html__('Email','tour-operator'), 'type' => 'text' ),
 					array( 'id' => 'phone',  'name' => esc_html__('Phone','tour-operator'), 'type' => 'text' ),
 					array( 'id' => 'website',  'name' => esc_html__('Website','tour-operator'), 'type' => 'text' ),
-					array( 'id' => 'location',  'name' => esc_html__('Address','tour-operator'), 'type' => 'gmap' ),
-			);	
+			);
+			if(class_exists('TO_Maps')){
+				$contact_fields[] = array( 'id' => 'location',  'name' => esc_html__('Address','tour-operator'), 'type' => 'gmap' );
+			}else{
+				$contact_fields[] = array( 'id' => 'location',  'name' => esc_html__('Address','tour-operator'), 'type' => 'textarea' );
+			}
 			$fields = array_merge($fields,$contact_fields);
 		}
 		
