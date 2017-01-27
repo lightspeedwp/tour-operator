@@ -153,6 +153,28 @@ class LSX_TO_Destination{
 
 		$fields[] = array( 'id' => 'featured',  'name' => esc_html__('Featured','tour-operator'), 'type' => 'checkbox' );
 
+		$fields[] = array( 
+			'id' => 'best_time_to_visit',
+			'name' => esc_html__( 'Best months to visit', 'tour-operator' ),
+			'type' => 'select',
+			'options' => array(
+				'january' => 'January',
+				'february' => 'February',
+				'march' => 'March',
+				'april' => 'April',
+				'may' => 'May',
+				'june' => 'June',
+				'july' => 'July',
+				'august' => 'August',
+				'september' => 'September',
+				'october' => 'October',
+				'november' => 'November',
+				'december' => 'December'
+			),
+			'multiple' => true,
+			'cols' => 12
+		);
+
 		if(!class_exists('LSX_Banners')){
 			$fields[] = array( 'id' => 'tagline',  'name' => esc_html__('Tagline','tour-operator'), 'type' => 'text' );
 		}

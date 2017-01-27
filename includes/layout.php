@@ -164,7 +164,15 @@ function lsx_to_accommodation_archive_entry_bottom() {
  * @category 	destination
  */
 function lsx_to_destination_single_content_bottom() {
-	if(is_singular('destination')){
+	if(is_singular('destination')){ ?>
+		<section id="highlights">
+			<div class="row">
+				<div class="col-sm-12">
+					<?php lsx_to_best_time_to_visit('<div class="best-time-to-visit"><h2 class="section-title">'.esc_html__('Best time to visit','tour-operator').'</h2><div class="best-time-to-visit-content">','</div></div>'); ?>
+				</div>	
+			</div>				
+		</section>
+		<?php
 
 		lsx_to_country_regions();
 		
