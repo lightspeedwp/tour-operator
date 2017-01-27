@@ -15,15 +15,19 @@ var LSX_TO_Itinerary_Read_More = {
 			});
 		});
 	}
-},
+};
 
-LSX_TO_Bootstrap_Carousel = {
+var lsxToBootstrapCarouselAvoidInMobile = lsxToBootstrapCarouselAvoidInMobile || true;
+
+var LSX_TO_Bootstrap_Carousel = {
 	avoidInMobile: function() {
 		jQuery('.carousel.slide').on('slide.bs.carousel', function() {
-			var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-			
-			if (width < 992) {
-				return false;
+			if (true === lsxToBootstrapCarouselAvoidInMobile) {
+				var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+				
+				if (width < 992) {
+					return false;
+				}
 			}
 		});
 	}
