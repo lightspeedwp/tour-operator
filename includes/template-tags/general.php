@@ -363,6 +363,97 @@ function lsx_to_travel_styles($before="",$after="",$echo=true) {
 	}	
 }
 
+/* ==================  ENQUIRE  ================== */
+/**
+ * Test if Enquire Contact exists
+ *
+ * @return		boolean
+ * @package 	tour-operator
+ */
+function lsx_to_has_enquiry_contact() {
+	global $tour_operator;
+
+	$has_enquiry_contact = false;
+
+	if ( function_exists( 'lsx_to_has_team_member' ) ) {
+		$has_enquiry_contact = lsx_to_has_team_member();
+	}
+
+	if ( false === $has_enquiry_contact ) {
+		if ( isset( $tour_operator->options['general'] ) && isset( $tour_operator->options['general']['enquiry_contact_name'] ) && '' !== $tour_operator->options['general']['enquiry_contact_name'] ) {
+			$has_enquiry_contact = true;
+		}
+
+		if ( is_singular( $tour_operator->active_post_types ) ) {
+			if ( isset( $tour_operator->options[ get_post_type() ] ) && isset( $tour_operator->options[ get_post_type() ]['enquiry_contact_name'] ) && '' !== $tour_operator->options[ get_post_type() ]['enquiry_contact_name'] ) {
+				$has_enquiry_contact = true;
+			}
+		}
+	}
+
+	return $has_enquiry_contact;
+}
+/**
+ * Display Enquire Contact
+ *
+ * @return		void
+ * @package 	tour-operator
+ */
+function lsx_to_enquiry_contact( $before = "", $after = "" ) {
+	global $tour_operator;
+
+	$fields = array(
+		'enquiry_contact_name'     => '',
+		'enquiry_contact_email'    => '',
+		'enquiry_contact_phone'    => '',
+		'enquiry_contact_image_id' => '',
+		'enquiry_contact_image'    => '',
+	);
+
+	foreach ( $fields as $key => $field ) {
+		if ( isset( $tour_operator->options['general'] ) && isset( $tour_operator->options['general'][ $key ] ) ) {
+			$fields[ $key ] = $tour_operator->options['general'][ $key ];
+		}
+
+		if ( is_singular( $tour_operator->active_post_types ) ) {
+			if ( isset( $tour_operator->options[ get_post_type() ] ) && isset( $tour_operator->options[ get_post_type() ][ $key ] ) && ! empty( $tour_operator->options[ get_post_type() ][ $key ] ) ) {
+				$fields[ $key ] = $tour_operator->options[ get_post_type() ][ $key ];
+			}
+		}
+	}
+
+	if ( ! empty( $fields[ 'enquiry_contact_image_id' ] ) ) {
+		$temp_src_array = wp_get_attachment_image_src( $fields[ 'enquiry_contact_image_id' ], 'lsx-thumbnail-wide' );
+		
+		if ( is_array( $temp_src_array ) && count( $temp_src_array ) > 0 ) {
+			$fields[ 'enquiry_contact_image' ] = $temp_src_array[0];
+		}
+	}
+
+	echo wp_kses_post( $before );
+	?>
+	<div class="enquiry-contact">
+		<?php if ( ! empty( $fields[ 'enquiry_contact_image' ] ) ) : ?>
+			<div class="thumbnail">
+				<?php echo wp_kses_post( apply_filters( 'lsx_to_lazyload_filter_images', '<img alt="' . esc_attr( $fields[ 'enquiry_contact_name' ] ) . '" class="attachment-responsive wp-post-image lsx-responsive" src="' . esc_url( $fields[ 'enquiry_contact_image' ] ) . '" />' ) ); ?>
+			</div>
+		<?php endif; ?>
+		<h4 class="title">
+			<?php echo esc_html( $fields[ 'enquiry_contact_name' ] ); ?>
+		</h4>
+		<div class="team-details">
+			<?php if ( ! empty( $fields[ 'enquiry_contact_phone' ] ) ) : ?>
+				<div class="meta contact-number"><i class="fa fa-phone orange"></i> <a href="tel:+<?php echo esc_attr( $fields[ 'enquiry_contact_phone' ] ); ?>"><?php echo esc_html( $fields[ 'enquiry_contact_phone' ] ); ?></a></div>
+			<?php endif; ?>
+			<?php if ( ! empty( $fields[ 'enquiry_contact_email' ] ) ) : ?>
+				<div class="meta email"><i class="fa fa-envelope orange"></i> <a href="mailto:<?php echo esc_attr( $fields[ 'enquiry_contact_email' ] ); ?>"><?php echo esc_html( $fields[ 'enquiry_contact_email' ] ); ?></a></div>
+			<?php endif; ?>
+		</div>
+	</article>
+	<?php
+	echo wp_kses_post( $after );
+}
+
 /* ==================  MODALS  ================== */
 /**
  * Outputs the Enquire Modal
@@ -379,7 +470,7 @@ function lsx_to_travel_styles($before="",$after="",$echo=true) {
 function lsx_to_enquire_modal($before="",$after="",$echo=true){
 	global $tour_operator;
 
-	$form_id = 'false';
+	$form_id = false;
 	// First set the general form
 	if(isset($tour_operator->options['general']) && isset($tour_operator->options['general']['enquiry']) && '' !== $tour_operator->options['general']['enquiry']){
 		$form_id = $tour_operator->options['general']['enquiry'];
@@ -410,8 +501,7 @@ function lsx_to_enquire_modal($before="",$after="",$echo=true){
 				$link = $tour_operator->options[get_post_type()]['enquire_link'];
 			}
 		}
-	}	
-
+	}
 
 	if(false !== $form_id){
 

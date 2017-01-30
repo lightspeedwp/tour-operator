@@ -496,7 +496,7 @@ class LSX_TO_Accommodation {
 	function entry_class( $classes ) {
 		global $post;
 		if(is_main_query() && is_singular($this->plugin_slug)){
-			if(function_exists('lsx_to_has_team_member') && lsx_to_has_team_member()){
+			if ( lsx_to_has_enquiry_contact() ) {
 				$classes[] = 'col-sm-9';
 			}else{
 				$classes[] = 'col-sm-12';

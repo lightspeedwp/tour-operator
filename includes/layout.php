@@ -83,11 +83,18 @@ function lsx_to_single_content_top() {
  */
 function lsx_to_single_entry_bottom() {
 	global $lsx_to_archive;
-	if(function_exists('lsx_to_has_team_member') && is_singular(array_keys(lsx_to_get_post_types())) && false === $lsx_to_archive && lsx_to_has_team_member()) { ?>
+	if ( is_singular( array_keys( lsx_to_get_post_types() ) ) && false === $lsx_to_archive && lsx_to_has_enquiry_contact() ) { ?>
 		<div class="col-sm-3">
 			<div class="team-member-widget">
-				<?php lsx_to_team_member_panel( '<div class="team-member">', '</div>' ) ?>
-				<?php lsx_to_enquire_modal() ?>
+				<?php
+					if ( function_exists( 'lsx_to_has_team_member' ) && lsx_to_has_team_member() ) {
+						lsx_to_team_member_panel( '<div class="team-member">', '</div>' );
+					} else {
+						lsx_to_enquiry_contact( '<div class="team-member">', '</div>' );
+					}
+
+					lsx_to_enquire_modal();
+				?>
 			</div>
 		</div>
 <?php }	

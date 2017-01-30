@@ -302,7 +302,7 @@ class LSX_TO_Tour {
 			$lsx_to_archive = false;
 		}
 		if(is_main_query() && is_singular($this->plugin_slug) && false === $lsx_to_archive){
-			if(function_exists('lsx_to_has_team_member') && lsx_to_has_team_member()){
+			if ( lsx_to_has_enquiry_contact() ) {
 				$classes[] = 'col-sm-9';
 			}else{
 				$classes[] = 'col-sm-12';
