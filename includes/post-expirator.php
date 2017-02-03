@@ -4,7 +4,7 @@ define('LSX_TO_POSTEXPIRATOR_DATEFORMAT',esc_html__('l F jS, Y','tour-operator')
 define('LSX_TO_POSTEXPIRATOR_TIMEFORMAT',esc_html__('g:ia','tour-operator'));
 
 function lsx_to_expirationdate_add_column($columns,$type) {
-	if (in_array($type, LSX_TO_POSTEXPIRATOR_TYPES)) {
+	if (in_array($type, array('special','tour'))) {
 	  	$columns['lsx_to_expirationdate'] = esc_html__('Expires','tour-operator');
 	}
 
