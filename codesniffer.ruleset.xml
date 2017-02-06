@@ -36,20 +36,7 @@
 		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralText" />
 		<exclude name="WordPress.WP.I18n.nonsingularstringliteraltext" />
 		
-		<exclude name="WordPress.VIP.DirectDatabaseQuery.NoCaching" />
-		<exclude name="WordPress.VIP.DirectDatabaseQuery.SchemaChange" />
-		<exclude name="WordPress.VIP.OrderByRand.orderby" />
-		<exclude name="WordPress.VIP.OrderByRand.orderby_orderby" />
-		<exclude name="WordPress.VIP.RestrictedFunctions.get_adjacent_post" />
-		<exclude name="WordPress.VIP.RestrictedFunctions.get_term_link" />
-		<exclude name="WordPress.VIP.RestrictedFunctions.get_term_link_get_term_link" />
-		<exclude name="WordPress.VIP.RestrictedFunctions.switch_to_blog" />
-		<exclude name="WordPress.VIP.RestrictedFunctions.switch_to_blog_switch_to_blog" />
-		<exclude name="WordPress.VIP.RestrictedFunctions.wp_get_post_terms" />
-		<exclude name="WordPress.VIP.RestrictedFunctions.wp_get_post_terms_wp_get_object_terms" />
-		<exclude name="WordPress.VIP.PostsPerPage.posts_per_page" />
-		<exclude name="WordPress.VIP.PostsPerPage.posts_per_page_posts_per_page" />
-		<exclude name="WordPress.VIP.ValidatedSanitizedInput.InputNotValidated" />
+		<exclude name="WordPress.VIP" />
 
 		<exclude name="WordPress.Functions.DontExtract.extract" />
 		<exclude name="WordPress.Functions.DontExtract.extract_extract" />
