@@ -64,6 +64,14 @@ Yes you can! Join in on our [GitHub repository](https://github.com/lightspeeddev
 
 == Changelog ==
 
+= 1.0.4 =
+* Removed the last of the LSX_TO_POSTEXPIRATOR_TYPES constants
+* Fixed an issue with empty post meta (depart from, end point)
+* Removed Certain Travis CI code sniffers
+* Added generic business contact details for enquire call to action
+* Best time to visit added to destination (copied from tour)
+* Enable compatibility with LSX Blog Customiser (categories carousel)
+
 = 1.0.3 =
 * Added in a compatability check for all versions below PHP 7
 * Fixed PHP errors when activating the plugin with a non LSX theme

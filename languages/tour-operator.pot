@@ -167,11 +167,11 @@ msgstr ""
 msgid "Percentage Off Your Price."
 msgstr ""
 
-#: classes/class-accommodation.php:282, classes/class-tour.php:227, classes/class-tour.php:336, includes/template-tags/tour.php:151
+#: classes/class-accommodation.php:282, classes/class-tour.php:227, classes/class-tour.php:336, includes/template-tags/tour.php:145
 msgid "Included"
 msgstr ""
 
-#: classes/class-accommodation.php:283, classes/class-tour.php:228, classes/class-tour.php:337, includes/template-tags/tour.php:159
+#: classes/class-accommodation.php:283, classes/class-tour.php:228, classes/class-tour.php:337, includes/template-tags/tour.php:153
 msgid "Not Included"
 msgstr ""
 
@@ -1651,51 +1651,51 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: includes/template-tags/tour.php:212
+#: includes/template-tags/tour.php:206
 msgid "January"
 msgstr ""
 
-#: includes/template-tags/tour.php:213
+#: includes/template-tags/tour.php:207
 msgid "February"
 msgstr ""
 
-#: includes/template-tags/tour.php:214
+#: includes/template-tags/tour.php:208
 msgid "March"
 msgstr ""
 
-#: includes/template-tags/tour.php:215
+#: includes/template-tags/tour.php:209
 msgid "April"
 msgstr ""
 
-#: includes/template-tags/tour.php:216
+#: includes/template-tags/tour.php:210
 msgid "May"
 msgstr ""
 
-#: includes/template-tags/tour.php:217
+#: includes/template-tags/tour.php:211
 msgid "June"
 msgstr ""
 
-#: includes/template-tags/tour.php:218
+#: includes/template-tags/tour.php:212
 msgid "July"
 msgstr ""
 
-#: includes/template-tags/tour.php:219
+#: includes/template-tags/tour.php:213
 msgid "August"
 msgstr ""
 
-#: includes/template-tags/tour.php:220
+#: includes/template-tags/tour.php:214
 msgid "September"
 msgstr ""
 
-#: includes/template-tags/tour.php:221
+#: includes/template-tags/tour.php:215
 msgid "October"
 msgstr ""
 
-#: includes/template-tags/tour.php:222
+#: includes/template-tags/tour.php:216
 msgid "November"
 msgstr ""
 
-#: includes/template-tags/tour.php:223
+#: includes/template-tags/tour.php:217
 msgid "December"
 msgstr ""
 
