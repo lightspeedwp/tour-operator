@@ -619,101 +619,6 @@ $orange-dark: #f7741d;
 	}
 }
 
-%filters {
-	#facetwp-sidebar,
-	#secondary.facetwp-sidebar {
-		.title {
-			margin-top: 0;
-		}
-
-		.facetwp-type-checkboxes {
-			margin-bottom: 30px;
-
-			.facetwp-checkbox {
-				//background: none;
-				//padding-left: 0;
-				text-decoration: underline;
-
-				&.checked {
-					font-weight: bold;
-				}
-			}
-		}
-
-		.facetwp-results {
-			.title {
-				margin-bottom: 30px;
-			}
-
-			.facetwp-counts {
-				display: inline-block;
-			}
-
-			.btn {
-				font-size: 15px;
-				margin-left: 5px;
-				line-height: 18px;
-
-				padding: {
-					right: 10px !important;
-					left: 10px !important;
-				}
-
-				&:after {
-					display: none;
-				}
-			}
-		}
-
-		.facetwp-form {
-			margin-bottom: 30px;
-
-			.search-field {
-				line-height: 22px;
-			}
-
-			.btn {
-				font-size: 15px;
-				padding: 9px 10px !important;
-				line-height: 26px;
-
-				&:after {
-					display: none;
-				}
-			}
-		}
-	}
-
-	#facetwp-top {
-		margin-bottom: 30px;
-
-		.facetwp-sort {
-			display: inline-block;
-			margin-right: 30px;
-
-			@media only screen and (max-width: 767px) {
-				margin-bottom: 20px;
-			}
-
-			.facetwp-sort-select {
-
-			}
-		}
-
-		.facetwp-facet-a_z {
-			display: inline-block;
-			margin-bottom: 0;
-
-			.facetwp-alpha {
-				&.available,
-				&.selected {
-					text-decoration: underline;
-				}
-			}
-		}
-	}
-}
-
 
 // ---------- Panels (Module) Placeholders ----------
 
@@ -1624,14 +1529,6 @@ body.single-tour-operator {
 
 	.wp-pagenavi-wrapper {
 		@extend %pagination;
-
-
-	}
-	#facetwp-top {
-		.wp-pagenavi-wrapper.facetwp-custom {
-		    margin-bottom: 15px;
-		    margin-top: 2px;
-		}
 	}
 }
 
@@ -1662,10 +1559,6 @@ body.home {
 
 body.archive-tour-operator {
 	@extend %archive-root;
-
-	// ---------- Filters ----------
-
-	@extend %filters;
 
 	// ---------- Breadcrumb ----------
 

@@ -66,6 +66,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/lightspeeddev
 
 = 1.0.5 =
 * Added TO Search as subtab on LSX TO settings page
+* Styles from TO Search addon moved to it
 
 = 1.0.4 =
 * Removed the last of the LSX_TO_POSTEXPIRATOR_TYPES constants

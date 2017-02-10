@@ -1820,56 +1820,6 @@ body.single-tour-operator .wp-pagenavi-wrapper .lsx-breaker {
       margin-top: 20px;
       margin-bottom: 20px; } }
 
-body.archive-tour-operator #facetwp-sidebar .title, body.archive-tour-operator #secondary.facetwp-sidebar .title {
-  margin-top: 0; }
-
-body.archive-tour-operator #facetwp-sidebar .facetwp-type-checkboxes, body.archive-tour-operator #secondary.facetwp-sidebar .facetwp-type-checkboxes {
-  margin-bottom: 30px; }
-  body.archive-tour-operator #facetwp-sidebar .facetwp-type-checkboxes .facetwp-checkbox, body.archive-tour-operator #secondary.facetwp-sidebar .facetwp-type-checkboxes .facetwp-checkbox {
-    text-decoration: underline; }
-    body.archive-tour-operator #facetwp-sidebar .facetwp-type-checkboxes .facetwp-checkbox.checked, body.archive-tour-operator #secondary.facetwp-sidebar .facetwp-type-checkboxes .facetwp-checkbox.checked {
-      font-weight: bold; }
-
-body.archive-tour-operator #facetwp-sidebar .facetwp-results .title, body.archive-tour-operator #secondary.facetwp-sidebar .facetwp-results .title {
-  margin-bottom: 30px; }
-
-body.archive-tour-operator #facetwp-sidebar .facetwp-results .facetwp-counts, body.archive-tour-operator #secondary.facetwp-sidebar .facetwp-results .facetwp-counts {
-  display: inline-block; }
-
-body.archive-tour-operator #facetwp-sidebar .facetwp-results .btn, body.archive-tour-operator #secondary.facetwp-sidebar .facetwp-results .btn {
-  font-size: 15px;
-  margin-left: 5px;
-  line-height: 18px;
-  padding-right: 10px !important;
-  padding-left: 10px !important; }
-  body.archive-tour-operator #facetwp-sidebar .facetwp-results .btn:after, body.archive-tour-operator #secondary.facetwp-sidebar .facetwp-results .btn:after {
-    display: none; }
-
-body.archive-tour-operator #facetwp-sidebar .facetwp-form, body.archive-tour-operator #secondary.facetwp-sidebar .facetwp-form {
-  margin-bottom: 30px; }
-  body.archive-tour-operator #facetwp-sidebar .facetwp-form .search-field, body.archive-tour-operator #secondary.facetwp-sidebar .facetwp-form .search-field {
-    line-height: 22px; }
-  body.archive-tour-operator #facetwp-sidebar .facetwp-form .btn, body.archive-tour-operator #secondary.facetwp-sidebar .facetwp-form .btn {
-    font-size: 15px;
-    padding: 9px 10px !important;
-    line-height: 26px; }
-    body.archive-tour-operator #facetwp-sidebar .facetwp-form .btn:after, body.archive-tour-operator #secondary.facetwp-sidebar .facetwp-form .btn:after {
-      display: none; }
-
-body.archive-tour-operator #facetwp-top {
-  margin-bottom: 30px; }
-  body.archive-tour-operator #facetwp-top .facetwp-sort {
-    display: inline-block;
-    margin-right: 30px; }
-    @media only screen and (max-width: 767px) {
-      body.archive-tour-operator #facetwp-top .facetwp-sort {
-        margin-bottom: 20px; } }
-  body.archive-tour-operator #facetwp-top .facetwp-facet-a_z {
-    display: inline-block;
-    margin-bottom: 0; }
-    body.archive-tour-operator #facetwp-top .facetwp-facet-a_z .facetwp-alpha.available, body.archive-tour-operator #facetwp-top .facetwp-facet-a_z .facetwp-alpha.selected {
-      text-decoration: underline; }
-
 body.home aside.lsx-widget .panel, body.archive-tour-operator #safari-brands .panel,
 body.archive-tour-operator #travel-styles .panel, body.archive-tour-operator .panel, body.single-tour-operator #tours .panel,
 body.single-tour-operator #regions .panel,
@@ -2833,12 +2783,6 @@ body.single-tour-operator .aligncenter {
     font-size: 14px;
     padding-top: 12px;
     padding-bottom: 12px; } }
-
-body.home #facetwp-top .wp-pagenavi-wrapper.facetwp-custom,
-body.archive-tour-operator #facetwp-top .wp-pagenavi-wrapper.facetwp-custom,
-body.single-tour-operator #facetwp-top .wp-pagenavi-wrapper.facetwp-custom {
-  margin-bottom: 15px;
-  margin-top: 2px; }
 
 body.archive-tour-operator:not(.page-has-banner) #main > section[class$="-navigation"] {
   margin-top: 30px; }
