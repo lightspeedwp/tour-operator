@@ -1227,15 +1227,19 @@ msgstr ""
 msgid "Private"
 msgstr ""
 
-#: includes/settings/accommodation.php:5, includes/settings/destination.php:5, includes/settings/display.php:11, includes/settings/tour.php:5
+#: includes/settings/accommodation.php:6, includes/settings/add-ons.php:112, includes/settings/destination.php:6, includes/settings/display.php:12, includes/settings/help.php:123, includes/settings/tour.php:6
+msgid "Search"
+msgstr ""
+
+#: includes/settings/accommodation.php:8, includes/settings/destination.php:8, includes/settings/display.php:14, includes/settings/tour.php:8
 msgid "Placeholders"
 msgstr ""
 
-#: includes/settings/accommodation.php:6, includes/settings/destination.php:6, includes/settings/tour.php:6
+#: includes/settings/accommodation.php:9, includes/settings/destination.php:9, includes/settings/tour.php:9
 msgid "Archives"
 msgstr ""
 
-#: includes/settings/accommodation.php:7, includes/settings/destination.php:7, includes/settings/tour.php:7
+#: includes/settings/accommodation.php:10, includes/settings/destination.php:10, includes/settings/tour.php:10
 msgid "Single"
 msgstr ""
 
@@ -1281,10 +1285,6 @@ msgstr ""
 
 #: includes/settings/add-ons.php:98
 msgid "Get your visitors excited about what they’ll be doing when they travel with you, whether it’s river rafting, whale watching or sandboarding - use the Activities post type with beautiful imagery and well-crafted copy and then set the activities as connected to particular tours, destinations and accommodations."
-msgstr ""
-
-#: includes/settings/add-ons.php:112, includes/settings/help.php:123
-msgid "Search"
 msgstr ""
 
 #: includes/settings/add-ons.php:113
@@ -1347,7 +1347,7 @@ msgstr ""
 msgid "Currency Switcher"
 msgstr ""
 
-#: includes/settings/display.php:12
+#: includes/settings/display.php:15
 msgid "Advanced"
 msgstr ""
 
