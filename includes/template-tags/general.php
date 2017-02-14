@@ -161,9 +161,11 @@ function lsx_to_page_navigation($echo = true) {
 	$page_links = apply_filters('lsx_to_page_navigation',$page_links);
 
 	if(!empty($page_links)) {
-		$return = '<section class="' . get_post_type() . '-navigation">
+		$return = '<section class="lsx-to-navigation ' . get_post_type() . '-navigation">
 					<div class="container">
-						<ul class="scroll-easing">';
+						<div class="row">
+							<div class="col-md-12">
+								<ul class="scroll-easing nav">';
 
 		if (!empty($page_links)) {
 			foreach ($page_links as $link_slug => $link_value) {
@@ -171,7 +173,9 @@ function lsx_to_page_navigation($echo = true) {
 			}
 		}
 
-		$return .= '		</ul>
+		$return .= '			</ul>
+							</div>
+						</div>
 					</div>
 				</section>';
 

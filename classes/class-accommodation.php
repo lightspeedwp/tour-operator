@@ -630,15 +630,21 @@ class LSX_TO_Accommodation {
 	 * Tests for the Gallery and returns a link for the section
 	 */
 	public function get_gallery_link(){
-		$gallery_id = false;
-		if(class_exists('Envira_Gallery')){
-			$gallery_id = get_post_meta(get_the_ID(),'envira_to_tour',true);
-		}
-		if((false === $gallery_id || '' === $gallery_id) && class_exists('LSX_TO_Galleries')) {
-			$gallery_id = get_post_meta(get_the_ID(),'gallery',true);
-		}
-		if(false !== $gallery_id && '' !== $gallery_id){
-			$this->page_links['gallery'] = esc_html__('Gallery','tour-operator');
+		if(function_exists('lsx_to_gallery')) {
+			$gallery_ids = get_post_meta(get_the_ID(),'gallery',false);
+			$envira_gallery = get_post_meta(get_the_ID(),'envira_gallery',true);
+
+			if((false !== $gallery_ids && '' !== $gallery_ids && is_array($gallery_ids) && !empty($gallery_ids))
+			 || (false !== $envira_gallery && '' !== $envira_gallery)){
+			 	$this->page_links['gallery'] = esc_html__('Gallery','tour-operator');
+			 	return;
+			}
+		}elseif(class_exists('envira_gallery')) {
+			$envira_gallery = get_post_meta(get_the_ID(),'envira_gallery',true);
+			if(false !== $envira_gallery && '' !== $envira_gallery && false === lsx_to_enable_envira_banner()){
+				$this->page_links['gallery'] = esc_html__('Gallery','tour-operator');
+			 	return;
+			}
 		}
 	}
 
@@ -664,7 +670,7 @@ class LSX_TO_Accommodation {
 	public function get_related_tours_link(){
 		$connected_tours = get_post_meta(get_the_ID(),'tour_to_accommodation',false);
 		if(post_type_exists('tour') && is_array($connected_tours) && !empty($connected_tours) ) {
-			$this->page_links['related-tours'] = esc_html__('Tours','tour-operator');
+			$this->page_links['related-items'] = esc_html__('Tours','tour-operator');
 		}
 	}
 }

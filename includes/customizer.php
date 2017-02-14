@@ -46,7 +46,7 @@ CSS;
 
 	return $css;
 }
-add_filter( 'lsx_to_customizer_colour_selectors_button', 'lsx_to_customizer_colour_selectors_button', 10, 2 );
+add_filter( 'lsx_customizer_colour_selectors_button', 'lsx_to_customizer_colour_selectors_button', 10, 2 );
 
 /**
  * Add new selectors in "header" group of colours
@@ -62,8 +62,10 @@ function lsx_to_customizer_colour_selectors_header( $css, $colors ) {
 		body.archive-tour-operator,
 		body.single-tour-operator {
 			#main {
-				& > section[class$="-navigation"] {
-					background-color: {$colors['header_background_color']};
+				& > .lsx-to-navigation {
+					ul {
+						background-color: {$colors['header_background_color']};
+					}
 				}
 			}
 		}
@@ -71,7 +73,7 @@ CSS;
 
 	return $css;
 }
-add_filter( 'lsx_to_customizer_colour_selectors_header', 'lsx_to_customizer_colour_selectors_header', 10, 2 );
+add_filter( 'lsx_customizer_colour_selectors_header', 'lsx_to_customizer_colour_selectors_header', 10, 2 );
 
 /**
  * Add new selectors in "main meun" group of colours
@@ -87,15 +89,26 @@ function lsx_to_customizer_colour_selectors_main_menu( $css, $colors ) {
 		body.archive-tour-operator,
 		body.single-tour-operator {
 			#main {
-				& > section[class$="-navigation"] {
-					ul {
-						li {
-							border-right-color: {$colors['main_menu_text_color']};
+				& > .lsx-to-navigation {
+					a {
+						&,
+						&:visited,
+						&:focus {
+							color: {$colors['main_menu_text_color']};
+						}
+
+						&:hover,
+						&:active {
+							background-color: {$colors['main_menu_background_hover1_color']};
+							color: {$colors['main_menu_text_hover1_color']};
 						}
 					}
 
-					a {
-						color: {$colors['main_menu_text_color']};
+					li.active {
+						a {
+							background-color: {$colors['main_menu_background_hover1_color']};
+							color: {$colors['main_menu_text_hover1_color']};
+						}
 					}
 				}
 			}
@@ -104,7 +117,7 @@ CSS;
 
 	return $css;
 }
-add_filter( 'lsx_to_customizer_colour_selectors_main_menu', 'lsx_to_customizer_colour_selectors_main_menu', 10, 2 );
+add_filter( 'lsx_customizer_colour_selectors_main_menu', 'lsx_to_customizer_colour_selectors_main_menu', 10, 2 );
 
 /**
  * Add new selectors in "body" group of colours
@@ -341,4 +354,4 @@ CSS;
 
 	return $css;
 }
-add_filter( 'lsx_to_customizer_colour_selectors_body', 'lsx_to_customizer_colour_selectors_body', 10, 2 );
+add_filter( 'lsx_customizer_colour_selectors_body', 'lsx_to_customizer_colour_selectors_body', 10, 2 );

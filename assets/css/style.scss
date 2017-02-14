@@ -571,11 +571,14 @@ $orange-dark: #f7741d;
 }
 
 %breadcrumb {
-	margin: -60px -99999px 50px;
-	background: $grey-light;
+	margin: -60px 0 50px;
 
-	@media only screen and (max-width: 991px) {
-		.container{
+	&.fixto-logged.fixto-fixed {
+		padding-top: 32px;
+	}
+	
+	.container {
+		@media only screen and (max-width: 991px) {
 			display: none;
 		}
 	}
@@ -583,21 +586,20 @@ $orange-dark: #f7741d;
 	ul {
 		@extend %clear-div;
 		@extend %clear-list;
-		padding: 20px 0;
+		background: $grey-light;
 		font-size: 15px;
+		margin: 0 -99999px;
+		padding: 0 99999px;
+		@include box-shadow(0px 1px 1px rgba(0, 0, 0, .15));
 
 		li {
 			float: left;
-			margin-right: 12px;
-			padding-right: 12px;
-			border-right: 1px solid $border-grey-dark;
 			font-size: 15px;
 			line-height: 23px;
 
 			&:last-child {
 				margin: 0;
 				padding: 0;
-				border: none;
 			}
 		}
 	}
@@ -1562,12 +1564,12 @@ body.archive-tour-operator {
 
 	// ---------- Breadcrumb ----------
 
-	#main > section[class$="-navigation"] {
+	#main > .lsx-to-navigation {
 		@extend %breadcrumb;
 	}
 
 	&:not(.page-has-banner) {
-		#main > section[class$="-navigation"] {
+		#main > .lsx-to-navigation {
 			margin-top: 30px;
 		}
 	}
@@ -1713,13 +1715,13 @@ body.single-tour-operator {
 
 	// ---------- Breadcrumb ----------
 	
-	#main > section[class$="-navigation"] {
+	#main > .lsx-to-navigation {
 		@extend %breadcrumb;
 		margin-top: 0;
 	}
 
 	&:not(.page-has-banner) {
-		#main > section[class$="-navigation"] {
+		#main > .lsx-to-navigation {
 			margin-top: 30px;
 		}
 	}

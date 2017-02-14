@@ -1289,7 +1289,7 @@
   .flag-icon-un.flag-icon-squared {
     background-image: url(../flags/1x1/un.svg); }
 
-body.archive-tour-operator #main > section[class$="-navigation"] ul, body.single-tour-operator #main > section[class$="-navigation"] ul, body.single-tour-operator #highlights .entry-content ul, body.single-tour-operator #included-excluded .entry-content ul, body.single-tour-operator #features .entry-content ul, body.single-tour-operator #terms-and-conditions .entry-content ul, body.single-tour-operator #facilities ul {
+body.archive-tour-operator #main > .lsx-to-navigation ul, body.single-tour-operator #main > .lsx-to-navigation ul, body.single-tour-operator #highlights .entry-content ul, body.single-tour-operator #included-excluded .entry-content ul, body.single-tour-operator #features .entry-content ul, body.single-tour-operator #terms-and-conditions .entry-content ul, body.single-tour-operator #facilities ul {
   list-style: none;
   padding: 0;
   margin: 0; }
@@ -1298,7 +1298,7 @@ body.home .meta:after,
 body.archive-tour-operator .meta:after,
 body.single-tour-operator .meta:after, body.home .social-links:after,
 body.archive-tour-operator .social-links:after,
-body.single-tour-operator .social-links:after, body.archive-tour-operator #main > section[class$="-navigation"] ul:after, body.single-tour-operator #main > section[class$="-navigation"] ul:after, body.home aside.lsx-widget .panel > article:after, body.archive-tour-operator #safari-brands .panel > article:after,
+body.single-tour-operator .social-links:after, body.archive-tour-operator #main > .lsx-to-navigation ul:after, body.single-tour-operator #main > .lsx-to-navigation ul:after, body.home aside.lsx-widget .panel > article:after, body.archive-tour-operator #safari-brands .panel > article:after,
 body.archive-tour-operator #travel-styles .panel > article:after, body.archive-tour-operator .panel > article:after, body.single-tour-operator #tours .panel > article:after,
 body.single-tour-operator #regions .panel > article:after,
 body.single-tour-operator #accommodation .panel > article:after,
@@ -1787,26 +1787,29 @@ body.archive-tour-operator #travel-styles .slider-container, body.archive.post-t
       body.archive-tour-operator #travel-styles .slider-container .carousel-indicators li.active, body.archive.post-type-archive-destination .countries .regions .slider-container .carousel-indicators li.active, body.single-tour-operator .slider-container .carousel-indicators li.active {
         background-color: #2a6496; }
 
-body.archive-tour-operator #main > section[class$="-navigation"], body.single-tour-operator #main > section[class$="-navigation"] {
-  margin: -60px -99999px 50px;
-  background: #f8f8f8; }
+body.archive-tour-operator #main > .lsx-to-navigation, body.single-tour-operator #main > .lsx-to-navigation {
+  margin: -60px 0 50px; }
+  body.archive-tour-operator #main > .fixto-logged.fixto-fixed.lsx-to-navigation, body.single-tour-operator #main > .fixto-logged.fixto-fixed.lsx-to-navigation {
+    padding-top: 32px; }
   @media only screen and (max-width: 991px) {
-    body.archive-tour-operator #main > section[class$="-navigation"] .container, body.single-tour-operator #main > section[class$="-navigation"] .container {
+    body.archive-tour-operator #main > .lsx-to-navigation .container, body.single-tour-operator #main > .lsx-to-navigation .container {
       display: none; } }
-  body.archive-tour-operator #main > section[class$="-navigation"] ul, body.single-tour-operator #main > section[class$="-navigation"] ul {
-    padding: 20px 0;
-    font-size: 15px; }
-    body.archive-tour-operator #main > section[class$="-navigation"] ul li, body.single-tour-operator #main > section[class$="-navigation"] ul li {
+  body.archive-tour-operator #main > .lsx-to-navigation ul, body.single-tour-operator #main > .lsx-to-navigation ul {
+    background: #f8f8f8;
+    font-size: 15px;
+    margin: 0 -99999px;
+    padding: 0 99999px;
+    -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15);
+    -o-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.15); }
+    body.archive-tour-operator #main > .lsx-to-navigation ul li, body.single-tour-operator #main > .lsx-to-navigation ul li {
       float: left;
-      margin-right: 12px;
-      padding-right: 12px;
-      border-right: 1px solid #555;
       font-size: 15px;
       line-height: 23px; }
-      body.archive-tour-operator #main > section[class$="-navigation"] ul li:last-child, body.single-tour-operator #main > section[class$="-navigation"] ul li:last-child {
+      body.archive-tour-operator #main > .lsx-to-navigation ul li:last-child, body.single-tour-operator #main > .lsx-to-navigation ul li:last-child {
         margin: 0;
-        padding: 0;
-        border: none; }
+        padding: 0; }
 
 body.home .wp-pagenavi-wrapper .lsx-breaker,
 body.archive-tour-operator .wp-pagenavi-wrapper .lsx-breaker,
@@ -2784,7 +2787,7 @@ body.single-tour-operator .aligncenter {
     padding-top: 12px;
     padding-bottom: 12px; } }
 
-body.archive-tour-operator:not(.page-has-banner) #main > section[class$="-navigation"] {
+body.archive-tour-operator:not(.page-has-banner) #main > .lsx-to-navigation {
   margin-top: 30px; }
 
 body.archive-tour-operator #summary {
@@ -2825,10 +2828,10 @@ body.archive.post-type-archive-destination .countries {
     margin-top: 0;
     border-top: none; } }
 
-body.single-tour-operator #main > section[class$="-navigation"] {
+body.single-tour-operator #main > .lsx-to-navigation {
   margin-top: 0; }
 
-body.single-tour-operator:not(.page-has-banner) #main > section[class$="-navigation"] {
+body.single-tour-operator:not(.page-has-banner) #main > .lsx-to-navigation {
   margin-top: 30px; }
 
 @media only screen and (min-width: 768px) {
