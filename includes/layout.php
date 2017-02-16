@@ -42,7 +42,8 @@ add_action('lsx_content_bottom','lsx_to_tour_single_content_bottom');
  */
 function lsx_to_archive_entry_top() {
 	global $lsx_to_archive;
-	if(in_array(get_post_type(),array('accommodation','tour','destination')) && (is_archive() || $lsx_to_archive)) { ?>
+
+	if(in_array(get_post_type(),array_keys(lsx_to_get_post_types())) && (is_archive() || $lsx_to_archive)) { ?>
 		<div class="col-sm-3">
 			<div class="thumbnail">
 				<a href="<?php the_permalink(); ?>">
