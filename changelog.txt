@@ -5,6 +5,7 @@
 * Styles from TO Search addon moved to it
 * Fixed menu navigation improved
 * Made the function lsx_to_archive_entry_top function test all active post types, not only the three core post types
+* Fixed (back-end) checkbox to display map on destination archive
 
 ### 1.0.4
 * Removed the last of the LSX_TO_POSTEXPIRATOR_TYPES constants
