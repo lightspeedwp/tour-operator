@@ -494,6 +494,10 @@ class Tour_Operator {
 		$allowedtags['div']['data-cluster-small'] = true;
 		$allowedtags['div']['data-cluster-medium'] = true;
 		$allowedtags['div']['data-cluster-large'] = true;
+		$allowedtags['div']['data-fusion-tables'] = true;
+		$allowedtags['div']['data-fusion-tables-colour-border'] = true;
+		$allowedtags['div']['data-fusion-tables-width-border'] = true;
+		$allowedtags['div']['data-fusion-tables-colour-background'] = true;
 
 		// New tags
 
