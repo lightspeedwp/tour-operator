@@ -35,7 +35,7 @@ msgstr ""
 msgid "Villa"
 msgstr ""
 
-#: classes/class-accommodation.php:144, classes/class-accommodation.php:145, classes/class-accommodation.php:149, classes/class-accommodation.php:155, classes/class-destination.php:399, includes/layout.php:281, module.php:269, module.php:274
+#: classes/class-accommodation.php:144, classes/class-accommodation.php:145, classes/class-accommodation.php:149, classes/class-accommodation.php:155, classes/class-destination.php:399, includes/layout.php:281, module.php:287, module.php:292
 msgid "Accommodation"
 msgstr ""
 
@@ -67,11 +67,11 @@ msgstr ""
 msgid "No accommodation in trash"
 msgstr ""
 
-#: classes/class-accommodation.php:192, classes/class-accommodation.php:195, classes/class-accommodation.php:202, classes/class-accommodation.php:616, includes/layout.php:116, module.php:292
+#: classes/class-accommodation.php:192, classes/class-accommodation.php:195, classes/class-accommodation.php:202, classes/class-accommodation.php:616, includes/layout.php:116, module.php:311
 msgid "Facilities"
 msgstr ""
 
-#: classes/class-accommodation.php:193, module.php:285
+#: classes/class-accommodation.php:193, module.php:304
 msgid "Facility"
 msgstr ""
 
@@ -103,7 +103,7 @@ msgstr ""
 msgid "New Facility"
 msgstr ""
 
-#: classes/class-accommodation.php:220, classes/class-accommodation.php:221, module.php:284
+#: classes/class-accommodation.php:220, classes/class-accommodation.php:221, module.php:303
 msgid "Accommodation Type"
 msgstr ""
 
@@ -111,7 +111,7 @@ msgstr ""
 msgid "Search Accommodation Types"
 msgstr ""
 
-#: classes/class-accommodation.php:223, classes/class-accommodation.php:230, module.php:291
+#: classes/class-accommodation.php:223, classes/class-accommodation.php:230, module.php:310
 msgid "Accommodation Types"
 msgstr ""
 
@@ -179,7 +179,7 @@ msgstr ""
 msgid "Accommodation Expert"
 msgstr ""
 
-#: classes/class-accommodation.php:288, classes/class-admin.php:367, classes/class-admin.php:368, classes/class-destination.php:197, classes/class-fields.php:69, includes/template-tags/accommodation.php:289, module.php:286, templates/content-accommodation.php:33, templates/content-widget-accommodation.php:27
+#: classes/class-accommodation.php:288, classes/class-admin.php:367, classes/class-admin.php:368, classes/class-destination.php:197, classes/class-fields.php:69, includes/template-tags/accommodation.php:289, module.php:305, templates/content-accommodation.php:33, templates/content-widget-accommodation.php:27
 msgid "Location"
 msgstr ""
 
@@ -463,7 +463,7 @@ msgstr ""
 msgid "Price"
 msgstr ""
 
-#: classes/class-accommodation.php:434, classes/class-destination.php:111, classes/class-destination.php:117, classes/class-destination.php:123, classes/class-tour.php:454, includes/layout.php:336, module.php:268, templates/content-tour.php:28, templates/content-widget-tour.php:27
+#: classes/class-accommodation.php:434, classes/class-destination.php:111, classes/class-destination.php:117, classes/class-destination.php:123, classes/class-tour.php:454, includes/layout.php:336, module.php:286, templates/content-tour.php:28, templates/content-widget-tour.php:27
 msgid "Destinations"
 msgstr ""
 
@@ -471,7 +471,7 @@ msgstr ""
 msgid "Destinations related with this accommodation"
 msgstr ""
 
-#: classes/class-accommodation.php:436, classes/class-accommodation.php:673, classes/class-destination.php:390, classes/class-tour.php:123, classes/class-tour.php:129, classes/class-tour.php:135, module.php:270
+#: classes/class-accommodation.php:436, classes/class-accommodation.php:673, classes/class-destination.php:390, classes/class-tour.php:123, classes/class-tour.php:129, classes/class-tour.php:135, module.php:288
 msgid "Tours"
 msgstr ""
 
@@ -539,11 +539,11 @@ msgstr ""
 msgid "Add-ons"
 msgstr ""
 
-#: classes/class-admin.php:314, classes/class-admin.php:317, classes/class-admin.php:324, module.php:289, templates/archive-destination.php:206
+#: classes/class-admin.php:314, classes/class-admin.php:317, classes/class-admin.php:324, module.php:308, templates/archive-destination.php:206
 msgid "Travel Styles"
 msgstr ""
 
-#: classes/class-admin.php:315, classes/class-destination.php:279, classes/class-tour.php:453, includes/layout.php:227, includes/layout.php:335, module.php:282, templates/content-destination.php:25, templates/content-tour.php:27, templates/content-widget-tour.php:26
+#: classes/class-admin.php:315, classes/class-destination.php:279, classes/class-tour.php:453, includes/layout.php:227, includes/layout.php:335, module.php:301, templates/content-destination.php:25, templates/content-tour.php:27, templates/content-widget-tour.php:26
 msgid "Travel Style"
 msgstr ""
 
@@ -575,11 +575,11 @@ msgstr ""
 msgid "New Travel Style"
 msgstr ""
 
-#: classes/class-admin.php:340, classes/class-admin.php:343, classes/class-admin.php:350, module.php:290
+#: classes/class-admin.php:340, classes/class-admin.php:343, classes/class-admin.php:350, module.php:309
 msgid "Brands"
 msgstr ""
 
-#: classes/class-admin.php:341, includes/template-tags/accommodation.php:284, module.php:283, templates/content-accommodation.php:26, templates/content-widget-accommodation.php:26
+#: classes/class-admin.php:341, includes/template-tags/accommodation.php:284, module.php:302, templates/content-accommodation.php:26, templates/content-widget-accommodation.php:26
 msgid "Brand"
 msgstr ""
 
@@ -615,7 +615,7 @@ msgstr ""
 msgid "Search Locations"
 msgstr ""
 
-#: classes/class-admin.php:370, classes/class-admin.php:377, module.php:293
+#: classes/class-admin.php:370, classes/class-admin.php:377, module.php:312
 msgid "Locations"
 msgstr ""
 
@@ -667,7 +667,7 @@ msgstr ""
 msgid "Remove Image"
 msgstr ""
 
-#: classes/class-destination.php:112, includes/layout.php:280, module.php:273
+#: classes/class-destination.php:112, includes/layout.php:280, module.php:291
 msgid "Destination"
 msgstr ""
 
@@ -979,7 +979,7 @@ msgstr ""
 msgid "Any connected item showing on a single will display a preview in a modal."
 msgstr ""
 
-#: classes/class-tour.php:124, module.php:275
+#: classes/class-tour.php:124, module.php:293
 msgid "Tour"
 msgstr ""
 
@@ -1857,7 +1857,7 @@ msgstr ""
 msgid "Slider"
 msgstr ""
 
-#: module.php:679, module.php:692
+#: module.php:699, module.php:712
 msgid "Tour Operator Plugin requires PHP 5.6 or higher."
 msgstr ""
 

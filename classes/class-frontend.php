@@ -73,7 +73,7 @@ class LSX_TO_Frontend extends Tour_Operator {
 		if(!class_exists('LSX_TO_Template_Redirects')){
 			require_once( LSX_TO_PATH . 'classes/class-template-redirects.php' );
 		}
-		$this->redirects = new LSX_TO_Template_Redirects(LSX_TO_PATH,array_keys($this->post_types),array_keys($this->taxonomies));
+		$this->redirects = new LSX_TO_Template_Redirects(LSX_TO_PATH,array_keys($this->base_post_types),array_keys($this->base_taxonomies));
 
 		add_filter( 'get_the_archive_title', array( $this, 'get_the_archive_title'),100 );
 
