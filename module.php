@@ -74,6 +74,15 @@ class Tour_Operator {
 	 *
 	 * @var      array()
 	 */
+	public $base_post_types = array();	
+	
+	/**
+	 * Holds the array of post_types
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var      array()
+	 */
 	public $post_types = array();	
 	
 	/**
@@ -84,6 +93,15 @@ class Tour_Operator {
 	 * @var      array()
 	 */
 	public $post_types_singular = array();	
+	
+	/**
+	 * Holds the array of taxonomies
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var      array()
+	 */
+	public $base_taxonomies = array();	
 	
 	/**
 	 * Holds the array of taxonomies
@@ -268,12 +286,13 @@ class Tour_Operator {
 				'destination'	=> esc_html__('Destinations','tour-operator'),
 				'accommodation'	=> esc_html__('Accommodation','tour-operator'),
 				'tour'			=> esc_html__('Tours','tour-operator'),
-		);	
+		);
 		$this->post_types_singular = array(
 				'destination'	=> esc_html__('Destination','tour-operator'),
 				'accommodation'	=> esc_html__('Accommodation','tour-operator'),
 				'tour'			=> esc_html__('Tour','tour-operator'),
-		);		
+		);
+		$this->base_post_types = $this->post_types;
 		$this->post_types = apply_filters('lsx_to_post_types',$this->post_types);
 		$this->post_types_singular = apply_filters('lsx_to_post_types_singular',$this->post_types_singular);
 		$this->active_post_types = array_keys($this->post_types);
@@ -291,7 +310,8 @@ class Tour_Operator {
 				'accommodation-type'	=> __('Accommodation Types','tour-operator'),
 				'facility'	=> __('Facilities','tour-operator'),
 				'location'	=> __('Locations','tour-operator')
-		);				
+		);
+		$this->base_taxonomies = $this->taxonomies;
 		$this->taxonomies = apply_filters('lsx_to_framework_taxonomies',$this->taxonomies);
 		$this->taxonomies_plural = apply_filters('lsx_to_framework_taxonomies_plural',$this->taxonomies_plural);
 	}
@@ -494,6 +514,10 @@ class Tour_Operator {
 		$allowedtags['div']['data-cluster-small'] = true;
 		$allowedtags['div']['data-cluster-medium'] = true;
 		$allowedtags['div']['data-cluster-large'] = true;
+		$allowedtags['div']['data-fusion-tables'] = true;
+		$allowedtags['div']['data-fusion-tables-colour-border'] = true;
+		$allowedtags['div']['data-fusion-tables-width-border'] = true;
+		$allowedtags['div']['data-fusion-tables-colour-background'] = true;
 
 		// New tags
 

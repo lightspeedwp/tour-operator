@@ -51,6 +51,9 @@ class LSX_TO_Frontend extends Tour_Operator {
 		$this->options = get_option('_lsx-to_settings',false);	
 		$this->set_vars();
 
+		add_filter( 'post_class', array( $this, 'replace_class'), 10, 1 );
+		add_filter( 'body_class', array( $this, 'replace_class'), 10, 1 );
+
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ) );	
 		add_action( 'wp_head', array( $this,'wp_head') , 10 );
 		add_filter( 'body_class', array( $this, 'body_class') );
@@ -70,7 +73,7 @@ class LSX_TO_Frontend extends Tour_Operator {
 		if(!class_exists('LSX_TO_Template_Redirects')){
 			require_once( LSX_TO_PATH . 'classes/class-template-redirects.php' );
 		}
-		$this->redirects = new LSX_TO_Template_Redirects(LSX_TO_PATH,array_keys($this->post_types),array_keys($this->taxonomies));
+		$this->redirects = new LSX_TO_Template_Redirects(LSX_TO_PATH,array_keys($this->base_post_types),array_keys($this->base_taxonomies));
 
 		add_filter( 'get_the_archive_title', array( $this, 'get_the_archive_title'),100 );
 
@@ -90,6 +93,19 @@ class LSX_TO_Frontend extends Tour_Operator {
 		remove_filter( 'term_description','wpautop' );
 		add_filter( 'term_description', array( $this, 'modify_term_description') );			
 	}	
+
+	/**
+	 * A filter to replace anything with '-TO_POST_TYPE' by '-lsx-to-TO_POST_TYPE'
+	 */
+	public function replace_class( $classes ) {
+		foreach ( $this->active_post_types as $key1 => $value1 ) {
+			foreach ( $classes as $key2 => $value2 ) {
+				$classes[ $key2 ] = str_replace( "-{$value1}", "-lsx-to-{$value1}", $value2 );
+			}
+		}
+
+		return $classes;
+	}
 
 	/**
 	 * Initate some boolean flags
