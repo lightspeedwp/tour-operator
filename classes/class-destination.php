@@ -178,9 +178,18 @@ class LSX_TO_Destination{
 		if(!class_exists('LSX_Banners')){
 			$fields[] = array( 'id' => 'tagline',  'name' => esc_html__('Tagline','tour-operator'), 'type' => 'text' );
 		}
-		//if(class_exists('LSX_TO_Team')){
+
+		$fields[] = array( 'id' => 'travel_info_title',  'name' => esc_html__('Travel Info','tour-operator'), 'type' => 'title' );
+		$fields[] = array( 'id' => 'electricity',  'name' => esc_html__('Electricity','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
+		$fields[] = array( 'id' => 'banking',  'name' => esc_html__('Banking','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
+		$fields[] = array( 'id' => 'cuisine',  'name' => esc_html__('Cuisine','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
+		$fields[] = array( 'id' => 'climate',  'name' => esc_html__('Climate','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
+		$fields[] = array( 'id' => 'transport',  'name' => esc_html__('Transport','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
+		$fields[] = array( 'id' => 'dress',  'name' => esc_html__('Dress','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
+
+		if(class_exists('TO_Team')){
 			$fields[] = array( 'id' => 'team_to_destination', 'name' => esc_html__('Destination Expert','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12, 'allow_none' => true );
-		//}
+		}
 
 		if(class_exists('Envira_Gallery')){
 			if(!class_exists('LSX_TO_Galleries')){
