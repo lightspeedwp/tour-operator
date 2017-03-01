@@ -90,7 +90,7 @@
 									<h3 class="section-title"><?php esc_html_e( 'Travel Regions Within ', 'tour-operator' ) ?><a href="<?php the_permalink() ?>" title="<?php the_title() ?>"><?php the_title() ?></a></h3>
 									
 									<div class="slider-container">
-										<div id="slider-<?php echo esc_attr( $slider_id ); ?>" class="carousel slide" data-interval="false">
+										<div id="slider-<?php echo esc_attr( $slider_id ); ?>" class="lsx-to-slider carousel slide" data-interval="false">
 											<div class="carousel-wrap">
 												<div class="carousel-inner" role="listbox">
 													<div class="item row active">

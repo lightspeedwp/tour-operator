@@ -191,6 +191,7 @@ class LSX_TO_Frontend extends Tour_Operator {
 
 		if(!isset($this->options['display']['disable_js'])){
 			wp_enqueue_script( 'fixto', LSX_TO_URL . 'assets/js/vendor/fixto.min.js', array( 'jquery' ), LSX_TO_VER, true );
+			wp_enqueue_script( 'jquery-touchswipe', LSX_TO_URL . 'assets/js/vendor/jquery.touchSwipe.min.js', array( 'jquery' ) , LSX_TO_VER, true );
 			wp_enqueue_script( 'tour-operator-script', LSX_TO_URL . 'assets/js/custom.min.js', array( 'jquery' ), LSX_TO_VER, true );
 		}
 		if(!isset($this->options['display']['disable_css'])){

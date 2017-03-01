@@ -17,11 +17,11 @@ var LSX_TO_Itinerary_Read_More = {
 	}
 },
 
-lsxToBootstrapCarouselAvoidInMobile = lsxToBootstrapCarouselAvoidInMobile || true,
+lsxToBootstrapCarouselAvoidInMobile = (undefined !== lsxToBootstrapCarouselAvoidInMobile) ? lsxToBootstrapCarouselAvoidInMobile : true,
 
 LSX_TO_Bootstrap_Carousel = {
 	avoidInMobile: function() {
-		jQuery('.carousel.slide').on('slide.bs.carousel', function() {
+		jQuery('.lsx-to-slider').on('slide.bs.carousel', function() {
 			if (true === lsxToBootstrapCarouselAvoidInMobile) {
 				var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 				
@@ -29,6 +29,21 @@ LSX_TO_Bootstrap_Carousel = {
 					return false;
 				}
 			}
+		});
+	},
+
+	initSliderSwiper: function() {
+		jQuery('.lsx-to-slider').swipe({
+			swipeLeft:function(event, direction, distance, duration, fingerCount) {
+				jQuery(this).carousel('next'); 
+			},
+
+			swipeRight: function() {
+				jQuery(this).carousel('prev'); 
+			},
+			
+			threshold: 0,
+			allowPageScroll: 'vertical'
 		});
 	}
 },
@@ -181,6 +196,7 @@ jQuery(document).ready(function() {
 	LSX_TO_Scrollable.initThis(windowWidth);
 	LSX_TO_Itinerary_Read_More.initThis();
 	LSX_TO_Bootstrap_Carousel.avoidInMobile();
+	LSX_TO_Bootstrap_Carousel.initSliderSwiper();
 	LSX_TO_FacetWP.effect_loaded();
 	LSX_TO.removeEmptyWidgets();
 });

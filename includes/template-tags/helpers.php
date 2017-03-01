@@ -434,7 +434,7 @@ function lsx_to_related_items($taxonomy=false,$before="",$after="",$echo=true,$p
 		//The start of the carousel output
 		if($carousel){
 			echo '<div class="slider-container">';
-			echo '<div id="slider-'.esc_attr($carousel_id).'" class="carousel slide" data-interval="'.esc_attr($interval).'">';
+			echo '<div id="slider-'.esc_attr($carousel_id).'" class="lsx-to-slider carousel slide" data-interval="'.esc_attr($interval).'">';
 			echo '<div class="carousel-wrap">';
 			echo '<div class="carousel-inner" role="listbox">';
 		}
