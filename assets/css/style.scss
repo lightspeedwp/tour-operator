@@ -1633,8 +1633,8 @@ body.archive-tour-operator {
 	}
 }
 
-body.archive-tour-operator:not(.post-type-archive-destination) {
-	.row:not(.lsx-accommodation-brand) {
+body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) {
+	.row:not(.lsx-accommodation-brand) { 
 		& > .panel {
 			& > article {
 				@extend %panel-internal-inline;
@@ -1643,7 +1643,7 @@ body.archive-tour-operator:not(.post-type-archive-destination) {
 	}
 }
 
-body.archive.post-type-archive-destination {
+body.archive.post-type-archive-lsx-to-destination {
 	.countries {
 		padding-bottom: 20px;
 
@@ -1689,9 +1689,9 @@ body.archive.post-type-archive-destination {
 	}
 }
 
-body.archive.post-type-archive-vehicle,
-body.archive.post-type-archive-review,
-body.archive.post-type-archive-team {
+body.archive.post-type-archive-lsx-to-vehicle,
+body.archive.post-type-archive-lsx-to-review,
+body.archive.post-type-archive-lsx-to-team {
 	@media only screen and (min-width: 768px) {
 		.panel {
 			& > article {

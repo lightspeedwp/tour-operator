@@ -1720,44 +1720,44 @@ body.single-tour-operator .social-links {
     overflow: hidden; }
 
 body.home aside.lsx-widget .slider-container, body.archive-tour-operator #safari-brands .slider-container,
-body.archive-tour-operator #travel-styles .slider-container, body.archive.post-type-archive-destination .countries .regions .slider-container, body.single-tour-operator .slider-container {
+body.archive-tour-operator #travel-styles .slider-container, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container, body.single-tour-operator .slider-container {
   position: relative; }
   body.home aside.lsx-widget .slider-container .carousel-wrap, body.archive-tour-operator #safari-brands .slider-container .carousel-wrap,
-  body.archive-tour-operator #travel-styles .slider-container .carousel-wrap, body.archive.post-type-archive-destination .countries .regions .slider-container .carousel-wrap, body.single-tour-operator .slider-container .carousel-wrap {
+  body.archive-tour-operator #travel-styles .slider-container .carousel-wrap, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .carousel-wrap, body.single-tour-operator .slider-container .carousel-wrap {
     position: relative; }
   body.home aside.lsx-widget .slider-container .carousel, body.archive-tour-operator #safari-brands .slider-container .carousel,
-  body.archive-tour-operator #travel-styles .slider-container .carousel, body.archive.post-type-archive-destination .countries .regions .slider-container .carousel, body.single-tour-operator .slider-container .carousel {
+  body.archive-tour-operator #travel-styles .slider-container .carousel, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .carousel, body.single-tour-operator .slider-container .carousel {
     margin-bottom: 0; }
   body.home aside.lsx-widget .slider-container .item, body.archive-tour-operator #safari-brands .slider-container .item,
-  body.archive-tour-operator #travel-styles .slider-container .item, body.archive.post-type-archive-destination .countries .regions .slider-container .item, body.single-tour-operator .slider-container .item {
+  body.archive-tour-operator #travel-styles .slider-container .item, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .item, body.single-tour-operator .slider-container .item {
     margin-bottom: 0; }
     @media only screen and (max-width: 991px) {
       body.home aside.lsx-widget .slider-container .item, body.archive-tour-operator #safari-brands .slider-container .item,
-      body.archive-tour-operator #travel-styles .slider-container .item, body.archive.post-type-archive-destination .countries .regions .slider-container .item, body.single-tour-operator .slider-container .item {
+      body.archive-tour-operator #travel-styles .slider-container .item, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .item, body.single-tour-operator .slider-container .item {
         display: block; } }
     @media only screen and (min-width: 992px) {
       body.home aside.lsx-widget .slider-container .item:not(:only-child), body.archive-tour-operator #safari-brands .slider-container .item:not(:only-child),
-      body.archive-tour-operator #travel-styles .slider-container .item:not(:only-child), body.archive.post-type-archive-destination .countries .regions .slider-container .item:not(:only-child), body.single-tour-operator .slider-container .item:not(:only-child) {
+      body.archive-tour-operator #travel-styles .slider-container .item:not(:only-child), body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .item:not(:only-child), body.single-tour-operator .slider-container .item:not(:only-child) {
         margin-right: 0;
         margin-left: 0; } }
   body.home aside.lsx-widget .slider-container .carousel-control, body.archive-tour-operator #safari-brands .slider-container .carousel-control,
-  body.archive-tour-operator #travel-styles .slider-container .carousel-control, body.archive.post-type-archive-destination .countries .regions .slider-container .carousel-control, body.single-tour-operator .slider-container .carousel-control {
+  body.archive-tour-operator #travel-styles .slider-container .carousel-control, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .carousel-control, body.single-tour-operator .slider-container .carousel-control {
     background: none;
     width: 70px; }
     @media only screen and (max-width: 991px) {
       body.home aside.lsx-widget .slider-container .carousel-control, body.archive-tour-operator #safari-brands .slider-container .carousel-control,
-      body.archive-tour-operator #travel-styles .slider-container .carousel-control, body.archive.post-type-archive-destination .countries .regions .slider-container .carousel-control, body.single-tour-operator .slider-container .carousel-control {
+      body.archive-tour-operator #travel-styles .slider-container .carousel-control, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .carousel-control, body.single-tour-operator .slider-container .carousel-control {
         display: none; } }
     body.home aside.lsx-widget .slider-container .carousel-control.left, body.archive-tour-operator #safari-brands .slider-container .carousel-control.left,
-    body.archive-tour-operator #travel-styles .slider-container .carousel-control.left, body.archive.post-type-archive-destination .countries .regions .slider-container .carousel-control.left, body.single-tour-operator .slider-container .carousel-control.left {
+    body.archive-tour-operator #travel-styles .slider-container .carousel-control.left, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .carousel-control.left, body.single-tour-operator .slider-container .carousel-control.left {
       left: -55px;
       margin-left: 0; }
     body.home aside.lsx-widget .slider-container .carousel-control.right, body.archive-tour-operator #safari-brands .slider-container .carousel-control.right,
-    body.archive-tour-operator #travel-styles .slider-container .carousel-control.right, body.archive.post-type-archive-destination .countries .regions .slider-container .carousel-control.right, body.single-tour-operator .slider-container .carousel-control.right {
+    body.archive-tour-operator #travel-styles .slider-container .carousel-control.right, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .carousel-control.right, body.single-tour-operator .slider-container .carousel-control.right {
       right: -55px;
       margin-right: 0; }
     body.home aside.lsx-widget .slider-container .carousel-control .fa, body.archive-tour-operator #safari-brands .slider-container .carousel-control .fa,
-    body.archive-tour-operator #travel-styles .slider-container .carousel-control .fa, body.archive.post-type-archive-destination .countries .regions .slider-container .carousel-control .fa, body.single-tour-operator .slider-container .carousel-control .fa {
+    body.archive-tour-operator #travel-styles .slider-container .carousel-control .fa, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .carousel-control .fa, body.single-tour-operator .slider-container .carousel-control .fa {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -1769,7 +1769,7 @@ body.archive-tour-operator #travel-styles .slider-container, body.archive.post-t
       margin-top: -20px;
       margin-left: -14px; }
   body.home aside.lsx-widget .slider-container .carousel-indicators, body.archive-tour-operator #safari-brands .slider-container .carousel-indicators,
-  body.archive-tour-operator #travel-styles .slider-container .carousel-indicators, body.archive.post-type-archive-destination .countries .regions .slider-container .carousel-indicators, body.single-tour-operator .slider-container .carousel-indicators {
+  body.archive-tour-operator #travel-styles .slider-container .carousel-indicators, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .carousel-indicators, body.single-tour-operator .slider-container .carousel-indicators {
     position: relative;
     bottom: auto;
     left: auto;
@@ -1777,14 +1777,14 @@ body.archive-tour-operator #travel-styles .slider-container, body.archive.post-t
     line-height: 20px; }
     @media only screen and (max-width: 991px) {
       body.home aside.lsx-widget .slider-container .carousel-indicators, body.archive-tour-operator #safari-brands .slider-container .carousel-indicators,
-      body.archive-tour-operator #travel-styles .slider-container .carousel-indicators, body.archive.post-type-archive-destination .countries .regions .slider-container .carousel-indicators, body.single-tour-operator .slider-container .carousel-indicators {
+      body.archive-tour-operator #travel-styles .slider-container .carousel-indicators, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .carousel-indicators, body.single-tour-operator .slider-container .carousel-indicators {
         display: none; } }
     body.home aside.lsx-widget .slider-container .carousel-indicators li, body.archive-tour-operator #safari-brands .slider-container .carousel-indicators li,
-    body.archive-tour-operator #travel-styles .slider-container .carousel-indicators li, body.archive.post-type-archive-destination .countries .regions .slider-container .carousel-indicators li, body.single-tour-operator .slider-container .carousel-indicators li {
+    body.archive-tour-operator #travel-styles .slider-container .carousel-indicators li, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .carousel-indicators li, body.single-tour-operator .slider-container .carousel-indicators li {
       border-color: #2a6496;
       margin: 1px 3px; }
       body.home aside.lsx-widget .slider-container .carousel-indicators li.active, body.archive-tour-operator #safari-brands .slider-container .carousel-indicators li.active,
-      body.archive-tour-operator #travel-styles .slider-container .carousel-indicators li.active, body.archive.post-type-archive-destination .countries .regions .slider-container .carousel-indicators li.active, body.single-tour-operator .slider-container .carousel-indicators li.active {
+      body.archive-tour-operator #travel-styles .slider-container .carousel-indicators li.active, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .carousel-indicators li.active, body.single-tour-operator .slider-container .carousel-indicators li.active {
         background-color: #2a6496; }
 
 body.archive-tour-operator #main > .lsx-to-navigation, body.single-tour-operator #main > .lsx-to-navigation {
@@ -2259,7 +2259,7 @@ body.single-tour-operator #videos .panel > article .entry-content, body.single-t
     body.single-tour-operator #videos .panel > article .entry-content p:first-child, body.single-tour-operator #itinerary .panel .itinerary-inner .entry-content p:first-child, body.single-tour-operator #rooms .panel > .unit .entry-content p:first-child, body.single-tour-operator #chalets .panel > .unit .entry-content p:first-child, body.single-tour-operator #tents .panel > .unit .entry-content p:first-child, body.single-tour-operator #spas .panel > .unit .entry-content p:first-child, body.single-tour-operator #villas .panel > .unit .entry-content p:first-child {
       margin-top: 0; }
 
-body.archive-tour-operator:not(.post-type-archive-destination) .row:not(.lsx-accommodation-brand) > .panel > article, body.single-tour-operator #tours .col-sm-12 > article.hentry,
+body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) .row:not(.lsx-accommodation-brand) > .panel > article, body.single-tour-operator #tours .col-sm-12 > article.hentry,
 body.single-tour-operator #regions .col-sm-12 > article.hentry,
 body.single-tour-operator #accommodation .col-sm-12 > article.hentry,
 body.single-tour-operator #destinations .col-sm-12 > article.hentry,
@@ -2269,28 +2269,28 @@ body.single-tour-operator #related-items .col-sm-12 > article.hentry,
 body.single-tour-operator #videos .col-sm-12 > article.hentry, body.single-tour-operator #itinerary .panel .itinerary-inner, body.single-tour-operator #rooms .panel > .unit, body.single-tour-operator #chalets .panel > .unit, body.single-tour-operator #tents .panel > .unit, body.single-tour-operator #spas .panel > .unit, body.single-tour-operator #villas .panel > .unit {
   padding-left: 5px;
   padding-right: 5px; }
-  body.archive-tour-operator:not(.post-type-archive-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:first-child,
+  body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:first-child,
   body.single-tour-operator #regions .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:first-child,
   body.single-tour-operator #accommodation .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:first-child,
   body.single-tour-operator #destinations .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:first-child,
   body.single-tour-operator #activities .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:first-child,
   body.single-tour-operator #activites .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:first-child,
   body.single-tour-operator #related-items .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:first-child,
-  body.single-tour-operator #videos .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #rooms .panel > .unit [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #chalets .panel > .unit [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #tents .panel > .unit [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #spas .panel > .unit [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #villas .panel > .unit [class^="col-"] [class^="col-"]:first-child, body.archive-tour-operator:not(.post-type-archive-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:first-child,
+  body.single-tour-operator #videos .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #rooms .panel > .unit [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #chalets .panel > .unit [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #tents .panel > .unit [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #spas .panel > .unit [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #villas .panel > .unit [class^="col-"] [class^="col-"]:first-child, body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:first-child,
   body.single-tour-operator #regions .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:first-child,
   body.single-tour-operator #accommodation .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:first-child,
   body.single-tour-operator #destinations .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:first-child,
   body.single-tour-operator #activities .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:first-child,
   body.single-tour-operator #activites .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:first-child,
   body.single-tour-operator #related-items .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:first-child,
-  body.single-tour-operator #videos .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #rooms .panel > .unit [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #chalets .panel > .unit [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #tents .panel > .unit [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #spas .panel > .unit [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #villas .panel > .unit [class^="col-"] [class*=" col-"]:first-child, body.archive-tour-operator:not(.post-type-archive-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:first-child,
+  body.single-tour-operator #videos .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #rooms .panel > .unit [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #chalets .panel > .unit [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #tents .panel > .unit [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #spas .panel > .unit [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #villas .panel > .unit [class^="col-"] [class*=" col-"]:first-child, body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:first-child,
   body.single-tour-operator #regions .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:first-child,
   body.single-tour-operator #accommodation .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:first-child,
   body.single-tour-operator #destinations .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:first-child,
   body.single-tour-operator #activities .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:first-child,
   body.single-tour-operator #activites .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:first-child,
   body.single-tour-operator #related-items .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:first-child,
-  body.single-tour-operator #videos .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #rooms .panel > .unit [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #chalets .panel > .unit [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #tents .panel > .unit [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #spas .panel > .unit [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #villas .panel > .unit [class*=" col-"] [class^="col-"]:first-child, body.archive-tour-operator:not(.post-type-archive-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class*=" col-"] [class*=" col-"]:first-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:first-child,
+  body.single-tour-operator #videos .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #rooms .panel > .unit [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #chalets .panel > .unit [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #tents .panel > .unit [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #spas .panel > .unit [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #villas .panel > .unit [class*=" col-"] [class^="col-"]:first-child, body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class*=" col-"] [class*=" col-"]:first-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:first-child,
   body.single-tour-operator #regions .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:first-child,
   body.single-tour-operator #accommodation .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:first-child,
   body.single-tour-operator #destinations .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:first-child,
@@ -2300,28 +2300,28 @@ body.single-tour-operator #videos .col-sm-12 > article.hentry, body.single-tour-
   body.single-tour-operator #videos .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:first-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class*=" col-"] [class*=" col-"]:first-child, body.single-tour-operator #rooms .panel > .unit [class*=" col-"] [class*=" col-"]:first-child, body.single-tour-operator #chalets .panel > .unit [class*=" col-"] [class*=" col-"]:first-child, body.single-tour-operator #tents .panel > .unit [class*=" col-"] [class*=" col-"]:first-child, body.single-tour-operator #spas .panel > .unit [class*=" col-"] [class*=" col-"]:first-child, body.single-tour-operator #villas .panel > .unit [class*=" col-"] [class*=" col-"]:first-child {
     padding-left: 0; }
     @media only screen and (max-width: 767px) {
-      body.archive-tour-operator:not(.post-type-archive-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:first-child,
+      body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:first-child,
       body.single-tour-operator #regions .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:first-child,
       body.single-tour-operator #accommodation .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:first-child,
       body.single-tour-operator #destinations .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:first-child,
       body.single-tour-operator #activities .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:first-child,
       body.single-tour-operator #activites .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:first-child,
       body.single-tour-operator #related-items .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:first-child,
-      body.single-tour-operator #videos .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #rooms .panel > .unit [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #chalets .panel > .unit [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #tents .panel > .unit [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #spas .panel > .unit [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #villas .panel > .unit [class^="col-"] [class^="col-"]:first-child, body.archive-tour-operator:not(.post-type-archive-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:first-child,
+      body.single-tour-operator #videos .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #rooms .panel > .unit [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #chalets .panel > .unit [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #tents .panel > .unit [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #spas .panel > .unit [class^="col-"] [class^="col-"]:first-child, body.single-tour-operator #villas .panel > .unit [class^="col-"] [class^="col-"]:first-child, body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:first-child,
       body.single-tour-operator #regions .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:first-child,
       body.single-tour-operator #accommodation .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:first-child,
       body.single-tour-operator #destinations .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:first-child,
       body.single-tour-operator #activities .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:first-child,
       body.single-tour-operator #activites .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:first-child,
       body.single-tour-operator #related-items .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:first-child,
-      body.single-tour-operator #videos .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #rooms .panel > .unit [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #chalets .panel > .unit [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #tents .panel > .unit [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #spas .panel > .unit [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #villas .panel > .unit [class^="col-"] [class*=" col-"]:first-child, body.archive-tour-operator:not(.post-type-archive-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:first-child,
+      body.single-tour-operator #videos .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #rooms .panel > .unit [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #chalets .panel > .unit [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #tents .panel > .unit [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #spas .panel > .unit [class^="col-"] [class*=" col-"]:first-child, body.single-tour-operator #villas .panel > .unit [class^="col-"] [class*=" col-"]:first-child, body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:first-child,
       body.single-tour-operator #regions .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:first-child,
       body.single-tour-operator #accommodation .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:first-child,
       body.single-tour-operator #destinations .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:first-child,
       body.single-tour-operator #activities .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:first-child,
       body.single-tour-operator #activites .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:first-child,
       body.single-tour-operator #related-items .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:first-child,
-      body.single-tour-operator #videos .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #rooms .panel > .unit [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #chalets .panel > .unit [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #tents .panel > .unit [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #spas .panel > .unit [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #villas .panel > .unit [class*=" col-"] [class^="col-"]:first-child, body.archive-tour-operator:not(.post-type-archive-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class*=" col-"] [class*=" col-"]:first-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:first-child,
+      body.single-tour-operator #videos .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #rooms .panel > .unit [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #chalets .panel > .unit [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #tents .panel > .unit [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #spas .panel > .unit [class*=" col-"] [class^="col-"]:first-child, body.single-tour-operator #villas .panel > .unit [class*=" col-"] [class^="col-"]:first-child, body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class*=" col-"] [class*=" col-"]:first-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:first-child,
       body.single-tour-operator #regions .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:first-child,
       body.single-tour-operator #accommodation .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:first-child,
       body.single-tour-operator #destinations .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:first-child,
@@ -2330,28 +2330,28 @@ body.single-tour-operator #videos .col-sm-12 > article.hentry, body.single-tour-
       body.single-tour-operator #related-items .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:first-child,
       body.single-tour-operator #videos .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:first-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class*=" col-"] [class*=" col-"]:first-child, body.single-tour-operator #rooms .panel > .unit [class*=" col-"] [class*=" col-"]:first-child, body.single-tour-operator #chalets .panel > .unit [class*=" col-"] [class*=" col-"]:first-child, body.single-tour-operator #tents .panel > .unit [class*=" col-"] [class*=" col-"]:first-child, body.single-tour-operator #spas .panel > .unit [class*=" col-"] [class*=" col-"]:first-child, body.single-tour-operator #villas .panel > .unit [class*=" col-"] [class*=" col-"]:first-child {
         padding-right: 0; } }
-  body.archive-tour-operator:not(.post-type-archive-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:last-child,
+  body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:last-child,
   body.single-tour-operator #regions .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:last-child,
   body.single-tour-operator #accommodation .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:last-child,
   body.single-tour-operator #destinations .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:last-child,
   body.single-tour-operator #activities .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:last-child,
   body.single-tour-operator #activites .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:last-child,
   body.single-tour-operator #related-items .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:last-child,
-  body.single-tour-operator #videos .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #rooms .panel > .unit [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #chalets .panel > .unit [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #tents .panel > .unit [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #spas .panel > .unit [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #villas .panel > .unit [class^="col-"] [class^="col-"]:last-child, body.archive-tour-operator:not(.post-type-archive-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:last-child,
+  body.single-tour-operator #videos .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #rooms .panel > .unit [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #chalets .panel > .unit [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #tents .panel > .unit [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #spas .panel > .unit [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #villas .panel > .unit [class^="col-"] [class^="col-"]:last-child, body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:last-child,
   body.single-tour-operator #regions .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:last-child,
   body.single-tour-operator #accommodation .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:last-child,
   body.single-tour-operator #destinations .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:last-child,
   body.single-tour-operator #activities .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:last-child,
   body.single-tour-operator #activites .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:last-child,
   body.single-tour-operator #related-items .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:last-child,
-  body.single-tour-operator #videos .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #rooms .panel > .unit [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #chalets .panel > .unit [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #tents .panel > .unit [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #spas .panel > .unit [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #villas .panel > .unit [class^="col-"] [class*=" col-"]:last-child, body.archive-tour-operator:not(.post-type-archive-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:last-child,
+  body.single-tour-operator #videos .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #rooms .panel > .unit [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #chalets .panel > .unit [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #tents .panel > .unit [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #spas .panel > .unit [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #villas .panel > .unit [class^="col-"] [class*=" col-"]:last-child, body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:last-child,
   body.single-tour-operator #regions .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:last-child,
   body.single-tour-operator #accommodation .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:last-child,
   body.single-tour-operator #destinations .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:last-child,
   body.single-tour-operator #activities .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:last-child,
   body.single-tour-operator #activites .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:last-child,
   body.single-tour-operator #related-items .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:last-child,
-  body.single-tour-operator #videos .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #rooms .panel > .unit [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #chalets .panel > .unit [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #tents .panel > .unit [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #spas .panel > .unit [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #villas .panel > .unit [class*=" col-"] [class^="col-"]:last-child, body.archive-tour-operator:not(.post-type-archive-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class*=" col-"] [class*=" col-"]:last-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:last-child,
+  body.single-tour-operator #videos .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #rooms .panel > .unit [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #chalets .panel > .unit [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #tents .panel > .unit [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #spas .panel > .unit [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #villas .panel > .unit [class*=" col-"] [class^="col-"]:last-child, body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class*=" col-"] [class*=" col-"]:last-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:last-child,
   body.single-tour-operator #regions .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:last-child,
   body.single-tour-operator #accommodation .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:last-child,
   body.single-tour-operator #destinations .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:last-child,
@@ -2361,28 +2361,28 @@ body.single-tour-operator #videos .col-sm-12 > article.hentry, body.single-tour-
   body.single-tour-operator #videos .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:last-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class*=" col-"] [class*=" col-"]:last-child, body.single-tour-operator #rooms .panel > .unit [class*=" col-"] [class*=" col-"]:last-child, body.single-tour-operator #chalets .panel > .unit [class*=" col-"] [class*=" col-"]:last-child, body.single-tour-operator #tents .panel > .unit [class*=" col-"] [class*=" col-"]:last-child, body.single-tour-operator #spas .panel > .unit [class*=" col-"] [class*=" col-"]:last-child, body.single-tour-operator #villas .panel > .unit [class*=" col-"] [class*=" col-"]:last-child {
     padding-right: 0; }
     @media only screen and (max-width: 767px) {
-      body.archive-tour-operator:not(.post-type-archive-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:last-child,
+      body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:last-child,
       body.single-tour-operator #regions .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:last-child,
       body.single-tour-operator #accommodation .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:last-child,
       body.single-tour-operator #destinations .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:last-child,
       body.single-tour-operator #activities .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:last-child,
       body.single-tour-operator #activites .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:last-child,
       body.single-tour-operator #related-items .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:last-child,
-      body.single-tour-operator #videos .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #rooms .panel > .unit [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #chalets .panel > .unit [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #tents .panel > .unit [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #spas .panel > .unit [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #villas .panel > .unit [class^="col-"] [class^="col-"]:last-child, body.archive-tour-operator:not(.post-type-archive-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:last-child,
+      body.single-tour-operator #videos .col-sm-12 > article.hentry [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #rooms .panel > .unit [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #chalets .panel > .unit [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #tents .panel > .unit [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #spas .panel > .unit [class^="col-"] [class^="col-"]:last-child, body.single-tour-operator #villas .panel > .unit [class^="col-"] [class^="col-"]:last-child, body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:last-child,
       body.single-tour-operator #regions .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:last-child,
       body.single-tour-operator #accommodation .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:last-child,
       body.single-tour-operator #destinations .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:last-child,
       body.single-tour-operator #activities .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:last-child,
       body.single-tour-operator #activites .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:last-child,
       body.single-tour-operator #related-items .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:last-child,
-      body.single-tour-operator #videos .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #rooms .panel > .unit [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #chalets .panel > .unit [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #tents .panel > .unit [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #spas .panel > .unit [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #villas .panel > .unit [class^="col-"] [class*=" col-"]:last-child, body.archive-tour-operator:not(.post-type-archive-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:last-child,
+      body.single-tour-operator #videos .col-sm-12 > article.hentry [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #rooms .panel > .unit [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #chalets .panel > .unit [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #tents .panel > .unit [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #spas .panel > .unit [class^="col-"] [class*=" col-"]:last-child, body.single-tour-operator #villas .panel > .unit [class^="col-"] [class*=" col-"]:last-child, body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:last-child,
       body.single-tour-operator #regions .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:last-child,
       body.single-tour-operator #accommodation .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:last-child,
       body.single-tour-operator #destinations .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:last-child,
       body.single-tour-operator #activities .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:last-child,
       body.single-tour-operator #activites .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:last-child,
       body.single-tour-operator #related-items .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:last-child,
-      body.single-tour-operator #videos .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #rooms .panel > .unit [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #chalets .panel > .unit [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #tents .panel > .unit [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #spas .panel > .unit [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #villas .panel > .unit [class*=" col-"] [class^="col-"]:last-child, body.archive-tour-operator:not(.post-type-archive-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class*=" col-"] [class*=" col-"]:last-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:last-child,
+      body.single-tour-operator #videos .col-sm-12 > article.hentry [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #rooms .panel > .unit [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #chalets .panel > .unit [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #tents .panel > .unit [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #spas .panel > .unit [class*=" col-"] [class^="col-"]:last-child, body.single-tour-operator #villas .panel > .unit [class*=" col-"] [class^="col-"]:last-child, body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) .row:not(.lsx-accommodation-brand) > .panel > article [class*=" col-"] [class*=" col-"]:last-child, body.single-tour-operator #tours .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:last-child,
       body.single-tour-operator #regions .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:last-child,
       body.single-tour-operator #accommodation .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:last-child,
       body.single-tour-operator #destinations .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:last-child,
@@ -2392,7 +2392,7 @@ body.single-tour-operator #videos .col-sm-12 > article.hentry, body.single-tour-
       body.single-tour-operator #videos .col-sm-12 > article.hentry [class*=" col-"] [class*=" col-"]:last-child, body.single-tour-operator #itinerary .panel .itinerary-inner [class*=" col-"] [class*=" col-"]:last-child, body.single-tour-operator #rooms .panel > .unit [class*=" col-"] [class*=" col-"]:last-child, body.single-tour-operator #chalets .panel > .unit [class*=" col-"] [class*=" col-"]:last-child, body.single-tour-operator #tents .panel > .unit [class*=" col-"] [class*=" col-"]:last-child, body.single-tour-operator #spas .panel > .unit [class*=" col-"] [class*=" col-"]:last-child, body.single-tour-operator #villas .panel > .unit [class*=" col-"] [class*=" col-"]:last-child {
         padding-left: 0; } }
   @media only screen and (max-width: 767px) {
-    body.archive-tour-operator:not(.post-type-archive-destination) .row:not(.lsx-accommodation-brand) > .panel > article .meta:first-child, body.single-tour-operator #tours .col-sm-12 > article.hentry .meta:first-child,
+    body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) .row:not(.lsx-accommodation-brand) > .panel > article .meta:first-child, body.single-tour-operator #tours .col-sm-12 > article.hentry .meta:first-child,
     body.single-tour-operator #regions .col-sm-12 > article.hentry .meta:first-child,
     body.single-tour-operator #accommodation .col-sm-12 > article.hentry .meta:first-child,
     body.single-tour-operator #destinations .col-sm-12 > article.hentry .meta:first-child,
@@ -2402,7 +2402,7 @@ body.single-tour-operator #videos .col-sm-12 > article.hentry, body.single-tour-
     body.single-tour-operator #videos .col-sm-12 > article.hentry .meta:first-child, body.single-tour-operator #itinerary .panel .itinerary-inner .meta:first-child, body.single-tour-operator #rooms .panel > .unit .meta:first-child, body.single-tour-operator #chalets .panel > .unit .meta:first-child, body.single-tour-operator #tents .panel > .unit .meta:first-child, body.single-tour-operator #spas .panel > .unit .meta:first-child, body.single-tour-operator #villas .panel > .unit .meta:first-child {
       margin-top: 12px; } }
   @media only screen and (min-width: 768px) {
-    body.archive-tour-operator:not(.post-type-archive-destination) .row:not(.lsx-accommodation-brand) > .panel > article .meta:first-child, body.single-tour-operator #tours .col-sm-12 > article.hentry .meta:first-child,
+    body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) .row:not(.lsx-accommodation-brand) > .panel > article .meta:first-child, body.single-tour-operator #tours .col-sm-12 > article.hentry .meta:first-child,
     body.single-tour-operator #regions .col-sm-12 > article.hentry .meta:first-child,
     body.single-tour-operator #accommodation .col-sm-12 > article.hentry .meta:first-child,
     body.single-tour-operator #destinations .col-sm-12 > article.hentry .meta:first-child,
@@ -2414,14 +2414,14 @@ body.single-tour-operator #videos .col-sm-12 > article.hentry, body.single-tour-
       padding-top: 0;
       border-top: none; } }
   @media only screen and (min-width: 768px) {
-    body.archive-tour-operator:not(.post-type-archive-destination) .row:not(.lsx-accommodation-brand) > .panel > article .meta.info .price, body.single-tour-operator #tours .col-sm-12 > article.hentry .meta.info .price,
+    body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) .row:not(.lsx-accommodation-brand) > .panel > article .meta.info .price, body.single-tour-operator #tours .col-sm-12 > article.hentry .meta.info .price,
     body.single-tour-operator #regions .col-sm-12 > article.hentry .meta.info .price,
     body.single-tour-operator #accommodation .col-sm-12 > article.hentry .meta.info .price,
     body.single-tour-operator #destinations .col-sm-12 > article.hentry .meta.info .price,
     body.single-tour-operator #activities .col-sm-12 > article.hentry .meta.info .price,
     body.single-tour-operator #activites .col-sm-12 > article.hentry .meta.info .price,
     body.single-tour-operator #related-items .col-sm-12 > article.hentry .meta.info .price,
-    body.single-tour-operator #videos .col-sm-12 > article.hentry .meta.info .price, body.single-tour-operator #itinerary .panel .itinerary-inner .meta.info .price, body.single-tour-operator #rooms .panel > .unit .meta.info .price, body.single-tour-operator #chalets .panel > .unit .meta.info .price, body.single-tour-operator #tents .panel > .unit .meta.info .price, body.single-tour-operator #spas .panel > .unit .meta.info .price, body.single-tour-operator #villas .panel > .unit .meta.info .price, body.archive-tour-operator:not(.post-type-archive-destination) .row:not(.lsx-accommodation-brand) > .panel > article .meta.info .duration, body.single-tour-operator #tours .col-sm-12 > article.hentry .meta.info .duration,
+    body.single-tour-operator #videos .col-sm-12 > article.hentry .meta.info .price, body.single-tour-operator #itinerary .panel .itinerary-inner .meta.info .price, body.single-tour-operator #rooms .panel > .unit .meta.info .price, body.single-tour-operator #chalets .panel > .unit .meta.info .price, body.single-tour-operator #tents .panel > .unit .meta.info .price, body.single-tour-operator #spas .panel > .unit .meta.info .price, body.single-tour-operator #villas .panel > .unit .meta.info .price, body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) .row:not(.lsx-accommodation-brand) > .panel > article .meta.info .duration, body.single-tour-operator #tours .col-sm-12 > article.hentry .meta.info .duration,
     body.single-tour-operator #regions .col-sm-12 > article.hentry .meta.info .duration,
     body.single-tour-operator #accommodation .col-sm-12 > article.hentry .meta.info .duration,
     body.single-tour-operator #destinations .col-sm-12 > article.hentry .meta.info .duration,
@@ -2799,31 +2799,31 @@ body.archive-tour-operator #summary {
     body.archive-tour-operator #summary {
       margin-bottom: 60px; } }
 
-body.archive.post-type-archive-destination .countries {
+body.archive.post-type-archive-lsx-to-destination .countries {
   padding-bottom: 20px; }
   @media only screen and (min-width: 768px) {
-    body.archive.post-type-archive-destination .countries {
+    body.archive.post-type-archive-lsx-to-destination .countries {
       padding-bottom: 50px; } }
-  body.archive.post-type-archive-destination .countries .country .thumbnail img {
+  body.archive.post-type-archive-lsx-to-destination .countries .country .thumbnail img {
     width: 100%; }
-  body.archive.post-type-archive-destination .countries .country .tagline {
+  body.archive.post-type-archive-lsx-to-destination .countries .country .tagline {
     display: none; }
-  body.archive.post-type-archive-destination .countries .country .entry-content p {
+  body.archive.post-type-archive-lsx-to-destination .countries .country .entry-content p {
     font-size: 16px;
     line-height: 25px; }
-    body.archive.post-type-archive-destination .countries .country .entry-content p:last-child {
+    body.archive.post-type-archive-lsx-to-destination .countries .country .entry-content p:last-child {
       text-align: center; }
-    body.archive.post-type-archive-destination .countries .country .entry-content p .btn.more-link {
+    body.archive.post-type-archive-lsx-to-destination .countries .country .entry-content p .btn.more-link {
       margin-top: 10px; }
-  body.archive.post-type-archive-destination .countries .regions {
+  body.archive.post-type-archive-lsx-to-destination .countries .regions {
     margin-top: 30px; }
-  body.archive.post-type-archive-destination .countries > .lsx-breaker {
+  body.archive.post-type-archive-lsx-to-destination .countries > .lsx-breaker {
     margin: 0 -9999rem 50px; }
 
 @media only screen and (min-width: 768px) {
-  body.archive.post-type-archive-vehicle .panel > article .meta:first-child,
-  body.archive.post-type-archive-review .panel > article .meta:first-child,
-  body.archive.post-type-archive-team .panel > article .meta:first-child {
+  body.archive.post-type-archive-lsx-to-vehicle .panel > article .meta:first-child,
+  body.archive.post-type-archive-lsx-to-review .panel > article .meta:first-child,
+  body.archive.post-type-archive-lsx-to-team .panel > article .meta:first-child {
     padding-top: 0;
     margin-top: 0;
     border-top: none; } }
