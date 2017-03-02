@@ -1497,17 +1497,17 @@ body.single-tour-operator .info.meta {
     body.archive-tour-operator .info.meta .duration:before,
     body.single-tour-operator .info.meta .duration:before {
       content: '\f073'; }
-  body.home .info.meta:not(:nth-last-child(2)) .price:last-child,
-  body.archive-tour-operator .info.meta:not(:nth-last-child(2)) .price:last-child,
-  body.single-tour-operator .info.meta:not(:nth-last-child(2)) .price:last-child, body.home .info.meta:not(:nth-last-child(2)) .duration:last-child,
-  body.archive-tour-operator .info.meta:not(:nth-last-child(2)) .duration:last-child,
-  body.single-tour-operator .info.meta:not(:nth-last-child(2)) .duration:last-child {
+  body.home .info.meta:not(.last-meta) .price:last-child,
+  body.archive-tour-operator .info.meta:not(.last-meta) .price:last-child,
+  body.single-tour-operator .info.meta:not(.last-meta) .price:last-child, body.home .info.meta:not(.last-meta) .duration:last-child,
+  body.archive-tour-operator .info.meta:not(.last-meta) .duration:last-child,
+  body.single-tour-operator .info.meta:not(.last-meta) .duration:last-child {
     padding-bottom: 10px; }
-    body.home .info.meta:not(:nth-last-child(2)) .price:last-child:after,
-    body.archive-tour-operator .info.meta:not(:nth-last-child(2)) .price:last-child:after,
-    body.single-tour-operator .info.meta:not(:nth-last-child(2)) .price:last-child:after, body.home .info.meta:not(:nth-last-child(2)) .duration:last-child:after,
-    body.archive-tour-operator .info.meta:not(:nth-last-child(2)) .duration:last-child:after,
-    body.single-tour-operator .info.meta:not(:nth-last-child(2)) .duration:last-child:after {
+    body.home .info.meta:not(.last-meta) .price:last-child:after,
+    body.archive-tour-operator .info.meta:not(.last-meta) .price:last-child:after,
+    body.single-tour-operator .info.meta:not(.last-meta) .price:last-child:after, body.home .info.meta:not(.last-meta) .duration:last-child:after,
+    body.archive-tour-operator .info.meta:not(.last-meta) .duration:last-child:after,
+    body.single-tour-operator .info.meta:not(.last-meta) .duration:last-child:after {
       content: '';
       position: absolute;
       left: 0;
@@ -1991,7 +1991,7 @@ body.single-tour-operator #videos .panel > article, body.single-tour-operator #i
   body.single-tour-operator #related-items .panel > article .view-more,
   body.single-tour-operator #videos .panel > article .view-more, body.single-tour-operator #itinerary .panel .itinerary-inner .view-more, body.single-tour-operator #rooms .panel > .unit .view-more, body.single-tour-operator #chalets .panel > .unit .view-more, body.single-tour-operator #tents .panel > .unit .view-more, body.single-tour-operator #spas .panel > .unit .view-more, body.single-tour-operator #villas .panel > .unit .view-more, body.archive-tour-operator #summary article.hentry .entry-content + .col-sm-3 .team-member-widget .view-more, body.single-tour-operator #summary article.hentry .entry-content + .col-sm-3 .team-member-widget .view-more, body.single-tour-operator .lsx-modal article.hentry .entry-content + .col-sm-3 .team-member-widget .view-more {
     padding-top: 20px;
-    margin-top: 15px;
+    margin-top: 12px;
     border-top: 1px solid #ddd;
     text-align: center; }
     body.home aside.lsx-widget .panel > article .view-more:first-child, body.archive-tour-operator #safari-brands .panel > article .view-more:first-child,

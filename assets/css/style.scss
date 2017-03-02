@@ -265,7 +265,7 @@ $orange-dark: #f7741d;
 		//	padding-top: 10px;
 		//}
 
-		&:not(:nth-last-child(2)) {
+		&:not(.last-meta) {
 			.price:last-child,
 			.duration:last-child {
 				padding-bottom: 10px;
@@ -725,7 +725,7 @@ $orange-dark: #f7741d;
 
 	.view-more {
 		padding-top: 20px;
-		margin-top: 15px;
+		margin-top: 12px;
 		border-top: 1px solid $border-grey;
 		text-align: center;
 

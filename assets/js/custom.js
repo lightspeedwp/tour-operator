@@ -88,6 +88,13 @@ LSX_TO = {
 				$this.closest('section').remove();
 			}
 		});
+	},
+
+	addExtraClassToMeta: function() {
+		jQuery('.meta').parent().each(function() {
+			var nodes = jQuery(this).children('.meta');
+			nodes.last().addClass('last-meta');
+		});
 	}
 },
 
@@ -199,4 +206,5 @@ jQuery(document).ready(function() {
 	LSX_TO_Bootstrap_Carousel.initSliderSwiper();
 	LSX_TO_FacetWP.effect_loaded();
 	LSX_TO.removeEmptyWidgets();
+	LSX_TO.addExtraClassToMeta();
 });
