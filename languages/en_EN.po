@@ -775,11 +775,11 @@ msgstr ""
 msgid "Thumbnail"
 msgstr ""
 
-#: classes/class-frontend.php:167
+#: classes/class-frontend.php:170
 msgid "Close"
 msgstr ""
 
-#: classes/class-frontend.php:340, classes/class-frontend.php:351, classes/class-itinerary.php:393
+#: classes/class-frontend.php:343, classes/class-frontend.php:354, classes/class-itinerary.php:393
 msgid "Read More"
 msgstr ""
 

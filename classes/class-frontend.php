@@ -123,6 +123,9 @@ class LSX_TO_Frontend extends Tour_Operator {
 			add_action('lsx_content_wrap_before','lsx_to_global_header',100);
 			add_action('lsx_content_wrap_before','lsx_to_archive_description',100);
 			add_filter('lsx_to_archive_description',array($this,'get_post_type_archive_description'),1,3);
+
+			// LSX default pagination
+			add_action( 'lsx_content_bottom', array( 'LSX_TO_Frontend', 'lsx_default_pagination' ) );
 		}
 		
 		if(is_singular($this->active_post_types)){
@@ -370,4 +373,12 @@ class LSX_TO_Frontend extends Tour_Operator {
 		$output = apply_filters( 'the_content', $output );
 		return $output;
 	}			
+
+	/**
+	 * Outputs LSX default pagination.
+	 *
+	 */
+	public static function lsx_default_pagination() {
+		lsx_paging_nav();
+	}
 }
