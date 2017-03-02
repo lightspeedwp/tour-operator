@@ -203,7 +203,7 @@
 
 			<?php endif ?>
 			
-			<?php lsx_to_travel_styles( '<section id="travel-styles"><h2 class="section-title">'. esc_html_e( 'Travel Styles','tour-operator' ) .'</h2>', '</section>' ) ?>
+			<?php lsx_to_travel_styles( '<section id="travel-styles"><h2 class="section-title">'. esc_html__( 'Travel Styles','tour-operator' ) .'</h2>', '</section>' ) ?>
 			
 			<?php if(function_exists('lsx_to_has_map') && lsx_to_has_map()){ ?>
 				<section id="destination-map">
