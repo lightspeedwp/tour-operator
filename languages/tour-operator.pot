@@ -499,8 +499,8 @@ msgstr ""
 msgid "Off"
 msgstr ""
 
-#: classes/class-accommodation.php:534, classes/class-tour.php:452, includes/template-tags/accommodation.php:280
-msgid "from"
+#: classes/class-accommodation.php:534, classes/class-tour.php:452, includes/layout.php:334, includes/template-tags/accommodation.php:280, templates/content-accommodation.php:22, templates/content-tour.php:23, templates/content-widget-accommodation.php:24, templates/content-widget-tour.php:25
+msgid "From price"
 msgstr ""
 
 #: classes/class-accommodation.php:604, classes/class-units.php:377, includes/layout.php:139, includes/template-tags/destination.php:25, templates/archive-accommodation.php:48
@@ -1039,7 +1039,7 @@ msgstr ""
 msgid "No tours found in Trash"
 msgstr ""
 
-#: classes/class-tour.php:184
+#: classes/class-tour.php:184, classes/class-tour.php:452, includes/layout.php:334, templates/content-tour.php:23, templates/content-widget-tour.php:25
 msgid "Duration"
 msgstr ""
 

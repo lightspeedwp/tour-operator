@@ -277,7 +277,7 @@ function lsx_to_accommodation_meta(){
 	if('accommodation' === get_post_type()){
 	?>
 	<div class="accommodation-details meta taxonomies">
-		<?php lsx_to_price('<div class="meta info"><span class="price">'.esc_html__('from','tour-operator').' ','</span></div>'); ?>
+		<?php lsx_to_price('<div class="meta info"><span class="price">'.esc_html__('From price','tour-operator').': ','</span></div>'); ?>
 		<?php lsx_to_accommodation_room_total('<div class="meta rooms">'.esc_html__('Rooms','tour-operator').': <span>','</span></div>'); ?>
 		<?php lsx_to_accommodation_rating('<div class="meta rating">'.esc_html__('Rating','tour-operator').': ','</div>'); ?>
 		<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.esc_html__('Accommodation Style','tour-operator').': ', ', ', '</div>' ); ?>

@@ -1480,16 +1480,11 @@ body.single-tour-operator .info.meta {
   body.home .info.meta .price,
   body.archive-tour-operator .info.meta .price,
   body.single-tour-operator .info.meta .price {
-    float: left; }
+    display: block; }
     body.home .info.meta .price:before,
     body.archive-tour-operator .info.meta .price:before,
     body.single-tour-operator .info.meta .price:before {
       content: '\f0d6'; }
-    @media only screen and (min-width: 768px) and (max-width: 1199px) {
-      body.home .info.meta .price,
-      body.archive-tour-operator .info.meta .price,
-      body.single-tour-operator .info.meta .price {
-        margin-bottom: 5px; } }
     body.home .info.meta .price .amount .currency-icon:after,
     body.archive-tour-operator .info.meta .price .amount .currency-icon:after,
     body.single-tour-operator .info.meta .price .amount .currency-icon:after {
@@ -1497,59 +1492,29 @@ body.single-tour-operator .info.meta {
   body.home .info.meta .duration,
   body.archive-tour-operator .info.meta .duration,
   body.single-tour-operator .info.meta .duration {
-    float: right; }
+    display: block; }
     body.home .info.meta .duration:before,
     body.archive-tour-operator .info.meta .duration:before,
     body.single-tour-operator .info.meta .duration:before {
       content: '\f073'; }
-  body.home .info.meta .price:last-child:after,
-  body.archive-tour-operator .info.meta .price:last-child:after,
-  body.single-tour-operator .info.meta .price:last-child:after, body.home .info.meta .duration:last-child:after,
-  body.archive-tour-operator .info.meta .duration:last-child:after,
-  body.single-tour-operator .info.meta .duration:last-child:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    border-bottom: 1px solid #ddd;
-    visibility: visible; }
-  @media only screen and (max-width: 767px) {
-    body.home .info.meta .price,
-    body.archive-tour-operator .info.meta .price,
-    body.single-tour-operator .info.meta .price, body.home .info.meta .duration,
-    body.archive-tour-operator .info.meta .duration,
-    body.single-tour-operator .info.meta .duration {
-      padding-top: 10px;
-      padding-bottom: 10px; } }
-  @media only screen and (min-width: 768px) and (max-width: 1199px) {
-    body.home .info.meta .price,
-    body.archive-tour-operator .info.meta .price,
-    body.single-tour-operator .info.meta .price, body.home .info.meta .duration,
-    body.archive-tour-operator .info.meta .duration,
-    body.single-tour-operator .info.meta .duration {
-      display: block;
-      float: none; }
-    body.home .info.meta .price:first-child,
-    body.archive-tour-operator .info.meta .price:first-child,
-    body.single-tour-operator .info.meta .price:first-child, body.home .info.meta .duration:first-child,
-    body.archive-tour-operator .info.meta .duration:first-child,
-    body.single-tour-operator .info.meta .duration:first-child {
-      padding-top: 10px; }
-    body.home .info.meta .price:last-child,
-    body.archive-tour-operator .info.meta .price:last-child,
-    body.single-tour-operator .info.meta .price:last-child, body.home .info.meta .duration:last-child,
-    body.archive-tour-operator .info.meta .duration:last-child,
-    body.single-tour-operator .info.meta .duration:last-child {
-      padding-bottom: 10px; } }
-  @media only screen and (min-width: 1200px) {
-    body.home .info.meta .price,
-    body.archive-tour-operator .info.meta .price,
-    body.single-tour-operator .info.meta .price, body.home .info.meta .duration,
-    body.archive-tour-operator .info.meta .duration,
-    body.single-tour-operator .info.meta .duration {
-      padding-top: 10px;
-      padding-bottom: 10px; } }
+  body.home .info.meta:not(:nth-last-child(2)) .price:last-child,
+  body.archive-tour-operator .info.meta:not(:nth-last-child(2)) .price:last-child,
+  body.single-tour-operator .info.meta:not(:nth-last-child(2)) .price:last-child, body.home .info.meta:not(:nth-last-child(2)) .duration:last-child,
+  body.archive-tour-operator .info.meta:not(:nth-last-child(2)) .duration:last-child,
+  body.single-tour-operator .info.meta:not(:nth-last-child(2)) .duration:last-child {
+    padding-bottom: 10px; }
+    body.home .info.meta:not(:nth-last-child(2)) .price:last-child:after,
+    body.archive-tour-operator .info.meta:not(:nth-last-child(2)) .price:last-child:after,
+    body.single-tour-operator .info.meta:not(:nth-last-child(2)) .price:last-child:after, body.home .info.meta:not(:nth-last-child(2)) .duration:last-child:after,
+    body.archive-tour-operator .info.meta:not(:nth-last-child(2)) .duration:last-child:after,
+    body.single-tour-operator .info.meta:not(:nth-last-child(2)) .duration:last-child:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      border-bottom: 1px solid #ddd;
+      visibility: visible; }
 
 body.home .info.meta .price,
 body.archive-tour-operator .info.meta .price,
@@ -1562,6 +1527,14 @@ body.single-tour-operator .meta:not(.info) {
   line-height: 28px;
   font-size: 13px;
   font-weight: bold; }
+  body.home .info.meta .price:first-child,
+  body.archive-tour-operator .info.meta .price:first-child,
+  body.single-tour-operator .info.meta .price:first-child, body.home .info.meta .duration:first-child,
+  body.archive-tour-operator .info.meta .duration:first-child,
+  body.single-tour-operator .info.meta .duration:first-child, body.home .meta:not(.info):first-child,
+  body.archive-tour-operator .meta:not(.info):first-child,
+  body.single-tour-operator .meta:not(.info):first-child {
+    padding-top: 10px; }
   body.home .info.meta .price:before,
   body.archive-tour-operator .info.meta .price:before,
   body.single-tour-operator .info.meta .price:before, body.home .info.meta .duration:before,
@@ -1586,14 +1559,6 @@ body.home .meta:not(.info) span,
 body.archive-tour-operator .meta:not(.info) span,
 body.single-tour-operator .meta:not(.info) span {
   font-weight: normal; }
-
-body.home .info.meta .price,
-body.archive-tour-operator .info.meta .price,
-body.single-tour-operator .info.meta .price, body.home .info.meta .duration,
-body.archive-tour-operator .info.meta .duration,
-body.single-tour-operator .info.meta .duration {
-  line-height: 28px;
-  font-size: 14px; }
 
 body.home .travel-style.meta:before,
 body.archive-tour-operator .travel-style.meta:before,
@@ -2515,7 +2480,7 @@ body.archive-tour-operator #summary article.hentry .entry-content .meta.info, bo
     margin-right: 15px; }
   body.archive-tour-operator #summary article.hentry .entry-content .meta.info .price:last-child:after, body.single-tour-operator #summary article.hentry .entry-content .meta.info .price:last-child:after, body.single-tour-operator .lsx-modal article.hentry .entry-content .meta.info .price:last-child:after, body.archive-tour-operator #summary article.hentry .entry-content .meta.info .duration:last-child:after, body.single-tour-operator #summary article.hentry .entry-content .meta.info .duration:last-child:after, body.single-tour-operator .lsx-modal article.hentry .entry-content .meta.info .duration:last-child:after {
     visibility: hidden; }
-  @media only screen and (min-width: 768px) and (max-width: 1199px) {
+  @media only screen and (min-width: 768px) {
     body.archive-tour-operator #summary article.hentry .entry-content .meta.info .price, body.single-tour-operator #summary article.hentry .entry-content .meta.info .price, body.single-tour-operator .lsx-modal article.hentry .entry-content .meta.info .price {
       display: inline-block;
       float: left; }
@@ -2569,13 +2534,13 @@ body.archive-tour-operator #summary article.hentry, body.single-tour-operator #s
   @media only screen and (max-width: 767px) {
     body.archive-tour-operator #summary article.hentry .entry-content, body.single-tour-operator #summary article.hentry .entry-content, body.single-tour-operator .lsx-modal article.hentry .entry-content {
       margin-bottom: 30px; }
-      body.archive-tour-operator #summary article.hentry .entry-content h3, body.single-tour-operator #summary article.hentry .entry-content h3, body.single-tour-operator .lsx-modal article.hentry .entry-content h3, body.archive-tour-operator #summary article.hentry .entry-content .meta.info, body.single-tour-operator #summary article.hentry .entry-content .meta.info, body.single-tour-operator .lsx-modal article.hentry .entry-content .meta.info, body.archive-tour-operator #summary article.hentry .entry-content .meta.info .price, body.single-tour-operator #summary article.hentry .entry-content .meta.info .price, body.single-tour-operator .lsx-modal article.hentry .entry-content .meta.info .price, body.archive-tour-operator #summary article.hentry .entry-content .meta.info .duration, body.single-tour-operator #summary article.hentry .entry-content .meta.info .duration, body.single-tour-operator .lsx-modal article.hentry .entry-content .meta.info .duration {
+      body.archive-tour-operator #summary article.hentry .entry-content h3, body.single-tour-operator #summary article.hentry .entry-content h3, body.single-tour-operator .lsx-modal article.hentry .entry-content h3, body.archive-tour-operator #summary article.hentry .entry-content .meta.info, body.single-tour-operator #summary article.hentry .entry-content .meta.info, body.single-tour-operator .lsx-modal article.hentry .entry-content .meta.info {
         float: none !important; }
       body.archive-tour-operator #summary article.hentry .entry-content h3, body.single-tour-operator #summary article.hentry .entry-content h3, body.single-tour-operator .lsx-modal article.hentry .entry-content h3 {
         margin-bottom: 10px !important; }
       body.archive-tour-operator #summary article.hentry .entry-content .meta.taxonomies, body.single-tour-operator #summary article.hentry .entry-content .meta.taxonomies, body.single-tour-operator .lsx-modal article.hentry .entry-content .meta.taxonomies {
         margin-top: 10px !important; } }
-  @media only screen and (min-width: 768px) and (max-width: 991px) {
+  @media only screen and (min-width: 768px) {
     body.archive-tour-operator #summary article.hentry .entry-content .meta.info .price, body.single-tour-operator #summary article.hentry .entry-content .meta.info .price, body.single-tour-operator .lsx-modal article.hentry .entry-content .meta.info .price {
       display: inline-block;
       float: left;

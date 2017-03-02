@@ -10,6 +10,9 @@
 * Fixed global variable (LSX TO) to enable/disable slider on mobile
 * Added swiper JS library for sliders
 * Added extra class to all sliders (lsx-to-slider)
+* Dev - Metadata: calendar info moved to the next line
+* Dev - Metadata: term "price" change to "price from"
+* Dev - Metadata: term “duration” added to duration meta
 
 ### 1.0.4
 * Removed the last of the LSX_TO_POSTEXPIRATOR_TYPES constants

@@ -227,15 +227,16 @@ $orange-dark: #f7741d;
 		padding-top: 0;
 
 		.price {
-			float: left;
+			display: block;
+			//float: left;
 
 			&:before {
 				content: '\f0d6';
 			}
 
-			@media only screen and (min-width: 768px) and (max-width: 1199px) {
-				margin-bottom: 5px;
-			}
+			//@media only screen and (min-width: 768px) and (max-width: 1199px) {
+			//	margin-bottom: 5px;
+			//}
 
 			.amount{
 				@extend %currency-icons;
@@ -251,59 +252,69 @@ $orange-dark: #f7741d;
 		}
 
 		.duration {
-			float: right;
+			display: block;
+			//float: right;
 
 			&:before {
 				content: '\f073';
 			}
 		}
 
-		.price:last-child,
-		.duration:last-child {
-			&:after {
-				content: '';
-				position: absolute;
-				left: 0;
-				bottom: 0;
-				width: 100%;
-				border-bottom: 1px solid $border-grey;
-				visibility: visible;
-			}
-		}
+		//.price:first-child,
+		//.duration:first-child {
+		//	padding-top: 10px;
+		//}
 
-		@media only screen and (max-width: 767px) {
-			.price,
-			.duration {
-				padding-top: 10px;
-				padding-bottom: 10px;
-			}
-		}
-
-		@media only screen and (min-width: 768px) and (max-width: 1199px) {
-			.price,
-			.duration {
-				display: block;
-				float: none;
-			}
-
-			.price:first-child,
-			.duration:first-child {
-				padding-top: 10px;
-			}
-
+		&:not(:nth-last-child(2)) {
 			.price:last-child,
 			.duration:last-child {
 				padding-bottom: 10px;
+
+				&:after {
+					content: '';
+					position: absolute;
+					left: 0;
+					bottom: 0;
+					width: 100%;
+					border-bottom: 1px solid $border-grey;
+					visibility: visible;
+				}
 			}
 		}
 
-		@media only screen and (min-width: 1200px) {
-			.price,
-			.duration {
-				padding-top: 10px;
-				padding-bottom: 10px;
-			}
-		}
+		//@media only screen and (max-width: 767px) {
+		//	.price,
+		//	.duration {
+		//		padding-top: 10px;
+		//		padding-bottom: 10px;
+		//	}
+		//}
+
+		//@media only screen and (min-width: 768px) and (max-width: 1199px) {
+		//	.price,
+		//	.duration {
+		//		display: block;
+		//		float: none;
+		//	}
+
+		//	.price:first-child,
+		//	.duration:first-child {
+		//		padding-top: 10px;
+		//	}
+
+		//	.price:last-child,
+		//	.duration:last-child {
+		//		padding-bottom: 10px;
+		//	}
+		//}
+
+		//@media only screen and (min-width: 1200px) {
+		//	.price,
+		//	.duration {
+		//		padding-top: 10px;
+		//		padding-bottom: 10px;
+		//	}
+		//}
 	}
 
 	&.info .price,
@@ -315,6 +326,10 @@ $orange-dark: #f7741d;
 		font: {
 			size: 13px;
 			weight: bold;
+		}
+
+		&:first-child {
+			padding-top: 10px;
 		}
 		
 		&:before {
@@ -338,14 +353,15 @@ $orange-dark: #f7741d;
 			font-weight: normal;
 		}
 	}
-	&.info .price,
-	&.info .duration {
-		line-height: 28px;
+	
+	//&.info .price,
+	//&.info .duration {
+	//	line-height: 28px;
 		
-		font: {
-			size: 14px;
-		}
-	}
+	//	font: {
+	//		size: 14px;
+	//	}
+	//}
 
 	&.travel-style, &.accommodation-type {
 		&:before {
@@ -1098,7 +1114,7 @@ $orange-dark: #f7741d;
 				}
 			}
 
-			@media only screen and (min-width: 768px) and (max-width: 1199px) {
+			@media only screen and (min-width: 768px) {
 				.price {
 					display: inline-block;
 					float: left;
@@ -1197,9 +1213,9 @@ $orange-dark: #f7741d;
 			margin-bottom: 30px;
 
 			h3,
-			.meta.info,
-			.meta.info .price,
-			.meta.info .duration {
+			.meta.info {
+			//.meta.info .price,
+			//.meta.info .duration {
 				float: none !important;
 			}
 
@@ -1212,7 +1228,7 @@ $orange-dark: #f7741d;
 			}
 		}
 
-		@media only screen and (min-width: 768px) and (max-width: 991px) {
+		@media only screen and (min-width: 768px) {
 			.meta.info {
 				.price {
 					display: inline-block;

@@ -531,7 +531,7 @@ class LSX_TO_Accommodation {
 
 				case 'total_percentage':
 					$value .= '% '.esc_html__('Off','tour-operator');
-					$before = str_replace(esc_html__('from','tour-operator'), '', $before);
+					$before = str_replace(esc_html__('From price','tour-operator'), '', $before);
 				break;
 
 				case 'none':
