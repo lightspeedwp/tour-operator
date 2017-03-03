@@ -14,6 +14,7 @@
 * Dev - Metadata: term "price" change to "price from"
 * Dev - Metadata: term “duration” added to duration meta
 * Fix - Fixed the default pagination from LSX
+* Fix - Facilities without child items can't display
 
 ### 1.0.4
 * Removed the last of the LSX_TO_POSTEXPIRATOR_TYPES constants
