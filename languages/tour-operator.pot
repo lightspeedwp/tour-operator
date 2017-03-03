@@ -179,7 +179,7 @@ msgstr ""
 msgid "Accommodation Expert"
 msgstr ""
 
-#: classes/class-accommodation.php:288, classes/class-admin.php:367, classes/class-admin.php:368, classes/class-destination.php:206, classes/class-fields.php:69, includes/template-tags/accommodation.php:293, module.php:305, templates/content-accommodation.php:33, templates/content-widget-accommodation.php:27
+#: classes/class-accommodation.php:288, classes/class-admin.php:367, classes/class-admin.php:368, classes/class-destination.php:206, classes/class-fields.php:69, includes/template-tags/accommodation.php:297, module.php:305, templates/content-accommodation.php:33, templates/content-widget-accommodation.php:27
 msgid "Location"
 msgstr ""
 
@@ -227,7 +227,7 @@ msgstr ""
 msgid "Hotelstars Union"
 msgstr ""
 
-#: classes/class-accommodation.php:322, classes/class-itinerary.php:339, includes/template-tags/accommodation.php:286, templates/content-accommodation.php:25, templates/content-widget-accommodation.php:29
+#: classes/class-accommodation.php:322, classes/class-itinerary.php:339, includes/template-tags/accommodation.php:290, templates/content-accommodation.php:25, templates/content-widget-accommodation.php:29
 msgid "Rating"
 msgstr ""
 
@@ -247,7 +247,7 @@ msgstr ""
 msgid "Minimum Child Age"
 msgstr ""
 
-#: classes/class-accommodation.php:329, includes/template-tags/accommodation.php:290, templates/content-accommodation.php:29
+#: classes/class-accommodation.php:329, includes/template-tags/accommodation.php:294, templates/content-accommodation.php:29
 msgid "Spoken Languages"
 msgstr ""
 
@@ -315,7 +315,7 @@ msgstr ""
 msgid "Zulu"
 msgstr ""
 
-#: classes/class-accommodation.php:353, includes/template-tags/accommodation.php:291, templates/content-accommodation.php:30
+#: classes/class-accommodation.php:353, includes/template-tags/accommodation.php:295, templates/content-accommodation.php:30
 msgid "Friendly"
 msgstr ""
 
@@ -355,7 +355,7 @@ msgstr ""
 msgid "Weddings"
 msgstr ""
 
-#: classes/class-accommodation.php:370, classes/class-itinerary.php:341, includes/template-tags/accommodation.php:292, templates/content-accommodation.php:31
+#: classes/class-accommodation.php:370, classes/class-itinerary.php:341, includes/template-tags/accommodation.php:296, templates/content-accommodation.php:31
 msgid "Special Interests"
 msgstr ""
 
@@ -447,7 +447,7 @@ msgstr ""
 msgid "Units"
 msgstr ""
 
-#: classes/class-accommodation.php:421, classes/class-itinerary.php:340, includes/template-tags/accommodation.php:289, templates/content-accommodation.php:28
+#: classes/class-accommodation.php:421, classes/class-itinerary.php:340, includes/template-tags/accommodation.php:293, templates/content-accommodation.php:28
 msgid "Type"
 msgstr ""
 
@@ -499,7 +499,7 @@ msgstr ""
 msgid "Off"
 msgstr ""
 
-#: classes/class-accommodation.php:534, classes/class-tour.php:452, includes/layout.php:334, includes/template-tags/accommodation.php:284, templates/content-accommodation.php:22, templates/content-tour.php:23, templates/content-widget-accommodation.php:24, templates/content-widget-tour.php:25
+#: classes/class-accommodation.php:534, classes/class-tour.php:452, includes/layout.php:334, includes/template-tags/accommodation.php:288, templates/content-accommodation.php:22, templates/content-tour.php:23, templates/content-widget-accommodation.php:24, templates/content-widget-tour.php:25
 msgid "From price"
 msgstr ""
 
@@ -579,7 +579,7 @@ msgstr ""
 msgid "Brands"
 msgstr ""
 
-#: classes/class-admin.php:341, includes/template-tags/accommodation.php:288, module.php:302, templates/content-accommodation.php:26, templates/content-widget-accommodation.php:26
+#: classes/class-admin.php:341, includes/template-tags/accommodation.php:292, module.php:302, templates/content-accommodation.php:26, templates/content-widget-accommodation.php:26
 msgid "Brand"
 msgstr ""
 
@@ -1635,11 +1635,11 @@ msgstr ""
 msgid "Please consider signing up to our Tourism Industry newsletter"
 msgstr ""
 
-#: includes/template-tags/accommodation.php:285, templates/content-accommodation.php:24, templates/content-widget-accommodation.php:28
+#: includes/template-tags/accommodation.php:289, templates/content-accommodation.php:24, templates/content-widget-accommodation.php:28
 msgid "Rooms"
 msgstr ""
 
-#: includes/template-tags/accommodation.php:287, templates/content-accommodation.php:27, templates/content-widget-accommodation.php:25
+#: includes/template-tags/accommodation.php:291, templates/content-accommodation.php:27, templates/content-widget-accommodation.php:25
 msgid "Accommodation Style"
 msgstr ""
 

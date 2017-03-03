@@ -96,9 +96,9 @@ function lsx_to_has_facilities(){
  */
 function lsx_to_accommodation_facilities($before="",$after="",$echo=true){
 	$facilities = wp_get_object_terms(get_the_ID(),'facility');
-	$main_facilities = false;
-	$child_facilities = false;
-	$return = false;
+	$main_facilities = array();
+	$child_facilities = array();
+	$return = '';
 	if ( ! empty( $facilities ) && ! is_wp_error( $facilities ) ) {
 		foreach( $facilities as $facility ) {
 			if(0 === $facility->parent){
@@ -111,23 +111,27 @@ function lsx_to_accommodation_facilities($before="",$after="",$echo=true){
 		//Output in the order we want
 		if ( count( $main_facilities ) > 0 && count( $child_facilities ) > 0 ) {
 			foreach($main_facilities as $heading){
-				$return .= '<div class="'.$heading->slug.' col-sm-6"><div class="facilities-content"><h3><a href="'.get_term_link( $heading->slug, 'facility' ).'">'.esc_html( $heading->name ).'</a></h3>';
-				
-				if(is_array($child_facilities) && isset($child_facilities[$heading->term_id])){
+				if(isset($child_facilities[$heading->term_id])){
+					$return .= '<div class="'.$heading->slug.' col-sm-6"><div class="facilities-content"><h3><a href="'.get_term_link( $heading->slug, 'facility' ).'">'.esc_html( $heading->name ).'</a></h3>';
 					$return .= '<ul class="row">';
-						foreach($child_facilities[$heading->term_id] as $child_facility){
-							$return .= '<li class="col-sm-4"><a href="'.get_term_link( $child_facility->slug, 'facility' ).'">'.esc_html( $child_facility->name ).'</a></li>';
-						}
+
+					foreach($child_facilities[$heading->term_id] as $child_facility){
+						$return .= '<li class="col-sm-4"><a href="'.get_term_link( $child_facility->slug, 'facility' ).'">'.esc_html( $child_facility->name ).'</a></li>';
+					}
+
 					$return .= '</ul>';
+					$return .= '</div></div>';
 				}
-				$return .= '</div></div>';
 			}
 			
-			$return = $before.$return.$after;
-			if($echo){
-				echo wp_kses_post( $return );
-			}else{
-				return $return;
+			if ( ! empty( $return ) ) {
+				$return = $before.$return.$after;
+				
+				if($echo){
+					echo wp_kses_post( $return );
+				}else{
+					return $return;
+				}
 			}
 		}else{
 			return false;
