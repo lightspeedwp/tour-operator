@@ -586,7 +586,7 @@ $orange-dark: #f7741d;
 	}
 }
 
-%breadcrumb {
+%lsx-to-navigation {
 	margin: -60px 0 50px;
 
 	&.fixto-logged.fixto-fixed {
@@ -1581,7 +1581,7 @@ body.archive-tour-operator {
 	// ---------- Breadcrumb ----------
 
 	#main > .lsx-to-navigation {
-		@extend %breadcrumb;
+		@extend %lsx-to-navigation;
 	}
 
 	&:not(.page-has-banner) {
@@ -1732,7 +1732,7 @@ body.single-tour-operator {
 	// ---------- Breadcrumb ----------
 	
 	#main > .lsx-to-navigation {
-		@extend %breadcrumb;
+		@extend %lsx-to-navigation;
 		margin-top: 0;
 	}
 
