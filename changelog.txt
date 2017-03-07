@@ -16,6 +16,7 @@
 * Fix - Fixed the default pagination from LSX
 * Fix - Facilities without child items can't display
 * Fix - Fixed styles from post meta details on banner
+* Fix - Fixed fideos 16x9
 
 ### 1.0.4
 * Removed the last of the LSX_TO_POSTEXPIRATOR_TYPES constants

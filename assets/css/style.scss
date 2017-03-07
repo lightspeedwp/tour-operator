@@ -1868,9 +1868,10 @@ body.single-tour-operator {
 	}
 
 	#videos {
-		.video.thumbnail {
-			iframe {
-				width: 100%;
+		.video {
+			h3,
+			.entry-content {
+				margin-top: 15px !important;
 			}
 		}
 	}
