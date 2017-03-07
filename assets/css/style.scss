@@ -2130,6 +2130,18 @@ body:not(.home) {
 			font-size: 17px;
 			color: $white;
 		}
+
+		.post-meta {
+			.post-meta-time,
+			.post-meta-author,
+			.post-meta-categories {
+				margin-left: 10px;
+
+				&:first-child {
+					margin-left: 0;
+				}
+			}
+		}
 	}
 }
 

@@ -2945,6 +2945,15 @@ body:not(.home) .page-banner .post-meta {
   font-size: 17px;
   color: #fff; }
 
+body:not(.home) .page-banner .post-meta .post-meta-time,
+body:not(.home) .page-banner .post-meta .post-meta-author,
+body:not(.home) .page-banner .post-meta .post-meta-categories {
+  margin-left: 10px; }
+  body:not(.home) .page-banner .post-meta .post-meta-time:first-child,
+  body:not(.home) .page-banner .post-meta .post-meta-author:first-child,
+  body:not(.home) .page-banner .post-meta .post-meta-categories:first-child {
+    margin-left: 0; }
+
 body.single-tour-operator #gallery .gallery {
   margin: 0 auto; }
   body.single-tour-operator #gallery .gallery .gallery-item {
