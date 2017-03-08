@@ -2092,22 +2092,29 @@ body:not(.home) {
 		}
 
 		.breadcrumbs-container {
-			display: inline-block !important;
 			padding: 8px 16px;
 			color: $white;
 			margin-bottom: 0;
+
+			@media only screen and (min-width: 768px) {
+				display: inline-block !important;
+			}
 		}
 
 		.page-header {
 			line-height: 1;
 
 			h1.page-title {
-				display: inline-block;
-				width: auto !important;
 				padding: 0px 15px !important;
 				text-align: left !important;
-				font-size: 40px !important;
+				font-size: 30px !important;
 				box-shadow: none;
+
+				@media only screen and (min-width: 768px) {
+					display: inline-block;
+					font-size: 40px !important;
+					width: auto !important;
+				}
 			}
 
 			&:last-child {
@@ -2125,11 +2132,14 @@ body:not(.home) {
 
 		.tagline,
 		.post-meta {
-			display: inline-block;
 			margin: 0;
 			padding: 8px 17px;
 			font-size: 17px;
 			color: $white;
+
+			@media only screen and (min-width: 768px) {
+				display: inline-block;
+			}
 		}
 
 		.post-meta {

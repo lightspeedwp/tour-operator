@@ -2916,20 +2916,25 @@ body:not(.home) .page-banner .post-meta {
   background: rgba(0, 0, 0, 0.8); }
 
 body:not(.home) .page-banner .breadcrumbs-container {
-  display: inline-block !important;
   padding: 8px 16px;
   color: #fff;
   margin-bottom: 0; }
+  @media only screen and (min-width: 768px) {
+    body:not(.home) .page-banner .breadcrumbs-container {
+      display: inline-block !important; } }
 
 body:not(.home) .page-banner .page-header {
   line-height: 1; }
   body:not(.home) .page-banner .page-header h1.page-title {
-    display: inline-block;
-    width: auto !important;
     padding: 0px 15px !important;
     text-align: left !important;
-    font-size: 40px !important;
+    font-size: 30px !important;
     box-shadow: none; }
+    @media only screen and (min-width: 768px) {
+      body:not(.home) .page-banner .page-header h1.page-title {
+        display: inline-block;
+        font-size: 40px !important;
+        width: auto !important; } }
   body:not(.home) .page-banner .page-header:last-child h1.page-title {
     padding-bottom: 10px !important; }
 
@@ -2940,11 +2945,14 @@ body:not(.home) .page-banner .banner-content {
 
 body:not(.home) .page-banner .tagline,
 body:not(.home) .page-banner .post-meta {
-  display: inline-block;
   margin: 0;
   padding: 8px 17px;
   font-size: 17px;
   color: #fff; }
+  @media only screen and (min-width: 768px) {
+    body:not(.home) .page-banner .tagline,
+    body:not(.home) .page-banner .post-meta {
+      display: inline-block; } }
 
 body:not(.home) .page-banner .post-meta .post-meta-time,
 body:not(.home) .page-banner .post-meta .post-meta-author,

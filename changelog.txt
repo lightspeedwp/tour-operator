@@ -18,6 +18,7 @@
 * Fix - Fixed styles from post meta details on banner
 * Fix - Fixed fideos 16x9
 * Fix - Mysterious Man PNG image
+* Fix - Internal banner on small devices
 
 ### 1.0.4
 * Removed the last of the LSX_TO_POSTEXPIRATOR_TYPES constants
