@@ -612,11 +612,11 @@ class LSX_TO_Widget extends WP_Widget {
 	 */
 	public function placeholder($image){
 		$url = plugin_dir_url( __FILE__ );
-		$url = str_replace('/includes','/assets/img',$url).'/mystery-man-wide.png';
+		$url = str_replace('/includes/widgets','/assets/img',$url).'mystery-man-square.png';
 		$image = array(
 			$url,
-			350,
-			230,
+			100,
+			100,
 			true
 		);
 		return $image;
