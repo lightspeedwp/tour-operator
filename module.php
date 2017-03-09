@@ -416,22 +416,32 @@ class Tour_Operator {
 	 * A filter that outputs the tagline for the current page.
 	 */
 	public function get_tagline($tagline=false,$before='',$after='') {
-		$post_type = get_query_var( 'post_type' );
-		if(is_post_type_archive($this->active_post_types) && isset($this->options[$post_type]) && isset($this->options[$post_type]['tagline'])){
-			$tagline = $this->options[$post_type]['tagline'];
-		}	
-		if(is_singular($this->active_post_types)){
-			$tagline_value = get_post_meta(get_the_ID(),'banner_subtitle',true);
-			if(false !== $tagline_value){
+		$post_id = get_the_ID();
+
+		if ( ! empty( $post_id ) ) {
+			$tagline_value = get_post_meta( $post_id, 'banner_subtitle', true );
+
+			if ( false !== $tagline_value ) {
 				$tagline = $tagline_value;
+			} else {
+				$tagline_value = get_post_meta( $post_id, 'tagline', true );
+
+				if ( false !== $tagline_value ) {
+					$tagline = $tagline_value;
+				}
+			}
+		} else {
+			$post_type = get_query_var( 'post_type' );
+			if(is_post_type_archive($this->active_post_types) && isset($this->options[$post_type]) && isset($this->options[$post_type]['tagline'])){
+				$tagline = $this->options[$post_type]['tagline'];
+			}
+			elseif(is_tax(array_keys($this->taxonomies))){
+				$taxonomy_tagline = get_term_meta(get_queried_object_id(), 'tagline', true);
+				if(false !== $taxonomy_tagline && '' !== $taxonomy_tagline){
+					$tagline = $taxonomy_tagline;
+				}
 			}
 		}
-		if(is_tax(array_keys($this->taxonomies))){
-			$taxonomy_tagline = get_term_meta(get_queried_object_id(), 'tagline', true);
-			if(false !== $taxonomy_tagline && '' !== $taxonomy_tagline){
-				$tagline = $taxonomy_tagline;
-			}
-		}		
 		if(false !== $tagline && '' !== $tagline){
 			$tagline = $before.$tagline.$after;
 		}
