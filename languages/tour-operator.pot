@@ -1865,7 +1865,7 @@ msgstr ""
 msgid "Slider"
 msgstr ""
 
-#: module.php:699, module.php:712
+#: module.php:720, module.php:733
 msgid "Tour Operator Plugin requires PHP 5.6 or higher."
 msgstr ""
 

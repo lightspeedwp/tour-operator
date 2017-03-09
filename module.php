@@ -498,6 +498,14 @@ class Tour_Operator {
 		$allowedtags['a']['data-target'] = true;
 		$allowedtags['a']['data-slide'] = true;
 		$allowedtags['a']['data-collapsed'] = true;
+		$allowedtags['a']['data-envira-caption'] = true;
+		$allowedtags['a']['data-envira-retina'] = true;
+		$allowedtags['a']['data-thumbnail'] = true;
+		$allowedtags['a']['data-mobile-thumbnail'] = true;
+		$allowedtags['a']['data-envirabox-type'] = true;
+		$allowedtags['a']['data-video-width'] = true;
+		$allowedtags['a']['data-video-height'] = true;
+		$allowedtags['a']['data-video-aspect-ratio'] = true;
 
 		$allowedtags['div']['aria-labelledby'] = true;
 		$allowedtags['div']['data-interval'] = true;
@@ -518,6 +526,19 @@ class Tour_Operator {
 		$allowedtags['div']['data-fusion-tables-colour-border'] = true;
 		$allowedtags['div']['data-fusion-tables-width-border'] = true;
 		$allowedtags['div']['data-fusion-tables-colour-background'] = true;
+		$allowedtags['div']['itemscope'] = true;
+		$allowedtags['div']['itemtype'] = true;
+		$allowedtags['div']['data-row-height'] = true;
+		$allowedtags['div']['data-gallery-theme'] = true;
+		$allowedtags['div']['data-justified-margins'] = true;
+		$allowedtags['div']['data-envira-columns'] = true;
+		
+		$allowedtags['img']['data-envira-index'] = true;
+		$allowedtags['img']['data-envira-caption'] = true;
+		$allowedtags['img']['data-envira-gallery-id'] = true;
+		$allowedtags['img']['data-envira-item-id'] = true;
+		$allowedtags['img']['data-envira-src'] = true;
+		$allowedtags['img']['data-envira-srcset'] = true;
 
 		// New tags
 
