@@ -288,23 +288,6 @@ class LSX_TO_Accommodation {
 			$fields[] = array( 'id' => 'location_title',  'name' => esc_html__('Location','tour-operator'), 'type' => 'title' );
 			$fields[] = array( 'id' => 'location',  'name' => esc_html__('Address','tour-operator'), 'type' => 'gmap' );
 		}
-
-		// Contact Fields
-		/*if(false === $this->options || !isset($this->options['contact_details_disabled'])){
-			$contact_fields = array(
-					array( 'id' => 'contact_title',  'name' => esc_html__('Contact Details','tour-operator'), 'type' => 'title' ),
-					array( 'id' => 'name',  'name' => esc_html__('Name','tour-operator'), 'type' => 'text' ),
-					array( 'id' => 'email',  'name' => esc_html__('Email','tour-operator'), 'type' => 'text' ),
-					array( 'id' => 'phone',  'name' => esc_html__('Phone','tour-operator'), 'type' => 'text' ),
-					array( 'id' => 'website',  'name' => esc_html__('Website','tour-operator'), 'type' => 'text' ),
-			);
-			if(class_exists('TO_Maps')){
-				$contact_fields[] = array( 'id' => 'location',  'name' => esc_html__('Address','tour-operator'), 'type' => 'gmap' );
-			}else{
-				$contact_fields[] = array( 'id' => 'location',  'name' => esc_html__('Address','tour-operator'), 'type' => 'textarea' );
-			}
-			$fields = array_merge($fields,$contact_fields);
-		}*/
 		
 		//Fast Facts
 		$fast_facts_fields = array(
