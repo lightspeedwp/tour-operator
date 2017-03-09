@@ -1680,8 +1680,7 @@ body.single-tour-operator .social-links {
   body.single-tour-operator .social-links a {
     font-weight: normal;
     display: inline-block;
-    margin: 9px 5px 0 0;
-    height: 16px;
+    margin: 0 8px 0 0;
     overflow: hidden; }
 
 body.home aside.lsx-widget .slider-container, body.archive-tour-operator #safari-brands .slider-container,
