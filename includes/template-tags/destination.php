@@ -74,7 +74,6 @@ function lsx_to_country_regions(){
 				</div>
 			</section>		
 			<?php
-			wp_reset_query();
 			wp_reset_postdata();
 		endif; 
 	}

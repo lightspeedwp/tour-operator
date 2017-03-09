@@ -352,7 +352,6 @@ function lsx_to_connected_panel_query($args=false){
 				echo '</div>'.wp_kses_post( $args['after'] );
 				$return = ob_get_clean();
 				$lsx_to_archive = 0;
-				wp_reset_query();
 				wp_reset_postdata();
 			endif; // end of the loop. 
 		}
@@ -500,7 +499,6 @@ function lsx_to_related_items($taxonomy=false,$before="",$after="",$echo=true,$p
 		$return = ob_get_clean();
 			
 		$wp_query->is_single = 1;$wp_query->is_singular = 1;$wp_query->is_post_type_archive = 0;
-		wp_reset_query();
 		wp_reset_postdata();
 		
 		$return = $before.$return.$after;

@@ -598,7 +598,6 @@ class LSX_TO_Widget extends WP_Widget {
 								');
 			}
 			
-			wp_reset_query();
 			wp_reset_postdata();
 
 			if('review' === $post_type){
