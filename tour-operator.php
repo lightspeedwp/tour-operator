@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name: Tour Operator Plugin
+ * Plugin Name: Tour Operator
  * Plugin URI: https://www.lsdev.biz/product/tour-operator-plugin/
  * Description: The Tour Operator plugin core contains the Accommodation, Destination and Tour post types. Use these core post types to build day-by-day tour itineraries that map out of the progress of each tour through the various accommodations and destinations that are stayed at along the way.
  * Tags: tour operator, tour operators, tour, tours, tour itinerary, tour itineraries, accommodation, accommodation listings, destinations, regions, tourism, lsx
