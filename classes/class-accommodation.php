@@ -495,7 +495,9 @@ class LSX_TO_Accommodation {
 		if(get_post_type() === 'accommodation' && 'price' === $meta_key){
 			$price_type = get_post_meta(get_the_ID(),'price_type',true);
 			$value = preg_replace("/[^0-9,.]/", "", $value);
-			$value = number_format($value);
+			$value = ltrim($value, '.');
+			$value = str_replace(',','',$value);
+			$value = number_format((int) $value,2);
 			global $tour_operator;
 			$currency = '';
 			if ( is_object( $tour_operator ) && isset( $tour_operator->options['general'] ) && is_array( $tour_operator->options['general'] ) ) {
