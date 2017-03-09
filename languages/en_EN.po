@@ -67,7 +67,7 @@ msgstr ""
 msgid "No accommodation in trash"
 msgstr ""
 
-#: classes/class-accommodation.php:192, classes/class-accommodation.php:195, classes/class-accommodation.php:202, classes/class-accommodation.php:601, includes/layout.php:116, module.php:311
+#: classes/class-accommodation.php:192, classes/class-accommodation.php:195, classes/class-accommodation.php:202, classes/class-accommodation.php:599, includes/layout.php:116, module.php:311
 msgid "Facilities"
 msgstr ""
 
@@ -103,395 +103,395 @@ msgstr ""
 msgid "New Facility"
 msgstr ""
 
-#: classes/class-accommodation.php:220, classes/class-accommodation.php:221, module.php:303
+#: classes/class-accommodation.php:219, classes/class-accommodation.php:220, module.php:303
 msgid "Accommodation Type"
 msgstr ""
 
-#: classes/class-accommodation.php:222
+#: classes/class-accommodation.php:221
 msgid "Search Accommodation Types"
 msgstr ""
 
-#: classes/class-accommodation.php:223, classes/class-accommodation.php:230, module.php:310
+#: classes/class-accommodation.php:222, classes/class-accommodation.php:229, module.php:310
 msgid "Accommodation Types"
 msgstr ""
 
-#: classes/class-accommodation.php:224
+#: classes/class-accommodation.php:223
 msgid "Parent Accommodation Type"
 msgstr ""
 
-#: classes/class-accommodation.php:225
+#: classes/class-accommodation.php:224
 msgid "Parent Accommodation Type:"
 msgstr ""
 
-#: classes/class-accommodation.php:226
+#: classes/class-accommodation.php:225
 msgid "Edit Accommodation Type"
 msgstr ""
 
-#: classes/class-accommodation.php:227
+#: classes/class-accommodation.php:226
 msgid "Update Accommodation Type"
 msgstr ""
 
-#: classes/class-accommodation.php:228
+#: classes/class-accommodation.php:227
 msgid "Add New Accommodation Type"
 msgstr ""
 
-#: classes/class-accommodation.php:229
+#: classes/class-accommodation.php:228
 msgid "New Accommodation Type"
 msgstr ""
 
-#: classes/class-accommodation.php:260, classes/class-destination.php:154, classes/class-tour.php:180
+#: classes/class-accommodation.php:258, classes/class-destination.php:154, classes/class-tour.php:180
 msgid "Featured"
 msgstr ""
 
-#: classes/class-accommodation.php:262, classes/class-admin.php:617, classes/class-destination.php:179, classes/class-settings.php:473, classes/class-tour.php:182, classes/class-tour.php:321, includes/settings/post.php:20
+#: classes/class-accommodation.php:260, classes/class-admin.php:617, classes/class-destination.php:179, classes/class-settings.php:473, classes/class-tour.php:182, classes/class-tour.php:321, includes/settings/post.php:20
 msgid "Tagline"
 msgstr ""
 
-#: classes/class-accommodation.php:271
+#: classes/class-accommodation.php:269
 msgid "Price Type"
 msgstr ""
 
-#: classes/class-accommodation.php:275
+#: classes/class-accommodation.php:273
 msgid "Per Person Per Night"
 msgstr ""
 
-#: classes/class-accommodation.php:276
+#: classes/class-accommodation.php:274
 msgid "Per Person Sharing"
 msgstr ""
 
-#: classes/class-accommodation.php:277
+#: classes/class-accommodation.php:275
 msgid "Per Person Sharing Per Night"
 msgstr ""
 
-#: classes/class-accommodation.php:278
+#: classes/class-accommodation.php:276
 msgid "Percentage Off Your Price."
 msgstr ""
 
-#: classes/class-accommodation.php:282, classes/class-tour.php:227, classes/class-tour.php:336, includes/template-tags/tour.php:145
+#: classes/class-accommodation.php:280, classes/class-tour.php:227, classes/class-tour.php:336, includes/template-tags/tour.php:145
 msgid "Included"
 msgstr ""
 
-#: classes/class-accommodation.php:283, classes/class-tour.php:228, classes/class-tour.php:337, includes/template-tags/tour.php:153
+#: classes/class-accommodation.php:281, classes/class-tour.php:228, classes/class-tour.php:337, includes/template-tags/tour.php:153
 msgid "Not Included"
 msgstr ""
 
-#: classes/class-accommodation.php:285
+#: classes/class-accommodation.php:283
 msgid "Accommodation Expert"
 msgstr ""
 
-#: classes/class-accommodation.php:288, classes/class-admin.php:374, classes/class-admin.php:375, classes/class-destination.php:206, classes/class-fields.php:69, includes/template-tags/accommodation.php:297, module.php:305, templates/content-accommodation.php:33, templates/content-widget-accommodation.php:27
+#: classes/class-accommodation.php:286, classes/class-admin.php:374, classes/class-admin.php:375, classes/class-destination.php:206, classes/class-fields.php:69, includes/template-tags/accommodation.php:297, module.php:305, templates/content-accommodation.php:33, templates/content-widget-accommodation.php:27
 msgid "Location"
 msgstr ""
 
-#: classes/class-accommodation.php:289, classes/class-fields.php:70
+#: classes/class-accommodation.php:287, classes/class-fields.php:70
 msgid "Address"
 msgstr ""
 
-#: classes/class-accommodation.php:294
+#: classes/class-accommodation.php:292
 msgid "Fast Facts"
 msgstr ""
 
-#: classes/class-accommodation.php:297
+#: classes/class-accommodation.php:295
 msgid "Rating Type"
 msgstr ""
 
-#: classes/class-accommodation.php:300, classes/class-accommodation.php:551, classes/class-tour.php:436
+#: classes/class-accommodation.php:298, classes/class-accommodation.php:549, classes/class-tour.php:436
 msgid "Unspecified"
 msgstr ""
 
-#: classes/class-accommodation.php:301
+#: classes/class-accommodation.php:299
 msgid "TGCSA"
 msgstr ""
 
-#: classes/class-accommodation.php:302
+#: classes/class-accommodation.php:300
 msgid "Hotelstars Union"
 msgstr ""
 
-#: classes/class-accommodation.php:305, classes/class-itinerary.php:339, includes/template-tags/accommodation.php:290, templates/content-accommodation.php:25, templates/content-widget-accommodation.php:29
+#: classes/class-accommodation.php:303, classes/class-itinerary.php:339, includes/template-tags/accommodation.php:290, templates/content-accommodation.php:25, templates/content-widget-accommodation.php:29
 msgid "Rating"
 msgstr ""
 
-#: classes/class-accommodation.php:306
+#: classes/class-accommodation.php:304
 msgid "Number of Rooms"
 msgstr ""
 
-#: classes/class-accommodation.php:307
+#: classes/class-accommodation.php:305
 msgid "Check-in Time"
 msgstr ""
 
-#: classes/class-accommodation.php:308
+#: classes/class-accommodation.php:306
 msgid "Check-out Time"
 msgstr ""
 
-#: classes/class-accommodation.php:309
+#: classes/class-accommodation.php:307
 msgid "Minimum Child Age"
 msgstr ""
 
-#: classes/class-accommodation.php:312, includes/template-tags/accommodation.php:294, templates/content-accommodation.php:29
+#: classes/class-accommodation.php:310, includes/template-tags/accommodation.php:294, templates/content-accommodation.php:29
 msgid "Spoken Languages"
 msgstr ""
 
-#: classes/class-accommodation.php:316
+#: classes/class-accommodation.php:314
 msgid "Afrikaans"
 msgstr ""
 
-#: classes/class-accommodation.php:317
+#: classes/class-accommodation.php:315
 msgid "Chinese"
 msgstr ""
 
-#: classes/class-accommodation.php:318
+#: classes/class-accommodation.php:316
 msgid "Dutch"
 msgstr ""
 
-#: classes/class-accommodation.php:319
+#: classes/class-accommodation.php:317
 msgid "English"
 msgstr ""
 
-#: classes/class-accommodation.php:320
+#: classes/class-accommodation.php:318
 msgid "Flemish"
 msgstr ""
 
-#: classes/class-accommodation.php:321
+#: classes/class-accommodation.php:319
 msgid "French"
 msgstr ""
 
-#: classes/class-accommodation.php:322
+#: classes/class-accommodation.php:320
 msgid "German"
 msgstr ""
 
-#: classes/class-accommodation.php:323
+#: classes/class-accommodation.php:321
 msgid "Indian"
 msgstr ""
 
-#: classes/class-accommodation.php:324
+#: classes/class-accommodation.php:322
 msgid "Italian"
 msgstr ""
 
-#: classes/class-accommodation.php:325
+#: classes/class-accommodation.php:323
 msgid "Japanese"
 msgstr ""
 
-#: classes/class-accommodation.php:326
+#: classes/class-accommodation.php:324
 msgid "Portuguese"
 msgstr ""
 
-#: classes/class-accommodation.php:327
+#: classes/class-accommodation.php:325
 msgid "Russian"
 msgstr ""
 
-#: classes/class-accommodation.php:328
+#: classes/class-accommodation.php:326
 msgid "Spanish"
 msgstr ""
 
-#: classes/class-accommodation.php:329
+#: classes/class-accommodation.php:327
 msgid "Swahili"
 msgstr ""
 
-#: classes/class-accommodation.php:330
+#: classes/class-accommodation.php:328
 msgid "Xhosa"
 msgstr ""
 
-#: classes/class-accommodation.php:331
+#: classes/class-accommodation.php:329
 msgid "Zulu"
 msgstr ""
 
-#: classes/class-accommodation.php:336, includes/template-tags/accommodation.php:295, templates/content-accommodation.php:30
+#: classes/class-accommodation.php:334, includes/template-tags/accommodation.php:295, templates/content-accommodation.php:30
 msgid "Friendly"
 msgstr ""
 
-#: classes/class-accommodation.php:340
+#: classes/class-accommodation.php:338
 msgid "Business"
 msgstr ""
 
-#: classes/class-accommodation.php:341
+#: classes/class-accommodation.php:339
 msgid "Children"
 msgstr ""
 
-#: classes/class-accommodation.php:342
+#: classes/class-accommodation.php:340
 msgid "Disability"
 msgstr ""
 
-#: classes/class-accommodation.php:343, classes/class-accommodation.php:370
+#: classes/class-accommodation.php:341, classes/class-accommodation.php:368
 msgid "Leisure"
 msgstr ""
 
-#: classes/class-accommodation.php:344
+#: classes/class-accommodation.php:342
 msgid "Luxury"
 msgstr ""
 
-#: classes/class-accommodation.php:345
+#: classes/class-accommodation.php:343
 msgid "Pet"
 msgstr ""
 
-#: classes/class-accommodation.php:346
+#: classes/class-accommodation.php:344
 msgid "Romance"
 msgstr ""
 
-#: classes/class-accommodation.php:347
+#: classes/class-accommodation.php:345
 msgid "Vegetarian"
 msgstr ""
 
-#: classes/class-accommodation.php:348
+#: classes/class-accommodation.php:346
 msgid "Weddings"
 msgstr ""
 
-#: classes/class-accommodation.php:353, classes/class-itinerary.php:341, includes/template-tags/accommodation.php:296, templates/content-accommodation.php:31
+#: classes/class-accommodation.php:351, classes/class-itinerary.php:341, includes/template-tags/accommodation.php:296, templates/content-accommodation.php:31
 msgid "Special Interests"
 msgstr ""
 
-#: classes/class-accommodation.php:357
+#: classes/class-accommodation.php:355
 msgid "Adventure"
 msgstr ""
 
-#: classes/class-accommodation.php:358
+#: classes/class-accommodation.php:356
 msgid "Battlefields"
 msgstr ""
 
-#: classes/class-accommodation.php:359
+#: classes/class-accommodation.php:357
 msgid "Beach / Coastal"
 msgstr ""
 
-#: classes/class-accommodation.php:360
+#: classes/class-accommodation.php:358
 msgid "Big 5"
 msgstr ""
 
-#: classes/class-accommodation.php:361
+#: classes/class-accommodation.php:359
 msgid "Birding"
 msgstr ""
 
-#: classes/class-accommodation.php:362
+#: classes/class-accommodation.php:360
 msgid "Cycling"
 msgstr ""
 
-#: classes/class-accommodation.php:363
+#: classes/class-accommodation.php:361
 msgid "Fishing"
 msgstr ""
 
-#: classes/class-accommodation.php:364
+#: classes/class-accommodation.php:362
 msgid "Flora"
 msgstr ""
 
-#: classes/class-accommodation.php:365
+#: classes/class-accommodation.php:363
 msgid "Golf"
 msgstr ""
 
-#: classes/class-accommodation.php:366
+#: classes/class-accommodation.php:364
 msgid "Gourmet"
 msgstr ""
 
-#: classes/class-accommodation.php:367
+#: classes/class-accommodation.php:365
 msgid "Hiking"
 msgstr ""
 
-#: classes/class-accommodation.php:368
+#: classes/class-accommodation.php:366
 msgid "History & Culture"
 msgstr ""
 
-#: classes/class-accommodation.php:369
+#: classes/class-accommodation.php:367
 msgid "Indigenous Culture / Art"
 msgstr ""
 
-#: classes/class-accommodation.php:371
+#: classes/class-accommodation.php:369
 msgid "Nature Relaxation"
 msgstr ""
 
-#: classes/class-accommodation.php:372
+#: classes/class-accommodation.php:370
 msgid "Shopping"
 msgstr ""
 
-#: classes/class-accommodation.php:373
+#: classes/class-accommodation.php:371
 msgid "Sports"
 msgstr ""
 
-#: classes/class-accommodation.php:374
+#: classes/class-accommodation.php:372
 msgid "Star Gazing"
 msgstr ""
 
-#: classes/class-accommodation.php:375
+#: classes/class-accommodation.php:373
 msgid "Watersports"
 msgstr ""
 
-#: classes/class-accommodation.php:376
+#: classes/class-accommodation.php:374
 msgid "Wildlife"
 msgstr ""
 
-#: classes/class-accommodation.php:377
+#: classes/class-accommodation.php:375
 msgid "Wine"
 msgstr ""
 
-#: classes/class-accommodation.php:385, classes/class-accommodation.php:411, classes/class-accommodation.php:624, classes/class-accommodation.php:630, classes/class-destination.php:196, classes/class-destination.php:365, classes/class-destination.php:371, classes/class-tour.php:216, classes/class-tour.php:518, classes/class-tour.php:524, includes/layout.php:128, includes/layout.php:130, includes/layout.php:201, includes/layout.php:203, includes/layout.php:304, includes/layout.php:306
+#: classes/class-accommodation.php:383, classes/class-accommodation.php:409, classes/class-accommodation.php:622, classes/class-accommodation.php:628, classes/class-destination.php:196, classes/class-destination.php:365, classes/class-destination.php:371, classes/class-tour.php:216, classes/class-tour.php:518, classes/class-tour.php:524, includes/layout.php:128, includes/layout.php:130, includes/layout.php:201, includes/layout.php:203, includes/layout.php:304, includes/layout.php:306
 msgid "Gallery"
 msgstr ""
 
-#: classes/class-accommodation.php:394
+#: classes/class-accommodation.php:392
 msgid "Units"
 msgstr ""
 
-#: classes/class-accommodation.php:404, classes/class-itinerary.php:340, includes/template-tags/accommodation.php:293, templates/content-accommodation.php:28
+#: classes/class-accommodation.php:402, classes/class-itinerary.php:340, includes/template-tags/accommodation.php:293, templates/content-accommodation.php:28
 msgid "Type"
 msgstr ""
 
-#: classes/class-accommodation.php:408, classes/class-fields.php:54, classes/class-settings.php:465, classes/class-tour.php:319, includes/settings/post.php:28
+#: classes/class-accommodation.php:406, classes/class-fields.php:54, classes/class-settings.php:465, classes/class-tour.php:319, includes/settings/post.php:28
 msgid "Title"
 msgstr ""
 
-#: classes/class-accommodation.php:409, classes/class-fields.php:55, classes/class-settings.php:481, classes/class-tour.php:324, includes/settings/post.php:37
+#: classes/class-accommodation.php:407, classes/class-fields.php:55, classes/class-settings.php:481, classes/class-tour.php:324, includes/settings/post.php:37
 msgid "Description"
 msgstr ""
 
-#: classes/class-accommodation.php:410, classes/class-tour.php:224, classes/class-tour.php:225
+#: classes/class-accommodation.php:408, classes/class-tour.php:224, classes/class-tour.php:225
 msgid "Price"
 msgstr ""
 
-#: classes/class-accommodation.php:417, classes/class-destination.php:111, classes/class-destination.php:117, classes/class-destination.php:123, classes/class-tour.php:454, includes/layout.php:336, module.php:286, templates/content-tour.php:28, templates/content-widget-tour.php:27
+#: classes/class-accommodation.php:415, classes/class-destination.php:111, classes/class-destination.php:117, classes/class-destination.php:123, classes/class-tour.php:454, includes/layout.php:336, module.php:286, templates/content-tour.php:28, templates/content-widget-tour.php:27
 msgid "Destinations"
 msgstr ""
 
-#: classes/class-accommodation.php:418
+#: classes/class-accommodation.php:416
 msgid "Destinations related with this accommodation"
 msgstr ""
 
-#: classes/class-accommodation.php:419, classes/class-accommodation.php:658, classes/class-destination.php:399, classes/class-tour.php:123, classes/class-tour.php:129, classes/class-tour.php:135, module.php:288
+#: classes/class-accommodation.php:417, classes/class-accommodation.php:656, classes/class-destination.php:399, classes/class-tour.php:123, classes/class-tour.php:129, classes/class-tour.php:135, module.php:288
 msgid "Tours"
 msgstr ""
 
-#: classes/class-accommodation.php:420
+#: classes/class-accommodation.php:418
 msgid "Tours related with this accommodation"
 msgstr ""
 
-#: classes/class-accommodation.php:427, classes/class-tour.php:257
+#: classes/class-accommodation.php:425, classes/class-tour.php:257
 msgid "Tour Operator Plugin"
 msgstr ""
 
-#: classes/class-accommodation.php:443
+#: classes/class-accommodation.php:441
 msgid "Disable \"Contact Details\" panel"
 msgstr ""
 
-#: classes/class-accommodation.php:459
+#: classes/class-accommodation.php:457
 msgid "Display Connected Tours"
 msgstr ""
 
-#: classes/class-accommodation.php:463
+#: classes/class-accommodation.php:461
 msgid "This will replace the related accommodation with the connected tours instead."
 msgstr ""
 
-#: classes/class-accommodation.php:518
+#: classes/class-accommodation.php:516
 msgid "Off"
 msgstr ""
 
-#: classes/class-accommodation.php:519, classes/class-tour.php:452, includes/layout.php:334, includes/template-tags/accommodation.php:288, templates/content-accommodation.php:22, templates/content-tour.php:23, templates/content-widget-accommodation.php:24, templates/content-widget-tour.php:25
+#: classes/class-accommodation.php:517, classes/class-tour.php:452, includes/layout.php:334, includes/template-tags/accommodation.php:288, templates/content-accommodation.php:22, templates/content-tour.php:23, templates/content-widget-accommodation.php:24, templates/content-widget-tour.php:25
 msgid "From price"
 msgstr ""
 
-#: classes/class-accommodation.php:589, classes/class-units.php:377, includes/layout.php:139, includes/template-tags/destination.php:25, templates/archive-accommodation.php:48
+#: classes/class-accommodation.php:587, classes/class-units.php:377, includes/layout.php:139, includes/template-tags/destination.php:25, templates/archive-accommodation.php:48
 msgid "lsx_to_get_post_type_section_titleaccommodation"
 msgstr ""
 
-#: classes/class-accommodation.php:610, classes/class-destination.php:352, classes/class-tour.php:504, includes/layout.php:122, includes/layout.php:195, includes/layout.php:298, templates/archive-destination.php:211
+#: classes/class-accommodation.php:608, classes/class-destination.php:352, classes/class-tour.php:504, includes/layout.php:122, includes/layout.php:195, includes/layout.php:298, templates/archive-destination.php:211
 msgid "Map"
 msgstr ""
 
-#: classes/class-accommodation.php:648, classes/class-destination.php:389, classes/class-fields.php:45, classes/class-tour.php:542, includes/layout.php:134, includes/layout.php:136, includes/layout.php:207, includes/layout.php:209, includes/layout.php:310, includes/layout.php:312, includes/settings/add-ons.php:174, includes/settings/help.php:125
+#: classes/class-accommodation.php:646, classes/class-destination.php:389, classes/class-fields.php:45, classes/class-tour.php:542, includes/layout.php:134, includes/layout.php:136, includes/layout.php:207, includes/layout.php:209, includes/layout.php:310, includes/layout.php:312, includes/settings/add-ons.php:174, includes/settings/help.php:125
 msgid "Videos"
 msgstr ""
 
