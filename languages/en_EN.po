@@ -1575,63 +1575,63 @@ msgstr ""
 msgid "Edit this on the page you have set as the \"blog\""
 msgstr ""
 
-#: includes/settings/welcome.php:15
+#: includes/settings/welcome.php:12
 msgid "Welcome to the Tour Operator Plugin"
 msgstr ""
 
-#: includes/settings/welcome.php:16
+#: includes/settings/welcome.php:13
 msgid "You are running version 1.0 - Thanks for Keeping up to date!"
 msgstr ""
 
-#: includes/settings/welcome.php:30
+#: includes/settings/welcome.php:27
 msgid "Getting started"
 msgstr ""
 
-#: includes/settings/welcome.php:31
+#: includes/settings/welcome.php:28
 msgid "Check out the documentation"
 msgstr ""
 
-#: includes/settings/welcome.php:37
+#: includes/settings/welcome.php:34
 msgid "Release notes"
 msgstr ""
 
-#: includes/settings/welcome.php:38
+#: includes/settings/welcome.php:35
 msgid "Get the latest on updates to the Tour Operator plugin"
 msgstr ""
 
-#: includes/settings/welcome.php:46
+#: includes/settings/welcome.php:43
 msgid "Looking for more features?"
 msgstr ""
 
-#: includes/settings/welcome.php:47
+#: includes/settings/welcome.php:44
 msgid "Check out our suite of add ons"
 msgstr ""
 
-#: includes/settings/welcome.php:53
+#: includes/settings/welcome.php:50
 msgid "News for Tour Operators"
 msgstr ""
 
-#: includes/settings/welcome.php:54
+#: includes/settings/welcome.php:51
 msgid "Check out our blog posts geared towards helping Tour Operators succeed online"
 msgstr ""
 
-#: includes/settings/welcome.php:63
+#: includes/settings/welcome.php:60
 msgid "Help us keep the Tour Operator core FREE"
 msgstr ""
 
-#: includes/settings/welcome.php:64
+#: includes/settings/welcome.php:61
 msgid "5-star ratings help us to bring the Tour Operator plugin to more users. The more users we have the more we get requests to add features to make the plugin even better for you. We couldn’t do it without your support."
 msgstr ""
 
-#: includes/settings/welcome.php:67
+#: includes/settings/welcome.php:64
 msgid "Rate it 5 stars"
 msgstr ""
 
-#: includes/settings/welcome.php:77
+#: includes/settings/welcome.php:74
 msgid "Rate It!"
 msgstr ""
 
-#: includes/settings/welcome.php:83
+#: includes/settings/welcome.php:80
 msgid "Please consider signing up to our Tourism Industry newsletter"
 msgstr ""
 
