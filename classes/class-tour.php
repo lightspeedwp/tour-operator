@@ -231,12 +231,6 @@ class LSX_TO_Tour {
 			$fields[] = array( 'id' => 'special_to_tour', 'name' => esc_html__('Specials related with this tour','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'special','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none' => true , 'repeatable' => true, 'sortable' => true, 'cols' => 12 );
 		}
 		
-		//Connections
-		if(post_type_exists('review')){
-			$fields[] = array( 'id' => 'review_title',  'name' => esc_html__('Reviews','tour-operator'), 'type' => 'title', 'cols' => 12);
-			$fields[] = array( 'id' => 'review_to_tour', 'name' => esc_html__('Reviews related with this tour','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'review','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true,'allow_none'=>true, 'cols' => 12 );
-		}
-		
 		//Itinerary Details
 		$fields[] = array( 'id' => 'itinerary_title',  'name' => esc_html__('Itinerary','tour-operator'), 'type' => 'title' );
 		$fields[] = array( 'id' => 'itinerary_kml', 'name' => esc_html__( 'Itinerary KML File', 'tour-operator' ), 'type' => 'file', 'show_size' => true, 'cols' => 12 );
@@ -251,6 +245,12 @@ class LSX_TO_Tour {
 				'desc' => ''
 		);		
 
+		//Connections
+		$fields[] = array( 'id' => 'accommodation_title',  'name' => esc_html__('Accommodation','tour-operator'), 'type' => 'title', 'cols' => 12 );
+		$fields[] = array( 'id' => 'accommodation_to_tour', 'name' => esc_html__('Accommodation related with this tour','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'accommodation','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
+		$fields[] = array( 'id' => 'destinations_title',  'name' => esc_html__('Destinations','tour-operator'), 'type' => 'title', 'cols' => 12 );
+		$fields[] = array( 'id' => 'destination_to_tour', 'name' => esc_html__('Destinations related with this tour','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'destination','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
+		
 		$fields = apply_filters('lsx_to_tour_custom_fields',$fields);
 		
 		$meta_boxes[] = array(

@@ -203,12 +203,12 @@ class LSX_TO_Destination{
 			$fields[] = array( 'id' => 'location',  'name' => esc_html__('Location','tour-operator'), 'type' => 'gmap', 'google_api_key' => $this->options['api']['googlemaps_key'] );
 		}
 		
-		$fields[] = array( 'id' => 'connections_title',  'name' => esc_html__('Connections','tour-operator'), 'type' => 'title' );
-
-		$fields[] = array( 'id' => 'accommodation_to_destination', 'name' => esc_html__('Accommodations related with this destination','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'accommodation','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true );
-		$fields[] = array( 'id' => 'tour_to_destination', 'name' => esc_html__('Tours related with this destination','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'tour','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true );
-
-
+		//Connections
+		$fields[] = array( 'id' => 'accommodation_title',  'name' => esc_html__('Accommodation','tour-operator'), 'type' => 'title', 'cols' => 12 );
+		$fields[] = array( 'id' => 'accommodation_to_destination', 'name' => esc_html__('Accommodation related with this destination','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'accommodation','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
+		$fields[] = array( 'id' => 'tours_title',  'name' => esc_html__('Tours','tour-operator'), 'type' => 'title', 'cols' => 12 );
+		$fields[] = array( 'id' => 'tour_to_destination', 'name' => esc_html__('Tours related with this destination','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'tour','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
+		
 		//Allow the addons to add additional fields.
 		$fields = apply_filters('lsx_to_destination_custom_fields',$fields);
 		

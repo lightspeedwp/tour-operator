@@ -35,7 +35,7 @@ msgstr ""
 msgid "Villa"
 msgstr ""
 
-#: classes/class-accommodation.php:138, classes/class-accommodation.php:139, classes/class-accommodation.php:143, classes/class-accommodation.php:149, classes/class-destination.php:405, includes/layout.php:281, module.php:287, module.php:292
+#: classes/class-accommodation.php:138, classes/class-accommodation.php:139, classes/class-accommodation.php:143, classes/class-accommodation.php:149, classes/class-destination.php:207, classes/class-destination.php:405, classes/class-tour.php:249, includes/layout.php:281, module.php:287, module.php:292
 msgid "Accommodation"
 msgstr ""
 
@@ -443,7 +443,7 @@ msgstr ""
 msgid "Price"
 msgstr ""
 
-#: classes/class-accommodation.php:409, classes/class-destination.php:107, classes/class-destination.php:113, classes/class-destination.php:119, classes/class-tour.php:454, includes/layout.php:336, module.php:286, templates/content-tour.php:28, templates/content-widget-tour.php:27
+#: classes/class-accommodation.php:409, classes/class-destination.php:107, classes/class-destination.php:113, classes/class-destination.php:119, classes/class-tour.php:251, classes/class-tour.php:454, includes/layout.php:336, module.php:286, templates/content-tour.php:28, templates/content-widget-tour.php:27
 msgid "Destinations"
 msgstr ""
 
@@ -451,7 +451,7 @@ msgstr ""
 msgid "Destinations related with this accommodation"
 msgstr ""
 
-#: classes/class-accommodation.php:411, classes/class-accommodation.php:650, classes/class-destination.php:396, classes/class-tour.php:123, classes/class-tour.php:129, classes/class-tour.php:135, module.php:288
+#: classes/class-accommodation.php:411, classes/class-accommodation.php:650, classes/class-destination.php:209, classes/class-destination.php:396, classes/class-tour.php:123, classes/class-tour.php:129, classes/class-tour.php:135, module.php:288
 msgid "Tours"
 msgstr ""
 
@@ -715,15 +715,11 @@ msgstr ""
 msgid "Destination Expert"
 msgstr ""
 
-#: classes/class-destination.php:206
-msgid "Connections"
-msgstr ""
-
 #: classes/class-destination.php:208
-msgid "Accommodations related with this destination"
+msgid "Accommodation related with this destination"
 msgstr ""
 
-#: classes/class-destination.php:209
+#: classes/class-destination.php:210
 msgid "Tours related with this destination"
 msgstr ""
 
@@ -1051,20 +1047,20 @@ msgstr ""
 msgid "Specials related with this tour"
 msgstr ""
 
-#: classes/class-tour.php:236, includes/settings/add-ons.php:80, includes/settings/help.php:121
-msgid "Reviews"
-msgstr ""
-
-#: classes/class-tour.php:237
-msgid "Reviews related with this tour"
-msgstr ""
-
-#: classes/class-tour.php:241, classes/class-tour.php:484
+#: classes/class-tour.php:235, classes/class-tour.php:484
 msgid "Itinerary"
 msgstr ""
 
-#: classes/class-tour.php:242
+#: classes/class-tour.php:236
 msgid "Itinerary KML File"
+msgstr ""
+
+#: classes/class-tour.php:250
+msgid "Accommodation related with this tour"
+msgstr ""
+
+#: classes/class-tour.php:252
+msgid "Destinations related with this tour"
 msgstr ""
 
 #: classes/class-tour.php:273
@@ -1285,6 +1281,10 @@ msgstr ""
 
 #: includes/settings/add-ons.php:66
 msgid "With the Special Offers extension you’re able to set up time-sensitive prices that you can use to price your accommodations, activities and tours. Set up booking validity dates, specials per person sharing/per person sharing/per person sharing per night, team members per special and more."
+msgstr ""
+
+#: includes/settings/add-ons.php:80, includes/settings/help.php:121
+msgid "Reviews"
 msgstr ""
 
 #: includes/settings/add-ons.php:81
