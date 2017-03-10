@@ -1651,11 +1651,11 @@ msgstr ""
 msgid "Enquire"
 msgstr ""
 
-#: includes/template-tags/helpers.php:484, includes/widgets/post-type-widget.php:716, includes/widgets/taxonomy-widget.php:640
+#: includes/template-tags/helpers.php:492, includes/widgets/post-type-widget.php:716, includes/widgets/taxonomy-widget.php:640
 msgid "Previous"
 msgstr ""
 
-#: includes/template-tags/helpers.php:488, includes/widgets/post-type-widget.php:720, includes/widgets/taxonomy-widget.php:644
+#: includes/template-tags/helpers.php:496, includes/widgets/post-type-widget.php:720, includes/widgets/taxonomy-widget.php:644
 msgid "Next"
 msgstr ""
 

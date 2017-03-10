@@ -397,8 +397,16 @@ function lsx_to_related_items($taxonomy=false,$before="",$after="",$echo=true,$p
 
 			//only allow relation by 1 property type term
 			if(is_array($terms) && !empty($terms)){
+				$filters['tax_query'] = array(
+					array(
+						'taxonomy' => $taxonomy,
+						'field'    => 'slug',
+						'terms'    => array(),
+					),
+				);
+
 				foreach($terms as $term){
-					$filters[$taxonomy] = $term->slug;
+					$filters['tax_query'][0]['terms'][] = $term->slug;
 				}
 			}
 		}
