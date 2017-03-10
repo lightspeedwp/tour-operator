@@ -151,7 +151,7 @@ function lsx_to_destination_travel_info() {
 		);
 		?>
 		<section id="travel-info">
-			<h2 class="section-title"><?php esc_html_e( 'Travel Info', 'tour-operator' ); ?></h2>
+			<h2 class="section-title"><?php esc_html_e( 'Travel Information', 'tour-operator' ); ?></h2>
 			<div class="travel-info-content row">
 				<?php foreach ( $items as $key => $value ) : ?>
 					<?php if ( ! empty( $value ) ) : ?>

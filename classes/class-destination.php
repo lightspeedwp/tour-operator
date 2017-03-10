@@ -315,7 +315,7 @@ class LSX_TO_Destination{
 	}
 
 	/**
-	 * Adds the Travel indo to the $page_links variable
+	 * Adds the Travel Information to the $page_links variable
 	 */
 	public function get_travel_info_link()	{
 		$electricity = get_post_meta( get_the_ID(), 'electricity', true );
@@ -326,7 +326,7 @@ class LSX_TO_Destination{
 		$dress       = get_post_meta( get_the_ID(), 'dress', true );
 
 		if ( ! empty( $electricity ) || ! empty( $banking ) || ! empty( $cuisine ) || ! empty( $climate ) || ! empty( $transport ) || ! empty( $dress ) ) {
-			$this->page_links['travel-info'] = esc_html__( 'Travel Info', 'tour-operator' );
+			$this->page_links['travel-info'] = esc_html__( 'Travel Information', 'tour-operator' );
 		}
 	}
 
