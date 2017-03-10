@@ -20,6 +20,7 @@
 * Fix - Mysterious Man PNG image
 * Fix - Internal banner on small devices
 * Fix - Small fixes on front-end fields
+* Fix - Made Google Maps works on back-end
 
 ### 1.0.4
 * Removed the last of the LSX_TO_POSTEXPIRATOR_TYPES constants

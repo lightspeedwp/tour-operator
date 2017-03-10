@@ -74,12 +74,6 @@ class LSX_TO_Accommodation {
 		$this->display_connected_tours = false;
 
 		$this->options = get_option('_lsx-to_settings',false);
-		if(false !== $this->options && isset($this->options[$this->plugin_slug]) && !empty($this->options[$this->plugin_slug])){
-			$this->options = $this->options[$this->plugin_slug];
-		}
-		else{
-			$this->options = false;
-		}
 
 		$this->unit_types = array(
 			'chalet' => esc_html__('Chalet','tour-operator'),
@@ -282,9 +276,9 @@ class LSX_TO_Accommodation {
 
 		$fields[] = array( 'id' => 'team_to_accommodation', 'name' => esc_html__('Accommodation Expert','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12 );
 		
-		if(class_exists('LSX_TO_Maps') && false !== $this->options && isset($this->options['contact_details_disabled'])){
+		if(class_exists('LSX_TO_Maps')){
 			$fields[] = array( 'id' => 'location_title',  'name' => esc_html__('Location','tour-operator'), 'type' => 'title' );
-			$fields[] = array( 'id' => 'location',  'name' => esc_html__('Address','tour-operator'), 'type' => 'gmap' );
+			$fields[] = array( 'id' => 'location',  'name' => esc_html__('Address','tour-operator'), 'type' => 'gmap', 'google_api_key' => $this->options['api']['googlemaps_key'] );
 		}
 		
 		//Fast Facts

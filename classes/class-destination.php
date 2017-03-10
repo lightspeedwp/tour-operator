@@ -61,11 +61,7 @@ class LSX_TO_Destination{
 	 * @access private
 	 */
 	private function __construct() {
-		// activate property post type
-		$temp = get_option('_lsx-to_settings',false);
-		if(false !== $temp && isset($temp[$this->plugin_slug]) && !empty($temp[$this->plugin_slug])){
-			$this->options = $temp[$this->plugin_slug];
-		}
+		$this->options = get_option('_lsx-to_settings',false);
 
 		add_action( 'init', array( $this, 'register_post_types' ) );
 		add_filter( 'cmb_meta_boxes', array( $this, 'register_metaboxes') );
@@ -202,8 +198,9 @@ class LSX_TO_Destination{
 		}	
 			
 
-		if(!class_exists('LSX_TO_Maps')){
-			$fields[] = array( 'id' => 'location',  'name' => esc_html__('Location','tour-operator'), 'type' => 'gmap' );
+		if(class_exists('LSX_TO_Maps')){
+			$fields[] = array( 'id' => 'location_title',  'name' => esc_html__('Location','tour-operator'), 'type' => 'title' );
+			$fields[] = array( 'id' => 'location',  'name' => esc_html__('Location','tour-operator'), 'type' => 'gmap', 'google_api_key' => $this->options['api']['googlemaps_key'] );
 		}
 		
 		$fields[] = array( 'id' => 'connections_title',  'name' => esc_html__('Connections','tour-operator'), 'type' => 'title' );
