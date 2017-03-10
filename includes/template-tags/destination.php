@@ -137,7 +137,7 @@ function lsx_to_destination_travel_info() {
 	$transport   = get_post_meta( get_the_ID(), 'transport', true );
 	$dress       = get_post_meta( get_the_ID(), 'dress', true );
 
-	if ( ! empty( $electricity ) || ! empty( $banking ) || ! empty( $cuisine ) || ! empty( $climate ) || ! empty( $transport ) || ! empty( $dress ) ) :
+	if ( ! empty( $electricity ) || ! empty( $banking ) || ! empty( $cuisine ) || ! empty( $climate ) || ! empty( $transport ) || ! empty( $dress ) ) {
 		$limit_words = 30;
 		$more_button = "\n\n" . '<a class="btn btn-default more-link more-link-remove-p" data-collapsed="true" href="#">Read More</a>' . "\n\n";
 		
@@ -153,8 +153,8 @@ function lsx_to_destination_travel_info() {
 		<section id="travel-info">
 			<h2 class="section-title"><?php esc_html_e( 'Travel Info', 'tour-operator' ); ?></h2>
 			<div class="travel-info-content row">
-				<?php foreach ( $items as $key => $value ) : ?>
-					<?php if ( ! empty( $value ) ) : ?>
+				<?php foreach ( $items as $key => $value ) { ?>
+					<?php if ( ! empty( $value ) ) { ?>
 						<div class="panel col-sm-6">
 							<article class="unit type-unit">
 								<div class="col-sm-12">
@@ -172,12 +172,12 @@ function lsx_to_destination_travel_info() {
 								</div>
 							</article>
 						</div>
-					<?php endif; ?>
-				<?php endforeach; ?>
+					<?php } ?>
+				<?php } ?>
 			</div>
 		</section>
 		<?
-	endif;
+	}
 }
 
 /**
