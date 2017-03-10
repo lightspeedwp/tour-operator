@@ -1765,6 +1765,7 @@ body.single-tour-operator {
 	#itinerary,
 	#chalets,
 	#rooms,
+	#travel-info,
 	#spas,
 	#tents,
 	#villas,
@@ -1843,7 +1844,8 @@ body.single-tour-operator {
 		}
 	}
 
-	#rooms,#chalets,#tents,#spas,#villas {
+	#rooms,#chalets,#tents,#spas,#villas,
+	#travel-info {
 		.panel {
 			& > .unit {
 				@extend %panel-internal;
@@ -1854,6 +1856,12 @@ body.single-tour-operator {
 				//		padding: 15px 0;
 				//	}
 				//}
+			}
+
+			@media only screen and (min-width: 768px) {
+				&.col-sm-6:nth-child(2n+1) {
+					clear: left;
+				}
 			}
 		}
 	}

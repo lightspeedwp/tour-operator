@@ -182,6 +182,8 @@ function lsx_to_destination_single_content_bottom() {
 		</section>
 		<?php
 
+		lsx_to_destination_travel_info();
+
 		lsx_to_country_regions();
 		
 		lsx_to_destination_tours();

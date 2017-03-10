@@ -123,6 +123,64 @@ function lsx_to_destination_activities(){
 }
 
 /**
+ * Outputs the destination travel info
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tags
+ * @category 	destination
+ */
+function lsx_to_destination_travel_info() {
+	$electricity = get_post_meta( get_the_ID(), 'electricity', true );
+	$banking     = get_post_meta( get_the_ID(), 'banking', true );
+	$cuisine     = get_post_meta( get_the_ID(), 'cuisine', true );
+	$climate     = get_post_meta( get_the_ID(), 'climate', true );
+	$transport   = get_post_meta( get_the_ID(), 'transport', true );
+	$dress       = get_post_meta( get_the_ID(), 'dress', true );
+
+	if ( ! empty( $electricity ) || ! empty( $banking ) || ! empty( $cuisine ) || ! empty( $climate ) || ! empty( $transport ) || ! empty( $dress ) ) :
+		$limit_words = 30;
+		$more_button = "\n\n" . '<a class="btn btn-default more-link more-link-remove-p" data-collapsed="true" href="#">Read More</a>' . "\n\n";
+		
+		$items = array(
+			esc_html__( 'Electricity', 'tour-operator' ) => $electricity,
+			esc_html__( 'Banking', 'tour-operator' )     => $banking,
+			esc_html__( 'Cuisine', 'tour-operator' )     => $cuisine,
+			esc_html__( 'Climate', 'tour-operator' )     => $climate,
+			esc_html__( 'Transport', 'tour-operator' )   => $transport,
+			esc_html__( 'Dress', 'tour-operator' )       => $dress,
+		);
+		?>
+		<section id="travel-info">
+			<h2 class="section-title"><?php esc_html_e( 'Travel Info', 'tour-operator' ); ?></h2>
+			<div class="travel-info-content row">
+				<?php foreach ( $items as $key => $value ) : ?>
+					<?php if ( ! empty( $electricity ) ) : ?>
+						<div class="panel col-sm-6">
+							<article class="unit type-unit">
+								<div class="col-sm-12">
+									<div class="unit-info">
+										<h3><?php echo esc_html( $key ); ?></h3>
+										<div class="entry-content"><?php
+											if ( str_word_count( $value, 0 ) > $limit_words ) {
+												$words = str_word_count( $value, 2 );
+												$pos   = array_keys( $words );
+												$value = substr_replace( $value, $more_button, $pos[ $limit_words ], 0 );
+											}
+											echo apply_filters( 'the_content', $value );
+										?></div>
+									</div>
+								</div>
+							</article>
+						</div>
+					<?php endif; ?>
+				<?php endforeach; ?>
+			</div>
+		</section>
+		<?
+	endif;
+}
+
+/**
  * Gets the current specials connected destinations
  *
  * @param		$before	| string

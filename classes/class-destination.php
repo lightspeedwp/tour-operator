@@ -296,6 +296,7 @@ class LSX_TO_Destination{
 	public function page_links($page_links){
 		$this->page_links = $page_links;
 		if(is_singular('destination')){
+			$this->get_travel_info_link();
 			$this->get_region_link();
 			$this->get_related_tours_link();
 			if(!lsx_to_item_has_children(get_the_ID(),'destination')) {
@@ -314,6 +315,22 @@ class LSX_TO_Destination{
 	}
 
 	/**
+	 * Adds the Travel indo to the $page_links variable
+	 */
+	public function get_travel_info_link()	{
+		$electricity = get_post_meta( get_the_ID(), 'electricity', true );
+		$banking     = get_post_meta( get_the_ID(), 'banking', true );
+		$cuisine     = get_post_meta( get_the_ID(), 'cuisine', true );
+		$climate     = get_post_meta( get_the_ID(), 'climate', true );
+		$transport   = get_post_meta( get_the_ID(), 'transport', true );
+		$dress       = get_post_meta( get_the_ID(), 'dress', true );
+
+		if ( ! empty( $electricity ) || ! empty( $banking ) || ! empty( $cuisine ) || ! empty( $climate ) || ! empty( $transport ) || ! empty( $dress ) ) {
+			$this->page_links['travel-info'] = esc_html__( 'Travel Info', 'tour-operator' );
+		}
+	}
+
+	/**
 	 * Adds the Region to the $page_links variable
 	 */
 	public function get_region_link()	{
@@ -321,6 +338,7 @@ class LSX_TO_Destination{
 			$this->page_links['regions'] = esc_html__('Regions','tour-operator');
 		}
 	}
+
 	/**
 	 * Tests Regions adds them to the $page_links variable
 	 */

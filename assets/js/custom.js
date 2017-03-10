@@ -117,7 +117,18 @@ LSX_TO_Read_More = {
 				jQuery(this).click(function(event) {
 					event.preventDefault();
 					jQuery(this).hide();
-					jQuery(this).closest('.entry-content, .archive-description').children().show();
+
+					if (jQuery(this).hasClass('more-link-remove-p')) {
+						var html = '';
+
+						jQuery(this).closest('.entry-content, .archive-description').children().each(function() {
+							html += jQuery(this).html();
+						});
+
+						jQuery(this).closest('.entry-content, .archive-description').html('<p>' + html + '</p>');
+					} else {
+						jQuery(this).closest('.entry-content, .archive-description').children().show();
+					}
 				});
 			}
 		});

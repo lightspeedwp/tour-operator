@@ -23,6 +23,7 @@
 * Fix - Made Google Maps works on back-end
 * Fix - Fixed content_part filter for plugin and add-ons
 * Fix - Removed general contact fields from post types
+* Dev - New fields from Wetu Importer
 
 ### 1.0.4
 * Removed the last of the LSX_TO_POSTEXPIRATOR_TYPES constants
