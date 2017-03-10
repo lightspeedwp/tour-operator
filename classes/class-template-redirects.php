@@ -137,9 +137,11 @@ class LSX_TO_Template_Redirects {
 		}else{
 			$template = "{$slug}.php";
 		}
+		$original_name = $template;
+		$path = apply_filters('lsx_to_content_path','',get_post_type());
 
-		if ( '' == locate_template( array( $template ) ) && file_exists( $this->plugin_path.'templates/'.$template) ) {
-			$template = $this->plugin_path.'templates/'.$template;
+		if ( '' == locate_template( array( $template ) ) && file_exists( $path.'templates/'.$template) ) {
+			$template = $path.'templates/'.$template;
 		}elseif(file_exists( get_stylesheet_directory().'/'.$template)){
 			$template = get_stylesheet_directory().'/'.$template;
 		}else{
@@ -148,11 +150,13 @@ class LSX_TO_Template_Redirects {
 		
 		if(false !== $template){
 			load_template( $template, false );
+		}else {
+			echo wp_kses_post('<p>No '.$original_name.' can be found.</p>');
 		}
 	}
 
 	/**
-	 * Redirect wordpress to the single template located in the plugin
+	 * Redirect wordpress to the widget template located in the plugin
 	 *
 	 * @param	$path
 	 * @param	$post_type
@@ -175,13 +179,11 @@ class LSX_TO_Template_Redirects {
 	 *
 	 * @return	$path
 	 */
-	public function content_path($path,$slug,$part) {
-		if(false !== $this->post_types
-			&& 'content' === $slug
-			&& in_array(get_post_type(),$this->post_types)){
-
-			$path = $this->plugin_path.'templates/';
+	public function content_path($path,$slug) {
+		if((false !== $this->post_types && in_array($slug,$this->post_types))
+		 || (false !== $this->taxonomies && in_array($slug,$this->taxonomies)) || 'post' === $slug){
+			$path = $this->plugin_path;
 		}
 		return $path;
-	}		
+	}
 }

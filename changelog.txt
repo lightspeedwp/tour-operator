@@ -21,6 +21,7 @@
 * Fix - Internal banner on small devices
 * Fix - Small fixes on front-end fields
 * Fix - Made Google Maps works on back-end
+* Fix - Fixed content_part filter for plugin and add-ons
 
 ### 1.0.4
 * Removed the last of the LSX_TO_POSTEXPIRATOR_TYPES constants
