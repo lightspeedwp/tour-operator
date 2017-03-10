@@ -65,15 +65,15 @@ Yes you can! Join in on our [GitHub repository](https://github.com/lightspeeddev
 == Changelog ==
 
 = 1.0.3 =
-* Added in a compatability check for all versions below PHP 7
+* Added a test to avoid plugin activation with older versions from PHP than 5.6
 * Fixed PHP errors when activating the plugin with a non LSX theme
 * Hid the "Contact Details" custom field panel from Accommodation, these fields don't output to the frontend yet
 * Updated the readme.txt content
 
 = 1.0.2 =
 * Fixed a conflict with some plugins using https://github.com/humanmade/Custom-Meta-Boxes
-* Added a test to avoid the plugin activate with older versions from PHP than 5.6
-* Added a warning for users that have the plugin activated in older versions from PHP than 5.6
+* Fixed Travis CI Warnings
+
 
 = 1.0.1 =
 * Allowing the placeholder to overwrite any empty image on all post types

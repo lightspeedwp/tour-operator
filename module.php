@@ -344,7 +344,8 @@ class Tour_Operator {
 			}
 		}
 		return $connections;
-	}		
+	}
+
 
 	/**
 	 * Include the post type for the search integration
