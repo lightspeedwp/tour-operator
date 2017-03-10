@@ -73,9 +73,16 @@ class LSX_TO_Admin extends Tour_Operator {
 	 *
 	 * @return    null
 	 */
-	public function enqueue_admin_stylescripts() {
+	public function enqueue_admin_stylescripts( $hook ) {
 		$screen = get_current_screen();
-		if( !is_object( $screen ) ){
+		
+		if ( ! is_object( $screen ) ) {
+			return;
+		}
+
+		// TO Pages: Add-ons, Help, Settings and Welcome
+		// WP Terms: create/edit term
+		if ( 0 !== strpos( $hook, 'tour-operator_page' ) && 'term.php' !== $hook ) {
 			return;
 		}
 

@@ -74,12 +74,6 @@ class LSX_TO_Accommodation {
 		$this->display_connected_tours = false;
 
 		$this->options = get_option('_lsx-to_settings',false);
-		if(false !== $this->options && isset($this->options[$this->plugin_slug]) && !empty($this->options[$this->plugin_slug])){
-			$this->options = $this->options[$this->plugin_slug];
-		}
-		else{
-			$this->options = false;
-		}
 
 		$this->unit_types = array(
 			'chalet' => esc_html__('Chalet','tour-operator'),
@@ -208,7 +202,6 @@ class LSX_TO_Accommodation {
 				'labels' => $labels,
 				'show_ui' => true,
 				'public' => true,
-				'show_in_nav_menus' => false,
 				'show_tagcloud' => false,
 				'exclude_from_search' => true,
 				'show_admin_column' => true,
@@ -236,7 +229,6 @@ class LSX_TO_Accommodation {
 				'labels' => $labels,
 				'show_ui' => true,
 				'public' => true,
-				'show_in_nav_menus' => false,
 				'show_tagcloud' => false,
 				'exclude_from_search' => true,
 				'show_admin_column' => false,
@@ -284,27 +276,10 @@ class LSX_TO_Accommodation {
 
 		$fields[] = array( 'id' => 'team_to_accommodation', 'name' => esc_html__('Accommodation Expert','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12 );
 		
-		if(class_exists('LSX_TO_Maps') && false !== $this->options && isset($this->options['contact_details_disabled'])){
+		if(class_exists('LSX_TO_Maps')){
 			$fields[] = array( 'id' => 'location_title',  'name' => esc_html__('Location','tour-operator'), 'type' => 'title' );
-			$fields[] = array( 'id' => 'location',  'name' => esc_html__('Address','tour-operator'), 'type' => 'gmap' );
+			$fields[] = array( 'id' => 'location',  'name' => esc_html__('Address','tour-operator'), 'type' => 'gmap', 'google_api_key' => $this->options['api']['googlemaps_key'] );
 		}
-
-		// Contact Fields
-		/*if(false === $this->options || !isset($this->options['contact_details_disabled'])){
-			$contact_fields = array(
-					array( 'id' => 'contact_title',  'name' => esc_html__('Contact Details','tour-operator'), 'type' => 'title' ),
-					array( 'id' => 'name',  'name' => esc_html__('Name','tour-operator'), 'type' => 'text' ),
-					array( 'id' => 'email',  'name' => esc_html__('Email','tour-operator'), 'type' => 'text' ),
-					array( 'id' => 'phone',  'name' => esc_html__('Phone','tour-operator'), 'type' => 'text' ),
-					array( 'id' => 'website',  'name' => esc_html__('Website','tour-operator'), 'type' => 'text' ),
-			);
-			if(class_exists('TO_Maps')){
-				$contact_fields[] = array( 'id' => 'location',  'name' => esc_html__('Address','tour-operator'), 'type' => 'gmap' );
-			}else{
-				$contact_fields[] = array( 'id' => 'location',  'name' => esc_html__('Address','tour-operator'), 'type' => 'textarea' );
-			}
-			$fields = array_merge($fields,$contact_fields);
-		}*/
 		
 		//Fast Facts
 		$fast_facts_fields = array(
@@ -496,7 +471,7 @@ class LSX_TO_Accommodation {
 	function entry_class( $classes ) {
 		global $post;
 		if(is_main_query() && is_singular($this->plugin_slug)){
-			if(function_exists('lsx_to_has_team_member') && lsx_to_has_team_member()){
+			if ( lsx_to_has_enquiry_contact() ) {
 				$classes[] = 'col-sm-9';
 			}else{
 				$classes[] = 'col-sm-12';
@@ -512,7 +487,9 @@ class LSX_TO_Accommodation {
 		if(get_post_type() === 'accommodation' && 'price' === $meta_key){
 			$price_type = get_post_meta(get_the_ID(),'price_type',true);
 			$value = preg_replace("/[^0-9,.]/", "", $value);
-			$value = number_format($value);
+			$value = ltrim($value, '.');
+			$value = str_replace(',','',$value);
+			$value = number_format((int) $value,2);
 			global $tour_operator;
 			$currency = '';
 			if ( is_object( $tour_operator ) && isset( $tour_operator->options['general'] ) && is_array( $tour_operator->options['general'] ) ) {
@@ -531,7 +508,7 @@ class LSX_TO_Accommodation {
 
 				case 'total_percentage':
 					$value .= '% '.esc_html__('Off','tour-operator');
-					$before = str_replace(esc_html__('from','tour-operator'), '', $before);
+					$before = str_replace(esc_html__('From price','tour-operator'), '', $before);
 				break;
 
 				case 'none':
@@ -630,15 +607,21 @@ class LSX_TO_Accommodation {
 	 * Tests for the Gallery and returns a link for the section
 	 */
 	public function get_gallery_link(){
-		$gallery_id = false;
-		if(class_exists('Envira_Gallery')){
-			$gallery_id = get_post_meta(get_the_ID(),'envira_to_tour',true);
-		}
-		if((false === $gallery_id || '' === $gallery_id) && class_exists('LSX_TO_Galleries')) {
-			$gallery_id = get_post_meta(get_the_ID(),'gallery',true);
-		}
-		if(false !== $gallery_id && '' !== $gallery_id){
-			$this->page_links['gallery'] = esc_html__('Gallery','tour-operator');
+		if(function_exists('lsx_to_gallery')) {
+			$gallery_ids = get_post_meta(get_the_ID(),'gallery',false);
+			$envira_gallery = get_post_meta(get_the_ID(),'envira_gallery',true);
+
+			if((false !== $gallery_ids && '' !== $gallery_ids && is_array($gallery_ids) && !empty($gallery_ids))
+			 || (false !== $envira_gallery && '' !== $envira_gallery)){
+			 	$this->page_links['gallery'] = esc_html__('Gallery','tour-operator');
+			 	return;
+			}
+		}elseif(class_exists('envira_gallery')) {
+			$envira_gallery = get_post_meta(get_the_ID(),'envira_gallery',true);
+			if(false !== $envira_gallery && '' !== $envira_gallery && false === lsx_to_enable_envira_banner()){
+				$this->page_links['gallery'] = esc_html__('Gallery','tour-operator');
+			 	return;
+			}
 		}
 	}
 
@@ -664,7 +647,7 @@ class LSX_TO_Accommodation {
 	public function get_related_tours_link(){
 		$connected_tours = get_post_meta(get_the_ID(),'tour_to_accommodation',false);
 		if(post_type_exists('tour') && is_array($connected_tours) && !empty($connected_tours) ) {
-			$this->page_links['related-tours'] = esc_html__('Tours','tour-operator');
+			$this->page_links['related-items'] = esc_html__('Tours','tour-operator');
 		}
 	}
 }

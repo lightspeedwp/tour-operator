@@ -61,11 +61,7 @@ class LSX_TO_Destination{
 	 * @access private
 	 */
 	private function __construct() {
-		// activate property post type
-		$temp = get_option('_lsx-to_settings',false);
-		if(false !== $temp && isset($temp[$this->plugin_slug]) && !empty($temp[$this->plugin_slug])){
-			$this->options = $temp[$this->plugin_slug];
-		}
+		$this->options = get_option('_lsx-to_settings',false);
 
 		add_action( 'init', array( $this, 'register_post_types' ) );
 		add_filter( 'cmb_meta_boxes', array( $this, 'register_metaboxes') );
@@ -78,7 +74,7 @@ class LSX_TO_Destination{
 		add_action('lsx_to_map_meta',array($this, 'content_meta'));
 		add_action('lsx_to_modal_meta',array($this, 'content_meta'));
 
-		add_action( 'lsx_to_framework_destination_tab_general_settings_bottom', array($this,'general_settings'), 10 , 2 );
+		add_action( 'lsx_to_framework_destination_tab_general_settings_bottom', array($this,'general_settings'), 10 , 1 );
 
 		add_filter( 'lsx_to_page_navigation', array( $this, 'page_links') );
 	}
@@ -153,12 +149,43 @@ class LSX_TO_Destination{
 
 		$fields[] = array( 'id' => 'featured',  'name' => esc_html__('Featured','tour-operator'), 'type' => 'checkbox' );
 
+		$fields[] = array( 
+			'id' => 'best_time_to_visit',
+			'name' => esc_html__( 'Best months to visit', 'tour-operator' ),
+			'type' => 'select',
+			'options' => array(
+				'january' => 'January',
+				'february' => 'February',
+				'march' => 'March',
+				'april' => 'April',
+				'may' => 'May',
+				'june' => 'June',
+				'july' => 'July',
+				'august' => 'August',
+				'september' => 'September',
+				'october' => 'October',
+				'november' => 'November',
+				'december' => 'December'
+			),
+			'multiple' => true,
+			'cols' => 12
+		);
+
 		if(!class_exists('LSX_Banners')){
 			$fields[] = array( 'id' => 'tagline',  'name' => esc_html__('Tagline','tour-operator'), 'type' => 'text' );
 		}
-		//if(class_exists('LSX_TO_Team')){
+
+		$fields[] = array( 'id' => 'travel_info_title',  'name' => esc_html__('Travel Info','tour-operator'), 'type' => 'title' );
+		$fields[] = array( 'id' => 'electricity',  'name' => esc_html__('Electricity','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
+		$fields[] = array( 'id' => 'banking',  'name' => esc_html__('Banking','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
+		$fields[] = array( 'id' => 'cuisine',  'name' => esc_html__('Cuisine','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
+		$fields[] = array( 'id' => 'climate',  'name' => esc_html__('Climate','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
+		$fields[] = array( 'id' => 'transport',  'name' => esc_html__('Transport','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
+		$fields[] = array( 'id' => 'dress',  'name' => esc_html__('Dress','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
+
+		if(class_exists('TO_Team')){
 			$fields[] = array( 'id' => 'team_to_destination', 'name' => esc_html__('Destination Expert','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12, 'allow_none' => true );
-		//}
+		}
 
 		if(class_exists('Envira_Gallery')){
 			if(!class_exists('LSX_TO_Galleries')){
@@ -171,8 +198,9 @@ class LSX_TO_Destination{
 		}	
 			
 
-		if(!class_exists('LSX_TO_Maps')){
-			$fields[] = array( 'id' => 'location',  'name' => esc_html__('Location','tour-operator'), 'type' => 'gmap' );
+		if(class_exists('LSX_TO_Maps')){
+			$fields[] = array( 'id' => 'location_title',  'name' => esc_html__('Location','tour-operator'), 'type' => 'title' );
+			$fields[] = array( 'id' => 'location',  'name' => esc_html__('Location','tour-operator'), 'type' => 'gmap', 'google_api_key' => $this->options['api']['googlemaps_key'] );
 		}
 		
 		$fields[] = array( 'id' => 'connections_title',  'name' => esc_html__('Connections','tour-operator'), 'type' => 'title' );
@@ -218,7 +246,7 @@ class LSX_TO_Destination{
 			$lsx_to_archive = false;
 		}
 		if(is_main_query() && is_singular($this->plugin_slug) && false === $lsx_to_archive){
-			if(function_exists('lsx_to_has_team_member') && lsx_to_has_team_member()){
+			if ( lsx_to_has_enquiry_contact() ) {
 				$classes[] = 'col-sm-9';
 			}else{
 				$classes[] = 'col-sm-12';
@@ -234,12 +262,11 @@ class LSX_TO_Destination{
 	 * @param $tab string
 	 * @return null
 	 */
-	public function general_settings( $post_type='destination',$tab=false ) {
-		if('archives'!== $tab){return false;}
+	public function general_settings() {
 		?>
 			<tr class="form-field -wrap">
 				<th scope="row">
-					<label for="description"><?php esc_html__('Display the map in the banner','tour-operator'); ?></label>
+					<label for="description"><?php esc_html_e('Display the map in the banner','tour-operator'); ?></label>
 				</th>
 				<td>
 					<input type="checkbox"  {{#if enable_banner_map}} checked="checked" {{/if}} name="enable_banner_map" />
@@ -326,15 +353,21 @@ class LSX_TO_Destination{
 	 * Tests for the Gallery and returns a link for the section
 	 */
 	public function get_gallery_link(){
-		$gallery_id = false;
-		if(class_exists('Envira_Gallery')){
-			$gallery_id = get_post_meta(get_the_ID(),'envira_to_tour',true);
-		}
-		if((false === $gallery_id || '' === $gallery_id) && class_exists('LSX_TO_Galleries')) {
-			$gallery_id = get_post_meta(get_the_ID(),'gallery',true);
-		}
-		if(false !== $gallery_id && '' !== $gallery_id){
-			$this->page_links['gallery'] = esc_html__('Gallery','tour-operator');
+		if(function_exists('lsx_to_gallery')) {
+			$gallery_ids = get_post_meta(get_the_ID(),'gallery',false);
+			$envira_gallery = get_post_meta(get_the_ID(),'envira_gallery',true);
+
+			if((false !== $gallery_ids && '' !== $gallery_ids && is_array($gallery_ids) && !empty($gallery_ids))
+			 || (false !== $envira_gallery && '' !== $envira_gallery)){
+			 	$this->page_links['gallery'] = esc_html__('Gallery','tour-operator');
+			 	return;
+			}
+		}elseif(class_exists('envira_gallery')) {
+			$envira_gallery = get_post_meta(get_the_ID(),'envira_gallery',true);
+			if(false !== $envira_gallery && '' !== $envira_gallery && false === lsx_to_enable_envira_banner()){
+				$this->page_links['gallery'] = esc_html__('Gallery','tour-operator');
+			 	return;
+			}
 		}
 	}
 

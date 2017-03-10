@@ -20,7 +20,7 @@ if(1 !== $lsx_to_archive){
 		<?php if(is_single() && false === $lsx_to_archive) { ?>
 			<div class="single-main-info">
 				<h3><?php esc_html_e('Summary','tour-operator');?></h3>
-				<div class="meta info"><?php lsx_to_price('<span class="price">from ','</span>'); lsx_to_duration('<span class="duration">','</span>'); ?></div>
+				<div class="meta info"><?php lsx_to_price('<span class="price">'.esc_html__('From price','tour-operator').': ','</span>'); lsx_to_duration('<span class="duration">'.esc_html__('Duration','tour-operator').': ','</span>'); ?></div>
 				<div class="meta taxonomies">
 					<?php lsx_to_departure_point('<div class="meta departure destination">'.esc_html__('Departs from','tour-operator').': ','</div>'); ?>
 					<?php lsx_to_end_point('<div class="meta end-point destination">'.esc_html__('Ends in','tour-operator').': ','</div>'); ?>

@@ -8,6 +8,9 @@
 		<?php if(class_exists('LSX_TO_Maps')) { ?>
 			<li><a href="#ui-maps"><?php esc_html_e('Maps','tour-operator'); ?></a></li>
 		<?php } ?>
+		<?php if(class_exists('LSX_TO_Search')) { ?>
+			<li><a href="#ui-search"><?php esc_html_e('Search','tour-operator'); ?></a></li>
+		<?php } ?>
 		<li><a href="#ui-placeholders"><?php esc_html_e('Placeholders','tour-operator'); ?></a></li>
 		<li><a href="#ui-advanced"><?php esc_html_e('Advanced','tour-operator'); ?></a></li>
 	</ul>
@@ -35,6 +38,16 @@
 			<table class="form-table">
 				<tbody>
 				<?php do_action('lsx_to_framework_display_tab_content','maps'); ?>
+				</tbody>
+			</table>
+		</div>
+	<?php } ?>
+
+	<?php if(class_exists('LSX_TO_Search')) { ?>
+		<div id="ui-search" class="ui-tab">
+			<table class="form-table">
+				<tbody>
+				<?php do_action('lsx_to_framework_display_tab_content','search'); ?>
 				</tbody>
 			</table>
 		</div>

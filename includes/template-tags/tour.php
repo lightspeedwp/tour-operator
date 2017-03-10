@@ -86,10 +86,7 @@ function lsx_to_not_included($before="",$after="",$echo=true){
  */
 function lsx_to_departure_point($before="",$after="",$echo=true){
 	$departs_from = get_post_meta(get_the_ID(),'departs_from',false);
-	if(false !== $departs_from && '' !== $departs_from){
-		if(!is_array($departs_from)){
-			$departs_from = array($departs_from);
-		}
+	if ( ! empty( $departs_from ) && is_array( $departs_from ) && count( $departs_from ) > 0 ) {
 		$return = $before.lsx_to_connected_list($departs_from,'destination',true,', ').$after;
 		if($echo){
 			echo wp_kses_post( $return );
@@ -113,10 +110,7 @@ function lsx_to_departure_point($before="",$after="",$echo=true){
  */
 function lsx_to_end_point($before="",$after="",$echo=true){
 	$end_point = get_post_meta(get_the_ID(),'ends_in',false);
-	if(false !== $end_point && '' !== $end_point){
-		if(!is_array($end_point)){
-			$end_point = array($end_point);
-		}
+	if ( ! empty( $end_point ) && is_array( $end_point ) && count( $end_point ) > 0 ) {
 		$return = $before.lsx_to_connected_list($end_point,'destination',true,', ').$after;
 		if($echo){
 			echo wp_kses_post( $return );

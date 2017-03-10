@@ -1,4 +1,53 @@
 ## Change log
 
+### 1.0.5
+* Added TO Search as subtab on LSX TO settings page
+* Styles from TO Search addon moved to it
+* Fixed menu navigation improved
+* Made the function lsx_to_archive_entry_top function test all active post types, not only the three core post types
+* Fixed (back-end) checkbox to display map on destination archive
+* Replaced body and post (TO post type) classes by same classes using prefix "lsx-to-POST_TYPE"
+* Fixed global variable (LSX TO) to enable/disable slider on mobile
+* Added swiper JS library for sliders
+* Added extra class to all sliders (lsx-to-slider)
+* Dev - Metadata: calendar info moved to the next line
+* Dev - Metadata: term "price" change to "price from"
+* Dev - Metadata: term “duration” added to duration meta
+* Fix - Fixed the default pagination from LSX
+* Fix - Facilities without child items can't display
+* Fix - Fixed styles from post meta details on banner
+* Fix - Fixed fideos 16x9
+* Fix - Mysterious Man PNG image
+* Fix - Internal banner on small devices
+* Fix - Small fixes on front-end fields
+* Fix - Made Google Maps works on back-end
+* Fix - Fixed content_part filter for plugin and add-ons
+
+### 1.0.4
+* Removed the last of the LSX_TO_POSTEXPIRATOR_TYPES constants
+* Fixed an issue with empty post meta (depart from, end point)
+* Removed Certain Travis CI code sniffers
+* Added generic business contact details for enquire call to action
+* Best time to visit added to destination (copied from tour)
+* Enabled compatibility with LSX Blog Customiser (categories carousel)
+
+### 1.0.3
+* Added in a compatability check for all versions below PHP 7
+* Fixed PHP errors when activating the plugin with a non LSX theme
+* Hid the "Contact Details" custom field panel from Accommodation, these fields don't output to the frontend yet
+* Updated the readme.txt content
+
+### 1.0.2
+* Fixed a conflict with some plugins using https://github.com/humanmade/Custom-Meta-Boxes
+* Added a test to avoid the plugin activate with older versions from PHP than 5.6
+* Added a warning for users that have the plugin activated in older versions from PHP than 5.6
+
+### 1.0.1
+* Allowing the placeholder to overwrite any empty image on all post types
+* Fixed PHP warning notice, removed the constant LSX_TO_POSTEXPIRATOR_TYPES
+* Fixed the PHP warning with the post order class
+* Fixed the selecting of the global default placeholders
+* Fixed PHP compatibility errors
+
 ### 1.0.0
 * First Version

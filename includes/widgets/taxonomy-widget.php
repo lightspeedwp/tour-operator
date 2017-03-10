@@ -25,7 +25,7 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
     public function widget( $args, $instance ) {
 
     	if (isset($instance['title'])) {
-			$title = apply_filters('widget_title', $instance['title']);
+			$title = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 		} else {
 			$title = false;
 		}
@@ -556,7 +556,7 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 			$this->carousel_id = rand ( 20, 20000 );
 		
 			$output .= "<div class='slider-container'>";
-			$output .= "<div id='slider-{$this->carousel_id}' class='carousel slide' data-interval='{$interval}'>";
+			$output .= "<div id='slider-{$this->carousel_id}' class='lsx-to-slider carousel slide' data-interval='{$interval}'>";
 			$output .= '<div class="carousel-wrap">';
 			$output .= '<div class="carousel-inner" role="listbox">';
 		

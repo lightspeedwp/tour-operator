@@ -42,7 +42,8 @@ add_action('lsx_content_bottom','lsx_to_tour_single_content_bottom');
  */
 function lsx_to_archive_entry_top() {
 	global $lsx_to_archive;
-	if(in_array(get_post_type(),array('accommodation','tour','destination')) && (is_archive() || $lsx_to_archive)) { ?>
+
+	if(in_array(get_post_type(),array_keys(lsx_to_get_post_types())) && (is_archive() || $lsx_to_archive)) { ?>
 		<div class="col-sm-3">
 			<div class="thumbnail">
 				<a href="<?php the_permalink(); ?>">
@@ -83,11 +84,18 @@ function lsx_to_single_content_top() {
  */
 function lsx_to_single_entry_bottom() {
 	global $lsx_to_archive;
-	if(function_exists('lsx_to_has_team_member') && is_singular(array_keys(lsx_to_get_post_types())) && false === $lsx_to_archive && lsx_to_has_team_member()) { ?>
+	if ( is_singular( array_keys( lsx_to_get_post_types() ) ) && false === $lsx_to_archive && lsx_to_has_enquiry_contact() ) { ?>
 		<div class="col-sm-3">
 			<div class="team-member-widget">
-				<?php lsx_to_team_member_panel( '<div class="team-member">', '</div>' ) ?>
-				<?php lsx_to_enquire_modal() ?>
+				<?php
+					if ( function_exists( 'lsx_to_has_team_member' ) && lsx_to_has_team_member() ) {
+						lsx_to_team_member_panel( '<div class="team-member">', '</div>' );
+					} else {
+						lsx_to_enquiry_contact( '<div class="team-member">', '</div>' );
+					}
+
+					lsx_to_enquire_modal();
+				?>
 			</div>
 		</div>
 <?php }	
@@ -164,7 +172,15 @@ function lsx_to_accommodation_archive_entry_bottom() {
  * @category 	destination
  */
 function lsx_to_destination_single_content_bottom() {
-	if(is_singular('destination')){
+	if(is_singular('destination')){ ?>
+		<section id="highlights">
+			<div class="row">
+				<div class="col-sm-12">
+					<?php lsx_to_best_time_to_visit('<div class="best-time-to-visit"><h2 class="section-title">'.esc_html__('Best time to visit','tour-operator').'</h2><div class="best-time-to-visit-content">','</div></div>'); ?>
+				</div>	
+			</div>				
+		</section>
+		<?php
 
 		lsx_to_country_regions();
 		
@@ -315,7 +331,7 @@ function lsx_to_tour_archive_entry_bottom() {
 		</div>
 		<div class="col-sm-4">
 			<div class="tour-details">
-				<div class="meta info"><?php lsx_to_price('<span class="price">from ','</span>'); lsx_to_duration('<span class="duration">','</span>'); ?></div>
+				<div class="meta info"><?php lsx_to_price('<span class="price">'.esc_html__('From price','tour-operator').': ','</span>'); lsx_to_duration('<span class="duration">'.esc_html__('Duration','tour-operator').': ','</span>'); ?></div>
 				<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.esc_html__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>
 				<?php lsx_to_connected_destinations('<div class="meta destination">'.esc_html__('Destinations','tour-operator').': ','</div>'); ?>				
 				<?php if(function_exists('lsx_to_connected_activities')){ lsx_to_connected_activities('<div class="meta activities">'.esc_html__('Activities','tour-operator').': ','</div>'); } ?>

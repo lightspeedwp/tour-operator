@@ -64,6 +64,19 @@ Yes you can! Join in on our [GitHub repository](https://github.com/lightspeeddev
 
 == Changelog ==
 
+= 1.0.5 =
+* Added TO Search as subtab on LSX TO settings page
+* Styles from TO Search addon moved to it
+* Made the function lsx_to_archive_entry_top function test all active post types, not only the three core post types
+
+= 1.0.4 =
+* Removed the last of the LSX_TO_POSTEXPIRATOR_TYPES constants
+* Fixed an issue with empty post meta (depart from, end point)
+* Removed Certain Travis CI code sniffers
+* Added generic business contact details for enquire call to action
+* Best time to visit added to destination (copied from tour)
+* Enabled compatibility with LSX Blog Customiser (categories carousel)
+
 = 1.0.3 =
 * Added a test to avoid plugin activation with older versions from PHP than 5.6
 * Fixed PHP errors when activating the plugin with a non LSX theme
