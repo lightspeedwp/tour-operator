@@ -387,12 +387,6 @@ function lsx_to_has_enquiry_contact() {
 		if ( isset( $tour_operator->options['general'] ) && isset( $tour_operator->options['general']['enquiry_contact_name'] ) && '' !== $tour_operator->options['general']['enquiry_contact_name'] ) {
 			$has_enquiry_contact = true;
 		}
-
-		if ( is_singular( $tour_operator->active_post_types ) ) {
-			if ( isset( $tour_operator->options[ get_post_type() ] ) && isset( $tour_operator->options[ get_post_type() ]['enquiry_contact_name'] ) && '' !== $tour_operator->options[ get_post_type() ]['enquiry_contact_name'] ) {
-				$has_enquiry_contact = true;
-			}
-		}
 	}
 
 	return $has_enquiry_contact;
@@ -417,12 +411,6 @@ function lsx_to_enquiry_contact( $before = "", $after = "" ) {
 	foreach ( $fields as $key => $field ) {
 		if ( isset( $tour_operator->options['general'] ) && isset( $tour_operator->options['general'][ $key ] ) ) {
 			$fields[ $key ] = $tour_operator->options['general'][ $key ];
-		}
-
-		if ( is_singular( $tour_operator->active_post_types ) ) {
-			if ( isset( $tour_operator->options[ get_post_type() ] ) && isset( $tour_operator->options[ get_post_type() ][ $key ] ) && ! empty( $tour_operator->options[ get_post_type() ][ $key ] ) ) {
-				$fields[ $key ] = $tour_operator->options[ get_post_type() ][ $key ];
-			}
 		}
 	}
 
