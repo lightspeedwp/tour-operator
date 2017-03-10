@@ -1419,6 +1419,10 @@ $orange-dark: #f7741d;
 			& > .col-sm-6:nth-child(n+3) {
 				margin-top: 40px;
 			}
+
+			& > .col-sm-6:nth-child(2n+3) {
+				clear: left;
+			}
 		}
 	}
 
@@ -1845,11 +1849,11 @@ body.single-tour-operator {
 				@extend %panel-internal;
 				@extend %panel-internal-inline;
 
-				@media only screen and (min-width: 768px) {
-					.unit-info {
-						padding: 15px 0;
-					}
-				}
+				//@media only screen and (min-width: 768px) {
+				//	.unit-info {
+				//		padding: 15px 0;
+				//	}
+				//}
 			}
 		}
 	}

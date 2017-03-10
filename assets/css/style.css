@@ -2688,7 +2688,9 @@ body.single-tour-operator #facilities {
       margin-top: 40px; } }
   @media only screen and (min-width: 768px) {
     body.single-tour-operator #facilities .row.info > .col-sm-6:nth-child(n+3) {
-      margin-top: 40px; } }
+      margin-top: 40px; }
+    body.single-tour-operator #facilities .row.info > .col-sm-6:nth-child(2n+3) {
+      clear: left; } }
   body.single-tour-operator #facilities h3 {
     color: #333;
     font-size: 18px;
@@ -2797,10 +2799,6 @@ body.single-tour-operator #main > .lsx-to-navigation {
 
 body.single-tour-operator:not(.page-has-banner) #main > .lsx-to-navigation {
   margin-top: 30px; }
-
-@media only screen and (min-width: 768px) {
-  body.single-tour-operator #rooms .panel > .unit .unit-info, body.single-tour-operator #chalets .panel > .unit .unit-info, body.single-tour-operator #tents .panel > .unit .unit-info, body.single-tour-operator #spas .panel > .unit .unit-info, body.single-tour-operator #villas .panel > .unit .unit-info {
-    padding: 15px 0; } }
 
 @media only screen and (min-width: 768px) {
   body.single-tour-operator #regions .meta:first-child,
