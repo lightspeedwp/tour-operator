@@ -187,38 +187,6 @@ function lsx_to_highlights($before="",$after="",$echo=true){
 }
 
 /**
- * Outputs the tour travel info
- *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	tour
- */
-function lsx_to_tour_itinerary_info( $before = "", $after = "", $echo = true ) {
-	$drinks_basis = get_post_meta( get_the_ID(), 'drinks_basis', true );
-	$meal_basis   = get_post_meta( get_the_ID(), 'meal_basis', true );
-
-	if ( ! empty( $drinks_basis ) || ! empty( $meal_basis ) ) {
-		$return  = $before . '<div class="entry-content"><ul>';
-
-		if ( ! empty( $drinks_basis ) ) {
-			$return .= '<li>' . esc_html( $drinks_basis ) . '</li>';
-		}
-
-		if ( ! empty( $meal_basis ) ) {
-			$return .= '<li>' . esc_html( $meal_basis ) . '</li>';
-		}
-
-		$return .= '</ul></div>' . $after;
-		
-		if ( $echo ) {
-			echo wp_kses_post( $return );
-		} else {
-			return $return;
-		}
-	}
-}
-
-/**
  * Outputs the Best Time to Visit HTML
  *
  * @param		$before	| string

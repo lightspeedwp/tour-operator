@@ -246,7 +246,6 @@ function lsx_to_tour_single_content_bottom() {
 		<section id="highlights">
 			<div class="row">
 				<div class="col-sm-6">
-					<?php lsx_to_tour_itinerary_info('<div class="highlights"><h2 class="section-title">'.esc_html__('Itinerary Information','tour-operator').'</h2>','</div>'); ?>
 					<?php lsx_to_highlights('<div class="highlights"><h2 class="section-title">'.esc_html__('Highlights','tour-operator').'</h2>','</div>'); ?>
 				</div>
 				<div class="col-sm-6">

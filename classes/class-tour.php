@@ -465,7 +465,6 @@ class LSX_TO_Tour {
 	public function page_links($page_links){
 		if(is_singular('tour')){
 			$this->page_links = $page_links;
-			$this->get_itinerary_info_link();
 			$this->get_itinerary_link();
 			$this->get_include_link();
 			$this->get_map_link();
@@ -475,18 +474,6 @@ class LSX_TO_Tour {
 			$page_links = $this->page_links;
 		}
 		return $page_links;
-	}
-
-	/**
-	 * Adds the Itinerary Information to the $page_links variable
-	 */
-	public function get_itinerary_info_link()	{
-		$drinks_basis = get_post_meta( get_the_ID(), 'drinks_basis', true );
-		$meal_basis   = get_post_meta( get_the_ID(), 'meal_basis', true );
-
-		if ( ! empty( $drinks_basis ) || ! empty( $meal_basis ) ) {
-			$this->page_links['itinerary-info'] = esc_html__( 'Itinerary Information', 'tour-operator' );
-		}
 	}
 
 	/**
