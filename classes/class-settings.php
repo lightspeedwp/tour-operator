@@ -251,7 +251,7 @@ class LSX_TO_Settings extends Tour_Operator {
 
 			<tr class="form-field-wrap">
 				<th scope="row">
-					<label for="currency"><?php esc_html_e('General Enquiry','tour-operator'); ?></label>
+					<label for="enquiry"><?php esc_html_e('General Enquiry','tour-operator'); ?></label>
 				</th>
 				<?php
 					if(true === $this->show_default_form()){
@@ -281,7 +281,7 @@ class LSX_TO_Settings extends Tour_Operator {
 			</tr>
 			<tr class="form-field">
 				<th scope="row"> 
-					<label for="description"><?php esc_html_e('Disable Enquire Modal','tour-operator'); ?></label>
+					<label for="disable_enquire_modal"><?php esc_html_e('Disable Enquire Modal','tour-operator'); ?></label>
 				</th>
 				<td>
 					<input type="checkbox" {{#if disable_enquire_modal}} checked="checked" {{/if}} name="disable_enquire_modal" />
@@ -290,7 +290,7 @@ class LSX_TO_Settings extends Tour_Operator {
 			</tr>
 			<tr class="form-field">
 				<th scope="row">
-					<label for="title"><?php esc_html_e('Enquire Link','tour-operator'); ?></label>
+					<label for="enquire_link"><?php esc_html_e('Enquire Link','tour-operator'); ?></label>
 				</th>
 				<td>
 					<input type="text" {{#if enquire_link}} value="{{enquire_link}}" {{/if}} name="enquire_link" />
@@ -351,7 +351,7 @@ class LSX_TO_Settings extends Tour_Operator {
 		?>
 		<tr class="form-field-wrap">
 			<th scope="row">
-				<label for="currency"><?php esc_attr_e('General Enquiry','tour-operator'); ?></label>
+				<label for="enquiry"><?php esc_attr_e('General Enquiry','tour-operator'); ?></label>
 			</th>
 			<?php
 			if(true === $this->show_default_form()){
@@ -363,7 +363,7 @@ class LSX_TO_Settings extends Tour_Operator {
 							<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}><?php esc_html_e('Select a form','tour-operator'); ?></option>
 							<?php
 							foreach($forms as $form_id => $form_data){ ?>
-								<option value="<?php echo wp_kses_post($form_id); ?>" {{#is enquiry value="<?php echo wp_kses_post($form_id); ?>"}} selected="selected"{{/is}}><?php echo wp_kses_post($form_data); ?></option>
+								<option value="<?php echo esc_attr($form_id); ?>" {{#is enquiry value="<?php echo esc_attr($form_id); ?>"}} selected="selected"{{/is}}><?php echo wp_kses_post($form_data); ?></option>
 								<?php
 							}
 						}else{ ?>
@@ -381,7 +381,7 @@ class LSX_TO_Settings extends Tour_Operator {
 		</tr>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="description"><?php esc_attr_e('Disable Enquire Modal','tour-operator'); ?></label>
+				<label for="disable_enquire_modal"><?php esc_attr_e('Disable Enquire Modal','tour-operator'); ?></label>
 			</th>
 			<td>
 				<input type="checkbox" {{#if disable_enquire_modal}} checked="checked" {{/if}} name="disable_enquire_modal" />
@@ -390,7 +390,7 @@ class LSX_TO_Settings extends Tour_Operator {
 		</tr>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="title"><?php esc_attr_e('Enquire Link','tour-operator'); ?></label>
+				<label for="enquire_link"><?php esc_attr_e('Enquire Link','tour-operator'); ?></label>
 			</th>
 			<td>
 				<input type="text" {{#if enquire_link}} value="{{enquire_link}}" {{/if}} name="enquire_link" />
