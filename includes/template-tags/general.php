@@ -441,7 +441,7 @@ function lsx_to_enquiry_contact( $before = "", $after = "" ) {
 				<div class="meta email"><i class="fa fa-envelope orange"></i> <a href="mailto:<?php echo esc_attr( $fields[ 'enquiry_contact_email' ] ); ?>"><?php echo esc_html( $fields[ 'enquiry_contact_email' ] ); ?></a></div>
 			<?php endif; ?>
 		</div>
-	</article>
+	</div>
 	<?php
 	echo wp_kses_post( $after );
 }
