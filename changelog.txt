@@ -1,5 +1,9 @@
 ## Change log
 
+### 1.0.6
+* Fix - Load correctly the translations/language files
+* Dev - Added en_US language file
+
 ### 1.0.5
 * Added TO Search as subtab on LSX TO settings page
 * Styles from TO Search addon moved to it
