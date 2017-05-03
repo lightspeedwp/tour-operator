@@ -3,6 +3,7 @@
 ### 1.0.6
 * Fix - Load correctly the translations/language files
 * Dev - Added en_US language file
+* Dev - Changed the "Insert into Post" button text from media modal to "Select featured image"
 
 ### 1.0.5
 * Added TO Search as subtab on LSX TO settings page

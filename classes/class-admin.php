@@ -65,6 +65,8 @@ class LSX_TO_Admin extends Tour_Operator {
 					add_action( "{$taxonomy}_edit_form_fields", array( $this, 'add_tagline_form_field' ),3,1 );
 				}
 			}
+
+			add_filter( 'type_url_form_media', array( $this, 'change_attachment_field_button' ), 20, 1 );
 		}
 	}
 
@@ -622,6 +624,17 @@ class LSX_TO_Admin extends Tour_Operator {
 			<?php wp_nonce_field( 'lsx_to_save_term_tagline', 'lsx_to_term_tagline_nonce' ); ?>
 		</tr>
 		<?php
+	}
+
+	/**
+	 * Change the "Insert into Post" button text when media modal is used for feature images
+	 */
+	public function change_attachment_field_button( $html ) {
+		if ( isset( $_GET['feature_image_text_button'] ) ) {
+			$html = str_replace( 'value="Insert into Post"', sprintf( 'value="%s"', esc_html__( 'Select featured image' ) ), $html );
+		}
+
+		return $html;
 	}
 
 	/**
