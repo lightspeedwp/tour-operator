@@ -12,7 +12,7 @@ jQuery(document).ready(function() {
 			e.preventDefault();
 			e.stopPropagation();
 
-			tb_show('Choose a Featured Image', 'media-upload.php?type=image&TB_iframe=1&width=800&height=600&feature_image_text_button=1');
+			tb_show('Choose a Featured Image', 'media-upload.php?type=image&feature_image_text_button=1&TB_iframe=1');
 
 			var $this = jQuery(this),
 				$td = $this.parent('td');
