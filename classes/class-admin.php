@@ -631,7 +631,7 @@ class LSX_TO_Admin extends Tour_Operator {
 	 */
 	public function change_attachment_field_button( $html ) {
 		if ( isset( $_GET['feature_image_text_button'] ) ) {
-			$html = str_replace( 'value="Insert into Post"', sprintf( 'value="%s"', esc_html__( 'Select featured image' ) ), $html );
+			$html = str_replace( 'value="Insert into Post"', sprintf( 'value="%s"', esc_html__( 'Select featured image', 'tour-operator' ) ), $html );
 		}
 
 		return $html;
