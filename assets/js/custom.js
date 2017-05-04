@@ -113,7 +113,6 @@ LSX_TO_Read_More = {
 						}
 					});
 				});
-
 				jQuery(this).click(function(event) {
 					event.preventDefault();
 					jQuery(this).hide();
@@ -122,10 +121,13 @@ LSX_TO_Read_More = {
 						var html = '';
 
 						jQuery(this).closest('.entry-content, .archive-description').children().each(function() {
-							html += jQuery(this).html();
+							//html += jQuery(this).html();
+							jQuery(this).show();
 						});
 
-						jQuery(this).closest('.entry-content, .archive-description').html('<p>' + html + '</p>');
+						//jQuery(this).closest('.entry-content, .archive-description').html('<p>' + html + '</p>');
+
+
 					} else {
 						jQuery(this).closest('.entry-content, .archive-description').children().show();
 					}
