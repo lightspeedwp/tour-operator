@@ -70,7 +70,9 @@ class LSX_TO_Tour {
 		}
 		
 		// activate property post type
-		add_action( 'init', array( $this, 'register_post_types' ) );		
+		add_action( 'init', array( $this, 'register_post_types' ) );
+		add_action( 'init', array( $this, 'set_vars' ) );
+
 		add_filter( 'cmb_meta_boxes', array( $this, 'metaboxes') );
 		
 		add_filter( 'lsx_to_entry_class', array( $this, 'entry_class') );
@@ -109,6 +111,18 @@ class LSX_TO_Tour {
 			self::$instance = new self;
 		}
 		return self::$instance;
+	}
+
+	/**
+	 * Test to see if wetu is active
+	 *
+	 *
+	 * @return    null
+	 */
+	public function set_vars(){
+		if(class_exists('WETU_Importer')){
+			$this->is_wetu_active = true;
+		}
 	}
 	
 	/**
@@ -333,8 +347,9 @@ class LSX_TO_Tour {
 			$fields[] = array( 'id' => 'destination_to_tour', 'name' => esc_html__('Destinations related with this itinerary','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'destination','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true,'allow_none'=>true, 'cols' => 12 );
 		}
 		if($this->is_wetu_active){
-			$fields[] = array( 'id' => 'included', 'name' => esc_html__('Included','tour-operator'), 'type' => 'textarea', 'options' => array( 'editor_height' => '100' ) );
-			$fields[] = array( 'id' => 'not_included', 'name' => esc_html__('Not Included','tour-operator'), 'type' => 'textarea', 'options' => array( 'editor_height' => '100' ) );
+			$fields[] = array( 'id' => 'included', 'name' => esc_html__('Included','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ) );
+			$fields[] = array( 'id' => 'excluded', 'name' => esc_html__('Excluded','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ) );
+			/*
 			$fields[] = array(
 				'id' => 'drinks_basis',
 				'name' => esc_html__('Drinks Basis','tour-operator'),
@@ -362,7 +377,7 @@ class LSX_TO_Tour {
 				esc_html__('Dinner, Bed, Breakfast, Lunch and Activites','tour-operator') => esc_html__('Dinner, Bed, Breakfast, Lunch and Activites','tour-operator'),
 				esc_html__('Bed, All Meals, Most Drinks (local), Fees, Activites','tour-operator') => esc_html__('Bed, All Meals, Most Drinks (local), Fees, Activites','tour-operator'),
 				)
-			);
+			);*/
 		}
 		
 		return $fields;
