@@ -21,7 +21,7 @@ global $disable_placeholder;
 	<h4 class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 
 	<div class="widget-content">
-		<?php lsx_to_price('<div class="meta info"><span class="price">from ','</span></div>'); ?>
+		<?php lsx_to_price('<div class="meta info"><span class="price">'.esc_html__('From price','tour-operator').': ','</span></div>'); ?>
 		<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.esc_html__('Accommodation Style','tour-operator').': ', ', ', '</div>' ); ?>
 		<?php the_terms( get_the_ID(), 'accommodation-brand', '<div class="meta accommodation-brand">'.esc_html__('Brand','tour-operator').': ', ', ', '</div>' ); ?>
 		<?php lsx_to_connected_destinations('<div class="meta destination">'.esc_html__('Location','tour-operator').': ','</div>'); ?>

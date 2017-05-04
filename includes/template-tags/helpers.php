@@ -352,7 +352,6 @@ function lsx_to_connected_panel_query($args=false){
 				echo '</div>'.wp_kses_post( $args['after'] );
 				$return = ob_get_clean();
 				$lsx_to_archive = 0;
-				wp_reset_query();
 				wp_reset_postdata();
 			endif; // end of the loop. 
 		}
@@ -398,8 +397,16 @@ function lsx_to_related_items($taxonomy=false,$before="",$after="",$echo=true,$p
 
 			//only allow relation by 1 property type term
 			if(is_array($terms) && !empty($terms)){
+				$filters['tax_query'] = array(
+					array(
+						'taxonomy' => $taxonomy,
+						'field'    => 'slug',
+						'terms'    => array(),
+					),
+				);
+
 				foreach($terms as $term){
-					$filters[$taxonomy] = $term->slug;
+					$filters['tax_query'][0]['terms'][] = $term->slug;
 				}
 			}
 		}
@@ -434,7 +441,7 @@ function lsx_to_related_items($taxonomy=false,$before="",$after="",$echo=true,$p
 		//The start of the carousel output
 		if($carousel){
 			echo '<div class="slider-container">';
-			echo '<div id="slider-'.esc_attr($carousel_id).'" class="carousel slide" data-interval="'.esc_attr($interval).'">';
+			echo '<div id="slider-'.esc_attr($carousel_id).'" class="lsx-to-slider carousel slide" data-interval="'.esc_attr($interval).'">';
 			echo '<div class="carousel-wrap">';
 			echo '<div class="carousel-inner" role="listbox">';
 		}
@@ -500,7 +507,6 @@ function lsx_to_related_items($taxonomy=false,$before="",$after="",$echo=true,$p
 		$return = ob_get_clean();
 			
 		$wp_query->is_single = 1;$wp_query->is_singular = 1;$wp_query->is_post_type_archive = 0;
-		wp_reset_query();
 		wp_reset_postdata();
 		
 		$return = $before.$return.$after;

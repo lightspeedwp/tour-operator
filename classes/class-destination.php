@@ -61,11 +61,7 @@ class LSX_TO_Destination{
 	 * @access private
 	 */
 	private function __construct() {
-		// activate property post type
-		$temp = get_option('_lsx-to_settings',false);
-		if(false !== $temp && isset($temp[$this->plugin_slug]) && !empty($temp[$this->plugin_slug])){
-			$this->options = $temp[$this->plugin_slug];
-		}
+		$this->options = get_option('_lsx-to_settings',false);
 
 		add_action( 'init', array( $this, 'register_post_types' ) );
 		add_filter( 'cmb_meta_boxes', array( $this, 'register_metaboxes') );
@@ -202,16 +198,17 @@ class LSX_TO_Destination{
 		}	
 			
 
-		if(!class_exists('LSX_TO_Maps')){
-			$fields[] = array( 'id' => 'location',  'name' => esc_html__('Location','tour-operator'), 'type' => 'gmap' );
+		if(class_exists('LSX_TO_Maps')){
+			$fields[] = array( 'id' => 'location_title',  'name' => esc_html__('Location','tour-operator'), 'type' => 'title' );
+			$fields[] = array( 'id' => 'location',  'name' => esc_html__('Location','tour-operator'), 'type' => 'gmap', 'google_api_key' => $this->options['api']['googlemaps_key'] );
 		}
 		
-		$fields[] = array( 'id' => 'connections_title',  'name' => esc_html__('Connections','tour-operator'), 'type' => 'title' );
-
-		$fields[] = array( 'id' => 'accommodation_to_destination', 'name' => esc_html__('Accommodations related with this destination','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'accommodation','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true );
-		$fields[] = array( 'id' => 'tour_to_destination', 'name' => esc_html__('Tours related with this destination','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'tour','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true );
-
-
+		//Connections
+		$fields[] = array( 'id' => 'accommodation_title',  'name' => esc_html__('Accommodation','tour-operator'), 'type' => 'title', 'cols' => 12 );
+		$fields[] = array( 'id' => 'accommodation_to_destination', 'name' => esc_html__('Accommodation related with this destination','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'accommodation','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
+		$fields[] = array( 'id' => 'tours_title',  'name' => esc_html__('Tours','tour-operator'), 'type' => 'title', 'cols' => 12 );
+		$fields[] = array( 'id' => 'tour_to_destination', 'name' => esc_html__('Tours related with this destination','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'tour','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
+		
 		//Allow the addons to add additional fields.
 		$fields = apply_filters('lsx_to_destination_custom_fields',$fields);
 		
@@ -299,6 +296,7 @@ class LSX_TO_Destination{
 	public function page_links($page_links){
 		$this->page_links = $page_links;
 		if(is_singular('destination')){
+			$this->get_travel_info_link();
 			$this->get_region_link();
 			$this->get_related_tours_link();
 			if(!lsx_to_item_has_children(get_the_ID(),'destination')) {
@@ -317,6 +315,22 @@ class LSX_TO_Destination{
 	}
 
 	/**
+	 * Adds the Travel Information to the $page_links variable
+	 */
+	public function get_travel_info_link()	{
+		$electricity = get_post_meta( get_the_ID(), 'electricity', true );
+		$banking     = get_post_meta( get_the_ID(), 'banking', true );
+		$cuisine     = get_post_meta( get_the_ID(), 'cuisine', true );
+		$climate     = get_post_meta( get_the_ID(), 'climate', true );
+		$transport   = get_post_meta( get_the_ID(), 'transport', true );
+		$dress       = get_post_meta( get_the_ID(), 'dress', true );
+
+		if ( ! empty( $electricity ) || ! empty( $banking ) || ! empty( $cuisine ) || ! empty( $climate ) || ! empty( $transport ) || ! empty( $dress ) ) {
+			$this->page_links['travel-info'] = esc_html__( 'Travel Information', 'tour-operator' );
+		}
+	}
+
+	/**
 	 * Adds the Region to the $page_links variable
 	 */
 	public function get_region_link()	{
@@ -324,6 +338,7 @@ class LSX_TO_Destination{
 			$this->page_links['regions'] = esc_html__('Regions','tour-operator');
 		}
 	}
+
 	/**
 	 * Tests Regions adds them to the $page_links variable
 	 */

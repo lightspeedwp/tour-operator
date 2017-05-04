@@ -48,14 +48,14 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<div class="thumbnail">
-											<a href="<?php the_permalink() ?>" title="<?php the_title() ?>">
+											<a href="<?php the_permalink() ?>" title="<?php the_title_attribute() ?>">
 												<?php lsx_thumbnail( 'lsx-single-thumbnail' ) ?>
 											</a>
 										</div>
 									</div>
 
 									<div class="col-sm-6">
-										<h2 class="section-title"><a href="<?php the_permalink() ?>" title="<?php the_title() ?>"><?php the_title() ?></a></h2>
+										<h2 class="section-title"><a href="<?php the_permalink() ?>" title="<?php the_title_attribute() ?>"><?php the_title() ?></a></h2>
 										<?php lsx_to_tagline( '<p class="tagline">', '</p>') ?>
 										<div class="entry-content"><?php echo wp_kses_post( $tour_operator->apply_filters_the_content( $post->post_content, 'Continue Reading', get_permalink() ) ); ?></div>
 									</div>
@@ -87,10 +87,10 @@
 								?>
 
 								<div class="regions">
-									<h3 class="section-title"><?php esc_html_e( 'Travel Regions Within ', 'tour-operator' ) ?><a href="<?php the_permalink() ?>" title="<?php the_title() ?>"><?php the_title() ?></a></h3>
+									<h3 class="section-title"><?php esc_html_e( 'Travel Regions Within ', 'tour-operator' ) ?><a href="<?php the_permalink() ?>" title="<?php the_title_attribute() ?>"><?php the_title() ?></a></h3>
 									
 									<div class="slider-container">
-										<div id="slider-<?php echo esc_attr( $slider_id ); ?>" class="carousel slide" data-interval="false">
+										<div id="slider-<?php echo esc_attr( $slider_id ); ?>" class="lsx-to-slider carousel slide" data-interval="false">
 											<div class="carousel-wrap">
 												<div class="carousel-inner" role="listbox">
 													<div class="item row active">
@@ -203,7 +203,7 @@
 
 			<?php endif ?>
 			
-			<?php lsx_to_travel_styles( '<section id="travel-styles"><h2 class="section-title">'. esc_html_e( 'Travel Styles','tour-operator' ) .'</h2>', '</section>' ) ?>
+			<?php lsx_to_travel_styles( '<section id="travel-styles"><h2 class="section-title">'. esc_html__( 'Travel Styles','tour-operator' ) .'</h2>', '</section>' ) ?>
 			
 			<?php if(function_exists('lsx_to_has_map') && lsx_to_has_map()){ ?>
 				<section id="destination-map">

@@ -227,15 +227,16 @@ $orange-dark: #f7741d;
 		padding-top: 0;
 
 		.price {
-			float: left;
+			display: block;
+			//float: left;
 
 			&:before {
 				content: '\f0d6';
 			}
 
-			@media only screen and (min-width: 768px) and (max-width: 1199px) {
-				margin-bottom: 5px;
-			}
+			//@media only screen and (min-width: 768px) and (max-width: 1199px) {
+			//	margin-bottom: 5px;
+			//}
 
 			.amount{
 				@extend %currency-icons;
@@ -251,59 +252,69 @@ $orange-dark: #f7741d;
 		}
 
 		.duration {
-			float: right;
+			display: block;
+			//float: right;
 
 			&:before {
 				content: '\f073';
 			}
 		}
 
-		.price:last-child,
-		.duration:last-child {
-			&:after {
-				content: '';
-				position: absolute;
-				left: 0;
-				bottom: 0;
-				width: 100%;
-				border-bottom: 1px solid $border-grey;
-				visibility: visible;
-			}
-		}
+		//.price:first-child,
+		//.duration:first-child {
+		//	padding-top: 10px;
+		//}
 
-		@media only screen and (max-width: 767px) {
-			.price,
-			.duration {
-				padding-top: 10px;
-				padding-bottom: 10px;
-			}
-		}
-
-		@media only screen and (min-width: 768px) and (max-width: 1199px) {
-			.price,
-			.duration {
-				display: block;
-				float: none;
-			}
-
-			.price:first-child,
-			.duration:first-child {
-				padding-top: 10px;
-			}
-
+		&:not(.last-meta) {
 			.price:last-child,
 			.duration:last-child {
 				padding-bottom: 10px;
+
+				&:after {
+					content: '';
+					position: absolute;
+					left: 0;
+					bottom: 0;
+					width: 100%;
+					border-bottom: 1px solid $border-grey;
+					visibility: visible;
+				}
 			}
 		}
 
-		@media only screen and (min-width: 1200px) {
-			.price,
-			.duration {
-				padding-top: 10px;
-				padding-bottom: 10px;
-			}
-		}
+		//@media only screen and (max-width: 767px) {
+		//	.price,
+		//	.duration {
+		//		padding-top: 10px;
+		//		padding-bottom: 10px;
+		//	}
+		//}
+
+		//@media only screen and (min-width: 768px) and (max-width: 1199px) {
+		//	.price,
+		//	.duration {
+		//		display: block;
+		//		float: none;
+		//	}
+
+		//	.price:first-child,
+		//	.duration:first-child {
+		//		padding-top: 10px;
+		//	}
+
+		//	.price:last-child,
+		//	.duration:last-child {
+		//		padding-bottom: 10px;
+		//	}
+		//}
+
+		//@media only screen and (min-width: 1200px) {
+		//	.price,
+		//	.duration {
+		//		padding-top: 10px;
+		//		padding-bottom: 10px;
+		//	}
+		//}
 	}
 
 	&.info .price,
@@ -315,6 +326,10 @@ $orange-dark: #f7741d;
 		font: {
 			size: 13px;
 			weight: bold;
+		}
+
+		&:first-child {
+			padding-top: 10px;
 		}
 		
 		&:before {
@@ -338,14 +353,15 @@ $orange-dark: #f7741d;
 			font-weight: normal;
 		}
 	}
-	&.info .price,
-	&.info .duration {
-		line-height: 28px;
+	
+	//&.info .price,
+	//&.info .duration {
+	//	line-height: 28px;
 		
-		font: {
-			size: 14px;
-		}
-	}
+	//	font: {
+	//		size: 14px;
+	//	}
+	//}
 
 	&.travel-style, &.accommodation-type {
 		&:before {
@@ -477,8 +493,7 @@ $orange-dark: #f7741d;
 	a {
 		font-weight: normal;
 		display: inline-block;
-		margin: 9px 5px 0 0;
-		height: 16px;
+		margin: 0 8px 0 0;
 		overflow: hidden;
 	}
 }
@@ -570,7 +585,7 @@ $orange-dark: #f7741d;
 	}
 }
 
-%breadcrumb {
+%lsx-to-navigation {
 	margin: -60px 0 50px;
 
 	&.fixto-logged.fixto-fixed {
@@ -709,7 +724,7 @@ $orange-dark: #f7741d;
 
 	.view-more {
 		padding-top: 20px;
-		margin-top: 15px;
+		margin-top: 12px;
 		border-top: 1px solid $border-grey;
 		text-align: center;
 
@@ -1098,7 +1113,7 @@ $orange-dark: #f7741d;
 				}
 			}
 
-			@media only screen and (min-width: 768px) and (max-width: 1199px) {
+			@media only screen and (min-width: 768px) {
 				.price {
 					display: inline-block;
 					float: left;
@@ -1197,9 +1212,9 @@ $orange-dark: #f7741d;
 			margin-bottom: 30px;
 
 			h3,
-			.meta.info,
-			.meta.info .price,
-			.meta.info .duration {
+			.meta.info {
+			//.meta.info .price,
+			//.meta.info .duration {
 				float: none !important;
 			}
 
@@ -1212,7 +1227,7 @@ $orange-dark: #f7741d;
 			}
 		}
 
-		@media only screen and (min-width: 768px) and (max-width: 991px) {
+		@media only screen and (min-width: 768px) {
 			.meta.info {
 				.price {
 					display: inline-block;
@@ -1404,6 +1419,10 @@ $orange-dark: #f7741d;
 			& > .col-sm-6:nth-child(n+3) {
 				margin-top: 40px;
 			}
+
+			& > .col-sm-6:nth-child(2n+3) {
+				clear: left;
+			}
 		}
 	}
 
@@ -1565,7 +1584,7 @@ body.archive-tour-operator {
 	// ---------- Breadcrumb ----------
 
 	#main > .lsx-to-navigation {
-		@extend %breadcrumb;
+		@extend %lsx-to-navigation;
 	}
 
 	&:not(.page-has-banner) {
@@ -1633,8 +1652,8 @@ body.archive-tour-operator {
 	}
 }
 
-body.archive-tour-operator:not(.post-type-archive-destination) {
-	.row:not(.lsx-accommodation-brand) {
+body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) {
+	.row:not(.lsx-accommodation-brand) { 
 		& > .panel {
 			& > article {
 				@extend %panel-internal-inline;
@@ -1643,7 +1662,7 @@ body.archive-tour-operator:not(.post-type-archive-destination) {
 	}
 }
 
-body.archive.post-type-archive-destination {
+body.archive.post-type-archive-lsx-to-destination {
 	.countries {
 		padding-bottom: 20px;
 
@@ -1689,9 +1708,9 @@ body.archive.post-type-archive-destination {
 	}
 }
 
-body.archive.post-type-archive-vehicle,
-body.archive.post-type-archive-review,
-body.archive.post-type-archive-team {
+body.archive.post-type-archive-lsx-to-vehicle,
+body.archive.post-type-archive-lsx-to-review,
+body.archive.post-type-archive-lsx-to-team {
 	@media only screen and (min-width: 768px) {
 		.panel {
 			& > article {
@@ -1716,7 +1735,7 @@ body.single-tour-operator {
 	// ---------- Breadcrumb ----------
 	
 	#main > .lsx-to-navigation {
-		@extend %breadcrumb;
+		@extend %lsx-to-navigation;
 		margin-top: 0;
 	}
 
@@ -1746,6 +1765,7 @@ body.single-tour-operator {
 	#itinerary,
 	#chalets,
 	#rooms,
+	#travel-info,
 	#spas,
 	#tents,
 	#villas,
@@ -1824,16 +1844,23 @@ body.single-tour-operator {
 		}
 	}
 
-	#rooms,#chalets,#tents,#spas,#villas {
+	#rooms,#chalets,#tents,#spas,#villas,
+	#travel-info {
 		.panel {
 			& > .unit {
 				@extend %panel-internal;
 				@extend %panel-internal-inline;
 
-				@media only screen and (min-width: 768px) {
-					.unit-info {
-						padding: 15px 0;
-					}
+				//@media only screen and (min-width: 768px) {
+				//	.unit-info {
+				//		padding: 15px 0;
+				//	}
+				//}
+			}
+
+			@media only screen and (min-width: 768px) {
+				&.col-sm-6:nth-child(2n+1) {
+					clear: left;
 				}
 			}
 		}
@@ -1852,9 +1879,10 @@ body.single-tour-operator {
 	}
 
 	#videos {
-		.video.thumbnail {
-			iframe {
-				width: 100%;
+		.video {
+			h3,
+			.entry-content {
+				margin-top: 15px !important;
 			}
 		}
 	}
@@ -2075,22 +2103,29 @@ body:not(.home) {
 		}
 
 		.breadcrumbs-container {
-			display: inline-block !important;
 			padding: 8px 16px;
 			color: $white;
 			margin-bottom: 0;
+
+			@media only screen and (min-width: 768px) {
+				display: inline-block !important;
+			}
 		}
 
 		.page-header {
 			line-height: 1;
 
 			h1.page-title {
-				display: inline-block;
-				width: auto !important;
 				padding: 0px 15px !important;
 				text-align: left !important;
-				font-size: 40px !important;
+				font-size: 30px !important;
 				box-shadow: none;
+
+				@media only screen and (min-width: 768px) {
+					display: inline-block;
+					font-size: 40px !important;
+					width: auto !important;
+				}
 			}
 
 			&:last-child {
@@ -2108,11 +2143,26 @@ body:not(.home) {
 
 		.tagline,
 		.post-meta {
-			display: inline-block;
 			margin: 0;
 			padding: 8px 17px;
 			font-size: 17px;
 			color: $white;
+
+			@media only screen and (min-width: 768px) {
+				display: inline-block;
+			}
+		}
+
+		.post-meta {
+			.post-meta-time,
+			.post-meta-author,
+			.post-meta-categories {
+				margin-left: 10px;
+
+				&:first-child {
+					margin-left: 0;
+				}
+			}
 		}
 	}
 }

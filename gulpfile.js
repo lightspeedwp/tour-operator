@@ -99,7 +99,7 @@ gulp.task('wordpress-po', function () {
 		.pipe(sort())
 		.pipe(wppot({
 			domain: 'tour-operator',
-			destFile: 'en_EN.po',
+			destFile: 'tour-operator-en_EN.po',
 			package: 'tour-operator',
 			bugReport: 'https://github.com/lightspeeddevelopment/tour-operator/issues',
 			team: 'LightSpeed <webmaster@lsdev.biz>'
@@ -108,7 +108,7 @@ gulp.task('wordpress-po', function () {
 });
 
 gulp.task('wordpress-po-mo', ['wordpress-po'], function() {
-	return gulp.src('languages/en_EN.po')
+	return gulp.src('languages/tour-operator-en_EN.po')
 		.pipe(gettext())
 		.pipe(gulp.dest('languages'));
 });

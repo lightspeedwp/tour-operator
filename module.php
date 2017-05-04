@@ -416,22 +416,32 @@ class Tour_Operator {
 	 * A filter that outputs the tagline for the current page.
 	 */
 	public function get_tagline($tagline=false,$before='',$after='') {
-		$post_type = get_query_var( 'post_type' );
-		if(is_post_type_archive($this->active_post_types) && isset($this->options[$post_type]) && isset($this->options[$post_type]['tagline'])){
-			$tagline = $this->options[$post_type]['tagline'];
-		}	
-		if(is_singular($this->active_post_types)){
-			$tagline_value = get_post_meta(get_the_ID(),'banner_subtitle',true);
-			if(false !== $tagline_value){
+		$post_id = get_the_ID();
+
+		if ( ! empty( $post_id ) ) {
+			$tagline_value = get_post_meta( $post_id, 'banner_subtitle', true );
+
+			if ( false !== $tagline_value ) {
 				$tagline = $tagline_value;
+			} else {
+				$tagline_value = get_post_meta( $post_id, 'tagline', true );
+
+				if ( false !== $tagline_value ) {
+					$tagline = $tagline_value;
+				}
+			}
+		} else {
+			$post_type = get_query_var( 'post_type' );
+			if(is_post_type_archive($this->active_post_types) && isset($this->options[$post_type]) && isset($this->options[$post_type]['tagline'])){
+				$tagline = $this->options[$post_type]['tagline'];
+			}
+			elseif(is_tax(array_keys($this->taxonomies))){
+				$taxonomy_tagline = get_term_meta(get_queried_object_id(), 'tagline', true);
+				if(false !== $taxonomy_tagline && '' !== $taxonomy_tagline){
+					$tagline = $taxonomy_tagline;
+				}
 			}
 		}
-		if(is_tax(array_keys($this->taxonomies))){
-			$taxonomy_tagline = get_term_meta(get_queried_object_id(), 'tagline', true);
-			if(false !== $taxonomy_tagline && '' !== $taxonomy_tagline){
-				$tagline = $taxonomy_tagline;
-			}
-		}		
 		if(false !== $tagline && '' !== $tagline){
 			$tagline = $before.$tagline.$after;
 		}
@@ -498,6 +508,14 @@ class Tour_Operator {
 		$allowedtags['a']['data-target'] = true;
 		$allowedtags['a']['data-slide'] = true;
 		$allowedtags['a']['data-collapsed'] = true;
+		$allowedtags['a']['data-envira-caption'] = true;
+		$allowedtags['a']['data-envira-retina'] = true;
+		$allowedtags['a']['data-thumbnail'] = true;
+		$allowedtags['a']['data-mobile-thumbnail'] = true;
+		$allowedtags['a']['data-envirabox-type'] = true;
+		$allowedtags['a']['data-video-width'] = true;
+		$allowedtags['a']['data-video-height'] = true;
+		$allowedtags['a']['data-video-aspect-ratio'] = true;
 
 		$allowedtags['div']['aria-labelledby'] = true;
 		$allowedtags['div']['data-interval'] = true;
@@ -518,6 +536,19 @@ class Tour_Operator {
 		$allowedtags['div']['data-fusion-tables-colour-border'] = true;
 		$allowedtags['div']['data-fusion-tables-width-border'] = true;
 		$allowedtags['div']['data-fusion-tables-colour-background'] = true;
+		$allowedtags['div']['itemscope'] = true;
+		$allowedtags['div']['itemtype'] = true;
+		$allowedtags['div']['data-row-height'] = true;
+		$allowedtags['div']['data-gallery-theme'] = true;
+		$allowedtags['div']['data-justified-margins'] = true;
+		$allowedtags['div']['data-envira-columns'] = true;
+		
+		$allowedtags['img']['data-envira-index'] = true;
+		$allowedtags['img']['data-envira-caption'] = true;
+		$allowedtags['img']['data-envira-gallery-id'] = true;
+		$allowedtags['img']['data-envira-item-id'] = true;
+		$allowedtags['img']['data-envira-src'] = true;
+		$allowedtags['img']['data-envira-srcset'] = true;
 
 		// New tags
 

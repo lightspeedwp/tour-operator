@@ -22,7 +22,7 @@ function lsx_to_customizer_colour_selectors_button( $css, $colors ) {
 		body.home aside.lsx-widget,
 		body.archive-tour-operator #safari-brands,
 		body.archive-tour-operator #travel-styles,
-		body.archive.post-type-archive-destination .countries .regions,
+		body.archive.post-type-archive-lsx-to-destination .countries .regions,
 		body.single-tour-operator {
 			.slider-container {
 				.carousel-control {
@@ -92,13 +92,14 @@ function lsx_to_customizer_colour_selectors_main_menu( $css, $colors ) {
 				& > .lsx-to-navigation {
 					a {
 						&,
-						&:visited,
-						&:focus {
+						&:active,
+						&:visited {
 							color: {$colors['main_menu_text_color']};
 						}
 
 						&:hover,
-						&:active {
+						&:hover:active,
+						&:focus {
 							background-color: {$colors['main_menu_background_hover1_color']};
 							color: {$colors['main_menu_text_hover1_color']};
 						}

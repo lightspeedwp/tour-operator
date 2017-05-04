@@ -19,7 +19,7 @@ if(1 !== $lsx_to_archive){
 			<?php if(is_singular() && !$lsx_to_archive) { ?>
 				<div class="single-main-info">
 					<h3><?php esc_html_e('Summary','tour-operator');?></h3>
-					<?php lsx_to_price('<div class="meta info"><span class="price">from ','</span></div>'); ?>
+					<?php lsx_to_price('<div class="meta info"><span class="price">'.esc_html__('From price','tour-operator').': ','</span></div>'); ?>
 					<div class="meta taxonomies">
 						<?php lsx_to_accommodation_room_total('<div class="meta rooms">'.esc_html__('Rooms','tour-operator').': <span>','</span></div>'); ?>
 						<?php lsx_to_accommodation_rating('<div class="meta rating">'.esc_html__('Rating','tour-operator').': ','</div>'); ?>

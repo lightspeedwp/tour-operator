@@ -19,4 +19,4 @@ Welcome to the LSX Tour Operator repository on GitHub. Here you can browse the s
 
 ## Support
 
-For support with using the Tour Operator plugin, please contact us at 
+For support with using the Tour Operator plugin, please contact us at support@lsdev.biz or log issues on this github repo. 

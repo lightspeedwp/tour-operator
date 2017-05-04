@@ -1,5 +1,10 @@
 ## Change log
 
+### 1.0.6
+* Fix - Load correctly the translations/language files
+* Dev - Added en_US language file
+* Dev - Changed the "Insert into Post" button text from media modal to "Select featured image"
+
 ### 1.0.5
 * Added TO Search as subtab on LSX TO settings page
 * Styles from TO Search addon moved to it
@@ -7,6 +12,23 @@
 * Made the function lsx_to_archive_entry_top function test all active post types, not only the three core post types
 * Fixed (back-end) checkbox to display map on destination archive
 * Replaced body and post (TO post type) classes by same classes using prefix "lsx-to-POST_TYPE"
+* Fixed global variable (LSX TO) to enable/disable slider on mobile
+* Added swiper JS library for sliders
+* Added extra class to all sliders (lsx-to-slider)
+* Dev - Metadata: calendar info moved to the next line
+* Dev - Metadata: term "price" change to "price from"
+* Dev - Metadata: term “duration” added to duration meta
+* Fix - Fixed the default pagination from LSX
+* Fix - Facilities without child items can't display
+* Fix - Fixed styles from post meta details on banner
+* Fix - Fixed fideos 16x9
+* Fix - Mysterious Man PNG image
+* Fix - Internal banner on small devices
+* Fix - Small fixes on front-end fields
+* Fix - Made Google Maps works on back-end
+* Fix - Fixed content_part filter for plugin and add-ons
+* Fix - Removed general contact fields from post types
+* Dev - New fields from Wetu Importer
 
 ### 1.0.4
 * Removed the last of the LSX_TO_POSTEXPIRATOR_TYPES constants
