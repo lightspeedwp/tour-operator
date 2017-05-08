@@ -1670,6 +1670,16 @@ body.archive-tour-operator .spoken_languages.meta:before,
 body.single-tour-operator .spoken_languages.meta:before {
   content: '\f1ab'; }
 
+body.home .day-includes.meta:before,
+body.archive-tour-operator .day-includes.meta:before,
+body.single-tour-operator .day-includes.meta:before {
+  content: '\f067'; }
+
+body.home .day-excludes.meta:before,
+body.archive-tour-operator .day-excludes.meta:before,
+body.single-tour-operator .day-excludes.meta:before {
+  content: '\f068'; }
+
 body.home .social-links,
 body.archive-tour-operator .social-links,
 body.single-tour-operator .social-links {

@@ -482,6 +482,18 @@ $orange-dark: #f7741d;
 			content: '\f1ab';
 		}
 	}
+
+	&.day-includes {
+		&:before {
+			content: '\f067';
+		}
+	}
+
+	&.day-excludes {
+		&:before {
+			content: '\f068';
+		}
+	}
 }
 
 %social-links {

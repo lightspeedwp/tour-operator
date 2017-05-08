@@ -409,3 +409,35 @@ function lsx_to_itinerary_read_more(){
 function lsx_to_itinerary_needs_read_more(){
 	return apply_filters('lsx_itinerary_needs_read_more',false);
 }
+
+/**
+ * Gets the days included field
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tags
+ * @category 	itinerary
+ */
+function lsx_to_itinerary_includes($before='',$after='') {
+	global $tour_itinerary;
+	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
+		if(!empty($tour_itinerary->itinerary['included'])){
+			echo wp_kses_post($before.$tour_itinerary->itinerary['included'].$after);
+		}
+	}
+}
+
+/**
+ * Gets the days excluded field
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tags
+ * @category 	itinerary
+ */
+function lsx_to_itinerary_excludes($before='',$after='') {
+	global $tour_itinerary;
+	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
+		if(!empty($tour_itinerary->itinerary['excluded'])){
+			echo wp_kses_post($before.$tour_itinerary->itinerary['excluded'].$after);
+		}
+	}
+}
