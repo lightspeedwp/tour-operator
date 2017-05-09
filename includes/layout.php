@@ -284,7 +284,6 @@ function lsx_to_tour_single_content_bottom() {
 											<?php lsx_to_itinerary_activities('<div class="meta activities">'.esc_html__('Activites','tour-operator').': ','</div>'); ?>
 											<?php lsx_to_itinerary_includes('<div class="meta end-point day-includes">'.esc_html__('Included','tour-operator').': <span>','</span></div>'); ?>
 											<?php lsx_to_itinerary_excludes('<div class="meta end-point day-excludes">'.esc_html__('Excluded','tour-operator').': <span>','</span></div>'); ?>
-
 										</div>
 									</div>
 								</div>
