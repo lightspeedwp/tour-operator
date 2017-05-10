@@ -124,11 +124,7 @@ function lsx_to_accommodation_single_content_bottom() {
 			</section>			
 		<?php }
 
-		if(function_exists('lsx_to_gallery')) {
-			lsx_to_gallery('<section id="gallery"><h2 class="section-title">'.esc_html__('Gallery','tour-operator').'</h2>','</section>');
-		}elseif(class_exists('envira_gallery')) {
-			lsx_to_envira_gallery('<section id="gallery"><h2 class="section-title">'.esc_html__('Gallery','tour-operator').'</h2>','</section>');
-		}
+		lsx_to_gallery('<section id="gallery"><h2 class="section-title">'.esc_html__('Gallery','tour-operator').'</h2>','</section>');
 
 		if(function_exists('lsx_to_videos')) {
 			lsx_to_videos('<div id="videos"><h2 class="section-title">'.esc_html__('Videos','tour-operator').'</h2>','</div>');
@@ -199,11 +195,7 @@ function lsx_to_destination_single_content_bottom() {
 			</section>			
 		<?php }
 
-		if(function_exists('lsx_to_gallery')) {
-			lsx_to_gallery('<section id="gallery"><h2 class="section-title">'.esc_html__('Gallery','tour-operator').'</h2>','</section>');
-		}elseif(class_exists('envira_gallery')) {
-			lsx_to_envira_gallery('<section id="gallery"><h2 class="section-title">'.esc_html__('Gallery','tour-operator').'</h2>','</section>');
-		}
+        lsx_to_gallery('<section id="gallery"><h2 class="section-title">'.esc_html__('Gallery','tour-operator').'</h2>','</section>');
 
 		if(function_exists('lsx_to_videos')) {
 			lsx_to_videos('<div id="videos"><h2 class="section-title">'.esc_html__('Videos','tour-operator').'</h2>','</div>');
@@ -304,11 +296,7 @@ function lsx_to_tour_single_content_bottom() {
 			</section>			
 		<?php }
 
-		if(function_exists('lsx_to_gallery')) {
-			lsx_to_gallery('<section id="gallery"><h2 class="section-title">'.esc_html__('Gallery','tour-operator').'</h2>','</section>');
-		}elseif(class_exists('envira_gallery')) {
-			lsx_to_envira_gallery('<section id="gallery"><h2 class="section-title">'.esc_html__('Gallery','tour-operator').'</h2>','</section>');
-		}
+		lsx_to_gallery('<section id="gallery"><h2 class="section-title">'.esc_html__('Gallery','tour-operator').'</h2>','</section>');
 
 		if(function_exists('lsx_to_videos')) {
 			lsx_to_videos('<div id="videos"><h2 class="section-title">'.esc_html__('Videos','tour-operator').'</h2>','</div>');
