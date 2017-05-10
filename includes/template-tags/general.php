@@ -556,33 +556,37 @@ function lsx_to_modal_meta(){
  * @subpackage	template-tags
  * @category 	galleries
  */
-function lsx_to_gallery($before="",$after="",$echo=true){
-	$gallery_ids = get_post_meta(get_the_ID(),'gallery',false);
-	$envira_gallery = get_post_meta(get_the_ID(),'envira_gallery',true);
+if(!function_exists('lsx_to_gallery')) {
+	function lsx_to_gallery($before = "", $after = "", $echo = true)
+	{
+		$gallery_ids = get_post_meta(get_the_ID(), 'gallery', false);
+		$envira_gallery = get_post_meta(get_the_ID(), 'envira_gallery', true);
 
-	if((false !== $gallery_ids && '' !== $gallery_ids && is_array($gallery_ids) && !empty($gallery_ids))
-		|| (false !== $envira_gallery && '' !== $envira_gallery)){
-		//Should we include the Envira Gallery or display fromt he attached items.
-		if(false !== $envira_gallery && '' !== $envira_gallery){
-			ob_start();
-			envira_gallery( $envira_gallery );
-			$return = ob_get_clean();
-		}else{
-			if ( function_exists( 'envira_dynamic' ) ) {
+		if ((false !== $gallery_ids && '' !== $gallery_ids && is_array($gallery_ids) && !empty($gallery_ids))
+			|| (false !== $envira_gallery && '' !== $envira_gallery)
+		) {
+			//Should we include the Envira Gallery or display fromt he attached items.
+			if (false !== $envira_gallery && '' !== $envira_gallery) {
 				ob_start();
-				envira_dynamic( array( 'id' => 'custom', 'images' => implode(',',$gallery_ids), 'isotope' => false, 'pagination' => true ,'pagination_images_per_page' => 9 ) );
+				envira_gallery($envira_gallery);
 				$return = ob_get_clean();
 			} else {
-				$columns = 4;
-				$return = do_shortcode( '[gallery ids="'. implode(',',$gallery_ids) .'" type="square" size="medium" columns="'.$columns.'" link="file"]' );
+				if (function_exists('envira_dynamic')) {
+					ob_start();
+					envira_dynamic(array('id' => 'custom', 'images' => implode(',', $gallery_ids), 'isotope' => false, 'pagination' => true, 'pagination_images_per_page' => 9));
+					$return = ob_get_clean();
+				} else {
+					$columns = 4;
+					$return = do_shortcode('[gallery ids="' . implode(',', $gallery_ids) . '" type="square" size="medium" columns="' . $columns . '" link="file"]');
+				}
 			}
-		}
-		$return = $before.$return.$after;
+			$return = $before . $return . $after;
 
-		if($echo){
-			echo wp_kses_post( $return );
-		}else{
-			return $return;
+			if ($echo) {
+				echo wp_kses_post($return);
+			} else {
+				return $return;
+			}
 		}
 	}
 }
