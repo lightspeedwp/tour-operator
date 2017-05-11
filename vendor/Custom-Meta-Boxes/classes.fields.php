@@ -1716,19 +1716,24 @@ class CMB_Gmap_Field extends CMB_Field {
 
 		parent::enqueue_scripts();
 
-		wp_enqueue_script( 'cmb-google-maps', '//maps.google.com/maps/api/js?sensor=true&libraries=places' );
-		wp_enqueue_script( 'cmb-google-maps-script', trailingslashit( CMB_URL ) . 'js/field-gmap.js', array( 'jquery', 'cmb-google-maps' ) );
+		$options = get_option('_lsx_lsx-settings',false);
 
-		wp_localize_script( 'cmb-google-maps-script', 'CMBGmaps', array(
-			'defaults' => array(
-				'latitude'  => $this->args['default_lat'],
-				'longitude' => $this->args['default_long'],
-				'zoom'      => $this->args['default_zoom'],
-			),
-			'strings'  => array(
-				'markerTitle' => $this->args['string-marker-title']
-			)
-		) );
+		if(false !== $options && isset($options['general']['googlemaps_key'])) {
+
+			wp_enqueue_script( 'cmb-google-maps', 'https://maps.googleapis.com/maps/api/js?key='.$options['general']['googlemaps_key'].'&libraries=places' );
+			wp_enqueue_script( 'cmb-google-maps-script', trailingslashit( CMB_URL ) . 'js/field-gmap.js', array( 'jquery', 'cmb-google-maps' ) );
+
+			wp_localize_script( 'cmb-google-maps-script', 'CMBGmaps', array(
+				'defaults' => array(
+					'latitude'  => $this->args['default_lat'],
+					'longitude' => $this->args['default_long'],
+					'zoom'      => $this->args['default_zoom'],
+				),
+				'strings'  => array(
+					'markerTitle' => $this->args['string-marker-title']
+				)
+			) );
+		}
 
 	}
 

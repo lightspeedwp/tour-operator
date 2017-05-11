@@ -95,7 +95,11 @@
 	}	
 }
 
-.cmb_metabox input.cmb_text_small { 
+.cmb_metabox .cmb-cell-12 textarea.wp-editor-area {
+	width:100%;
+}
+
+.cmb_metabox input.cmb_text_small {
 	width: 100px; 
 }
 
