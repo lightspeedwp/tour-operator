@@ -2522,10 +2522,9 @@ body.archive-tour-operator #summary article.hentry .entry-content .single-main-i
   float: left;
   width: 100%;
   margin: 0 0 30px 0; }
-
-body.archive-tour-operator #summary article.hentry .entry-content h3, body.single-tour-operator #summary article.hentry .entry-content h3, body.single-tour-operator .lsx-modal article.hentry .entry-content h3 {
-  margin: 0;
-  float: left; }
+  body.archive-tour-operator #summary article.hentry .entry-content .single-main-info h3, body.single-tour-operator #summary article.hentry .entry-content .single-main-info h3, body.single-tour-operator .lsx-modal article.hentry .entry-content .single-main-info h3 {
+    margin: 0;
+    float: left; }
 
 body.archive-tour-operator #summary article.hentry .entry-content .meta:first-child, body.single-tour-operator #summary article.hentry .entry-content .meta:first-child, body.single-tour-operator .lsx-modal article.hentry .entry-content .meta:first-child {
   padding-top: 0;
