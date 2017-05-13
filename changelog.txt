@@ -9,7 +9,7 @@
 * Dev - Added in the Day inclusions fields along with the styling
 * Dev - Added in "full" as an option to be replaced
 * Dev - Removing the destinations, accommodation and the tour dependancies on the TO Galleries
-* Dev - Standardized the Gallery fields across the post types.  Allowing the TO Videos to always inject after.
+* Dev - Standardized the Gallery fields across the post types. Allowing the TO Videos to always inject after.
 
 ### 1.0.5
 * Added TO Search as subtab on LSX TO settings page

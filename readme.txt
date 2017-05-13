@@ -66,7 +66,14 @@ Yes you can! Join in on our [GitHub repository](https://github.com/lightspeeddev
 
 = 1.0.6 =
 * Fix - Load correctly the translations/language files
+* Fix - Fixed the read more when you click it removes the formatting
+* Fix - Fixed the display of the destination galleries
 * Dev - Added en_US language file
+* Dev - Changed the "Insert into Post" button text from media modal to "Select featured image"
+* Dev - Added in the Day inclusions fields along with the styling
+* Dev - Added in "full" as an option to be replaced
+* Dev - Removing the destinations, accommodation and the tour dependancies on the TO Galleries
+* Dev - Standardized the Gallery fields across the post types. Allowing the TO Videos to always inject after.
 
 = 1.0.5 =
 * Added TO Search as subtab on LSX TO settings page
