@@ -128,11 +128,65 @@ class LSX_TO_Itinerary_Query {
 	 */	
 	public function current_itinerary_item() {
 		$this->itinerary = $this->itineraries[$this->index];
-
-
-		$image_ids = get_post_meta();
-
 		$this->index++;
+	}
+
+	/**
+	 * Pulls the current days accommodation and saves them for use incase an image has already been displayed.
+     *
+     * @param   $accommodation_id   | string
+	 */
+	public function register_current_gallery($accommodation_id = false) {
+	    if(false !== $accommodation_id) {
+            $gallery = get_post_meta($accommodation_id,'gallery',false);
+            if(false !== $gallery && !empty($gallery)){
+                $this->current_attachments[$accommodation_id] = $gallery;
+            }
+		}
+	}
+
+	/**
+	 * Save the id of the images that have already been displayed.
+     *
+     * @param   $image_id   | string
+	 */
+	public function save_used_image($image_id = false) {
+		if(false !== $image_id) {
+            $this->images_used[] = $image_id;
+		}
+	}
+
+	/**
+	 * Check if the current image has been displayed already
+	 *
+	 * @param   $image_id   | string
+     * @return  boolean
+	 */
+	public function is_image_used($image_id = false) {
+		if(is_array($this->images_used) && in_array($image_id,$this->images_used)) {
+			return true;
+		}else{
+		    return false;
+        }
+	}
+
+	/**
+	 * Finds another image from the accommodation gallery that hasnt been used.
+	 *
+     * @param   $accommodation_id   | string
+	 * @return  boolean | string
+	 */
+	public function find_next_image($accommodation_id = false) {
+	    $return = false;
+
+
+	    if(false !== $accommodation_id && isset($this->current_attachments[$accommodation_id]) && !empty($this->current_attachments[$accommodation_id]) && !empty($this->images_used)){
+			$images_left = array_diff($this->current_attachments[$accommodation_id],$this->images_used);
+			if(is_array($images_left) && !empty($images_left)){
+			    $return = array_shift(array_values($images_left));
+            }
+        }
+        return $return;
 	}
 	
 	/**
@@ -297,10 +351,12 @@ function lsx_to_itinerary_has_thumbnail() {
 
 function lsx_to_itinerary_thumbnail() {
 	global $tour_itinerary;
+
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
 		$thumbnail_src = false;
 
 		if(false !== $tour_itinerary->itinerary['featured_image'] && '' !== $tour_itinerary->itinerary['featured_image']){
+			$tour_itinerary->save_used_image($tour_itinerary->itinerary['featured_image']);
 			$thumbnail = wp_get_attachment_image_src($tour_itinerary->itinerary['featured_image'],'lsx-thumbnail-wide');
 			if(is_array($thumbnail)){
 				$thumbnail_src = $thumbnail[0];
@@ -309,10 +365,21 @@ function lsx_to_itinerary_thumbnail() {
 			$accommodation_images = false;
 
 			foreach($tour_itinerary->itinerary['accommodation_to_tour'] as $accommodation_id){
+				$tour_itinerary->register_current_gallery($accommodation_id);
+                $current_image_id = false;
+
+				//Try for a thumbnail first.
 				$temp_id = get_post_thumbnail_id( $accommodation_id );
-				if(false !== $temp_id){
-					$temp_src_array = wp_get_attachment_image_src($temp_id,'lsx-thumbnail-wide');
-					if(is_array($temp_src_array)){
+				if(false === $temp_id || $tour_itinerary->is_image_used($temp_id)){
+					$current_image_id = $tour_itinerary->find_next_image($accommodation_id);
+				}else{
+					$current_image_id = $temp_id;
+                }
+
+                if(false !== $current_image_id) {
+				    $tour_itinerary->save_used_image($current_image_id);
+					$temp_src_array = wp_get_attachment_image_src($current_image_id, 'lsx-thumbnail-wide');
+					if (is_array($temp_src_array)) {
 						$accommodation_images[] = $temp_src_array[0];
 					}
 				}
@@ -322,6 +389,9 @@ function lsx_to_itinerary_thumbnail() {
 				$thumbnail_src = $accommodation_images[0];
 			}
 		}
+
+
+		//Check weather or not to display the placeholder.
 		if(false === $thumbnail_src || '' === $thumbnail_src){
 			$thumbnail_src = LSX_TO_Placeholders::placeholder_url(null,'tour');
 		}

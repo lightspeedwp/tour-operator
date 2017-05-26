@@ -340,7 +340,7 @@ class LSX_TO_Tour {
 		$fields[] = array( 'id' => 'description', 'name' => esc_html__('Description','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ) );
 		$fields[] = array( 'id' => 'featured_image', 'name' => esc_html__('Featured Image','tour-operator'), 'type' => 'image', 'show_size' => false );
 		if(post_type_exists('accommodation')){
-			$fields[] = array( 'id' => 'accommodation_to_tour', 'name' => esc_html__('Accommodation related with this itinerary','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'accommodation','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => false, 'sortable' => false,'allow_none'=>true, 'cols' => 12 );
+			$fields[] = array( 'id' => 'accommodation_to_tour', 'name' => esc_html__('Accommodation related with this itinerary','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'accommodation','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true,'allow_none'=>true, 'cols' => 12 );
 		}
 		if(post_type_exists('activity')){
 			$fields[] = array( 'id' => 'activity_to_tour', 'name' => esc_html__('Activities related with this itinerary','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'activity','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'sortable' => true,'allow_none'=>true, 'cols' => 12 );
