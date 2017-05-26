@@ -186,6 +186,7 @@ function lsx_to_destination_travel_info() {
  * @param		$before	| string
  * @param		$after	| string
  * @param		$echo	| boolean
+ * @param       $parents| boolean
  * @return		string
  *
  * @package 	tour-operator
@@ -194,4 +195,21 @@ function lsx_to_destination_travel_info() {
  */
 function lsx_to_connected_destinations($before="",$after="",$echo=true){
 	lsx_to_connected_items_query('destination',get_post_type(),$before,$after,$echo);
+}
+
+/**
+ * Gets the current connected countries
+ *
+ * @param		$before	| string
+ * @param		$after	| string
+ * @param		$echo	| boolean
+ * @param       $parents| boolean
+ * @return		string
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tags
+ * @category 	connections
+ */
+function lsx_to_connected_countries($before="",$after="",$echo=true){
+	lsx_to_connected_items_query('destination',get_post_type(),$before,$after,$echo,'0');
 }

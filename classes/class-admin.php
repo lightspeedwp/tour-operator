@@ -385,18 +385,6 @@ class LSX_TO_Admin extends Tour_Operator {
 			'new_item_name' => esc_html__( 'New Location' , 'tour-operator' ),
 			'menu_name' => esc_html__( 'Locations' , 'tour-operator' ),
 		);
-		// Now register the taxonomy
-		register_taxonomy('location',array('accommodation'), array(
-			'hierarchical' => true,
-			'labels' => $labels,
-			'show_ui' => true,
-			'public' => true,
-			'exclude_from_search' => true,
-			'show_admin_column' => true,
-			'query_var' => true,
-			'rewrite' => array('slug'=>'location'),
-		));
-
 	}
 
 	/**

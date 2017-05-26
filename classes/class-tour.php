@@ -468,7 +468,7 @@ class LSX_TO_Tour {
 		<div class="tour-details">
 			<div class="meta info"><?php lsx_to_price('<span class="price">'.esc_html__('From price','tour-operator').': ','</span>'); lsx_to_duration('<span class="duration">'.esc_html__('Duration','tour-operator').': ','</span>'); ?></div>
 			<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.esc_html__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>
-			<?php lsx_to_connected_destinations('<div class="meta destination">'.esc_html__('Destinations','tour-operator').': ','</div>'); ?>
+			<?php lsx_to_connected_countries('<div class="meta destination">'.esc_html__('Destinations','tour-operator').': ','</div>',true,'test'); ?>
 			<?php if(function_exists('lsx_to_connected_activities')){ lsx_to_connected_activities('<div class="meta activities">'.esc_html__('Activities','tour-operator').': ','</div>');} ?>
 		</div>
 	<?php } }
