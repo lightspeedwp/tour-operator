@@ -195,7 +195,6 @@ class LSX_TO_Itinerary_Query {
 	public function reset_loop() {
 		$this->index = 0;
 	}
-	
 }
 /**
  * Checks if the current tour has an itinerary
