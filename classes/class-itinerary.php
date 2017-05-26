@@ -69,7 +69,25 @@ class LSX_TO_Itinerary_Query {
 	 *
 	 * @var      string
 	 */
-	public $post_id = false;	
+	public $post_id = false;
+
+	/**
+	 * Holds the an array of gallery ids from each accommodations attached to the itinerary.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var      string
+	 */
+	public $current_attachments = array();
+
+	/**
+	 * Holds the an array of attachment ids
+	 *
+	 * @since 1.0.0
+	 *
+	 * @var      string
+	 */
+	public $images_used = array();
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -110,6 +128,10 @@ class LSX_TO_Itinerary_Query {
 	 */	
 	public function current_itinerary_item() {
 		$this->itinerary = $this->itineraries[$this->index];
+
+
+		$image_ids = get_post_meta();
+
 		$this->index++;
 	}
 	
@@ -272,6 +294,7 @@ function lsx_to_itinerary_has_thumbnail() {
  * @subpackage	template-tags
  * @category 	itinerary
  */
+
 function lsx_to_itinerary_thumbnail() {
 	global $tour_itinerary;
 	if($tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary) {
@@ -284,6 +307,7 @@ function lsx_to_itinerary_thumbnail() {
 			}
 		}elseif(isset($tour_itinerary->itinerary['accommodation_to_tour']) && !empty($tour_itinerary->itinerary['accommodation_to_tour'])){
 			$accommodation_images = false;
+
 			foreach($tour_itinerary->itinerary['accommodation_to_tour'] as $accommodation_id){
 				$temp_id = get_post_thumbnail_id( $accommodation_id );
 				if(false !== $temp_id){
@@ -293,6 +317,7 @@ function lsx_to_itinerary_thumbnail() {
 					}
 				}
 			}
+
 			if(false !== $accommodation_images){
 				$thumbnail_src = $accommodation_images[0];
 			}
