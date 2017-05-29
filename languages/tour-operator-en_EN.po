@@ -770,7 +770,7 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: classes/class-frontend.php:344, classes/class-frontend.php:355, classes/class-itinerary.php:489
+#: classes/class-frontend.php:366, classes/class-frontend.php:377, classes/class-itinerary.php:489
 msgid "Read More"
 msgstr ""
 

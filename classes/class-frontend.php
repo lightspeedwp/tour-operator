@@ -54,7 +54,7 @@ class LSX_TO_Frontend extends Tour_Operator {
 		add_filter( 'post_class', array( $this, 'replace_class'), 10, 1 );
 		add_filter( 'body_class', array( $this, 'replace_class'), 10, 1 );
 
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ), 11 );
 		add_action( 'wp_head', array( $this,'wp_head') , 10 );
 		add_filter( 'body_class', array( $this, 'body_class') );
 
@@ -66,7 +66,7 @@ class LSX_TO_Frontend extends Tour_Operator {
 		add_filter( 'lsx_to_connected_list_item', array( $this,'add_modal_attributes') , 10, 3 );
 		add_action( 'wp_footer', array( $this,'output_modals') , 10 );
 		add_filter( 'use_default_gallery_style', '__return_false' );
-		add_filter('lsx_to_tagline',array($this,'get_tagline'),1,3);
+		add_filter( 'lsx_to_tagline', array($this,'get_tagline'),1,3);
 
 		add_filter( 'the_terms', array( $this,'links_new_window') , 10, 2);
 
@@ -200,6 +200,28 @@ class LSX_TO_Frontend extends Tour_Operator {
 		if(!isset($this->options['display']['disable_css'])){
 			wp_enqueue_style( 'tour-operator-style', LSX_TO_URL . 'assets/css/style.css', array(), LSX_TO_VER );
 			wp_style_add_data( 'tour-operator-style', 'rtl', 'replace' );
+
+			$current_theme = wp_get_theme();
+			$current_template = $current_theme->get_template();
+			$theme_name = $current_theme->get( 'Name' );
+			$is_lsx_theme = 'lsx' === $current_template || 'LSX' === $theme_name;
+
+			if ( ! $is_lsx_theme ) {
+				$has_font_awesome = wp_script_is( 'font_awesome', 'queue' ) || wp_script_is( 'fontawesome', 'queue' );
+				$has_bootstrap = wp_script_is( 'bootstrap', 'queue' );
+
+				if ( ! $has_font_awesome ) {
+					wp_enqueue_style( 'font_awesome', LSX_TO_URL . 'assets/css/vendor/font-awesome.css', array(), LSX_TO_VER );
+					wp_style_add_data( 'font_awesome', 'rtl', 'replace' );
+				}
+
+				if ( ! $has_bootstrap ) {
+					// TODO
+					// wp_enqueue_style( 'bootstrap', LSX_TO_URL . 'assets/css/style-bootstrap.css', array(), LSX_TO_VER );
+					// wp_enqueue_script( 'bootstrap', LSX_TO_URL . 'assets/js/bootstrap-scripts.min.js', array( 'jquery' ), LSX_TO_VER, true );
+				}
+			}
+
 		}
 		if(defined('JETPACK__VERSION') && defined('WP_SHARING_PLUGIN_URL')){
 			wp_enqueue_style( 'sharing', WP_SHARING_PLUGIN_URL.'sharing.css', false, JETPACK__VERSION );
