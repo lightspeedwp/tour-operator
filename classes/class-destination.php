@@ -447,7 +447,6 @@ class LSX_TO_Destination{
 			$new_items = array();
 			$formatted_countries = implode(',',$countries);
 
-
 		    $results = $wpdb->get_results("SELECT ID,post_parent FROM {$wpdb->posts} WHERE ID IN ({$formatted_countries})");
 
 		    if(!empty($results)){
