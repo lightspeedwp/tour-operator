@@ -1,4 +1,4 @@
-﻿=== Tour Operators ===
+=== Tour Operators ===
 Contributors: feedmymedia
 Donate link: https://www.lsdev.biz/
 Tags: tour operator, tour operators, tour, tours, tour itinerary, tour itineraries, accommodation, accommodation listings, destinations, regions, tourism, lsx
@@ -63,6 +63,9 @@ Yes you can! Join in on our [GitHub repository](https://github.com/lightspeeddev
 5. A single tour itinerary page.
 
 == Changelog ==
+
+= 1.0.7 =
+* Dev - Added .editorconfig file to help developers to maintain consistent coding styles between different editors and IDEs
 
 = 1.0.6 =
 * Fix - Load correctly the translations/language files

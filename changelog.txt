@@ -1,5 +1,8 @@
 ## Change log
 
+### 1.0.7
+* Dev - Added .editorconfig file to help developers to maintain consistent coding styles between different editors and IDEs
+
 ### 1.0.6
 * Fix - Load correctly the translations/language files
 * Fix - Fixed the read more when you click it removes the formatting
