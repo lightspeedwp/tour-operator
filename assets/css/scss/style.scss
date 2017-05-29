@@ -2,7 +2,7 @@
  * LSX Tour Operators
  */
 
-@import 'flag-icon-css/flag-icon';
+@import '../vendor/flag-icon-css/flag-icon';
 
 // ---------- Global Variables ----------
 
@@ -116,97 +116,97 @@ $orange-dark: #f7741d;
 		&.brl {
 			&:after {
 				content: '\0052\0024';
-			}		
+			}
 		}
 		&.bwp {
 			&:after {
 				content: '\0050';
-			}		
+			}
 		}
 		&.cny,
 		&.jpy {
 			&:after {
 				content: '\00A5';
-			}		
+			}
 		}
 		&.inr {
 			&:after {
 				content: '\20B9';
-			}		
+			}
 		}
 		&.idr {
 			&:after {
 				content: '\20B9';
-			}		
+			}
 		}
 		&.ils {
 			&:after {
 				content: '\20AA';
-			}		
+			}
 		}
 		&.kes {
 			&:after {
 				content: '\004b';
-			}		
+			}
 		}
 		&.lak {
 			&:after {
 				content: '\20ad';
-			}		
-		}	
+			}
+		}
 		&.mwk {
 			&:after {
 				content: '\004d\004b';
-			}		
-		}	
+			}
+		}
 		&.myr {
 			&:after {
 				content: '\0052\004d';
-			}		
+			}
 		}
 		&.mzn {
 			&:after {
 				content: '\004d\0054';
-			}		
+			}
 		}
 		&.nok,
 		&.sek {
 			&:after {
 				content: '\006b\0072';
-			}		
-		}	
+			}
+		}
 		&.rub {
 			&:after {
 				content: '\0440\0443\0431';
-			}		
+			}
 		}
 		&.chf {
 			&:after {
 				content: '\0043\0048\0046';
-			}		
-		}	
+			}
+		}
 		&.tzs {
 			&:after {
 				content: '\0054\0053\0068';
-			}		
+			}
 		}
 		&.aed {
 			&:after {
 				content: '\062f\002e\0625';
-			}		
+			}
 		}
 		&.zmw {
 			&:after {
 				content: '\005a\006b';
-			}		
-		}			
+			}
+		}
 		&.zwl {
 			&:after {
 				content: '\005a\0024';
-			}		
-		}			
-								
-	}	
+			}
+		}
+
+	}
 }
 
 %meta {
@@ -247,7 +247,7 @@ $orange-dark: #f7741d;
 							right: 0px;
 						}
 					}
-				}				
+				}
 			}
 		}
 
@@ -322,7 +322,7 @@ $orange-dark: #f7741d;
 	&:not(.info) {
 		color: $grey;
 		line-height: 28px;
-		
+
 		font: {
 			size: 13px;
 			weight: bold;
@@ -331,15 +331,15 @@ $orange-dark: #f7741d;
 		&:first-child {
 			padding-top: 10px;
 		}
-		
+
 		&:before {
 			display: inline-block;
-			
+
 			font: {
 				family: fontawesome;
 				weight: normal;
 			}
-			
+
 			margin-right: 5px;
 		}
 
@@ -353,11 +353,11 @@ $orange-dark: #f7741d;
 			font-weight: normal;
 		}
 	}
-	
+
 	//&.info .price,
 	//&.info .duration {
 	//	line-height: 28px;
-		
+
 	//	font: {
 	//		size: 14px;
 	//	}
@@ -513,7 +513,7 @@ $orange-dark: #f7741d;
 %bootstrap-carousel {
 	.slider-container {
 		position: relative;
-	
+
 		.carousel-wrap {
 			position: relative;
 		}
@@ -521,7 +521,7 @@ $orange-dark: #f7741d;
 		.carousel {
 			margin-bottom: 0;
 		}
-		
+
 		.item {
 			margin-bottom: 0;
 
@@ -603,7 +603,7 @@ $orange-dark: #f7741d;
 	&.fixto-logged.fixto-fixed {
 		padding-top: 32px;
 	}
-	
+
 	.container {
 		@media only screen and (max-width: 991px) {
 			display: none;
@@ -667,7 +667,7 @@ $orange-dark: #f7741d;
 
 	@media only screen and (max-width: 767px) {
 		//max-width: 360px;
-		
+
 		margin: {
 			left: auto;
 			right: auto;
@@ -1022,7 +1022,7 @@ $orange-dark: #f7741d;
 		line-height: 25px;
 		max-width: 625px !important;
 		text-align: center;
-		
+
 		margin: {
 			left: auto;
 			right: auto;
@@ -1344,7 +1344,7 @@ $orange-dark: #f7741d;
 						size: 15px;
 						weight: bold;
 					}
-					
+
 					padding: {
 						left: 15px;
 						right: 15px;
@@ -1576,9 +1576,9 @@ body {
 
 
 body.home {
-	
+
 	// ---------- Widgets ----------
-	
+
 	aside.lsx-widget {
 		@extend %panel-home-group;
 		@extend %bootstrap-carousel;
@@ -1606,7 +1606,7 @@ body.archive-tour-operator {
 	}
 
 	// ---------- Subtitle ----------
-	
+
 	.archive-description {
 		@extend %archive-description;
 	}
@@ -1665,7 +1665,7 @@ body.archive-tour-operator {
 }
 
 body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) {
-	.row:not(.lsx-accommodation-brand) { 
+	.row:not(.lsx-accommodation-brand) {
 		& > .panel {
 			& > article {
 				@extend %panel-internal-inline;
@@ -1688,7 +1688,7 @@ body.archive.post-type-archive-lsx-to-destination {
 					width: 100%;
 				}
 			}
-			
+
 			.tagline {
 				display: none;
 			}
@@ -1745,7 +1745,7 @@ body.single-tour-operator {
 	@extend %bootstrap-carousel;
 
 	// ---------- Breadcrumb ----------
-	
+
 	#main > .lsx-to-navigation {
 		@extend %lsx-to-navigation;
 		margin-top: 0;
@@ -1764,7 +1764,7 @@ body.single-tour-operator {
 			@extend %single-hentry;
 		}
 	}
-	
+
 	// ---------- Extra sections ----------
 
 	#tours,
@@ -1847,7 +1847,7 @@ body.single-tour-operator {
 		.panel {
 			@extend %clear-panel;
 			@extend %panel-root;
-			
+
 			//& > .itinerary-inner {
 			.itinerary-inner {
 				@extend %panel-internal;
@@ -1914,7 +1914,7 @@ body.single-tour-operator {
 				    margin-left: auto !important;
 				    margin-right: auto !important;
 				    padding-left: 30px !important;
-				    padding-right: 30px !important;					
+				    padding-right: 30px !important;
 				}
 			}
 		}
@@ -1985,7 +1985,7 @@ body.home {
 	#main {
 		padding: 20px 0 30px 0;
 	}
-	
+
 	// ---------- Banner ----------
 
 	.page-banner.rotating {
@@ -1995,12 +1995,12 @@ body.home {
 			}
 		}
 	}
-	
+
 	.page-banner {
 		header.page-header {
 			display: block;
 		}
-		
+
 		// ---------- LSX LSX Banners Plugin ----------
 
 		.banner-content {
@@ -2023,9 +2023,9 @@ body.home {
 			display: none;
 		}
 	}
-	
+
 	// ---------- Widgets ----------
-	
+
 	#home-widgets {
 		aside.widget_text:first-child {
 			.page-title {
@@ -2083,13 +2083,13 @@ body.home {
 
 
 body:not(.home) {
-	
+
 	// ---------- LSX LSX Banners Plugin ----------
 
 	.page-banner.rotating {
 		justify-content: flex-end;
 		align-items: baseline;
-		
+
 		.container {
 			padding-top: 0 !important;
 			margin-bottom: 0;
@@ -2105,7 +2105,7 @@ body:not(.home) {
 			}
 		}
 	}
-	
+
 	.page-banner {
 		.breadcrumbs-container,
 		h1.page-title,

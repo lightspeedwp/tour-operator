@@ -2,7 +2,7 @@
  * LSX Tour Operators Administrator
  */
 
-@import 'flag-icon-css/flag-icon';
+@import '../vendor/flag-icon-css/flag-icon';
 
 /* Variables */
 
@@ -15,7 +15,7 @@ $bdr-grey: #cccccc;
 	background-color: $bg-grey;
 	border: 1px solid $bdr-grey;
 	border-radius: 4px;
-	padding: 8px 20px 12px;	
+	padding: 8px 20px 12px;
 }
 
 %heading-box {
@@ -128,11 +128,11 @@ body.tour-operator_page_lsx-to-settings {
 body.tour-operator_page_lsx-to-settings,
 body.tour-operator_page_to-help,
 body.tour-operator_page_to-addons {
-	
+
 	// Bootstrap Grid
 
-	@import "bootstrap/variables";
-	@import "bootstrap/mixins";
+	@import "../vendor/bootstrap/variables";
+	@import "../vendor/bootstrap/mixins";
 
 	* {
 		@include box-sizing(border-box);
@@ -147,7 +147,7 @@ body.tour-operator_page_to-addons {
 		text-align: center;
 	}
 
-	@import "bootstrap/grid";
+	@import "../vendor/bootstrap/grid";
 
 	// Styles
 
