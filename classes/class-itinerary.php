@@ -183,7 +183,8 @@ class LSX_TO_Itinerary_Query {
 	    if(false !== $accommodation_id && isset($this->current_attachments[$accommodation_id]) && !empty($this->current_attachments[$accommodation_id]) && !empty($this->images_used)){
 			$images_left = array_diff($this->current_attachments[$accommodation_id],$this->images_used);
 			if(is_array($images_left) && !empty($images_left)){
-			    $return = array_shift(array_values($images_left));
+				$images_left = array_values($images_left);
+			    $return = array_shift($images_left);
             }
         }
         return $return;
@@ -389,6 +390,7 @@ function lsx_to_itinerary_thumbnail() {
 			}
 		}
 
+		$thumbnail_src = apply_filters('lsx_to_itinerary_thumbnail_src',$thumbnail_src,$tour_itinerary->index,$tour_itinerary->count);
 
 		//Check weather or not to display the placeholder.
 		if(false === $thumbnail_src || '' === $thumbnail_src){
