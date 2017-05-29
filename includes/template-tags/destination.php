@@ -211,5 +211,5 @@ function lsx_to_connected_destinations($before="",$after="",$echo=true){
  * @category 	connections
  */
 function lsx_to_connected_countries($before="",$after="",$echo=true){
-	lsx_to_connected_items_query('destination',get_post_type(),$before,$after,$echo,'0');
+	lsx_to_connected_items_query('destination',get_post_type(),$before,$after,$echo,true);
 }

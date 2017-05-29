@@ -278,15 +278,19 @@ function lsx_to_custom_field_query($meta_key=false,$before="",$after="",$echo=fa
  * @subpackage	template-tags
  * @category 	helper
  */
-function lsx_to_connected_items_query($from=false,$to=false,$before="",$after="",$echo=false,$parent=false,$extra=false){
+function lsx_to_connected_items_query($from=false,$to=false,$before="",$after="",$echo=false,$parents=false,$extra=false){
 	if(post_type_exists($from) && post_type_exists($to)){
 		$connected_ids = get_post_meta(get_the_ID(),$from.'_to_'.$to,false);
+
+		if($parents) {
+			$connected_ids = apply_filters('lsx_to_parents_only',$connected_ids);
+		}
 
 		if(false !== $connected_ids && '' !== $connected_ids && !empty($connected_ids)){
 			if(!is_array($connected_ids)){
 				$connected_ids = array($connected_ids);
 			}
-			$return = $before.lsx_to_connected_list($connected_ids,$from,true,', ',$parent).$after;
+			$return = $before.lsx_to_connected_list($connected_ids,$from,true,', ').$after;
 			if($echo){
 				echo wp_kses_post( $return );
 			}else{

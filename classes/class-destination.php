@@ -77,6 +77,9 @@ class LSX_TO_Destination{
 		add_action( 'lsx_to_framework_destination_tab_general_settings_bottom', array($this,'general_settings'), 10 , 1 );
 
 		add_filter( 'lsx_to_page_navigation', array( $this, 'page_links') );
+
+		add_filter( 'lsx_to_parents_only', array( $this, 'filter_countries') );
+
 	}
 
 	/**
@@ -434,5 +437,30 @@ class LSX_TO_Destination{
 			$this->page_links['activity'] = esc_html__('Activities','tour-operator');
 		}
 	}
+
+	/**
+	 * Only return the upper lever countries
+	 */
+	public function filter_countries($countries = array()){
+		global $wpdb;
+		if(!empty($countries)){
+			$new_items = array();
+			$formatted_countries = implode(',',$countries);
+
+
+		    $results = $wpdb->get_results("SELECT ID,post_parent FROM {$wpdb->posts} WHERE ID IN ({$formatted_countries})");
+
+		    if(!empty($results)){
+		        foreach($results as $result){
+		            if(0 === $result->post_parent || '0' === $result->post_parent) {
+						$new_items[] = $result->ID;
+					}
+                }
+                $countries = $new_items;
+            }
+        }
+        return $countries;
+	}
+
 }
 $lsx_to_destination = LSX_TO_Destination::get_instance();
