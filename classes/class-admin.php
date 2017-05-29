@@ -77,7 +77,7 @@ class LSX_TO_Admin extends Tour_Operator {
 	 */
 	public function enqueue_admin_stylescripts( $hook ) {
 		$screen = get_current_screen();
-		
+
 		if ( ! is_object( $screen ) ) {
 			return;
 		}
@@ -97,6 +97,7 @@ class LSX_TO_Admin extends Tour_Operator {
 		wp_enqueue_media();
 		wp_enqueue_script( 'tour-operator-admin-script', LSX_TO_URL . 'assets/js/admin' . $min . '.js', array( 'jquery' ), LSX_TO_VER, true );
 		wp_enqueue_style( 'tour-operator-admin-style', LSX_TO_URL . 'assets/css/admin.css', array(), LSX_TO_VER );
+		wp_style_add_data( 'tour-operator-admin-style', 'rtl', 'replace' );
 	}
 
 	/**

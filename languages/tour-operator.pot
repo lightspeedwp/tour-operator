@@ -35,11 +35,11 @@ msgstr ""
 msgid "Tour"
 msgstr ""
 
-#: module.php:301, classes/class-admin.php:324, classes/class-destination.php:289, classes/class-tour.php:470, includes/layout.php:221, includes/layout.php:327, templates/content-destination.php:25, templates/content-tour.php:27, templates/content-widget-tour.php:26
+#: module.php:301, classes/class-admin.php:325, classes/class-destination.php:289, classes/class-tour.php:470, includes/layout.php:221, includes/layout.php:327, templates/content-destination.php:25, templates/content-tour.php:27, templates/content-widget-tour.php:26
 msgid "Travel Style"
 msgstr ""
 
-#: module.php:302, classes/class-admin.php:350, templates/content-accommodation.php:26, templates/content-widget-accommodation.php:26, includes/template-tags/accommodation.php:292
+#: module.php:302, classes/class-admin.php:351, templates/content-accommodation.php:26, templates/content-widget-accommodation.php:26, includes/template-tags/accommodation.php:292
 msgid "Brand"
 msgstr ""
 
@@ -51,15 +51,15 @@ msgstr ""
 msgid "Facility"
 msgstr ""
 
-#: module.php:305, classes/class-accommodation.php:280, classes/class-admin.php:376, classes/class-admin.php:377, classes/class-destination.php:206, classes/class-destination.php:207, classes/class-fields.php:69, templates/content-accommodation.php:33, templates/content-widget-accommodation.php:27, includes/template-tags/accommodation.php:297
+#: module.php:305, classes/class-accommodation.php:280, classes/class-admin.php:377, classes/class-admin.php:378, classes/class-destination.php:206, classes/class-destination.php:207, classes/class-fields.php:69, templates/content-accommodation.php:33, templates/content-widget-accommodation.php:27, includes/template-tags/accommodation.php:297
 msgid "Location"
 msgstr ""
 
-#: module.php:308, classes/class-admin.php:323, classes/class-admin.php:326, classes/class-admin.php:333, templates/archive-destination.php:206
+#: module.php:308, classes/class-admin.php:324, classes/class-admin.php:327, classes/class-admin.php:334, templates/archive-destination.php:206
 msgid "Travel Styles"
 msgstr ""
 
-#: module.php:309, classes/class-admin.php:349, classes/class-admin.php:352, classes/class-admin.php:359
+#: module.php:309, classes/class-admin.php:350, classes/class-admin.php:353, classes/class-admin.php:360
 msgid "Brands"
 msgstr ""
 
@@ -71,7 +71,7 @@ msgstr ""
 msgid "Facilities"
 msgstr ""
 
-#: module.php:312, classes/class-admin.php:379, classes/class-admin.php:386
+#: module.php:312, classes/class-admin.php:380, classes/class-admin.php:387
 msgid "Locations"
 msgstr ""
 
@@ -187,7 +187,7 @@ msgstr ""
 msgid "Featured"
 msgstr ""
 
-#: classes/class-accommodation.php:254, classes/class-admin.php:607, classes/class-destination.php:178, classes/class-settings.php:435, classes/class-tour.php:196, classes/class-tour.php:337, includes/settings/post.php:20
+#: classes/class-accommodation.php:254, classes/class-admin.php:608, classes/class-destination.php:178, classes/class-settings.php:435, classes/class-tour.php:196, classes/class-tour.php:337, includes/settings/post.php:20
 msgid "Tagline"
 msgstr ""
 
@@ -519,7 +519,7 @@ msgstr ""
 msgid "From price"
 msgstr ""
 
-#: classes/class-accommodation.php:581, classes/class-admin.php:120, classes/class-admin.php:120, classes/class-units.php:377, includes/layout.php:135, includes/layout.php:309, templates/archive-accommodation.php:48, includes/template-tags/destination.php:25, includes/template-tags/destination.php:55, includes/template-tags/destination.php:96, includes/template-tags/destination.php:118
+#: classes/class-accommodation.php:581, classes/class-admin.php:121, classes/class-admin.php:121, classes/class-units.php:377, includes/layout.php:135, includes/layout.php:309, templates/archive-accommodation.php:48, includes/template-tags/destination.php:25, includes/template-tags/destination.php:55, includes/template-tags/destination.php:96, includes/template-tags/destination.php:118
 msgstr ""
 
 #: classes/class-accommodation.php:602, classes/class-destination.php:371, classes/class-tour.php:521, includes/layout.php:122, includes/layout.php:193, includes/layout.php:294, templates/archive-destination.php:211
@@ -530,135 +530,135 @@ msgstr ""
 msgid "Videos"
 msgstr ""
 
-#: classes/class-admin.php:109, classes/class-admin.php:288
+#: classes/class-admin.php:110, classes/class-admin.php:289
 msgid "Dashboard"
 msgstr ""
 
-#: classes/class-admin.php:110, includes/settings/help.php:83
+#: classes/class-admin.php:111, includes/settings/help.php:83
 msgid "Tour Operator"
 msgstr ""
 
-#: classes/class-admin.php:124, classes/class-admin.php:124
+#: classes/class-admin.php:125, classes/class-admin.php:125
 msgid "$tax_label_plural"
 msgstr ""
 
-#: classes/class-admin.php:127, classes/class-admin.php:127
+#: classes/class-admin.php:128, classes/class-admin.php:128
 msgid "Help"
 msgstr ""
 
-#: classes/class-admin.php:128, classes/class-admin.php:128
+#: classes/class-admin.php:129, classes/class-admin.php:129
 msgid "Add-ons"
 msgstr ""
 
-#: classes/class-admin.php:325
+#: classes/class-admin.php:326
 msgid "Search Travel Styles"
 msgstr ""
 
-#: classes/class-admin.php:327
+#: classes/class-admin.php:328
 msgid "Parent Travel Style"
 msgstr ""
 
-#: classes/class-admin.php:328
+#: classes/class-admin.php:329
 msgid "Parent Travel Style:"
 msgstr ""
 
-#: classes/class-admin.php:329
+#: classes/class-admin.php:330
 msgid "Edit Travel Style"
 msgstr ""
 
-#: classes/class-admin.php:330
+#: classes/class-admin.php:331
 msgid "Update Travel Style"
 msgstr ""
 
-#: classes/class-admin.php:331
+#: classes/class-admin.php:332
 msgid "Add New Travel Style"
 msgstr ""
 
-#: classes/class-admin.php:332
+#: classes/class-admin.php:333
 msgid "New Travel Style"
 msgstr ""
 
-#: classes/class-admin.php:351
+#: classes/class-admin.php:352
 msgid "Search Brands"
 msgstr ""
 
-#: classes/class-admin.php:353
+#: classes/class-admin.php:354
 msgid "Parent Brand"
 msgstr ""
 
-#: classes/class-admin.php:354
+#: classes/class-admin.php:355
 msgid "Parent Brand:"
 msgstr ""
 
-#: classes/class-admin.php:355
+#: classes/class-admin.php:356
 msgid "Edit Brand"
 msgstr ""
 
-#: classes/class-admin.php:356
+#: classes/class-admin.php:357
 msgid "Update Brand"
 msgstr ""
 
-#: classes/class-admin.php:357
+#: classes/class-admin.php:358
 msgid "Add New Brand"
 msgstr ""
 
-#: classes/class-admin.php:358
+#: classes/class-admin.php:359
 msgid "New Brand"
 msgstr ""
 
-#: classes/class-admin.php:378
+#: classes/class-admin.php:379
 msgid "Search Locations"
 msgstr ""
 
-#: classes/class-admin.php:380
+#: classes/class-admin.php:381
 msgid "Parent Location"
 msgstr ""
 
-#: classes/class-admin.php:381
+#: classes/class-admin.php:382
 msgid "Parent Location:"
 msgstr ""
 
-#: classes/class-admin.php:382
+#: classes/class-admin.php:383
 msgid "Edit Location"
 msgstr ""
 
-#: classes/class-admin.php:383
+#: classes/class-admin.php:384
 msgid "Update Location"
 msgstr ""
 
-#: classes/class-admin.php:384
+#: classes/class-admin.php:385
 msgid "Add New Location"
 msgstr ""
 
-#: classes/class-admin.php:385
+#: classes/class-admin.php:386
 msgid "New Location"
 msgstr ""
 
-#: classes/class-admin.php:498, classes/class-settings.php:72, classes/class-settings.php:72, classes/class-settings.php:166, includes/settings/api.php:4
+#: classes/class-admin.php:499, classes/class-settings.php:72, classes/class-settings.php:72, classes/class-settings.php:166, includes/settings/api.php:4
 msgid "Settings"
 msgstr ""
 
-#: classes/class-admin.php:499
+#: classes/class-admin.php:500
 msgid "Documentation"
 msgstr ""
 
-#: classes/class-admin.php:500, includes/settings/help.php:102
+#: classes/class-admin.php:501, includes/settings/help.php:102
 msgid "Support"
 msgstr ""
 
-#: classes/class-admin.php:536, classes/class-tour.php:341
+#: classes/class-admin.php:537, classes/class-tour.php:341
 msgid "Featured Image"
 msgstr ""
 
-#: classes/class-admin.php:542, classes/class-placeholders.php:384, classes/class-placeholders.php:399, classes/class-placeholders.php:414, classes/class-placeholders.php:452, classes/class-placeholders.php:468, classes/class-settings.php:333, includes/settings/post.php:14
+#: classes/class-admin.php:543, classes/class-placeholders.php:384, classes/class-placeholders.php:399, classes/class-placeholders.php:414, classes/class-placeholders.php:452, classes/class-placeholders.php:468, classes/class-settings.php:333, includes/settings/post.php:14
 msgid "Choose Image"
 msgstr ""
 
-#: classes/class-admin.php:543
+#: classes/class-admin.php:544
 msgid "Remove Image"
 msgstr ""
 
-#: classes/class-admin.php:622
+#: classes/class-admin.php:623
 msgid "Select featured image"
 msgstr ""
 
@@ -770,7 +770,7 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: classes/class-frontend.php:343, classes/class-frontend.php:354, classes/class-itinerary.php:489
+#: classes/class-frontend.php:344, classes/class-frontend.php:355, classes/class-itinerary.php:489
 msgid "Read More"
 msgstr ""
 

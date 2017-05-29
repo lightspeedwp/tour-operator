@@ -1,5 +1,5 @@
 <?php
- 
+
 $lsx_to_scporder = new LSX_TO_SCPO_Engine();
 
 class LSX_TO_SCPO_Engine {
@@ -29,7 +29,7 @@ class LSX_TO_SCPO_Engine {
 	function lsx_to_scporder_install() {
 		global $wpdb;
 		$result = $wpdb->query("DESCRIBE $wpdb->terms `lsx_to_term_order`");
-		
+
 		if (!$result) {
 			$result = $wpdb->query("ALTER TABLE $wpdb->terms ADD `lsx_to_term_order` INT(4) NULL DEFAULT '0'");
 		}
@@ -81,6 +81,7 @@ class LSX_TO_SCPO_Engine {
 			wp_localize_script( 'scporderjs', 'scporderjs_params', $scporderjs_params );
 
 			wp_enqueue_style('scporder', LSX_TO_URL . '/assets/css/scporder.css', array(), null);
+			wp_style_add_data( 'scporder', 'rtl', 'replace' );
 		}
 	}
 
@@ -92,18 +93,18 @@ class LSX_TO_SCPO_Engine {
 		if (!empty($objects)) {
 			foreach ($objects as $object => $object_data) {
 				$result = $wpdb->get_results($wpdb->prepare("
-					SELECT count(*) as cnt, max(menu_order) as max, min(menu_order) as min 
-					FROM $wpdb->posts 
+					SELECT count(*) as cnt, max(menu_order) as max, min(menu_order) as min
+					FROM $wpdb->posts
 					WHERE post_type = '%s' AND post_status IN ('publish', 'pending', 'draft', 'private', 'future')
 				", $object));
-				
+
 				if (0 == $result[0]->cnt || $result[0]->cnt == $result[0]->max)
 					continue;
 
 				$results = $wpdb->get_results($wpdb->prepare("
-					SELECT ID 
-					FROM $wpdb->posts 
-					WHERE post_type = '%s' AND post_status IN ('publish', 'pending', 'draft', 'private', 'future') 
+					SELECT ID
+					FROM $wpdb->posts
+					WHERE post_type = '%s' AND post_status IN ('publish', 'pending', 'draft', 'private', 'future')
 					ORDER BY menu_order ASC
 				", $object));
 
@@ -116,20 +117,20 @@ class LSX_TO_SCPO_Engine {
 		if (!empty($tags)) {
 			foreach ($tags as $taxonomy => $taxonomy_data) {
 				$result = $wpdb->get_results($wpdb->prepare("
-					SELECT count(*) as cnt, max(lsx_to_term_order) as max, min(lsx_to_term_order) as min 
-					FROM $wpdb->terms AS terms 
-					INNER JOIN $wpdb->term_taxonomy AS term_taxonomy ON ( terms.term_id = term_taxonomy.term_id ) 
+					SELECT count(*) as cnt, max(lsx_to_term_order) as max, min(lsx_to_term_order) as min
+					FROM $wpdb->terms AS terms
+					INNER JOIN $wpdb->term_taxonomy AS term_taxonomy ON ( terms.term_id = term_taxonomy.term_id )
 					WHERE term_taxonomy.taxonomy = '%s'
 				", $taxonomy));
-				
+
 				if (0 == $result[0]->cnt || $result[0]->cnt == $result[0]->max)
 					continue;
 
 				$results = $wpdb->get_results($wpdb->prepare("
-					SELECT terms.term_id 
-					FROM $wpdb->terms AS terms 
-					INNER JOIN $wpdb->term_taxonomy AS term_taxonomy ON ( terms.term_id = term_taxonomy.term_id ) 
-					WHERE term_taxonomy.taxonomy = '%s' 
+					SELECT terms.term_id
+					FROM $wpdb->terms AS terms
+					INNER JOIN $wpdb->term_taxonomy AS term_taxonomy ON ( terms.term_id = term_taxonomy.term_id )
+					WHERE term_taxonomy.taxonomy = '%s'
 					ORDER BY lsx_to_term_order ASC
 				", $taxonomy));
 
@@ -151,7 +152,7 @@ class LSX_TO_SCPO_Engine {
 			return false;
 
 		$id_arr = array();
-		
+
 		foreach ($data as $key => $values) {
 			foreach ($values as $position => $id) {
 				$id_arr[] = $id;
@@ -159,7 +160,7 @@ class LSX_TO_SCPO_Engine {
 		}
 
 		$menu_order_arr = array();
-		
+
 		foreach ($id_arr as $key => $id) {
 			$results = $wpdb->get_results("SELECT menu_order FROM $wpdb->posts WHERE ID = " . intval($id));
 			foreach ($results as $result) {
@@ -187,7 +188,7 @@ class LSX_TO_SCPO_Engine {
 			return false;
 
 		$id_arr = array();
-		
+
 		foreach ($data as $key => $values) {
 			foreach ($values as $position => $id) {
 				$id_arr[] = $id;
@@ -195,14 +196,14 @@ class LSX_TO_SCPO_Engine {
 		}
 
 		$menu_order_arr = array();
-		
+
 		foreach ($id_arr as $key => $id) {
 			$results = $wpdb->get_results("SELECT lsx_to_term_order FROM $wpdb->terms WHERE term_id = " . intval($id));
 			foreach ($results as $result) {
 				$menu_order_arr[] = $result->lsx_to_term_order;
 			}
 		}
-		
+
 		sort($menu_order_arr);
 
 		foreach ($data as $key => $values) {
@@ -215,7 +216,7 @@ class LSX_TO_SCPO_Engine {
 	function lsx_to_scporder_previous_post_where($where) {
 		global $post;
 		$objects = $this->get_to_scporder_options_objects();
-		
+
 		if (empty($objects))
 			return $where;
 
@@ -223,28 +224,28 @@ class LSX_TO_SCPO_Engine {
 			$current_menu_order = $post->menu_order;
 			$where = "WHERE p.menu_order > '" . $current_menu_order . "' AND p.post_type = '" . $post->post_type . "' AND p.post_status = 'publish'";
 		}
-		
+
 		return $where;
 	}
 
 	function lsx_to_scporder_previous_post_sort($orderby) {
 		global $post;
 		$objects = $this->get_to_scporder_options_objects();
-		
+
 		if (empty($objects))
 			return $orderby;
 
 		if (isset($post->post_type) && array_key_exists($post->post_type, $objects)) {
 			$orderby = 'ORDER BY p.menu_order ASC LIMIT 1';
 		}
-		
+
 		return $orderby;
 	}
 
 	function lsx_to_scporder_next_post_where($where) {
 		global $post;
 		$objects = $this->get_to_scporder_options_objects();
-		
+
 		if (empty($objects))
 			return $where;
 
@@ -259,23 +260,23 @@ class LSX_TO_SCPO_Engine {
 	function lsx_to_scporder_next_post_sort($orderby) {
 		global $post;
 		$objects = $this->get_to_scporder_options_objects();
-		
+
 		if (empty($objects))
 			return $orderby;
 
 		if (isset($post->post_type) && array_key_exists($post->post_type, $objects)) {
 			$orderby = 'ORDER BY p.menu_order DESC LIMIT 1';
 		}
-		
+
 		return $orderby;
 	}
 
 	function lsx_to_scporder_pre_get_posts($wp_query) {
 		$objects = $this->get_to_scporder_options_objects();
-		
+
 		if (empty($objects))
 			return false;
-		
+
 		if (is_admin()) {
 			if (isset($wp_query->query['post_type']) && !isset($_GET['orderby'])) {
 				if (array_key_exists($wp_query->query['post_type'], $objects)) {
@@ -303,7 +304,7 @@ class LSX_TO_SCPO_Engine {
 
 			if (isset($wp_query->query['disabled_custom_post_order']))
 				return false;
-			
+
 			if (isset($wp_query->query['suppress_filters'])) {
 				if ($wp_query->get('orderby') == 'date')
 					$wp_query->set('orderby', 'menu_order');
@@ -329,7 +330,7 @@ class LSX_TO_SCPO_Engine {
 
 		if (!isset($args['taxonomy']))
 			return $orderby;
- 
+
 		$taxonomy = $args['taxonomy'];
 		if (is_array($taxonomy) && count($taxonomy) == 1)
 			$taxonomy = $taxonomy[0];
@@ -345,7 +346,7 @@ class LSX_TO_SCPO_Engine {
 
 		if (is_admin() && isset($_GET['orderby']))
 			return $terms;
-		
+
 		$args = is_null( $args_2 ) || ! is_array( $args_2 ) ? $args_1 : $args_2;
 
 		if (isset($args['disabled_custom_post_order']))
@@ -368,7 +369,7 @@ class LSX_TO_SCPO_Engine {
 	function taxcmp($a, $b) {
 		if ($a->lsx_to_term_order == $b->lsx_to_term_order)
 			return 0;
-		
+
 		return ( $a->lsx_to_term_order < $b->lsx_to_term_order ) ? -1 : 1;
 	}
 
@@ -391,11 +392,11 @@ register_uninstall_hook(__FILE__, 'lsx_to_scporder_uninstall');
 
 function lsx_to_scporder_uninstall() {
 	global $wpdb;
-	
+
 	if (function_exists('is_multisite') && is_multisite()) {
 		$curr_blog = $wpdb->blogid;
 		$blogids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
-		
+
 		foreach ($blogids as $blog_id) {
 			switch_to_blog($blog_id);
 			lsx_to_scporder_uninstall_db();
@@ -410,7 +411,7 @@ function lsx_to_scporder_uninstall() {
 function lsx_to_scporder_uninstall_db() {
 	global $wpdb;
 	$result = $wpdb->query("DESCRIBE $wpdb->terms `lsx_to_term_order`");
-	
+
 	if ($result) {
 		$result = $wpdb->query("ALTER TABLE $wpdb->terms DROP `lsx_to_term_order`");
 	}

@@ -5,7 +5,7 @@
  * @package   LSX_TO_Frontend
  * @author    LightSpeed
  * @license   GPL3
- * @link      
+ * @link
  * @copyright 2016 LightSpeedDevelopment
  */
 
@@ -20,7 +20,7 @@ class LSX_TO_Frontend extends Tour_Operator {
 	/**
 	 * This holds the class OBJ of LSX_TO_Template_Redirects
 	 */
-	public $redirects = false;	
+	public $redirects = false;
 
 	/**
 	 * Enable Modals
@@ -48,27 +48,27 @@ class LSX_TO_Frontend extends Tour_Operator {
 	 * @access private
 	 */
 	public function __construct() {
-		$this->options = get_option('_lsx-to_settings',false);	
+		$this->options = get_option('_lsx-to_settings',false);
 		$this->set_vars();
 
 		add_filter( 'post_class', array( $this, 'replace_class'), 10, 1 );
 		add_filter( 'body_class', array( $this, 'replace_class'), 10, 1 );
 
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ) );	
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ) );
 		add_action( 'wp_head', array( $this,'wp_head') , 10 );
 		add_filter( 'body_class', array( $this, 'body_class') );
 
 		if(!is_admin()){
 			add_filter( 'pre_get_posts', array( $this,'taxonomy_pre_get_posts') , 10, 1 );
 			add_action( 'pre_get_posts', array( $this,'team_pre_get_posts') , 10, 1 );
-		}	
+		}
 
 		add_filter( 'lsx_to_connected_list_item', array( $this,'add_modal_attributes') , 10, 3 );
 		add_action( 'wp_footer', array( $this,'output_modals') , 10 );
 		add_filter( 'use_default_gallery_style', '__return_false' );
 		add_filter('lsx_to_tagline',array($this,'get_tagline'),1,3);
 
-		add_filter( 'the_terms', array( $this,'links_new_window') , 10, 2);		
+		add_filter( 'the_terms', array( $this,'links_new_window') , 10, 2);
 
 		if(!class_exists('LSX_TO_Template_Redirects')){
 			require_once( LSX_TO_PATH . 'classes/class-template-redirects.php' );
@@ -86,13 +86,13 @@ class LSX_TO_Frontend extends Tour_Operator {
 		add_action( 'lsx_content_wrap_before', array( $this, 'remove_jetpack_share' ));
 
 		//Jetpack
-		add_filter( 'sharing_show', array( $this, 'show_jetpack_sharing_filter'),2,100 );	
+		add_filter( 'sharing_show', array( $this, 'show_jetpack_sharing_filter'),2,100 );
 
 		// Readmore
 		add_filter( 'the_content', array( $this, 'modify_read_more_link') );
 		remove_filter( 'term_description','wpautop' );
-		add_filter( 'term_description', array( $this, 'modify_term_description') );			
-	}	
+		add_filter( 'term_description', array( $this, 'modify_term_description') );
+	}
 
 	/**
 	 * A filter to replace anything with '-TO_POST_TYPE' by '-lsx-to-TO_POST_TYPE'
@@ -115,7 +115,7 @@ class LSX_TO_Frontend extends Tour_Operator {
 			&& false !== $this->options
 			&& isset($this->options['display']['enable_modals'])
 			&& 'on' === $this->options['display']['enable_modals']){
-				$this->enable_modals = true;				
+				$this->enable_modals = true;
 		}
 
 		if((is_post_type_archive($this->active_post_types)) || (is_tax(array_keys($this->taxonomies)))){
@@ -127,16 +127,16 @@ class LSX_TO_Frontend extends Tour_Operator {
 			// LSX default pagination
 			add_action( 'lsx_content_bottom', array( 'LSX_TO_Frontend', 'lsx_default_pagination' ) );
 		}
-		
+
 		if(is_singular($this->active_post_types)){
 			remove_action('lsx_content_wrap_before','lsx_global_header');
 			add_action('lsx_content_wrap_before','lsx_to_global_header',100);
 		}
-		
+
 		if(class_exists('LSX_Banners')){
 			remove_action('lsx_content_top', 'lsx_breadcrumbs',100);
 			add_action('lsx_banner_container_top', 'lsx_breadcrumbs');
-		}		
+		}
 	}
 
 	/**
@@ -148,7 +148,7 @@ class LSX_TO_Frontend extends Tour_Operator {
 			if(!in_array($post_id,$this->modal_ids)){
 				$this->modal_ids[] = $post_id;
 			}
-		}	
+		}
 		return $html;
 	}
 
@@ -162,7 +162,7 @@ class LSX_TO_Frontend extends Tour_Operator {
 			$lsx_to_archive = 1;
 			foreach($this->modal_ids as $post_id){
 			$post = get_post($post_id);
-			?>	
+			?>
 				<div class="lsx-modal modal fade" id="lsx-modal-<?php echo esc_attr( $post_id ); ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo get_the_title($post_id); ?>">
 				  <div class="modal-dialog" role="document">
 				    <div class="modal-content">
@@ -199,6 +199,7 @@ class LSX_TO_Frontend extends Tour_Operator {
 		}
 		if(!isset($this->options['display']['disable_css'])){
 			wp_enqueue_style( 'tour-operator-style', LSX_TO_URL . 'assets/css/style.css', array(), LSX_TO_VER );
+			wp_style_add_data( 'tour-operator-style', 'rtl', 'replace' );
 		}
 		if(defined('JETPACK__VERSION') && defined('WP_SHARING_PLUGIN_URL')){
 			wp_enqueue_style( 'sharing', WP_SHARING_PLUGIN_URL.'sharing.css', false, JETPACK__VERSION );
@@ -211,24 +212,24 @@ class LSX_TO_Frontend extends Tour_Operator {
 	public function taxonomy_pre_get_posts($query) {
 		if($query->is_main_query() && $query->is_tax(array('travel-style'))){
 			$query->set('post_type',array('tour','accommodation'));
-		}	
+		}
 		return $query;
 	}
-	
+
 	/**
 	 * Set the Team Archive to infinite posts per page
 	 */
 	public function team_pre_get_posts($query) {
 		if($query->is_main_query() && $query->is_post_type_archive(array('team'))){
 			$query->set('posts_per_page',-1);
-		}	
+		}
 		return $query;
 	}
 
 	/**
 	 * Add a some classes so we can style.
 	 */
-	public function body_class( $classes ) {	
+	public function body_class( $classes ) {
 		global $post;
 		if(false !== $this->post_types && is_singular(array_keys($this->post_types))){
 			$classes[] = 'single-tour-operator';
@@ -251,7 +252,7 @@ class LSX_TO_Frontend extends Tour_Operator {
 	public function links_new_window($terms,$taxonomy) {
 		if('travel-style' === $taxonomy || 'accommodation-type' === $taxonomy){
 			$terms = str_replace('<a','<a target="_blank"',$terms);
-		}	
+		}
 		return $terms;
 	}
 
@@ -270,7 +271,7 @@ class LSX_TO_Frontend extends Tour_Operator {
 			$title = single_term_title( '', false );
 		}
 		return $title;
-	}	
+	}
 
 	/**
 	 * Redirect the single links to the homepage if the single is set to be disabled.
@@ -288,7 +289,7 @@ class LSX_TO_Frontend extends Tour_Operator {
 			}
 		}
 	}
-	
+
 	/**
 	 * Redirect the archive links to the homepage if the disable archive is set to be disabled.
 	 *
@@ -310,7 +311,7 @@ class LSX_TO_Frontend extends Tour_Operator {
 	 *	Removes the Jetpack Sharing so we can add it in manually.
 	 */
 	public function remove_jetpack_share() {
-		
+
 		if(in_array(get_post_type(),$this->post_types)){
 			remove_filter( 'the_content', 'sharing_display',19 );
 			remove_filter( 'the_excerpt', 'sharing_display',19 );
@@ -356,7 +357,7 @@ class LSX_TO_Frontend extends Tour_Operator {
 
 		if ( preg_match( '/<!--more(.*?)?-->/', $content, $matches ) ) {
 			$content = explode( $matches[0], $content, 2 );
-			
+
 			if ( ! empty( $matches[1] ) && ! empty( $more_link_text ) )
 				$more_link_text = strip_tags( wp_kses_no_null( trim( $matches[1] ) ) );
 		} else {
@@ -372,7 +373,7 @@ class LSX_TO_Frontend extends Tour_Operator {
 
 		$output = apply_filters( 'the_content', $output );
 		return $output;
-	}			
+	}
 
 	/**
 	 * Outputs LSX default pagination.
