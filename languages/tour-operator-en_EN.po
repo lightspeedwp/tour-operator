@@ -1594,7 +1594,7 @@ msgstr ""
 msgid "Please consider signing up to our Tourism Industry newsletter"
 msgstr ""
 
-#: includes/template-tags/general.php:502, includes/template-tags/general.php:513
+#: includes/template-tags/general.php:509, includes/template-tags/general.php:520
 msgid "Enquire"
 msgstr ""
 
