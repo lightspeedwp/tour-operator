@@ -80,7 +80,7 @@ function lsx_to_column_class($classes = false) {
 function lsx_to_global_header() { ?>
 	<header class="archive-header">
 		<h1 class="archive-title">
-			<?php 
+			<?php
 				if(is_archive()){
 					the_archive_title();
 				}else{
@@ -196,20 +196,27 @@ function lsx_to_page_navigation($echo = true) {
  */
 function lsx_to_sharing() {
 	echo '<section id="sharing">';
-	if ( function_exists( 'sharing_display' ) ) {
-		sharing_display( '', true );
+
+	if ( class_exists( 'LSX_Sharing' ) ) {
+		global $lsx_sharing;
+		echo wp_kses_post( $lsx_sharing->sharing_buttons() );
+	} else {
+		if ( function_exists( 'sharing_display' ) ) {
+			sharing_display( '', true );
+		}
+
+		if ( class_exists( 'Jetpack_Likes' ) ) {
+			$custom_likes = new Jetpack_Likes;
+			echo wp_kses_post( $custom_likes->post_likes( '' ) );
+		}
 	}
-	
-	if ( class_exists( 'Jetpack_Likes' ) ) {
-		$custom_likes = new Jetpack_Likes;
-		echo wp_kses_post( $custom_likes->post_likes( '' ) );
-	}
+
 	echo '</section>';
 }
 
 /**
  * Outputs the TO Gallery
- * 
+ *
  * @param		$before	| string
  * @param		$after	| string
  * @param		$echo	| boolean
@@ -232,7 +239,7 @@ function lsx_to_envira_gallery($before="",$after="",$echo=true){
 		}else{
 			return $return;
 		}
-	}	
+	}
 }
 
 /**
@@ -261,7 +268,7 @@ function lsx_to_envira_videos($before="",$after="",$echo=true){
 			echo wp_kses_post( $return );
 		}else{
 			return $return;
-		}		
+		}
 	}
 }
 
@@ -314,7 +321,7 @@ function lsx_to_safari_brands($before="",$after="",$echo=true) {
 		echo wp_kses_post( $return );
 	}else{
 		return $return;
-	}	
+	}
 }
 
 /**
@@ -364,7 +371,7 @@ function lsx_to_travel_styles($before="",$after="",$echo=true) {
 		echo wp_kses_post( $return );
 	}else{
 		return $return;
-	}	
+	}
 }
 
 /* ==================  ENQUIRE  ================== */
@@ -416,7 +423,7 @@ function lsx_to_enquiry_contact( $before = "", $after = "" ) {
 
 	if ( ! empty( $fields[ 'enquiry_contact_image_id' ] ) ) {
 		$temp_src_array = wp_get_attachment_image_src( $fields[ 'enquiry_contact_image_id' ], 'lsx-thumbnail-wide' );
-		
+
 		if ( is_array( $temp_src_array ) && count( $temp_src_array ) > 0 ) {
 			$fields[ 'enquiry_contact_image' ] = $temp_src_array[0];
 		}
@@ -468,7 +475,7 @@ function lsx_to_enquire_modal($before="",$after="",$echo=true){
 		$form_id = $tour_operator->options['general']['enquiry'];
 	}
 
-	if(is_singular($tour_operator->active_post_types)){		
+	if(is_singular($tour_operator->active_post_types)){
 		if(isset($tour_operator->options[get_post_type()]) && isset($tour_operator->options[get_post_type()]['enquiry']) && '' !== $tour_operator->options[get_post_type()]['enquiry']){
 			$form_id = $tour_operator->options[get_post_type()]['enquiry'];
 		}
@@ -485,7 +492,7 @@ function lsx_to_enquire_modal($before="",$after="",$echo=true){
 		}
 	}
 
-	if(is_singular($tour_operator->active_post_types)){		
+	if(is_singular($tour_operator->active_post_types)){
 		if(isset($tour_operator->options[get_post_type()]) && isset($tour_operator->options[get_post_type()]['disable_enquire_modal']) && 'on' === $tour_operator->options[get_post_type()]['disable_enquire_modal']){
 			$disable_modal = true;
 
@@ -500,11 +507,11 @@ function lsx_to_enquire_modal($before="",$after="",$echo=true){
 	?>
 	<div class="enquire-form">
 		<p class="aligncenter" style="text-align:center;"><a href="<?php echo esc_url( $link ); ?>" class="btn cta-btn" <?php if(false === $disable_modal){ ?>data-toggle="modal" data-target="#lsx-enquire-modal"<?php } ?> ><?php esc_html_e('Enquire','tour-operator'); ?></a></p>
-		
-		<?php 
+
+		<?php
 		if(false === $disable_modal){
 		add_action( 'wp_footer', function( $arg ) use ( $form_id ) { ?>
-		
+
 		<div class="modal fade" id="lsx-enquire-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 		    <div class="modal-content">
@@ -513,7 +520,7 @@ function lsx_to_enquire_modal($before="",$after="",$echo=true){
 		        <h4 class="modal-title" id="myModalLabel"><?php esc_html_e('Enquire','tour-operator'); ?></h4>
 		      </div>
 		      <div class="modal-body">
-		        <?php 
+		        <?php
 					if(class_exists('Ninja_Forms')){
 						echo do_shortcode('[ninja_form id="'.$form_id.'"]');
 					}elseif(class_exists('GFForms')){
