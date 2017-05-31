@@ -652,4 +652,6 @@ class LSX_TO_Admin extends Tour_Operator {
 		}
 		return $hidden;
 	}
+
+
 }
