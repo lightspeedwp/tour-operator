@@ -234,6 +234,9 @@ class LSX_TO_Destination{
 	function pre_get_posts($query) {
 		if($query->is_main_query() && $query->is_post_type_archive($this->plugin_slug)){
 			$query->set('post_parent','0');
+			$query->set('posts_per_page','-1');
+			$query->set('nopagin',true);
+			$query->set('orderby','title');
 		}
 		return $query;
 	}
