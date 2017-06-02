@@ -422,7 +422,7 @@ function lsx_to_enquiry_contact( $before = "", $after = "" ) {
 	}
 
 	if ( ! empty( $fields[ 'enquiry_contact_image_id' ] ) ) {
-		$temp_src_array = wp_get_attachment_image_src( $fields[ 'enquiry_contact_image_id' ], 'lsx-thumbnail-wide' );
+		$temp_src_array = wp_get_attachment_image_src( $fields[ 'enquiry_contact_image_id' ], 'medium' );
 
 		if ( is_array( $temp_src_array ) && count( $temp_src_array ) > 0 ) {
 			$fields[ 'enquiry_contact_image' ] = $temp_src_array[0];
