@@ -29,8 +29,6 @@
 
         // add tabs.
         tour_operators.prepend( tab_wrapper ).append('<div class="lsx_tabs_clear"></div>');
-        $('.lsx_tab_general').trigger('click');
-
 
         // Handle Clicks.
         $( document ).on('click', '.lsx_tab', function(){
@@ -42,6 +40,9 @@
             $('.cmb-row.lsx_tab_' + clicked.data('tab') ).show();
 
         });
+
+        // trigger the init.
+        $('.lsx_tab').first().trigger('click');
 
     });
 
