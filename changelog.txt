@@ -2,6 +2,7 @@
 
 ### 1.0.7
 * Dev - Added .editorconfig file to help developers to maintain consistent coding styles between different editors and IDEs
+* Fix - Removed "read more" from regions excerpt widgets on destination archive page
 
 ### 1.0.6
 * Fix - Load correctly the translations/language files
