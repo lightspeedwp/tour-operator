@@ -1567,7 +1567,7 @@ body.home {
 
 	// ---------- Widgets ----------
 
-	.lsx-widget {
+	aside.lsx-widget {
 		@extend %panel-home-group;
 		@extend %bootstrap-carousel;
 	}
