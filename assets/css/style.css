@@ -1335,7 +1335,7 @@ body.page-has-banner.single-tour-operator .wrap > .content { padding-top: 0; }
 
 body.single-tour-operator #main { padding-top: 0 !important; }
 
-body.archive-tour-operator #summary article.hentry .entry-content .single-main-info, body.single-tour-operator #summary article.hentry .entry-content .single-main-info, body.single-tour-operator .lsx-modal article.hentry .entry-content .single-main-info { float: left; width: 100%; margin: 0 0 30px 0; }
+@media only screen and (min-width: 768px) { body.archive-tour-operator #summary article.hentry .entry-content .single-main-info, body.single-tour-operator #summary article.hentry .entry-content .single-main-info, body.single-tour-operator .lsx-modal article.hentry .entry-content .single-main-info { float: left; width: 100%; margin: 0 0 30px 0; } }
 
 body.archive-tour-operator #summary article.hentry .entry-content .single-main-info h3, body.single-tour-operator #summary article.hentry .entry-content .single-main-info h3, body.single-tour-operator .lsx-modal article.hentry .entry-content .single-main-info h3 { margin: 0; float: left; }
 
