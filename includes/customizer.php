@@ -48,12 +48,14 @@ function lsx_to_customizer_colour_selectors_button( $css, $colors ) {
 				&,
 				&:visited {
 					background-color: {$colors['button_background_color']};
+					color: {$colors['button_text_color']};
 				}
 
 				&:hover,
 				&:focus,
 				&:active {
 					background-color: {$colors['button_background_hover_color']};
+					color: {$colors['button_text_color_hover']};
 				}
 			}
 		}
