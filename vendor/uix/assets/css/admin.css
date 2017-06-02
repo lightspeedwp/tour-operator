@@ -11,3 +11,9 @@
     visibility: visible;
     display: none
 }
+.ui-tab-nav {
+    margin: 0 0 8px;
+}
+.page-title-action.button-primary {
+    margin: 20px;
+}
