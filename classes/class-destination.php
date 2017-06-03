@@ -188,7 +188,7 @@ class LSX_TO_Destination{
 		$fields[] = array( 'id' => 'health',  'name' => esc_html__('Health','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
 		$fields[] = array( 'id' => 'safety',  'name' => esc_html__('Safety','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
 		$fields[] = array( 'id' => 'visa',  'name' => esc_html__('Visa','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
-		$fields[] = array( 'id' => 'general',  'name' => esc_html__('General','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
+		$fields[] = array( 'id' => 'additional_info',  'name' => esc_html__('General','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
 
 		if(class_exists('LSX_TO_Team')){
 			$fields[] = array( 'id' => 'team_to_destination', 'name' => esc_html__('Destination Expert','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12, 'allow_none' => true );

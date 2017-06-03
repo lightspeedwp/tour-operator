@@ -139,7 +139,7 @@ function lsx_to_destination_travel_info() {
 	$health       = get_post_meta( get_the_ID(), 'health', true );
 	$safety      = get_post_meta( get_the_ID(), 'safety', true );
 	$visa      = get_post_meta( get_the_ID(), 'visa', true );
-	$general       = get_post_meta( get_the_ID(), 'general', true );
+	$general       = get_post_meta( get_the_ID(), 'additional_info', true );
 
 
 	if ( ! empty( $electricity ) || ! empty( $banking ) || ! empty( $cuisine ) || ! empty( $climate ) || ! empty( $transport ) || ! empty( $dress ) || ! empty( $health ) || ! empty( $safety ) || ! empty( $visa ) || ! empty( $general ) ) :
