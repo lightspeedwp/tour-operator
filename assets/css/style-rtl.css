@@ -1159,7 +1159,7 @@ body.home aside.lsx-widget .slider-container .lsx-to-slider-wrap, body.archive-t
 
 body.home aside.lsx-widget .slider-container .lsx-to-slider, body.archive-tour-operator #safari-brands .slider-container .lsx-to-slider, body.archive-tour-operator #travel-styles .slider-container .lsx-to-slider, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .lsx-to-slider, body.single-tour-operator .slider-container .lsx-to-slider { margin-bottom: 0; }
 
-body.home aside.lsx-widget .slider-container .slick-initialized .panel, body.archive-tour-operator #safari-brands .slider-container .slick-initialized .panel, body.archive-tour-operator #travel-styles .slider-container .slick-initialized .panel, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .slick-initialized .panel, body.single-tour-operator .slider-container .slick-initialized .panel { padding-bottom: 5px; }
+body.home aside.lsx-widget .slider-container .slick-initialized .panel, body.archive-tour-operator #safari-brands .slider-container .slick-initialized .panel, body.archive-tour-operator #travel-styles .slider-container .slick-initialized .panel, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .slick-initialized .panel, body.single-tour-operator .slider-container .slick-initialized .panel { padding-bottom: 5px !important; }
 
 body.home aside.lsx-widget .slider-container .item, body.archive-tour-operator #safari-brands .slider-container .item, body.archive-tour-operator #travel-styles .slider-container .item, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .item, body.single-tour-operator .slider-container .item { margin-bottom: 0; }
 
