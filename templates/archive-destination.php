@@ -80,9 +80,7 @@
 
 								<?php
 									global $post;
-									$inner_counter = 0;
-									$total_counter = 0;
-									$column_counter = 0;
+									$counter = 0;
 									$slider_id = get_the_ID();
 								?>
 
@@ -90,101 +88,55 @@
 									<h3 class="section-title"><?php esc_html_e( 'Travel Regions Within ', 'tour-operator' ) ?><a href="<?php the_permalink() ?>" title="<?php the_title_attribute() ?>"><?php the_title() ?></a></h3>
 
 									<div class="slider-container">
-										<div id="slider-<?php echo esc_attr( $slider_id ); ?>" class="lsx-to-slider carousel slide" data-interval="false">
-											<div class="carousel-wrap">
-												<div class="carousel-inner" role="listbox">
-													<div class="item row active">
+										<div id="slider-<?php echo esc_attr( $slider_id ); ?>" class="lsx-to-slider">
+											<div class="lsx-to-slider-wrap">
+												<div class="lsx-to-slider-inner">
 
-															<?php
-																foreach ( $regions as $region ) :
-																	$post = $region;
-																	setup_postdata( $region );
-
-																	$inner_counter++;
-																	$total_counter++;
-																?>
-
-																<div class="panel col-sm-4">
-																	<article id="post-<?php the_ID() ?>" <?php post_class() ?>>
-																		<div class="thumbnail">
-																			<a href="<?php the_permalink() ?>">
-																				<?php lsx_thumbnail( 'lsx-thumbnail-wide' ) ?>
-																			</a>
-																		</div>
-
-																		<h4 class="title"><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h4>
-																		<?php lsx_to_tagline( '<p class="tagline">', '</p>') ?>
-																		<div class="widget-content">
-																			<div class="entry-content">
-																				<?php
-																					ob_start();
-																					the_excerpt();
-																					$excerpt = ob_get_clean();
-																					$excerpt = strip_tags( $excerpt );
-																					$excerpt = preg_replace( '/(continue reading$)|(read more$)/i', '', $excerpt );
-																					echo wp_kses_post( $excerpt );
-																				?>
-																			</div>
-
-																			<div class="view-more">
-																				<a href="<?php the_permalink() ?>" class="btn btn-primary">View More</a>
-																			</div>
-																		</div>
-																	</article>
-																</div>
-
-																<?php
-																	if ( ( $inner_counter % 3 ) == 0 && $total_counter < $regions_size ) {
-																		$inner_counter = 0;
-																		$column_counter++;
-																		echo '</div><div class="item row">';
-																	}
-																?>
-
-																<?php
-																	wp_reset_postdata();
-																endforeach;
-															?>
-
-															<?php
-																if ( 0 !== $inner_counter ) {
-																	$column_counter++;
-																	echo '</div>';
-																}
-															?>
-												</div>
-
-												<?php if ( $column_counter > 1 ) : ?>
-
-													<a class="left carousel-control" href="#slider-<?php echo esc_attr( $slider_id ); ?>" role="button" data-slide="prev">
-														<span class="fa fa-chevron-left" aria-hidden="true"></span>
-														<span class="sr-only">Previous</span>
-													</a>
-
-													<a class="right carousel-control" href="#slider-<?php echo esc_attr( $slider_id ); ?>" role="button" data-slide="next">
-														<span class="fa fa-chevron-right" aria-hidden="true"></span>
-														<span class="sr-only">Next</span>
-													</a>
-
-												<?php endif ?>
-											</div>
-
-											<?php if ( $column_counter > 1 ) : ?>
-
-												<ol class="carousel-indicators">
 													<?php
-														$i = 0;
+														foreach ( $regions as $region ) :
+															$post = $region;
+															setup_postdata( $region );
 
-														while ( $i < $column_counter ) {
-															$class = 0 == $i ? 'active' : '';
-															echo '<li data-target="#slider-'. esc_attr( $slider_id ) .'" data-slide-to="'. esc_attr( $i ) .'" class="'. esc_attr( $class ) .'"></li>';
-															$i++;
-														}
+															$counter++;
+														?>
+
+														<div class="item row">
+															<div class="panel col-xs-12">
+																<article id="post-<?php the_ID() ?>" <?php post_class() ?>>
+																	<div class="thumbnail">
+																		<a href="<?php the_permalink() ?>">
+																			<?php lsx_thumbnail( 'lsx-thumbnail-wide' ) ?>
+																		</a>
+																	</div>
+
+																	<h4 class="title"><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h4>
+																	<?php lsx_to_tagline( '<p class="tagline">', '</p>') ?>
+																	<div class="widget-content">
+																		<div class="entry-content">
+																			<?php
+																				ob_start();
+																				the_excerpt();
+																				$excerpt = ob_get_clean();
+																				$excerpt = strip_tags( $excerpt );
+																				$excerpt = preg_replace( '/(continue reading$)|(read more$)/i', '', $excerpt );
+																				echo wp_kses_post( $excerpt );
+																			?>
+																		</div>
+
+																		<div class="view-more">
+																			<a href="<?php the_permalink() ?>" class="btn btn-primary">View More</a>
+																		</div>
+																	</div>
+																</article>
+															</div>
+														</div>
+
+														<?php
+															wp_reset_postdata();
+														endforeach;
 													?>
-												</ol>
-
-											<?php endif ?>
-
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>

@@ -12,7 +12,7 @@
 
 /**
  * Checks if the current post_type is disabled
- * 
+ *
  * @param		$post_type | string
  * @return		boolean
  *
@@ -33,7 +33,7 @@ function lsx_to_is_single_disabled($post_type=false){
 }
 
 /**
- * Output the envira gallery in the 
+ * Output the envira gallery in the
  *
  * @package 	lsx-framework
  * @subpackage	hook
@@ -103,7 +103,7 @@ function lsx_to_item_has_children($post_id = false,$post_type = false) {
 
 /**
  * Return post_type section title from the settings page
- * 
+ *
  * @param		$post_type | string
  * @return		string
  *
@@ -188,7 +188,7 @@ function lsx_to_term_tagline($term_id=false,$before="",$after="",$echo=true){
 				echo wp_kses_post( $return );
 			}else{
 				return $return;
-			}		
+			}
 		}
 	}
 }
@@ -215,7 +215,7 @@ function lsx_to_has_custom_field_query( $meta_key = false, $id = false, $is_tax 
 			} else {
 				$custom_field = get_post_meta( $id, $meta_key, true );
 			}
-			
+
 			if ( false !== $custom_field && '' !== $custom_field ) {
 				set_transient( $id .'_'. $meta_key, $custom_field, 30 );
 				return true;
@@ -259,7 +259,7 @@ function lsx_to_custom_field_query($meta_key=false,$before="",$after="",$echo=fa
 			}else{
 				return $return;
 			}
-		}	
+		}
 	}
 }
 
@@ -332,13 +332,13 @@ function lsx_to_connected_panel_query($args=false){
 		);
 		$args = wp_parse_args($args,$defaults);
 		$return = false;
-		
+
 		if(false === $args['content_part']){
 			$args['content_part'] = $args['from'];
 		}
-		
+
 		$items_array = get_post_meta(get_the_ID(),$args['from'].'_to_'.$args['to'],false);
-		
+
 		if(false !== $items_array && is_array($items_array) && !empty($items_array)){
 			$items_query_args = array(
 					'post_type'	=>	$args['from'],
@@ -346,10 +346,10 @@ function lsx_to_connected_panel_query($args=false){
 					'post__in' => $items_array
 			);
 			$items = new WP_Query($items_query_args);
-			if ( $items->have_posts() ): 
+			if ( $items->have_posts() ):
 				$lsx_to_archive = 1;
 				ob_start();
-				echo wp_kses_post( $args['before'] ).'<div class="row">'; 
+				echo wp_kses_post( $args['before'] ).'<div class="row">';
 				while ( $items->have_posts() ) : $items->the_post();
 					echo '<div class="panel col-sm-'.esc_attr($args['column']).'">';
 					lsx_to_content('content',$args['content_part']);
@@ -359,14 +359,14 @@ function lsx_to_connected_panel_query($args=false){
 				$return = ob_get_clean();
 				$lsx_to_archive = 0;
 				wp_reset_postdata();
-			endif; // end of the loop. 
+			endif; // end of the loop.
 		}
 		if($args['echo']){
 			echo wp_kses_post( $return );
 		}else{
 			return $return;
-		}		
-	}		
+		}
+	}
 }
 
 /**
@@ -391,7 +391,7 @@ function lsx_to_related_items($taxonomy=false,$before="",$after="",$echo=true,$p
 
 		if(is_array($taxonomy)){
 			$filters['post__in'] = $taxonomy;
-			
+
 		} else {
 			//Get the settings from the customizer options
 			$filters['posts_per_page'] = 15;
@@ -416,16 +416,16 @@ function lsx_to_related_items($taxonomy=false,$before="",$after="",$echo=true,$p
 				}
 			}
 		}
-			
+
 		$related_query = new WP_Query( $filters );
 		if ( $related_query->have_posts() ):
 		global $wp_query,$columns;$wp_query->is_single = 0;$wp_query->is_singular = 0;$wp_query->is_post_type_archive = 1;$columns = 3;
 
 		ob_start();
-		
+
 		//Setting some carousel variables
 		$count = 1;
-		$landing_image = '';	
+		$landing_image = '';
 		$carousel_id = rand ( 20, 20000 );
 		$interval = '5000';
 		$pagination = '';
@@ -437,87 +437,59 @@ function lsx_to_related_items($taxonomy=false,$before="",$after="",$echo=true,$p
 			$carousel = true;
 		}
 
-		//generate the pagination
-		$i = 0;
-		while ( $i < $pages ) {
-			$pagination .= '<li data-target="#slider-'.esc_attr($carousel_id).'" data-slide-to="'.esc_attr($i).'" class="'. esc_attr( 0 == $i ? 'active' : '' ) .'"></li>';
-			$i++;
-		}			
-	
 		//The start of the carousel output
 		if($carousel){
 			echo '<div class="slider-container">';
-			echo '<div id="slider-'.esc_attr($carousel_id).'" class="lsx-to-slider carousel slide" data-interval="'.esc_attr($interval).'">';
-			echo '<div class="carousel-wrap">';
-			echo '<div class="carousel-inner" role="listbox">';
+			echo '<div id="slider-'.esc_attr($carousel_id).'" class="lsx-to-slider">';
+			echo '<div class="lsx-to-slider-wrap">';
+			echo '<div class="lsx-to-slider-inner" data-interval="'.esc_attr($interval).'" data-slick=\'{ "slidesToShow": '.esc_attr($columns).', "slidesToScroll": '.esc_attr($columns).' }\'>';
 		}
 
-			while ( $related_query->have_posts() ):
-				$related_query->the_post();
+		while ( $related_query->have_posts() ) :
+			$related_query->the_post();
 
-				//The opening of the carousel
-				if (1 === $count) {
-					if ($carousel) {
-						echo '<div class="item active row">';
-						echo '<div class="lsx-'.esc_attr($post_type).'">';					
-					} else {
-						echo '<div class="row lsx-'.esc_attr($post_type).'">';
-					}
+			//The opening of the carousel
+			if ($carousel) {
+				echo '<div class="item row">';
+				echo '<div class="lsx-'.esc_attr($post_type).'">';
+			} elseif (1 === $count) {
+				echo '<div class="row lsx-'.esc_attr($post_type).'">';
+			}
 
-				}				
+			echo '<div class="panel col-xs-12">';
 
-				echo '<div class="panel col-sm-4">';
+			lsx_to_content('content','widget-'.get_post_type());
 
-				lsx_to_content('content','widget-'.get_post_type());
+			echo '</div>';
 
-				echo '</div>';
-
-				//Closing carousel loop inner
-				if (0 == $count % $columns || $count === $related_query->post_count) {
-					if ($carousel) {
-						echo "</div></div>";
-						if ($count < $related_query->post_count) {
-							echo '<div class="item row"><div class="lsx-'.esc_attr($post_type).'">';
-						}
-					} else {
-						echo "</div>";
-						if ($count < $related_query->post_count) {
-							echo '<div class="row lsx-'.esc_attr($post_type).'">';
-						}
-					}
+			//Closing carousel loop inner
+			if ($carousel) {
+				echo "</div></div>";
+			} elseif (0 == $count % $columns || $count === $related_query->post_count) {
+				echo "</div>";
+				if ($count < $related_query->post_count) {
+					echo '<div class="row lsx-'.esc_attr($post_type).'">';
 				}
-				$count++;
-			endwhile;
+			}
+			$count++;
+		endwhile;
 
 		//This is the closing carousel output.
 		if ($carousel) {
 			echo "</div>";
-			if ( $pages > 1 ) {
-				echo '<a class="left carousel-control" href="#slider-'.esc_attr($carousel_id).'" role="button" data-slide="prev">';
-				echo '<span class="fa fa-chevron-left" aria-hidden="true"></span>';
-				echo '<span class="sr-only">'.esc_html__('Previous','tour-operator').'</span>';
-				echo '</a>';
-				echo '<a class="right carousel-control" href="#slider-'.esc_attr($carousel_id).'" role="button" data-slide="next">';
-				echo '<span class="fa fa-chevron-right" aria-hidden="true"></span>';
-				echo '<span class="sr-only">'.esc_html__('Next','tour-operator').'</span>';
-				echo '</a>';
-			}
 			echo "</div>";
-			if ( $pages > 1 ) {
-				echo '<ol class="carousel-indicators">'.wp_kses_post($pagination).'</ol>';
-			}
 			echo "</div>";
-			echo "</div>";			
+			echo "</div>";
 		}
-		
+
 		$return = ob_get_clean();
-			
+
 		$wp_query->is_single = 1;$wp_query->is_singular = 1;$wp_query->is_post_type_archive = 0;
 		wp_reset_postdata();
-		
+
 		$return = $before.$return.$after;
 		endif;
-		
+
 		if($echo){
 			echo wp_kses_post( $return );
 		}else{
@@ -528,7 +500,7 @@ function lsx_to_related_items($taxonomy=false,$before="",$after="",$echo=true,$p
 
 /**
  * Outputs a list of the ids you give it
- * 
+ *
  * @param		$connected_ids | array() | the array of ids
  * @param		$type | string | the post type
  * @param		$link | boolean | link the items or not
@@ -572,12 +544,12 @@ function lsx_to_connected_list($connected_ids = false,$type = false,$link = true
 
 				if($link){
 					$html .= '</a>';
-				}				
+				}
 				$html = apply_filters('lsx_to_connected_list_item',$html,$cp->ID,$link);
 				$connected_list[] = $html;
 
 			}
-				
+
 			return implode($seperator,$connected_list);
 		}
 	}

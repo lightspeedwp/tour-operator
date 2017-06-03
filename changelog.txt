@@ -7,6 +7,7 @@
 * Dev - LSX Customizer SASS selector extented to new FacetWP selectors
 * Dev - Make the team image displays square
 * Dev - Enable BS sliders on all small breakpoints
+* Dev - New slider code for: Widgets, Regions (destination archive), and Related items section
 
 ### 1.0.6
 * Fix - Load correctly the translations/language files

@@ -18,18 +18,50 @@ var LSX_TO_Itinerary_Read_More = {
 },
 
 LSX_TO_Bootstrap_Carousel = {
-	initSliderSwiper: function() {
-		jQuery('.lsx-to-slider').swipe({
-			swipeLeft:function(event, direction, distance, duration, fingerCount) {
-				jQuery(this).carousel('next');
-			},
+	initSlider: function() {
+		jQuery('.lsx-to-slider .lsx-to-slider-inner').each(function() {
+			var $this = jQuery(this),
+				interval = $this.data('interval'),
+				autoplay = false,
+				autoplaySpeed = 0;
 
-			swipeRight: function() {
-				jQuery(this).carousel('prev');
-			},
+			if ('undefined' !== typeof interval && 'boolean' !== typeof interval) {
+				interval = parseInt(interval);
 
-			threshold: 0,
-			allowPageScroll: 'vertical'
+				if (! isNaN(interval)) {
+					autoplay = true;
+					autoplaySpeed = interval;
+				}
+			}
+
+			$this.slick({
+				draggable: false,
+				infinite: false,
+				swipe: false,
+				cssEase: 'ease-out',
+				dots: true,
+				slidesToShow: 3,
+				slidesToScroll: 3,
+				autoplay: autoplay,
+				autoplaySpeed: autoplaySpeed,
+				responsive: [{
+					breakpoint: 992,
+					settings: {
+						draggable: true,
+						arrows: false,
+						swipe: true
+					}
+				}, {
+					breakpoint: 768,
+					settings: {
+						slidesToShow: 1,
+						slidesToScroll: 1,
+						draggable: true,
+						arrows: false,
+						swipe: true
+					}
+				}]
+			});
 		});
 	}
 },
@@ -196,7 +228,7 @@ jQuery(document).ready(function() {
 	LSX_TO_Read_More.initThis();
 	LSX_TO_Scrollable.initThis(windowWidth);
 	LSX_TO_Itinerary_Read_More.initThis();
-	LSX_TO_Bootstrap_Carousel.initSliderSwiper();
+	LSX_TO_Bootstrap_Carousel.initSlider();
 	LSX_TO_FacetWP.effect_loaded();
 	LSX_TO.removeEmptyWidgets();
 	LSX_TO.addExtraClassToMeta();

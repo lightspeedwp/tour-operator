@@ -3,7 +3,7 @@
  * @package   Tour_Operator
  * @author    LightSpeed
  * @license   GPL3
- * @link      
+ * @link
  * @copyright 2016 LightSpeed
  *
  **/
@@ -39,7 +39,7 @@ require_once( LSX_TO_PATH . 'includes/widgets/cta-widget.php');
 
 // Setup the post connections
 class Tour_Operator {
-	
+
 	/**
 	 * Holds class instance
 	 *
@@ -47,8 +47,8 @@ class Tour_Operator {
 	 *
 	 * @var      object|Module_Template
 	 */
-	protected static $instance = null;	
-	
+	protected static $instance = null;
+
 	/**
 	 * Holds the array of options
 	 *
@@ -56,8 +56,8 @@ class Tour_Operator {
 	 *
 	 * @var      array()
 	 */
-	public $options = false;	
-	
+	public $options = false;
+
 	/**
 	 * Holds the LSX_TO_Framework class
 	 *
@@ -65,8 +65,8 @@ class Tour_Operator {
 	 *
 	 * @var      object
 	 */
-	public $framework = false;	
-	
+	public $framework = false;
+
 	/**
 	 * Holds the array of post_types
 	 *
@@ -74,8 +74,8 @@ class Tour_Operator {
 	 *
 	 * @var      array()
 	 */
-	public $base_post_types = array();	
-	
+	public $base_post_types = array();
+
 	/**
 	 * Holds the array of post_types
 	 *
@@ -83,8 +83,8 @@ class Tour_Operator {
 	 *
 	 * @var      array()
 	 */
-	public $post_types = array();	
-	
+	public $post_types = array();
+
 	/**
 	 * Holds the array of post_types_singular
 	 *
@@ -92,8 +92,8 @@ class Tour_Operator {
 	 *
 	 * @var      array()
 	 */
-	public $post_types_singular = array();	
-	
+	public $post_types_singular = array();
+
 	/**
 	 * Holds the array of taxonomies
 	 *
@@ -101,8 +101,8 @@ class Tour_Operator {
 	 *
 	 * @var      array()
 	 */
-	public $base_taxonomies = array();	
-	
+	public $base_taxonomies = array();
+
 	/**
 	 * Holds the array of taxonomies
 	 *
@@ -110,8 +110,8 @@ class Tour_Operator {
 	 *
 	 * @var      array()
 	 */
-	public $taxonomies = array();	
-	
+	public $taxonomies = array();
+
 	/**
 	 * Holds the array of active post_types
 	 *
@@ -120,7 +120,7 @@ class Tour_Operator {
 	 * @var      array()
 	 */
 	public $active_post_types = array();
-	
+
 	/**
 	 * Holds the array of connections from posts to posts
 	 *
@@ -128,8 +128,8 @@ class Tour_Operator {
 	 *
 	 * @var      array()
 	 */
-	public $connections = null;	
-	
+	public $connections = null;
+
 	/**
 	 * is out WETU Importer Plugin active
 	 *
@@ -146,8 +146,8 @@ class Tour_Operator {
 	 *
 	 * @var      array()
 	 */
-	public $plugin_slug = 'tour-operator';	
-	
+	public $plugin_slug = 'tour-operator';
+
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
 	 *
@@ -163,15 +163,15 @@ class Tour_Operator {
 		if ( ! self::compatible_version() ) {
 			return;
 		}
-		
+
 		//Set the options
-		$this->options = get_option('_lsx-to_settings',false);	
+		$this->options = get_option('_lsx-to_settings',false);
 		$this->set_vars();
 
 		// Make TO last plugin to load
 		add_action( 'activated_plugin', array( $this, 'activated_plugin' ) );
 
-		//Add our action to init to set up our vars first.	
+		//Add our action to init to set up our vars first.
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 		add_action( 'init', array( $this, 'require_post_type_classes' ) , 1 );
 		//Allow extra tags and attributes to wp_kses_post()
@@ -180,7 +180,7 @@ class Tour_Operator {
 		add_filter( 'kses_allowed_protocols', array( $this, 'kses_allowed_protocols' ) );
 		//Allow extra style attributes to wp_kses_post()
 		add_filter( 'safe_style_css', array( $this, 'safe_style_css' ) );
-		
+
 		require_once( LSX_TO_PATH . 'classes/class-admin.php' );
 		if(class_exists('LSX_TO_Admin')){
 			$this->admin = new LSX_TO_Admin();
@@ -200,7 +200,7 @@ class Tour_Operator {
 		if(!class_exists('LSX_TO_Placeholders')){
 			include_once('classes/class-placeholders.php');
 			$this->placeholders = new LSX_TO_Placeholders(array_keys($this->post_types));
-		}		
+		}
 
 		add_action( 'widgets_init', array( $this, 'register_widget'));
 
@@ -212,8 +212,8 @@ class Tour_Operator {
 		$this->lsx_to_search_integration();
 
 		add_action( 'admin_init', array( $this, 'register_activation_hook_check' ) );
-	}	
-	
+	}
+
 	/**
 	 * Return an instance of this class.
 	 *
@@ -228,7 +228,7 @@ class Tour_Operator {
 		}
 		return self::$instance;
 	}
-	
+
 	/**
 	 * On plugin activation
 	 *
@@ -245,7 +245,7 @@ class Tour_Operator {
 			set_transient( '_tour_operators_welcome_redirect', 1, 30 );
 		}
 	}
-	
+
 	/**
 	 * On plugin activation (check)
 	 *
@@ -267,7 +267,7 @@ class Tour_Operator {
 			exit();
 		}
 	}
-	
+
 	/**
 	 * Load the plugin text domain for translation.
 	 *
@@ -323,8 +323,8 @@ class Tour_Operator {
 		register_widget( 'LSX_TO_Widget' );
 		register_widget( 'LSX_TO_Taxonomy_Widget' );
 		register_widget( 'LSX_TO_CTA_Widget' );
-	}		
-	
+	}
+
 	/**
 	 * Load the plugin text domain for translation.
 	 *
@@ -345,7 +345,7 @@ class Tour_Operator {
 				require_once( LSX_TO_PATH . 'classes/class-'.$post_type.'.php' );
 			}
 		}
-		$this->connections = $this->create_post_connections();	
+		$this->connections = $this->create_post_connections();
 		$this->single_fields = apply_filters('lsx_to_search_fields',array());
 	}
 
@@ -364,7 +364,7 @@ class Tour_Operator {
 			}
 		}
 		return $connections;
-	}		
+	}
 
 	/**
 	 * Include the post type for the search integration
@@ -372,7 +372,7 @@ class Tour_Operator {
 	public function lsx_to_search_integration(){
 		add_filter( 'lsx_to_search_post_types', array( $this, 'post_types_filter') );
 		add_filter( 'lsx_to_search_taxonomies', array( $this, 'taxonomies_filter') );
-	}	
+	}
 
 	/**
 	 * Adds our post types to an array via a filter
@@ -398,7 +398,7 @@ class Tour_Operator {
 	 */
 	public function get_post_types(){
 		return $this->post_types;
-	}		
+	}
 
 	/**
 	 * Adds our taxonomies to an array via a filter
@@ -410,7 +410,7 @@ class Tour_Operator {
 			$taxonomies = $this->taxonomies;
 		}
 		return $taxonomies;
-	}		
+	}
 
 	/**
 	 * A filter that outputs the tagline for the current page.
@@ -447,11 +447,11 @@ class Tour_Operator {
 		}
 		return $tagline;
 	}
-	
+
 	/**
 	 * A filter that outputs the description for the post_type archives.
 	 */
-	public function get_post_type_archive_description($description=false,$before='',$after='') {	
+	public function get_post_type_archive_description($description=false,$before='',$after='') {
 		if(is_post_type_archive($this->active_post_types) && isset($this->options[get_post_type()]) && isset($this->options[get_post_type()]['description']) && '' !== $this->options[get_post_type()]['description'] ){
 			$description = $this->options[get_post_type()]['description'];
 			$description = $this->apply_filters_the_content($description);
@@ -468,13 +468,13 @@ class Tour_Operator {
 
 		if ( preg_match( '/<!--more(.*?)?-->/', $content, $matches ) ) {
 			$content = explode( $matches[0], $content, 2 );
-			
+
 			if ( ! empty( $matches[1] ) && ! empty( $more_link_text ) )
 				$more_link_text = strip_tags( wp_kses_no_null( trim( $matches[1] ) ) );
 		} else {
 			$content = array( $content );
 		}
-		
+
 		$output .= $content[0];
 
 		if ( count( $content ) > 1 ) {
@@ -542,13 +542,15 @@ class Tour_Operator {
 		$allowedtags['div']['data-gallery-theme'] = true;
 		$allowedtags['div']['data-justified-margins'] = true;
 		$allowedtags['div']['data-envira-columns'] = true;
-		
+
 		$allowedtags['img']['data-envira-index'] = true;
 		$allowedtags['img']['data-envira-caption'] = true;
 		$allowedtags['img']['data-envira-gallery-id'] = true;
 		$allowedtags['img']['data-envira-item-id'] = true;
 		$allowedtags['img']['data-envira-src'] = true;
 		$allowedtags['img']['data-envira-srcset'] = true;
+
+		$allowedtags['div']['data-slick'] = true;
 
 		// New tags
 
@@ -608,7 +610,7 @@ class Tour_Operator {
 			return true;
 		}else{
 			return false;
-		}		
+		}
 	}
 
 	/**
@@ -667,8 +669,8 @@ class Tour_Operator {
 			}
 		}
 		return $forms;
-	}	
-	
+	}
+
 	/**
 	 * Make TO last plugin to load.
 	 */
@@ -687,7 +689,7 @@ class Tour_Operator {
 			}
 		}
 	}
-	
+
 	/**
 	 * Check if the PHP version is compatible.
 	 *
@@ -700,7 +702,7 @@ class Tour_Operator {
 
 		return true;
 	}
-	
+
 	/**
 	 * The backup sanity check, in case the plugin is activated in a weird way,
 	 * or the versions change after activation.
@@ -712,14 +714,14 @@ class Tour_Operator {
 			if ( is_plugin_active( plugin_basename( LSX_TO_CORE ) ) ) {
 				deactivate_plugins( plugin_basename( LSX_TO_CORE ) );
 				add_action( 'admin_notices', array( $this, 'compatible_version_notice' ) );
-				
+
 				if ( isset( $_GET['activate'] ) ) {
 					unset( $_GET['activate'] );
 				}
 			}
 		}
 	}
-	
+
 	/**
 	 * Display the notice related with the older version from PHP.
 	 *
@@ -730,7 +732,7 @@ class Tour_Operator {
 		$message = esc_html__( 'Tour Operator Plugin requires PHP 5.6 or higher.', 'tour-operator' );
 		printf( '<div class="%1$s"><p>%2$s</p></div>', esc_html( $class ), esc_html( $message ) );
 	}
-	
+
 	/**
 	 * The primary sanity check, automatically disable the plugin on activation if it doesn't
 	 * meet minimum requirements.
