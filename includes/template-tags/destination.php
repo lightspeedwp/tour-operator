@@ -136,8 +136,13 @@ function lsx_to_destination_travel_info() {
 	$climate     = get_post_meta( get_the_ID(), 'climate', true );
 	$transport   = get_post_meta( get_the_ID(), 'transport', true );
 	$dress       = get_post_meta( get_the_ID(), 'dress', true );
+	$health       = get_post_meta( get_the_ID(), 'health', true );
+	$safety      = get_post_meta( get_the_ID(), 'safety', true );
+	$visa      = get_post_meta( get_the_ID(), 'visa', true );
+	$general       = get_post_meta( get_the_ID(), 'general', true );
 
-	if ( ! empty( $electricity ) || ! empty( $banking ) || ! empty( $cuisine ) || ! empty( $climate ) || ! empty( $transport ) || ! empty( $dress ) ) :
+
+	if ( ! empty( $electricity ) || ! empty( $banking ) || ! empty( $cuisine ) || ! empty( $climate ) || ! empty( $transport ) || ! empty( $dress ) || ! empty( $health ) || ! empty( $safety ) || ! empty( $visa ) || ! empty( $general ) ) :
 		$limit_words = 30;
 		$more_button = "\n\n" . '<a class="btn btn-default more-link more-link-remove-p" data-collapsed="true" href="#">Read More</a>' . "\n\n";
 		
@@ -148,6 +153,10 @@ function lsx_to_destination_travel_info() {
 			esc_html__( 'Climate', 'tour-operator' )     => $climate,
 			esc_html__( 'Transport', 'tour-operator' )   => $transport,
 			esc_html__( 'Dress', 'tour-operator' )       => $dress,
+			esc_html__( 'Health', 'tour-operator' )       => $health,
+			esc_html__( 'Safety', 'tour-operator' )       => $safety,
+			esc_html__( 'Visa', 'tour-operator' )       => $visa,
+			esc_html__( 'General', 'tour-operator' )       => $general,
 		);
 		?>
 		<section id="travel-info">
