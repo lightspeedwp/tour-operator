@@ -9,7 +9,7 @@ var LSX_TO_Itinerary_Read_More = {
 		jQuery('#itinerary .view-more a').click(function(event){
 			event.preventDefault();
 			jQuery(this).hide();
-			
+
 			jQuery(this).parents('#itinerary').find('.itinerary-item.hidden').each(function(){
 				jQuery(this).removeClass('hidden');
 			});
@@ -17,31 +17,17 @@ var LSX_TO_Itinerary_Read_More = {
 	}
 },
 
-lsxToBootstrapCarouselAvoidInMobile = (undefined !== lsxToBootstrapCarouselAvoidInMobile) ? lsxToBootstrapCarouselAvoidInMobile : true,
-
 LSX_TO_Bootstrap_Carousel = {
-	avoidInMobile: function() {
-		jQuery('.lsx-to-slider').on('slide.bs.carousel', function() {
-			if (true === lsxToBootstrapCarouselAvoidInMobile) {
-				var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-				
-				if (width < 992) {
-					return false;
-				}
-			}
-		});
-	},
-
 	initSliderSwiper: function() {
 		jQuery('.lsx-to-slider').swipe({
 			swipeLeft:function(event, direction, distance, duration, fingerCount) {
-				jQuery(this).carousel('next'); 
+				jQuery(this).carousel('next');
 			},
 
 			swipeRight: function() {
-				jQuery(this).carousel('prev'); 
+				jQuery(this).carousel('prev');
 			},
-			
+
 			threshold: 0,
 			allowPageScroll: 'vertical'
 		});
@@ -210,7 +196,6 @@ jQuery(document).ready(function() {
 	LSX_TO_Read_More.initThis();
 	LSX_TO_Scrollable.initThis(windowWidth);
 	LSX_TO_Itinerary_Read_More.initThis();
-	LSX_TO_Bootstrap_Carousel.avoidInMobile();
 	LSX_TO_Bootstrap_Carousel.initSliderSwiper();
 	LSX_TO_FacetWP.effect_loaded();
 	LSX_TO.removeEmptyWidgets();

@@ -1161,13 +1161,9 @@ body.home aside.lsx-widget .slider-container .carousel, body.archive-tour-operat
 
 body.home aside.lsx-widget .slider-container .item, body.archive-tour-operator #safari-brands .slider-container .item, body.archive-tour-operator #travel-styles .slider-container .item, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .item, body.single-tour-operator .slider-container .item { margin-bottom: 0; }
 
-@media only screen and (max-width: 991px) { body.home aside.lsx-widget .slider-container .item, body.archive-tour-operator #safari-brands .slider-container .item, body.archive-tour-operator #travel-styles .slider-container .item, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .item, body.single-tour-operator .slider-container .item { display: block; } }
-
-@media only screen and (min-width: 992px) { body.home aside.lsx-widget .slider-container .item:not(:only-child), body.archive-tour-operator #safari-brands .slider-container .item:not(:only-child), body.archive-tour-operator #travel-styles .slider-container .item:not(:only-child), body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .item:not(:only-child), body.single-tour-operator .slider-container .item:not(:only-child) { margin-left: 0; margin-right: 0; } }
+body.home aside.lsx-widget .slider-container .item:not(:only-child), body.archive-tour-operator #safari-brands .slider-container .item:not(:only-child), body.archive-tour-operator #travel-styles .slider-container .item:not(:only-child), body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .item:not(:only-child), body.single-tour-operator .slider-container .item:not(:only-child) { margin-left: 0; margin-right: 0; }
 
 body.home aside.lsx-widget .slider-container .carousel-control, body.archive-tour-operator #safari-brands .slider-container .carousel-control, body.archive-tour-operator #travel-styles .slider-container .carousel-control, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .carousel-control, body.single-tour-operator .slider-container .carousel-control { background: none; width: 70px; }
-
-@media only screen and (max-width: 991px) { body.home aside.lsx-widget .slider-container .carousel-control, body.archive-tour-operator #safari-brands .slider-container .carousel-control, body.archive-tour-operator #travel-styles .slider-container .carousel-control, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .carousel-control, body.single-tour-operator .slider-container .carousel-control { display: none; } }
 
 body.home aside.lsx-widget .slider-container .carousel-control.left, body.archive-tour-operator #safari-brands .slider-container .carousel-control.left, body.archive-tour-operator #travel-styles .slider-container .carousel-control.left, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .carousel-control.left, body.single-tour-operator .slider-container .carousel-control.left { right: -55px; margin-right: 0; }
 
@@ -1176,8 +1172,6 @@ body.home aside.lsx-widget .slider-container .carousel-control.right, body.archi
 body.home aside.lsx-widget .slider-container .carousel-control .fa, body.archive-tour-operator #safari-brands .slider-container .carousel-control .fa, body.archive-tour-operator #travel-styles .slider-container .carousel-control .fa, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .carousel-control .fa, body.single-tour-operator .slider-container .carousel-control .fa { position: absolute; top: 50%; right: 50%; z-index: 5; display: inline-block; color: #2a6496; font-size: 40px; text-shadow: none; margin-top: -20px; margin-right: -14px; }
 
 body.home aside.lsx-widget .slider-container .carousel-indicators, body.archive-tour-operator #safari-brands .slider-container .carousel-indicators, body.archive-tour-operator #travel-styles .slider-container .carousel-indicators, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .carousel-indicators, body.single-tour-operator .slider-container .carousel-indicators { position: relative; bottom: auto; right: auto; margin: 10px auto 0 auto; line-height: 20px; }
-
-@media only screen and (max-width: 991px) { body.home aside.lsx-widget .slider-container .carousel-indicators, body.archive-tour-operator #safari-brands .slider-container .carousel-indicators, body.archive-tour-operator #travel-styles .slider-container .carousel-indicators, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .carousel-indicators, body.single-tour-operator .slider-container .carousel-indicators { display: none; } }
 
 body.home aside.lsx-widget .slider-container .carousel-indicators li, body.archive-tour-operator #safari-brands .slider-container .carousel-indicators li, body.archive-tour-operator #travel-styles .slider-container .carousel-indicators li, body.archive.post-type-archive-lsx-to-destination .countries .regions .slider-container .carousel-indicators li, body.single-tour-operator .slider-container .carousel-indicators li { border-color: #2a6496; margin: 1px 3px; }
 
@@ -1335,7 +1329,7 @@ body.page-has-banner.single-tour-operator .wrap > .content { padding-top: 0; }
 
 body.single-tour-operator #main { padding-top: 0 !important; }
 
-body.archive-tour-operator #summary article.hentry .entry-content .single-main-info, body.single-tour-operator #summary article.hentry .entry-content .single-main-info, body.single-tour-operator .lsx-modal article.hentry .entry-content .single-main-info { float: right; width: 100%; margin: 0 0 30px 0; }
+@media only screen and (min-width: 768px) { body.archive-tour-operator #summary article.hentry .entry-content .single-main-info, body.single-tour-operator #summary article.hentry .entry-content .single-main-info, body.single-tour-operator .lsx-modal article.hentry .entry-content .single-main-info { float: right; width: 100%; margin: 0 0 30px 0; } }
 
 body.archive-tour-operator #summary article.hentry .entry-content .single-main-info h3, body.single-tour-operator #summary article.hentry .entry-content .single-main-info h3, body.single-tour-operator .lsx-modal article.hentry .entry-content .single-main-info h3 { margin: 0; float: right; }
 

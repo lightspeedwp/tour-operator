@@ -42,6 +42,23 @@ function lsx_to_customizer_colour_selectors_button( $css, $colors ) {
 				}
 			}
 		}
+
+		body.archive-tour-operator {
+			.facetwp-slider-reset {
+				&,
+				&:visited {
+					background-color: {$colors['button_background_color']};
+					color: {$colors['button_text_color']};
+				}
+
+				&:hover,
+				&:focus,
+				&:active {
+					background-color: {$colors['button_background_hover_color']};
+					color: {$colors['button_text_color_hover']};
+				}
+			}
+		}
 CSS;
 
 	return $css;
@@ -240,7 +257,7 @@ function lsx_to_customizer_colour_selectors_body( $css, $colors ) {
 						}
 					}
 				}
-				
+
 				#itinerary {
 					.panel {
 						.itinerary-inner {
@@ -268,7 +285,7 @@ function lsx_to_customizer_colour_selectors_body( $css, $colors ) {
 						}
 					}
 				}
-				
+
 				#rooms,
 				#chalets,
 				#tents,
@@ -290,7 +307,7 @@ function lsx_to_customizer_colour_selectors_body( $css, $colors ) {
 						}
 					}
 				}
-				
+
 				#rooms {
 					.panel {
 						& > .room {
