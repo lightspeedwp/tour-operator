@@ -6,14 +6,14 @@
  * @link
  * @copyright 2016 LightSpeed
  **/
-// Setup the post connections
+// Setup the post connections.
 class Tour_Operator {
 
 	/**
 	 * Holds class instance
 	 *
 	 * @since 1.0.0
-	 * @var      object|Module_Template
+	 * @var      \Tour_Operator
 	 */
 	protected static $instance = null;
 
@@ -21,7 +21,7 @@ class Tour_Operator {
 	 * Holds the array of options
 	 *
 	 * @since 1.0.0
-	 * @var      array()
+	 * @var      array
 	 */
 	public $options = false;
 
@@ -37,7 +37,7 @@ class Tour_Operator {
 	 * Holds the array of post_types
 	 *
 	 * @since 1.0.0
-	 * @var      array()
+	 * @var      array
 	 */
 	public $base_post_types = array();
 
@@ -45,7 +45,7 @@ class Tour_Operator {
 	 * Holds the array of post_types
 	 *
 	 * @since 1.0.0
-	 * @var      array()
+	 * @var      array
 	 */
 	public $post_types = array();
 
@@ -53,7 +53,7 @@ class Tour_Operator {
 	 * Holds the array of post_types_singular
 	 *
 	 * @since 1.0.0
-	 * @var      array()
+	 * @var      array
 	 */
 	public $post_types_singular = array();
 
@@ -61,7 +61,7 @@ class Tour_Operator {
 	 * Holds the array of taxonomies
 	 *
 	 * @since 1.0.0
-	 * @var      array()
+	 * @var      array
 	 */
 	public $base_taxonomies = array();
 
@@ -69,15 +69,22 @@ class Tour_Operator {
 	 * Holds the array of taxonomies
 	 *
 	 * @since 1.0.0
-	 * @var      array()
+	 * @var      array
 	 */
 	public $taxonomies = array();
+	/**
+	 * Holds the array of taxonomies in Plural form.
+	 *
+	 * @since 1.0.0
+	 * @var      array
+	 */
+	public $taxonomies_plural = array();
 
 	/**
 	 * Holds the array of active post_types
 	 *
 	 * @since 1.0.0
-	 * @var      array()
+	 * @var      array
 	 */
 	public $active_post_types = array();
 
@@ -85,23 +92,30 @@ class Tour_Operator {
 	 * Holds the array of connections from posts to posts
 	 *
 	 * @since 1.0.0
-	 * @var      array()
+	 * @var      array
 	 */
 	public $connections = null;
-
 	/**
-	 * is out WETU Importer Plugin active
+	 * Holds the array of single fields.
 	 *
 	 * @since 1.0.0
-	 * @var      array()
+	 * @var      array
+	 */
+	public $single_fields = null;
+
+	/**
+	 * Flags is out WETU Importer Plugin active.
+	 *
+	 * @since 1.0.0
+	 * @var      array
 	 */
 	public $is_wetu_active = false;
 
 	/**
-	 * Holds the textdomain slug
+	 * Holds the textdomain slug.
 	 *
 	 * @since 1.0.0
-	 * @var      array()
+	 * @var      array
 	 */
 	public $plugin_slug = 'tour-operator';
 
@@ -179,7 +193,7 @@ class Tour_Operator {
 	 */
 	public static function get_instance() {
 		// If the single instance hasn't been set, set it now.
-		if ( null == self::$instance ) {
+		if ( is_null( self::$instance ) ) {
 			self::$instance = new self;
 		}
 
