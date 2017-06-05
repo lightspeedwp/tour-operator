@@ -8,7 +8,6 @@
  * @copyright 2017 David Cramer
  */
 
-
 /**
  * Tour Operator class autoloader.
  * It locates and finds class via classes folder structure.

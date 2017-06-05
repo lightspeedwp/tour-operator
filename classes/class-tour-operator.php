@@ -5,9 +5,7 @@
  * @license   GPL3
  * @link
  * @copyright 2016 LightSpeed
- *
  **/
-
 // Setup the post connections
 class Tour_Operator {
 
@@ -15,7 +13,6 @@ class Tour_Operator {
 	 * Holds class instance
 	 *
 	 * @since 1.0.0
-	 *
 	 * @var      object|Module_Template
 	 */
 	protected static $instance = null;
@@ -24,7 +21,6 @@ class Tour_Operator {
 	 * Holds the array of options
 	 *
 	 * @since 1.0.0
-	 *
 	 * @var      array()
 	 */
 	public $options = false;
@@ -33,7 +29,6 @@ class Tour_Operator {
 	 * Holds the LSX_TO_Framework class
 	 *
 	 * @since 1.0.0
-	 *
 	 * @var      object
 	 */
 	public $framework = false;
@@ -42,7 +37,6 @@ class Tour_Operator {
 	 * Holds the array of post_types
 	 *
 	 * @since 1.0.0
-	 *
 	 * @var      array()
 	 */
 	public $base_post_types = array();
@@ -51,7 +45,6 @@ class Tour_Operator {
 	 * Holds the array of post_types
 	 *
 	 * @since 1.0.0
-	 *
 	 * @var      array()
 	 */
 	public $post_types = array();
@@ -60,7 +53,6 @@ class Tour_Operator {
 	 * Holds the array of post_types_singular
 	 *
 	 * @since 1.0.0
-	 *
 	 * @var      array()
 	 */
 	public $post_types_singular = array();
@@ -69,7 +61,6 @@ class Tour_Operator {
 	 * Holds the array of taxonomies
 	 *
 	 * @since 1.0.0
-	 *
 	 * @var      array()
 	 */
 	public $base_taxonomies = array();
@@ -78,7 +69,6 @@ class Tour_Operator {
 	 * Holds the array of taxonomies
 	 *
 	 * @since 1.0.0
-	 *
 	 * @var      array()
 	 */
 	public $taxonomies = array();
@@ -87,7 +77,6 @@ class Tour_Operator {
 	 * Holds the array of active post_types
 	 *
 	 * @since 1.0.0
-	 *
 	 * @var      array()
 	 */
 	public $active_post_types = array();
@@ -96,7 +85,6 @@ class Tour_Operator {
 	 * Holds the array of connections from posts to posts
 	 *
 	 * @since 1.0.0
-	 *
 	 * @var      array()
 	 */
 	public $connections = null;
@@ -105,7 +93,6 @@ class Tour_Operator {
 	 * is out WETU Importer Plugin active
 	 *
 	 * @since 1.0.0
-	 *
 	 * @var      array()
 	 */
 	public $is_wetu_active = false;
@@ -114,82 +101,80 @@ class Tour_Operator {
 	 * Holds the textdomain slug
 	 *
 	 * @since 1.0.0
-	 *
 	 * @var      array()
 	 */
 	public $plugin_slug = 'tour-operator';
 
 	/**
-	 * Initialize the plugin by setting localization, filters, and administration functions.
+	 * Initialize the plugin by setting localization, filters, and
+	 * administration functions.
 	 *
-	 * @since 1.0.0
-	 *
+	 * @since  1.0.0
 	 * @access private
 	 */
 	private function __construct() {
 
 		add_action( 'admin_init', array( $this, 'compatible_version_check' ) );
 
-		// Don't run anything else in the plugin, if we're on an incompatible PHP version
+		// Don't run anything else in the plugin, if we're on an incompatible PHP version.
 		if ( ! self::compatible_version() ) {
 			return;
 		}
 
-		//Set the options
-		$this->options = get_option('_lsx-to_settings',false);
+		// Set the options.
+		$this->options = get_option( '_lsx-to_settings', false );
 		$this->set_vars();
 
-		// Make TO last plugin to load
+		// Make TO last plugin to load.
 		add_action( 'activated_plugin', array( $this, 'activated_plugin' ) );
 
-		//Add our action to init to set up our vars first.
+		// Add our action to init to set up our vars first.
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
-		add_action( 'init', array( $this, 'require_post_type_classes' ) , 1 );
-		//Allow extra tags and attributes to wp_kses_post()
-		add_filter( 'wp_kses_allowed_html', array( $this, 'wp_kses_allowed_html' ), 10, 2 );
-		//Allow extra protocols to wp_kses_post()
-		add_filter( 'kses_allowed_protocols', array( $this, 'kses_allowed_protocols' ) );
-		//Allow extra style attributes to wp_kses_post()
+		add_action( 'init', array( $this, 'require_post_type_classes' ), 1 );
+		// Allow extra tags and attributes to wp_kses_post().
+		add_filter( 'wp_kses_allowed_html', array(
+			$this,
+			'wp_kses_allowed_html',
+		), 10, 2 );
+		// Allow extra protocols to wp_kses_post().
+		add_filter( 'kses_allowed_protocols', array(
+			$this,
+			'kses_allowed_protocols',
+		) );
+		// Allow extra style attributes to wp_kses_post().
 		add_filter( 'safe_style_css', array( $this, 'safe_style_css' ) );
 
-		require_once( LSX_TO_PATH . 'classes/class-admin.php' );
-		if(class_exists('LSX_TO_Admin')){
-			$this->admin = new LSX_TO_Admin();
-		}
+		// init admin object.
+		$this->admin = new LSX_TO_Admin();
+		// init settings object.
+		$this->settings = new LSX_TO_Settings();
+		// init frontend object.
+		$this->frontend = new LSX_TO_Frontend();
+		add_action( 'lsx_to_content', array(
+			$this->frontend->redirects,
+			'content_part',
+		), 10, 2 );
+		// init placeholders.
+		$this->placeholders = new LSX_TO_Placeholders( array_keys( $this->post_types ) );
 
-		require_once( LSX_TO_PATH . 'classes/class-settings.php' );
-		if(class_exists('LSX_TO_Settings')){
-			$this->settings = new LSX_TO_Settings();
-		}
+		add_action( 'widgets_init', array( $this, 'register_widget' ) );
 
-		require_once( LSX_TO_PATH . 'classes/class-frontend.php' );
-		if(class_exists('LSX_TO_Frontend')){
-			$this->frontend = new LSX_TO_Frontend();
-			add_action( 'lsx_to_content', array( $this->frontend->redirects, 'content_part' ), 10 , 2 );
-		}
+		// These need to run after the plugins have all been read.
+		$this->lsx_banners = new LSX_TO_Banner_Integration( array_keys( $this->post_types ), array_keys( $this->taxonomies ) );
 
-		if(!class_exists('LSX_TO_Placeholders')){
-			include_once('classes/class-placeholders.php');
-			$this->placeholders = new LSX_TO_Placeholders(array_keys($this->post_types));
-		}
-
-		add_action( 'widgets_init', array( $this, 'register_widget'));
-
-		//These need to run after the plugins have all been read.
-		include_once('classes/class-lsx-banner-integration.php');
-		$this->lsx_banners = new LSX_TO_Banner_Integration(array_keys($this->post_types),array_keys($this->taxonomies));
-
-		//Integrations
+		// Integrations.
 		$this->lsx_to_search_integration();
 
-		add_action( 'admin_init', array( $this, 'register_activation_hook_check' ) );
+		add_action( 'admin_init', array(
+			$this,
+			'register_activation_hook_check',
+		) );
 	}
 
 	/**
 	 * Return an instance of this class.
 	 *
 	 * @since 1.0.0
-	 *
 	 * @return    object    A single instance of this class.
 	 */
 	public static function get_instance() {
@@ -197,6 +182,7 @@ class Tour_Operator {
 		if ( null == self::$instance ) {
 			self::$instance = new self;
 		}
+
 		return self::$instance;
 	}
 
@@ -245,46 +231,46 @@ class Tour_Operator {
 	 * @since 0.0.1
 	 */
 	public function load_plugin_textdomain() {
-		load_plugin_textdomain( 'tour-operator', FALSE, basename( LSX_TO_PATH ) . '/languages');
+		load_plugin_textdomain( 'tour-operator', false, basename( LSX_TO_PATH ) . '/languages' );
 	}
 
 	/**
 	 * Sets the variables for the class
 	 */
-	public function set_vars(){
+	public function set_vars() {
 		// This is the array of enabled post types.
-		$this->post_types = array(
-				'destination'	=> esc_html__('Destinations','tour-operator'),
-				'accommodation'	=> esc_html__('Accommodation','tour-operator'),
-				'tour'			=> esc_html__('Tours','tour-operator'),
+		$this->post_types          = array(
+			'destination'   => esc_html__( 'Destinations', 'tour-operator' ),
+			'accommodation' => esc_html__( 'Accommodation', 'tour-operator' ),
+			'tour'          => esc_html__( 'Tours', 'tour-operator' ),
 		);
 		$this->post_types_singular = array(
-				'destination'	=> esc_html__('Destination','tour-operator'),
-				'accommodation'	=> esc_html__('Accommodation','tour-operator'),
-				'tour'			=> esc_html__('Tour','tour-operator'),
+			'destination'   => esc_html__( 'Destination', 'tour-operator' ),
+			'accommodation' => esc_html__( 'Accommodation', 'tour-operator' ),
+			'tour'          => esc_html__( 'Tour', 'tour-operator' ),
 		);
-		$this->base_post_types = $this->post_types;
-		$this->post_types = apply_filters('lsx_to_post_types',$this->post_types);
-		$this->post_types_singular = apply_filters('lsx_to_post_types_singular',$this->post_types_singular);
-		$this->active_post_types = array_keys($this->post_types);
+		$this->base_post_types     = $this->post_types;
+		$this->post_types          = apply_filters( 'lsx_to_post_types', $this->post_types );
+		$this->post_types_singular = apply_filters( 'lsx_to_post_types_singular', $this->post_types_singular );
+		$this->active_post_types   = array_keys( $this->post_types );
 
-		$this->taxonomies = array(
-				'travel-style'			=> __('Travel Style','tour-operator'),
-				'accommodation-brand'			=> __('Brand','tour-operator'),
-				'accommodation-type'	=> __('Accommodation Type','tour-operator'),
-				'facility'	=> __('Facility','tour-operator'),
-				'location'	=> __('Location','tour-operator')
+		$this->taxonomies        = array(
+			'travel-style'        => __( 'Travel Style', 'tour-operator' ),
+			'accommodation-brand' => __( 'Brand', 'tour-operator' ),
+			'accommodation-type'  => __( 'Accommodation Type', 'tour-operator' ),
+			'facility'            => __( 'Facility', 'tour-operator' ),
+			'location'            => __( 'Location', 'tour-operator' ),
 		);
 		$this->taxonomies_plural = array(
-				'travel-style'			=> __('Travel Styles','tour-operator'),
-				'accommodation-brand'			=> __('Brands','tour-operator'),
-				'accommodation-type'	=> __('Accommodation Types','tour-operator'),
-				'facility'	=> __('Facilities','tour-operator'),
-				'location'	=> __('Locations','tour-operator')
+			'travel-style'        => __( 'Travel Styles', 'tour-operator' ),
+			'accommodation-brand' => __( 'Brands', 'tour-operator' ),
+			'accommodation-type'  => __( 'Accommodation Types', 'tour-operator' ),
+			'facility'            => __( 'Facilities', 'tour-operator' ),
+			'location'            => __( 'Locations', 'tour-operator' ),
 		);
-		$this->base_taxonomies = $this->taxonomies;
-		$this->taxonomies = apply_filters('lsx_to_framework_taxonomies',$this->taxonomies);
-		$this->taxonomies_plural = apply_filters('lsx_to_framework_taxonomies_plural',$this->taxonomies_plural);
+		$this->base_taxonomies   = $this->taxonomies;
+		$this->taxonomies        = apply_filters( 'lsx_to_framework_taxonomies', $this->taxonomies );
+		$this->taxonomies_plural = apply_filters( 'lsx_to_framework_taxonomies_plural', $this->taxonomies_plural );
 	}
 
 	/**
@@ -311,13 +297,13 @@ class Tour_Operator {
 	 * @since 0.0.1
 	 */
 	public function require_post_type_classes() {
-		foreach($this->post_types as $post_type => $label){
-			if ( file_exists( LSX_TO_PATH . 'classes/class-'.$post_type.'.php' ) ) {
-				require_once( LSX_TO_PATH . 'classes/class-'.$post_type.'.php' );
+		foreach ( $this->post_types as $post_type => $label ) {
+			if ( file_exists( LSX_TO_PATH . 'classes/class-' . $post_type . '.php' ) ) {
+				require_once( LSX_TO_PATH . 'classes/class-' . $post_type . '.php' );
 			}
 		}
-		$this->connections = $this->create_post_connections();
-		$this->single_fields = apply_filters('lsx_to_search_fields',array());
+		$this->connections   = $this->create_post_connections();
+		$this->single_fields = apply_filters( 'lsx_to_search_fields', array() );
 	}
 
 	/**
@@ -325,68 +311,77 @@ class Tour_Operator {
 	 */
 	public function create_post_connections() {
 		$connections = array();
-		$post_types = apply_filters('lsx_to_post_types',$this->post_types);
-		foreach($post_types as $key_a => $values_a){
-			foreach($this->post_types as $key_b => $values_b){
+		$post_types  = apply_filters( 'lsx_to_post_types', $this->post_types );
+		foreach ( $post_types as $key_a => $values_a ) {
+			foreach ( $this->post_types as $key_b => $values_b ) {
 				// Make sure we dont try connect a post type to itself.
-				if($key_a !== $key_b){
-					$connections[] = $key_a.'_to_'.$key_b;
+				if ( $key_a !== $key_b ) {
+					$connections[] = $key_a . '_to_' . $key_b;
 				}
 			}
 		}
+
 		return $connections;
 	}
 
 	/**
 	 * Include the post type for the search integration
 	 */
-	public function lsx_to_search_integration(){
-		add_filter( 'lsx_to_search_post_types', array( $this, 'post_types_filter') );
-		add_filter( 'lsx_to_search_taxonomies', array( $this, 'taxonomies_filter') );
+	public function lsx_to_search_integration() {
+		add_filter( 'lsx_to_search_post_types', array(
+			$this,
+			'post_types_filter',
+		) );
+		add_filter( 'lsx_to_search_taxonomies', array(
+			$this,
+			'taxonomies_filter',
+		) );
 	}
 
 	/**
 	 * Adds our post types to an array via a filter
 	 */
-	public function post_types_filter($post_types){
-		if(is_array($post_types)){
-			$post_types = array_merge($post_types,$this->post_types);
-		}else{
+	public function post_types_filter( $post_types ) {
+		if ( is_array( $post_types ) ) {
+			$post_types = array_merge( $post_types, $this->post_types );
+		} else {
 			$post_types = $this->post_types;
 		}
+
 		return $post_types;
 	}
 
 	/**
 	 * Returns the post types for use in the addons.
 	 */
-	public function get_taxonomies(){
+	public function get_taxonomies() {
 		return $this->taxonomies;
 	}
 
 	/**
 	 * Returns the post types for use in the addons.
 	 */
-	public function get_post_types(){
+	public function get_post_types() {
 		return $this->post_types;
 	}
 
 	/**
 	 * Adds our taxonomies to an array via a filter
 	 */
-	public function taxonomies_filter($taxonomies){
-		if(is_array($taxonomies)){
-			$taxonomies = array_merge($taxonomies,$this->taxonomies);
-		}else{
+	public function taxonomies_filter( $taxonomies ) {
+		if ( is_array( $taxonomies ) ) {
+			$taxonomies = array_merge( $taxonomies, $this->taxonomies );
+		} else {
 			$taxonomies = $this->taxonomies;
 		}
+
 		return $taxonomies;
 	}
 
 	/**
 	 * A filter that outputs the tagline for the current page.
 	 */
-	public function get_tagline($tagline=false,$before='',$after='') {
+	public function get_tagline( $tagline = false, $before = '', $after = '' ) {
 		$post_id = get_the_ID();
 
 		if ( ! empty( $post_id ) ) {
@@ -403,31 +398,32 @@ class Tour_Operator {
 			}
 		} else {
 			$post_type = get_query_var( 'post_type' );
-			if(is_post_type_archive($this->active_post_types) && isset($this->options[$post_type]) && isset($this->options[$post_type]['tagline'])){
-				$tagline = $this->options[$post_type]['tagline'];
-			}
-			elseif(is_tax(array_keys($this->taxonomies))){
-				$taxonomy_tagline = get_term_meta(get_queried_object_id(), 'tagline', true);
-				if(false !== $taxonomy_tagline && '' !== $taxonomy_tagline){
+			if ( is_post_type_archive( $this->active_post_types ) && isset( $this->options[ $post_type ] ) && isset( $this->options[ $post_type ]['tagline'] ) ) {
+				$tagline = $this->options[ $post_type ]['tagline'];
+			} elseif ( is_tax( array_keys( $this->taxonomies ) ) ) {
+				$taxonomy_tagline = get_term_meta( get_queried_object_id(), 'tagline', true );
+				if ( false !== $taxonomy_tagline && '' !== $taxonomy_tagline ) {
 					$tagline = $taxonomy_tagline;
 				}
 			}
 		}
-		if(false !== $tagline && '' !== $tagline){
-			$tagline = $before.$tagline.$after;
+		if ( false !== $tagline && '' !== $tagline ) {
+			$tagline = $before . $tagline . $after;
 		}
+
 		return $tagline;
 	}
 
 	/**
 	 * A filter that outputs the description for the post_type archives.
 	 */
-	public function get_post_type_archive_description($description=false,$before='',$after='') {
-		if(is_post_type_archive($this->active_post_types) && isset($this->options[get_post_type()]) && isset($this->options[get_post_type()]['description']) && '' !== $this->options[get_post_type()]['description'] ){
-			$description = $this->options[get_post_type()]['description'];
-			$description = $this->apply_filters_the_content($description);
-			$description = $before.$description.$after;
+	public function get_post_type_archive_description( $description = false, $before = '', $after = '' ) {
+		if ( is_post_type_archive( $this->active_post_types ) && isset( $this->options[ get_post_type() ] ) && isset( $this->options[ get_post_type() ]['description'] ) && '' !== $this->options[ get_post_type() ]['description'] ) {
+			$description = $this->options[ get_post_type() ]['description'];
+			$description = $this->apply_filters_the_content( $description );
+			$description = $before . $description . $after;
 		}
+
 		return $description;
 	}
 
@@ -440,8 +436,9 @@ class Tour_Operator {
 		if ( preg_match( '/<!--more(.*?)?-->/', $content, $matches ) ) {
 			$content = explode( $matches[0], $content, 2 );
 
-			if ( ! empty( $matches[1] ) && ! empty( $more_link_text ) )
+			if ( ! empty( $matches[1] ) && ! empty( $more_link_text ) ) {
 				$more_link_text = strip_tags( wp_kses_no_null( trim( $matches[1] ) ) );
+			}
 		} else {
 			$content = array( $content );
 		}
@@ -457,6 +454,7 @@ class Tour_Operator {
 		}
 
 		$output = apply_filters( 'the_content', $output );
+
 		return $output;
 	}
 
@@ -466,91 +464,91 @@ class Tour_Operator {
 	public function wp_kses_allowed_html( $allowedtags, $context ) {
 		// Tags exist, only adding new attributes
 
-		$allowedtags['i']['aria-hidden'] = true;
+		$allowedtags['i']['aria-hidden']    = true;
 		$allowedtags['span']['aria-hidden'] = true;
 
-		$allowedtags['button']['aria-label'] = true;
+		$allowedtags['button']['aria-label']   = true;
 		$allowedtags['button']['data-dismiss'] = true;
 
-		$allowedtags['li']['data-target'] = true;
+		$allowedtags['li']['data-target']   = true;
 		$allowedtags['li']['data-slide-to'] = true;
 
-		$allowedtags['a']['data-toggle'] = true;
-		$allowedtags['a']['data-target'] = true;
-		$allowedtags['a']['data-slide'] = true;
-		$allowedtags['a']['data-collapsed'] = true;
-		$allowedtags['a']['data-envira-caption'] = true;
-		$allowedtags['a']['data-envira-retina'] = true;
-		$allowedtags['a']['data-thumbnail'] = true;
-		$allowedtags['a']['data-mobile-thumbnail'] = true;
-		$allowedtags['a']['data-envirabox-type'] = true;
-		$allowedtags['a']['data-video-width'] = true;
-		$allowedtags['a']['data-video-height'] = true;
+		$allowedtags['a']['data-toggle']             = true;
+		$allowedtags['a']['data-target']             = true;
+		$allowedtags['a']['data-slide']              = true;
+		$allowedtags['a']['data-collapsed']          = true;
+		$allowedtags['a']['data-envira-caption']     = true;
+		$allowedtags['a']['data-envira-retina']      = true;
+		$allowedtags['a']['data-thumbnail']          = true;
+		$allowedtags['a']['data-mobile-thumbnail']   = true;
+		$allowedtags['a']['data-envirabox-type']     = true;
+		$allowedtags['a']['data-video-width']        = true;
+		$allowedtags['a']['data-video-height']       = true;
 		$allowedtags['a']['data-video-aspect-ratio'] = true;
 
-		$allowedtags['div']['aria-labelledby'] = true;
-		$allowedtags['div']['data-interval'] = true;
-		$allowedtags['div']['data-icon'] = true;
-		$allowedtags['div']['data-id'] = true;
-		$allowedtags['div']['data-class'] = true;
-		$allowedtags['div']['data-long'] = true;
-		$allowedtags['div']['data-lat'] = true;
-		$allowedtags['div']['data-zoom'] = true;
-		$allowedtags['div']['data-link'] = true;
-		$allowedtags['div']['data-thumbnail'] = true;
-		$allowedtags['div']['data-title'] = true;
-		$allowedtags['div']['data-type'] = true;
-		$allowedtags['div']['data-cluster-small'] = true;
-		$allowedtags['div']['data-cluster-medium'] = true;
-		$allowedtags['div']['data-cluster-large'] = true;
-		$allowedtags['div']['data-fusion-tables'] = true;
-		$allowedtags['div']['data-fusion-tables-colour-border'] = true;
-		$allowedtags['div']['data-fusion-tables-width-border'] = true;
+		$allowedtags['div']['aria-labelledby']                      = true;
+		$allowedtags['div']['data-interval']                        = true;
+		$allowedtags['div']['data-icon']                            = true;
+		$allowedtags['div']['data-id']                              = true;
+		$allowedtags['div']['data-class']                           = true;
+		$allowedtags['div']['data-long']                            = true;
+		$allowedtags['div']['data-lat']                             = true;
+		$allowedtags['div']['data-zoom']                            = true;
+		$allowedtags['div']['data-link']                            = true;
+		$allowedtags['div']['data-thumbnail']                       = true;
+		$allowedtags['div']['data-title']                           = true;
+		$allowedtags['div']['data-type']                            = true;
+		$allowedtags['div']['data-cluster-small']                   = true;
+		$allowedtags['div']['data-cluster-medium']                  = true;
+		$allowedtags['div']['data-cluster-large']                   = true;
+		$allowedtags['div']['data-fusion-tables']                   = true;
+		$allowedtags['div']['data-fusion-tables-colour-border']     = true;
+		$allowedtags['div']['data-fusion-tables-width-border']      = true;
 		$allowedtags['div']['data-fusion-tables-colour-background'] = true;
-		$allowedtags['div']['itemscope'] = true;
-		$allowedtags['div']['itemtype'] = true;
-		$allowedtags['div']['data-row-height'] = true;
-		$allowedtags['div']['data-gallery-theme'] = true;
-		$allowedtags['div']['data-justified-margins'] = true;
-		$allowedtags['div']['data-envira-columns'] = true;
+		$allowedtags['div']['itemscope']                            = true;
+		$allowedtags['div']['itemtype']                             = true;
+		$allowedtags['div']['data-row-height']                      = true;
+		$allowedtags['div']['data-gallery-theme']                   = true;
+		$allowedtags['div']['data-justified-margins']               = true;
+		$allowedtags['div']['data-envira-columns']                  = true;
 
-		$allowedtags['img']['data-envira-index'] = true;
-		$allowedtags['img']['data-envira-caption'] = true;
+		$allowedtags['img']['data-envira-index']      = true;
+		$allowedtags['img']['data-envira-caption']    = true;
 		$allowedtags['img']['data-envira-gallery-id'] = true;
-		$allowedtags['img']['data-envira-item-id'] = true;
-		$allowedtags['img']['data-envira-src'] = true;
-		$allowedtags['img']['data-envira-srcset'] = true;
+		$allowedtags['img']['data-envira-item-id']    = true;
+		$allowedtags['img']['data-envira-src']        = true;
+		$allowedtags['img']['data-envira-srcset']     = true;
 
 		$allowedtags['div']['data-slick'] = true;
 
 		// New tags
 
-		$allowedtags['input'] = array();
-		$allowedtags['input']['type'] = true;
-		$allowedtags['input']['id'] = true;
-		$allowedtags['input']['name'] = true;
-		$allowedtags['input']['value'] = true;
-		$allowedtags['input']['size'] = true;
+		$allowedtags['input']            = array();
+		$allowedtags['input']['type']    = true;
+		$allowedtags['input']['id']      = true;
+		$allowedtags['input']['name']    = true;
+		$allowedtags['input']['value']   = true;
+		$allowedtags['input']['size']    = true;
 		$allowedtags['input']['checked'] = true;
 		$allowedtags['input']['onclick'] = true;
 
-		$allowedtags['select'] = array();
-		$allowedtags['select']['name'] = true;
-		$allowedtags['select']['id'] = true;
+		$allowedtags['select']             = array();
+		$allowedtags['select']['name']     = true;
+		$allowedtags['select']['id']       = true;
 		$allowedtags['select']['disabled'] = true;
 		$allowedtags['select']['onchange'] = true;
 
-		$allowedtags['option'] = array();
-		$allowedtags['option']['value'] = true;
+		$allowedtags['option']             = array();
+		$allowedtags['option']['value']    = true;
 		$allowedtags['option']['selected'] = true;
 
-		$allowedtags['iframe'] = array();
-		$allowedtags['iframe']['src'] = true;
-		$allowedtags['iframe']['width'] = true;
-		$allowedtags['iframe']['height'] = true;
-		$allowedtags['iframe']['frameborder'] = true;
+		$allowedtags['iframe']                    = array();
+		$allowedtags['iframe']['src']             = true;
+		$allowedtags['iframe']['width']           = true;
+		$allowedtags['iframe']['height']          = true;
+		$allowedtags['iframe']['frameborder']     = true;
 		$allowedtags['iframe']['allowfullscreen'] = true;
-		$allowedtags['iframe']['style'] = true;
+		$allowedtags['iframe']['style']           = true;
 
 		$allowedtags['noscript'] = array();
 
@@ -562,6 +560,7 @@ class Tour_Operator {
 	 */
 	public function kses_allowed_protocols( $allowedprotocols ) {
 		$allowedprotocols[] = 'tel';
+
 		return $allowedprotocols;
 	}
 
@@ -570,6 +569,7 @@ class Tour_Operator {
 	 */
 	public function safe_style_css( $allowedstyles ) {
 		$allowedstyles[] = 'display';
+
 		return $allowedstyles;
 	}
 
@@ -577,9 +577,9 @@ class Tour_Operator {
 	 * checks which plugin is active, and grabs those forms.
 	 */
 	public function show_default_form() {
-		if(class_exists('Caldera_Forms_Forms') || class_exists('GFForms') || class_exists('Ninja_Forms')) {
+		if ( class_exists( 'Caldera_Forms_Forms' ) || class_exists( 'GFForms' ) || class_exists( 'Ninja_Forms' ) ) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
@@ -589,13 +589,14 @@ class Tour_Operator {
 	 */
 	public function get_activated_forms() {
 		$all_forms = false;
-		if(class_exists('Ninja_Forms')){
+		if ( class_exists( 'Ninja_Forms' ) ) {
 			$all_forms = $this->get_ninja_forms();
-		}elseif(class_exists('GFForms')){
+		} elseif ( class_exists( 'GFForms' ) ) {
 			$all_forms = $this->get_gravity_forms();
-		}elseif(class_exists('Caldera_Forms_Forms')) {
+		} elseif ( class_exists( 'Caldera_Forms_Forms' ) ) {
 			$all_forms = $this->get_caldera_forms();
 		}
+
 		return $all_forms;
 	}
 
@@ -604,41 +605,46 @@ class Tour_Operator {
 	 */
 	public function get_ninja_forms() {
 		global $wpdb;
-		$results = $wpdb->get_results("SELECT id,title FROM {$wpdb->prefix}nf3_forms");
-		$forms = false;
-		if(!empty($results)){
-			foreach($results as $form){
-				$forms[$form->id] = $form->title;
+		$results = $wpdb->get_results( "SELECT id,title FROM {$wpdb->prefix}nf3_forms" );
+		$forms   = false;
+		if ( ! empty( $results ) ) {
+			foreach ( $results as $form ) {
+				$forms[ $form->id ] = $form->title;
 			}
 		}
+
 		return $forms;
 	}
+
 	/**
 	 * gets the currenct gravity forms
 	 */
 	public function get_gravity_forms() {
 		global $wpdb;
 		$results = RGFormsModel::get_forms( null, 'title' );
-		$forms = false;
-		if(!empty($results)){
-			foreach($results as $form){
-				$forms[$form->id] = $form->title;
+		$forms   = false;
+		if ( ! empty( $results ) ) {
+			foreach ( $results as $form ) {
+				$forms[ $form->id ] = $form->title;
 			}
 		}
+
 		return $forms;
 	}
+
 	/**
 	 * gets the currenct caldera forms
 	 */
 	public function get_caldera_forms() {
 		global $wpdb;
-		$results = Caldera_Forms_Forms::get_forms(true);
-		$forms = false;
-		if(!empty($results)){
-			foreach($results as $form => $form_data){
-				$forms[$form] = $form_data['name'];
+		$results = Caldera_Forms_Forms::get_forms( true );
+		$forms   = false;
+		if ( ! empty( $results ) ) {
+			foreach ( $results as $form => $form_data ) {
+				$forms[ $form ] = $form_data['name'];
 			}
 		}
+
 		return $forms;
 	}
 
@@ -649,7 +655,7 @@ class Tour_Operator {
 		$plugins = get_option( 'active_plugins' );
 		if ( false != $plugins ) {
 			$search = preg_grep( '/.*\/tour-operator\.php/', $plugins );
-			$key = array_search( $search, $plugins );
+			$key    = array_search( $search, $plugins );
 
 			if ( is_array( $search ) && count( $search ) ) {
 				foreach ( $search as $key => $path ) {
@@ -684,7 +690,10 @@ class Tour_Operator {
 		if ( ! self::compatible_version() ) {
 			if ( is_plugin_active( plugin_basename( LSX_TO_CORE ) ) ) {
 				deactivate_plugins( plugin_basename( LSX_TO_CORE ) );
-				add_action( 'admin_notices', array( $this, 'compatible_version_notice' ) );
+				add_action( 'admin_notices', array(
+					$this,
+					'compatible_version_notice',
+				) );
 
 				if ( isset( $_GET['activate'] ) ) {
 					unset( $_GET['activate'] );
@@ -699,14 +708,14 @@ class Tour_Operator {
 	 * @since 1.0.2
 	 */
 	public function compatible_version_notice() {
-		$class = 'notice notice-error';
+		$class   = 'notice notice-error';
 		$message = esc_html__( 'Tour Operator Plugin requires PHP 5.6 or higher.', 'tour-operator' );
 		printf( '<div class="%1$s"><p>%2$s</p></div>', esc_html( $class ), esc_html( $message ) );
 	}
 
 	/**
-	 * The primary sanity check, automatically disable the plugin on activation if it doesn't
-	 * meet minimum requirements.
+	 * The primary sanity check, automatically disable the plugin on activation
+	 * if it doesn't meet minimum requirements.
 	 *
 	 * @since 1.0.2
 	 */
