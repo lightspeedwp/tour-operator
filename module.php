@@ -7,35 +7,6 @@
  * @copyright 2016 LightSpeed
  *
  **/
-if(!function_exists('cmb_init') && !class_exists('CMB_Meta_Box')){
-	if ( is_file( LSX_TO_PATH . 'vendor/Custom-Meta-Boxes/custom-meta-boxes.php' ) ) {
-		require_once( LSX_TO_PATH . 'vendor/Custom-Meta-Boxes/custom-meta-boxes.php' );
-	}
-}
-
-// Classes
-require_once( LSX_TO_PATH . 'classes/class-fields.php');
-
-// Template Tags
-require_once( LSX_TO_PATH . 'includes/template-tags/general.php' );
-require_once( LSX_TO_PATH . 'includes/template-tags/helpers.php' );
-require_once( LSX_TO_PATH . 'includes/template-tags/addons.php' );
-require_once( LSX_TO_PATH . 'includes/template-tags/accommodation.php' );
-require_once( LSX_TO_PATH . 'includes/template-tags/destination.php' );
-require_once( LSX_TO_PATH . 'includes/template-tags/tour.php' );
-
-// General Includes
-require_once( LSX_TO_PATH . 'includes/post-expirator.php' );
-require_once( LSX_TO_PATH . 'includes/post-order.php' );
-require_once( LSX_TO_PATH . 'includes/customizer.php' );
-require_once( LSX_TO_PATH . 'includes/layout.php' );
-require_once( LSX_TO_PATH . 'includes/actions.php' );
-
-// Widgets
-require_once( LSX_TO_PATH . 'includes/widgets/post-type-widget.php');
-require_once( LSX_TO_PATH . 'includes/widgets/taxonomy-widget.php');
-require_once( LSX_TO_PATH . 'includes/widgets/cta-widget.php');
-
 
 // Setup the post connections
 class Tour_Operator {
@@ -746,29 +717,4 @@ class Tour_Operator {
 		}
 	}
 
-}
-$tour_operator = Tour_Operator::get_instance();
-
-/**
- * Returns an array of the tour taxonomies.
- *
- * @param	$term_id
- */
-function lsx_to_get_taxonomies() {
-	global $tour_operator;
-	if(false !== $tour_operator){
-		return $tour_operator->get_taxonomies();
-	}
-}
-
-/**
- * Returns an array of the tour post types.
- *
- * @param	$term_id
- */
-function lsx_to_get_post_types() {
-	global $tour_operator;
-	if(false !== $tour_operator){
-		return $tour_operator->get_post_types();
-	}
 }

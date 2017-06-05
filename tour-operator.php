@@ -18,11 +18,16 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define('LSX_TO_PATH',  plugin_dir_path( __FILE__ ) );
-define('LSX_TO_CORE',  __FILE__ );
-define('LSX_TO_URL',  plugin_dir_url( __FILE__ ) );
-define('LSX_TO_VER',  '1.0.7' );
+define( 'LSX_TO_PATH', plugin_dir_path( __FILE__ ) );
+define( 'LSX_TO_CORE', __FILE__ );
+define( 'LSX_TO_URL', plugin_dir_url( __FILE__ ) );
+define( 'LSX_TO_VER', '1.0.7' );
 
-register_activation_hook( LSX_TO_CORE, array( 'Tour_Operator', 'register_activation_hook' ) );
+// Include bootstrapper and start plugin.
+require_once( LSX_TO_PATH . 'tour-operator-bootstrap.php' );
 
-require_once( LSX_TO_PATH . 'module.php' );
+// Register activation hook.
+register_activation_hook( LSX_TO_CORE, array(
+	'Tour_Operator',
+	'register_activation_hook',
+) );
