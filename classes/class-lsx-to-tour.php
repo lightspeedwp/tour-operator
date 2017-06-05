@@ -92,8 +92,6 @@ class LSX_TO_Tour {
 		add_filter('lsx_to_custom_field_query',array( $this, 'rating'),5,10);
 
 		add_action('lsx_to_modal_meta',array($this, 'content_meta'));
-		
-		include('class-itinerary.php');
 
 		add_filter( 'lsx_to_page_navigation', array( $this, 'page_links') );
 	}
