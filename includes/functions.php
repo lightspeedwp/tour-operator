@@ -442,3 +442,207 @@ function lsx_to_itinerary_excludes( $before = '', $after = '' ) {
 		}
 	}
 }
+
+/**
+ * Checks if the current accommodation has rooms
+ *
+ * @package       tour-operator
+ * @subpackage    template-tags
+ * @category      accommodation
+ */
+function lsx_to_accommodation_has_rooms() {
+	global $rooms;
+	$have_rooms = false;
+	if ( null === $rooms ) {
+		$rooms = new LSX_TO_Unit_Query();
+	}
+	if ( is_object( $rooms ) ) {
+		$have_rooms = $rooms->have_query();
+	}
+
+	return $have_rooms;
+}
+
+/**
+ * Runs the current room loop, used in a "while" statement
+ * e.g  while(lsx_to_accommodation_room_loop())
+ * {lsx_to_accommodation_room_loop_item();}
+ *
+ * @package       tour-operator
+ * @subpackage    template-tags
+ * @category      room
+ */
+function lsx_to_accommodation_room_loop() {
+	global $rooms;
+	if ( is_object( $rooms ) ) {
+		return $rooms->while_query();
+	} else {
+		return false;
+	}
+}
+
+/**
+ * Sets up the current room
+ * e.g  while(lsx_to_accommodation_room_loop())
+ * {lsx_to_accommodation_room_loop_item();}
+ *
+ * @package       tour-operator
+ * @subpackage    template-tags
+ * @category      room
+ */
+function lsx_to_accommodation_room_loop_item( $type = false ) {
+	global $rooms;
+	if ( is_object( $rooms ) ) {
+		return $rooms->current_queried_item( $type );
+	} else {
+		return false;
+	}
+}
+
+/**
+ * Outputs The current Rooms title
+ *
+ * @param        $before | string
+ * @param        $after  | string
+ * @param        $echo   | boolean
+ *
+ * @package       tour-operator
+ * @subpackage    template-tags
+ * @category      room
+ */
+function lsx_to_accommodation_room_title( $before = "", $after = "", $echo = true ) {
+	global $rooms;
+	if ( is_object( $rooms ) ) {
+		$rooms->item_title( $before, $after, $echo );
+	}
+}
+
+/**
+ * Outputs The current Rooms Description
+ *
+ * @param        $before | string
+ * @param        $after  | string
+ * @param        $echo   | boolean
+ *
+ * @package       tour-operator
+ * @subpackage    template-tags
+ * @category      room
+ */
+function lsx_to_accommodation_room_description( $before = "", $after = "", $echo = true ) {
+	global $rooms;
+	if ( is_object( $rooms ) ) {
+		$rooms->item_description( $before, $after, $echo );
+	}
+}
+
+/**
+ * Checks if the current room item has a thumbnail.
+ *
+ * @package       tour-operator
+ * @subpackage    template-tags
+ * @category      room
+ */
+function lsx_to_accommodation_room_has_thumbnail() {
+	global $rooms;
+	if ( $rooms && $rooms->have_query ) {
+		return true;
+	}
+}
+
+/**
+ * Outputs The current Room thumbnail
+ *
+ * @package       tour-operator
+ * @subpackage    template-tags
+ * @category      room
+ */
+function lsx_to_accommodation_room_thumbnail( $before = "", $after = "", $echo = true ) {
+	global $rooms;
+	if ( is_object( $rooms ) ) {
+		$rooms->item_thumbnail( $before, $after, $echo );
+	}
+}
+
+/**
+ * Checks if the current type has units.
+ *
+ * @package       tour-operator
+ * @subpackage    template-tags
+ * @category      room
+ */
+function lsx_to_accommodation_check_type( $type = false ) {
+	global $rooms;
+
+	return $rooms->check_type( $type );
+}
+
+/**
+ * Resets the loop
+ *
+ * @package       tour-operator
+ * @subpackage    template-tags
+ * @category      room
+ */
+function lsx_to_accommodation_reset_units_loop() {
+	global $rooms;
+
+	return $rooms->reset_loop();
+}
+
+/**
+ * Outputs various units attached to the accommodation
+ *
+ * @package       tour-operator
+ * @subpackage    template-tags
+ * @category      unit
+ */
+function lsx_to_accommodation_units( $before = "", $after = "" ) {
+	global $rooms;
+
+	if ( lsx_to_accommodation_has_rooms() ) {
+
+		$unit_types = array(
+			'chalet' => esc_html__( 'Chalet', 'tour-operator' ),
+			'room'   => esc_html__( 'Room', 'tour-operator' ),
+			'spa'    => esc_html__( 'Spa', 'tour-operator' ),
+			'tent'   => esc_html__( 'Tent', 'tour-operator' ),
+			'villa'  => esc_html__( 'Villa', 'tour-operator' ),
+		);
+		foreach ( $unit_types as $type_key => $type_label ) {
+			if ( lsx_to_accommodation_check_type( $type_key ) ) {
+				?>
+                <section id="<?php echo esc_attr( $type_key ); ?>s">
+                    <h2 class="section-title"><?php esc_html_e( lsx_to_get_post_type_section_title( 'accommodation', $type_key . 's', $type_label . 's' ), 'tour-operator' ); ?></h2>
+                    <div class="<?php echo esc_attr( $type_key ); ?>s-content rooms-content row">
+						<?php while ( lsx_to_accommodation_room_loop() ) { ?>
+
+							<?php if ( ! lsx_to_accommodation_room_loop_item( $type_key ) ) {
+								continue;
+							} ?>
+
+                            <div class="panel col-sm-6">
+                                <article class="unit type-unit">
+                                    <div class="col-sm-4">
+										<?php if ( lsx_to_accommodation_room_has_thumbnail() ) { ?>
+                                            <div class="thumbnail">
+												<?php lsx_to_accommodation_room_thumbnail(); ?>
+                                            </div>
+										<?php } ?>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="unit-info">
+											<?php lsx_to_accommodation_room_title( '<h3>', '</h3>' ); ?>
+											<?php lsx_to_accommodation_room_description( '<div class="entry-content">', '</div>' ); ?>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+
+						<?php }
+						lsx_to_accommodation_reset_units_loop(); ?>
+                    </div>
+                </section>
+			<?php }
+		}
+	}
+}
