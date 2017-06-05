@@ -417,7 +417,7 @@ class LSX_TO_Tour {
 			$value = ltrim($value, '.');
 			$value = str_replace(',','',$value);
 			$value = number_format((int) $value,2);
-			global $tour_operator;
+			$tour_operator = tour_operator();
 			$currency = '';
 			if ( is_object( $tour_operator ) && isset( $tour_operator->options['general'] ) && is_array( $tour_operator->options['general'] ) ) {
 				if ( isset( $tour_operator->options['general']['currency'] ) && ! empty( $tour_operator->options['general']['currency'] ) ) {

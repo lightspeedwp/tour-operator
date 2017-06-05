@@ -80,7 +80,7 @@ class LSX_TO_Banner_Integration {
 	 * A filter that outputs the description for the post_type and taxonomy archives.
 	 */
 	public function banner_archive_url($image=false) {
-		global $tour_operator;
+		$tour_operator = tour_operator();
 		if(is_post_type_archive($tour_operator->active_post_types) && isset($tour_operator->options[get_post_type()])){
 			if(isset($tour_operator->options[get_post_type()]['banner']) && '' !== $tour_operator->options[get_post_type()]['banner']){
 				$image = $tour_operator->options[get_post_type()]['banner'];
@@ -93,7 +93,7 @@ class LSX_TO_Banner_Integration {
 	 *  Picks the placeholder from a specific post type setting, if its there
 	 */
 	public function banner_placeholder_url($image=false) {
-		global $tour_operator;
+		$tour_operator = tour_operator();
 		if(isset($tour_operator->options['general']) && isset($tour_operator->options['general']['banner_placeholder']) && '' !== $tour_operator->options['general']['banner_placeholder']){
 				$image = $tour_operator->options['general']['banner_placeholder'];
 		}			
@@ -107,7 +107,7 @@ class LSX_TO_Banner_Integration {
 	 * A filter that outputs the description for the post_type and taxonomy archives.
 	 */
 	public function posts_page_banner_tagline(){
-		global $tour_operator;
+		$tour_operator = tour_operator();
 		if(is_home() && isset($tour_operator->options[get_post_type()]) && isset($tour_operator->options[get_post_type()]['tagline'])){
 			$tagline = $tour_operator->options[get_post_type()]['tagline'];
 			?>
@@ -120,7 +120,7 @@ class LSX_TO_Banner_Integration {
 	 * A filter that outputs the title for the post_type_archives.
 	 */
 	public function banner_title($title) {
-		global $tour_operator;
+		$tour_operator = tour_operator();
 		if(is_post_type_archive() && isset($tour_operator->options[get_post_type()]) && isset($tour_operator->options[get_post_type()]['title']) && '' !== $tour_operator->options[get_post_type()]['title'] ){
 			$title = '<h1 class="page-title">'.$tour_operator->options[get_post_type()]['title'].'</h1>';
 		}

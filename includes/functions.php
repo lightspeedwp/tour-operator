@@ -50,10 +50,10 @@ if ( ! function_exists( 'cmb_init' ) && ! class_exists( 'CMB_Meta_Box' ) ) {
 	}
 }
 
-// Classes
+// Classes.
 require_once( LSX_TO_PATH . 'classes/class-fields.php' );
 
-// Template Tags
+// Template Tags.
 require_once( LSX_TO_PATH . 'includes/template-tags/general.php' );
 require_once( LSX_TO_PATH . 'includes/template-tags/helpers.php' );
 require_once( LSX_TO_PATH . 'includes/template-tags/addons.php' );
@@ -61,14 +61,14 @@ require_once( LSX_TO_PATH . 'includes/template-tags/accommodation.php' );
 require_once( LSX_TO_PATH . 'includes/template-tags/destination.php' );
 require_once( LSX_TO_PATH . 'includes/template-tags/tour.php' );
 
-// General Includes
+// General Includes.
 require_once( LSX_TO_PATH . 'includes/post-expirator.php' );
 require_once( LSX_TO_PATH . 'includes/post-order.php' );
 require_once( LSX_TO_PATH . 'includes/customizer.php' );
 require_once( LSX_TO_PATH . 'includes/layout.php' );
 require_once( LSX_TO_PATH . 'includes/actions.php' );
 
-// Widgets
+// Widgets.
 require_once( LSX_TO_PATH . 'includes/widgets/post-type-widget.php' );
 require_once( LSX_TO_PATH . 'includes/widgets/taxonomy-widget.php' );
 require_once( LSX_TO_PATH . 'includes/widgets/cta-widget.php' );

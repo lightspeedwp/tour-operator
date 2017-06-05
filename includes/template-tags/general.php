@@ -383,7 +383,7 @@ function lsx_to_travel_styles($before="",$after="",$echo=true) {
  * @package 	tour-operator
  */
 function lsx_to_has_enquiry_contact() {
-	global $tour_operator;
+	$tour_operator = tour_operator();
 
 	$has_enquiry_contact = false;
 
@@ -406,7 +406,7 @@ function lsx_to_has_enquiry_contact() {
  * @package 	tour-operator
  */
 function lsx_to_enquiry_contact( $before = "", $after = "" ) {
-	global $tour_operator;
+	$tour_operator = tour_operator();
 
 	$fields = array(
 		'enquiry_contact_name'     => '',
@@ -468,7 +468,7 @@ function lsx_to_enquiry_contact( $before = "", $after = "" ) {
  * @category 	tour
  */
 function lsx_to_enquire_modal($before="",$after="",$echo=true){
-	global $tour_operator;
+	$tour_operator = tour_operator();
 
 	$form_id = false;
 	// First set the general form

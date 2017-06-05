@@ -21,7 +21,7 @@
  * @category 	class
  */
 function lsx_to_is_single_disabled($post_type=false){
-	global $tour_operator;
+	$tour_operator = tour_operator();
 	if(false === $post_type) {
 		$post_type = get_post_type();
 	}
@@ -40,7 +40,7 @@ function lsx_to_is_single_disabled($post_type=false){
  * @category 	modal
  */
 function lsx_to_enable_envira_banner(){
-	global $tour_operator;
+	$tour_operator = tour_operator();
 	if(isset($tour_operator->options) && isset($tour_operator->options['display']) && isset($tour_operator->options['display']['enable_galleries_in_banner'])){
 		return true;
 	}else{
@@ -56,7 +56,7 @@ function lsx_to_enable_envira_banner(){
  * @category 	accommodation
  */
 function lsx_to_accommodation_display_connected_tours(){
-	global $tour_operator;
+	$tour_operator = tour_operator();
 	$return = false;
 	if(isset($tour_operator->options['accommodation']['display_connected_tours']) && 'on' === $tour_operator->options['accommodation']['display_connected_tours']){
 		$return = true;
@@ -113,7 +113,7 @@ function lsx_to_item_has_children($post_id = false,$post_type = false) {
  */
 function lsx_to_get_post_type_section_title($post_type=false,$section='',$default=''){
 	$section_title = (!empty($section)) ? ($section.'_section_title') : 'section_title';
-	global $tour_operator;
+	$tour_operator = tour_operator();
 	if(false === $post_type) {
 		$post_type = get_post_type();
 	}

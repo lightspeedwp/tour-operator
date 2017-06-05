@@ -354,7 +354,7 @@ class LSX_TO_Destination{
 	 * Tests Regions adds them to the $page_links variable
 	 */
 	public function get_region_links()	{
-		global $tour_operator;
+		$tour_operator = tour_operator();
 		if ( have_posts() ) :
 			if ( ! isset( $tour_operator->search )
 				|| empty( $tour_operator->search )

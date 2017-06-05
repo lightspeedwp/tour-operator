@@ -374,12 +374,12 @@ class LSX_TO_SCPO_Engine {
 	}
 
 	function get_to_scporder_options_objects() {
-		global $tour_operator;
+		$tour_operator = tour_operator();
 		return $tour_operator->post_types;
 	}
 
 	function get_to_scporder_options_tags() {
-		global $tour_operator;
+		$tour_operator = tour_operator();
 		return $tour_operator->taxonomies;
 	}
 
