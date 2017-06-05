@@ -27,5 +27,5 @@ if ( defined( 'WPINC' ) ) {
 	spl_autoload_register( 'tour_operator_autoload_class', true, false );
 
 	// Init Plugin.
-	add_action( 'plugins_loaded', 'tour_operator' );
+	$tour_operator = tour_operator();
 }
