@@ -1,5 +1,5 @@
 .postbox > .inside > .cmb_metabox {
-    margin-left: 262px;
+    margin-left: 262px !important;
 }
 .lsx_tabs {
     margin: 0 -12px;
