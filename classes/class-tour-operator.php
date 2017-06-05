@@ -354,7 +354,11 @@ class Tour_Operator {
 	}
 
 	/**
-	 * Adds our post types to an array via a filter
+	 * Adds our post types to an array via a filter.
+	 *
+	 * @param array $post_types List of posttypes being used.
+	 *
+	 * @return array Altered list of post types with added items.
 	 */
 	public function post_types_filter( $post_types ) {
 		if ( is_array( $post_types ) ) {
@@ -368,6 +372,8 @@ class Tour_Operator {
 
 	/**
 	 * Returns the post types for use in the addons.
+	 *
+	 * @return array List of taxonomies.
 	 */
 	public function get_taxonomies() {
 		return $this->taxonomies;
@@ -375,6 +381,8 @@ class Tour_Operator {
 
 	/**
 	 * Returns the post types for use in the addons.
+	 *
+	 * @return array List of post types.
 	 */
 	public function get_post_types() {
 		return $this->post_types;
@@ -382,6 +390,10 @@ class Tour_Operator {
 
 	/**
 	 * Adds our taxonomies to an array via a filter
+	 *
+	 * @param array $taxonomies List of taxonomies to add to.
+	 *
+	 * @return array List of altered taxonomies.
 	 */
 	public function taxonomies_filter( $taxonomies ) {
 		if ( is_array( $taxonomies ) ) {
@@ -395,6 +407,12 @@ class Tour_Operator {
 
 	/**
 	 * A filter that outputs the tagline for the current page.
+	 *
+	 * @param string|bool $tagline Tagline to use or false to use internal.
+	 * @param string      $before  Before code.
+	 * @param string      $after   After code.
+	 *
+	 * @return string HTML tagline string.
 	 */
 	public function get_tagline( $tagline = false, $before = '', $after = '' ) {
 		$post_id = get_the_ID();
@@ -477,7 +495,7 @@ class Tour_Operator {
 	 * Allow extra tags and attributes to wp_kses_post()
 	 */
 	public function wp_kses_allowed_html( $allowedtags, $context ) {
-		// Tags exist, only adding new attributes
+		// Tags exist, only adding new attributes.
 
 		$allowedtags['i']['aria-hidden']    = true;
 		$allowedtags['span']['aria-hidden'] = true;
