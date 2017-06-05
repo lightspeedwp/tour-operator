@@ -67,11 +67,6 @@ require_once( LSX_TO_PATH . 'includes/customizer.php' );
 require_once( LSX_TO_PATH . 'includes/layout.php' );
 require_once( LSX_TO_PATH . 'includes/actions.php' );
 
-// Widgets.
-require_once( LSX_TO_PATH . 'includes/widgets/post-type-widget.php' );
-require_once( LSX_TO_PATH . 'includes/widgets/taxonomy-widget.php' );
-require_once( LSX_TO_PATH . 'includes/widgets/cta-widget.php' );
-
 
 /**
  * Returns an array of the tour taxonomies.
