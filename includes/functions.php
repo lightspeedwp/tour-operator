@@ -49,9 +49,6 @@ if ( ! function_exists( 'cmb_init' ) && ! class_exists( 'CMB_Meta_Box' ) ) {
 	}
 }
 
-// Classes.
-require_once( LSX_TO_PATH . 'classes/class-fields.php' );
-
 // Template Tags.
 require_once( LSX_TO_PATH . 'includes/template-tags/general.php' );
 require_once( LSX_TO_PATH . 'includes/template-tags/helpers.php' );
