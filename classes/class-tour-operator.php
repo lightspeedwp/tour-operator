@@ -312,9 +312,10 @@ class Tour_Operator {
 	 */
 	public function require_post_type_classes() {
 		foreach ( $this->post_types as $post_type => $label ) {
-			if ( file_exists( LSX_TO_PATH . 'classes/class-' . $post_type . '.php' ) ) {
-				require_once( LSX_TO_PATH . 'classes/class-' . $post_type . '.php' );
-			}
+			call_user_func_array( array(
+				"LSX_TO_{$post_type}",
+				'get_instance',
+			), array() );
 		}
 		$this->connections   = $this->create_post_connections();
 		$this->single_fields = apply_filters( 'lsx_to_search_fields', array() );

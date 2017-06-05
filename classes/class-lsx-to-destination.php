@@ -469,4 +469,3 @@ class LSX_TO_Destination{
 	}
 
 }
-$lsx_to_destination = LSX_TO_Destination::get_instance();

@@ -651,4 +651,3 @@ class LSX_TO_Accommodation {
 		}
 	}
 }
-$lsx_to_accommodation = LSX_TO_Accommodation::get_instance();

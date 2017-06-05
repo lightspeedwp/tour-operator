@@ -561,4 +561,3 @@ class LSX_TO_Tour {
 	}
 
 }
-$lsx_to_tour = LSX_TO_Tour::get_instance();
