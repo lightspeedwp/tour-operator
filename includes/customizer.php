@@ -25,17 +25,20 @@ function lsx_to_customizer_colour_selectors_button( $css, $colors ) {
 		body.archive.post-type-archive-lsx-to-destination .countries .regions,
 		body.single-tour-operator {
 			.slider-container {
-				.carousel-control {
-					.fa {
+				.slick-arrow {
+					&,
+					&:hover {
 						color: {$colors['button_background_color']};
 					}
 				}
 
-				.carousel-indicators {
-					li {
-						border-color: {$colors['button_background_color']};
+				.slick-dots {
+					& > li {
+						& > button {
+							border-color: {$colors['button_background_color']};
+						}
 
-						&.active {
+						&.slick-active > button {
 							background-color: {$colors['button_background_color']};
 						}
 					}

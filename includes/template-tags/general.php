@@ -24,7 +24,8 @@ function lsx_to_widget_class($return=false){
 	if('1' == $columns){
 		$class = 'single col-sm-12';
 	}else{
-		$class = 'panel col-sm-'.$md_col_width;
+		//$class = 'panel col-sm-'.$md_col_width;
+		$class = 'panel col-xs-12';
 	}
 	if(false === $return){
 		echo 'class="'.esc_attr($class).'"';

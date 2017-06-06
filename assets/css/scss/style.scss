@@ -514,12 +514,18 @@ $orange-dark: #f7741d;
 	.slider-container {
 		position: relative;
 
-		.carousel-wrap {
+		.lsx-to-slider-wrap {
 			position: relative;
 		}
 
-		.carousel {
+		.lsx-to-slider {
 			margin-bottom: 0;
+		}
+
+		.slick-initialized {
+			.panel {
+				padding-bottom: 5px !important;
+			}
 		}
 
 		.item {
@@ -533,49 +539,102 @@ $orange-dark: #f7741d;
 			}
 		}
 
-		.carousel-control {
-			background: none;
-			width: 70px;
+		.slick-arrow {
+			background: transparent;
+			color: $blue-dark;
+			font: 0/0 a;
+			margin-top: -52px;
+			opacity: 0.66;
+			position: absolute;
+			text-shadow: none;
+			top: 50%;
+			transform: translateY(-50%);
+			transition: opacity 300ms ease;
+			z-index: 3;
 
-			&.left {
-				left: -55px;
-				margin-left: 0;
-			}
-
-			&.right {
-				right: -55px;
-				margin-right: 0;
-			}
-
-			.fa {
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				z-index: 5;
-				display: inline-block;
-				color: $blue-dark;
+			&:before {
+				color: inherit;
+				display: block;
+				font-family: 'FontAwesome';
 				font-size: 40px;
-				text-shadow: none;
+				line-height: 1;
+				text-rendering: auto;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
 
-				margin : {
-					top: -20px;
-					left: -14px;
+			&:hover {
+				color: $blue-dark;
+				opacity: 1;
+			}
+
+			&.slick-disabled {
+				cursor: not-allowed;
+				opacity: 0.33;
+			}
+
+			&.slick-prev {
+				left: -8px;
+
+				@media only screen and (min-width: 1200px) {
+					left: -30px;
+				}
+
+				&:before {
+					content: '\f053';
+				}
+			}
+
+			&.slick-next {
+				right: -8px;
+
+				@media only screen and (min-width: 1200px) {
+					right: -30px;
+				}
+
+				&:before {
+					content: '\f054';
 				}
 			}
 		}
 
-		.carousel-indicators {
-			position: relative;
-			bottom: auto;
-			left: auto;
-			margin: 10px auto 0 auto;
-			line-height: 20px;
+		.slick-dots {
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-orient: horizontal;
+			-webkit-box-direction: normal;
+			-ms-flex-flow: row wrap;
+			flex-flow: row wrap;
+			height: auto;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
 
-			li {
-				border-color: $blue-dark;
-				margin: 1px 3px;
+			height: auto;
+			list-style: none;
+			margin: 20px 0 0;
+			padding: 0;
 
-				&.active {
+			& > li {
+				padding: 5px 3px;
+				line-height: 1;
+
+				& > button {
+					background: transparent;
+					border: 1px solid $blue-dark;
+					border-radius: 50%;
+					font: 0/0 a;
+					height: 12px;
+					padding: 0;
+					transition: all 300ms ease-in-out;
+					width: 12px;
+				}
+
+				&.slick-active > button {
 					background-color: $blue-dark;
 				}
 			}

@@ -3,27 +3,27 @@
  * @package   LSX_TO_Widget
  * @author    LightSpeed
  * @license   GPL3
- * @link      
+ * @link
  * @copyright 2016 LightSpeed
  *
  **/
 
 class LSX_TO_Widget extends WP_Widget {
-	
+
 	/**
 	 * Sets up the widgets name etc
 	 */
 	public function __construct() {
-		$widget_ops = array( 
+		$widget_ops = array(
 			'classname' => 'lsx-widget',
 			'description' => esc_html__('TO','tour-operator'),
 		);
 		parent::__construct( 'LSX_TO_Widget', 'TO Post Types', $widget_ops );
 	}
- 
+
     /** @see WP_Widget::widget -- do not rename this */
-    public function widget( $args, $instance ) { 
-        
+    public function widget( $args, $instance ) {
+
     	if (isset($instance['title'])) {
 			$title = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 		} else {
@@ -82,7 +82,7 @@ class LSX_TO_Widget extends WP_Widget {
 			$disable_placeholder = $instance['disable_placeholder'];
 		} else {
 			$disable_placeholder = false;
-		}		
+		}
 		if (isset($instance['buttons'])) {
 			$buttons = $instance['buttons'];
 		} else {
@@ -92,7 +92,7 @@ class LSX_TO_Widget extends WP_Widget {
 			$button_text = $instance['button_text'];
 		} else {
 			$button_text = false;
-		}		
+		}
 		if (isset($instance['responsive'])) {
 			$responsive = $instance['responsive'];
 		} else {
@@ -134,7 +134,7 @@ class LSX_TO_Widget extends WP_Widget {
 			$before_widget = $args['before_widget'];
 		} else {
 			$before_widget = '';
-		}                                                     
+		}
 		if (isset($args['after_widget'])) {
 			$after_widget = $args['after_widget'];
 		} else {
@@ -149,19 +149,19 @@ class LSX_TO_Widget extends WP_Widget {
 			$after_title = $args['after_title'];
 		} else {
 			$after_title = '';
-		}				
-        
+		}
+
         // Disregard specific ID setting if specific group is defined
         if ( 'all' != $group ) {
             $include = '';
         } else {
             $group = '';
         }
-        
+
         if ( '' != $include ) {
 			$limit = "-1";
 		}
-              
+
         if ( '1' == $responsive )
             $responsive = true;
         else
@@ -171,7 +171,7 @@ class LSX_TO_Widget extends WP_Widget {
             $buttons = true;
         else
             $buttons = false;
-                
+
         if ( $title_link ) {
             $link_open = "<a href='$title_link'>";
             $link_close = "</a>";
@@ -181,31 +181,31 @@ class LSX_TO_Widget extends WP_Widget {
         }
 
         $class = 'class="'.$class.' ';
-        echo wp_kses_post(str_replace('class="',$class,$before_widget));  
-              
-        
+        echo wp_kses_post(str_replace('class="',$class,$before_widget));
+
+
         if(post_type_exists($post_type)){
 	        if ( false != $title ) {
-	        
+
 	        	if ('video' != $post_type) {
 	        		$title = $before_title . $link_open . $title . $link_close . $after_title;
 	        		echo wp_kses_post(apply_filters('lsx_to_post_type_widget_title', $title));
 	        	}
 	        	if ( false != $tagline ) {
 	        		echo wp_kses_post('<p class="tagline">'.$tagline.'</p>');
-	        	}	        	
-	        }   
-	
-			$args = array( 
+	        	}
+	        }
+
+			$args = array(
 				'title'  => $title,
-				'tagline' => $tagline,  
-				'link' => $title_link,                                                                                                     
+				'tagline' => $tagline,
+				'link' => $title_link,
 				'columns' => $columns,
 				'orderby' => $orderby,
 				'order' => $order,
 				'limit' => $limit,
 				'group' => $group,
-				'include' => $include,                                    
+				'include' => $include,
 				'size' => $size,
 				'disable_placeholder' => $disable_placeholder,
 				'buttons' => $buttons,
@@ -217,19 +217,19 @@ class LSX_TO_Widget extends WP_Widget {
 				'interval' => $interval,
 				'indicators' => $indicators,
 			);
-			                
-	
-			$args['carousel'] = $carousel;  
-			echo wp_kses_post($this->output($args));  
+
+
+			$args['carousel'] = $carousel;
+			echo wp_kses_post($this->output($args));
 		}else{
 		 	echo wp_kses_post('<p>'.esc_html__('That post type does not exist.','tour-operator').'</p>');
 		}
 
-        echo wp_kses_post($after_widget);    
+        echo wp_kses_post($after_widget);
     }
- 
+
     /** @see WP_Widget::update -- do not rename this */
-    function update($new_instance, $old_instance) {   
+    function update($new_instance, $old_instance) {
 	    $instance = $old_instance;
 	    $instance['title'] = strip_tags( $new_instance['title'] );
 	    $instance['title_link'] = strip_tags( $new_instance['title_link'] );
@@ -252,20 +252,20 @@ class LSX_TO_Widget extends WP_Widget {
 	    $instance['indicators'] = strip_tags( $new_instance['indicators'] );
     return $instance;
     }
- 
+
     /** @see WP_Widget::form -- do not rename this */
-    function form($instance) {  
-    
-        $defaults = array( 
+    function form($instance) {
+
+        $defaults = array(
             'title' => 'Featured',
             'title_link' => '',
             'tagline' => '',
-            'columns' => '1', 
+            'columns' => '1',
             'orderby' => 'date',
             'order' => 'DESC',
             'limit' => '',
             'include' => '',
-            'size' => '100', 
+            'size' => '100',
             'disable_placeholder' => 0,
             'buttons' => 1,
         	'button_text' => 'See All',
@@ -274,12 +274,12 @@ class LSX_TO_Widget extends WP_Widget {
         	'post_type' => 'accommodation',
         	'class' => '',
         	'interval' => '7000',
-        	'indicators' => 1	
+        	'indicators' => 1
         );
-        
+
         $defaults['carousel'] = 0;
-        
-        $instance = wp_parse_args( (array) $instance, $defaults );   
+
+        $instance = wp_parse_args( (array) $instance, $defaults );
 
         $title    = esc_attr($instance['title']);
         $title_link    = esc_attr($instance['title_link']);
@@ -297,11 +297,11 @@ class LSX_TO_Widget extends WP_Widget {
         $featured = esc_attr($instance['featured']);
         $post_type = esc_attr($instance['post_type']);
         $class = esc_attr($instance['class']);
-        $interval = esc_attr($instance['interval']);    
+        $interval = esc_attr($instance['interval']);
         $carousel = esc_attr($instance['carousel']);
         $interval = esc_attr($instance['interval']);
         $indicators = esc_attr($instance['indicators']);
-        	      
+
 
         ?>
 		<p>
@@ -317,13 +317,13 @@ class LSX_TO_Widget extends WP_Widget {
 				name="<?php echo wp_kses_post($this->get_field_name('title_link')); ?>" type="text"
 				value="<?php echo wp_kses_post($title_link); ?>" /> <small><?php esc_html_e( 'Link the widget title to
 				a URL','tour-operator' ); ?></small>
-		</p>		
+		</p>
 		<p>
 			<label for="<?php echo wp_kses_post($this->get_field_id('tagline')); ?>"><?php esc_html_e('Tagline:','tour-operator'); ?></label>
 			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('tagline')); ?>"
 				name="<?php echo wp_kses_post($this->get_field_name('tagline')); ?>" type="text"
 				value="<?php echo wp_kses_post($tagline); ?>" />
-		</p>		
+		</p>
 
 		<p>
 			<label for="<?php echo wp_kses_post($this->get_field_id('columns')); ?>"><?php esc_html_e('Columns:','tour-operator'); ?></label>
@@ -335,7 +335,7 @@ class LSX_TO_Widget extends WP_Widget {
 		            foreach ($options as $option) {
 		            	$key = lcfirst($option);
 		            	$selected = ($columns == $key) ? ' selected="selected"' : '';
-		                ?><option value="<?php echo wp_kses_post($key); ?>" id="<?php echo wp_kses_post($option); ?>" <?php echo wp_kses_post($selected); ?>><?php echo wp_kses_post($option); ?></option><?php 
+		                ?><option value="<?php echo wp_kses_post($key); ?>" id="<?php echo wp_kses_post($option); ?>" <?php echo wp_kses_post($selected); ?>><?php echo wp_kses_post($option); ?></option><?php
 		            }
 		            ?>
 		            </select>
@@ -346,9 +346,9 @@ class LSX_TO_Widget extends WP_Widget {
 				id="<?php echo wp_kses_post($this->get_field_id('orderby')); ?>" class="widefat">
 		            <?php
 		            $options = array(
-		                'None' => 'none', 
+		                'None' => 'none',
 		                'ID' => 'ID',
-		                'Name' => 'name', 
+		                'Name' => 'name',
 		                'Date' => 'date',
 		                'Modified Date' => 'modified',
 		                'Random' => 'rand',
@@ -356,7 +356,7 @@ class LSX_TO_Widget extends WP_Widget {
 		                );
 		            foreach ($options as $name=>$value) {
 		            	$selected = ($orderby == $value) ? ' selected="selected"' : '';
-		                ?><option value="<?php echo wp_kses_post($value); ?>" id="<?php echo wp_kses_post($value); ?>" <?php echo wp_kses_post($selected); ?>><?php echo wp_kses_post($name); ?></option><?php 		                
+		                ?><option value="<?php echo wp_kses_post($value); ?>" id="<?php echo wp_kses_post($value); ?>" <?php echo wp_kses_post($selected); ?>><?php echo wp_kses_post($name); ?></option><?php
 		            }
 		            ?>
 		            </select>
@@ -367,12 +367,12 @@ class LSX_TO_Widget extends WP_Widget {
 				id="<?php echo wp_kses_post($this->get_field_id('order')); ?>" class="widefat">
 		            <?php
 		            $options = array(
-		                'Ascending' => 'ASC', 
+		                'Ascending' => 'ASC',
 		                'Descending' => 'DESC'
 		                );
 		            foreach ($options as $name=>$value) {
 		            	$selected = ($order == $value) ? ' selected="selected"' : '';
-		                ?><option value="<?php echo wp_kses_post($value); ?>" id="<?php echo wp_kses_post($value); ?>" <?php echo wp_kses_post($selected); ?>><?php echo wp_kses_post($name); ?></option><?php 				                
+		                ?><option value="<?php echo wp_kses_post($value); ?>" id="<?php echo wp_kses_post($value); ?>" <?php echo wp_kses_post($selected); ?>><?php echo wp_kses_post($name); ?></option><?php
 		            }
 		            ?>
 		    </select>
@@ -383,7 +383,7 @@ class LSX_TO_Widget extends WP_Widget {
 				name="<?php echo wp_kses_post($this->get_field_name('limit')); ?>" type="text"
 				value="<?php echo wp_kses_post($limit); ?>" /> <small><?php esc_html_e('Leave empty to display all','tour-operator'); ?></small>
 		</p>
-		
+
 		<p class="bs-tourism-specify">
 			<label for="<?php echo wp_kses_post($this->get_field_id('include')); ?>"><?php esc_html_e('Specify Tours by ID:','tour-operator'); ?></label>
 			<input class="widefat"
@@ -391,7 +391,7 @@ class LSX_TO_Widget extends WP_Widget {
 				name="<?php echo wp_kses_post($this->get_field_name('include')); ?>" type="text"
 				value="<?php echo wp_kses_post($include); ?>" /> <small><?php esc_html_e('Comma separated list, overrides limit setting','tour-operator'); ?></small>
 		</p>
-		
+
 		<p>
 			<input id="<?php echo wp_kses_post($this->get_field_id('featured')); ?>"
 				name="<?php echo wp_kses_post($this->get_field_name('featured')); ?>"
@@ -403,7 +403,7 @@ class LSX_TO_Widget extends WP_Widget {
 				name="<?php echo wp_kses_post($this->get_field_name('disable_placeholder')); ?>" type="checkbox"
 				value="1" <?php checked( '1', $disable_placeholder ); ?> /> <label
 				for="<?php echo wp_kses_post($this->get_field_id('disable_placeholder')); ?>"><?php esc_html_e('Disable Featured Image','tour-operator'); ?></label>
-		</p>		
+		</p>
 		<p>
 			<label for="<?php echo wp_kses_post($this->get_field_id('size')); ?>"><?php esc_html_e('Icon size:','tour-operator'); ?></label>
 			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('size')); ?>"
@@ -421,7 +421,7 @@ class LSX_TO_Widget extends WP_Widget {
 			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('button_text')); ?>"
 				name="<?php echo wp_kses_post($this->get_field_name('button_text')); ?>" type="text"
 				value="<?php echo wp_kses_post($button_text); ?>" />
-		</p>		
+		</p>
 		<p>
 			<input id="<?php echo wp_kses_post($this->get_field_id('responsive')); ?>"
 				name="<?php echo wp_kses_post($this->get_field_name('responsive')); ?>"
@@ -435,22 +435,22 @@ class LSX_TO_Widget extends WP_Widget {
 				type="checkbox" value="1" <?php checked( '1', $carousel ); ?> /> <label
 				for="<?php echo wp_kses_post($this->get_field_id('carousel')); ?>"><?php esc_html_e('Enable Carousel','tour-operator'); ?></label>
 		</p>
-		
+
 		<p>
 			<label for="<?php echo wp_kses_post($this->get_field_id('interval')); ?>"><?php esc_html_e('Slide Interval:','tour-operator'); ?></label>
 			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('size')); ?>"
 				name="<?php echo wp_kses_post($this->get_field_name('interval')); ?>" type="text"
 				value="<?php echo wp_kses_post($interval); ?>" />
-			<small>Type "false" to disable.</small>				
+			<small>Type "false" to disable.</small>
 		</p>
-		
+
 		<p>
 			<input id="<?php echo wp_kses_post($this->get_field_id('indicators')); ?>"
 				name="<?php echo wp_kses_post($this->get_field_name('indicators')); ?>" type="checkbox"
 				value="1" <?php checked( '1', $indicators ); ?> /> <label
 				for="<?php echo wp_kses_post($this->get_field_id('indicators')); ?>"><?php esc_html_e('Show Indicators','tour-operator'); ?></label>
-		</p>			
-		
+		</p>
+
 		<p>
 			<label for="<?php echo wp_kses_post($this->get_field_id('post_type')); ?>"><?php esc_html_e( 'Post Type:', 'tour-operator' ); ?></label>
 			<select name="<?php echo wp_kses_post($this->get_field_name('post_type')); ?>" id="<?php echo wp_kses_post($this->get_field_id('post_type')); ?>"	class="widefat layout">
@@ -458,34 +458,34 @@ class LSX_TO_Widget extends WP_Widget {
 	            $options = lsx_to_get_post_types();
 	            foreach ($options as $value => $name) {
 	            	$selected = ($post_type == $value) ? ' selected="selected"' : '';
-	                ?><option value="<?php echo wp_kses_post($value); ?>" id="<?php echo wp_kses_post($value); ?>" <?php echo wp_kses_post($selected); ?>><?php echo wp_kses_post($name); ?></option><?php 			                
+	                ?><option value="<?php echo wp_kses_post($value); ?>" id="<?php echo wp_kses_post($value); ?>" <?php echo wp_kses_post($selected); ?>><?php echo wp_kses_post($name); ?></option><?php
 	            }
 	            ?>
 		    </select>
 		</p>
-		
+
 		<p>
 			<label for="<?php echo wp_kses_post($this->get_field_id('class')); ?>"><?php esc_html_e('Class:','tour-operator'); ?></label>
 			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('class')); ?>"
 				name="<?php echo wp_kses_post($this->get_field_name('class')); ?>" type="text"
 				value="<?php echo wp_kses_post($class); ?>" />
 			<small><?php esc_html_e('Add your own class to the opening element of the widget','tour-operator'); ?></small>
-		</p>		
-		
+		</p>
+
 		<script>
 		        jQuery(document).ready(function($) {
 		            var valueSelected = $("#widget-bs_tourism_widget-2-group :selected").val();
-		
+
 		            if ( valueSelected == 'all' ) {
-		                $('.bs-tourism-specify').show();                
+		                $('.bs-tourism-specify').show();
 		            } else {
 		                $('.bs-tourism-specify').hide();
 		            }
 		            $("#widget-bs_tours_widget-2-group").change(function() {
 		                var valueSelected = this.value;
-		
+
 		                if ( valueSelected == 'all' ) {
-		                    $('.bs-tourism-specify').show();                
+		                    $('.bs-tourism-specify').show();
 		                } else {
 		                    $('.bs-tourism-specify').hide();
 		                }
@@ -493,13 +493,13 @@ class LSX_TO_Widget extends WP_Widget {
 		        });
 		        </script>
 		<?php
-        
+
     }
-    
+
     public function output( $atts )
     {
     	global $columns,$disable_placeholder;
-    	
+
     	extract( shortcode_atts( array(
     	'tag' => 'h3',
     	'tagline' => '',
@@ -521,9 +521,9 @@ class LSX_TO_Widget extends WP_Widget {
     	'interval' => '7000',
     	'indicators' => 1
     	), $atts ) );
-    
+
     	$output = "";
-    
+
     	if ( 'true'  == $responsive) {
     		$responsive = 'img-responsive';
     	} else {
@@ -534,7 +534,7 @@ class LSX_TO_Widget extends WP_Widget {
 			$post_type = 'destination';
 			$paper = '';
 		}
-    
+
     	if ( '' != $include ) {
     		$include = explode( ',', $include );
     		$args = array(
@@ -542,21 +542,21 @@ class LSX_TO_Widget extends WP_Widget {
     				'posts_per_page' => $limit,
 					'post__in' => $include,
 					'orderby' => 'post__in',
-					'order' => $order 
+					'order' => $order
 			);
 		} else {
 			$args = array (
 					'post_type' => $post_type,
 					'posts_per_page' => $limit,
 					'orderby' => $orderby,
-					'order' => $order 
+					'order' => $order
 			);
 		}
-		
+
 		if ($featured) {
 			$args ['meta_key'] = 'featured';
 			$args ['meta_value'] = 1;
-		}		
+		}
 
 		if('none' !== $orderby){
 			$args['disabled_custom_post_order'] = true;
@@ -568,41 +568,41 @@ class LSX_TO_Widget extends WP_Widget {
 			if('review' === $post_type){
 				add_filter('lsx_to_placeholder_url', array($this,'placeholder') , 10 , 1 );
 			}
-			
+
 			$count = 1;
-			
+
 			//output the opening boostrap row divs
 			$this->before_while($columns,$carousel,$post_type,$widget_query->post_count);
-			
+
 			while ( $widget_query->have_posts() ) {
 				$widget_query->the_post();
-				
+
 				$this->loop_start($columns,$carousel,$post_type,$widget_query->post_count,$count,$interval);
 				echo wp_kses_post('<div '.lsx_to_widget_class(true).'>');
 				$this->content_part('content','widget-'.$post_type);
 				echo wp_kses_post('</div>');
 				$this->loop_end($columns,$carousel,$post_type,$widget_query->post_count,$count);
-				
+
 				$count++;
 			}
-			
+
 			//output the closing boostrap row divs
-			$this->after_while($columns,$carousel,$post_type,$widget_query->post_count);	
-			
+			$this->after_while($columns,$carousel,$post_type,$widget_query->post_count);
+
 			if(false !== $buttons && false !== $link){
-				
+
 				echo wp_kses_post('
 									<div class="view-more">
 									<a href="'.$link.'" class="btn">'.$button_text.'</a>
 									</div>
 								');
 			}
-			
+
 			wp_reset_postdata();
 
 			if('review' === $post_type){
 				remove_filter('lsx_to_placeholder_url', array($this,'placeholder') , 10 , 1 );
-			}				
+			}
 		}
 	}
 
@@ -619,8 +619,8 @@ class LSX_TO_Widget extends WP_Widget {
 			true
 		);
 		return $image;
-	}	
-	
+	}
+
 	/**
 	 * Runs just after the if and before the while statement in $this->output()
 	 */
@@ -628,21 +628,19 @@ class LSX_TO_Widget extends WP_Widget {
 		$output = '';
 		// Carousel Output Opening
 		if ($carousel) {
-			$landing_image = '';	
+			$landing_image = '';
 			$this->carousel_id = rand ( 20, 20000 );
-		
+
 			$output .= "<div class='slider-container'>";
-			$output .= "<div id='slider-{$this->carousel_id}' class='lsx-to-slider carousel slide' data-interval='{$interval}'>";
-			$output .= '<div class="carousel-wrap">';
-			$output .= '<div class="carousel-inner" role="listbox">';
-		
-			$this->pagination = '';
+			$output .= "<div id='slider-{$this->carousel_id}' class='lsx-to-slider'>";
+			$output .= '<div class="lsx-to-slider-wrap">';
+			$output .= "<div class='lsx-to-slider-inner' data-interval='{$interval}' data-slick='{ \"slidesToShow\": {$columns}, \"slidesToScroll\": {$columns} }'>";
 		} else {
 			$output .= "<div class='row lsx-{$post_type}'>";
 		}
 		echo wp_kses_post($output);
 	}
-	
+
 	/**
 	 * Runs at the very end of the loop before it runs again.
 	 */
@@ -650,55 +648,31 @@ class LSX_TO_Widget extends WP_Widget {
 		$output = '';
 		// Get the call for the active slide
 		if ($carousel) {
-			if (1 == $count) {
-				$slide_active = 'active';
-			} else {
-				$slide_active = '';
-			}
-			
-			$pages = ceil( $post_count / $columns );
-	
-			if (1 == $count) {
-				$output .= "<div class='item $slide_active row'>";
-				$output .= "<div class='lsx-{$post_type}'>";
-				
-				$i = 0;
-				while ( $i < $pages ) {
-					$this->pagination .= "<li data-target='#slider-{$this->carousel_id}' data-slide-to='{$i}' class='". ( 0 == $i ? 'active' : '' ) ."'></li>";
-					$i++;
-				}
-			}
-		} else {
-			if ( 1 == $count) {
-				$output .= "<div class='row lsx-{$post_type}'>";
-			}
+			$output .= "<div class='item row'><div class='lsx-{$post_type}'>";
+		} elseif ( 1 == $count) {
+			$output .= "<div class='row lsx-{$post_type}'>";
 		}
-		
+
 		echo wp_kses_post($output);
 	}
-	
+
 	/**
 	 * Runs at the very end of the loop before it runs again.
 	 */
 	public function loop_end($columns = 1,$carousel = 0,$post_type='',$post_count = 0,$count = 0){
 		$output = '';
 		// Close the current slide panel
-		if (0 == $count % $columns || $count === $post_count) {
-			if ($carousel) {
-				$output .= "</div></div>";
-				if ($count < $post_count) {
-					$output .= "<div class='item row'><div class='lsx-{$post_type}'>";
-				}
-			} else {
-				$output .= "</div>";
-				if ($count < $post_count) {
-					$output .= "<div class='row lsx-{$post_type}'>";
-				}
+		if ($carousel) {
+			$output .= "</div></div>";
+		} elseif (0 == $count % $columns || $count === $post_count) {
+			$output .= "</div>";
+			if ($count < $post_count) {
+				$output .= "<div class='row lsx-{$post_type}'>";
 			}
 		}
 		echo wp_kses_post($output);
 	}
-	
+
 	/**
 	 * Runs just after the if and before the while statement in $this->output()
 	 */
@@ -706,36 +680,16 @@ class LSX_TO_Widget extends WP_Widget {
 		$output = '';
 		// Carousel output Closing
 		if ($carousel) {
-			$pages = ceil( $post_count / $columns );
-			
 			$output .= "</div>";
-
-			if ( $pages > 1 ) {
-				$output .= '<a class="left carousel-control" href="#slider-'.$this->carousel_id.'" role="button" data-slide="prev">';
-				$output .= '<span class="fa fa-chevron-left" aria-hidden="true"></span>';
-				$output .= '<span class="sr-only">'.__('Previous','tour-operator').'</span>';
-				$output .= '</a>';
-				$output .= '<a class="right carousel-control" href="#slider-'.$this->carousel_id.'" role="button" data-slide="next">';
-				$output .= '<span class="fa fa-chevron-right" aria-hidden="true"></span>';
-				$output .= '<span class="sr-only">'.__('Next','tour-operator').'</span>';
-				$output .= '</a>';
-			}
-
 			$output .= "</div>";
-
-			if ( $pages > 1 ) {
-				$output .= '<ol class="carousel-indicators">'.$this->pagination.'</ol>';
-			}
-
 			$output .= "</div>";
 			$output .= "</div>";
 		} else {
 			$output .= "</div>";
 		}
-		
 		echo wp_kses_post($output);
-	}	
-	
+	}
+
 	/**
 	 * Redirect wordpress to the single template located in the plugin
 	 *
@@ -753,7 +707,7 @@ class LSX_TO_Widget extends WP_Widget {
 		}
 		$original_name = $template;
 		$path = apply_filters('lsx_to_widget_path','',get_post_type());
-		
+
 		if ( '' == locate_template( array( $template ) ) && file_exists( $path.'templates/'.$template) ) {
 			$template = $path.'templates/'.$template;
 		}elseif(file_exists( get_stylesheet_directory().'/'.$template)){
@@ -761,12 +715,12 @@ class LSX_TO_Widget extends WP_Widget {
 		}else{
 			$template = false;
 		}
-		
+
 		if(false !== $template){
 			load_template( $template, false );
 		}else {
 			echo wp_kses_post('<p>No '.$original_name.' can be found.</p>');
 		}
-	}	
+	}
 }
 ?>
