@@ -7,7 +7,23 @@
 }
 .spinner.uix-save-spinner {
     float: none;
-    margin: -2px 4px 0 0;
+    margin: -2px 4px 0 5px;
     visibility: visible;
     display: none
+}
+.ui-tab-nav {
+    margin: 0 0 8px;
+}
+.page-title-action.button-primary {
+    margin: 20px;
+}
+.save-confirm {
+    color: #10af10;
+    display: none;
+}
+.save-confirm .dashicons {
+    font-size: 30px;
+}
+.uix-footer-bar{
+    padding:0 19px;
 }

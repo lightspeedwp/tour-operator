@@ -525,8 +525,9 @@ class uix {
 							}
 							?>
                             <li><a <?php echo $display; ?>
-                                    data-tab="<?php echo esc_attr( $tab_slug ); ?>"
-                                    href="#<?php echo esc_attr( $tab_slug ) ?>"><?php echo esc_html( $tab['menu_title'] ); ?></a></li>
+                                        data-tab="<?php echo esc_attr( $tab_slug ); ?>"
+                                        href="#<?php echo esc_attr( $tab_slug ) ?>"><?php echo esc_html( $tab['menu_title'] ); ?></a>
+                            </li>
 						<?php } ?>
                     </ul>
                 </div>
@@ -603,13 +604,14 @@ class uix {
 			}
 			?>
             <hr>
-	        <?php if ( ! empty( $uix['save_button'] ) ) { ?>
-                <a class="page-title-action button button-primary" href="#save-object"
-                   data-save-object="true">
-                    <span class="spinner uix-save-spinner"></span>
-			        <?php esc_html_e( $uix['save_button'], $this->plugin_slug ); ?>
-                </a>
-	        <?php } ?>
+			<?php if ( ! empty( $uix['save_button'] ) ) { ?>
+                <p class="uix-footer-bar"><button type="button" class="button button-primary" data-save-object="true">
+					<?php esc_html_e( $uix['save_button'], $this->plugin_slug ); ?>
+                </button>
+                <span class="spinner uix-save-spinner"></span>
+                <span class="save-confirm" style="display: none;"><span class="dashicons dashicons-yes"></span></span>
+                </p>
+			<?php } ?>
         </div>
 
         <script type="text/html" data-template="__notice">
