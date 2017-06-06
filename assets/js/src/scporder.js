@@ -36,4 +36,4 @@
 		return ui;
 	};
 	
-})(jQuery) 
+})(jQuery);

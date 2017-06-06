@@ -16,7 +16,6 @@ var LSX_TO_Itinerary_Read_More = {
 		});
 	}
 },
-
 LSX_TO_Bootstrap_Carousel = {
 	initSlider: function() {
 		jQuery('.lsx-to-slider .lsx-to-slider-inner').each(function() {
