@@ -227,7 +227,7 @@ class LSX_TO_Tour {
 
 		//Price Block
 		$fields[] = array( 'id' => 'price_title',  'name' => esc_html__('Price','tour-operator'), 'type' => 'title', 'cols' => 12 );
-		$fields[] = array( 'id' => 'price',  'name' => esc_html__('Price','tour-operator'), 'type' => 'text', 'cols' => 6 );
+		$fields[] = array( 'id' => 'price',  'name' => esc_html__('Price','tour-operator'), 'type' => 'text', 'cols' => 12 );
 		$fields[] = array( 'id' => 'single_supplement',  'name' => esc_html__('Single Supplement','tour-operator'), 'type' => 'text', 'cols' => 12 );
 		$fields[] = array( 'id' => 'included',  'name' => esc_html__('Included','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
 		$fields[] = array( 'id' => 'not_included',  'name' => esc_html__('Not Included','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
