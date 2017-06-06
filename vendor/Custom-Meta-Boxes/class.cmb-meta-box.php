@@ -23,8 +23,8 @@ class CMB_Meta_Box {
 		add_action( 'edit_attachment', array( &$this, 'save_for_post' ) );
 		add_action( 'cmb_save_fields', array( &$this, 'save' ) );
 
-		add_action( 'admin_enqueue_scripts', array( &$this, 'enqueue_scripts' ), 9 );
-		add_action( 'admin_enqueue_scripts', array( &$this, 'enqueue_styles' ), 9 );
+		add_action( 'admin_enqueue_scripts', array( &$this, 'enqueue_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( &$this, 'enqueue_styles' ) );
 
 	}
 
