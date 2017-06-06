@@ -40,6 +40,9 @@ class LSX_TO_Settings extends Tour_Operator {
 		} else {
 			add_action( 'init', array( $this, 'create_settings_page'),100 );
 		}
+
+		//Incase the API tab is being loaded via another plugin, we add all the API hooks to the LSX ones
+		add_action('lsx_framework_api_tab_content',array($this,'lsx_to_framework_api_patch'));
 	}	
 
 	/**
@@ -568,5 +571,9 @@ class LSX_TO_Settings extends Tour_Operator {
 			</td>
 		</tr>
 	<?php
-	}	
+	}
+
+	public function lsx_to_framework_api_patch($tab='settings'){
+	    do_action('lsx_to_framework_api_tab_content',$tab);
+    }
 }

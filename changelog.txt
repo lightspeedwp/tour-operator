@@ -8,6 +8,7 @@
 * Dev - Make the team image displays square
 * Dev - Enable BS sliders on all small breakpoints
 * Dev - New slider code for: Widgets, Regions (destination archive), and Related items section
+* Fix - Added in a filter to fix the API tab not showing when certain LSX Extensions are enabled
 
 ### 1.0.6
 * Fix - Load correctly the translations/language files
