@@ -1,6 +1,5 @@
 <?php
 
-$lsx_to_scporder = new LSX_TO_SCPO_Engine();
 
 class LSX_TO_SCPO_Engine {
 
@@ -374,47 +373,13 @@ class LSX_TO_SCPO_Engine {
 	}
 
 	function get_to_scporder_options_objects() {
-		global $tour_operator;
+		$tour_operator = tour_operator();
 		return $tour_operator->post_types;
 	}
 
 	function get_to_scporder_options_tags() {
-		global $tour_operator;
+		$tour_operator = tour_operator();
 		return $tour_operator->taxonomies;
 	}
 
-}
-
-/**
- * SCP Order Uninstall hook
- */
-register_uninstall_hook(__FILE__, 'lsx_to_scporder_uninstall');
-
-function lsx_to_scporder_uninstall() {
-	global $wpdb;
-
-	if (function_exists('is_multisite') && is_multisite()) {
-		$curr_blog = $wpdb->blogid;
-		$blogids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
-
-		foreach ($blogids as $blog_id) {
-			switch_to_blog($blog_id);
-			lsx_to_scporder_uninstall_db();
-		}
-
-		switch_to_blog($curr_blog);
-	} else {
-		lsx_to_scporder_uninstall_db();
-	}
-}
-
-function lsx_to_scporder_uninstall_db() {
-	global $wpdb;
-	$result = $wpdb->query("DESCRIBE $wpdb->terms `lsx_to_term_order`");
-
-	if ($result) {
-		$result = $wpdb->query("ALTER TABLE $wpdb->terms DROP `lsx_to_term_order`");
-	}
-
-	delete_option('lsx_to_scporder_install');
 }
