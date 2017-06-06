@@ -82,22 +82,29 @@ class LSX_TO_Admin extends Tour_Operator {
 			return;
 		}
 
-		// TO Pages: Add-ons, Help, Settings and Welcome
-		// WP Terms: create/edit term
-		if ( 0 !== strpos( $hook, 'tour-operator_page' ) && 'term.php' !== $hook ) {
-			return;
-		}
-
 		if ( defined( 'WP_DEBUG' ) && true === WP_DEBUG ) {
 			$min = '';
 		} else {
 			$min = '.min';
 		}
 
+		// Metabox additions.
+        if ( 'post' === $screen->base && in_array( $screen->id, array( 'accommodation', 'tour', 'destination' ) ) ){
+	        wp_enqueue_style( 'tour-operator-admin-metabox', LSX_TO_URL . 'assets/css/metaboxes' . $min . '.css', array(), LSX_TO_VER );
+	        wp_enqueue_script( 'tour-operator-admin-metabox', LSX_TO_URL . 'assets/js/metabox-structure' . $min . '.js', array( 'jquery' ), LSX_TO_VER, true );
+        }
+
+		// TO Pages: Add-ons, Help, Settings and Welcome
+		// WP Terms: create/edit term
+		if ( 0 !== strpos( $hook, 'tour-operator_page' ) && 'term.php' !== $hook ) {
+			return;
+		}
+
 		wp_enqueue_media();
 		wp_enqueue_script( 'tour-operator-admin-script', LSX_TO_URL . 'assets/js/admin' . $min . '.js', array( 'jquery' ), LSX_TO_VER, true );
 		wp_enqueue_style( 'tour-operator-admin-style', LSX_TO_URL . 'assets/css/admin.css', array(), LSX_TO_VER );
 		wp_style_add_data( 'tour-operator-admin-style', 'rtl', 'replace' );
+
 	}
 
 	/**
