@@ -78,6 +78,11 @@ $bdr-grey: #cccccc;
 /* The Tab Styling */
 
 body.tour-operator_page_lsx-to-settings {
+
+	.spinner {
+		background-color: #fff;
+		border-radius: 10px;
+	}
 	.uix-field-wrapper {
 		.ui-tab-nav {
 			li {
