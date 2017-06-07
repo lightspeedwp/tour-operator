@@ -5,6 +5,7 @@
  * @package 	tour-operator
  * @category	destination
  */
+$tour_operator = tour_operator();
 ?>
 
 <?php get_header() ?>
