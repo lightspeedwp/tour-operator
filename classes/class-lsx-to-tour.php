@@ -85,6 +85,8 @@ class LSX_TO_Tour {
 		add_filter( 'lsx_to_itinerary_needs_read_more', array( $this, 'itinerary_needs_read_more' ));
 		
 		$this->is_wetu_active = false;
+
+		include('class-lsx-to-itinerary.php');
 		
 		if(!class_exists('LSX_Currency')){
 			add_filter('lsx_to_custom_field_query',array( $this, 'price_filter'),5,10);

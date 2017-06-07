@@ -581,7 +581,7 @@ if(!function_exists('lsx_to_gallery')) {
 			} else {
 				if (function_exists('envira_dynamic')) {
 					ob_start();
-					envira_dynamic(array('id' => 'custom', 'images' => implode(',', $gallery_ids), 'isotope' => false, 'pagination' => true, 'pagination_images_per_page' => 9));
+					envira_dynamic(array('id' => 'custom', 'images' => implode(',', $gallery_ids)));
 					$return = ob_get_clean();
 				} else {
 					$columns = 4;
