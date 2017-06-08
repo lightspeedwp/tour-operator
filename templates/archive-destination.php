@@ -50,7 +50,7 @@ $tour_operator = tour_operator();
 									<div class="col-sm-6">
 										<div class="thumbnail">
 											<a href="<?php the_permalink() ?>" title="<?php the_title_attribute() ?>">
-												<?php lsx_thumbnail( 'lsx-single-thumbnail' ) ?>
+												<?php lsx_thumbnail( 'lsx-thumbnail-single' ) ?>
 											</a>
 										</div>
 									</div>

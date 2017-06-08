@@ -5,7 +5,7 @@
  * @package   Placeholders
  * @author    LightSpeed https://lsdev.biz
  * @license   GPL3
- * @link      
+ * @link
  */
 
 /**
@@ -65,14 +65,14 @@ class LSX_TO_Placeholders {
 		foreach($this->post_types as $post_type){
 			add_action( 'lsx_to_framework_'.$post_type.'_tab_content', array( $this, 'placeholder_settings' ),10,2 );
 		}
-		
+
 		if( !is_admin() ){
 			add_filter( 'get_post_metadata', array($this,'default_post_thumbnail') , 11, 3 );
 			add_filter( 'get_term_metadata', array($this,'default_term_thumbnail') , 11, 3 );
 
 			add_filter( 'wp_get_attachment_image_src', array($this,'super_placeholder_filter') , 20, 4 );
-			add_filter( 'wp_calculate_image_srcset_meta', array($this,'super_placeholder_srcset_filter') , 20, 4 );	
-			add_filter( 'wp_calculate_image_srcset', array($this,'super_placeholder_calculate_image_srcset_filter') , 20, 5 );	
+			add_filter( 'wp_calculate_image_srcset_meta', array($this,'super_placeholder_srcset_filter') , 20, 4 );
+			add_filter( 'wp_calculate_image_srcset', array($this,'super_placeholder_calculate_image_srcset_filter') , 20, 5 );
 		}
 
 		$this->super_placeholder = LSX_TO_Placeholders::placeholder_url();
@@ -92,9 +92,9 @@ class LSX_TO_Placeholders {
 				$width = get_option( "{$size}_size_w",150 );
 				$height = get_option( "{$size}_size_h",150 );
 				$holdit_width = '&w='.$width.'&h='.$height;
-			break;	
+			break;
 
-			case 'lsx-single-thumbnail':
+			case 'lsx-thumbnail-single':
 			case 'lsx-thumbnail-single':
 				$holdit_width = '&w=750&h=350';
 			break;
@@ -108,21 +108,21 @@ class LSX_TO_Placeholders {
 		$placeholder = 'https://placeholdit.imgix.net/~text?txtsize='.$text_size.'&txt='.urlencode(get_bloginfo('name')).$holdit_width;
 		$placeholder_id = false;
 		//First Check for a default, then check if there is one set by post type.
-		if(isset($options['general']) 
+		if(isset($options['general'])
 		 && isset($options['general']['default_placeholder_id'])
 		 && !empty( $options['general']['default_placeholder_id'] )){
 			$placeholder_id = $options['general']['default_placeholder_id'];
 		}
 		if('general' !== $post_type){
 			if('post' === $post_type){
-				if(isset($options['general']) 
+				if(isset($options['general'])
 				 && isset($options['general']['posts_placeholder_id'])
 				 && !empty( $options['general']['posts_placeholder_id'] )
 				 && '' !== $options['general']['posts_placeholder_id']){
 					$placeholder_id = $options['general']['posts_placeholder_id'];
 				}
 			}else{
-				if(isset($options[$post_type]) 
+				if(isset($options[$post_type])
 				 && isset($options[$post_type]['featured_placeholder_id'])
 				 && !empty( $options[$post_type]['featured_placeholder_id'] )
 				 && '' !== $options[$post_type]['featured_placeholder_id']){
@@ -148,7 +148,7 @@ class LSX_TO_Placeholders {
 		//This ensures our "super" placeholder will always show.
 		$placeholder = 'lsx-placeholder';
 		if('_thumbnail_id' === $meta_key && false !== $options){
-			
+
 			$post_type = get_post_field( 'post_type', $post_id );
 
 			//If the post types posts placeholder has been disabled then skip.
@@ -168,7 +168,7 @@ class LSX_TO_Placeholders {
 					$placeholder = $options['display']['posts_placeholder_id'];
 				}
 			}else{
-				if(isset($options[$post_type]) 
+				if(isset($options[$post_type])
 				 && isset($options[$post_type]['featured_placeholder_id'])
 				 && !empty( $options[$post_type]['featured_placeholder_id'] )
 				 && '' !== $options[$post_type]['featured_placeholder_id']){
@@ -187,8 +187,8 @@ class LSX_TO_Placeholders {
 			// onlong but here it is. no ID
 
 			return $placeholder;
-		}				
-		
+		}
+
 		return $meta;
 	}
 
@@ -220,10 +220,10 @@ class LSX_TO_Placeholders {
 			}
 			// onlong but here it is. no ID
 			return $placeholder;
-		}				
-		
+		}
+
 		return $meta;
-	}	
+	}
 
 	/**
 	 * The term default placeholder call.
@@ -238,7 +238,7 @@ class LSX_TO_Placeholders {
 				case 'thumbnail':
 				case 'medium':
 				case 'large':
-				case 'full':					
+				case 'full':
 
 					$width = get_option( "{$size}_size_w",150 );
 					$height = get_option( "{$size}_size_h",150 );
@@ -247,7 +247,7 @@ class LSX_TO_Placeholders {
 					$image[] = $width;
 					$image[] = $height;
 					$image[] = true;
-				break;				
+				break;
 
 				case 'lsx-thumbnail-wide':
 					$image[] = $this->placeholder_url().'&w=350&h=230';
@@ -256,7 +256,7 @@ class LSX_TO_Placeholders {
 					$image[] = true;
 				break;
 
-				case 'lsx-single-thumbnail':
+				case 'lsx-thumbnail-single':
 				case 'lsx-thumbnail-single':
 					$image[] = $this->placeholder_url().'&w=750&h=350';
 					$image[] = 750;
@@ -269,11 +269,11 @@ class LSX_TO_Placeholders {
 						$image[] = $this->placeholder_url().'&w='.$size[0].'&h='.$size[1];
 						$image[] = $size[0];
 						$image[] = $size[1];
-						$image[] = true;				
+						$image[] = true;
 					}
 				break;
 
-			} 
+			}
 
 			$image = apply_filters('lsx_to_placeholder_url',$image);
 
@@ -297,25 +297,25 @@ class LSX_TO_Placeholders {
 					'width'	=> get_option( "thumbnail_size_w",150 ),
 					'height'	=> get_option( "thumbnail_size_h",150 ),
 					'mime-type'	=> 'image/jpeg',
-				),	
+				),
 				'medium' => array(
 					'file'	=> $this->placeholder_url().'&w='.get_option( "medium_size_w",300 ).'&h='.get_option( "medium_size_h",300 ),
 					'width'	=> get_option( "medium_size_w",300 ),
 					'height'	=> get_option( "medium_size_h",300 ),
 					'mime-type'	=> 'image/jpeg',
-				),	
+				),
 				'large' => array(
 					'file'	=> $this->placeholder_url().'&w='.get_option( "large_size_w",1024 ).'&h='.get_option( "large_size_h",1024 ),
 					'width'	=> get_option( "large_size_w",1024 ),
 					'height'	=> get_option( "large_size_h",1024 ),
 					'mime-type'	=> 'image/jpeg',
-				),											
+				),
 				'lsx-thumbnail-single' => array(
 					'file'	=> $this->placeholder_url().'&w=750&h=350',
 					'width'	=> '750',
 					'height'	=> '350',
 					'mime-type'	=> 'image/jpeg',
-				),				
+				),
 			);
 
 			$image_meta = array(
@@ -330,7 +330,7 @@ class LSX_TO_Placeholders {
 	}
 
 	/**
-	 * Overwrites the sources call 
+	 * Overwrites the sources call
 	 */
 	public function super_placeholder_calculate_image_srcset_filter( $sources, $size_array, $image_src, $image_meta, $attachment_id ){
 
@@ -356,12 +356,12 @@ class LSX_TO_Placeholders {
 					'url' 			=> $this->super_placeholder.'&w=750&h=350',
 					'descriptor' 	=> 'w',
 					'value' 		=> '1024',
-				),												
+				),
 			);
 
 		}
 		return $sources;
-	}	
+	}
 
 	/**
 	 * The placeholder settings that output on the frameworks tabs.
@@ -379,7 +379,7 @@ class LSX_TO_Placeholders {
 					<input class="input_image_id" type="hidden" {{#if banner_placeholder_id}} value="{{banner_placeholder_id}}" {{/if}} name="banner_placeholder_id" />
 					<input class="input_image" type="hidden" {{#if banner_placeholder}} value="{{banner_placeholder}}" {{/if}} name="banner_placeholder" />
 					<div class="thumbnail-preview">
-						{{#if banner_placeholder}}<img src="{{banner_placeholder}}" width="150" />{{/if}}	
+						{{#if banner_placeholder}}<img src="{{banner_placeholder}}" width="150" />{{/if}}
 					</div>
 					<a {{#if banner_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image','tour-operator'); ?></a>
 					<a {{#unless banner_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete','tour-operator'); ?></a>
@@ -394,7 +394,7 @@ class LSX_TO_Placeholders {
 				<input class="input_image_id" type="hidden" {{#if default_placeholder_id}} value="{{default_placeholder_id}}" {{/if}} name="default_placeholder_id" />
 				<input class="input_image" type="hidden" {{#if default_placeholder}} value="{{default_placeholder}}" {{/if}} name="default_placeholder" />
 				<div class="thumbnail-preview">
-					{{#if default_placeholder}}<img src="{{default_placeholder}}" width="150" />{{/if}}	
+					{{#if default_placeholder}}<img src="{{default_placeholder}}" width="150" />{{/if}}
 				</div>
 				<a {{#if default_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image','tour-operator'); ?></a>
 				<a {{#unless default_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete','tour-operator'); ?></a>
@@ -409,13 +409,13 @@ class LSX_TO_Placeholders {
 					<input class="input_image_id" type="hidden" {{#if posts_placeholder_id}} value="{{posts_placeholder_id}}" {{/if}} name="posts_placeholder_id" />
 					<input class="input_image" type="hidden" {{#if posts_placeholder}} value="{{posts_placeholder}}" {{/if}} name="posts_placeholder" />
 					<div class="thumbnail-preview">
-						{{#if posts_placeholder}}<img src="{{posts_placeholder}}" width="150" />{{/if}}	
+						{{#if posts_placeholder}}<img src="{{posts_placeholder}}" width="150" />{{/if}}
 					</div>
 					<a {{#if posts_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image','tour-operator'); ?></a>
 					<a {{#unless posts_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete','tour-operator'); ?></a>
 				</td>
-			</tr>	
-		{{/unless}}	
+			</tr>
+		{{/unless}}
 		<tr class="form-field">
 			<th scope="row">
 				<label for="description"><?php esc_html_e( 'Disable Placeholder on Blog Posts', 'tour-operator' ); ?></label>
@@ -425,7 +425,7 @@ class LSX_TO_Placeholders {
 				<small><?php esc_html_e( 'This disables the placeholder on blog posts.', 'tour-operator' ); ?></small>
 			</td>
 		</tr>
-	<?php 
+	<?php
 	}
 
 	/**
@@ -447,14 +447,14 @@ class LSX_TO_Placeholders {
 					<input class="input_image_id" type="hidden" {{#if banner_placeholder_id}} value="{{banner_placeholder_id}}" {{/if}} name="banner_placeholder_id" />
 					<input class="input_image" type="hidden" {{#if banner_placeholder}} value="{{banner_placeholder}}" {{/if}} name="banner_placeholder" />
 					<div class="thumbnail-preview">
-						{{#if banner_placeholder}}<img src="{{banner_placeholder}}" width="150" />{{/if}}	
+						{{#if banner_placeholder}}<img src="{{banner_placeholder}}" width="150" />{{/if}}
 					</div>
 					<a {{#if banner_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image','tour-operator'); ?></a>
 					<a {{#unless banner_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete','tour-operator'); ?></a>
 				</td>
-			</tr>	
+			</tr>
 		<?php } ?>
-		
+
 		<tr class="form-field featured-placeholder-wrap">
 			<th scope="row">
 				<label for="featured_placeholder"><?php esc_html_e( 'Archive Image', 'tour-operator' ); ?></label>
@@ -463,7 +463,7 @@ class LSX_TO_Placeholders {
 				<input class="input_image_id" type="hidden" {{#if featured_placeholder_id}} value="{{featured_placeholder_id}}" {{/if}} name="featured_placeholder_id" />
 				<input class="input_image" type="hidden" {{#if featured_placeholder}} value="{{featured_placeholder}}" {{/if}} name="featured_placeholder" />
 				<div class="thumbnail-preview">
-					{{#if featured_placeholder}}<img src="{{featured_placeholder}}" width="150" />{{/if}}	
+					{{#if featured_placeholder}}<img src="{{featured_placeholder}}" width="150" />{{/if}}
 				</div>
 				<a {{#if featured_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image','tour-operator'); ?></a>
 				<a {{#unless featured_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete','tour-operator'); ?></a>

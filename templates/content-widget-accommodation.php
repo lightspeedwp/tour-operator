@@ -1,7 +1,7 @@
 <?php
 /**
  * Accommodation Widget Content Part
- * 
+ *
  * @package 	tour-operator
  * @category	accommodation
  * @subpackage	widget
@@ -9,11 +9,11 @@
 global $disable_placeholder;
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
- 
+
  	<?php if('1' !== $disable_placeholder && true !== $disable_placeholder) { ?>
 		<div class="thumbnail">
 			<a href="<?php the_permalink(); ?>">
-				<?php lsx_thumbnail( 'lsx-thumbnail-wide' ); ?>
+				<?php lsx_thumbnail( 'lsx-thumbnail-single' ); ?>
 			</a>
 		</div>
 	<?php } ?>
@@ -29,7 +29,7 @@ global $disable_placeholder;
 		<?php lsx_to_accommodation_rating('<div class="meta rating">'.esc_html__('Rating','tour-operator').': ','</div>'); ?>
 		<div class="view-more" style="text-align:center;">
 			<a href="<?php the_permalink(); ?>" class="btn btn-primary text-center"><?php esc_html_e('View Accommodation','tour-operator'); ?></a>
-		</div>	
+		</div>
 	</div>
-	
+
 </article>
