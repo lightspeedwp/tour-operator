@@ -423,8 +423,12 @@ msgstr ""
 msgid "Gallery"
 msgstr ""
 
-#: classes/class-lsx-to-accommodation.php:378, classes/class-lsx-to-destination.php:201, classes/class-lsx-to-tour.php:239
+#: classes/class-lsx-to-accommodation.php:378, classes/class-lsx-to-accommodation.php:379, classes/class-lsx-to-destination.php:201, classes/class-lsx-to-destination.php:202, classes/class-lsx-to-tour.php:239, classes/class-lsx-to-tour.php:240
 msgid "Envira Gallery"
+msgstr ""
+
+#: classes/class-lsx-to-accommodation.php:381, classes/class-lsx-to-destination.php:204, classes/class-lsx-to-tour.php:242
+msgid "Envira Video Gallery"
 msgstr ""
 
 #: classes/class-lsx-to-accommodation.php:386
@@ -487,7 +491,7 @@ msgstr ""
 msgid "From price"
 msgstr ""
 
-#: classes/class-lsx-to-accommodation.php:581, classes/class-lsx-to-admin.php:122, classes/class-lsx-to-admin.php:122, includes/functions.php:585, includes/layout.php:139, includes/layout.php:319, templates/archive-accommodation.php:48, includes/template-tags/destination.php:25, includes/template-tags/destination.php:55, includes/template-tags/destination.php:96, includes/template-tags/destination.php:118
+#: classes/class-lsx-to-accommodation.php:581, classes/class-lsx-to-admin.php:122, classes/class-lsx-to-admin.php:122, includes/functions.php:585, includes/layout.php:139, includes/layout.php:319, includes/template-tags/destination.php:25, includes/template-tags/destination.php:55, includes/template-tags/destination.php:96, includes/template-tags/destination.php:118
 msgstr ""
 
 #: classes/class-lsx-to-accommodation.php:602, classes/class-lsx-to-destination.php:378, classes/class-lsx-to-tour.php:521, includes/layout.php:122, includes/layout.php:197, includes/layout.php:302, templates/archive-destination.php:164

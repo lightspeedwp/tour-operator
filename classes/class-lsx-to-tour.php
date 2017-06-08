@@ -5,7 +5,7 @@
  * @package   LSX_TO_Tour
  * @author    LightSpeed
  * @license   GPL3
- * @link      
+ * @link
  * @copyright 2016 LightSpeedDevelopment
  */
 
@@ -34,7 +34,7 @@ class LSX_TO_Tour {
 	 * @var      object
 	 */
 	protected static $instance = null;
-	
+
 	/**
 	 * Holds class instance
 	 *
@@ -68,26 +68,26 @@ class LSX_TO_Tour {
 		else{
 			$this->options = false;
 		}
-		
+
 		// activate property post type
 		add_action( 'init', array( $this, 'register_post_types' ) );
 		add_action( 'init', array( $this, 'set_vars' ) );
 
 		add_filter( 'cmb_meta_boxes', array( $this, 'metaboxes') );
-		
+
 		add_filter( 'lsx_to_entry_class', array( $this, 'entry_class') );
-		
+
 		add_filter( 'lsx_to_search_fields', array( $this, 'single_fields_indexing' ));
 
 		add_action( 'lsx_to_framework_tour_tab_general_settings_bottom', array($this,'general_settings'), 10 , 1 );
-		
+
 		add_filter( 'lsx_to_itinerary_class', array( $this, 'itinerary_class' ));
 		add_filter( 'lsx_to_itinerary_needs_read_more', array( $this, 'itinerary_needs_read_more' ));
-		
+
 		$this->is_wetu_active = false;
 
 		include('class-lsx-to-itinerary.php');
-		
+
 		if(!class_exists('LSX_Currency')){
 			add_filter('lsx_to_custom_field_query',array( $this, 'price_filter'),5,10);
 		}
@@ -124,7 +124,7 @@ class LSX_TO_Tour {
 			$this->is_wetu_active = true;
 		}
 	}
-	
+
 	/**
 	 * Register the landing pages post type.
 	 *
@@ -132,7 +132,7 @@ class LSX_TO_Tour {
 	 * @return    null
 	 */
 	public function register_post_types() {
-	
+
 		$labels = array(
 		    'name'               => esc_html__( 'Tours', 'tour-operator' ),
 		    'singular_name'      => esc_html__( 'Tour', 'tour-operator' ),
@@ -165,8 +165,8 @@ class LSX_TO_Tour {
             'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt', 'custom-fields' )
 		);
 
-		register_post_type( 'tour', $args );		
-	}	
+		register_post_type( 'tour', $args );
+	}
 
 	/**
 	 * Remove the sharing from below the content on single accommodation.
@@ -180,8 +180,8 @@ class LSX_TO_Tour {
 		if ( class_exists( 'Jetpack_Likes' ) ) {
 			remove_filter( 'the_content', array( Jetpack_Likes::init(), 'post_likes' ), 30, 1 );
 		}
-	}	
-	
+	}
+
 	/**
 	 * Define the metabox and field configurations.
 	 *
@@ -189,7 +189,7 @@ class LSX_TO_Tour {
 	 * @return array
 	 */
 	public function metaboxes( array $meta_boxes ) {
-	
+
 		// Example of all available fields
 		$fields[] = array( 'id' => 'featured',  'name' => esc_html__( 'Featured', 'tour-operator' ), 'type' => 'checkbox', 'cols' => 12 );
 		if(!class_exists('LSX_Banners')){
@@ -198,7 +198,7 @@ class LSX_TO_Tour {
 		$fields[] = array( 'id' => 'duration',  	'name' => esc_html__( 'Duration', 'tour-operator' ), 'type' => 'text', 'cols' => 12 );
 		$fields[] = array( 'id' => 'departs_from', 'name' => esc_html__('Departs From','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'destination','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ),'allow_none'=>true, 'cols' => 12,'sortable'=>true,'repeatable'=>true );
 		$fields[] = array( 'id' => 'ends_in', 'name' => esc_html__('Ends In','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'destination','nopagin' => true,'posts_per_page' => 1000, 'orderby' => 'title', 'order' => 'ASC' ),'allow_none'=>true, 'cols' => 12,'sortable'=>true,'repeatable'=>true );
-		$fields[] = array( 
+		$fields[] = array(
 					'id' => 'best_time_to_visit',
 					'name' => esc_html__( 'Best months to visit', 'tour-operator' ),
 					'type' => 'select',
@@ -237,16 +237,16 @@ class LSX_TO_Tour {
 		$fields[] = array( 'id' => 'gallery', 'name' => esc_html__('Gallery','tour-operator'), 'type' => 'image', 'repeatable' => true, 'show_size' => false );
 		if(class_exists('Envira_Gallery')){
 			$fields[] = array( 'id' => 'envira_title',  'name' => esc_html__('Envira Gallery','tour-operator'), 'type' => 'title' );
-			$fields[] = array( 'id' => 'envira_gallery', 'name' => esc_html__('Envira Gallery','to-galleries'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
+			$fields[] = array( 'id' => 'envira_gallery', 'name' => esc_html__('Envira Gallery','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
 			if(class_exists('Envira_Videos')){
-				$fields[] = array( 'id' => 'envira_video', 'name' => esc_html__('Envira Video Gallery','to-galleries'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
+				$fields[] = array( 'id' => 'envira_video', 'name' => esc_html__('Envira Video Gallery','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
 			}
 		}
 
 		if(post_type_exists('special')){
 			$fields[] = array( 'id' => 'special_to_tour', 'name' => esc_html__('Specials related with this tour','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'special','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none' => true , 'repeatable' => true, 'sortable' => true, 'cols' => 12 );
 		}
-		
+
 		//Itinerary Details
 		$fields[] = array( 'id' => 'itinerary_title',  'name' => esc_html__('Itinerary','tour-operator'), 'type' => 'title' );
 		$fields[] = array( 'id' => 'itinerary_kml', 'name' => esc_html__( 'Itinerary KML File', 'tour-operator' ), 'type' => 'file', 'show_size' => true, 'cols' => 12 );
@@ -266,17 +266,17 @@ class LSX_TO_Tour {
 		$fields[] = array( 'id' => 'accommodation_to_tour', 'name' => esc_html__('Accommodation related with this tour','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'accommodation','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
 		$fields[] = array( 'id' => 'destinations_title',  'name' => esc_html__('Destinations','tour-operator'), 'type' => 'title', 'cols' => 12 );
 		$fields[] = array( 'id' => 'destination_to_tour', 'name' => esc_html__('Destinations related with this tour','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'destination','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
-		
+
 		$fields = apply_filters('lsx_to_tour_custom_fields',$fields);
-		
+
 		$meta_boxes[] = array(
 				'title' => esc_html__('Tour Operator Plugin','tour-operator'),
 				'pages' => 'tour',
 				'fields' => $fields
-		);	
-	
+		);
+
 		return $meta_boxes;
-	
+
 	}
 
 	/**
@@ -292,10 +292,10 @@ class LSX_TO_Tour {
 					<input type="checkbox" {{#if shorten_itinerary}} checked="checked" {{/if}} name="shorten_itinerary" />
 					<small><?php esc_html_e('If you have many Itinerary entries on your tours, then you may want to shorten the length of the page with a "read more" button.','tour-operator');?></small>
 				</td>
-			</tr>		
+			</tr>
 		<?php
-	}	
-	
+	}
+
 	/**
 	 * Sets up the "post relations"
 	 *
@@ -306,9 +306,9 @@ class LSX_TO_Tour {
 	public function single_fields_indexing($search_fields) {
 		$search_fields['itinerary'] = array('destination_to_tour','activity_to_tour','accommodation_to_tour');
 		return $search_fields;
-		
-	}	
-	
+
+	}
+
 	/**
 	 * A filter to set the content area to a small column on single
 	 */
@@ -326,7 +326,7 @@ class LSX_TO_Tour {
 		}
 		return $classes;
 	}
-	
+
 	/**
 	 * returns the itinerary metabox fields
 	 */
@@ -381,10 +381,10 @@ class LSX_TO_Tour {
 				)
 			);*/
 		}
-		
+
 		return $fields;
 	}
-	
+
 	/**
 	 * returns the itinerary metabox fields
 	 */
@@ -395,9 +395,9 @@ class LSX_TO_Tour {
 				$classes[] = 'hidden';
 			}
 		}
-		return $classes;	
+		return $classes;
 	}
-	
+
 	/**
 	 * Outputs the read more button if needed
 	 */
@@ -406,7 +406,7 @@ class LSX_TO_Tour {
 			$return = true;
 		}
 		return $return;
-	}	
+	}
 
 	/**
 	 * Adds in additional info for the price custom field
@@ -427,11 +427,11 @@ class LSX_TO_Tour {
 			}
 			$value = $currency.$value;
 			$html = $before.$value.$after;
-	
+
 		}
 		return $html;
 	}
-	
+
 	/**
 	 * Filter and make the star ratings
 	 */
@@ -454,15 +454,15 @@ class LSX_TO_Tour {
 				$rating_description = ' <small>('.$rating_type.')</small>';
 			}
 			$html = $before.implode('',$ratings_array).$rating_description.$after;
-	
+
 		}
 		return $html;
-	}	
+	}
 
 	/**
 	 * Outputs the tour meta on the modal
 	 */
-	public function content_meta(){ 
+	public function content_meta(){
 		if('tour' === get_post_type()){
 		?>
 		<div class="tour-details">
