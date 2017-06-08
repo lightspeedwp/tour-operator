@@ -5,7 +5,7 @@
  * @package   LSX_TO_Accommodation
  * @author     LightSpeed Team
  * @license   GPL3
- * @link      
+ * @link
  * @copyright 2015  LightSpeed Team
  */
 
@@ -86,11 +86,11 @@ class LSX_TO_Accommodation {
 		// activate property post type
 		add_action( 'init', array( $this, 'activate_post_types' ) );
 		add_action( 'init', array( $this, 'register_taxonomies') );
-		add_filter( 'cmb_meta_boxes', array( $this, 'metaboxes') );	
+		add_filter( 'cmb_meta_boxes', array( $this, 'metaboxes') );
 
 		add_action( 'lsx_to_framework_accommodation_tab_general_settings_bottom', array($this,'general_settings'), 10 , 1 );
 		add_action( 'lsx_to_framework_accommodation_tab_single_settings_bottom', array($this,'single_settings'), 10 , 1 );
-		
+
 		add_filter( 'lsx_to_entry_class', array( $this, 'entry_class') );
 
 		if(!class_exists('LSX_Currency')){
@@ -98,7 +98,7 @@ class LSX_TO_Accommodation {
 		}
 
 		add_filter('lsx_to_custom_field_query',array( $this, 'rating'),5,10);
-		
+
 		include('class-units.php');
 
 		add_action('lsx_to_map_meta','lsx_to_accommodation_meta');
@@ -123,7 +123,7 @@ class LSX_TO_Accommodation {
 
 		return self::$instance;
 	}
-	
+
 	/**
 	 * Register the properties post types.
 	 *
@@ -131,7 +131,7 @@ class LSX_TO_Accommodation {
 	 * @return    null
 	 */
 	public function activate_post_types() {
-		
+
 		// define the properties post type
 		$args = array(
 			'labels' 				=> array(
@@ -154,7 +154,7 @@ class LSX_TO_Accommodation {
 			'show_in_menu' 			=>	'tour-operator',
 			'menu_position' 		=>	30,
 			'query_var' 			=>	true,
-			'rewrite' 				=>	array('slug' => 'accommodation','with_front'=>false),		
+			'rewrite' 				=>	array('slug' => 'accommodation','with_front'=>false),
 			'exclude_from_search' 	=>	false,
 			'capability_type' 		=>	'post',
 			'has_archive' 			=>	'accommodation',
@@ -169,12 +169,12 @@ class LSX_TO_Accommodation {
 				'custom-fields'
 			),
 		);
-		
+
 		// register post type
 		register_post_type('accommodation', $args);
 	}
-	
-	
+
+
 	/**
 	 * Register the global post types.
 	 *
@@ -195,7 +195,7 @@ class LSX_TO_Accommodation {
 				'new_item_name' => esc_html__( 'New Facility' , 'tour-operator' ),
 				'menu_name' => esc_html__( 'Facilities' , 'tour-operator' ),
 		);
-		
+
 		// Now register the taxonomy
 		register_taxonomy('facility',$this->plugin_slug, array(
 				'hierarchical' => true,
@@ -208,7 +208,7 @@ class LSX_TO_Accommodation {
 				'query_var' => true,
 				'rewrite' => false,
 		));
-		
+
 		$labels = array(
 				'name' => esc_html__( 'Accommodation Type', 'tour-operator' ),
 				'singular_name' => esc_html__( 'Accommodation Type', 'tour-operator' ),
@@ -222,7 +222,7 @@ class LSX_TO_Accommodation {
 				'new_item_name' => esc_html__( 'New Accommodation Type' , 'tour-operator' ),
 				'menu_name' => esc_html__( 'Accommodation Types' , 'tour-operator' ),
 		);
-		
+
 		// Now register the taxonomy
 		register_taxonomy('accommodation-type',$this->plugin_slug, array(
 				'hierarchical' => true,
@@ -234,20 +234,20 @@ class LSX_TO_Accommodation {
 				'show_admin_column' => false,
 				'query_var' => true,
 				'rewrite' => array('accommodation-type'),
-		));		
-		
+		));
 
-	}	
-	
+
+	}
+
 	/**
 	 * Define the metabox and field configurations.
 	 *
 	 * @param  array $meta_boxes
 	 * @return array
 	 */
-	
-	function metaboxes( array $meta_boxes ) {		
-		
+
+	function metaboxes( array $meta_boxes ) {
+
 		// Info Panel
 		$fields[] = array( 'id' => 'featured',  'name' => esc_html__('Featured','tour-operator'), 'type' => 'checkbox' );
 		if(!class_exists('LSX_Banners')){
@@ -258,7 +258,7 @@ class LSX_TO_Accommodation {
 			$fields = array_merge($fields,LSX_TO_Field_Pattern::price());
 		}
 
-		$fields[] = array( 
+		$fields[] = array(
 			'id' => 'price_type',
 			'name' => esc_html__('Price Type','tour-operator'),
 			'type' => 'select',
@@ -275,12 +275,12 @@ class LSX_TO_Accommodation {
 		$fields[] = array( 'id' => 'not_included',  'name' => esc_html__('Not Included','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ) );
 
 		$fields[] = array( 'id' => 'team_to_accommodation', 'name' => esc_html__('Accommodation Expert','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12 );
-		
+
 		if(class_exists('LSX_TO_Maps')){
 			$fields[] = array( 'id' => 'location_title',  'name' => esc_html__('Location','tour-operator'), 'type' => 'title' );
 			$fields[] = array( 'id' => 'location',  'name' => esc_html__('Address','tour-operator'), 'type' => 'gmap', 'google_api_key' => $this->options['api']['googlemaps_key'] );
 		}
-		
+
 		//Fast Facts
 		$fast_facts_fields = array(
 				array( 'id' => 'fast_facts_title',  'name' => esc_html__('Fast Facts','tour-operator'), 'type' => 'title' ),
@@ -293,18 +293,18 @@ class LSX_TO_Accommodation {
 								'TGCSA' => esc_html__('TGCSA','tour-operator'),
 								'Hotelstars Union' => esc_html__('Hotelstars Union','tour-operator')
 						)
-				),				
+				),
 				array( 'id' => 'rating',  'name' => esc_html__('Rating','tour-operator'), 'type' => 'radio', 'options' => array( '1', '2', '3', '4', '5' ), 'allow_none' => true ),
 				array( 'id' => 'number_of_rooms',  'name' => esc_html__('Number of Rooms','tour-operator'), 'type' => 'text' ),
 				array( 'id' => 'checkin_time',  'name' => esc_html__('Check-in Time','tour-operator'), 'type' => 'time' ),
 				array( 'id' => 'checkout_time',  'name' => esc_html__('Check-out Time','tour-operator'), 'type' => 'time' ),
 				array( 'id' => 'minimum_child_age',  'name' => esc_html__('Minimum Child Age','tour-operator'), 'type' => 'text' ),
-				array( 
+				array(
 					'id' => 'spoken_languages',
 					'name' => esc_html__('Spoken Languages','tour-operator'),
 					'type' => 'select',
 					'multiple' => true,
-					'options' => array( 
+					'options' => array(
 							'afrikaans' => esc_html__('Afrikaans','tour-operator'),
 							'chinese' => esc_html__('Chinese','tour-operator'),
 							'dutch' => esc_html__('Dutch','tour-operator'),
@@ -339,8 +339,8 @@ class LSX_TO_Accommodation {
 								'vegetarian' => esc_html__('Vegetarian','tour-operator'),
 								'weddings' => esc_html__('Weddings','tour-operator')
 						)
-				),	                         				
-				array( 
+				),
+				array(
 					'id' => 'special_interests',
 					'name' => esc_html__('Special Interests','tour-operator'),
 					'type' => 'select',
@@ -376,12 +376,12 @@ class LSX_TO_Accommodation {
 		$fields[] = array( 'id' => 'gallery', 'name' => esc_html__('Gallery','tour-operator'), 'type' => 'image', 'repeatable' => true, 'show_size' => false );
 		if(class_exists('Envira_Gallery')){
 			$fields[] = array( 'id' => 'envira_title',  'name' => esc_html__('Envira Gallery','tour-operator'), 'type' => 'title' );
-			$fields[] = array( 'id' => 'envira_gallery', 'name' => esc_html__('Envira Gallery','to-galleries'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
+			$fields[] = array( 'id' => 'envira_gallery', 'name' => esc_html__('Envira Gallery','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
 			if(class_exists('Envira_Videos')){
-				$fields[] = array( 'id' => 'envira_video', 'name' => esc_html__('Envira Video Gallery','to-galleries'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
-			}			
-		}		
-		
+				$fields[] = array( 'id' => 'envira_video', 'name' => esc_html__('Envira Video Gallery','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'envira','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ) , 'allow_none' => true );
+			}
+		}
+
 		//Rooms
 		$fields[] = array( 'id' => 'units_title',  'name' => esc_html__('Units','tour-operator'), 'type' => 'title' );
 		$fields[] = array(
@@ -396,7 +396,7 @@ class LSX_TO_Accommodation {
 										'name' => esc_html__('Type','tour-operator'),
 										'type' => 'select',
 										'options' => $this->unit_types
-								),						
+								),
 								array( 'id' => 'title',  'name' => esc_html__('Title','tour-operator'), 'type' => 'text' ),
 								array( 'id' => 'description', 'name' => esc_html__('Description','tour-operator'), 'type' => 'textarea', 'options' => array( 'editor_height' => '100' ) ),
 								array( 'id' => 'price',  'name' => esc_html__('Price','tour-operator'), 'type' => 'text' ),
@@ -404,25 +404,25 @@ class LSX_TO_Accommodation {
 							),
 				'desc' => ''
 		);
-		
+
 		//Connections
 		$fields[] = array( 'id' => 'destinations_title',  'name' => esc_html__('Destinations','tour-operator'), 'type' => 'title', 'cols' => 12 );
 		$fields[] = array( 'id' => 'destination_to_accommodation', 'name' => esc_html__('Destinations related with this accommodation','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'destination','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
 		$fields[] = array( 'id' => 'tours_title',  'name' => esc_html__('Tours','tour-operator'), 'type' => 'title', 'cols' => 12 );
 		$fields[] = array( 'id' => 'tour_to_accommodation', 'name' => esc_html__('Tours related with this accommodation','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'tour','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true,  'allow_none'=>true, 'cols' => 12 );
-		
+
 		//Allow the addons to add additional fields.
 		$fields = apply_filters('lsx_to_accommodation_custom_fields',$fields);
-	
+
 		//Register the actual metabox
 		$meta_boxes[] = array(
 				'title' => esc_html__('Tour Operator Plugin','tour-operator'),
 				'pages' => 'accommodation',
 				'fields' => $fields
-		);		
-		
+		);
+
 		return $meta_boxes;
-	
+
 	}
 
 	/**
@@ -437,7 +437,7 @@ class LSX_TO_Accommodation {
 				<td>
 					<input type="checkbox" {{#if contact_details_disabled}} checked="checked" {{/if}} name="contact_details_disabled" />
 				</td>
-			</tr>	
+			</tr>
 		<?php
 	}
 
@@ -454,9 +454,9 @@ class LSX_TO_Accommodation {
 					<input type="checkbox" {{#if display_connected_tours}} checked="checked" {{/if}} name="display_connected_tours" />
 					<small><?php esc_html_e('This will replace the related accommodation with the connected tours instead.','tour-operator'); ?>
 				</td>
-			</tr>	
+			</tr>
 		<?php
-	}	
+	}
 
 	/**
 	 * Returns thedisplay connected tours boolean
@@ -464,7 +464,7 @@ class LSX_TO_Accommodation {
 	public function display_connected_tours() {
 		return $this->display_connected_tours;
 	}
-	
+
 	/**
 	 * A filter to set the content area to a small column on single
 	 */

@@ -276,14 +276,12 @@ class Tour_Operator {
 			'accommodation-brand' => __( 'Brand', 'tour-operator' ),
 			'accommodation-type'  => __( 'Accommodation Type', 'tour-operator' ),
 			'facility'            => __( 'Facility', 'tour-operator' ),
-			'location'            => __( 'Location', 'tour-operator' ),
 		);
 		$this->taxonomies_plural = array(
 			'travel-style'        => __( 'Travel Styles', 'tour-operator' ),
 			'accommodation-brand' => __( 'Brands', 'tour-operator' ),
 			'accommodation-type'  => __( 'Accommodation Types', 'tour-operator' ),
 			'facility'            => __( 'Facilities', 'tour-operator' ),
-			'location'            => __( 'Locations', 'tour-operator' ),
 		);
 		$this->base_taxonomies   = $this->taxonomies;
 		$this->taxonomies        = apply_filters( 'lsx_to_framework_taxonomies', $this->taxonomies );
