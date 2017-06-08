@@ -142,7 +142,6 @@ class LSX_TO_Admin extends Tour_Operator {
 	 * - [+1] Add Accommodation
 	 * - [32] Accommodation Types
 	 * - [33] Brands
-	 * - [34] Locations
 	 * - [35] Facilities
 	 * - [40] Team
 	 * - [50] Activities
@@ -230,7 +229,6 @@ class LSX_TO_Admin extends Tour_Operator {
 						22  => 'edit-tags.php?taxonomy=travel-style',
 						32  => 'edit-tags.php?taxonomy=accommodation-type',
 						33  => 'edit-tags.php?taxonomy=accommodation-brand',
-						34  => 'edit-tags.php?taxonomy=location',
 						35  => 'edit-tags.php?taxonomy=facility',
 						72  => 'edit-tags.php?taxonomy=special-type',
 					);
@@ -271,7 +269,6 @@ class LSX_TO_Admin extends Tour_Operator {
 			'edit-tags.php?taxonomy=travel-style',
 			'edit-tags.php?taxonomy=accommodation-type',
 			'edit-tags.php?taxonomy=accommodation-brand',
-			'edit-tags.php?taxonomy=location',
 			'edit-tags.php?taxonomy=facility',
 			'edit-tags.php?taxonomy=special-type',
 		);
@@ -373,20 +370,6 @@ class LSX_TO_Admin extends Tour_Operator {
 			'query_var' => true,
 			'rewrite' => array('slug'=>'brand'),
 		));
-
-		$labels = array(
-			'name' => esc_html__( 'Location', 'tour-operator' ),
-			'singular_name' => esc_html__( 'Location', 'tour-operator' ),
-			'search_items' =>  esc_html__( 'Search Locations' , 'tour-operator' ),
-			'all_items' => esc_html__( 'Locations' , 'tour-operator' ),
-			'parent_item' => esc_html__( 'Parent Location' , 'tour-operator' ),
-			'parent_item_colon' => esc_html__( 'Parent Location:' , 'tour-operator' ),
-			'edit_item' => esc_html__( 'Edit Location' , 'tour-operator' ),
-			'update_item' => esc_html__( 'Update Location' , 'tour-operator' ),
-			'add_new_item' => esc_html__( 'Add New Location' , 'tour-operator' ),
-			'new_item_name' => esc_html__( 'New Location' , 'tour-operator' ),
-			'menu_name' => esc_html__( 'Locations' , 'tour-operator' ),
-		);
 	}
 
 	/**
