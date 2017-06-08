@@ -17,7 +17,7 @@
  */
 function lsx_to_region_accommodation(){
 	global $lsx_to_archive;
-	if(post_type_exists('accommodation') && is_singular('destination') && !lsx_to_item_has_children(get_the_ID(),'destination')) { 
+	if(post_type_exists('accommodation') && is_singular('destination') && !lsx_to_item_has_children(get_the_ID(),'destination')) {
 		$args = array(
 			'from'			=>	'accommodation',
 			'to'			=>	'destination',
@@ -52,8 +52,8 @@ function lsx_to_country_regions(){
 		$total_counter = 0;
 		if ( $regions->have_posts() ): ?>
 			<section id="regions">
-				<h2 class="section-title"><?php esc_html_e(lsx_to_get_post_type_section_title('destination', 'regions', 'Regions'),'tour-operator'); ?></h2>		
-				<div class="row">		
+				<h2 class="section-title"><?php esc_html_e(lsx_to_get_post_type_section_title('destination', 'regions', 'Regions'),'tour-operator'); ?></h2>
+				<div class="row">
 					<?php
 						$lsx_to_archive = 1;
 						$wp_query->is_single = 0;
@@ -72,10 +72,10 @@ function lsx_to_country_regions(){
 						$wp_query->is_post_type_archive = 0;
 					?>
 				</div>
-			</section>		
+			</section>
 			<?php
 			wp_reset_postdata();
-		endif; 
+		endif;
 	}
 }
 
@@ -114,7 +114,7 @@ function lsx_to_destination_activities(){
 			'from'			=>	'activity',
 			'to'			=>	'destination',
 			'content_part'	=>	'widget-activity',
-			'column'		=>	'4',				
+			'column'		=>	'4',
 			'before'		=>	'<section id="activities"><h2 class="section-title">'.__(lsx_to_get_post_type_section_title('activity', '', esc_html__('Featured Activities','tour-operator')),'tour-operator').'</h2>',
 			'after'			=>	'</section>',
 		);
@@ -145,7 +145,7 @@ function lsx_to_destination_travel_info() {
 	if ( ! empty( $electricity ) || ! empty( $banking ) || ! empty( $cuisine ) || ! empty( $climate ) || ! empty( $transport ) || ! empty( $dress ) || ! empty( $health ) || ! empty( $safety ) || ! empty( $visa ) || ! empty( $general ) ) :
 		$limit_words = 30;
 		$more_button = "\n\n" . '<a class="btn btn-default more-link more-link-remove-p" data-collapsed="true" href="#">Read More</a>' . "\n\n";
-		
+
 		$items = array(
 			esc_html__( 'Electricity', 'tour-operator' ) => $electricity,
 			esc_html__( 'Banking', 'tour-operator' )     => $banking,
@@ -175,7 +175,7 @@ function lsx_to_destination_travel_info() {
 												$pos   = array_keys( $words );
 												$value = substr_replace( $value, $more_button, $pos[ $limit_words ], 0 );
 											}
-											echo apply_filters( 'the_content', $value );
+											echo wp_kses_post( apply_filters( 'the_content', $value ) );
 										?></div>
 									</div>
 								</div>

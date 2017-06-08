@@ -212,11 +212,11 @@ class LSX_TO_Frontend extends Tour_Operator {
 					wp_style_add_data( 'font_awesome', 'rtl', 'replace' );
 				}
 
-				if ( ! $has_bootstrap ) {
-					// TODO
+				// TODO
+				// if ( ! $has_bootstrap ) {
 					// wp_enqueue_style( 'bootstrap', LSX_TO_URL . 'assets/css/style-bootstrap.css', array(), LSX_TO_VER );
 					// wp_enqueue_script( 'bootstrap', LSX_TO_URL . 'assets/js/bootstrap-scripts.min.js', array( 'jquery' ), LSX_TO_VER, true );
-				}
+				// }
 			}
 
 		}
