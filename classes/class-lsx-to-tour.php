@@ -221,7 +221,7 @@ class LSX_TO_Tour {
 				);
 
 		if(post_type_exists('team')){
-			$fields[] = array( 'id' => 'team_to_tour', 'name' => esc_html__('Tour Expert','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'allow_none'=>true, 'cols' => 12);
+			$fields[] = array( 'id' => 'team_to_tour', 'name' => esc_html__('Tour Expert','tour-operator'), 'type' => 'post_select', 'use_ajax' => false, 'query' => array( 'post_type' => 'team','nopagin' => true,'posts_per_page' => '-1', 'orderby' => 'title', 'order' => 'ASC' ), 'repeatable' => true, 'allow_none'=>true, 'cols' => 12);
 		}
 		$fields[] = array( 'id' => 'hightlights',  'name' => esc_html__('Hightlights','tour-operator'), 'type' => 'wysiwyg', 'options' => array( 'editor_height' => '100' ), 'cols' => 12 );
 
