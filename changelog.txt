@@ -2,13 +2,57 @@
 
 ### 1.0.7
 * Dev - Added .editorconfig file to help developers to maintain consistent coding styles between different editors and IDEs
-* Fix - Removed "read more" from regions excerpt widgets on destination archive page
-* Fix - Small fix on TO custom post type (single template - CSS) for small breakpoints
 * Dev - LSX Customizer SASS selector extented to new FacetWP selectors
 * Dev - Make the team image displays square
 * Dev - Enable BS sliders on all small breakpoints
 * Dev - New slider code for: Widgets, Regions (destination archive), and Related items section
+* Dev - CMB updated (copied from LSX Banners)
+* Dev - Changing the archives and widgets to show only the countries
+* Dev - Added in a filters for the itinerary image so 3rd party plugins and themes can overwrite it if they want to
+* Dev - Added in a filter for the destinations facets, so they only display the countries
+* Dev - Add .editorconfig file to help developers to maintain consistent coding styles between different editors and IDEs
+* Dev - Add RTL styles option
+* Dev - New folder structure for CSS files
+* Dev - New folder structure for JS files
+* Dev - Update all NPM packages and re-structure Gulp’s tasks
+* Dev - Adds the FontAwesome fonts if the theme is not LSX Theme or if it isn’t loaded by another plugin/theme
+* Dev - Adding in the LSX sharing support
+* Dev - Added in the ability to queue your imports
+* Dev - Restructure metabox
+* Dev - Adding in support for the TO reviews section
+* Dev - Added compatibility (styles) with different column order on single team extension
+* Dev - Removed from accommodation archive the brands slider
 * Fix - Added in a filter to fix the API tab not showing when certain LSX Extensions are enabled
+* Fix - Removed "read more" from regions excerpt widgets on destination archive page
+* Fix - Small fix on TO custom post type (single template - CSS) for small breakpoints
+* Fix - Removed the locations taxonomy
+* Fix - Restricting the amount of accommodation allowed to be attached to an itinerary to 1
+* Fix - Allowing the itineraries to display other images from and accommodations gallery
+* Fix - Fixed the selecting of the general enquiry form
+* Fix - Ordering the destinations by the title, allowing all of the destinations to be pulled through to the destination archive
+* Fix - Fixed settings page header
+* Fix - Fixed settings page tabs
+* Fix - Trigger was triggered before defining the hook
+* Fix - Make save a real button and add saved indicator
+* Fix - Refactor loading
+* Fix - Globalize initilizer for backwards compatilility
+* Fix - Wrapper reference for tour_operator()
+* Fix - Tidy inline docs and add missing property declarations
+* Fix - Inline docs cleanup WIP
+* Fix - Architecture: Overhaul organization of plugin
+* Fix - Architecture: Class files should not have functions
+* Fix - Fixed up the style for the save changes button
+* Fix - Fixed the display of the metaboxes with other plugins active
+* Fix - Correct cols count for price to fix tabs
+* Fix - Fixed the selecting of the enquiry forms
+* Fix - Adding in a test to the settings page
+* Fix - Getting the API key inline with the rest of the extensions
+* Fix - Fixed the General Tab display
+* Fix - Fixed the API key settings tab
+* Fix - Removing the enqueue for the metabox js and css
+* Fix - Fixed the cropping options
+* Fix - Declaring the $tour_operator variable for the archive destinations work properly
+* Fix - Fixed lsx thumbnails parameter for single image size
 
 ### 1.0.6
 * Fix - Load correctly the translations/language files
