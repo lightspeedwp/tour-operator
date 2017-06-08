@@ -498,7 +498,7 @@ msgstr ""
 msgid "Map"
 msgstr ""
 
-#: classes/class-lsx-to-accommodation.php:640, classes/class-lsx-to-destination.php:415, classes/class-lsx-to-field-pattern.php:45, classes/class-lsx-to-tour.php:559, includes/layout.php:130, includes/layout.php:132, includes/layout.php:205, includes/layout.php:207, includes/layout.php:310, includes/layout.php:312, includes/settings/add-ons.php:174, includes/settings/help.php:125
+#: classes/class-lsx-to-accommodation.php:640, classes/class-lsx-to-destination.php:415, classes/class-lsx-to-field-pattern.php:45, classes/class-lsx-to-tour.php:559, includes/layout.php:130, includes/layout.php:132, includes/layout.php:205, includes/layout.php:207, includes/layout.php:310, includes/layout.php:312, includes/settings/add-ons.php:174, includes/settings/help.php:126
 msgid "Videos"
 msgstr ""
 
@@ -602,7 +602,7 @@ msgstr ""
 msgid "Documentation"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:485, includes/settings/help.php:102
+#: classes/class-lsx-to-admin.php:485, includes/settings/help.php:103
 msgid "Support"
 msgstr ""
 
@@ -758,7 +758,7 @@ msgstr ""
 msgid "Display the map in the banner"
 msgstr ""
 
-#: classes/class-lsx-to-destination.php:297, classes/class-lsx-to-destination.php:444, classes/class-lsx-to-tour.php:472, includes/layout.php:230, includes/layout.php:339, templates/content-accommodation.php:32, templates/content-destination.php:26, templates/content-tour.php:29, templates/content-widget-tour.php:28, includes/settings/add-ons.php:97, includes/settings/help.php:120
+#: classes/class-lsx-to-destination.php:297, classes/class-lsx-to-destination.php:444, classes/class-lsx-to-tour.php:472, includes/layout.php:230, includes/layout.php:339, templates/content-accommodation.php:32, templates/content-destination.php:26, templates/content-tour.php:29, templates/content-widget-tour.php:28, includes/settings/add-ons.php:97, includes/settings/help.php:121
 msgid "Activities"
 msgstr ""
 
@@ -1356,7 +1356,7 @@ msgstr ""
 msgid "tours"
 msgstr ""
 
-#: includes/settings/accommodation.php:6, includes/settings/add-ons.php:112, includes/settings/destination.php:6, includes/settings/display.php:14, includes/settings/help.php:123, includes/settings/tour.php:6
+#: includes/settings/accommodation.php:6, includes/settings/add-ons.php:112, includes/settings/destination.php:6, includes/settings/display.php:14, includes/settings/help.php:124, includes/settings/tour.php:6
 msgid "Search"
 msgstr ""
 
@@ -1384,11 +1384,11 @@ msgstr ""
 msgid "Extend the functionality of the Tour Operator plugin with one of our many extensions!"
 msgstr ""
 
-#: includes/settings/add-ons.php:38, includes/settings/help.php:131
+#: includes/settings/add-ons.php:38, includes/settings/help.php:132
 msgid "View all extensions"
 msgstr ""
 
-#: includes/settings/add-ons.php:50, includes/settings/display.php:11, includes/settings/help.php:117
+#: includes/settings/add-ons.php:50, includes/settings/display.php:11, includes/settings/help.php:118
 msgid "Maps"
 msgstr ""
 
@@ -1400,7 +1400,7 @@ msgstr ""
 msgid "Get this extension"
 msgstr ""
 
-#: includes/settings/add-ons.php:65, includes/settings/help.php:122
+#: includes/settings/add-ons.php:65, includes/settings/help.php:123
 msgid "Specials"
 msgstr ""
 
@@ -1408,7 +1408,7 @@ msgstr ""
 msgid "With the Special Offers extension you’re able to set up time-sensitive prices that you can use to price your accommodations, activities and tours. Set up booking validity dates, specials per person sharing/per person sharing/per person sharing per night, team members per special and more."
 msgstr ""
 
-#: includes/settings/add-ons.php:80, includes/settings/help.php:121
+#: includes/settings/add-ons.php:80, includes/settings/help.php:122
 msgid "Reviews"
 msgstr ""
 
@@ -1424,7 +1424,7 @@ msgstr ""
 msgid "The Search extension for the Tour Operators plugin adds robust search functionality to your WordPress Tour Operator site. It requires that you also have the FacetWP plugin installed, as that allows for much of the filtering functionality that the plugin provides."
 msgstr ""
 
-#: includes/settings/add-ons.php:127, includes/settings/help.php:118
+#: includes/settings/add-ons.php:127, includes/settings/help.php:119
 msgid "Galleries"
 msgstr ""
 
@@ -1432,7 +1432,7 @@ msgstr ""
 msgid "If you have the gallery extension installed you can easily include photo galleries in your Accommodation, Destination and Tour pages, as well as other post types included in our various extensions, such as vehicles and activities. The galleries are built via meta boxes that are added to Tour Operator type posts. "
 msgstr ""
 
-#: includes/settings/add-ons.php:144, includes/settings/help.php:124
+#: includes/settings/add-ons.php:144, includes/settings/help.php:125
 msgid "Vehicles"
 msgstr ""
 
@@ -1440,7 +1440,7 @@ msgstr ""
 msgid "To help convince travelers of their comfort and safety when traveling with you, we’ve created the Vehicles extension so that you can fill in your fleets’ specs with details such as type and number of gears, engine type (petrol/diesel), number of seats, vehicle code, and of course images and copy."
 msgstr ""
 
-#: includes/settings/add-ons.php:159, includes/settings/help.php:119
+#: includes/settings/add-ons.php:159, includes/settings/help.php:120
 msgid "Team"
 msgstr ""
 
@@ -1452,7 +1452,7 @@ msgstr ""
 msgid "With the Videos extension installed you’re able to display videos on all of your Tour Operator related post types. Whether you want to show a walk-through video of an accommodation or a highlights reel of a tour or destination, the videos extension takes care of all your video needs."
 msgstr ""
 
-#: includes/settings/add-ons.php:191, includes/settings/help.php:126
+#: includes/settings/add-ons.php:191, includes/settings/help.php:127
 msgid "Wetu Importer"
 msgstr ""
 
@@ -1629,7 +1629,7 @@ msgid "Latest Version:"
 msgstr ""
 
 #: includes/settings/help.php:86
-msgid "1.0"
+msgid "1.0.7"
 msgstr ""
 
 #: includes/settings/help.php:87
@@ -1637,42 +1637,50 @@ msgid "Requires:"
 msgstr ""
 
 #: includes/settings/help.php:87
-msgid "WordPress 3.9+"
+msgid "WordPress 4.3+"
 msgstr ""
 
-#: includes/settings/help.php:92
+#: includes/settings/help.php:88
+msgid "Tested up to:"
+msgstr ""
+
+#: includes/settings/help.php:88
+msgid "WordPress 4.8"
+msgstr ""
+
+#: includes/settings/help.php:93
 msgid "Visit plugin website"
 msgstr ""
 
-#: includes/settings/help.php:103
+#: includes/settings/help.php:104
 msgid "If the documentation is not getting you where you need to be, you can contact us directly for support and assistance."
 msgstr ""
 
-#: includes/settings/help.php:104
+#: includes/settings/help.php:105
 msgid "Please view our support policy"
 msgstr ""
 
-#: includes/settings/help.php:104
+#: includes/settings/help.php:105
 msgid "here."
 msgstr ""
 
-#: includes/settings/help.php:105
+#: includes/settings/help.php:106
 msgid "You can contact us for support at"
 msgstr ""
 
-#: includes/settings/help.php:105
+#: includes/settings/help.php:106
 msgid "support@lsdev.biz."
 msgstr ""
 
-#: includes/settings/help.php:106
+#: includes/settings/help.php:107
 msgid "Support from the LightSpeed Team is only provided to user who have purchased one of our"
 msgstr ""
 
-#: includes/settings/help.php:106
+#: includes/settings/help.php:107
 msgid "Premium Add-ons"
 msgstr ""
 
-#: includes/settings/help.php:114
+#: includes/settings/help.php:115
 msgid "Premium Add-Ons"
 msgstr ""
 

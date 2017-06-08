@@ -117,6 +117,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/lightspeeddev
 * Fix - Fixed the cropping options
 * Fix - Declaring the $tour_operator variable for the archive destinations work properly
 * Fix - Fixed lsx thumbnails parameter for single image size
+* Fix - Help page updated with the current plugin version and WordPress requirement
 
 = 1.0.6 =
 * Fix - Load correctly the translations/language files
