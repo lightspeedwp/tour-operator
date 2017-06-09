@@ -64,6 +64,9 @@ Yes you can! Join in on our [GitHub repository](https://github.com/lightspeeddev
 
 == Changelog ==
 
+= 1.1.0 =
+* Dev - Support LSX Theme 2.0 new designs
+
 = 1.0.7 =
 * Dev - Added .editorconfig file to help developers to maintain consistent coding styles between different editors and IDEs
 * Dev - LSX Customizer SASS selector extented to new FacetWP selectors
