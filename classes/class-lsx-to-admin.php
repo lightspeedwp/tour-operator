@@ -231,6 +231,7 @@ class LSX_TO_Admin extends Tour_Operator {
 						33  => 'edit-tags.php?taxonomy=accommodation-brand',
 						35  => 'edit-tags.php?taxonomy=facility',
 						72  => 'edit-tags.php?taxonomy=special-type',
+						41  => 'edit-tags.php?taxonomy=role',
 					);
 
 					$taxonomies_pages_found = false;
@@ -271,6 +272,7 @@ class LSX_TO_Admin extends Tour_Operator {
 			'edit-tags.php?taxonomy=accommodation-brand',
 			'edit-tags.php?taxonomy=facility',
 			'edit-tags.php?taxonomy=special-type',
+			'edit-tags.php?taxonomy=role',
 		);
 
 		if ( in_array( $submenu_file, $taxonomies_pages ) ) {
