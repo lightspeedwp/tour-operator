@@ -734,7 +734,7 @@ msgstr ""
 msgid "Visa"
 msgstr ""
 
-#: classes/class-lsx-to-destination.php:191, classes/class-lsx-to-settings.php:126, includes/settings/accommodation.php:4, includes/settings/destination.php:4, includes/settings/display.php:5, includes/settings/general.php:4, includes/settings/tour.php:4, includes/template-tags/destination.php:159
+#: classes/class-lsx-to-destination.php:191, classes/class-lsx-to-settings.php:126, includes/settings/accommodation.php:4, includes/settings/destination.php:4, includes/settings/general.php:4, includes/settings/tour.php:4, includes/template-tags/destination.php:159
 msgid "General"
 msgstr ""
 
@@ -1356,11 +1356,11 @@ msgstr ""
 msgid "tours"
 msgstr ""
 
-#: includes/settings/accommodation.php:6, includes/settings/add-ons.php:112, includes/settings/destination.php:6, includes/settings/display.php:14, includes/settings/help.php:124, includes/settings/tour.php:6
+#: includes/settings/accommodation.php:6, includes/settings/add-ons.php:112, includes/settings/destination.php:6, includes/settings/display.php:38, includes/settings/help.php:124, includes/settings/tour.php:6
 msgid "Search"
 msgstr ""
 
-#: includes/settings/accommodation.php:8, includes/settings/destination.php:8, includes/settings/display.php:16, includes/settings/tour.php:8
+#: includes/settings/accommodation.php:8, includes/settings/destination.php:8, includes/settings/display.php:6, includes/settings/display.php:41, includes/settings/tour.php:8
 msgid "Placeholders"
 msgstr ""
 
@@ -1388,7 +1388,7 @@ msgstr ""
 msgid "View all extensions"
 msgstr ""
 
-#: includes/settings/add-ons.php:50, includes/settings/display.php:11, includes/settings/help.php:118
+#: includes/settings/add-ons.php:50, includes/settings/display.php:34, includes/settings/help.php:118
 msgid "Maps"
 msgstr ""
 
@@ -1440,7 +1440,7 @@ msgstr ""
 msgid "To help convince travelers of their comfort and safety when traveling with you, we’ve created the Vehicles extension so that you can fill in your fleets’ specs with details such as type and number of gears, engine type (petrol/diesel), number of seats, vehicle code, and of course images and copy."
 msgstr ""
 
-#: includes/settings/add-ons.php:159, includes/settings/help.php:120
+#: includes/settings/add-ons.php:159, includes/settings/display.php:14, includes/settings/help.php:120
 msgid "Team"
 msgstr ""
 
@@ -1476,11 +1476,27 @@ msgstr ""
 msgid "here"
 msgstr ""
 
-#: includes/settings/display.php:8
-msgid "Currency Switcher"
+#: includes/settings/display.php:10
+msgid "Currencies"
 msgstr ""
 
-#: includes/settings/display.php:17
+#: includes/settings/display.php:18
+msgid "Testimonials"
+msgstr ""
+
+#: includes/settings/display.php:22
+msgid "Projects"
+msgstr ""
+
+#: includes/settings/display.php:26
+msgid "Blog Customizer (posts widget)"
+msgstr ""
+
+#: includes/settings/display.php:30
+msgid "Sharing"
+msgstr ""
+
+#: includes/settings/display.php:42
 msgid "Advanced"
 msgstr ""
 
