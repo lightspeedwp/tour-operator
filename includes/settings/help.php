@@ -83,7 +83,7 @@
 						<h2><?php esc_html_e( 'Tour Operator', 'tour-operator' ); ?></h2>
 
 						<ul>
-							<li><strong><?php esc_html_e( 'Latest Version:', 'tour-operator' ); ?></strong> <?php esc_html_e( '1.0.7', 'tour-operator' ); ?></li>
+							<li><strong><?php esc_html_e( 'Latest Version:', 'tour-operator' ); ?></strong> <?php esc_html_e( '1.0.8', 'tour-operator' ); ?></li>
 							<li><strong><?php esc_html_e( 'Requires:', 'tour-operator' ); ?></strong> <?php esc_html_e( 'WordPress 4.3+', 'tour-operator' ); ?></li>
 							<li><strong><?php esc_html_e( 'Tested up to:', 'tour-operator' ); ?></strong> <?php esc_html_e( 'WordPress 4.8', 'tour-operator' ); ?></li>
 						</ul>
