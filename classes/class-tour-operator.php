@@ -557,7 +557,10 @@ class Tour_Operator {
 
 		// New tags
 
-		$allowedtags['input']            = array();
+		if ( ! isset( $allowedtags['input'] ) ) {
+			$allowedtags['input'] = array();
+		}
+
 		$allowedtags['input']['type']    = true;
 		$allowedtags['input']['id']      = true;
 		$allowedtags['input']['name']    = true;
@@ -565,18 +568,30 @@ class Tour_Operator {
 		$allowedtags['input']['size']    = true;
 		$allowedtags['input']['checked'] = true;
 		$allowedtags['input']['onclick'] = true;
+		$allowedtags['input']['class'] = true;
+		$allowedtags['input']['placeholder'] = true;
+		$allowedtags['input']['autocomplete'] = true;
 
-		$allowedtags['select']             = array();
+		if ( ! isset( $allowedtags['select'] ) ) {
+			$allowedtags['select'] = array();
+		}
+
 		$allowedtags['select']['name']     = true;
 		$allowedtags['select']['id']       = true;
 		$allowedtags['select']['disabled'] = true;
 		$allowedtags['select']['onchange'] = true;
 
-		$allowedtags['option']             = array();
+		if ( ! isset( $allowedtags['option'] ) ) {
+			$allowedtags['option'] = array();
+		}
+
 		$allowedtags['option']['value']    = true;
 		$allowedtags['option']['selected'] = true;
 
-		$allowedtags['iframe']                    = array();
+		if ( ! isset( $allowedtags['iframe'] ) ) {
+			$allowedtags['iframe'] = array();
+		}
+
 		$allowedtags['iframe']['src']             = true;
 		$allowedtags['iframe']['width']           = true;
 		$allowedtags['iframe']['height']          = true;
