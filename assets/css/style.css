@@ -1483,8 +1483,6 @@ body.lsx.page-has-banner #lsx-banner + .wrap header.archive-header { display: no
 
 #sharing .sharedaddy .sd-sharing .sd-content ul { margin: 0 !important; }
 
-body.home #main { padding: 20px 0 30px 0; }
-
 body.home .page-banner.rotating .page-banner-image:after { display: none; }
 
 body.home .page-banner header.page-header { display: block; }
