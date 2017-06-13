@@ -120,11 +120,6 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 		} else {
 			$interval = false;
 		}
-		if (isset($instance['indicators'])) {
-			$indicators = $instance['indicators'];
-		} else {
-			$indicators = false;
-		}
 
 		//arguments
 		if (isset($args['before_widget'])) {
@@ -206,8 +201,7 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 			'responsive' => $responsive,
 			'taxonomy' => $taxonomy,
 			'class' => $class,
-			'interval' => $interval,
-			'indicators' => $indicators,
+			'interval' => $interval
 		);
 
 
@@ -238,7 +232,6 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
     $instance['taxonomy'] = strip_tags( $new_instance['taxonomy'] );
     $instance['class'] = strip_tags( $new_instance['class'] );
     $instance['interval'] = strip_tags( $new_instance['interval'] );
-    $instance['indicators'] = strip_tags( $new_instance['indicators'] );
 
     return $instance;
     }
@@ -262,8 +255,7 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
             'responsive' => 1,
         	'taxonomy' => '',
         	'class' => '',
-        	'interval' => '7000',
-        	'indicators' => 1
+        	'interval' => '7000'
         );
 
         $defaults['carousel'] = 0;
@@ -288,7 +280,6 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
         $interval = esc_attr($instance['interval']);
         $carousel = esc_attr($instance['carousel']);
         $interval = esc_attr($instance['interval']);
-        $indicators = esc_attr($instance['indicators']);
 
 
         ?>
@@ -452,12 +443,6 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 				value="<?php echo wp_kses_post($interval); ?>" />
 			<small>Type "false" to disable.</small>
 		</p>
-		<p>
-			<input id="<?php echo wp_kses_post($this->get_field_id('indicators')); ?>"
-				name="<?php echo wp_kses_post($this->get_field_name('indicators')); ?>" type="checkbox"
-				value="1" <?php checked( '1', $indicators ); ?> /> <label
-				for="<?php echo wp_kses_post($this->get_field_id('indicators')); ?>"><?php esc_html_e('Show Indicators','tour-operator'); ?></label>
-		</p>
 		<?php
 
     }
@@ -482,8 +467,7 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
     	'carousel' => false,
     	'layout' => 'standard',
     	'taxonomy' => '',
-    	'interval' => '7000',
-    	'indicators' => 1
+    	'interval' => '7000'
     	), $atts ) );
 
     	$output = "";
@@ -521,10 +505,10 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 
 		if ( ! empty( $widget_query ) && ! is_wp_error( $widget_query ) ){
 			$count = 1;
-			$this->before_while($columns,$carousel,$taxonomy,count($widget_query));
+			$this->before_while($columns,$carousel,$taxonomy,count($widget_query),$interval);
 
 			foreach ( $widget_query as $term ) {
-				$this->loop_start($columns,$carousel,$taxonomy,count($widget_query),$count,$interval);
+				$this->loop_start($columns,$carousel,$taxonomy,count($widget_query),$count);
 				echo wp_kses_post('<div '.lsx_to_widget_class(true).'>');
 				$this->content_part('content','widget-'.$taxonomy);
 				echo wp_kses_post('</div>');

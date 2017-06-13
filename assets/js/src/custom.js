@@ -22,6 +22,7 @@ LSX_TO_Bootstrap_Carousel = {
 			var $this = jQuery(this),
 				interval = $this.data('interval'),
 				autoplay = false,
+				infinite = false,
 				autoplaySpeed = 0;
 
 			if ('undefined' !== typeof interval && 'boolean' !== typeof interval) {
@@ -30,12 +31,13 @@ LSX_TO_Bootstrap_Carousel = {
 				if (! isNaN(interval)) {
 					autoplay = true;
 					autoplaySpeed = interval;
+					infinite = true;
 				}
 			}
 
 			$this.slick({
 				draggable: false,
-				infinite: false,
+				infinite: infinite,
 				swipe: false,
 				cssEase: 'ease-out',
 				dots: true,
