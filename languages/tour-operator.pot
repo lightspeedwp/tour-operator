@@ -630,7 +630,7 @@ msgstr ""
 msgid "TO CTA"
 msgstr ""
 
-#: classes/class-lsx-to-cta-widget.php:121, classes/class-lsx-to-taxonomy-widget.php:296, classes/class-lsx-to-widget.php:308
+#: classes/class-lsx-to-cta-widget.php:121, classes/class-lsx-to-taxonomy-widget.php:287, classes/class-lsx-to-widget.php:297
 msgid "Title:"
 msgstr ""
 
@@ -782,11 +782,11 @@ msgstr ""
 msgid "Thumbnail"
 msgstr ""
 
-#: classes/class-lsx-to-frontend.php:167
+#: classes/class-lsx-to-frontend.php:171
 msgid "Close"
 msgstr ""
 
-#: classes/class-lsx-to-frontend.php:375, classes/class-lsx-to-frontend.php:386, includes/functions.php:363
+#: classes/class-lsx-to-frontend.php:379, classes/class-lsx-to-frontend.php:390, includes/functions.php:363
 msgid "Read More"
 msgstr ""
 
@@ -1006,102 +1006,98 @@ msgstr ""
 msgid "Any connected item showing on a single will display a preview in a modal."
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:302, classes/class-lsx-to-widget.php:314
+#: classes/class-lsx-to-taxonomy-widget.php:293, classes/class-lsx-to-widget.php:303
 msgid "Title Link:"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:306, classes/class-lsx-to-widget.php:318
+#: classes/class-lsx-to-taxonomy-widget.php:297, classes/class-lsx-to-widget.php:307
 msgid ""
 "Link the widget title to\n"
 "				a URL"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:310, classes/class-lsx-to-widget.php:322
+#: classes/class-lsx-to-taxonomy-widget.php:301, classes/class-lsx-to-widget.php:311
 msgid "Tagline:"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:316
+#: classes/class-lsx-to-taxonomy-widget.php:307
 msgid "Query"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:318
+#: classes/class-lsx-to-taxonomy-widget.php:309
 msgid "Taxonomy:"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:324
+#: classes/class-lsx-to-taxonomy-widget.php:315
 msgid "None"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:336, classes/class-lsx-to-widget.php:344
+#: classes/class-lsx-to-taxonomy-widget.php:327, classes/class-lsx-to-widget.php:333
 msgid "Order By:"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:355, classes/class-lsx-to-widget.php:365
+#: classes/class-lsx-to-taxonomy-widget.php:346, classes/class-lsx-to-widget.php:354
 msgid "Order:"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:371, classes/class-lsx-to-widget.php:381
+#: classes/class-lsx-to-taxonomy-widget.php:362, classes/class-lsx-to-widget.php:370
 msgid "Maximum amount:"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:374, classes/class-lsx-to-widget.php:384
+#: classes/class-lsx-to-taxonomy-widget.php:365, classes/class-lsx-to-widget.php:373
 msgid "Leave empty to display all"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:378
+#: classes/class-lsx-to-taxonomy-widget.php:369
 msgid "Specify by ID:"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:382, classes/class-lsx-to-widget.php:392
+#: classes/class-lsx-to-taxonomy-widget.php:373, classes/class-lsx-to-widget.php:381
 msgid "Comma separated list, overrides limit setting"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:387
+#: classes/class-lsx-to-taxonomy-widget.php:378
 msgid "Layout"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:389, classes/class-lsx-to-widget.php:329
+#: classes/class-lsx-to-taxonomy-widget.php:380, classes/class-lsx-to-widget.php:318
 msgid "Columns:"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:404, classes/class-lsx-to-widget.php:468
+#: classes/class-lsx-to-taxonomy-widget.php:395, classes/class-lsx-to-widget.php:450
 msgid "Class:"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:414, classes/class-lsx-to-widget.php:405
+#: classes/class-lsx-to-taxonomy-widget.php:405, classes/class-lsx-to-widget.php:394
 msgid "Disable Featured Image"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:417
+#: classes/class-lsx-to-taxonomy-widget.php:408
 msgid "Thumbnail size:"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:426, classes/class-lsx-to-widget.php:417
+#: classes/class-lsx-to-taxonomy-widget.php:417, classes/class-lsx-to-widget.php:406
 msgid "Display Button"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:429, classes/class-lsx-to-widget.php:420
+#: classes/class-lsx-to-taxonomy-widget.php:420, classes/class-lsx-to-widget.php:409
 msgid "Button Text:"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:438, classes/class-lsx-to-widget.php:429
+#: classes/class-lsx-to-taxonomy-widget.php:429, classes/class-lsx-to-widget.php:418
 msgid "Responsive Images"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:441
+#: classes/class-lsx-to-taxonomy-widget.php:432
 msgid "Slider"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:446, classes/class-lsx-to-widget.php:436
+#: classes/class-lsx-to-taxonomy-widget.php:437, classes/class-lsx-to-widget.php:425
 msgid "Enable Carousel"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:449, classes/class-lsx-to-widget.php:440
+#: classes/class-lsx-to-taxonomy-widget.php:440, classes/class-lsx-to-widget.php:429
 msgid "Slide Interval:"
-msgstr ""
-
-#: classes/class-lsx-to-taxonomy-widget.php:459, classes/class-lsx-to-widget.php:451
-msgid "Show Indicators"
 msgstr ""
 
 #: classes/class-lsx-to-tour.php:138, classes/class-tour-operator.php:267
@@ -1212,27 +1208,27 @@ msgstr ""
 msgid "TO"
 msgstr ""
 
-#: classes/class-lsx-to-widget.php:225
+#: classes/class-lsx-to-widget.php:219
 msgid "That post type does not exist."
 msgstr ""
 
-#: classes/class-lsx-to-widget.php:388
+#: classes/class-lsx-to-widget.php:377
 msgid "Specify Tours by ID:"
 msgstr ""
 
-#: classes/class-lsx-to-widget.php:399
+#: classes/class-lsx-to-widget.php:388
 msgid "Featured Items"
 msgstr ""
 
-#: classes/class-lsx-to-widget.php:408
+#: classes/class-lsx-to-widget.php:397
 msgid "Icon size:"
 msgstr ""
 
-#: classes/class-lsx-to-widget.php:455
+#: classes/class-lsx-to-widget.php:437
 msgid "Post Type:"
 msgstr ""
 
-#: classes/class-lsx-to-widget.php:472
+#: classes/class-lsx-to-widget.php:454
 msgid "Add your own class to the opening element of the widget"
 msgstr ""
 
