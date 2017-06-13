@@ -451,7 +451,7 @@ msgstr ""
 msgid "Price"
 msgstr ""
 
-#: classes/class-lsx-to-accommodation.php:409, classes/class-lsx-to-destination.php:110, classes/class-lsx-to-destination.php:116, classes/class-lsx-to-destination.php:122, classes/class-lsx-to-tour.php:267, classes/class-lsx-to-tour.php:471, classes/class-tour-operator.php:260, includes/layout.php:338, templates/content-tour.php:28, templates/content-widget-tour.php:27
+#: classes/class-lsx-to-accommodation.php:409, classes/class-lsx-to-destination.php:110, classes/class-lsx-to-destination.php:116, classes/class-lsx-to-destination.php:122, classes/class-lsx-to-tour.php:267, classes/class-lsx-to-tour.php:471, classes/class-tour-operator.php:260, includes/layout.php:338, templates/content-tour.php:28, templates/content-widget-tour.php:26
 msgid "Destinations"
 msgstr ""
 
@@ -487,7 +487,7 @@ msgstr ""
 msgid "Off"
 msgstr ""
 
-#: classes/class-lsx-to-accommodation.php:511, classes/class-lsx-to-tour.php:469, includes/layout.php:336, templates/content-accommodation.php:22, templates/content-tour.php:23, templates/content-widget-accommodation.php:24, templates/content-widget-tour.php:25, includes/template-tags/accommodation.php:288
+#: classes/class-lsx-to-accommodation.php:511, classes/class-lsx-to-tour.php:469, includes/layout.php:336, templates/content-accommodation.php:22, templates/content-tour.php:23, templates/content-widget-accommodation.php:24, templates/content-widget-tour.php:24, includes/template-tags/accommodation.php:288
 msgid "From price"
 msgstr ""
 
@@ -526,7 +526,7 @@ msgstr ""
 msgid "Travel Styles"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:322, classes/class-lsx-to-destination.php:296, classes/class-lsx-to-tour.php:470, classes/class-tour-operator.php:275, includes/layout.php:229, includes/layout.php:337, templates/content-destination.php:25, templates/content-tour.php:27, templates/content-widget-tour.php:26
+#: classes/class-lsx-to-admin.php:322, classes/class-lsx-to-destination.php:296, classes/class-lsx-to-tour.php:470, classes/class-tour-operator.php:275, includes/layout.php:229, includes/layout.php:337, templates/content-destination.php:25, templates/content-tour.php:27, templates/content-widget-tour.php:25
 msgid "Travel Style"
 msgstr ""
 
@@ -758,7 +758,7 @@ msgstr ""
 msgid "Display the map in the banner"
 msgstr ""
 
-#: classes/class-lsx-to-destination.php:297, classes/class-lsx-to-destination.php:444, classes/class-lsx-to-tour.php:472, includes/layout.php:230, includes/layout.php:339, templates/content-accommodation.php:32, templates/content-destination.php:26, templates/content-tour.php:29, templates/content-widget-tour.php:28, includes/settings/add-ons.php:97, includes/settings/help.php:121
+#: classes/class-lsx-to-destination.php:297, classes/class-lsx-to-destination.php:444, classes/class-lsx-to-tour.php:472, includes/layout.php:230, includes/layout.php:339, templates/content-accommodation.php:32, templates/content-destination.php:26, templates/content-tour.php:29, templates/content-widget-tour.php:27, includes/settings/add-ons.php:97, includes/settings/help.php:121
 msgid "Activities"
 msgstr ""
 
@@ -1112,7 +1112,7 @@ msgstr ""
 msgid "New Tour"
 msgstr ""
 
-#: classes/class-lsx-to-tour.php:144, templates/content-widget-tour.php:30
+#: classes/class-lsx-to-tour.php:144, templates/content-widget-tour.php:29
 msgid "View Tour"
 msgstr ""
 
@@ -1128,7 +1128,7 @@ msgstr ""
 msgid "No tours found in Trash"
 msgstr ""
 
-#: classes/class-lsx-to-tour.php:198, classes/class-lsx-to-tour.php:469, includes/layout.php:336, templates/content-tour.php:23, templates/content-widget-tour.php:25
+#: classes/class-lsx-to-tour.php:198, classes/class-lsx-to-tour.php:469, includes/layout.php:336, templates/content-tour.php:23, templates/content-widget-tour.php:24
 msgid "Duration"
 msgstr ""
 
@@ -1320,7 +1320,7 @@ msgstr ""
 msgid "Travel Regions Within "
 msgstr ""
 
-#: templates/content-accommodation.php:21, templates/content-destination.php:23, templates/content-tour.php:22, includes/template-tags/general.php:160
+#: templates/content-accommodation.php:21, templates/content-destination.php:23, templates/content-tour.php:22, includes/template-tags/general.php:158
 msgid "Summary"
 msgstr ""
 
@@ -1756,7 +1756,7 @@ msgstr ""
 msgid "Please consider signing up to our Tourism Industry newsletter"
 msgstr ""
 
-#: includes/template-tags/general.php:510, includes/template-tags/general.php:521
+#: includes/template-tags/general.php:508, includes/template-tags/general.php:519
 msgid "Enquire"
 msgstr ""
 
