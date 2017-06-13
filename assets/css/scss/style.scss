@@ -2330,7 +2330,11 @@ body.single-tour-operator {
 
 .lsx-widget-itens { margin-top: -4.25rem; }
 
-.lsx-widget-item-wrap { margin-top: 4.25rem; }
+.lsx-widget-item-wrap {
+	margin-top: 4.25rem;
+
+	.lsx-to-slider-inner & { padding: 0 15px 5px; }
+}
 
 .lsx-to-slider-inner {
 	@include media('>=tablet') {

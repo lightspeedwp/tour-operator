@@ -1549,6 +1549,8 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-widget-item-wrap { margin-top: 4.25rem; }
 
+.lsx-to-slider-inner .lsx-widget-item-wrap { padding: 0 15px 5px; }
+
 @media (min-width: 992px) { .lsx-to-slider-inner { margin: 0 auto; width: calc(100% - 10.8rem); } }
 
 .lsx-to-slider-inner .slick-dots { -webkit-box-align: center; -ms-flex-align: center; align-items: center; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row wrap; flex-flow: row wrap; height: auto; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; list-style: none; margin: 2rem 0 0; padding: 0; }
