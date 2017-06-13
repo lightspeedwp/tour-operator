@@ -35,11 +35,6 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 		} else {
 			$title_link = false;
 		}
-		if (isset($instance['tagline'])) {
-			$tagline = $instance['tagline'];
-		} else {
-			$tagline = false;
-		}
 		if (isset($instance['columns'])) {
 			$columns = $instance['columns'];
 		} else {
@@ -182,13 +177,9 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
         	$title = $before_title . $link_open . $title . $link_close . $after_title;
         	echo wp_kses_post(apply_filters('lsx_to_taxonomy_widget_title', $title));
         }
-        if ( false != $tagline ) {
-        	echo wp_kses_post('<p class="tagline">'.$tagline.'</p>');
-        }
 
 		$args = array(
 			'title'  => $title,
-			'tagline' => $tagline,
 			'link' => $title_link,
 			'columns' => $columns,
 			'orderby' => $orderby,
@@ -218,7 +209,6 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
     function update($new_instance, $old_instance) {
     $instance = $old_instance;
     $instance['title'] = wp_kses_post( force_balance_tags( $new_instance['title'] ) );
-    $instance['tagline'] = wp_kses_post( force_balance_tags( $new_instance['tagline'] ) );
     $instance['title_link'] = strip_tags( $new_instance['title_link'] );
     $instance['columns'] = strip_tags( $new_instance['columns'] );
     $instance['orderby'] = strip_tags( $new_instance['orderby'] );
@@ -244,7 +234,6 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
         $defaults = array(
             'title' => '',
             'title_link' => '',
-        	'tagline' => '',
             'columns' => '1',
             'orderby' => 'date',
             'order' => 'DESC',
@@ -266,7 +255,6 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 
         $title    = esc_attr($instance['title']);
         $title_link    = esc_attr($instance['title_link']);
-        $tagline    = esc_attr($instance['tagline']);
         $columns  = esc_attr($instance['columns']);
         $orderby  = esc_attr($instance['orderby']);
         $order  = esc_attr($instance['order']);
@@ -299,13 +287,6 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 				value="<?php echo wp_kses_post($title_link); ?>" /> <small><?php esc_html_e( 'Link the widget title to
 				a URL','tour-operator' ); ?></small>
 		</p>
-		<p>
-			<label for="<?php echo wp_kses_post($this->get_field_id('tagline')); ?>"><?php esc_html_e('Tagline:','tour-operator'); ?></label>
-			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('tagline')); ?>"
-				name="<?php echo wp_kses_post($this->get_field_name('tagline')); ?>" type="text"
-				value="<?php echo wp_kses_post($tagline); ?>" />
-		</p>
-
 		<h4 class="widget-title" style="border-top: 1px solid #e5e5e5;padding-top:10px;"><?php esc_html_e('Query','tour-operator');?></h4>
 		<p>
 			<label for="<?php echo wp_kses_post($this->get_field_id('taxonomy')); ?>"><?php esc_html_e( 'Taxonomy:', 'tour-operator' ); ?></label>
@@ -454,7 +435,6 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
     	global $columns,$term,$taxonomy,$disable_placeholder;
     	extract( shortcode_atts( array(
     	'tag' => 'h3',
-    	'tagline' => '',
     	'columns' => 1,
     	'orderby' => 'date',
     	'order' => 'DESC',
