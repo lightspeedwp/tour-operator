@@ -143,7 +143,7 @@ msgstr ""
 msgid "Featured"
 msgstr ""
 
-#: classes/class-lsx-to-accommodation.php:254, classes/class-lsx-to-admin.php:594, classes/class-lsx-to-destination.php:178, classes/class-lsx-to-settings.php:443, classes/class-lsx-to-tour.php:196, classes/class-lsx-to-tour.php:337, includes/settings/post.php:20
+#: classes/class-lsx-to-accommodation.php:254, classes/class-lsx-to-admin.php:591, classes/class-lsx-to-destination.php:178, classes/class-lsx-to-settings.php:443, classes/class-lsx-to-tour.php:196, classes/class-lsx-to-tour.php:337, includes/settings/post.php:20
 msgid "Tagline"
 msgstr ""
 
@@ -491,7 +491,7 @@ msgstr ""
 msgid "From price"
 msgstr ""
 
-#: classes/class-lsx-to-accommodation.php:581, classes/class-lsx-to-admin.php:122, classes/class-lsx-to-admin.php:122, includes/functions.php:585, includes/layout.php:139, includes/layout.php:319, includes/template-tags/destination.php:25, includes/template-tags/destination.php:55, includes/template-tags/destination.php:96, includes/template-tags/destination.php:118
+#: classes/class-lsx-to-accommodation.php:581, classes/class-lsx-to-admin.php:119, classes/class-lsx-to-admin.php:119, includes/functions.php:585, includes/layout.php:139, includes/layout.php:319, includes/template-tags/destination.php:25, includes/template-tags/destination.php:55, includes/template-tags/destination.php:96, includes/template-tags/destination.php:118
 msgstr ""
 
 #: classes/class-lsx-to-accommodation.php:602, classes/class-lsx-to-destination.php:378, classes/class-lsx-to-tour.php:521, includes/layout.php:122, includes/layout.php:197, includes/layout.php:302, templates/archive-destination.php:164
@@ -502,123 +502,123 @@ msgstr ""
 msgid "Videos"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:111, classes/class-lsx-to-admin.php:289
+#: classes/class-lsx-to-admin.php:108, classes/class-lsx-to-admin.php:286
 msgid "Dashboard"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:112, includes/settings/help.php:83
+#: classes/class-lsx-to-admin.php:109, includes/settings/help.php:83
 msgid "Tour Operator"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:126, classes/class-lsx-to-admin.php:126
+#: classes/class-lsx-to-admin.php:123, classes/class-lsx-to-admin.php:123
 msgid "$tax_label_plural"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:129, classes/class-lsx-to-admin.php:129
+#: classes/class-lsx-to-admin.php:126, classes/class-lsx-to-admin.php:126
 msgid "Help"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:130, classes/class-lsx-to-admin.php:130
+#: classes/class-lsx-to-admin.php:127, classes/class-lsx-to-admin.php:127
 msgid "Add-ons"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:324, classes/class-lsx-to-admin.php:327, classes/class-lsx-to-admin.php:334, classes/class-tour-operator.php:281, templates/archive-destination.php:159
+#: classes/class-lsx-to-admin.php:321, classes/class-lsx-to-admin.php:324, classes/class-lsx-to-admin.php:331, classes/class-tour-operator.php:281, templates/archive-destination.php:159
 msgid "Travel Styles"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:325, classes/class-lsx-to-destination.php:296, classes/class-lsx-to-tour.php:470, classes/class-tour-operator.php:275, includes/layout.php:229, includes/layout.php:337, templates/content-destination.php:25, templates/content-tour.php:27, templates/content-widget-tour.php:26
+#: classes/class-lsx-to-admin.php:322, classes/class-lsx-to-destination.php:296, classes/class-lsx-to-tour.php:470, classes/class-tour-operator.php:275, includes/layout.php:229, includes/layout.php:337, templates/content-destination.php:25, templates/content-tour.php:27, templates/content-widget-tour.php:26
 msgid "Travel Style"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:326
+#: classes/class-lsx-to-admin.php:323
 msgid "Search Travel Styles"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:328
+#: classes/class-lsx-to-admin.php:325
 msgid "Parent Travel Style"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:329
+#: classes/class-lsx-to-admin.php:326
 msgid "Parent Travel Style:"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:330
+#: classes/class-lsx-to-admin.php:327
 msgid "Edit Travel Style"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:331
+#: classes/class-lsx-to-admin.php:328
 msgid "Update Travel Style"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:332
+#: classes/class-lsx-to-admin.php:329
 msgid "Add New Travel Style"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:333
+#: classes/class-lsx-to-admin.php:330
 msgid "New Travel Style"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:350, classes/class-lsx-to-admin.php:353, classes/class-lsx-to-admin.php:360, classes/class-tour-operator.php:282
+#: classes/class-lsx-to-admin.php:347, classes/class-lsx-to-admin.php:350, classes/class-lsx-to-admin.php:357, classes/class-tour-operator.php:282
 msgid "Brands"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:351, classes/class-tour-operator.php:276, templates/content-accommodation.php:26, templates/content-widget-accommodation.php:26, includes/template-tags/accommodation.php:292
+#: classes/class-lsx-to-admin.php:348, classes/class-tour-operator.php:276, templates/content-accommodation.php:26, templates/content-widget-accommodation.php:26, includes/template-tags/accommodation.php:292
 msgid "Brand"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:352
+#: classes/class-lsx-to-admin.php:349
 msgid "Search Brands"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:354
+#: classes/class-lsx-to-admin.php:351
 msgid "Parent Brand"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:355
+#: classes/class-lsx-to-admin.php:352
 msgid "Parent Brand:"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:356
+#: classes/class-lsx-to-admin.php:353
 msgid "Edit Brand"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:357
+#: classes/class-lsx-to-admin.php:354
 msgid "Update Brand"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:358
+#: classes/class-lsx-to-admin.php:355
 msgid "Add New Brand"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:359
+#: classes/class-lsx-to-admin.php:356
 msgid "New Brand"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:485, classes/class-lsx-to-settings.php:75, classes/class-lsx-to-settings.php:75, classes/class-lsx-to-settings.php:169, includes/settings/api.php:4
+#: classes/class-lsx-to-admin.php:482, classes/class-lsx-to-settings.php:75, classes/class-lsx-to-settings.php:75, classes/class-lsx-to-settings.php:169, includes/settings/api.php:4
 msgid "Settings"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:486
+#: classes/class-lsx-to-admin.php:483
 msgid "Documentation"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:487, includes/settings/help.php:103
+#: classes/class-lsx-to-admin.php:484, includes/settings/help.php:103
 msgid "Support"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:523, classes/class-lsx-to-tour.php:341
+#: classes/class-lsx-to-admin.php:520, classes/class-lsx-to-tour.php:341
 msgid "Featured Image"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:529, classes/class-lsx-to-placeholders.php:384, classes/class-lsx-to-placeholders.php:399, classes/class-lsx-to-placeholders.php:414, classes/class-lsx-to-placeholders.php:452, classes/class-lsx-to-placeholders.php:468, classes/class-lsx-to-settings.php:341, includes/settings/post.php:14
+#: classes/class-lsx-to-admin.php:526, classes/class-lsx-to-placeholders.php:384, classes/class-lsx-to-placeholders.php:399, classes/class-lsx-to-placeholders.php:414, classes/class-lsx-to-placeholders.php:452, classes/class-lsx-to-placeholders.php:468, classes/class-lsx-to-settings.php:341, includes/settings/post.php:14
 msgid "Choose Image"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:530
+#: classes/class-lsx-to-admin.php:527
 msgid "Remove Image"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:609
+#: classes/class-lsx-to-admin.php:606
 msgid "Select featured image"
 msgstr ""
 
@@ -786,7 +786,7 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: classes/class-lsx-to-frontend.php:381, classes/class-lsx-to-frontend.php:392, includes/functions.php:363
+#: classes/class-lsx-to-frontend.php:375, classes/class-lsx-to-frontend.php:386, includes/functions.php:363
 msgid "Read More"
 msgstr ""
 

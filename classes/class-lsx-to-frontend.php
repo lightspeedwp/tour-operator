@@ -183,12 +183,6 @@ class LSX_TO_Frontend extends Tour_Operator {
 	 * @return    null
 	 */
 	public function enqueue_stylescripts() {
-		if ( defined( 'WP_DEBUG' ) && true === WP_DEBUG ) {
-			$min = '';
-		} else {
-			$min = '.min';
-		}
-
 		$current_theme = wp_get_theme();
 		$current_template = $current_theme->get_template();
 		$theme_name = $current_theme->get( 'Name' );
