@@ -1529,7 +1529,7 @@ body.home .page-banner.rotating .page-banner-image:after { display: none; }
 
 body.home .page-banner header.page-header { display: block; }
 
-body.home .page-banner .banner-content { max-width: 600px; margin: 0 auto; text-align: center; }
+body.home .page-banner .banner-content { max-width: 600px; margin: 12px auto 0 auto; text-align: center; }
 
 body.home .page-banner .banner-content p { font-size: 18px; margin: 7px 0 24px; color: #fff; }
 
