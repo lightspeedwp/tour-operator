@@ -164,11 +164,13 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
             $buttons = false;
 
         if ( $title_link ) {
-            $link_open = "<a href='$title_link'>";
-            $link_close = "</a>";
+            #$link_open = "<a href='$title_link'>";
+			$link_open = '';
+            #$link_close = "</a>";
+			$link_close = '';
         } else {
-            $link_open = "";
-            $link_close = "";
+			$link_open = '';
+			$link_close = '';
         }
 
         $class = 'class="'.$class.' ';
