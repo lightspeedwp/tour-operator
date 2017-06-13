@@ -786,7 +786,7 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: classes/class-lsx-to-frontend.php:363, classes/class-lsx-to-frontend.php:374, includes/functions.php:363
+#: classes/class-lsx-to-frontend.php:381, classes/class-lsx-to-frontend.php:392, includes/functions.php:363
 msgid "Read More"
 msgstr ""
 

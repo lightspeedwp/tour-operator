@@ -189,39 +189,57 @@ class LSX_TO_Frontend extends Tour_Operator {
 			$min = '.min';
 		}
 
-		if(!isset($this->options['display']['disable_js'])){
-			wp_enqueue_script( 'fixto', LSX_TO_URL . 'assets/js/vendor/fixto.min.js', array( 'jquery' ), LSX_TO_VER, true );
-			wp_enqueue_script( 'slick', LSX_TO_URL . 'assets/js/vendor/slick.min.js', array( 'jquery' ) , LSX_TO_VER, true );
-			wp_enqueue_script( 'tour-operator-script', LSX_TO_URL . 'assets/js/custom.min.js', array( 'jquery', 'fixto', 'slick' ), LSX_TO_VER, true );
-		}
-		if(!isset($this->options['display']['disable_css'])){
-			wp_enqueue_style( 'tour-operator-style', LSX_TO_URL . 'assets/css/style.css', array(), LSX_TO_VER );
-			wp_style_add_data( 'tour-operator-style', 'rtl', 'replace' );
+		$current_theme = wp_get_theme();
+		$current_template = $current_theme->get_template();
+		$theme_name = $current_theme->get( 'Name' );
+		$is_lsx_theme = 'lsx' === $current_template || 'LSX' === $theme_name;
 
-			$current_theme = wp_get_theme();
-			$current_template = $current_theme->get_template();
-			$theme_name = $current_theme->get( 'Name' );
-			$is_lsx_theme = 'lsx' === $current_template || 'LSX' === $theme_name;
+		$has_font_awesome = $is_lsx_theme ? true : wp_script_is( 'font_awesome', 'queue' ) || wp_script_is( 'fontawesome', 'queue' );
+		$has_bootstrap = $is_lsx_theme ? true : wp_script_is( 'bootstrap', 'queue' );
+		$has_slick = wp_script_is( 'slick', 'queue' );
+
+		if ( ! isset( $this->options['display']['disable_js'] ) ) {
+			$js_dependencies = array( 'jquery', 'fixto' );
+
+			if ( ! $has_slick ) {
+				array_push( $js_dependencies, 'slick' );
+				wp_enqueue_script( 'slick', LSX_TO_URL . 'assets/js/vendor/slick.min.js', array( 'jquery' ) , LSX_TO_VER, true );
+			}
+
+			wp_enqueue_script( 'fixto', LSX_TO_URL . 'assets/js/vendor/fixto.min.js', array( 'jquery' ), LSX_TO_VER, true );
+			wp_enqueue_script( 'tour-operator-script', LSX_TO_URL . 'assets/js/custom.min.js', $js_dependencies, LSX_TO_VER, true );
+		}
+
+		if ( ! isset( $this->options['display']['disable_css'] ) ) {
+			$css_dependencies = array();
 
 			if ( ! $is_lsx_theme ) {
-				$has_font_awesome = wp_script_is( 'font_awesome', 'queue' ) || wp_script_is( 'fontawesome', 'queue' );
-				$has_bootstrap = wp_script_is( 'bootstrap', 'queue' );
 
 				if ( ! $has_font_awesome ) {
+					array_push( $css_dependencies, 'font_awesome' );
 					wp_enqueue_style( 'font_awesome', LSX_TO_URL . 'assets/css/vendor/font-awesome.css', array(), LSX_TO_VER );
 					wp_style_add_data( 'font_awesome', 'rtl', 'replace' );
 				}
 
 				// TODO
 				// if ( ! $has_bootstrap ) {
-					// wp_enqueue_style( 'bootstrap', LSX_TO_URL . 'assets/css/style-bootstrap.css', array(), LSX_TO_VER );
-					// wp_enqueue_script( 'bootstrap', LSX_TO_URL . 'assets/js/bootstrap-scripts.min.js', array( 'jquery' ), LSX_TO_VER, true );
+				// 	array_push( $css_dependencies, 'bootstrap' );
+				// 	wp_enqueue_style( 'bootstrap', LSX_TO_URL . '', array(), LSX_TO_VER );
+				//  wp_style_add_data( 'bootstrap', 'rtl', 'replace' );
 				// }
 			}
 
+			if ( ! $has_slick ) {
+				array_push( $css_dependencies, 'slick' );
+				wp_enqueue_style( 'slick', LSX_TO_URL . 'assets/css/vendor/slick.css', array(), LSX_TO_VER );
+			}
+
+			wp_enqueue_style( 'tour-operator-style', LSX_TO_URL . 'assets/css/style.css', $css_dependencies, LSX_TO_VER );
+			wp_style_add_data( 'tour-operator-style', 'rtl', 'replace' );
 		}
-		if(defined('JETPACK__VERSION') && defined('WP_SHARING_PLUGIN_URL')){
-			wp_enqueue_style( 'sharing', WP_SHARING_PLUGIN_URL.'sharing.css', false, JETPACK__VERSION );
+
+		if ( defined( 'JETPACK__VERSION' ) && defined( 'WP_SHARING_PLUGIN_URL' ) ) {
+			wp_enqueue_style( 'sharing', WP_SHARING_PLUGIN_URL . 'sharing.css', false, JETPACK__VERSION );
 		}
 	}
 
