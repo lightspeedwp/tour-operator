@@ -123,11 +123,6 @@ class LSX_TO_Widget extends WP_Widget {
 		} else {
 			$interval = false;
 		}
-		if (isset($instance['indicators'])) {
-			$indicators = $instance['indicators'];
-		} else {
-			$indicators = false;
-		}
 
 		//arguments
 		if (isset($args['before_widget'])) {
@@ -214,8 +209,7 @@ class LSX_TO_Widget extends WP_Widget {
 				'featured' => $featured,
 				'post_type' => $post_type,
 				'class' => $class,
-				'interval' => $interval,
-				'indicators' => $indicators,
+				'interval' => $interval
 			);
 
 
@@ -249,7 +243,6 @@ class LSX_TO_Widget extends WP_Widget {
 	    $instance['post_type'] = strip_tags( $new_instance['post_type'] );
 	    $instance['class'] = strip_tags( $new_instance['class'] );
 	    $instance['interval'] = strip_tags( $new_instance['interval'] );
-	    $instance['indicators'] = strip_tags( $new_instance['indicators'] );
     return $instance;
     }
 
@@ -273,8 +266,7 @@ class LSX_TO_Widget extends WP_Widget {
         	'featured' => 0,
         	'post_type' => 'accommodation',
         	'class' => '',
-        	'interval' => '7000',
-        	'indicators' => 1
+        	'interval' => '7000'
         );
 
         $defaults['carousel'] = 0;
@@ -300,9 +292,6 @@ class LSX_TO_Widget extends WP_Widget {
         $interval = esc_attr($instance['interval']);
         $carousel = esc_attr($instance['carousel']);
         $interval = esc_attr($instance['interval']);
-        $indicators = esc_attr($instance['indicators']);
-
-
         ?>
 		<p>
 			<label for="<?php echo wp_kses_post($this->get_field_id('title')); ?>"><?php esc_html_e('Title:','tour-operator'); ?></label>
@@ -445,13 +434,6 @@ class LSX_TO_Widget extends WP_Widget {
 		</p>
 
 		<p>
-			<input id="<?php echo wp_kses_post($this->get_field_id('indicators')); ?>"
-				name="<?php echo wp_kses_post($this->get_field_name('indicators')); ?>" type="checkbox"
-				value="1" <?php checked( '1', $indicators ); ?> /> <label
-				for="<?php echo wp_kses_post($this->get_field_id('indicators')); ?>"><?php esc_html_e('Show Indicators','tour-operator'); ?></label>
-		</p>
-
-		<p>
 			<label for="<?php echo wp_kses_post($this->get_field_id('post_type')); ?>"><?php esc_html_e( 'Post Type:', 'tour-operator' ); ?></label>
 			<select name="<?php echo wp_kses_post($this->get_field_name('post_type')); ?>" id="<?php echo wp_kses_post($this->get_field_id('post_type')); ?>"	class="widefat layout">
 	            <?php
@@ -518,8 +500,7 @@ class LSX_TO_Widget extends WP_Widget {
     	'layout' => 'standard',
     	'featured' => false,
     	'post_type' => 'accommodation',
-    	'interval' => '7000',
-    	'indicators' => 1
+    	'interval' => '7000'
     	), $atts ) );
 
     	$output = "";
@@ -572,12 +553,12 @@ class LSX_TO_Widget extends WP_Widget {
 			$count = 1;
 
 			//output the opening boostrap row divs
-			$this->before_while($columns,$carousel,$post_type,$widget_query->post_count);
+			$this->before_while($columns,$carousel,$post_type,$widget_query->post_count,$interval);
 
 			while ( $widget_query->have_posts() ) {
 				$widget_query->the_post();
 
-				$this->loop_start($columns,$carousel,$post_type,$widget_query->post_count,$count,$interval);
+				$this->loop_start($columns,$carousel,$post_type,$widget_query->post_count,$count);
 				echo wp_kses_post('<div '.lsx_to_widget_class(true).'>');
 				$this->content_part('content','widget-'.$post_type);
 				echo wp_kses_post('</div>');

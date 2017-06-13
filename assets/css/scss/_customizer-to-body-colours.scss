@@ -1,0 +1,26 @@
+@mixin customizer-to-body-colours($breaker: #DADDDF, $color: #4A4A4A, $hover: #F7AE00) {
+	.lsx-to-slider-inner {
+		.slick-dots {
+			& > li {
+				& > button { border-color: $color; }
+
+				&.slick-active > button { background-color: $color; }
+			}
+		}
+
+		.slick-arrow {
+			border-color: $color;
+			color: $color;
+
+			&:hover {
+				border-color: $hover;
+				color: $hover;
+			}
+
+			&.slick-disabled {
+				border-color: $breaker;
+				color: $breaker;
+			}
+		}
+	}
+}
