@@ -803,105 +803,105 @@ $orange-dark: #f7741d;
 	}
 }
 
-%panel-home-group {
-	& > .widget-title,
-	& > .section-title {
-		margin: 0;
-		padding: 10px 0 40px;
-		font-size: 32px;
-		text-align: center;
+// %panel-home-group {
+// 	& > .widget-title,
+// 	& > .section-title {
+// 		margin: 0;
+// 		padding: 10px 0 40px;
+// 		font-size: 32px;
+// 		text-align: center;
 
-		a {
-			color: $black;
+// 		a {
+// 			color: $black;
 
-			&:hover,
-			&:focus,
-			&:active {
-				color: $blue;
-			}
-		}
-	}
+// 			&:hover,
+// 			&:focus,
+// 			&:active {
+// 				color: $blue;
+// 			}
+// 		}
+// 	}
 
-	& > .tagline {
-		color: $grey;
-		font-size: 16px;
-		line-height: 25px;
-		max-width: 625px !important;
-		margin: 0 auto 45px auto;
-		text-align: center;
+// 	& > .tagline {
+// 		color: $grey;
+// 		font-size: 16px;
+// 		line-height: 25px;
+// 		max-width: 625px !important;
+// 		margin: 0 auto 45px auto;
+// 		text-align: center;
 
-		&:not(:first-child) {
-			margin-top: -20px;
-		}
-	}
+// 		&:not(:first-child) {
+// 			margin-top: -20px;
+// 		}
+// 	}
 
-	& > .view-more {
-		//margin-bottom: 80px;
-		text-align: center;
-	}
+// 	& > .view-more {
+// 		//margin-bottom: 80px;
+// 		text-align: center;
+// 	}
 
-	& .slider-container + .view-more {
-		margin-top: 40px;
-	}
+// 	& .slider-container + .view-more {
+// 		margin-top: 40px;
+// 	}
 
-	.panel {
-		@extend %clear-panel;
-		@extend %panel-root;
+// 	.panel {
+// 		@extend %clear-panel;
+// 		@extend %panel-root;
 
-		& > article {
-			@extend %panel;
-		}
-	}
+// 		& > article {
+// 			@extend %panel;
+// 		}
+// 	}
 
-	.lsx-review {
-		.panel {
-			& > article {
-				margin-top: 45px;
+// 	.lsx-review {
+// 		.panel {
+// 			& > article {
+// 				margin-top: 45px;
 
-				.thumbnail {
-					text-align: center;
-					background-color: transparent;
-					margin-top: -65px;
+// 				.thumbnail {
+// 					text-align: center;
+// 					background-color: transparent;
+// 					margin-top: -65px;
 
-					img {
-						width: 90px;
-						height: 90px;
-						border-radius: 50%;
-					}
-				}
+// 					img {
+// 						width: 90px;
+// 						height: 90px;
+// 						border-radius: 50%;
+// 					}
+// 				}
 
-				.title {
-					text-align: center;
-				}
+// 				.title {
+// 					text-align: center;
+// 				}
 
-				.meta {
-					font-size: 13px;
-				}
+// 				.meta {
+// 					font-size: 13px;
+// 				}
 
-				p {
-					color: $grey;
-					font-size: 15px;
-					line-height: 23px;
-					margin: 0;
+// 				p {
+// 					color: $grey;
+// 					font-size: 15px;
+// 					line-height: 23px;
+// 					margin: 0;
 
-					&:first-of-type {
-						padding-top: 15px;
-						margin-top: 13px;
-						border-top: 1px solid $border-grey;
-					}
-				}
-			}
-		}
-	}
+// 					&:first-of-type {
+// 						padding-top: 15px;
+// 						margin-top: 13px;
+// 						border-top: 1px solid $border-grey;
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
 
-	.lsx-accommodation-brand {
-		.panel {
-			& > article {
-				padding-bottom: 15px;
-			}
-		}
-	}
-}
+// 	.lsx-accommodation-brand {
+// 		.panel {
+// 			& > article {
+// 				padding-bottom: 15px;
+// 			}
+// 		}
+// 	}
+// }
 
 %panel-internal {
 	@extend %panel;
@@ -1631,7 +1631,7 @@ body.home {
 	// ---------- Widgets ----------
 
 	aside.lsx-widget {
-		@extend %panel-home-group;
+		// @extend %panel-home-group;
 		// @extend %bootstrap-carousel;
 	}
 
@@ -1700,7 +1700,7 @@ body.archive-tour-operator {
 
 	#safari-brands,
 	#travel-styles {
-		@extend %panel-home-group;
+		// @extend %panel-home-group;
 		// @extend %bootstrap-carousel;
 	}
 
@@ -2291,6 +2291,46 @@ body.single-tour-operator {
 		}
 	}
 }
+
+.col-xs-15,
+.col-sm-15,
+.col-md-15,
+.col-lg-15 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.col-xs-15 {
+    width: 20%;
+    float: left;
+}
+
+@include media('>=phone') {
+.col-sm-15 {
+        float: left;
+        width: 20%;
+    }
+}
+
+@include media('>=tablet') {
+    .col-md-15 {
+        float: left;
+        width: 20%;
+    }
+}
+
+@include media('>=desktop') {
+    .col-lg-15 {
+        float: left;
+        width: 20%;
+    }
+}
+
+.lsx-widget-itens { margin-top: -4.25rem; }
+
+.lsx-widget-item-wrap { margin-top: 4.25rem; }
 
 .lsx-to-slider-inner {
 	@include media('>=tablet') {
