@@ -5,7 +5,7 @@
  * @package   LSX_TO_Banner_Integration
  * @author    LightSpeed
  * @license   GPL3
- * @link      
+ * @link
  * @copyright 2016 LightSpeedDevelopment
  */
 
@@ -33,18 +33,17 @@ class LSX_TO_Banner_Integration {
 		add_filter('lsx_banner_enable_placeholder', function( $bool ) { return true; });
 		add_filter('lsx_banner_placeholder_url', array($this,'banner_placeholder_url'));
 
-		add_filter('lsx_banner_enable_title', function( $bool ) { return true; });	
+		add_filter('lsx_banner_enable_title', function( $bool ) { return true; });
 		add_filter('lsx_banner_enable_subtitle', function( $bool ) { return true; });
 	}
-	
+
 	/**
 	 * Init
 	 */
 	public function init() {
-		if(class_exists('LSX_Banners')){			
+		if(class_exists('LSX_Banners')){
 			add_filter( 'lsx_banner_allowed_post_types', array( $this, 'enable_banners'));
 			add_filter( 'lsx_banner_allowed_taxonomies', array( $this, 'enable_taxonomy_banners'));
-			add_action('lsx_banner_content',array( $this, 'banner_content'));	
 			add_filter( 'lsx_banner_post_type_archive_url', array( $this, 'banner_archive_url'));
 			add_action('lsx_banner_content',array( $this, 'posts_page_banner_tagline'));
 			add_filter('lsx_banner_title', array($this,'banner_title'),100 );
@@ -54,8 +53,8 @@ class LSX_TO_Banner_Integration {
 				add_filter('lsx_banners_envira_enable', function( $bool ) { return false; });
 			}
 		}
-	}	
-	
+	}
+
 	/**
 	 * Enables the lsx banners
 	 *
@@ -65,7 +64,7 @@ class LSX_TO_Banner_Integration {
 		$allowed_post_types = array_merge($allowed_post_types,$this->post_types);
 		return $allowed_post_types;
 	}
-	
+
 	/**
 	 * Enables the lsx banners for taxonomies
 	 *
@@ -75,7 +74,7 @@ class LSX_TO_Banner_Integration {
 		$allowed_taxonomies = array_merge($allowed_taxonomies,$this->taxonomies);
 		return $allowed_taxonomies;
 	}
-	
+
 	/**
 	 * A filter that outputs the description for the post_type and taxonomy archives.
 	 */
@@ -96,13 +95,13 @@ class LSX_TO_Banner_Integration {
 		$tour_operator = tour_operator();
 		if(isset($tour_operator->options['general']) && isset($tour_operator->options['general']['banner_placeholder']) && '' !== $tour_operator->options['general']['banner_placeholder']){
 				$image = $tour_operator->options['general']['banner_placeholder'];
-		}			
+		}
 		if(isset($tour_operator->options[get_post_type()]) && isset($tour_operator->options[get_post_type()]['banner_placeholder']) && '' !== $tour_operator->options[get_post_type()]['banner_placeholder']){
 				$image = $tour_operator->options[get_post_type()]['banner_placeholder'];
 		}
 		return $image;
-	}	
-	
+	}
+
 	/**
 	 * A filter that outputs the description for the post_type and taxonomy archives.
 	 */
@@ -112,10 +111,10 @@ class LSX_TO_Banner_Integration {
 			$tagline = $tour_operator->options[get_post_type()]['tagline'];
 			?>
 			<p class="tagline"><?php echo wp_kses_post($tagline); ?></p>
-			<?php 
+			<?php
 		}
 	}
-		
+
 	/**
 	 * A filter that outputs the title for the post_type_archives.
 	 */
@@ -125,21 +124,5 @@ class LSX_TO_Banner_Integration {
 			$title = '<h1 class="page-title">'.$tour_operator->options[get_post_type()]['title'].'</h1>';
 		}
 		return $title;
-	}	
-	
-	/**
-	 * Add homepage banner content
-	 */
-	public function banner_content(){
-		if(is_front_page()){
-			?>
-			<div class="banner-content"><?php the_content(); ?></div>
-			<?php 
-		}
-		if(is_singular('post')){
-			?>
-			<div class="banner-content"><?php lsx_post_meta(); ?></div>
-			<?php 		
-		}
 	}
 }
