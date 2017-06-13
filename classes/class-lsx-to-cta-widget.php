@@ -3,18 +3,18 @@
  * @package   LSX_TO_CTA_Widget
  * @author    LightSpeed
  * @license   GPL3
- * @link      
+ * @link
  * @copyright 2016 LightSpeed
  *
  **/
 
 class LSX_TO_CTA_Widget extends WP_Widget {
-	
+
 	/**
 	 * Sets up the widgets name etc
 	 */
 	public function __construct() {
-		$widget_ops = array( 
+		$widget_ops = array(
 			'classname' => 'lsx-widget',
 			'description' => esc_html__('Displays a nifty call to action.','tour-operator'),
 		);
@@ -31,7 +31,7 @@ class LSX_TO_CTA_Widget extends WP_Widget {
         wp_enqueue_script('thickbox');
         wp_enqueue_style('thickbox');
     }
- 
+
     /** @see WP_Widget::widget -- do not rename this */
     public function widget( $args, $instance ) {
 
@@ -40,7 +40,7 @@ class LSX_TO_CTA_Widget extends WP_Widget {
 		} else {
 			$class = false;
 		}
-        
+
     	if (isset($instance['title'])) {
 			$title = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 		} else {
@@ -52,40 +52,40 @@ class LSX_TO_CTA_Widget extends WP_Widget {
 		$styletag = '';
     	if (isset($instance['image']) && ! empty($instance['image'])) {
 			$styletag .= 'background-image:url('.$instance['image'].');background-position-x:'.$instance['pos_x'].';background-position-y:'.$instance['pos_y'].';background-size:'.$instance['size'].';background-repeat:'.$instance['repeat'].';background-color:#'.$instance['color'].';';
-		}	
+		}
 		$styletag .= '';
 
 		$before_widget = str_replace('lsx-widget"', 'lsx-widget image-'.$instance['pos_x'].'"', $before_widget);
         $class = 'class="'.$class.' ';
 
         echo wp_kses_post(str_replace('class="',$class,$before_widget));
-        
+
         if ( false != $title ) {
         	$title = $before_title . $title . $after_title;
         	echo wp_kses_post(apply_filters('lsx_to_cta_widget_title', $title));
-        }    
+        }
 
         if ( false != $widget_text ) {
         	$text = apply_filters( 'widget_text', $widget_text, $instance, $this );
         	?>
         	<div class="textwidget">
 				<div class="lsx-full-width-alt" style="<?php echo wp_kses_post($styletag); ?>">
-					<div class="lsx-hero-unit">        	
+					<div class="lsx-hero-unit">
         				<?php echo !empty( $instance['filter'] ) ? wp_kses_post(wpautop( $text )) : wp_kses_post($text); ?>
         			</div>
         		</div>
-        	</div> 
-        	<?php  
+        	</div>
+        	<?php
         }
-                    
 
-        echo wp_kses_post($after_widget);    
+
+        echo wp_kses_post($after_widget);
     }
- 
+
     /** @see WP_Widget::update -- do not rename this */
-    function update($new_instance, $old_instance) {   
+    function update($new_instance, $old_instance) {
     	$instance = $old_instance;
-    	$instance['title'] = strip_tags( $new_instance['title'] );
+    	$instance['title'] = wp_kses_post( force_balance_tags( $new_instance['title'] ) );
     	$instance['image'] = $new_instance['image'];
     	$instance['class'] = strip_tags( $new_instance['class'] );
     	$instance['pos_x'] = $new_instance['pos_x'];
@@ -96,14 +96,14 @@ class LSX_TO_CTA_Widget extends WP_Widget {
 		if ( current_user_can('unfiltered_html') )
 			$instance['text'] =  $new_instance['text'];
 		else
-			$instance['text'] = wp_kses_post( stripslashes( $new_instance['text'] ) );    	
+			$instance['text'] = wp_kses_post( stripslashes( $new_instance['text'] ) );
     	return $instance;
     }
- 
+
     /** @see WP_Widget::form -- do not rename this */
-    function form($instance) {  
-    
-        $defaults = array( 
+    function form($instance) {
+
+        $defaults = array(
             'title' => '',
             'image' => false,
         	'class' => '',
@@ -114,7 +114,7 @@ class LSX_TO_CTA_Widget extends WP_Widget {
             'color' => 'no-repeat',
             'text' => '#333333',
         );
-        $instance = wp_parse_args( (array) $instance, $defaults );   
+        $instance = wp_parse_args( (array) $instance, $defaults );
         extract( $instance );
         ?>
 		<p>
@@ -124,29 +124,29 @@ class LSX_TO_CTA_Widget extends WP_Widget {
 				value="<?php echo wp_kses_post($title); ?>" />
 		</p>
 		<p><label for="<?php echo wp_kses_post($this->get_field_id( 'text' )); ?>"><?php esc_html_e( 'Content:' ); ?></label>
-		<textarea class="widefat" rows="16" cols="20" id="<?php echo wp_kses_post($this->get_field_id('text')); ?>" name="<?php echo wp_kses_post($this->get_field_name('text')); ?>"><?php echo esc_textarea( $text ); ?></textarea></p>		
+		<textarea class="widefat" rows="16" cols="20" id="<?php echo wp_kses_post($this->get_field_id('text')); ?>" name="<?php echo wp_kses_post($this->get_field_name('text')); ?>"><?php echo esc_textarea( $text ); ?></textarea></p>
 		<p>
 			<label for="<?php echo wp_kses_post($this->get_field_id('image')); ?>"><?php esc_html_e('Background Image:','tour-operator'); ?></label>
 			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('image')); ?>"
 				name="<?php echo wp_kses_post($this->get_field_name('image')); ?>" type="text"
 				value="<?php echo wp_kses_post($image); ?>" />
-			<input class="upload_image_button button button-primary" type="button" value="Upload Image" />	
+			<input class="upload_image_button button button-primary" type="button" value="Upload Image" />
 		</p>
 		<p>
 			<label for="<?php echo wp_kses_post($this->get_field_id('class')); ?>"><?php esc_html_e('Class:','lsx-framework'); ?></label>
 			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('class')); ?>"
 				name="<?php echo wp_kses_post($this->get_field_name('class')); ?>" type="text"
 				value="<?php echo wp_kses_post($class); ?>" />
-			<small>Add your own class to the opening element of the widget</small>	
-		</p>	
-		
+			<small>Add your own class to the opening element of the widget</small>
+		</p>
+
 		<h4 class="widget-title" style="border-top: 1px solid #e5e5e5;padding-top:10px;"><?php esc_html_e('Background CSS','lsx-framework');?></h4>
 		<p>
 			<label for="<?php echo wp_kses_post($this->get_field_id('color')); ?>"><?php esc_html_e('Colour:','tour-operator'); ?></label>
 			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('color')); ?>"
 				name="<?php echo wp_kses_post($this->get_field_name('color')); ?>" type="text"
 				value="<?php echo wp_kses_post($color); ?>" />
-		</p>		
+		</p>
 		<p>
 			<label for="<?php echo wp_kses_post($this->get_field_id('pos_x')); ?>"><?php esc_html_e('Position X:','tour-operator'); ?></label>
 			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('pos_x')); ?>"
@@ -165,7 +165,7 @@ class LSX_TO_CTA_Widget extends WP_Widget {
 				id="<?php echo wp_kses_post($this->get_field_id('size')); ?>" class="widefat">
 		            <?php
 		            $options = array(
-		                'Contain' => 'contain', 
+		                'Contain' => 'contain',
 		                'Cover' => 'cover'
 		                );
 		            foreach ($options as $name=>$value) {
@@ -180,7 +180,7 @@ class LSX_TO_CTA_Widget extends WP_Widget {
 				id="<?php echo wp_kses_post($this->get_field_id('repeat')); ?>" class="widefat">
 		            <?php
 		            $options = array(
-		                'No Repeat' => 'no-repeat', 
+		                'No Repeat' => 'no-repeat',
 		                'Repeat X' => 'repeat-x',
 		                'Repeat Y' => 'repeat-y'
 		                );
@@ -189,7 +189,7 @@ class LSX_TO_CTA_Widget extends WP_Widget {
 		            }
 		            ?>
 		    </select>
-		</p>		
+		</p>
 
 		<script>
 			jQuery(document).ready(function($) {
@@ -211,11 +211,11 @@ class LSX_TO_CTA_Widget extends WP_Widget {
 			        tb_show('', 'media-upload.php?type=image&TB_iframe=true');
 			        return false;
 			    });
-			});		
-		</script>	
+			});
+		</script>
 
 		<?php
-        
-    }	
+
+    }
 }
 ?>
