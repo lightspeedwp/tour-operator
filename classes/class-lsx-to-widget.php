@@ -525,45 +525,49 @@ class LSX_TO_Widget extends WP_Widget {
 		}
 
 		$widget_query = new WP_Query( $args );
-		if ($widget_query->have_posts()) {
 
-			if('review' === $post_type){
-				add_filter('lsx_to_placeholder_url', array($this,'placeholder') , 10 , 1 );
+		if ( $widget_query->have_posts() ) {
+
+			if ( 'review' === $post_type ) {
+				add_filter('lsx_to_placeholder_url', array( $this, 'placeholder' ), 10, 1 );
 			}
 
 			$count = 1;
 
 			//output the opening boostrap row divs
-			$this->before_while($columns,$carousel,$post_type,$widget_query->post_count,$interval);
+			$this->before_while( $columns, $carousel, $post_type, $widget_query->post_count, $interval );
 
 			while ( $widget_query->have_posts() ) {
 				$widget_query->the_post();
 
-				$this->loop_start($columns,$carousel,$post_type,$widget_query->post_count,$count);
-				echo wp_kses_post('<div '.lsx_to_widget_class(true).'>');
-				$this->content_part('content','widget-'.$post_type);
-				echo wp_kses_post('</div>');
-				$this->loop_end($columns,$carousel,$post_type,$widget_query->post_count,$count);
+				$this->loop_start( $columns, $carousel, $post_type, $widget_query->post_count, $count );
+
+				if ( ! $carousel ) {
+					echo wp_kses_post( '<div '. lsx_to_widget_class( $post_type, true ) .'>' );
+				}
+
+				$this->content_part( 'content', 'widget-'. $post_type );
+
+				if ( ! $carousel ) {
+					echo wp_kses_post( '</div>' );
+				}
+
+				$this->loop_end( $columns, $carousel, $post_type, $widget_query->post_count, $count );
 
 				$count++;
 			}
 
 			//output the closing boostrap row divs
-			$this->after_while($columns,$carousel,$post_type,$widget_query->post_count);
+			$this->after_while( $columns, $carousel, $post_type, $widget_query->post_count );
 
-			if(false !== $buttons && false !== $link){
-
-				echo wp_kses_post('
-									<div class="view-more">
-									<a href="'.$link.'" class="btn">'.$button_text.'</a>
-									</div>
-								');
+			if ( false !== $buttons && false !== $link ) {
+				echo wp_kses_post( '<div class="view-more"><a href="'. $link .'" class="btn">'. $button_text .'</a></div>' );
 			}
 
 			wp_reset_postdata();
 
-			if('review' === $post_type){
-				remove_filter('lsx_to_placeholder_url', array($this,'placeholder') , 10 , 1 );
+			if ( 'review' === $post_type ) {
+				remove_filter( 'lsx_to_placeholder_url', array( $this, 'placeholder' ), 10, 1 );
 			}
 		}
 	}
@@ -586,62 +590,69 @@ class LSX_TO_Widget extends WP_Widget {
 	/**
 	 * Runs just after the if and before the while statement in $this->output()
 	 */
-	public function before_while($columns = 1,$carousel = 0,$post_type='',$post_count = 0,$interval='false') {
+	public function before_while( $columns = 1, $carousel = 0, $post_type = '', $post_count = 0, $interval = 'false' ) {
 		$output = '';
-		// Carousel Output Opening
-		if ($carousel) {
-			$landing_image = '';
-			$this->carousel_id = rand ( 20, 20000 );
 
-			$output .= "<div class='slider-container'>";
+		// Carousel Output Opening
+		if ( $carousel ) {
+			$landing_image = '';
+			$this->carousel_id = rand( 20, 20000 );
+
+			$output .= "<div class='slider-container lsx-widget-itens'>";
 			$output .= "<div id='slider-{$this->carousel_id}' class='lsx-to-slider'>";
 			$output .= '<div class="lsx-to-slider-wrap">';
 			$output .= "<div class='lsx-to-slider-inner' data-interval='{$interval}' data-slick='{ \"slidesToShow\": {$columns}, \"slidesToScroll\": {$columns} }'>";
 		} else {
-			$output .= "<div class='row lsx-{$post_type}'>";
+			$output .= "<div class='lsx-widget-itens'>";
 		}
-		echo wp_kses_post($output);
+
+		echo wp_kses_post( $output );
 	}
 
 	/**
 	 * Runs at the very end of the loop before it runs again.
 	 */
-	public function loop_start($columns = 1,$carousel = 0,$post_type='',$post_count = 0,$count = 0){
+	public function loop_start( $columns = 1, $carousel = 0, $post_type = '', $post_count = 0, $count = 0 ) {
 		$output = '';
+
 		// Get the call for the active slide
-		if ($carousel) {
-			$output .= "<div class='item row'><div class='lsx-{$post_type}'>";
-		} elseif ( 1 == $count) {
-			$output .= "<div class='row lsx-{$post_type}'>";
+		if ( $carousel ) {
+			$output .= "<div class='lsx-widget-item-wrap lsx-{$post_type}'>";
+		} elseif ( 1 === $count ) {
+			$output .= "<div class='row'>";
 		}
 
-		echo wp_kses_post($output);
+		echo wp_kses_post( $output );
 	}
 
 	/**
 	 * Runs at the very end of the loop before it runs again.
 	 */
-	public function loop_end($columns = 1,$carousel = 0,$post_type='',$post_count = 0,$count = 0){
+	public function loop_end( $columns = 1, $carousel = 0, $post_type = '', $post_count = 0, $count = 0 ) {
 		$output = '';
+
 		// Close the current slide panel
-		if ($carousel) {
-			$output .= "</div></div>";
-		} elseif (0 == $count % $columns || $count === $post_count) {
+		if ( $carousel ) {
 			$output .= "</div>";
-			if ($count < $post_count) {
-				$output .= "<div class='row lsx-{$post_type}'>";
+		} elseif ( 0 === $count % $columns || $count === $post_count ) {
+			$output .= "</div>";
+
+			if ( $count < $post_count ) {
+				$output .= "<div class='row'>";
 			}
 		}
-		echo wp_kses_post($output);
+
+		echo wp_kses_post( $output );
 	}
 
 	/**
 	 * Runs just after the if and before the while statement in $this->output()
 	 */
-	public function after_while($columns = 1,$carousel = 0,$post_type='',$post_count = 0) {
+	public function after_while( $columns = 1, $carousel = 0, $post_type = '', $post_count = 0 ) {
 		$output = '';
+
 		// Carousel output Closing
-		if ($carousel) {
+		if ( $carousel ) {
 			$output .= "</div>";
 			$output .= "</div>";
 			$output .= "</div>";
@@ -649,6 +660,7 @@ class LSX_TO_Widget extends WP_Widget {
 		} else {
 			$output .= "</div>";
 		}
+
 		echo wp_kses_post($output);
 	}
 

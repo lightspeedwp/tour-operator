@@ -17,20 +17,18 @@
  * @subpackage	template-tags
  * @category 	class
  */
-function lsx_to_widget_class($return=false){
+function lsx_to_widget_class( $type = '', $return = false ) {
 	global $columns;
-	$md_col_width = 12 / $columns;
 
-	if('1' == $columns){
-		$class = 'single col-sm-12';
-	}else{
-		//$class = 'panel col-sm-'.$md_col_width;
-		$class = 'panel col-xs-12';
-	}
-	if(false === $return){
-		echo 'class="'.esc_attr($class).'"';
-	}else{
-		return 'class="'.$class.'"';
+	$cols = 'col-sm-';
+	$cols .= $columns == '5' ? '15' : 12 / $columns;
+
+	$class = 'lsx-widget-item-wrap lsx-'. $type .' '.  $cols;
+
+	if ( false === $return ) {
+		echo 'class="'. esc_attr( $class ) .'"';
+	} else {
+		return 'class="'. $class .'"';
 	}
 }
 

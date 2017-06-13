@@ -483,93 +483,107 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 			$args['disabled_custom_post_order'] = true;
 		}
 
-		$widget_query = get_terms( $taxonomy,$args );
+		$widget_query = get_terms( $taxonomy, $args );
 
-		if ( ! empty( $widget_query ) && ! is_wp_error( $widget_query ) ){
+		if ( ! empty( $widget_query ) && ! is_wp_error( $widget_query ) ) {
 			$count = 1;
-			$this->before_while($columns,$carousel,$taxonomy,count($widget_query),$interval);
+
+			$this->before_while( $columns, $carousel, $taxonomy, count( $widget_query ), $interval );
 
 			foreach ( $widget_query as $term ) {
-				$this->loop_start($columns,$carousel,$taxonomy,count($widget_query),$count);
-				echo wp_kses_post('<div '.lsx_to_widget_class(true).'>');
-				$this->content_part('content','widget-'.$taxonomy);
-				echo wp_kses_post('</div>');
-				$this->loop_end($columns,$carousel,$taxonomy,count($widget_query),$count);
+				$this->loop_start( $columns, $carousel, $taxonomy, count( $widget_query ), $count );
+
+				if ( ! $carousel ) {
+					echo wp_kses_post( '<div '. lsx_to_widget_class( $taxonomy, true ) .'>' );
+				}
+
+				$this->content_part( 'content', 'widget-'. $taxonomy );
+
+				if ( ! $carousel ) {
+					echo wp_kses_post( '</div>' );
+				}
+
+				$this->loop_end( $columns, $carousel, $taxonomy, count( $widget_query ), $count );
 
 				$count++;
 			}
-			$this->after_while($columns,$carousel,$taxonomy,count($widget_query));
 
-			if(false !== $buttons && false != $link){
-				echo wp_kses_post('
-									<div class="view-more">
-									<a href="'.$link.'" class="btn">'.$button_text.'</a>
-									</div>
-								');
+			$this->after_while( $columns, $carousel, $taxonomy, count( $widget_query ) );
+
+			if ( false !== $buttons && false != $link ) {
+				echo wp_kses_post( '<div class="view-more"><a href="'. $link .'" class="btn">'. $button_text .'</a></div>' );
 			}
 		}
+
 		return $output;
 	}
 
 	/**
 	 * Runs just after the if and before the while statement in $this->output()
 	 */
-	public function before_while($columns = 1,$carousel = 0,$taxonomy='',$post_count = 0,$interval='false') {
+	public function before_while( $columns = 1, $carousel = 0, $taxonomy = '', $post_count = 0, $interval = 'false' ) {
 		$output = '';
-		// Carousel Output Opening
-		if ($carousel) {
-			$landing_image = '';
-			$this->carousel_id = rand ( 20, 20000 );
 
-			$output .= "<div class='slider-container'>";
+		// Carousel Output Opening
+		if ( $carousel ) {
+			$landing_image = '';
+			$this->carousel_id = rand( 20, 20000 );
+
+			$output .= "<div class='slider-container lsx-widget-itens'>";
 			$output .= "<div id='slider-{$this->carousel_id}' class='lsx-to-slider'>";
 			$output .= '<div class="lsx-to-slider-wrap">';
 			$output .= "<div class='lsx-to-slider-inner' data-interval='{$interval}' data-slick='{ \"slidesToShow\": {$columns}, \"slidesToScroll\": {$columns} }'>";
 		} else {
-			$output .= "<div class='row lsx-{$taxonomy}'>";
+			$output .= "<div class='lsx-widget-itens'>";
 		}
+
 		echo wp_kses_post($output);
 	}
 
 	/**
 	 * Runs at the very end of the loop before it runs again.
 	 */
-	public function loop_start($columns = 1,$carousel = 0,$taxonomy='',$post_count = 0,$count = 0){
+	public function loop_start( $columns = 1, $carousel = 0, $taxonomy = '', $post_count = 0, $count = 0 ) {
 		$output = '';
+
 		// Get the call for the active slide
-		if ($carousel) {
-			$output .= "<div class='item row'><div class='lsx-{$taxonomy}'>";
-		} elseif (1 == $count) {
-			$output .= "<div class='row lsx-{$taxonomy}'>";
+		if ( $carousel ) {
+			$output .= "<div class='lsx-widget-item-wrap lsx-{$taxonomy}'>";
+		} elseif ( 1 === $count ) {
+			$output .= "<div class='row'>";
 		}
 
-		echo wp_kses_post($output);
+		echo wp_kses_post( $output );
 	}
 
 	/**
 	 * Runs at the very end of the loop before it runs again.
 	 */
-	public function loop_end($columns = 1,$carousel = 0,$taxonomy='',$post_count = 0,$count = 0){
+	public function loop_end( $columns = 1, $carousel = 0, $taxonomy = '', $post_count = 0, $count = 0 ) {
 		$output = '';
+
 		// Close the current slide panel
-		if ($carousel) {
-			$output .= "</div></div>";
-		} elseif (0 == $count % $columns || $count === $post_count) {
+		if ( $carousel ) {
 			$output .= "</div>";
-			if ($count < $post_count) {
-				$output .= "<div class='row lsx-{$taxonomy}'>";
+		} elseif ( 0 === $count % $columns || $count === $post_count ) {
+			$output .= "</div>";
+
+			if ( $count < $post_count ) {
+				$output .= "<div class='row'>";
 			}
 		}
+
 		echo wp_kses_post($output);
 	}
 
 	/**
 	 * Runs just after the if and before the while statement in $this->output()
 	 */
-	public function after_while($columns = 1,$carousel = 0,$taxonomy='',$post_count = 0) {
+	public function after_while( $columns = 1, $carousel = 0, $taxonomy = '', $post_count = 0 ) {
 		$output = '';
+
 		// Carousel output Closing
-		if ($carousel) {
+		if ( $carousel ) {
 			$output .= "</div>";
 			$output .= "</div>";
 			$output .= "</div>";
@@ -577,7 +591,8 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 		} else {
 			$output .= "</div>";
 		}
-		echo wp_kses_post($output);
+
+		echo wp_kses_post( $output );
 	}
 
 	/**
