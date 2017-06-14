@@ -1,4 +1,5 @@
 @mixin customizer-to-body-colours($breaker: #DADDDF, $color: #4A4A4A, $hover: #F7AE00) {
+
 	.lsx-to-slider-inner {
 		.slick-dots {
 			& > li {
@@ -23,4 +24,14 @@
 			}
 		}
 	}
+
+	.lsx-to-widget-view-all {
+		& > span {
+			&:before,
+			&:after {
+				background-color: $breaker;
+			}
+		}
+	}
+
 }

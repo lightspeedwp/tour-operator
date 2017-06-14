@@ -2339,7 +2339,9 @@ body.single-tour-operator {
 .lsx-to-slider-inner {
 	@include media('>=tablet') {
 		margin: 0 auto;
-		width: calc(100% - 10.8rem);
+		width: 100%;
+
+		&.slick-has-arrows { width: calc(100% - 10.8rem); }
 	}
 
 	.slick-dots {
@@ -2422,6 +2424,32 @@ body.single-tour-operator {
 				left: 2rem;
 			}
 		}
+	}
+}
+
+.lsx-to-widget-view-all {
+	margin-top: 6rem;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+
+	& > span {
+		display: inline-block;
+		position: relative;
+
+		&:before,
+		&:after {
+			content: '';
+			display: block;
+			height: 2px;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 999rem;
+		}
+
+		&:before { right: 120%; }
+		&:after { left: 120%; }
 	}
 }
 

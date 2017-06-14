@@ -1551,7 +1551,8 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-slider-inner .lsx-widget-item-wrap { padding: 0 15px 5px; }
 
-@media (min-width: 992px) { .lsx-to-slider-inner { margin: 0 auto; width: calc(100% - 10.8rem); } }
+@media (min-width: 992px) { .lsx-to-slider-inner { margin: 0 auto; width: 100%; }
+  .lsx-to-slider-inner.slick-has-arrows { width: calc(100% - 10.8rem); } }
 
 .lsx-to-slider-inner .slick-dots { -webkit-box-align: center; -ms-flex-align: center; align-items: center; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row wrap; flex-flow: row wrap; height: auto; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; list-style: none; margin: 2rem 0 0; padding: 0; }
 
@@ -1575,6 +1576,16 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-slider-inner .slick-arrow.slick-next:before { content: '\f105'; left: 2rem; }
 
+.lsx-to-widget-view-all { margin-top: 6rem; overflow: hidden; position: relative; text-align: center; }
+
+.lsx-to-widget-view-all > span { display: inline-block; position: relative; }
+
+.lsx-to-widget-view-all > span:before, .lsx-to-widget-view-all > span:after { content: ''; display: block; height: 2px; position: absolute; top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%); width: 999rem; }
+
+.lsx-to-widget-view-all > span:before { right: 120%; }
+
+.lsx-to-widget-view-all > span:after { left: 120%; }
+
 .lsx-to-slider-inner .slick-dots > li > button { border-color: #4A4A4A; }
 
 .lsx-to-slider-inner .slick-dots > li.slick-active > button { background-color: #4A4A4A; }
@@ -1584,5 +1595,7 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 .lsx-to-slider-inner .slick-arrow:hover { border-color: #F7AE00; color: #F7AE00; }
 
 .lsx-to-slider-inner .slick-arrow.slick-disabled { border-color: #DADDDF; color: #DADDDF; }
+
+.lsx-to-widget-view-all > span:before, .lsx-to-widget-view-all > span:after { background-color: #DADDDF; }
 
 /*# sourceMappingURL=maps/style.css.map */
