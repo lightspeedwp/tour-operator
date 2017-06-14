@@ -17,6 +17,20 @@ var LSX_TO_Itinerary_Read_More = {
 	}
 },
 LSX_TO_Bootstrap_Carousel = {
+	preBuildSlider: function ($slider) {
+		$slider.on('init', function (event, slick) {
+			if (slick.options.arrows && slick.slideCount > slick.options.slidesToShow)
+				$slider.addClass('slick-has-arrows');
+		});
+
+		$slider.on('setPosition', function (event, slick) {
+			if (!slick.options.arrows)
+				$slider.removeClass('slick-has-arrows');
+			else if (slick.slideCount > slick.options.slidesToShow)
+				$slider.addClass('slick-has-arrows');
+		});
+	},
+
 	initSlider: function() {
 		jQuery('.lsx-to-slider .lsx-to-slider-inner').each(function() {
 			var $this = jQuery(this),
@@ -24,6 +38,8 @@ LSX_TO_Bootstrap_Carousel = {
 				autoplay = false,
 				infinite = false,
 				autoplaySpeed = 0;
+
+			LSX_TO_Bootstrap_Carousel.preBuildSlider($this);
 
 			if ('undefined' !== typeof interval && 'boolean' !== typeof interval) {
 				interval = parseInt(interval);

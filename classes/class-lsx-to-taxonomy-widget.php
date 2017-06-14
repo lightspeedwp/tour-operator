@@ -511,7 +511,7 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 			$this->after_while( $columns, $carousel, $taxonomy, count( $widget_query ) );
 
 			if ( false !== $buttons && false != $link ) {
-				echo wp_kses_post( '<div class="view-more"><a href="'. $link .'" class="btn">'. $button_text .'</a></div>' );
+				echo wp_kses_post( '<p class="lsx-to-widget-view-all"><span><a href="'. $link .'" class="btn border-btn">'. $button_text .' <i class="fa fa-angle-right"></i></a></span></p>' );
 			}
 		}
 
