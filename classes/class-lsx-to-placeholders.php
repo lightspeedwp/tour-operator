@@ -257,7 +257,6 @@ class LSX_TO_Placeholders {
 				break;
 
 				case 'lsx-thumbnail-single':
-				case 'lsx-thumbnail-single':
 					$image[] = $this->placeholder_url().'&w=750&h=350';
 					$image[] = 750;
 					$image[] = 350;
