@@ -91,7 +91,7 @@ class LSX_TO_Frontend extends Tour_Operator {
 		add_filter( 'term_description', array( $this, 'modify_term_description') );
 
 		if ( is_admin() ) {
-			add_filter( 'lsx_customizer_colour_selectors_body', array( $this, 'customizer_to_colours_handler' ), 15, 2 );
+			add_filter( 'lsx_customizer_colour_selectors_body', array( $this, 'customizer_to_body_colours_handler' ), 15, 2 );
 		}
 	}
 
@@ -421,14 +421,14 @@ class LSX_TO_Frontend extends Tour_Operator {
 	/**
 	 * Handle body colours that might be change by LSX Customiser
 	 */
-	public function customizer_body_colours_handler( $css, $colors ) {
+	public function customizer_to_body_colours_handler( $css, $colors ) {
 		$css .= '
 			@import "' . LSX_TO_PATH . '/assets/css/scss/customizer-to-body-colours";
 
 			/**
-			 * LSX Customizer - Body (LSX Blog Customizer)
+			 * LSX Customizer - Body (Tour Operators)
 			 */
-			@include customizer-blog-body-colours (
+			@include customizer-to-body-colours (
 				$breaker:   ' . $colors['body_line_color'] . ',
 				$color:    	' . $colors['body_text_color'] . ',
 				$link:    	' . $colors['body_link_color'] . ',
