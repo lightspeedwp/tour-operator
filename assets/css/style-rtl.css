@@ -1528,6 +1528,12 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-widget-item-wrap .lsx-to-widget-content .moretag:after { color: inherit; content: '\f178'; display: inline-block; font-family: 'FontAwesome'; font-size: inherit; margin-right: 5px; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
+.lsx-to-widget-item-wrap.lsx-accommodation-brand .lsx-to-widget-content { padding-bottom: 2.4rem; }
+
+.lsx-to-widget-item-wrap.lsx-accommodation-brand .lsx-to-widget-title { margin-bottom: 0; }
+
+.lsx-to-widget-item-wrap .lsx-to-widget-tagline { margin-top: -1.2rem; }
+
 .lsx-to-widget-meta-data { margin: 2.4rem 0; position: relative; }
 
 .lsx-to-widget-meta-data .lsx-to-widget-meta { display: block; font-size: 13px; padding-right: 22px; position: relative; }
@@ -1551,8 +1557,6 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 .lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-rooms:before { content: '\f236'; }
 
 .lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-rating:before { content: '\f006'; }
-
-.lsx-tour.slick-slide .lsx-to-widget-tagline { margin-top: -1.2rem; }
 
 .lsx-to-slider-inner .slick-dots > li > button { border-color: #4A4A4A; }
 

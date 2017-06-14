@@ -2503,6 +2503,14 @@ body.single-tour-operator {
 			}
 		}
 	}
+
+	&.lsx-accommodation-brand {
+		.lsx-to-widget-content { padding-bottom: 2.4rem; }
+		.lsx-to-widget-title { margin-bottom: 0; }
+	}
+
+
+	.lsx-to-widget-tagline { margin-top: -1.2rem; }
 }
 
 .lsx-to-widget-meta-data {
@@ -2538,12 +2546,6 @@ body.single-tour-operator {
 		&.lsx-to-widget-meta-brand:before { content: '\f1ad'; }
 		&.lsx-to-widget-meta-rooms:before { content: '\f236'; }
 		&.lsx-to-widget-meta-rating:before { content: '\f006'; }
-	}
-}
-
-.lsx-tour.slick-slide {
-	.lsx-to-widget-tagline {
-		margin-top: -1.2rem;
 	}
 }
 
