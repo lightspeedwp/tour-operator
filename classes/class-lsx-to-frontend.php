@@ -432,7 +432,8 @@ class LSX_TO_Frontend extends Tour_Operator {
 				$breaker:   ' . $colors['body_line_color'] . ',
 				$color:    	' . $colors['body_text_color'] . ',
 				$link:    	' . $colors['body_link_color'] . ',
-				$hover:    	' . $colors['body_link_hover_color'] . '
+				$hover:    	' . $colors['body_link_hover_color'] . ',
+				$small:    	' . $colors['body_text_small_color'] . '
 			);
 		';
 

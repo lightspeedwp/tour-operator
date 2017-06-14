@@ -2485,7 +2485,6 @@ body.single-tour-operator {
 	position: relative;
 
 	.lsx-to-widget-meta {
-		color: #919191;
 		display: block;
 		font-size: 13px;
 		padding-left: 22px;
@@ -2520,4 +2519,4 @@ body.single-tour-operator {
 	}
 }
 
-@include customizer-to-body-colours(#DADDDF, #4A4A4A, #418AD0, #F7AE00);
+@include customizer-to-body-colours(#DADDDF, #4A4A4A, #418AD0, #F7AE00, #919191);

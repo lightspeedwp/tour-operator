@@ -1594,7 +1594,7 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-widget-meta-data { margin: 2.4rem 0; position: relative; }
 
-.lsx-to-widget-meta-data .lsx-to-widget-meta { color: #919191; display: block; font-size: 13px; padding-left: 22px; position: relative; }
+.lsx-to-widget-meta-data .lsx-to-widget-meta { display: block; font-size: 13px; padding-left: 22px; position: relative; }
 
 .lsx-to-widget-meta-data .lsx-to-widget-meta + .lsx-to-widget-meta { margin-top: 3px; }
 
@@ -1627,5 +1627,7 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 .lsx-to-widget-item-wrap .lsx-to-widget-content a.moretag { background-color: #418AD0; color: #FFF; }
 
 .lsx-to-widget-item-wrap .lsx-to-widget-content a.moretag:hover { background-color: #F7AE00; color: #FFF; }
+
+.lsx-to-widget-meta-data .lsx-to-widget-meta { color: #919191; }
 
 /*# sourceMappingURL=maps/style.css.map */
