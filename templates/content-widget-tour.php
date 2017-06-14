@@ -38,7 +38,7 @@ global $disable_placeholder;
 		</div>
 
 		<p>
-			<a href="<?php the_permalink(); ?>" class="moretag"><?php esc_html_e('View tour','tour-operator'); ?></a>
+			<a href="<?php the_permalink(); ?>" class="moretag"><?php esc_html_e( 'View tour', 'tour-operator' ); ?></a>
 		</p>
 	</div>
 </article>

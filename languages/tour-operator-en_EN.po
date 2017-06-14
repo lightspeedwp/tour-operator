@@ -1333,11 +1333,7 @@ msgid "View tour"
 msgstr ""
 
 #: templates/content-widget-travel-style.php:33
-msgid "View"
-msgstr ""
-
-#: templates/content-widget-travel-style.php:33
-msgid "tours"
+msgid "View tours"
 msgstr ""
 
 #: includes/settings/accommodation.php:6, includes/settings/add-ons.php:112, includes/settings/destination.php:6, includes/settings/display.php:38, includes/settings/help.php:124, includes/settings/tour.php:6
