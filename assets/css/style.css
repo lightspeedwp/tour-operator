@@ -1546,6 +1546,12 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-activities:before { content: '\f1e5'; }
 
+.lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-brand:before { content: '\f1ad'; }
+
+.lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-rooms:before { content: '\f236'; }
+
+.lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-rating:before { content: '\f006'; }
+
 .lsx-tour.slick-slide .lsx-to-widget-tagline { margin-top: -1.2rem; }
 
 .lsx-to-slider-inner .slick-dots > li > button { border-color: #4A4A4A; }
