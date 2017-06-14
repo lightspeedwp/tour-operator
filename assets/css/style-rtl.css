@@ -1528,9 +1528,9 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-widget-item-wrap .lsx-to-widget-content .moretag:after { color: inherit; content: '\f178'; display: inline-block; font-family: 'FontAwesome'; font-size: inherit; margin-right: 5px; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
-.lsx-to-widget-item-wrap.lsx-accommodation-brand .lsx-to-widget-content { padding-bottom: 2.4rem; }
+.lsx-to-widget-item-wrap.lsx-accommodation-brand .lsx-to-widget-content, .lsx-to-widget-item-wrap.lsx-accommodation-type .lsx-to-widget-content { padding-bottom: 2.4rem; }
 
-.lsx-to-widget-item-wrap.lsx-accommodation-brand .lsx-to-widget-title { margin-bottom: 0; }
+.lsx-to-widget-item-wrap.lsx-accommodation-brand .lsx-to-widget-title, .lsx-to-widget-item-wrap.lsx-accommodation-type .lsx-to-widget-title { margin-bottom: 0; }
 
 .lsx-to-widget-item-wrap .lsx-to-widget-tagline { margin-top: -1.2rem; }
 

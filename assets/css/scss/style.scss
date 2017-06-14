@@ -2504,11 +2504,11 @@ body.single-tour-operator {
 		}
 	}
 
-	&.lsx-accommodation-brand {
+	&.lsx-accommodation-brand,
+	&.lsx-accommodation-type {
 		.lsx-to-widget-content { padding-bottom: 2.4rem; }
 		.lsx-to-widget-title { margin-bottom: 0; }
 	}
-
 
 	.lsx-to-widget-tagline { margin-top: -1.2rem; }
 }

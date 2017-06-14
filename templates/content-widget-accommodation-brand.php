@@ -6,7 +6,7 @@
  * @category	safari-brand
  * @subpackage	widget
  */
-global $term,$taxonomy,$disable_placeholder;
+global $term, $taxonomy, $disable_placeholder;
 $url_taxonomy = 'brand';
 ?>
 
