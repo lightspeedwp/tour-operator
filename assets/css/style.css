@@ -1604,8 +1604,8 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-widget-view-all > span:before, .lsx-to-widget-view-all > span:after { background-color: #DADDDF; }
 
-.lsx-to-widget-item-wrap .lsx-to-widget-content .moretag { background-color: #418AD0; color: #FFF; }
+.lsx-to-widget-item-wrap .lsx-to-widget-content a.moretag { background-color: #418AD0; color: #FFF; }
 
-.lsx-to-widget-item-wrap .lsx-to-widget-content .moretag:hover { background-color: #F7AE00; color: #FFF; }
+.lsx-to-widget-item-wrap .lsx-to-widget-content a.moretag:hover { background-color: #F7AE00; color: #FFF; }
 
 /*# sourceMappingURL=maps/style.css.map */
