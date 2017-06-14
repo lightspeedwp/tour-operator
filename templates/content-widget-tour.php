@@ -10,23 +10,35 @@ global $disable_placeholder;
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
  	<?php if ( '1' !== $disable_placeholder && true !== $disable_placeholder ) { ?>
-		<div class="thumb">
+		<div class="lsx-to-widget-thumb">
 			<a href="<?php the_permalink(); ?>">
 				<?php lsx_thumbnail( 'lsx-thumbnail-single' ); ?>
 			</a>
 		</div>
 	<?php } ?>
 
-	<h4 class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-	<?php lsx_to_tagline('<p class="tagline">','</p>'); ?>
+	<div class="lsx-to-widget-content">
+		<h4 class="lsx-to-widget-title text-center"><?php the_title(); ?></h4>
 
-	<div class="widget-content">
-		<div class="meta info"><?php lsx_to_price('<span class="price">'.esc_html__('From price','tour-operator').': ','</span>'); lsx_to_duration('<span class="duration">'.esc_html__('Duration','tour-operator').': ','</span>'); ?></div>
-		<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.esc_html__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>
-		<?php lsx_to_connected_countries('<div class="meta destination">'.esc_html__('Destinations','tour-operator').': ','</div>'); ?>
-		<?php if(function_exists('lsx_to_connected_activities')){ lsx_to_connected_activities('<div class="meta activities">'.esc_html__('Activities','tour-operator').': ','</div>'); } ?>
-		<div class="view-more" style="text-align:center;">
-			<a href="<?php the_permalink(); ?>" class="btn btn-primary text-center"><?php esc_html_e('View Tour','tour-operator'); ?></a>
+		<?php lsx_to_tagline( '<p class="lsx-to-widget-tagline text-center">', '</p>' ); ?>
+
+		<div class="lsx-to-widget-meta-data">
+			<?php
+				$meta_class = 'lsx-to-widget-meta lsx-to-widget-meta-';
+
+				lsx_to_price( '<span class="'. $meta_class .'price">'. esc_html__( 'From price', 'tour-operator' ) .': ', '</span>' );
+				lsx_to_duration( '<span class="'. $meta_class .'duration">'. esc_html__( 'Duration', 'tour-operator' ) .': ', '</span>' );
+				the_terms( get_the_ID(), 'travel-style', '<span class="'. $meta_class .'style">'. esc_html__( 'Travel Style', 'tour-operator' ) .': ', ', ', '</span>' );
+				lsx_to_connected_countries( '<span class="'. $meta_class .'destinations">'. esc_html__( 'Destinations', 'tour-operator' ) .': ', '</span>' );
+
+				if ( function_exists( 'lsx_to_connected_activities' ) ) {
+					lsx_to_connected_activities( '<span class="'. $meta_class .'activities">'. esc_html__( 'Activities', 'tour-operator' ) .': ', '</span>' );
+				}
+			?>
 		</div>
+
+		<p>
+			<a href="<?php the_permalink(); ?>" class="moretag"><?php esc_html_e('View tour','tour-operator'); ?></a>
+		</p>
 	</div>
 </article>
