@@ -2034,6 +2034,8 @@ body.lsx {
 body.home {
 	// ---------- Banner ----------
 
+	/* @TODO - REMOVE
+
 	.page-banner.rotating {
 		.page-banner-image {
 			&:after {
@@ -2065,6 +2067,7 @@ body.home {
 			}
 		}
 	}
+	*/
 
 	// ---------- Widgets ----------
 
@@ -2127,6 +2130,8 @@ body.home {
 body:not(.home) {
 
 	// ---------- LSX LSX Banners Plugin ----------
+
+	/* @TODO - REMOVE
 
 	.page-banner.rotating {
 		justify-content: flex-end;
@@ -2219,6 +2224,7 @@ body:not(.home) {
 			}
 		}
 	}
+	*/
 }
 
 

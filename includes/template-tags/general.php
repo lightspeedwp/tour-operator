@@ -70,24 +70,33 @@ function lsx_to_column_class($classes = false) {
 /* ==================   HEADER   ================== */
 
 /**
- * Checks if a caldera form with your slug exists
+ * Global header.
  *
  * @package 	tour-operator
  * @subpackage	template-tag
  * @category 	header
  */
-function lsx_to_global_header() { ?>
-	<header class="archive-header">
-		<h1 class="archive-title">
-			<?php
-				if(is_archive()){
-					the_archive_title();
-				}else{
-					the_title();
-				}?>
-		</h1>
-		<?php lsx_to_tagline('<p class="tagline">','</p>'); ?>
-	</header><!-- .archive-header -->
+function lsx_to_global_header() {
+	$default_size = 'sm';
+	$size         = apply_filters( 'lsx_bootstrap_column_size', $default_size );
+	?>
+	<div class="archive-header-wrapper col-<?php echo esc_attr( $size ); ?>-12">
+		<header class="archive-header">
+			<h1 class="archive-title">
+				<?php
+					if ( is_archive() ) {
+						the_archive_title();
+					} else {
+						the_title();
+					}
+				?>
+			</h1>
+
+			<?php lsx_to_tagline( '<p class="tagline">', '</p>' ); ?>
+		</header>
+
+		<?php lsx_global_header_inner_bottom(); ?>
+	</div>
 <?php
 }
 
@@ -100,17 +109,6 @@ function lsx_to_global_header() { ?>
  */
 function lsx_to_tagline($before='',$after='',$echo=false) {
 	echo wp_kses_post( apply_filters('lsx_to_tagline','',$before,$after) );
-}
-
-/**
- * Adds the tagline to the banner content
- *
- * @package 	tour-operator
- * @subpackage	template-tag
- * @category 	banner
- */
-function lsx_to_banner_content() {
-	lsx_to_tagline('<p class="tagline">','</p>');
 }
 
 /* ==================    BODY    ================== */
@@ -136,7 +134,7 @@ function lsx_to_content($slug, $name = null) {
  * @category 	description
  */
 function lsx_to_archive_description() {
-	echo wp_kses_post( apply_filters('lsx_to_archive_description','','<div class="row"><div class="col-sm-12"><article class="archive-description hentry">','</article></div></div>') );
+	echo wp_kses_post( apply_filters('lsx_to_archive_description','','<div class="col-sm-12"><article class="archive-description hentry">','</article></div>') );
 }
 
 

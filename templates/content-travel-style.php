@@ -1,7 +1,7 @@
 <?php
 /**
  * Travel Style Taxonomy Content Part
- * 
+ *
  * @package 	tour-operator
  * @category	travel-style
  */

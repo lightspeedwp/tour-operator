@@ -78,13 +78,6 @@ class LSX_TO_Frontend extends Tour_Operator {
 		add_action( 'template_redirect', array( $this, 'redirect_singles') );
 		add_action( 'template_redirect', array( $this, 'redirect_archive') );
 
-		//LSX
-		add_action( 'lsx_content_before', array( $this, 'remove_jetpack_share' ));
-		add_action( 'lsx_content_wrap_before', array( $this, 'remove_jetpack_share' ));
-
-		//Jetpack
-		add_filter( 'sharing_show', array( $this, 'show_jetpack_sharing_filter'),2,100 );
-
 		// Readmore
 		add_filter( 'the_content', array( $this, 'modify_read_more_link') );
 		remove_filter( 'term_description','wpautop' );
@@ -112,31 +105,31 @@ class LSX_TO_Frontend extends Tour_Operator {
 	 * Initate some boolean flags
 	 */
 	public function wp_head() {
-		if((is_singular($this->active_post_types) || is_post_type_archive($this->active_post_types))
+		if ( ( is_singular( $this->active_post_types ) || is_post_type_archive( $this->active_post_types ) )
 			&& false !== $this->options
-			&& isset($this->options['display']['enable_modals'])
-			&& 'on' === $this->options['display']['enable_modals']){
+			&& isset( $this->options['display']['enable_modals'] )
+			&& 'on' === $this->options['display']['enable_modals'] ) {
 				$this->enable_modals = true;
 		}
 
-		if((is_post_type_archive($this->active_post_types)) || (is_tax(array_keys($this->taxonomies)))){
-			remove_action('lsx_content_wrap_before','lsx_global_header');
-			add_action('lsx_content_wrap_before','lsx_to_global_header',100);
-			add_action('lsx_content_wrap_before','lsx_to_archive_description',100);
-			add_filter('lsx_to_archive_description',array($this,'get_post_type_archive_description'),1,3);
+		if ( ( is_post_type_archive( $this->active_post_types ) ) || ( is_tax( array_keys( $this->taxonomies ) ) ) ) {
+			if ( ! class_exists( 'LSX_Banners' ) ) {
+				remove_action( 'lsx_content_wrap_before', 'lsx_global_header' );
+				add_action( 'lsx_content_wrap_before', 'lsx_to_global_header', 100 );
+			}
+
+			add_action( 'lsx_content_wrap_before', 'lsx_to_archive_description', 100 );
+			add_filter( 'lsx_to_archive_description', array( $this, 'get_post_type_archive_description' ), 1, 3 );
 
 			// LSX default pagination
 			add_action( 'lsx_content_bottom', array( 'LSX_TO_Frontend', 'lsx_default_pagination' ) );
 		}
 
-		if(is_singular($this->active_post_types)){
-			remove_action('lsx_content_wrap_before','lsx_global_header');
-			add_action('lsx_content_wrap_before','lsx_to_global_header',100);
-		}
-
-		if(class_exists('LSX_Banners')){
-			remove_action('lsx_content_top', 'lsx_breadcrumbs',100);
-			add_action('lsx_banner_container_top', 'lsx_breadcrumbs');
+		if ( is_singular( $this->active_post_types ) ) {
+			if ( ! class_exists( 'LSX_Banners' ) ) {
+				remove_action( 'lsx_content_wrap_before', 'lsx_global_header' );
+				add_action( 'lsx_content_wrap_before', 'lsx_to_global_header', 100 );
+			}
 		}
 	}
 
@@ -342,33 +335,6 @@ class LSX_TO_Frontend extends Tour_Operator {
 		}
 	}
 
-	/**
-	 *	Removes the Jetpack Sharing so we can add it in manually.
-	 */
-	public function remove_jetpack_share() {
-
-		if(in_array(get_post_type(),$this->post_types)){
-			remove_filter( 'the_content', 'sharing_display',19 );
-			remove_filter( 'the_excerpt', 'sharing_display',19 );
-			if ( class_exists( 'Jetpack_Likes' ) ) {
-				remove_filter( 'the_content', array( Jetpack_Likes::init(), 'post_likes' ), 30, 1 );
-			}
-		}
-	}
-
-	/**
-	 * Enables the Jetpack sharing on the TO post types
-	 *
-	 * @param $show
-	 * @param $post
-	 * @return bool
-	 */
-	public function show_jetpack_sharing_filter($show, $post) {
-		if(in_array($post->post_type,$this->post_types)){
-			$show = true;
-		}
-		return $show;
-	}
 	/**
 	 * Modify the read more link
 	 *

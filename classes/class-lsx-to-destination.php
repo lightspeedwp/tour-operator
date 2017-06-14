@@ -367,7 +367,8 @@ class LSX_TO_Destination{
 					$this->page_links[$slug] = the_title( '', '', FALSE );
 				endwhile;
 			endif;
-			wp_reset_query();
+			wp_reset_postdata();
+			#wp_reset_query();
 		endif;
 	}
 	/**

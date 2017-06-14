@@ -30,27 +30,22 @@ class LSX_TO_Banner_Integration {
 		$this->options = get_option('_lsx-to_settings',false);
 
 		add_action( 'init', array( $this, 'init' ) );
-		add_filter('lsx_banner_enable_placeholder', function( $bool ) { return true; });
-		add_filter('lsx_banner_placeholder_url', array($this,'banner_placeholder_url'));
-
-		add_filter('lsx_banner_enable_title', function( $bool ) { return true; });
-		add_filter('lsx_banner_enable_subtitle', function( $bool ) { return true; });
+		add_filter( 'lsx_banner_placeholder_url', array( $this, 'banner_placeholder_url' ) );
 	}
 
 	/**
 	 * Init
 	 */
 	public function init() {
-		if(class_exists('LSX_Banners')){
-			add_filter( 'lsx_banner_allowed_post_types', array( $this, 'enable_banners'));
-			add_filter( 'lsx_banner_allowed_taxonomies', array( $this, 'enable_taxonomy_banners'));
-			add_filter( 'lsx_banner_post_type_archive_url', array( $this, 'banner_archive_url'));
-			add_action('lsx_banner_content',array( $this, 'posts_page_banner_tagline'));
-			add_filter('lsx_banner_title', array($this,'banner_title'),100 );
+		if ( class_exists( 'LSX_Banners' ) ) {
+			add_filter( 'lsx_banner_allowed_post_types', array( $this, 'enable_banners' ) );
+			add_filter( 'lsx_banner_allowed_taxonomies', array( $this, 'enable_taxonomy_banners' ) );
+			add_filter( 'lsx_banner_post_type_archive_url', array( $this, 'banner_archive_url' ) );
+			add_action( 'lsx_banner_content', array( $this, 'posts_page_banner_tagline' ) );
+			add_filter( 'lsx_banner_title', array( $this, 'banner_title' ), 100 );
 
-
-			if(false !== $this->options && !isset($this->options['display']['enable_galleries_in_banner'])){
-				add_filter('lsx_banners_envira_enable', function( $bool ) { return false; });
+			if ( false !== $this->options && ! isset( $this->options['display']['enable_galleries_in_banner'] ) ) {
+				add_filter( 'lsx_banners_envira_enable', function( $bool ) { return false; } );
 			}
 		}
 	}
