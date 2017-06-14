@@ -576,7 +576,6 @@ class LSX_TO_Widget extends WP_Widget {
 	 * Replaces the widget with Mystery Man
 	 */
 	public function placeholder($image){
-		$url = plugin_dir_url( __FILE__ );
 		$url = LSX_TO_URL . 'assets/img/mystery-man-square.png';
 		$image = array(
 			$url,
