@@ -66,6 +66,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/lightspeeddev
 
 = 1.0.8 =
 * Fix - LSX tabs working integrated with TO tabs (dashboard settings)
+* Fix - Fixed admin styles (help and add-on pages)
 
 = 1.0.7 =
 * Dev - Added .editorconfig file to help developers to maintain consistent coding styles between different editors and IDEs
