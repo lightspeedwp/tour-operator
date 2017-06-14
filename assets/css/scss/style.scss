@@ -206,7 +206,6 @@ $orange-dark: #f7741d;
 				content: '\005a\0024';
 			}
 		}
-
 	}
 }
 
@@ -511,137 +510,140 @@ $orange-dark: #f7741d;
 	}
 }
 
-// %bootstrap-carousel {
-// 	.slider-container {
-// 		position: relative;
+/*
+@TODO - REMOVE
+%bootstrap-carousel {
+	.slider-container {
+		position: relative;
 
-// 		.lsx-to-slider-wrap {
-// 			position: relative;
-// 		}
+		.lsx-to-slider-wrap {
+			position: relative;
+		}
 
-// 		.lsx-to-slider {
-// 			margin-bottom: 0;
-// 		}
+		.lsx-to-slider {
+			margin-bottom: 0;
+		}
 
-// 		.slick-initialized {
-// 			.panel {
-// 				padding-bottom: 5px !important;
-// 			}
-// 		}
+		.slick-initialized {
+			.panel {
+				padding-bottom: 5px !important;
+			}
+		}
 
-// 		.item {
-// 			margin-bottom: 0;
+		.item {
+			margin-bottom: 0;
 
-// 			&:not(:only-child) {
-// 				margin: {
-// 					right: 0;
-// 					left: 0;
-// 				}
-// 			}
-// 		}
+			&:not(:only-child) {
+				margin: {
+					right: 0;
+					left: 0;
+				}
+			}
+		}
 
-// 		.slick-arrow {
-// 			background: transparent;
-// 			color: $blue-dark;
-// 			font: 0/0 a;
-// 			margin-top: -52px;
-// 			opacity: 0.66;
-// 			position: absolute;
-// 			text-shadow: none;
-// 			top: 50%;
-// 			transform: translateY(-50%);
-// 			transition: opacity 300ms ease;
-// 			z-index: 3;
+		.slick-arrow {
+			background: transparent;
+			color: $blue-dark;
+			font: 0/0 a;
+			margin-top: -52px;
+			opacity: 0.66;
+			position: absolute;
+			text-shadow: none;
+			top: 50%;
+			transform: translateY(-50%);
+			transition: opacity 300ms ease;
+			z-index: 3;
 
-// 			&:before {
-// 				color: inherit;
-// 				display: block;
-// 				font-family: 'FontAwesome';
-// 				font-size: 40px;
-// 				line-height: 1;
-// 				text-rendering: auto;
-// 				-webkit-font-smoothing: antialiased;
-// 				-moz-osx-font-smoothing: grayscale;
-// 			}
+			&:before {
+				color: inherit;
+				display: block;
+				font-family: 'FontAwesome';
+				font-size: 40px;
+				line-height: 1;
+				text-rendering: auto;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
 
-// 			&:hover {
-// 				color: $blue-dark;
-// 				opacity: 1;
-// 			}
+			&:hover {
+				color: $blue-dark;
+				opacity: 1;
+			}
 
-// 			&.slick-disabled {
-// 				cursor: not-allowed;
-// 				opacity: 0.33;
-// 			}
+			&.slick-disabled {
+				cursor: not-allowed;
+				opacity: 0.33;
+			}
 
-// 			&.slick-prev {
-// 				left: -8px;
+			&.slick-prev {
+				left: -8px;
 
-// 				@media only screen and (min-width: 1200px) {
-// 					left: -30px;
-// 				}
+				@media only screen and (min-width: 1200px) {
+					left: -30px;
+				}
 
-// 				&:before {
-// 					content: '\f053';
-// 				}
-// 			}
+				&:before {
+					content: '\f053';
+				}
+			}
 
-// 			&.slick-next {
-// 				right: -8px;
+			&.slick-next {
+				right: -8px;
 
-// 				@media only screen and (min-width: 1200px) {
-// 					right: -30px;
-// 				}
+				@media only screen and (min-width: 1200px) {
+					right: -30px;
+				}
 
-// 				&:before {
-// 					content: '\f054';
-// 				}
-// 			}
-// 		}
+				&:before {
+					content: '\f054';
+				}
+			}
+		}
 
-// 		.slick-dots {
-// 			-webkit-box-align: center;
-// 			-ms-flex-align: center;
-// 			align-items: center;
-// 			display: -webkit-box;
-// 			display: -ms-flexbox;
-// 			display: flex;
-// 			-webkit-box-orient: horizontal;
-// 			-webkit-box-direction: normal;
-// 			-ms-flex-flow: row wrap;
-// 			flex-flow: row wrap;
-// 			height: auto;
-// 			-webkit-box-pack: center;
-// 			-ms-flex-pack: center;
-// 			justify-content: center;
+		.slick-dots {
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-orient: horizontal;
+			-webkit-box-direction: normal;
+			-ms-flex-flow: row wrap;
+			flex-flow: row wrap;
+			height: auto;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
 
-// 			height: auto;
-// 			list-style: none;
-// 			margin: 20px 0 0;
-// 			padding: 0;
+			height: auto;
+			list-style: none;
+			margin: 20px 0 0;
+			padding: 0;
 
-// 			& > li {
-// 				padding: 5px 3px;
-// 				line-height: 1;
+			& > li {
+				padding: 5px 3px;
+				line-height: 1;
 
-// 				& > button {
-// 					background: transparent;
-// 					border: 1px solid $blue-dark;
-// 					border-radius: 50%;
-// 					font: 0/0 a;
-// 					height: 12px;
-// 					padding: 0;
-// 					transition: all 300ms ease-in-out;
-// 					width: 12px;
-// 				}
+				& > button {
+					background: transparent;
+					border: 1px solid $blue-dark;
+					border-radius: 50%;
+					font: 0/0 a;
+					height: 12px;
+					padding: 0;
+					transition: all 300ms ease-in-out;
+					width: 12px;
+				}
 
-// 				&.slick-active > button {
-// 					background-color: $blue-dark;
-// 				}
-// 			}
-// 		}
-// 	}
-// }
+				&.slick-active > button {
+					background-color: $blue-dark;
+				}
+			}
+		}
+	}
+}
+*/
 
 %lsx-to-navigation {
 	margin: -60px 0 50px;
@@ -802,105 +804,108 @@ $orange-dark: #f7741d;
 	}
 }
 
-// %panel-home-group {
-// 	& > .widget-title,
-// 	& > .section-title {
-// 		margin: 0;
-// 		padding: 10px 0 40px;
-// 		font-size: 32px;
-// 		text-align: center;
+/*
+@TODO - REMOVE
+%panel-home-group {
+	& > .widget-title,
+	& > .section-title {
+		margin: 0;
+		padding: 10px 0 40px;
+		font-size: 32px;
+		text-align: center;
 
-// 		a {
-// 			color: $black;
+		a {
+			color: $black;
 
-// 			&:hover,
-// 			&:focus,
-// 			&:active {
-// 				color: $blue;
-// 			}
-// 		}
-// 	}
+			&:hover,
+			&:focus,
+			&:active {
+				color: $blue;
+			}
+		}
+	}
 
-// 	& > .tagline {
-// 		color: $grey;
-// 		font-size: 16px;
-// 		line-height: 25px;
-// 		max-width: 625px !important;
-// 		margin: 0 auto 45px auto;
-// 		text-align: center;
+	& > .tagline {
+		color: $grey;
+		font-size: 16px;
+		line-height: 25px;
+		max-width: 625px !important;
+		margin: 0 auto 45px auto;
+		text-align: center;
 
-// 		&:not(:first-child) {
-// 			margin-top: -20px;
-// 		}
-// 	}
+		&:not(:first-child) {
+			margin-top: -20px;
+		}
+	}
 
-// 	& > .view-more {
-// 		//margin-bottom: 80px;
-// 		text-align: center;
-// 	}
+	& > .view-more {
+		//margin-bottom: 80px;
+		text-align: center;
+	}
 
-// 	& .slider-container + .view-more {
-// 		margin-top: 40px;
-// 	}
+	& .slider-container + .view-more {
+		margin-top: 40px;
+	}
 
-// 	.panel {
-// 		@extend %clear-panel;
-// 		@extend %panel-root;
+	.panel {
+		@extend %clear-panel;
+		@extend %panel-root;
 
-// 		& > article {
-// 			@extend %panel;
-// 		}
-// 	}
+		& > article {
+			@extend %panel;
+		}
+	}
 
-// 	.lsx-review {
-// 		.panel {
-// 			& > article {
-// 				margin-top: 45px;
+	.lsx-review {
+		.panel {
+			& > article {
+				margin-top: 45px;
 
-// 				.thumbnail {
-// 					text-align: center;
-// 					background-color: transparent;
-// 					margin-top: -65px;
+				.thumbnail {
+					text-align: center;
+					background-color: transparent;
+					margin-top: -65px;
 
-// 					img {
-// 						width: 90px;
-// 						height: 90px;
-// 						border-radius: 50%;
-// 					}
-// 				}
+					img {
+						width: 90px;
+						height: 90px;
+						border-radius: 50%;
+					}
+				}
 
-// 				.title {
-// 					text-align: center;
-// 				}
+				.title {
+					text-align: center;
+				}
 
-// 				.meta {
-// 					font-size: 13px;
-// 				}
+				.meta {
+					font-size: 13px;
+				}
 
-// 				p {
-// 					color: $grey;
-// 					font-size: 15px;
-// 					line-height: 23px;
-// 					margin: 0;
+				p {
+					color: $grey;
+					font-size: 15px;
+					line-height: 23px;
+					margin: 0;
 
-// 					&:first-of-type {
-// 						padding-top: 15px;
-// 						margin-top: 13px;
-// 						border-top: 1px solid $border-grey;
-// 					}
-// 				}
-// 			}
-// 		}
-// 	}
+					&:first-of-type {
+						padding-top: 15px;
+						margin-top: 13px;
+						border-top: 1px solid $border-grey;
+					}
+				}
+			}
+		}
+	}
 
-// 	.lsx-accommodation-brand {
-// 		.panel {
-// 			& > article {
-// 				padding-bottom: 15px;
-// 			}
-// 		}
-// 	}
-// }
+	.lsx-accommodation-brand {
+		.panel {
+			& > article {
+				padding-bottom: 15px;
+			}
+		}
+	}
+}
+*/
 
 %panel-internal {
 	@extend %panel;
@@ -1623,6 +1628,7 @@ body {
 
 
 // ---------- Home (Page) Styles ----------
+// ---------- @TODO - REVIEW ----------
 
 
 body.home {
@@ -1638,6 +1644,7 @@ body.home {
 
 
 // ---------- Archive (Page) Styles ----------
+// ---------- @TODO - REVIEW ----------
 
 
 body.archive-tour-operator {
@@ -1788,6 +1795,7 @@ body.archive.post-type-archive-lsx-to-team {
 
 
 // ---------- Single (Page) Styles ----------
+// ---------- @TODO - REVIEW ----------
 
 
 body.single-tour-operator {
@@ -1975,8 +1983,10 @@ body.single-tour-operator {
 // ------------------------------------------------------
 // ---------- NOT RELATED DIRECTLY WITH PLUGIN ----------
 // ------------------------------------------------------
+// ---------- @TODO - REMOVE ----------------------------
 
 
+/*
 %lsx-parallax-banner {
 	#lsx-banner {
 		& + .wrap {
@@ -1992,11 +2002,14 @@ body.lsx {
 		@extend %lsx-parallax-banner;
 	}
 }
+*/
 
 
 // ---------- Share Buttons ----------
+// ---------- @TODO - REMOVE ----------
 
 
+/*
 #sharing {
 	.sharedaddy {
 		margin: 0;
@@ -2026,15 +2039,16 @@ body.lsx {
 		}
 	}
 }
+*/
 
 
 // ---------- Styles Home Page ----------
+// ---------- @TODO - REMOVE ----------
 
 
+/*
 body.home {
 	// ---------- Banner ----------
-
-	/* @TODO - REMOVE
 
 	.page-banner.rotating {
 		.page-banner-image {
@@ -2067,7 +2081,6 @@ body.home {
 			}
 		}
 	}
-	*/
 
 	// ---------- Widgets ----------
 
@@ -2122,16 +2135,17 @@ body.home {
 		}
 	}
 }
+*/
 
 
 // ---------- Styles Internal ----------
+// ---------- @TODO - REMOVE ----------
 
 
+/*
 body:not(.home) {
 
 	// ---------- LSX LSX Banners Plugin ----------
-
-	/* @TODO - REMOVE
 
 	.page-banner.rotating {
 		justify-content: flex-end;
@@ -2224,11 +2238,12 @@ body:not(.home) {
 			}
 		}
 	}
-	*/
 }
+*/
 
 
 // ---------- Default Gallery ----------
+// ---------- @TODO - REVIEW ----------
 
 
 body.single-tour-operator {
@@ -2297,6 +2312,10 @@ body.single-tour-operator {
 	}
 }
 
+
+// ---------- NEW STYLES - TO 1.1 ----------
+
+
 .col-xs-15,
 .col-sm-15,
 .col-md-15,
@@ -2313,7 +2332,7 @@ body.single-tour-operator {
 }
 
 @include media('>=phone') {
-.col-sm-15 {
+	.col-sm-15 {
         float: left;
         width: 20%;
     }
