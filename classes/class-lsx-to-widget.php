@@ -68,11 +68,7 @@ class LSX_TO_Widget extends WP_Widget {
 		} else {
 			$include = false;
 		}
-		if (isset($instance['size'])) {
-			$size = $instance['size'];
-		} else {
-			$size = false;
-		}
+
 		if (isset($instance['disable_placeholder'])) {
 			$disable_placeholder = $instance['disable_placeholder'];
 		} else {
@@ -87,11 +83,6 @@ class LSX_TO_Widget extends WP_Widget {
 			$button_text = $instance['button_text'];
 		} else {
 			$button_text = false;
-		}
-		if (isset($instance['responsive'])) {
-			$responsive = $instance['responsive'];
-		} else {
-			$responsive = false;
 		}
 		if (isset($instance['carousel'])) {
 			$carousel = $instance['carousel'];
@@ -152,11 +143,6 @@ class LSX_TO_Widget extends WP_Widget {
 			$limit = "-1";
 		}
 
-        if ( '1' == $responsive )
-            $responsive = true;
-        else
-            $responsive = false;
-
         if ( '1' == $buttons )
             $buttons = true;
         else
@@ -193,11 +179,9 @@ class LSX_TO_Widget extends WP_Widget {
 				'limit' => $limit,
 				'group' => $group,
 				'include' => $include,
-				'size' => $size,
 				'disable_placeholder' => $disable_placeholder,
 				'buttons' => $buttons,
 				'button_text' => $button_text,
-				'responsive' => $responsive,
 				'featured' => $featured,
 				'post_type' => $post_type,
 				'class' => $class,
@@ -224,11 +208,9 @@ class LSX_TO_Widget extends WP_Widget {
 	    $instance['order'] = strip_tags( $new_instance['order'] );
 	    $instance['limit'] = strip_tags( $new_instance['limit'] );
 	    $instance['include'] = strip_tags( $new_instance['include'] );
-	    $instance['size'] = strip_tags( $new_instance['size'] );
 	    $instance['disable_placeholder'] = strip_tags( $new_instance['disable_placeholder'] );
 	    $instance['buttons'] = strip_tags( $new_instance['buttons'] );
 	    $instance['button_text'] = $new_instance['button_text'];
-	    $instance['responsive'] = strip_tags( $new_instance['responsive'] );
 	    $instance['carousel'] = strip_tags( $new_instance['carousel'] );
 	    $instance['featured'] = strip_tags( $new_instance['featured'] );
 	    $instance['post_type'] = strip_tags( $new_instance['post_type'] );
@@ -248,11 +230,9 @@ class LSX_TO_Widget extends WP_Widget {
             'order' => 'DESC',
             'limit' => '',
             'include' => '',
-            'size' => '100',
             'disable_placeholder' => 0,
             'buttons' => 1,
         	'button_text' => 'See All',
-            'responsive' => 1,
         	'featured' => 0,
         	'post_type' => 'accommodation',
         	'class' => '',
@@ -270,11 +250,9 @@ class LSX_TO_Widget extends WP_Widget {
         $order  = esc_attr($instance['order']);
         $limit  = esc_attr($instance['limit']);
         $include  = esc_attr($instance['include']);
-        $size  = esc_attr($instance['size']);
         $disable_placeholder  = esc_attr($instance['disable_placeholder']);
         $buttons = esc_attr($instance['buttons']);
         $button_text = esc_attr($instance['button_text']);
-        $responsive = esc_attr($instance['responsive']);
         $featured = esc_attr($instance['featured']);
         $post_type = esc_attr($instance['post_type']);
         $class = esc_attr($instance['class']);
@@ -376,12 +354,6 @@ class LSX_TO_Widget extends WP_Widget {
 				for="<?php echo wp_kses_post($this->get_field_id('disable_placeholder')); ?>"><?php esc_html_e('Disable Featured Image','tour-operator'); ?></label>
 		</p>
 		<p>
-			<label for="<?php echo wp_kses_post($this->get_field_id('size')); ?>"><?php esc_html_e('Icon size:','tour-operator'); ?></label>
-			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('size')); ?>"
-				name="<?php echo wp_kses_post($this->get_field_name('size')); ?>" type="text"
-				value="<?php echo wp_kses_post($size); ?>" />
-		</p>
-		<p>
 			<input id="<?php echo wp_kses_post($this->get_field_id('buttons')); ?>"
 				name="<?php echo wp_kses_post($this->get_field_name('buttons')); ?>" type="checkbox"
 				value="1" <?php checked( '1', $buttons ); ?> /> <label
@@ -394,27 +366,18 @@ class LSX_TO_Widget extends WP_Widget {
 				value="<?php echo wp_kses_post($button_text); ?>" />
 		</p>
 		<p>
-			<input id="<?php echo wp_kses_post($this->get_field_id('responsive')); ?>"
-				name="<?php echo wp_kses_post($this->get_field_name('responsive')); ?>"
-				type="checkbox" value="1" <?php checked( '1', $responsive ); ?> /> <label
-				for="<?php echo wp_kses_post($this->get_field_id('responsive')); ?>"><?php esc_html_e('Responsive Images','tour-operator'); ?></label>
-		</p>
-
-		<p>
 			<input id="<?php echo wp_kses_post($this->get_field_id('carousel')); ?>"
 				name="<?php echo wp_kses_post($this->get_field_name('carousel')); ?>"
 				type="checkbox" value="1" <?php checked( '1', $carousel ); ?> /> <label
 				for="<?php echo wp_kses_post($this->get_field_id('carousel')); ?>"><?php esc_html_e('Enable Carousel','tour-operator'); ?></label>
 		</p>
-
 		<p>
 			<label for="<?php echo wp_kses_post($this->get_field_id('interval')); ?>"><?php esc_html_e('Slide Interval:','tour-operator'); ?></label>
-			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('size')); ?>"
+			<input class="widefat" id="<?php echo wp_kses_post($this->get_field_id('interval')); ?>"
 				name="<?php echo wp_kses_post($this->get_field_name('interval')); ?>" type="text"
 				value="<?php echo wp_kses_post($interval); ?>" />
 			<small>Type "false" to disable.</small>
 		</p>
-
 		<p>
 			<label for="<?php echo wp_kses_post($this->get_field_id('post_type')); ?>"><?php esc_html_e( 'Post Type:', 'tour-operator' ); ?></label>
 			<select name="<?php echo wp_kses_post($this->get_field_name('post_type')); ?>" id="<?php echo wp_kses_post($this->get_field_id('post_type')); ?>"	class="widefat layout">
@@ -472,11 +435,9 @@ class LSX_TO_Widget extends WP_Widget {
     	'order' => 'DESC',
     	'limit' => '-1',
     	'include' => '',
-    	'size' => 100,
     	'disable_placeholder' => false,
     	'buttons' => false,
     	'button_text' => false,
-    	'responsive' => true,
     	'carousel' => false,
     	'layout' => 'standard',
     	'featured' => false,
@@ -486,11 +447,6 @@ class LSX_TO_Widget extends WP_Widget {
 
     	$output = "";
 
-    	if ( 'true'  == $responsive) {
-    		$responsive = 'img-responsive';
-    	} else {
-    		$responsive = '';
-    	}
     	$paper = 'paper';
     	if('video' == $post_type){
 			$post_type = 'destination';
