@@ -598,12 +598,12 @@ class LSX_TO_Widget extends WP_Widget {
 			$landing_image = '';
 			$this->carousel_id = rand( 20, 20000 );
 
-			$output .= "<div class='slider-container lsx-widget-itens'>";
+			$output .= "<div class='slider-container lsx-to-widget-itens'>";
 			$output .= "<div id='slider-{$this->carousel_id}' class='lsx-to-slider'>";
 			$output .= '<div class="lsx-to-slider-wrap">';
 			$output .= "<div class='lsx-to-slider-inner' data-interval='{$interval}' data-slick='{ \"slidesToShow\": {$columns}, \"slidesToScroll\": {$columns} }'>";
 		} else {
-			$output .= "<div class='lsx-widget-itens'>";
+			$output .= "<div class='lsx-to-widget-itens'>";
 		}
 
 		echo wp_kses_post( $output );
@@ -617,7 +617,7 @@ class LSX_TO_Widget extends WP_Widget {
 
 		// Get the call for the active slide
 		if ( $carousel ) {
-			$output .= "<div class='lsx-widget-item-wrap lsx-{$post_type}'>";
+			$output .= "<div class='lsx-to-widget-item-wrap lsx-{$post_type}'>";
 		} elseif ( 1 === $count ) {
 			$output .= "<div class='row'>";
 		}

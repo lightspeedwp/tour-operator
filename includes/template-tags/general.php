@@ -23,7 +23,7 @@ function lsx_to_widget_class( $type = '', $return = false ) {
 	$cols = 'col-sm-';
 	$cols .= $columns == '5' ? '15' : 12 / $columns;
 
-	$class = 'lsx-widget-item-wrap lsx-'. $type .' '.  $cols;
+	$class = 'lsx-to-widget-item-wrap lsx-'. $type .' '.  $cols;
 
 	if ( false === $return ) {
 		echo 'class="'. esc_attr( $class ) .'"';

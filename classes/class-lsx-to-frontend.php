@@ -431,6 +431,7 @@ class LSX_TO_Frontend extends Tour_Operator {
 			@include customizer-blog-body-colours (
 				$breaker:   ' . $colors['body_line_color'] . ',
 				$color:    	' . $colors['body_text_color'] . ',
+				$link:    	' . $colors['body_link_color'] . ',
 				$hover:    	' . $colors['body_link_hover_color'] . '
 			);
 		';

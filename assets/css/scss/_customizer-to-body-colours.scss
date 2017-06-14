@@ -1,4 +1,4 @@
-@mixin customizer-to-body-colours($breaker: #DADDDF, $color: #4A4A4A, $hover: #F7AE00) {
+@mixin customizer-to-body-colours($breaker: #DADDDF, $color: #4A4A4A, $link: #418AD0, $hover: #F7AE00) {
 
 	.lsx-to-slider-inner {
 		.slick-dots {
@@ -30,6 +30,20 @@
 			&:before,
 			&:after {
 				background-color: $breaker;
+			}
+		}
+	}
+
+	.lsx-to-widget-item-wrap {
+		.lsx-to-widget-content {
+			.moretag {
+				background-color: $link;
+				color: #FFF;
+
+				&:hover {
+					background-color: $hover;
+					color: #FFF;
+				}
 			}
 		}
 	}
