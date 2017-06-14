@@ -84,4 +84,9 @@ jQuery(document).ready(function() {
 		window.lsx_thumbnail_subtabs_nav = true;
 	}
 
+
+   /* jQuery(window).on('uix.saved', function(e) {
+    	window.location.reload(true);
+    });*/
+
 });
