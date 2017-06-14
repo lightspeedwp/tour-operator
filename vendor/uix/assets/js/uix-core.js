@@ -503,7 +503,7 @@ var conduitApp = {},
 
         var clicked = $( this ),
             tab = clicked.data('tab'),
-            active = $('.active[data-tab]').data('tab')
+            active = $('.current[data-tab]').data('tab')
 
         if( active ){
             conduitBuildData( active );
@@ -513,9 +513,9 @@ var conduitApp = {},
             $('[data-app="' + active + '"]').empty().hide();
         }
 
-        $('[data-tab]').removeClass('active');
+        $('[data-tab]').removeClass('current');
         $('[data-app="' + tab + '"]').show();
-        clicked.addClass('active');
+        clicked.addClass('current');
         conduitBuildUI( tab );
     } );
 
@@ -583,7 +583,7 @@ var conduitApp = {},
     })
     $(window).on('close.modal', function( e ){
         //console.log( e );
-        var active = $('.active[data-tab]').data('tab')
+        var active = $('.current[data-tab]').data('tab')
         if( active ){
             conduitBuildUI( active );
         }
