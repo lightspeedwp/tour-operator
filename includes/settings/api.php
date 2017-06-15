@@ -6,6 +6,7 @@
 	</ul>
 
 	<div id="ui-settings" class="ui-tab active">
+        <p>Settings</p>
 		<table class="form-table" style="margin-top:-13px !important;">
 			<tbody>
 			<?php do_action('lsx_to_framework_api_tab_content','settings'); ?>

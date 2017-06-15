@@ -43,7 +43,7 @@
 					<div class="box support">
 						<h2><?php esc_html_e( 'Getting Support', 'tour-operator' ); ?></h2>
 						<p><?php esc_html_e( 'Our website\'s','tour-operator' ); ?> <a href="<?php echo wp_kses_post($lsx_to_documentation); ?>" target="_blank"><?php esc_html_e( 'documentation','tour-operator' ); ?></a> <?php esc_html_e( 'page is a great place to start to learn how to configure and customize our plugin and its extensions. Here are some links to some of the key settings and modules:', 'tour-operator' ); ?></p>
-						
+
 						<ul>
 							<li><strong><?php esc_html_e( 'General settings:', 'tour-operator' ); ?></strong> <?php esc_html_e( 'Configure the general settings of the plugin as well as some settings per-module.', 'tour-operator' ); ?></li>
 							<li><strong><?php esc_html_e( 'Destinations:', 'tour-operator' ); ?></strong> <?php esc_html_e( 'Create and configure your Destination single posts and archives', 'tour-operator' ); ?></li>
@@ -58,7 +58,7 @@
 				<div class="col-md-12">
 					<div class="box documentation">
 						<h2 class="help-title"><?php esc_html_e( 'Documentation for Extensions', 'tour-operator' ); ?></h2>
-						
+
 						<ul>
 							<li><a href="<?php echo wp_kses_post($map_link_doc); ?>" target="_blank"><strong><?php esc_html_e( 'Maps:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Integrate Google Map embeds into your site to specify the location of Destinations, Accommodations and points of Tours.', 'tour-operator' ); ?></li>
 							<li><a href="<?php echo wp_kses_post($galleries_link_doc); ?>" target="_blank"><strong><?php esc_html_e( 'Galleries:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Configure the way galleries display on singles and archives.', 'tour-operator' ); ?></li>
@@ -83,8 +83,9 @@
 						<h2><?php esc_html_e( 'Tour Operator', 'tour-operator' ); ?></h2>
 
 						<ul>
-							<li><strong><?php esc_html_e( 'Latest Version:', 'tour-operator' ); ?></strong> <?php esc_html_e( '1.0', 'tour-operator' ); ?></li>
-							<li><strong><?php esc_html_e( 'Requires:', 'tour-operator' ); ?></strong> <?php esc_html_e( 'WordPress 3.9+', 'tour-operator' ); ?></li>
+							<li><strong><?php esc_html_e( 'Latest Version:', 'tour-operator' ); ?></strong> <?php esc_html_e( '1.0.8', 'tour-operator' ); ?></li>
+							<li><strong><?php esc_html_e( 'Requires:', 'tour-operator' ); ?></strong> <?php esc_html_e( 'WordPress 4.3+', 'tour-operator' ); ?></li>
+							<li><strong><?php esc_html_e( 'Tested up to:', 'tour-operator' ); ?></strong> <?php esc_html_e( 'WordPress 4.8', 'tour-operator' ); ?></li>
 						</ul>
 
 						<div class="more-button">
@@ -112,7 +113,7 @@
 				<div class="col-md-12">
 					<div class="box premium">
 						<h3><?php esc_html_e( 'Premium Add-Ons', 'tour-operator' ); ?></h3>
-						
+
 						<ul>
 							<li><a href="<?php echo wp_kses_post($map_link);?>" target="_blank"><?php esc_html_e( 'Maps', 'tour-operator' ); ?></a></li>
 							<li><a href="<?php echo wp_kses_post($galleries_link);?>" target="_blank"><?php esc_html_e( 'Galleries', 'tour-operator' ); ?></a></li>

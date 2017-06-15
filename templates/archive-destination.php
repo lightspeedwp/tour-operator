@@ -5,6 +5,7 @@
  * @package 	tour-operator
  * @category	destination
  */
+$tour_operator = tour_operator();
 ?>
 
 <?php get_header() ?>
@@ -17,10 +18,10 @@
 
 		<main id="main" class="site-main" role="main">
 
-			<?php 
+			<?php
 			/**
 			 * Hooked
-			 * 
+			 *
 			 *  - lsx_to_global_header() - 100
 			 */
 				lsx_content_top();
@@ -38,7 +39,7 @@
 							the_post();
 							$slug = sanitize_title( the_title( '', '', FALSE ) );
 						?>
-						
+
 						<section class="countries" id="<?php echo esc_attr( $slug ); ?>">
 							<?php if ( $counter > 1 ) : ?>
 								<div class="lsx-breaker"></div>
@@ -49,7 +50,7 @@
 									<div class="col-sm-6">
 										<div class="thumbnail">
 											<a href="<?php the_permalink() ?>" title="<?php the_title_attribute() ?>">
-												<?php lsx_thumbnail( 'lsx-single-thumbnail' ) ?>
+												<?php lsx_thumbnail( 'lsx-thumbnail-single' ) ?>
 											</a>
 										</div>
 									</div>
@@ -62,7 +63,7 @@
 								</div>
 							</div>
 
-							<?php 
+							<?php
 								$regions = get_posts(
 									array(
 										'post_type' => 'destination',
@@ -80,111 +81,63 @@
 
 								<?php
 									global $post;
-									$inner_counter = 0;
-									$total_counter = 0;
-									$column_counter = 0;
+									$counter = 0;
 									$slider_id = get_the_ID();
 								?>
 
 								<div class="regions">
 									<h3 class="section-title"><?php esc_html_e( 'Travel Regions Within ', 'tour-operator' ) ?><a href="<?php the_permalink() ?>" title="<?php the_title_attribute() ?>"><?php the_title() ?></a></h3>
-									
+
 									<div class="slider-container">
-										<div id="slider-<?php echo esc_attr( $slider_id ); ?>" class="lsx-to-slider carousel slide" data-interval="false">
-											<div class="carousel-wrap">
-												<div class="carousel-inner" role="listbox">
-													<div class="item row active">
-															
-															<?php
-																foreach ( $regions as $region ) :
-																	$post = $region;
-																	setup_postdata( $region );
+										<div id="slider-<?php echo esc_attr( $slider_id ); ?>" class="lsx-to-slider">
+											<div class="lsx-to-slider-wrap">
+												<div class="lsx-to-slider-inner">
 
-																	$inner_counter++;
-																	$total_counter++;
-																?>
-																
-																<div class="panel col-sm-4">
-																	<article id="post-<?php the_ID() ?>" <?php post_class() ?>>
-																		<div class="thumbnail">
-																			<a href="<?php the_permalink() ?>">
-																				<?php lsx_thumbnail( 'lsx-thumbnail-wide' ) ?>
-																			</a>
-																		</div>
-																		
-																		<h4 class="title"><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h4>
-																		<?php lsx_to_tagline( '<p class="tagline">', '</p>') ?>
-																		<div class="widget-content">
-																			<div class="entry-content">
-																				<?php 
-																					ob_start();
-																					the_excerpt();
-																					$excerpt = ob_get_clean();
-																					$excerpt = strip_tags( $excerpt );
-																					$excerpt = preg_replace( '/Continue reading$/', '', $excerpt );
-																					echo wp_kses_post( $excerpt );
-																				?>
-																			</div>
-																			
-																			<div class="view-more">
-																				<a href="<?php the_permalink() ?>" class="btn btn-primary">View More</a>
-																			</div>
-																		</div>
-																	</article>
-																</div>
-
-																<?php
-																	if ( ( $inner_counter % 3 ) == 0 && $total_counter < $regions_size ) {
-																		$inner_counter = 0;
-																		$column_counter++;
-																		echo '</div><div class="item row">';
-																	}
-																?>						
-															
-																<?php
-																	wp_reset_postdata();
-																endforeach;
-															?>
-														
-															<?php
-																if ( 0 !== $inner_counter ) {
-																	$column_counter++;
-																	echo '</div>';
-																}
-															?>
-												</div>
-												
-												<?php if ( $column_counter > 1 ) : ?>
-
-													<a class="left carousel-control" href="#slider-<?php echo esc_attr( $slider_id ); ?>" role="button" data-slide="prev">
-														<span class="fa fa-chevron-left" aria-hidden="true"></span>
-														<span class="sr-only">Previous</span>
-													</a>
-
-													<a class="right carousel-control" href="#slider-<?php echo esc_attr( $slider_id ); ?>" role="button" data-slide="next">
-														<span class="fa fa-chevron-right" aria-hidden="true"></span>
-														<span class="sr-only">Next</span>
-													</a>
-
-												<?php endif ?>
-											</div>
-
-											<?php if ( $column_counter > 1 ) : ?>
-
-												<ol class="carousel-indicators">
 													<?php
-														$i = 0;
+														foreach ( $regions as $region ) :
+															$post = $region;
+															setup_postdata( $region );
 
-														while ( $i < $column_counter ) {
-															$class = 0 == $i ? 'active' : '';
-															echo '<li data-target="#slider-'. esc_attr( $slider_id ) .'" data-slide-to="'. esc_attr( $i ) .'" class="'. esc_attr( $class ) .'"></li>';
-															$i++;
-														}
+															$counter++;
+														?>
+
+														<div class="item row">
+															<div class="panel col-xs-12">
+																<article id="post-<?php the_ID() ?>" <?php post_class() ?>>
+																	<div class="thumbnail">
+																		<a href="<?php the_permalink() ?>">
+																			<?php lsx_thumbnail( 'lsx-thumbnail-wide' ) ?>
+																		</a>
+																	</div>
+
+																	<h4 class="title"><a href="<?php the_permalink() ?>"><?php the_title() ?></a></h4>
+																	<?php lsx_to_tagline( '<p class="tagline">', '</p>') ?>
+																	<div class="widget-content">
+																		<div class="entry-content">
+																			<?php
+																				ob_start();
+																				the_excerpt();
+																				$excerpt = ob_get_clean();
+																				$excerpt = strip_tags( $excerpt );
+																				$excerpt = preg_replace( '/(continue reading$)|(read more$)/i', '', $excerpt );
+																				echo wp_kses_post( $excerpt );
+																			?>
+																		</div>
+
+																		<div class="view-more">
+																			<a href="<?php the_permalink() ?>" class="btn btn-primary">View More</a>
+																		</div>
+																	</div>
+																</article>
+															</div>
+														</div>
+
+														<?php
+															wp_reset_postdata();
+														endforeach;
 													?>
-												</ol>
-
-											<?php endif ?>
-
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -192,19 +145,19 @@
 							<?php endif ?>
 
 						</section>
-					
+
 					<?php endwhile ?>
 
 				</section>
 
 			<?php else : ?>
-				
+
 				<?php get_template_part( 'content', 'none' ); ?>
 
 			<?php endif ?>
-			
+
 			<?php lsx_to_travel_styles( '<section id="travel-styles"><h2 class="section-title">'. esc_html__( 'Travel Styles','tour-operator' ) .'</h2>', '</section>' ) ?>
-			
+
 			<?php if(function_exists('lsx_to_has_map') && lsx_to_has_map()){ ?>
 				<section id="destination-map">
 					<?php if ( ! lsx_to_has_destination_banner_map() ) : ?>
@@ -213,7 +166,7 @@
 					<?php lsx_to_map() ?>
 				</section>
 			<?php }	?>
-			
+
 			<?php lsx_to_sharing() ?>
 
 			<?php lsx_content_bottom() ?>
@@ -221,10 +174,10 @@
 		</main><!-- #main -->
 
 		<?php lsx_content_after() ?>
-		
+
 	</section><!-- #primary -->
 
-<?php lsx_content_wrap_after(); ?>	
+<?php lsx_content_wrap_after(); ?>
 
 <?php get_sidebar() ?>
 

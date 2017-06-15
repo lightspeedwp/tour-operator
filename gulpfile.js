@@ -1,116 +1,191 @@
-var gulp = require('gulp');
+const gulp         = require('gulp');
+const autoprefixer = require('gulp-autoprefixer');
+const concat       = require('gulp-concat');
+const gettext      = require('gulp-gettext');
+const jshint       = require('gulp-jshint');
+const minify       = require('gulp-minify-css');
+const plumber      = require('gulp-plumber');
+const rename       = require('gulp-rename');
+const rtlcss       = require('gulp-rtlcss');
+const sass         = require('gulp-sass');
+const sort         = require('gulp-sort');
+const sourcemaps   = require('gulp-sourcemaps');
+const uglify       = require('gulp-uglify');
+const gutil        = require('gulp-util');
+const wppot        = require('gulp-wp-pot');
 
-gulp.task('default', function() {	 
+const browserlist  = ['last 2 version', '> 1%'];
+
+gulp.task('default', function() {
 	console.log('Use the following commands');
 	console.log('--------------------------');
-	console.log('gulp sass				to compile the style.scss to style.css');
-	console.log('gulp admin-sass		to compile the admin.scss to admin.css');
-	console.log('gulp scporder-sass		to compile the scporder.scss to scporder.css');
-	console.log('gulp compile-sass		to compile both of the above.');
-	console.log('gulp js				to compile the custom.js to custom.min.js');
-	console.log('gulp admin-js			to compile the admin.js to admin.min.js');
-	console.log('gulp scporder-js		to compile the scporder.js to scporder.min.js');
-	console.log('gulp compile-js		to compile both of the above.');
-	console.log('gulp watch				to continue watching all files for changes, and build when changed');
-	console.log('gulp wordpress-lang	to compile the tour-operator.pot, en_EN.po and en_EN.mo');
-	console.log('gulp reload-node-flag-icon-css		copy the scss and svg files for the flag-icon-css');
+	console.log('gulp compile-css    			to compile the scss to css');
+	console.log('gulp compile-js     			to compile the js to min.js');
+	console.log('gulp watch          			to continue watching the files for changes');
+	console.log('gulp wordpress-lang 			to compile the lsx.pot, en_EN.po and en_EN.mo');
+	console.log('gulp reload-node-flag-icon-css	to copy the scss and svg files for the flag-icon-css');
 });
 
-var sass = require('gulp-sass');
-var jshint = require('gulp-jshint');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var sort = require('gulp-sort');
-var wppot = require('gulp-wp-pot');
-var gettext = require('gulp-gettext');
-
-gulp.task('sass', function () { 
-    gulp.src('assets/css/style.scss')
-        .pipe(sass())
-        .pipe(gulp.dest('assets/css/'));   
+gulp.task('styles', function () {
+	return gulp.src('assets/css/scss/*.scss')
+		.pipe(plumber({
+			errorHandler: function(err) {
+				console.log(err);
+				this.emit('end');
+			}
+		}))
+		.pipe(sourcemaps.init())
+		.pipe(sass({
+			outputStyle: 'compact',
+			includePaths: ['assets/css/scss']
+		}).on('error', gutil.log))
+		.pipe(autoprefixer({
+			browsers: browserlist,
+			casacade: true
+		}))
+		.pipe(sourcemaps.write('maps'))
+		.pipe(gulp.dest('assets/css'))
 });
 
-gulp.task('admin-sass', function () { 
-    gulp.src('assets/css/admin.scss')
-        .pipe(sass())
-        .pipe(gulp.dest('assets/css/'));   
+gulp.task('styles-rtl', function () {
+	return gulp.src('assets/css/scss/*.scss')
+		.pipe(plumber({
+			errorHandler: function(err) {
+				console.log(err);
+				this.emit('end');
+			}
+		}))
+		.pipe(sass({
+			outputStyle: 'compact',
+			includePaths: ['assets/css/scss']
+		}).on('error', gutil.log))
+		.pipe(autoprefixer({
+			browsers: browserlist,
+			casacade: true
+		}))
+		.pipe(rtlcss())
+		.pipe(rename({
+			suffix: '-rtl'
+		}))
+		.pipe(gulp.dest('assets/css'))
 });
 
-gulp.task('scporder-sass', function () { 
-    gulp.src('assets/css/scporder.scss')
-        .pipe(sass())
-        .pipe(gulp.dest('assets/css/'));   
+gulp.task('styles-vendor', function () {
+	return gulp.src('assets/css/vendor/**/*.scss')
+		.pipe(plumber({
+			errorHandler: function(err) {
+				console.log(err);
+				this.emit('end');
+			}
+		}))
+		.pipe(sass({
+			outputStyle: 'compact',
+			includePaths: ['assets/css/vendor']
+		}).on('error', gutil.log))
+		.pipe(autoprefixer({
+			browsers: browserlist,
+			casacade: true
+		}))
+		.pipe(gulp.dest('assets/css/vendor'))
 });
 
-gulp.task('js', function () {
-	gulp.src('assets/js/custom.js')	 
-	//.pipe(jshint())	 
-	//.pipe(jshint.reporter('fail'))	 
-	.pipe(concat('custom.min.js'))
-	.pipe(uglify())
-	.pipe(gulp.dest('assets/js'));
+gulp.task('styles-vendor-rtl', function () {
+	return gulp.src('assets/css/vendor/**/*.scss')
+		.pipe(plumber({
+			errorHandler: function(err) {
+				console.log(err);
+				this.emit('end');
+			}
+		}))
+		.pipe(sass({
+			outputStyle: 'compact',
+			includePaths: ['assets/css/vendor']
+		}).on('error', gutil.log))
+		.pipe(autoprefixer({
+			browsers: browserlist,
+			casacade: true
+		}))
+		.pipe(rtlcss())
+		.pipe(rename({
+			suffix: '-rtl'
+		}))
+		.pipe(gulp.dest('assets/css/vendor'))
 });
 
-gulp.task('admin-js', function () {
-	gulp.src('assets/js/admin.js')	 
-	//.pipe(jshint())	 
-	//.pipe(jshint.reporter('fail'))	 
-	.pipe(concat('admin.min.js'))
-	.pipe(uglify())
-	.pipe(gulp.dest('assets/js'));
+gulp.task('compile-css', ['styles', 'styles-rtl', 'styles-vendor', 'styles-vendor-rtl']);
+
+gulp.task('js', function() {
+	return gulp.src('assets/js/src/**/*.js')
+		.pipe(plumber({
+			errorHandler: function(err) {
+				console.log(err);
+				this.emit('end');
+			}
+		}))
+		.pipe(jshint())
+		.pipe(uglify())
+		.pipe(rename({
+			suffix: '.min'
+		}))
+		.pipe(gulp.dest('assets/js'))
 });
 
-gulp.task('scporder-js', function () {
-	gulp.src('assets/js/scporder.js')	 
-	//.pipe(jshint())	 
-	//.pipe(jshint.reporter('fail'))	 
-	.pipe(concat('scporder.min.js'))
-	.pipe(uglify())
-	.pipe(gulp.dest('assets/js'));
-});
- 
-gulp.task('compile-sass', (['sass', 'admin-sass', 'scporder-sass']));
-gulp.task('compile-js', (['js', 'admin-js', 'scporder-js']));
-
-gulp.task('watch', function() {	 
-	gulp.watch('assets/css/style.scss', ['sass']);	 
-	gulp.watch('assets/css/admin.scss', ['admin-sass']);
-	gulp.watch('assets/css/scporder.scss', ['scporder-sass']);
-	gulp.watch('assets/js/custom.js', ['js']);
-	gulp.watch('assets/js/admin.js', ['admin-js']);
-	gulp.watch('assets/js/scporder.js', ['scporder-js']);
+gulp.task('js-vendor', function() {
+	return gulp.src('assets/js/vendor/src/**/*.js')
+		.pipe(plumber({
+			errorHandler: function(err) {
+				console.log(err);
+				this.emit('end');
+			}
+		}))
+		.pipe(jshint())
+		.pipe(uglify())
+		.pipe(rename({
+			suffix: '.min'
+		}))
+		.pipe(gulp.dest('assets/js/vendor'))
 });
 
-gulp.task('wordpress-pot', function () {
+gulp.task('compile-js', (['js', 'js-vendor']));
+
+gulp.task('watch-css', function () {
+	return gulp.watch('assets/css/**/*.scss', ['compile-css']);
+});
+
+gulp.task('watch-js', function () {
+	return gulp.watch('assets/js/src/**/*.js', ['compile-js']);
+});
+
+gulp.task('watch', ['watch-css', 'watch-js']);
+
+gulp.task('wordpress-pot', function() {
 	return gulp.src('**/*.php')
 		.pipe(sort())
 		.pipe(wppot({
 			domain: 'tour-operator',
-			destFile: 'tour-operator.pot',
 			package: 'tour-operator',
 			bugReport: 'https://github.com/lightspeeddevelopment/tour-operator/issues',
 			team: 'LightSpeed <webmaster@lsdev.biz>'
 		}))
-		.pipe(gulp.dest('languages'));
+		.pipe(gulp.dest('languages/tour-operator.pot'))
 });
 
-gulp.task('wordpress-po', function () {
+gulp.task('wordpress-po', function() {
 	return gulp.src('**/*.php')
 		.pipe(sort())
 		.pipe(wppot({
 			domain: 'tour-operator',
-			destFile: 'en_EN.po',
 			package: 'tour-operator',
 			bugReport: 'https://github.com/lightspeeddevelopment/tour-operator/issues',
 			team: 'LightSpeed <webmaster@lsdev.biz>'
 		}))
-		.pipe(gulp.dest('languages'));
+		.pipe(gulp.dest('languages/tour-operator-en_EN.po'))
 });
 
 gulp.task('wordpress-po-mo', ['wordpress-po'], function() {
-	return gulp.src('languages/en_EN.po')
+	return gulp.src('languages/tour-operator-en_EN.po')
 		.pipe(gettext())
-		.pipe(gulp.dest('languages'));
+		.pipe(gulp.dest('languages'))
 });
 
 gulp.task('wordpress-lang', (['wordpress-pot', 'wordpress-po-mo']));

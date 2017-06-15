@@ -16,16 +16,16 @@ get_header(); ?>
 
 		<main id="main" class="site-main" role="main">
 
-		<?php 
+		<?php
 		/**
 		 * Hooked
-		 * 
+		 *
 		 *  - lsx_to_global_header() - 100
 		 *  - lsx_to_archive_description() - 100
 		 */
 			lsx_content_top();
 		?>
-		
+
 		<?php if ( have_posts() ) : ?>
 
 			<div class="row">
@@ -44,15 +44,13 @@ get_header(); ?>
 		<?php endif; ?>
 
 		<?php lsx_content_bottom(); ?>
-		
-		<?php lsx_to_safari_brands('<section id="safari-brands"><h2 class="section-title">'.__(lsx_to_get_post_type_section_title('accommodation', 'brands', 'Accommodation Brands'),'tour-operator').'</h2>','</section>');?>
-		
+
 		<?php lsx_to_sharing(); ?>
 
 		</main><!-- #main -->
 
 		<?php lsx_content_after(); ?>
-		
+
 	</section><!-- #primary -->
 
 <?php lsx_content_wrap_after(); ?>

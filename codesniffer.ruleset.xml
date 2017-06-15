@@ -31,15 +31,17 @@
 		<exclude name="WordPress.Variables.GlobalVariables.OverrideProhibited" />
 		<exclude name="WordPress.WhiteSpace" />
 		<exclude name="WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet" />
+		<exclude name="WordPress.WP.EnqueuedResources.NonEnqueuedScript" />
 		<exclude name="WordPress.WP.I18n.MissingSingularPlaceholder" />
 		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralDomain" />
 		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralText" />
 		<exclude name="WordPress.WP.I18n.nonsingularstringliteraltext" />
-		
+		<exclude name="WordPress.WP.PreparedSQL.NotPrepared" />
+
 		<exclude name="WordPress.VIP" />
 
 		<exclude name="WordPress.Functions.DontExtract.extract" />
 		<exclude name="WordPress.Functions.DontExtract.extract_extract" />
-		
+
 	</rule>
 </ruleset>

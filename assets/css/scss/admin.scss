@@ -1,0 +1,349 @@
+/*
+ * LSX Tour Operators Administrator
+ */
+
+@import '../vendor/flag-icon-css/flag-icon';
+
+/* Variables */
+
+$bg-grey: #f9f9f9;
+$bdr-grey: #cccccc;
+
+/* Placeholders */
+
+%white-box {
+	background-color: $bg-grey;
+	border: 1px solid $bdr-grey;
+	border-radius: 4px;
+	padding: 8px 20px 12px;
+}
+
+%heading-box {
+	background-color: $bg-grey;
+	margin-bottom: 10px;
+	padding: 6px 0 6px 12px;
+}
+
+%lists {
+	margin-bottom: 20px;
+	margin-left: 35px;
+}
+
+%error-hide {
+	.error {
+		display: none;
+	}
+}
+
+/* General */
+
+#banners {
+	.CMB_Group_Field {
+		display: block;
+	}
+}
+
+.CMB_Group_Field {
+	&.active {
+		display: block;
+	}
+}
+
+#lsx-tab-headings {
+	display: block;
+	float: left;
+	width: 10%;
+}
+
+#details .cmb_metabox {
+	display: block;
+	float: right;
+	width: 85%;
+
+	.cmb_metabox {
+		float:none;
+		width: 98%;
+	}
+}
+
+#lsx-tab-headings {
+	.tab-heading {
+		display: block;
+		text-transform:capitalize;
+		padding: 10px 15px;
+		width: 100%;
+	}
+}
+
+
+/* The Tab Styling */
+
+body.tour-operator_page_lsx-to-settings {
+	.spinner {
+		background-color: #fff;
+		border-radius: 10px;
+	}
+	.uix-field-wrapper {
+		.ui-tab-nav {
+			li {
+				display: inline-block;
+
+				&:after {
+					content: "|";
+					display: inline-block;
+					padding: 0 3px 0 8px;
+				}
+
+				&:last-child {
+					&:after {
+						content: "";
+						padding-left: 0;
+					}
+				}
+
+				a {
+					text-decoration: none;
+
+					&.active {
+						color: black;
+						font-weight: bold;
+					}
+
+					&:focus {
+						box-shadow: none;
+					}
+				}
+			}
+		}
+
+		.ui-tab {
+			display:none;
+
+			&.active {
+				display:block;
+			}
+		}
+	}
+}
+
+// Welcome page content
+// Help page content
+// Addons page content
+
+body.tour-operator_page_to-help,
+body.tour-operator_page_to-addons {
+	#wpbody-content {
+		.wrap {
+
+			// Bootstrap Grid
+
+			@import "../vendor/bootstrap/variables";
+			@import "../vendor/bootstrap/mixins";
+
+			* {
+				@include box-sizing(border-box);
+			}
+
+			*:before,
+			*:after {
+				@include box-sizing(border-box);
+			}
+
+			.text-center {
+				text-align: center;
+			}
+
+			@import "../vendor/bootstrap/grid";
+
+			// Styles
+
+			h1 {
+				&.small {
+					font-size: 35px;
+				}
+			}
+
+			h2 {
+				margin-bottom: 20px;
+			}
+
+			img {
+				width: 100%;
+			}
+
+			.thumbnail,
+			.video {
+				margin-bottom: 40px;
+			}
+
+			.top-header {
+				margin-bottom: 40px;
+
+				p {
+					font-size: 13px;
+					margin-bottom: 13px;
+
+					&:last-child {
+						margin-bottom: 0;
+					}
+				}
+			}
+
+			.box {
+				background: #fff;
+				border: 1px solid #ddd;
+				border-radius: 4px;
+				margin-bottom: 40px;
+				padding: 25px 30px;
+				position: relative;
+
+				&.box-top-image {
+					border-top: none;
+					border-top-left-radius: 0;
+					border-top-right-radius: 0;
+				}
+
+				h2, h3 {
+					font-size: 17px;
+					font-weight: 700;
+					margin-right: 30px;
+					margin-top: 0;
+					text-align: left;
+				}
+
+				p, ul, li {
+					font-size: 13px;
+					margin-bottom: 13px;
+
+					&:last-child {
+						margin-bottom: 0;
+					}
+				}
+
+				.more-button {
+					padding: 1em 0 0 0;
+					border-top: 1px solid #eee;
+					clear: both;
+					text-align: right;
+				}
+
+				.price {
+					color: #45B964;
+				}
+
+				form {
+					padding: 0 !important;
+				}
+
+				&:before {
+					content: "\f324";
+					display: block;
+					position: absolute;
+					top: 30px;
+					right: 30px;
+					font-size: 1.618em;
+					font-family: 'Dashicons';
+					font-weight: 400;
+					-webkit-font-smoothing: antialiased;
+				}
+
+				&.box-top-image {
+					&:before {
+						display: none;
+					}
+				}
+
+				&.featured {
+					border-width: 2px;
+					border-color: #FFA107;
+					box-shadow: 0 1px 1px #FFA107;
+
+					&:before {
+						color: #FFA107;
+					}
+				}
+
+				&.enhance:before {
+					content: "\f106";
+				}
+
+				&.maps:before {
+					content: "\f230";
+				}
+
+				&.specials:before,
+				&.rate:before {
+					content: "\f155";
+				}
+
+				&.reviews:before {
+					content: "\f130";
+				}
+
+				&.activities:before {
+					content: "\f481";
+				}
+
+				&.search:before {
+					content: "\f179";
+				}
+
+				&.galleries:before {
+					content: "\f161";
+				}
+
+				&.vehicles:before {
+					content: "\f311";
+				}
+
+				&.team:before {
+					content: "\f307";
+				}
+
+				&.videos:before {
+					content: "\f236";
+				}
+
+				&.wetu:before {
+					content: "\f316";
+				}
+
+				&.support:before {
+					content: "\f107";
+				}
+
+				&.documentation:before {
+					content: "\f123";
+				}
+
+				&.info:before {
+					content: "\f534";
+				}
+
+				&.premium:before {
+					content: "\f313";
+				}
+
+				&.news:before {
+					content: "\f319";
+				}
+
+				&.newsletter:before {
+					content: "\f465";
+				}
+			}
+
+			.box-clean {
+				padding-top: 20px;
+
+				h3 {
+					font-weight: 700;
+				}
+
+				p:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+}
