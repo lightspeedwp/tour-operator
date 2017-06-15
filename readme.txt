@@ -2,11 +2,10 @@
 Contributors: feedmymedia
 Donate link: https://www.lsdev.biz/
 Tags: tour operator, tour operators, tour, tours, tour itinerary, tour itineraries, accommodation, accommodation listings, destinations, regions, tourism, lsx
-Requires at least: 4.3
+Requires at least: 4.6
 Tested up to: 4.8
-Stable tag: 4.8
+Stable tag: 1.0.8
 License: GPLv3
-License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 The Tour Operators plugin brings live availability, bookings, digital itineraries, and other post types tour operators need to succeed.
 
