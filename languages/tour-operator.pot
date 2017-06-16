@@ -506,7 +506,7 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:109, includes/settings/help.php:83
+#: classes/class-lsx-to-admin.php:109, includes/customizer.php:17, includes/settings/help.php:83
 msgid "Tour Operator"
 msgstr ""
 
