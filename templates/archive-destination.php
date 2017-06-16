@@ -106,7 +106,7 @@ $tour_operator = tour_operator();
 																<article id="post-<?php the_ID() ?>" <?php post_class() ?>>
 																	<div class="thumbnail">
 																		<a href="<?php the_permalink() ?>">
-																			<?php lsx_thumbnail( 'lsx-thumbnail-wide' ) ?>
+																			<?php lsx_thumbnail( 'lsx-thumbnail-single' ) ?>
 																		</a>
 																	</div>
 
