@@ -610,7 +610,7 @@ msgstr ""
 msgid "Featured Image"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:526, classes/class-lsx-to-placeholders.php:383, classes/class-lsx-to-placeholders.php:398, classes/class-lsx-to-placeholders.php:413, classes/class-lsx-to-placeholders.php:451, classes/class-lsx-to-placeholders.php:467, classes/class-lsx-to-settings.php:341, includes/settings/post.php:14
+#: classes/class-lsx-to-admin.php:526, classes/class-lsx-to-placeholders.php:382, classes/class-lsx-to-placeholders.php:397, classes/class-lsx-to-placeholders.php:412, classes/class-lsx-to-placeholders.php:450, classes/class-lsx-to-placeholders.php:466, classes/class-lsx-to-settings.php:341, includes/settings/post.php:14
 msgid "Choose Image"
 msgstr ""
 
@@ -790,35 +790,35 @@ msgstr ""
 msgid "Read More"
 msgstr ""
 
-#: classes/class-lsx-to-placeholders.php:375
+#: classes/class-lsx-to-placeholders.php:374
 msgid "Banner Placeholder"
 msgstr ""
 
-#: classes/class-lsx-to-placeholders.php:384, classes/class-lsx-to-placeholders.php:399, classes/class-lsx-to-placeholders.php:414, classes/class-lsx-to-placeholders.php:452, classes/class-lsx-to-placeholders.php:468, classes/class-lsx-to-settings.php:342, includes/post-expirator.php:278, includes/settings/post.php:15
+#: classes/class-lsx-to-placeholders.php:383, classes/class-lsx-to-placeholders.php:398, classes/class-lsx-to-placeholders.php:413, classes/class-lsx-to-placeholders.php:451, classes/class-lsx-to-placeholders.php:467, classes/class-lsx-to-settings.php:342, includes/post-expirator.php:278, includes/settings/post.php:15
 msgid "Delete"
 msgstr ""
 
-#: classes/class-lsx-to-placeholders.php:390
+#: classes/class-lsx-to-placeholders.php:389
 msgid "Archive Placeholder"
 msgstr ""
 
-#: classes/class-lsx-to-placeholders.php:405
+#: classes/class-lsx-to-placeholders.php:404
 msgid "Blog Placeholder"
 msgstr ""
 
-#: classes/class-lsx-to-placeholders.php:420
+#: classes/class-lsx-to-placeholders.php:419
 msgid "Disable Placeholder on Blog Posts"
 msgstr ""
 
-#: classes/class-lsx-to-placeholders.php:424
+#: classes/class-lsx-to-placeholders.php:423
 msgid "This disables the placeholder on blog posts."
 msgstr ""
 
-#: classes/class-lsx-to-placeholders.php:443, includes/settings/post.php:6
+#: classes/class-lsx-to-placeholders.php:442, includes/settings/post.php:6
 msgid "Banner"
 msgstr ""
 
-#: classes/class-lsx-to-placeholders.php:459
+#: classes/class-lsx-to-placeholders.php:458
 msgid "Archive Image"
 msgstr ""
 
