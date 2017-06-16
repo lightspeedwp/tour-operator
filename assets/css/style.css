@@ -1554,6 +1554,8 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-rooms:before { content: '\f236'; }
 
+.lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-special:before { content: '\f292'; }
+
 .lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-style:before { content: '\f02b'; }
 
 .lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-tours:before { content: '\f072'; }
