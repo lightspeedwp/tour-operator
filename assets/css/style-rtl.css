@@ -1532,6 +1532,10 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-widget-item-wrap.lsx-team .lsx-to-widget-thumb { border-radius: 50%; height: 170px; overflow: hidden; margin: 0 auto 12px; position: relative; width: 170px; }
 
+.lsx-to-widget-item-wrap.lsx-review .lsx-to-widget-thumb { border-radius: 50%; height: 100px; overflow: hidden; margin: 0 auto 12px; position: relative; width: 100px; }
+
+@media (min-width: 992px) { .lsx-to-widget-item-wrap.lsx-review .lsx-to-widget-blockquote { max-width: none; } }
+
 .lsx-to-widget-item-wrap .lsx-to-widget-thumb img { width: 100%; }
 
 .lsx-to-widget-meta-data { margin: 2.4rem 0; position: relative; }
@@ -1561,6 +1565,8 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 .lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-special:before { content: '\f292'; }
 
 .lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-style:before { content: '\f02b'; }
+
+.lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-team:before { content: '\f007'; }
 
 .lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-tours:before { content: '\f072'; }
 

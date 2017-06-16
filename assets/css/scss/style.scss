@@ -2517,6 +2517,21 @@ body.single-tour-operator {
 		}
 	}
 
+	&.lsx-review {
+		.lsx-to-widget-thumb {
+			border-radius: 50%;
+			height: 100px;
+			overflow: hidden;
+			margin: 0 auto 12px;
+			position: relative;
+			width: 100px;
+		}
+
+		.lsx-to-widget-blockquote {
+			@include media('>=tablet') { max-width: none; }
+		}
+	}
+
 	.lsx-to-widget-thumb img { width: 100%; }
 }
 
@@ -2555,6 +2570,7 @@ body.single-tour-operator {
 		&.lsx-to-widget-meta-rooms:before { content: '\f236'; }
 		&.lsx-to-widget-meta-special:before { content: '\f292'; }
 		&.lsx-to-widget-meta-style:before { content: '\f02b'; }
+		&.lsx-to-widget-meta-team:before { content: '\f007'; }
 		&.lsx-to-widget-meta-tours:before { content: '\f072'; }
 	}
 }
