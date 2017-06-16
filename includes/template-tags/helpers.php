@@ -148,7 +148,7 @@ if(!function_exists('lsx_to_has_term_thumbnail')){
  * @param	$term_id string
  */
 if(!function_exists('lsx_to_term_thumbnail')){
-	function lsx_to_term_thumbnail($term_id = false,$size='lsx-thumbnail-wide') {
+	function lsx_to_term_thumbnail($term_id = false,$size='lsx-thumbnail-single') {
 		if(false !== $term_id){
 			echo wp_kses_post(lsx_to_get_term_thumbnail($term_id,$size));
 		}
@@ -160,7 +160,7 @@ if(!function_exists('lsx_to_term_thumbnail')){
  * @param	$term_id string
  */
 if(!function_exists('lsx_to_get_term_thumbnail')){
-	function lsx_to_get_term_thumbnail($term_id = false,$size='lsx-thumbnail-wide') {
+	function lsx_to_get_term_thumbnail($term_id = false,$size='lsx-thumbnail-single') {
 		if(false !== $term_id){
 			$term_thumbnail_id = get_term_meta($term_id, 'thumbnail', true);
 			$img = wp_get_attachment_image_src($term_thumbnail_id,$size);

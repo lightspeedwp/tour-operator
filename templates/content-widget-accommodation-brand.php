@@ -15,7 +15,7 @@ $url_taxonomy = 'brand';
 		<?php if ( lsx_to_has_term_thumbnail( $term->term_id) ) : ?>
 			<div class="lsx-to-widget-thumb">
 				<a href="<?php echo esc_url( home_url( $taxonomy. '/'. $term->slug .'/' ) ); ?>">
-					<?php lsx_to_term_thumbnail( $term->term_id, 'lsx-thumbnail-wide' ); ?>
+					<?php lsx_to_term_thumbnail( $term->term_id, 'lsx-thumbnail-single' ); ?>
 				</a>
 			</div>
 		<?php else: ?>
