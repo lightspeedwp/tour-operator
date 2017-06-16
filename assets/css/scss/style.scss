@@ -2532,14 +2532,16 @@ body.single-tour-operator {
 			-moz-osx-font-smoothing: grayscale;
 		}
 
-		&.lsx-to-widget-meta-price:before { content: '\f0d6'; }
-		&.lsx-to-widget-meta-duration:before { content: '\f133'; }
-		&.lsx-to-widget-meta-style:before { content: '\f02b'; }
-		&.lsx-to-widget-meta-destinations:before { content: '\f0ac'; }
+		&.lsx-to-widget-meta-accommodations:before { content: '\f015'; }
 		&.lsx-to-widget-meta-activities:before { content: '\f1e5'; }
 		&.lsx-to-widget-meta-brand:before { content: '\f1ad'; }
-		&.lsx-to-widget-meta-rooms:before { content: '\f236'; }
+		&.lsx-to-widget-meta-destinations:before { content: '\f0ac'; }
+		&.lsx-to-widget-meta-duration:before { content: '\f133'; }
+		&.lsx-to-widget-meta-price:before { content: '\f0d6'; }
 		&.lsx-to-widget-meta-rating:before { content: '\f006'; }
+		&.lsx-to-widget-meta-rooms:before { content: '\f236'; }
+		&.lsx-to-widget-meta-style:before { content: '\f02b'; }
+		&.lsx-to-widget-meta-tours:before { content: '\f072'; }
 	}
 }
 

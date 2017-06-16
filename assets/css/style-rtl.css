@@ -1538,21 +1538,25 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-widget-meta-data .lsx-to-widget-meta:before { color: inherit; display: inline-block; font-family: 'FontAwesome'; font-size: inherit; position: absolute; right: 0; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
-.lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-price:before { content: '\f0d6'; }
-
-.lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-duration:before { content: '\f133'; }
-
-.lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-style:before { content: '\f02b'; }
-
-.lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-destinations:before { content: '\f0ac'; }
+.lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-accommodations:before { content: '\f015'; }
 
 .lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-activities:before { content: '\f1e5'; }
 
 .lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-brand:before { content: '\f1ad'; }
 
-.lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-rooms:before { content: '\f236'; }
+.lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-destinations:before { content: '\f0ac'; }
+
+.lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-duration:before { content: '\f133'; }
+
+.lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-price:before { content: '\f0d6'; }
 
 .lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-rating:before { content: '\f006'; }
+
+.lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-rooms:before { content: '\f236'; }
+
+.lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-style:before { content: '\f02b'; }
+
+.lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-tours:before { content: '\f072'; }
 
 .lsx-to-slider-inner .slick-dots > li > button { border-color: #4A4A4A; }
 
