@@ -1536,7 +1536,7 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 @media (min-width: 992px) { .lsx-to-widget-item-wrap.lsx-review .lsx-to-widget-blockquote { max-width: none; } }
 
-.lsx-to-widget-item-wrap .lsx-to-widget-thumb img { width: 100%; }
+.lsx-to-widget-item-wrap .lsx-to-widget-thumb img:not(.lazyload) { width: 100%; }
 
 .lsx-to-widget-meta-data { margin: 2.4rem 0; position: relative; }
 
