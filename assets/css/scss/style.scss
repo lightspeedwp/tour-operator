@@ -2535,7 +2535,7 @@ body.single-tour-operator {
 	.lsx-to-widget-thumb img {
 		width: 100%;
 
-		&.lazyload { width: auto; }
+		&.lazyload, &.lazyloading { width: auto; }
 	}
 }
 
