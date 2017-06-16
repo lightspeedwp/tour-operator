@@ -81,7 +81,7 @@ class LSX_TO_Placeholders {
 	/**
 	 * Returns the placeholder call.
 	 */
-	public static function placeholder_url($text_size = 24,$post_type='general',$size='lsx-thumbnail-wide'){
+	public static function placeholder_url($text_size = 24,$post_type='general',$size='lsx-thumbnail-single'){
 		$options = get_option('_lsx-to_settings',false);
 		$holdit_width = '';
 		switch($size){
@@ -94,7 +94,6 @@ class LSX_TO_Placeholders {
 				$holdit_width = '&w='.$width.'&h='.$height;
 			break;
 
-			case 'lsx-thumbnail-single':
 			case 'lsx-thumbnail-single':
 				$holdit_width = '&w=750&h=350';
 			break;
