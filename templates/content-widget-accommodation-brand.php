@@ -28,6 +28,10 @@ $url_taxonomy = 'brand';
 	<?php } ?>
 
 	<div class="lsx-to-widget-content">
-		<h4 class="lsx-to-widget-title text-center"><a href="<?php echo esc_url( home_url( $url_taxonomy .'/'. $term->slug .'/' ) ); ?>"><?php echo esc_html( apply_filters( 'the_title', $term->name ) ); ?></a></h4>
+		<h4 class="lsx-to-widget-title text-center"><?php echo esc_html( apply_filters( 'the_title', $term->name ) ); ?></h4>
+
+		<p>
+			<a href="<?php echo esc_url( home_url( $url_taxonomy .'/'. $term->slug .'/' ) ); ?>" class="moretag"><?php esc_html_e( 'View accommodations', 'tour-operator' ); ?></a>
+		</p>
 	</div>
 </article>

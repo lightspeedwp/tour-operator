@@ -30,7 +30,7 @@ global $term, $taxonomy, $disable_placeholder;
 		<?php lsx_to_term_tagline( $term->term_id, '<p class="lsx-to-widget-tagline">', '</p>' ); ?>
 
 		<p>
-			<a href="<?php echo esc_url( home_url($taxonomy.'/'.$term->slug.'/') ); ?>" class="moretag"><?php esc_html_e( 'View tours', 'tour-operator' ); ?></a>
+			<a href="<?php echo esc_url( home_url($taxonomy.'/'.$term->slug.'/') ); ?>" class="moretag"><?php esc_html_e( 'View more', 'tour-operator' ); ?></a>
 		</p>
 	</div>
 </article>
