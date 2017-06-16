@@ -2532,7 +2532,11 @@ body.single-tour-operator {
 		}
 	}
 
-	.lsx-to-widget-thumb img:not(.lazyload) { width: 100%; }
+	.lsx-to-widget-thumb img {
+		width: 100%;
+
+		&.lazyload { width: auto; }
+	}
 }
 
 .lsx-to-widget-meta-data {
