@@ -6,10 +6,11 @@
  * @category	activity
  * @subpackage	widget
  */
-global $disable_placeholder;
+
+global $disable_placeholder, $disable_text;
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php if ( '1' !== $disable_placeholder && true !== $disable_placeholder ) { ?>
+	<?php if ( empty( $disable_placeholder ) ) { ?>
 		<div class="lsx-to-widget-thumb">
 			<a href="<?php the_permalink(); ?>">
 				<?php lsx_thumbnail( 'lsx-thumbnail-single' ); ?>
@@ -18,7 +19,16 @@ global $disable_placeholder;
 	<?php } ?>
 
 	<div class="lsx-to-widget-content">
-		<h4 class="lsx-to-widget-title"><?php the_title(); ?></h4>
-		<?php the_excerpt(); ?>
+		<h4 class="lsx-to-widget-title text-center"><?php the_title(); ?></h4>
+
+		<?php
+			if ( empty( $disable_text ) ) {
+				the_excerpt();
+			} else { ?>
+				<p>
+					<a href="<?php the_permalink(); ?>" class="moretag"><?php esc_html_e( 'View destination', 'tour-operator' ); ?></a>
+				</p>
+			<?php }
+		?>
 	</div>
 </article>

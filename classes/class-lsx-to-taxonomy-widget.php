@@ -75,6 +75,13 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 		} else {
 			$disable_placeholder = false;
 		}
+
+		if (isset($instance['disable_text'])) {
+			$disable_text = $instance['disable_text'];
+		} else {
+			$disable_text = false;
+		}
+
 		if (isset($instance['buttons'])) {
 			$buttons = $instance['buttons'];
 		} else {
@@ -173,6 +180,7 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 			'group' => $group,
 			'include' => $include,
 			'disable_placeholder' => $disable_placeholder,
+			'disable_text' => $disable_text,
 			'buttons' => $buttons,
 			'button_text' => $button_text,
 			'taxonomy' => $taxonomy,
@@ -199,6 +207,7 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 	$instance['limit'] = strip_tags( $new_instance['limit'] );
 	$instance['include'] = strip_tags( $new_instance['include'] );
 	$instance['disable_placeholder'] = strip_tags( $new_instance['disable_placeholder'] );
+	$instance['disable_text'] = strip_tags( $new_instance['disable_text'] );
 	$instance['buttons'] = strip_tags( $new_instance['buttons'] );
 	$instance['button_text'] = strip_tags( $new_instance['button_text'] );
 	$instance['carousel'] = strip_tags( $new_instance['carousel'] );
@@ -221,6 +230,7 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 			'limit' => '',
 			'include' => '',
 			'disable_placeholder' => false,
+			'disable_text' => 0,
 			'buttons' => false,
 			'button_text' => false,
 			'taxonomy' => '',
@@ -240,6 +250,7 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 		$limit  = esc_attr($instance['limit']);
 		$include  = esc_attr($instance['include']);
 		$disable_placeholder  = esc_attr($instance['disable_placeholder']);
+		$disable_text  = esc_attr($instance['disable_text']);
 		$buttons = esc_attr($instance['buttons']);
 		$button_text= esc_attr($instance['button_text']);
 		$taxonomy = esc_attr($instance['taxonomy']);
@@ -365,6 +376,12 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 				for="<?php echo wp_kses_post($this->get_field_id('disable_placeholder')); ?>"><?php esc_html_e('Disable Featured Image','tour-operator'); ?></label>
 		</p>
 		<p>
+			<input id="<?php echo wp_kses_post($this->get_field_id('disable_text')); ?>"
+				name="<?php echo wp_kses_post($this->get_field_name('disable_text')); ?>" type="checkbox"
+				value="1" <?php checked( '1', $disable_text ); ?> /> <label
+				for="<?php echo wp_kses_post($this->get_field_id('disable_text')); ?>"><?php esc_html_e('Disable Excerpt and Tagline','tour-operator'); ?></label>
+		</p>
+		<p>
 			<input id="<?php echo wp_kses_post($this->get_field_id('buttons')); ?>"
 				name="<?php echo wp_kses_post($this->get_field_name('buttons')); ?>" type="checkbox"
 				value="1" <?php checked( '1', $buttons ); ?> /> <label
@@ -398,7 +415,8 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 
 	public function output( $atts )
 	{
-		global $columns,$term,$taxonomy,$disable_placeholder;
+		global $columns, $term, $taxonomy, $disable_placeholder, $disable_text;
+
 		extract( shortcode_atts( array(
 		'tag' => 'h3',
 		'columns' => 1,
@@ -407,6 +425,7 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 		'limit' => '-1',
 		'include' => '',
 		'disable_placeholder' => false,
+		'disable_text' => false,
 		'link' => false,
 		'buttons' => false,
 		'button_text' => false,

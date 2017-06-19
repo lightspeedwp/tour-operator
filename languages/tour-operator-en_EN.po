@@ -179,7 +179,7 @@ msgstr ""
 msgid "Accommodation Expert"
 msgstr ""
 
-#: classes/class-lsx-to-accommodation.php:280, classes/class-lsx-to-destination.php:210, classes/class-lsx-to-destination.php:211, classes/class-lsx-to-field-pattern.php:69, templates/content-accommodation.php:33, templates/content-widget-accommodation.php:30, includes/template-tags/accommodation.php:297
+#: classes/class-lsx-to-accommodation.php:280, classes/class-lsx-to-destination.php:210, classes/class-lsx-to-destination.php:211, classes/class-lsx-to-field-pattern.php:69, templates/content-accommodation.php:33, templates/content-widget-accommodation.php:31, includes/template-tags/accommodation.php:297
 msgid "Location"
 msgstr ""
 
@@ -207,7 +207,7 @@ msgstr ""
 msgid "Hotelstars Union"
 msgstr ""
 
-#: classes/class-lsx-to-accommodation.php:297, includes/functions.php:308, templates/content-accommodation.php:25, templates/content-widget-accommodation.php:32, includes/template-tags/accommodation.php:290
+#: classes/class-lsx-to-accommodation.php:297, includes/functions.php:308, templates/content-accommodation.php:25, templates/content-widget-accommodation.php:33, includes/template-tags/accommodation.php:290
 msgid "Rating"
 msgstr ""
 
@@ -451,7 +451,7 @@ msgstr ""
 msgid "Price"
 msgstr ""
 
-#: classes/class-lsx-to-accommodation.php:409, classes/class-lsx-to-destination.php:110, classes/class-lsx-to-destination.php:116, classes/class-lsx-to-destination.php:122, classes/class-lsx-to-tour.php:267, classes/class-lsx-to-tour.php:471, classes/class-tour-operator.php:260, includes/layout.php:338, templates/content-tour.php:28, templates/content-widget-tour.php:32
+#: classes/class-lsx-to-accommodation.php:409, classes/class-lsx-to-destination.php:110, classes/class-lsx-to-destination.php:116, classes/class-lsx-to-destination.php:122, classes/class-lsx-to-tour.php:267, classes/class-lsx-to-tour.php:471, classes/class-tour-operator.php:260, includes/layout.php:338, templates/content-tour.php:28, templates/content-widget-tour.php:37
 msgid "Destinations"
 msgstr ""
 
@@ -487,7 +487,7 @@ msgstr ""
 msgid "Off"
 msgstr ""
 
-#: classes/class-lsx-to-accommodation.php:511, classes/class-lsx-to-tour.php:469, includes/layout.php:336, templates/content-accommodation.php:22, templates/content-tour.php:23, templates/content-widget-accommodation.php:27, templates/content-widget-tour.php:29, includes/template-tags/accommodation.php:288
+#: classes/class-lsx-to-accommodation.php:511, classes/class-lsx-to-tour.php:469, includes/layout.php:336, templates/content-accommodation.php:22, templates/content-tour.php:23, templates/content-widget-accommodation.php:28, templates/content-widget-tour.php:34, includes/template-tags/accommodation.php:288
 msgid "From price"
 msgstr ""
 
@@ -526,7 +526,7 @@ msgstr ""
 msgid "Travel Styles"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:322, classes/class-lsx-to-destination.php:296, classes/class-lsx-to-tour.php:470, classes/class-tour-operator.php:275, includes/layout.php:229, includes/layout.php:337, templates/content-destination.php:25, templates/content-tour.php:27, templates/content-widget-tour.php:31
+#: classes/class-lsx-to-admin.php:322, classes/class-lsx-to-destination.php:296, classes/class-lsx-to-tour.php:470, classes/class-tour-operator.php:275, includes/layout.php:229, includes/layout.php:337, templates/content-destination.php:25, templates/content-tour.php:27, templates/content-widget-tour.php:36
 msgid "Travel Style"
 msgstr ""
 
@@ -562,7 +562,7 @@ msgstr ""
 msgid "Brands"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:348, classes/class-tour-operator.php:276, templates/content-accommodation.php:26, templates/content-widget-accommodation.php:29, includes/template-tags/accommodation.php:292
+#: classes/class-lsx-to-admin.php:348, classes/class-tour-operator.php:276, templates/content-accommodation.php:26, templates/content-widget-accommodation.php:30, includes/template-tags/accommodation.php:292
 msgid "Brand"
 msgstr ""
 
@@ -630,7 +630,7 @@ msgstr ""
 msgid "TO CTA"
 msgstr ""
 
-#: classes/class-lsx-to-cta-widget.php:121, classes/class-lsx-to-taxonomy-widget.php:254, classes/class-lsx-to-widget.php:264
+#: classes/class-lsx-to-cta-widget.php:121, classes/class-lsx-to-taxonomy-widget.php:265, classes/class-lsx-to-widget.php:275
 msgid "Title:"
 msgstr ""
 
@@ -758,7 +758,7 @@ msgstr ""
 msgid "Display the map in the banner"
 msgstr ""
 
-#: classes/class-lsx-to-destination.php:297, classes/class-lsx-to-destination.php:445, classes/class-lsx-to-tour.php:472, includes/layout.php:230, includes/layout.php:339, templates/content-accommodation.php:32, templates/content-destination.php:26, templates/content-tour.php:29, templates/content-widget-tour.php:35, includes/settings/add-ons.php:97, includes/settings/help.php:121
+#: classes/class-lsx-to-destination.php:297, classes/class-lsx-to-destination.php:445, classes/class-lsx-to-tour.php:472, includes/layout.php:230, includes/layout.php:339, templates/content-accommodation.php:32, templates/content-destination.php:26, templates/content-tour.php:29, templates/content-widget-tour.php:40, includes/settings/add-ons.php:97, includes/settings/help.php:121
 msgid "Activities"
 msgstr ""
 
@@ -1006,85 +1006,89 @@ msgstr ""
 msgid "Any connected item showing on a single will display a preview in a modal."
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:260, classes/class-lsx-to-widget.php:270
+#: classes/class-lsx-to-taxonomy-widget.php:271, classes/class-lsx-to-widget.php:281
 msgid "Title Link:"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:264, classes/class-lsx-to-widget.php:274
+#: classes/class-lsx-to-taxonomy-widget.php:275, classes/class-lsx-to-widget.php:285
 msgid ""
 "Link the widget title to\n"
 "				a URL"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:267
+#: classes/class-lsx-to-taxonomy-widget.php:278
 msgid "Query"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:269
+#: classes/class-lsx-to-taxonomy-widget.php:280
 msgid "Taxonomy:"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:275
+#: classes/class-lsx-to-taxonomy-widget.php:286
 msgid "None"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:287, classes/class-lsx-to-widget.php:293
+#: classes/class-lsx-to-taxonomy-widget.php:298, classes/class-lsx-to-widget.php:304
 msgid "Order By:"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:306, classes/class-lsx-to-widget.php:314
+#: classes/class-lsx-to-taxonomy-widget.php:317, classes/class-lsx-to-widget.php:325
 msgid "Order:"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:322, classes/class-lsx-to-widget.php:330
+#: classes/class-lsx-to-taxonomy-widget.php:333, classes/class-lsx-to-widget.php:341
 msgid "Maximum amount:"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:325, classes/class-lsx-to-widget.php:333
+#: classes/class-lsx-to-taxonomy-widget.php:336, classes/class-lsx-to-widget.php:344
 msgid "Leave empty to display all"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:329
+#: classes/class-lsx-to-taxonomy-widget.php:340
 msgid "Specify by ID:"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:333, classes/class-lsx-to-widget.php:341
+#: classes/class-lsx-to-taxonomy-widget.php:344, classes/class-lsx-to-widget.php:352
 msgid "Comma separated list, overrides limit setting"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:338
+#: classes/class-lsx-to-taxonomy-widget.php:349
 msgid "Layout"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:340, classes/class-lsx-to-widget.php:278
+#: classes/class-lsx-to-taxonomy-widget.php:351, classes/class-lsx-to-widget.php:289
 msgid "Columns:"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:355, classes/class-lsx-to-widget.php:395
+#: classes/class-lsx-to-taxonomy-widget.php:366, classes/class-lsx-to-widget.php:412
 msgid "Class:"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:365, classes/class-lsx-to-widget.php:354
+#: classes/class-lsx-to-taxonomy-widget.php:376, classes/class-lsx-to-widget.php:365
 msgid "Disable Featured Image"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:371, classes/class-lsx-to-widget.php:360
+#: classes/class-lsx-to-taxonomy-widget.php:382, classes/class-lsx-to-widget.php:371
+msgid "Disable Excerpt and Tagline"
+msgstr ""
+
+#: classes/class-lsx-to-taxonomy-widget.php:388, classes/class-lsx-to-widget.php:377
 msgid "Display Button"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:374, classes/class-lsx-to-widget.php:363
+#: classes/class-lsx-to-taxonomy-widget.php:391, classes/class-lsx-to-widget.php:380
 msgid "Button Text:"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:380
+#: classes/class-lsx-to-taxonomy-widget.php:397
 msgid "Slider"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:386, classes/class-lsx-to-widget.php:372
+#: classes/class-lsx-to-taxonomy-widget.php:403, classes/class-lsx-to-widget.php:389
 msgid "Enable Carousel"
 msgstr ""
 
-#: classes/class-lsx-to-taxonomy-widget.php:389, classes/class-lsx-to-widget.php:375
+#: classes/class-lsx-to-taxonomy-widget.php:406, classes/class-lsx-to-widget.php:392
 msgid "Slide Interval:"
 msgstr ""
 
@@ -1120,7 +1124,7 @@ msgstr ""
 msgid "No tours found in Trash"
 msgstr ""
 
-#: classes/class-lsx-to-tour.php:198, classes/class-lsx-to-tour.php:469, includes/layout.php:336, templates/content-tour.php:23, templates/content-widget-tour.php:30
+#: classes/class-lsx-to-tour.php:198, classes/class-lsx-to-tour.php:469, includes/layout.php:336, templates/content-tour.php:23, templates/content-widget-tour.php:35
 msgid "Duration"
 msgstr ""
 
@@ -1196,23 +1200,23 @@ msgstr ""
 msgid "TO"
 msgstr ""
 
-#: classes/class-lsx-to-widget.php:195
+#: classes/class-lsx-to-widget.php:203
 msgid "That post type does not exist."
 msgstr ""
 
-#: classes/class-lsx-to-widget.php:337
+#: classes/class-lsx-to-widget.php:348
 msgid "Specify Tours by ID:"
 msgstr ""
 
-#: classes/class-lsx-to-widget.php:348
+#: classes/class-lsx-to-widget.php:359
 msgid "Featured Items"
 msgstr ""
 
-#: classes/class-lsx-to-widget.php:382
+#: classes/class-lsx-to-widget.php:399
 msgid "Post Type:"
 msgstr ""
 
-#: classes/class-lsx-to-widget.php:399
+#: classes/class-lsx-to-widget.php:416
 msgid "Add your own class to the opening element of the widget"
 msgstr ""
 
@@ -1312,7 +1316,7 @@ msgstr ""
 msgid "Summary"
 msgstr ""
 
-#: templates/content-accommodation.php:24, templates/content-widget-accommodation.php:31, includes/template-tags/accommodation.php:289
+#: templates/content-accommodation.php:24, templates/content-widget-accommodation.php:32, includes/template-tags/accommodation.php:289
 msgid "Rooms"
 msgstr ""
 
@@ -1328,23 +1332,27 @@ msgstr ""
 msgid "Ends in"
 msgstr ""
 
-#: templates/content-widget-accommodation-brand.php:34, templates/content-widget-accommodation-type.php:32
+#: templates/content-widget-accommodation-brand.php:33, templates/content-widget-accommodation-type.php:33
 msgid "View accommodations"
 msgstr ""
 
-#: templates/content-widget-accommodation.php:28
+#: templates/content-widget-accommodation.php:29
 msgid "Style"
 msgstr ""
 
-#: templates/content-widget-accommodation.php:37
+#: templates/content-widget-accommodation.php:38
 msgid "View accommodation"
 msgstr ""
 
-#: templates/content-widget-tour.php:41
+#: templates/content-widget-destination.php:29
+msgid "View destination"
+msgstr ""
+
+#: templates/content-widget-tour.php:46
 msgid "View tour"
 msgstr ""
 
-#: templates/content-widget-travel-style.php:33
+#: templates/content-widget-travel-style.php:39
 msgid "View more"
 msgstr ""
 
