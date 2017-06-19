@@ -313,7 +313,7 @@ class Tour_Operator {
 	 */
 	public function require_post_type_classes() {
 		foreach ( $this->post_types as $post_type => $label ) {
-			if(function_exists("LSX_TO_{$post_type}")) {
+			if(class_exists("LSX_TO_{$post_type}")) {
 				call_user_func_array(array(
 					"LSX_TO_{$post_type}",
 					'get_instance',
