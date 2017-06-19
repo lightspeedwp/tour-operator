@@ -2356,7 +2356,7 @@ body.single-tour-operator {
 .lsx-to-widget-item-wrap {
 	margin-top: 4.25rem;
 
-	.lsx-to-slider-inner & { padding: 0 15px 5px; }
+	.lsx-to-slider-inner & { padding: 0 15px; }
 }
 
 .lsx-to-slider-inner {
@@ -2403,8 +2403,9 @@ body.single-tour-operator {
 		border-width: 2px;
 		font: 0/0 a;
 		height: 5.4rem;
-		margin-top: calc(-17px - 2rem);
+		margin-top: calc((2.25rem - 17px) / 2);
 		opacity: 1;
+		padding: 0;
 		position: absolute;
 		text-shadow: none;
 		top: 50%;
