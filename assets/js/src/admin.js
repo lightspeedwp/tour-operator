@@ -1,6 +1,7 @@
 /*
  * admin.js
  */
+
 jQuery(document).ready(function() {
 
 	/*
@@ -76,7 +77,7 @@ jQuery(document).ready(function() {
 			jQuery('.ui-tab-nav a.active').removeClass('active');
 			$this.addClass('active');
 			jQuery('.ui-tab.active').removeClass('active');
-			jQuery($this.attr('href')).addClass('active');
+			$this.closest('.uix-field-wrapper').find($this.attr('href')).addClass('active');
 
 			return false;
 		});

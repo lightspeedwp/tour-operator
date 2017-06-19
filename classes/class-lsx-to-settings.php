@@ -5,7 +5,7 @@
  * @package   LSX_TO_Admin
  * @author    LightSpeed
  * @license   GPL3
- * @link      
+ * @link
  * @copyright 2016 LightSpeedDevelopment
  */
 
@@ -25,7 +25,7 @@ class LSX_TO_Settings extends Tour_Operator {
 	 * @access private
 	 */
 	public function __construct() {
-		$this->options = get_option('_lsx-to_settings',false);	
+		$this->options = get_option('_lsx-to_settings',false);
 		$this->set_vars();
 
 		add_filter( 'lsx_to_framework_settings_tabs', array( $this, 'register_settings_tabs') );
@@ -34,7 +34,7 @@ class LSX_TO_Settings extends Tour_Operator {
 			$display_page = sanitize_text_field(wp_unslash($_GET['welcome-page']));
 			$display_page = !empty($display_page) ? $display_page : '';
 		}
-			
+
 		if ( ! empty( $display_page ) ) {
 			add_action( 'admin_menu', array( $this, 'create_welcome_page' ) );
 		} else {
@@ -43,7 +43,7 @@ class LSX_TO_Settings extends Tour_Operator {
 
 		//Incase the API tab is being loaded via another plugin, we add all the API hooks to the LSX ones
 		add_action('lsx_framework_api_tab_content',array($this,'lsx_to_framework_api_patch'));
-	}	
+	}
 
 	/**
 	 * Returns the array of settings to the UIX Class
@@ -62,7 +62,7 @@ class LSX_TO_Settings extends Tour_Operator {
 				add_action( 'lsx_to_framework_'.$post_type.'_tab_content', array( $this, 'archive_settings' ), 12 , 2 );
 				add_action( 'lsx_to_framework_'.$post_type.'_tab_content', array( $this, 'single_settings' ), 15 , 2 );
 			}
-			
+
 			add_action('lsx_to_framework_dashboard_tab_content',array($this,'dashboard_tab_content'),10,1);
 			add_action('lsx_to_framework_display_tab_content',array($this,'display_tab_content'),10,1);
 		}
@@ -84,12 +84,12 @@ class LSX_TO_Settings extends Tour_Operator {
 
 	/**
 	 * Returns the array of settings to the UIX Class in the lsx framework
-	 */	
+	 */
 	public function register_settings_tabs($tabs){
 		// This array is for the Admin Pages. each element defines a page that is seen in the admin
-		
+
 		$post_types = apply_filters('lsx_to_post_types',$this->post_types);
-		
+
 		if(false !== $post_types && !empty($post_types)){
 			foreach($post_types as $index => $title){
 
@@ -110,14 +110,14 @@ class LSX_TO_Settings extends Tour_Operator {
 			ksort($tabs);
 		}
 		return $tabs;
-	}	
+	}
 
 	/**
 	 * Returns the array of settings to the UIX Class
 	 */
 	public function settings_page_array(){
 		// This array is for the Admin Pages. each element defines a page that is seen in the admin
-	
+
 		$tabs = array( // tabs array are for setting the tab / section templates
 				// each array element is a tab with the key as the slug that will be the saved object property
 				'general'		=> array(
@@ -134,7 +134,7 @@ class LSX_TO_Settings extends Tour_Operator {
 			'menu_title'        => esc_html__('Display','tour-operator'),
 			'template'          => LSX_TO_PATH.'includes/settings/display.php',
 			'default'	 		=> false
-		);	
+		);
 
 		//if(in_array('LSX_Banners',get_declared_classes())){
 			$tabs['api'] = array(
@@ -143,7 +143,7 @@ class LSX_TO_Settings extends Tour_Operator {
 				'menu_title'        => esc_html__('API','tour-operator'),
 				'template'          => LSX_TO_PATH.'includes/settings/api.php',
 				'default'	 		=> false
-			);	
+			);
 		//}
 
 		$posts_page = get_option('page_for_posts',false);
@@ -156,13 +156,13 @@ class LSX_TO_Settings extends Tour_Operator {
 				'default'	 		=> false
 			);
 		}
-	
+
 		$additional_tabs = false;
 		$additional_tabs = apply_filters('lsx_to_framework_settings_tabs',$additional_tabs);
 		if(false !== $additional_tabs && is_array($additional_tabs) && !empty($additional_tabs)){
 			$tabs = array_merge($tabs,$additional_tabs);
 		}
-	
+
 		return array(
 				'settings'  => array(                                                         // this is the settings array. The key is the page slug
 						'page_title'  =>  esc_html__('Tour Operator Settings','tour-operator'),                                                  // title of the page
@@ -179,7 +179,7 @@ class LSX_TO_Settings extends Tour_Operator {
 	/**
 	 * outputs the display tabs settings
 	 */
-	public function display_tab_content($subtab='basic') { 
+	public function display_tab_content($subtab='basic') {
 
 		if('basic'===$subtab){
 			if(class_exists('LSX_Banners') && class_exists('Envira_Gallery')){
@@ -192,9 +192,9 @@ class LSX_TO_Settings extends Tour_Operator {
 					<input type="checkbox" {{#if enable_galleries_in_banner}} checked="checked" {{/if}} name="enable_galleries_in_banner" />
 					<small><?php esc_html_e('Move the gallery on a page into the banner.','tour-operator'); ?></small>
 				</td>
-			</tr>	
+			</tr>
 
-			<?php $this->modal_setting(); ?>	
+			<?php $this->modal_setting(); ?>
 		<?php }
 		}
 		if('advanced'===$subtab){
@@ -207,7 +207,7 @@ class LSX_TO_Settings extends Tour_Operator {
 					<input type="checkbox" {{#if disable_css}} checked="checked" {{/if}} name="disable_css" />
 					<small><?php esc_html_e('Disable the CSS if you want to include your own.','tour-operator'); ?></small>
 				</td>
-			</tr>	
+			</tr>
 			<tr class="form-field">
 				<th scope="row">
 					<label for="description"><?php esc_html_e('Disable Javascript','tour-operator'); ?></label>
@@ -216,10 +216,10 @@ class LSX_TO_Settings extends Tour_Operator {
 					<input type="checkbox" {{#if disable_js}} checked="checked" {{/if}} name="disable_js" />
 					<small><?php esc_html_e('Only disable the JS if you are debugging an error.','tour-operator'); ?></small>
 				</td>
-			</tr>				
+			</tr>
 		<?php
 		}
-	}	
+	}
 
 	/**
 	 * outputs the dashboard tabs settings
@@ -288,7 +288,7 @@ class LSX_TO_Settings extends Tour_Operator {
 				?>
 			</tr>
 			<tr class="form-field">
-				<th scope="row"> 
+				<th scope="row">
 					<label for="disable_enquire_modal"><?php esc_html_e('Disable Enquire Modal','tour-operator'); ?></label>
 				</th>
 				<td>
@@ -336,13 +336,13 @@ class LSX_TO_Settings extends Tour_Operator {
 					<input class="input_image_id" type="hidden" {{#if enquiry_contact_image_id}} value="{{enquiry_contact_image_id}}" {{/if}} name="enquiry_contact_image_id" />
 					<input class="input_image" type="hidden" {{#if enquiry_contact_image}} value="{{enquiry_contact_image}}" {{/if}} name="enquiry_contact_image" />
 					<div class="thumbnail-preview">
-						{{#if enquiry_contact_image}}<img src="{{enquiry_contact_image}}" width="150" style="width:150px" />{{/if}}	
+						{{#if enquiry_contact_image}}<img src="{{enquiry_contact_image}}" width="150" style="width:150px" />{{/if}}
 					</div>
 					<a {{#if enquiry_contact_image}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image','tour-operator'); ?></a>
 					<a {{#unless enquiry_contact_image}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete','tour-operator'); ?></a>
 				</td>
 			</tr>
-		<?php  
+		<?php
 	}
 
 	/**
@@ -405,7 +405,7 @@ class LSX_TO_Settings extends Tour_Operator {
 			</td>
 		</tr>
 
-		<?php	
+		<?php
 			do_action('lsx_to_framework_'.$post_type.'_tab_general_settings_bottom',$post_type);
 	}
 
