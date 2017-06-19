@@ -1241,30 +1241,6 @@ body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) .row:not(.
 
 @media only screen and (min-width: 768px) { body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) .row:not(.lsx-accommodation-brand) > .panel > article .meta.info .price, body.single-tour-operator #tours .col-sm-12 > article.hentry .meta.info .price, body.single-tour-operator #regions .col-sm-12 > article.hentry .meta.info .price, body.single-tour-operator #accommodation .col-sm-12 > article.hentry .meta.info .price, body.single-tour-operator #destinations .col-sm-12 > article.hentry .meta.info .price, body.single-tour-operator #activities .col-sm-12 > article.hentry .meta.info .price, body.single-tour-operator #activites .col-sm-12 > article.hentry .meta.info .price, body.single-tour-operator #related-items .col-sm-12 > article.hentry .meta.info .price, body.single-tour-operator #videos .col-sm-12 > article.hentry .meta.info .price, body.single-tour-operator #itinerary .panel .itinerary-inner .meta.info .price, body.single-tour-operator #rooms .panel > .unit .meta.info .price, body.single-tour-operator #chalets .panel > .unit .meta.info .price, body.single-tour-operator #tents .panel > .unit .meta.info .price, body.single-tour-operator #spas .panel > .unit .meta.info .price, body.single-tour-operator #villas .panel > .unit .meta.info .price, body.single-tour-operator #travel-info .panel > .unit .meta.info .price, body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) .row:not(.lsx-accommodation-brand) > .panel > article .meta.info .duration, body.single-tour-operator #tours .col-sm-12 > article.hentry .meta.info .duration, body.single-tour-operator #regions .col-sm-12 > article.hentry .meta.info .duration, body.single-tour-operator #accommodation .col-sm-12 > article.hentry .meta.info .duration, body.single-tour-operator #destinations .col-sm-12 > article.hentry .meta.info .duration, body.single-tour-operator #activities .col-sm-12 > article.hentry .meta.info .duration, body.single-tour-operator #activites .col-sm-12 > article.hentry .meta.info .duration, body.single-tour-operator #related-items .col-sm-12 > article.hentry .meta.info .duration, body.single-tour-operator #videos .col-sm-12 > article.hentry .meta.info .duration, body.single-tour-operator #itinerary .panel .itinerary-inner .meta.info .duration, body.single-tour-operator #rooms .panel > .unit .meta.info .duration, body.single-tour-operator #chalets .panel > .unit .meta.info .duration, body.single-tour-operator #tents .panel > .unit .meta.info .duration, body.single-tour-operator #spas .panel > .unit .meta.info .duration, body.single-tour-operator #villas .panel > .unit .meta.info .duration, body.single-tour-operator #travel-info .panel > .unit .meta.info .duration { padding-top: 0; } }
 
-body.page-has-banner.archive-tour-operator .wrap { margin-top: 0 !important; }
-
-body.page-has-banner.archive-tour-operator .wrap .content { padding-top: 60px; }
-
-body.archive-tour-operator .wrap { margin-bottom: 40px; }
-
-@media only screen and (max-width: 767px) { body.archive-tour-operator .wrap { margin-bottom: 20px; } }
-
-body.archive-tour-operator .wrap #primary.col-sm-12, body.archive-tour-operator .wrap #secondary.col-sm-12 { max-width: 100% !important; }
-
-body.archive-tour-operator .wrap #secondary.col-sm-3 { margin-top: 0; }
-
-body.archive-tour-operator .wrap #main > p:last-of-type { margin-bottom: 60px; }
-
-body.archive-tour-operator .archive-description { /*padding-top: 60px;*/ }
-
-body.archive-tour-operator .archive-description .section-title { margin: 0 0 20px; font-size: 32px; text-align: center; }
-
-body.archive-tour-operator .archive-description p { color: #555; font-size: 16px; line-height: 25px; max-width: 625px !important; text-align: center; margin-right: auto; margin-left: auto; }
-
-body.archive-tour-operator section .section-title { margin: 0 0 20px; font-size: 24px !important; text-align: center; }
-
-body.archive-tour-operator #sharing { display: none; }
-
 body.single-tour-operator .wrap { margin-bottom: 40px; }
 
 @media only screen and (max-width: 767px) { body.single-tour-operator .wrap { margin-bottom: 20px; } }
@@ -1567,6 +1543,8 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 .lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-team:before { content: '\f007'; }
 
 .lsx-to-widget-meta-data .lsx-to-widget-meta.lsx-to-widget-meta-tours:before { content: '\f072'; }
+
+.archive.archive-tour-operator .site-main { width: 100%; }
 
 .lsx-to-slider-inner .slick-dots > li > button { border-color: #4A4A4A; }
 

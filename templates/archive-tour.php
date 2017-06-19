@@ -22,7 +22,7 @@ get_header(); ?>
 
 				<div class="row">
 					<?php while ( have_posts() ) : the_post(); ?>
-						<div class="<?php echo esc_attr( lsx_to_archive_class( 'panel' ) ); ?>">
+						<div class="<?php echo esc_attr( lsx_to_archive_class( 'tour-archive-item panel' ) ); ?>">
 							<?php lsx_to_content( 'content', 'tour' ); ?>
 						</div>
 					<?php endwhile; ?>

@@ -1648,7 +1648,7 @@ body.home {
 
 
 body.archive-tour-operator {
-	@extend %archive-root;
+	// @extend %archive-root;
 
 	// ---------- Breadcrumb ----------
 
@@ -1665,11 +1665,11 @@ body.archive-tour-operator {
 	// ---------- Subtitle ----------
 
 	.archive-description {
-		@extend %archive-description;
+		// @extend %archive-description;
 	}
 
 	section {
-		@extend %archive-description-level-2;
+		// @extend %archive-description-level-2;
 	}
 
 	// ---------- Content ----------
@@ -1717,7 +1717,7 @@ body.archive-tour-operator {
 	// ---------- Share buttons ----------
 
 	#sharing {
-		@extend %archive-share-buttons;
+		// @extend %archive-share-buttons;
 	}
 }
 
@@ -2579,6 +2579,10 @@ body.single-tour-operator {
 		&.lsx-to-widget-meta-team:before { content: '\f007'; }
 		&.lsx-to-widget-meta-tours:before { content: '\f072'; }
 	}
+}
+
+.archive.archive-tour-operator {
+	.site-main { width: 100%; }
 }
 
 @include customizer-to-body-colours(#DADDDF, #4A4A4A, #418AD0, #F7AE00, #919191);
