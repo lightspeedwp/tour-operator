@@ -1711,7 +1711,7 @@ body.archive-tour-operator {
 	}
 
 	#destination-map {
-		@extend %single-extra-sections;
+		// @extend %single-extra-sections;
 	}
 
 	// ---------- Share buttons ----------
@@ -1840,12 +1840,11 @@ body.single-tour-operator {
 	#tents,
 	#villas,
 	#videos,
-
 	#main > section[id$="-map"],
 	#terms-and-conditions,
 	#gallery,
 	#facilities {
-		@extend %single-extra-sections;
+		// @extend %single-extra-sections;
 	}
 
 	#terms-and-conditions {
@@ -2502,6 +2501,8 @@ body.single-tour-operator {
 				-moz-osx-font-smoothing: grayscale;
 			}
 		}
+
+		p:last-child { margin-bottom: 0; }
 	}
 
 	.lsx-to-widget-tagline { margin-top: -1.2rem; }

@@ -379,120 +379,134 @@ function lsx_to_connected_panel_query($args=false){
  * @subpackage	template-tags
  * @category 	helper
  */
-function lsx_to_related_items($taxonomy=false,$before="",$after="",$echo=true,$post_type=false) {
-	if(false !== $taxonomy){
+function lsx_to_related_items( $taxonomy = false, $before = "", $after = "", $echo = true, $post_type = false ) {
+	if ( false !== $taxonomy ) {
 		$return = false;
 		$filters = array();
 
-		if(false === $post_type){
+		if ( false === $post_type ) {
 			$post_type = get_post_type();
 		}
+
 		$filters['post_type'] = $post_type;
 
-		if(is_array($taxonomy)){
+		if ( is_array( $taxonomy ) ) {
 			$filters['post__in'] = $taxonomy;
-
 		} else {
 			//Get the settings from the customizer options
 			$filters['posts_per_page'] = 15;
 			//Exclude the current post
-			$filters['post__not_in'] = array(get_the_ID());
+			$filters['post__not_in'] = array( get_the_ID() );
 			//if its set to related then we need to check by the type.
 			$filters['orderby'] = 'rand';
-			$terms = wp_get_object_terms(get_the_ID(), $taxonomy);
+			$terms = wp_get_object_terms( get_the_ID(), $taxonomy );
 
 			//only allow relation by 1 property type term
-			if(is_array($terms) && !empty($terms)){
+			if ( is_array( $terms ) && ! empty( $terms ) ) {
 				$filters['tax_query'] = array(
 					array(
 						'taxonomy' => $taxonomy,
 						'field'    => 'slug',
-						'terms'    => array(),
-					),
+						'terms'    => array()
+					)
 				);
 
-				foreach($terms as $term){
+				foreach ( $terms as $term ) {
 					$filters['tax_query'][0]['terms'][] = $term->slug;
 				}
 			}
 		}
 
 		$related_query = new WP_Query( $filters );
-		if ( $related_query->have_posts() ):
-		global $wp_query,$columns;$wp_query->is_single = 0;$wp_query->is_singular = 0;$wp_query->is_post_type_archive = 1;$columns = 3;
 
-		ob_start();
+		if ( $related_query->have_posts() ) :
+			global $wp_query, $columns;
 
-		//Setting some carousel variables
-		$count = 1;
-		$landing_image = '';
-		$carousel_id = rand ( 20, 20000 );
-		$interval = '5000';
-		$pagination = '';
-		$pages = ceil( $related_query->post_count / $columns );
-		$post_type = get_post_type();
-		$carousel = false;
+			$wp_query->is_single = 0;
+			$wp_query->is_singular = 0;
+			$wp_query->is_post_type_archive = 1;
+			$columns = 3;
 
-		if($related_query->post_count > 3){
-			$carousel = true;
-		}
+			ob_start();
 
-		//The start of the carousel output
-		if($carousel){
-			echo '<div class="slider-container">';
-			echo '<div id="slider-'.esc_attr($carousel_id).'" class="lsx-to-slider">';
-			echo '<div class="lsx-to-slider-wrap">';
-			echo '<div class="lsx-to-slider-inner" data-interval="'.esc_attr($interval).'" data-slick=\'{ "slidesToShow": '.esc_attr($columns).', "slidesToScroll": '.esc_attr($columns).' }\'>';
-		}
+			//Setting some carousel variables
+			$count = 1;
+			$landing_image = '';
+			$carousel_id = rand ( 20, 20000 );
+			$interval = '6000';
+			$pagination = '';
+			$pages = ceil( $related_query->post_count / $columns );
+			$post_type = get_post_type();
+			$carousel = false;
 
-		while ( $related_query->have_posts() ) :
-			$related_query->the_post();
-
-			//The opening of the carousel
-			if ($carousel) {
-				echo '<div class="item row">';
-				echo '<div class="lsx-'.esc_attr($post_type).'">';
-			} elseif (1 === $count) {
-				echo '<div class="row lsx-'.esc_attr($post_type).'">';
+			if ( $related_query->post_count > 3 ) {
+				$carousel = true;
 			}
 
-			echo '<div class="panel col-xs-12">';
+			if ( $carousel ) {
+				echo '<div class="slider-container lsx-to-widget-itens">';
+				echo '<div id="slider-'. esc_attr( $carousel_id ) .'" class="lsx-to-slider">';
+				echo '<div class="lsx-to-slider-wrap">';
+				echo '<div class="lsx-to-slider-inner" data-interval="'. esc_attr( $interval ) .'" data-slick=\'{ "slidesToShow": '. esc_attr( $columns ) .', "slidesToScroll": '. esc_attr( $columns ) .' }\'>';
+			} else {
+				echo "<div class='lsx-to-widget-itens'>";
+			}
 
-			lsx_to_content('content','widget-'.get_post_type());
+			while ( $related_query->have_posts() ) :
+				$related_query->the_post();
 
-			echo '</div>';
-
-			//Closing carousel loop inner
-			if ($carousel) {
-				echo "</div></div>";
-			} elseif (0 == $count % $columns || $count === $related_query->post_count) {
-				echo "</div>";
-				if ($count < $related_query->post_count) {
-					echo '<div class="row lsx-'.esc_attr($post_type).'">';
+				if ( $carousel ) {
+					echo '<div class="lsx-to-widget-item-wrap lsx-'. esc_attr( $post_type ) .'">';
+				} elseif ( 1 === $count ) {
+					echo '<div class="row">';
 				}
+
+				if ( ! $carousel ) {
+					echo wp_kses_post( '<div '. lsx_to_widget_class( $post_type, true ) .'>' );
+				}
+
+				lsx_to_content( 'content', 'widget-'. $post_type );
+
+				if ( ! $carousel ) {
+					echo wp_kses_post( '</div>' );
+				}
+
+				if ( $carousel ) {
+					echo '</div>';
+				} elseif ( 0 === $count % $columns || $count === $post_count ) {
+					echo '</div>';
+
+					if ( $count < $post_count ) {
+						echo '<div class="row">';
+					}
+				}
+
+				$count++;
+			endwhile;
+
+			if ( $carousel ) {
+				echo '</div>';
+				echo '</div>';
+				echo '</div>';
+				echo '</div>';
+			} else {
+				echo '</div>';
 			}
-			$count++;
-		endwhile;
 
-		//This is the closing carousel output.
-		if ($carousel) {
-			echo "</div>";
-			echo "</div>";
-			echo "</div>";
-			echo "</div>";
-		}
+			$return = ob_get_clean();
 
-		$return = ob_get_clean();
+			$wp_query->is_single = 1;
+			$wp_query->is_singular = 1;
+			$wp_query->is_post_type_archive = 0;
 
-		$wp_query->is_single = 1;$wp_query->is_singular = 1;$wp_query->is_post_type_archive = 0;
-		wp_reset_postdata();
+			wp_reset_postdata();
 
-		$return = $before.$return.$after;
+			$return = $before.$return.$after;
 		endif;
 
-		if($echo){
+		if ( $echo ) {
 			echo wp_kses_post( $return );
-		}else{
+		} else {
 			return $return;
 		}
 	}

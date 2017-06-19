@@ -1350,12 +1350,6 @@ body.single-tour-operator #highlights .best-time-to-visit .best-time-to-visit-co
 
 body.single-tour-operator #highlights .best-time-to-visit .best-time-to-visit-content [class^="col-"] .fa { font-size: 25px; color: #555; padding: 10px 0; }
 
-body.archive-tour-operator #destination-map, body.single-tour-operator #tours, body.single-tour-operator #regions, body.single-tour-operator #accommodation, body.single-tour-operator #destinations, body.single-tour-operator #activities, body.single-tour-operator #activites, body.single-tour-operator #related-items, body.single-tour-operator #itinerary, body.single-tour-operator #chalets, body.single-tour-operator #rooms, body.single-tour-operator #travel-info, body.single-tour-operator #spas, body.single-tour-operator #tents, body.single-tour-operator #villas, body.single-tour-operator #videos, body.single-tour-operator #main > section[id$="-map"], body.single-tour-operator #terms-and-conditions, body.single-tour-operator #gallery, body.single-tour-operator #facilities { margin-top: 70px; }
-
-@media only screen and (max-width: 767px) { body.archive-tour-operator #destination-map, body.single-tour-operator #tours, body.single-tour-operator #regions, body.single-tour-operator #accommodation, body.single-tour-operator #destinations, body.single-tour-operator #activities, body.single-tour-operator #activites, body.single-tour-operator #related-items, body.single-tour-operator #itinerary, body.single-tour-operator #chalets, body.single-tour-operator #rooms, body.single-tour-operator #travel-info, body.single-tour-operator #spas, body.single-tour-operator #tents, body.single-tour-operator #villas, body.single-tour-operator #videos, body.single-tour-operator #main > section[id$="-map"], body.single-tour-operator #terms-and-conditions, body.single-tour-operator #gallery, body.single-tour-operator #facilities { margin-top: 30px; } }
-
-body.archive-tour-operator #destination-map .section-title, body.single-tour-operator #tours .section-title, body.single-tour-operator #regions .section-title, body.single-tour-operator #accommodation .section-title, body.single-tour-operator #destinations .section-title, body.single-tour-operator #activities .section-title, body.single-tour-operator #activites .section-title, body.single-tour-operator #related-items .section-title, body.single-tour-operator #itinerary .section-title, body.single-tour-operator #chalets .section-title, body.single-tour-operator #rooms .section-title, body.single-tour-operator #travel-info .section-title, body.single-tour-operator #spas .section-title, body.single-tour-operator #tents .section-title, body.single-tour-operator #villas .section-title, body.single-tour-operator #videos .section-title, body.single-tour-operator #main > section[id$="-map"] .section-title, body.single-tour-operator #terms-and-conditions .section-title, body.single-tour-operator #gallery .section-title, body.single-tour-operator #facilities .section-title { color: #333; margin: 0 0 40px; font-size: 24px; text-align: center; }
-
 body.single-tour-operator #terms-and-conditions .entry-content ul li { color: #555; font-size: 15px; line-height: 23px; margin-bottom: 10px; margin-left: 20px; }
 
 body.single-tour-operator #terms-and-conditions .entry-content ul li:before { content: '\f058'; font-family: fontawesome; margin-right: 7px; margin-left: -20px; }
@@ -1527,6 +1521,8 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 .lsx-to-widget-item-wrap .lsx-to-widget-content .moretag { display: block; margin: 0 -2rem; padding: 1rem 0; text-align: center; transition: background 300ms ease; }
 
 .lsx-to-widget-item-wrap .lsx-to-widget-content .moretag:after { color: inherit; content: '\f178'; display: inline-block; font-family: 'FontAwesome'; font-size: inherit; margin-left: 5px; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+.lsx-to-widget-item-wrap .lsx-to-widget-content p:last-child { margin-bottom: 0; }
 
 .lsx-to-widget-item-wrap .lsx-to-widget-tagline { margin-top: -1.2rem; }
 

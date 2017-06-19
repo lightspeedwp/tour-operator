@@ -1216,7 +1216,7 @@ msgstr ""
 msgid "Add your own class to the opening element of the widget"
 msgstr ""
 
-#: classes/class-tour-operator.php:760, classes/class-tour-operator.php:773
+#: classes/class-tour-operator.php:762, classes/class-tour-operator.php:775
 msgid "Tour Operator Plugin requires PHP 5.6 or higher."
 msgstr ""
 
