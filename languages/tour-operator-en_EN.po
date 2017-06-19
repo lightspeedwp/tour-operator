@@ -143,7 +143,7 @@ msgstr ""
 msgid "Featured"
 msgstr ""
 
-#: classes/class-lsx-to-accommodation.php:254, classes/class-lsx-to-admin.php:591, classes/class-lsx-to-destination.php:178, classes/class-lsx-to-settings.php:443, classes/class-lsx-to-tour.php:196, classes/class-lsx-to-tour.php:337, includes/settings/post.php:20
+#: classes/class-lsx-to-accommodation.php:254, classes/class-lsx-to-admin.php:591, classes/class-lsx-to-destination.php:178, classes/class-lsx-to-settings.php:455, classes/class-lsx-to-tour.php:196, classes/class-lsx-to-tour.php:337, includes/settings/post.php:20
 msgid "Tagline"
 msgstr ""
 
@@ -439,11 +439,11 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: classes/class-lsx-to-accommodation.php:400, classes/class-lsx-to-field-pattern.php:54, classes/class-lsx-to-settings.php:435, classes/class-lsx-to-tour.php:335, includes/settings/post.php:28
+#: classes/class-lsx-to-accommodation.php:400, classes/class-lsx-to-field-pattern.php:54, classes/class-lsx-to-settings.php:447, classes/class-lsx-to-tour.php:335, includes/settings/post.php:28
 msgid "Title"
 msgstr ""
 
-#: classes/class-lsx-to-accommodation.php:401, classes/class-lsx-to-field-pattern.php:55, classes/class-lsx-to-settings.php:451, classes/class-lsx-to-tour.php:340, includes/settings/post.php:37
+#: classes/class-lsx-to-accommodation.php:401, classes/class-lsx-to-field-pattern.php:55, classes/class-lsx-to-settings.php:463, classes/class-lsx-to-tour.php:340, includes/settings/post.php:37
 msgid "Description"
 msgstr ""
 
@@ -494,7 +494,7 @@ msgstr ""
 #: classes/class-lsx-to-accommodation.php:581, classes/class-lsx-to-admin.php:119, classes/class-lsx-to-admin.php:119, includes/functions.php:585, includes/layout.php:139, includes/layout.php:319, includes/template-tags/destination.php:25, includes/template-tags/destination.php:55, includes/template-tags/destination.php:96, includes/template-tags/destination.php:118
 msgstr ""
 
-#: classes/class-lsx-to-accommodation.php:602, classes/class-lsx-to-destination.php:379, classes/class-lsx-to-tour.php:521, includes/layout.php:122, includes/layout.php:197, includes/layout.php:302, templates/archive-destination.php:164
+#: classes/class-lsx-to-accommodation.php:602, classes/class-lsx-to-destination.php:379, classes/class-lsx-to-tour.php:521, includes/layout.php:122, includes/layout.php:197, includes/layout.php:302, templates/archive-destination.php:157
 msgid "Map"
 msgstr ""
 
@@ -522,7 +522,7 @@ msgstr ""
 msgid "Add-ons"
 msgstr ""
 
-#: classes/class-lsx-to-admin.php:321, classes/class-lsx-to-admin.php:324, classes/class-lsx-to-admin.php:331, classes/class-tour-operator.php:281, templates/archive-destination.php:159
+#: classes/class-lsx-to-admin.php:321, classes/class-lsx-to-admin.php:324, classes/class-lsx-to-admin.php:331, classes/class-tour-operator.php:281, templates/archive-destination.php:152
 msgid "Travel Styles"
 msgstr ""
 
@@ -950,59 +950,71 @@ msgstr ""
 msgid "Enquire Contact Image"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:425
+#: classes/class-lsx-to-settings.php:426
 msgid "Disable Archives"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:429
+#: classes/class-lsx-to-settings.php:430
 msgid "This disables the \"post type archive\", if you create your own custom loop it will still work."
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:475
+#: classes/class-lsx-to-settings.php:435, classes/class-lsx-to-taxonomy-widget.php:349
+msgid "Layout"
+msgstr ""
+
+#: classes/class-lsx-to-settings.php:439
+msgid "List"
+msgstr ""
+
+#: classes/class-lsx-to-settings.php:440
+msgid "Grid"
+msgstr ""
+
+#: classes/class-lsx-to-settings.php:486
 msgid "Disable Singles"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:479
+#: classes/class-lsx-to-settings.php:490
 msgid "When disabled you will be redirected to the homepage when trying to access a single tour page."
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:487
+#: classes/class-lsx-to-settings.php:498
 msgid "Default Section Title"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:496
+#: classes/class-lsx-to-settings.php:507
 msgid "\"Related Tours\" Section Title"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:506
+#: classes/class-lsx-to-settings.php:517
 msgid "\"Accommodation Brands\" Section Title"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:514
+#: classes/class-lsx-to-settings.php:525
 msgid "\"Rooms\" Section Title"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:522
+#: classes/class-lsx-to-settings.php:533
 msgid "\"Similar Accommodations\" Section Title"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:532
+#: classes/class-lsx-to-settings.php:543
 msgid "\"Countries\" Section Title"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:540
+#: classes/class-lsx-to-settings.php:551
 msgid "\"Regions\" Section Title"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:548
+#: classes/class-lsx-to-settings.php:559
 msgid "\"Travel Styles\" Section Title"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:566
+#: classes/class-lsx-to-settings.php:577
 msgid "Enable Connected Modals"
 msgstr ""
 
-#: classes/class-lsx-to-settings.php:570
+#: classes/class-lsx-to-settings.php:581
 msgid "Any connected item showing on a single will display a preview in a modal."
 msgstr ""
 
@@ -1050,10 +1062,6 @@ msgstr ""
 
 #: classes/class-lsx-to-taxonomy-widget.php:344, classes/class-lsx-to-widget.php:352
 msgid "Comma separated list, overrides limit setting"
-msgstr ""
-
-#: classes/class-lsx-to-taxonomy-widget.php:349
-msgid "Layout"
 msgstr ""
 
 #: classes/class-lsx-to-taxonomy-widget.php:351, classes/class-lsx-to-widget.php:289
@@ -1308,11 +1316,11 @@ msgstr ""
 msgid "Private"
 msgstr ""
 
-#: templates/archive-destination.php:89
+#: templates/archive-destination.php:82
 msgid "Travel Regions Within "
 msgstr ""
 
-#: templates/content-accommodation.php:21, templates/content-destination.php:23, templates/content-tour.php:22, includes/template-tags/general.php:156
+#: templates/content-accommodation.php:21, templates/content-destination.php:23, templates/content-tour.php:22, includes/template-tags/general.php:191
 msgid "Summary"
 msgstr ""
 
@@ -1764,7 +1772,7 @@ msgstr ""
 msgid "Please consider signing up to our Tourism Industry newsletter"
 msgstr ""
 
-#: includes/template-tags/general.php:506, includes/template-tags/general.php:517
+#: includes/template-tags/general.php:541, includes/template-tags/general.php:552
 msgid "Enquire"
 msgstr ""
 

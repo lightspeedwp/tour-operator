@@ -2,8 +2,8 @@
 /**
  * Tour Archive
  *
- * @package 	tour-operator
- * @category	tour
+ * @package  tour-operator
+ * @category tour
  */
 
 get_header(); ?>
@@ -16,44 +16,35 @@ get_header(); ?>
 
 		<main id="main" class="site-main" role="main">
 
-		<?php 
-		/**
-		 * Hooked
-		 * 
-		 *  - lsx_to_global_header() - 100
-		 *  - lsx_to_archive_description() - 100
-		 */
-			lsx_content_top();
-		?>
+			<?php lsx_content_top(); ?>
 
-		<?php if ( have_posts() ) : ?>
-			
-			<div class="row">
-				<?php while ( have_posts() ) : the_post(); ?>
-					<div class="panel col-sm-12">
-						<?php lsx_to_content( 'content', get_post_type() ); ?>
-					</div>
-				<?php endwhile; ?>
-			</div>
-			<?php //lsx_to_paging_nav(); ?>
+			<?php if ( have_posts() ) : ?>
 
-		<?php else : ?>
+				<div class="row">
+					<?php while ( have_posts() ) : the_post(); ?>
+						<div class="<?php echo esc_attr( lsx_to_archive_class( 'panel' ) ); ?>">
+							<?php lsx_to_content( 'content', 'tour' ); ?>
+						</div>
+					<?php endwhile; ?>
+				</div>
 
-			<?php get_template_part( 'content', 'none' ); ?>
+			<?php else : ?>
 
-		<?php endif; ?>
+				<?php get_template_part( 'content', 'none' ); ?>
 
-		<?php lsx_content_bottom(); ?>
-		
-		<?php lsx_to_sharing(); ?>
+			<?php endif; ?>
+
+			<?php lsx_content_bottom(); ?>
+
+			<?php lsx_to_sharing(); ?>
 
 		</main><!-- #main -->
 
 		<?php lsx_content_after(); ?>
-		
+
 	</section><!-- #primary -->
 
-<?php lsx_content_wrap_after(); ?>	
+<?php lsx_content_wrap_after(); ?>
 
 <?php get_sidebar(); ?>
 

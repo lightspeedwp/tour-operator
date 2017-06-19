@@ -11,6 +11,41 @@
 /* ==================   LAYOUT  ================== */
 
 /**
+ * Returns the CSS class for the archive panels
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tags
+ * @category 	class
+ */
+function lsx_to_archive_class( $classes = array() ) {
+	$tour_operator = tour_operator();
+	$post_type     = get_post_type();
+	$layout        = '';
+
+	if ( ! is_array( $classes ) ) {
+		$classes = explode( ' ', $classes );
+	}
+
+	$new_classes = $classes;
+
+	if ( isset( $tour_operator->options[ $post_type ] ) && isset( $tour_operator->options[ $post_type ]['core_archive_layout'] ) ) {
+		$layout = $tour_operator->options[ $post_type ]['core_archive_layout'];
+
+		if ( 'grid' === $layout ) {
+			$new_classes[] = 'col-xs-12 col-sm-6 col-md-4';
+		} else {
+			$new_classes[] = 'col-xs-12';
+		}
+	} else {
+		$new_classes[] = 'col-xs-12';
+	}
+
+	$new_classes = apply_filters( 'lsx_to_archive_class', $new_classes, $classes, $post_type, $layout );
+
+	return implode( ' ', $new_classes );
+}
+
+/**
  * Outputs the CSS class for the widget panels
  *
  * @package 	tour-operator

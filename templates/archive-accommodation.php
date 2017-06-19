@@ -2,8 +2,8 @@
 /**
  * Accommodation Archive
  *
- * @package 	tour-operator
- * @category	accommodation
+ * @package  tour-operator
+ * @category accommodation
  */
 
 get_header(); ?>
@@ -16,36 +16,27 @@ get_header(); ?>
 
 		<main id="main" class="site-main" role="main">
 
-		<?php
-		/**
-		 * Hooked
-		 *
-		 *  - lsx_to_global_header() - 100
-		 *  - lsx_to_archive_description() - 100
-		 */
-			lsx_content_top();
-		?>
+			<?php lsx_content_top(); ?>
 
-		<?php if ( have_posts() ) : ?>
+			<?php if ( have_posts() ) : ?>
 
-			<div class="row">
-			<?php while ( have_posts() ) : the_post(); ?>
-				<div class="panel col-sm-12">
-					<?php lsx_to_content( 'content', 'accommodation' ); ?>
+				<div class="row">
+					<?php while ( have_posts() ) : the_post(); ?>
+						<div class="<?php echo esc_attr( lsx_to_archive_class( 'panel' ) ); ?>">
+							<?php lsx_to_content( 'content', 'accommodation' ); ?>
+						</div>
+					<?php endwhile; ?>
 				</div>
-			<?php endwhile; ?>
-			</div>
-			<?php //lsx_to_paging_nav(); ?>
 
-		<?php else : ?>
+			<?php else : ?>
 
-			<?php get_template_part( 'content', 'none' ); ?>
+				<?php get_template_part( 'content', 'none' ); ?>
 
-		<?php endif; ?>
+			<?php endif; ?>
 
-		<?php lsx_content_bottom(); ?>
+			<?php lsx_content_bottom(); ?>
 
-		<?php lsx_to_sharing(); ?>
+			<?php lsx_to_sharing(); ?>
 
 		</main><!-- #main -->
 

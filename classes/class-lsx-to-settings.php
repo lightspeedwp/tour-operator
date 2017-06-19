@@ -416,46 +416,57 @@ class LSX_TO_Settings extends Tour_Operator {
 	 * @param $tab string
 	 * @return null
 	 */
-	public function archive_settings($post_type=false,$tab=false){
-		if('archives' !== $tab){ return false; }
+	public function archive_settings( $post_type = false, $tab = false ) {
+		if ( 'archives' !== $tab ) {
+			return false;
+		}
 		?>
-
 		<tr class="form-field">
 			<th scope="row">
-				<label for="description"><?php esc_html_e('Disable Archives','tour-operator'); ?></label>
+				<label><?php esc_html_e('Disable Archives','tour-operator'); ?></label>
 			</th>
 			<td>
-				<input type="checkbox" {{#if disable_archives}} checked="checked" {{/if}} name="disable_archives" />
+				<input type="checkbox" {{#if disable_archives}} checked="checked" {{/if}} name="disable_archives">
 				<small><?php esc_html_e('This disables the "post type archive", if you create your own custom loop it will still work.','tour-operator'); ?></small>
 			</td>
 		</tr>
-		<?php do_action('lsx_to_framework_'.$post_type.'_tab_archive_settings_top',$post_type); ?>
-		<tr class="form-field">
+		<tr class="form-field-wrap">
 			<th scope="row">
-				<label for="title"> <?php esc_html_e('Title','tour-operator'); ?></label>
+				<label><?php esc_html_e( 'Layout', 'tour-operator' ); ?></label>
 			</th>
 			<td>
-				<input type="text" {{#if title}} value="{{title}}" {{/if}} name="title" />
+				<select value="{{core_archive_layout}}" name="core_archive_layout">
+					<option value="" {{#is core_archive_layout value=""}}selected="selected"{{/is}}><?php esc_html_e( 'List', 'tour-operator' ); ?></option>
+					<option value="grid" {{#is core_archive_layout value="grid"}} selected="selected"{{/is}}><?php esc_html_e( 'Grid', 'tour-operator' ); ?></option>
+				</select>
+			</td>
+		</tr>
+		<?php do_action( 'lsx_to_framework_' . $post_type . '_tab_archive_settings_top', $post_type ); ?>
+		<tr class="form-field">
+			<th scope="row">
+				<label><?php esc_html_e( 'Title', 'tour-operator' ); ?></label>
+			</th>
+			<td>
+				<input type="text" {{#if title}} value="{{title}}" {{/if}} name="title">
 			</td>
 		</tr>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="tagline"> <?php esc_html_e('Tagline','tour-operator'); ?></label>
+				<label><?php esc_html_e( 'Tagline', 'tour-operator' ); ?></label>
 			</th>
 			<td>
-				<input type="text" {{#if tagline}} value="{{tagline}}" {{/if}} name="tagline" />
+				<input type="text" {{#if tagline}} value="{{tagline}}" {{/if}} name="tagline">
 			</td>
 		</tr>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="description"> <?php esc_html_e('Description','tour-operator'); ?></label>
+				<label><?php esc_html_e( 'Description', 'tour-operator' ); ?></label>
 			</th>
 			<td>
 				<textarea class="description" name="description" rows="10">{{#if description}}{{{description}}}{{/if}}</textarea>
 			</td>
 		</tr>
-		<?php do_action('lsx_to_framework_'.$post_type.'_tab_archive_settings_bottom',$post_type); ?>
-
+		<?php do_action( 'lsx_to_framework_' . $post_type . '_tab_archive_settings_bottom', $post_type ); ?>
 	<?php
 	}
 
