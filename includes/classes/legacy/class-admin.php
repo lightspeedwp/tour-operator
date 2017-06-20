@@ -167,7 +167,6 @@ class Admin extends Tour_Operator {
 	 * @return    null
 	 */
 	public function global_taxonomies() {
-
 		$labels = array(
 			'name'              => esc_html__( 'Travel Styles', 'tour-operator' ),
 			'singular_name'     => esc_html__( 'Travel Style', 'tour-operator' ),
@@ -227,7 +226,6 @@ class Admin extends Tour_Operator {
 			'menu_name'         => esc_html__( 'Brands', 'tour-operator' ),
 		);
 
-
 		// Now register the taxonomy
 		register_taxonomy( 'accommodation-brand', array( 'accommodation' ), array(
 			'hierarchical'        => true,
@@ -251,20 +249,6 @@ class Admin extends Tour_Operator {
 			'query_var'           => true,
 			'rewrite'             => array( 'slug' => 'brand' ),
 		) );
-
-		$labels = array(
-			'name'              => esc_html__( 'Location', 'tour-operator' ),
-			'singular_name'     => esc_html__( 'Location', 'tour-operator' ),
-			'search_items'      => esc_html__( 'Search Locations', 'tour-operator' ),
-			'all_items'         => esc_html__( 'Locations', 'tour-operator' ),
-			'parent_item'       => esc_html__( 'Parent Location', 'tour-operator' ),
-			'parent_item_colon' => esc_html__( 'Parent Location:', 'tour-operator' ),
-			'edit_item'         => esc_html__( 'Edit Location', 'tour-operator' ),
-			'update_item'       => esc_html__( 'Update Location', 'tour-operator' ),
-			'add_new_item'      => esc_html__( 'Add New Location', 'tour-operator' ),
-			'new_item_name'     => esc_html__( 'New Location', 'tour-operator' ),
-			'menu_name'         => esc_html__( 'Locations', 'tour-operator' ),
-		);
 	}
 
 	/**
