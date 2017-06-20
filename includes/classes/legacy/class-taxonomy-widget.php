@@ -24,8 +24,8 @@ class Taxonomy_Widget extends \WP_Widget {
 	/** @see WP_Widget::widget -- do not rename this */
 	public function widget( $args, $instance ) {
 
-		if ( isset( $instance['title'] ) ) {
-			$title = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
+		if (isset($instance['title'])) {
+			$title = $instance['title'];
 		} else {
 			$title = false;
 		}
@@ -198,7 +198,7 @@ class Taxonomy_Widget extends \WP_Widget {
 	/** @see WP_Widget::update -- do not rename this */
 	function update($new_instance, $old_instance) {
 	$instance = $old_instance;
-	$instance['title'] = strip_tags( $new_instance['title'] ) ;
+	$instance['title'] = wp_kses_post( force_balance_tags( $new_instance['title'] ) );
 	$instance['title_link'] = strip_tags( $new_instance['title_link'] );
 	$instance['columns'] = strip_tags( $new_instance['columns'] );
 	$instance['orderby'] = strip_tags( $new_instance['orderby'] );
