@@ -22,12 +22,16 @@ get_header(); ?>
 
 			<?php if ( have_posts() ) : ?>
 
-				<div class="row">
+				<div class="row lsx-to-archive-template-<?php echo esc_attr( tour_operator()->archive_layout ); ?>">
+
 					<?php while ( have_posts() ) : the_post(); ?>
-						<div class="<?php echo esc_attr( lsx_to_archive_class( 'facility-archive-item panel' ) ); ?>">
+
+						<div class="<?php echo esc_attr( lsx_to_archive_class( 'lsx-to-archive-item' ) ); ?>">
 							<?php lsx_to_content( 'content', get_post_type() ); ?>
 						</div>
+
 					<?php endwhile; ?>
+
 				</div>
 
 			<?php else : ?>

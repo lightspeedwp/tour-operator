@@ -151,6 +151,7 @@ class Tour_Operator {
 		// Add our action to init to set up our vars first.
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 		add_action( 'init', array( $this, 'require_post_type_classes' ), 1 );
+		add_action( 'posts_selection', array( $this, 'set_archive_layout' ) );
 		// Allow extra tags and attributes to wp_kses_post().
 		add_filter( 'wp_kses_allowed_html', array(
 			$this,
@@ -258,17 +259,18 @@ class Tour_Operator {
 	 * Sets the variables for the class
 	 */
 	public function set_vars() {
-		// This is the array of enabled post types.
 		$this->post_types          = array(
 			'destination'   => esc_html__( 'Destinations', 'tour-operator' ),
 			'accommodation' => esc_html__( 'Accommodation', 'tour-operator' ),
 			'tour'          => esc_html__( 'Tours', 'tour-operator' ),
 		);
+
 		$this->post_types_singular = array(
 			'destination'   => esc_html__( 'Destination', 'tour-operator' ),
 			'accommodation' => esc_html__( 'Accommodation', 'tour-operator' ),
 			'tour'          => esc_html__( 'Tour', 'tour-operator' ),
 		);
+
 		$this->base_post_types     = $this->post_types;
 		$this->post_types          = apply_filters( 'lsx_to_post_types', $this->post_types );
 		$this->post_types_singular = apply_filters( 'lsx_to_post_types_singular', $this->post_types_singular );
@@ -280,15 +282,56 @@ class Tour_Operator {
 			'accommodation-type'  => __( 'Accommodation Type', 'tour-operator' ),
 			'facility'            => __( 'Facility', 'tour-operator' ),
 		);
+
 		$this->taxonomies_plural = array(
 			'travel-style'        => __( 'Travel Styles', 'tour-operator' ),
 			'accommodation-brand' => __( 'Brands', 'tour-operator' ),
 			'accommodation-type'  => __( 'Accommodation Types', 'tour-operator' ),
 			'facility'            => __( 'Facilities', 'tour-operator' ),
 		);
+
 		$this->base_taxonomies   = $this->taxonomies;
 		$this->taxonomies        = apply_filters( 'lsx_to_framework_taxonomies', $this->taxonomies );
 		$this->taxonomies_plural = apply_filters( 'lsx_to_framework_taxonomies_plural', $this->taxonomies_plural );
+	}
+
+	/**
+	 * Sets the layout variable for the class.
+	 */
+	public function set_archive_layout() {
+		$post_type = false;
+
+		if ( is_post_type_archive( $this->active_post_types ) ) {
+			$post_type = get_query_var( 'post_type' );
+		} elseif ( is_tax( array_keys( $this->taxonomies ) ) ) {
+			$taxonomy = get_query_var( 'taxonomy' );
+
+			switch ( $taxonomy ) {
+				case 'travel-style':
+					$post_type = 'tour';
+					break;
+
+				case 'accommodation-type':
+				case 'accommodation-brand':
+				case 'facility':
+					$post_type = 'accommodation';
+					break;
+			}
+		}
+
+		if ( ! empty( $post_type ) ) {
+			$archive_layout = '';
+
+			if ( isset( $this->options[ $post_type ] ) && isset( $this->options[ $post_type ]['core_archive_layout'] ) ) {
+				$archive_layout = $this->options[ $post_type ]['core_archive_layout'];
+			}
+
+			if ( empty( $archive_layout ) ) {
+				$archive_layout = 'list';
+			}
+
+			$this->archive_layout = $archive_layout;
+		}
 	}
 
 	/**

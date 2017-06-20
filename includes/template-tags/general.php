@@ -18,27 +18,7 @@
  * @category 	class
  */
 function lsx_to_archive_class( $classes = array() ) {
-	$tour_operator = tour_operator();
-	$post_type     = false;
-	$layout        = '';
-
-	if ( is_tax( array_keys( tour_operator()->taxonomies->get_all() ) ) ) {
-		$taxonomy = get_query_var( 'taxonomy' );
-
-		switch ( $taxonomy ) {
-			case 'travel-style':
-				$post_type = 'tour';
-				break;
-
-			case 'accommodation-type':
-			case 'accommodation-brand':
-			case 'facility':
-				$post_type = 'accommodation';
-				break;
-		}
-	} else {
-		$post_type = get_post_type();
-	}
+	$layout = tour_operator()->archive_layout;
 
 	if ( ! is_array( $classes ) ) {
 		$classes = explode( ' ', $classes );
@@ -46,19 +26,13 @@ function lsx_to_archive_class( $classes = array() ) {
 
 	$new_classes = $classes;
 
-	if ( ! empty( $post_type ) && isset( $tour_operator->options[ $post_type ] ) && isset( $tour_operator->options[ $post_type ]['core_archive_layout'] ) ) {
-		$layout = $tour_operator->options[ $post_type ]['core_archive_layout'];
-
-		if ( 'grid' === $layout ) {
-			$new_classes[] = 'col-xs-12 col-sm-6 col-md-4';
-		} else {
-			$new_classes[] = 'col-xs-12';
-		}
+	if ( 'grid' === $layout ) {
+		$new_classes[] = 'col-xs-12 col-sm-6 col-md-4';
 	} else {
 		$new_classes[] = 'col-xs-12';
 	}
 
-	$new_classes = apply_filters( 'lsx_to_archive_class', $new_classes, $classes, $post_type, $layout );
+	$new_classes = apply_filters( 'lsx_to_archive_class', $new_classes, $classes, $layout );
 
 	return implode( ' ', $new_classes );
 }

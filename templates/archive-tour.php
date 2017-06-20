@@ -6,17 +6,6 @@
  * @category tour
  */
 
-$tour_operator = tour_operator();
-$layout = '';
-
-if ( isset( $tour_operator->options[ $post_type ] ) && isset( $tour_operator->options[ $post_type ]['core_archive_layout'] ) ) {
-    $layout = $tour_operator->options[ $post_type ]['core_archive_layout'];
-}
-
-if ( '' === $layout ) {
-	$layout = 'list';
-}
-
 get_header(); ?>
 
 	<?php lsx_content_wrap_before(); ?>
@@ -31,14 +20,12 @@ get_header(); ?>
 
 			<?php if ( have_posts() ) : ?>
 
-				<div class="row lsx-to-archive-template-<?php echo $layout; ?>">
+				<div class="row lsx-to-archive-template-<?php echo esc_attr( tour_operator()->archive_layout ); ?>">
 
 					<?php while ( have_posts() ) : the_post(); ?>
 
 						<div class="<?php echo esc_attr( lsx_to_archive_class( 'lsx-to-archive-item' ) ); ?>">
-
 							<?php lsx_to_content( 'content', 'tour' ); ?>
-
 						</div>
 
 					<?php endwhile; ?>
