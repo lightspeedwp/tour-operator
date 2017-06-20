@@ -22,7 +22,7 @@ get_header(); ?>
 
 			<?php if ( have_posts() ) : ?>
 
-				<div class="row lsx-to-archive-template-<?php echo esc_attr( tour_operator()->archive_layout ); ?>">
+				<div class="row lsx-to-archive-items lsx-to-archive-template-<?php echo esc_attr( tour_operator()->archive_layout ); ?>">
 
 					<?php while ( have_posts() ) : the_post(); ?>
 
