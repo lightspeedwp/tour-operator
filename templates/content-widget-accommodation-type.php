@@ -30,7 +30,7 @@ global $term, $taxonomy, $disable_placeholder;
 		<h4 class="lsx-to-widget-title text-center"><?php echo esc_html( apply_filters( 'the_title', $term->name ) ); ?></h4>
 
 		<p>
-			<a href="<?php echo esc_url( get_term_link( $term, $taxonomy ) ); ?>" class="moretag"><?php esc_html_e( 'View accommodations', 'tour-operator' ); ?></a>
+			<a href="<?php echo esc_url( get_term_link( $term, $taxonomy ) ); ?>" class="moretag"><?php esc_html_e( 'View accommodation', 'tour-operator' ); ?></a>
 		</p>
 	</div>
 </article>

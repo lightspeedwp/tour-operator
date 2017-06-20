@@ -234,16 +234,12 @@ msgstr ""
 msgid "Ends in"
 msgstr ""
 
-#: templates/content-widget-accommodation-brand.php:33, templates/content-widget-accommodation-type.php:33
-msgid "View accommodations"
+#: templates/content-widget-accommodation-brand.php:33, templates/content-widget-accommodation-type.php:33, templates/content-widget-accommodation.php:38
+msgid "View accommodation"
 msgstr ""
 
 #: templates/content-widget-accommodation.php:29
 msgid "Style"
-msgstr ""
-
-#: templates/content-widget-accommodation.php:38
-msgid "View accommodation"
 msgstr ""
 
 #: templates/content-widget-destination.php:29
