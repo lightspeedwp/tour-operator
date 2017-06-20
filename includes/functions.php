@@ -3,45 +3,10 @@
  * Tour Operator Helper Functions
  *
  * @package   tour_operator
- * @author    David Cramer
+ * @author    LightSpeed
  * @license   GPL-2.0+
- * @copyright 2017 David Cramer
+ * @copyright 2017 LightSpeed
  */
-
-/**
- * Tour Operator class autoloader.
- * It locates and finds class via classes folder structure.
- *
- * @since 1.0.7
- *
- * @param string $class class name to be checked and loaded.
- */
-function tour_operator_autoload_class( $class ) {
-	$parts = explode( '\\', $class );
-	$name  = strtolower( str_replace( '_', '-', array_shift( $parts ) ) );
-	if ( file_exists( LSX_TO_PATH . 'classes/' . $name ) ) {
-		if ( ! empty( $parts ) ) {
-			$name .= '/' . implode( '/', $parts );
-		}
-		$class_file = LSX_TO_PATH . 'classes/class-' . $name . '.php';
-		if ( file_exists( $class_file ) ) {
-			include_once $class_file;
-		}
-	} elseif ( empty( $parts ) && file_exists( LSX_TO_PATH . 'classes/class-' . $name . '.php' ) ) {
-		include_once LSX_TO_PATH . 'classes/class-' . $name . '.php';
-	}
-}
-
-/**
- * Tour Operator Helper to load and manipulate the overall instance.
- *
- * @since 1.0.7
- * @return  Tour_Operator  A single instance
- */
-function tour_operator() {
-	// Init tour operator and return object.
-	return Tour_Operator::get_instance();
-}
 
 /**
  * Returns an array of the tour taxonomies.
@@ -74,7 +39,7 @@ function lsx_to_has_itinerary() {
 	global $tour_itinerary;
 	$has_itinerary = false;
 	if ( null === $tour_itinerary ) {
-		$tour_itinerary = new LSX_TO_Itinerary_Query();
+		$tour_itinerary = new \lsx\legacy\Itinerary_Query();
 	}
 	if ( is_object( $tour_itinerary ) ) {
 		$has_itinerary = $tour_itinerary->has_itinerary();
@@ -265,7 +230,7 @@ function lsx_to_itinerary_thumbnail() {
 
 		//Check weather or not to display the placeholder.
 		if ( false === $thumbnail_src || '' === $thumbnail_src ) {
-			$thumbnail_src = LSX_TO_Placeholders::placeholder_url( null, 'tour' );
+			$thumbnail_src = \lsx\legacy\Placeholders::placeholder_url( null, 'tour' );
 		}
 		echo wp_kses_post( apply_filters( 'lsx_to_lazyload_filter_images', '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="' . $thumbnail_src . '" />' ) );
 	}
@@ -424,7 +389,7 @@ function lsx_to_accommodation_has_rooms() {
 	global $rooms;
 	$have_rooms = false;
 	if ( null === $rooms ) {
-		$rooms = new LSX_TO_Unit_Query();
+		$rooms = new \lsx\legacy\Unit_Query();
 	}
 	if ( is_object( $rooms ) ) {
 		$have_rooms = $rooms->have_query();

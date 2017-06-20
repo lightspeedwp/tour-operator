@@ -6,6 +6,9 @@
  * @link
  * @copyright 2016 LightSpeed
  **/
+
+namespace lsx\legacy;
+
 // Setup the post connections.
 class Tour_Operator {
 
@@ -13,7 +16,7 @@ class Tour_Operator {
 	 * Holds class instance
 	 *
 	 * @since 1.0.0
-	 * @var      \Tour_Operator
+	 * @var      \lsx\Tour_Operator
 	 */
 	protected static $instance = null;
 
@@ -136,7 +139,7 @@ class Tour_Operator {
 		}
 
 		// Start sort engine.
-		new LSX_TO_SCPO_Engine();
+		new SCPO_Engine();
 
 		// Set the options.
 		$this->options = get_option( '_lsx-to_settings', false );
@@ -162,22 +165,22 @@ class Tour_Operator {
 		add_filter( 'safe_style_css', array( $this, 'safe_style_css' ) );
 
 		// init admin object.
-		$this->admin = new LSX_TO_Admin();
+		$this->admin = new Admin();
 		// init settings object.
-		$this->settings = new LSX_TO_Settings();
+		$this->settings = new Settings();
 		// init frontend object.
-		$this->frontend = new LSX_TO_Frontend();
+		$this->frontend = new Frontend();
 		add_action( 'lsx_to_content', array(
 			$this->frontend->redirects,
 			'content_part',
 		), 10, 2 );
 		// init placeholders.
-		$this->placeholders = new LSX_TO_Placeholders( array_keys( $this->post_types ) );
+		$this->placeholders = new Placeholders( array_keys( $this->post_types ) );
 
 		add_action( 'widgets_init', array( $this, 'register_widget' ) );
 
 		// These need to run after the plugins have all been read.
-		$this->lsx_banners = new LSX_TO_Banner_Integration( array_keys( $this->post_types ), array_keys( $this->taxonomies ) );
+		$this->lsx_banners = new Banner_Integration( array_keys( $this->post_types ), array_keys( $this->taxonomies ) );
 
 		// Integrations.
 		$this->lsx_to_search_integration();
@@ -289,12 +292,12 @@ class Tour_Operator {
 	}
 
 	/**
-	 * Register the LSX_TO_Widget
+	 * Register the \lsx\legacy\Widget
 	 */
 	public function register_widget() {
-		register_widget( 'LSX_TO_Widget' );
-		register_widget( 'LSX_TO_Taxonomy_Widget' );
-		register_widget( 'LSX_TO_CTA_Widget' );
+		register_widget( 'lsx\legacy\Widget' );
+		register_widget( 'lsx\legacy\Taxonomy_Widget' );
+		register_widget( 'lsx\legacy\CTA_Widget' );
 	}
 
 	/**
@@ -313,9 +316,9 @@ class Tour_Operator {
 	 */
 	public function require_post_type_classes() {
 		foreach ( $this->post_types as $post_type => $label ) {
-			if(class_exists("LSX_TO_{$post_type}")) {
+			if(class_exists("lsx\\legacy\\{$post_type}")) {
 				call_user_func_array(array(
-					"LSX_TO_{$post_type}",
+					"lsx\\legacy\\{$post_type}",
 					'get_instance',
 				), array());
 			}

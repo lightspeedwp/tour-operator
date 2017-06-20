@@ -56,7 +56,7 @@ function lsx_to_widget_class( $type = '', $return = false ) {
 	global $columns;
 
 	$cols = 'col-sm-';
-	$cols .= $columns == '5' ? '15' : 12 / $columns;
+	$cols .= '5' == $columns ? '15' : 12 / $columns;
 
 	$class = 'lsx-to-widget-item-wrap lsx-'. $type .' '.  $cols;
 
@@ -344,7 +344,7 @@ function lsx_to_safari_brands($before="",$after="",$echo=true) {
 			'interval' => '7000',
 			'indicators' => '1'
 	);
-	$safari_brands = new LSX_TO_Taxonomy_Widget();
+	$safari_brands = new \lsx\legacy\Taxonomy_Widget();
 	ob_start();
 	$safari_brands->widget($args, $instance);
 	$return = ob_get_clean();
@@ -394,7 +394,7 @@ function lsx_to_travel_styles($before="",$after="",$echo=true) {
 			'interval' => '7000',
 			'indicators' => '1'
 	);
-	$travel_styles = new LSX_TO_Taxonomy_Widget();
+	$travel_styles = new \lsx\legacy\Taxonomy_Widget();
 	ob_start();
 	$travel_styles->widget($args, $instance);
 	$return = ob_get_clean();

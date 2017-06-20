@@ -1,2 +1,14 @@
+tools:
+    php_sim: true
+    php_pdepend: true
+    php_analyzer: true
 filter:
-    excluded_paths: [vendor/*, assets/css/flag-icon-css/* ]
+    excluded_paths:
+        - 'tests/*'
+        - 'assets/*'
+        - 'vendor/*'
+        - 'includes/classes/legacy/*'
+checks:
+    php:
+        code_rating: true
+        duplication: true

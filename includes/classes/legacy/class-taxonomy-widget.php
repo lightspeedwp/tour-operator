@@ -1,21 +1,21 @@
 <?php
 /**
- * @package   LSX_TO_Taxonomy_Widget
+ * @package   Taxonomy_Widget
  * @author    LightSpeed
  * @license   GPL3
  * @link
  * @copyright 2016 LightSpeed
- *
  **/
+namespace lsx\legacy;
 
-class LSX_TO_Taxonomy_Widget extends WP_Widget {
+class Taxonomy_Widget extends \WP_Widget {
 
 	/**
 	 * Sets up the widgets name etc
 	 */
 	public function __construct() {
 		$widget_ops = array(
-			'classname' => 'lsx-widget',
+			'classname'   => 'lsx-widget',
 			'description' => 'TO Taxonomy',
 		);
 		parent::__construct( 'LSX_TO_Taxonomy_Widget', 'TO Taxonomies', $widget_ops );
@@ -24,13 +24,13 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 	/** @see WP_Widget::widget -- do not rename this */
 	public function widget( $args, $instance ) {
 
-		if (isset($instance['title'])) {
-			$title = $instance['title'];
+		if ( isset( $instance['title'] ) ) {
+			$title = apply_filters( 'widget_title', $instance['title'], $instance, $this->id_base );
 		} else {
 			$title = false;
 		}
 
-		if (isset($instance['title_link'])) {
+		if ( isset( $instance['title_link'] ) ) {
 			$title_link = $instance['title_link'];
 		} else {
 			$title_link = false;
@@ -41,31 +41,31 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 			$columns = false;
 		}
 
-		if (isset($instance['orderby'])) {
+		if ( isset( $instance['orderby'] ) ) {
 			$orderby = $instance['orderby'];
 		} else {
 			$orderby = false;
 		}
 
-		if (isset($instance['order'])) {
+		if ( isset( $instance['order'] ) ) {
 			$order = $instance['order'];
 		} else {
 			$order = false;
 		}
 
-		if (isset($instance['limit'])) {
+		if ( isset( $instance['limit'] ) ) {
 			$limit = $instance['limit'];
 		} else {
 			$limit = '-1';
 		}
 
-		if (isset($instance['group'])) {
+		if ( isset( $instance['group'] ) ) {
 			$group = $instance['group'];
 		} else {
 			$group = false;
 		}
 
-		if (isset($instance['include'])) {
+		if ( isset( $instance['include'] ) ) {
 			$include = $instance['include'];
 		} else {
 			$include = false;
@@ -87,7 +87,7 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 		} else {
 			$buttons = false;
 		}
-		if (isset($instance['button_text'])) {
+		if ( isset( $instance['button_text'] ) ) {
 			$button_text = $instance['button_text'];
 		} else {
 			$button_text = false;
@@ -97,39 +97,39 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 		} else {
 			$carousel = false;
 		}
-		if (isset($instance['taxonomy'])) {
+		if ( isset( $instance['taxonomy'] ) ) {
 			$taxonomy = $instance['taxonomy'];
 		} else {
 			$taxonomy = false;
 		}
-		if (isset($instance['class'])) {
+		if ( isset( $instance['class'] ) ) {
 			$class = $instance['class'];
 		} else {
 			$class = false;
 		}
-		if (isset($instance['interval'])) {
+		if ( isset( $instance['interval'] ) ) {
 			$interval = $instance['interval'];
 		} else {
 			$interval = false;
 		}
 
 		//arguments
-		if (isset($args['before_widget'])) {
+		if ( isset( $args['before_widget'] ) ) {
 			$before_widget = $args['before_widget'];
 		} else {
 			$before_widget = '';
 		}
-		if (isset($args['after_widget'])) {
+		if ( isset( $args['after_widget'] ) ) {
 			$after_widget = $args['after_widget'];
 		} else {
 			$after_widget = '';
 		}
-		if (isset($args['before_title'])) {
+		if ( isset( $args['before_title'] ) ) {
 			$before_title = $args['before_title'];
 		} else {
 			$before_title = '';
 		}
-		if (isset($args['after_title'])) {
+		if ( isset( $args['after_title'] ) ) {
 			$after_title = $args['after_title'];
 		} else {
 			$after_title = '';
@@ -160,14 +160,13 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 			$link_close = '';
 		}
 
-		$class = 'class="'.$class.' ';
-		echo wp_kses_post(str_replace('class="',$class,$before_widget));
-
+		$class = 'class="' . $class . ' ';
+		echo wp_kses_post( str_replace( 'class="', $class, $before_widget ) );
 
 
 		if ( false != $title ) {
 			$title = $before_title . $link_open . $title . $link_close . $after_title;
-			echo wp_kses_post(apply_filters('lsx_to_taxonomy_widget_title', $title));
+			echo wp_kses_post( apply_filters( 'lsx_to_taxonomy_widget_title', $title ) );
 		}
 
 		$args = array(
@@ -191,15 +190,15 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 
 		$args['carousel'] = $carousel;
 
-		echo wp_kses_post($this->output($args));
+		echo wp_kses_post( $this->output( $args ) );
 
-		echo wp_kses_post($after_widget);
+		echo wp_kses_post( $after_widget );
 	}
 
 	/** @see WP_Widget::update -- do not rename this */
 	function update($new_instance, $old_instance) {
 	$instance = $old_instance;
-	$instance['title'] = wp_kses_post( force_balance_tags( $new_instance['title'] ) );
+	$instance['title'] = strip_tags( $new_instance['title'] ) ;
 	$instance['title_link'] = strip_tags( $new_instance['title_link'] );
 	$instance['columns'] = strip_tags( $new_instance['columns'] );
 	$instance['orderby'] = strip_tags( $new_instance['orderby'] );
@@ -215,11 +214,11 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 	$instance['class'] = strip_tags( $new_instance['class'] );
 	$instance['interval'] = strip_tags( $new_instance['interval'] );
 
-	return $instance;
+		return $instance;
 	}
 
 	/** @see WP_Widget::form -- do not rename this */
-	function form($instance) {
+	function form( $instance ) {
 
 		$defaults = array(
 			'title' => '',
@@ -439,24 +438,24 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 
 		if ( '' != $include ) {
 			$include = explode( ',', $include );
-			$args = array(
-					'number' => $limit,
-					'include' => $include,
-					'orderby' => 'include',
-					'order' => $order,
-					'hide_empty' => 0
+			$args    = array(
+				'number'     => $limit,
+				'include'    => $include,
+				'orderby'    => 'include',
+				'order'      => $order,
+				'hide_empty' => 0,
 			);
 		} else {
-			$args = array (
-					'number' => $limit,
-					'orderby' => $orderby,
-					'order' => $order,
-					'hide_empty' => 0
+			$args = array(
+				'number'     => $limit,
+				'orderby'    => $orderby,
+				'order'      => $order,
+				'hide_empty' => 0,
 			);
 		}
 
-		if('none' !== $orderby){
-			$args['suppress_filters'] = true;
+		if ( 'none' !== $orderby ) {
+			$args['suppress_filters']           = true;
 			$args['disabled_custom_post_order'] = true;
 		}
 
@@ -522,7 +521,6 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 	 */
 	public function loop_start( $columns = 1, $carousel = 0, $taxonomy = '', $post_count = 0, $count = 0 ) {
 		$output = '';
-
 		// Get the call for the active slide
 		if ( $carousel ) {
 			$output .= "<div class='lsx-to-widget-item-wrap lsx-{$taxonomy}'>";
@@ -538,7 +536,6 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 	 */
 	public function loop_end( $columns = 1, $carousel = 0, $taxonomy = '', $post_count = 0, $count = 0 ) {
 		$output = '';
-
 		// Close the current slide panel
 		if ( $carousel ) {
 			$output .= "</div>";
@@ -558,7 +555,6 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 	 */
 	public function after_while( $columns = 1, $carousel = 0, $taxonomy = '', $post_count = 0 ) {
 		$output = '';
-
 		// Carousel output Closing
 		if ( $carousel ) {
 			$output .= "</div>";
@@ -568,43 +564,43 @@ class LSX_TO_Taxonomy_Widget extends WP_Widget {
 		} else {
 			$output .= "</div>";
 		}
-
 		echo wp_kses_post( $output );
 	}
 
 	/**
 	 * Redirect wordpress to the single template located in the plugin
 	 *
-	 * @param	$template
+	 * @param    $template
 	 *
-	 * @return	$template
+	 * @return    $template
 	 */
-	public function content_part($slug, $name = null) {
+	public function content_part( $slug, $name = null ) {
 		global $taxonomy;
 
 		$template = array();
-		$name = (string) $name;
-		if ( '' !== $name ){
+		$name     = (string) $name;
+		if ( '' !== $name ) {
 			$template = "{$slug}-{$name}.php";
-		}else{
+		} else {
 			$template = "{$slug}.php";
 		}
 		$original_name = $template;
-		$path = apply_filters('lsx_to_widget_path','',$taxonomy);
+		$path          = apply_filters( 'lsx_to_widget_path', '', $taxonomy );
 
-		if ( '' == locate_template( array( $template ) ) && file_exists( $path.'templates/'.$template) ) {
-			$template = $path.'templates/'.$template;
-		}elseif(file_exists( get_stylesheet_directory().'/'.$template)){
-			$template = get_stylesheet_directory().'/'.$template;
-		}else{
+		if ( '' == locate_template( array( $template ) ) && file_exists( $path . 'templates/' . $template ) ) {
+			$template = $path . 'templates/' . $template;
+		} elseif ( file_exists( get_stylesheet_directory() . '/' . $template ) ) {
+			$template = get_stylesheet_directory() . '/' . $template;
+		} else {
 			$template = false;
 		}
 
-		if(false !== $template){
+		if ( false !== $template ) {
 			load_template( $template, false );
-		}else {
-			echo wp_kses_post('<p>No '.$original_name.' can be found.</p>');
+		} else {
+			echo wp_kses_post( '<p>No ' . $original_name . ' can be found.</p>' );
 		}
 	}
 }
+
 ?>

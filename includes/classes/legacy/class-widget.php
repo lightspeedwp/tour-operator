@@ -1,28 +1,28 @@
 <?php
 /**
- * @package   LSX_TO_Widget
+ * @package   Widget
  * @author    LightSpeed
  * @license   GPL3
  * @link
  * @copyright 2016 LightSpeed
- *
  **/
+namespace lsx\legacy;
 
-class LSX_TO_Widget extends WP_Widget {
+class Widget extends \WP_Widget {
 
 	/**
 	 * Sets up the widgets name etc
 	 */
 	public function __construct() {
 		$widget_ops = array(
-			'classname' => 'lsx-widget',
-			'description' => esc_html__('TO','tour-operator'),
+			'classname'   => 'lsx-widget',
+			'description' => esc_html__( 'TO', 'tour-operator' ),
 		);
 		parent::__construct( 'LSX_TO_Widget', 'TO Post Types', $widget_ops );
 	}
 
-    /** @see WP_Widget::widget -- do not rename this */
-    public function widget( $args, $instance ) {
+	/** @see WP_Widget::widget -- do not rename this */
+	public function widget( $args, $instance ) {
 
     	if (isset($instance['title'])) {
 			$title = $instance['title'];
@@ -30,7 +30,7 @@ class LSX_TO_Widget extends WP_Widget {
 			$title = false;
 		}
 
-		if (isset($instance['title_link'])) {
+		if ( isset( $instance['title_link'] ) ) {
 			$title_link = $instance['title_link'];
 		} else {
 			$title_link = false;
@@ -41,29 +41,29 @@ class LSX_TO_Widget extends WP_Widget {
 			$columns = false;
 		}
 
-		if (isset($instance['orderby'])) {
+		if ( isset( $instance['orderby'] ) ) {
 			$orderby = $instance['orderby'];
 		} else {
 			$orderby = false;
 		}
-		if (isset($instance['order'])) {
+		if ( isset( $instance['order'] ) ) {
 			$order = $instance['order'];
 		} else {
 			$order = false;
 		}
-		if (isset($instance['limit'])) {
+		if ( isset( $instance['limit'] ) ) {
 			$limit = $instance['limit'];
 		} else {
 			$limit = '-1';
 		}
 
-		if (isset($instance['group'])) {
+		if ( isset( $instance['group'] ) ) {
 			$group = $instance['group'];
 		} else {
 			$group = false;
 		}
 
-		if (isset($instance['include'])) {
+		if ( isset( $instance['include'] ) ) {
 			$include = $instance['include'];
 		} else {
 			$include = false;
@@ -86,7 +86,7 @@ class LSX_TO_Widget extends WP_Widget {
 		} else {
 			$buttons = false;
 		}
-		if (isset($instance['button_text'])) {
+		if ( isset( $instance['button_text'] ) ) {
 			$button_text = $instance['button_text'];
 		} else {
 			$button_text = false;
@@ -96,86 +96,86 @@ class LSX_TO_Widget extends WP_Widget {
 		} else {
 			$carousel = false;
 		}
-		if (isset($instance['featured'])) {
+		if ( isset( $instance['featured'] ) ) {
 			$featured = $instance['featured'];
 		} else {
 			$featured = false;
 		}
-		if (isset($instance['post_type'])) {
+		if ( isset( $instance['post_type'] ) ) {
 			$post_type = $instance['post_type'];
 		} else {
 			$post_type = false;
 		}
-		if (isset($instance['class'])) {
+		if ( isset( $instance['class'] ) ) {
 			$class = $instance['class'];
 		} else {
 			$class = false;
 		}
-		if (isset($instance['interval'])) {
+		if ( isset( $instance['interval'] ) ) {
 			$interval = $instance['interval'];
 		} else {
 			$interval = false;
 		}
 
 		//arguments
-		if (isset($args['before_widget'])) {
+		if ( isset( $args['before_widget'] ) ) {
 			$before_widget = $args['before_widget'];
 		} else {
 			$before_widget = '';
 		}
-		if (isset($args['after_widget'])) {
+		if ( isset( $args['after_widget'] ) ) {
 			$after_widget = $args['after_widget'];
 		} else {
 			$after_widget = '';
 		}
-		if (isset($args['before_title'])) {
+		if ( isset( $args['before_title'] ) ) {
 			$before_title = $args['before_title'];
 		} else {
 			$before_title = '';
 		}
-		if (isset($args['after_title'])) {
+		if ( isset( $args['after_title'] ) ) {
 			$after_title = $args['after_title'];
 		} else {
 			$after_title = '';
 		}
 
-        // Disregard specific ID setting if specific group is defined
-        if ( 'all' != $group ) {
-            $include = '';
-        } else {
-            $group = '';
-        }
+		// Disregard specific ID setting if specific group is defined
+		if ( 'all' != $group ) {
+			$include = '';
+		} else {
+			$group = '';
+		}
 
-        if ( '' != $include ) {
+		if ( '' != $include ) {
 			$limit = "-1";
 		}
 
-        if ( '1' == $buttons )
-            $buttons = true;
-        else
-            $buttons = false;
+		if ( '1' == $buttons ) {
+			$buttons = true;
+		} else {
+			$buttons = false;
+		}
 
-        if ( $title_link ) {
-            #$link_open = "<a href='$title_link'>";
-			$link_open = '';
-            #$link_close = "</a>";
-			$link_close = '';
-        } else {
-			$link_open = '';
-			$link_close = '';
-        }
+		if ( $title_link ) {
+			$link_open  = "";
+			$link_close = "";
+		} else {
+			$link_open  = "";
+			$link_close = "";
+		}
 
-        $class = 'class="'.$class.' ';
-        echo wp_kses_post(str_replace('class="',$class,$before_widget));
+		$class = 'class="' . $class . ' ';
+		echo wp_kses_post( str_replace( 'class="', $class, $before_widget ) );
 
 
-        if(post_type_exists($post_type)){
-	        if ( false != $title ) {
-	        	if ('video' != $post_type) {
-	        		$title = $before_title . $link_open . $title . $link_close . $after_title;
-	        		echo wp_kses_post(apply_filters('lsx_to_post_type_widget_title', $title));
-	        	}
-	        }
+		if ( post_type_exists( $post_type ) ) {
+			if ( false != $title ) {
+
+				if ( 'video' != $post_type ) {
+					$title = $before_title . $link_open . $title . $link_close . $after_title;
+					echo wp_kses_post( apply_filters( 'lsx_to_post_type_widget_title', $title ) );
+				}
+			}
 
 			$args = array(
 				'title'  => $title,
@@ -198,13 +198,13 @@ class LSX_TO_Widget extends WP_Widget {
 
 
 			$args['carousel'] = $carousel;
-			echo wp_kses_post($this->output($args));
-		}else{
-		 	echo wp_kses_post('<p>'.esc_html__('That post type does not exist.','tour-operator').'</p>');
+			echo wp_kses_post( $this->output( $args ) );
+		} else {
+			echo wp_kses_post( '<p>' . esc_html__( 'That post type does not exist.', 'tour-operator' ) . '</p>' );
 		}
 
-        echo wp_kses_post($after_widget);
-    }
+		echo wp_kses_post( $after_widget );
+	}
 
     /** @see WP_Widget::update -- do not rename this */
     function update($new_instance, $old_instance) {
@@ -228,8 +228,8 @@ class LSX_TO_Widget extends WP_Widget {
     return $instance;
     }
 
-    /** @see WP_Widget::form -- do not rename this */
-    function form($instance) {
+	/** @see WP_Widget::form -- do not rename this */
+	function form( $instance ) {
 
         $defaults = array(
             'title' => 'Featured',
@@ -249,9 +249,9 @@ class LSX_TO_Widget extends WP_Widget {
         	'interval' => '7000'
         );
 
-        $defaults['carousel'] = 0;
+		$defaults['carousel'] = 0;
 
-        $instance = wp_parse_args( (array) $instance, $defaults );
+		$instance = wp_parse_args( (array) $instance, $defaults );
 
         $title    = esc_attr($instance['title']);
         $title_link    = esc_attr($instance['title_link']);
@@ -438,7 +438,7 @@ class LSX_TO_Widget extends WP_Widget {
 		        </script>
 		<?php
 
-    }
+	}
 
     public function output( $atts )
     {
@@ -498,7 +498,7 @@ class LSX_TO_Widget extends WP_Widget {
 			$args['disabled_custom_post_order'] = true;
 		}
 
-		$widget_query = new WP_Query( $args );
+		$widget_query = new \WP_Query( $args );
 
 		if ( $widget_query->have_posts() ) {
 
@@ -568,7 +568,7 @@ class LSX_TO_Widget extends WP_Widget {
 
 		// Carousel Output Opening
 		if ( $carousel ) {
-			$landing_image = '';
+			$landing_image     = '';
 			$this->carousel_id = rand( 20, 20000 );
 
 			$output .= "<div class='slider-container lsx-to-widget-itens'>";
@@ -578,7 +578,6 @@ class LSX_TO_Widget extends WP_Widget {
 		} else {
 			$output .= "<div class='lsx-to-widget-itens'>";
 		}
-
 		echo wp_kses_post( $output );
 	}
 
@@ -603,7 +602,6 @@ class LSX_TO_Widget extends WP_Widget {
 	 */
 	public function loop_end( $columns = 1, $carousel = 0, $post_type = '', $post_count = 0, $count = 0 ) {
 		$output = '';
-
 		// Close the current slide panel
 		if ( $carousel ) {
 			$output .= "</div>";
@@ -614,7 +612,6 @@ class LSX_TO_Widget extends WP_Widget {
 				$output .= "<div class='row'>";
 			}
 		}
-
 		echo wp_kses_post( $output );
 	}
 
@@ -623,7 +620,6 @@ class LSX_TO_Widget extends WP_Widget {
 	 */
 	public function after_while( $columns = 1, $carousel = 0, $post_type = '', $post_count = 0 ) {
 		$output = '';
-
 		// Carousel output Closing
 		if ( $carousel ) {
 			$output .= "</div>";
@@ -633,41 +629,41 @@ class LSX_TO_Widget extends WP_Widget {
 		} else {
 			$output .= "</div>";
 		}
-
-		echo wp_kses_post($output);
+		echo wp_kses_post( $output );
 	}
 
 	/**
 	 * Redirect wordpress to the single template located in the plugin
 	 *
-	 * @param	$template
+	 * @param    $template
 	 *
-	 * @return	$template
+	 * @return    $template
 	 */
-	public function content_part($slug, $name = null) {
+	public function content_part( $slug, $name = null ) {
 		$template = array();
-		$name = (string) $name;
-		if ( '' !== $name ){
+		$name     = (string) $name;
+		if ( '' !== $name ) {
 			$template = "{$slug}-{$name}.php";
-		}else{
+		} else {
 			$template = "{$slug}.php";
 		}
 		$original_name = $template;
-		$path = apply_filters('lsx_to_widget_path','',get_post_type());
+		$path          = apply_filters( 'lsx_to_widget_path', '', get_post_type() );
 
-		if ( '' == locate_template( array( $template ) ) && file_exists( $path.'templates/'.$template) ) {
-			$template = $path.'templates/'.$template;
-		}elseif(file_exists( get_stylesheet_directory().'/'.$template)){
-			$template = get_stylesheet_directory().'/'.$template;
-		}else{
+		if ( '' == locate_template( array( $template ) ) && file_exists( $path . 'templates/' . $template ) ) {
+			$template = $path . 'templates/' . $template;
+		} elseif ( file_exists( get_stylesheet_directory() . '/' . $template ) ) {
+			$template = get_stylesheet_directory() . '/' . $template;
+		} else {
 			$template = false;
 		}
 
-		if(false !== $template){
+		if ( false !== $template ) {
 			load_template( $template, false );
-		}else {
-			echo wp_kses_post('<p>No '.$original_name.' can be found.</p>');
+		} else {
+			echo wp_kses_post( '<p>No ' . $original_name . ' can be found.</p>' );
 		}
 	}
 }
+
 ?>

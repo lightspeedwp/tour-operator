@@ -3,10 +3,10 @@
  * Tour Operator Bootstrapper
  *
  * @package   tour_operator
- * @author    David Cramer
+ * @author    LightSpeed
  * @license   GPL-2.0+
  * @link
- * @copyright 2016 David Cramer
+ * @copyright 2016 LightSpeed
  */
 // If this file is called directly, abort.
 if ( defined( 'WPINC' ) ) {
@@ -38,11 +38,16 @@ if ( defined( 'WPINC' ) ) {
 	require_once( LSX_TO_PATH . 'includes/actions.php' );
 
 
-	// include context helper functions and autoloader.
+	// include context helper & autoloader.
+	require_once( LSX_TO_PATH . 'includes/tour-operator.php' );
+	// Include functions.
 	require_once( LSX_TO_PATH . 'includes/functions.php' );
 
 	// Register tour operator autoloader.
 	spl_autoload_register( 'tour_operator_autoload_class', true, false );
+
+	// init legacy.
+	\lsx\legacy\Tour_Operator::get_instance();
 
 	// Init Plugin.
 	tour_operator();
