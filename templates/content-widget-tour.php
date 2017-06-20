@@ -29,7 +29,7 @@ global $disable_placeholder, $disable_text;
 
 		<div class="lsx-to-widget-meta-data">
 			<?php
-				$meta_class = 'lsx-to-widget-meta lsx-to-widget-meta-';
+				$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
 
 				lsx_to_price( '<span class="'. $meta_class .'price">'. esc_html__( 'From price', 'tour-operator' ) .': ', '</span>' );
 				lsx_to_duration( '<span class="'. $meta_class .'duration">'. esc_html__( 'Duration', 'tour-operator' ) .': ', '</span>' );
