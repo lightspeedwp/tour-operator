@@ -44,21 +44,19 @@ function lsx_to_archive_entry_top() {
 	global $lsx_to_archive;
 
 	if ( in_array( get_post_type(), array_keys( lsx_to_get_post_types() ) ) && ( is_archive() || $lsx_to_archive ) ) { ?>
-		<div class="col-sm-3">
-			<div class="thumbnail">
-				<a href="<?php the_permalink(); ?>">
-					<?php lsx_thumbnail( 'lsx-thumbnail-wide' ); ?>
-				</a>
-			</div>
+		<div class="lsx-to-archive-thumb">
+			<a href="<?php the_permalink(); ?>">
+				<?php lsx_thumbnail( 'lsx-thumbnail-wide' ); ?>
+			</a>
 		</div>
 
-		<div class="col-sm-9">
-			<div class="col-sm-8">
+		<div class="lsx-to-archive-wrapper">
+			<div class="lsx-to-archive-content">
 
 				<header class="page-header">
 					<?php the_title( '<h3 class="page-title"><a href="'. get_permalink() .'" title="'. esc_html__( 'Read more', 'tour-operator' ) .'">', '</a></h3>' ); ?>
 					<?php lsx_to_tagline( '<p class="tagline">', '</p>' ); ?>
-				</header><!-- .entry-header -->
+				</header>
 	<?php }
 }
 
@@ -331,21 +329,21 @@ function lsx_to_tour_archive_entry_bottom() {
 	global $lsx_to_archive;
 
 	if ( 'tour' === get_post_type() && ( is_archive() || $lsx_to_archive ) ) { ?>
-		</div>
+			</div>
 
-		<div class="col-sm-4">
-			<div class="tour-details">
-				<div class="meta info">
-					<?php
-						lsx_to_price( '<span class="price">'. esc_html__( 'From price', 'tour-operator' ) .': ', '</span>' );
-						lsx_to_duration( '<span class="duration">'. esc_html__( 'Duration', 'tour-operator' ) .': ', '</span>' );
-					?>
-				</div>
-				<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'. esc_html__( 'Travel Style', 'tour-operator' ) .': ', ', ', '</div>' ); ?>
-				<?php lsx_to_connected_countries( '<div class="meta destination">'. esc_html__( 'Destinations', 'tour-operator' ) .': ', '</div>' ); ?>
-				<?php if ( function_exists( 'lsx_to_connected_activities' ) ) { lsx_to_connected_activities( '<div class="meta activities">'. esc_html__( 'Activities', 'tour-operator' ) .': ', '</div>' ); } ?>
+			<div class="lsx-to-archive-meta-info">
+				<?php
+					$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
+
+					lsx_to_price( '<span class="'. $meta_class .'price">'. esc_html__( 'From price', 'tour-operator' ) .': ', '</span>' );
+					lsx_to_duration( '<span class="'. $meta_class .'duration">'. esc_html__( 'Duration', 'tour-operator' ) .': ', '</span>' );
+					the_terms( get_the_ID(), 'travel-style', '<span class="'. $meta_class .'style">'. esc_html__( 'Travel Style', 'tour-operator' ) .': ', ', ', '</span>' );
+					lsx_to_connected_countries( '<span class="'. $meta_class .'destinations">'. esc_html__( 'Destinations', 'tour-operator' ) .': ', '</span>' );
+					if ( function_exists( 'lsx_to_connected_activities' ) ) {
+						lsx_to_connected_activities( '<span class="'. $meta_class .'activities">'. esc_html__( 'Activities', 'tour-operator' ) .': ', '</span>' );
+					}
+				?>
 			</div>
 		</div>
-	</div>
-<?php }
+	<?php }
 }

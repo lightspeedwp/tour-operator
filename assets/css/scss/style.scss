@@ -2583,6 +2583,17 @@ body.single-tour-operator {
 
 .archive.archive-tour-operator {
 	.site-main { width: 100%; }
+
+	.lsx-to-archive-template-list {}
+
+	.lsx-to-archive-template-grid {}
+
+	.lsx-to-archive-thumb {}
+
+	.lsx-to-archive-wrapper {
+		.lsx-to-archive-content {}
+		.lsx-to-archive-meta-info {}
+	}
 }
 
 @include customizer-to-body-colours(#DADDDF, #4A4A4A, #418AD0, #F7AE00, #919191);
