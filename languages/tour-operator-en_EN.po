@@ -1764,7 +1764,7 @@ msgstr ""
 msgid "Slide Interval:"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:765, includes/classes/legacy/class-tour-operator.php:778
+#: includes/classes/legacy/class-tour-operator.php:764, includes/classes/legacy/class-tour-operator.php:777
 msgid "Tour Operator Plugin requires PHP 5.6 or higher."
 msgstr ""
 
