@@ -297,7 +297,6 @@ class Tour_Operator {
 	public function register_widget() {
 		register_widget( 'lsx\legacy\Widget' );
 		register_widget( 'lsx\legacy\Taxonomy_Widget' );
-		register_widget( 'lsx\legacy\CTA_Widget' );
 	}
 
 	/**
