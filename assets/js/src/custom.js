@@ -16,7 +16,8 @@ var LSX_TO_Itinerary_Read_More = {
 		});
 	}
 },
-LSX_TO_Bootstrap_Carousel = {
+
+LSX_TO_Slider = {
 	preBuildSlider: function ($slider) {
 		$slider.on('init', function (event, slick) {
 			if (slick.options.arrows && slick.slideCount > slick.options.slidesToShow)
@@ -38,7 +39,7 @@ LSX_TO_Bootstrap_Carousel = {
 				autoplay = false,
 				autoplaySpeed = 0;
 
-			LSX_TO_Bootstrap_Carousel.preBuildSlider($this);
+			LSX_TO_Slider.preBuildSlider($this);
 
 			if ('undefined' !== typeof interval && 'boolean' !== typeof interval) {
 				interval = parseInt(interval);
@@ -167,28 +168,11 @@ LSX_TO_Read_More = {
 
 LSX_TO_Scrollable = {
 	initThis: function(windowWidth) {
-		this.bannerScrollEasing();
-
 		if (windowWidth >= 992) {
 			this.anchorMenuScrollEasing();
 			this.anchorMenuFixTo();
 			this.anchorMenuScrollSpy();
 		}
-	},
-
-	bannerScrollEasing: function() {
-		jQuery('.banner-easing a i').on('click',function(e) {
-			e.preventDefault();
-
-			var $from = jQuery(this).parent(),
-				$to = jQuery($from.attr('href')),
-				top = parseInt($to.offset().top),
-				extra = parseInt($from.data('extra-top') ? $from.data('extra-top') : '0');
-
-			jQuery('html, body').animate({
-				scrollTop: (top+extra)
-			}, 800);
-		});
 	},
 
 	anchorMenuScrollEasing: function() {
@@ -234,7 +218,7 @@ LSX_TO_Scrollable = {
 			offset: offset_header + offset_navigation
 		});
 	}
-}
+};
 
 jQuery(document).ready(function() {
 	var windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -243,7 +227,7 @@ jQuery(document).ready(function() {
 	LSX_TO_Read_More.initThis();
 	LSX_TO_Scrollable.initThis(windowWidth);
 	LSX_TO_Itinerary_Read_More.initThis();
-	LSX_TO_Bootstrap_Carousel.initSlider();
+	LSX_TO_Slider.initSlider();
 	LSX_TO_FacetWP.effect_loaded();
 	LSX_TO.removeEmptyWidgets();
 	LSX_TO.addExtraClassToMeta();
