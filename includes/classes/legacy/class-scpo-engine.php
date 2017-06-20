@@ -102,9 +102,7 @@ class SCPO_Engine {
 
 	function load_script_css() {
 		if ( $this->_check_load_script_css() ) {
-			wp_enqueue_script( 'jquery' );
-			wp_enqueue_script( 'jquery-ui-sortable' );
-			wp_enqueue_script( 'scporderjs', LSX_TO_URL . '/assets/js/scporder.min.js', array( 'jquery' ), null, true );
+			wp_enqueue_script( 'scporderjs', LSX_TO_URL . '/assets/js/scporder.min.js', array( 'jquery', 'jquery-ui-sortable' ), null, true );
 
 			$scporderjs_params = array(
 				'ajax_url'   => admin_url( 'admin-ajax.php' ),
