@@ -463,7 +463,9 @@ class Tour_Operator {
 	 * @return string HTML tagline string.
 	 */
 	public function get_tagline( $tagline = false, $before = '', $after = '' ) {
-		if ( is_single() ) {
+		$post_id = get_the_ID();
+
+		if ( ! empty( $post_id ) ) {
 			$post_id = get_the_ID();
 			$tagline_value = get_post_meta( $post_id, 'banner_subtitle', true );
 
