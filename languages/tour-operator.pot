@@ -94,7 +94,7 @@ msgstr ""
 msgid "Best time to visit"
 msgstr ""
 
-#: includes/layout.php:237, includes/layout.php:350, templates/content-destination.php:25, templates/content-tour.php:33, templates/content-widget-tour.php:36, includes/taxonomies/config-travel-style.php:26, includes/classes/legacy/class-admin.php:172, includes/classes/legacy/class-admin.php:196, includes/classes/legacy/class-destination.php:166, includes/classes/legacy/class-tour-operator.php:280, includes/classes/legacy/class-tour.php:782
+#: includes/layout.php:237, includes/layout.php:350, templates/content-destination.php:25, templates/content-tour.php:33, templates/content-widget-tour.php:36, includes/taxonomies/config-travel-style.php:26, includes/classes/legacy/class-admin.php:166, includes/classes/legacy/class-admin.php:190, includes/classes/legacy/class-destination.php:166, includes/classes/legacy/class-tour-operator.php:280, includes/classes/legacy/class-tour.php:782
 msgid "Travel Style"
 msgstr ""
 
@@ -206,7 +206,7 @@ msgstr ""
 msgid "Rooms"
 msgstr ""
 
-#: templates/content-accommodation.php:26, templates/content-widget-accommodation.php:30, includes/taxonomies/config-accommodation-brand.php:19, includes/template-tags/accommodation.php:292, includes/classes/legacy/class-admin.php:217, includes/classes/legacy/class-admin.php:234, includes/classes/legacy/class-tour-operator.php:281
+#: templates/content-accommodation.php:26, templates/content-widget-accommodation.php:30, includes/taxonomies/config-accommodation-brand.php:19, includes/template-tags/accommodation.php:292, includes/classes/legacy/class-admin.php:211, includes/classes/legacy/class-admin.php:228, includes/classes/legacy/class-tour-operator.php:281
 msgid "Brand"
 msgstr ""
 
@@ -262,7 +262,7 @@ msgstr ""
 msgid "Featured"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:28, includes/metaboxes/config-destination.php:49, includes/metaboxes/config-tour.php:28, includes/partials/post.php:20, includes/classes/legacy/class-admin.php:480, includes/classes/legacy/class-settings.php:456, includes/classes/legacy/class-tour.php:229, includes/classes/legacy/class-tour.php:574
+#: includes/metaboxes/config-accommodation.php:28, includes/metaboxes/config-destination.php:49, includes/metaboxes/config-tour.php:28, includes/partials/post.php:20, includes/classes/legacy/class-admin.php:474, includes/classes/legacy/class-settings.php:456, includes/classes/legacy/class-tour.php:229, includes/classes/legacy/class-tour.php:574
 msgid "Tagline"
 msgstr ""
 
@@ -662,11 +662,11 @@ msgstr ""
 msgid "Tour Operator Settings"
 msgstr ""
 
-#: includes/pages/config-settings.php:17, includes/partials/api.php:4, includes/classes/legacy/class-admin.php:362, includes/classes/legacy/class-settings.php:77, includes/classes/legacy/class-settings.php:77, includes/classes/legacy/class-settings.php:171
+#: includes/pages/config-settings.php:17, includes/partials/api.php:4, includes/classes/legacy/class-admin.php:356, includes/classes/legacy/class-settings.php:77, includes/classes/legacy/class-settings.php:77, includes/classes/legacy/class-settings.php:171
 msgid "Settings"
 msgstr ""
 
-#: includes/pages/config-tour-operator.php:13, includes/classes/legacy/class-admin.php:138
+#: includes/pages/config-tour-operator.php:13, includes/classes/legacy/class-admin.php:132
 msgid "Dashboard"
 msgstr ""
 
@@ -986,7 +986,7 @@ msgstr ""
 msgid "Visit plugin website"
 msgstr ""
 
-#: includes/partials/help.php:103, includes/classes/legacy/class-admin.php:364
+#: includes/partials/help.php:103, includes/classes/legacy/class-admin.php:358
 msgid "Support"
 msgstr ""
 
@@ -1026,7 +1026,7 @@ msgstr ""
 msgid "Banner"
 msgstr ""
 
-#: includes/partials/post.php:14, includes/classes/legacy/class-admin.php:412, includes/classes/legacy/class-placeholders.php:431, includes/classes/legacy/class-placeholders.php:456, includes/classes/legacy/class-placeholders.php:480, includes/classes/legacy/class-placeholders.php:533, includes/classes/legacy/class-placeholders.php:559, includes/classes/legacy/class-settings.php:343
+#: includes/partials/post.php:14, includes/classes/legacy/class-admin.php:406, includes/classes/legacy/class-placeholders.php:431, includes/classes/legacy/class-placeholders.php:456, includes/classes/legacy/class-placeholders.php:480, includes/classes/legacy/class-placeholders.php:533, includes/classes/legacy/class-placeholders.php:559, includes/classes/legacy/class-settings.php:343
 msgid "Choose Image"
 msgstr ""
 
@@ -1182,35 +1182,35 @@ msgstr ""
 msgid "No tours found in Trash"
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-brand.php:18, includes/taxonomies/config-accommodation-brand.php:21, includes/taxonomies/config-accommodation-brand.php:28, includes/classes/legacy/class-admin.php:216, includes/classes/legacy/class-admin.php:219, includes/classes/legacy/class-admin.php:226, includes/classes/legacy/class-admin.php:233, includes/classes/legacy/class-admin.php:236, includes/classes/legacy/class-admin.php:243, includes/classes/legacy/class-tour-operator.php:288
+#: includes/taxonomies/config-accommodation-brand.php:18, includes/taxonomies/config-accommodation-brand.php:21, includes/taxonomies/config-accommodation-brand.php:28, includes/classes/legacy/class-admin.php:210, includes/classes/legacy/class-admin.php:213, includes/classes/legacy/class-admin.php:220, includes/classes/legacy/class-admin.php:227, includes/classes/legacy/class-admin.php:230, includes/classes/legacy/class-admin.php:237, includes/classes/legacy/class-tour-operator.php:288
 msgid "Brands"
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-brand.php:20, includes/classes/legacy/class-admin.php:218, includes/classes/legacy/class-admin.php:235
+#: includes/taxonomies/config-accommodation-brand.php:20, includes/classes/legacy/class-admin.php:212, includes/classes/legacy/class-admin.php:229
 msgid "Search Brands"
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-brand.php:22, includes/classes/legacy/class-admin.php:220, includes/classes/legacy/class-admin.php:237
+#: includes/taxonomies/config-accommodation-brand.php:22, includes/classes/legacy/class-admin.php:214, includes/classes/legacy/class-admin.php:231
 msgid "Parent Brand"
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-brand.php:23, includes/classes/legacy/class-admin.php:221, includes/classes/legacy/class-admin.php:238
+#: includes/taxonomies/config-accommodation-brand.php:23, includes/classes/legacy/class-admin.php:215, includes/classes/legacy/class-admin.php:232
 msgid "Parent Brand:"
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-brand.php:24, includes/classes/legacy/class-admin.php:222, includes/classes/legacy/class-admin.php:239
+#: includes/taxonomies/config-accommodation-brand.php:24, includes/classes/legacy/class-admin.php:216, includes/classes/legacy/class-admin.php:233
 msgid "Edit Brand"
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-brand.php:25, includes/classes/legacy/class-admin.php:223, includes/classes/legacy/class-admin.php:240
+#: includes/taxonomies/config-accommodation-brand.php:25, includes/classes/legacy/class-admin.php:217, includes/classes/legacy/class-admin.php:234
 msgid "Update Brand"
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-brand.php:26, includes/classes/legacy/class-admin.php:224, includes/classes/legacy/class-admin.php:241
+#: includes/taxonomies/config-accommodation-brand.php:26, includes/classes/legacy/class-admin.php:218, includes/classes/legacy/class-admin.php:235
 msgid "Add New Brand"
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-brand.php:27, includes/classes/legacy/class-admin.php:225, includes/classes/legacy/class-admin.php:242
+#: includes/taxonomies/config-accommodation-brand.php:27, includes/classes/legacy/class-admin.php:219, includes/classes/legacy/class-admin.php:236
 msgid "New Brand"
 msgstr ""
 
@@ -1282,35 +1282,35 @@ msgstr ""
 msgid "New Facility"
 msgstr ""
 
-#: includes/taxonomies/config-travel-style.php:25, includes/taxonomies/config-travel-style.php:28, includes/taxonomies/config-travel-style.php:35, includes/classes/legacy/class-admin.php:171, includes/classes/legacy/class-admin.php:174, includes/classes/legacy/class-admin.php:181, includes/classes/legacy/class-admin.php:195, includes/classes/legacy/class-admin.php:198, includes/classes/legacy/class-admin.php:205, includes/classes/legacy/class-tour-operator.php:287
+#: includes/taxonomies/config-travel-style.php:25, includes/taxonomies/config-travel-style.php:28, includes/taxonomies/config-travel-style.php:35, includes/classes/legacy/class-admin.php:165, includes/classes/legacy/class-admin.php:168, includes/classes/legacy/class-admin.php:175, includes/classes/legacy/class-admin.php:189, includes/classes/legacy/class-admin.php:192, includes/classes/legacy/class-admin.php:199, includes/classes/legacy/class-tour-operator.php:287
 msgid "Travel Styles"
 msgstr ""
 
-#: includes/taxonomies/config-travel-style.php:27, includes/classes/legacy/class-admin.php:173, includes/classes/legacy/class-admin.php:197
+#: includes/taxonomies/config-travel-style.php:27, includes/classes/legacy/class-admin.php:167, includes/classes/legacy/class-admin.php:191
 msgid "Search Travel Styles"
 msgstr ""
 
-#: includes/taxonomies/config-travel-style.php:29, includes/classes/legacy/class-admin.php:175, includes/classes/legacy/class-admin.php:199
+#: includes/taxonomies/config-travel-style.php:29, includes/classes/legacy/class-admin.php:169, includes/classes/legacy/class-admin.php:193
 msgid "Parent Travel Style"
 msgstr ""
 
-#: includes/taxonomies/config-travel-style.php:30, includes/classes/legacy/class-admin.php:176, includes/classes/legacy/class-admin.php:200
+#: includes/taxonomies/config-travel-style.php:30, includes/classes/legacy/class-admin.php:170, includes/classes/legacy/class-admin.php:194
 msgid "Parent Travel Style:"
 msgstr ""
 
-#: includes/taxonomies/config-travel-style.php:31, includes/classes/legacy/class-admin.php:177, includes/classes/legacy/class-admin.php:201
+#: includes/taxonomies/config-travel-style.php:31, includes/classes/legacy/class-admin.php:171, includes/classes/legacy/class-admin.php:195
 msgid "Edit Travel Style"
 msgstr ""
 
-#: includes/taxonomies/config-travel-style.php:32, includes/classes/legacy/class-admin.php:178, includes/classes/legacy/class-admin.php:202
+#: includes/taxonomies/config-travel-style.php:32, includes/classes/legacy/class-admin.php:172, includes/classes/legacy/class-admin.php:196
 msgid "Update Travel Style"
 msgstr ""
 
-#: includes/taxonomies/config-travel-style.php:33, includes/classes/legacy/class-admin.php:179, includes/classes/legacy/class-admin.php:203
+#: includes/taxonomies/config-travel-style.php:33, includes/classes/legacy/class-admin.php:173, includes/classes/legacy/class-admin.php:197
 msgid "Add New Travel Style"
 msgstr ""
 
-#: includes/taxonomies/config-travel-style.php:34, includes/classes/legacy/class-admin.php:180, includes/classes/legacy/class-admin.php:204
+#: includes/taxonomies/config-travel-style.php:34, includes/classes/legacy/class-admin.php:174, includes/classes/legacy/class-admin.php:198
 msgid "New Travel Style"
 msgstr ""
 
@@ -1386,19 +1386,19 @@ msgstr ""
 msgid "Off"
 msgstr ""
 
-#: includes/classes/legacy/class-admin.php:363
+#: includes/classes/legacy/class-admin.php:357
 msgid "Documentation"
 msgstr ""
 
-#: includes/classes/legacy/class-admin.php:403, includes/classes/legacy/class-tour.php:587
+#: includes/classes/legacy/class-admin.php:397, includes/classes/legacy/class-tour.php:587
 msgid "Featured Image"
 msgstr ""
 
-#: includes/classes/legacy/class-admin.php:414
+#: includes/classes/legacy/class-admin.php:408
 msgid "Remove Image"
 msgstr ""
 
-#: includes/classes/legacy/class-admin.php:499
+#: includes/classes/legacy/class-admin.php:493
 msgid "Select featured image"
 msgstr ""
 
