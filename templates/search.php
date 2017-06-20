@@ -6,7 +6,7 @@
  * @category	search
  */
 
-get_header(); 
+get_header();
 ?>
 
 	<?php lsx_content_wrap_before(); ?>
@@ -17,10 +17,10 @@ get_header();
 
 			<main id="main" class="site-main" role="main">
 
-				<?php 
+				<?php
 				/**
 				 * Hooked
-				 * 
+				 *
 				 *  - lsx_to_archive_header() - 100
 				 *  - lsx_to_archive_description() - 100
 				 */
@@ -44,19 +44,17 @@ get_header();
 						<?php get_template_part( 'content', 'none' ); ?>
 
 					<?php endif; ?>
-					
+
 					<?php
 						$lsx_to_archive = 0;
 					?>
 
 				<?php lsx_content_bottom(); ?>
-				
-				<?php lsx_to_sharing(); ?>
 
 			</main><!-- #main -->
 
 		<?php lsx_content_after(); ?>
-		
+
 	</section><!-- #primary -->
 
 <?php lsx_content_wrap_after(); ?>

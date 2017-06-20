@@ -22,7 +22,7 @@ get_header(); ?>
 
 				<div class="row">
 					<?php while ( have_posts() ) : the_post(); ?>
-						<div class="<?php echo esc_attr( lsx_to_archive_class( 'panel' ) ); ?>">
+						<div class="<?php echo esc_attr( lsx_to_archive_class( 'accommodation-archive-item panel' ) ); ?>">
 							<?php lsx_to_content( 'content', 'accommodation' ); ?>
 						</div>
 					<?php endwhile; ?>
@@ -36,15 +36,13 @@ get_header(); ?>
 
 			<?php lsx_content_bottom(); ?>
 
-			<?php lsx_to_sharing(); ?>
-
 		</main><!-- #main -->
 
 		<?php lsx_content_after(); ?>
 
 	</section><!-- #primary -->
 
-<?php lsx_content_wrap_after(); ?>
+	<?php lsx_content_wrap_after(); ?>
 
 <?php get_sidebar(); ?>
 

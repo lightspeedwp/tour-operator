@@ -106,9 +106,6 @@ class Destination {
 	function pre_get_posts( $query ) {
 		if ( $query->is_main_query() && $query->is_post_type_archive( $this->slug ) ) {
 			$query->set( 'post_parent', '0' );
-			$query->set( 'posts_per_page', '-1' );
-			$query->set( 'nopagin', true );
-			$query->set( 'orderby', 'title' );
 		}
 
 		return $query;
@@ -182,8 +179,8 @@ class Destination {
 	 * @return $page_links array
 	 */
 	public function page_links( $page_links ) {
-		$this->page_links = $page_links;
 		if ( is_singular( 'destination' ) ) {
+			$this->page_links = $page_links;
 			$this->get_travel_info_link();
 			$this->get_region_link();
 			$this->get_related_tours_link();
@@ -194,11 +191,8 @@ class Destination {
 			$this->get_map_link();
 			$this->get_gallery_link();
 			$this->get_videos_link();
-
-		} elseif ( is_post_type_archive( 'destination' ) ) {
-			$this->get_region_links();
+			$page_links = $this->page_links;
 		}
-		$page_links = $this->page_links;
 
 		return $page_links;
 	}

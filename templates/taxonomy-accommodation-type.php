@@ -1,15 +1,14 @@
 <?php
 /**
- * The template for displaying Accommodation Type Taxonomy pages.
+ * Accommodation Type Archive.
  *
- * Learn more: http://codex.wordpress.org/Template_Hierarchy
- *
- * @package lsx
+ * @package  tour-operator
+ * @category accommodation-type
  */
 
 get_header(); ?>
 
-<?php lsx_content_wrap_before(); ?>
+	<?php lsx_content_wrap_before(); ?>
 
 	<section id="primary" class="content-area <?php echo esc_attr( lsx_main_class() ); ?>">
 
@@ -17,43 +16,35 @@ get_header(); ?>
 
 		<main id="main" class="site-main" role="main">
 
-		<?php 
-		/**
-		 * Hooked
-		 * 
-		 *  - lsx_to_archive_header() - 100
-		 *  - lsx_to_archive_description() - 100
-		 */
-			lsx_content_top();
-		?>
+			<?php lsx_content_top(); ?>
 
-		<?php lsx_to_content( 'content', get_queried_object()->taxonomy ) ?>
+			<?php lsx_to_content( 'content', get_queried_object()->taxonomy ) ?>
 
-		<?php if ( have_posts() ) : ?>	
+			<?php if ( have_posts() ) : ?>
 
-			<div class="row">
-				<?php while ( have_posts() ) : the_post(); ?>
-					<div class="panel col-sm-12">
-						<?php lsx_to_content( 'content', get_post_type()); ?>
-					</div>
-				<?php endwhile; ?>
-			</div>
+				<div class="row">
+					<?php while ( have_posts() ) : the_post(); ?>
+						<div class="<?php echo esc_attr( lsx_to_archive_class( 'accommodation-type-archive-item panel' ) ); ?>">
+							<?php lsx_to_content( 'content', get_post_type() ); ?>
+						</div>
+					<?php endwhile; ?>
+				</div>
 
-		<?php else : ?>
+			<?php else : ?>
 
-			<?php get_template_part( 'content', 'none' ); ?>
+				<?php get_template_part( 'content', 'none' ); ?>
 
-		<?php endif; ?>
+			<?php endif; ?>
 
-		<?php lsx_content_bottom(); ?>
+			<?php lsx_content_bottom(); ?>
 
 		</main><!-- #main -->
 
 		<?php lsx_content_after(); ?>
-		
+
 	</section><!-- #primary -->
 
-<?php lsx_content_wrap_after(); ?>	
+	<?php lsx_content_wrap_after(); ?>
 
 <?php get_sidebar(); ?>
 

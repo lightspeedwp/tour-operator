@@ -36,15 +36,13 @@ get_header(); ?>
 
 			<?php lsx_content_bottom(); ?>
 
-			<?php lsx_to_sharing(); ?>
-
 		</main><!-- #main -->
 
 		<?php lsx_content_after(); ?>
 
 	</section><!-- #primary -->
 
-<?php lsx_content_wrap_after(); ?>
+	<?php lsx_content_wrap_after(); ?>
 
 <?php get_sidebar(); ?>
 
