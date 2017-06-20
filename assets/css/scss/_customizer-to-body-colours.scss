@@ -1,3 +1,17 @@
+@mixin customizer-to-link-colour($color: #1098AD, $hover: #F7AE00) {
+	&,
+	&:active,
+	&:visited {
+		color: $color;
+	}
+
+	&:hover,
+	&:hover:active,
+	&:focus {
+		color: $hover;
+	}
+}
+
 @mixin customizer-to-body-colours($breaker: #DADDDF, $color: #4A4A4A, $link: #1098AD, $hover: #F7AE00, $small: #919191) {
 
 	.lsx-to-slider-inner {
@@ -46,6 +60,10 @@
 				}
 			}
 		}
+
+		.lsx-to-widget-title > a:not(.btn) {
+			@include customizer-to-link-colour($color, $hover);
+		}
 	}
 
 	.lsx-to-meta-data { color: $small; }
@@ -60,6 +78,10 @@
 					background-color: $hover;
 					color: #FFF;
 				}
+			}
+
+			.lsx-to-archive-content-title > a {
+				@include customizer-to-link-colour($color, $hover);
 			}
 		}
 	}

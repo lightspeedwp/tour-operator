@@ -1607,8 +1607,16 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-widget-item-wrap .lsx-to-widget-content a.moretag:hover { background-color: #F7AE00; color: #FFF; }
 
+.lsx-to-widget-item-wrap .lsx-to-widget-title > a:not(.btn), .lsx-to-widget-item-wrap .lsx-to-widget-title > a:not(.btn):active, .lsx-to-widget-item-wrap .lsx-to-widget-title > a:not(.btn):visited { color: #4A4A4A; }
+
+.lsx-to-widget-item-wrap .lsx-to-widget-title > a:not(.btn):hover, .lsx-to-widget-item-wrap .lsx-to-widget-title > a:not(.btn):hover:active, .lsx-to-widget-item-wrap .lsx-to-widget-title > a:not(.btn):focus { color: #F7AE00; }
+
 .lsx-to-meta-data { color: #919191; }
 
 .lsx-to-archive-item > article[id^='post-'] > .moretag { background-color: #1098AD; color: #FFF; }
 
 .lsx-to-archive-item > article[id^='post-'] > .moretag:hover { background-color: #F7AE00; color: #FFF; }
+
+.lsx-to-archive-item > article[id^='post-'] .lsx-to-archive-content-title > a, .lsx-to-archive-item > article[id^='post-'] .lsx-to-archive-content-title > a:active, .lsx-to-archive-item > article[id^='post-'] .lsx-to-archive-content-title > a:visited { color: #4A4A4A; }
+
+.lsx-to-archive-item > article[id^='post-'] .lsx-to-archive-content-title > a:hover, .lsx-to-archive-item > article[id^='post-'] .lsx-to-archive-content-title > a:hover:active, .lsx-to-archive-item > article[id^='post-'] .lsx-to-archive-content-title > a:focus { color: #F7AE00; }
