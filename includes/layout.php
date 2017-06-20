@@ -53,9 +53,9 @@ function lsx_to_archive_entry_top() {
 		<div class="lsx-to-archive-wrapper">
 			<div class="lsx-to-archive-content">
 
-				<header class="page-header">
-					<?php the_title( '<h3 class="page-title"><a href="'. get_permalink() .'" title="'. esc_html__( 'Read more', 'tour-operator' ) .'">', '</a></h3>' ); ?>
-					<?php lsx_to_tagline( '<p class="tagline">', '</p>' ); ?>
+				<header class="lsx-to-archive-content-header">
+					<?php the_title( '<h3 class="lsx-to-archive-content-title"><a href="'. get_permalink() .'" title="'. esc_html__( 'Read more', 'tour-operator' ) .'">', '</a></h3>' ); ?>
+					<?php lsx_to_tagline( '<p class="lsx-to-archive-content-tagline">', '</p>' ); ?>
 				</header>
 	<?php }
 }
@@ -331,7 +331,7 @@ function lsx_to_tour_archive_entry_bottom() {
 	if ( 'tour' === get_post_type() && ( is_archive() || $lsx_to_archive ) ) { ?>
 			</div>
 
-			<div class="lsx-to-archive-meta-info">
+			<div class="lsx-to-archive-meta-data">
 				<?php
 					$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
 

@@ -2552,7 +2552,7 @@ body.single-tour-operator {
 	padding-left: 22px;
 	position: relative;
 
-	& + .lsx-to-widget-meta { margin-top: 3px; }
+	& + .lsx-to-meta-data { margin-top: 3px; }
 
 	&:before {
 		color: inherit;
@@ -2583,16 +2583,82 @@ body.single-tour-operator {
 
 .archive.archive-tour-operator {
 	.site-main { width: 100%; }
+}
 
-	.lsx-to-archive-template-list {}
+.lsx-to-archive-items {
+	align-items: flex-start;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
 
-	.lsx-to-archive-template-grid {}
+	&:after,
+	&:before {
+		display: none;
+	}
+}
 
-	.lsx-to-archive-thumb {}
+.lsx-to-archive-item {
 
-	.lsx-to-archive-wrapper {
-		.lsx-to-archive-content {}
-		.lsx-to-archive-meta-info {}
+	& + & { margin-top: 4.25rem; }
+
+	& > article[id^='post-'] {
+		align-items: stretch;
+		background-color: #FFF;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: flex-start;
+
+		.lsx-to-archive-template-list & {
+			@include media('>=phone') {
+				flex-wrap: nowrap;
+			}
+		}
+	}
+}
+
+.lsx-to-archive-thumb {
+	.lsx-to-archive-template-list & {
+		@include media('>=phone') {
+			flex-shrink: 0;
+			width: 25%;
+		}
+	}
+}
+
+.lsx-to-archive-wrapper {
+	.lsx-to-archive-template-list & {
+		@include media('>=phone') {
+			align-items: flex-start;
+			display: flex;
+			flex-flow: row nowrap;
+			justify-content: flex-end;
+			padding: 2.4rem 15px;
+		}
+	}
+}
+
+.lsx-to-archive-content {
+	.lsx-to-archive-template-list & {
+		@include media('>=phone') {
+			flex-grow: 1;
+			padding-right: 15px;
+		}
+
+		.entry-content {
+			p:last-child { margin-bottom: 0; }
+		}
+	}
+}
+
+.lsx-to-archive-meta-data {
+	.lsx-to-archive-template-list & {
+		@include media('>=phone') {
+			flex-shrink: 0;
+			padding-left: 15px;
+			width: 40%;
+		}
+
+		@include media('>=tablet') { width: 33%; }
 	}
 }
 
