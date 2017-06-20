@@ -355,5 +355,10 @@ function lsx_to_tour_archive_entry_bottom() {
 				?>
 			</div>
 		</div>
+
+		<?php if ( 'grid' === tour_operator()->archive_layout ) : ?>
+			<a href="<?php the_permalink(); ?>" class="moretag"><?php esc_html_e( 'View tour', 'tour-operator' ); ?></a>
+		<?php endif; ?>
+
 	<?php }
 }

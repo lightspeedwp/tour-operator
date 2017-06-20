@@ -142,6 +142,10 @@ msgstr ""
 msgid "Destinations"
 msgstr ""
 
+#: includes/layout.php:360, templates/content-widget-tour.php:46
+msgid "View tour"
+msgstr ""
+
 #: includes/post-expirator.php:3
 msgid "l F jS, Y"
 msgstr ""
@@ -244,10 +248,6 @@ msgstr ""
 
 #: templates/content-widget-destination.php:29
 msgid "View destination"
-msgstr ""
-
-#: templates/content-widget-tour.php:46
-msgid "View tour"
 msgstr ""
 
 #: templates/content-widget-travel-style.php:39

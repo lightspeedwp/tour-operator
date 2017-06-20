@@ -1,4 +1,4 @@
-@mixin customizer-to-body-colours($breaker: #DADDDF, $color: #4A4A4A, $link: #418AD0, $hover: #F7AE00, $small: #919191) {
+@mixin customizer-to-body-colours($breaker: #DADDDF, $color: #4A4A4A, $link: #1098AD, $hover: #F7AE00, $small: #919191) {
 
 	.lsx-to-slider-inner {
 		.slick-dots {
@@ -48,9 +48,19 @@
 		}
 	}
 
-	.lsx-to-widget-meta-data {
-		.lsx-to-widget-meta {
-			color: $small;
+	.lsx-to-meta-data { color: $small; }
+
+	.lsx-to-archive-item {
+		& > article[id^='post-'] {
+			& > .moretag {
+				background-color: $link;
+				color: #FFF;
+
+				&:hover {
+					background-color: $hover;
+					color: #FFF;
+				}
+			}
 		}
 	}
 

@@ -2552,7 +2552,7 @@ body.single-tour-operator {
 	padding-left: 22px;
 	position: relative;
 
-	& + .lsx-to-meta-data { margin-top: 3px; }
+	& + .lsx-to-meta-data { margin-top: 5px; }
 
 	&:before {
 		color: inherit;
@@ -2590,6 +2590,7 @@ body.single-tour-operator {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: flex-start;
+	margin-top: -4.25rem;
 
 	&:after,
 	&:before {
@@ -2599,7 +2600,7 @@ body.single-tour-operator {
 
 .lsx-to-archive-item {
 
-	& + & { margin-top: 4.25rem; }
+	margin-top: 4.25rem;
 
 	& > article[id^='post-'] {
 		align-items: stretch;
@@ -2611,6 +2612,27 @@ body.single-tour-operator {
 		.lsx-to-archive-template-list & {
 			@include media('>=phone') {
 				flex-wrap: nowrap;
+			}
+		}
+
+		& > .moretag {
+			display: block;
+			padding: 1rem 0;
+			text-align: center;
+			transition: background 300ms ease;
+			width: 100%;
+
+			&:after {
+				color: inherit;
+				content: '\f178';
+				display: inline-block;
+				font-family: 'FontAwesome';
+				font-size: inherit;
+				margin-left: 5px;
+				text-rendering: auto;
+
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
 			}
 		}
 	}
@@ -2659,6 +2681,8 @@ body.single-tour-operator {
 }
 
 .lsx-to-archive-wrapper {
+	padding: 20px;
+
 	.lsx-to-archive-template-list & {
 		@include media('>=phone') {
 			align-items: flex-start;
@@ -2676,9 +2700,24 @@ body.single-tour-operator {
 			flex-grow: 1;
 			padding-right: 15px;
 		}
+	}
 
-		.entry-content {
-			p:last-child { margin-bottom: 0; }
+	.entry-content {
+		p:last-child { margin-bottom: 0; }
+
+		.moretag {
+			&:after {
+				color: inherit;
+				content: '\f178';
+				display: inline-block;
+				font-family: 'FontAwesome';
+				font-size: inherit;
+				margin-left: 5px;
+				text-rendering: auto;
+
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
 		}
 	}
 }
@@ -2695,4 +2734,12 @@ body.single-tour-operator {
 	}
 }
 
-@include customizer-to-body-colours(#DADDDF, #4A4A4A, #418AD0, #F7AE00, #919191);
+.lsx-to-archive-content-header {
+	.lsx-to-archive-template-grid & { text-align: center; }
+}
+
+.lsx-to-archive-content-tagline {
+	@include media('>=phone') { margin-top: -1.4rem; }
+}
+
+@include customizer-to-body-colours(#DADDDF, #4A4A4A, #1098AD, #F7AE00, #919191);

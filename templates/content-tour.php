@@ -40,7 +40,7 @@ if ( 1 !== $lsx_to_archive ) {
 
 			<?php the_content(); ?>
 
-		<?php } else { ?>
+		<?php } elseif ( 'list' === tour_operator()->archive_layout ) { ?>
 
 			<?php the_excerpt(); ?>
 
