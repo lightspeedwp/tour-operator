@@ -2617,10 +2617,43 @@ body.single-tour-operator {
 }
 
 .lsx-to-archive-thumb {
+	width: 100%;
+
+	@include media('<phone') {
+		& > a {
+			background-image: none !important;
+
+			& > img { width: 100%; }
+		}
+	}
+
 	.lsx-to-archive-template-list & {
 		@include media('>=phone') {
 			flex-shrink: 0;
+			position: relative;
 			width: 25%;
+
+			& > a {
+				background-position: center center;
+				background-repeat: no-repeat;
+				background-size: cover;
+				height: 100%;
+				left: 0;
+				position: absolute;
+				top: 0;
+				width: 100%;
+
+				& > img { display: none; }
+			}
+		}
+	}
+
+	.lsx-to-archive-template-grid & {
+		& > a {
+			background-image: none !important;
+			display: block;
+
+			& > img { width: 100%; }
 		}
 	}
 }
