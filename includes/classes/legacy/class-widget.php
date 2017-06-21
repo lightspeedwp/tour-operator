@@ -502,7 +502,7 @@ class Widget extends \WP_Widget {
 
 		if ( $widget_query->have_posts() ) {
 
-			if ( 'review' === $post_type ) {
+			if ( 'review' === $post_type || 'team' === $post_type ) {
 				add_filter('lsx_to_placeholder_url', array( $this, 'placeholder' ), 10, 1 );
 			}
 
@@ -540,7 +540,7 @@ class Widget extends \WP_Widget {
 
 			wp_reset_postdata();
 
-			if ( 'review' === $post_type ) {
+			if ( 'review' === $post_type || 'team' === $post_type ) {
 				remove_filter( 'lsx_to_placeholder_url', array( $this, 'placeholder' ), 10, 1 );
 			}
 		}
@@ -549,14 +549,14 @@ class Widget extends \WP_Widget {
 	/**
 	 * Replaces the widget with Mystery Man
 	 */
-	public function placeholder($image){
-		$url = LSX_TO_URL . 'assets/img/mystery-man-square.png';
+	public function placeholder( $image ) {
 		$image = array(
-			$url,
-			150,
-			150,
-			true
+			LSX_TO_URL . 'assets/img/mystery-man-square.png',
+			512,
+			512,
+			true,
 		);
+
 		return $image;
 	}
 
