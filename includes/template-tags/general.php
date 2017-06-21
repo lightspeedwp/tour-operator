@@ -161,7 +161,7 @@ function lsx_to_content($slug, $name = null) {
  * @category 	description
  */
 function lsx_to_archive_description() {
-	echo wp_kses_post( apply_filters('lsx_to_archive_description','','<div class="col-sm-12"><article class="archive-description hentry">','</article></div>') );
+	echo wp_kses_post( apply_filters('lsx_to_archive_description','','<div class="lsx-to-archive-description row"><div class="col-sm-12 entry-content">','</div></div>') );
 }
 
 

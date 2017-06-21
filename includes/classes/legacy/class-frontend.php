@@ -138,7 +138,7 @@ class Frontend extends Tour_Operator {
 				add_action( 'lsx_content_wrap_before', 'lsx_to_global_header', 100 );
 			}
 
-			add_action( 'lsx_content_wrap_before', 'lsx_to_archive_description', 100 );
+			add_action( 'lsx_content_top', 'lsx_to_archive_description', 100 );
 			add_filter( 'lsx_to_archive_description', array(
 				$this,
 				'get_post_type_archive_description',
