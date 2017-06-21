@@ -231,15 +231,26 @@ function lsx_to_destination_single_content_bottom() {
  */
 function lsx_to_destination_archive_entry_bottom() {
 	global $lsx_to_archive;
-	if('destination' === get_post_type() && (is_archive() || $lsx_to_archive)) { ?>
-		</div>
-		<div class="col-sm-4">
-			<div class="destination-details">
-				<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.esc_html__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>
-				<?php if(function_exists('lsx_to_connected_activities')){ lsx_to_connected_activities('<div class="meta activities">'.esc_html__('Activities','tour-operator').': ','</div>'); } ?>
+
+	if ( 'destination' === get_post_type() && ( is_archive() || $lsx_to_archive ) ) { ?>
+			</div>
+
+			<div class="lsx-to-archive-meta-data">
+				<?php
+					$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
+
+					the_terms( get_the_ID(), 'travel-style', '<span class="'. $meta_class .'style">'. esc_html__( 'Travel Style', 'tour-operator' ) .': ', ', ', '</span>' );
+					if ( function_exists( 'lsx_to_connected_activities' ) ) {
+						lsx_to_connected_activities( '<span class="'. $meta_class .'activities">'. esc_html__( 'Activities', 'tour-operator' ) .': ', '</span>' );
+					}
+				?>
 			</div>
 		</div>
-	</div>
+
+		<?php if ( 'grid' === tour_operator()->archive_layout ) : ?>
+			<a href="<?php the_permalink(); ?>" class="moretag"><?php esc_html_e( 'View destination', 'tour-operator' ); ?></a>
+		<?php endif; ?>
+
 	<?php }
 }
 
