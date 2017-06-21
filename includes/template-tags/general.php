@@ -161,7 +161,7 @@ function lsx_to_content($slug, $name = null) {
  * @category 	description
  */
 function lsx_to_archive_description() {
-	echo wp_kses_post( apply_filters('lsx_to_archive_description','','<div class="lsx-to-archive-description row"><div class="col-sm-12 entry-content">','</div></div>') );
+	echo wp_kses_post( apply_filters( 'lsx_to_archive_description', '', '<div class="lsx-to-archive-header row"><div class="col-xs-12 lsx-to-archive-description">', '</div></div>' ) );
 }
 
 
@@ -538,13 +538,13 @@ function lsx_to_enquire_modal($before="",$after="",$echo=true){
 
 		<div class="modal fade" id="lsx-enquire-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-		        <h4 class="modal-title" id="myModalLabel"><?php esc_html_e('Enquire','tour-operator'); ?></h4>
-		      </div>
-		      <div class="modal-body">
-		        <?php
+			<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+				<h4 class="modal-title" id="myModalLabel"><?php esc_html_e('Enquire','tour-operator'); ?></h4>
+			  </div>
+			  <div class="modal-body">
+				<?php
 					if(class_exists('Ninja_Forms')){
 						echo do_shortcode('[ninja_form id="'.$form_id.'"]');
 					}elseif(class_exists('GFForms')){
@@ -554,9 +554,9 @@ function lsx_to_enquire_modal($before="",$after="",$echo=true){
 					}else{
 						echo wp_kses_post( apply_filters('the_content',$form_id) );
 					}
-		        ?>
-		      </div>
-		    </div>
+				?>
+			  </div>
+			</div>
 		  </div>
 		</div>
 

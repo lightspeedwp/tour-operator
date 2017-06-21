@@ -2585,12 +2585,22 @@ body.single-tour-operator {
 	.site-main { width: 100%; }
 }
 
+.lsx-to-archive-description {
+	& > p {
+		&:last-child,
+		&:only-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
 .lsx-to-archive-items {
 	align-items: flex-start;
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: flex-start;
 	margin-top: -4.25rem;
+	width: calc(100% + 30px);
 
 	&:after,
 	&:before {
