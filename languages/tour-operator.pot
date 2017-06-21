@@ -19,15 +19,15 @@ msgstr ""
 msgid "Tour Operator"
 msgstr ""
 
-#: includes/functions.php:273, templates/content-accommodation.php:25, templates/content-widget-accommodation.php:33, includes/metaboxes/config-accommodation.php:112, includes/template-tags/accommodation.php:290
+#: includes/functions.php:273, templates/content-accommodation.php:32, templates/content-widget-accommodation.php:33, includes/metaboxes/config-accommodation.php:112, includes/template-tags/accommodation.php:290
 msgid "Rating"
 msgstr ""
 
-#: includes/functions.php:274, templates/content-accommodation.php:28, includes/metaboxes/config-accommodation.php:275, includes/template-tags/accommodation.php:293
+#: includes/functions.php:274, templates/content-accommodation.php:35, includes/metaboxes/config-accommodation.php:275, includes/template-tags/accommodation.php:293
 msgid "Type"
 msgstr ""
 
-#: includes/functions.php:275, templates/content-accommodation.php:31, includes/metaboxes/config-accommodation.php:180, includes/template-tags/accommodation.php:296
+#: includes/functions.php:275, templates/content-accommodation.php:38, includes/metaboxes/config-accommodation.php:180, includes/template-tags/accommodation.php:296
 msgid "Special Interests"
 msgstr ""
 
@@ -94,11 +94,11 @@ msgstr ""
 msgid "Best time to visit"
 msgstr ""
 
-#: includes/layout.php:238, includes/layout.php:351, templates/content-destination.php:25, templates/content-tour.php:33, templates/content-widget-tour.php:36, includes/taxonomies/config-travel-style.php:26, includes/classes/legacy/class-admin.php:166, includes/classes/legacy/class-admin.php:190, includes/classes/legacy/class-destination.php:166, includes/classes/legacy/class-tour-operator.php:280, includes/classes/legacy/class-tour.php:782
+#: includes/layout.php:238, includes/layout.php:351, templates/content-destination.php:29, templates/content-tour.php:38, templates/content-widget-tour.php:36, includes/taxonomies/config-travel-style.php:26, includes/classes/legacy/class-admin.php:166, includes/classes/legacy/class-admin.php:190, includes/classes/legacy/class-destination.php:166, includes/classes/legacy/class-tour-operator.php:280, includes/classes/legacy/class-tour.php:782
 msgid "Travel Style"
 msgstr ""
 
-#: includes/layout.php:239, includes/layout.php:354, templates/content-accommodation.php:32, templates/content-destination.php:26, templates/content-tour.php:35, templates/content-widget-tour.php:40, includes/partials/add-ons.php:97, includes/partials/help.php:121, includes/classes/legacy/class-destination.php:168, includes/classes/legacy/class-destination.php:323, includes/classes/legacy/class-tour.php:785
+#: includes/layout.php:239, includes/layout.php:354, templates/content-accommodation.php:39, templates/content-destination.php:30, templates/content-tour.php:40, templates/content-widget-tour.php:40, includes/partials/add-ons.php:97, includes/partials/help.php:121, includes/classes/legacy/class-destination.php:168, includes/classes/legacy/class-destination.php:323, includes/classes/legacy/class-tour.php:785
 msgid "Activities"
 msgstr ""
 
@@ -130,15 +130,15 @@ msgstr ""
 msgid "Excluded"
 msgstr ""
 
-#: includes/layout.php:349, templates/content-accommodation.php:22, templates/content-tour.php:26, templates/content-widget-accommodation.php:28, templates/content-widget-tour.php:34, includes/template-tags/accommodation.php:288, includes/classes/legacy/class-accommodation.php:222, includes/classes/legacy/class-tour.php:780
+#: includes/layout.php:349, templates/content-accommodation.php:28, templates/content-tour.php:30, templates/content-widget-accommodation.php:28, templates/content-widget-tour.php:34, includes/template-tags/accommodation.php:288, includes/classes/legacy/class-accommodation.php:222, includes/classes/legacy/class-tour.php:780
 msgid "From price"
 msgstr ""
 
-#: includes/layout.php:350, templates/content-tour.php:27, templates/content-widget-tour.php:35, includes/metaboxes/config-tour.php:34, includes/classes/legacy/class-tour.php:235, includes/classes/legacy/class-tour.php:781
+#: includes/layout.php:350, templates/content-tour.php:31, templates/content-widget-tour.php:35, includes/metaboxes/config-tour.php:34, includes/classes/legacy/class-tour.php:235, includes/classes/legacy/class-tour.php:781
 msgid "Duration"
 msgstr ""
 
-#: includes/layout.php:352, templates/content-tour.php:34, templates/content-widget-tour.php:37, includes/metaboxes/config-accommodation.php:309, includes/metaboxes/config-tour.php:274, includes/post-types/config-destination.php:16, includes/post-types/config-destination.php:22, includes/post-types/config-destination.php:28, includes/classes/legacy/class-tour-operator.php:263, includes/classes/legacy/class-tour.php:474, includes/classes/legacy/class-tour.php:783
+#: includes/layout.php:352, templates/content-tour.php:39, templates/content-widget-tour.php:37, includes/metaboxes/config-accommodation.php:309, includes/metaboxes/config-tour.php:274, includes/post-types/config-destination.php:16, includes/post-types/config-destination.php:22, includes/post-types/config-destination.php:28, includes/classes/legacy/class-tour-operator.php:263, includes/classes/legacy/class-tour.php:474, includes/classes/legacy/class-tour.php:783
 msgid "Destinations"
 msgstr ""
 
@@ -202,39 +202,39 @@ msgstr ""
 msgid "Private"
 msgstr ""
 
-#: templates/content-accommodation.php:21, templates/content-destination.php:23, templates/content-tour.php:23, includes/template-tags/general.php:183
+#: templates/content-accommodation.php:26, templates/content-destination.php:26, templates/content-tour.php:26, includes/template-tags/general.php:183
 msgid "Summary"
 msgstr ""
 
-#: templates/content-accommodation.php:24, templates/content-widget-accommodation.php:32, includes/template-tags/accommodation.php:289
+#: templates/content-accommodation.php:31, templates/content-widget-accommodation.php:32, includes/template-tags/accommodation.php:289
 msgid "Rooms"
 msgstr ""
 
-#: templates/content-accommodation.php:26, templates/content-widget-accommodation.php:30, includes/taxonomies/config-accommodation-brand.php:19, includes/template-tags/accommodation.php:292, includes/classes/legacy/class-admin.php:211, includes/classes/legacy/class-admin.php:228, includes/classes/legacy/class-tour-operator.php:281
+#: templates/content-accommodation.php:33, templates/content-widget-accommodation.php:30, includes/taxonomies/config-accommodation-brand.php:19, includes/template-tags/accommodation.php:292, includes/classes/legacy/class-admin.php:211, includes/classes/legacy/class-admin.php:228, includes/classes/legacy/class-tour-operator.php:281
 msgid "Brand"
 msgstr ""
 
-#: templates/content-accommodation.php:27, includes/template-tags/accommodation.php:291
+#: templates/content-accommodation.php:34, includes/template-tags/accommodation.php:291
 msgid "Accommodation Style"
 msgstr ""
 
-#: templates/content-accommodation.php:29, includes/metaboxes/config-accommodation.php:139, includes/template-tags/accommodation.php:294
+#: templates/content-accommodation.php:36, includes/metaboxes/config-accommodation.php:139, includes/template-tags/accommodation.php:294
 msgid "Spoken Languages"
 msgstr ""
 
-#: templates/content-accommodation.php:30, includes/metaboxes/config-accommodation.php:163, includes/template-tags/accommodation.php:295
+#: templates/content-accommodation.php:37, includes/metaboxes/config-accommodation.php:163, includes/template-tags/accommodation.php:295
 msgid "Friendly"
 msgstr ""
 
-#: templates/content-accommodation.php:33, templates/content-widget-accommodation.php:31, includes/metaboxes/config-accommodation.php:82, includes/metaboxes/config-destination.php:204, includes/metaboxes/config-destination.php:209, includes/template-tags/accommodation.php:297, includes/classes/legacy/class-field-pattern.php:90
+#: templates/content-accommodation.php:40, templates/content-widget-accommodation.php:31, includes/metaboxes/config-accommodation.php:82, includes/metaboxes/config-destination.php:204, includes/metaboxes/config-destination.php:209, includes/template-tags/accommodation.php:297, includes/classes/legacy/class-field-pattern.php:90
 msgid "Location"
 msgstr ""
 
-#: templates/content-tour.php:31
+#: templates/content-tour.php:36
 msgid "Departs from"
 msgstr ""
 
-#: templates/content-tour.php:32
+#: templates/content-tour.php:37
 msgid "Ends in"
 msgstr ""
 
@@ -262,7 +262,7 @@ msgstr ""
 msgid "Featured"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:28, includes/metaboxes/config-destination.php:49, includes/metaboxes/config-tour.php:28, includes/partials/post.php:20, includes/classes/legacy/class-admin.php:474, includes/classes/legacy/class-settings.php:456, includes/classes/legacy/class-tour.php:229, includes/classes/legacy/class-tour.php:574
+#: includes/metaboxes/config-accommodation.php:28, includes/metaboxes/config-destination.php:49, includes/metaboxes/config-tour.php:28, includes/partials/post.php:20, includes/classes/legacy/class-admin.php:474, includes/classes/legacy/class-settings.php:464, includes/classes/legacy/class-tour.php:229, includes/classes/legacy/class-tour.php:574
 msgid "Tagline"
 msgstr ""
 
@@ -522,11 +522,11 @@ msgstr ""
 msgid "Units"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:281, includes/partials/post.php:28, includes/classes/legacy/class-field-pattern.php:60, includes/classes/legacy/class-settings.php:448, includes/classes/legacy/class-tour.php:568
+#: includes/metaboxes/config-accommodation.php:281, includes/partials/post.php:28, includes/classes/legacy/class-field-pattern.php:60, includes/classes/legacy/class-settings.php:456, includes/classes/legacy/class-tour.php:568
 msgid "Title"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:286, includes/partials/post.php:37, includes/classes/legacy/class-field-pattern.php:64, includes/classes/legacy/class-settings.php:464, includes/classes/legacy/class-tour.php:581
+#: includes/metaboxes/config-accommodation.php:286, includes/partials/post.php:37, includes/classes/legacy/class-field-pattern.php:64, includes/classes/legacy/class-settings.php:472, includes/classes/legacy/class-tour.php:581
 msgid "Description"
 msgstr ""
 
@@ -1570,71 +1570,79 @@ msgstr ""
 msgid "Enquire Contact Image"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:427
+#: includes/classes/legacy/class-settings.php:426
 msgid "Disable Archives"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:431
+#: includes/classes/legacy/class-settings.php:430
 msgid "This disables the \"post type archive\", if you create your own custom loop it will still work."
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:436, includes/classes/legacy/class-taxonomy-widget.php:348
+#: includes/classes/legacy/class-settings.php:435
+msgid "Disable Excerpt (entry)"
+msgstr ""
+
+#: includes/classes/legacy/class-settings.php:439
+msgid "This disables the entry excerpt on post type archive."
+msgstr ""
+
+#: includes/classes/legacy/class-settings.php:444, includes/classes/legacy/class-taxonomy-widget.php:348
 msgid "Layout"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:440
+#: includes/classes/legacy/class-settings.php:448
 msgid "List"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:441
+#: includes/classes/legacy/class-settings.php:449
 msgid "Grid"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:488
+#: includes/classes/legacy/class-settings.php:496
 msgid "Disable Singles"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:492
+#: includes/classes/legacy/class-settings.php:500
 msgid "When disabled you will be redirected to the homepage when trying to access a single tour page."
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:500
+#: includes/classes/legacy/class-settings.php:508
 msgid "Default Section Title"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:509
+#: includes/classes/legacy/class-settings.php:517
 msgid "\"Related Tours\" Section Title"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:519
+#: includes/classes/legacy/class-settings.php:527
 msgid "\"Accommodation Brands\" Section Title"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:527
+#: includes/classes/legacy/class-settings.php:535
 msgid "\"Rooms\" Section Title"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:535
+#: includes/classes/legacy/class-settings.php:543
 msgid "\"Similar Accommodations\" Section Title"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:545
+#: includes/classes/legacy/class-settings.php:553
 msgid "\"Countries\" Section Title"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:553
+#: includes/classes/legacy/class-settings.php:561
 msgid "\"Regions\" Section Title"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:561
+#: includes/classes/legacy/class-settings.php:569
 msgid "\"Travel Styles\" Section Title"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:579
+#: includes/classes/legacy/class-settings.php:587
 msgid "Enable Connected Modals"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:583
+#: includes/classes/legacy/class-settings.php:591
 msgid "Any connected item showing on a single will display a preview in a modal."
 msgstr ""
 

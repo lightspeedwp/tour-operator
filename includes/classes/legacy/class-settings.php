@@ -421,14 +421,22 @@ class Settings extends Tour_Operator {
 	public function archive_settings($post_type=false,$tab=false){
 		if('archives' !== $tab){ return false; }
 		?>
-
         <tr class="form-field">
             <th scope="row">
-                <label for="description"><?php esc_html_e('Disable Archives','tour-operator'); ?></label>
+                <label for="disable_archives"><?php esc_html_e('Disable Archives','tour-operator'); ?></label>
             </th>
             <td>
                 <input type="checkbox" {{#if disable_archives}} checked="checked" {{/if}} name="disable_archives" />
                 <small><?php esc_html_e('This disables the "post type archive", if you create your own custom loop it will still work.','tour-operator'); ?></small>
+            </td>
+        </tr>
+        <tr class="form-field">
+            <th scope="row">
+                <label for="disable_entry_text"><?php esc_html_e( 'Disable Excerpt (entry)', 'tour-operator' ); ?></label>
+            </th>
+            <td>
+                <input type="checkbox" {{#if disable_entry_text}} checked="checked" {{/if}} name="disable_entry_text" />
+                <small><?php esc_html_e( 'This disables the entry excerpt on post type archive.', 'tour-operator' ); ?></small>
             </td>
         </tr>
         <tr class="form-field-wrap">
