@@ -22,7 +22,7 @@ $title_link = esc_url( get_term_link( $term, $taxonomy ) );
 		<?php else: ?>
 			<div class="lsx-to-widget-thumb">
 				<a href="<?php echo $title_link; ?>">
-					<img alt="Placeholder" class="attachment-responsive wp-post-image lsx-responsive" src="<?php echo esc_attr( LSX_TO_Placeholders::placeholder_url() . ( parse_url( LSX_TO_Placeholders::placeholder_url(), PHP_URL_QUERY ) ? '&' : '?' ) ); ?>w=350&amp;h=230">
+					<img alt="Placeholder" class="attachment-responsive wp-post-image lsx-responsive" src="<?php echo esc_attr( lsx\legacy\Placeholders::placeholder_url( null, null, array( 750, 350 ) ) ); ?>">
 				</a>
 			</div>
 		<?php endif; ?>

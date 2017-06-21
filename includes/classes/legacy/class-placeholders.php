@@ -30,13 +30,6 @@ class Placeholders {
 	protected $post_types = array();
 
 	/**
-	 * A default super placeholder
-	 *
-	 * @var      array
-	 */
-	protected $super_placeholder = false;
-
-	/**
 	 * Holds class isntance
 	 *
 	 * @var      object
@@ -98,38 +91,54 @@ class Placeholders {
 				'super_placeholder_calculate_image_srcset_filter',
 			), 20, 5 );
 		}
-
-		$this->super_placeholder = Placeholders::placeholder_url();
 	}
 
 	/**
 	 * Returns the placeholder call.
 	 */
-	public static function placeholder_url( $text_size = 24, $post_type = 'general', $size = 'lsx-thumbnail-wide' ) {
+	public static function placeholder_url( $text_size = null, $post_type = null, $size = null ) {
+		if ( null === $text_size ) {
+			$text_size = 38;
+		}
+
+		if ( null === $post_type ) {
+			$post_type = 'general';
+		}
+
+		if ( null === $size ) {
+			$size = 'lsx-thumbnail-single';
+		}
+
 		$options      = get_option( '_lsx-to_settings', false );
 		$holdit_width = '';
-		switch ( $size ) {
-			case 'thumbnail':
-			case 'medium':
-			case 'large':
-			case 'full':
-				$width        = get_option( "{$size}_size_w", 150 );
-				$height       = get_option( "{$size}_size_h", 150 );
-				$holdit_width = '&w=' . $width . '&h=' . $height;
-				break;
 
-			case 'lsx-thumbnail-single':
-				$holdit_width = '&w=750&h=350';
-				break;
+		if ( is_array( $size ) && 2 === count( $size ) ) {
+			$holdit_width = '&w=' . $size[0] . '&h=' . $size[1];
+		} else {
+			switch ( $size ) {
+				case 'thumbnail':
+				case 'medium':
+				case 'large':
+				case 'full':
+					$width        = get_option( "{$size}_size_w", 150 );
+					$height       = get_option( "{$size}_size_h", 150 );
+					$holdit_width = '&w=' . $width . '&h=' . $height;
+					break;
 
-			case 'lsx-thumbnail-wide':
-			default:
-				$holdit_width = '&w=350&h=230';
-				break;
+				case 'lsx-thumbnail-single':
+					$holdit_width = '&w=750&h=350';
+					break;
+
+				case 'lsx-thumbnail-wide':
+				default:
+					$holdit_width = '&w=350&h=230';
+					break;
+			}
 		}
 
 		$placeholder    = 'https://placeholdit.imgix.net/~text?txtsize=' . $text_size . '&txt=' . urlencode( get_bloginfo( 'name' ) ) . $holdit_width;
 		$placeholder_id = false;
+
 		//First Check for a default, then check if there is one set by post type.
 		if ( isset( $options['general'] )
 		     && isset( $options['general']['default_placeholder_id'] )
@@ -137,6 +146,7 @@ class Placeholders {
 		) {
 			$placeholder_id = $options['general']['default_placeholder_id'];
 		}
+
 		if ( 'general' !== $post_type ) {
 			if ( 'post' === $post_type ) {
 				if ( isset( $options['general'] )
@@ -156,6 +166,7 @@ class Placeholders {
 				}
 			}
 		}
+
 		if ( false !== $placeholder_id && '' !== $placeholder_id ) {
 			$temp_src_array = wp_get_attachment_image_src( $placeholder_id, $size );
 			if ( is_array( $temp_src_array ) && ! empty( $temp_src_array ) ) {
@@ -264,35 +275,28 @@ class Placeholders {
 	 * The term default placeholder call.
 	 */
 	public function super_placeholder_filter( $image, $attachment_id, $size, $icon ) {
-
 		if ( '' === $attachment_id || false === $attachment_id ) {
-			$image = array();
+			$image = array(
+				$this->placeholder_url( null, null, $size ),
+			);
 
 			switch ( $size ) {
-
 				case 'thumbnail':
 				case 'medium':
 				case 'large':
 				case 'full':
-
-					$width  = get_option( "{$size}_size_w", 150 );
-					$height = get_option( "{$size}_size_h", 150 );
-
-					$image[] = $this->placeholder_url() . '&w=' . $width . '&h=' . $height;
-					$image[] = $width;
-					$image[] = $height;
+					$image[] = get_option( "{$size}_size_w", 150 );
+					$image[] = get_option( "{$size}_size_h", 150 );
 					$image[] = true;
 					break;
 
 				case 'lsx-thumbnail-wide':
-					$image[] = $this->placeholder_url() . '&w=350&h=230';
 					$image[] = 350;
 					$image[] = 230;
 					$image[] = true;
 					break;
 
 				case 'lsx-thumbnail-single':
-					$image[] = $this->placeholder_url() . '&w=750&h=350';
 					$image[] = 750;
 					$image[] = 350;
 					$image[] = false;
@@ -300,17 +304,14 @@ class Placeholders {
 
 				default:
 					if ( is_array( $size ) ) {
-						$image[] = $this->placeholder_url() . '&w=' . $size[0] . '&h=' . $size[1];
 						$image[] = $size[0];
 						$image[] = $size[1];
 						$image[] = true;
 					}
 					break;
-
 			}
 
 			$image = apply_filters( 'lsx_to_placeholder_url', $image );
-
 		}
 
 		return $image;
@@ -320,46 +321,52 @@ class Placeholders {
 	 * The term default placeholder call.
 	 */
 	public function super_placeholder_srcset_filter( $image_meta, $size_array, $image_src, $attachment_id ) {
-
 		if ( '' === $attachment_id || false === $attachment_id ) {
-
-			$width  = '750';
-			$height = '350';
-
 			$sizes = array(
-				'thumbnail'            => array(
-					'file'      => $this->placeholder_url() . '&w=' . get_option( "thumbnail_size_w", 150 ) . '&h=' . get_option( "thumbnail_size_h", 150 ),
+				'thumbnail' => array(
+					'file'      => $this->placeholder_url( null, null, 'thumbnail' ),
 					'width'     => get_option( "thumbnail_size_w", 150 ),
 					'height'    => get_option( "thumbnail_size_h", 150 ),
 					'mime-type' => 'image/jpeg',
 				),
-				'medium'               => array(
-					'file'      => $this->placeholder_url() . '&w=' . get_option( "medium_size_w", 300 ) . '&h=' . get_option( "medium_size_h", 300 ),
+				'medium' => array(
+					'file'      => $this->placeholder_url( null, null, 'medium' ),
 					'width'     => get_option( "medium_size_w", 300 ),
 					'height'    => get_option( "medium_size_h", 300 ),
 					'mime-type' => 'image/jpeg',
 				),
-				'large'                => array(
-					'file'      => $this->placeholder_url() . '&w=' . get_option( "large_size_w", 1024 ) . '&h=' . get_option( "large_size_h", 1024 ),
+				'large' => array(
+					'file'      => $this->placeholder_url( null, null, 'large' ),
+					'width'     => get_option( "large_size_w", 1024 ),
+					'height'    => get_option( "large_size_h", 1024 ),
+					'mime-type' => 'image/jpeg',
+				),
+				'full' => array(
+					'file'      => $this->placeholder_url( null, null, 'full' ),
 					'width'     => get_option( "large_size_w", 1024 ),
 					'height'    => get_option( "large_size_h", 1024 ),
 					'mime-type' => 'image/jpeg',
 				),
 				'lsx-thumbnail-single' => array(
-					'file'      => $this->placeholder_url() . '&w=750&h=350',
+					'file'      => $this->placeholder_url( null, null, 'lsx-thumbnail-single' ),
 					'width'     => '750',
 					'height'    => '350',
+					'mime-type' => 'image/jpeg',
+				),
+				'lsx-thumbnail-wide' => array(
+					'file'      => $this->placeholder_url( null, null, 'lsx-thumbnail-wide' ),
+					'width'     => '350',
+					'height'    => '230',
 					'mime-type' => 'image/jpeg',
 				),
 			);
 
 			$image_meta = array(
-				'width'  => $width,
-				'height' => $height,
-				'file'   => $this->placeholder_url() . '&w=750&h=350',
+				'width'  => '750',
+				'height' => '350',
+				'file'   => $this->placeholder_url( null, null, 'lsx-thumbnail-single' ),
 				'sizes'  => $sizes,
 			);
-
 		}
 
 		return $image_meta;
@@ -369,32 +376,29 @@ class Placeholders {
 	 * Overwrites the sources call
 	 */
 	public function super_placeholder_calculate_image_srcset_filter( $sources, $size_array, $image_src, $image_meta, $attachment_id ) {
-
 		if ( '' === $attachment_id || false === $attachment_id ) {
-
 			$sources = array(
 				'1920' => array(
-					'url'        => $this->super_placeholder . '&w=750&h=350',
+					'url'        => $this->placeholder_url( null, null, 'lsx-thumbnail-single' ),
 					'descriptor' => 'w',
 					'value'      => '1920',
 				),
 				'300'  => array(
-					'url'        => $this->super_placeholder . '&w=350&h=230',
+					'url'        => $this->placeholder_url( null, null, 'lsx-thumbnail-wide' ),
 					'descriptor' => 'w',
 					'value'      => '300',
 				),
 				'768'  => array(
-					'url'        => $this->super_placeholder . '&w=750&h=350',
+					'url'        => $this->placeholder_url( null, null, 'lsx-thumbnail-single' ),
 					'descriptor' => 'w',
 					'value'      => '768',
 				),
 				'1024' => array(
-					'url'        => $this->super_placeholder . '&w=750&h=350',
+					'url'        => $this->placeholder_url( null, null, 'lsx-thumbnail-single' ),
 					'descriptor' => 'w',
 					'value'      => '1024',
 				),
 			);
-
 		}
 
 		return $sources;
