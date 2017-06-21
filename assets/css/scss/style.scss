@@ -2700,9 +2700,14 @@ body.single-tour-operator {
 			align-items: flex-start;
 			display: flex;
 			flex-flow: row nowrap;
+			flex-grow: 1;
 			justify-content: flex-end;
 			padding: 2.4rem 15px;
+			min-height: 130px;
 		}
+
+		@include media('>=tablet') { min-height: 170px; }
+		@include media('>=desktop') { min-height: 200px; }
 	}
 }
 
@@ -2715,9 +2720,13 @@ body.single-tour-operator {
 	}
 
 	.entry-content {
-		p:last-child { margin-bottom: 0; }
+		p:last-child {
+			@include media('>=phone') { margin-bottom: 0; }
+		}
 
 		.moretag {
+			.lsx-to-archive-template-grid & { display: none; }
+
 			&:after {
 				color: inherit;
 				content: '\f178';
