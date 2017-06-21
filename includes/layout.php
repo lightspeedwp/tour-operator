@@ -45,20 +45,19 @@ function lsx_to_archive_entry_top() {
 
 	if ( in_array( get_post_type(), array_keys( lsx_to_get_post_types() ) ) && ( is_archive() || $lsx_to_archive ) ) { ?>
 		<?php
-			if ( has_post_thumbnail() ) :
-				$thumbnail_id = get_post_thumbnail_id( get_the_ID() );
-				$image_arr = wp_get_attachment_image_src( $thumbnail_id, 'lsx-single-thumbnail' );
+			$thumbnail_id = get_post_thumbnail_id( get_the_ID() );
+			$image_arr = wp_get_attachment_image_src( $thumbnail_id, 'lsx-single-thumbnail' );
 
-				if ( is_array( $image_arr ) ) {
-					$image_src = $image_arr[0];
-				}
+			if ( is_array( $image_arr ) ) {
+				$image_src = $image_arr[0];
+			}
 		?>
-			<div class="lsx-to-archive-thumb">
-				<a href="<?php the_permalink(); ?>" style="background-image: url('<?php echo esc_url( $image_src ); ?>')">
-					<?php lsx_thumbnail( 'lsx-thumbnail-wide' ); ?>
-				</a>
-			</div>
-		<?php endif; ?>
+
+		<div class="lsx-to-archive-thumb">
+			<a href="<?php the_permalink(); ?>" style="background-image: url('<?php echo esc_url( $image_src ); ?>')">
+				<?php lsx_thumbnail( 'lsx-thumbnail-wide' ); ?>
+			</a>
+		</div>
 
 		<div class="lsx-to-archive-wrapper">
 			<div class="lsx-to-archive-content">
