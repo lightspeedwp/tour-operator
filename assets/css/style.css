@@ -1516,6 +1516,8 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-meta-data { display: block; font-size: 13px; padding-left: 22px; position: relative; }
 
+.lsx-to-contact-meta-data .lsx-to-meta-data { padding-left: 0; }
+
 .lsx-to-meta-data + .lsx-to-meta-data { margin-top: 5px; }
 
 .lsx-to-meta-data:before { color: inherit; display: inline-block; font-family: 'FontAwesome'; font-size: inherit; position: absolute; left: 0; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
@@ -1593,6 +1595,14 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 @media (min-width: 768px) { .lsx-to-archive-content-tagline { margin-top: -1.4rem; } }
 
+.lsx-to-contact-thumb { border-radius: 50%; height: 170px; overflow: hidden; margin: 2.4rem auto 0; position: relative; width: 170px; }
+
+@media (min-width: 768px) { .lsx-to-contact-thumb { margin-top: 0; } }
+
+.lsx-to-contact-prefix { display: block; font-size: 13px; margin-top: 2.4rem; }
+
+.lsx-to-contact-socials > a { font-size: 17px; line-height: 1; padding: 0 5px; }
+
 .lsx-to-slider-inner .slick-dots > li > button { border-color: #4A4A4A; }
 
 .lsx-to-slider-inner .slick-dots > li.slick-active > button { background-color: #4A4A4A; }
@@ -1622,5 +1632,15 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 .lsx-to-archive-item > article[id^='post-'] .lsx-to-archive-content-title > a, .lsx-to-archive-item > article[id^='post-'] .lsx-to-archive-content-title > a:active, .lsx-to-archive-item > article[id^='post-'] .lsx-to-archive-content-title > a:visited { color: #4A4A4A; }
 
 .lsx-to-archive-item > article[id^='post-'] .lsx-to-archive-content-title > a:hover, .lsx-to-archive-item > article[id^='post-'] .lsx-to-archive-content-title > a:hover:active, .lsx-to-archive-item > article[id^='post-'] .lsx-to-archive-content-title > a:focus { color: #F7AE00; }
+
+.lsx-to-contact .lsx-to-contact-prefix { color: #919191; }
+
+.lsx-to-contact .lsx-to-contact-name > a:not(.btn), .lsx-to-contact .lsx-to-contact-name > a:not(.btn):active, .lsx-to-contact .lsx-to-contact-name > a:not(.btn):visited { color: #4A4A4A; }
+
+.lsx-to-contact .lsx-to-contact-name > a:not(.btn):hover, .lsx-to-contact .lsx-to-contact-name > a:not(.btn):hover:active, .lsx-to-contact .lsx-to-contact-name > a:not(.btn):focus { color: #F7AE00; }
+
+.lsx-to-contact .lsx-to-contact-socials > a:not(.btn), .lsx-to-contact .lsx-to-contact-socials > a:not(.btn):active, .lsx-to-contact .lsx-to-contact-socials > a:not(.btn):visited { color: #919191; }
+
+.lsx-to-contact .lsx-to-contact-socials > a:not(.btn):hover, .lsx-to-contact .lsx-to-contact-socials > a:not(.btn):hover:active, .lsx-to-contact .lsx-to-contact-socials > a:not(.btn):focus { color: #F7AE00; }
 
 /*# sourceMappingURL=maps/style.css.map */

@@ -2552,6 +2552,8 @@ body.single-tour-operator {
 	padding-left: 22px;
 	position: relative;
 
+	.lsx-to-contact-meta-data & { padding-left: 0; }
+
 	& + .lsx-to-meta-data { margin-top: 5px; }
 
 	&:before {
@@ -2750,6 +2752,31 @@ body.single-tour-operator {
 
 .lsx-to-archive-content-tagline {
 	@include media('>=phone') { margin-top: -1.4rem; }
+}
+
+.lsx-to-contact-thumb {
+	border-radius: 50%;
+	height: 170px;
+	overflow: hidden;
+	margin: 2.4rem auto 0;
+	position: relative;
+	width: 170px;
+
+	@include media('>=phone') { margin-top: 0; }
+}
+
+.lsx-to-contact-prefix {
+	display: block;
+	font-size: 13px;
+	margin-top: 2.4rem;
+}
+
+.lsx-to-contact-socials {
+	& > a {
+		font-size: 17px;
+		line-height: 1;
+		padding: 0 5px;
+	}
 }
 
 @include customizer-to-body-colours(#DADDDF, #4A4A4A, #1098AD, #F7AE00, #919191);

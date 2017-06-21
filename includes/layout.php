@@ -92,14 +92,15 @@ function lsx_to_single_content_top() {
  */
 function lsx_to_single_entry_bottom() {
 	global $lsx_to_archive;
+
 	if ( is_singular( array_keys( lsx_to_get_post_types() ) ) && false === $lsx_to_archive && lsx_to_has_enquiry_contact() ) { ?>
-		<div class="col-sm-3">
-			<div class="team-member-widget">
+		<div class="col-xs-12 col-sm-4 col-md-3">
+			<div class="lsx-to-contact-widget">
 				<?php
 					if ( function_exists( 'lsx_to_has_team_member' ) && lsx_to_has_team_member() ) {
-						lsx_to_team_member_panel( '<div class="team-member">', '</div>' );
+						lsx_to_team_member_panel( '<div class="lsx-to-contact">', '</div>' );
 					} else {
-						lsx_to_enquiry_contact( '<div class="team-member">', '</div>' );
+						lsx_to_enquiry_contact( '<div class="lsx-to-contact">', '</div>' );
 					}
 
 					lsx_to_enquire_modal();

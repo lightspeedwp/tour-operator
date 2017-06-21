@@ -86,4 +86,17 @@
 		}
 	}
 
+	.lsx-to-contact {
+		.lsx-to-contact-prefix { color: $small; }
+
+		.lsx-to-contact-name > a:not(.btn) {
+			@include customizer-to-link-colour($color, $hover);
+		}
+
+		.lsx-to-contact-socials {
+			& > a:not(.btn) {
+				@include customizer-to-link-colour($small, $hover);
+			}
+		}
+	}
 }
