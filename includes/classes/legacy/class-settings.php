@@ -432,11 +432,11 @@ class Settings extends Tour_Operator {
         </tr>
         <tr class="form-field">
             <th scope="row">
-                <label for="disable_entry_text"><?php esc_html_e( 'Disable Excerpt (entry)', 'tour-operator' ); ?></label>
+                <label for="disable_entry_text"><?php esc_html_e( 'Disable Excerpt', 'tour-operator' ); ?></label>
             </th>
             <td>
                 <input type="checkbox" {{#if disable_entry_text}} checked="checked" {{/if}} name="disable_entry_text" />
-                <small><?php esc_html_e( 'This disables the entry excerpt on post type archive.', 'tour-operator' ); ?></small>
+                <small><?php esc_html_e( 'This disables the excerpt from entries on post type archive.', 'tour-operator' ); ?></small>
             </td>
         </tr>
         <tr class="form-field-wrap">

@@ -1579,11 +1579,11 @@ msgid "This disables the \"post type archive\", if you create your own custom lo
 msgstr ""
 
 #: includes/classes/legacy/class-settings.php:435
-msgid "Disable Excerpt (entry)"
+msgid "Disable Excerpt"
 msgstr ""
 
 #: includes/classes/legacy/class-settings.php:439
-msgid "This disables the entry excerpt on post type archive."
+msgid "This disables the excerpt from entries on post type archive."
 msgstr ""
 
 #: includes/classes/legacy/class-settings.php:444, includes/classes/legacy/class-taxonomy-widget.php:348
