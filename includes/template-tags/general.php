@@ -455,23 +455,23 @@ function lsx_to_enquiry_contact( $before = "", $after = "" ) {
 
 	echo wp_kses_post( $before );
 	?>
-	<div class="enquiry-contact">
-		<?php if ( ! empty( $fields[ 'enquiry_contact_image' ] ) ) : ?>
-			<div class="thumbnail">
-				<?php echo wp_kses_post( apply_filters( 'lsx_to_lazyload_filter_images', '<img alt="' . esc_attr( $fields[ 'enquiry_contact_name' ] ) . '" class="attachment-responsive wp-post-image lsx-responsive" src="' . esc_url( $fields[ 'enquiry_contact_image' ] ) . '" />' ) ); ?>
-			</div>
-		<?php endif; ?>
-		<h4 class="title">
-			<?php echo esc_html( $fields[ 'enquiry_contact_name' ] ); ?>
-		</h4>
-		<div class="team-details">
-			<?php if ( ! empty( $fields[ 'enquiry_contact_phone' ] ) ) : ?>
-				<div class="meta contact-number"><i class="fa fa-phone orange"></i> <a href="tel:+<?php echo esc_attr( $fields[ 'enquiry_contact_phone' ] ); ?>"><?php echo esc_html( $fields[ 'enquiry_contact_phone' ] ); ?></a></div>
-			<?php endif; ?>
-			<?php if ( ! empty( $fields[ 'enquiry_contact_email' ] ) ) : ?>
-				<div class="meta email"><i class="fa fa-envelope orange"></i> <a href="mailto:<?php echo esc_attr( $fields[ 'enquiry_contact_email' ] ); ?>"><?php echo esc_html( $fields[ 'enquiry_contact_email' ] ); ?></a></div>
-			<?php endif; ?>
+	<?php if ( ! empty( $fields[ 'enquiry_contact_image' ] ) ) : ?>
+		<div class="lsx-to-contact-thumb">
+			<?php echo wp_kses_post( apply_filters( 'lsx_to_lazyload_filter_images', '<img alt="' . esc_attr( $fields[ 'enquiry_contact_name' ] ) . '" class="attachment-responsive wp-post-image lsx-responsive" src="' . esc_url( $fields[ 'enquiry_contact_image' ] ) . '" />' ) ); ?>
 		</div>
+	<?php endif; ?>
+
+	<small class="lsx-to-contact-prefix text-center">Your travel expert:</small>
+
+	<h4 class="lsx-to-contact-name text-center"><?php echo esc_html( $fields[ 'enquiry_contact_name' ] ); ?></h4>
+
+	<div class="lsx-to-contact-meta-data text-center">
+		<?php if ( ! empty( $fields[ 'enquiry_contact_phone' ] ) ) : ?>
+			<div class="lsx-to-meta-data contact-number"><i class="fa fa-phone"></i> <a href="tel:+<?php echo esc_attr( $fields[ 'enquiry_contact_phone' ] ); ?>"><?php echo esc_html( $fields[ 'enquiry_contact_phone' ] ); ?></a></div>
+		<?php endif; ?>
+		<?php if ( ! empty( $fields[ 'enquiry_contact_email' ] ) ) : ?>
+			<div class="lsx-to-meta-data email"><i class="fa fa-envelope"></i> <a href="mailto:<?php echo esc_attr( $fields[ 'enquiry_contact_email' ] ); ?>"><?php echo esc_html( $fields[ 'enquiry_contact_email' ] ); ?></a></div>
+		<?php endif; ?>
 	</div>
 	<?php
 	echo wp_kses_post( $after );

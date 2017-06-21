@@ -1603,9 +1603,10 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-contact-thumb { border-radius: 50%; height: 170px; overflow: hidden; margin: 2.4rem auto 0; position: relative; width: 170px; }
 
-@media (min-width: 768px) { .lsx-to-contact-thumb { margin-top: 0; } }
+@media (min-width: 768px) { .lsx-to-contact-thumb { margin-top: 0; }
+  .lsx-to-contact-thumb + .lsx-to-contact-prefix { margin-top: 2.4rem; } }
 
-.lsx-to-contact-prefix { display: block; font-size: 13px; margin-top: 2.4rem; }
+.lsx-to-contact-prefix { display: block; font-size: 13px; }
 
 .lsx-to-contact-socials > a { font-size: 17px; line-height: 1; padding: 0 5px; }
 

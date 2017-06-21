@@ -2771,13 +2771,16 @@ body.single-tour-operator {
 	position: relative;
 	width: 170px;
 
-	@include media('>=phone') { margin-top: 0; }
+	@include media('>=phone') {
+		margin-top: 0;
+
+		& + .lsx-to-contact-prefix { margin-top: 2.4rem; }
+	}
 }
 
 .lsx-to-contact-prefix {
 	display: block;
 	font-size: 13px;
-	margin-top: 2.4rem;
 }
 
 .lsx-to-contact-socials {
