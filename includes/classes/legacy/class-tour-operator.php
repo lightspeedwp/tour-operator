@@ -718,7 +718,7 @@ class Tour_Operator {
 	 */
 	public function get_gravity_forms() {
 		global $wpdb;
-		$results = RGFormsModel::get_forms( null, 'title' );
+		$results = \RGFormsModel::get_forms( null, 'title' );
 		$forms   = false;
 		if ( ! empty( $results ) ) {
 			foreach ( $results as $form ) {
@@ -734,7 +734,7 @@ class Tour_Operator {
 	 */
 	public function get_caldera_forms() {
 		global $wpdb;
-		$results = Caldera_Forms_Forms::get_forms( true );
+		$results = \Caldera_Forms_Forms::get_forms( true );
 		$forms   = false;
 		if ( ! empty( $results ) ) {
 			foreach ( $results as $form => $form_data ) {
