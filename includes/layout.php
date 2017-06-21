@@ -163,12 +163,19 @@ function lsx_to_accommodation_single_content_bottom() {
  */
 function lsx_to_accommodation_archive_entry_bottom() {
 	global $lsx_to_archive;
-	if('accommodation' === get_post_type() && (is_archive() || $lsx_to_archive)) { ?>
+
+	if ( 'accommodation' === get_post_type() && (is_archive() || $lsx_to_archive ) ) { ?>
+			</div>
+
+			<div class="lsx-to-archive-meta-data">
+				<?php lsx_to_accommodation_meta(); ?>
+			</div>
 		</div>
-		<div class="col-sm-4">
-			<?php lsx_to_accommodation_meta(); ?>
-		</div>
-	</div>
+
+		<?php if ( 'grid' === tour_operator()->archive_layout ) : ?>
+			<a href="<?php the_permalink(); ?>" class="moretag"><?php esc_html_e( 'View accommodation', 'tour-operator' ); ?></a>
+		<?php endif; ?>
+
 	<?php }
 }
 

@@ -10,7 +10,7 @@
 
 /**
  * Outputs the current accommodations room total
- * 
+ *
  * @param		$before	| string
  * @param		$after	| string
  * @param		$echo	| boolean
@@ -58,7 +58,7 @@ function lsx_to_has_facilities(){
 	$facilities = get_transient( get_the_ID().'_facilities' );
 	if ( false === $facilities ) {
 		// It wasn't there, so regenerate the data and save the transient
-		
+
 		$facilities = wp_get_object_terms(get_the_ID(),'facility');
 		$main_facilities = false;
 		$child_facilities = false;
@@ -79,7 +79,7 @@ function lsx_to_has_facilities(){
 
 	}else{
 		return false;
-	}	
+	}
 }
 
 /**
@@ -123,10 +123,10 @@ function lsx_to_accommodation_facilities($before="",$after="",$echo=true){
 					$return .= '</div></div>';
 				}
 			}
-			
+
 			if ( ! empty( $return ) ) {
 				$return = $before.$return.$after;
-				
+
 				if($echo){
 					echo wp_kses_post( $return );
 				}else{
@@ -178,7 +178,7 @@ function lsx_to_accommodation_spoken_languages($before="",$after="",$echo=true){
 			echo wp_kses_post( $return );
 		} else {
 			return $return;
-		}		
+		}
 	} else {
 		return false;
 	}
@@ -224,7 +224,7 @@ function lsx_to_accommodation_special_interests($before="",$after="",$echo=true,
 			echo wp_kses_post( $return );
 		} else {
 			return $return;
-		}		
+		}
 	} else {
 		return false;
 	}
@@ -268,7 +268,7 @@ function lsx_to_accommodation_activity_friendly($before="",$after="",$echo=true)
 			echo wp_kses_post( $return );
 		} else {
 			return $return;
-		}		
+		}
 	} else {
 		return false;
 	}
@@ -281,22 +281,23 @@ function lsx_to_accommodation_activity_friendly($before="",$after="",$echo=true)
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function lsx_to_accommodation_meta(){
-	if('accommodation' === get_post_type()){
-	?>
-	<div class="accommodation-details meta taxonomies">
-		<?php lsx_to_price('<div class="meta info"><span class="price">'.esc_html__('From price','tour-operator').': ','</span></div>'); ?>
-		<?php lsx_to_accommodation_room_total('<div class="meta rooms">'.esc_html__('Rooms','tour-operator').': <span>','</span></div>'); ?>
-		<?php lsx_to_accommodation_rating('<div class="meta rating">'.esc_html__('Rating','tour-operator').': ','</div>'); ?>
-		<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.esc_html__('Accommodation Style','tour-operator').': ', ', ', '</div>' ); ?>
-		<?php the_terms( get_the_ID(), 'accommodation-brand', '<div class="meta accommodation-brand">'.esc_html__('Brand','tour-operator').': ', ', ', '</div>' ); ?>
-		<?php the_terms( get_the_ID(), 'accommodation-type', '<div class="meta accommodation-type">'.esc_html__('Type','tour-operator').': ', ', ', '</div>' ); ?>
-		<?php lsx_to_accommodation_spoken_languages('<div class="meta spoken_languages">'.esc_html__('Spoken Languages','tour-operator').': <span>','</span></div>'); ?>
-		<?php lsx_to_accommodation_activity_friendly('<div class="meta friendly">'.esc_html__('Friendly','tour-operator').': <span>','</span></div>'); ?>
-		<?php lsx_to_accommodation_special_interests('<div class="meta special_interests">'.esc_html__('Special Interests','tour-operator').': <span>','</span></div>'); ?>
-		<?php lsx_to_connected_destinations('<div class="meta destination">'.esc_html__('Location','tour-operator').': ','</div>'); ?>
-	</div>	
-<?php } }
+function lsx_to_accommodation_meta() {
+	if ( 'accommodation' === get_post_type() ) {
+		$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
+
+
+		lsx_to_price ( '<span class="'. $meta_class .'price">'. esc_html__( 'From price', 'tour-operator' ) .': ', '</span>' );
+		lsx_to_accommodation_room_total( '<span class="'. $meta_class .'rooms">'. esc_html__( 'Rooms', 'tour-operator' ) .': ', '</span>' );
+		lsx_to_accommodation_rating( '<span class="'. $meta_class .'rating">'. esc_html__( 'Rating', 'tour-operator') .': ', '</span>' );
+		the_terms( get_the_ID(), 'travel-style', '<span class="'. $meta_class .'style">'. esc_html__( 'Style', 'tour-operator' ) .': ', ', ', '</span>' );
+		the_terms( get_the_ID(), 'accommodation-brand', '<span class="'. $meta_class .'brand">'. esc_html__( 'Brand' , 'tour-operator' ) .': ', ', ', '</span>' );
+		the_terms( get_the_ID(), 'accommodation-type', '<span class="'. $meta_class .'type">'. esc_html__( 'Type', 'tour-operator' ) .': ', ', ', '</span>' );
+		lsx_to_accommodation_spoken_languages( '<span class="'. $meta_class .'languages">'. esc_html__( 'Spoken Languages', 'tour-operator' ) .': ', '</span>' );
+		lsx_to_accommodation_activity_friendly( '<span class="'. $meta_class .'friendly">'. esc_html__( 'Friendly', 'tour-operator' ) .': ', '</span>' );
+		lsx_to_accommodation_special_interests( '<span class="'. $meta_class .'special">'. esc_html__( 'Special Interests', 'tour-operator' ) .': ','</span>' );
+		lsx_to_connected_destinations( '<span class="'. $meta_class .'destinations">'. esc_html__( 'Location', 'tour-operator' ) .': ', '</span>' );
+	}
+}
 
 /**
  * Gets the current specials connected accommodation
