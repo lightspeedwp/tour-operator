@@ -1550,7 +1550,7 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-meta-data.lsx-to-meta-data-tours:before { content: '\f072'; }
 
-.lsx-to-meta-data.lsx-to-meta-data-type:before { content: '\f02b'; }
+.lsx-to-meta-data.lsx-to-meta-data-type:before { content: '\f292'; }
 
 .archive.archive-tour-operator .site-main { width: 100%; }
 
