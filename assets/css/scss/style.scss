@@ -2733,9 +2733,7 @@ body.single-tour-operator {
 	}
 
 	.entry-content {
-		p:last-child {
-			@include media('>=phone') { margin-bottom: 0; }
-		}
+		p:last-child { margin-bottom: 0; }
 
 		.moretag {
 			.lsx-to-archive-template-grid & { display: none; }
@@ -2757,9 +2755,12 @@ body.single-tour-operator {
 }
 
 .lsx-to-archive-meta-data {
+	margin-top: 2.4rem;
+
 	.lsx-to-archive-template-list & {
 		@include media('>=phone') {
 			flex-shrink: 0;
+			margin-top: 0;
 			padding-left: 15px;
 			width: 40%;
 		}
@@ -2768,12 +2769,16 @@ body.single-tour-operator {
 	}
 }
 
-.lsx-to-archive-content-header {
+.lsx-to-archive-content-title {
 	.lsx-to-archive-template-grid & { text-align: center; }
 }
 
 .lsx-to-archive-content-tagline {
+	&:last-child { margin-bottom: 0; }
+
 	@include media('>=phone') { margin-top: -1.4rem; }
+
+	.lsx-to-archive-template-grid & { text-align: center; }
 }
 
 .lsx-to-contact-thumb {

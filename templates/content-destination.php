@@ -18,10 +18,9 @@ if ( 1 !== $lsx_to_archive ) {
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<?php lsx_entry_top(); ?>
 
-	<div <?php lsx_to_entry_class( 'entry-content' ); ?>>
+	<?php if ( is_single() && false === $lsx_to_archive ) { ?>
 
-		<?php if ( is_single() && false === $lsx_to_archive ) { ?>
-
+		<div <?php lsx_to_entry_class( 'entry-content' ); ?>>
 			<div class="single-main-info">
 				<h3><?php esc_html_e( 'Summary' , 'tour-operator' ); ?></h3>
 
@@ -34,14 +33,15 @@ if ( 1 !== $lsx_to_archive ) {
 			</div>
 
 			<?php the_content(); ?>
+		</div>
 
-		<?php } elseif ( empty( tour_operator()->options[ get_post_type() ]['disable_entry_text'] ) ) { ?>
+	<?php } elseif ( empty( tour_operator()->options[ get_post_type() ]['disable_entry_text'] ) ) { ?>
 
+		<div <?php lsx_to_entry_class( 'entry-content' ); ?>>
 			<?php the_excerpt(); ?>
+		</div>
 
-		<?php } ?>
-
-	</div><!-- .entry-content -->
+	<?php } ?>
 
 	<?php lsx_entry_bottom(); ?>
 
