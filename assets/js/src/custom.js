@@ -84,35 +84,6 @@ LSX_TO_Slider = {
 
 lsxTofacetWpLoadFirstTime = false,
 
-LSX_TO_FacetWP = {
-	effect_loaded: function() {
-		jQuery(document).on('facetwp-loaded', function() {
-			LSX_TO_FacetWP.effect_clearButton();
-
-			if (!lsxTofacetWpLoadFirstTime) {
-				lsxTofacetWpLoadFirstTime = true;
-				return;
-			}
-
-			LSX_TO_FacetWP.effect_scrollOnLoad();
-		});
-	},
-
-	effect_scrollOnLoad: function() {
-		var scrollTop = jQuery('.facetwp-facet').length > 0 ? jQuery('.facetwp-facet').offset().top : jQuery('.facetwp-template').offset().top;
-		scrollTop -= 250;
-		jQuery('html, body').animate({scrollTop: scrollTop}, 400);
-	},
-
-	effect_clearButton: function() {
-		if (FWP.build_query_string() == '') {
-			jQuery('.facetwp-results-clear-btn').addClass('hidden');
-		} else {
-			jQuery('.facetwp-results-clear-btn').removeClass('hidden');
-		}
-	},
-},
-
 LSX_TO = {
 	removeEmptyWidgets: function() {
 		jQuery('.widget.lsx-widget').each(function() {
@@ -228,7 +199,6 @@ jQuery(document).ready(function() {
 	LSX_TO_Scrollable.initThis(windowWidth);
 	LSX_TO_Itinerary_Read_More.initThis();
 	LSX_TO_Slider.initSlider();
-	LSX_TO_FacetWP.effect_loaded();
 	LSX_TO.removeEmptyWidgets();
 	LSX_TO.addExtraClassToMeta();
 });
