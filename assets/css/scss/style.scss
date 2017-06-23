@@ -496,154 +496,155 @@ $orange-dark: #f7741d;
 	}
 }
 
-%social-links {
-	@extend %clear-div;
-	color: $grey;
-	line-height: 28px;
-	font-size: 13px;
+// ---------- @TODO - REMOVE ----------
 
-	a {
-		font-weight: normal;
-		display: inline-block;
-		margin: 0 8px 0 0;
-		overflow: hidden;
-	}
-}
+// %social-links {
+// 	@extend %clear-div;
+// 	color: $grey;
+// 	line-height: 28px;
+// 	font-size: 13px;
 
-/*
-@TODO - REMOVE
-%bootstrap-carousel {
-	.slider-container {
-		position: relative;
+// 	a {
+// 		font-weight: normal;
+// 		display: inline-block;
+// 		margin: 0 8px 0 0;
+// 		overflow: hidden;
+// 	}
+// }
 
-		.lsx-to-slider-wrap {
-			position: relative;
-		}
+// ---------- @TODO - REMOVE ----------
 
-		.lsx-to-slider {
-			margin-bottom: 0;
-		}
+// %bootstrap-carousel {
+// 	.slider-container {
+// 		position: relative;
 
-		.slick-initialized {
-			.panel {
-				padding-bottom: 5px !important;
-			}
-		}
+// 		.lsx-to-slider-wrap {
+// 			position: relative;
+// 		}
 
-		.item {
-			margin-bottom: 0;
+// 		.lsx-to-slider {
+// 			margin-bottom: 0;
+// 		}
 
-			&:not(:only-child) {
-				margin: {
-					right: 0;
-					left: 0;
-				}
-			}
-		}
+// 		.slick-initialized {
+// 			.panel {
+// 				padding-bottom: 5px !important;
+// 			}
+// 		}
 
-		.slick-arrow {
-			background: transparent;
-			color: $blue-dark;
-			font: 0/0 a;
-			margin-top: -52px;
-			opacity: 0.66;
-			position: absolute;
-			text-shadow: none;
-			top: 50%;
-			transform: translateY(-50%);
-			transition: opacity 300ms ease;
-			z-index: 3;
+// 		.item {
+// 			margin-bottom: 0;
 
-			&:before {
-				color: inherit;
-				display: block;
-				font-family: 'FontAwesome';
-				font-size: 40px;
-				line-height: 1;
-				text-rendering: auto;
-				-webkit-font-smoothing: antialiased;
-				-moz-osx-font-smoothing: grayscale;
-			}
+// 			&:not(:only-child) {
+// 				margin: {
+// 					right: 0;
+// 					left: 0;
+// 				}
+// 			}
+// 		}
 
-			&:hover {
-				color: $blue-dark;
-				opacity: 1;
-			}
+// 		.slick-arrow {
+// 			background: transparent;
+// 			color: $blue-dark;
+// 			font: 0/0 a;
+// 			margin-top: -52px;
+// 			opacity: 0.66;
+// 			position: absolute;
+// 			text-shadow: none;
+// 			top: 50%;
+// 			transform: translateY(-50%);
+// 			transition: opacity 300ms ease;
+// 			z-index: 3;
 
-			&.slick-disabled {
-				cursor: not-allowed;
-				opacity: 0.33;
-			}
+// 			&:before {
+// 				color: inherit;
+// 				display: block;
+// 				font-family: 'FontAwesome';
+// 				font-size: 40px;
+// 				line-height: 1;
+// 				text-rendering: auto;
+// 				-webkit-font-smoothing: antialiased;
+// 				-moz-osx-font-smoothing: grayscale;
+// 			}
 
-			&.slick-prev {
-				left: -8px;
+// 			&:hover {
+// 				color: $blue-dark;
+// 				opacity: 1;
+// 			}
 
-				@media only screen and (min-width: 1200px) {
-					left: -30px;
-				}
+// 			&.slick-disabled {
+// 				cursor: not-allowed;
+// 				opacity: 0.33;
+// 			}
 
-				&:before {
-					content: '\f053';
-				}
-			}
+// 			&.slick-prev {
+// 				left: -8px;
 
-			&.slick-next {
-				right: -8px;
+// 				@media only screen and (min-width: 1200px) {
+// 					left: -30px;
+// 				}
 
-				@media only screen and (min-width: 1200px) {
-					right: -30px;
-				}
+// 				&:before {
+// 					content: '\f053';
+// 				}
+// 			}
 
-				&:before {
-					content: '\f054';
-				}
-			}
-		}
+// 			&.slick-next {
+// 				right: -8px;
 
-		.slick-dots {
-			-webkit-box-align: center;
-			-ms-flex-align: center;
-			align-items: center;
-			display: -webkit-box;
-			display: -ms-flexbox;
-			display: flex;
-			-webkit-box-orient: horizontal;
-			-webkit-box-direction: normal;
-			-ms-flex-flow: row wrap;
-			flex-flow: row wrap;
-			height: auto;
-			-webkit-box-pack: center;
-			-ms-flex-pack: center;
-			justify-content: center;
+// 				@media only screen and (min-width: 1200px) {
+// 					right: -30px;
+// 				}
 
-			height: auto;
-			list-style: none;
-			margin: 20px 0 0;
-			padding: 0;
+// 				&:before {
+// 					content: '\f054';
+// 				}
+// 			}
+// 		}
 
-			& > li {
-				padding: 5px 3px;
-				line-height: 1;
+// 		.slick-dots {
+// 			-webkit-box-align: center;
+// 			-ms-flex-align: center;
+// 			align-items: center;
+// 			display: -webkit-box;
+// 			display: -ms-flexbox;
+// 			display: flex;
+// 			-webkit-box-orient: horizontal;
+// 			-webkit-box-direction: normal;
+// 			-ms-flex-flow: row wrap;
+// 			flex-flow: row wrap;
+// 			height: auto;
+// 			-webkit-box-pack: center;
+// 			-ms-flex-pack: center;
+// 			justify-content: center;
 
-				& > button {
-					background: transparent;
-					border: 1px solid $blue-dark;
-					border-radius: 50%;
-					font: 0/0 a;
-					height: 12px;
-					padding: 0;
-					transition: all 300ms ease-in-out;
-					width: 12px;
-				}
+// 			height: auto;
+// 			list-style: none;
+// 			margin: 20px 0 0;
+// 			padding: 0;
 
-				&.slick-active > button {
-					background-color: $blue-dark;
-				}
-			}
-		}
-	}
-}
-*/
+// 			& > li {
+// 				padding: 5px 3px;
+// 				line-height: 1;
+
+// 				& > button {
+// 					background: transparent;
+// 					border: 1px solid $blue-dark;
+// 					border-radius: 50%;
+// 					font: 0/0 a;
+// 					height: 12px;
+// 					padding: 0;
+// 					transition: all 300ms ease-in-out;
+// 					width: 12px;
+// 				}
+
+// 				&.slick-active > button {
+// 					background-color: $blue-dark;
+// 				}
+// 			}
+// 		}
+// 	}
+// }
 
 %lsx-to-navigation {
 	margin: -60px 0 50px;
@@ -680,21 +681,23 @@ $orange-dark: #f7741d;
 	}
 }
 
-%pagination {
-	.lsx-breaker {
-		margin: {
-			top: 40px;
-			bottom: 40px;
-		}
+// ---------- @TODO - REMOVE ----------
 
-		@media only screen and (max-width: 767px) {
-			margin: {
-				top: 20px;
-				bottom: 20px;
-			}
-		}
-	}
-}
+// %pagination {
+// 	.lsx-breaker {
+// 		margin: {
+// 			top: 40px;
+// 			bottom: 40px;
+// 		}
+
+// 		@media only screen and (max-width: 767px) {
+// 			margin: {
+// 				top: 20px;
+// 				bottom: 20px;
+// 			}
+// 		}
+// 	}
+// }
 
 
 // ---------- Panels (Module) Placeholders ----------
@@ -804,108 +807,107 @@ $orange-dark: #f7741d;
 	}
 }
 
-/*
-@TODO - REMOVE
-%panel-home-group {
-	& > .widget-title,
-	& > .section-title {
-		margin: 0;
-		padding: 10px 0 40px;
-		font-size: 32px;
-		text-align: center;
+// ---------- @TODO - REMOVE ----------
 
-		a {
-			color: $black;
+// %panel-home-group {
+// 	& > .widget-title,
+// 	& > .section-title {
+// 		margin: 0;
+// 		padding: 10px 0 40px;
+// 		font-size: 32px;
+// 		text-align: center;
 
-			&:hover,
-			&:focus,
-			&:active {
-				color: $blue;
-			}
-		}
-	}
+// 		a {
+// 			color: $black;
 
-	& > .tagline {
-		color: $grey;
-		font-size: 16px;
-		line-height: 25px;
-		max-width: 625px !important;
-		margin: 0 auto 45px auto;
-		text-align: center;
+// 			&:hover,
+// 			&:focus,
+// 			&:active {
+// 				color: $blue;
+// 			}
+// 		}
+// 	}
 
-		&:not(:first-child) {
-			margin-top: -20px;
-		}
-	}
+// 	& > .tagline {
+// 		color: $grey;
+// 		font-size: 16px;
+// 		line-height: 25px;
+// 		max-width: 625px !important;
+// 		margin: 0 auto 45px auto;
+// 		text-align: center;
 
-	& > .view-more {
-		//margin-bottom: 80px;
-		text-align: center;
-	}
+// 		&:not(:first-child) {
+// 			margin-top: -20px;
+// 		}
+// 	}
 
-	& .slider-container + .view-more {
-		margin-top: 40px;
-	}
+// 	& > .view-more {
+// 		//margin-bottom: 80px;
+// 		text-align: center;
+// 	}
 
-	.panel {
-		@extend %clear-panel;
-		@extend %panel-root;
+// 	& .slider-container + .view-more {
+// 		margin-top: 40px;
+// 	}
 
-		& > article {
-			@extend %panel;
-		}
-	}
+// 	.panel {
+// 		@extend %clear-panel;
+// 		@extend %panel-root;
 
-	.lsx-review {
-		.panel {
-			& > article {
-				margin-top: 45px;
+// 		& > article {
+// 			@extend %panel;
+// 		}
+// 	}
 
-				.thumbnail {
-					text-align: center;
-					background-color: transparent;
-					margin-top: -65px;
+// 	.lsx-review {
+// 		.panel {
+// 			& > article {
+// 				margin-top: 45px;
 
-					img {
-						width: 90px;
-						height: 90px;
-						border-radius: 50%;
-					}
-				}
+// 				.thumbnail {
+// 					text-align: center;
+// 					background-color: transparent;
+// 					margin-top: -65px;
 
-				.title {
-					text-align: center;
-				}
+// 					img {
+// 						width: 90px;
+// 						height: 90px;
+// 						border-radius: 50%;
+// 					}
+// 				}
 
-				.meta {
-					font-size: 13px;
-				}
+// 				.title {
+// 					text-align: center;
+// 				}
 
-				p {
-					color: $grey;
-					font-size: 15px;
-					line-height: 23px;
-					margin: 0;
+// 				.meta {
+// 					font-size: 13px;
+// 				}
 
-					&:first-of-type {
-						padding-top: 15px;
-						margin-top: 13px;
-						border-top: 1px solid $border-grey;
-					}
-				}
-			}
-		}
-	}
+// 				p {
+// 					color: $grey;
+// 					font-size: 15px;
+// 					line-height: 23px;
+// 					margin: 0;
 
-	.lsx-accommodation-brand {
-		.panel {
-			& > article {
-				padding-bottom: 15px;
-			}
-		}
-	}
-}
-*/
+// 					&:first-of-type {
+// 						padding-top: 15px;
+// 						margin-top: 13px;
+// 						border-top: 1px solid $border-grey;
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
+
+// 	.lsx-accommodation-brand {
+// 		.panel {
+// 			& > article {
+// 				padding-bottom: 15px;
+// 			}
+// 		}
+// 	}
+// }
 
 %panel-internal {
 	@extend %panel;
@@ -1593,31 +1595,33 @@ body.single-tour-operator {
 		@extend %meta;
 	}
 
-	.social-links {
-		@extend %social-links;
-	}
+	// ---------- @TODO - REMOVE ----------
 
-	.aligncenter {
-		text-align: center;
-	}
+	// .social-links {
+	// 	@extend %social-links;
+	// }
 
-	@media only screen and (max-width: 991px) {
-		.btn {
-			white-space: normal !important;
-			word-wrap: break-word;
-			line-height: 20px;
-			font-size: 14px;
+	// .aligncenter {
+	// 	text-align: center;
+	// }
 
-			padding: {
-				top: 12px;
-				bottom: 12px;
-			}
-		}
-	}
+	// @media only screen and (max-width: 991px) {
+	// 	.btn {
+	// 		white-space: normal !important;
+	// 		word-wrap: break-word;
+	// 		line-height: 20px;
+	// 		font-size: 14px;
 
-	.wp-pagenavi-wrapper {
-		@extend %pagination;
-	}
+	// 		padding: {
+	// 			top: 12px;
+	// 			bottom: 12px;
+	// 		}
+	// 	}
+	// }
+
+	// .wp-pagenavi-wrapper {
+	// 	@extend %pagination;
+	// }
 }
 
 body {
@@ -1631,16 +1635,16 @@ body {
 // ---------- @TODO - REVIEW ----------
 
 
-body.home {
+// body.home {
 
-	// ---------- Widgets ----------
+// 	// ---------- Widgets ----------
 
-	aside.lsx-widget {
-		// @extend %panel-home-group;
-		// @extend %bootstrap-carousel;
-	}
+// 	aside.lsx-widget {
+// 		@extend %panel-home-group;
+// 		@extend %bootstrap-carousel;
+// 	}
 
-}
+// }
 
 
 // ---------- Archive (Page) Styles ----------
@@ -1664,13 +1668,13 @@ body.archive-tour-operator {
 
 	// ---------- Subtitle ----------
 
-	.archive-description {
-		// @extend %archive-description;
-	}
+	// .archive-description {
+	// 	@extend %archive-description;
+	// }
 
-	section {
-		// @extend %archive-description-level-2;
-	}
+	// section {
+	// 	@extend %archive-description-level-2;
+	// }
 
 	// ---------- Content ----------
 
@@ -1686,6 +1690,7 @@ body.archive-tour-operator {
 		}
 
 		// ---------- (reuse from single) ----------
+
 		article.hentry {
 			@extend %single-hentry;
 		}
@@ -1704,21 +1709,21 @@ body.archive-tour-operator {
 
 	// ---------- Widgets ----------
 
-	#safari-brands,
-	#travel-styles {
-		// @extend %panel-home-group;
-		// @extend %bootstrap-carousel;
-	}
+	// #safari-brands,
+	// #travel-styles {
+	// 	@extend %panel-home-group;
+	// 	@extend %bootstrap-carousel;
+	// }
 
-	#destination-map {
-		// @extend %single-extra-sections;
-	}
+	// #destination-map {
+	// 	@extend %single-extra-sections;
+	// }
 
 	// ---------- Share buttons ----------
 
-	#sharing {
-		// @extend %archive-share-buttons;
-	}
+	// #sharing {
+	// 	@extend %archive-share-buttons;
+	// }
 }
 
 body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) {
@@ -1825,27 +1830,27 @@ body.single-tour-operator {
 
 	// ---------- Extra sections ----------
 
-	#tours,
-	#regions,
-	#accommodation,
-	#destinations,
-	#activities,
-	#activites,
-	#related-items,
-	#itinerary,
-	#chalets,
-	#rooms,
-	#travel-info,
-	#spas,
-	#tents,
-	#villas,
-	#videos,
-	#main > section[id$="-map"],
-	#terms-and-conditions,
-	#gallery,
-	#facilities {
-		// @extend %single-extra-sections;
-	}
+	// #tours,
+	// #regions,
+	// #accommodation,
+	// #destinations,
+	// #activities,
+	// #activites,
+	// #related-items,
+	// #itinerary,
+	// #chalets,
+	// #rooms,
+	// #travel-info,
+	// #spas,
+	// #tents,
+	// #villas,
+	// #videos,
+	// #main > section[id$="-map"],
+	// #terms-and-conditions,
+	// #gallery,
+	// #facilities {
+	// 	@extend %single-extra-sections;
+	// }
 
 	#terms-and-conditions {
 		@extend %single-extra-sections-terms-and-conditions;
@@ -1985,260 +1990,252 @@ body.single-tour-operator {
 // ---------- @TODO - REMOVE ----------------------------
 
 
-/*
-%lsx-parallax-banner {
-	#lsx-banner {
-		& + .wrap {
-			header.archive-header {
-				display: none;
-			}
-		}
-	}
-}
+// %lsx-parallax-banner {
+// 	#lsx-banner {
+// 		& + .wrap {
+// 			header.archive-header {
+// 				display: none;
+// 			}
+// 		}
+// 	}
+// }
 
-body.lsx {
-	&.page-has-banner {
-		@extend %lsx-parallax-banner;
-	}
-}
-*/
+// body.lsx {
+// 	&.page-has-banner {
+// 		@extend %lsx-parallax-banner;
+// 	}
+// }
 
 
 // ---------- Share Buttons ----------
 // ---------- @TODO - REMOVE ----------
 
 
-/*
-#sharing {
-	.sharedaddy {
-		margin: 0;
+// #sharing {
+// 	.sharedaddy {
+// 		margin: 0;
 
-		.sd-sharing {
-			border-top: none;
+// 		.sd-sharing {
+// 			border-top: none;
 
-			.sd-title {
-				float: left !important;
-				margin: 8px 15px 0 0;
+// 			.sd-title {
+// 				float: left !important;
+// 				margin: 8px 15px 0 0;
 
-				font: {
-					family: inherit !important;
-					weight: bold;
-					size: 17px;
-				}
-			}
+// 				font: {
+// 					family: inherit !important;
+// 					weight: bold;
+// 					size: 17px;
+// 				}
+// 			}
 
-			.sd-content {
-				float: right;
-				display: inline-block;
+// 			.sd-content {
+// 				float: right;
+// 				display: inline-block;
 
-				ul {
-					margin: 0 !important;
-				}
-			}
-		}
-	}
-}
-*/
+// 				ul {
+// 					margin: 0 !important;
+// 				}
+// 			}
+// 		}
+// 	}
+// }
 
 
 // ---------- Styles Home Page ----------
 // ---------- @TODO - REMOVE ----------
 
 
-/*
-body.home {
-	// ---------- Banner ----------
+// body.home {
+// 	// ---------- Banner ----------
 
-	.page-banner.rotating {
-		.page-banner-image {
-			&:after {
-				display: none;
-			}
-		}
-	}
+// 	.page-banner.rotating {
+// 		.page-banner-image {
+// 			&:after {
+// 				display: none;
+// 			}
+// 		}
+// 	}
 
-	.page-banner {
-		header.page-header {
-			display: block;
-		}
+// 	.page-banner {
+// 		header.page-header {
+// 			display: block;
+// 		}
 
-		// ---------- LSX LSX Banners Plugin ----------
+// 		// ---------- LSX LSX Banners Plugin ----------
 
-		.banner-content {
-			max-width: 600px;
-			margin: 12px auto 0 auto;
-			text-align: center;
+// 		.banner-content {
+// 			max-width: 600px;
+// 			margin: 12px auto 0 auto;
+// 			text-align: center;
 
-			p {
-				font-size: 18px;
-				margin: 7px 0 24px;
-				color: $white;
+// 			p {
+// 				font-size: 18px;
+// 				margin: 7px 0 24px;
+// 				color: $white;
 
-				&:last-child {
-					margin-bottom: 0;
-				}
-			}
-		}
-	}
+// 				&:last-child {
+// 					margin-bottom: 0;
+// 				}
+// 			}
+// 		}
+// 	}
 
-	// ---------- Widgets ----------
+// 	// ---------- Widgets ----------
 
-	#home-widgets {
-		aside.widget_text:first-child {
-			.page-title {
-				color: $black;
-				margin: 10px 0 40px;
-				font-size: 32px;
-				text-align: center;
+// 	#home-widgets {
+// 		aside.widget_text:first-child {
+// 			.page-title {
+// 				color: $black;
+// 				margin: 10px 0 40px;
+// 				font-size: 32px;
+// 				text-align: center;
 
-				a {
-					color: $black;
+// 				a {
+// 					color: $black;
 
-					&:hover,
-					&:focus,
-					&:active {
-						color: $blue;
-					}
-				}
-			}
+// 					&:hover,
+// 					&:focus,
+// 					&:active {
+// 						color: $blue;
+// 					}
+// 				}
+// 			}
 
-			.tagline {
-				color: $grey;
-				font-size: 16px;
-				line-height: 25px;
-				max-width: 625px !important;
-				margin: -20px auto 45px auto;
-				text-align: center;
-			}
+// 			.tagline {
+// 				color: $grey;
+// 				font-size: 16px;
+// 				line-height: 25px;
+// 				max-width: 625px !important;
+// 				margin: -20px auto 45px auto;
+// 				text-align: center;
+// 			}
 
-			.row {
-				text-align: center;
+// 			.row {
+// 				text-align: center;
 
-				.fa {
-					font-size: 55px;
-				}
+// 				.fa {
+// 					font-size: 55px;
+// 				}
 
-				h4 {
-					color: $black;
-					font-size: 18px;
-					margin: 10px 0;
-				}
+// 				h4 {
+// 					color: $black;
+// 					font-size: 18px;
+// 					margin: 10px 0;
+// 				}
 
-				p {
-					color: $grey;
-					font-size: 15px;
-					line-height: 23px;
-					margin: 0;
-				}
-			}
-		}
-	}
-}
-*/
+// 				p {
+// 					color: $grey;
+// 					font-size: 15px;
+// 					line-height: 23px;
+// 					margin: 0;
+// 				}
+// 			}
+// 		}
+// 	}
+// }
 
 
 // ---------- Styles Internal ----------
 // ---------- @TODO - REMOVE ----------
 
 
-/*
-body:not(.home) {
+// body:not(.home) {
 
-	// ---------- LSX LSX Banners Plugin ----------
+// 	// ---------- LSX LSX Banners Plugin ----------
 
-	.page-banner.rotating {
-		justify-content: flex-end;
-		align-items: baseline;
+// 	.page-banner.rotating {
+// 		justify-content: flex-end;
+// 		align-items: baseline;
 
-		.container {
-			padding-top: 0 !important;
-			margin-bottom: 0;
+// 		.container {
+// 			padding-top: 0 !important;
+// 			margin-bottom: 0;
 
-			@media only screen and (max-width: 1199px) {
-				width: 100%;
-			}
-		}
+// 			@media only screen and (max-width: 1199px) {
+// 				width: 100%;
+// 			}
+// 		}
 
-		.page-banner-image {
-			&:after {
-				display: none;
-			}
-		}
-	}
+// 		.page-banner-image {
+// 			&:after {
+// 				display: none;
+// 			}
+// 		}
+// 	}
 
-	.page-banner {
-		.breadcrumbs-container,
-		h1.page-title,
-		.tagline,
-		.post-meta {
-			background: rgba(0, 0, 0, .8);
-		}
+// 	.page-banner {
+// 		.breadcrumbs-container,
+// 		h1.page-title,
+// 		.tagline,
+// 		.post-meta {
+// 			background: rgba(0, 0, 0, .8);
+// 		}
 
-		.breadcrumbs-container {
-			padding: 8px 16px;
-			color: $white;
-			margin-bottom: 0;
+// 		.breadcrumbs-container {
+// 			padding: 8px 16px;
+// 			color: $white;
+// 			margin-bottom: 0;
 
-			@media only screen and (min-width: 768px) {
-				display: inline-block !important;
-			}
-		}
+// 			@media only screen and (min-width: 768px) {
+// 				display: inline-block !important;
+// 			}
+// 		}
 
-		.page-header {
-			line-height: 1;
+// 		.page-header {
+// 			line-height: 1;
 
-			h1.page-title {
-				padding: 0px 15px !important;
-				text-align: left !important;
-				font-size: 30px !important;
-				box-shadow: none;
+// 			h1.page-title {
+// 				padding: 0px 15px !important;
+// 				text-align: left !important;
+// 				font-size: 30px !important;
+// 				box-shadow: none;
 
-				@media only screen and (min-width: 768px) {
-					display: inline-block;
-					font-size: 40px !important;
-					width: auto !important;
-				}
-			}
+// 				@media only screen and (min-width: 768px) {
+// 					display: inline-block;
+// 					font-size: 40px !important;
+// 					width: auto !important;
+// 				}
+// 			}
 
-			&:last-child {
-				h1.page-title {
-					padding-bottom: 10px !important;
-				}
-			}
-		}
+// 			&:last-child {
+// 				h1.page-title {
+// 					padding-bottom: 10px !important;
+// 				}
+// 			}
+// 		}
 
-		.banner-content {
-			margin: 0 !important;
-			text-align: left !important;
-			max-width: 100% !important;
-		}
+// 		.banner-content {
+// 			margin: 0 !important;
+// 			text-align: left !important;
+// 			max-width: 100% !important;
+// 		}
 
-		.tagline,
-		.post-meta {
-			margin: 0;
-			padding: 8px 17px;
-			font-size: 17px;
-			color: $white;
+// 		.tagline,
+// 		.post-meta {
+// 			margin: 0;
+// 			padding: 8px 17px;
+// 			font-size: 17px;
+// 			color: $white;
 
-			@media only screen and (min-width: 768px) {
-				display: inline-block;
-			}
-		}
+// 			@media only screen and (min-width: 768px) {
+// 				display: inline-block;
+// 			}
+// 		}
 
-		.post-meta {
-			.post-meta-time,
-			.post-meta-author,
-			.post-meta-categories {
-				margin-left: 10px;
+// 		.post-meta {
+// 			.post-meta-time,
+// 			.post-meta-author,
+// 			.post-meta-categories {
+// 				margin-left: 10px;
 
-				&:first-child {
-					margin-left: 0;
-				}
-			}
-		}
-	}
-}
-*/
+// 				&:first-child {
+// 					margin-left: 0;
+// 				}
+// 			}
+// 		}
+// 	}
+// }
 
 
 // ---------- Default Gallery ----------
