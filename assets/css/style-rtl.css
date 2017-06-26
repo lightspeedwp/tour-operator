@@ -1593,6 +1593,8 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-archive-template-grid .lsx-to-archive-content-title { text-align: center; }
 
+.lsx-to-archive-template-grid .lsx-to-archive-content-title:only-child { margin-bottom: 0; }
+
 .lsx-to-archive-content-tagline:last-child { margin-bottom: 0; }
 
 @media (min-width: 768px) { .lsx-to-archive-content-tagline { margin-top: -1.4rem; } }

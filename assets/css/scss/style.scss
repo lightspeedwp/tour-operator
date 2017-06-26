@@ -2767,7 +2767,11 @@ body.single-tour-operator {
 }
 
 .lsx-to-archive-content-title {
-	.lsx-to-archive-template-grid & { text-align: center; }
+	.lsx-to-archive-template-grid & {
+		text-align: center;
+
+		&:only-child { margin-bottom: 0; }
+	}
 }
 
 .lsx-to-archive-content-tagline {
