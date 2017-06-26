@@ -1971,12 +1971,12 @@ body.single-tour-operator {
 		article {
 			.entry-content {
 				.moretag {
-				    width: 230px;
-				    display: block;
-				    margin-left: auto !important;
-				    margin-right: auto !important;
-				    padding-left: 30px !important;
-				    padding-right: 30px !important;
+					width: 230px;
+					display: block;
+					margin-left: auto !important;
+					margin-right: auto !important;
+					padding-left: 30px !important;
+					padding-right: 30px !important;
 				}
 			}
 		}
@@ -2316,36 +2316,36 @@ body.single-tour-operator {
 .col-sm-15,
 .col-md-15,
 .col-lg-15 {
-    position: relative;
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
+	min-height: 1px;
+	padding-right: 15px;
+	padding-left: 15px;
+	position: relative;
 }
 
 .col-xs-15 {
-    width: 20%;
-    float: left;
+	float: left;
+	width: 20%;
 }
 
 @include media('>=phone') {
 	.col-sm-15 {
-        float: left;
-        width: 20%;
-    }
+		float: left;
+		width: 20%;
+	}
 }
 
 @include media('>=tablet') {
-    .col-md-15 {
-        float: left;
-        width: 20%;
-    }
+	.col-md-15 {
+		float: left;
+		width: 20%;
+	}
 }
 
 @include media('>=desktop') {
-    .col-lg-15 {
-        float: left;
-        width: 20%;
-    }
+	.col-lg-15 {
+		float: left;
+		width: 20%;
+	}
 }
 
 .lsx-to-widget-itens { margin-top: -4.25rem; }
@@ -2375,8 +2375,8 @@ body.single-tour-operator {
 		padding: 0;
 
 		& > li {
-			padding: 5px;
 			line-height: 1;
+			padding: 5px;
 
 			@include media('>=tablet') { padding: 0 7.5px; }
 
@@ -2509,8 +2509,8 @@ body.single-tour-operator {
 		.lsx-to-widget-thumb {
 			border-radius: 50%;
 			height: 170px;
-			overflow: hidden;
 			margin: 0 auto 12px;
+			overflow: hidden;
 			position: relative;
 			width: 170px;
 		}
@@ -2520,8 +2520,8 @@ body.single-tour-operator {
 		.lsx-to-widget-thumb {
 			border-radius: 50%;
 			height: 100px;
-			overflow: hidden;
 			margin: 0 auto 12px;
+			overflow: hidden;
 			position: relative;
 			width: 100px;
 		}
@@ -2558,8 +2558,8 @@ body.single-tour-operator {
 		display: inline-block;
 		font-family: 'FontAwesome';
 		font-size: inherit;
-		position: absolute;
 		left: 0;
+		position: absolute;
 		text-rendering: auto;
 
 		-webkit-font-smoothing: antialiased;
@@ -2571,16 +2571,22 @@ body.single-tour-operator {
 	&.lsx-to-meta-data-brand:before { content: '\f1ad'; }
 	&.lsx-to-meta-data-destinations:before { content: '\f0ac'; }
 	&.lsx-to-meta-data-duration:before { content: '\f133'; }
+	&.lsx-to-meta-data-email:before { content: '\f0e0'; }
 	&.lsx-to-meta-data-friendly:before { content: '\f046'; }
 	&.lsx-to-meta-data-languages:before { content: '\f1ab'; }
+	&.lsx-to-meta-data-phone:before { content: '\f095'; }
 	&.lsx-to-meta-data-price:before { content: '\f0d6'; }
 	&.lsx-to-meta-data-rating:before { content: '\f006'; }
+	&.lsx-to-meta-data-role:before { content: '\f0c0'; }
 	&.lsx-to-meta-data-rooms:before { content: '\f236'; }
+	&.lsx-to-meta-data-skype:before { content: '\f17e'; }
 	&.lsx-to-meta-data-special:before { content: '\f069'; }
 	&.lsx-to-meta-data-style:before { content: '\f02b'; }
 	&.lsx-to-meta-data-team:before { content: '\f007'; }
 	&.lsx-to-meta-data-tours:before { content: '\f072'; }
+	&.lsx-to-meta-data-travel-dates:before { content: '\f133'; }
 	&.lsx-to-meta-data-type:before { content: '\f292'; }
+	&.lsx-to-meta-data-valid-from:before { content: '\f133'; }
 }
 
 .archive.archive-tour-operator {
@@ -2611,7 +2617,6 @@ body.single-tour-operator {
 }
 
 .lsx-to-archive-item {
-
 	margin-top: 4.25rem;
 
 	& > article[id^='post-'] {
@@ -2622,15 +2627,80 @@ body.single-tour-operator {
 		justify-content: flex-start;
 
 		.lsx-to-archive-template-list & {
-			@include media('>=phone') {
-				flex-wrap: nowrap;
-			}
+			@include media('>=phone') { flex-wrap: nowrap; }
 		}
 
 		&.destination {
 			.lsx-to-archive-template-grid & {
 				.entry-content {
 					& > p { margin-bottom: 0; }
+				}
+			}
+		}
+
+		&.team {
+			.lsx-to-meta-data-socials {
+				padding-left: 0;
+
+				& > a {
+					font-size: 17px;
+
+					& + a { margin-left: 5px; }
+				}
+			}
+
+			.lsx-to-archive-template-grid & {
+				background-color: transparent;
+
+				.lsx-to-archive-content-title { margin-top: 2.4rem; }
+
+				.lsx-to-archive-wrapper { padding: 0; }
+
+				.lsx-to-archive-thumb {
+					border-radius: 50%;
+					height: 170px;
+					margin: 2.4rem auto 0;
+					overflow: hidden;
+					position: relative;
+					width: 170px;
+				}
+
+				.entry-content { text-align: center; }
+
+				.lsx-to-archive-meta-data {
+					text-align: center;
+
+					.lsx-to-meta-data {
+						padding-left: 0;
+
+						&:before {
+							left: auto;
+							margin-right: 5px;
+							position: relative;
+						}
+					}
+				}
+			}
+
+			.lsx-to-archive-template-list & {
+				.lsx-to-archive-thumb {
+					& > a {
+						display: block;
+						height: 0;
+						overflow: hidden;
+						padding: 0 0 100%;
+						position: relative;
+
+						& > img {
+							bottom: 0;
+							left: 0;
+							position: absolute;
+							height: 100%;
+							right: 0;
+							top: 0;
+							width: 100%;
+						}
+					}
 				}
 			}
 		}
@@ -2710,8 +2780,8 @@ body.single-tour-operator {
 			flex-flow: row nowrap;
 			flex-grow: 1;
 			justify-content: flex-end;
-			padding: 2.4rem 15px;
 			min-height: 130px;
+			padding: 2.4rem 15px;
 		}
 
 		@include media('>=tablet') { min-height: 170px; }
@@ -2785,8 +2855,8 @@ body.single-tour-operator {
 .lsx-to-contact-thumb {
 	border-radius: 50%;
 	height: 170px;
-	overflow: hidden;
 	margin: 2.4rem auto 0;
+	overflow: hidden;
 	position: relative;
 	width: 170px;
 
@@ -2808,6 +2878,11 @@ body.single-tour-operator {
 		line-height: 1;
 		padding: 0 5px;
 	}
+}
+
+.lsx-to-single-link {
+	margin-bottom: 0;
+	margin-top: 2.4rem;
 }
 
 @include customizer-to-body-colours(#DADDDF, #4A4A4A, #1098AD, #F7AE00, #919191);

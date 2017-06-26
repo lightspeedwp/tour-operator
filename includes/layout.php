@@ -55,7 +55,14 @@ function lsx_to_archive_entry_top() {
 
 		<div class="lsx-to-archive-thumb">
 			<a href="<?php the_permalink(); ?>" style="background-image: url('<?php echo esc_url( $image_src ); ?>')">
-				<?php lsx_thumbnail( 'lsx-thumbnail-wide' ); ?>
+
+				<?php
+					if ( 'team' === get_post_type() ) {
+						lsx_thumbnail( array( 285, 285 ) );
+					} else {
+						lsx_thumbnail( 'lsx-thumbnail-single' );
+					}
+				?>
 			</a>
 		</div>
 
