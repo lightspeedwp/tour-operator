@@ -66,10 +66,6 @@ class Frontend extends Tour_Operator {
 				$this,
 				'taxonomy_pre_get_posts',
 			), 10, 1 );
-			add_action( 'pre_get_posts', array(
-				$this,
-				'team_pre_get_posts',
-			), 10, 1 );
 		}
 
 		add_filter( 'lsx_to_connected_list_item', array(
@@ -273,17 +269,6 @@ class Frontend extends Tour_Operator {
 	public function taxonomy_pre_get_posts( $query ) {
 		if ( $query->is_main_query() && $query->is_tax( array( 'travel-style' ) ) ) {
 			$query->set( 'post_type', array( 'tour', 'accommodation' ) );
-		}
-
-		return $query;
-	}
-
-	/**
-	 * Set the Team Archive to infinite posts per page
-	 */
-	public function team_pre_get_posts( $query ) {
-		if ( $query->is_main_query() && $query->is_post_type_archive( array( 'team' ) ) ) {
-			$query->set( 'posts_per_page', - 1 );
 		}
 
 		return $query;
