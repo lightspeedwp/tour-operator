@@ -31,7 +31,7 @@ msgstr ""
 msgid "Special Interests"
 msgstr ""
 
-#: includes/functions.php:328, includes/classes/legacy/class-frontend.php:368, includes/classes/legacy/class-frontend.php:381
+#: includes/functions.php:328, includes/classes/legacy/class-frontend.php:366, includes/classes/legacy/class-frontend.php:379
 msgid "Read More"
 msgstr ""
 
@@ -1744,7 +1744,7 @@ msgstr ""
 msgid "Slide Interval:"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:809, includes/classes/legacy/class-tour-operator.php:822
+#: includes/classes/legacy/class-tour-operator.php:811, includes/classes/legacy/class-tour-operator.php:824
 msgid "Tour Operator Plugin requires PHP 5.6 or higher."
 msgstr ""
 

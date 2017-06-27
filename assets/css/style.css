@@ -1546,7 +1546,7 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-meta-data.lsx-to-meta-data-valid-from:before { content: '\f073'; }
 
-.archive.archive-tour-operator .site-main { width: 100%; }
+.archive.archive-tour-operator .site-main, .search.search-results.archive-tour-operator .site-main { width: 100%; }
 
 .lsx-to-archive-description > p:last-child, .lsx-to-archive-description > p:only-child { margin-bottom: 0; }
 

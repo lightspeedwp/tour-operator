@@ -2589,7 +2589,8 @@ body.single-tour-operator {
 	&.lsx-to-meta-data-valid-from:before { content: '\f073'; }
 }
 
-.archive.archive-tour-operator {
+.archive.archive-tour-operator,
+.search.search-results.archive-tour-operator {
 	.site-main { width: 100%; }
 }
 

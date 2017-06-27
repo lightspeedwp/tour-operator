@@ -56,7 +56,7 @@ class Frontend extends Tour_Operator {
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ), 11 );
 		add_action( 'wp_head', array( $this, 'wp_head' ), 10 );
-		add_filter( 'body_class', array( $this, 'body_class' ) );
+		add_filter( 'body_class', array( $this, 'body_class' ), 15, 1 );
 
 		if ( ! is_admin() ) {
 			add_filter( 'pre_get_posts', array( $this, 'travel_style_post_types' ), 10, 1 );
@@ -284,8 +284,6 @@ class Frontend extends Tour_Operator {
 		} elseif ( false !== $this->post_types && is_post_type_archive( array_keys( $this->post_types ) ) ) {
 			$classes[] = 'archive-tour-operator';
 		} elseif ( false !== $this->taxonomies && is_tax( array_keys( $this->taxonomies ) ) ) {
-			$classes[] = 'archive-tour-operator';
-		} elseif ( is_search() ) {
 			$classes[] = 'archive-tour-operator';
 		}
 

@@ -299,31 +299,33 @@ class Tour_Operator {
 	 * Sets the layout variable for the class.
 	 */
 	public function set_archive_layout() {
-		$post_type = false;
+		$settings_tab = false;
 
 		if ( is_post_type_archive( $this->active_post_types ) ) {
-			$post_type = get_query_var( 'post_type' );
+			$settings_tab = get_query_var( 'post_type' );
 		} elseif ( is_tax( array_keys( $this->taxonomies ) ) ) {
 			$taxonomy = get_query_var( 'taxonomy' );
 
 			switch ( $taxonomy ) {
 				case 'travel-style':
-					$post_type = 'tour';
+					$settings_tab = 'tour';
 					break;
 
 				case 'accommodation-type':
 				case 'accommodation-brand':
 				case 'facility':
-					$post_type = 'accommodation';
+					$settings_tab = 'accommodation';
 					break;
 			}
 		}
 
-		if ( ! empty( $post_type ) ) {
+		$settings_tab = apply_filters( 'lsx_to_settings_current_tab', $settings_tab );
+
+		if ( ! empty( $settings_tab ) ) {
 			$archive_layout = '';
 
-			if ( isset( $this->options[ $post_type ] ) && isset( $this->options[ $post_type ]['core_archive_layout'] ) ) {
-				$archive_layout = $this->options[ $post_type ]['core_archive_layout'];
+			if ( isset( $this->options[ $settings_tab ] ) && isset( $this->options[ $settings_tab ]['core_archive_layout'] ) ) {
+				$archive_layout = $this->options[ $settings_tab ]['core_archive_layout'];
 			}
 
 			if ( empty( $archive_layout ) ) {

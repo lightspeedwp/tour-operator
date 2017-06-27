@@ -56,10 +56,6 @@ class Template_Redirects {
 					$this,
 					'post_type_single_template_include',
 				), 99 );
-				add_filter( 'template_include', array(
-					$this,
-					'search_template_include',
-				), 99 );
 			}
 			if ( false !== $taxonomies ) {
 				$this->taxonomies = $taxonomies;
@@ -123,24 +119,6 @@ class Template_Redirects {
 
 			if ( '' == locate_template( array( 'taxonomy-' . $current_taxonomy . '.php' ) ) && file_exists( $this->plugin_path . 'templates/taxonomy-' . $current_taxonomy . '.php' ) ) {
 				$template = $this->plugin_path . 'templates/taxonomy-' . $current_taxonomy . '.php';
-			}
-		}
-
-		return $template;
-	}
-
-	/**
-	 * Redirect wordpress to the search template located in the plugin
-	 *
-	 * @param    $template
-	 *
-	 * @return    $template
-	 */
-	public function search_template_include( $template ) {
-
-		if ( is_main_query() && is_search() ) {
-			if ( file_exists( $this->plugin_path . 'templates/search.php' ) ) {
-				$template = $this->plugin_path . 'templates/search.php';
 			}
 		}
 
