@@ -450,12 +450,12 @@ class Settings extends Tour_Operator {
         </tr>
         <tr class="form-field-wrap">
             <th scope="row">
-                <label><?php esc_html_e( 'Layout', 'tour-operator' ); ?></label>
+                <label><?php esc_html_e( 'Grid/list layout', 'tour-operator' ); ?></label>
             </th>
             <td>
-                <select value="{{core_archive_layout}}" name="core_archive_layout">
-                    <option value="" {{#is core_archive_layout value=""}}selected="selected"{{/is}}><?php esc_html_e( 'List', 'tour-operator' ); ?></option>
-                    <option value="grid" {{#is core_archive_layout value="grid"}} selected="selected"{{/is}}><?php esc_html_e( 'Grid', 'tour-operator' ); ?></option>
+                <select value="{{grid_list_layout}}" name="grid_list_layout">
+                    <option value="" {{#is grid_list_layout value=""}}selected="selected"{{/is}}><?php esc_html_e( 'List', 'tour-operator' ); ?></option>
+                    <option value="grid" {{#is grid_list_layout value="grid"}} selected="selected"{{/is}}><?php esc_html_e( 'Grid', 'tour-operator' ); ?></option>
                 </select>
             </td>
         </tr>

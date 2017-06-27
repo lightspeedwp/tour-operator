@@ -1598,8 +1598,8 @@ msgstr ""
 msgid "This disables the excerpt from entries on post type archive."
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:453, includes/classes/legacy/class-taxonomy-widget.php:348
-msgid "Layout"
+#: includes/classes/legacy/class-settings.php:453
+msgid "Grid/list layout"
 msgstr ""
 
 #: includes/classes/legacy/class-settings.php:457
@@ -1706,6 +1706,10 @@ msgstr ""
 
 #: includes/classes/legacy/class-taxonomy-widget.php:343, includes/classes/legacy/class-widget.php:352
 msgid "Comma separated list, overrides limit setting"
+msgstr ""
+
+#: includes/classes/legacy/class-taxonomy-widget.php:348
+msgid "Layout"
 msgstr ""
 
 #: includes/classes/legacy/class-taxonomy-widget.php:350, includes/classes/legacy/class-widget.php:289

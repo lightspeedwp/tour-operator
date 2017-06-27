@@ -324,8 +324,8 @@ class Tour_Operator {
 		if ( ! empty( $settings_tab ) ) {
 			$archive_layout = '';
 
-			if ( isset( $this->options[ $settings_tab ] ) && isset( $this->options[ $settings_tab ]['core_archive_layout'] ) ) {
-				$archive_layout = $this->options[ $settings_tab ]['core_archive_layout'];
+			if ( isset( $this->options[ $settings_tab ] ) && isset( $this->options[ $settings_tab ]['grid_list_layout'] ) ) {
+				$archive_layout = $this->options[ $settings_tab ]['grid_list_layout'];
 			}
 
 			if ( empty( $archive_layout ) ) {
