@@ -1574,7 +1574,7 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-archive-template-grid .lsx-to-archive-item > article[id^='post-'].team .lsx-to-archive-wrapper { padding: 0; }
 
-.lsx-to-archive-template-grid .lsx-to-archive-item > article[id^='post-'].team .lsx-to-archive-thumb { border-radius: 50%; height: 170px; margin: 2.4rem auto 0; overflow: hidden; position: relative; width: 170px; }
+.lsx-to-archive-template-grid .lsx-to-archive-item > article[id^='post-'].team .lsx-to-archive-thumb { border-radius: 50%; height: 170px; margin: 0 auto; overflow: hidden; position: relative; width: 170px; }
 
 .lsx-to-archive-template-grid .lsx-to-archive-item > article[id^='post-'].team .entry-content { text-align: center; }
 
