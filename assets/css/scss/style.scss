@@ -2616,6 +2616,14 @@ body.single-tour-operator {
 	}
 }
 
+.lsx-to-archive-items-separator.lsx-title {
+	margin-top: 4.25rem;
+
+	&:first-child {
+		margin-top: 0;
+	}
+}
+
 .lsx-to-archive-item {
 	margin-top: 4.25rem;
 

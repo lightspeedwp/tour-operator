@@ -1554,6 +1554,10 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-archive-items:after, .lsx-to-archive-items:before { display: none; }
 
+.lsx-to-archive-items-separator.lsx-title { margin-top: 4.25rem; }
+
+.lsx-to-archive-items-separator.lsx-title:first-child { margin-top: 0; }
+
 .lsx-to-archive-item { margin-top: 4.25rem; }
 
 .lsx-to-archive-item > article[id^='post-'] { -webkit-box-align: stretch; -ms-flex-align: stretch; align-items: stretch; background-color: #FFF; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row wrap; flex-flow: row wrap; -webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start; }
