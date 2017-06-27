@@ -1592,6 +1592,8 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-archive-item > article[id^='post-'] > .moretag:after { color: inherit; content: '\f178'; display: inline-block; font-family: 'FontAwesome'; font-size: inherit; margin-right: 5px; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
+.lsx-to-archive-item .lsx-to-single-link { margin-bottom: 0; margin-top: 2.4rem; }
+
 .lsx-to-archive-thumb { width: 100%; }
 
 @media (max-width: 767px) { .lsx-to-archive-thumb > a { background-image: none !important; }
@@ -1647,8 +1649,6 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 .lsx-to-contact-prefix { display: block; font-size: 13px; }
 
 .lsx-to-contact-socials > a { font-size: 17px; line-height: 1; padding: 0 5px; }
-
-.lsx-to-single-link { margin-bottom: 0; margin-top: 2.4rem; }
 
 .lsx-to-slider-inner .slick-dots > li > button { border-color: #4A4A4A; }
 
