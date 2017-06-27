@@ -266,7 +266,7 @@ msgstr ""
 msgid "Featured"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:28, includes/metaboxes/config-destination.php:49, includes/metaboxes/config-tour.php:28, includes/partials/post.php:20, includes/classes/legacy/class-admin.php:474, includes/classes/legacy/class-settings.php:464, includes/classes/legacy/class-tour.php:229, includes/classes/legacy/class-tour.php:574
+#: includes/metaboxes/config-accommodation.php:28, includes/metaboxes/config-destination.php:49, includes/metaboxes/config-tour.php:28, includes/partials/post.php:20, includes/classes/legacy/class-admin.php:474, includes/classes/legacy/class-settings.php:473, includes/classes/legacy/class-tour.php:229, includes/classes/legacy/class-tour.php:574
 msgid "Tagline"
 msgstr ""
 
@@ -526,11 +526,11 @@ msgstr ""
 msgid "Units"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:281, includes/partials/post.php:28, includes/classes/legacy/class-field-pattern.php:60, includes/classes/legacy/class-settings.php:456, includes/classes/legacy/class-tour.php:568
+#: includes/metaboxes/config-accommodation.php:281, includes/partials/post.php:28, includes/classes/legacy/class-field-pattern.php:60, includes/classes/legacy/class-settings.php:465, includes/classes/legacy/class-tour.php:568
 msgid "Title"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:286, includes/partials/post.php:37, includes/classes/legacy/class-field-pattern.php:64, includes/classes/legacy/class-settings.php:472, includes/classes/legacy/class-tour.php:581
+#: includes/metaboxes/config-accommodation.php:286, includes/partials/post.php:37, includes/classes/legacy/class-field-pattern.php:64, includes/classes/legacy/class-settings.php:481, includes/classes/legacy/class-tour.php:581
 msgid "Description"
 msgstr ""
 
@@ -1426,7 +1426,7 @@ msgstr ""
 msgid "Thumbnail"
 msgstr ""
 
-#: includes/classes/legacy/class-frontend.php:192
+#: includes/classes/legacy/class-frontend.php:180
 msgid "Close"
 msgstr ""
 
@@ -1583,70 +1583,78 @@ msgid "This disables the \"post type archive\", if you create your own custom lo
 msgstr ""
 
 #: includes/classes/legacy/class-settings.php:435
-msgid "Disable Excerpt"
+msgid "Disable Pagination"
 msgstr ""
 
 #: includes/classes/legacy/class-settings.php:439
-msgid "This disables the excerpt from entries on post type archive."
+msgid "This disables the pagination on post type archive."
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:444, includes/classes/legacy/class-taxonomy-widget.php:348
-msgid "Layout"
+#: includes/classes/legacy/class-settings.php:444
+msgid "Disable Excerpt"
 msgstr ""
 
 #: includes/classes/legacy/class-settings.php:448
+msgid "This disables the excerpt from entries on post type archive."
+msgstr ""
+
+#: includes/classes/legacy/class-settings.php:453, includes/classes/legacy/class-taxonomy-widget.php:348
+msgid "Layout"
+msgstr ""
+
+#: includes/classes/legacy/class-settings.php:457
 msgid "List"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:449
+#: includes/classes/legacy/class-settings.php:458
 msgid "Grid"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:496
+#: includes/classes/legacy/class-settings.php:505
 msgid "Disable Singles"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:500
+#: includes/classes/legacy/class-settings.php:509
 msgid "When disabled you will be redirected to the homepage when trying to access a single tour page."
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:508
+#: includes/classes/legacy/class-settings.php:517
 msgid "Default Section Title"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:517
+#: includes/classes/legacy/class-settings.php:526
 msgid "\"Related Tours\" Section Title"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:527
+#: includes/classes/legacy/class-settings.php:536
 msgid "\"Accommodation Brands\" Section Title"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:535
+#: includes/classes/legacy/class-settings.php:544
 msgid "\"Rooms\" Section Title"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:543
+#: includes/classes/legacy/class-settings.php:552
 msgid "\"Similar Accommodations\" Section Title"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:553
+#: includes/classes/legacy/class-settings.php:562
 msgid "\"Countries\" Section Title"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:561
+#: includes/classes/legacy/class-settings.php:570
 msgid "\"Regions\" Section Title"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:569
+#: includes/classes/legacy/class-settings.php:578
 msgid "\"Travel Styles\" Section Title"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:587
+#: includes/classes/legacy/class-settings.php:596
 msgid "Enable Connected Modals"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:591
+#: includes/classes/legacy/class-settings.php:600
 msgid "Any connected item showing on a single will display a preview in a modal."
 msgstr ""
 

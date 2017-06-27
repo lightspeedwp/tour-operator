@@ -432,6 +432,15 @@ class Settings extends Tour_Operator {
         </tr>
         <tr class="form-field">
             <th scope="row">
+                <label for="disable_archive_pagination"><?php esc_html_e('Disable Pagination','tour-operator'); ?></label>
+            </th>
+            <td>
+                <input type="checkbox" {{#if disable_archive_pagination}} checked="checked" {{/if}} name="disable_archive_pagination" />
+                <small><?php esc_html_e('This disables the pagination on post type archive.','tour-operator'); ?></small>
+            </td>
+        </tr>
+        <tr class="form-field">
+            <th scope="row">
                 <label for="disable_entry_text"><?php esc_html_e( 'Disable Excerpt', 'tour-operator' ); ?></label>
             </th>
             <td>

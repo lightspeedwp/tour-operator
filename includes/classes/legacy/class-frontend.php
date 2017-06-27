@@ -54,24 +54,16 @@ class Frontend extends Tour_Operator {
 		add_filter( 'post_class', array( $this, 'replace_class' ), 10, 1 );
 		add_filter( 'body_class', array( $this, 'replace_class' ), 10, 1 );
 
-		add_action( 'wp_enqueue_scripts', array(
-			$this,
-			'enqueue_stylescripts',
-		), 11 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ), 11 );
 		add_action( 'wp_head', array( $this, 'wp_head' ), 10 );
 		add_filter( 'body_class', array( $this, 'body_class' ) );
 
 		if ( ! is_admin() ) {
-			add_filter( 'pre_get_posts', array(
-				$this,
-				'taxonomy_pre_get_posts',
-			), 10, 1 );
+			add_filter( 'pre_get_posts', array( $this, 'travel_style_post_types' ), 10, 1 );
+			add_action( 'pre_get_posts', array( $this, 'disable_pagination_on_archive' ) );
 		}
 
-		add_filter( 'lsx_to_connected_list_item', array(
-			$this,
-			'add_modal_attributes',
-		), 10, 3 );
+		add_filter( 'lsx_to_connected_list_item', array( $this, 'add_modal_attributes' ), 10, 3 );
 		add_action( 'wp_footer', array( $this, 'output_modals' ), 10 );
 		add_filter( 'use_default_gallery_style', '__return_false' );
 		add_filter( 'lsx_to_tagline', array( $this, 'get_tagline' ), 1, 3 );
@@ -121,9 +113,9 @@ class Frontend extends Tour_Operator {
 	 */
 	public function wp_head() {
 		if ( ( is_singular( $this->active_post_types ) || is_post_type_archive( $this->active_post_types ) )
-		     && false !== $this->options
-		     && isset( $this->options['display']['enable_modals'] )
-		     && 'on' === $this->options['display']['enable_modals']
+			 && false !== $this->options
+			 && isset( $this->options['display']['enable_modals'] )
+			 && 'on' === $this->options['display']['enable_modals']
 		) {
 			$this->enable_modals = true;
 		}
@@ -175,27 +167,23 @@ class Frontend extends Tour_Operator {
 	public function output_modals() {
 		global $lsx_to_archive, $post;
 		if ( true === $this->enable_modals && ! empty( $this->modal_ids ) ) {
-			$temp           = $lsx_to_archive;
+			$temp = $lsx_to_archive;
 			$lsx_to_archive = 1;
+
 			foreach ( $this->modal_ids as $post_id ) {
 				$post = get_post( $post_id );
 				?>
-                <div class="lsx-modal modal fade"
-                     id="lsx-modal-<?php echo esc_attr( $post_id ); ?>"
-                     tabindex="-1" role="dialog"
-                     aria-labelledby="<?php echo get_the_title( $post_id ); ?>">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <button type="button" class="close"
-                                        data-dismiss="modal"
-                                        aria-label="<?php esc_html_e( 'Close', 'tour-operator' ); ?>">
-                                    <span aria-hidden="true">×</span></button>
+				<div class="lsx-modal modal fade" id="lsx-modal-<?php echo esc_attr( $post_id ); ?>" tabindex="-1" role="dialog" aria-labelledby="<?php echo get_the_title( $post_id ); ?>">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-body">
+								<button type="button" class="close" data-dismiss="modal" aria-label="<?php esc_html_e( 'Close', 'tour-operator' ); ?>">
+									<span aria-hidden="true">×</span></button>
 								<?php lsx_to_content( 'content', 'modal' ); ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+							</div>
+						</div>
+					</div>
+				</div>
 				<?php
 			}
 			$lsx_to_archive = $temp;
@@ -234,7 +222,6 @@ class Frontend extends Tour_Operator {
 			$css_dependencies = array();
 
 			if ( ! $is_lsx_theme ) {
-
 				if ( ! $has_font_awesome ) {
 					array_push( $css_dependencies, 'font_awesome' );
 					wp_enqueue_style( 'font_awesome', LSX_TO_URL . 'assets/css/vendor/font-awesome.css', array(), LSX_TO_VER );
@@ -266,12 +253,25 @@ class Frontend extends Tour_Operator {
 	/**
 	 * Set the main query to pull through only the top level destinations.
 	 */
-	public function taxonomy_pre_get_posts( $query ) {
+	public function travel_style_post_types( $query ) {
 		if ( $query->is_main_query() && $query->is_tax( array( 'travel-style' ) ) ) {
 			$query->set( 'post_type', array( 'tour', 'accommodation' ) );
 		}
 
 		return $query;
+	}
+
+	/**
+	 * Disable pagination.
+	 */
+	public function disable_pagination_on_archive( $query ) {
+		if ( $query->is_main_query() && $query->is_post_type_archive( array_keys( $this->post_types ) ) ) {
+			$queried_post_type = get_query_var( 'post_type' );
+
+			if ( isset( $this->options[ $queried_post_type ] ) && isset( $this->options[ $queried_post_type ]['disable_archive_pagination'] ) ) {
+				$query->set( 'posts_per_page', -1 );
+			}
+		}
 	}
 
 	/**
