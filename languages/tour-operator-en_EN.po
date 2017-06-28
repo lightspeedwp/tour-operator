@@ -62,7 +62,7 @@ msgstr ""
 #: includes/functions.php:550, includes/layout.php:152, includes/layout.php:350, includes/template-tags/destination.php:25, includes/template-tags/destination.php:55, includes/template-tags/destination.php:96, includes/template-tags/destination.php:118, includes/classes/legacy/class-accommodation.php:296
 msgstr ""
 
-#: includes/layout.php:71
+#: includes/layout.php:71, templates/content.php:29
 msgid "Read more"
 msgstr ""
 
@@ -98,7 +98,7 @@ msgstr ""
 msgid "Best time to visit"
 msgstr ""
 
-#: includes/layout.php:262
+#: includes/layout.php:262, templates/content.php:38
 msgid "Continue reading"
 msgstr ""
 
@@ -598,7 +598,7 @@ msgstr ""
 msgid "Visa"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:124, includes/partials/accommodation.php:4, includes/partials/destination.php:4, includes/partials/general.php:4, includes/partials/tour.php:4, includes/template-tags/destination.php:159, includes/classes/legacy/class-settings.php:128
+#: includes/metaboxes/config-destination.php:124, includes/partials/accommodation.php:4, includes/partials/destination.php:4, includes/partials/general.php:3, includes/partials/tour.php:4, includes/template-tags/destination.php:159, includes/classes/legacy/class-settings.php:128
 msgid "General"
 msgstr ""
 
@@ -674,7 +674,7 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
-#: includes/partials/accommodation.php:6, includes/partials/add-ons.php:112, includes/partials/destination.php:6, includes/partials/display.php:38, includes/partials/help.php:124, includes/partials/tour.php:6
+#: includes/partials/accommodation.php:6, includes/partials/add-ons.php:112, includes/partials/destination.php:6, includes/partials/display.php:38, includes/partials/general.php:6, includes/partials/help.php:124, includes/partials/tour.php:6
 msgid "Search"
 msgstr ""
 
@@ -818,7 +818,7 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
-#: includes/partials/general.php:6, includes/classes/legacy/class-settings.php:238
+#: includes/partials/general.php:10, includes/classes/legacy/class-settings.php:238
 msgid "Currency"
 msgstr ""
 

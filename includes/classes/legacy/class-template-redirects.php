@@ -37,32 +37,20 @@ class Template_Redirects {
 		if ( false !== $plugin_path ) {
 			$this->plugin_path = $plugin_path;
 
-			add_filter( 'lsx_to_widget_path', array(
-				$this,
-				'widget_path',
-			), 10, 2 );
-			add_filter( 'lsx_to_content_path', array(
-				$this,
-				'content_path',
-			), 10, 3 );
+			add_filter( 'lsx_to_widget_path', array( $this, 'widget_path' ), 10, 2 );
+			add_filter( 'lsx_to_content_path', array( $this, 'content_path' ), 10, 3 );
 
 			if ( false !== $post_types ) {
 				$this->post_types = $post_types;
-				add_filter( 'template_include', array(
-					$this,
-					'post_type_archive_template_include',
-				), 99 );
-				add_filter( 'template_include', array(
-					$this,
-					'post_type_single_template_include',
-				), 99 );
+
+				add_filter( 'template_include', array( $this, 'post_type_archive_template_include' ), 99 );
+				add_filter( 'template_include', array( $this, 'post_type_single_template_include' ), 99 );
 			}
+
 			if ( false !== $taxonomies ) {
 				$this->taxonomies = $taxonomies;
-				add_filter( 'template_include', array(
-					$this,
-					'taxonomy_template_include',
-				), 99 );
+
+				add_filter( 'template_include', array( $this, 'taxonomy_template_include' ), 99 );
 			}
 		}
 	}
@@ -75,9 +63,9 @@ class Template_Redirects {
 	 * @return    $template
 	 */
 	public function post_type_archive_template_include( $template ) {
-
 		if ( is_main_query() && is_post_type_archive( $this->post_types ) ) {
 			$current_post_type = get_post_type();
+
 			if ( '' == locate_template( array( 'archive-' . $current_post_type . '.php' ) ) && file_exists( $this->plugin_path . 'templates/archive-' . $current_post_type . '.php' ) ) {
 				$template = $this->plugin_path . 'templates/archive-' . $current_post_type . '.php';
 			}
@@ -134,14 +122,16 @@ class Template_Redirects {
 	 */
 	public function content_part( $slug, $name = null ) {
 		$template = array();
-		$name     = (string) $name;
+		$name = (string) $name;
+
 		if ( '' !== $name ) {
 			$template = "{$slug}-{$name}.php";
 		} else {
 			$template = "{$slug}.php";
 		}
+
 		$original_name = $template;
-		$path          = apply_filters( 'lsx_to_content_path', '', get_post_type() );
+		$path = apply_filters( 'lsx_to_content_path', '', get_post_type() );
 
 		if ( '' == locate_template( array( $template ) ) && file_exists( $path . 'templates/' . $template ) ) {
 			$template = $path . 'templates/' . $template;
@@ -154,7 +144,11 @@ class Template_Redirects {
 		if ( false !== $template ) {
 			load_template( $template, false );
 		} else {
-			echo wp_kses_post( '<p>No ' . $original_name . ' can be found.</p>' );
+			if ( ! empty( $name ) ) {
+				$this->content_part( $slug );
+			} else {
+				echo wp_kses_post( '<p>No ' . $original_name . ' can be found.</p>' );
+			}
 		}
 	}
 
@@ -167,9 +161,7 @@ class Template_Redirects {
 	 * @return    $path
 	 */
 	public function widget_path( $path, $slug ) {
-		if ( ( false !== $this->post_types && in_array( $slug, $this->post_types ) )
-		     || ( false !== $this->taxonomies && in_array( $slug, $this->taxonomies ) ) || 'post' === $slug
-		) {
+		if ( ( false !== $this->post_types && in_array( $slug, $this->post_types ) ) || ( false !== $this->taxonomies && in_array( $slug, $this->taxonomies ) ) || 'post' === $slug ) {
 			$path = $this->plugin_path;
 		}
 
@@ -185,12 +177,11 @@ class Template_Redirects {
 	 * @return    $path
 	 */
 	public function content_path( $path, $slug ) {
-		if ( ( false !== $this->post_types && in_array( $slug, $this->post_types ) )
-		     || ( false !== $this->taxonomies && in_array( $slug, $this->taxonomies ) ) || 'post' === $slug
-		) {
+		if ( ( false !== $this->post_types && in_array( $slug, $this->post_types ) ) || ( false !== $this->taxonomies && in_array( $slug, $this->taxonomies ) ) || 'post' === $slug ) {
 			$path = $this->plugin_path;
 		}
 
 		return $path;
 	}
+
 }

@@ -2639,6 +2639,13 @@ body.single-tour-operator {
 			@include media('>=phone') { flex-wrap: nowrap; }
 		}
 
+		&.post,
+		&.page {
+			.entry-content {
+				padding: 0;
+			}
+		}
+
 		&.destination {
 			.lsx-to-archive-template-grid & {
 				.entry-content {

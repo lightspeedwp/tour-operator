@@ -1564,6 +1564,8 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 @media (min-width: 768px) { .lsx-to-archive-template-list .lsx-to-archive-item > article[id^='post-'] { -ms-flex-wrap: nowrap; flex-wrap: nowrap; } }
 
+.lsx-to-archive-item > article[id^='post-'].post .entry-content, .lsx-to-archive-item > article[id^='post-'].page .entry-content { padding: 0; }
+
 .lsx-to-archive-template-grid .lsx-to-archive-item > article[id^='post-'].destination .entry-content > p { margin-bottom: 0; }
 
 .lsx-to-archive-item > article[id^='post-'].team .lsx-to-meta-data-socials { padding-right: 0; }
