@@ -569,6 +569,7 @@ class Tour_Operator {
 		$allowedtags['a']['data-video-width']        = true;
 		$allowedtags['a']['data-video-height']       = true;
 		$allowedtags['a']['data-video-aspect-ratio'] = true;
+		$allowedtags['a']['style'] 					 = true;
 
 		$allowedtags['div']['aria-labelledby']                      = true;
 		$allowedtags['div']['data-interval']                        = true;
@@ -669,6 +670,7 @@ class Tour_Operator {
 	 */
 	public function safe_style_css( $allowedstyles ) {
 		$allowedstyles[] = 'display';
+		$allowedstyles[] = 'background';
 		$allowedstyles[] = 'background-image';
 
 		return $allowedstyles;

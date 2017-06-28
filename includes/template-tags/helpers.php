@@ -317,9 +317,10 @@ function lsx_to_connected_items_query($from=false,$to=false,$before="",$after=""
  * @subpackage	template-tags
  * @category 	helper
  */
-function lsx_to_connected_panel_query($args=false){
+function lsx_to_connected_panel_query( $args = false ) {
 	global $lsx_to_archive;
-	if(false !== $args && is_array($args)){
+
+	if (false !== $args && is_array( $args ) ) {
 		$defaults = array(
 			'from'			=>	false,
 			'to'			=>	false,
@@ -330,40 +331,47 @@ function lsx_to_connected_panel_query($args=false){
 			'after'			=>	'',
 			'echo'			=>	true,
 		);
-		$args = wp_parse_args($args,$defaults);
+
+		$args = wp_parse_args( $args, $defaults );
 		$return = false;
 
-		if(false === $args['content_part']){
+		if ( false === $args['content_part'] ) {
 			$args['content_part'] = $args['from'];
 		}
 
-		$items_array = get_post_meta(get_the_ID(),$args['from'].'_to_'.$args['to'],false);
+		$items_array = get_post_meta( get_the_ID(), $args['from'] . '_to_' . $args['to'], false );
 
-		if(false !== $items_array && is_array($items_array) && !empty($items_array)){
+		if ( false !== $items_array && is_array( $items_array ) && ! empty( $items_array ) ) {
 			$items_query_args = array(
-					'post_type'	=>	$args['from'],
-					'post_status' => 'publish',
-					'post__in' => $items_array
+				'post_type'		=>	$args['from'],
+				'post_status'	=>	'publish',
+				'post__in'		=>	$items_array
 			);
-			$items = new WP_Query($items_query_args);
+
+			$items = new WP_Query( $items_query_args );
+
 			if ( $items->have_posts() ):
 				$lsx_to_archive = 1;
 				ob_start();
-				echo wp_kses_post( $args['before'] ).'<div class="row">';
-				while ( $items->have_posts() ) : $items->the_post();
-					echo '<div class="panel col-sm-'.esc_attr($args['column']).'">';
-					lsx_to_content('content',$args['content_part']);
+				echo wp_kses_post( $args['before'] ) . '<div class="row lsx-to-archive-items lsx-to-archive-template-list">';
+
+				while ( $items->have_posts() ) :
+					$items->the_post();
+					echo '<div class="lsx-to-archive-item col-xs-12">';
+					lsx_to_content( 'content', $args['content_part'] );
 					echo '</div>';
 				endwhile;
-				echo '</div>'.wp_kses_post( $args['after'] );
+
+				echo '</div>' . wp_kses_post( $args['after'] );
 				$return = ob_get_clean();
 				$lsx_to_archive = 0;
 				wp_reset_postdata();
-			endif; // end of the loop.
+			endif;
 		}
-		if($args['echo']){
+
+		if ( $args['echo'] ){
 			echo wp_kses_post( $return );
-		}else{
+		} else {
 			return $return;
 		}
 	}
@@ -444,12 +452,12 @@ function lsx_to_related_items( $taxonomy = false, $before = "", $after = "", $ec
 			}
 
 			if ( $carousel ) {
-				echo '<div class="slider-container lsx-to-widget-itens">';
+				echo '<div class="slider-container lsx-to-widget-items">';
 				echo '<div id="slider-'. esc_attr( $carousel_id ) .'" class="lsx-to-slider">';
 				echo '<div class="lsx-to-slider-wrap">';
 				echo '<div class="lsx-to-slider-inner" data-interval="'. esc_attr( $interval ) .'" data-slick=\'{ "slidesToShow": '. esc_attr( $columns ) .', "slidesToScroll": '. esc_attr( $columns ) .' }\'>';
 			} else {
-				echo "<div class='lsx-to-widget-itens'>";
+				echo "<div class='lsx-to-widget-items'>";
 			}
 
 			while ( $related_query->have_posts() ) :

@@ -2348,7 +2348,7 @@ body.single-tour-operator {
 	}
 }
 
-.lsx-to-widget-itens { margin-top: -4.25rem; }
+.lsx-to-widget-items { margin-top: -4.25rem; }
 
 .lsx-to-widget-item-wrap {
 	margin-top: 4.25rem;
@@ -2615,8 +2615,6 @@ body.single-tour-operator {
 	&:before {
 		display: none;
 	}
-
-	&.itinerary-list { margin-top: -2.4rem; }
 }
 
 .lsx-to-archive-items-separator.lsx-title {
@@ -2872,10 +2870,11 @@ body.single-tour-operator {
 
 	.lsx-to-label {
 		font-size: 60%;
+		line-height: 27px; // This must be the same line-height of its parent
+		padding: 4px 1rem;
+		vertical-align: top;
 
-		.lsx-to-archive-template-grid & {
-			display: none;
-		}
+		.lsx-to-archive-template-grid & { display: none; }
 	}
 }
 
@@ -2914,5 +2913,14 @@ body.single-tour-operator {
 		padding: 0 5px;
 	}
 }
+
+.lsx-to-section-title {
+	& + .lsx-to-archive-items,
+	& + .lsx-to-widget-items {
+		margin-top: -2.4rem;
+	}
+}
+
+.lsx-to-section { margin-top: 8.5rem; }
 
 @include customizer-to-body-colours(#DADDDF, #4A4A4A, #1098AD, #F7AE00, #919191);
