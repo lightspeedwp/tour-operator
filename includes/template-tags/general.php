@@ -47,15 +47,15 @@ function lsx_to_archive_class( $classes = array() ) {
 function lsx_to_widget_class( $type = '', $return = false ) {
 	global $columns;
 
-	$cols = 'col-sm-';
+	$cols = 'col-xs-12 col-sm-';
 	$cols .= '5' == $columns ? '15' : 12 / $columns;
 
-	$class = 'lsx-to-widget-item-wrap lsx-'. $type .' '.  $cols;
+	$class = 'lsx-to-widget-item-wrap lsx-' . $type . ' ' . $cols;
 
 	if ( false === $return ) {
-		echo 'class="'. esc_attr( $class ) .'"';
+		echo 'class="' . esc_attr( $class ) . '"';
 	} else {
-		return 'class="'. $class .'"';
+		return 'class="' . $class . '"';
 	}
 }
 

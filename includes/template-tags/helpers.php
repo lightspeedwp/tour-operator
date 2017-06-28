@@ -336,7 +336,7 @@ function lsx_to_connected_items_query( $from = false, $to = false, $before = '',
  * @category 	helper
  */
 function lsx_to_connected_panel_query( $args = false ) {
-	global $lsx_to_archive;
+	global $lsx_to_archive, $columns;
 
 	if ( false !== $args && is_array( $args ) ) {
 		$defaults = array(
@@ -369,16 +369,72 @@ function lsx_to_connected_panel_query( $args = false ) {
 			if ( $items->have_posts() ) :
 				$lsx_to_archive = 1;
 
-				echo wp_kses_post( $args['before'] ) . '<div class="row lsx-to-archive-items lsx-to-archive-template-list">';
+				$carousel_id = rand( 20, 20000 );
+				$columns = intval( esc_attr( $args['column'] ) );
+				$count = 1;
+				$interval = '6000';
+				$post_type = $args['content_part'];
+				$total = $items->post_count;
+
+				$carousel = $total > $columns ? true : false;
+
+				if ( $total < $columns ) {
+					$columns = $total;
+				}
+
+				echo wp_kses_post( $args['before'] );
+
+				if ( $carousel ) {
+					echo '<div class="slider-container lsx-to-widget-items">';
+					echo '<div id="slider-' . esc_attr( $carousel_id ) . '" class="lsx-to-slider">';
+					echo '<div class="lsx-to-slider-wrap">';
+					echo '<div class="lsx-to-slider-inner" data-interval="' . esc_attr( $interval ) . '" data-slick=\'{ "slidesToShow": ' . esc_attr( $columns ) . ', "slidesToScroll": ' . esc_attr( $columns ) . ' }\'>';
+				} else {
+					echo "<div class='lsx-to-widget-items'>";
+				}
 
 				while ( $items->have_posts() ) :
 					$items->the_post();
-					echo '<div class="lsx-to-archive-item col-xs-12">';
-					lsx_to_content( 'content', $args['content_part'] );
-					echo '</div>';
+
+					if ( $carousel ) {
+						echo '<div class="lsx-to-widget-item-wrap lsx-' . esc_attr( $post_type ) . '">';
+					} elseif ( 1 === $count ) {
+						echo '<div class="row">';
+					}
+
+					if ( ! $carousel ) {
+						echo wp_kses_post( '<div ' . lsx_to_widget_class( $post_type, true ) . '>' );
+					}
+
+					lsx_to_content( 'content', 'widget-' . $args['content_part'] );
+
+					if ( ! $carousel ) {
+						echo wp_kses_post( '</div>' );
+					}
+
+					if ( $carousel ) {
+						echo '</div>';
+					} elseif ( 0 === $count % $columns || $count === $post_count ) {
+						echo '</div>';
+
+						if ( $count < $post_count ) {
+							echo '<div class="row">';
+						}
+					}
+
+					$count++;
 				endwhile;
 
-				echo '</div>' . wp_kses_post( $args['after'] );
+				if ( $carousel ) {
+					echo '</div>';
+					echo '</div>';
+					echo '</div>';
+					echo '</div>';
+				} else {
+					echo '</div>';
+				}
+
+				echo wp_kses_post( $args['after'] );
 
 				$lsx_to_archive = 0;
 

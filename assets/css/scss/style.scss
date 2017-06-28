@@ -2541,6 +2541,8 @@ body.single-tour-operator {
 .lsx-to-widget-meta-data {
 	margin: 2.4rem 0;
 	position: relative;
+
+	.lsx-to-widget-item-wrap.lsx-review & { margin-bottom: 0; }
 }
 
 .lsx-to-meta-data {
