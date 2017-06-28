@@ -1322,7 +1322,7 @@ msgstr ""
 msgid "Travel Information"
 msgstr ""
 
-#: includes/template-tags/general.php:533, includes/template-tags/general.php:544
+#: includes/template-tags/general.php:535, includes/template-tags/general.php:546
 msgid "Enquire"
 msgstr ""
 

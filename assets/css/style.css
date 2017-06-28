@@ -1474,7 +1474,11 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-widget-view-all > span:after { left: 120%; }
 
+.lsx-to-widget-item-wrap.lsx-video .lsx-to-widget-content { padding-bottom: 2.4rem; }
+
 .lsx-to-widget-item-wrap .lsx-to-widget-content { background-color: #FFF; padding: 2.4rem 2rem 0; }
+
+.lsx-to-widget-item-wrap .lsx-to-widget-content .lsx-to-widget-title:only-child { margin-bottom: 0; }
 
 .lsx-to-widget-item-wrap .lsx-to-widget-content .moretag { display: block; margin: 0 -2rem; padding: 1rem 0; text-align: center; transition: background 300ms ease; }
 

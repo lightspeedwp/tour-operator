@@ -278,19 +278,21 @@ function lsx_to_envira_gallery($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_to_envira_videos($before="",$after="",$echo=true){
+function lsx_to_envira_videos( $before = "" , $after = "", $echo = true ) {
 	global $content_width;
-	$envira_video = get_post_meta(get_the_ID(),'envira_video',true);
+
+	$envira_video = get_post_meta( get_the_ID(), 'envira_video', true );
 	$return = false;
 
-	if(false !== $envira_video && '' !== $envira_video){
-		$return = do_shortcode('[envira-gallery id="'.$envira_video.'"]');
-		$return = $before.$return.$after;
+	if ( false !== $envira_video && '' !== $envira_video ) {
+		$return = do_shortcode( '[envira-gallery id="' . $envira_video . '"]' );
+		$return = $before . $return . $after;
 		$temp_width = $content_width;
 		$content_width = $temp_width;
-		if($echo){
+
+		if ( $echo ) {
 			echo wp_kses_post( $return );
-		}else{
+		} else {
 			return $return;
 		}
 	}

@@ -374,12 +374,12 @@ function lsx_to_connected_panel_query( $args = false ) {
 				$count = 1;
 				$interval = '6000';
 				$post_type = $args['content_part'];
-				$total = $items->post_count;
+				$post_count = $items->post_count;
 
-				$carousel = $total > $columns ? true : false;
+				$carousel = $post_count > $columns ? true : false;
 
-				if ( $total < $columns ) {
-					$columns = $total;
+				if ( $post_count < $columns ) {
+					$columns = $post_count;
 				}
 
 				echo wp_kses_post( $args['before'] );
@@ -510,11 +510,12 @@ function lsx_to_related_items( $taxonomy = false, $before = '', $after = '', $ec
 			$carousel_id = rand( 20, 20000 );
 			$interval = '6000';
 			$pagination = '';
-			$pages = ceil( $related_query->post_count / $columns );
+			$post_count = $related_query->post_count;
+			$pages = ceil( $post_count / $columns );
 			$post_type = get_post_type();
 			$carousel = false;
 
-			if ( $related_query->post_count > 3 ) {
+			if ( $post_count > 3 ) {
 				$carousel = true;
 			}
 

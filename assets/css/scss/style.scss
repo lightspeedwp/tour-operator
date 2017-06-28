@@ -2474,10 +2474,20 @@ body.single-tour-operator {
 	}
 }
 
+
+
 .lsx-to-widget-item-wrap {
+	&.lsx-video {
+		.lsx-to-widget-content { padding-bottom: 2.4rem; }
+	}
+
 	.lsx-to-widget-content {
 		background-color: #FFF;
 		padding: 2.4rem 2rem 0;
+
+		.lsx-to-widget-title {
+			&:only-child { margin-bottom: 0; }
+		}
 
 		.moretag {
 			display: block;
