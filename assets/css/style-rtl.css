@@ -1643,9 +1643,9 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-archive-template-grid .lsx-to-archive-content-title:only-child { margin-bottom: 0; }
 
-.lsx-to-archive-content-title .label { font-size: 60%; }
+.lsx-to-archive-content-title .lsx-to-label { font-size: 60%; }
 
-.lsx-to-archive-template-grid .lsx-to-archive-content-title .label { display: none; }
+.lsx-to-archive-template-grid .lsx-to-archive-content-title .lsx-to-label { display: none; }
 
 .lsx-to-archive-content-tagline:last-child { margin-bottom: 0; }
 
@@ -1701,3 +1701,5 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 .lsx-to-contact .lsx-to-contact-socials > a:not(.btn), .lsx-to-contact .lsx-to-contact-socials > a:not(.btn):active, .lsx-to-contact .lsx-to-contact-socials > a:not(.btn):visited { color: #919191; }
 
 .lsx-to-contact .lsx-to-contact-socials > a:not(.btn):hover, .lsx-to-contact .lsx-to-contact-socials > a:not(.btn):hover:active, .lsx-to-contact .lsx-to-contact-socials > a:not(.btn):focus { color: #F7AE00; }
+
+.lsx-to-label { background-color: #4A4A4A; color: #FFF; }

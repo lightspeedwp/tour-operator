@@ -13,7 +13,6 @@
 }
 
 @mixin customizer-to-body-colours($breaker: #DADDDF, $color: #4A4A4A, $link: #1098AD, $hover: #F7AE00, $small: #919191) {
-
 	.lsx-to-slider-inner {
 		.slick-dots {
 			& > li {
@@ -98,5 +97,10 @@
 				@include customizer-to-link-colour($small, $hover);
 			}
 		}
+	}
+
+	.lsx-to-label {
+		background-color: $color;
+		color: #FFF;
 	}
 }
