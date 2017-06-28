@@ -2869,6 +2869,14 @@ body.single-tour-operator {
 
 		&:only-child { margin-bottom: 0; }
 	}
+
+	.label {
+		font-size: 60%;
+
+		.lsx-to-archive-template-grid & {
+			display: none;
+		}
+	}
 }
 
 .lsx-to-archive-content-tagline {
