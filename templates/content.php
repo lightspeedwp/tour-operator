@@ -26,7 +26,10 @@
 
 	<div class="lsx-to-archive-wrapper">
 		<div class="lsx-to-archive-content">
-			<?php the_title( '<h3 class="lsx-to-archive-content-title"><a href="' . get_permalink() . '" title="' . esc_html__( 'Read more', 'tour-operator' ) . '">', '</a></h3>' ); ?>
+			<h3 class="lsx-to-archive-content-title">
+				<?php the_title( '<a href="' . get_permalink() . '" title="' . esc_html__( 'Read more', 'tour-operator' ) . '">', '</a>' ); ?>
+				<?php do_action( 'lsx_to_the_title_end', get_the_ID() ); ?>
+			</h3>
 
 			<div <?php lsx_to_entry_class( 'entry-content' ); ?>>
 				<?php the_excerpt(); ?>

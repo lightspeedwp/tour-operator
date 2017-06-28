@@ -67,9 +67,12 @@ function lsx_to_archive_entry_top() {
 
 		<div class="lsx-to-archive-wrapper">
 			<div class="lsx-to-archive-content">
-				<?php the_title( '<h3 class="lsx-to-archive-content-title"><a href="' . get_permalink() . '" title="' . esc_html__( 'Read more', 'tour-operator' ) . '">', '</a></h3>' ); ?>
-				<?php lsx_to_tagline( '<p class="lsx-to-archive-content-tagline">', '</p>' ); ?>
+				<h3 class="lsx-to-archive-content-title">
+					<?php the_title( '<a href="' . get_permalink() . '" title="' . esc_html__( 'Read more', 'tour-operator' ) . '">', '</a>' ); ?>
+					<?php do_action( 'lsx_to_the_title_end', get_the_ID() ); ?>
+				</h3>
 
+				<?php lsx_to_tagline( '<p class="lsx-to-archive-content-tagline">', '</p>' ); ?>
 	<?php }
 }
 
