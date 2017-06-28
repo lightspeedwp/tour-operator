@@ -130,7 +130,6 @@ class Tour_Operator {
 	 * @access private
 	 */
 	private function __construct() {
-
 		add_action( 'admin_init', array( $this, 'compatible_version_check' ) );
 
 		// Don't run anything else in the plugin, if we're on an incompatible PHP version.
@@ -360,13 +359,11 @@ class Tour_Operator {
 	 */
 	public function require_post_type_classes() {
 		foreach ( $this->post_types as $post_type => $label ) {
-			if(class_exists("lsx\\legacy\\{$post_type}")) {
-				call_user_func_array(array(
-					"lsx\\legacy\\{$post_type}",
-					'get_instance',
-				), array());
+			if ( class_exists( "lsx\\legacy\\{$post_type}" ) ) {
+				call_user_func_array( array( "lsx\\legacy\\{$post_type}", 'get_instance' ), array() );
 			}
 		}
+
 		$this->connections   = $this->create_post_connections();
 		$this->single_fields = apply_filters( 'lsx_to_search_fields', array() );
 	}
@@ -377,6 +374,7 @@ class Tour_Operator {
 	public function create_post_connections() {
 		$connections = array();
 		$post_types  = apply_filters( 'lsx_to_post_types', $this->post_types );
+
 		foreach ( $post_types as $key_a => $values_a ) {
 			foreach ( $this->post_types as $key_b => $values_b ) {
 				// Make sure we dont try connect a post type to itself.
@@ -393,14 +391,8 @@ class Tour_Operator {
 	 * Include the post type for the search integration
 	 */
 	public function lsx_to_search_integration() {
-		add_filter( 'lsx_to_search_post_types', array(
-			$this,
-			'post_types_filter',
-		) );
-		add_filter( 'lsx_to_search_taxonomies', array(
-			$this,
-			'taxonomies_filter',
-		) );
+		add_filter( 'lsx_to_search_post_types', array( $this, 'post_types_filter' ) );
+		add_filter( 'lsx_to_search_taxonomies', array( $this, 'taxonomies_filter' ) );
 	}
 
 	/**
@@ -482,6 +474,7 @@ class Tour_Operator {
 			}
 		} else {
 			$post_type = get_query_var( 'post_type' );
+
 			if ( is_post_type_archive( $this->active_post_types ) && isset( $this->options[ $post_type ] ) && isset( $this->options[ $post_type ]['tagline'] ) ) {
 				$tagline = $this->options[ $post_type ]['tagline'];
 			} elseif ( is_tax( array_keys( $this->taxonomies ) ) ) {
@@ -491,6 +484,7 @@ class Tour_Operator {
 				}
 			}
 		}
+
 		if ( false !== $tagline && '' !== $tagline ) {
 			$tagline = $before . $tagline . $after;
 		}
@@ -546,16 +540,35 @@ class Tour_Operator {
 	 * Allow extra tags and attributes to wp_kses_post()
 	 */
 	public function wp_kses_allowed_html( $allowedtags, $context ) {
-		// Tags exist, only adding new attributes.
+		if ( ! isset( $allowedtags['i'] ) ) {
+			$allowedtags['i'] = array();
+		}
 
 		$allowedtags['i']['aria-hidden']    = true;
+
+		if ( ! isset( $allowedtags['span'] ) ) {
+			$allowedtags['span'] = array();
+		}
+
 		$allowedtags['span']['aria-hidden'] = true;
+
+		if ( ! isset( $allowedtags['button'] ) ) {
+			$allowedtags['button'] = array();
+		}
 
 		$allowedtags['button']['aria-label']   = true;
 		$allowedtags['button']['data-dismiss'] = true;
 
+		if ( ! isset( $allowedtags['li'] ) ) {
+			$allowedtags['li'] = array();
+		}
+
 		$allowedtags['li']['data-target']   = true;
 		$allowedtags['li']['data-slide-to'] = true;
+
+		if ( ! isset( $allowedtags['a'] ) ) {
+			$allowedtags['a'] = array();
+		}
 
 		$allowedtags['a']['data-toggle']             = true;
 		$allowedtags['a']['data-target']             = true;
@@ -569,7 +582,10 @@ class Tour_Operator {
 		$allowedtags['a']['data-video-width']        = true;
 		$allowedtags['a']['data-video-height']       = true;
 		$allowedtags['a']['data-video-aspect-ratio'] = true;
-		$allowedtags['a']['style'] 					 = true;
+
+		if ( ! isset( $allowedtags['div'] ) ) {
+			$allowedtags['div'] = array();
+		}
 
 		$allowedtags['div']['aria-labelledby']                      = true;
 		$allowedtags['div']['data-interval']                        = true;
@@ -596,7 +612,11 @@ class Tour_Operator {
 		$allowedtags['div']['data-gallery-theme']                   = true;
 		$allowedtags['div']['data-justified-margins']               = true;
 		$allowedtags['div']['data-envira-columns']                  = true;
-		$allowedtags['div']['style']                                = true;
+		$allowedtags['div']['data-slick']                           = true;
+
+		if ( ! isset( $allowedtags['img'] ) ) {
+			$allowedtags['img'] = array();
+		}
 
 		$allowedtags['img']['data-envira-index']      = true;
 		$allowedtags['img']['data-envira-caption']    = true;
@@ -604,10 +624,6 @@ class Tour_Operator {
 		$allowedtags['img']['data-envira-item-id']    = true;
 		$allowedtags['img']['data-envira-src']        = true;
 		$allowedtags['img']['data-envira-srcset']     = true;
-
-		$allowedtags['div']['data-slick'] = true;
-
-		// New tags
 
 		if ( ! isset( $allowedtags['input'] ) ) {
 			$allowedtags['input'] = array();
@@ -651,7 +667,9 @@ class Tour_Operator {
 		$allowedtags['iframe']['allowfullscreen'] = true;
 		$allowedtags['iframe']['style']           = true;
 
-		$allowedtags['noscript'] = array();
+		if ( ! isset( $allowedtags['noscript'] ) ) {
+			$allowedtags['noscript'] = array();
+		}
 
 		return $allowedtags;
 	}
@@ -670,7 +688,6 @@ class Tour_Operator {
 	 */
 	public function safe_style_css( $allowedstyles ) {
 		$allowedstyles[] = 'display';
-		$allowedstyles[] = 'background';
 		$allowedstyles[] = 'background-image';
 
 		return $allowedstyles;
@@ -708,8 +725,10 @@ class Tour_Operator {
 	 */
 	public function get_ninja_forms() {
 		global $wpdb;
+
 		$results = $wpdb->get_results( "SELECT id,title FROM {$wpdb->prefix}nf3_forms" );
 		$forms   = false;
+
 		if ( ! empty( $results ) ) {
 			foreach ( $results as $form ) {
 				$forms[ $form->id ] = $form->title;
@@ -724,8 +743,10 @@ class Tour_Operator {
 	 */
 	public function get_gravity_forms() {
 		global $wpdb;
+
 		$results = \RGFormsModel::get_forms( null, 'title' );
 		$forms   = false;
+
 		if ( ! empty( $results ) ) {
 			foreach ( $results as $form ) {
 				$forms[ $form->id ] = $form->title;
@@ -740,8 +761,10 @@ class Tour_Operator {
 	 */
 	public function get_caldera_forms() {
 		global $wpdb;
+
 		$results = \Caldera_Forms_Forms::get_forms( true );
 		$forms   = false;
+
 		if ( ! empty( $results ) ) {
 			foreach ( $results as $form => $form_data ) {
 				$forms[ $form ] = $form_data['name'];
@@ -756,6 +779,7 @@ class Tour_Operator {
 	 */
 	public function activated_plugin() {
 		$plugins = get_option( 'active_plugins' );
+
 		if ( false != $plugins ) {
 			$search = preg_grep( '/.*\/tour-operator\.php/', $plugins );
 			$key    = array_search( $search, $plugins );
@@ -793,10 +817,7 @@ class Tour_Operator {
 		if ( ! self::compatible_version() ) {
 			if ( is_plugin_active( plugin_basename( LSX_TO_CORE ) ) ) {
 				deactivate_plugins( plugin_basename( LSX_TO_CORE ) );
-				add_action( 'admin_notices', array(
-					$this,
-					'compatible_version_notice',
-				) );
+				add_action( 'admin_notices', array( $this, 'compatible_version_notice' ) );
 
 				if ( isset( $_GET['activate'] ) ) {
 					unset( $_GET['activate'] );

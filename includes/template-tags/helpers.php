@@ -20,14 +20,16 @@
  * @subpackage	template-tags
  * @category 	class
  */
-function lsx_to_is_single_disabled($post_type=false){
+function lsx_to_is_single_disabled( $post_type = false ) {
 	$tour_operator = tour_operator();
-	if(false === $post_type) {
+
+	if ( false === $post_type ) {
 		$post_type = get_post_type();
 	}
-	if(is_object($tour_operator) && isset($tour_operator->options[$post_type]) && isset($tour_operator->options[$post_type]['disable_single'])){
+
+	if ( is_object( $tour_operator ) && isset( $tour_operator->options[ $post_type ] ) && isset( $tour_operator->options[ $post_type ]['disable_single'] ) ) {
 		return true;
-	}else{
+	} else {
 		return false;
 	}
 }
@@ -39,11 +41,12 @@ function lsx_to_is_single_disabled($post_type=false){
  * @subpackage	hook
  * @category 	modal
  */
-function lsx_to_enable_envira_banner(){
+function lsx_to_enable_envira_banner() {
 	$tour_operator = tour_operator();
-	if(isset($tour_operator->options) && isset($tour_operator->options['display']) && isset($tour_operator->options['display']['enable_galleries_in_banner'])){
+
+	if ( isset( $tour_operator->options ) && isset( $tour_operator->options['display'] ) && isset( $tour_operator->options['display']['enable_galleries_in_banner'] ) ) {
 		return true;
-	}else{
+	} else {
 		return false;
 	}
 }
@@ -55,12 +58,14 @@ function lsx_to_enable_envira_banner(){
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function lsx_to_accommodation_display_connected_tours(){
+function lsx_to_accommodation_display_connected_tours() {
 	$tour_operator = tour_operator();
 	$return = false;
-	if(isset($tour_operator->options['accommodation']['display_connected_tours']) && 'on' === $tour_operator->options['accommodation']['display_connected_tours']){
+
+	if ( isset( $tour_operator->options['accommodation']['display_connected_tours'] ) && 'on' === $tour_operator->options['accommodation']['display_connected_tours'] ) {
 		$return = true;
 	}
+
 	return $return;
  }
 
@@ -70,30 +75,30 @@ function lsx_to_accommodation_display_connected_tours(){
  * @param	$post_id string
  * @param	$post_type string
  */
-function lsx_to_item_has_children($post_id = false,$post_type = false) {
+function lsx_to_item_has_children( $post_id = false, $post_type = false ) {
 	global $wpdb;
-	if(false == $post_id){
+
+	if ( false == $post_id ) {
 		return false;
 	}
-	if(false == $post_type){
+	if ( false == $post_type ) {
 		$post_type = 'page';
 	}
-	$children = $wpdb->get_results(
-			$wpdb->prepare(
-					"
-					SELECT ID
-					FROM {$wpdb->posts}
-					WHERE (post_type = %s AND post_status = 'publish')
-					AND post_parent = %d
-					LIMIT 1
-					",
-					$post_type,$post_id
-			)
-			);
 
-	if(count($children) > 0){
+	$children = $wpdb->get_results(
+		$wpdb->prepare(
+			"SELECT ID
+			FROM {$wpdb->posts}
+			WHERE (post_type = %s AND post_status = 'publish')
+			AND post_parent = %d
+			LIMIT 1",
+			$post_type,$post_id
+		)
+	);
+
+	if ( count( $children ) > 0 ) {
 		return $children;
-	}else{
+	} else {
 		return false;
 	}
 }
@@ -111,15 +116,17 @@ function lsx_to_item_has_children($post_id = false,$post_type = false) {
  * @subpackage	template-tags
  * @category 	class
  */
-function lsx_to_get_post_type_section_title($post_type=false,$section='',$default=''){
-	$section_title = (!empty($section)) ? ($section.'_section_title') : 'section_title';
+function lsx_to_get_post_type_section_title( $post_type = false, $section = '', $default = '' ) {
+	$section_title = ( ! empty( $section )) ? ($section . '_section_title') : 'section_title';
 	$tour_operator = tour_operator();
-	if(false === $post_type) {
+
+	if ( false === $post_type ) {
 		$post_type = get_post_type();
 	}
-	if(is_object($tour_operator) && isset($tour_operator->options[$post_type]) && isset($tour_operator->options[$post_type][$section_title]) && !empty($tour_operator->options[$post_type][$section_title]) && '' !== $tour_operator->options[$post_type][$section_title]){
-		return $tour_operator->options[$post_type][$section_title];
-	}else{
+
+	if ( is_object( $tour_operator ) && isset( $tour_operator->options[ $post_type ] ) && isset( $tour_operator->options[ $post_type ][ $section_title ] ) && ! empty( $tour_operator->options[ $post_type ][ $section_title ] ) && '' !== $tour_operator->options[ $post_type ][ $section_title ] ) {
+		return $tour_operator->options[ $post_type ][ $section_title ];
+	} else {
 		return $default;
 	}
 }
@@ -130,14 +137,16 @@ function lsx_to_get_post_type_section_title($post_type=false,$section='',$defaul
  *
  * @param	$term_id
  */
-if(!function_exists('lsx_to_has_term_thumbnail')){
-	function lsx_to_has_term_thumbnail($term_id = false) {
-		if(false !== $term_id){
-			$term_thumbnail = get_term_meta($term_id, 'thumbnail', true);
-			if(false !== $term_thumbnail && '' !== $term_thumbnail){
+if ( ! function_exists( 'lsx_to_has_term_thumbnail' ) ) {
+	function lsx_to_has_term_thumbnail( $term_id = false ) {
+		if ( false !== $term_id ) {
+			$term_thumbnail = get_term_meta( $term_id, 'thumbnail', true );
+
+			if ( false !== $term_thumbnail && '' !== $term_thumbnail ) {
 				return true;
 			}
 		}
+
 		return false;
 	}
 }
@@ -147,10 +156,10 @@ if(!function_exists('lsx_to_has_term_thumbnail')){
  *
  * @param	$term_id string
  */
-if(!function_exists('lsx_to_term_thumbnail')){
-	function lsx_to_term_thumbnail($term_id = false,$size='lsx-thumbnail-single') {
-		if(false !== $term_id){
-			echo wp_kses_post(lsx_to_get_term_thumbnail($term_id,$size));
+if ( ! function_exists( 'lsx_to_term_thumbnail' ) ) {
+	function lsx_to_term_thumbnail( $term_id = false, $size = 'lsx-thumbnail-single' ) {
+		if ( false !== $term_id ) {
+			echo wp_kses_post( lsx_to_get_term_thumbnail( $term_id,$size ) );
 		}
 	}
 }
@@ -159,12 +168,12 @@ if(!function_exists('lsx_to_term_thumbnail')){
  *
  * @param	$term_id string
  */
-if(!function_exists('lsx_to_get_term_thumbnail')){
-	function lsx_to_get_term_thumbnail($term_id = false,$size='lsx-thumbnail-single') {
-		if(false !== $term_id){
-			$term_thumbnail_id = get_term_meta($term_id, 'thumbnail', true);
-			$img = wp_get_attachment_image_src($term_thumbnail_id,$size);
-			return apply_filters( 'lsx_to_lazyload_filter_images', '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="'.$img[0].'" />' );
+if ( ! function_exists( 'lsx_to_get_term_thumbnail' ) ) {
+	function lsx_to_get_term_thumbnail( $term_id = false, $size = 'lsx-thumbnail-single' ) {
+		if ( false !== $term_id ) {
+			$term_thumbnail_id = get_term_meta( $term_id, 'thumbnail', true );
+			$img = wp_get_attachment_image_src( $term_thumbnail_id,$size );
+			return apply_filters( 'lsx_to_lazyload_filter_images', '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="' . $img[0] . '" />' );
 		}
 	}
 }
@@ -179,14 +188,16 @@ if(!function_exists('lsx_to_get_term_thumbnail')){
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_to_term_tagline($term_id=false,$before="",$after="",$echo=true){
-	if(false !== $term_id){
-		$taxonomy_tagline = get_term_meta($term_id, 'tagline', true);
-		if(false !== $taxonomy_tagline && '' !== $taxonomy_tagline){
-			$return = $before.$taxonomy_tagline.$after;
-			if($echo){
+function lsx_to_term_tagline( $term_id = false, $before = '', $after = '', $echo = true ) {
+	if ( false !== $term_id ) {
+		$taxonomy_tagline = get_term_meta( $term_id, 'tagline', true );
+
+		if ( false !== $taxonomy_tagline && '' !== $taxonomy_tagline ) {
+			$return = $before . $taxonomy_tagline . $after;
+
+			if ( $echo ) {
 				echo wp_kses_post( $return );
-			}else{
+			} else {
 				return $return;
 			}
 		}
@@ -208,7 +219,8 @@ function lsx_to_term_tagline($term_id=false,$before="",$after="",$echo=true){
  */
 function lsx_to_has_custom_field_query( $meta_key = false, $id = false, $is_tax = false ) {
 	if ( false !== $meta_key ) {
-		$custom_field = get_transient( $id .'_'. $meta_key );
+		$custom_field = get_transient( $id . '_' . $meta_key );
+
 		if ( false === $custom_field ) {
 			if ( $is_tax ) {
 				$custom_field = get_term_meta( $id, $meta_key, true );
@@ -217,13 +229,14 @@ function lsx_to_has_custom_field_query( $meta_key = false, $id = false, $is_tax 
 			}
 
 			if ( false !== $custom_field && '' !== $custom_field ) {
-				set_transient( $id .'_'. $meta_key, $custom_field, 30 );
+				set_transient( $id . '_' . $meta_key, $custom_field, 30 );
 				return true;
 			}
 		} else {
 			return true;
 		}
 	}
+
 	return false;
 }
 
@@ -240,23 +253,26 @@ function lsx_to_has_custom_field_query( $meta_key = false, $id = false, $is_tax 
  * @subpackage	template-tags
  * @category 	helper
  */
-function lsx_to_custom_field_query($meta_key=false,$before="",$after="",$echo=false,$post_id=false){
-	if(false !== $meta_key){
+function lsx_to_custom_field_query( $meta_key = false, $before = '', $after = '', $echo = false, $post_id = false ) {
+	if ( false !== $meta_key ) {
 		//Check to see if we already have a transient set for this.
 		// TODO Need to move this to enclose the entire function and change to a !==,  that way you have to set up the custom field via the lsx_to_has_{custom_field} function
-		if(false === $post_id){
+		if ( false === $post_id ) {
 			$post_id = get_the_ID();
 		}
-		$value = get_transient( $post_id.'_'.$meta_key );
+
+		$value = get_transient( $post_id . '_' . $meta_key );
+
 		if ( false === $value ) {
-			$value = get_post_meta($post_id,$meta_key,true);
+			$value = get_post_meta( $post_id,$meta_key,true );
 		}
-		if(false !== $value && '' !== $value){
-			$return_html = $before.'<span class="values">'.$value.'</span>'.$after;
-			$return = apply_filters('lsx_to_custom_field_query',$return_html,$meta_key,$value,$before,$after);
-			if($echo){
+
+		if ( false !== $value && '' !== $value ) {
+			$return_html = $before . '<span class="values">' . $value . '</span>' . $after;
+			$return = apply_filters( 'lsx_to_custom_field_query',$return_html,$meta_key,$value,$before,$after );
+			if ( $echo ) {
 				echo wp_kses_post( $return );
-			}else{
+			} else {
 				return $return;
 			}
 		}
@@ -278,25 +294,27 @@ function lsx_to_custom_field_query($meta_key=false,$before="",$after="",$echo=fa
  * @subpackage	template-tags
  * @category 	helper
  */
-function lsx_to_connected_items_query($from=false,$to=false,$before="",$after="",$echo=false,$parents=false,$extra=false){
-	if(post_type_exists($from) && post_type_exists($to)){
-		$connected_ids = get_post_meta(get_the_ID(),$from.'_to_'.$to,false);
+function lsx_to_connected_items_query( $from = false, $to = false, $before = '', $after = '', $echo = false, $parents = false, $extra = false ) {
+	if ( post_type_exists( $from ) && post_type_exists( $to ) ) {
+		$connected_ids = get_post_meta( get_the_ID(),$from . '_to_' . $to,false );
 
-		if($parents) {
-			$connected_ids = apply_filters('lsx_to_parents_only',$connected_ids);
+		if ( $parents ) {
+			$connected_ids = apply_filters( 'lsx_to_parents_only',$connected_ids );
 		}
 
-		if(false !== $connected_ids && '' !== $connected_ids && !empty($connected_ids)){
-			if(!is_array($connected_ids)){
-				$connected_ids = array($connected_ids);
+		if ( false !== $connected_ids && '' !== $connected_ids && ! empty( $connected_ids ) ) {
+			if ( ! is_array( $connected_ids ) ) {
+				$connected_ids = array( $connected_ids );
 			}
-			$return = $before.lsx_to_connected_list($connected_ids,$from,true,', ').$after;
-			if($echo){
+
+			$return = $before . lsx_to_connected_list( $connected_ids,$from,true,', ' ) . $after;
+
+			if ( $echo ) {
 				echo wp_kses_post( $return );
-			}else{
+			} else {
 				return $return;
 			}
-		}else{
+		} else {
 			return false;
 		}
 	}
@@ -320,20 +338,18 @@ function lsx_to_connected_items_query($from=false,$to=false,$before="",$after=""
 function lsx_to_connected_panel_query( $args = false ) {
 	global $lsx_to_archive;
 
-	if (false !== $args && is_array( $args ) ) {
+	if ( false !== $args && is_array( $args ) ) {
 		$defaults = array(
-			'from'			=>	false,
-			'to'			=>	false,
-			'content_part'	=>	false,
-			'id'			=>	false,
-			'column'		=>	false,
-			'before'		=>	'',
-			'after'			=>	'',
-			'echo'			=>	true,
+			'from'			=> false,
+			'to'			=> false,
+			'content_part'	=> false,
+			'id'			=> false,
+			'column'		=> false,
+			'before'		=> '',
+			'after'			=> '',
 		);
 
 		$args = wp_parse_args( $args, $defaults );
-		$return = false;
 
 		if ( false === $args['content_part'] ) {
 			$args['content_part'] = $args['from'];
@@ -343,16 +359,16 @@ function lsx_to_connected_panel_query( $args = false ) {
 
 		if ( false !== $items_array && is_array( $items_array ) && ! empty( $items_array ) ) {
 			$items_query_args = array(
-				'post_type'		=>	$args['from'],
-				'post_status'	=>	'publish',
-				'post__in'		=>	$items_array
+				'post_type'		=> $args['from'],
+				'post_status'	=> 'publish',
+				'post__in'		=> $items_array,
 			);
 
 			$items = new WP_Query( $items_query_args );
 
-			if ( $items->have_posts() ):
+			if ( $items->have_posts() ) :
 				$lsx_to_archive = 1;
-				ob_start();
+
 				echo wp_kses_post( $args['before'] ) . '<div class="row lsx-to-archive-items lsx-to-archive-template-list">';
 
 				while ( $items->have_posts() ) :
@@ -363,16 +379,11 @@ function lsx_to_connected_panel_query( $args = false ) {
 				endwhile;
 
 				echo '</div>' . wp_kses_post( $args['after'] );
-				$return = ob_get_clean();
+
 				$lsx_to_archive = 0;
+
 				wp_reset_postdata();
 			endif;
-		}
-
-		if ( $args['echo'] ){
-			echo wp_kses_post( $return );
-		} else {
-			return $return;
 		}
 	}
 }
@@ -387,7 +398,7 @@ function lsx_to_connected_panel_query( $args = false ) {
  * @subpackage	template-tags
  * @category 	helper
  */
-function lsx_to_related_items( $taxonomy = false, $before = "", $after = "", $echo = true, $post_type = false ) {
+function lsx_to_related_items( $taxonomy = false, $before = '', $after = '', $echo = true, $post_type = false ) {
 	if ( false !== $taxonomy ) {
 		$return = false;
 		$filters = array();
@@ -415,8 +426,8 @@ function lsx_to_related_items( $taxonomy = false, $before = "", $after = "", $ec
 					array(
 						'taxonomy' => $taxonomy,
 						'field'    => 'slug',
-						'terms'    => array()
-					)
+						'terms'    => array(),
+					),
 				);
 
 				foreach ( $terms as $term ) {
@@ -440,7 +451,7 @@ function lsx_to_related_items( $taxonomy = false, $before = "", $after = "", $ec
 			//Setting some carousel variables
 			$count = 1;
 			$landing_image = '';
-			$carousel_id = rand ( 20, 20000 );
+			$carousel_id = rand( 20, 20000 );
 			$interval = '6000';
 			$pagination = '';
 			$pages = ceil( $related_query->post_count / $columns );
@@ -453,9 +464,9 @@ function lsx_to_related_items( $taxonomy = false, $before = "", $after = "", $ec
 
 			if ( $carousel ) {
 				echo '<div class="slider-container lsx-to-widget-items">';
-				echo '<div id="slider-'. esc_attr( $carousel_id ) .'" class="lsx-to-slider">';
+				echo '<div id="slider-' . esc_attr( $carousel_id ) . '" class="lsx-to-slider">';
 				echo '<div class="lsx-to-slider-wrap">';
-				echo '<div class="lsx-to-slider-inner" data-interval="'. esc_attr( $interval ) .'" data-slick=\'{ "slidesToShow": '. esc_attr( $columns ) .', "slidesToScroll": '. esc_attr( $columns ) .' }\'>';
+				echo '<div class="lsx-to-slider-inner" data-interval="' . esc_attr( $interval ) . '" data-slick=\'{ "slidesToShow": ' . esc_attr( $columns ) . ', "slidesToScroll": ' . esc_attr( $columns ) . ' }\'>';
 			} else {
 				echo "<div class='lsx-to-widget-items'>";
 			}
@@ -464,16 +475,16 @@ function lsx_to_related_items( $taxonomy = false, $before = "", $after = "", $ec
 				$related_query->the_post();
 
 				if ( $carousel ) {
-					echo '<div class="lsx-to-widget-item-wrap lsx-'. esc_attr( $post_type ) .'">';
+					echo '<div class="lsx-to-widget-item-wrap lsx-' . esc_attr( $post_type ) . '">';
 				} elseif ( 1 === $count ) {
 					echo '<div class="row">';
 				}
 
 				if ( ! $carousel ) {
-					echo wp_kses_post( '<div '. lsx_to_widget_class( $post_type, true ) .'>' );
+					echo wp_kses_post( '<div ' . lsx_to_widget_class( $post_type, true ) . '>' );
 				}
 
-				lsx_to_content( 'content', 'widget-'. $post_type );
+				lsx_to_content( 'content', 'widget-' . $post_type );
 
 				if ( ! $carousel ) {
 					echo wp_kses_post( '</div>' );
@@ -509,7 +520,7 @@ function lsx_to_related_items( $taxonomy = false, $before = "", $after = "", $ec
 
 			wp_reset_postdata();
 
-			$return = $before.$return.$after;
+			$return = $before . $return . $after;
 		endif;
 
 		if ( $echo ) {
@@ -532,47 +543,47 @@ function lsx_to_related_items( $taxonomy = false, $before = "", $after = "", $ec
  * @subpackage	template-tags
  * @category 	helper
  */
-function lsx_to_connected_list($connected_ids = false,$type = false,$link = true,$seperator=', ',$parent=false) {
-
-	if(false === $connected_ids || false === $type){
+function lsx_to_connected_list( $connected_ids = false, $type = false, $link = true, $seperator = ', ', $parent = false ) {
+	if ( false === $connected_ids || false === $type ) {
 		return false;
-	}else{
-
-		if(!is_array($connected_ids)){
-			$connected_ids = explode(',',$connected_ids);
+	} else {
+		if ( ! is_array( $connected_ids ) ) {
+			$connected_ids = explode( ',',$connected_ids );
 		}
 
 		$filters = array(
-				'post_type' => $type,
-				'post_status' => 'publish',
-				'post__in'	=> $connected_ids
+			'post_type' => $type,
+			'post_status' => 'publish',
+			'post__in'	=> $connected_ids,
 		);
-		if(false !== $parent){
-			$filters['post_parent']=$parent;
+
+		if ( false !== $parent ) {
+			$filters['post_parent'] = $parent;
 		}
-		//print_r($filters);
+
 		$connected_query = get_posts( $filters );
 
-		if(is_array($connected_query)){
+		if ( is_array( $connected_query ) ) {
 			$connected_list = array();
-			foreach($connected_query as $cp){
 
+			foreach ( $connected_query as $cp ) {
 				$html = '';
-				if($link){
-					$html .= '<a href="'.get_the_permalink($cp->ID).'">';
+
+				if ( $link ) {
+					$html .= '<a href="' . get_the_permalink( $cp->ID ) . '">';
 				}
 
-				$html .= get_the_title($cp->ID);
+				$html .= get_the_title( $cp->ID );
 
-				if($link){
+				if ( $link ) {
 					$html .= '</a>';
 				}
-				$html = apply_filters('lsx_to_connected_list_item',$html,$cp->ID,$link);
-				$connected_list[] = $html;
 
+				$html = apply_filters( 'lsx_to_connected_list_item',$html,$cp->ID,$link );
+				$connected_list[] = $html;
 			}
 
-			return implode($seperator,$connected_list);
+			return implode( $seperator,$connected_list );
 		}
 	}
 }
