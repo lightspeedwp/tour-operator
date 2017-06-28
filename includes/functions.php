@@ -171,6 +171,7 @@ function lsx_to_itinerary_description() {
  */
 function lsx_to_itinerary_has_thumbnail() {
 	global $tour_itinerary;
+
 	if ( $tour_itinerary && $tour_itinerary->has_itinerary ) {
 		return true;
 	}
@@ -194,6 +195,7 @@ function lsx_to_itinerary_thumbnail() {
 		if ( false !== $tour_itinerary->itinerary['featured_image'] && '' !== $tour_itinerary->itinerary['featured_image'] ) {
 			$tour_itinerary->save_used_image( $tour_itinerary->itinerary['featured_image'] );
 			$thumbnail = wp_get_attachment_image_src( $tour_itinerary->itinerary['featured_image'], 'lsx-thumbnail-wide' );
+
 			if ( is_array( $thumbnail ) ) {
 				$thumbnail_src = $thumbnail[0];
 			}
@@ -215,6 +217,7 @@ function lsx_to_itinerary_thumbnail() {
 				if ( false !== $current_image_id ) {
 					$tour_itinerary->save_used_image( $current_image_id );
 					$temp_src_array = wp_get_attachment_image_src( $current_image_id, 'lsx-thumbnail-wide' );
+
 					if ( is_array( $temp_src_array ) ) {
 						$accommodation_images[] = $temp_src_array[0];
 					}
@@ -232,7 +235,8 @@ function lsx_to_itinerary_thumbnail() {
 		if ( false === $thumbnail_src || '' === $thumbnail_src ) {
 			$thumbnail_src = \lsx\legacy\Placeholders::placeholder_url( null, 'tour' );
 		}
-		echo wp_kses_post( apply_filters( 'lsx_to_lazyload_filter_images', '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="' . $thumbnail_src . '" />' ) );
+
+		return $thumbnail_src;
 	}
 }
 
@@ -263,16 +267,19 @@ function lsx_to_itinerary_destinations( $before = '', $after = '' ) {
  */
 function lsx_to_itinerary_accommodation( $before = '', $after = '' ) {
 	global $tour_itinerary;
+
 	if ( $tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary ) {
 		if ( is_array( $tour_itinerary->itinerary['accommodation_to_tour'] ) && ! empty( $tour_itinerary->itinerary['accommodation_to_tour'] ) ) {
 			echo wp_kses_post( $before . lsx_to_connected_list( $tour_itinerary->itinerary['accommodation_to_tour'], 'accommodation', true, ', ' ) . $after );
 		}
 
+		$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
+
 		//display the additional accommodation information.
 		foreach ( $tour_itinerary->itinerary['accommodation_to_tour'] as $accommodation ) {
-			lsx_to_accommodation_rating( '<div class="meta rating">' . __( 'Rating', 'tour-operator' ) . ': ', '</div>', $accommodation );
-			the_terms( $accommodation, 'accommodation-type', '<div class="meta accommodation-type">' . __( 'Type', 'tour-operator' ) . ': ', ', ', '</div>' );
-			lsx_to_accommodation_special_interests( '<div class="meta special_interests">' . __( 'Special Interests', 'tour-operator' ) . ': <span>', '</span></div>', $accommodation );
+			lsx_to_accommodation_rating( '<span class="' . $meta_class . 'rating">' . __( 'Rating', 'tour-operator' ) . ': ', '</span>', $accommodation );
+			the_terms( $accommodation, 'accommodation-type', '<span class="' . $meta_class . 'style">' . __( 'Type', 'tour-operator' ) . ': ', ', ', '</span>' );
+			lsx_to_accommodation_special_interests( '<span class="' . $meta_class . 'special">' . __( 'Special Interests', 'tour-operator' ) . ': ', '</span>', $accommodation );
 		}
 	}
 }

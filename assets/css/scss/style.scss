@@ -2615,6 +2615,8 @@ body.single-tour-operator {
 	&:before {
 		display: none;
 	}
+
+	&.itinerary-list { margin-top: -2.4rem; }
 }
 
 .lsx-to-archive-items-separator.lsx-title {
@@ -2628,7 +2630,8 @@ body.single-tour-operator {
 .lsx-to-archive-item {
 	margin-top: 4.25rem;
 
-	& > article[id^='post-'] {
+	& > article[id^='post-'],
+	& > .lsx-to-archive-container {
 		align-items: stretch;
 		background-color: #FFF;
 		display: flex;
@@ -2753,7 +2756,8 @@ body.single-tour-operator {
 	width: 100%;
 
 	@include media('<phone') {
-		& > a {
+		& > a,
+		.lsx-to-thumb-slot {
 			background-image: none !important;
 
 			& > img { width: 100%; }
@@ -2766,7 +2770,8 @@ body.single-tour-operator {
 			position: relative;
 			width: 25%;
 
-			& > a {
+			& > a,
+			.lsx-to-thumb-slot {
 				background-position: center center;
 				background-repeat: no-repeat;
 				background-size: cover;
@@ -2782,7 +2787,8 @@ body.single-tour-operator {
 	}
 
 	.lsx-to-archive-template-grid & {
-		& > a {
+		& > a,
+		.lsx-to-thumb-slot {
 			background-image: none !important;
 			display: block;
 

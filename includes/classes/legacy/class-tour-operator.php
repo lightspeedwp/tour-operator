@@ -595,6 +595,7 @@ class Tour_Operator {
 		$allowedtags['div']['data-gallery-theme']                   = true;
 		$allowedtags['div']['data-justified-margins']               = true;
 		$allowedtags['div']['data-envira-columns']                  = true;
+		$allowedtags['div']['style']                                = true;
 
 		$allowedtags['img']['data-envira-index']      = true;
 		$allowedtags['img']['data-envira-caption']    = true;
@@ -668,6 +669,7 @@ class Tour_Operator {
 	 */
 	public function safe_style_css( $allowedstyles ) {
 		$allowedstyles[] = 'display';
+		$allowedstyles[] = 'background-image';
 
 		return $allowedstyles;
 	}
