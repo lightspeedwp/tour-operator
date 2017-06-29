@@ -1866,10 +1866,10 @@ body.single-tour-operator {
 
 	// ---------- Extra sections (without big title) ----------
 
-	#highlights {
-		@extend %single-simple-list;
-		@extend %single-simple-list-highlights;
-	}
+	// #highlights {
+	// 	@extend %single-simple-list;
+	// 	@extend %single-simple-list-highlights;
+	// }
 
 	#features {
 		@extend %single-simple-list;
@@ -2561,6 +2561,12 @@ body.single-tour-operator {
 
 	& + .lsx-to-meta-data { margin-top: 5px; }
 
+	#fast-facts & {
+		font-size: 15px;
+
+		& + .lsx-to-meta-data { margin-top: 1.2rem; }
+	}
+
 	&:before {
 		color: inherit;
 		display: inline-block;
@@ -2583,6 +2589,7 @@ body.single-tour-operator {
 	&.lsx-to-meta-data-friendly:before { content: '\f046'; }
 	&.lsx-to-meta-data-languages:before { content: '\f1ab'; }
 	&.lsx-to-meta-data-phone:before { content: '\f095'; }
+	&.lsx-to-meta-data-pin:before { content: '\f041'; }
 	&.lsx-to-meta-data-price:before { content: '\f0d6'; }
 	&.lsx-to-meta-data-rating:before { content: '\f006'; }
 	&.lsx-to-meta-data-role:before { content: '\f0c0'; }
@@ -2936,6 +2943,11 @@ body.single-tour-operator {
 	&:nth-child(even) { background-color: #FFF; }
 }
 
+.lsx-to-section-wrapper {
+	margin: 0 -9999rem;
+	padding: 8.5rem 9999rem 0;
+}
+
 .single-tour-operator .content-area { margin-bottom: 0; }
 
 .lsx-title-small {
@@ -2943,7 +2955,8 @@ body.single-tour-operator {
 	font-weight: 700;
 }
 
-#included-excluded {
+#included-excluded,
+#highlights {
 	.entry-content {
 		ul {
 			list-style: none;
@@ -2988,8 +3001,13 @@ body.single-tour-operator {
 	}
 }
 
-.lsx-map {
+.lsx-map { margin-top: 4.25rem; }
+
+.lsx-to-section-inner {
 	margin-top: 4.25rem;
+	padding: 2.4rem;
+
+	background-color: #FFF;
 }
 
 @include customizer-to-body-colours(#DADDDF, #4A4A4A, #1098AD, #F7AE00, #919191);

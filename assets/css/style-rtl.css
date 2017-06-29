@@ -1025,9 +1025,9 @@
 
 .flag-icon-un.flag-icon-squared { background-image: url(../flags/1x1/un.svg); }
 
-body.archive-tour-operator #main > .lsx-to-navigation ul, body.single-tour-operator #main > .lsx-to-navigation ul, body.single-tour-operator #highlights .entry-content ul, body.single-tour-operator #features .entry-content ul, body.single-tour-operator #terms-and-conditions .entry-content ul, body.single-tour-operator #facilities ul { list-style: none; padding: 0; margin: 0; }
+body.archive-tour-operator #main > .lsx-to-navigation ul, body.single-tour-operator #main > .lsx-to-navigation ul, body.single-tour-operator #features .entry-content ul, body.single-tour-operator #terms-and-conditions .entry-content ul, body.single-tour-operator #facilities ul { list-style: none; padding: 0; margin: 0; }
 
-body.home .meta:after, body.archive-tour-operator .meta:after, body.single-tour-operator .meta:after, body.archive-tour-operator #main > .lsx-to-navigation ul:after, body.single-tour-operator #main > .lsx-to-navigation ul:after, body.archive-tour-operator .panel > article:after, body.single-tour-operator #tours .panel > article:after, body.single-tour-operator #regions .panel > article:after, body.single-tour-operator #accommodation .panel > article:after, body.single-tour-operator #destinations .panel > article:after, body.single-tour-operator #activities .panel > article:after, body.single-tour-operator #activites .panel > article:after, body.single-tour-operator #related-items .panel > article:after, body.single-tour-operator #videos .panel > article:after, body.single-tour-operator #itinerary .panel .itinerary-inner:after, body.single-tour-operator #rooms .panel > .unit:after, body.single-tour-operator #chalets .panel > .unit:after, body.single-tour-operator #tents .panel > .unit:after, body.single-tour-operator #spas .panel > .unit:after, body.single-tour-operator #villas .panel > .unit:after, body.single-tour-operator #travel-info .panel > .unit:after, body.archive-tour-operator #summary article.hentry .team-member-widget:after, body.single-tour-operator #summary article.hentry .team-member-widget:after, body.single-tour-operator .lsx-modal article.hentry .team-member-widget:after, body.single-tour-operator #highlights .best-time-to-visit .best-time-to-visit-content:after { visibility: hidden; display: block; font-size: 0; content: ""; clear: both; height: 0; }
+body.home .meta:after, body.archive-tour-operator .meta:after, body.single-tour-operator .meta:after, body.archive-tour-operator #main > .lsx-to-navigation ul:after, body.single-tour-operator #main > .lsx-to-navigation ul:after, body.archive-tour-operator .panel > article:after, body.single-tour-operator #tours .panel > article:after, body.single-tour-operator #regions .panel > article:after, body.single-tour-operator #accommodation .panel > article:after, body.single-tour-operator #destinations .panel > article:after, body.single-tour-operator #activities .panel > article:after, body.single-tour-operator #activites .panel > article:after, body.single-tour-operator #related-items .panel > article:after, body.single-tour-operator #videos .panel > article:after, body.single-tour-operator #itinerary .panel .itinerary-inner:after, body.single-tour-operator #rooms .panel > .unit:after, body.single-tour-operator #chalets .panel > .unit:after, body.single-tour-operator #tents .panel > .unit:after, body.single-tour-operator #spas .panel > .unit:after, body.single-tour-operator #villas .panel > .unit:after, body.single-tour-operator #travel-info .panel > .unit:after, body.archive-tour-operator #summary article.hentry .team-member-widget:after, body.single-tour-operator #summary article.hentry .team-member-widget:after, body.single-tour-operator .lsx-modal article.hentry .team-member-widget:after { visibility: hidden; display: block; font-size: 0; content: ""; clear: both; height: 0; }
 
 body.archive-tour-operator .panel, body.single-tour-operator #tours .panel, body.single-tour-operator #regions .panel, body.single-tour-operator #accommodation .panel, body.single-tour-operator #destinations .panel, body.single-tour-operator #activities .panel, body.single-tour-operator #activites .panel, body.single-tour-operator #related-items .panel, body.single-tour-operator #videos .panel, body.single-tour-operator #itinerary .panel { margin-bottom: 0; background: none; border: none; border-radius: 0; box-shadow: none; }
 
@@ -1279,30 +1279,18 @@ body.archive-tour-operator #summary article.hentry, body.single-tour-operator #s
 @media only screen and (min-width: 768px) { body.archive-tour-operator #summary article.hentry .entry-content .meta.info .price, body.single-tour-operator #summary article.hentry .entry-content .meta.info .price, body.single-tour-operator .lsx-modal article.hentry .entry-content .meta.info .price { display: inline-block; float: right; margin-bottom: 0; }
   body.archive-tour-operator #summary article.hentry .entry-content .meta.info .duration, body.single-tour-operator #summary article.hentry .entry-content .meta.info .duration, body.single-tour-operator .lsx-modal article.hentry .entry-content .meta.info .duration { display: inline-block; float: left; } }
 
-body.single-tour-operator #highlights, body.single-tour-operator #features { margin-top: 50px; }
+body.single-tour-operator #features { margin-top: 50px; }
 
-@media only screen and (max-width: 767px) { body.single-tour-operator #highlights, body.single-tour-operator #features { margin-top: 30px; }
-  body.single-tour-operator #highlights .col-sm-6:last-child, body.single-tour-operator #features .col-sm-6:last-child { margin-top: 30px; } }
+@media only screen and (max-width: 767px) { body.single-tour-operator #features { margin-top: 30px; }
+  body.single-tour-operator #features .col-sm-6:last-child { margin-top: 30px; } }
 
-body.single-tour-operator #highlights .section-title, body.single-tour-operator #features .section-title { color: #333; font-size: 18px; margin: 0 0 20px; }
+body.single-tour-operator #features .section-title { color: #333; font-size: 18px; margin: 0 0 20px; }
 
-body.single-tour-operator #highlights .entry-content ul li, body.single-tour-operator #features .entry-content ul li { color: #555; font-size: 15px; line-height: 23px; margin-bottom: 10px; margin-right: 20px; }
+body.single-tour-operator #features .entry-content ul li { color: #555; font-size: 15px; line-height: 23px; margin-bottom: 10px; margin-right: 20px; }
 
-body.single-tour-operator #highlights .entry-content ul li:before, body.single-tour-operator #features .entry-content ul li:before { content: '\f058'; font-family: fontawesome; margin-left: 7px; margin-right: -20px; }
+body.single-tour-operator #features .entry-content ul li:before { content: '\f058'; font-family: fontawesome; margin-left: 7px; margin-right: -20px; }
 
-body.single-tour-operator #highlights .entry-content ul li ul, body.single-tour-operator #features .entry-content ul li ul { margin-top: 10px; }
-
-body.single-tour-operator #highlights .best-time-to-visit .best-time-to-visit-content [class^="col-"] { height: 90px; overflow: hidden; text-align: center; border-top: 1px solid #333; border-left: 1px solid #ddd; border-bottom: 1px solid #333; padding-right: 0; padding-left: 0; }
-
-body.single-tour-operator #highlights .best-time-to-visit .best-time-to-visit-content [class^="col-"]:nth-of-type(6n-5) { border-right: 1px solid #333; }
-
-body.single-tour-operator #highlights .best-time-to-visit .best-time-to-visit-content [class^="col-"]:nth-of-type(6n) { border-left: 1px solid #333; }
-
-body.single-tour-operator #highlights .best-time-to-visit .best-time-to-visit-content [class^="col-"] small { color: #fff; background-color: #333; line-height: 43px; display: block; font-size: 15px; font-weight: bold; padding-right: 15px; padding-left: 15px; }
-
-body.single-tour-operator #highlights .best-time-to-visit .best-time-to-visit-content [class^="col-"] br { display: none; }
-
-body.single-tour-operator #highlights .best-time-to-visit .best-time-to-visit-content [class^="col-"] .fa { font-size: 25px; color: #555; padding: 10px 0; }
+body.single-tour-operator #features .entry-content ul li ul { margin-top: 10px; }
 
 body.single-tour-operator #terms-and-conditions .entry-content ul li { color: #555; font-size: 15px; line-height: 23px; margin-bottom: 10px; margin-right: 20px; }
 
@@ -1496,6 +1484,10 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-meta-data + .lsx-to-meta-data { margin-top: 5px; }
 
+#fast-facts .lsx-to-meta-data { font-size: 15px; }
+
+#fast-facts .lsx-to-meta-data + .lsx-to-meta-data { margin-top: 1.2rem; }
+
 .lsx-to-meta-data:before { color: inherit; display: inline-block; font-family: 'FontAwesome'; font-size: inherit; right: 0; position: absolute; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
 .lsx-to-meta-data.lsx-to-meta-data-accommodations:before { content: '\f015'; }
@@ -1515,6 +1507,8 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 .lsx-to-meta-data.lsx-to-meta-data-languages:before { content: '\f1ab'; }
 
 .lsx-to-meta-data.lsx-to-meta-data-phone:before { content: '\f095'; }
+
+.lsx-to-meta-data.lsx-to-meta-data-pin:before { content: '\f041'; }
 
 .lsx-to-meta-data.lsx-to-meta-data-price:before { content: '\f0d6'; }
 
@@ -1660,23 +1654,27 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-section:nth-child(even) { background-color: #FFF; }
 
+.lsx-to-section-wrapper { margin: 0 -9999rem; padding: 8.5rem 9999rem 0; }
+
 .single-tour-operator .content-area { margin-bottom: 0; }
 
 .lsx-title-small { font-size: 22px; font-weight: 700; }
 
-#included-excluded .entry-content ul { list-style: none; margin-bottom: 0; padding-right: 20px; }
+#included-excluded .entry-content ul, #highlights .entry-content ul { list-style: none; margin-bottom: 0; padding-right: 20px; }
 
-#included-excluded .entry-content ul li { position: relative; }
+#included-excluded .entry-content ul li, #highlights .entry-content ul li { position: relative; }
 
-#included-excluded .entry-content ul li + li { margin-top: 1.2rem; }
+#included-excluded .entry-content ul li + li, #highlights .entry-content ul li + li { margin-top: 1.2rem; }
 
-#included-excluded .entry-content ul li > ul { margin-top: 1.2rem; padding-right: 40px; }
+#included-excluded .entry-content ul li > ul, #highlights .entry-content ul li > ul { margin-top: 1.2rem; padding-right: 40px; }
 
-#included-excluded .entry-content ul li:before { color: inherit; content: '\f058'; display: inline-block; font-family: 'FontAwesome'; font-size: 16px; position: absolute; right: -20px; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+#included-excluded .entry-content ul li:before, #highlights .entry-content ul li:before { color: inherit; content: '\f058'; display: inline-block; font-family: 'FontAwesome'; font-size: 16px; position: absolute; right: -20px; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
-#included-excluded .not-included .entry-content ul li:before { content: '\f057'; }
+#included-excluded .not-included .entry-content ul li:before, #highlights .not-included .entry-content ul li:before { content: '\f057'; }
 
 .lsx-map { margin-top: 4.25rem; }
+
+.lsx-to-section-inner { margin-top: 4.25rem; padding: 2.4rem; background-color: #FFF; }
 
 .lsx-to-slider-inner .slick-dots > li > button { border-color: #4A4A4A; }
 

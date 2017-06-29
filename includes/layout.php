@@ -286,13 +286,39 @@ function lsx_to_tour_single_content_bottom() {
 	if ( is_singular( 'tour' ) ) { ?>
 		<div class="lsx-to-section-wrapper">
 			<div class="row">
+
 				<div class="col-xs-12 col-sm-6">
-					<?php lsx_to_highlights( '<section id="highlights" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Highlights', 'tour-operator' ) . '</h2>', '</section>' ); ?>
+					<section id="fast-facts">
+						<h2 class="lsx-to-section-title lsx-title"><?php echo esc_html__( 'Fast Facts', 'tour-operator' ); ?></h2>
+						<div class="lsx-to-section-inner">
+							<?php
+								$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
+
+								lsx_to_departure_point( '<span class="' . $meta_class . 'pin">' . esc_html__( 'Departs from', 'tour-operator' ) . ': ', '</span>' );
+								lsx_to_end_point( '<span class="' . $meta_class . 'pin">' . esc_html__( 'Ends in', 'tour-operator' ) . ': ', '</span>' );
+								lsx_to_connected_countries( '<span class="' . $meta_class . 'destinations">' . esc_html__( 'Destinations', 'tour-operator' ) . ': ', '</span>' );
+								the_terms( get_the_ID(), 'travel-style', '<span class="' . $meta_class . 'style">' . esc_html__( 'Travel Style', 'tour-operator' ) . ': ', ', ', '</span>' );
+
+								if ( function_exists( 'lsx_to_connected_activities' ) ) {
+									lsx_to_connected_activities( '<span class="' . $meta_class . 'activities">' . esc_html__( 'Activities', 'tour-operator' ) . ': ', '</span>' );
+								}
+							?>
+						</div>
+					</section>
 				</div>
 
 				<div class="col-xs-12 col-sm-6">
-					<?php lsx_to_best_time_to_visit( '<section id="best-time-to-visit" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Best time to visit', 'tour-operator' ) . '</h2><div class="best-time-to-visit-wrapper">', '</div></section>' ); ?>
+					<section id="highlights">
+						<h2 class="lsx-to-section-title lsx-title"><?php echo esc_html__( 'Highlights', 'tour-operator' ); ?></h2>
+						<div class="lsx-to-section-inner">
+							<?php lsx_to_highlights(); ?>
+						</div>
+					</section>
 				</div>
+
+				<!-- <div class="col-xs-12 col-sm-6">
+					<php lsx_to_best_time_to_visit( '<section id="best-time-to-visit" class="lsx-to-sub-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Best time to visit', 'tour-operator' ) . '</h2><div class="best-time-to-visit-wrapper">', '</div></section>' ); ?>
+				</div> -->
 			</div>
 		</div>
 
