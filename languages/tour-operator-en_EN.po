@@ -19,43 +19,43 @@ msgstr ""
 msgid "Tour Operator"
 msgstr ""
 
-#: includes/functions.php:291, templates/content-accommodation.php:31, templates/content-widget-accommodation.php:33, includes/metaboxes/config-accommodation.php:112, includes/template-tags/accommodation.php:291
+#: includes/functions.php:292, templates/content-accommodation.php:31, templates/content-widget-accommodation.php:33, includes/metaboxes/config-accommodation.php:112, includes/template-tags/accommodation.php:291
 msgid "Rating"
 msgstr ""
 
-#: includes/functions.php:292, templates/content-accommodation.php:34, includes/metaboxes/config-accommodation.php:275, includes/template-tags/accommodation.php:294
+#: includes/functions.php:293, templates/content-accommodation.php:34, includes/metaboxes/config-accommodation.php:275, includes/template-tags/accommodation.php:294
 msgid "Type"
 msgstr ""
 
-#: includes/functions.php:293, templates/content-accommodation.php:37, includes/metaboxes/config-accommodation.php:180, includes/template-tags/accommodation.php:297
+#: includes/functions.php:294, templates/content-accommodation.php:37, includes/metaboxes/config-accommodation.php:180, includes/template-tags/accommodation.php:297
 msgid "Special Interests"
 msgstr ""
 
-#: includes/functions.php:351, includes/classes/legacy/class-frontend.php:366, includes/classes/legacy/class-frontend.php:379
+#: includes/functions.php:353, includes/classes/legacy/class-frontend.php:366, includes/classes/legacy/class-frontend.php:379
 msgid "Read More"
 msgstr ""
 
-#: includes/functions.php:569, includes/classes/legacy/class-accommodation.php:78
+#: includes/functions.php:571, includes/classes/legacy/class-accommodation.php:78
 msgid "Chalet"
 msgstr ""
 
-#: includes/functions.php:570, includes/classes/legacy/class-accommodation.php:79
+#: includes/functions.php:572, includes/classes/legacy/class-accommodation.php:79
 msgid "Room"
 msgstr ""
 
-#: includes/functions.php:571, includes/classes/legacy/class-accommodation.php:80
+#: includes/functions.php:573, includes/classes/legacy/class-accommodation.php:80
 msgid "Spa"
 msgstr ""
 
-#: includes/functions.php:572, includes/classes/legacy/class-accommodation.php:81
+#: includes/functions.php:574, includes/classes/legacy/class-accommodation.php:81
 msgid "Tent"
 msgstr ""
 
-#: includes/functions.php:573, includes/classes/legacy/class-accommodation.php:82
+#: includes/functions.php:575, includes/classes/legacy/class-accommodation.php:82
 msgid "Villa"
 msgstr ""
 
-#: includes/functions.php:580, includes/layout.php:158, includes/layout.php:395, includes/template-tags/destination.php:25, includes/template-tags/destination.php:55, includes/template-tags/destination.php:96, includes/template-tags/destination.php:118, includes/classes/legacy/class-accommodation.php:296
+#: includes/functions.php:582, includes/layout.php:158, includes/layout.php:395, includes/template-tags/destination.php:25, includes/template-tags/destination.php:55, includes/template-tags/destination.php:96, includes/template-tags/destination.php:118, includes/classes/legacy/class-accommodation.php:296
 msgstr ""
 
 #: includes/layout.php:71, templates/content.php:30
