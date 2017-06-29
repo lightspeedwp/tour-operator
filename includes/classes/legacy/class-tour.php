@@ -445,7 +445,6 @@ class Tour {
 			$this->get_itinerary_link();
 			$this->get_include_link();
 			$this->get_map_link();
-
 			$this->get_gallery_link();
 			$this->get_videos_link();
 

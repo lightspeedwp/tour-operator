@@ -201,19 +201,14 @@ var lsx_to = Object.create( null );
 	 */
 	// @TODO - Use the new library imported on LSX
 	lsx_to.fix_anchor_menu = function() {
-		// $( '.lsx-to-navigation' ).each( function() {
-		// 	var box = $( this );
+		$( '.lsx-to-navigation' ).scrollToFixed({
+			minWidth: 1200,
+			marginTop: function () {
+				var mt = $( '.top-menu-fixed #masthead' ).length > 0 ? $( '.top-menu-fixed #masthead' ).outerHeight( true ) - 40 :  0;
 
-		// 	if ( $( '#wpadminbar' ).length > 0 ) {
-		// 		box.addClass( 'fixto-logged' );
-		// 	}
-
-		// 	box.fixTo( '#primary', {
-		// 		mind: 'header.navbar-static-top',
-		// 		useNativeSticky: false,
-		// 		zIndex: 100
-		// 	} );
-		// } );
+				return mt;
+			}
+		});
 	};
 
 	/**
@@ -229,8 +224,9 @@ var lsx_to = Object.create( null );
 			var $from = $( this ),
 				$to = $( $from.attr( 'href' ) ),
 				top = parseInt( $to.offset().top ),
-				extra_header = $( 'header.navbar-static-top' ).length > 0 ? $( 'header.navbar-static-top' ).outerHeight( true ) : 0,
-				extra_navigation = $( '.lsx-to-navigation' ).length > 0 ? $( '.lsx-to-navigation' ).outerHeight( true ) : 0,
+				// extra_header = $( 'header.navbar-static-top' ).length > 0 ? $( 'header.navbar-static-top' ).outerHeight( true ) : 0,
+				extra_header = $( '.top-menu-fixed #masthead' ).length > 0 ? $( '.top-menu-fixed #masthead' ).outerHeight( true ) : 0,
+				extra_navigation = $( '.lsx-to-navigation' ).length > 0 ? $( '.lsx-to-navigation' ).outerHeight( true ) - 40 : 0,
 				extra_attr = parseInt( $from.data( 'extra-top' ) ? $from.data( 'extra-top' ) : '0' ),
 				extra = - ( extra_header + extra_navigation + extra_attr );
 
@@ -247,12 +243,12 @@ var lsx_to = Object.create( null );
 	 * @subpackage scripts
 	 */
 	lsx_to.set_anchor_menu_scroll_spy = function() {
-		var offset_header = $( 'header.navbar-static-top' ).length > 0 ? $( 'header.navbar-static-top' ).outerHeight( true ) : 0,
-			offset_navigation = $( '.lsx-to-navigation' ).length > 0 ? $( '.lsx-to-navigation' ).outerHeight( true ) : 0;
+		var offset_header = $( '.top-menu-fixed #masthead' ).length > 0 ? $( '.top-menu-fixed #masthead' ).outerHeight( true ) : 0,
+			offset_navigation = $( '.lsx-to-navigation' ).length > 0 ? $( '.lsx-to-navigation' ).outerHeight( true ) - 40 : 0;
 
 		$( 'body' ).scrollspy( {
 			target: '.lsx-to-navigation',
-			offset: offset_header + offset_navigation
+			offset: offset_header + offset_navigation + 10
 		} );
 	};
 
@@ -284,9 +280,9 @@ var lsx_to = Object.create( null );
 		lsx_to.build_slider();
 		lsx_to.build_slider_lightbox();
 
-		if (windowWidth >= 992) {
+		if (windowWidth >= 1200) {
 			// @TODO - Use the new library imported on LSX
-			// lsx_to.fix_anchor_menu();
+			lsx_to.fix_anchor_menu();
 			lsx_to.set_anchor_menu_easing_scroll();
 			lsx_to.set_anchor_menu_scroll_spy();
 		}

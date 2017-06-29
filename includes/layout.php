@@ -23,7 +23,6 @@ add_action( 'lsx_entry_bottom', 'lsx_to_tour_archive_entry_bottom' );
 /**
  * Single
  */
-add_action( 'lsx_content_top', 'lsx_to_single_content_top' );
 add_action( 'lsx_entry_bottom', 'lsx_to_single_entry_bottom' );
 
 /**
@@ -78,19 +77,6 @@ function lsx_to_archive_entry_top() {
 
 				<?php lsx_to_tagline( '<p class="lsx-to-archive-content-tagline">', '</p>' ); ?>
 	<?php }
-}
-
-/**
- * Adds the template tags to the top of the lsx_content_top action
- *
- * @package 	tour-operator
- * @subpackage	template-tag
- * @category 	general
- */
-function lsx_to_single_content_top() {
-	if ( is_singular( array_keys( lsx_to_get_post_types() ) ) || is_post_type_archive( 'destination' ) ) {
-		lsx_to_page_navigation();
-	}
 }
 
 /**
@@ -321,6 +307,8 @@ function lsx_to_tour_single_content_bottom() {
 				</div> -->
 			</div>
 		</div>
+
+		<?php lsx_to_page_navigation(); ?>
 
 		<?php if ( lsx_to_has_itinerary() ) { ?>
 			<section id="itinerary" class="lsx-to-section">

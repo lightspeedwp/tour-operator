@@ -179,17 +179,18 @@ function lsx_to_archive_description() {
  */
 function lsx_to_page_navigation( $echo = true ) {
 	$page_links = array();
+
 	if ( is_singular() ) {
 		$page_links['summary'] = esc_html__( 'Summary', 'tour-operator' );
 	}
-	$page_links = apply_filters( 'lsx_to_page_navigation',$page_links );
+
+	$page_links = apply_filters( 'lsx_to_page_navigation', $page_links );
 
 	if ( ! empty( $page_links ) ) {
-		$return = '<section class="lsx-to-navigation ' . get_post_type() . '-navigation">
-					<div class="container">
+		$return = '<section class="lsx-to-navigation ' . get_post_type() . '-navigation visible-lg-block">
 						<div class="row">
-							<div class="col-md-12">
-								<ul class="scroll-easing nav">';
+							<div class="col-xs-12">
+								<ul class="scroll-easing nav lsx-to-content-spy">';
 
 		if ( ! empty( $page_links ) ) {
 			foreach ( $page_links as $link_slug => $link_value ) {
@@ -197,8 +198,7 @@ function lsx_to_page_navigation( $echo = true ) {
 			}
 		}
 
-		$return .= '			</ul>
-							</div>
+		$return .= '		</ul>
 						</div>
 					</div>
 				</section>';
