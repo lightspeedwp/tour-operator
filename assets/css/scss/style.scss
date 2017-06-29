@@ -2940,7 +2940,7 @@ body.single-tour-operator {
 	margin: 0 -9999rem;
 	padding: 8.5rem 9999rem;
 
-	&:nth-child(even) { background-color: #FFF; }
+	&:nth-of-type(even) { background-color: #FFF; }
 }
 
 .lsx-to-section-wrapper {

@@ -1652,7 +1652,7 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-section { margin: 0 -9999rem; padding: 8.5rem 9999rem; }
 
-.lsx-to-section:nth-child(even) { background-color: #FFF; }
+.lsx-to-section:nth-of-type(even) { background-color: #FFF; }
 
 .lsx-to-section-wrapper { margin: 0 -9999rem; padding: 8.5rem 9999rem 0; }
 
