@@ -37,10 +37,13 @@ function lsx_to_get_post_types() {
  */
 function lsx_to_has_itinerary() {
 	global $tour_itinerary;
+
 	$has_itinerary = false;
+
 	if ( null === $tour_itinerary ) {
 		$tour_itinerary = new \lsx\legacy\Itinerary_Query();
 	}
+
 	if ( is_object( $tour_itinerary ) ) {
 		$has_itinerary = $tour_itinerary->has_itinerary();
 	}
@@ -58,6 +61,7 @@ function lsx_to_has_itinerary() {
  */
 function lsx_to_itinerary_loop() {
 	global $tour_itinerary;
+
 	if ( is_object( $tour_itinerary ) ) {
 		return $tour_itinerary->while_itinerary();
 	} else {
@@ -75,6 +79,7 @@ function lsx_to_itinerary_loop() {
  */
 function lsx_to_itinerary_loop_item() {
 	global $tour_itinerary;
+
 	if ( is_object( $tour_itinerary ) ) {
 		$tour_itinerary->current_itinerary_item();
 	}
@@ -89,6 +94,7 @@ function lsx_to_itinerary_loop_item() {
  */
 function lsx_to_itinerary_loop_reset() {
 	global $tour_itinerary;
+
 	if ( is_object( $tour_itinerary ) ) {
 		$tour_itinerary->reset_loop();
 	}
@@ -103,8 +109,9 @@ function lsx_to_itinerary_loop_reset() {
  */
 function lsx_to_itinerary_title() {
 	global $tour_itinerary;
-	if ( $tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary ) {
-		if ( false !== $tour_itinerary->itinerary['title'] ) {
+
+	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
+		if ( ! empty( $tour_itinerary->itinerary['title'] ) ) {
 			$title = apply_filters( 'the_title', $tour_itinerary->itinerary['title'] );
 			echo wp_kses_post( $title );
 		}
@@ -121,8 +128,9 @@ function lsx_to_itinerary_title() {
  */
 function lsx_to_itinerary_slug() {
 	global $tour_itinerary;
-	if ( $tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary ) {
-		if ( false !== $tour_itinerary->itinerary['title'] ) {
+
+	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
+		if ( ! empty( $tour_itinerary->itinerary['title'] ) ) {
 			echo wp_kses_post( sanitize_title( $tour_itinerary->itinerary['title'] ) );
 		}
 	}
@@ -138,8 +146,9 @@ function lsx_to_itinerary_slug() {
  */
 function lsx_to_itinerary_tagline() {
 	global $tour_itinerary;
-	if ( $tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary ) {
-		if ( isset( $tour_itinerary->itinerary['tagline'] ) && false !== $tour_itinerary->itinerary['tagline'] ) {
+
+	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
+		if ( ! empty( $tour_itinerary->itinerary['tagline'] ) ) {
 			echo wp_kses_post( apply_filters( 'the_title', $tour_itinerary->itinerary['tagline'] ) );
 		}
 	}
@@ -155,8 +164,9 @@ function lsx_to_itinerary_tagline() {
  */
 function lsx_to_itinerary_description() {
 	global $tour_itinerary;
-	if ( $tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary ) {
-		if ( false !== $tour_itinerary->itinerary['description'] ) {
+
+	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
+		if ( ! empty( $tour_itinerary->itinerary['description'] ) ) {
 			echo wp_kses_post( apply_filters( 'the_content', $tour_itinerary->itinerary['description'] ) );
 		}
 	}
@@ -185,21 +195,20 @@ function lsx_to_itinerary_has_thumbnail() {
  * @subpackage    template-tags
  * @category      itinerary
  */
-
 function lsx_to_itinerary_thumbnail() {
 	global $tour_itinerary;
 
 	if ( $tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary ) {
 		$thumbnail_src = false;
 
-		if ( false !== $tour_itinerary->itinerary['featured_image'] && '' !== $tour_itinerary->itinerary['featured_image'] ) {
+		if ( ! empty( $tour_itinerary->itinerary['featured_image'] ) ) {
 			$tour_itinerary->save_used_image( $tour_itinerary->itinerary['featured_image'] );
 			$thumbnail = wp_get_attachment_image_src( $tour_itinerary->itinerary['featured_image'], 'lsx-thumbnail-wide' );
 
 			if ( is_array( $thumbnail ) ) {
 				$thumbnail_src = $thumbnail[0];
 			}
-		} elseif ( isset( $tour_itinerary->itinerary['accommodation_to_tour'] ) && ! empty( $tour_itinerary->itinerary['accommodation_to_tour'] ) ) {
+		} elseif ( ! empty( $tour_itinerary->itinerary['accommodation_to_tour'] ) ) {
 			$accommodation_images = false;
 
 			foreach ( $tour_itinerary->itinerary['accommodation_to_tour'] as $accommodation_id ) {
@@ -208,6 +217,7 @@ function lsx_to_itinerary_thumbnail() {
 
 				//Try for a thumbnail first.
 				$temp_id = get_post_thumbnail_id( $accommodation_id );
+
 				if ( false === $temp_id || $tour_itinerary->is_image_used( $temp_id ) ) {
 					$current_image_id = $tour_itinerary->find_next_image( $accommodation_id );
 				} else {
@@ -250,8 +260,9 @@ function lsx_to_itinerary_thumbnail() {
  */
 function lsx_to_itinerary_destinations( $before = '', $after = '' ) {
 	global $tour_itinerary;
-	if ( $tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary ) {
-		if ( is_array( $tour_itinerary->itinerary['destination_to_tour'] ) && ! empty( $tour_itinerary->itinerary['destination_to_tour'] ) ) {
+
+	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
+		if ( ! empty( $tour_itinerary->itinerary['destination_to_tour'] ) && is_array( $tour_itinerary->itinerary['destination_to_tour'] ) ) {
 			echo wp_kses_post( $before . lsx_to_connected_list( $tour_itinerary->itinerary['destination_to_tour'], 'destination', true, ', ' ) . $after );
 		}
 	}
@@ -268,8 +279,8 @@ function lsx_to_itinerary_destinations( $before = '', $after = '' ) {
 function lsx_to_itinerary_accommodation( $before = '', $after = '' ) {
 	global $tour_itinerary;
 
-	if ( $tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary ) {
-		if ( is_array( $tour_itinerary->itinerary['accommodation_to_tour'] ) && ! empty( $tour_itinerary->itinerary['accommodation_to_tour'] ) ) {
+	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
+		if ( ! empty( $tour_itinerary->itinerary['accommodation_to_tour'] ) && is_array( $tour_itinerary->itinerary['accommodation_to_tour'] ) ) {
 			echo wp_kses_post( $before . lsx_to_connected_list( $tour_itinerary->itinerary['accommodation_to_tour'], 'accommodation', true, ', ' ) . $after );
 		}
 
@@ -294,8 +305,9 @@ function lsx_to_itinerary_accommodation( $before = '', $after = '' ) {
  */
 function lsx_to_itinerary_activities( $before = '', $after = '' ) {
 	global $tour_itinerary;
-	if ( $tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary ) {
-		if ( isset( $tour_itinerary->itinerary['activity_to_tour'] ) && is_array( $tour_itinerary->itinerary['activity_to_tour'] ) && ! empty( $tour_itinerary->itinerary['activity_to_tour'] ) ) {
+
+	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
+		if ( ! empty( $tour_itinerary->itinerary['activity_to_tour'] ) && is_array( $tour_itinerary->itinerary['activity_to_tour'] ) ) {
 			echo wp_kses_post( $before . lsx_to_connected_list( $tour_itinerary->itinerary['activity_to_tour'], 'activity', true, ', ' ) . $after );
 		}
 	}
@@ -317,8 +329,10 @@ function lsx_to_itinerary_class( $classes = false ) {
 		if ( ! is_array( $classes ) ) {
 			$classes = explode( ' ', $classes );
 		}
+
 		$classes = apply_filters( 'lsx_to_itinerary_class', $classes, $post->ID );
 	}
+
 	echo 'class="' . esc_attr( implode( ' ', $classes ) ) . '"';
 }
 
@@ -332,12 +346,10 @@ function lsx_to_itinerary_class( $classes = false ) {
  */
 function lsx_to_itinerary_read_more() {
 	if ( lsx_to_itinerary_needs_read_more() ) {
-		$label = esc_html__( 'Read More', 'tour-operator' )
 		?>
-        <div class="view-more aligncenter">
-            <a href="#"
-               class="btn"><?php esc_html_e( $label, 'tour-operator' ); ?></a>
-        </div>
+		<div class="view-more aligncenter">
+			<a href="#" class="btn"><?php esc_html_e( 'Read More', 'tour-operator' ); ?></a>
+		</div>
 		<?php
 	}
 }
@@ -362,7 +374,8 @@ function lsx_to_itinerary_needs_read_more() {
  */
 function lsx_to_itinerary_includes( $before = '', $after = '' ) {
 	global $tour_itinerary;
-	if ( $tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary ) {
+
+	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
 		if ( ! empty( $tour_itinerary->itinerary['included'] ) ) {
 			echo wp_kses_post( $before . $tour_itinerary->itinerary['included'] . $after );
 		}
@@ -378,7 +391,8 @@ function lsx_to_itinerary_includes( $before = '', $after = '' ) {
  */
 function lsx_to_itinerary_excludes( $before = '', $after = '' ) {
 	global $tour_itinerary;
-	if ( $tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary ) {
+
+	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
 		if ( ! empty( $tour_itinerary->itinerary['excluded'] ) ) {
 			echo wp_kses_post( $before . $tour_itinerary->itinerary['excluded'] . $after );
 		}
@@ -394,10 +408,13 @@ function lsx_to_itinerary_excludes( $before = '', $after = '' ) {
  */
 function lsx_to_accommodation_has_rooms() {
 	global $rooms;
+
 	$have_rooms = false;
+
 	if ( null === $rooms ) {
 		$rooms = new \lsx\legacy\Unit_Query();
 	}
+
 	if ( is_object( $rooms ) ) {
 		$have_rooms = $rooms->have_query();
 	}
@@ -416,6 +433,7 @@ function lsx_to_accommodation_has_rooms() {
  */
 function lsx_to_accommodation_room_loop() {
 	global $rooms;
+
 	if ( is_object( $rooms ) ) {
 		return $rooms->while_query();
 	} else {
@@ -434,6 +452,7 @@ function lsx_to_accommodation_room_loop() {
  */
 function lsx_to_accommodation_room_loop_item( $type = false ) {
 	global $rooms;
+
 	if ( is_object( $rooms ) ) {
 		return $rooms->current_queried_item( $type );
 	} else {
@@ -452,8 +471,9 @@ function lsx_to_accommodation_room_loop_item( $type = false ) {
  * @subpackage    template-tags
  * @category      room
  */
-function lsx_to_accommodation_room_title( $before = "", $after = "", $echo = true ) {
+function lsx_to_accommodation_room_title( $before = '', $after = '', $echo = true ) {
 	global $rooms;
+
 	if ( is_object( $rooms ) ) {
 		$rooms->item_title( $before, $after, $echo );
 	}
@@ -470,8 +490,9 @@ function lsx_to_accommodation_room_title( $before = "", $after = "", $echo = tru
  * @subpackage    template-tags
  * @category      room
  */
-function lsx_to_accommodation_room_description( $before = "", $after = "", $echo = true ) {
+function lsx_to_accommodation_room_description( $before = '', $after = '', $echo = true ) {
 	global $rooms;
+
 	if ( is_object( $rooms ) ) {
 		$rooms->item_description( $before, $after, $echo );
 	}
@@ -486,6 +507,7 @@ function lsx_to_accommodation_room_description( $before = "", $after = "", $echo
  */
 function lsx_to_accommodation_room_has_thumbnail() {
 	global $rooms;
+
 	if ( $rooms && $rooms->have_query ) {
 		return true;
 	}
@@ -498,8 +520,9 @@ function lsx_to_accommodation_room_has_thumbnail() {
  * @subpackage    template-tags
  * @category      room
  */
-function lsx_to_accommodation_room_thumbnail( $before = "", $after = "", $echo = true ) {
+function lsx_to_accommodation_room_thumbnail( $before = '', $after = '', $echo = true ) {
 	global $rooms;
+
 	if ( is_object( $rooms ) ) {
 		$rooms->item_thumbnail( $before, $after, $echo );
 	}
@@ -538,11 +561,10 @@ function lsx_to_accommodation_reset_units_loop() {
  * @subpackage    template-tags
  * @category      unit
  */
-function lsx_to_accommodation_units( $before = "", $after = "" ) {
+function lsx_to_accommodation_units( $before = '', $after = '' ) {
 	global $rooms;
 
 	if ( lsx_to_accommodation_has_rooms() ) {
-
 		$unit_types = array(
 			'chalet' => esc_html__( 'Chalet', 'tour-operator' ),
 			'room'   => esc_html__( 'Room', 'tour-operator' ),
@@ -550,40 +572,42 @@ function lsx_to_accommodation_units( $before = "", $after = "" ) {
 			'tent'   => esc_html__( 'Tent', 'tour-operator' ),
 			'villa'  => esc_html__( 'Villa', 'tour-operator' ),
 		);
+
 		foreach ( $unit_types as $type_key => $type_label ) {
 			if ( lsx_to_accommodation_check_type( $type_key ) ) {
 				?>
-                <section id="<?php echo esc_attr( $type_key ); ?>s">
-                    <h2 class="section-title"><?php esc_html_e( lsx_to_get_post_type_section_title( 'accommodation', $type_key . 's', $type_label . 's' ), 'tour-operator' ); ?></h2>
-                    <div class="<?php echo esc_attr( $type_key ); ?>s-content rooms-content row">
+				<section id="<?php echo esc_attr( $type_key ); ?>s">
+					<h2 class="section-title"><?php esc_html_e( lsx_to_get_post_type_section_title( 'accommodation', $type_key . 's', $type_label . 's' ), 'tour-operator' ); ?></h2>
+					<div class="<?php echo esc_attr( $type_key ); ?>s-content rooms-content row">
 						<?php while ( lsx_to_accommodation_room_loop() ) { ?>
 
 							<?php if ( ! lsx_to_accommodation_room_loop_item( $type_key ) ) {
 								continue;
 							} ?>
 
-                            <div class="panel col-sm-6">
-                                <article class="unit type-unit">
-                                    <div class="col-sm-4">
+							<div class="panel col-sm-6">
+								<article class="unit type-unit">
+									<div class="col-sm-4">
 										<?php if ( lsx_to_accommodation_room_has_thumbnail() ) { ?>
-                                            <div class="thumbnail">
+											<div class="thumbnail">
 												<?php lsx_to_accommodation_room_thumbnail(); ?>
-                                            </div>
+											</div>
 										<?php } ?>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div class="unit-info">
+									</div>
+
+									<div class="col-sm-8">
+										<div class="unit-info">
 											<?php lsx_to_accommodation_room_title( '<h3>', '</h3>' ); ?>
 											<?php lsx_to_accommodation_room_description( '<div class="entry-content">', '</div>' ); ?>
-                                        </div>
-                                    </div>
-                                </article>
-                            </div>
+										</div>
+									</div>
+								</article>
+							</div>
 
 						<?php }
 						lsx_to_accommodation_reset_units_loop(); ?>
-                    </div>
-                </section>
+					</div>
+				</section>
 			<?php }
 		}
 	}
@@ -614,6 +638,7 @@ function lsx_to_scporder_uninstall() {
 
 function lsx_to_scporder_uninstall_db() {
 	global $wpdb;
+
 	$result = $wpdb->query( "DESCRIBE $wpdb->terms `lsx_to_term_order`" );
 
 	if ( $result ) {
