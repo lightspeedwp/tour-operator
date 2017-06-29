@@ -23,7 +23,7 @@ gulp.task('default', function() {
 	console.log('gulp compile-js                to compile the js to min.js');
 	console.log('gulp watch                     to continue watching the files for changes');
 	console.log('gulp wordpress-lang            to compile the tour-operator.pot, tour-operator-en_EN.po and tour-operator-en_EN.mo');
-	console.log('gulp reload-node-flag-icon-css	to copy the scss and svg files for the flag-icon-css');
+	console.log('gulp reload-node-flag-icon-css to copy the scss and svg files for the flag-icon-css');
 });
 
 gulp.task('styles', function () {

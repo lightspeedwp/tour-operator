@@ -60,7 +60,7 @@ var lsx_to = Object.create( null );
 					$( this ).children().each( function() {
 						if ( 'Read More' === $( this ).find( '.more-link' ).html() ) {
 							visible = false;
-						} else if ( ! visible ) {
+						} else if ( ! visible && this.id !== 'sharing' ) {
 							$( this ).hide();
 						}
 					} );
