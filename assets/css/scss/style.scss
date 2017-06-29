@@ -2352,6 +2352,58 @@ body.single-tour-operator {
 	.lsx-to-slider-inner & { padding: 0 15px; }
 }
 
+.lsx-to-slider-inner,
+.slick-lightbox-inner {
+	.slick-arrow {
+		background: transparent;
+		border-radius: 50%;
+		border-style: solid;
+		border-width: 2px;
+		font: 0/0 a;
+		height: 5.4rem;
+		margin-top: calc((2.25rem - 17px) / 2);
+		padding: 0;
+		position: absolute;
+		text-shadow: none;
+		top: 50%;
+		transform: translateY(-50%);
+		transition: border 300ms ease;
+		width: 5.4rem;
+		z-index: 3;
+
+		&:before {
+			display: block;
+			font-family: 'FontAwesome';
+			font-size: 4rem;
+			line-height: 1;
+			position: absolute;
+			text-rendering: auto;
+			top: 50%;
+			transform: translateY(-50%);
+			transition: color 300ms ease;
+
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+		}
+
+		&.slick-disabled { cursor: not-allowed; }
+
+		&.slick-prev {
+			&:before {
+				content: '\f104';
+				left: 1.5rem;
+			}
+		}
+
+		&.slick-next {
+			&:before {
+				content: '\f105';
+				left: 2rem;
+			}
+		}
+	}
+}
+
 .lsx-to-slider-inner {
 	@include media('>=tablet') {
 		margin: 0 auto;
@@ -2390,56 +2442,22 @@ body.single-tour-operator {
 	}
 
 	.slick-arrow {
-		background: transparent;
-		border-radius: 50%;
-		border-style: solid;
-		border-width: 2px;
-		font: 0/0 a;
-		height: 5.4rem;
-		margin-top: calc((2.25rem - 17px) / 2);
-		opacity: 1;
-		padding: 0;
-		position: absolute;
-		text-shadow: none;
-		top: 50%;
-		transform: translateY(-50%);
-		transition: border 300ms ease;
-		width: 5.4rem;
-		z-index: 3;
-
-		&:before {
-			display: block;
-			font-family: 'FontAwesome';
-			font-size: 4rem;
-			line-height: 1;
-			position: absolute;
-			text-rendering: auto;
-			top: 50%;
-			transform: translateY(-50%);
-			transition: color 300ms ease;
-
-			-webkit-font-smoothing: antialiased;
-			-moz-osx-font-smoothing: grayscale;
-		}
-
-		&.slick-disabled { cursor: not-allowed; }
-
 		&.slick-prev {
 			left: -5.4rem;
-
-			&:before {
-				content: '\f104';
-				left: 1.5rem;
-			}
 		}
 
 		&.slick-next {
 			right: -5.4rem;
+		}
+	}
+}
 
-			&:before {
-				content: '\f105';
-				left: 2rem;
-			}
+.slick-lightbox-inner {
+	.slick-arrow {
+		opacity: .75;
+
+		&:hover {
+			opacity: 1;
 		}
 	}
 }
@@ -2469,8 +2487,6 @@ body.single-tour-operator {
 		&:after { left: 120%; }
 	}
 }
-
-
 
 .lsx-to-widget-item-wrap {
 	&.lsx-video {

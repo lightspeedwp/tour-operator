@@ -38,6 +38,23 @@
 		}
 	}
 
+	.slick-lightbox-inner {
+		.slick-arrow {
+			border-color: white;
+			color: white;
+
+			&:hover {
+				border-color: white;
+				color: white;
+			}
+
+			&.slick-disabled {
+				border-color: #ccc;
+				color: #ccc;
+			}
+		}
+	}
+
 	.lsx-to-widget-view-all {
 		& > span {
 			&:before,

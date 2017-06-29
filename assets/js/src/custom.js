@@ -188,7 +188,9 @@ var lsx_to = Object.create( null );
 	 * @subpackage scripts
 	 */
 	lsx_to.build_slider_lightbox = function() {
-
+		jQuery( '.gallery' ).slickLightbox({
+			//lazy: true
+		});
 	};
 
 	/**
