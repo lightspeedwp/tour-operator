@@ -521,11 +521,11 @@ class Tour {
 			$videos_id = get_post_meta( get_the_ID(), 'envira_video', true );
 		}
 
-		if ( ( false === $videos_id || '' === $videos_id ) && class_exists( 'LSX_TO_Videos' ) ) {
+		if ( empty( $videos_id ) && function_exists( 'lsx_to_videos' ) ) {
 			$videos_id = get_post_meta( get_the_ID(), 'videos', true );
 		}
 
-		if ( false !== $videos_id && '' !== $videos_id ) {
+		if ( ! empty( $videos_id ) ) {
 			$this->page_links['videos'] = esc_html__( 'Videos', 'tour-operator' );
 		}
 	}

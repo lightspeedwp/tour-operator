@@ -239,34 +239,6 @@ function lsx_to_sharing() {
 }
 
 /**
- * Outputs the TO Gallery
- *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
- *
- * @package 	to-galleries
- * @subpackage	template-tags
- */
-function lsx_to_envira_gallery( $before = '', $after = '', $echo = true ) {
-	$envira_gallery = get_post_meta( get_the_ID(),'envira_gallery',true );
-	if ( function_exists( 'envira_gallery' ) && false !== $envira_gallery && '' !== $envira_gallery && false === lsx_to_enable_envira_banner() ) {
-		ob_start();
-		envira_gallery( $envira_gallery );
-		$return = ob_get_clean();
-
-		$return = $before . $return . $after;
-
-		if ( $echo ) {
-			echo wp_kses_post( $return );
-		} else {
-			return $return;
-		}
-	}
-}
-
-/**
  * Outputs the Envira Video Gallery
  *
  * @param		$before	| string
