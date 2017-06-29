@@ -340,6 +340,7 @@ function lsx_to_tour_single_content_bottom() {
 						</div>
 					<?php } ?>
 				</div>
+
 				<?php lsx_to_itinerary_read_more(); ?>
 			</section>
 		<?php }

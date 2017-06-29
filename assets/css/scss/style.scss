@@ -1804,7 +1804,7 @@ body.archive.post-type-archive-lsx-to-team {
 
 
 body.single-tour-operator {
-	@extend %single-root;
+	// @extend %single-root;
 	// @extend %bootstrap-carousel;
 
 	// ---------- Breadcrumb ----------
@@ -1869,10 +1869,6 @@ body.single-tour-operator {
 	#highlights {
 		@extend %single-simple-list;
 		@extend %single-simple-list-highlights;
-	}
-
-	#included-excluded {
-		@extend %single-simple-list;
 	}
 
 	#features {
@@ -2933,6 +2929,67 @@ body.single-tour-operator {
 	}
 }
 
-.lsx-to-section { margin-top: 8.5rem; }
+.lsx-to-section {
+	margin: 0 -9999rem;
+	padding: 8.5rem 9999rem;
+
+	&:nth-child(even) { background-color: #FFF; }
+}
+
+.single-tour-operator .content-area { margin-bottom: 0; }
+
+.lsx-title-small {
+	font-size: 22px;
+	font-weight: 700;
+}
+
+#included-excluded {
+	.entry-content {
+		ul {
+			list-style: none;
+			margin-bottom: 0;
+			padding-left: 20px;
+
+			li {
+				position: relative;
+
+				& + li { margin-top: 1.2rem; }
+
+				& > ul {
+					margin-top: 1.2rem;
+					padding-left: 40px;
+				}
+
+				&:before {
+					color: inherit;
+					content: '\f058';
+					display: inline-block;
+					font-family: 'FontAwesome';
+					font-size: 16px;
+					position: absolute;
+					left: -20px;
+					text-rendering: auto;
+
+					-webkit-font-smoothing: antialiased;
+					-moz-osx-font-smoothing: grayscale;
+				}
+			}
+		}
+	}
+
+	.not-included {
+		.entry-content {
+			ul {
+				li {
+					&:before { content: '\f057'; }
+				}
+			}
+		}
+	}
+}
+
+.lsx-map {
+	margin-top: 4.25rem;
+}
 
 @include customizer-to-body-colours(#DADDDF, #4A4A4A, #1098AD, #F7AE00, #919191);
