@@ -68,7 +68,7 @@ function lsx_to_archive_entry_top() {
 		<div class="lsx-to-archive-wrapper">
 			<div class="lsx-to-archive-content">
 				<h3 class="lsx-to-archive-content-title">
-					<a href="<?php get_permalink(); ?>" title="<?php esc_html_e( 'Read more', 'tour-operator' ); ?>">
+					<a href="<?php the_permalink(); ?>" title="<?php esc_html_e( 'Read more', 'tour-operator' ); ?>">
 						<?php
 							the_title();
 							do_action( 'lsx_to_the_title_end', get_the_ID() );
