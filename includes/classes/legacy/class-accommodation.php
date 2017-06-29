@@ -83,28 +83,16 @@ class Accommodation {
 		);
 
 		// activate property post type
-		add_action( 'lsx_to_framework_accommodation_tab_general_settings_bottom', array(
-			$this,
-			'general_settings',
-		), 10, 1 );
-		add_action( 'lsx_to_framework_accommodation_tab_single_settings_bottom', array(
-			$this,
-			'single_settings',
-		), 10, 1 );
+		add_action( 'lsx_to_framework_accommodation_tab_general_settings_bottom', array( $this, 'general_settings' ), 10, 1 );
+		add_action( 'lsx_to_framework_accommodation_tab_single_settings_bottom', array( $this, 'single_settings' ), 10, 1 );
 
 		add_filter( 'lsx_to_entry_class', array( $this, 'entry_class' ) );
 
 		if ( ! class_exists( 'LSX_Currency' ) ) {
-			add_filter( 'lsx_to_custom_field_query', array(
-				$this,
-				'price_filter',
-			), 5, 10 );
+			add_filter( 'lsx_to_custom_field_query', array( $this, 'price_filter' ), 5, 10 );
 		}
 
-		add_filter( 'lsx_to_custom_field_query', array(
-			$this,
-			'rating',
-		), 5, 10 );
+		add_filter( 'lsx_to_custom_field_query', array( $this, 'rating' ), 5, 10 );
 
 		include( 'class-units.php' );
 
@@ -122,7 +110,6 @@ class Accommodation {
 	 *                                           class.
 	 */
 	public static function get_instance() {
-
 		// If the single instance hasn't been set, set it now.
 		if ( null == self::$instance ) {
 			self::$instance = new self;
@@ -136,16 +123,14 @@ class Accommodation {
 	 */
 	public function general_settings() {
 		?>
-        <tr class="form-field">
-            <th scope="row">
-                <label for="contact_details_disabled"><?php esc_html_e( 'Disable "Contact Details" panel', 'tour-operator' ); ?></label>
-            </th>
-            <td>
-                <input type="checkbox" {{#if contact_details_disabled}}
-                       checked="checked" {{/if}} name="contact_details_disabled"
-                />
-            </td>
-        </tr>
+		<tr class="form-field">
+			<th scope="row">
+				<label for="contact_details_disabled"><?php esc_html_e( 'Disable "Contact Details" panel', 'tour-operator' ); ?></label>
+			</th>
+			<td>
+				<input type="checkbox" {{#if contact_details_disabled}} checked="checked" {{/if}} name="contact_details_disabled" />
+			</td>
+		</tr>
 		<?php
 	}
 
@@ -154,17 +139,15 @@ class Accommodation {
 	 */
 	public function single_settings() {
 		?>
-        <tr class="form-field">
-            <th scope="row">
-                <label for="display_connected_tours"><?php esc_html_e( 'Display Connected Tours', 'tour-operator' ); ?></label>
-            </th>
-            <td>
-                <input type="checkbox" {{#if display_connected_tours}}
-                       checked="checked" {{/if}} name="display_connected_tours"
-                />
-                <small><?php esc_html_e( 'This will replace the related accommodation with the connected tours instead.', 'tour-operator' ); ?>
-            </td>
-        </tr>
+		<tr class="form-field">
+			<th scope="row">
+				<label for="display_connected_tours"><?php esc_html_e( 'Display Connected Tours', 'tour-operator' ); ?></label>
+			</th>
+			<td>
+				<input type="checkbox" {{#if display_connected_tours}} checked="checked" {{/if}} name="display_connected_tours" />
+				<small><?php esc_html_e( 'This will replace the related accommodation with the connected tours instead.', 'tour-operator' ); ?>
+			</td>
+		</tr>
 		<?php
 	}
 
@@ -180,6 +163,7 @@ class Accommodation {
 	 */
 	function entry_class( $classes ) {
 		global $post;
+
 		if ( is_main_query() && is_singular( $this->slug ) ) {
 			if ( lsx_to_has_enquiry_contact() ) {
 				$classes[] = 'col-sm-9';
@@ -194,23 +178,24 @@ class Accommodation {
 	/**
 	 * Adds in additional info for the price custom field
 	 */
-	public function price_filter( $html = '', $meta_key = false, $value = false, $before = "", $after = "" ) {
+	public function price_filter( $html = '', $meta_key = false, $value = false, $before = '', $after = '' ) {
 		if ( get_post_type() === 'accommodation' && 'price' === $meta_key ) {
 			$price_type    = get_post_meta( get_the_ID(), 'price_type', true );
-			$value         = preg_replace( "/[^0-9,.]/", "", $value );
+			$value         = preg_replace( '/[^0-9,.]/', '', $value );
 			$value         = ltrim( $value, '.' );
 			$value         = str_replace( ',', '', $value );
 			$value         = number_format( (int) $value, 2 );
 			$tour_operator = tour_operator();
 			$currency      = '';
+
 			if ( is_object( $tour_operator ) && isset( $tour_operator->options['general'] ) && is_array( $tour_operator->options['general'] ) ) {
 				if ( isset( $tour_operator->options['general']['currency'] ) && ! empty( $tour_operator->options['general']['currency'] ) ) {
 					$currency = $tour_operator->options['general']['currency'];
 					$currency = '<span class="currency-icon ' . mb_strtolower( $currency ) . '">' . $currency . '</span>';
 				}
 			}
-			switch ( $price_type ) {
 
+			switch ( $price_type ) {
 				case 'per_person_per_night':
 				case 'per_person_sharing':
 				case 'per_person_sharing_per_night':
@@ -227,8 +212,8 @@ class Accommodation {
 					$value = $currency . $value;
 					break;
 			}
-			$html = $before . $value . $after;
 
+			$html = $before . $value . $after;
 		}
 
 		return $html;
@@ -237,26 +222,30 @@ class Accommodation {
 	/**
 	 * Filter and make the star ratings
 	 */
-	public function rating( $html = '', $meta_key = false, $value = false, $before = "", $after = "" ) {
+	public function rating( $html = '', $meta_key = false, $value = false, $before = '', $after = '' ) {
 		if ( get_post_type() === 'accommodation' && 'rating' === $meta_key ) {
 			$ratings_array = false;
 			$counter       = 5;
+
 			while ( $counter > 0 ) {
 				if ( $value >= 0 ) {
 					$ratings_array[] = '<i class="fa fa-star"></i>';
 				} else {
 					$ratings_array[] = '<i class="fa fa-star-o"></i>';
 				}
+
 				$counter --;
 				$value --;
 			}
+
 			$rating_type        = get_post_meta( get_the_ID(), 'rating_type', true );
 			$rating_description = '';
+
 			if ( false !== $rating_type && '' !== $rating_type && esc_html__( 'Unspecified', 'tour-operator' ) !== $rating_type ) {
 				$rating_description = ' <small>(' . $rating_type . ')</small>';
 			}
-			$html = $before . implode( '', $ratings_array ) . $rating_description . $after;
 
+			$html = $before . implode( '', $ratings_array ) . $rating_description . $after;
 		}
 
 		return $html;
@@ -272,12 +261,14 @@ class Accommodation {
 	public function page_links( $page_links ) {
 		if ( is_singular( 'accommodation' ) ) {
 			$this->page_links = $page_links;
+
 			$this->get_unit_page_links();
 			$this->get_facility_link();
 			$this->get_map_link();
 			$this->get_gallery_link();
 			$this->get_videos_link();
 			$this->get_related_tours_link();
+
 			$page_links = $this->page_links;
 		}
 
@@ -291,6 +282,7 @@ class Accommodation {
 		$links = false;
 		if ( lsx_to_accommodation_has_rooms() ) {
 			$return = false;
+
 			foreach ( $this->unit_types as $type_key => $type_label ) {
 				if ( lsx_to_accommodation_check_type( $type_key ) ) {
 					$this->page_links[ $type_key . 's' ] = esc_html__( lsx_to_get_post_type_section_title( 'accommodation', $type_key . 's', $type_label . 's' ), 'tour-operator' );
@@ -304,6 +296,7 @@ class Accommodation {
 	 */
 	public function get_facility_link() {
 		$facilities = wp_get_object_terms( get_the_ID(), 'facility' );
+
 		if ( ! empty( $facilities ) && ! is_wp_error( $facilities ) ) {
 			$this->page_links['facilities'] = esc_html__( 'Facilities', 'tour-operator' );
 		}
@@ -322,23 +315,24 @@ class Accommodation {
 	 * Tests for the Gallery and returns a link for the section
 	 */
 	public function get_gallery_link() {
-		if ( function_exists( 'lsx_to_gallery' ) ) {
-			$gallery_ids    = get_post_meta( get_the_ID(), 'gallery', false );
-			$envira_gallery = get_post_meta( get_the_ID(), 'envira_gallery', true );
+		$gallery_ids = get_post_meta( get_the_ID(), 'gallery', false );
+		$envira_gallery = get_post_meta( get_the_ID(), 'envira_gallery', true );
 
-			if ( ( false !== $gallery_ids && '' !== $gallery_ids && is_array( $gallery_ids ) && ! empty( $gallery_ids ) )
-			     || ( false !== $envira_gallery && '' !== $envira_gallery )
-			) {
+		if ( ( ! empty( $gallery_ids ) && is_array( $gallery_ids ) ) || ( function_exists( 'envira_gallery' ) && ! empty( $envira_gallery ) && false === lsx_to_enable_envira_banner() ) ) {
+			if ( function_exists( 'envira_gallery' ) && ! empty( $envira_gallery ) && false === lsx_to_enable_envira_banner() ) {
+				// Envira Gallery
 				$this->page_links['gallery'] = esc_html__( 'Gallery', 'tour-operator' );
-
 				return;
-			}
-		} elseif ( class_exists( 'envira_gallery' ) ) {
-			$envira_gallery = get_post_meta( get_the_ID(), 'envira_gallery', true );
-			if ( false !== $envira_gallery && '' !== $envira_gallery && false === lsx_to_enable_envira_banner() ) {
-				$this->page_links['gallery'] = esc_html__( 'Gallery', 'tour-operator' );
-
-				return;
+			} else {
+				if ( function_exists( 'envira_dynamic' ) ) {
+					// Envira Gallery - Dynamic
+					$this->page_links['gallery'] = esc_html__( 'Gallery', 'tour-operator' );
+					return;
+				} else {
+					// WordPress Gallery
+					$this->page_links['gallery'] = esc_html__( 'Gallery', 'tour-operator' );
+					return;
+				}
 			}
 		}
 	}
@@ -348,12 +342,15 @@ class Accommodation {
 	 */
 	public function get_videos_link() {
 		$videos_id = false;
+
 		if ( class_exists( 'Envira_Videos' ) ) {
 			$videos_id = get_post_meta( get_the_ID(), 'envira_video', true );
 		}
+
 		if ( ( false === $videos_id || '' === $videos_id ) && class_exists( 'LSX_TO_Videos' ) ) {
 			$videos_id = get_post_meta( get_the_ID(), 'videos', true );
 		}
+
 		if ( false !== $videos_id && '' !== $videos_id ) {
 			$this->page_links['videos'] = esc_html__( 'Videos', 'tour-operator' );
 		}
@@ -364,8 +361,10 @@ class Accommodation {
 	 */
 	public function get_related_tours_link() {
 		$connected_tours = get_post_meta( get_the_ID(), 'tour_to_accommodation', false );
+
 		if ( post_type_exists( 'tour' ) && is_array( $connected_tours ) && ! empty( $connected_tours ) ) {
 			$this->page_links['related-items'] = esc_html__( 'Tours', 'tour-operator' );
 		}
 	}
+
 }
