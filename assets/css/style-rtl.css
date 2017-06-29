@@ -1492,6 +1492,11 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 #fast-facts .lsx-to-meta-data + .lsx-to-meta-data { margin-top: 1.2rem; }
 
+.lsx-to-single-meta .lsx-to-meta-data { font-size: 15px; }
+
+@media (min-width: 992px) { .lsx-to-single-meta .lsx-to-meta-data { display: inline-block; }
+  .lsx-to-single-meta .lsx-to-meta-data + .lsx-to-meta-data { margin-top: 0; margin-right: 2.4rem; } }
+
 .lsx-to-meta-data:before { color: inherit; display: inline-block; font-family: 'FontAwesome'; font-size: inherit; right: 0; position: absolute; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
 .lsx-to-meta-data.lsx-to-meta-data-accommodations:before { content: '\f015'; }
@@ -1654,11 +1659,9 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-section-title + .lsx-to-archive-items, .lsx-to-section-title + .lsx-to-widget-items { margin-top: -2.4rem; }
 
-.lsx-to-section { margin: 0 -9999rem; padding: 8.5rem 9999rem; }
+.lsx-to-section, .lsx-to-section-wrapper { margin: 0 -9999rem; padding: 8.5rem 9999rem; }
 
-.lsx-to-section:nth-of-type(even) { background-color: #FFF; }
-
-.lsx-to-section-wrapper { margin: 0 -9999rem; padding: 8.5rem 9999rem 0; }
+.lsx-to-section-wrapper { padding-bottom: 0; }
 
 .single-tour-operator .content-area { margin-bottom: 0; }
 
@@ -1679,6 +1682,13 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 .lsx-map { margin-top: 4.25rem; }
 
 .lsx-to-section-inner { margin-top: 4.25rem; padding: 2.4rem; background-color: #FFF; }
+
+.lsx-to-single-content { margin-bottom: 4.25rem; }
+
+@media (min-width: 768px) { .lsx-to-single-content { -webkit-box-align: center; -ms-flex-align: center; align-items: center; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row nowrap; flex-flow: row nowrap; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; }
+  .lsx-to-single-content .lsx-to-single-title { margin-bottom: 0; } }
+
+.lsx-to-more-link:after { color: inherit; content: '\f178'; display: inline-block; font-family: 'FontAwesome'; font-size: inherit; margin-right: 5px; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 
 .lsx-to-slider-inner .slick-dots > li > button { border-color: #4A4A4A; }
 
