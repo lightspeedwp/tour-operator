@@ -127,37 +127,38 @@ function lsx_to_end_point($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_to_included_block(){
+function lsx_to_included_block() {
 
-	$tour_included = lsx_to_included('','',false);
-	$tour_not_included = lsx_to_not_included('','',false);
-	if(null !== $tour_included || null !== $tour_not_included) { 
-	
-	$class="col-sm-6";
-	if((null === $tour_included && null !== $tour_not_included) || (null !== $tour_included && null === $tour_not_included)){ 
-		$class="col-sm-12";
-	}
+	$tour_included = lsx_to_included( '', '', false );
+	$tour_not_included = lsx_to_not_included( '', '', false );
+
+	if ( null !== $tour_included || null !== $tour_not_included ) {
+		$class = 'col-xs-12 col-sm-6';
+
+		if ( ( null === $tour_included && null !== $tour_not_included ) || ( null !== $tour_included && null === $tour_not_included ) ) {
+			$class="col-xs-12";
+		}
 	?>
-	<section id="included-excluded">
-		<div class="row">
-			<?php if(null !== $tour_included) { ?>
-				<div class="<?php echo esc_attr( $class ); ?>">
-					<h2 class="section-title"><?php esc_html_e('Included','tour-operator'); ?></h2>
-					<div class="entry-content">
-						<?php echo wp_kses_post( apply_filters('the_content',wpautop($tour_included)) ); ?>
+		<section id="included-excluded" class="lsx-to-section">
+			<div class="row">
+				<?php if ( null !== $tour_included ) { ?>
+					<div class="<?php echo esc_attr( $class ); ?> included">
+						<h2 class="lsx-to-section-title lsx-title-small"><?php esc_html_e( 'Included', 'tour-operator' ); ?></h2>
+						<div class="entry-content">
+							<?php echo wp_kses_post( apply_filters( 'the_content', wpautop( $tour_included ) ) ); ?>
+						</div>
 					</div>
-				</div>
-			<?php } ?>
-			<?php if(null !== $tour_not_included) { ?>
-				<div class="<?php echo esc_attr( $class ); ?>">
-					<h2 class="section-title"><?php esc_html_e('Not Included','tour-operator'); ?></h2>
-					<div class="entry-content">
-						<?php echo wp_kses_post( apply_filters('the_content',wpautop($tour_not_included)) ); ?>
+				<?php }
+				if ( null !== $tour_not_included ) { ?>
+					<div class="<?php echo esc_attr( $class ); ?> not-included">
+						<h2 class="lsx-to-section-title lsx-title-small"><?php esc_html_e( 'Not Included', 'tour-operator' ); ?></h2>
+						<div class="entry-content">
+							<?php echo wp_kses_post( apply_filters( 'the_content', wpautop( $tour_not_included ) ) ); ?>
+						</div>
 					</div>
-				</div>	
-			<?php } ?>			
-		</div>
-	</section>
+				<?php } ?>
+			</div>
+		</section>
 	<?php
 	}
 }
@@ -201,7 +202,7 @@ function lsx_to_highlights($before="",$after="",$echo=true){
 function lsx_to_best_time_to_visit($before="",$after="",$echo=true){
 	$best_time_to_visit = get_post_meta(get_the_ID(),'best_time_to_visit',true);
 	if(false !== $best_time_to_visit && '' !== $best_time_to_visit && is_array($best_time_to_visit) && !empty($best_time_to_visit)){
-		
+
 		$this_year = array(
 			'january' => esc_html__('January','tour-operator'),
 			'february' => esc_html__('February','tour-operator'),
@@ -225,7 +226,7 @@ function lsx_to_best_time_to_visit($before="",$after="",$echo=true){
 			$shortname = str_split($label,3);
 			$best_times[] = '<div class="col-sm-2"><small>'.$shortname[0].'</small><br />'.$checked.'</div>';
 		};
-		$return = $before.implode($best_times).$after;		
+		$return = $before.implode($best_times).$after;
 		if($echo){
 			echo wp_kses_post($return);
 		}else{
