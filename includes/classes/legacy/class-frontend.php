@@ -209,8 +209,8 @@ class Frontend extends Tour_Operator {
 				wp_enqueue_script( 'slick-lightbox', LSX_TO_URL . 'assets/js/vendor/slick-lightbox.min.js', array( 'jquery', 'slick' ), LSX_TO_VER, true );
 			}
 
-			wp_enqueue_script( 'fixto', LSX_TO_URL . 'assets/js/vendor/fixto.min.js', array( 'jquery' ), LSX_TO_VER, true );
-			wp_enqueue_script( 'tour-operator-script', LSX_TO_URL . 'assets/js/custom.min.js', array( 'jquery', 'slick', 'slick-lightbox', 'fixto' ), LSX_TO_VER, true );
+			// wp_enqueue_script( 'fixto', LSX_TO_URL . 'assets/js/vendor/fixto.min.js', array( 'jquery' ), LSX_TO_VER, true );
+			wp_enqueue_script( 'tour-operator-script', LSX_TO_URL . 'assets/js/custom.min.js', array( 'jquery', 'slick', 'slick-lightbox'/*, 'fixto'*/ ), LSX_TO_VER, true );
 		}
 
 		if ( ! isset( $this->options['display']['disable_css'] ) ) {
