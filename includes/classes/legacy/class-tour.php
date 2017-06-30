@@ -538,7 +538,7 @@ class Tour {
 		$connected_reviews = get_post_meta( get_the_ID(), 'review_to_tour', false );
 
 		if ( post_type_exists( 'tour' ) && is_array( $connected_reviews ) && ! empty( $connected_reviews ) ) {
-			$this->page_links['related-items'] = esc_html__( 'Reviews', 'tour-operator' );
+			$this->page_links['review'] = esc_html__( 'Reviews', 'tour-operator' );
 		}
 	}
 
