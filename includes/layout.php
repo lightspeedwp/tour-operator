@@ -116,6 +116,8 @@ function lsx_to_single_entry_bottom() {
  */
 function lsx_to_accommodation_single_content_bottom() {
 	if ( is_singular( 'accommodation' ) ) {
+		lsx_to_page_navigation();
+
 		lsx_to_accommodation_units();
 
 		lsx_to_accommodation_facilities( '<section id="facilities" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Facilities', 'tour-operator' ) . '</h2><div class="row">', '</div></section>' );
