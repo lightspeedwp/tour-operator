@@ -180,10 +180,6 @@ function lsx_to_archive_description() {
 function lsx_to_page_navigation( $echo = true ) {
 	$page_links = array();
 
-	if ( is_singular() ) {
-		$page_links['summary'] = esc_html__( 'Summary', 'tour-operator' );
-	}
-
 	$page_links = apply_filters( 'lsx_to_page_navigation', $page_links );
 
 	if ( ! empty( $page_links ) ) {

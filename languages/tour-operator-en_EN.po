@@ -222,7 +222,7 @@ msgstr ""
 msgid "Private"
 msgstr ""
 
-#: templates/content-accommodation.php:25, templates/content-destination.php:25, templates/content-tour.php:25, includes/template-tags/general.php:184
+#: templates/content-accommodation.php:25, templates/content-destination.php:25, templates/content-tour.php:25
 msgid "Summary"
 msgstr ""
 
@@ -1322,7 +1322,7 @@ msgstr ""
 msgid "Travel Information"
 msgstr ""
 
-#: includes/template-tags/general.php:507, includes/template-tags/general.php:519
+#: includes/template-tags/general.php:503, includes/template-tags/general.php:515
 msgid "Enquire"
 msgstr ""
 

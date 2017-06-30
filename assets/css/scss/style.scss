@@ -1592,7 +1592,7 @@ body.home,
 body.archive-tour-operator,
 body.single-tour-operator {
 	.meta {
-		@extend %meta;
+		// @extend %meta;
 	}
 
 	// ---------- @TODO - REMOVE ----------
@@ -1678,34 +1678,34 @@ body.archive-tour-operator {
 
 	// ---------- Content ----------
 
-	#summary {
-		margin-bottom: 40px;
+	// #summary {
+	// 	margin-bottom: 40px;
 
-		@media only screen and (min-width: 768px) {
-			margin-bottom: 50px;
-		}
+	// 	@media only screen and (min-width: 768px) {
+	// 		margin-bottom: 50px;
+	// 	}
 
-		@media only screen and (min-width: 992px) {
-			margin-bottom: 60px;
-		}
+	// 	@media only screen and (min-width: 992px) {
+	// 		margin-bottom: 60px;
+	// 	}
 
-		// ---------- (reuse from single) ----------
+	// 	// ---------- (reuse from single) ----------
 
-		article.hentry {
-			@extend %single-hentry;
-		}
-	}
+	// 	article.hentry {
+	// 		@extend %single-hentry;
+	// 	}
+	// }
 
 	// ---------- Panels ----------
 
-	.panel {
-		@extend %clear-panel;
-		@extend %panel-root;
+	// .panel {
+	// 	@extend %clear-panel;
+	// 	@extend %panel-root;
 
-		& > article {
-			@extend %panel-internal;
-		}
-	}
+	// 	& > article {
+	// 		@extend %panel-internal;
+	// 	}
+	// }
 
 	// ---------- Widgets ----------
 
@@ -1726,77 +1726,77 @@ body.archive-tour-operator {
 	// }
 }
 
-body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) {
-	.row:not(.lsx-accommodation-brand) {
-		& > .panel {
-			& > article {
-				@extend %panel-internal-inline;
-			}
-		}
-	}
-}
+// body.archive-tour-operator:not(.post-type-archive-lsx-to-destination) {
+// 	.row:not(.lsx-accommodation-brand) {
+// 		& > .panel {
+// 			& > article {
+// 				@extend %panel-internal-inline;
+// 			}
+// 		}
+// 	}
+// }
 
-body.archive.post-type-archive-lsx-to-destination {
-	.countries {
-		padding-bottom: 20px;
+// body.archive.post-type-archive-lsx-to-destination {
+// 	.countries {
+// 		padding-bottom: 20px;
 
-		@media only screen and (min-width: 768px) {
-			padding-bottom: 50px;
-		}
+// 		@media only screen and (min-width: 768px) {
+// 			padding-bottom: 50px;
+// 		}
 
-		.country {
-			.thumbnail {
-				img {
-					width: 100%;
-				}
-			}
+// 		.country {
+// 			.thumbnail {
+// 				img {
+// 					width: 100%;
+// 				}
+// 			}
 
-			.tagline {
-				display: none;
-			}
+// 			.tagline {
+// 				display: none;
+// 			}
 
-			.entry-content {
-				p {
-					font-size: 16px;
-					line-height: 25px;
+// 			.entry-content {
+// 				p {
+// 					font-size: 16px;
+// 					line-height: 25px;
 
-					&:last-child {
-						text-align: center;
-					}
+// 					&:last-child {
+// 						text-align: center;
+// 					}
 
-					.btn.more-link {
-						margin-top: 10px;
-					}
-				}
-			}
-		}
+// 					.btn.more-link {
+// 						margin-top: 10px;
+// 					}
+// 				}
+// 			}
+// 		}
 
-		.regions {
-			margin-top: 30px;
-			// @extend %bootstrap-carousel;
-		}
+// 		.regions {
+// 			margin-top: 30px;
+// 			// @extend %bootstrap-carousel;
+// 		}
 
-		& > .lsx-breaker {
-			margin: 0 -9999rem 50px;
-		}
-	}
-}
+// 		& > .lsx-breaker {
+// 			margin: 0 -9999rem 50px;
+// 		}
+// 	}
+// }
 
-body.archive.post-type-archive-lsx-to-vehicle,
-body.archive.post-type-archive-lsx-to-review,
-body.archive.post-type-archive-lsx-to-team {
-	@media only screen and (min-width: 768px) {
-		.panel {
-			& > article {
-				.meta:first-child {
-					padding-top: 0;
-					margin-top: 0;
-					border-top: none;
-				}
-			}
-		}
-	}
-}
+// body.archive.post-type-archive-lsx-to-vehicle,
+// body.archive.post-type-archive-lsx-to-review,
+// body.archive.post-type-archive-lsx-to-team {
+// 	@media only screen and (min-width: 768px) {
+// 		.panel {
+// 			& > article {
+// 				.meta:first-child {
+// 					padding-top: 0;
+// 					margin-top: 0;
+// 					border-top: none;
+// 				}
+// 			}
+// 		}
+// 	}
+// }
 
 
 // ---------- Single (Page) Styles ----------
@@ -1822,11 +1822,11 @@ body.single-tour-operator {
 
 	// ---------- Content ----------
 
-	#summary, .lsx-modal {
-		article.hentry {
-			@extend %single-hentry;
-		}
-	}
+	// #summary, .lsx-modal {
+	// 	article.hentry {
+	// 		@extend %single-hentry;
+	// 	}
+	// }
 
 	// ---------- Extra sections ----------
 
@@ -1852,17 +1852,17 @@ body.single-tour-operator {
 	// 	@extend %single-extra-sections;
 	// }
 
-	#terms-and-conditions {
-		@extend %single-extra-sections-terms-and-conditions;
-	}
+	// #terms-and-conditions {
+	// 	@extend %single-extra-sections-terms-and-conditions;
+	// }
 
-	#gallery {
-		@extend %single-extra-sections-gallery;
-	}
+	// #gallery {
+	// 	@extend %single-extra-sections-gallery;
+	// }
 
-	#facilities {
-		@extend %single-extra-sections-facilities;
-	}
+	// #facilities {
+	// 	@extend %single-extra-sections-facilities;
+	// }
 
 	// ---------- Extra sections (without big title) ----------
 
@@ -1871,97 +1871,97 @@ body.single-tour-operator {
 	// 	@extend %single-simple-list-highlights;
 	// }
 
-	#features {
-		@extend %single-simple-list;
-	}
+	// #features {
+	// 	@extend %single-simple-list;
+	// }
 
 	// ---------- Extra sections (panels style) ----------
 
-	#tours,
-	#regions,
-	#accommodation,
-	#destinations,
-	#activities,
-	#activites,
-	#related-items,
-	#videos {
-		.panel {
-			@extend %clear-panel;
-			@extend %panel-root;
+	// #tours,
+	// #regions,
+	// #accommodation,
+	// #destinations,
+	// #activities,
+	// #activites,
+	// #related-items,
+	// #videos {
+	// 	.panel {
+	// 		@extend %clear-panel;
+	// 		@extend %panel-root;
 
-			& > article {
-				@extend %panel-internal;
-			}
-		}
+	// 		& > article {
+	// 			@extend %panel-internal;
+	// 		}
+	// 	}
 
-		.col-sm-12 {
-			& > article.hentry {
-				@extend %panel-internal-inline;
-			}
-		}
-	}
+	// 	.col-sm-12 {
+	// 		& > article.hentry {
+	// 			@extend %panel-internal-inline;
+	// 		}
+	// 	}
+	// }
 
-	#itinerary {
-		.panel {
-			@extend %clear-panel;
-			@extend %panel-root;
+	// #itinerary {
+	// 	.panel {
+	// 		@extend %clear-panel;
+	// 		@extend %panel-root;
 
-			//& > .itinerary-inner {
-			.itinerary-inner {
-				@extend %panel-internal;
-				@extend %panel-internal-inline;
-			}
-		}
-	}
+	// 		//& > .itinerary-inner {
+	// 		.itinerary-inner {
+	// 			@extend %panel-internal;
+	// 			@extend %panel-internal-inline;
+	// 		}
+	// 	}
+	// }
 
-	#rooms,#chalets,#tents,#spas,#villas,
-	#travel-info {
-		.panel {
-			& > .unit {
-				@extend %panel-internal;
-				@extend %panel-internal-inline;
+	// #rooms,#chalets,#tents,#spas,#villas,
+	// #travel-info {
+	// 	.panel {
+	// 		& > .unit {
+	// 			@extend %panel-internal;
+	// 			@extend %panel-internal-inline;
 
-				//@media only screen and (min-width: 768px) {
-				//	.unit-info {
-				//		padding: 15px 0;
-				//	}
-				//}
-			}
+	// 			//@media only screen and (min-width: 768px) {
+	// 			//	.unit-info {
+	// 			//		padding: 15px 0;
+	// 			//	}
+	// 			//}
+	// 		}
 
-			@media only screen and (min-width: 768px) {
-				&.col-sm-6:nth-child(2n+1) {
-					clear: left;
-				}
-			}
-		}
-	}
+	// 		@media only screen and (min-width: 768px) {
+	// 			&.col-sm-6:nth-child(2n+1) {
+	// 				clear: left;
+	// 			}
+	// 		}
+	// 	}
+	// }
 
-	#regions,
-	#destinations,
-	#itinerary {
-		.meta:first-child {
-			@media only screen and (min-width: 768px) {
-				padding-top: 0 !important;
-				margin-top: 0 !important;
-				border-top: none !important;
-			}
-		}
-	}
+	// #regions,
+	// #destinations,
+	// #itinerary {
+	// 	.meta:first-child {
+	// 		@media only screen and (min-width: 768px) {
+	// 			padding-top: 0 !important;
+	// 			margin-top: 0 !important;
+	// 			border-top: none !important;
+	// 		}
+	// 	}
+	// }
 
-	#videos {
-		.video {
-			h3,
-			.entry-content {
-				margin-top: 15px !important;
-			}
-		}
-	}
+	// #videos {
+	// 	.video {
+	// 		h3,
+	// 		.entry-content {
+	// 			margin-top: 15px !important;
+	// 		}
+	// 	}
+	// }
 
 	// ---------- Share buttons ----------
 
-	#sharing {
-		@extend %single-share-buttons;
-	}
+	// #sharing {
+	// 	@extend %single-share-buttons;
+	// }
 
 	.modal-body {
 		article {
@@ -2978,7 +2978,13 @@ body.single-tour-operator {
 }
 
 .lsx-to-section-wrapper {
+	@include media('<phone') { padding-bottom: 0; }
+
 	.lsx-to-section { padding-bottom: 0; }
+
+	#highlights {
+		@include media('<phone') { padding-top: 8.5rem; }
+	}
 }
 
 .single-tour-operator {
@@ -2986,12 +2992,16 @@ body.single-tour-operator {
 
 	#sharing {
 		.lsx-sharing-content > p {
-			margin-bottom: 0;
-			text-align: right;
+			margin-bottom: 2.4rem;
+			text-align: center;
+
+			@include media('>=phone') {
+				margin-bottom: 0;
+				text-align: right;
+			}
 		}
 	}
 }
-
 
 .lsx-title-small {
 	font-size: 22px;
