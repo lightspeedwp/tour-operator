@@ -175,13 +175,15 @@ function lsx_to_included_block() {
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_to_highlights($before="",$after="",$echo=true){
-	$highlights = get_post_meta(get_the_ID(),'hightlights',true);
-	if(false !== $highlights && '' !== $highlights){
-		$return = $before.'<div class="entry-content">'.apply_filters('the_content',wpautop($highlights)).'</div>'.$after;
-		if($echo){
-			echo wp_kses_post($return);
-		}else{
+function lsx_to_highlights( $before = "", $after = "", $echo = true ) {
+	$highlights = get_post_meta( get_the_ID(), 'hightlights', true );
+
+	if ( false !== $highlights && '' !== $highlights ) {
+		$return = $before . '<div class="entry-content">' . apply_filters( 'the_content', wpautop( $highlights ) ) . '</div>' . $after;
+
+		if ( $echo ) {
+			echo wp_kses_post( $return );
+		} else {
 			return $return;
 		}
 	}
@@ -199,37 +201,41 @@ function lsx_to_highlights($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_to_best_time_to_visit($before="",$after="",$echo=true){
-	$best_time_to_visit = get_post_meta(get_the_ID(),'best_time_to_visit',true);
-	if(false !== $best_time_to_visit && '' !== $best_time_to_visit && is_array($best_time_to_visit) && !empty($best_time_to_visit)){
+function lsx_to_best_time_to_visit( $before = "", $after = "", $echo = true ) {
+	$best_time_to_visit = get_post_meta( get_the_ID(), 'best_time_to_visit', true );
 
+	if ( false !== $best_time_to_visit && '' !== $best_time_to_visit && is_array( $best_time_to_visit ) && ! empty( $best_time_to_visit ) ) {
 		$this_year = array(
-			'january' => esc_html__('January','tour-operator'),
-			'february' => esc_html__('February','tour-operator'),
-			'march' => esc_html__('March','tour-operator'),
-			'april' => esc_html__('April','tour-operator'),
-			'may' => esc_html__('May','tour-operator'),
-			'june' => esc_html__('June','tour-operator'),
-			'july' => esc_html__('July','tour-operator'),
-			'august' => esc_html__('August','tour-operator'),
-			'september' => esc_html__('September','tour-operator'),
-			'october' => esc_html__('October','tour-operator'),
-			'november' => esc_html__('November','tour-operator'),
-			'december' => esc_html__('December','tour-operator')
+			'january' => esc_html__( 'January', 'tour-operator' ),
+			'february' => esc_html__( 'February', 'tour-operator' ),
+			'march' => esc_html__( 'March', 'tour-operator' ),
+			'april' => esc_html__( 'April', 'tour-operator' ),
+			'may' => esc_html__( 'May', 'tour-operator' ),
+			'june' => esc_html__( 'June', 'tour-operator' ),
+			'july' => esc_html__( 'July', 'tour-operator' ),
+			'august' => esc_html__( 'August', 'tour-operator' ),
+			'september' => esc_html__( 'September', 'tour-operator' ),
+			'october' => esc_html__( 'October', 'tour-operator' ),
+			'november' => esc_html__( 'November', 'tour-operator' ),
+			'december' => esc_html__( 'December', 'tour-operator ')
 		);
 
-		foreach($this_year as $month => $label){
+		foreach( $this_year as $month => $label ) {
 			$checked = '';
-			if(in_array($month,$best_time_to_visit)){
-				$checked = '<i class="fa fa-check" aria-hidden="true"></i>';
+
+			if ( in_array( $month, $best_time_to_visit ) ) {
+				$checked = '<i class="fa fa-check-circle" aria-hidden="true"></i>';
 			}
-			$shortname = str_split($label,3);
-			$best_times[] = '<div class="col-sm-2"><small>'.$shortname[0].'</small><br />'.$checked.'</div>';
+
+			$shortname = str_split( $label, 3 );
+			$best_times[] = '<div class="col-xs-2 col-sm-1 lsx-to-month"><small>' . $shortname[0] . '</small>' . $checked . '</div>';
 		};
-		$return = $before.implode($best_times).$after;
-		if($echo){
-			echo wp_kses_post($return);
-		}else{
+
+		$return = $before . implode( $best_times ) . $after;
+
+		if ( $echo ) {
+			echo wp_kses_post( $return );
+		} else {
 			return $return;
 		}
 	}
@@ -247,6 +253,6 @@ function lsx_to_best_time_to_visit($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	connections
  */
-function lsx_to_connected_tours($before="",$after="",$echo=true){
-	lsx_to_connected_items_query('tour',get_post_type(),$before,$after,$echo);
+function lsx_to_connected_tours( $before = "", $after = "", $echo = true ) {
+	lsx_to_connected_items_query( 'tour', get_post_type(), $before, $after, $echo );
 }

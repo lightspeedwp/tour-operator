@@ -272,7 +272,6 @@ function lsx_to_tour_single_content_bottom() {
 	if ( is_singular( 'tour' ) ) { ?>
 		<div class="lsx-to-section-wrapper">
 			<div class="row">
-
 				<div class="col-xs-12 col-sm-6">
 					<section id="fast-facts">
 						<h2 class="lsx-to-section-title lsx-title"><?php echo esc_html__( 'Fast Facts', 'tour-operator' ); ?></h2>
@@ -292,7 +291,6 @@ function lsx_to_tour_single_content_bottom() {
 						</div>
 					</section>
 				</div>
-
 				<div class="col-xs-12 col-sm-6">
 					<section id="highlights">
 						<h2 class="lsx-to-section-title lsx-title"><?php echo esc_html__( 'Highlights', 'tour-operator' ); ?></h2>
@@ -301,10 +299,11 @@ function lsx_to_tour_single_content_bottom() {
 						</div>
 					</section>
 				</div>
-
-				<!-- <div class="col-xs-12 col-sm-6">
-					<php lsx_to_best_time_to_visit( '<section id="best-time-to-visit" class="lsx-to-sub-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Best time to visit', 'tour-operator' ) . '</h2><div class="best-time-to-visit-wrapper">', '</div></section>' ); ?>
-				</div> -->
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<?php lsx_to_best_time_to_visit( '<section id="when-to-go" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'When to Go', 'tour-operator' ) . '</h2><div class="when-to-go-wrapper clearfix">', '</div></section>' ); ?>
+				</div>
 			</div>
 		</div>
 
