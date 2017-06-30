@@ -27,7 +27,7 @@ if ( 1 !== $lsx_to_archive ) {
 				<?php lsx_to_price( '<span class="lsx-to-meta-data lsx-to-meta-data-price">' . esc_html__( 'From price', 'tour-operator' ) . ': ', '</span>' ); ?>
 			</div>
 
-			<div class="meta taxonomies">
+			<div class="lsx-to-single-meta-data">
 				<?php
 					$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
 

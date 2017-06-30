@@ -375,68 +375,30 @@ function lsx_to_connected_panel_query( $args = false ) {
 
 				$carousel_id = rand( 20, 20000 );
 				$columns = intval( esc_attr( $args['column'] ) );
-				$count = 1;
 				$interval = '6000';
 				$post_type = $args['content_part'];
-				$post_count = $items->post_count;
-
-				$carousel = $post_count > $columns ? true : false;
-
-				if ( $post_count < $columns ) {
-					$columns = $post_count;
-				}
 
 				echo wp_kses_post( $args['before'] );
 
-				if ( $carousel ) {
-					echo '<div class="slider-container lsx-to-widget-items">';
-					echo '<div id="slider-' . esc_attr( $carousel_id ) . '" class="lsx-to-slider">';
-					echo '<div class="lsx-to-slider-wrap">';
-					echo '<div class="lsx-to-slider-inner" data-interval="' . esc_attr( $interval ) . '" data-slick=\'{ "slidesToShow": ' . esc_attr( $columns ) . ', "slidesToScroll": ' . esc_attr( $columns ) . ' }\'>';
-				} else {
-					echo "<div class='lsx-to-widget-items'>";
-				}
+				echo '<div class="slider-container lsx-to-widget-items">';
+				echo '<div id="slider-' . esc_attr( $carousel_id ) . '" class="lsx-to-slider">';
+				echo '<div class="lsx-to-slider-wrap">';
+				echo '<div class="lsx-to-slider-inner" data-interval="' . esc_attr( $interval ) . '" data-slick=\'{ "slidesToShow": ' . esc_attr( $columns ) . ', "slidesToScroll": ' . esc_attr( $columns ) . ' }\'>';
 
 				while ( $items->have_posts() ) :
 					$items->the_post();
 
-					if ( $carousel ) {
-						echo '<div class="lsx-to-widget-item-wrap lsx-' . esc_attr( $post_type ) . '">';
-					} elseif ( 1 === $count ) {
-						echo '<div class="row">';
-					}
-
-					if ( ! $carousel ) {
-						echo wp_kses_post( '<div ' . lsx_to_widget_class( $post_type, true ) . '>' );
-					}
+					echo '<div class="lsx-to-widget-item-wrap lsx-' . esc_attr( $post_type ) . '">';
 
 					lsx_to_content( 'content', 'widget-' . $args['content_part'] );
 
-					if ( ! $carousel ) {
-						echo wp_kses_post( '</div>' );
-					}
-
-					if ( $carousel ) {
-						echo '</div>';
-					} elseif ( 0 === $count % $columns || $count === $post_count ) {
-						echo '</div>';
-
-						if ( $count < $post_count ) {
-							echo '<div class="row">';
-						}
-					}
-
-					$count++;
+					echo '</div>';
 				endwhile;
 
-				if ( $carousel ) {
-					echo '</div>';
-					echo '</div>';
-					echo '</div>';
-					echo '</div>';
-				} else {
-					echo '</div>';
-				}
+				echo '</div>';
+				echo '</div>';
+				echo '</div>';
+				echo '</div>';
 
 				echo wp_kses_post( $args['after'] );
 
@@ -509,69 +471,29 @@ function lsx_to_related_items( $taxonomy = false, $before = '', $after = '', $ec
 			ob_start();
 
 			//Setting some carousel variables
-			$count = 1;
-			$landing_image = '';
 			$carousel_id = rand( 20, 20000 );
 			$interval = '6000';
-			$pagination = '';
-			$post_count = $related_query->post_count;
-			$pages = ceil( $post_count / $columns );
 			$post_type = get_post_type();
-			$carousel = false;
 
-			if ( $post_count > 3 ) {
-				$carousel = true;
-			}
-
-			if ( $carousel ) {
-				echo '<div class="slider-container lsx-to-widget-items">';
-				echo '<div id="slider-' . esc_attr( $carousel_id ) . '" class="lsx-to-slider">';
-				echo '<div class="lsx-to-slider-wrap">';
-				echo '<div class="lsx-to-slider-inner" data-interval="' . esc_attr( $interval ) . '" data-slick=\'{ "slidesToShow": ' . esc_attr( $columns ) . ', "slidesToScroll": ' . esc_attr( $columns ) . ' }\'>';
-			} else {
-				echo "<div class='lsx-to-widget-items'>";
-			}
+			echo '<div class="slider-container lsx-to-widget-items">';
+			echo '<div id="slider-' . esc_attr( $carousel_id ) . '" class="lsx-to-slider">';
+			echo '<div class="lsx-to-slider-wrap">';
+			echo '<div class="lsx-to-slider-inner" data-interval="' . esc_attr( $interval ) . '" data-slick=\'{ "slidesToShow": ' . esc_attr( $columns ) . ', "slidesToScroll": ' . esc_attr( $columns ) . ' }\'>';
 
 			while ( $related_query->have_posts() ) :
 				$related_query->the_post();
 
-				if ( $carousel ) {
-					echo '<div class="lsx-to-widget-item-wrap lsx-' . esc_attr( $post_type ) . '">';
-				} elseif ( 1 === $count ) {
-					echo '<div class="row">';
-				}
-
-				if ( ! $carousel ) {
-					echo wp_kses_post( '<div ' . lsx_to_widget_class( $post_type, true ) . '>' );
-				}
+				echo '<div class="lsx-to-widget-item-wrap lsx-' . esc_attr( $post_type ) . '">';
 
 				lsx_to_content( 'content', 'widget-' . $post_type );
 
-				if ( ! $carousel ) {
-					echo wp_kses_post( '</div>' );
-				}
-
-				if ( $carousel ) {
-					echo '</div>';
-				} elseif ( 0 === $count % $columns || $count === $post_count ) {
-					echo '</div>';
-
-					if ( $count < $post_count ) {
-						echo '<div class="row">';
-					}
-				}
-
-				$count++;
+				echo '</div>';
 			endwhile;
 
-			if ( $carousel ) {
-				echo '</div>';
-				echo '</div>';
-				echo '</div>';
-				echo '</div>';
-			} else {
-				echo '</div>';
-			}
+			echo '</div>';
+			echo '</div>';
+			echo '</div>';
+			echo '</div>';
 
 			$return = ob_get_clean();
 

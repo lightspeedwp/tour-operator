@@ -344,7 +344,7 @@ body.single-tour-operator {
 		&.slick-has-arrows { width: calc(100% - 10.8rem); }
 	}
 
-	.slick-dots {
+	.slick-dots:not(.dropdown-menu) {
 		align-items: center;
 		display: flex;
 		flex-flow: row wrap;
