@@ -270,8 +270,12 @@ function lsx_to_custom_field_query( $meta_key = false, $before = '', $after = ''
 		if ( false !== $value && '' !== $value ) {
 			$return_html = $before . '<span class="values">' . $value . '</span>' . $after;
 			$return = apply_filters( 'lsx_to_custom_field_query',$return_html,$meta_key,$value,$before,$after );
+
 			if ( $echo ) {
-				echo wp_kses_post( $return );
+				// wp_kses_post is removing data-price-XX attribute.
+				// we tried to use 'wp_kses_allowed_html' on LSX Currencies without success
+				// echo wp_kses_post( $return );
+				echo $return;
 			} else {
 				return $return;
 			}

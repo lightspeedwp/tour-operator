@@ -84,7 +84,7 @@ class Tour {
 
 		$this->is_wetu_active = false;
 
-		if ( ! class_exists( 'LSX_Currency' ) ) {
+		if ( ! class_exists( 'LSX_Currencies' ) ) {
 			add_filter( 'lsx_to_custom_field_query', array( $this, 'price_filter' ), 5, 10 );
 		}
 
