@@ -448,6 +448,7 @@ class Tour {
 			$this->get_gallery_link();
 			$this->get_videos_link();
 			$this->get_related_reviews_link();
+			// @TODO - get_related_tours_link [lsx_to_related_items]
 
 			$page_links = $this->page_links;
 		}
