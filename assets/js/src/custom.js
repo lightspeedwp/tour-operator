@@ -204,7 +204,9 @@ var lsx_to = Object.create( null );
 		$( '.lsx-to-navigation' ).scrollToFixed({
 			minWidth: 1200,
 			marginTop: function () {
-				var mt = $( '.top-menu-fixed #masthead' ).length > 0 ? $( '.top-menu-fixed #masthead' ).outerHeight( true ) :  0;
+				var mt = 0;
+				mt += $( '.top-menu-fixed #masthead' ).length > 0 ? $( '.top-menu-fixed #masthead' ).outerHeight( true ) :  0;
+				mt += $( '#wpadminbar' ).length > 0 ? $( '#wpadminbar' ).outerHeight() : 0;
 
 				return mt;
 			}
@@ -224,7 +226,6 @@ var lsx_to = Object.create( null );
 			var $from = $( this ),
 				$to = $( $from.attr( 'href' ) ),
 				top = parseInt( $to.offset().top ),
-				// extra_header = $( 'header.navbar-static-top' ).length > 0 ? $( 'header.navbar-static-top' ).outerHeight( true ) : 0,
 				extra_header = $( '.top-menu-fixed #masthead' ).length > 0 ? $( '.top-menu-fixed #masthead' ).outerHeight( true ) : 0,
 				extra_navigation = $( '.lsx-to-navigation' ).length > 0 ? $( '.lsx-to-navigation' ).outerHeight( true ) : 0,
 				extra_attr = parseInt( $from.data( 'extra-top' ) ? $from.data( 'extra-top' ) : '0' ),
