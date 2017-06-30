@@ -563,7 +563,7 @@ function lsx_to_accommodation_reset_units_loop() {
  * @subpackage    template-tags
  * @category      unit
  */
-function lsx_to_accommodation_units( $before = '', $after = '' ) {
+function lsx_to_accommodation_units() {
 	global $rooms;
 
 	if ( lsx_to_accommodation_has_rooms() ) {
@@ -578,8 +578,8 @@ function lsx_to_accommodation_units( $before = '', $after = '' ) {
 		foreach ( $unit_types as $type_key => $type_label ) {
 			if ( lsx_to_accommodation_check_type( $type_key ) ) {
 				?>
-				<section id="<?php echo esc_attr( $type_key ); ?>s">
-					<h2 class="section-title"><?php esc_html_e( lsx_to_get_post_type_section_title( 'accommodation', $type_key . 's', $type_label . 's' ), 'tour-operator' ); ?></h2>
+				<section id="<?php echo esc_attr( $type_key ); ?>s" class="lsx-to-section">
+					<h2 class="lsx-to-section-title lsx-title"><?php esc_html_e( lsx_to_get_post_type_section_title( 'accommodation', $type_key . 's', $type_label . 's' ), 'tour-operator' ); ?></h2>
 					<div class="<?php echo esc_attr( $type_key ); ?>s-content rooms-content row">
 						<?php while ( lsx_to_accommodation_room_loop() ) { ?>
 
@@ -587,9 +587,9 @@ function lsx_to_accommodation_units( $before = '', $after = '' ) {
 								continue;
 							} ?>
 
-							<div class="panel col-sm-6">
+							<div class="col-xs-12 col-sm-6">
 								<article class="unit type-unit">
-									<div class="col-sm-4">
+									<div class="col-xs-12 col-sm-4">
 										<?php if ( lsx_to_accommodation_room_has_thumbnail() ) { ?>
 											<div class="thumbnail">
 												<?php lsx_to_accommodation_room_thumbnail(); ?>
@@ -597,9 +597,9 @@ function lsx_to_accommodation_units( $before = '', $after = '' ) {
 										<?php } ?>
 									</div>
 
-									<div class="col-sm-8">
+									<div class="col-xs-12 col-sm-8">
 										<div class="unit-info">
-											<?php lsx_to_accommodation_room_title( '<h3>', '</h3>' ); ?>
+											<?php lsx_to_accommodation_room_title( '<h5>', '</h5>' ); ?>
 											<?php lsx_to_accommodation_room_description( '<div class="entry-content">', '</div>' ); ?>
 										</div>
 									</div>

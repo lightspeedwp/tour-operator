@@ -62,10 +62,6 @@ msgstr ""
 msgid "Read more"
 msgstr ""
 
-#: includes/layout.php:119
-msgid "{units}"
-msgstr ""
-
 #: includes/layout.php:121, includes/taxonomies/config-facility.php:18, includes/taxonomies/config-facility.php:21, includes/taxonomies/config-facility.php:28, includes/classes/legacy/class-accommodation.php:301, includes/classes/legacy/class-tour-operator.php:289
 msgid "Facilities"
 msgstr ""

@@ -116,37 +116,37 @@ function lsx_to_single_entry_bottom() {
  */
 function lsx_to_accommodation_single_content_bottom() {
 	if ( is_singular( 'accommodation' ) ) {
-		lsx_to_accommodation_units( '<section id="{units}"><h2 class="section-title">' . esc_html__( '{units}', 'tour-operator' ) . '</h2><div class="info row">', '</div></section>' );
+		lsx_to_accommodation_units();
 
-		lsx_to_accommodation_facilities( '<section id="facilities"><h2 class="section-title">' . esc_html__( 'Facilities', 'tour-operator' ) . '</h2><div class="info row">', '</div></section>' );
+		lsx_to_accommodation_facilities( '<section id="facilities" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Facilities', 'tour-operator' ) . '</h2><div class="row">', '</div></section>' );
 
 		lsx_to_included_block();
 
 		if ( function_exists( 'lsx_to_has_map' ) && lsx_to_has_map() ) { ?>
-			<section id="accommodation-map">
-				<h2 class="section-title"><?php esc_html_e( 'Map', 'tour-operator' ); ?></h2>
+			<section id="accommodation-map" class="lsx-to-section">
+				<h2 class="lsx-to-section-title lsx-title"><?php esc_html_e( 'Map', 'tour-operator' ); ?></h2>
 				<?php lsx_to_map(); ?>
 			</section>
 		<?php }
 
-		lsx_to_gallery( '<section id="gallery"><h2 class="section-title">' . esc_html__( 'Gallery', 'tour-operator' ) . '</h2>', '</section>' );
+		lsx_to_gallery( '<section id="gallery" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Gallery', 'tour-operator' ) . '</h2>', '</section>' );
 
 		if ( function_exists( 'lsx_to_videos' ) ) {
-			lsx_to_videos( '<div id="videos"><h2 class="section-title">' . esc_html__( 'Videos', 'tour-operator' ) . '</h2>', '</div>' );
+			lsx_to_videos( '<section id="videos" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Videos', 'tour-operator' ) . '</h2>', '</section>' );
 		} elseif ( class_exists( 'Envira_Videos' ) ) {
-			lsx_to_envira_videos( '<div id="videos"><h2 class="section-title">' . esc_html__( 'Videos', 'tour-operator' ) . '</h2>', '</div>' );
+			lsx_to_envira_videos( '<section id="videos" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Videos', 'tour-operator' ) . '</h2>', '</section>' );
 		}
 
 		if ( function_exists( 'lsx_to_accommodation_reviews' ) ) {
 			lsx_to_accommodation_reviews();
 		}
 
-		lsx_to_related_items( 'travel-style', '<section id="related-items"><h2 class="section-title">' . esc_html__( lsx_to_get_post_type_section_title( 'accommodation', 'similar', 'Related Accommodation' ), 'tour-operator' ) . '</h2>', '</section>' );
+		lsx_to_related_items( 'travel-style', '<section id="related-items" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( lsx_to_get_post_type_section_title( 'accommodation', 'similar', 'Related Accommodation' ), 'tour-operator' ) . '</h2>', '</section>' );
 
 		$connected_tours = get_post_meta( get_the_ID(), 'tour_to_accommodation', false );
 
 		if ( lsx_to_accommodation_display_connected_tours() && post_type_exists( 'tour' ) && is_array( $connected_tours ) && ! empty( $connected_tours ) ) {
-			lsx_to_related_items( $connected_tours, '<section class="related-items"><h2 class="section-title">' . esc_html__( 'Related Tours' , 'tour-operator' ) . '</h2>', '</section>', true, 'tour' );
+			lsx_to_related_items( $connected_tours, '<section class="related-items" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Related Tours' , 'tour-operator' ) . '</h2>', '</section>', true, 'tour' );
 		}
 	}
 }
