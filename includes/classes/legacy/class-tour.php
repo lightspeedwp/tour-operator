@@ -447,6 +447,7 @@ class Tour {
 			$this->get_map_link();
 			$this->get_gallery_link();
 			$this->get_videos_link();
+			$this->get_related_reviews_link();
 
 			$page_links = $this->page_links;
 		}
@@ -526,6 +527,17 @@ class Tour {
 
 		if ( ! empty( $videos_id ) ) {
 			$this->page_links['videos'] = esc_html__( 'Videos', 'tour-operator' );
+		}
+	}
+
+	/**
+	 * Tests for the Related Reviews and returns a link for the section
+	 */
+	public function get_related_reviews_link() {
+		$connected_reviews = get_post_meta( get_the_ID(), 'review_to_tour', false );
+
+		if ( post_type_exists( 'tour' ) && is_array( $connected_reviews ) && ! empty( $connected_reviews ) ) {
+			$this->page_links['related-items'] = esc_html__( 'Reviews', 'tour-operator' );
 		}
 	}
 
