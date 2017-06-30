@@ -1025,51 +1025,51 @@
 
 .flag-icon-un.flag-icon-squared { background-image: url(../flags/1x1/un.svg); }
 
-body .menu-item-currency .currency-icon:after { margin-left: 3px; margin-right: 3px; }
+.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon:after { margin-left: 3px; margin-right: 3px; }
 
-body .menu-item-currency .currency-icon.usd:after, body .menu-item-currency .currency-icon.nad:after, body .menu-item-currency .currency-icon.cad:after, body .menu-item-currency .currency-icon.hkd:after, body .menu-item-currency .currency-icon.sgd:after, body .menu-item-currency .currency-icon.nzd:after, body .menu-item-currency .currency-icon.aud:after { content: '\0024'; }
+.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.usd:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.nad:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.cad:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.hkd:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.sgd:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.nzd:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.aud:after { content: '\0024'; }
 
-body .menu-item-currency .currency-icon.eur:after { content: '\20AC'; }
+.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.eur:after { content: '\20AC'; }
 
-body .menu-item-currency .currency-icon.gbp:after { content: '\00A3'; }
+.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.gbp:after { content: '\00A3'; }
 
-body .menu-item-currency .currency-icon.zar:after { content: '\0052'; }
+.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.zar:after { content: '\0052'; }
 
-body .menu-item-currency .currency-icon.brl:after { content: '\0052\0024'; }
+.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.brl:after { content: '\0052\0024'; }
 
-body .menu-item-currency .currency-icon.bwp:after { content: '\0050'; }
+.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.bwp:after { content: '\0050'; }
 
-body .menu-item-currency .currency-icon.cny:after, body .menu-item-currency .currency-icon.jpy:after { content: '\00A5'; }
+.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.cny:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.jpy:after { content: '\00A5'; }
 
-body .menu-item-currency .currency-icon.inr:after { content: '\20B9'; }
+.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.inr:after { content: '\20B9'; }
 
-body .menu-item-currency .currency-icon.idr:after { content: '\20B9'; }
+.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.idr:after { content: '\20B9'; }
 
-body .menu-item-currency .currency-icon.ils:after { content: '\20AA'; }
+.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.ils:after { content: '\20AA'; }
 
-body .menu-item-currency .currency-icon.kes:after { content: '\004b'; }
+.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.kes:after { content: '\004b'; }
 
-body .menu-item-currency .currency-icon.lak:after { content: '\20ad'; }
+.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.lak:after { content: '\20ad'; }
 
-body .menu-item-currency .currency-icon.mwk:after { content: '\004d\004b'; }
+.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.mwk:after { content: '\004d\004b'; }
 
-body .menu-item-currency .currency-icon.myr:after { content: '\0052\004d'; }
+.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.myr:after { content: '\0052\004d'; }
 
-body .menu-item-currency .currency-icon.mzn:after { content: '\004d\0054'; }
+.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.mzn:after { content: '\004d\0054'; }
 
-body .menu-item-currency .currency-icon.nok:after, body .menu-item-currency .currency-icon.sek:after { content: '\006b\0072'; }
+.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.nok:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.sek:after { content: '\006b\0072'; }
 
-body .menu-item-currency .currency-icon.rub:after { content: '\0440\0443\0431'; }
+.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.rub:after { content: '\0440\0443\0431'; }
 
-body .menu-item-currency .currency-icon.chf:after { content: '\0043\0048\0046'; }
+.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.chf:after { content: '\0043\0048\0046'; }
 
-body .menu-item-currency .currency-icon.tzs:after { content: '\0054\0053\0068'; }
+.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.tzs:after { content: '\0054\0053\0068'; }
 
-body .menu-item-currency .currency-icon.aed:after { content: '\062f\002e\0625'; }
+.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.aed:after { content: '\062f\002e\0625'; }
 
-body .menu-item-currency .currency-icon.zmw:after { content: '\005a\006b'; }
+.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.zmw:after { content: '\005a\006b'; }
 
-body .menu-item-currency .currency-icon.zwl:after { content: '\005a\0024'; }
+.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.zwl:after { content: '\005a\0024'; }
 
 body.single-tour-operator .modal-body article .entry-content .moretag { width: 230px; display: block; margin-left: auto !important; margin-right: auto !important; padding-left: 30px !important; padding-right: 30px !important; }
 
@@ -1196,6 +1196,8 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
   .lsx-to-single-meta .lsx-to-meta-data + .lsx-to-meta-data { margin-top: 0; margin-left: 2.4rem; } }
 
 .lsx-to-meta-data:before { color: inherit; display: inline-block; font-family: 'FontAwesome'; font-size: inherit; left: 0; position: absolute; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon:after { margin-right: 0px; }
 
 .lsx-to-meta-data.lsx-to-meta-data-accommodations:before { content: '\f015'; }
 
