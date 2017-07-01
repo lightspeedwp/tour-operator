@@ -1352,6 +1352,8 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-contact-thumb { border-radius: 50%; height: 170px; margin: 2.4rem auto 0; overflow: hidden; position: relative; width: 170px; }
 
+.lsx-to-contact-thumb + .lsx-to-contact-name { margin-top: 2.4rem; }
+
 @media (min-width: 768px) { .lsx-to-contact-thumb { margin-top: 0; }
   .lsx-to-contact-thumb + .lsx-to-contact-prefix { margin-top: 2.4rem; } }
 
