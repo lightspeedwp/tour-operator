@@ -21,18 +21,21 @@ if ( 1 !== $lsx_to_archive ) {
 	<?php if ( is_single() && false === $lsx_to_archive ) { ?>
 
 		<div <?php lsx_to_entry_class( 'entry-content' ); ?>>
-			<div class="single-main-info">
-				<h3><?php esc_html_e( 'Summary' , 'tour-operator' ); ?></h3>
+			<div class="lsx-to-single-content">
+				<h2 class="lsx-to-single-title"><?php esc_html_e( 'Summary' , 'tour-operator' ); ?></h2>
+			</div>
 
-				<div class="meta taxonomies">
-					<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">' . esc_html__( 'Travel Style', 'tour-operator' ) . ': ', ', ', '</div>' ); ?>
-					<?php if ( function_exists( 'lsx_to_connected_activities' ) ) { lsx_to_connected_activities( '<div class="meta activities">' . esc_html__( 'Activities', 'tour-operator' ) . ': ', '</div>' ); } ?>
-				</div>
-
-				<?php lsx_to_sharing(); ?>
+			<div class="lsx-to-single-meta-data">
+				<?php
+					the_terms( get_the_ID(), 'travel-style', '<span class="lsx-to-meta-data lsx-to-meta-data-style">' . esc_html__( 'Travel Style', 'tour-operator' ) . ': ', ', ', '</span>' );
+					if ( function_exists( 'lsx_to_connected_activities' ) ) {
+						lsx_to_connected_activities( '<span class="lsx-to-meta-data lsx-to-meta-data-activities">' . esc_html__( 'Activities', 'tour-operator' ) . ': ', '</span>' );
+					}
+				?>
 			</div>
 
 			<?php the_content(); ?>
+			<?php lsx_to_sharing(); ?>
 		</div>
 
 	<?php } elseif ( empty( tour_operator()->options[ get_post_type() ]['disable_entry_text'] ) ) { ?>

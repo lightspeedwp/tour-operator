@@ -1320,6 +1320,8 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-archive-template-grid .lsx-to-archive-wrapper { width: 100%; }
 
+.lsx-regions .lsx-to-archive-wrapper { background-color: #FFF; }
+
 @media (min-width: 768px) { .lsx-to-archive-template-list .lsx-to-archive-content { -webkit-box-flex: 1; -ms-flex-positive: 1; flex-grow: 1; padding-left: 15px; } }
 
 .lsx-to-archive-content .entry-content p:last-child { margin-bottom: 0; }

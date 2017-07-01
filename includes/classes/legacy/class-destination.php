@@ -330,7 +330,7 @@ class Destination {
 		$connected_activities = get_post_meta( get_the_ID(), 'activity_to_destination', false );
 
 		if ( post_type_exists( 'activity' ) && is_array( $connected_activities ) && ! empty( $connected_activities ) ) {
-			$this->page_links['activity'] = esc_html__( 'Activities', 'tour-operator' );
+			$this->page_links['activities'] = esc_html__( 'Activities', 'tour-operator' );
 		}
 	}
 

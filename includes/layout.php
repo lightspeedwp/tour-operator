@@ -198,6 +198,8 @@ function lsx_to_destination_single_content_bottom() {
 		</section>
 		<?php
 
+		lsx_to_page_navigation();
+
 		lsx_to_destination_travel_info();
 
 		lsx_to_country_regions();
@@ -209,18 +211,18 @@ function lsx_to_destination_single_content_bottom() {
 		lsx_to_destination_activities();
 
 		if ( function_exists( 'lsx_to_has_map' ) && lsx_to_has_map() ) { ?>
-			<section id="destination-map">
-				<h2 class="section-title"><?php esc_html_e( 'Map', 'tour-operator' ); ?></h2>
+			<section id="destination-map" class="lsx-to-section">
+				<h2 class="lsx-to-section-title lsx-title"><?php esc_html_e( 'Map', 'tour-operator' ); ?></h2>
 				<?php lsx_to_map(); ?>
 			</section>
 		<?php }
 
-		lsx_to_gallery( '<section id="gallery"><h2 class="section-title">' . esc_html__( 'Gallery', 'tour-operator' ) . '</h2>', '</section>' );
+		lsx_to_gallery( '<section id="gallery" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Gallery', 'tour-operator' ) . '</h2>', '</section>' );
 
 		if ( function_exists( 'lsx_to_videos' ) ) {
-			lsx_to_videos( '<div id="videos"><h2 class="section-title">' . esc_html__( 'Videos', 'tour-operator' ) . '</h2>', '</div>' );
+			lsx_to_videos( '<section id="videos" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Videos', 'tour-operator' ) . '</h2>', '</section>' );
 		} elseif ( class_exists( 'Envira_Videos' ) ) {
-			lsx_to_envira_videos( '<div id="videos"><h2 class="section-title">' . esc_html__( 'Videos', 'tour-operator' ) . '</h2>', '</div>' );
+			lsx_to_envira_videos( '<section id="videos" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Videos', 'tour-operator' ) . '</h2>', '</section>' );
 		}
 
 		if ( function_exists( 'lsx_to_destination_reviews' ) ) {
