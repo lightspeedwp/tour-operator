@@ -188,15 +188,9 @@ function lsx_to_accommodation_archive_entry_bottom() {
  * @category 	destination
  */
 function lsx_to_destination_single_content_bottom() {
-	if ( is_singular( 'destination' ) ) { ?>
-		<section id="highlights">
-			<div class="row">
-				<div class="col-sm-12">
-					<?php lsx_to_best_time_to_visit( '<div class="best-time-to-visit"><h2 class="section-title">' . esc_html__( 'Best time to visit', 'tour-operator' ) . '</h2><div class="best-time-to-visit-content">', '</div></div>' ); ?>
-				</div>
-			</div>
-		</section>
-		<?php
+	if ( is_singular( 'destination' ) ) {
+
+		lsx_to_best_time_to_visit( '<section id="when-to-go" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'When to Go', 'tour-operator' ) . '</h2><div class="when-to-go-wrapper clearfix">', '</div></section>' );
 
 		lsx_to_page_navigation();
 
@@ -274,7 +268,7 @@ function lsx_to_destination_archive_entry_bottom() {
  */
 function lsx_to_tour_single_content_bottom() {
 	if ( is_singular( 'tour' ) ) { ?>
-		<div class="lsx-to-section-wrapper">
+		<section class="lsx-to-section">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
 					<section id="fast-facts">
@@ -309,7 +303,7 @@ function lsx_to_tour_single_content_bottom() {
 					<?php lsx_to_best_time_to_visit( '<section id="when-to-go" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'When to Go', 'tour-operator' ) . '</h2><div class="when-to-go-wrapper clearfix">', '</div></section>' ); ?>
 				</div>
 			</div>
-		</div>
+		</section>
 
 		<?php lsx_to_page_navigation(); ?>
 
