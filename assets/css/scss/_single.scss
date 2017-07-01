@@ -1,0 +1,17 @@
+.lsx-to-section {
+	margin: 0 -9999rem;
+	padding: 8.5rem 9999rem;
+
+	.site-main > & {
+		&:first-of-type { padding-top: 0; }
+
+		&:nth-child(even) { background-color: #FFF; }
+	}
+
+	.lsx-to-section { padding-bottom: 0; }
+}
+
+#keynotes {
+	background-color: transparent;
+	padding-top: 0;
+}
