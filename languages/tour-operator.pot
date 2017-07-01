@@ -19,15 +19,15 @@ msgstr ""
 msgid "Tour Operator"
 msgstr ""
 
-#: includes/functions.php:292, templates/content-accommodation.php:35, templates/content-widget-accommodation.php:33, includes/metaboxes/config-accommodation.php:112, includes/template-tags/accommodation.php:291
+#: includes/functions.php:292, templates/content-accommodation.php:35, templates/content-widget-accommodation.php:33, includes/metaboxes/config-accommodation.php:112, includes/template-tags/accommodation.php:296
 msgid "Rating"
 msgstr ""
 
-#: includes/functions.php:293, templates/content-accommodation.php:38, includes/metaboxes/config-accommodation.php:275, includes/template-tags/accommodation.php:294
+#: includes/functions.php:293, templates/content-accommodation.php:38, includes/metaboxes/config-accommodation.php:275, includes/template-tags/accommodation.php:299
 msgid "Type"
 msgstr ""
 
-#: includes/functions.php:294, templates/content-accommodation.php:41, includes/metaboxes/config-accommodation.php:180, includes/template-tags/accommodation.php:297
+#: includes/functions.php:294, templates/content-accommodation.php:41, includes/metaboxes/config-accommodation.php:180, includes/template-tags/accommodation.php:302
 msgid "Special Interests"
 msgstr ""
 
@@ -142,7 +142,7 @@ msgstr ""
 msgid "Activites"
 msgstr ""
 
-#: includes/layout.php:351, includes/metaboxes/config-accommodation.php:52, includes/metaboxes/config-tour.php:140, includes/template-tags/tour.php:146, includes/classes/legacy/class-tour.php:279
+#: includes/layout.php:351, includes/metaboxes/config-accommodation.php:52, includes/metaboxes/config-tour.php:140, includes/template-tags/tour.php:149, includes/classes/legacy/class-tour.php:279
 msgid "Included"
 msgstr ""
 
@@ -150,7 +150,7 @@ msgstr ""
 msgid "Excluded"
 msgstr ""
 
-#: includes/layout.php:408, templates/content-accommodation.php:27, templates/content-tour.php:29, templates/content-widget-accommodation.php:28, templates/content-widget-tour.php:34, includes/template-tags/accommodation.php:289, includes/classes/legacy/class-accommodation.php:207, includes/classes/legacy/class-tour.php:422
+#: includes/layout.php:408, templates/content-accommodation.php:27, templates/content-tour.php:29, templates/content-widget-accommodation.php:28, templates/content-widget-tour.php:34, includes/template-tags/accommodation.php:294, includes/classes/legacy/class-accommodation.php:207, includes/classes/legacy/class-tour.php:422
 msgid "From price"
 msgstr ""
 
@@ -222,11 +222,11 @@ msgstr ""
 msgid "Summary"
 msgstr ""
 
-#: templates/content-accommodation.php:34, templates/content-widget-accommodation.php:32, includes/template-tags/accommodation.php:290
+#: templates/content-accommodation.php:34, templates/content-widget-accommodation.php:32, includes/template-tags/accommodation.php:295
 msgid "Rooms"
 msgstr ""
 
-#: templates/content-accommodation.php:36, templates/content-widget-accommodation.php:30, includes/taxonomies/config-accommodation-brand.php:19, includes/template-tags/accommodation.php:293, includes/classes/legacy/class-admin.php:211, includes/classes/legacy/class-admin.php:228, includes/classes/legacy/class-tour-operator.php:280
+#: templates/content-accommodation.php:36, templates/content-widget-accommodation.php:30, includes/taxonomies/config-accommodation-brand.php:19, includes/template-tags/accommodation.php:298, includes/classes/legacy/class-admin.php:211, includes/classes/legacy/class-admin.php:228, includes/classes/legacy/class-tour-operator.php:280
 msgid "Brand"
 msgstr ""
 
@@ -234,19 +234,19 @@ msgstr ""
 msgid "Accommodation Style"
 msgstr ""
 
-#: templates/content-accommodation.php:39, includes/metaboxes/config-accommodation.php:139, includes/template-tags/accommodation.php:295
+#: templates/content-accommodation.php:39, includes/metaboxes/config-accommodation.php:139, includes/template-tags/accommodation.php:300
 msgid "Spoken Languages"
 msgstr ""
 
-#: templates/content-accommodation.php:40, includes/metaboxes/config-accommodation.php:163, includes/template-tags/accommodation.php:296
+#: templates/content-accommodation.php:40, includes/metaboxes/config-accommodation.php:163, includes/template-tags/accommodation.php:301
 msgid "Friendly"
 msgstr ""
 
-#: templates/content-accommodation.php:47, templates/content-widget-accommodation.php:31, includes/metaboxes/config-accommodation.php:82, includes/metaboxes/config-destination.php:204, includes/metaboxes/config-destination.php:209, includes/template-tags/accommodation.php:298, includes/classes/legacy/class-field-pattern.php:90
+#: templates/content-accommodation.php:47, templates/content-widget-accommodation.php:31, includes/metaboxes/config-accommodation.php:82, includes/metaboxes/config-destination.php:204, includes/metaboxes/config-destination.php:209, includes/template-tags/accommodation.php:303, includes/classes/legacy/class-field-pattern.php:90
 msgid "Location"
 msgstr ""
 
-#: templates/content-widget-accommodation.php:29, includes/template-tags/accommodation.php:292
+#: templates/content-widget-accommodation.php:29, includes/template-tags/accommodation.php:297
 msgid "Style"
 msgstr ""
 
@@ -290,7 +290,7 @@ msgstr ""
 msgid "Percentage Off Your Price."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:58, includes/metaboxes/config-tour.php:147, includes/template-tags/tour.php:154
+#: includes/metaboxes/config-accommodation.php:58, includes/metaboxes/config-tour.php:147, includes/template-tags/tour.php:157
 msgid "Not Included"
 msgstr ""
 
@@ -1318,51 +1318,51 @@ msgstr ""
 msgid "Travel Information"
 msgstr ""
 
-#: includes/template-tags/general.php:503, includes/template-tags/general.php:515
+#: includes/template-tags/general.php:506, includes/template-tags/general.php:518
 msgid "Enquire"
 msgstr ""
 
-#: includes/template-tags/tour.php:209
+#: includes/template-tags/tour.php:212
 msgid "January"
 msgstr ""
 
-#: includes/template-tags/tour.php:210
+#: includes/template-tags/tour.php:213
 msgid "February"
 msgstr ""
 
-#: includes/template-tags/tour.php:211
+#: includes/template-tags/tour.php:214
 msgid "March"
 msgstr ""
 
-#: includes/template-tags/tour.php:212
+#: includes/template-tags/tour.php:215
 msgid "April"
 msgstr ""
 
-#: includes/template-tags/tour.php:213
+#: includes/template-tags/tour.php:216
 msgid "May"
 msgstr ""
 
-#: includes/template-tags/tour.php:214
+#: includes/template-tags/tour.php:217
 msgid "June"
 msgstr ""
 
-#: includes/template-tags/tour.php:215
+#: includes/template-tags/tour.php:218
 msgid "July"
 msgstr ""
 
-#: includes/template-tags/tour.php:216
+#: includes/template-tags/tour.php:219
 msgid "August"
 msgstr ""
 
-#: includes/template-tags/tour.php:217
+#: includes/template-tags/tour.php:220
 msgid "September"
 msgstr ""
 
-#: includes/template-tags/tour.php:218
+#: includes/template-tags/tour.php:221
 msgid "October"
 msgstr ""
 
-#: includes/template-tags/tour.php:219
+#: includes/template-tags/tour.php:222
 msgid "November"
 msgstr ""
 

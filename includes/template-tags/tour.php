@@ -20,8 +20,8 @@
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_to_price($before="",$after="",$echo=true){
-	lsx_to_custom_field_query('price',$before,$after,$echo);
+function lsx_to_price( $before = "", $after = "", $echo = true ) {
+	lsx_to_custom_field_query( 'price', $before, $after, $echo );
 }
 
 /**
@@ -36,8 +36,8 @@ function lsx_to_price($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_to_duration($before="",$after="",$echo=true){
-	lsx_to_custom_field_query('duration',$before,$after,$echo);
+function lsx_to_duration( $before = "", $after = "", $echo = true ) {
+	lsx_to_custom_field_query( 'duration', $before, $after, $echo );
 }
 
 /**
@@ -52,8 +52,8 @@ function lsx_to_duration($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_to_included($before="",$after="",$echo=true){
-	return lsx_to_custom_field_query('included',$before,$after,$echo);
+function lsx_to_included( $before = "", $after = "", $echo =true ) {
+	return lsx_to_custom_field_query( 'included', $before, $after, $echo );
 }
 
 /**
@@ -68,8 +68,8 @@ function lsx_to_included($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_to_not_included($before="",$after="",$echo=true){
-	return lsx_to_custom_field_query('not_included',$before,$after,$echo);
+function lsx_to_not_included( $before = "", $after = "", $echo = true ) {
+	return lsx_to_custom_field_query( 'not_included', $before, $after, $echo );
 }
 
 /**
@@ -84,13 +84,15 @@ function lsx_to_not_included($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_to_departure_point($before="",$after="",$echo=true){
-	$departs_from = get_post_meta(get_the_ID(),'departs_from',false);
+function lsx_to_departure_point( $before = "", $after = "", $echo = true ) {
+	$departs_from = get_post_meta( get_the_ID(), 'departs_from', false );
+
 	if ( ! empty( $departs_from ) && is_array( $departs_from ) && count( $departs_from ) > 0 ) {
-		$return = $before.lsx_to_connected_list($departs_from,'destination',true,', ').$after;
-		if($echo){
+		$return = $before . lsx_to_connected_list( $departs_from, 'destination', true, ', ') . $after;
+
+		if ( $echo ) {
 			echo wp_kses_post( $return );
-		}else{
+		} else {
 			return $return;
 		}
 	}
@@ -108,13 +110,15 @@ function lsx_to_departure_point($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_to_end_point($before="",$after="",$echo=true){
-	$end_point = get_post_meta(get_the_ID(),'ends_in',false);
+function lsx_to_end_point( $before = "", $after = "", $echo = true ) {
+	$end_point = get_post_meta( get_the_ID(), 'ends_in', false );
+
 	if ( ! empty( $end_point ) && is_array( $end_point ) && count( $end_point ) > 0 ) {
-		$return = $before.lsx_to_connected_list($end_point,'destination',true,', ').$after;
-		if($echo){
+		$return = $before . lsx_to_connected_list( $end_point, 'destination', true, ', ' ) . $after;
+
+		if ( $echo ) {
 			echo wp_kses_post( $return );
-		}else{
+		} else {
 			return $return;
 		}
 	}
@@ -128,7 +132,6 @@ function lsx_to_end_point($before="",$after="",$echo=true){
  * @category 	tour
  */
 function lsx_to_included_block() {
-
 	$tour_included = lsx_to_included( '', '', false );
 	$tour_not_included = lsx_to_not_included( '', '', false );
 

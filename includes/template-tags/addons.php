@@ -20,8 +20,8 @@
  * @subpackage	template-tags
  * @category 	connections
  */
-function lsx_to_connected_reviews($before="",$after="",$echo=true){
-	lsx_to_connected_items_query('review',get_post_type(),$before,$after,$echo);
+function lsx_to_connected_reviews( $before = "", $after = "", $echo = true ) {
+	lsx_to_connected_items_query( 'review', get_post_type(), $before, $after, $echo );
 }
 
 /**
@@ -36,8 +36,8 @@ function lsx_to_connected_reviews($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	connections
  */
-function lsx_to_connected_team($before="",$after="",$echo=true){
-	lsx_to_connected_items_query('team',get_post_type(),$before,$after,$echo);
+function lsx_to_connected_team( $before = "", $after = "", $echo = true ) {
+	lsx_to_connected_items_query( 'team', get_post_type(), $before, $after, $echo );
 }
 
 /**
@@ -52,6 +52,6 @@ function lsx_to_connected_team($before="",$after="",$echo=true){
  * @subpackage	template-tags
  * @category 	connections
  */
-function lsx_to_connected_vehicles($before="",$after="",$echo=true){
-	lsx_to_connected_items_query('vehicle',get_post_type(),$before,$after,$echo);
+function lsx_to_connected_vehicles( $before = "", $after = "", $echo = true ) {
+	lsx_to_connected_items_query( 'vehicle', get_post_type(), $before, $after, $echo );
 }
