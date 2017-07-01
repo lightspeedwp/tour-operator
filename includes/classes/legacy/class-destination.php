@@ -124,9 +124,9 @@ class Destination {
 
 		if ( is_main_query() && is_singular( $this->slug ) && false === $lsx_to_archive ) {
 			if ( lsx_to_has_enquiry_contact() ) {
-				$classes[] = 'col-sm-9';
+				$classes[] = 'col-xs-12 col-sm-8 col-md-9';
 			} else {
-				$classes[] = 'col-sm-12';
+				$classes[] = 'col-xs-12';
 			}
 		}
 
