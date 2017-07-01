@@ -186,7 +186,7 @@ function lsx_to_page_navigation( $echo = true ) {
 	$page_links = apply_filters( 'lsx_to_page_navigation', $page_links );
 
 	if ( ! empty( $page_links ) ) {
-		$return = '<section class="lsx-to-navigation ' . get_post_type() . '-navigation visible-lg-block">
+		$return = '<div class="lsx-to-navigation ' . get_post_type() . '-navigation visible-lg-block">
 						<div class="row">
 							<div class="col-xs-12">
 								<ul class="scroll-easing nav lsx-to-content-spy">';
@@ -200,7 +200,7 @@ function lsx_to_page_navigation( $echo = true ) {
 		$return .= '		</ul>
 						</div>
 					</div>
-				</section>';
+				</div>';
 
 		if ( $echo ) {
 			echo wp_kses_post( $return );

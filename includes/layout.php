@@ -115,7 +115,40 @@ function lsx_to_single_entry_bottom() {
  * @category 	accommodation
  */
 function lsx_to_accommodation_single_content_bottom() {
-	if ( is_singular( 'accommodation' ) ) {
+	if ( is_singular( 'accommodation' ) ) { ?>
+
+		<section id="keynotes" class="lsx-to-section">
+			<div class="row">
+				<div class="col-xs-12">
+					<section id="fast-facts">
+						<h2 class="lsx-to-section-title lsx-title"><?php echo esc_html__( 'Fast Facts', 'tour-operator' ); ?></h2>
+						<div class="lsx-to-section-inner">
+							<?php
+								$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
+
+								lsx_to_price( '<span class="' . $meta_class . 'price">' . esc_html__( 'From price', 'tour-operator' ) . ': ', '</span>' );
+								lsx_to_accommodation_room_total( '<span class="' . $meta_class . 'rooms">' . esc_html__( 'Rooms', 'tour-operator' ) . ': ', '</span>' );
+								lsx_to_accommodation_rating( '<span class="' . $meta_class . 'rating">' . esc_html__( 'Rating', 'tour-operator' ) . ': ', '</span>' );
+								the_terms( get_the_ID(), 'accommodation-brand', '<span class="' . $meta_class . 'brand">' . esc_html__( 'Brand', 'tour-operator' ) . ': ', ', ', '</span>' );
+								the_terms( get_the_ID(), 'travel-style', '<span class="' . $meta_class . 'style">' . esc_html__( 'Style', 'tour-operator' ) . ': ', ', ', '</span>' );
+								the_terms( get_the_ID(), 'accommodation-type', '<span class="' . $meta_class . 'type">' . esc_html__( 'Type', 'tour-operator' ) . ': ', ', ', '</span>' );
+								lsx_to_accommodation_spoken_languages( '<span class="' . $meta_class . 'languages">' . esc_html__( 'Spoken Languages', 'tour-operator' ) . ': ', '</span>' );
+								lsx_to_accommodation_activity_friendly( '<span class="' . $meta_class . 'friendly">' . esc_html__( 'Friendly', 'tour-operator' ) . ': ', '</span>' );
+								lsx_to_accommodation_special_interests( '<span class="' . $meta_class . 'special">' . esc_html__( 'Special Interests', 'tour-operator' ) . ': ', '</span>' );
+
+								if ( function_exists( 'lsx_to_connected_activities' ) ) {
+									lsx_to_connected_activities( '<span class="' . $meta_class . 'activities">' . esc_html__( 'Activities', 'tour-operator' ) . ': ', '</span>' );
+								}
+
+								lsx_to_connected_destinations( '<span class="' . $meta_class . 'destinations">' . esc_html__( 'Location', 'tour-operator' ) . ': ', '</span>' );
+							?>
+						</div>
+					</section>
+				</div>
+			</div>
+		</section>
+
+	<?php
 		lsx_to_page_navigation();
 
 		lsx_to_accommodation_units();
@@ -268,7 +301,7 @@ function lsx_to_destination_archive_entry_bottom() {
  */
 function lsx_to_tour_single_content_bottom() {
 	if ( is_singular( 'tour' ) ) { ?>
-		<section class="lsx-to-section">
+		<section id="keynotes" class="lsx-to-section">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
 					<section id="fast-facts">
