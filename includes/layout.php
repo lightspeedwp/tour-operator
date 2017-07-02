@@ -123,25 +123,25 @@ function lsx_to_accommodation_single_content_bottom() {
 					<section id="fast-facts">
 						<h2 class="lsx-to-section-title lsx-title"><?php echo esc_html__( 'Fast Facts', 'tour-operator' ); ?></h2>
 						<div class="lsx-to-section-inner">
+							<div class="lsx-to-single-meta-data">
 							<?php
 								$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
 
-								lsx_to_price( '<span class="' . $meta_class . 'price">' . esc_html__( 'From price', 'tour-operator' ) . ': ', '</span>' );
-								lsx_to_accommodation_room_total( '<span class="' . $meta_class . 'rooms">' . esc_html__( 'Rooms', 'tour-operator' ) . ': ', '</span>' );
 								lsx_to_accommodation_rating( '<span class="' . $meta_class . 'rating">' . esc_html__( 'Rating', 'tour-operator' ) . ': ', '</span>' );
-								the_terms( get_the_ID(), 'accommodation-brand', '<span class="' . $meta_class . 'brand">' . esc_html__( 'Brand', 'tour-operator' ) . ': ', ', ', '</span>' );
+								lsx_to_connected_destinations( '<span class="' . $meta_class . 'destinations">' . esc_html__( 'Locations', 'tour-operator' ) . ': ', '</span>' );
 								the_terms( get_the_ID(), 'travel-style', '<span class="' . $meta_class . 'style">' . esc_html__( 'Style', 'tour-operator' ) . ': ', ', ', '</span>' );
 								the_terms( get_the_ID(), 'accommodation-type', '<span class="' . $meta_class . 'type">' . esc_html__( 'Type', 'tour-operator' ) . ': ', ', ', '</span>' );
+								lsx_to_accommodation_room_total( '<span class="' . $meta_class . 'rooms">' . esc_html__( 'Rooms', 'tour-operator' ) . ': ', '</span>' );
 								lsx_to_accommodation_spoken_languages( '<span class="' . $meta_class . 'languages">' . esc_html__( 'Spoken Languages', 'tour-operator' ) . ': ', '</span>' );
 								lsx_to_accommodation_activity_friendly( '<span class="' . $meta_class . 'friendly">' . esc_html__( 'Friendly', 'tour-operator' ) . ': ', '</span>' );
 								lsx_to_accommodation_special_interests( '<span class="' . $meta_class . 'special">' . esc_html__( 'Special Interests', 'tour-operator' ) . ': ', '</span>' );
+								the_terms( get_the_ID(), 'accommodation-brand', '<span class="' . $meta_class . 'brand">' . esc_html__( 'Brands', 'tour-operator' ) . ': ', ', ', '</span>' );
 
 								if ( function_exists( 'lsx_to_connected_activities' ) ) {
 									lsx_to_connected_activities( '<span class="' . $meta_class . 'activities">' . esc_html__( 'Activities', 'tour-operator' ) . ': ', '</span>' );
 								}
-
-								lsx_to_connected_destinations( '<span class="' . $meta_class . 'destinations">' . esc_html__( 'Location', 'tour-operator' ) . ': ', '</span>' );
 							?>
+							</div>
 						</div>
 					</section>
 				</div>
@@ -221,8 +221,32 @@ function lsx_to_accommodation_archive_entry_bottom() {
  * @category 	destination
  */
 function lsx_to_destination_single_content_bottom() {
-	if ( is_singular( 'destination' ) ) {
+	if ( is_singular( 'destination' ) ) { ?>
 
+		<section id="keynotes" class="lsx-to-section">
+			<div class="row">
+				<div class="col-xs-12">
+					<section id="fast-facts">
+						<h2 class="lsx-to-section-title lsx-title"><?php echo esc_html__( 'Fast Facts', 'tour-operator' ); ?></h2>
+						<div class="lsx-to-section-inner">
+							<div class="lsx-to-single-meta-data">
+							<?php
+								$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
+
+								the_terms( get_the_ID(), 'travel-style', '<span class="' . $meta_class . 'style">' . esc_html__( 'Travel Style', 'tour-operator' ) . ': ', ', ', '</span>' );
+
+								if ( function_exists( 'lsx_to_connected_activities' ) ) {
+									lsx_to_connected_activities( '<span class="' . $meta_class . 'activities">' . esc_html__( 'Activities', 'tour-operator' ) . ': ', '</span>' );
+								}
+							?>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</section>
+
+	<?php
 		lsx_to_best_time_to_visit( '<section id="when-to-go" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'When to Go', 'tour-operator' ) . '</h2><div class="when-to-go-wrapper clearfix">', '</div></section>' );
 
 		lsx_to_page_navigation();

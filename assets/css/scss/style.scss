@@ -511,11 +511,20 @@ body.single-tour-operator {
 
 	#fast-facts & {
 		font-size: 15px;
-
-		& + .lsx-to-meta-data { margin-top: 1.2rem; }
+		margin: 0 1.2rem;
+		padding-top: 1.2rem;
 	}
 
-	.lsx-to-summary-meta-data & { font-size: 15px; }
+	.lsx-to-summary-meta-data & {
+		font-size: 15px;
+
+		@include media ('>=tablet') {
+			display: inline-block;
+			margin-top: 0;
+
+			& + .lsx-to-meta-data { margin-left: 2.4rem; }
+		}
+	}
 
 	&:before {
 		color: inherit;
@@ -972,16 +981,17 @@ body.single-tour-operator {
 .lsx-map { margin-top: 4.25rem; }
 
 .lsx-to-section-inner {
+	background-color: #FFF;
 	margin-top: 4.25rem;
 	padding: 2.4rem;
 
-	background-color: #FFF;
+	#fast-facts & { padding: 1.2rem 1.2rem 2.4rem; }
 }
 
 .lsx-to-summary {
 	margin-bottom: 4.25rem;
 
-	@include media ('>=phone') {
+	@include media ('>=tablet') {
 		align-items: center;
 		display: flex;
 		flex-flow: row nowrap;

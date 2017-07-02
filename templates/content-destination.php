@@ -21,17 +21,8 @@ if ( 1 !== $lsx_to_archive ) {
 	<?php if ( is_single() && false === $lsx_to_archive ) { ?>
 
 		<div <?php lsx_to_entry_class( 'entry-content' ); ?>>
-			<div class="lsx-to-single-content">
-				<h2 class="lsx-to-single-title"><?php esc_html_e( 'Summary' , 'tour-operator' ); ?></h2>
-			</div>
-
-			<div class="lsx-to-single-meta-data">
-				<?php
-					the_terms( get_the_ID(), 'travel-style', '<span class="lsx-to-meta-data lsx-to-meta-data-style">' . esc_html__( 'Travel Style', 'tour-operator' ) . ': ', ', ', '</span>' );
-					if ( function_exists( 'lsx_to_connected_activities' ) ) {
-						lsx_to_connected_activities( '<span class="lsx-to-meta-data lsx-to-meta-data-activities">' . esc_html__( 'Activities', 'tour-operator' ) . ': ', '</span>' );
-					}
-				?>
+			<div class="lsx-to-summary">
+				<h2 class="lsx-to-summary-title"><?php esc_html_e( 'Summary' , 'tour-operator' ); ?></h2>
 			</div>
 
 			<?php the_content(); ?>

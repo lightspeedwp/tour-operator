@@ -23,6 +23,10 @@ if ( 1 !== $lsx_to_archive ) {
 		<div <?php lsx_to_entry_class( 'entry-content' ); ?>>
 			<div class="lsx-to-summary">
 				<h2 class="lsx-to-summary-title"><?php esc_html_e( 'Summary' , 'tour-operator' ); ?></h2>
+
+				<div class="lsx-to-summary-meta-data">
+					<?php lsx_to_price( '<span class="lsx-to-meta-data lsx-to-meta-data-price">' . esc_html__( 'From price', 'tour-operator' ) . ': ', '</span>' ); ?>
+				</div>
 			</div>
 
 			<?php the_content(); ?>
