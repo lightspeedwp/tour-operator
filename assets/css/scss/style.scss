@@ -292,7 +292,7 @@ body.single-tour-operator {
 		border-style: solid;
 		border-width: 2px;
 		font: 0/0 a;
-		height: 5.4rem;
+		height: 4rem;
 		margin-top: calc((2.25rem - 17px) / 2);
 		padding: 0;
 		position: absolute;
@@ -300,13 +300,13 @@ body.single-tour-operator {
 		top: 50%;
 		transform: translateY(-50%);
 		transition: border 300ms ease;
-		width: 5.4rem;
+		width: 4rem;
 		z-index: 3;
 
 		&:before {
 			display: block;
 			font-family: 'FontAwesome';
-			font-size: 4rem;
+			font-size: 3rem;
 			line-height: 1;
 			position: absolute;
 			text-rendering: auto;
@@ -323,14 +323,14 @@ body.single-tour-operator {
 		&.slick-prev {
 			&:before {
 				content: '\f104';
-				left: 1.5rem;
+				left: 1.1rem;
 			}
 		}
 
 		&.slick-next {
 			&:before {
 				content: '\f105';
-				left: 2rem;
+				left: 1.5rem;
 			}
 		}
 	}
@@ -341,7 +341,14 @@ body.single-tour-operator {
 		margin: 0 auto;
 		width: 100%;
 
-		&.slick-has-arrows { width: calc(100% - 10.8rem); }
+		&.slick-has-arrows { width: calc(100% - 8rem); }
+	}
+
+	@include media('>=1280px') {
+		margin: 0 -15px;
+		width: calc(100% + 30px);
+
+		&.slick-has-arrows { width: calc(100% + 30px); }
 	}
 
 	.slick-dots:not(.dropdown-menu) {
@@ -374,13 +381,8 @@ body.single-tour-operator {
 	}
 
 	.slick-arrow {
-		&.slick-prev {
-			left: -5.4rem;
-		}
-
-		&.slick-next {
-			right: -5.4rem;
-		}
+		&.slick-prev { left: -4rem; }
+		&.slick-next { right: -4rem; }
 	}
 }
 
@@ -388,9 +390,7 @@ body.single-tour-operator {
 	.slick-arrow {
 		opacity: .75;
 
-		&:hover {
-			opacity: 1;
-		}
+		&:hover { opacity: 1; }
 	}
 }
 
