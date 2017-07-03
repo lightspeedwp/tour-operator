@@ -44,6 +44,19 @@ function lsx_to_archive_entry_top() {
 
 	if ( in_array( get_post_type(), array_keys( lsx_to_get_post_types() ) ) && ( is_archive() || $lsx_to_archive ) ) { ?>
 		<?php
+			global $post;
+			$post_type = get_post_type();
+
+			$has_single = ! lsx_to_is_single_disabled();
+			$permalink = '';
+
+			if ( $has_single ) {
+				$permalink = get_the_permalink();
+			} elseif ( is_search() ) {
+				$has_single = true;
+				$permalink = get_post_type_archive_link( $post_type ) . '#' . $post_type . '-' . $post->post_name;
+			}
+
 			$thumbnail_id = get_post_thumbnail_id( get_the_ID() );
 			$image_arr = wp_get_attachment_image_src( $thumbnail_id, 'lsx-thumbnail-single' );
 
@@ -53,7 +66,7 @@ function lsx_to_archive_entry_top() {
 		?>
 
 		<div class="lsx-to-archive-thumb">
-			<a href="<?php the_permalink(); ?>" style="background-image: url('<?php echo esc_url( $image_src ); ?>')">
+			<a <?php if ( $has_single ) echo 'href="' . esc_url( $permalink ) . '"'; ?> style="background-image: url('<?php echo esc_url( $image_src ); ?>')">
 				<?php
 					if ( 'team' === get_post_type() ) {
 						lsx_thumbnail( array( 285, 285 ) );
@@ -67,12 +80,12 @@ function lsx_to_archive_entry_top() {
 		<div class="lsx-to-archive-wrapper">
 			<div class="lsx-to-archive-content">
 				<h3 class="lsx-to-archive-content-title">
-					<a href="<?php the_permalink(); ?>" title="<?php esc_html_e( 'Read more', 'tour-operator' ); ?>">
+					<?php if ( $has_single ) { ?><a href="<?php echo esc_url( $permalink ); ?>" title="<?php esc_html_e( 'Read more', 'tour-operator' ); ?>"><?php } ?>
 						<?php
 							the_title();
 							do_action( 'lsx_to_the_title_end', get_the_ID() );
 						?>
-					</a>
+					<?php if ( $has_single ) { ?></a><?php } ?>
 				</h3>
 
 				<?php lsx_to_tagline( '<p class="lsx-to-archive-content-tagline">', '</p>' ); ?>
@@ -311,7 +324,7 @@ function lsx_to_destination_archive_entry_bottom() {
 		</div>
 
 		<?php if ( 'grid' === tour_operator()->archive_layout ) : ?>
-			<a href="<?php the_permalink(); ?>" class="moretag"><?php esc_html_e( 'Continue reading', 'tour-operator' ); ?></a>
+			<a href="<?php the_permalink(); ?>" class="moretag"><?php esc_html_e( 'View more', 'tour-operator' ); ?></a>
 		<?php endif; ?>
 	<?php }
 }

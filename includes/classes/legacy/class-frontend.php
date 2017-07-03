@@ -82,6 +82,7 @@ class Frontend extends Tour_Operator {
 		add_action( 'template_redirect', array( $this, 'redirect_archive' ) );
 
 		// Readmore
+		add_filter( 'excerpt_more_p', array( $this, 'remove_read_more_link' ) );
 		add_filter( 'the_content', array( $this, 'modify_read_more_link' ) );
 		remove_filter( 'term_description', 'wpautop' );
 		add_filter( 'term_description', array(
@@ -337,6 +338,35 @@ class Frontend extends Tour_Operator {
 			wp_redirect( home_url(), 301 );
 			exit;
 		}
+	}
+
+	/**
+	 * Remove the read more link.
+	 */
+	public function remove_read_more_link( $excerpt_more ) {
+		$post_type = get_post_type();
+
+		if ( isset( tour_operator()->options[ $post_type ] ) ) {
+			global $post;
+
+			$has_single = ! lsx_to_is_single_disabled();
+			$permalink = '';
+
+			if ( $has_single ) {
+				$permalink = get_the_permalink();
+			} elseif ( ! is_post_type_archive( $post_type ) ) {
+				$has_single = true;
+				$permalink = get_post_type_archive_link( $post_type ) . '#' . $post_type . '-' . $post->post_name;
+			}
+
+			if ( ! empty( $permalink ) ) {
+				$excerpt_more = '<p><a class="moretag" href="' . esc_url( $permalink ) . '">' . esc_html__( 'View more', 'lsx' ) . '</a></p>';
+			} else {
+				$excerpt_more = '';
+			}
+		}
+
+		return $excerpt_more;
 	}
 
 	/**

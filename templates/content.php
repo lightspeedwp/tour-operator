@@ -42,7 +42,7 @@
 	</div>
 
 	<?php if ( 'grid' === tour_operator()->archive_layout ) : ?>
-		<a href="<?php the_permalink(); ?>" class="moretag"><?php esc_html_e( 'Continue reading', 'tour-operator' ); ?></a>
+		<a href="<?php the_permalink(); ?>" class="moretag"><?php esc_html_e( 'View more', 'tour-operator' ); ?></a>
 	<?php endif; ?>
 
 </article><!-- #post-## -->

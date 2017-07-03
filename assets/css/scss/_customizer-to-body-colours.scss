@@ -85,7 +85,7 @@
 	.lsx-to-meta-data { color: $small; }
 
 	.lsx-to-archive-item {
-		& > article[id^='post-'] {
+		& > .lsx-to-archive-container {
 			& > .moretag {
 				background-color: $link;
 				color: #FFF;
