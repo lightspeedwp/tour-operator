@@ -235,7 +235,7 @@ if ( class_exists( 'LSX_TO_Maps' ) ) {
 		'id'             => 'location',
 		'name'           => esc_html__( 'Location', 'tour-operator' ),
 		'type'           => 'gmap',
-		'google_api_key' => $this->options['api']['googlemaps_key'],
+		'google_api_key' => tour_operator()->options['api']['googlemaps_key'],
 	);
 }
 

@@ -96,7 +96,7 @@ if ( class_exists( 'LSX_TO_Maps' ) ) {
 		'id'             => 'location',
 		'name'           => esc_html__( 'Address', 'tour-operator' ),
 		'type'           => 'gmap',
-		'google_api_key' => $this->options['api']['googlemaps_key'],
+		'google_api_key' => tour_operator()->options['api']['googlemaps_key'],
 	);
 }
 
@@ -298,7 +298,7 @@ $metabox['fields'][] = array(
 			'id'      => 'type',
 			'name'    => esc_html__( 'Type', 'tour-operator' ),
 			'type'    => 'select',
-			'options' => $this->unit_types,
+			'options' => \lsx\legacy\Accommodation::get_instance()->unit_types,
 		),
 		array(
 			'id'   => 'title',
