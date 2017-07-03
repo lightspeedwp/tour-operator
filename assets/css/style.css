@@ -1424,13 +1424,13 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-section { margin: 0 -9999rem; padding: 8.5rem 9999rem; }
 
-.site-main > .lsx-to-section:first-of-type { padding-top: 0; }
+.site-main > .lsx-to-section:nth-child(odd) { background-color: #FFF; }
 
-.site-main > .lsx-to-section:nth-child(even) { background-color: #FFF; }
+.site-main > .lsx-to-section:first-of-type { background-color: #F6F6F6; padding-top: 0; }
 
 .lsx-to-section .lsx-to-section { padding-bottom: 0; }
 
-#keynotes { background-color: transparent; padding-top: 0; }
+#keynotes { padding-top: 0; }
 
 @media (max-width: 767px) { #highlights { margin-top: 8.5rem; } }
 
@@ -1458,9 +1458,19 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .travel-info-wrapper { margin-top: -2.4rem; }
 
-@media (min-width: 768px) { .travel-info-wrapper { -webkit-box-align: start; -ms-flex-align: start; align-items: flex-start; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row wrap; flex-flow: row wrap; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; } }
+@media (min-width: 768px) { .travel-info-wrapper { -webkit-box-align: start; -ms-flex-align: start; align-items: flex-start; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row wrap; flex-flow: row wrap; -webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start; } }
 
 .travel-info-content { background-color: #FFF; margin-top: 4.25rem; overflow: hidden; padding: 2.4rem 2.4rem 0; }
+
+.rooms-wrapper { margin-top: -2.4rem; }
+
+@media (min-width: 768px) { .rooms-wrapper { -webkit-box-align: start; -ms-flex-align: start; align-items: flex-start; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row wrap; flex-flow: row wrap; -webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start; } }
+
+.rooms-content { -webkit-box-align: stretch; -ms-flex-align: stretch; align-items: stretch; background-color: #F6F6F6; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row nowrap; flex-flow: row nowrap; -webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start; margin-top: 4.25rem; overflow: hidden; }
+
+.rooms-thumbnail { background-color: transparent; background-position: center center; background-repeat: no-repeat; background-size: cover; -ms-flex-negative: 0; flex-shrink: 0; width: 33.33333%; }
+
+.rooms-info { -webkit-box-flex: 1; -ms-flex-positive: 1; flex-grow: 1; padding: 2.4rem 2.4rem 0; }
 
 .lsx-to-slider-inner .slick-dots > li > button { border-color: #4A4A4A; }
 

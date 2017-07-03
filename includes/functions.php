@@ -516,21 +516,6 @@ function lsx_to_accommodation_room_has_thumbnail() {
 }
 
 /**
- * Outputs The current Room thumbnail
- *
- * @package       tour-operator
- * @subpackage    template-tags
- * @category      room
- */
-function lsx_to_accommodation_room_thumbnail( $before = '', $after = '', $echo = true ) {
-	global $rooms;
-
-	if ( is_object( $rooms ) ) {
-		$rooms->item_thumbnail( $before, $after, $echo );
-	}
-}
-
-/**
  * Checks if the current type has units.
  *
  * @package       tour-operator
@@ -580,28 +565,22 @@ function lsx_to_accommodation_units() {
 				?>
 				<section id="<?php echo esc_attr( $type_key ); ?>s" class="lsx-to-section">
 					<h2 class="lsx-to-section-title lsx-title"><?php esc_html_e( lsx_to_get_post_type_section_title( 'accommodation', $type_key . 's', $type_label . 's' ), 'tour-operator' ); ?></h2>
-					<div class="<?php echo esc_attr( $type_key ); ?>s-content rooms-content row">
+					<div class="<?php echo esc_attr( $type_key ); ?>s-wrapper rooms-wrapper row">
 						<?php while ( lsx_to_accommodation_room_loop() ) { ?>
 
 							<?php if ( ! lsx_to_accommodation_room_loop_item( $type_key ) ) {
 								continue;
 							} ?>
 
-							<div class="col-xs-12 col-sm-6">
-								<article class="unit type-unit">
-									<div class="col-xs-12 col-sm-4">
-										<?php if ( lsx_to_accommodation_room_has_thumbnail() ) { ?>
-											<div class="thumbnail">
-												<?php lsx_to_accommodation_room_thumbnail(); ?>
-											</div>
-										<?php } ?>
-									</div>
+							<div class="col-xs-12 col-md-6">
+								<article class="rooms-content">
+									<?php if ( lsx_to_accommodation_room_has_thumbnail() ) { ?>
+										<div class="rooms-thumbnail" style="background-image: url('<?php echo $rooms->item_thumbnail(); ?>')"></div>
+									<?php } ?>
 
-									<div class="col-xs-12 col-sm-8">
-										<div class="unit-info">
-											<?php lsx_to_accommodation_room_title( '<h5>', '</h5>' ); ?>
-											<?php lsx_to_accommodation_room_description( '<div class="entry-content">', '</div>' ); ?>
-										</div>
+									<div class="rooms-info">
+										<?php lsx_to_accommodation_room_title( '<h5>', '</h5>' ); ?>
+										<?php lsx_to_accommodation_room_description( '<div class="entry-content">', '</div>' ); ?>
 									</div>
 								</article>
 							</div>
