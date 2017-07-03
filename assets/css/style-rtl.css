@@ -1456,6 +1456,12 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .facility-item:before { content: '\2022'; display: inline-block; position: absolute; right: 0; }
 
+.travel-info-wrapper { margin-top: -2.4rem; }
+
+@media (min-width: 768px) { .travel-info-wrapper { -webkit-box-align: start; -ms-flex-align: start; align-items: flex-start; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row wrap; flex-flow: row wrap; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; } }
+
+.travel-info-content { background-color: #FFF; margin-top: 4.25rem; overflow: hidden; padding: 2.4rem 2.4rem 0; }
+
 .lsx-to-slider-inner .slick-dots > li > button { border-color: #4A4A4A; }
 
 .lsx-to-slider-inner .slick-dots > li.slick-active > button { background-color: #4A4A4A; }
