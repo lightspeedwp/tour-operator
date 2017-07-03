@@ -14,9 +14,9 @@ $permalink = '';
 
 if ( $has_single ) {
 	$permalink = get_the_permalink();
-} elseif ( ! is_post_type_archive( 'accommodation' ) ) {
+} elseif ( ! is_post_type_archive( 'tour' ) ) {
 	$has_single = true;
-	$permalink = get_post_type_archive_link( 'accommodation' ) . '#accommodation-' . $post->post_name;
+	$permalink = get_post_type_archive_link( 'tour' ) . '#tour-' . $post->post_name;
 };
 ?>
 <article <?php post_class(); ?>>
