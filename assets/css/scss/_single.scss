@@ -3,7 +3,7 @@
 	padding: 8.5rem 9999rem;
 
 	.site-main > & {
-		&:nth-child(odd) { background-color: #FFF; }
+		&:nth-of-type(odd) { background-color: #FFF; }
 
 		&:first-of-type {
 			background-color: #F6F6F6;
@@ -92,10 +92,12 @@
 }
 
 .travel-info-content {
-	background-color: #FFF;
 	margin-top: 4.25rem;
 	overflow: hidden;
 	padding: 2.4rem 2.4rem 0;
+
+	.lsx-to-section:nth-of-type(odd) & { background-color: #F6F6F6; }
+	.lsx-to-section:nth-of-type(even) & { background-color: #FFF; }
 }
 
 .rooms-wrapper {
@@ -111,12 +113,14 @@
 
 .rooms-content {
 	align-items: stretch;
-	background-color: #F6F6F6;
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: flex-start;
 	margin-top: 4.25rem;
 	overflow: hidden;
+
+	.lsx-to-section:nth-of-type(odd) & { background-color: #F6F6F6; }
+	.lsx-to-section:nth-of-type(even) & { background-color: #FFF; }
 }
 
 .rooms-thumbnail {

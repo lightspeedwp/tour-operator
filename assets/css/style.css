@@ -1156,6 +1156,10 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-widget-item-wrap .lsx-to-widget-content { background-color: #FFF; padding: 2.4rem 2rem 0; }
 
+.lsx-to-section:nth-of-type(odd) .lsx-to-widget-item-wrap .lsx-to-widget-content { background-color: #F6F6F6; }
+
+.lsx-to-section:nth-of-type(even) .lsx-to-widget-item-wrap .lsx-to-widget-content { background-color: #FFF; }
+
 .lsx-to-widget-item-wrap .lsx-to-widget-content .lsx-to-widget-title:only-child { margin-bottom: 0; }
 
 .lsx-to-widget-item-wrap .lsx-to-widget-content .moretag { display: block; margin: 0 -2rem; padding: 1rem 0; text-align: center; transition: background 300ms ease; }
@@ -1258,6 +1262,10 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 .lsx-to-archive-item > .lsx-to-archive-container { -webkit-box-align: stretch; -ms-flex-align: stretch; align-items: stretch; background-color: #FFF; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row wrap; flex-flow: row wrap; -webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start; }
 
 @media (min-width: 768px) { .lsx-to-archive-template-list .lsx-to-archive-item > .lsx-to-archive-container { -ms-flex-wrap: nowrap; flex-wrap: nowrap; } }
+
+.lsx-to-section:nth-of-type(odd) .lsx-to-archive-item > .lsx-to-archive-container { background-color: #F6F6F6; }
+
+.lsx-to-section:nth-of-type(even) .lsx-to-archive-item > .lsx-to-archive-container { background-color: #FFF; }
 
 .lsx-to-archive-item > .lsx-to-archive-container.post .entry-content, .lsx-to-archive-item > .lsx-to-archive-container.page .entry-content { padding: 0; }
 
@@ -1424,7 +1432,7 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-section { margin: 0 -9999rem; padding: 8.5rem 9999rem; }
 
-.site-main > .lsx-to-section:nth-child(odd) { background-color: #FFF; }
+.site-main > .lsx-to-section:nth-of-type(odd) { background-color: #FFF; }
 
 .site-main > .lsx-to-section:first-of-type { background-color: #F6F6F6; padding-top: 0; }
 
@@ -1460,13 +1468,21 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 @media (min-width: 768px) { .travel-info-wrapper { -webkit-box-align: start; -ms-flex-align: start; align-items: flex-start; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row wrap; flex-flow: row wrap; -webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start; } }
 
-.travel-info-content { background-color: #FFF; margin-top: 4.25rem; overflow: hidden; padding: 2.4rem 2.4rem 0; }
+.travel-info-content { margin-top: 4.25rem; overflow: hidden; padding: 2.4rem 2.4rem 0; }
+
+.lsx-to-section:nth-of-type(odd) .travel-info-content { background-color: #F6F6F6; }
+
+.lsx-to-section:nth-of-type(even) .travel-info-content { background-color: #FFF; }
 
 .rooms-wrapper { margin-top: -2.4rem; }
 
 @media (min-width: 768px) { .rooms-wrapper { -webkit-box-align: start; -ms-flex-align: start; align-items: flex-start; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row wrap; flex-flow: row wrap; -webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start; } }
 
-.rooms-content { -webkit-box-align: stretch; -ms-flex-align: stretch; align-items: stretch; background-color: #F6F6F6; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row nowrap; flex-flow: row nowrap; -webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start; margin-top: 4.25rem; overflow: hidden; }
+.rooms-content { -webkit-box-align: stretch; -ms-flex-align: stretch; align-items: stretch; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row nowrap; flex-flow: row nowrap; -webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start; margin-top: 4.25rem; overflow: hidden; }
+
+.lsx-to-section:nth-of-type(odd) .rooms-content { background-color: #F6F6F6; }
+
+.lsx-to-section:nth-of-type(even) .rooms-content { background-color: #FFF; }
 
 .rooms-thumbnail { background-color: transparent; background-position: center center; background-repeat: no-repeat; background-size: cover; -ms-flex-negative: 0; flex-shrink: 0; width: 33.33333%; }
 
