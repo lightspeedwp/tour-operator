@@ -30,7 +30,17 @@ function lsx_to_is_single_disabled( $post_type = false ) {
 	if ( is_object( $tour_operator ) && isset( $tour_operator->options[ $post_type ] ) && isset( $tour_operator->options[ $post_type ]['disable_single'] ) ) {
 		return true;
 	} else {
-		return false;
+		if ( is_singular() ) {
+			$single_desabled = get_post_meta( get_the_ID(), 'disable_single', true );
+
+			if ( ! empty( $single_desabled ) ) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
 	}
 }
 

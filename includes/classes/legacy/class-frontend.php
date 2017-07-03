@@ -306,8 +306,16 @@ class Frontend extends Tour_Operator {
 	 */
 	public function redirect_singles() {
 		$queried_post_type = get_query_var( 'post_type' );
+
 		if ( is_singular() && false !== $this->options && isset( $this->options[ $queried_post_type ] ) && isset( $this->options[ $queried_post_type ]['disable_single'] ) ) {
-			if ( is_singular( $queried_post_type ) ) {
+			wp_redirect( home_url(), 301 );
+			exit;
+		}
+
+		if ( is_singular() ) {
+			$single_desabled = get_post_meta( get_the_ID(), 'disable_single', true );
+
+			if ( ! empty( $single_desabled ) ) {
 				wp_redirect( home_url(), 301 );
 				exit;
 			}
@@ -324,11 +332,10 @@ class Frontend extends Tour_Operator {
 	 */
 	public function redirect_archive() {
 		$queried_post_type = get_query_var( 'post_type' );
+
 		if ( is_post_type_archive() && false !== $this->options && isset( $this->options[ $queried_post_type ] ) && isset( $this->options[ $queried_post_type ]['disable_archives'] ) ) {
-			if ( is_post_type_archive( $queried_post_type ) ) {
-				wp_redirect( home_url(), 301 );
-				exit;
-			}
+			wp_redirect( home_url(), 301 );
+			exit;
 		}
 	}
 

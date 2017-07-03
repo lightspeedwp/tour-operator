@@ -19,19 +19,19 @@ msgstr ""
 msgid "Tour Operator"
 msgstr ""
 
-#: includes/functions.php:292, includes/layout.php:130, templates/content-widget-accommodation.php:33, includes/metaboxes/config-accommodation.php:112, includes/template-tags/accommodation.php:296
+#: includes/functions.php:292, includes/layout.php:130, templates/content-widget-accommodation.php:33, includes/metaboxes/config-accommodation.php:123, includes/template-tags/accommodation.php:296
 msgid "Rating"
 msgstr ""
 
-#: includes/functions.php:293, includes/layout.php:133, includes/metaboxes/config-accommodation.php:275, includes/template-tags/accommodation.php:299
+#: includes/functions.php:293, includes/layout.php:133, includes/metaboxes/config-accommodation.php:299, includes/template-tags/accommodation.php:299
 msgid "Type"
 msgstr ""
 
-#: includes/functions.php:294, includes/layout.php:137, includes/metaboxes/config-accommodation.php:180, includes/template-tags/accommodation.php:302
+#: includes/functions.php:294, includes/layout.php:137, includes/metaboxes/config-accommodation.php:198, includes/template-tags/accommodation.php:302
 msgid "Special Interests"
 msgstr ""
 
-#: includes/functions.php:353, includes/classes/legacy/class-frontend.php:343, includes/classes/legacy/class-frontend.php:356
+#: includes/functions.php:353, includes/classes/legacy/class-frontend.php:350, includes/classes/legacy/class-frontend.php:363
 msgid "Read More"
 msgstr ""
 
@@ -62,7 +62,7 @@ msgstr ""
 msgid "Read more"
 msgstr ""
 
-#: includes/layout.php:124, includes/layout.php:230, includes/layout.php:332, includes/metaboxes/config-accommodation.php:97
+#: includes/layout.php:124, includes/layout.php:230, includes/layout.php:332, includes/metaboxes/config-accommodation.php:106
 msgid "Fast Facts"
 msgstr ""
 
@@ -78,11 +78,11 @@ msgstr ""
 msgid "Rooms"
 msgstr ""
 
-#: includes/layout.php:135, includes/metaboxes/config-accommodation.php:139, includes/template-tags/accommodation.php:300
+#: includes/layout.php:135, includes/metaboxes/config-accommodation.php:155, includes/template-tags/accommodation.php:300
 msgid "Spoken Languages"
 msgstr ""
 
-#: includes/layout.php:136, includes/metaboxes/config-accommodation.php:163, includes/template-tags/accommodation.php:301
+#: includes/layout.php:136, includes/metaboxes/config-accommodation.php:180, includes/template-tags/accommodation.php:301
 msgid "Friendly"
 msgstr ""
 
@@ -102,7 +102,7 @@ msgstr ""
 msgid "Map"
 msgstr ""
 
-#: includes/layout.php:167, includes/layout.php:271, includes/layout.php:425, includes/metaboxes/config-accommodation.php:212, includes/metaboxes/config-accommodation.php:217, includes/metaboxes/config-accommodation.php:297, includes/metaboxes/config-destination.php:151, includes/metaboxes/config-destination.php:156, includes/metaboxes/config-tour.php:156, includes/metaboxes/config-tour.php:161, includes/classes/legacy/class-accommodation.php:324, includes/classes/legacy/class-accommodation.php:329, includes/classes/legacy/class-accommodation.php:333, includes/classes/legacy/class-destination.php:269, includes/classes/legacy/class-destination.php:274, includes/classes/legacy/class-destination.php:278, includes/classes/legacy/class-tour.php:499, includes/classes/legacy/class-tour.php:504, includes/classes/legacy/class-tour.php:508
+#: includes/layout.php:167, includes/layout.php:271, includes/layout.php:425, includes/metaboxes/config-accommodation.php:231, includes/metaboxes/config-accommodation.php:237, includes/metaboxes/config-accommodation.php:323, includes/metaboxes/config-destination.php:175, includes/metaboxes/config-destination.php:181, includes/metaboxes/config-tour.php:163, includes/metaboxes/config-tour.php:169, includes/classes/legacy/class-accommodation.php:324, includes/classes/legacy/class-accommodation.php:329, includes/classes/legacy/class-accommodation.php:333, includes/classes/legacy/class-destination.php:269, includes/classes/legacy/class-destination.php:274, includes/classes/legacy/class-destination.php:278, includes/classes/legacy/class-tour.php:499, includes/classes/legacy/class-tour.php:504, includes/classes/legacy/class-tour.php:508
 msgid "Gallery"
 msgstr ""
 
@@ -138,7 +138,7 @@ msgstr ""
 msgid "Ends in"
 msgstr ""
 
-#: includes/layout.php:339, includes/layout.php:462, templates/content-widget-tour.php:37, includes/metaboxes/config-accommodation.php:309, includes/metaboxes/config-tour.php:274, includes/post-types/config-destination.php:16, includes/post-types/config-destination.php:22, includes/post-types/config-destination.php:28, includes/classes/legacy/class-tour-operator.php:262, includes/classes/legacy/class-tour.php:426
+#: includes/layout.php:339, includes/layout.php:462, templates/content-widget-tour.php:37, includes/metaboxes/config-accommodation.php:333, includes/metaboxes/config-tour.php:282, includes/post-types/config-destination.php:16, includes/post-types/config-destination.php:22, includes/post-types/config-destination.php:28, includes/classes/legacy/class-tour-operator.php:262, includes/classes/legacy/class-tour.php:426
 msgid "Destinations"
 msgstr ""
 
@@ -154,7 +154,7 @@ msgstr ""
 msgid "Destination"
 msgstr ""
 
-#: includes/layout.php:400, includes/metaboxes/config-destination.php:218, includes/metaboxes/config-tour.php:252, includes/post-types/config-accommodation.php:16, includes/post-types/config-accommodation.php:17, includes/post-types/config-accommodation.php:21, includes/post-types/config-accommodation.php:27, includes/classes/legacy/class-destination.php:322, includes/classes/legacy/class-tour-operator.php:263, includes/classes/legacy/class-tour-operator.php:269
+#: includes/layout.php:400, includes/metaboxes/config-destination.php:244, includes/metaboxes/config-tour.php:260, includes/post-types/config-accommodation.php:16, includes/post-types/config-accommodation.php:17, includes/post-types/config-accommodation.php:21, includes/post-types/config-accommodation.php:27, includes/classes/legacy/class-destination.php:322, includes/classes/legacy/class-tour-operator.php:263, includes/classes/legacy/class-tour-operator.php:269
 msgid "Accommodation"
 msgstr ""
 
@@ -162,7 +162,7 @@ msgstr ""
 msgid "Activites"
 msgstr ""
 
-#: includes/layout.php:402, includes/metaboxes/config-accommodation.php:52, includes/metaboxes/config-tour.php:140, includes/template-tags/tour.php:149, includes/classes/legacy/class-tour.php:279
+#: includes/layout.php:402, includes/metaboxes/config-accommodation.php:57, includes/metaboxes/config-tour.php:145, includes/template-tags/tour.php:149, includes/classes/legacy/class-tour.php:279
 msgid "Included"
 msgstr ""
 
@@ -174,7 +174,7 @@ msgstr ""
 msgid "From price"
 msgstr ""
 
-#: includes/layout.php:460, templates/content-tour.php:32, templates/content-widget-tour.php:35, includes/metaboxes/config-tour.php:34, includes/classes/legacy/class-tour.php:423
+#: includes/layout.php:460, templates/content-tour.php:32, templates/content-widget-tour.php:35, includes/metaboxes/config-tour.php:40, includes/classes/legacy/class-tour.php:423
 msgid "Duration"
 msgstr ""
 
@@ -246,7 +246,7 @@ msgstr ""
 msgid "Brand"
 msgstr ""
 
-#: templates/content-widget-accommodation.php:31, includes/metaboxes/config-accommodation.php:82, includes/metaboxes/config-destination.php:204, includes/metaboxes/config-destination.php:209, includes/template-tags/accommodation.php:303, includes/classes/legacy/class-field-pattern.php:90
+#: templates/content-widget-accommodation.php:31, includes/metaboxes/config-accommodation.php:91, includes/metaboxes/config-destination.php:230, includes/metaboxes/config-destination.php:236, includes/template-tags/accommodation.php:303, includes/classes/legacy/class-field-pattern.php:90
 msgid "Location"
 msgstr ""
 
@@ -258,395 +258,399 @@ msgstr ""
 msgid "View more"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:14, includes/metaboxes/config-tour.php:14
+#: includes/metaboxes/config-accommodation.php:13, includes/metaboxes/config-destination.php:13, includes/metaboxes/config-tour.php:13
 msgid "Tour Operator Plugin"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:22, includes/metaboxes/config-destination.php:20, includes/metaboxes/config-tour.php:21
+#: includes/metaboxes/config-accommodation.php:20, includes/metaboxes/config-destination.php:20, includes/metaboxes/config-tour.php:20
 msgid "Featured"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:28, includes/metaboxes/config-destination.php:49, includes/metaboxes/config-tour.php:28, includes/partials/post.php:20, includes/classes/legacy/class-admin.php:474, includes/classes/legacy/class-settings.php:490, includes/classes/legacy/class-tour.php:195
+#: includes/metaboxes/config-accommodation.php:26, includes/metaboxes/config-destination.php:26, includes/metaboxes/config-tour.php:26
+msgid "Disable Single"
+msgstr ""
+
+#: includes/metaboxes/config-accommodation.php:33, includes/metaboxes/config-destination.php:54, includes/metaboxes/config-tour.php:33, includes/partials/post.php:20, includes/classes/legacy/class-admin.php:474, includes/classes/legacy/class-settings.php:490, includes/classes/legacy/class-tour.php:195
 msgid "Tagline"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:39
+#: includes/metaboxes/config-accommodation.php:44
 msgid "Price Type"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:43
+#: includes/metaboxes/config-accommodation.php:48
 msgid "Per Person Per Night"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:44
+#: includes/metaboxes/config-accommodation.php:49
 msgid "Per Person Sharing"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:45
+#: includes/metaboxes/config-accommodation.php:50
 msgid "Per Person Sharing Per Night"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:46
+#: includes/metaboxes/config-accommodation.php:51
 msgid "Percentage Off Your Price."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:58, includes/metaboxes/config-tour.php:147, includes/template-tags/tour.php:157
+#: includes/metaboxes/config-accommodation.php:66, includes/metaboxes/config-tour.php:154, includes/template-tags/tour.php:157
 msgid "Not Included"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:65
+#: includes/metaboxes/config-accommodation.php:75
 msgid "Accommodation Expert"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:87, includes/classes/legacy/class-field-pattern.php:95
+#: includes/metaboxes/config-accommodation.php:97, includes/classes/legacy/class-field-pattern.php:95
 msgid "Address"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:102
+#: includes/metaboxes/config-accommodation.php:112
 msgid "Rating Type"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:105, includes/classes/legacy/class-accommodation.php:244, includes/classes/legacy/class-tour.php:403
+#: includes/metaboxes/config-accommodation.php:115, includes/classes/legacy/class-accommodation.php:244, includes/classes/legacy/class-tour.php:403
 msgid "Unspecified"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:106
+#: includes/metaboxes/config-accommodation.php:116
 msgid "TGCSA"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:107
+#: includes/metaboxes/config-accommodation.php:117
 msgid "Hotelstars Union"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:119
+#: includes/metaboxes/config-accommodation.php:131
 msgid "Number of Rooms"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:124
+#: includes/metaboxes/config-accommodation.php:137
 msgid "Check-in Time"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:129
+#: includes/metaboxes/config-accommodation.php:143
 msgid "Check-out Time"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:134
+#: includes/metaboxes/config-accommodation.php:149
 msgid "Minimum Child Age"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:143
+#: includes/metaboxes/config-accommodation.php:159
 msgid "Afrikaans"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:144
+#: includes/metaboxes/config-accommodation.php:160
 msgid "Chinese"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:145
+#: includes/metaboxes/config-accommodation.php:161
 msgid "Dutch"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:146
+#: includes/metaboxes/config-accommodation.php:162
 msgid "English"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:147
+#: includes/metaboxes/config-accommodation.php:163
 msgid "Flemish"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:148
+#: includes/metaboxes/config-accommodation.php:164
 msgid "French"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:149
+#: includes/metaboxes/config-accommodation.php:165
 msgid "German"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:150
+#: includes/metaboxes/config-accommodation.php:166
 msgid "Indian"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:151
+#: includes/metaboxes/config-accommodation.php:167
 msgid "Italian"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:152
+#: includes/metaboxes/config-accommodation.php:168
 msgid "Japanese"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:153
+#: includes/metaboxes/config-accommodation.php:169
 msgid "Portuguese"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:154
+#: includes/metaboxes/config-accommodation.php:170
 msgid "Russian"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:155
+#: includes/metaboxes/config-accommodation.php:171
 msgid "Spanish"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:156
+#: includes/metaboxes/config-accommodation.php:172
 msgid "Swahili"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:157
+#: includes/metaboxes/config-accommodation.php:173
 msgid "Xhosa"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:158
+#: includes/metaboxes/config-accommodation.php:174
 msgid "Zulu"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:167
+#: includes/metaboxes/config-accommodation.php:184
 msgid "Business"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:168
+#: includes/metaboxes/config-accommodation.php:185
 msgid "Children"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:169
+#: includes/metaboxes/config-accommodation.php:186
 msgid "Disability"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:170, includes/metaboxes/config-accommodation.php:197
+#: includes/metaboxes/config-accommodation.php:187, includes/metaboxes/config-accommodation.php:215
 msgid "Leisure"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:171
+#: includes/metaboxes/config-accommodation.php:188
 msgid "Luxury"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:172
+#: includes/metaboxes/config-accommodation.php:189
 msgid "Pet"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:173
+#: includes/metaboxes/config-accommodation.php:190
 msgid "Romance"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:174
+#: includes/metaboxes/config-accommodation.php:191
 msgid "Vegetarian"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:175
+#: includes/metaboxes/config-accommodation.php:192
 msgid "Weddings"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:184
+#: includes/metaboxes/config-accommodation.php:202
 msgid "Adventure"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:185
+#: includes/metaboxes/config-accommodation.php:203
 msgid "Battlefields"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:186
+#: includes/metaboxes/config-accommodation.php:204
 msgid "Beach / Coastal"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:187
+#: includes/metaboxes/config-accommodation.php:205
 msgid "Big 5"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:188
+#: includes/metaboxes/config-accommodation.php:206
 msgid "Birding"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:189
+#: includes/metaboxes/config-accommodation.php:207
 msgid "Cycling"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:190
+#: includes/metaboxes/config-accommodation.php:208
 msgid "Fishing"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:191
+#: includes/metaboxes/config-accommodation.php:209
 msgid "Flora"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:192
+#: includes/metaboxes/config-accommodation.php:210
 msgid "Golf"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:193
+#: includes/metaboxes/config-accommodation.php:211
 msgid "Gourmet"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:194
+#: includes/metaboxes/config-accommodation.php:212
 msgid "Hiking"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:195
+#: includes/metaboxes/config-accommodation.php:213
 msgid "History & Culture"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:196
+#: includes/metaboxes/config-accommodation.php:214
 msgid "Indigenous Culture / Art"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:198
+#: includes/metaboxes/config-accommodation.php:216
 msgid "Nature Relaxation"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:199
+#: includes/metaboxes/config-accommodation.php:217
 msgid "Shopping"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:200
+#: includes/metaboxes/config-accommodation.php:218
 msgid "Sports"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:201
+#: includes/metaboxes/config-accommodation.php:219
 msgid "Star Gazing"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:202
+#: includes/metaboxes/config-accommodation.php:220
 msgid "Watersports"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:203
+#: includes/metaboxes/config-accommodation.php:221
 msgid "Wildlife"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:204
+#: includes/metaboxes/config-accommodation.php:222
 msgid "Wine"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:225, includes/metaboxes/config-destination.php:165, includes/metaboxes/config-tour.php:169
+#: includes/metaboxes/config-accommodation.php:246, includes/metaboxes/config-accommodation.php:252, includes/metaboxes/config-destination.php:190, includes/metaboxes/config-destination.php:196, includes/metaboxes/config-tour.php:178
 msgid "Envira Gallery"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:263
+#: includes/metaboxes/config-accommodation.php:268, includes/metaboxes/config-destination.php:212
+msgid "Envira Video Gallery"
+msgstr ""
+
+#: includes/metaboxes/config-accommodation.php:285
 msgid "Units"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:281, includes/partials/post.php:28, includes/classes/legacy/class-field-pattern.php:60, includes/classes/legacy/class-settings.php:482, includes/classes/legacy/class-tour.php:188
+#: includes/metaboxes/config-accommodation.php:305, includes/partials/post.php:28, includes/classes/legacy/class-field-pattern.php:60, includes/classes/legacy/class-settings.php:482, includes/classes/legacy/class-tour.php:188
 msgid "Title"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:286, includes/partials/post.php:37, includes/classes/legacy/class-field-pattern.php:64, includes/classes/legacy/class-settings.php:498, includes/classes/legacy/class-tour.php:202
+#: includes/metaboxes/config-accommodation.php:310, includes/partials/post.php:37, includes/classes/legacy/class-field-pattern.php:64, includes/classes/legacy/class-settings.php:498, includes/classes/legacy/class-tour.php:202
 msgid "Description"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:292, includes/metaboxes/config-tour.php:122, includes/metaboxes/config-tour.php:128
+#: includes/metaboxes/config-accommodation.php:318, includes/metaboxes/config-tour.php:127, includes/metaboxes/config-tour.php:133
 msgid "Price"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:315
+#: includes/metaboxes/config-accommodation.php:339
 msgid "Destinations related with this accommodation"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:331, includes/metaboxes/config-destination.php:240, includes/post-types/config-tour.php:16, includes/post-types/config-tour.php:22, includes/post-types/config-tour.php:28, includes/classes/legacy/class-accommodation.php:366, includes/classes/legacy/class-destination.php:311, includes/classes/legacy/class-tour-operator.php:264
+#: includes/metaboxes/config-accommodation.php:355, includes/metaboxes/config-destination.php:266, includes/post-types/config-tour.php:16, includes/post-types/config-tour.php:22, includes/post-types/config-tour.php:28, includes/classes/legacy/class-accommodation.php:366, includes/classes/legacy/class-destination.php:311, includes/classes/legacy/class-tour-operator.php:264
 msgid "Tours"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:337
+#: includes/metaboxes/config-accommodation.php:361
 msgid "Tours related with this accommodation"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:13
-msgid "LSX Tour Operators"
-msgstr ""
-
-#: includes/metaboxes/config-destination.php:26, includes/metaboxes/config-tour.php:74
+#: includes/metaboxes/config-destination.php:32, includes/metaboxes/config-tour.php:80
 msgid "Best months to visit"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:56
+#: includes/metaboxes/config-destination.php:61
 msgid "Travel Info"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:61, includes/template-tags/destination.php:165
+#: includes/metaboxes/config-destination.php:67, includes/template-tags/destination.php:165
 msgid "Electricity"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:68, includes/template-tags/destination.php:166
+#: includes/metaboxes/config-destination.php:76, includes/template-tags/destination.php:166
 msgid "Banking"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:75, includes/template-tags/destination.php:167
+#: includes/metaboxes/config-destination.php:85, includes/template-tags/destination.php:167
 msgid "Cuisine"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:82, includes/template-tags/destination.php:168
+#: includes/metaboxes/config-destination.php:94, includes/template-tags/destination.php:168
 msgid "Climate"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:89, includes/template-tags/destination.php:169
+#: includes/metaboxes/config-destination.php:103, includes/template-tags/destination.php:169
 msgid "Transport"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:96, includes/template-tags/destination.php:170
+#: includes/metaboxes/config-destination.php:112, includes/template-tags/destination.php:170
 msgid "Dress"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:103, includes/template-tags/destination.php:171
+#: includes/metaboxes/config-destination.php:121, includes/template-tags/destination.php:171
 msgid "Health"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:110, includes/template-tags/destination.php:172
+#: includes/metaboxes/config-destination.php:130, includes/template-tags/destination.php:172
 msgid "Safety"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:117, includes/template-tags/destination.php:173
+#: includes/metaboxes/config-destination.php:139, includes/template-tags/destination.php:173
 msgid "Visa"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:124, includes/partials/accommodation.php:4, includes/partials/destination.php:4, includes/partials/general.php:3, includes/partials/tour.php:4, includes/template-tags/destination.php:174, includes/classes/legacy/class-settings.php:131
+#: includes/metaboxes/config-destination.php:148, includes/partials/accommodation.php:4, includes/partials/destination.php:4, includes/partials/general.php:3, includes/partials/tour.php:4, includes/template-tags/destination.php:174, includes/classes/legacy/class-settings.php:131
 msgid "General"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:133
+#: includes/metaboxes/config-destination.php:158
 msgid "Destination Expert"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:224
+#: includes/metaboxes/config-destination.php:250
 msgid "Accommodation related with this destination"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:246
+#: includes/metaboxes/config-destination.php:272
 msgid "Tours related with this destination"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:40
+#: includes/metaboxes/config-tour.php:46
 msgid "Departs From"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:57
+#: includes/metaboxes/config-tour.php:63
 msgid "Ends In"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:97
+#: includes/metaboxes/config-tour.php:102
 msgid "Tour Expert"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:113
+#: includes/metaboxes/config-tour.php:118
 msgid "Hightlights"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:134
+#: includes/metaboxes/config-tour.php:139
 msgid "Single Supplement"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:207
+#: includes/metaboxes/config-tour.php:218
 msgid "Specials related with this tour"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:227, includes/classes/legacy/class-tour.php:464
+#: includes/metaboxes/config-tour.php:236, includes/classes/legacy/class-tour.php:464
 msgid "Itinerary"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:232
+#: includes/metaboxes/config-tour.php:242
 msgid "Itinerary KML File"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:258
+#: includes/metaboxes/config-tour.php:266
 msgid "Accommodation related with this tour"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:280
+#: includes/metaboxes/config-tour.php:288
 msgid "Destinations related with this tour"
 msgstr ""
 
