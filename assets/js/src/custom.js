@@ -191,6 +191,10 @@ var lsx_to = Object.create( null );
 		jQuery( '.gallery' ).slickLightbox({
 			//lazy: true
 		});
+
+		jQuery( '.rooms-content' ).slickLightbox({
+			//lazy: true
+		});
 	};
 
 	/**

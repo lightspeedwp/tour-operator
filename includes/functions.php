@@ -575,7 +575,15 @@ function lsx_to_accommodation_units() {
 							<div class="col-xs-12 col-md-6">
 								<article class="rooms-content">
 									<?php if ( lsx_to_accommodation_room_has_thumbnail() ) { ?>
-										<div class="rooms-thumbnail" style="background-image: url('<?php echo $rooms->item_thumbnail(); ?>')"></div>
+										<?php
+											$images = $rooms->item_thumbnails();
+											$count = 0;
+
+											foreach ( $images as $thumbnail_wide_src => $thumbnail_single_src ) {
+												$count++;
+												?><a href="<?php echo esc_url( $thumbnail_single_src ); ?>" class="rooms-thumbnail <?php if ( $count > 1 ) echo 'hidden'; ?>" style="background-image:url('<?php echo esc_url( $thumbnail_wide_src ); ?>')"></a><?php
+											}
+										?>
 									<?php } ?>
 
 									<div class="rooms-info">
