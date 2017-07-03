@@ -8,7 +8,7 @@
 
 <?php lsx_entry_before(); ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article <?php post_class( 'lsx-to-archive-container' ); ?>>
 	<?php
 		$thumbnail_id = get_post_thumbnail_id( get_the_ID() );
 		$image_arr = wp_get_attachment_image_src( $thumbnail_id, 'lsx-thumbnail-single' );
