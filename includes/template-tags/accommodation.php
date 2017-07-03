@@ -111,11 +111,11 @@ function lsx_to_accommodation_facilities( $before = "", $after = "", $echo = tru
 		if ( count( $main_facilities ) > 0 && count( $child_facilities ) > 0 ) {
 			foreach ( $main_facilities as $heading ) {
 				if ( isset( $child_facilities[$heading->term_id] ) ) {
-					$return .= '<div class="' . $heading->slug . ' col-xs-12 col-sm-6"><div class="facilities-content"><h3><a href="' . get_term_link( $heading->slug, 'facility' ) . '">' . esc_html( $heading->name ) . '</a></h3>';
-					$return .= '<ul class="row">';
+					$return .= '<div class="' . $heading->slug . ' col-xs-12 col-sm-6"><div class="facilities-content"><h5 class="text-center"><a href="' . get_term_link( $heading->slug, 'facility' ) . '">' . esc_html( $heading->name ) . '</a></h5>';
+					$return .= '<ul class="facilities-list">';
 
 					foreach ( $child_facilities[$heading->term_id] as $child_facility ) {
-						$return .= '<li class="col-xs-12 col-sm-4"><a href="' . get_term_link( $child_facility->slug, 'facility' ) . '">' . esc_html( $child_facility->name ) . '</a></li>';
+						$return .= '<li class="facility-item"><a href="' . get_term_link( $child_facility->slug, 'facility' ) . '">' . esc_html( $child_facility->name ) . '</a></li>';
 					}
 
 					$return .= '</ul>';

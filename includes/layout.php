@@ -153,7 +153,7 @@ function lsx_to_accommodation_single_content_bottom() {
 
 		lsx_to_accommodation_units();
 
-		lsx_to_accommodation_facilities( '<section id="facilities" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Facilities', 'tour-operator' ) . '</h2><div class="row">', '</div></section>' );
+		lsx_to_accommodation_facilities( '<section id="facilities" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Facilities', 'tour-operator' ) . '</h2><div class="row facilities-wrapper">', '</div></section>' );
 
 		lsx_to_included_block();
 

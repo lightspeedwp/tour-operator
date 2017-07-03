@@ -38,3 +38,44 @@
 		@include media('>=phone') { width: calc(50% - 2.4rem); }
 	}
 }
+
+.facilities-wrapper {
+	margin-top: -2.4rem;
+
+	@include media('>=phone') {
+		align-items: flex-start;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: center;
+	}
+}
+
+.facilities-content {
+	margin-top: 4.25rem;
+
+	.facilities-list:not(.dropdown-menu) {
+		align-items: flex-start;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: flex-start;
+		list-style: none;
+		margin-bottom: 0;
+		padding-left: 0;
+	}
+}
+
+.facility-item {
+	display: inline-block;
+	padding: 0 15px;
+	position: relative;
+	width: 100%;
+
+	@include media('>=tablet') { width: 33.33333%; }
+
+	&:before {
+		content: '\2022';
+		display: inline-block;
+		position: absolute;
+		left: 0;
+	}
+}
