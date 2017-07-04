@@ -101,7 +101,6 @@ class Template_Redirects {
 	 * @return    $template
 	 */
 	public function taxonomy_template_include( $template ) {
-
 		if ( is_main_query() && is_tax( $this->taxonomies ) ) {
 			$current_taxonomy = get_query_var( 'taxonomy' );
 
