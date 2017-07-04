@@ -132,6 +132,10 @@ class Template_Redirects {
 		$original_name = $template;
 		$path = apply_filters( 'lsx_to_content_path', '', get_post_type() );
 
+		if ( 'modal' === $name || 'map-marker' === $name ) {
+			$path = $this->plugin_path;
+		}
+
 		if ( '' == locate_template( array( $template ) ) && file_exists( $path . 'templates/' . $template ) ) {
 			$template = $path . 'templates/' . $template;
 		} elseif ( file_exists( get_stylesheet_directory() . '/' . $template ) ) {
