@@ -68,7 +68,7 @@ class Frontend extends Tour_Operator {
 		add_filter( 'use_default_gallery_style', '__return_false' );
 		add_filter( 'lsx_to_tagline', array( $this, 'get_tagline' ), 1, 3 );
 
-		add_filter( 'the_terms', array( $this, 'links_new_window' ), 10, 2 );
+		// add_filter( 'the_terms', array( $this, 'links_new_window' ), 10, 2 );
 
 		$this->redirects = new Template_Redirects( LSX_TO_PATH, array_keys( $this->base_post_types ), array_keys( $this->base_taxonomies ) );
 
@@ -262,13 +262,13 @@ class Frontend extends Tour_Operator {
 	/**
 	 * add target="_blank" to the travel style links
 	 */
-	public function links_new_window( $terms, $taxonomy ) {
-		if ( 'travel-style' === $taxonomy || 'accommodation-type' === $taxonomy ) {
-			$terms = str_replace( '<a', '<a target="_blank"', $terms );
-		}
+	// public function links_new_window( $terms, $taxonomy ) {
+	// 	if ( 'travel-style' === $taxonomy || 'accommodation-type' === $taxonomy ) {
+	// 		$terms = str_replace( '<a', '<a target="_blank"', $terms );
+	// 	}
 
-		return $terms;
-	}
+	// 	return $terms;
+	// }
 
 	/**
 	 * Remove the "Archives:" from the post type archives.
