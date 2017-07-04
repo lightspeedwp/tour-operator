@@ -33,7 +33,9 @@ $taxonomy = array(
 		'exclude_from_search' => true,
 		'show_admin_column'   => false,
 		'query_var'           => true,
-		'rewrite'             => array( 'accommodation-type' ),
+		'rewrite'             => array(
+			'slug' => 'accommodation-type',
+		),
 	),
 );
 

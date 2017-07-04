@@ -11,7 +11,7 @@
 
 $taxonomy = array(
 	'object_types' => 'accommodation',
-	'menu_position'=> 33,
+	'menu_position' => 33,
 	'args'         => array(
 		'hierarchical'        => true,
 		'labels'              => array(
@@ -29,10 +29,13 @@ $taxonomy = array(
 		),
 		'show_ui'             => true,
 		'public'              => true,
+		'show_tagcloud'       => false,
 		'exclude_from_search' => true,
 		'show_admin_column'   => true,
 		'query_var'           => true,
-		'rewrite'             => array( 'slug' => 'brand' ),
+		'rewrite'             => array(
+			'slug' => 'brand',
+		),
 	),
 );
 
