@@ -1507,13 +1507,18 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-team-socials > a { -webkit-box-align: center; -ms-flex-align: center; align-items: center; border-radius: 50%; display: -webkit-box; display: -ms-flexbox; display: flex; height: 30px; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; margin: 0 10px; transition: background 300ms ease; width: 30px; }
 
-.single-lsx-to-team .lsx-to-team-name { margin-bottom: 1.2rem; }
+.single-lsx-to-team .lsx-to-team-name { margin-top: 8.5rem; margin-bottom: 1.2rem; }
+
+@media (min-width: 768px) { .single-lsx-to-team .lsx-to-team-name { margin-top: 0; } }
 
 .single-lsx-to-team .lsx-to-team-contact:not(.dropdown) { margin-bottom: 0; margin-right: 0; margin-top: 4.25rem; padding-right: 0; }
 
-.single-lsx-to-team .lsx-to-team-contact:not(.dropdown) > li { padding-right: 0; padding-left: 0; }
+.single-lsx-to-team .lsx-to-team-contact:not(.dropdown) > li { display: block; padding-right: 0; padding-left: 0; }
 
-.single-lsx-to-team .lsx-to-team-contact:not(.dropdown) > li + li { margin-right: 2.4rem; }
+.single-lsx-to-team .lsx-to-team-contact:not(.dropdown) > li + li { margin-top: 1.2rem; }
+
+@media (min-width: 992px) { .single-lsx-to-team .lsx-to-team-contact:not(.dropdown) > li { display: inline-block; }
+  .single-lsx-to-team .lsx-to-team-contact:not(.dropdown) > li + li { margin-right: 2.4rem; margin-top: 0; } }
 
 .single-lsx-to-team .lsx-to-team-contact:not(.dropdown) .fa { font-size: 22px; margin-left: 5px; vertical-align: middle; }
 
