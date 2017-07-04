@@ -349,8 +349,8 @@ function lsx_to_itinerary_class( $classes = false ) {
 function lsx_to_itinerary_read_more() {
 	if ( lsx_to_itinerary_needs_read_more() ) {
 		?>
-		<div class="view-more aligncenter">
-			<a href="#" class="btn"><?php esc_html_e( 'Read More', 'tour-operator' ); ?></a>
+		<div class="view-more text-center lsx-to-section-view-all">
+			<a href="#" class="btn border-btn"><?php esc_html_e( 'Read More', 'tour-operator' ); ?></a>
 		</div>
 		<?php
 	}
