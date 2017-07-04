@@ -64,20 +64,20 @@
 	}
 }
 
+.facilities-title {
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	padding-bottom: 1.2rem;
+}
+
 .facility-item {
 	display: inline-block;
-	padding: 0 15px;
+	font-size: 13px;
+	padding-right: 15px;
 	position: relative;
 	width: 100%;
 
 	@include media('>=tablet') { width: 33.33333%; }
-
-	&:before {
-		content: '\2022';
-		display: inline-block;
-		position: absolute;
-		left: 0;
-	}
 }
 
 .travel-info-wrapper {

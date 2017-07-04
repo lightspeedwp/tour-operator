@@ -111,7 +111,7 @@ function lsx_to_accommodation_facilities( $before = "", $after = "", $echo = tru
 		if ( count( $main_facilities ) > 0 && count( $child_facilities ) > 0 ) {
 			foreach ( $main_facilities as $heading ) {
 				if ( isset( $child_facilities[$heading->term_id] ) ) {
-					$return .= '<div class="' . $heading->slug . ' col-xs-12 col-sm-6"><div class="facilities-content"><h5 class="text-center"><a href="' . get_term_link( $heading->slug, 'facility' ) . '">' . esc_html( $heading->name ) . '</a></h5>';
+					$return .= '<div class="' . $heading->slug . ' col-xs-12 col-sm-6"><div class="facilities-content"><h5 class="facilities-title"><a href="' . get_term_link( $heading->slug, 'facility' ) . '">' . esc_html( $heading->name ) . '</a></h5>';
 					$return .= '<ul class="facilities-list">';
 
 					foreach ( $child_facilities[$heading->term_id] as $child_facility ) {

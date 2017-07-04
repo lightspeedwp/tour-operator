@@ -1461,11 +1461,11 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .facilities-content .facilities-list:not(.dropdown-menu) { -webkit-box-align: start; -ms-flex-align: start; align-items: flex-start; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row wrap; flex-flow: row wrap; -webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start; list-style: none; margin-bottom: 0; padding-right: 0; }
 
-.facility-item { display: inline-block; padding: 0 15px; position: relative; width: 100%; }
+.facilities-title { border-bottom-style: solid; border-bottom-width: 1px; padding-bottom: 1.2rem; }
+
+.facility-item { display: inline-block; font-size: 13px; padding-left: 15px; position: relative; width: 100%; }
 
 @media (min-width: 992px) { .facility-item { width: 33.33333%; } }
-
-.facility-item:before { content: '\2022'; display: inline-block; position: absolute; right: 0; }
 
 .travel-info-wrapper { margin-top: -2.4rem; }
 
@@ -1538,3 +1538,5 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 .lsx-to-contact .lsx-to-contact-socials > a:not(.btn):hover, .lsx-to-contact .lsx-to-contact-socials > a:not(.btn):hover:active, .lsx-to-contact .lsx-to-contact-socials > a:not(.btn):focus { color: #F7AE00; }
 
 .lsx-to-label { background-color: #4A4A4A; color: #FFF; }
+
+.facilities-title { border-bottom-color: #DADDDF; }
