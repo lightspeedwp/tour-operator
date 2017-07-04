@@ -38,6 +38,23 @@
 		}
 	}
 
+	.slick-lightbox-inner {
+		.slick-arrow {
+			border-color: white;
+			color: white;
+
+			&:hover {
+				border-color: white;
+				color: white;
+			}
+
+			&.slick-disabled {
+				border-color: #ccc;
+				color: #ccc;
+			}
+		}
+	}
+
 	.lsx-to-widget-view-all {
 		& > span {
 			&:before,
@@ -68,8 +85,8 @@
 	.lsx-to-meta-data { color: $small; }
 
 	.lsx-to-archive-item {
-		& > article[id^='post-'] {
-			& > .moretag {
+		& > .lsx-to-archive-container {
+			& > a.moretag {
 				background-color: $link;
 				color: #FFF;
 
@@ -103,4 +120,6 @@
 		background-color: $color;
 		color: #FFF;
 	}
+
+	.facilities-title { border-bottom-color: $breaker; }
 }

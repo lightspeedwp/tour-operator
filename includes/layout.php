@@ -23,7 +23,7 @@ add_action( 'lsx_entry_bottom', 'lsx_to_tour_archive_entry_bottom' );
 /**
  * Single
  */
-add_action( 'lsx_content_top', 'lsx_to_single_content_top' );
+add_action( 'lsx_content_wrap_before', 'lsx_to_single_content_top' );
 add_action( 'lsx_entry_bottom', 'lsx_to_single_entry_bottom' );
 
 /**
@@ -45,6 +45,19 @@ function lsx_to_archive_entry_top() {
 
 	if ( in_array( get_post_type(), array_keys( lsx_to_get_post_types() ) ) && ( is_archive() || $lsx_to_archive ) ) { ?>
 		<?php
+			global $post;
+			$post_type = get_post_type();
+
+			$has_single = ! lsx_to_is_single_disabled();
+			$permalink = '';
+
+			if ( $has_single ) {
+				$permalink = get_the_permalink();
+			} elseif ( is_search() ) {
+				$has_single = true;
+				$permalink = get_post_type_archive_link( $post_type ) . '#' . $post_type . '-' . $post->post_name;
+			}
+
 			$thumbnail_id = get_post_thumbnail_id( get_the_ID() );
 			$image_arr = wp_get_attachment_image_src( $thumbnail_id, 'lsx-thumbnail-single' );
 
@@ -54,7 +67,7 @@ function lsx_to_archive_entry_top() {
 		?>
 
 		<div class="lsx-to-archive-thumb">
-			<a href="<?php the_permalink(); ?>" style="background-image: url('<?php echo esc_url( $image_src ); ?>')">
+			<a <?php if ( $has_single ) echo 'href="' . esc_url( $permalink ) . '"'; ?> style="background-image: url('<?php echo esc_url( $image_src ); ?>')">
 				<?php
 					if ( 'team' === get_post_type() ) {
 						lsx_thumbnail( array( 285, 285 ) );
@@ -68,12 +81,12 @@ function lsx_to_archive_entry_top() {
 		<div class="lsx-to-archive-wrapper">
 			<div class="lsx-to-archive-content">
 				<h3 class="lsx-to-archive-content-title">
-					<a href="<?php get_permalink(); ?>" title="<?php esc_html_e( 'Read more', 'tour-operator' ); ?>">
+					<?php if ( $has_single ) { ?><a href="<?php echo esc_url( $permalink ); ?>" title="<?php esc_html_e( 'Read more', 'tour-operator' ); ?>"><?php } ?>
 						<?php
 							the_title();
 							do_action( 'lsx_to_the_title_end', get_the_ID() );
 						?>
-					</a>
+					<?php if ( $has_single ) { ?></a><?php } ?>
 				</h3>
 
 				<?php lsx_to_tagline( '<p class="lsx-to-archive-content-tagline">', '</p>' ); ?>
@@ -88,7 +101,7 @@ function lsx_to_archive_entry_top() {
  * @category 	general
  */
 function lsx_to_single_content_top() {
-	if ( is_singular( array_keys( lsx_to_get_post_types() ) ) || is_post_type_archive( 'destination' ) ) {
+	if ( is_singular( array_keys( lsx_to_get_post_types() ) ) ) {
 		lsx_to_page_navigation();
 	}
 }
@@ -129,38 +142,71 @@ function lsx_to_single_entry_bottom() {
  * @category 	accommodation
  */
 function lsx_to_accommodation_single_content_bottom() {
-	if ( is_singular( 'accommodation' ) ) {
-		lsx_to_accommodation_units( '<section id="{units}"><h2 class="section-title">' . esc_html__( '{units}', 'tour-operator' ) . '</h2><div class="info row">', '</div></section>' );
+	if ( is_singular( 'accommodation' ) ) { ?>
 
-		lsx_to_accommodation_facilities( '<section id="facilities"><h2 class="section-title">' . esc_html__( 'Facilities', 'tour-operator' ) . '</h2><div class="info row">', '</div></section>' );
+		<section id="keynotes" class="lsx-to-section">
+			<div class="row">
+				<div class="col-xs-12">
+					<section id="fast-facts">
+						<h2 class="lsx-to-section-title lsx-title"><?php echo esc_html__( 'Fast Facts', 'tour-operator' ); ?></h2>
+						<div class="lsx-to-section-inner">
+							<div class="lsx-to-single-meta-data">
+							<?php
+								$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
+
+								lsx_to_accommodation_rating( '<span class="' . $meta_class . 'rating">' . esc_html__( 'Rating', 'tour-operator' ) . ': ', '</span>' );
+								lsx_to_connected_destinations( '<span class="' . $meta_class . 'destinations">' . esc_html__( 'Locations', 'tour-operator' ) . ': ', '</span>' );
+								the_terms( get_the_ID(), 'travel-style', '<span class="' . $meta_class . 'style">' . esc_html__( 'Style', 'tour-operator' ) . ': ', ', ', '</span>' );
+								the_terms( get_the_ID(), 'accommodation-type', '<span class="' . $meta_class . 'type">' . esc_html__( 'Type', 'tour-operator' ) . ': ', ', ', '</span>' );
+								lsx_to_accommodation_room_total( '<span class="' . $meta_class . 'rooms">' . esc_html__( 'Rooms', 'tour-operator' ) . ': ', '</span>' );
+								lsx_to_accommodation_spoken_languages( '<span class="' . $meta_class . 'languages">' . esc_html__( 'Spoken Languages', 'tour-operator' ) . ': ', '</span>' );
+								lsx_to_accommodation_activity_friendly( '<span class="' . $meta_class . 'friendly">' . esc_html__( 'Friendly', 'tour-operator' ) . ': ', '</span>' );
+								lsx_to_accommodation_special_interests( '<span class="' . $meta_class . 'special">' . esc_html__( 'Special Interests', 'tour-operator' ) . ': ', '</span>' );
+								the_terms( get_the_ID(), 'accommodation-brand', '<span class="' . $meta_class . 'brand">' . esc_html__( 'Brands', 'tour-operator' ) . ': ', ', ', '</span>' );
+
+								if ( function_exists( 'lsx_to_connected_activities' ) ) {
+									lsx_to_connected_activities( '<span class="' . $meta_class . 'activities">' . esc_html__( 'Activities', 'tour-operator' ) . ': ', '</span>' );
+								}
+							?>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</section>
+
+	<?php
+		lsx_to_accommodation_units();
+
+		lsx_to_accommodation_facilities( '<section id="facilities" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Facilities', 'tour-operator' ) . '</h2><div class="row facilities-wrapper">', '</div></section>' );
 
 		lsx_to_included_block();
 
 		if ( function_exists( 'lsx_to_has_map' ) && lsx_to_has_map() ) { ?>
-			<section id="accommodation-map">
-				<h2 class="section-title"><?php esc_html_e( 'Map', 'tour-operator' ); ?></h2>
+			<section id="accommodation-map" class="lsx-to-section">
+				<h2 class="lsx-to-section-title lsx-title"><?php esc_html_e( 'Map', 'tour-operator' ); ?></h2>
 				<?php lsx_to_map(); ?>
 			</section>
 		<?php }
 
-		lsx_to_gallery( '<section id="gallery"><h2 class="section-title">' . esc_html__( 'Gallery', 'tour-operator' ) . '</h2>', '</section>' );
+		lsx_to_gallery( '<section id="gallery" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Gallery', 'tour-operator' ) . '</h2>', '</section>' );
 
 		if ( function_exists( 'lsx_to_videos' ) ) {
-			lsx_to_videos( '<div id="videos"><h2 class="section-title">' . esc_html__( 'Videos', 'tour-operator' ) . '</h2>', '</div>' );
+			lsx_to_videos( '<section id="videos" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Videos', 'tour-operator' ) . '</h2>', '</section>' );
 		} elseif ( class_exists( 'Envira_Videos' ) ) {
-			lsx_to_envira_videos( '<div id="videos"><h2 class="section-title">' . esc_html__( 'Videos', 'tour-operator' ) . '</h2>', '</div>' );
+			lsx_to_envira_videos( '<section id="videos" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Videos', 'tour-operator' ) . '</h2>', '</section>' );
 		}
 
 		if ( function_exists( 'lsx_to_accommodation_reviews' ) ) {
 			lsx_to_accommodation_reviews();
 		}
 
-		lsx_to_related_items( 'travel-style', '<section id="related-items"><h2 class="section-title">' . esc_html__( lsx_to_get_post_type_section_title( 'accommodation', 'similar', 'Related Accommodation' ), 'tour-operator' ) . '</h2>', '</section>' );
+		lsx_to_related_items( 'travel-style', '<section id="related-items" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( lsx_to_get_post_type_section_title( 'accommodation', 'similar', 'Related Accommodation' ), 'tour-operator' ) . '</h2>', '</section>' );
 
 		$connected_tours = get_post_meta( get_the_ID(), 'tour_to_accommodation', false );
 
 		if ( lsx_to_accommodation_display_connected_tours() && post_type_exists( 'tour' ) && is_array( $connected_tours ) && ! empty( $connected_tours ) ) {
-			lsx_to_related_items( $connected_tours, '<section class="related-items"><h2 class="section-title">' . esc_html__( 'Related Tours' , 'tour-operator' ) . '</h2>', '</section>', true, 'tour' );
+			lsx_to_related_items( $connected_tours, '<section class="related-items" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Related Tours' , 'tour-operator' ) . '</h2>', '</section>', true, 'tour' );
 		}
 	}
 }
@@ -201,14 +247,32 @@ function lsx_to_accommodation_archive_entry_bottom() {
  */
 function lsx_to_destination_single_content_bottom() {
 	if ( is_singular( 'destination' ) ) { ?>
-		<section id="highlights">
+
+		<section id="keynotes" class="lsx-to-section">
 			<div class="row">
-				<div class="col-sm-12">
-					<?php lsx_to_best_time_to_visit( '<div class="best-time-to-visit"><h2 class="section-title">' . esc_html__( 'Best time to visit', 'tour-operator' ) . '</h2><div class="best-time-to-visit-content">', '</div></div>' ); ?>
+				<div class="col-xs-12">
+					<section id="fast-facts">
+						<h2 class="lsx-to-section-title lsx-title"><?php echo esc_html__( 'Fast Facts', 'tour-operator' ); ?></h2>
+						<div class="lsx-to-section-inner">
+							<div class="lsx-to-single-meta-data">
+							<?php
+								$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
+
+								the_terms( get_the_ID(), 'travel-style', '<span class="' . $meta_class . 'style">' . esc_html__( 'Travel Style', 'tour-operator' ) . ': ', ', ', '</span>' );
+
+								if ( function_exists( 'lsx_to_connected_activities' ) ) {
+									lsx_to_connected_activities( '<span class="' . $meta_class . 'activities">' . esc_html__( 'Activities', 'tour-operator' ) . ': ', '</span>' );
+								}
+							?>
+							</div>
+						</div>
+					</section>
 				</div>
 			</div>
 		</section>
-		<?php
+
+	<?php
+		lsx_to_best_time_to_visit( '<section id="when-to-go" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'When to Go', 'tour-operator' ) . '</h2><div class="when-to-go-wrapper clearfix">', '</div></section>' );
 
 		lsx_to_destination_travel_info();
 
@@ -221,18 +285,18 @@ function lsx_to_destination_single_content_bottom() {
 		lsx_to_destination_activities();
 
 		if ( function_exists( 'lsx_to_has_map' ) && lsx_to_has_map() ) { ?>
-			<section id="destination-map">
-				<h2 class="section-title"><?php esc_html_e( 'Map', 'tour-operator' ); ?></h2>
+			<section id="destination-map" class="lsx-to-section">
+				<h2 class="lsx-to-section-title lsx-title"><?php esc_html_e( 'Map', 'tour-operator' ); ?></h2>
 				<?php lsx_to_map(); ?>
 			</section>
 		<?php }
 
-		lsx_to_gallery( '<section id="gallery"><h2 class="section-title">' . esc_html__( 'Gallery', 'tour-operator' ) . '</h2>', '</section>' );
+		lsx_to_gallery( '<section id="gallery" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Gallery', 'tour-operator' ) . '</h2>', '</section>' );
 
 		if ( function_exists( 'lsx_to_videos' ) ) {
-			lsx_to_videos( '<div id="videos"><h2 class="section-title">' . esc_html__( 'Videos', 'tour-operator' ) . '</h2>', '</div>' );
+			lsx_to_videos( '<section id="videos" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Videos', 'tour-operator' ) . '</h2>', '</section>' );
 		} elseif ( class_exists( 'Envira_Videos' ) ) {
-			lsx_to_envira_videos( '<div id="videos"><h2 class="section-title">' . esc_html__( 'Videos', 'tour-operator' ) . '</h2>', '</div>' );
+			lsx_to_envira_videos( '<section id="videos" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Videos', 'tour-operator' ) . '</h2>', '</section>' );
 		}
 
 		if ( function_exists( 'lsx_to_destination_reviews' ) ) {
@@ -270,7 +334,7 @@ function lsx_to_destination_archive_entry_bottom() {
 		</div>
 
 		<?php if ( 'grid' === tour_operator()->archive_layout ) : ?>
-			<a href="<?php the_permalink(); ?>" class="moretag"><?php esc_html_e( 'Continue reading', 'tour-operator' ); ?></a>
+			<a href="<?php the_permalink(); ?>" class="moretag"><?php esc_html_e( 'View more', 'tour-operator' ); ?></a>
 		<?php endif; ?>
 	<?php }
 }
@@ -284,17 +348,42 @@ function lsx_to_destination_archive_entry_bottom() {
  */
 function lsx_to_tour_single_content_bottom() {
 	if ( is_singular( 'tour' ) ) { ?>
-		<div class="lsx-to-section-wrapper">
+		<section id="keynotes" class="lsx-to-section">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
-					<?php lsx_to_highlights( '<section id="highlights" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Highlights', 'tour-operator' ) . '</h2>', '</section>' ); ?>
-				</div>
+					<section id="fast-facts">
+						<h2 class="lsx-to-section-title lsx-title"><?php echo esc_html__( 'Fast Facts', 'tour-operator' ); ?></h2>
+						<div class="lsx-to-section-inner">
+							<?php
+								$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
 
+								lsx_to_departure_point( '<span class="' . $meta_class . 'pin">' . esc_html__( 'Departs from', 'tour-operator' ) . ': ', '</span>' );
+								lsx_to_end_point( '<span class="' . $meta_class . 'pin">' . esc_html__( 'Ends in', 'tour-operator' ) . ': ', '</span>' );
+								lsx_to_connected_countries( '<span class="' . $meta_class . 'destinations">' . esc_html__( 'Destinations', 'tour-operator' ) . ': ', '</span>' );
+								the_terms( get_the_ID(), 'travel-style', '<span class="' . $meta_class . 'style">' . esc_html__( 'Travel Style', 'tour-operator' ) . ': ', ', ', '</span>' );
+
+								if ( function_exists( 'lsx_to_connected_activities' ) ) {
+									lsx_to_connected_activities( '<span class="' . $meta_class . 'activities">' . esc_html__( 'Activities', 'tour-operator' ) . ': ', '</span>' );
+								}
+							?>
+						</div>
+					</section>
+				</div>
 				<div class="col-xs-12 col-sm-6">
-					<?php lsx_to_best_time_to_visit( '<section id="best-time-to-visit" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Best time to visit', 'tour-operator' ) . '</h2><div class="best-time-to-visit-wrapper">', '</div></section>' ); ?>
+					<section id="highlights">
+						<h2 class="lsx-to-section-title lsx-title"><?php echo esc_html__( 'Highlights', 'tour-operator' ); ?></h2>
+						<div class="lsx-to-section-inner">
+							<?php lsx_to_highlights(); ?>
+						</div>
+					</section>
 				</div>
 			</div>
-		</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<?php lsx_to_best_time_to_visit( '<section id="when-to-go" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'When to Go', 'tour-operator' ) . '</h2><div class="when-to-go-wrapper clearfix">', '</div></section>' ); ?>
+				</div>
+			</div>
+		</section>
 
 		<?php if ( lsx_to_has_itinerary() ) { ?>
 			<section id="itinerary" class="lsx-to-section">
@@ -340,6 +429,7 @@ function lsx_to_tour_single_content_bottom() {
 						</div>
 					<?php } ?>
 				</div>
+
 				<?php lsx_to_itinerary_read_more(); ?>
 			</section>
 		<?php }

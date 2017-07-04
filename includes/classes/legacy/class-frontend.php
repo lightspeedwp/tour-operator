@@ -82,6 +82,7 @@ class Frontend extends Tour_Operator {
 		add_action( 'template_redirect', array( $this, 'redirect_archive' ) );
 
 		// Readmore
+		add_filter( 'excerpt_more_p', array( $this, 'remove_read_more_link' ) );
 		add_filter( 'the_content', array( $this, 'modify_read_more_link' ) );
 		remove_filter( 'term_description', 'wpautop' );
 		add_filter( 'term_description', array(
@@ -197,56 +198,33 @@ class Frontend extends Tour_Operator {
 	 * @return    null
 	 */
 	public function enqueue_stylescripts() {
-		$current_theme = wp_get_theme();
-		$current_template = $current_theme->get_template();
-		$theme_name = $current_theme->get( 'Name' );
-		$is_lsx_theme = 'lsx' === $current_template || 'LSX' === $theme_name;
-
-		$has_font_awesome = $is_lsx_theme ? true : wp_script_is( 'font_awesome', 'queue' ) || wp_script_is( 'fontawesome', 'queue' );
-		$has_bootstrap = $is_lsx_theme ? true : wp_script_is( 'bootstrap', 'queue' );
 		$has_slick = wp_script_is( 'slick', 'queue' );
+		$has_slick_lightbox = wp_script_is( 'slick-lightbox', 'queue' );
 
 		if ( ! isset( $this->options['display']['disable_js'] ) ) {
-			$js_dependencies = array( 'jquery', 'fixto' );
-
 			if ( ! $has_slick ) {
-				array_push( $js_dependencies, 'slick' );
 				wp_enqueue_script( 'slick', LSX_TO_URL . 'assets/js/vendor/slick.min.js', array( 'jquery' ) , LSX_TO_VER, true );
 			}
 
-			wp_enqueue_script( 'fixto', LSX_TO_URL . 'assets/js/vendor/fixto.min.js', array( 'jquery' ), LSX_TO_VER, true );
-			wp_enqueue_script( 'tour-operator-script', LSX_TO_URL . 'assets/js/custom.min.js', $js_dependencies, LSX_TO_VER, true );
+			if ( ! $has_slick_lightbox ) {
+				wp_enqueue_script( 'slick-lightbox', LSX_TO_URL . 'assets/js/vendor/slick-lightbox.min.js', array( 'jquery', 'slick' ), LSX_TO_VER, true );
+			}
+
+			// wp_enqueue_script( 'fixto', LSX_TO_URL . 'assets/js/vendor/fixto.min.js', array( 'jquery' ), LSX_TO_VER, true );
+			wp_enqueue_script( 'tour-operator-script', LSX_TO_URL . 'assets/js/custom.min.js', array( 'jquery', 'slick', 'slick-lightbox'/*, 'fixto'*/ ), LSX_TO_VER, true );
 		}
 
 		if ( ! isset( $this->options['display']['disable_css'] ) ) {
-			$css_dependencies = array();
-
-			if ( ! $is_lsx_theme ) {
-				if ( ! $has_font_awesome ) {
-					array_push( $css_dependencies, 'font_awesome' );
-					wp_enqueue_style( 'font_awesome', LSX_TO_URL . 'assets/css/vendor/font-awesome.css', array(), LSX_TO_VER );
-					wp_style_add_data( 'font_awesome', 'rtl', 'replace' );
-				}
-
-				// TODO
-				// if ( ! $has_bootstrap ) {
-				// 	array_push( $css_dependencies, 'bootstrap' );
-				// 	wp_enqueue_style( 'bootstrap', LSX_TO_URL . '', array(), LSX_TO_VER );
-				//  wp_style_add_data( 'bootstrap', 'rtl', 'replace' );
-				// }
-			}
-
 			if ( ! $has_slick ) {
-				array_push( $css_dependencies, 'slick' );
 				wp_enqueue_style( 'slick', LSX_TO_URL . 'assets/css/vendor/slick.css', array(), LSX_TO_VER );
 			}
 
-			wp_enqueue_style( 'tour-operator-style', LSX_TO_URL . 'assets/css/style.css', $css_dependencies, LSX_TO_VER );
-			wp_style_add_data( 'tour-operator-style', 'rtl', 'replace' );
-		}
+			if ( ! $has_slick_lightbox ) {
+				wp_enqueue_style( 'slick-lightbox', LSX_TO_URL . 'assets/css/vendor/slick-lightbox.css', array( 'slick' ), LSX_TO_VER );
+			}
 
-		if ( defined( 'JETPACK__VERSION' ) && defined( 'WP_SHARING_PLUGIN_URL' ) ) {
-			wp_enqueue_style( 'sharing', WP_SHARING_PLUGIN_URL . 'sharing.css', false, JETPACK__VERSION );
+			wp_enqueue_style( 'tour-operator-style', LSX_TO_URL . 'assets/css/style.css', array( 'lsx_main', 'slick', 'slick-lightbox' ), LSX_TO_VER );
+			wp_style_add_data( 'tour-operator-style', 'rtl', 'replace' );
 		}
 	}
 
@@ -329,8 +307,16 @@ class Frontend extends Tour_Operator {
 	 */
 	public function redirect_singles() {
 		$queried_post_type = get_query_var( 'post_type' );
+
 		if ( is_singular() && false !== $this->options && isset( $this->options[ $queried_post_type ] ) && isset( $this->options[ $queried_post_type ]['disable_single'] ) ) {
-			if ( is_singular( $queried_post_type ) ) {
+			wp_redirect( home_url(), 301 );
+			exit;
+		}
+
+		if ( is_singular() ) {
+			$single_desabled = get_post_meta( get_the_ID(), 'disable_single', true );
+
+			if ( ! empty( $single_desabled ) ) {
 				wp_redirect( home_url(), 301 );
 				exit;
 			}
@@ -347,12 +333,40 @@ class Frontend extends Tour_Operator {
 	 */
 	public function redirect_archive() {
 		$queried_post_type = get_query_var( 'post_type' );
+
 		if ( is_post_type_archive() && false !== $this->options && isset( $this->options[ $queried_post_type ] ) && isset( $this->options[ $queried_post_type ]['disable_archives'] ) ) {
-			if ( is_post_type_archive( $queried_post_type ) ) {
-				wp_redirect( home_url(), 301 );
-				exit;
+			wp_redirect( home_url(), 301 );
+			exit;
+		}
+	}
+
+	/**
+	 * Remove the read more link.
+	 */
+	public function remove_read_more_link( $excerpt_more ) {
+		$post_type = get_post_type();
+
+		if ( isset( tour_operator()->options[ $post_type ] ) ) {
+			global $post;
+
+			$has_single = ! lsx_to_is_single_disabled();
+			$permalink = '';
+
+			if ( $has_single ) {
+				$permalink = get_the_permalink();
+			} elseif ( ! is_post_type_archive( $post_type ) ) {
+				$has_single = true;
+				$permalink = get_post_type_archive_link( $post_type ) . '#' . $post_type . '-' . $post->post_name;
+			}
+
+			if ( ! empty( $permalink ) ) {
+				$excerpt_more = '<p><a class="moretag" href="' . esc_url( $permalink ) . '">' . esc_html__( 'View more', 'lsx' ) . '</a></p>';
+			} else {
+				$excerpt_more = '';
 			}
 		}
+
+		return $excerpt_more;
 	}
 
 	/**
@@ -363,7 +377,7 @@ class Frontend extends Tour_Operator {
 	 * @return    string $content
 	 */
 	public function modify_read_more_link( $content ) {
-		$content = str_replace( '<span id="more-' . get_the_ID() . '"></span>', '<a class="btn btn-default more-link" data-collapsed="true" href="' . get_permalink() . '">' . esc_html__( 'Read More', 'tour-operator' ) . '</a>', $content );
+		$content = str_replace( '<span id="more-' . get_the_ID() . '"></span>', '<a class="lsx-to-more-link more-link" data-collapsed="true" href="' . get_permalink() . '">' . esc_html__( 'Read More', 'tour-operator' ) . '</a>', $content );
 
 		return $content;
 	}

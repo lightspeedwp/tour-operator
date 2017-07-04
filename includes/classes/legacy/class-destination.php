@@ -70,10 +70,7 @@ class Destination {
 		add_action( 'lsx_to_map_meta', array( $this, 'content_meta' ) );
 		add_action( 'lsx_to_modal_meta', array( $this, 'content_meta' ) );
 
-		add_action( 'lsx_to_framework_destination_tab_general_settings_bottom', array(
-			$this,
-			'general_settings',
-		), 10, 1 );
+		add_action( 'lsx_to_framework_destination_tab_general_settings_bottom', array( $this, 'general_settings' ), 10, 1 );
 
 		add_filter( 'lsx_to_page_navigation', array( $this, 'page_links' ) );
 
@@ -120,14 +117,16 @@ class Destination {
 	 */
 	public function entry_class( $classes ) {
 		global $lsx_to_archive;
+
 		if ( 1 !== $lsx_to_archive ) {
 			$lsx_to_archive = false;
 		}
+
 		if ( is_main_query() && is_singular( $this->slug ) && false === $lsx_to_archive ) {
 			if ( lsx_to_has_enquiry_contact() ) {
-				$classes[] = 'col-sm-9';
+				$classes[] = 'col-xs-12 col-sm-8 col-md-9';
 			} else {
-				$classes[] = 'col-sm-12';
+				$classes[] = 'col-xs-12';
 			}
 		}
 
@@ -144,15 +143,14 @@ class Destination {
 	 */
 	public function general_settings() {
 		?>
-        <tr class="form-field -wrap">
-            <th scope="row">
-                <label for="description"><?php esc_html_e( 'Display the map in the banner', 'tour-operator' ); ?></label>
-            </th>
-            <td>
-                <input type="checkbox" {{#if enable_banner_map}}
-                       checked="checked" {{/if}} name="enable_banner_map" />
-            </td>
-        </tr>
+		<tr class="form-field -wrap">
+			<th scope="row">
+				<label for="description"><?php esc_html_e( 'Display the map in the banner', 'tour-operator' ); ?></label>
+			</th>
+			<td>
+				<input type="checkbox" {{#if enable_banner_map}} checked="checked" {{/if}} name="enable_banner_map" />
+			</td>
+		</tr>
 		<?php
 	}
 
@@ -162,12 +160,13 @@ class Destination {
 	public function content_meta() {
 		if ( 'destination' === get_post_type() ) {
 			?>
-            <div class="destination-details meta taxonomies">
+			<div class="destination-details meta taxonomies">
 				<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">' . esc_html__( 'Travel Style', 'tour-operator' ) . ': ', ', ', '</div>' ); ?>
+
 				<?php if ( function_exists( 'lsx_to_connected_activities' ) ) {
 					lsx_to_connected_activities( '<div class="meta activities">' . esc_html__( 'Activities', 'tour-operator' ) . ': ', '</div>' );
 				} ?>
-            </div>
+			</div>
 		<?php }
 	}
 
@@ -181,16 +180,20 @@ class Destination {
 	public function page_links( $page_links ) {
 		if ( is_singular( 'destination' ) ) {
 			$this->page_links = $page_links;
+
 			$this->get_travel_info_link();
 			$this->get_region_link();
 			$this->get_related_tours_link();
+
 			if ( ! lsx_to_item_has_children( get_the_ID(), 'destination' ) ) {
 				$this->get_related_accommodation_link();
 				$this->get_related_activities_link();
 			}
+
 			$this->get_map_link();
 			$this->get_gallery_link();
 			$this->get_videos_link();
+
 			$page_links = $this->page_links;
 		}
 
@@ -227,13 +230,13 @@ class Destination {
 	 */
 	public function get_region_links() {
 		$tour_operator = tour_operator();
+
 		if ( have_posts() ) :
 			if ( ! isset( $tour_operator->search )
-			     || empty( $tour_operator->search )
-			     || false === $tour_operator->search->options
-			     || ! isset( $tour_operator->search->options['destination']['enable_search'] )
+				 || empty( $tour_operator->search )
+				 || false === $tour_operator->search->options
+				 || ! isset( $tour_operator->search->options['destination']['enable_search'] )
 			) :
-
 				while ( have_posts() ) :
 					the_post();
 					$slug                      = sanitize_title( the_title( '', '', false ) );
@@ -257,23 +260,24 @@ class Destination {
 	 * Tests for the Gallery and returns a link for the section
 	 */
 	public function get_gallery_link() {
-		if ( function_exists( 'lsx_to_gallery' ) ) {
-			$gallery_ids    = get_post_meta( get_the_ID(), 'gallery', false );
-			$envira_gallery = get_post_meta( get_the_ID(), 'envira_gallery', true );
+		$gallery_ids = get_post_meta( get_the_ID(), 'gallery', false );
+		$envira_gallery = get_post_meta( get_the_ID(), 'envira_gallery', true );
 
-			if ( ( false !== $gallery_ids && '' !== $gallery_ids && is_array( $gallery_ids ) && ! empty( $gallery_ids ) )
-			     || ( false !== $envira_gallery && '' !== $envira_gallery )
-			) {
+		if ( ( ! empty( $gallery_ids ) && is_array( $gallery_ids ) ) || ( function_exists( 'envira_gallery' ) && ! empty( $envira_gallery ) && false === lsx_to_enable_envira_banner() ) ) {
+			if ( function_exists( 'envira_gallery' ) && ! empty( $envira_gallery ) && false === lsx_to_enable_envira_banner() ) {
+				// Envira Gallery
 				$this->page_links['gallery'] = esc_html__( 'Gallery', 'tour-operator' );
-
 				return;
-			}
-		} elseif ( class_exists( 'envira_gallery' ) ) {
-			$envira_gallery = get_post_meta( get_the_ID(), 'envira_gallery', true );
-			if ( false !== $envira_gallery && '' !== $envira_gallery && false === lsx_to_enable_envira_banner() ) {
-				$this->page_links['gallery'] = esc_html__( 'Gallery', 'tour-operator' );
-
-				return;
+			} else {
+				if ( function_exists( 'envira_dynamic' ) ) {
+					// Envira Gallery - Dynamic
+					$this->page_links['gallery'] = esc_html__( 'Gallery', 'tour-operator' );
+					return;
+				} else {
+					// WordPress Gallery
+					$this->page_links['gallery'] = esc_html__( 'Gallery', 'tour-operator' );
+					return;
+				}
 			}
 		}
 	}
@@ -283,13 +287,16 @@ class Destination {
 	 */
 	public function get_videos_link() {
 		$videos_id = false;
+
 		if ( class_exists( 'Envira_Videos' ) ) {
 			$videos_id = get_post_meta( get_the_ID(), 'envira_video', true );
 		}
-		if ( ( false === $videos_id || '' === $videos_id ) && class_exists( 'LSX_TO_Videos' ) ) {
+
+		if ( empty( $videos_id ) && function_exists( 'lsx_to_videos' ) ) {
 			$videos_id = get_post_meta( get_the_ID(), 'videos', true );
 		}
-		if ( false !== $videos_id && '' !== $videos_id ) {
+
+		if ( ! empty( $videos_id ) ) {
 			$this->page_links['videos'] = esc_html__( 'Videos', 'tour-operator' );
 		}
 	}
@@ -299,6 +306,7 @@ class Destination {
 	 */
 	public function get_related_tours_link() {
 		$connected_tours = get_post_meta( get_the_ID(), 'tour_to_destination', false );
+
 		if ( post_type_exists( 'tour' ) && is_array( $connected_tours ) && ! empty( $connected_tours ) ) {
 			$this->page_links['tours'] = esc_html__( 'Tours', 'tour-operator' );
 		}
@@ -309,6 +317,7 @@ class Destination {
 	 */
 	public function get_related_accommodation_link() {
 		$connected_accommodation = get_post_meta( get_the_ID(), 'accommodation_to_destination', false );
+
 		if ( post_type_exists( 'accommodation' ) && is_array( $connected_accommodation ) && ! empty( $connected_accommodation ) ) {
 			$this->page_links['accommodation'] = esc_html__( 'Accommodation', 'tour-operator' );
 		}
@@ -319,8 +328,9 @@ class Destination {
 	 */
 	public function get_related_activities_link() {
 		$connected_activities = get_post_meta( get_the_ID(), 'activity_to_destination', false );
+
 		if ( post_type_exists( 'activity' ) && is_array( $connected_activities ) && ! empty( $connected_activities ) ) {
-			$this->page_links['activity'] = esc_html__( 'Activities', 'tour-operator' );
+			$this->page_links['activities'] = esc_html__( 'Activities', 'tour-operator' );
 		}
 	}
 
@@ -329,6 +339,7 @@ class Destination {
 	 */
 	public function filter_countries( $countries = array() ) {
 		global $wpdb;
+
 		if ( ! empty( $countries ) ) {
 			$new_items           = array();
 			$formatted_countries = implode( ',', $countries );

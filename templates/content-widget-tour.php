@@ -7,19 +7,33 @@
  * @subpackage	widget
  */
 
-global $disable_placeholder, $disable_text;
+global $disable_placeholder, $disable_text, $post;
+
+$has_single = ! lsx_to_is_single_disabled();
+$permalink = '';
+
+if ( $has_single ) {
+	$permalink = get_the_permalink();
+} elseif ( ! is_post_type_archive( 'tour' ) ) {
+	$has_single = true;
+	$permalink = get_post_type_archive_link( 'tour' ) . '#tour-' . $post->post_name;
+};
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
- 	<?php if ( empty( $disable_placeholder ) ) { ?>
+<article <?php post_class(); ?>>
+	 <?php if ( empty( $disable_placeholder ) ) { ?>
 		<div class="lsx-to-widget-thumb">
-			<a href="<?php the_permalink(); ?>">
+			<?php if ( $has_single ) { ?><a href="<?php echo esc_url( $permalink ); ?>"><?php } ?>
 				<?php lsx_thumbnail( 'lsx-thumbnail-single' ); ?>
-			</a>
+			<?php if ( $has_single ) { ?></a><?php } ?>
 		</div>
 	<?php } ?>
 
 	<div class="lsx-to-widget-content">
-		<h4 class="lsx-to-widget-title text-center"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+		<h4 class="lsx-to-widget-title text-center">
+			<?php if ( $has_single ) { ?><a href="<?php echo esc_url( $permalink ); ?>"><?php } ?>
+				<?php the_title(); ?>
+			<?php if ( $has_single ) { ?></a><?php } ?>
+		</h4>
 
 		<?php
 			if ( empty( $disable_text ) ) {
@@ -31,19 +45,19 @@ global $disable_placeholder, $disable_text;
 			<?php
 				$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
 
-				lsx_to_price( '<span class="'. $meta_class .'price">'. esc_html__( 'From price', 'tour-operator' ) .': ', '</span>' );
-				lsx_to_duration( '<span class="'. $meta_class .'duration">'. esc_html__( 'Duration', 'tour-operator' ) .': ', '</span>' );
-				the_terms( get_the_ID(), 'travel-style', '<span class="'. $meta_class .'style">'. esc_html__( 'Travel Style', 'tour-operator' ) .': ', ', ', '</span>' );
-				lsx_to_connected_countries( '<span class="'. $meta_class .'destinations">'. esc_html__( 'Destinations', 'tour-operator' ) .': ', '</span>' );
+				lsx_to_price( '<span class="' . $meta_class . 'price">' . esc_html__( 'From price', 'tour-operator' ) . ': ', '</span>' );
+				lsx_to_duration( '<span class="' . $meta_class . 'duration">' . esc_html__( 'Duration', 'tour-operator' ) . ': ', '</span>' );
+				the_terms( get_the_ID(), 'travel-style', '<span class="' . $meta_class . 'style">' . esc_html__( 'Travel Style', 'tour-operator' ) . ': ', ', ', '</span>' );
+				lsx_to_connected_countries( '<span class="' . $meta_class . 'destinations">' . esc_html__( 'Destinations', 'tour-operator' ) . ': ', '</span>' );
 
 				if ( function_exists( 'lsx_to_connected_activities' ) ) {
-					lsx_to_connected_activities( '<span class="'. $meta_class .'activities">'. esc_html__( 'Activities', 'tour-operator' ) .': ', '</span>' );
+					lsx_to_connected_activities( '<span class="' . $meta_class . 'activities">' . esc_html__( 'Activities', 'tour-operator' ) . ': ', '</span>' );
 				}
 			?>
 		</div>
 
-		<p>
-			<a href="<?php the_permalink(); ?>" class="moretag"><?php esc_html_e( 'View tour', 'tour-operator' ); ?></a>
-		</p>
+		<?php if ( $has_single ) { ?>
+			<p><a href="<?php echo esc_url( $permalink ); ?>" class="moretag"><?php esc_html_e( 'View tour', 'tour-operator' ); ?></a></p>
+		<?php } ?>
 	</div>
 </article>

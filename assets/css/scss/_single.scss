@@ -1,0 +1,138 @@
+.lsx-to-section {
+	margin: 0 -9999rem;
+	padding: 8.5rem 9999rem;
+
+	.site-main > & {
+		&:nth-of-type(odd) { background-color: #FFF; }
+
+		&:first-of-type {
+			background-color: #F6F6F6;
+			padding-top: 0;
+		}
+	}
+
+	.lsx-to-section { padding-bottom: 0; }
+}
+
+#keynotes { padding-top: 0; }
+
+#highlights {
+	@include media('<phone') { margin-top: 8.5rem; }
+}
+
+.included {
+	& + .not-included {
+		@include media('<phone') { margin-top: 8.5rem; }
+	}
+}
+
+.lsx-to-single-meta-data {
+	align-items: flex-start;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+
+	.lsx-to-meta-data {
+		width: calc(100% - 2.4rem);
+
+		@include media('>=phone') { width: calc(50% - 2.4rem); }
+	}
+}
+
+.facilities-wrapper {
+	margin-top: -2.4rem;
+
+	@include media('>=phone') {
+		align-items: flex-start;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: center;
+	}
+}
+
+.facilities-content {
+	margin-top: 4.25rem;
+
+	.facilities-list:not(.dropdown-menu) {
+		align-items: flex-start;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: flex-start;
+		list-style: none;
+		margin-bottom: 0;
+		padding-left: 0;
+	}
+}
+
+.facilities-title {
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	padding-bottom: 1.2rem;
+}
+
+.facility-item {
+	display: inline-block;
+	font-size: 13px;
+	padding-right: 15px;
+	position: relative;
+	width: 100%;
+
+	@include media('>=tablet') { width: 33.33333%; }
+}
+
+.travel-info-wrapper {
+	margin-top: -2.4rem;
+
+	@include media('>=phone') {
+		align-items: flex-start;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: flex-start;
+	}
+}
+
+.travel-info-content {
+	margin-top: 4.25rem;
+	overflow: hidden;
+	padding: 2.4rem 2.4rem 0;
+
+	.lsx-to-section:nth-of-type(odd) & { background-color: #F6F6F6; }
+	.lsx-to-section:nth-of-type(even) & { background-color: #FFF; }
+}
+
+.rooms-wrapper {
+	margin-top: -2.4rem;
+
+	@include media('>=phone') {
+		align-items: flex-start;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: flex-start;
+	}
+}
+
+.rooms-content {
+	align-items: stretch;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-start;
+	margin-top: 4.25rem;
+	overflow: hidden;
+
+	.lsx-to-section:nth-of-type(odd) & { background-color: #F6F6F6; }
+	.lsx-to-section:nth-of-type(even) & { background-color: #FFF; }
+}
+
+.rooms-thumbnail {
+	background-color: transparent;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	flex-shrink: 0;
+	width: 33.33333%;
+}
+
+.rooms-info {
+	flex-grow: 1;
+	padding: 2.4rem 2.4rem 0;
+}

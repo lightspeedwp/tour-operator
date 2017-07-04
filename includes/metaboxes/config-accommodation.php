@@ -9,19 +9,24 @@
  * @copyright 2017 LightSpeedDevelopment
  */
 
-//Register the actual metabox
 $metabox = array(
 	'title'  => esc_html__( 'Tour Operator Plugin', 'tour-operator' ),
 	'pages'  => 'accommodation',
 	'fields' => array(),
 );
 
-// Info Panel
 $metabox['fields'][] = array(
 	'id'   => 'featured',
 	'name' => esc_html__( 'Featured', 'tour-operator' ),
 	'type' => 'checkbox',
 );
+
+$metabox['fields'][] = array(
+	'id'   => 'disable_single',
+	'name' => esc_html__( 'Disable Single', 'tour-operator' ),
+	'type' => 'checkbox',
+);
+
 if ( ! class_exists( 'LSX_Banners' ) ) {
 	$metabox['fields'][] = array(
 		'id'   => 'tagline',
@@ -51,13 +56,18 @@ $metabox['fields'][] = array(
 	'id'      => 'included',
 	'name'    => esc_html__( 'Included', 'tour-operator' ),
 	'type'    => 'wysiwyg',
-	'options' => array( 'editor_height' => '100' ),
+	'options' => array(
+		'editor_height' => '100',
+	),
 );
+
 $metabox['fields'][] = array(
 	'id'      => 'not_included',
 	'name'    => esc_html__( 'Not Included', 'tour-operator' ),
 	'type'    => 'wysiwyg',
-	'options' => array( 'editor_height' => '100' ),
+	'options' => array(
+		'editor_height' => '100',
+	),
 );
 
 $metabox['fields'][] = array(
@@ -65,6 +75,7 @@ $metabox['fields'][] = array(
 	'name'       => esc_html__( 'Accommodation Expert', 'tour-operator' ),
 	'type'       => 'post_select',
 	'use_ajax'   => false,
+	'allow_none' => true,
 	'query'      => array(
 		'post_type'      => 'team',
 		'nopagin'        => true,
@@ -72,8 +83,6 @@ $metabox['fields'][] = array(
 		'orderby'        => 'title',
 		'order'          => 'ASC',
 	),
-	'allow_none' => true,
-	'cols'       => 12,
 );
 
 if ( class_exists( 'LSX_TO_Maps' ) ) {
@@ -82,21 +91,22 @@ if ( class_exists( 'LSX_TO_Maps' ) ) {
 		'name' => esc_html__( 'Location', 'tour-operator' ),
 		'type' => 'title',
 	);
+
 	$metabox['fields'][] = array(
 		'id'             => 'location',
 		'name'           => esc_html__( 'Address', 'tour-operator' ),
 		'type'           => 'gmap',
-		'google_api_key' => $this->options['api']['googlemaps_key'],
+		'google_api_key' => tour_operator()->options['api']['googlemaps_key'],
 	);
 }
 
-//Fast Facts
 $fast_facts_fields = array(
 	array(
 		'id'   => 'fast_facts_title',
 		'name' => esc_html__( 'Fast Facts', 'tour-operator' ),
 		'type' => 'title',
 	),
+
 	array(
 		'id'      => 'rating_type',
 		'name'    => esc_html__( 'Rating Type', 'tour-operator' ),
@@ -107,6 +117,7 @@ $fast_facts_fields = array(
 			'Hotelstars Union' => esc_html__( 'Hotelstars Union', 'tour-operator' ),
 		),
 	),
+
 	array(
 		'id'         => 'rating',
 		'name'       => esc_html__( 'Rating', 'tour-operator' ),
@@ -114,26 +125,31 @@ $fast_facts_fields = array(
 		'options'    => array( '1', '2', '3', '4', '5' ),
 		'allow_none' => true,
 	),
+
 	array(
 		'id'   => 'number_of_rooms',
 		'name' => esc_html__( 'Number of Rooms', 'tour-operator' ),
 		'type' => 'text',
 	),
+
 	array(
 		'id'   => 'checkin_time',
 		'name' => esc_html__( 'Check-in Time', 'tour-operator' ),
 		'type' => 'time',
 	),
+
 	array(
 		'id'   => 'checkout_time',
 		'name' => esc_html__( 'Check-out Time', 'tour-operator' ),
 		'type' => 'time',
 	),
+
 	array(
 		'id'   => 'minimum_child_age',
 		'name' => esc_html__( 'Minimum Child Age', 'tour-operator' ),
 		'type' => 'text',
 	),
+
 	array(
 		'id'       => 'spoken_languages',
 		'name'     => esc_html__( 'Spoken Languages', 'tour-operator' ),
@@ -158,6 +174,7 @@ $fast_facts_fields = array(
 			'zulu'       => esc_html__( 'Zulu', 'tour-operator' ),
 		),
 	),
+
 	array(
 		'id'       => 'suggested_visitor_types',
 		'name'     => esc_html__( 'Friendly', 'tour-operator' ),
@@ -175,6 +192,7 @@ $fast_facts_fields = array(
 			'weddings'   => esc_html__( 'Weddings', 'tour-operator' ),
 		),
 	),
+
 	array(
 		'id'       => 'special_interests',
 		'name'     => esc_html__( 'Special Interests', 'tour-operator' ),
@@ -205,13 +223,15 @@ $fast_facts_fields = array(
 		),
 	),
 );
-$metabox['fields']            = array_merge( $metabox['fields'], $fast_facts_fields );
+
+$metabox['fields'] = array_merge( $metabox['fields'], $fast_facts_fields );
 
 $metabox['fields'][] = array(
 	'id'   => 'gallery_title',
 	'name' => esc_html__( 'Gallery', 'tour-operator' ),
 	'type' => 'title',
 );
+
 $metabox['fields'][] = array(
 	'id'         => 'gallery',
 	'name'       => esc_html__( 'Gallery', 'tour-operator' ),
@@ -219,15 +239,17 @@ $metabox['fields'][] = array(
 	'repeatable' => true,
 	'show_size'  => false,
 );
+
 if ( class_exists( 'Envira_Gallery' ) ) {
 	$metabox['fields'][] = array(
 		'id'   => 'envira_title',
 		'name' => esc_html__( 'Envira Gallery', 'tour-operator' ),
 		'type' => 'title',
 	);
+
 	$metabox['fields'][] = array(
 		'id'         => 'envira_gallery',
-		'name'       => esc_html__( 'Envira Gallery', 'to-galleries' ),
+		'name'       => esc_html__( 'Envira Gallery', 'tour-operator' ),
 		'type'       => 'post_select',
 		'use_ajax'   => false,
 		'query'      => array(
@@ -239,12 +261,14 @@ if ( class_exists( 'Envira_Gallery' ) ) {
 		),
 		'allow_none' => true,
 	);
+
 	if ( class_exists( 'Envira_Videos' ) ) {
 		$metabox['fields'][] = array(
 			'id'         => 'envira_video',
-			'name'       => esc_html__( 'Envira Video Gallery', 'to-galleries' ),
+			'name'       => esc_html__( 'Envira Video Gallery', 'tour-operator' ),
 			'type'       => 'post_select',
 			'use_ajax'   => false,
+			'allow_none' => true,
 			'query'      => array(
 				'post_type'      => 'envira',
 				'nopagin'        => true,
@@ -252,29 +276,29 @@ if ( class_exists( 'Envira_Gallery' ) ) {
 				'orderby'        => 'title',
 				'order'          => 'ASC',
 			),
-			'allow_none' => true,
 		);
 	}
 }
 
-//Rooms
 $metabox['fields'][] = array(
 	'id'   => 'units_title',
 	'name' => esc_html__( 'Units', 'tour-operator' ),
 	'type' => 'title',
 );
+
 $metabox['fields'][] = array(
 	'id'         => 'units',
 	'name'       => '',
 	'type'       => 'group',
 	'repeatable' => true,
 	'sortable'   => true,
+	'desc'       => '',
 	'fields'     => array(
 		array(
 			'id'      => 'type',
 			'name'    => esc_html__( 'Type', 'tour-operator' ),
 			'type'    => 'select',
-			'options' => $this->unit_types,
+			'options' => \lsx\legacy\Accommodation::get_instance()->unit_types,
 		),
 		array(
 			'id'   => 'title',
@@ -285,7 +309,9 @@ $metabox['fields'][] = array(
 			'id'      => 'description',
 			'name'    => esc_html__( 'Description', 'tour-operator' ),
 			'type'    => 'textarea',
-			'options' => array( 'editor_height' => '100' ),
+			'options' => array(
+				'editor_height' => '100',
+			),
 		),
 		array(
 			'id'   => 'price',
@@ -300,21 +326,21 @@ $metabox['fields'][] = array(
 			'show_size'  => false,
 		),
 	),
-	'desc'       => '',
 );
 
-//Connections
 $metabox['fields'][] = array(
 	'id'   => 'destinations_title',
 	'name' => esc_html__( 'Destinations', 'tour-operator' ),
 	'type' => 'title',
-	'cols' => 12,
 );
+
 $metabox['fields'][] = array(
 	'id'         => 'destination_to_accommodation',
 	'name'       => esc_html__( 'Destinations related with this accommodation', 'tour-operator' ),
 	'type'       => 'post_select',
 	'use_ajax'   => false,
+	'repeatable' => true,
+	'allow_none' => true,
 	'query'      => array(
 		'post_type'      => 'destination',
 		'nopagin'        => true,
@@ -322,21 +348,21 @@ $metabox['fields'][] = array(
 		'orderby'        => 'title',
 		'order'          => 'ASC',
 	),
-	'repeatable' => true,
-	'allow_none' => true,
-	'cols'       => 12,
 );
+
 $metabox['fields'][] = array(
 	'id'   => 'tours_title',
 	'name' => esc_html__( 'Tours', 'tour-operator' ),
 	'type' => 'title',
-	'cols' => 12,
 );
+
 $metabox['fields'][] = array(
 	'id'         => 'tour_to_accommodation',
 	'name'       => esc_html__( 'Tours related with this accommodation', 'tour-operator' ),
 	'type'       => 'post_select',
 	'use_ajax'   => false,
+	'repeatable' => true,
+	'allow_none' => true,
 	'query'      => array(
 		'post_type'      => 'tour',
 		'nopagin'        => true,
@@ -344,12 +370,8 @@ $metabox['fields'][] = array(
 		'orderby'        => 'title',
 		'order'          => 'ASC',
 	),
-	'repeatable' => true,
-	'allow_none' => true,
-	'cols'       => 12,
 );
 
-//Allow the addons to add additional fields.
 $metabox['fields'] = apply_filters( 'lsx_to_accommodation_custom_fields', $metabox['fields'] );
 
 return $metabox;

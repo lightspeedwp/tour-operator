@@ -40,30 +40,14 @@ class Banner_Integration {
 	 */
 	public function init() {
 		if ( class_exists( 'LSX_Banners' ) ) {
-			add_filter( 'lsx_banner_allowed_post_types', array(
-				$this,
-				'enable_banners',
-			) );
-			add_filter( 'lsx_banner_allowed_taxonomies', array(
-				$this,
-				'enable_taxonomy_banners',
-			) );
-			add_filter( 'lsx_banner_post_type_archive_url', array(
-				$this,
-				'banner_archive_url',
-			) );
-			add_action( 'lsx_banner_content', array(
-				$this,
-				'posts_page_banner_tagline',
-			) );
-			add_filter( 'lsx_banner_title', array(
-				$this,
-				'banner_title',
-			), 100 );
-
+			add_filter( 'lsx_banner_allowed_post_types', array( $this, 'enable_banners' ) );
+			add_filter( 'lsx_banner_allowed_taxonomies', array( $this, 'enable_taxonomy_banners' ) );
+			add_filter( 'lsx_banner_post_type_archive_url', array( $this, 'banner_archive_url' ) );
+			add_action( 'lsx_banner_content', array( $this, 'posts_page_banner_tagline' ) );
+			add_filter( 'lsx_banner_title', array( $this, 'banner_title' ), 100 );
 
 			if ( false !== $this->options && ! isset( $this->options['display']['enable_galleries_in_banner'] ) ) {
-				add_filter( 'lsx_banners_envira_enable', function ( $bool ) {
+				add_filter( 'lsx_banners_envira_enable', function( $bool ) {
 					return false;
 				} );
 			}
@@ -98,6 +82,7 @@ class Banner_Integration {
 	 */
 	public function banner_archive_url( $image = false ) {
 		$tour_operator = tour_operator();
+
 		if ( is_post_type_archive( $tour_operator->active_post_types ) && isset( $tour_operator->options[ get_post_type() ] ) ) {
 			if ( isset( $tour_operator->options[ get_post_type() ]['banner'] ) && '' !== $tour_operator->options[ get_post_type() ]['banner'] ) {
 				$image = $tour_operator->options[ get_post_type() ]['banner'];
@@ -112,9 +97,11 @@ class Banner_Integration {
 	 */
 	public function banner_placeholder_url( $image = false ) {
 		$tour_operator = tour_operator();
+
 		if ( isset( $tour_operator->options['general'] ) && isset( $tour_operator->options['general']['banner_placeholder'] ) && '' !== $tour_operator->options['general']['banner_placeholder'] ) {
 			$image = $tour_operator->options['general']['banner_placeholder'];
 		}
+
 		if ( isset( $tour_operator->options[ get_post_type() ] ) && isset( $tour_operator->options[ get_post_type() ]['banner_placeholder'] ) && '' !== $tour_operator->options[ get_post_type() ]['banner_placeholder'] ) {
 			$image = $tour_operator->options[ get_post_type() ]['banner_placeholder'];
 		}
@@ -128,10 +115,11 @@ class Banner_Integration {
 	 */
 	public function posts_page_banner_tagline() {
 		$tour_operator = tour_operator();
+
 		if ( is_home() && isset( $tour_operator->options[ get_post_type() ] ) && isset( $tour_operator->options[ get_post_type() ]['tagline'] ) ) {
 			$tagline = $tour_operator->options[ get_post_type() ]['tagline'];
 			?>
-            <p class="tagline"><?php echo wp_kses_post( $tagline ); ?></p>
+			<p class="tagline"><?php echo wp_kses_post( $tagline ); ?></p>
 			<?php
 		}
 	}
@@ -141,10 +129,12 @@ class Banner_Integration {
 	 */
 	public function banner_title( $title ) {
 		$tour_operator = tour_operator();
+
 		if ( is_post_type_archive() && isset( $tour_operator->options[ get_post_type() ] ) && isset( $tour_operator->options[ get_post_type() ]['title'] ) && '' !== $tour_operator->options[ get_post_type() ]['title'] ) {
 			$title = '<h1 class="page-title">' . $tour_operator->options[ get_post_type() ]['title'] . '</h1>';
 		}
 
 		return $title;
 	}
+
 }
