@@ -1519,9 +1519,9 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-meta-data { color: #919191; }
 
-.lsx-to-archive-item > .lsx-to-archive-container > .moretag { background-color: #1098AD; color: #FFF; }
+.lsx-to-archive-item > .lsx-to-archive-container > a.moretag { background-color: #1098AD; color: #FFF; }
 
-.lsx-to-archive-item > .lsx-to-archive-container > .moretag:hover { background-color: #F7AE00; color: #FFF; }
+.lsx-to-archive-item > .lsx-to-archive-container > a.moretag:hover { background-color: #F7AE00; color: #FFF; }
 
 .lsx-to-archive-item > .lsx-to-archive-container .lsx-to-archive-content-title > a, .lsx-to-archive-item > .lsx-to-archive-container .lsx-to-archive-content-title > a:active, .lsx-to-archive-item > .lsx-to-archive-container .lsx-to-archive-content-title > a:visited { color: #4A4A4A; }
 

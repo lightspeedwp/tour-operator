@@ -86,7 +86,7 @@
 
 	.lsx-to-archive-item {
 		& > .lsx-to-archive-container {
-			& > .moretag {
+			& > a.moretag {
 				background-color: $link;
 				color: #FFF;
 
