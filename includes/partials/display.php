@@ -38,7 +38,7 @@
 			<li><a href="#ui-search" class="<?php echo esc_attr( $class ); ?>"><?php esc_html_e( 'Search', 'tour-operator' ); ?></a></li>
 		<?php $class = ''; } ?>
 
-		<li><a href="#ui-placeholders" class="<?php echo esc_attr( $class ); ?>"><?php esc_html_e( 'Placeholders', 'tour-operator' ); ?></a></li>
+		<li><a href="#ui-basic" class="<?php echo esc_attr( $class ); ?>"><?php esc_html_e( 'Basic', 'tour-operator' ); ?></a></li>
 		<li><a href="#ui-advanced"><?php esc_html_e( 'Advanced', 'tour-operator' ); ?></a></li>
 	</ul>
 
@@ -48,8 +48,7 @@
 		<div id="ui-placeholders" class="ui-tab <?php echo esc_attr( $class ); ?>">
 			<table class="form-table">
 				<tbody>
-					<?php //do_action( 'lsx_to_framework_display_tab_content', 'placeholders' ); ?>
-					<?php do_action( 'lsx_to_framework_display_tab_content', 'basic' ); ?>
+					<?php do_action( 'lsx_to_framework_display_tab_content', 'placeholders' ); ?>
 				</tbody>
 			</table>
 		</div>
@@ -135,10 +134,10 @@
 		</div>
 	<?php $class = ''; } ?>
 
-	<div id="ui-placeholders" class="ui-tab <?php echo esc_attr( $class ); ?>">
+	<div id="ui-basic" class="ui-tab <?php echo esc_attr( $class ); ?>">
 		<table class="form-table">
 			<tbody>
-				<?php do_action( 'lsx_to_framework_display_tab_content', 'placeholders' ); ?>
+				<?php do_action( 'lsx_to_framework_display_tab_content', 'basic' ); ?>
 			</tbody>
 		</table>
 	</div>
