@@ -506,36 +506,36 @@ function lsx_to_enquire_modal( $before = '', $after = '', $echo = true ) {
 		<p class="aligncenter" style="text-align:center;"><a href="<?php echo esc_url( $link ); ?>" class="btn cta-btn" <?php if ( false === $disable_modal ) { ?>data-toggle="modal" data-target="#lsx-enquire-modal"<?php } ?> ><?php esc_html_e( 'Enquire','tour-operator' ); ?></a></p>
 
 		<?php
-		if ( false === $disable_modal ) {
-			add_action( 'wp_footer', function( $arg ) use ( $form_id ) {
-				?>
-
-				<div class="modal fade" id="lsx-enquire-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-				  <div class="modal-dialog" role="document">
-					<div class="modal-content">
-					  <div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-						<h4 class="modal-title" id="myModalLabel"><?php esc_html_e( 'Enquire','tour-operator' ); ?></h4>
-					  </div>
-					  <div class="modal-body">
-						<?php
-						if ( class_exists( 'Ninja_Forms' ) ) {
-							echo do_shortcode( '[ninja_form id="' . $form_id . '"]' );
-							} elseif ( class_exists( 'GFForms' ) ) {
-							echo do_shortcode( '[gravityform id="' . $form_id . '" title="false" description="false" ajax="true"]' );
-							} elseif ( class_exists( 'Caldera_Forms_Forms' ) ) {
-							echo do_shortcode( '[caldera_form id="' . $form_id . '"]' );
-							} else {
-							echo wp_kses_post( apply_filters( 'the_content',$form_id ) );
-							}
-						?>
-					  </div>
+			if ( false === $disable_modal ) {
+				add_action( 'wp_footer', function( $arg ) use ( $form_id ) {
+					?>
+					<div class="lsx-modal modal fade" id="lsx-enquire-modal" tabindex="-1" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title"><?php esc_html_e( 'Enquire', 'tour-operator' ); ?></h4>
+								</div>
+								<div class="modal-body">
+									<?php
+										if ( class_exists( 'Ninja_Forms' ) ) {
+											echo do_shortcode( '[ninja_form id="' . $form_id . '"]' );
+										} elseif ( class_exists( 'GFForms' ) ) {
+											echo do_shortcode( '[gravityform id="' . $form_id . '" title="false" description="false" ajax="true"]' );
+										} elseif ( class_exists( 'Caldera_Forms_Forms' ) ) {
+											echo do_shortcode( '[caldera_form id="' . $form_id . '"]' );
+										} else {
+											echo wp_kses_post( apply_filters( 'the_content',$form_id ) );
+										}
+									?>
+								</div>
+							</div>
+						</div>
 					</div>
-				  </div>
-				</div>
-
-				<?php } ); } ?>
-
+					<?php
+				} );
+			}
+		?>
 	</div>
 <?php } }
 /**

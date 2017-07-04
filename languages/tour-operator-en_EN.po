@@ -31,7 +31,7 @@ msgstr ""
 msgid "Special Interests"
 msgstr ""
 
-#: includes/functions.php:353, includes/classes/legacy/class-frontend.php:372, includes/classes/legacy/class-frontend.php:385
+#: includes/functions.php:353, includes/classes/legacy/class-frontend.php:371, includes/classes/legacy/class-frontend.php:384
 msgid "Read More"
 msgstr ""
 
@@ -1318,7 +1318,7 @@ msgstr ""
 msgid "Travel Information"
 msgstr ""
 
-#: includes/template-tags/general.php:506, includes/template-tags/general.php:518
+#: includes/template-tags/general.php:506, includes/template-tags/general.php:517
 msgid "Enquire"
 msgstr ""
 
@@ -1416,10 +1416,6 @@ msgstr ""
 
 #: includes/classes/legacy/class-field-pattern.php:73
 msgid "Thumbnail"
-msgstr ""
-
-#: includes/classes/legacy/class-frontend.php:171
-msgid "Close"
 msgstr ""
 
 #: includes/classes/legacy/class-placeholders.php:419
