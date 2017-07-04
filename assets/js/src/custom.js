@@ -52,9 +52,9 @@ var lsx_to = Object.create( null );
 	 * @subpackage scripts
 	 */
 	lsx_to.set_read_more = function() {
-		$( '.entry-content .more-link, .archive-description .more-link' ).each( function() {
+		$( '.lsx-to-team-content .more-link, .entry-content .more-link, .archive-description .more-link' ).each( function() {
 			if ( 'Read More' === $( this ).html() ) {
-				$( this ).closest( '.entry-content, .archive-description' ).each( function() {
+				$( this ).closest( '.lsx-to-team-content, .entry-content, .archive-description' ).each( function() {
 					var visible = true;
 
 					$( this ).children().each( function() {
@@ -73,11 +73,11 @@ var lsx_to = Object.create( null );
 					if ($( this ).hasClass( 'more-link-remove-p' ) ) {
 						var html = '';
 
-						$( this ).closest( '.entry-content, .archive-description' ).children().each( function() {
+						$( this ).closest( '.lsx-to-team-content, .entry-content, .archive-description' ).children().each( function() {
 							$( this ).show();
 						} );
 					} else {
-						$( this ).closest( '.entry-content, .archive-description' ).children().show();
+						$( this ).closest( '.lsx-to-team-content, .entry-content, .archive-description' ).children().show();
 					}
 				} );
 			}
