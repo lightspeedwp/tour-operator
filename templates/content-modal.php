@@ -6,14 +6,14 @@
  * @category	modals
  */
 ?>
-<article <?php post_class(); ?> style="margin-bottom: 0px;">
+<article>
 	<div class="thumbnail">
 		<a href="<?php the_permalink(); ?>">
 			<?php lsx_thumbnail( 'lsx-thumbnail-single' ); ?>
 		</a>
 	</div>
 
-	<h4 style="margin-top: 0px;" class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+	<h4 class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 
 	<div class="entry-content">
 		<?php lsx_to_modal_meta(); ?>

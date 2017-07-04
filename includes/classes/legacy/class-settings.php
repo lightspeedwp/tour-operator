@@ -200,9 +200,9 @@ class Settings extends Tour_Operator {
 						<small><?php esc_html_e( 'Move the gallery on a page into the banner.', 'tour-operator' ); ?></small>
 					</td>
 				</tr>
-
-				<?php $this->modal_setting(); ?>
 			<?php }
+
+			$this->modal_setting();
 		}
 		if ( 'advanced' === $subtab ) {
 			?>

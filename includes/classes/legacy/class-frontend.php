@@ -72,12 +72,9 @@ class Frontend extends Tour_Operator {
 
 		$this->redirects = new Template_Redirects( LSX_TO_PATH, array_keys( $this->base_post_types ), array_keys( $this->base_taxonomies ) );
 
-		add_filter( 'get_the_archive_title', array(
-			$this,
-			'get_the_archive_title',
-		), 100 );
+		add_filter( 'get_the_archive_title', array( $this, 'get_the_archive_title' ), 100 );
 
-		//Redirects if disabled
+		// Redirects if disabled
 		add_action( 'template_redirect', array( $this, 'redirect_singles' ) );
 		add_action( 'template_redirect', array( $this, 'redirect_archive' ) );
 
@@ -85,10 +82,7 @@ class Frontend extends Tour_Operator {
 		add_filter( 'excerpt_more_p', array( $this, 'remove_read_more_link' ) );
 		add_filter( 'the_content', array( $this, 'modify_read_more_link' ) );
 		remove_filter( 'term_description', 'wpautop' );
-		add_filter( 'term_description', array(
-			$this,
-			'modify_term_description',
-		) );
+		add_filter( 'term_description', array( $this, 'modify_term_description' ) );
 
 		if ( is_admin() ) {
 			add_filter( 'lsx_customizer_colour_selectors_body', array( $this, 'customizer_to_body_colours_handler' ), 15, 2 );
@@ -128,16 +122,10 @@ class Frontend extends Tour_Operator {
 			}
 
 			add_action( 'lsx_content_top', 'lsx_to_archive_description', 100 );
-			add_filter( 'lsx_to_archive_description', array(
-				$this,
-				'get_post_type_archive_description',
-			), 1, 3 );
+			add_filter( 'lsx_to_archive_description', array( $this, 'get_post_type_archive_description' ), 1, 3 );
 
 			// LSX default pagination
-			add_action( 'lsx_content_bottom', array(
-				'lsx\legacy\Frontend',
-				'lsx_default_pagination',
-			) );
+			add_action( 'lsx_content_bottom', array( 'lsx\legacy\Frontend', 'lsx_default_pagination' ) );
 		}
 
 		if ( is_singular( $this->active_post_types ) ) {
@@ -154,6 +142,7 @@ class Frontend extends Tour_Operator {
 	public function add_modal_attributes( $html, $post_id, $link ) {
 		if ( true === $this->enable_modals && true === $link ) {
 			$html = '<a data-toggle="modal" data-target="#lsx-modal-' . $post_id . '" href="#">' . get_the_title( $post_id ) . '</a>';
+
 			if ( ! in_array( $post_id, $this->modal_ids ) ) {
 				$this->modal_ids[] = $post_id;
 			}
@@ -167,6 +156,7 @@ class Frontend extends Tour_Operator {
 	 */
 	public function output_modals() {
 		global $lsx_to_archive, $post;
+
 		if ( true === $this->enable_modals && ! empty( $this->modal_ids ) ) {
 			$temp = $lsx_to_archive;
 			$lsx_to_archive = 1;
@@ -179,7 +169,7 @@ class Frontend extends Tour_Operator {
 						<div class="modal-content">
 							<div class="modal-body">
 								<button type="button" class="close" data-dismiss="modal" aria-label="<?php esc_html_e( 'Close', 'tour-operator' ); ?>">
-									<span aria-hidden="true">×</span></button>
+								<span aria-hidden="true">×</span></button>
 								<?php lsx_to_content( 'content', 'modal' ); ?>
 							</div>
 						</div>
@@ -187,6 +177,7 @@ class Frontend extends Tour_Operator {
 				</div>
 				<?php
 			}
+
 			$lsx_to_archive = $temp;
 			wp_reset_postdata();
 		}
@@ -290,6 +281,7 @@ class Frontend extends Tour_Operator {
 		if ( is_post_type_archive( array_keys( $this->post_types ) ) ) {
 			$title = post_type_archive_title( '', false );
 		}
+
 		if ( is_tax( array_keys( $this->taxonomies ) ) ) {
 			$title = single_term_title( '', false );
 		}
