@@ -17,6 +17,7 @@ namespace lsx;
  *
  * @package lsx
  */
+
 class Post_Types extends Object {
 
 	/**

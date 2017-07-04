@@ -140,6 +140,8 @@ class Tour_Operator {
 		// Start sort engine.
 		new SCPO_Engine();
 
+		new Post_Expirator();
+
 		// Set the options.
 		$this->options = get_option( '_lsx-to_settings', false );
 		$this->set_vars();

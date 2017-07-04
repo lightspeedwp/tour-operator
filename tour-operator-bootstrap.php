@@ -32,7 +32,6 @@ if ( defined( 'WPINC' ) ) {
 	require_once( LSX_TO_PATH . 'includes/template-tags/tour.php' );
 
 	// General Includes.
-	require_once( LSX_TO_PATH . 'includes/post-expirator.php' );
 	require_once( LSX_TO_PATH . 'includes/customizer.php' );
 	require_once( LSX_TO_PATH . 'includes/layout.php' );
 	require_once( LSX_TO_PATH . 'includes/actions.php' );

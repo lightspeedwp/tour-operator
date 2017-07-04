@@ -20,10 +20,12 @@
 function tour_operator_autoload_class( $class ) {
 
 	$parts = explode( '\\', $class );
+
 	if ( 'lsx' === $parts[0] ) {
 		$path = LSX_TO_PATH . 'includes/classes/';
 		array_shift( $parts );
 		$name = array_shift( $parts );
+
 		if ( file_exists( $path . $name ) ) {
 			$file = str_replace( '_', '-', strtolower( array_pop( $parts ) ) );
 			if ( ! empty( $parts ) ) {
@@ -37,6 +39,7 @@ function tour_operator_autoload_class( $class ) {
 			}
 		}
 		$name = str_replace( '_', '-', strtolower( $name ) );
+
 		if ( file_exists( LSX_TO_PATH . 'includes/classes/class-' . $name . '.php' ) ) {
 			include_once LSX_TO_PATH . 'includes/classes/class-' . $name . '.php';
 		}
