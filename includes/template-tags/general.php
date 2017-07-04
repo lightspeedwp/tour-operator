@@ -512,8 +512,8 @@ function lsx_to_enquire_modal( $before = '', $after = '', $echo = true ) {
 					<div class="lsx-modal modal fade" id="lsx-enquire-modal" tabindex="-1" role="dialog">
 						<div class="modal-dialog">
 							<div class="modal-content">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
 								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
 									<h4 class="modal-title"><?php esc_html_e( 'Enquire', 'tour-operator' ); ?></h4>
 								</div>
 								<div class="modal-body">
