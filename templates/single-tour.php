@@ -22,7 +22,7 @@ get_header(); ?>
 
 				<section id="summary" class="lsx-to-section">
 					<div class="row">
-						<?php lsx_to_content( 'content', get_post_type() ); ?>
+						<?php lsx_to_content( 'content', 'tour' ); ?>
 					</div>
 				</section>
 
@@ -40,5 +40,4 @@ get_header(); ?>
 
 <?php get_sidebar(); ?>
 <?php get_sidebar( 'alt' ); ?>
-
 <?php get_footer();

@@ -23,6 +23,7 @@ add_action( 'lsx_entry_bottom', 'lsx_to_tour_archive_entry_bottom' );
 /**
  * Single
  */
+add_action( 'lsx_content_wrap_before', 'lsx_to_single_content_top' );
 add_action( 'lsx_entry_bottom', 'lsx_to_single_entry_bottom' );
 
 /**
@@ -90,6 +91,19 @@ function lsx_to_archive_entry_top() {
 
 				<?php lsx_to_tagline( '<p class="lsx-to-archive-content-tagline">', '</p>' ); ?>
 	<?php }
+}
+
+/**
+ * Adds the template tags to the top of the lsx_content_top action
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tag
+ * @category 	general
+ */
+function lsx_to_single_content_top() {
+	if ( is_singular( array_keys( lsx_to_get_post_types() ) ) ) {
+		lsx_to_page_navigation();
+	}
 }
 
 /**
@@ -162,8 +176,6 @@ function lsx_to_accommodation_single_content_bottom() {
 		</section>
 
 	<?php
-		lsx_to_page_navigation();
-
 		lsx_to_accommodation_units();
 
 		lsx_to_accommodation_facilities( '<section id="facilities" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Facilities', 'tour-operator' ) . '</h2><div class="row facilities-wrapper">', '</div></section>' );
@@ -261,8 +273,6 @@ function lsx_to_destination_single_content_bottom() {
 
 	<?php
 		lsx_to_best_time_to_visit( '<section id="when-to-go" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'When to Go', 'tour-operator' ) . '</h2><div class="when-to-go-wrapper clearfix">', '</div></section>' );
-
-		lsx_to_page_navigation();
 
 		lsx_to_destination_travel_info();
 
@@ -374,8 +384,6 @@ function lsx_to_tour_single_content_bottom() {
 				</div>
 			</div>
 		</section>
-
-		<?php lsx_to_page_navigation(); ?>
 
 		<?php if ( lsx_to_has_itinerary() ) { ?>
 			<section id="itinerary" class="lsx-to-section">

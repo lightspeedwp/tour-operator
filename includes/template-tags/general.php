@@ -183,13 +183,15 @@ function lsx_to_archive_description() {
 function lsx_to_page_navigation( $echo = true ) {
 	$page_links = array();
 
+	if ( is_single() ) {
+		$page_links['summary'] = esc_html__( 'Summary', 'tour-operator' );
+	}
+
 	$page_links = apply_filters( 'lsx_to_page_navigation', $page_links );
 
 	if ( ! empty( $page_links ) ) {
-		$return = '<div class="lsx-to-navigation ' . get_post_type() . '-navigation visible-lg-block">
-						<div class="row">
-							<div class="col-xs-12">
-								<ul class="scroll-easing nav lsx-to-content-spy">';
+		$return  = '<div class="lsx-to-navigation col-xs-12 ' . get_post_type() . '-navigation visible-lg-block">';
+		$return .= '<ul class="scroll-easing nav lsx-to-content-spy">';
 
 		if ( ! empty( $page_links ) ) {
 			foreach ( $page_links as $link_slug => $link_value ) {
@@ -197,10 +199,8 @@ function lsx_to_page_navigation( $echo = true ) {
 			}
 		}
 
-		$return .= '		</ul>
-						</div>
-					</div>
-				</div>';
+		$return .= '</ul>';
+		$return .= '</div>';
 
 		if ( $echo ) {
 			echo wp_kses_post( $return );

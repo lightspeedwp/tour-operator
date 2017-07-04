@@ -203,12 +203,13 @@ var lsx_to = Object.create( null );
 	 * @package    tour-operator
 	 * @subpackage scripts
 	 */
-	// @TODO - Use the new library imported on LSX
 	lsx_to.fix_anchor_menu = function() {
 		$( '.lsx-to-navigation' ).scrollToFixed({
 			minWidth: 1200,
+
 			marginTop: function () {
 				var mt = 0;
+
 				mt += $( '.top-menu-fixed #masthead' ).length > 0 ? $( '.top-menu-fixed #masthead' ).outerHeight( true ) :  0;
 				mt += $( '#wpadminbar' ).length > 0 ? $( '#wpadminbar' ).outerHeight() : 0;
 
@@ -232,8 +233,14 @@ var lsx_to = Object.create( null );
 				top = parseInt( $to.offset().top ),
 				extra_header = $( '.top-menu-fixed #masthead' ).length > 0 ? $( '.top-menu-fixed #masthead' ).outerHeight( true ) : 0,
 				extra_navigation = $( '.lsx-to-navigation' ).length > 0 ? $( '.lsx-to-navigation' ).outerHeight( true ) : 0,
-				extra_attr = parseInt( $from.data( 'extra-top' ) ? $from.data( 'extra-top' ) : '0' ),
-				extra = - ( extra_header + extra_navigation + extra_attr );
+				extra_attr = parseInt( $to.data( 'extra-top' ) ? $to.data( 'extra-top' ) : '0' ),
+				extra;
+
+			if ( '#summary' === $from.attr( 'href' ) ) {
+				extra_attr = 85;
+			}
+
+			extra = - ( extra_header + extra_navigation + extra_attr );
 
 			$( 'html, body' ).animate({
 				scrollTop: ( top + extra )
@@ -286,7 +293,6 @@ var lsx_to = Object.create( null );
 		lsx_to.build_slider_lightbox();
 
 		if (windowWidth >= 1200) {
-			// @TODO - Use the new library imported on LSX
 			lsx_to.fix_anchor_menu();
 			lsx_to.set_anchor_menu_easing_scroll();
 			lsx_to.set_anchor_menu_scroll_spy();
@@ -300,10 +306,6 @@ var lsx_to = Object.create( null );
 	 * @package    lsx
 	 * @subpackage scripts
 	 */
-	$window.load( function() {
-
-
-
-	} );
+	$window.load( function() {} );
 
 } )( jQuery, window, document );

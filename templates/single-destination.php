@@ -22,7 +22,7 @@ get_header(); ?>
 
 				<section id="summary" class="lsx-to-section">
 					<div class="row">
-						<?php lsx_to_content( 'content', get_post_type() ); ?>
+						<?php lsx_to_content( 'content', 'destination' ); ?>
 					</div>
 				</section>
 
