@@ -8,6 +8,8 @@
 		&:first-of-type {
 			background-color: #F6F6F6;
 			padding-top: 0;
+
+			.single-lsx-to-team & { padding-bottom: 0; }
 		}
 	}
 
@@ -135,4 +137,78 @@
 .rooms-info {
 	flex-grow: 1;
 	padding: 2.4rem 2.4rem 0;
+}
+
+.lsx-to-team-thumb {
+	border-radius: 50%;
+	display: block;
+	height: 32rem;
+	margin: 0 auto 10px;
+	overflow: hidden;
+	width: 32rem;
+
+    & > img { width: 100%; }
+}
+
+.lsx-to-team-socials-header {
+	display: block;
+	margin: 0 auto;
+	padding-bottom: 5px;
+	position: relative;
+	text-align: center;
+
+    &:after {
+		border-bottom: 1px solid;
+		bottom: 0;
+		content: '';
+		height: 0;
+		left: 50%;
+		position: absolute;
+		transform: translateX(-50%);
+		width: 80px;
+    }
+}
+
+.lsx-to-team-socials {
+	align-items: center;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: center;
+	margin: 2rem 0 0;
+	padding: 0;
+
+	& > a {
+		align-items: center;
+		border-radius: 50%;
+		display: flex;
+		height: 30px;
+		justify-content: center;
+		margin: 0 10px;
+		transition: background 300ms ease;
+		width: 30px;
+	}
+}
+
+.single-lsx-to-team {
+	.lsx-to-team-name { margin-bottom: 1.2rem; }
+
+	.lsx-to-team-contact:not(.dropdown) {
+		margin-bottom: 0;
+		margin-left: 0;
+		margin-top: 4.25rem;
+		padding-left: 0;
+
+		& > li {
+			padding-left: 0;
+			padding-right: 0;
+
+			& + li { margin-left: 2.4rem; }
+		}
+
+		& .fa {
+			font-size: 22px;
+			margin-right: 5px;
+			vertical-align: middle;
+		}
+	}
 }

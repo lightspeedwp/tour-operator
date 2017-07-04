@@ -1441,6 +1441,8 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .site-main > .lsx-to-section:first-of-type { background-color: #F6F6F6; padding-top: 0; }
 
+.single-lsx-to-team .site-main > .lsx-to-section:first-of-type { padding-bottom: 0; }
+
 .lsx-to-section .lsx-to-section { padding-bottom: 0; }
 
 #keynotes { padding-top: 0; }
@@ -1493,6 +1495,28 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .rooms-info { -webkit-box-flex: 1; -ms-flex-positive: 1; flex-grow: 1; padding: 2.4rem 2.4rem 0; }
 
+.lsx-to-team-thumb { border-radius: 50%; display: block; height: 32rem; margin: 0 auto 10px; overflow: hidden; width: 32rem; }
+
+.lsx-to-team-thumb > img { width: 100%; }
+
+.lsx-to-team-socials-header { display: block; margin: 0 auto; padding-bottom: 5px; position: relative; text-align: center; }
+
+.lsx-to-team-socials-header:after { border-bottom: 1px solid; bottom: 0; content: ''; height: 0; right: 50%; position: absolute; -webkit-transform: translateX(50%); transform: translateX(50%); width: 80px; }
+
+.lsx-to-team-socials { -webkit-box-align: center; -ms-flex-align: center; align-items: center; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row nowrap; flex-flow: row nowrap; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; margin: 2rem 0 0; padding: 0; }
+
+.lsx-to-team-socials > a { -webkit-box-align: center; -ms-flex-align: center; align-items: center; border-radius: 50%; display: -webkit-box; display: -ms-flexbox; display: flex; height: 30px; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; margin: 0 10px; transition: background 300ms ease; width: 30px; }
+
+.single-lsx-to-team .lsx-to-team-name { margin-bottom: 1.2rem; }
+
+.single-lsx-to-team .lsx-to-team-contact:not(.dropdown) { margin-bottom: 0; margin-right: 0; margin-top: 4.25rem; padding-right: 0; }
+
+.single-lsx-to-team .lsx-to-team-contact:not(.dropdown) > li { padding-right: 0; padding-left: 0; }
+
+.single-lsx-to-team .lsx-to-team-contact:not(.dropdown) > li + li { margin-right: 2.4rem; }
+
+.single-lsx-to-team .lsx-to-team-contact:not(.dropdown) .fa { font-size: 22px; margin-left: 5px; vertical-align: middle; }
+
 .lsx-to-slider-inner .slick-dots > li > button { border-color: #4A4A4A; }
 
 .lsx-to-slider-inner .slick-dots > li.slick-active > button { background-color: #4A4A4A; }
@@ -1542,3 +1566,11 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 .lsx-to-label { background-color: #4A4A4A; color: #FFF; }
 
 .facilities-title { border-bottom-color: #DADDDF; }
+
+.lsx-to-team-socials > a:not(.btn) { background-color: #4A4A4A; }
+
+.lsx-to-team-socials > a:not(.btn):hover { background-color: #F7AE00; }
+
+article.team .lsx-to-team-socials > a:not(.btn), article.team .lsx-to-team-socials > a:not(.btn):active, article.team .lsx-to-team-socials > a:not(.btn):visited { color: #FFF; }
+
+article.team .lsx-to-team-socials > a:not(.btn):hover, article.team .lsx-to-team-socials > a:not(.btn):hover:active, article.team .lsx-to-team-socials > a:not(.btn):focus { color: #FFF; }

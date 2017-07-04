@@ -122,4 +122,16 @@
 	}
 
 	.facilities-title { border-bottom-color: $breaker; }
+
+	.lsx-to-team-socials {
+		& > a:not(.btn) {
+			background-color: $color;
+
+			&:hover { background-color: $hover; }
+
+			article.team & {
+				@include customizer-to-link-colour(#FFF, #FFF);
+			}
+		}
+	}
 }
