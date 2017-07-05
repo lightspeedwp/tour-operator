@@ -269,7 +269,7 @@ class Accommodation {
 			$this->get_videos_link();
 			$this->get_related_specials_link();
 			$this->get_related_reviews_link();
-			$this->get_related_tours_link();
+			// @TODO - get_related_tours_link [lsx_to_related_items]
 			$this->get_related_posts_link();
 
 			$page_links = $this->page_links;

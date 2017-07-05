@@ -205,7 +205,7 @@ function lsx_to_accommodation_single_content_bottom() {
 			lsx_to_accommodation_reviews();
 		}
 
-		lsx_to_related_items( 'travel-style', '<section id="related-items" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( lsx_to_get_post_type_section_title( 'accommodation', 'similar', 'Related Accommodation' ), 'tour-operator' ) . '</h2>', '</section>' );
+		lsx_to_related_items( 'travel-style', '<section id="related-items" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( lsx_to_get_post_type_section_title( 'accommodation', 'similar', 'Related Accommodation and Tours' ), 'tour-operator' ) . '</h2>', '</section>' );
 
 		$connected_tours = get_post_meta( get_the_ID(), 'tour_to_accommodation', false );
 
@@ -471,7 +471,7 @@ function lsx_to_tour_single_content_bottom() {
 			lsx_to_tour_reviews();
 		}
 
-		lsx_to_related_items( 'travel-style', '<section id="related-items" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( lsx_to_get_post_type_section_title( 'tour', 'related', 'Related Tours' ), 'tour-operator' ) . '</h2>', '</section>' );
+		lsx_to_related_items( 'travel-style', '<section id="related-items" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( lsx_to_get_post_type_section_title( 'tour', 'related', 'Related Accommodation and Tours' ), 'tour-operator' ) . '</h2>', '</section>' );
 
 		lsx_to_tour_posts();
 	}
