@@ -6,7 +6,7 @@
  * @category	google-maps
  */
 ?>
-<article <?php post_class(); ?> style="margin-bottom: 0px;">
+<article <?php post_class(); ?>>
 	<?php lsx_to_map_meta(); ?>
 
 	<div class="entry-content">
