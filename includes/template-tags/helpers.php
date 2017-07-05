@@ -402,7 +402,7 @@ function lsx_to_connected_panel_query( $args = false ) {
 
 					echo '<div class="lsx-to-widget-item-wrap lsx-' . esc_attr( $post_type ) . '">';
 
-					lsx_to_content( 'content', 'widget-' . $args['content_part'] );
+					lsx_to_content( 'content-widget', $args['content_part'] );
 
 					echo '</div>';
 				endwhile;
@@ -497,7 +497,7 @@ function lsx_to_related_items( $taxonomy = false, $before = '', $after = '', $ec
 
 				echo '<div class="lsx-to-widget-item-wrap lsx-' . esc_attr( $post_type ) . '">';
 
-				lsx_to_content( 'content', 'widget-' . $post_type );
+				lsx_to_content( 'content-widget', $post_type );
 
 				echo '</div>';
 			endwhile;

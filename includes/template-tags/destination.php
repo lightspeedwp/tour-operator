@@ -93,7 +93,7 @@ function lsx_to_country_regions() {
 
 								while ( $regions->have_posts() ) : $regions->the_post();
 								echo '<div class="lsx-to-widget-item-wrap lsx-regions">';
-								lsx_to_content( 'content', 'widget-destination' );
+								lsx_to_content( 'content-widget', 'destination' );
 								echo '</div>';
 								endwhile;
 
