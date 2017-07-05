@@ -1,0 +1,33 @@
+.lsx-to-enquire-form {
+	margin-top: $lsx-to-gap-half;
+}
+
+.lsx-to-contact-thumb {
+	border-radius: 50%;
+	height: 170px;
+	margin: $lsx-to-gap-half auto 0;
+	overflow: hidden;
+	position: relative;
+	width: 170px;
+
+	& + .lsx-to-contact-name { margin-top: $lsx-to-gap-half; }
+
+	@include media('>=phone') {
+		margin-top: 0;
+
+		& + .lsx-to-contact-prefix { margin-top: $lsx-to-gap-half; }
+	}
+}
+
+.lsx-to-contact-prefix {
+	display: block;
+	font-size: 13px;
+}
+
+.lsx-to-contact-socials {
+	& > a {
+		font-size: 17px;
+		line-height: 1;
+		padding: 0 5px;
+	}
+}

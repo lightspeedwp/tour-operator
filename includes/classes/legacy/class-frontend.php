@@ -85,7 +85,10 @@ class Frontend extends Tour_Operator {
 
 		if ( is_admin() ) {
 			add_filter( 'lsx_customizer_colour_selectors_body', array( $this, 'customizer_to_body_colours_handler' ), 15, 2 );
+			add_filter( 'lsx_customizer_colour_selectors_main_menu', array( $this, 'customizer_to_main_menu_colours_handler' ), 15, 2 );
 		}
+
+		add_filter( 'lsx_fonts_css', array( $this, 'customizer_to_fonts_handler' ), 15 );
 	}
 
 	/**
@@ -417,6 +420,28 @@ class Frontend extends Tour_Operator {
 	}
 
 	/**
+	 * Handle fonts that might be change by LSX Customiser
+	 */
+	public function customizer_to_fonts_handler( $css_fonts ) {
+		global $wp_filesystem;
+
+		$css_fonts_file = LSX_BANNERS_PATH . '/assets/css/to-fonts.css';
+
+		if ( file_exists( $css_fonts_file ) ) {
+			if ( empty( $wp_filesystem ) ) {
+				require_once( ABSPATH . 'wp-admin/includes/file.php' );
+				WP_Filesystem();
+			}
+
+			if ( $wp_filesystem ) {
+				$css_fonts .= $wp_filesystem->get_contents( $css_fonts_file );
+			}
+		}
+
+		return $css_fonts;
+	}
+
+	/**
 	 * Handle body colours that might be change by LSX Customiser
 	 */
 	public function customizer_to_body_colours_handler( $css, $colors ) {
@@ -427,11 +452,33 @@ class Frontend extends Tour_Operator {
 			 * LSX Customizer - Body (Tour Operators)
 			 */
 			@include customizer-to-body-colours (
+				$bg:   		' . $colors['background_color'] . ',
 				$breaker:   ' . $colors['body_line_color'] . ',
 				$color:    	' . $colors['body_text_color'] . ',
 				$link:    	' . $colors['body_link_color'] . ',
 				$hover:    	' . $colors['body_link_hover_color'] . ',
 				$small:    	' . $colors['body_text_small_color'] . '
+			);
+		';
+
+		return $css;
+	}
+
+	/**
+	 * Handle main menu colours that might be change by LSX Customiser
+	 */
+	public function customizer_to_main_menu_colours_handler( $css, $colors ) {
+		$css .= '
+			@import "' . LSX_TO_PATH . '/assets/css/scss/customizer-to-main-menu-colours";
+
+			/**
+			 * LSX Customizer - Main Menu (Tour Operators)
+			 */
+			@include customizer-to-main-menu-colours (
+				$dropdown:            ' . $colors['main_menu_dropdown_background_color'] . ',
+				$dropdown-hover:      ' . $colors['main_menu_dropdown_background_hover_color'] . ',
+				$dropdown-link:       ' . $colors['main_menu_dropdown_link_color'] . ',
+				$dropdown-link-hover: ' . $colors['main_menu_dropdown_link_hover_color'] . '
 			);
 		';
 
