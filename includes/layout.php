@@ -197,6 +197,10 @@ function lsx_to_accommodation_single_content_bottom() {
 			lsx_to_envira_videos( '<section id="videos" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Videos', 'tour-operator' ) . '</h2>', '</section>' );
 		}
 
+		if ( function_exists( 'lsx_to_accommodation_specials' ) ) {
+			lsx_to_accommodation_specials();
+		}
+
 		if ( function_exists( 'lsx_to_accommodation_reviews' ) ) {
 			lsx_to_accommodation_reviews();
 		}
@@ -298,6 +302,10 @@ function lsx_to_destination_single_content_bottom() {
 		lsx_to_region_accommodation();
 
 		lsx_to_destination_activities();
+
+		if ( function_exists( 'lsx_to_destination_specials' ) ) {
+			lsx_to_destination_specials();
+		}
 
 		if ( function_exists( 'lsx_to_destination_reviews' ) ) {
 			lsx_to_destination_reviews();
@@ -449,6 +457,10 @@ function lsx_to_tour_single_content_bottom() {
 			lsx_to_videos( '<section id="videos" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Videos', 'tour-operator' ) . '</h2>', '</section>' );
 		} elseif ( class_exists( 'Envira_Videos' ) ) {
 			lsx_to_envira_videos( '<section id="videos" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Videos', 'tour-operator' ) . '</h2>', '</section>' );
+		}
+
+		if ( function_exists( 'lsx_to_tour_specials' ) ) {
+			lsx_to_tour_specials();
 		}
 
 		if ( function_exists( 'lsx_to_tour_reviews' ) ) {

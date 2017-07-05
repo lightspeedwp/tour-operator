@@ -447,6 +447,7 @@ class Tour {
 			$this->get_map_link();
 			$this->get_gallery_link();
 			$this->get_videos_link();
+			$this->get_related_specials_link();
 			$this->get_related_reviews_link();
 			// @TODO - get_related_tours_link [lsx_to_related_items]
 
@@ -534,10 +535,21 @@ class Tour {
 	/**
 	 * Tests for the Related Reviews and returns a link for the section
 	 */
+	public function get_related_specials_link() {
+		$connected_specials = get_post_meta( get_the_ID(), 'special_to_tour', false );
+
+		if ( post_type_exists( 'special' ) && is_array( $connected_specials ) && ! empty( $connected_specials ) ) {
+			$this->page_links['special'] = esc_html__( 'Specials', 'tour-operator' );
+		}
+	}
+
+	/**
+	 * Tests for the Related Reviews and returns a link for the section
+	 */
 	public function get_related_reviews_link() {
 		$connected_reviews = get_post_meta( get_the_ID(), 'review_to_tour', false );
 
-		if ( post_type_exists( 'tour' ) && is_array( $connected_reviews ) && ! empty( $connected_reviews ) ) {
+		if ( post_type_exists( 'review' ) && is_array( $connected_reviews ) && ! empty( $connected_reviews ) ) {
 			$this->page_links['review'] = esc_html__( 'Reviews', 'tour-operator' );
 		}
 	}
