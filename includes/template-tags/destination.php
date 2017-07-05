@@ -198,18 +198,24 @@ function lsx_to_destination_travel_info() {
 		?>
 		<section id="travel-info" class="lsx-to-section">
 			<h2 class="lsx-to-section-title lsx-title"><?php esc_html_e( 'Travel Information', 'tour-operator' ); ?></h2>
+
 			<div class="travel-info-wrapper row">
 				<?php foreach ( $items as $key => $value ) : ?>
 					<?php if ( ! empty( $value ) ) : ?>
 						<div class="col-xs-12 col-sm-6">
 							<article class="travel-info-content">
 								<h3><?php echo esc_html( $key ); ?></h3>
-								<div class="entry-content">
+
+								<div class="travel-info-entry-content hidden">
+									<?php echo wp_kses_post( apply_filters( 'the_content', $value ) ); ?>
+								</div>
+
+								<div class="travel-info-entry-content">
 									<?php
 										if ( str_word_count( $value, 0 ) > $limit_words ) {
-										$words = str_word_count( $value, 2 );
-										$pos   = array_keys( $words );
-										$value = substr_replace( $value, $more_button, $pos[ $limit_words ], 0 );
+											$words = str_word_count( $value, 2 );
+											$pos   = array_keys( $words );
+											$value = substr( $value, 0, $pos[ $limit_words ] ) . '...' . $more_button;
 										}
 
 										echo wp_kses_post( apply_filters( 'the_content', $value ) );
