@@ -223,6 +223,7 @@ var lsx_to = Object.create( null );
 	lsx_to.fix_anchor_menu = function() {
 		$( '.lsx-to-navigation' ).scrollToFixed({
 			minWidth: 1200,
+			zIndex: 100,
 
 			marginTop: function () {
 				var mt = 0;
