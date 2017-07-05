@@ -197,6 +197,7 @@ class Destination {
 
 			$this->get_related_specials_link();
 			$this->get_related_reviews_link();
+			$this->get_related_posts_link();
 
 			$page_links = $this->page_links;
 		}
@@ -383,6 +384,17 @@ class Destination {
 		}
 
 		return $countries;
+	}
+
+	/**
+	 * Tests for the Related Posts and returns a link for the section
+	 */
+	public function get_related_posts_link() {
+		$connected_posts = get_post_meta( get_the_ID(), 'post_to_destination', false );
+
+		if ( is_array( $connected_posts ) && ! empty( $connected_posts ) ) {
+			$this->page_links['posts'] = esc_html__( 'Posts', 'tour-operator' );
+		}
 	}
 
 }

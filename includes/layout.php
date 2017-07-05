@@ -212,6 +212,8 @@ function lsx_to_accommodation_single_content_bottom() {
 		if ( lsx_to_accommodation_display_connected_tours() && post_type_exists( 'tour' ) && is_array( $connected_tours ) && ! empty( $connected_tours ) ) {
 			lsx_to_related_items( $connected_tours, '<section class="related-items" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Related Tours' , 'tour-operator' ) . '</h2>', '</section>', true, 'tour' );
 		}
+
+		lsx_to_accommodation_posts();
 	}
 }
 
@@ -310,6 +312,8 @@ function lsx_to_destination_single_content_bottom() {
 		if ( function_exists( 'lsx_to_destination_reviews' ) ) {
 			lsx_to_destination_reviews();
 		}
+
+		lsx_to_destination_posts();
 	}
 }
 
@@ -468,6 +472,8 @@ function lsx_to_tour_single_content_bottom() {
 		}
 
 		lsx_to_related_items( 'travel-style', '<section id="related-items" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( lsx_to_get_post_type_section_title( 'tour', 'related', 'Related Tours' ), 'tour-operator' ) . '</h2>', '</section>' );
+
+		lsx_to_tour_posts();
 	}
 }
 

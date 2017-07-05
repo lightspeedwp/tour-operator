@@ -331,6 +331,28 @@ $metabox['fields'][] = array(
 );
 
 $metabox['fields'][] = array(
+	'id'   => 'posts_title',
+	'name' => esc_html__( 'Posts', 'tour-operator' ),
+	'type' => 'title',
+);
+
+$metabox['fields'][] = array(
+	'id'         => 'post_to_accommodation',
+	'name'       => esc_html__( 'Posts related with this accommodation', 'tour-operator' ),
+	'type'       => 'post_select',
+	'use_ajax'   => false,
+	'repeatable' => true,
+	'allow_none' => true,
+	'query'      => array(
+		'post_type'      => 'post',
+		'nopagin'        => true,
+		'posts_per_page' => '-1',
+		'orderby'        => 'title',
+		'order'          => 'ASC',
+	),
+);
+
+$metabox['fields'][] = array(
 	'id'   => 'destinations_title',
 	'name' => esc_html__( 'Destinations', 'tour-operator' ),
 	'type' => 'title',

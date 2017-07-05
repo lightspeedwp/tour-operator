@@ -449,6 +449,7 @@ class Tour {
 			$this->get_videos_link();
 			$this->get_related_specials_link();
 			$this->get_related_reviews_link();
+			$this->get_related_posts_link();
 			// @TODO - get_related_tours_link [lsx_to_related_items]
 
 			$page_links = $this->page_links;
@@ -551,6 +552,17 @@ class Tour {
 
 		if ( post_type_exists( 'review' ) && is_array( $connected_reviews ) && ! empty( $connected_reviews ) ) {
 			$this->page_links['review'] = esc_html__( 'Reviews', 'tour-operator' );
+		}
+	}
+
+	/**
+	 * Tests for the Related Posts and returns a link for the section
+	 */
+	public function get_related_posts_link() {
+		$connected_posts = get_post_meta( get_the_ID(), 'post_to_tour', false );
+
+		if ( is_array( $connected_posts ) && ! empty( $connected_posts ) ) {
+			$this->page_links['posts'] = esc_html__( 'Posts', 'tour-operator' );
 		}
 	}
 
