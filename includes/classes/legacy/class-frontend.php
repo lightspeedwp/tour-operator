@@ -65,7 +65,6 @@ class Frontend extends Tour_Operator {
 
 		add_filter( 'lsx_to_connected_list_item', array( $this, 'add_modal_attributes' ), 10, 3 );
 		add_action( 'wp_footer', array( $this, 'output_modals' ), 10 );
-		add_filter( 'use_default_gallery_style', '__return_false' );
 		add_filter( 'lsx_to_tagline', array( $this, 'get_tagline' ), 1, 3 );
 
 		// add_filter( 'the_terms', array( $this, 'links_new_window' ), 10, 2 );
@@ -116,6 +115,8 @@ class Frontend extends Tour_Operator {
 		}
 
 		if ( ( is_post_type_archive( $this->active_post_types ) ) || ( is_tax( array_keys( $this->taxonomies ) ) ) ) {
+			add_filter( 'use_default_gallery_style', '__return_false' );
+
 			if ( ! class_exists( 'LSX_Banners' ) ) {
 				remove_action( 'lsx_content_wrap_before', 'lsx_global_header' );
 				add_action( 'lsx_content_wrap_before', 'lsx_to_global_header', 100 );
@@ -129,6 +130,8 @@ class Frontend extends Tour_Operator {
 		}
 
 		if ( is_singular( $this->active_post_types ) ) {
+			add_filter( 'use_default_gallery_style', '__return_false' );
+
 			if ( ! class_exists( 'LSX_Banners' ) ) {
 				remove_action( 'lsx_content_wrap_before', 'lsx_global_header' );
 				add_action( 'lsx_content_wrap_before', 'lsx_to_global_header', 100 );
