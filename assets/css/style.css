@@ -1445,6 +1445,20 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-modal-content-area .entry-content p:last-of-type { margin-bottom: 4px; }
 
+.lsx-to-map-marker { -webkit-box-align: start; -ms-flex-align: start; align-items: flex-start; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row nowrap; flex-flow: row nowrap; height: auto; -webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start; padding: 1rem; width: 100%; }
+
+.lsx-to-map-marker .lsx-to-map-marker-content { font-family: 'Noto Sans', sans-serif; -webkit-box-flex: 1; -ms-flex-positive: 1; flex-grow: 1; }
+
+.lsx-to-map-marker .lsx-to-map-marker-content.content-area { margin: 0; }
+
+.lsx-to-map-marker .lsx-to-map-marker-content .entry-content p { margin-bottom: 0; margin-top: 1.2rem; }
+
+.lsx-to-map-marker .lsx-to-map-marker-content .entry-content p > a.moretag:after { color: inherit; content: '\f178'; display: inline-block; font-family: 'FontAwesome'; font-size: inherit; margin-left: 5px; text-rendering: auto; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+.lsx-to-map-marker .lsx-to-map-marker-img { margin-right: 2.4rem; max-width: 100px; -ms-flex-negative: 0; flex-shrink: 0; }
+
+.lsx-to-map-marker .lsx-to-map-marker-title { margin-bottom: 1.2rem; }
+
 .lsx-to-section { margin: 0 -9999rem; padding: 8.5rem 9999rem; }
 
 .site-main > .lsx-to-section:nth-of-type(odd) { background-color: #FFF; }
