@@ -284,16 +284,12 @@ function lsx_to_destination_single_content_bottom() {
 
 		lsx_to_country_regions();
 
-		if ( function_exists( 'lsx_to_has_map' ) && lsx_to_has_map() ) {
-			if ( ! function_exists( 'lsx_to_has_destination_banner_map' ) || ! lsx_to_has_destination_banner_map() ) {
-				?>
-				<section id="destination-map" class="lsx-to-section">
-					<h2 class="lsx-to-section-title lsx-title"><?php esc_html_e( 'Map', 'tour-operator' ); ?></h2>
-					<?php lsx_to_map(); ?>
-				</section>
-				<?php
-			}
-		}
+		if ( function_exists( 'lsx_to_has_map' ) && lsx_to_has_map() ) { ?>
+			<section id="destination-map" class="lsx-to-section">
+				<h2 class="lsx-to-section-title lsx-title"><?php esc_html_e( 'Map', 'tour-operator' ); ?></h2>
+				<?php lsx_to_map(); ?>
+			</section>
+		<?php }
 
 		lsx_to_gallery( '<section id="gallery" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Gallery', 'tour-operator' ) . '</h2>', '</section>' );
 
