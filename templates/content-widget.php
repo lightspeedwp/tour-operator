@@ -11,17 +11,17 @@ global $disable_placeholder, $disable_text;
 <article <?php post_class(); ?>>
 	 <?php if ( empty( $disable_placeholder ) ) { ?>
 		<div class="lsx-to-widget-thumb">
-			<?php if ( $has_single ) { ?><a href="<?php the_permalink(); ?>"><?php } ?>
+			<a href="<?php the_permalink(); ?>">
 				<?php lsx_thumbnail( 'lsx-thumbnail-single' ); ?>
-			<?php if ( $has_single ) { ?></a><?php } ?>
+			</a>
 		</div>
 	<?php } ?>
 
 	<div class="lsx-to-widget-content">
 		<h4 class="lsx-to-widget-title text-center">
-			<?php if ( $has_single ) { ?><a href="<?php the_permalink(); ?>"><?php } ?>
+			<a href="<?php the_permalink(); ?>">
 				<?php the_title(); ?>
-			<?php if ( $has_single ) { ?></a><?php } ?>
+			</a>
 		</h4>
 
 		<?php
