@@ -70,20 +70,22 @@ $metabox['fields'][] = array(
 	),
 );
 
-$metabox['fields'][] = array(
-	'id'         => 'team_to_accommodation',
-	'name'       => esc_html__( 'Accommodation Expert', 'tour-operator' ),
-	'type'       => 'post_select',
-	'use_ajax'   => false,
-	'allow_none' => true,
-	'query'      => array(
-		'post_type'      => 'team',
-		'nopagin'        => true,
-		'posts_per_page' => '-1',
-		'orderby'        => 'title',
-		'order'          => 'ASC',
-	),
-);
+if ( class_exists( 'LSX_TO_Team' ) ) {
+	$metabox['fields'][] = array(
+		'id'         => 'team_to_accommodation',
+		'name'       => esc_html__( 'Accommodation Expert', 'tour-operator' ),
+		'type'       => 'post_select',
+		'use_ajax'   => false,
+		'allow_none' => true,
+		'query'      => array(
+			'post_type'      => 'team',
+			'nopagin'        => true,
+			'posts_per_page' => '-1',
+			'orderby'        => 'title',
+			'order'          => 'ASC',
+		),
+	);
+}
 
 if ( class_exists( 'LSX_TO_Maps' ) ) {
 	$metabox['fields'][] = array(
