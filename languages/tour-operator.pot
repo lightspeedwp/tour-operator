@@ -1314,7 +1314,7 @@ msgstr ""
 msgid "Travel Information"
 msgstr ""
 
-#: includes/template-tags/general.php:506, includes/template-tags/general.php:517
+#: includes/template-tags/general.php:470
 msgid "Enquire"
 msgstr ""
 

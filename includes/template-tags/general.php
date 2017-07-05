@@ -463,8 +463,12 @@ function lsx_to_enquiry_contact( $before = '', $after = '' ) {
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_to_enquire_modal( $before = '', $after = '', $echo = true ) {
+function lsx_to_enquire_modal( $cta_text = '', $before = '', $after = '', $echo = true ) {
 	$tour_operator = tour_operator();
+
+	if ( empty( $cta_text ) ) {
+		$cta_text = esc_html__( 'Enquire', 'tour-operator' );
+	}
 
 	$form_id = false;
 	// First set the general form
@@ -503,18 +507,20 @@ function lsx_to_enquire_modal( $before = '', $after = '', $echo = true ) {
 
 	?>
 	<div class="lsx-to-enquire-form">
-		<p class="text-center"><a href="<?php echo esc_url( $link ); ?>" class="btn cta-btn" <?php if ( false === $disable_modal ) { ?>data-toggle="modal" data-target="#lsx-enquire-modal"<?php } ?> ><?php esc_html_e( 'Enquire','tour-operator' ); ?></a></p>
+		<p class="text-center">
+			<a href="<?php echo esc_url( $link ); ?>" class="btn cta-btn" <?php if ( false === $disable_modal ) { ?>data-toggle="modal" data-target="#lsx-enquire-modal"<?php } ?> ><?php echo esc_html( $cta_text ); ?></a>
+		</p>
 
 		<?php
 			if ( false === $disable_modal ) {
-				add_action( 'wp_footer', function( $arg ) use ( $form_id ) {
+				add_action( 'wp_footer', function( $arg ) use ( $form_id, $cta_text ) {
 					?>
 					<div class="lsx-modal modal fade" id="lsx-enquire-modal" tabindex="-1" role="dialog">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
 								<div class="modal-header">
-									<h4 class="modal-title"><?php esc_html_e( 'Enquire', 'tour-operator' ); ?></h4>
+									<h4 class="modal-title"><?php echo esc_html( $cta_text ); ?></h4>
 								</div>
 								<div class="modal-body">
 									<?php
