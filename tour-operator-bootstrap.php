@@ -35,8 +35,10 @@ if ( defined( 'WPINC' ) ) {
 	require_once( LSX_TO_PATH . 'includes/post-expirator.php' );
 	require_once( LSX_TO_PATH . 'includes/customizer.php' );
 	require_once( LSX_TO_PATH . 'includes/layout.php' );
-	require_once( LSX_TO_PATH . 'includes/actions.php' );
 
+	add_action( 'after_setup_theme', function() {
+		require_once( LSX_TO_PATH . 'includes/actions.php' );
+	} );
 
 	// include context helper & autoloader.
 	require_once( LSX_TO_PATH . 'includes/tour-operator.php' );
