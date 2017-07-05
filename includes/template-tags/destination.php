@@ -213,9 +213,29 @@ function lsx_to_destination_travel_info() {
 								<div class="travel-info-entry-content">
 									<?php
 										if ( str_word_count( $value, 0 ) > $limit_words ) {
-											$words = str_word_count( $value, 2 );
-											$pos   = array_keys( $words );
-											$value = force_balance_tags( substr( $value, 0, $pos[ $limit_words ] ) . '...' . $more_button );
+											// $words = str_word_count( $value, 2 );
+											// $pos   = array_keys( $words );
+											// $value = force_balance_tags( substr( $value, 0, $pos[ $limit_words ] ) . '...' . $more_button );
+
+											$tokens       = array();
+											$value_output = '';
+											$has_more     = false;
+											$count        = 0;
+
+											preg_match_all( '/(<[^>]+>|[^<>\s]+)\s*/u', $value, $tokens );
+
+											foreach ( $tokens[0] as $token ) {
+												if ( $count >= $limit_words ) {
+													$value_output .= trim( $token );
+													$has_more = true;
+													break;
+												}
+
+												$count++;
+												$value_output .= $token;
+											}
+
+											$value = trim( force_balance_tags( $value_output . '...' . $more_button ) );
 										}
 
 										echo wp_kses_post( apply_filters( 'the_content', $value ) );
