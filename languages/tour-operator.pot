@@ -31,7 +31,7 @@ msgstr ""
 msgid "Special Interests"
 msgstr ""
 
-#: includes/functions.php:353, includes/classes/legacy/class-frontend.php:371, includes/classes/legacy/class-frontend.php:384
+#: includes/functions.php:353, includes/classes/legacy/class-frontend.php:374, includes/classes/legacy/class-frontend.php:387
 msgid "Read More"
 msgstr ""
 
