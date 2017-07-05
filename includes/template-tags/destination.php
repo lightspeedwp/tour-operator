@@ -215,7 +215,7 @@ function lsx_to_destination_travel_info() {
 										if ( str_word_count( $value, 0 ) > $limit_words ) {
 											$words = str_word_count( $value, 2 );
 											$pos   = array_keys( $words );
-											$value = substr( $value, 0, $pos[ $limit_words ] ) . '...' . $more_button;
+											$value = force_balance_tags( substr( $value, 0, $pos[ $limit_words ] ) . '...' . $more_button );
 										}
 
 										echo wp_kses_post( apply_filters( 'the_content', $value ) );
