@@ -213,10 +213,6 @@ function lsx_to_destination_travel_info() {
 								<div class="travel-info-entry-content">
 									<?php
 										if ( str_word_count( $value, 0 ) > $limit_words ) {
-											// $words = str_word_count( $value, 2 );
-											// $pos   = array_keys( $words );
-											// $value = force_balance_tags( substr( $value, 0, $pos[ $limit_words ] ) . '...' . $more_button );
-
 											$tokens       = array();
 											$value_output = '';
 											$has_more     = false;
