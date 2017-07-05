@@ -1359,6 +1359,8 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 .lsx-to-archive-template-grid .lsx-to-archive-content-tagline { text-align: center; }
 
+.lsx-to-enquire-form { margin-top: 2.4rem; }
+
 .lsx-to-contact-thumb { border-radius: 50%; height: 170px; margin: 2.4rem auto 0; overflow: hidden; position: relative; width: 170px; }
 
 .lsx-to-contact-thumb + .lsx-to-contact-name { margin-top: 2.4rem; }

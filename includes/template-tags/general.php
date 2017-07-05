@@ -502,8 +502,8 @@ function lsx_to_enquire_modal( $before = '', $after = '', $echo = true ) {
 	if ( false !== $form_id ) {
 
 	?>
-	<div class="enquire-form">
-		<p class="aligncenter" style="text-align:center;"><a href="<?php echo esc_url( $link ); ?>" class="btn cta-btn" <?php if ( false === $disable_modal ) { ?>data-toggle="modal" data-target="#lsx-enquire-modal"<?php } ?> ><?php esc_html_e( 'Enquire','tour-operator' ); ?></a></p>
+	<div class="lsx-to-enquire-form">
+		<p class="text-center"><a href="<?php echo esc_url( $link ); ?>" class="btn cta-btn" <?php if ( false === $disable_modal ) { ?>data-toggle="modal" data-target="#lsx-enquire-modal"<?php } ?> ><?php esc_html_e( 'Enquire','tour-operator' ); ?></a></p>
 
 		<?php
 			if ( false === $disable_modal ) {
