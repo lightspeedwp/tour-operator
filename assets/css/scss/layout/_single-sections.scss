@@ -192,9 +192,13 @@
 	justify-content: flex-start;
 
 	.lsx-to-meta-data {
-		width: calc(100% - $lsx-to-gap-half);
+		width: calc(100% - #{$lsx-to-gap-half});
 
-		@include media('>=phone') { width: calc(50% - $lsx-to-gap-half); }
+		@include media('>=phone') {
+			width: calc(50% - #{$lsx-to-gap-half});
+
+			&:only-child { width: calc(100% - #{$lsx-to-gap-half}); }
+		}
 	}
 }
 

@@ -1403,9 +1403,10 @@
 
 .lsx-to-single-meta-data { -webkit-box-align: start; -ms-flex-align: start; align-items: flex-start; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row wrap; flex-flow: row wrap; -webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start; }
 
-.lsx-to-single-meta-data .lsx-to-meta-data { width: calc(100% - $lsx-to-gap-half); }
+.lsx-to-single-meta-data .lsx-to-meta-data { width: calc(100% - 2.4rem); }
 
-@media (min-width: 768px) { .lsx-to-single-meta-data .lsx-to-meta-data { width: calc(50% - $lsx-to-gap-half); } }
+@media (min-width: 768px) { .lsx-to-single-meta-data .lsx-to-meta-data { width: calc(50% - 2.4rem); }
+  .lsx-to-single-meta-data .lsx-to-meta-data:only-child { width: calc(100% - 2.4rem); } }
 
 .facilities-wrapper { margin-top: -2.4rem; }
 
