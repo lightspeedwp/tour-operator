@@ -425,7 +425,7 @@ class Frontend extends Tour_Operator {
 	public function customizer_to_fonts_handler( $css_fonts ) {
 		global $wp_filesystem;
 
-		$css_fonts_file = LSX_BANNERS_PATH . '/assets/css/to-fonts.css';
+		$css_fonts_file = LSX_TO_PATH . '/assets/css/to-fonts.css';
 
 		if ( file_exists( $css_fonts_file ) ) {
 			if ( empty( $wp_filesystem ) ) {
