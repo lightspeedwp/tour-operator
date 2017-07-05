@@ -106,7 +106,7 @@ msgstr ""
 msgid "Gallery"
 msgstr ""
 
-#: includes/layout.php:195, includes/layout.php:197, includes/layout.php:297, includes/layout.php:299, includes/layout.php:449, includes/layout.php:451, includes/partials/add-ons.php:174, includes/partials/help.php:126, includes/classes/legacy/class-accommodation.php:355, includes/classes/legacy/class-destination.php:300, includes/classes/legacy/class-field-pattern.php:48, includes/classes/legacy/class-tour.php:530
+#: includes/layout.php:195, includes/layout.php:197, includes/layout.php:297, includes/layout.php:299, includes/layout.php:449, includes/layout.php:451, includes/partials/add-ons.php:174, includes/partials/help.php:126, includes/classes/legacy/class-accommodation.php:355, includes/classes/legacy/class-destination.php:300, includes/classes/legacy/class-tour.php:530
 msgid "Videos"
 msgstr ""
 
@@ -246,7 +246,7 @@ msgstr ""
 msgid "Brand"
 msgstr ""
 
-#: templates/content-widget-accommodation.php:45, includes/metaboxes/config-accommodation.php:91, includes/metaboxes/config-destination.php:230, includes/metaboxes/config-destination.php:236, includes/template-tags/accommodation.php:303, includes/classes/legacy/class-field-pattern.php:90
+#: templates/content-widget-accommodation.php:45, includes/metaboxes/config-accommodation.php:91, includes/metaboxes/config-destination.php:230, includes/metaboxes/config-destination.php:236, includes/template-tags/accommodation.php:303
 msgid "Location"
 msgstr ""
 
@@ -298,7 +298,7 @@ msgstr ""
 msgid "Accommodation Expert"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:97, includes/classes/legacy/class-field-pattern.php:95
+#: includes/metaboxes/config-accommodation.php:97
 msgid "Address"
 msgstr ""
 
@@ -526,11 +526,11 @@ msgstr ""
 msgid "Units"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:305, includes/partials/post.php:28, includes/classes/legacy/class-field-pattern.php:60, includes/classes/legacy/class-settings.php:482, includes/classes/legacy/class-tour.php:188
+#: includes/metaboxes/config-accommodation.php:305, includes/partials/post.php:28, includes/classes/legacy/class-settings.php:482, includes/classes/legacy/class-tour.php:188
 msgid "Title"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:310, includes/partials/post.php:37, includes/classes/legacy/class-field-pattern.php:64, includes/classes/legacy/class-settings.php:498, includes/classes/legacy/class-tour.php:202
+#: includes/metaboxes/config-accommodation.php:310, includes/partials/post.php:37, includes/classes/legacy/class-settings.php:498, includes/classes/legacy/class-tour.php:202
 msgid "Description"
 msgstr ""
 
@@ -1404,18 +1404,6 @@ msgstr ""
 
 #: includes/classes/legacy/class-destination.php:224
 msgid "Regions"
-msgstr ""
-
-#: includes/classes/legacy/class-field-pattern.php:54
-msgid "Video"
-msgstr ""
-
-#: includes/classes/legacy/class-field-pattern.php:69
-msgid "Url"
-msgstr ""
-
-#: includes/classes/legacy/class-field-pattern.php:73
-msgid "Thumbnail"
 msgstr ""
 
 #: includes/classes/legacy/class-placeholders.php:419
