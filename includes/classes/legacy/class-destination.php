@@ -158,15 +158,16 @@ class Destination {
 	 * Outputs the destination meta
 	 */
 	public function content_meta() {
-		if ( 'destination' === get_post_type() ) {
-			?>
-			<div class="destination-details meta taxonomies">
-				<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">' . esc_html__( 'Travel Style', 'tour-operator' ) . ': ', ', ', '</div>' ); ?>
+		if ( 'destination' === get_post_type() ) { ?>
+			<?php
+				$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
 
-				<?php if ( function_exists( 'lsx_to_connected_activities' ) ) {
-					lsx_to_connected_activities( '<div class="meta activities">' . esc_html__( 'Activities', 'tour-operator' ) . ': ', '</div>' );
-				} ?>
-			</div>
+				the_terms( get_the_ID(), 'travel-style', '<span class="' . $meta_class . 'style">' . esc_html__( 'Travel Style', 'tour-operator' ) . ': ', ', ', '</span>' );
+
+				if ( function_exists( 'lsx_to_connected_activities' ) ) {
+					lsx_to_connected_activities( '<span class="' . $meta_class . 'activities">' . esc_html__( 'Activities', 'tour-operator' ) . ': ', '</span>' );
+				}
+			?>
 		<?php }
 	}
 

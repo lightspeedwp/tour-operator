@@ -1120,6 +1120,19 @@ body.single-tour-operator {
 	}
 }
 
+.lsx-to-modal-content-area {
+	&.content-area { margin: 0; }
+
+	.lsx-to-modal-thumb { margin-bottom: 2.4rem; }
+
+	.lsx-to-modal-meta-data { margin-bottom: 2.4rem; }
+
+	.entry-content {
+		p:last-of-type { margin-bottom: 4px; }
+	}
+}
+
+
 @import 'single';
 
 @include customizer-to-body-colours(#DADDDF, #4A4A4A, #1098AD, #F7AE00, #919191);

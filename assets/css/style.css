@@ -1435,6 +1435,14 @@ body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 #when-to-go .lsx-to-month > .fa { color: #1098AD; font-size: 18px; left: 50%; margin-top: 20px; position: absolute; top: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); }
 
+.lsx-to-modal-content-area.content-area { margin: 0; }
+
+.lsx-to-modal-content-area .lsx-to-modal-thumb { margin-bottom: 2.4rem; }
+
+.lsx-to-modal-content-area .lsx-to-modal-meta-data { margin-bottom: 2.4rem; }
+
+.lsx-to-modal-content-area .entry-content p:last-of-type { margin-bottom: 4px; }
+
 .lsx-to-section { margin: 0 -9999rem; padding: 8.5rem 9999rem; }
 
 .site-main > .lsx-to-section:nth-of-type(odd) { background-color: #FFF; }
