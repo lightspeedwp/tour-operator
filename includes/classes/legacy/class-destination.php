@@ -257,7 +257,9 @@ class Destination {
 	 */
 	public function get_map_link() {
 		if ( function_exists( 'lsx_to_has_map' ) && lsx_to_has_map() ) {
-			$this->page_links['destination-map'] = esc_html__( 'Map', 'tour-operator' );
+			if ( ! function_exists( 'lsx_to_has_destination_banner_map' ) || ! lsx_to_has_destination_banner_map() ) {
+				$this->page_links['destination-map'] = esc_html__( 'Map', 'tour-operator' );
+			}
 		}
 	}
 
