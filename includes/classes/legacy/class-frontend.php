@@ -54,7 +54,7 @@ class Frontend extends Tour_Operator {
 		add_filter( 'post_class', array( $this, 'replace_class' ), 10, 1 );
 		add_filter( 'body_class', array( $this, 'replace_class' ), 10, 1 );
 
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ), 11 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ), 999 );
 		add_action( 'wp_head', array( $this, 'wp_head' ), 10 );
 		add_filter( 'body_class', array( $this, 'body_class' ), 15, 1 );
 
