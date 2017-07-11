@@ -36,8 +36,18 @@ if ( $has_single ) {
 		</h4>
 
 		<?php
-			if ( empty( $disable_text ) ) {
-				the_excerpt();
+			// if ( empty( $disable_text ) ) {
+			// 	lsx_to_tagline( '<p class="lsx-to-widget-tagline text-center">', '</p>' );
+			// }
+		?>
+
+		<?php
+			ob_start();
+			the_excerpt();
+			$excerpt = ob_get_clean();
+
+			if ( empty( $disable_text ) && ! empty( $excerpt ) ) {
+				echo wp_kses_post( $excerpt );
 			} elseif ( $has_single ) { ?>
 				<p><a href="<?php echo esc_url( $permalink ); ?>" class="moretag"><?php esc_html_e( 'View destination', 'tour-operator' ); ?></a></p>
 			<?php }
