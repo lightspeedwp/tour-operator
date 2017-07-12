@@ -267,7 +267,10 @@ class Accommodation {
 			$this->get_map_link();
 			$this->get_gallery_link();
 			$this->get_videos_link();
-			$this->get_related_tours_link();
+			$this->get_related_specials_link();
+			$this->get_related_reviews_link();
+			// @TODO - get_related_tours_link [lsx_to_related_items]
+			$this->get_related_posts_link();
 
 			$page_links = $this->page_links;
 		}
@@ -364,6 +367,39 @@ class Accommodation {
 
 		if ( post_type_exists( 'tour' ) && is_array( $connected_tours ) && ! empty( $connected_tours ) ) {
 			$this->page_links['related-items'] = esc_html__( 'Tours', 'tour-operator' );
+		}
+	}
+
+	/**
+	 * Tests for the Related Reviews and returns a link for the section
+	 */
+	public function get_related_specials_link() {
+		$connected_specials = get_post_meta( get_the_ID(), 'special_to_accommodation', false );
+
+		if ( post_type_exists( 'special' ) && is_array( $connected_specials ) && ! empty( $connected_specials ) ) {
+			$this->page_links['special'] = esc_html__( 'Specials', 'tour-operator' );
+		}
+	}
+
+	/**
+	 * Tests for the Related Reviews and returns a link for the section
+	 */
+	public function get_related_reviews_link() {
+		$connected_reviews = get_post_meta( get_the_ID(), 'review_to_accommodation', false );
+
+		if ( post_type_exists( 'review' ) && is_array( $connected_reviews ) && ! empty( $connected_reviews ) ) {
+			$this->page_links['review'] = esc_html__( 'Reviews', 'tour-operator' );
+		}
+	}
+
+	/**
+	 * Tests for the Related Posts and returns a link for the section
+	 */
+	public function get_related_posts_link() {
+		$connected_posts = get_post_meta( get_the_ID(), 'post_to_accommodation', false );
+
+		if ( is_array( $connected_posts ) && ! empty( $connected_posts ) ) {
+			$this->page_links['posts'] = esc_html__( 'Posts', 'tour-operator' );
 		}
 	}
 

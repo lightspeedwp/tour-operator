@@ -12,7 +12,7 @@
 	}
 }
 
-@mixin customizer-to-body-colours($breaker: #DADDDF, $color: #4A4A4A, $link: #1098AD, $hover: #F7AE00, $small: #919191) {
+@mixin customizer-to-body-colours($bg: #F6F6F6, $breaker: #DADDDF, $color: #4A4A4A, $link: #1098AD, $hover: #F7AE00, $small: #919191) {
 	.lsx-to-slider-inner {
 		.slick-dots {
 			& > li {
@@ -66,6 +66,11 @@
 
 	.lsx-to-widget-item-wrap {
 		.lsx-to-widget-content {
+			background-color: #FFF;
+
+			.lsx-to-section:nth-of-type(odd) & { background-color: $bg; }
+			.lsx-to-section:nth-of-type(even) & { background-color: #FFF; }
+
 			a.moretag {
 				background-color: $link;
 				color: #FFF;
@@ -86,6 +91,11 @@
 
 	.lsx-to-archive-item {
 		& > .lsx-to-archive-container {
+			background-color: #FFF;
+
+			.lsx-to-section:nth-of-type(odd) & { background-color: $bg; }
+			.lsx-to-section:nth-of-type(even) & { background-color: #FFF; }
+
 			& > a.moretag {
 				background-color: $link;
 				color: #FFF;
@@ -100,6 +110,10 @@
 				@include customizer-to-link-colour($color, $hover);
 			}
 		}
+	}
+
+	.lsx-to-archive-wrapper {
+		.lsx-regions & { background-color: #FFF; }
 	}
 
 	.lsx-to-contact {
@@ -134,4 +148,20 @@
 			}
 		}
 	}
+
+	.lsx-to-section {
+		.site-main > & {
+			&:nth-of-type(odd) { background-color: #FFF; }
+			&:first-of-type { background-color: $bg; }
+		}
+	}
+
+	.lsx-to-section-inner { background-color: #FFF; }
+
+	.travel-info-content,
+	.rooms-content {
+		.lsx-to-section:nth-of-type(odd) & { background-color: $bg; }
+		.lsx-to-section:nth-of-type(even) & { background-color: #FFF; }
+	}
+
 }

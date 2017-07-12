@@ -9,6 +9,27 @@
  */
 
 /**
+ * Outputs the posts attached destinations
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tags
+ * @category 	destination
+ */
+function lsx_to_destination_posts() {
+	global $lsx_to_archive;
+
+	$args = array(
+		'from'		=> 'post',
+		'to'		=> 'destination',
+		'column'	=> '3',
+		'before'	=> '<section id="posts" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Featured Posts', 'tour-operator' ) . '</h2>',
+		'after'		=> '</section>',
+	);
+
+	lsx_to_connected_panel_query( $args );
+}
+
+/**
  * Outputs the connected accommodation only on a "region"
  *
  * @package 	tour-operator
@@ -20,16 +41,17 @@ function lsx_to_region_accommodation() {
 
 	if ( post_type_exists( 'accommodation' ) && is_singular( 'destination' ) && ! lsx_to_item_has_children( get_the_ID(), 'destination' ) ) {
 		$args = array(
-			'from'		=>	'accommodation',
-			'to'		=>	'destination',
-			'column'	=>	'3',
-			'before'	=>	'<section id="accommodation" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . __( lsx_to_get_post_type_section_title( 'accommodation', '', esc_html__( 'Featured Accommodation', 'tour-operator' ) ), 'tour-operator') . '</h2>',
-			'after'		=>	'</section>'
+			'from'		=> 'accommodation',
+			'to'		=> 'destination',
+			'column'	=> '3',
+			'before'	=> '<section id="accommodation" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . __( lsx_to_get_post_type_section_title( 'accommodation', '', esc_html__( 'Featured Accommodation', 'tour-operator' ) ), 'tour-operator' ) . '</h2>',
+			'after'		=> '</section>',
 		);
 
 		lsx_to_connected_panel_query( $args );
 	}
 }
+
 /**
  * Outputs the child destinations
  *
@@ -42,25 +64,25 @@ function lsx_to_country_regions() {
 
 	if ( is_singular( 'destination' ) && lsx_to_item_has_children( get_the_ID(), 'destination' ) ) {
 		$region_args = array(
-			'post_type'	=>	'destination',
+			'post_type'	=> 'destination',
 			'post_status' => 'publish',
 			'nopagin' => true,
 			'posts_per_page' => '-1',
 			'post_parent' => get_the_ID(),
 			'orderby' => 'name',
-			'order' => 'ASC'
+			'order' => 'ASC',
 		);
 
 		$regions = new WP_Query( $region_args );
 		$region_counter = 0;
 		$total_counter = 0;
 
-		if ( $regions->have_posts() ): ?>
+		if ( $regions->have_posts() ) : ?>
 			<section id="regions" class="lsx-to-section">
 				<h2 class="lsx-to-section-title lsx-title"><?php esc_html_e( lsx_to_get_post_type_section_title( 'destination', 'regions', 'Regions' ), 'tour-operator' ); ?></h2>
 
 				<div class="slider-container lsx-to-widget-items lsx-to-archive-template-grid">
-					<div id="slider-<?php echo rand( 20, 20000 ); ?>" class="lsx-to-slider">
+					<div id="slider-<?php echo esc_attr( rand( 20, 20000 ) ); ?>" class="lsx-to-slider">
 						<div class="lsx-to-slider-wrap">
 							<div class="lsx-to-slider-inner" data-interval="6000" data-slick='{ "slidesToShow": 3, "slidesToScroll": 3 }'>
 							<?php
@@ -70,9 +92,9 @@ function lsx_to_country_regions() {
 								$wp_query->is_post_type_archive = 1;
 
 								while ( $regions->have_posts() ) : $regions->the_post();
-									echo '<div class="lsx-to-widget-item-wrap lsx-regions">';
-									lsx_to_content( 'content', 'widget-destination' );
-									echo '</div>';
+								echo '<div class="lsx-to-widget-item-wrap lsx-regions">';
+								lsx_to_content( 'content-widget', 'destination' );
+								echo '</div>';
 								endwhile;
 
 								$lsx_to_archive = 0;
@@ -98,16 +120,16 @@ function lsx_to_country_regions() {
  * @subpackage	template-tags
  * @category 	destination
  */
-function lsx_to_destination_tours(){
+function lsx_to_destination_tours() {
 	global $lsx_to_archive, $wp_query;
 
 	if ( post_type_exists( 'tour' ) && is_singular( 'destination' ) ) {
 		$args = array(
-			'from'		=>	'tour',
-			'to'		=>	'destination',
-			'column'	=>	'3',
-			'before'	=>	'<section id="tours" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . __( lsx_to_get_post_type_section_title( 'tour', '', esc_html__( 'Featured Tours', 'tour-operator' ) ), 'tour-operator' ) . '</h2>',
-			'after'		=>	'</section>'
+			'from'		=> 'tour',
+			'to'		=> 'destination',
+			'column'	=> '3',
+			'before'	=> '<section id="tours" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . __( lsx_to_get_post_type_section_title( 'tour', '', esc_html__( 'Featured Tours', 'tour-operator' ) ), 'tour-operator' ) . '</h2>',
+			'after'		=> '</section>',
 		);
 
 		lsx_to_connected_panel_query( $args );
@@ -126,12 +148,12 @@ function lsx_to_destination_activities() {
 
 	if ( post_type_exists( 'activity' ) && is_singular( 'destination' ) && ! lsx_to_item_has_children( get_the_ID(), 'destination' ) ) {
 		$args = array(
-			'from'			=>	'activity',
-			'to'			=>	'destination',
+			'from'			=> 'activity',
+			'to'			=> 'destination',
 			// 'content_part'	=>	'widget-activity',
-			'column'		=>	'3',
-			'before'		=>	'<section id="activities" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . __( lsx_to_get_post_type_section_title( 'activity', '', esc_html__( 'Featured Activities', 'tour-operator' ) ), 'tour-operator') . '</h2>',
-			'after'			=>	'</section>',
+			'column'		=> '3',
+			'before'		=> '<section id="activities" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . __( lsx_to_get_post_type_section_title( 'activity', '', esc_html__( 'Featured Activities', 'tour-operator' ) ), 'tour-operator' ) . '</h2>',
+			'after'			=> '</section>',
 		);
 
 		lsx_to_connected_panel_query( $args );
@@ -171,23 +193,45 @@ function lsx_to_destination_travel_info() {
 			esc_html__( 'Health', 'tour-operator' )       	=> $health,
 			esc_html__( 'Safety', 'tour-operator' )       	=> $safety,
 			esc_html__( 'Visa', 'tour-operator' )       	=> $visa,
-			esc_html__( 'General', 'tour-operator' )       	=> $general
+			esc_html__( 'General', 'tour-operator' )       	=> $general,
 		);
 		?>
 		<section id="travel-info" class="lsx-to-section">
 			<h2 class="lsx-to-section-title lsx-title"><?php esc_html_e( 'Travel Information', 'tour-operator' ); ?></h2>
+
 			<div class="travel-info-wrapper row">
 				<?php foreach ( $items as $key => $value ) : ?>
 					<?php if ( ! empty( $value ) ) : ?>
 						<div class="col-xs-12 col-sm-6">
 							<article class="travel-info-content">
 								<h3><?php echo esc_html( $key ); ?></h3>
-								<div class="entry-content">
+
+								<div class="travel-info-entry-content hidden">
+									<?php echo wp_kses_post( apply_filters( 'the_content', $value ) ); ?>
+								</div>
+
+								<div class="travel-info-entry-content">
 									<?php
 										if ( str_word_count( $value, 0 ) > $limit_words ) {
-											$words = str_word_count( $value, 2 );
-											$pos   = array_keys( $words );
-											$value = substr_replace( $value, $more_button, $pos[ $limit_words ], 0 );
+											$tokens       = array();
+											$value_output = '';
+											$has_more     = false;
+											$count        = 0;
+
+											preg_match_all( '/(<[^>]+>|[^<>\s]+)\s*/u', $value, $tokens );
+
+											foreach ( $tokens[0] as $token ) {
+												if ( $count >= $limit_words ) {
+													$value_output .= trim( $token );
+													$has_more = true;
+													break;
+												}
+
+												$count++;
+												$value_output .= $token;
+											}
+
+											$value = trim( force_balance_tags( $value_output . '...' . $more_button ) );
 										}
 
 										echo wp_kses_post( apply_filters( 'the_content', $value ) );
@@ -216,7 +260,7 @@ function lsx_to_destination_travel_info() {
  * @subpackage	template-tags
  * @category 	connections
  */
-function lsx_to_connected_destinations( $before = "", $after = "", $echo = true ) {
+function lsx_to_connected_destinations( $before = '', $after = '', $echo = true ) {
 	lsx_to_connected_items_query( 'destination', get_post_type(), $before, $after, $echo );
 }
 
@@ -233,6 +277,6 @@ function lsx_to_connected_destinations( $before = "", $after = "", $echo = true 
  * @subpackage	template-tags
  * @category 	connections
  */
-function lsx_to_connected_countries( $before = "", $after = "", $echo = true ) {
+function lsx_to_connected_countries( $before = '', $after = '', $echo = true ) {
 	lsx_to_connected_items_query( 'destination', get_post_type(), $before, $after, $echo, true );
 }

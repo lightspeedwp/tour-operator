@@ -1,0 +1,114 @@
+.lsx-to-widget-items { margin-top: -1 * $lsx-to-gap; }
+
+.lsx-to-widget-item-wrap {
+	margin-top: $lsx-to-gap;
+
+	.lsx-to-slider-inner & { padding: 0 15px; }
+}
+
+.lsx-to-widget-view-all {
+	margin-top: 6rem;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+
+	& > span {
+		display: inline-block;
+		position: relative;
+
+		&:before,
+		&:after {
+			content: '';
+			display: block;
+			height: 2px;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			width: 999rem;
+		}
+
+		&:before { right: 120%; }
+		&:after { left: 120%; }
+	}
+}
+
+.lsx-to-widget-item-wrap {
+	&.lsx-video {
+		.lsx-to-widget-content { padding-bottom: $lsx-to-gap-half; }
+	}
+
+	.lsx-to-widget-content {
+		padding: $lsx-to-gap-half 2rem 0;
+
+		.lsx-to-widget-title {
+			&:only-child { margin-bottom: 0; }
+		}
+
+		.moretag {
+			display: block;
+			margin: 0 -2rem;
+			padding: 1rem 0;
+			text-align: center;
+			transition: background 300ms ease;
+
+			&:after {
+				color: inherit;
+				content: '\f178';
+				display: inline-block;
+				font-family: 'FontAwesome';
+				font-size: inherit;
+				margin-left: 5px;
+				text-rendering: auto;
+
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
+		}
+
+		p:last-child { margin-bottom: 0; }
+	}
+
+	.lsx-to-widget-tagline { margin-top: -1.2rem; }
+
+	&.lsx-team {
+		.lsx-to-widget-thumb {
+			border-radius: 50%;
+			height: 170px;
+			margin: 0 auto 12px;
+			overflow: hidden;
+			position: relative;
+			width: 170px;
+		}
+	}
+
+	&.lsx-review {
+		.lsx-to-widget-thumb {
+			border-radius: 50%;
+			height: 100px;
+			margin: 0 auto 12px;
+			overflow: hidden;
+			position: relative;
+			width: 100px;
+		}
+
+		.lsx-to-widget-blockquote {
+			@include media('>=tablet') { max-width: none; }
+		}
+	}
+
+	.lsx-to-widget-thumb img {
+		width: 100%;
+
+		&.lazyload,
+		&.lazyloading {
+			width: auto;
+		}
+	}
+}
+
+.lsx-to-widget-meta-data {
+	margin: $lsx-to-gap-half 0;
+	position: relative;
+
+	.lsx-to-widget-item-wrap.lsx-review & { margin-bottom: 0; }
+}

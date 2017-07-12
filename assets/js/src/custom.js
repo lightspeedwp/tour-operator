@@ -85,6 +85,23 @@ var lsx_to = Object.create( null );
 	};
 
 	/**
+	 * Read more (travel info) effect.
+	 *
+	 * @package    tour-operator
+	 * @subpackage scripts
+	 */
+	lsx_to.set_read_more_travel_info = function() {
+		$( '.travel-info-entry-content .more-link' ).click( function( event ) {
+			event.preventDefault();
+			$( this ).closest( '.travel-info-entry-content' ).hide();
+
+			$( this ).closest( '.travel-info-content' ).find( '.travel-info-entry-content.hidden' ).each( function() {
+				$( this ).removeClass( 'hidden' );
+			} );
+		} );
+	};
+
+	/**
 	 * Read more (itinerary) effect.
 	 *
 	 * @package    tour-operator
@@ -206,6 +223,7 @@ var lsx_to = Object.create( null );
 	lsx_to.fix_anchor_menu = function() {
 		$( '.lsx-to-navigation' ).scrollToFixed({
 			minWidth: 1200,
+			zIndex: 100,
 
 			marginTop: function () {
 				var mt = 0;
@@ -288,6 +306,7 @@ var lsx_to = Object.create( null );
 		lsx_to.remove_empty_widgets();
 		lsx_to.add_extra_class_to_meta();
 		lsx_to.set_read_more();
+		lsx_to.set_read_more_travel_info();
 		lsx_to.set_read_more_itinerary();
 		lsx_to.build_slider();
 		lsx_to.build_slider_lightbox();

@@ -54,7 +54,7 @@ class Frontend extends Tour_Operator {
 		add_filter( 'post_class', array( $this, 'replace_class' ), 10, 1 );
 		add_filter( 'body_class', array( $this, 'replace_class' ), 10, 1 );
 
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ), 11 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ), 999 );
 		add_action( 'wp_head', array( $this, 'wp_head' ), 10 );
 		add_filter( 'body_class', array( $this, 'body_class' ), 15, 1 );
 
@@ -65,7 +65,6 @@ class Frontend extends Tour_Operator {
 
 		add_filter( 'lsx_to_connected_list_item', array( $this, 'add_modal_attributes' ), 10, 3 );
 		add_action( 'wp_footer', array( $this, 'output_modals' ), 10 );
-		add_filter( 'use_default_gallery_style', '__return_false' );
 		add_filter( 'lsx_to_tagline', array( $this, 'get_tagline' ), 1, 3 );
 
 		// add_filter( 'the_terms', array( $this, 'links_new_window' ), 10, 2 );
@@ -86,7 +85,10 @@ class Frontend extends Tour_Operator {
 
 		if ( is_admin() ) {
 			add_filter( 'lsx_customizer_colour_selectors_body', array( $this, 'customizer_to_body_colours_handler' ), 15, 2 );
+			add_filter( 'lsx_customizer_colour_selectors_main_menu', array( $this, 'customizer_to_main_menu_colours_handler' ), 15, 2 );
 		}
+
+		add_filter( 'lsx_fonts_css', array( $this, 'customizer_to_fonts_handler' ), 15 );
 	}
 
 	/**
@@ -116,6 +118,8 @@ class Frontend extends Tour_Operator {
 		}
 
 		if ( ( is_post_type_archive( $this->active_post_types ) ) || ( is_tax( array_keys( $this->taxonomies ) ) ) ) {
+			add_filter( 'use_default_gallery_style', '__return_false' );
+
 			if ( ! class_exists( 'LSX_Banners' ) ) {
 				remove_action( 'lsx_content_wrap_before', 'lsx_global_header' );
 				add_action( 'lsx_content_wrap_before', 'lsx_to_global_header', 100 );
@@ -129,6 +133,8 @@ class Frontend extends Tour_Operator {
 		}
 
 		if ( is_singular( $this->active_post_types ) ) {
+			add_filter( 'use_default_gallery_style', '__return_false' );
+
 			if ( ! class_exists( 'LSX_Banners' ) ) {
 				remove_action( 'lsx_content_wrap_before', 'lsx_global_header' );
 				add_action( 'lsx_content_wrap_before', 'lsx_to_global_header', 100 );
@@ -414,6 +420,28 @@ class Frontend extends Tour_Operator {
 	}
 
 	/**
+	 * Handle fonts that might be change by LSX Customiser
+	 */
+	public function customizer_to_fonts_handler( $css_fonts ) {
+		global $wp_filesystem;
+
+		$css_fonts_file = LSX_TO_PATH . '/assets/css/to-fonts.css';
+
+		if ( file_exists( $css_fonts_file ) ) {
+			if ( empty( $wp_filesystem ) ) {
+				require_once( ABSPATH . 'wp-admin/includes/file.php' );
+				WP_Filesystem();
+			}
+
+			if ( $wp_filesystem ) {
+				$css_fonts .= $wp_filesystem->get_contents( $css_fonts_file );
+			}
+		}
+
+		return $css_fonts;
+	}
+
+	/**
 	 * Handle body colours that might be change by LSX Customiser
 	 */
 	public function customizer_to_body_colours_handler( $css, $colors ) {
@@ -424,11 +452,33 @@ class Frontend extends Tour_Operator {
 			 * LSX Customizer - Body (Tour Operators)
 			 */
 			@include customizer-to-body-colours (
+				$bg:   		' . $colors['background_color'] . ',
 				$breaker:   ' . $colors['body_line_color'] . ',
 				$color:    	' . $colors['body_text_color'] . ',
 				$link:    	' . $colors['body_link_color'] . ',
 				$hover:    	' . $colors['body_link_hover_color'] . ',
 				$small:    	' . $colors['body_text_small_color'] . '
+			);
+		';
+
+		return $css;
+	}
+
+	/**
+	 * Handle main menu colours that might be change by LSX Customiser
+	 */
+	public function customizer_to_main_menu_colours_handler( $css, $colors ) {
+		$css .= '
+			@import "' . LSX_TO_PATH . '/assets/css/scss/customizer-to-main-menu-colours";
+
+			/**
+			 * LSX Customizer - Main Menu (Tour Operators)
+			 */
+			@include customizer-to-main-menu-colours (
+				$dropdown:            ' . $colors['main_menu_dropdown_background_color'] . ',
+				$dropdown-hover:      ' . $colors['main_menu_dropdown_background_hover_color'] . ',
+				$dropdown-link:       ' . $colors['main_menu_dropdown_link_color'] . ',
+				$dropdown-link-hover: ' . $colors['main_menu_dropdown_link_hover_color'] . '
 			);
 		';
 

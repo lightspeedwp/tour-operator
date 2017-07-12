@@ -9,6 +9,27 @@
  */
 
 /**
+ * Outputs the posts attached tours
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tags
+ * @category 	tour
+ */
+function lsx_to_tour_posts() {
+	global $lsx_to_archive;
+
+	$args = array(
+		'from'		=> 'post',
+		'to'		=> 'tour',
+		'column'	=> '3',
+		'before'	=> '<section id="posts" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Featured Posts', 'tour-operator' ) . '</h2>',
+		'after'		=> '</section>',
+	);
+
+	lsx_to_connected_panel_query( $args );
+}
+
+/**
  * Gets the current tours price
  *
  * @param		$before	| string
@@ -20,7 +41,7 @@
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_to_price( $before = "", $after = "", $echo = true ) {
+function lsx_to_price( $before = '', $after = '', $echo = true ) {
 	lsx_to_custom_field_query( 'price', $before, $after, $echo );
 }
 
@@ -36,7 +57,7 @@ function lsx_to_price( $before = "", $after = "", $echo = true ) {
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_to_duration( $before = "", $after = "", $echo = true ) {
+function lsx_to_duration( $before = '', $after = '', $echo = true ) {
 	lsx_to_custom_field_query( 'duration', $before, $after, $echo );
 }
 
@@ -52,7 +73,7 @@ function lsx_to_duration( $before = "", $after = "", $echo = true ) {
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_to_included( $before = "", $after = "", $echo =true ) {
+function lsx_to_included( $before = '', $after = '', $echo = true ) {
 	return lsx_to_custom_field_query( 'included', $before, $after, $echo );
 }
 
@@ -68,7 +89,7 @@ function lsx_to_included( $before = "", $after = "", $echo =true ) {
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_to_not_included( $before = "", $after = "", $echo = true ) {
+function lsx_to_not_included( $before = '', $after = '', $echo = true ) {
 	return lsx_to_custom_field_query( 'not_included', $before, $after, $echo );
 }
 
@@ -84,11 +105,11 @@ function lsx_to_not_included( $before = "", $after = "", $echo = true ) {
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_to_departure_point( $before = "", $after = "", $echo = true ) {
+function lsx_to_departure_point( $before = '', $after = '', $echo = true ) {
 	$departs_from = get_post_meta( get_the_ID(), 'departs_from', false );
 
 	if ( ! empty( $departs_from ) && is_array( $departs_from ) && count( $departs_from ) > 0 ) {
-		$return = $before . lsx_to_connected_list( $departs_from, 'destination', true, ', ') . $after;
+		$return = $before . lsx_to_connected_list( $departs_from, 'destination', true, ', ' ) . $after;
 
 		if ( $echo ) {
 			echo wp_kses_post( $return );
@@ -110,7 +131,7 @@ function lsx_to_departure_point( $before = "", $after = "", $echo = true ) {
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_to_end_point( $before = "", $after = "", $echo = true ) {
+function lsx_to_end_point( $before = '', $after = '', $echo = true ) {
 	$end_point = get_post_meta( get_the_ID(), 'ends_in', false );
 
 	if ( ! empty( $end_point ) && is_array( $end_point ) && count( $end_point ) > 0 ) {
@@ -139,14 +160,14 @@ function lsx_to_included_block() {
 		$class = 'col-xs-12 col-sm-6';
 
 		if ( ( null === $tour_included && null !== $tour_not_included ) || ( null !== $tour_included && null === $tour_not_included ) ) {
-			$class="col-xs-12";
+			$class = 'col-xs-12';
 		}
 	?>
 		<section id="included-excluded" class="lsx-to-section">
 			<div class="row">
 				<?php if ( null !== $tour_included ) { ?>
 					<div class="<?php echo esc_attr( $class ); ?> included">
-						<h2 class="lsx-to-section-title lsx-title-small"><?php esc_html_e( 'Included', 'tour-operator' ); ?></h2>
+						<h2 class="lsx-to-section-title lsx-to-section-title-small"><?php esc_html_e( 'Included', 'tour-operator' ); ?></h2>
 						<div class="entry-content">
 							<?php echo wp_kses_post( apply_filters( 'the_content', wpautop( $tour_included ) ) ); ?>
 						</div>
@@ -154,7 +175,7 @@ function lsx_to_included_block() {
 				<?php }
 				if ( null !== $tour_not_included ) { ?>
 					<div class="<?php echo esc_attr( $class ); ?> not-included">
-						<h2 class="lsx-to-section-title lsx-title-small"><?php esc_html_e( 'Not Included', 'tour-operator' ); ?></h2>
+						<h2 class="lsx-to-section-title lsx-to-section-title-small"><?php esc_html_e( 'Not Included', 'tour-operator' ); ?></h2>
 						<div class="entry-content">
 							<?php echo wp_kses_post( apply_filters( 'the_content', wpautop( $tour_not_included ) ) ); ?>
 						</div>
@@ -178,7 +199,7 @@ function lsx_to_included_block() {
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_to_highlights( $before = "", $after = "", $echo = true ) {
+function lsx_to_highlights( $before = '', $after = '', $echo = true ) {
 	$highlights = get_post_meta( get_the_ID(), 'hightlights', true );
 
 	if ( false !== $highlights && '' !== $highlights ) {
@@ -204,7 +225,7 @@ function lsx_to_highlights( $before = "", $after = "", $echo = true ) {
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_to_best_time_to_visit( $before = "", $after = "", $echo = true ) {
+function lsx_to_best_time_to_visit( $before = '', $after = '', $echo = true ) {
 	$best_time_to_visit = get_post_meta( get_the_ID(), 'best_time_to_visit', true );
 
 	if ( false !== $best_time_to_visit && '' !== $best_time_to_visit && is_array( $best_time_to_visit ) && ! empty( $best_time_to_visit ) ) {
@@ -220,10 +241,10 @@ function lsx_to_best_time_to_visit( $before = "", $after = "", $echo = true ) {
 			'september' => esc_html__( 'September', 'tour-operator' ),
 			'october' => esc_html__( 'October', 'tour-operator' ),
 			'november' => esc_html__( 'November', 'tour-operator' ),
-			'december' => esc_html__( 'December', 'tour-operator ')
+			'december' => esc_html__( 'December', 'tour-operator ' ),
 		);
 
-		foreach( $this_year as $month => $label ) {
+		foreach ( $this_year as $month => $label ) {
 			$checked = '';
 
 			if ( in_array( $month, $best_time_to_visit ) ) {
@@ -256,6 +277,6 @@ function lsx_to_best_time_to_visit( $before = "", $after = "", $echo = true ) {
  * @subpackage	template-tags
  * @category 	connections
  */
-function lsx_to_connected_tours( $before = "", $after = "", $echo = true ) {
+function lsx_to_connected_tours( $before = '', $after = '', $echo = true ) {
 	lsx_to_connected_items_query( 'tour', get_post_type(), $before, $after, $echo );
 }

@@ -415,19 +415,19 @@ class Tour {
 	 * Outputs the tour meta on the modal
 	 */
 	public function content_meta() {
-		if ( 'tour' === get_post_type() ) {
+		if ( 'tour' === get_post_type() ) { ?>
+			<?php
+				$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
+
+				lsx_to_price( '<span class="' . $meta_class . 'price">' . esc_html__( 'From price', 'tour-operator' ) . ': ', '</span>' );
+				lsx_to_duration( '<span class="' . $meta_class . 'duration">' . esc_html__( 'Duration', 'tour-operator' ) . ': ', '</span>' );
+				the_terms( get_the_ID(), 'travel-style', '<span class="' . $meta_class . 'style">' . esc_html__( 'Travel Style', 'tour-operator' ) . ': ', ', ', '</span>' );
+				lsx_to_connected_countries( '<span class="' . $meta_class . 'destinations">' . esc_html__( 'Destinations', 'tour-operator' ) . ': ', '</span>', true );
+
+				if ( function_exists( 'lsx_to_connected_activities' ) ) {
+					lsx_to_connected_activities( '<span class="' . $meta_class . 'activities">' . esc_html__( 'Activities', 'tour-operator' ) . ': ', '</span>' );
+				}
 			?>
-			<div class="tour-details">
-				<div class="meta info"><?php
-					lsx_to_price( '<span class="price">' . esc_html__( 'From price', 'tour-operator' ) . ': ', '</span>' );
-					lsx_to_duration( '<span class="duration">' . esc_html__( 'Duration', 'tour-operator' ) . ': ', '</span>' );
-				?></div>
-				<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">' . esc_html__( 'Travel Style', 'tour-operator' ) . ': ', ', ', '</div>' ); ?>
-				<?php lsx_to_connected_countries( '<div class="meta destination">' . esc_html__( 'Destinations', 'tour-operator' ) . ': ', '</div>', true ); ?>
-				<?php if ( function_exists( 'lsx_to_connected_activities' ) ) {
-					lsx_to_connected_activities( '<div class="meta activities">' . esc_html__( 'Activities', 'tour-operator' ) . ': ', '</div>' );
-				} ?>
-			</div>
 		<?php }
 	}
 
@@ -447,7 +447,9 @@ class Tour {
 			$this->get_map_link();
 			$this->get_gallery_link();
 			$this->get_videos_link();
+			$this->get_related_specials_link();
 			$this->get_related_reviews_link();
+			$this->get_related_posts_link();
 			// @TODO - get_related_tours_link [lsx_to_related_items]
 
 			$page_links = $this->page_links;
@@ -534,11 +536,33 @@ class Tour {
 	/**
 	 * Tests for the Related Reviews and returns a link for the section
 	 */
+	public function get_related_specials_link() {
+		$connected_specials = get_post_meta( get_the_ID(), 'special_to_tour', false );
+
+		if ( post_type_exists( 'special' ) && is_array( $connected_specials ) && ! empty( $connected_specials ) ) {
+			$this->page_links['special'] = esc_html__( 'Specials', 'tour-operator' );
+		}
+	}
+
+	/**
+	 * Tests for the Related Reviews and returns a link for the section
+	 */
 	public function get_related_reviews_link() {
 		$connected_reviews = get_post_meta( get_the_ID(), 'review_to_tour', false );
 
-		if ( post_type_exists( 'tour' ) && is_array( $connected_reviews ) && ! empty( $connected_reviews ) ) {
+		if ( post_type_exists( 'review' ) && is_array( $connected_reviews ) && ! empty( $connected_reviews ) ) {
 			$this->page_links['review'] = esc_html__( 'Reviews', 'tour-operator' );
+		}
+	}
+
+	/**
+	 * Tests for the Related Posts and returns a link for the section
+	 */
+	public function get_related_posts_link() {
+		$connected_posts = get_post_meta( get_the_ID(), 'post_to_tour', false );
+
+		if ( is_array( $connected_posts ) && ! empty( $connected_posts ) ) {
+			$this->page_links['posts'] = esc_html__( 'Posts', 'tour-operator' );
 		}
 	}
 

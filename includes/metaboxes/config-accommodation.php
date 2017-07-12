@@ -70,20 +70,22 @@ $metabox['fields'][] = array(
 	),
 );
 
-$metabox['fields'][] = array(
-	'id'         => 'team_to_accommodation',
-	'name'       => esc_html__( 'Accommodation Expert', 'tour-operator' ),
-	'type'       => 'post_select',
-	'use_ajax'   => false,
-	'allow_none' => true,
-	'query'      => array(
-		'post_type'      => 'team',
-		'nopagin'        => true,
-		'posts_per_page' => '-1',
-		'orderby'        => 'title',
-		'order'          => 'ASC',
-	),
-);
+if ( class_exists( 'LSX_TO_Team' ) ) {
+	$metabox['fields'][] = array(
+		'id'         => 'team_to_accommodation',
+		'name'       => esc_html__( 'Accommodation Expert', 'tour-operator' ),
+		'type'       => 'post_select',
+		'use_ajax'   => false,
+		'allow_none' => true,
+		'query'      => array(
+			'post_type'      => 'team',
+			'nopagin'        => true,
+			'posts_per_page' => '-1',
+			'orderby'        => 'title',
+			'order'          => 'ASC',
+		),
+	);
+}
 
 if ( class_exists( 'LSX_TO_Maps' ) ) {
 	$metabox['fields'][] = array(
@@ -325,6 +327,28 @@ $metabox['fields'][] = array(
 			'repeatable' => true,
 			'show_size'  => false,
 		),
+	),
+);
+
+$metabox['fields'][] = array(
+	'id'   => 'posts_title',
+	'name' => esc_html__( 'Posts', 'tour-operator' ),
+	'type' => 'title',
+);
+
+$metabox['fields'][] = array(
+	'id'         => 'post_to_accommodation',
+	'name'       => esc_html__( 'Posts related with this accommodation', 'tour-operator' ),
+	'type'       => 'post_select',
+	'use_ajax'   => false,
+	'repeatable' => true,
+	'allow_none' => true,
+	'query'      => array(
+		'post_type'      => 'post',
+		'nopagin'        => true,
+		'posts_per_page' => '-1',
+		'orderby'        => 'title',
+		'order'          => 'ASC',
 	),
 );
 

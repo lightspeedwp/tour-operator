@@ -9,6 +9,27 @@
  */
 
 /**
+ * Outputs the posts attached accommodation
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tags
+ * @category 	accommodation
+ */
+function lsx_to_accommodation_posts() {
+	global $lsx_to_archive;
+
+	$args = array(
+		'from'		=> 'post',
+		'to'		=> 'accommodation',
+		'column'	=> '3',
+		'before'	=> '<section id="posts" class="lsx-to-section"><h2 class="lsx-to-section-title lsx-title">' . esc_html__( 'Featured Posts', 'tour-operator' ) . '</h2>',
+		'after'		=> '</section>',
+	);
+
+	lsx_to_connected_panel_query( $args );
+}
+
+/**
  * Outputs the current accommodations room total
  *
  * @param		$before	| string
@@ -20,7 +41,7 @@
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function lsx_to_accommodation_room_total( $before = "", $after = "", $echo = true ) {
+function lsx_to_accommodation_room_total( $before = '', $after = '', $echo = true ) {
 	lsx_to_custom_field_query( 'number_of_rooms' , $before, $after, $echo );
 }
 
@@ -37,7 +58,7 @@ function lsx_to_accommodation_room_total( $before = "", $after = "", $echo = tru
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function lsx_to_accommodation_rating( $before = "", $after = "", $echo = true, $post_id = false ) {
+function lsx_to_accommodation_rating( $before = '', $after = '', $echo = true, $post_id = false ) {
 	lsx_to_custom_field_query( 'rating', $before, $after, $echo, $post_id );
 }
 
@@ -69,11 +90,11 @@ function lsx_to_has_facilities() {
 				if ( 0 === $facility->parent ) {
 					$main_facilities[] = $facility;
 				} else {
-					$child_facilities[$facility->parent][] = $facility;
+					$child_facilities[ $facility->parent ][] = $facility;
 				}
 			}
 
-			set_transient( get_the_ID().'_facilities', $location, 30 );
+			set_transient( get_the_ID() . '_facilities', $location, 30 );
 		}
 	} else {
 		return false;
@@ -92,7 +113,7 @@ function lsx_to_has_facilities() {
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function lsx_to_accommodation_facilities( $before = "", $after = "", $echo = true ) {
+function lsx_to_accommodation_facilities( $before = '', $after = '', $echo = true ) {
 	$facilities = wp_get_object_terms( get_the_ID(), 'facility' );
 	$main_facilities = array();
 	$child_facilities = array();
@@ -102,19 +123,19 @@ function lsx_to_accommodation_facilities( $before = "", $after = "", $echo = tru
 		foreach ( $facilities as $facility ) {
 			if ( 0 === $facility->parent ) {
 				$main_facilities[] = $facility;
-			}else{
-				$child_facilities[$facility->parent][] = $facility;
+			} else {
+				$child_facilities[ $facility->parent ][] = $facility;
 			}
 		}
 
 		//Output in the order we want
 		if ( count( $main_facilities ) > 0 && count( $child_facilities ) > 0 ) {
 			foreach ( $main_facilities as $heading ) {
-				if ( isset( $child_facilities[$heading->term_id] ) ) {
+				if ( isset( $child_facilities[ $heading->term_id ] ) ) {
 					$return .= '<div class="' . $heading->slug . ' col-xs-12 col-sm-6"><div class="facilities-content"><h5 class="facilities-title"><a href="' . get_term_link( $heading->slug, 'facility' ) . '">' . esc_html( $heading->name ) . '</a></h5>';
 					$return .= '<ul class="facilities-list">';
 
-					foreach ( $child_facilities[$heading->term_id] as $child_facility ) {
+					foreach ( $child_facilities[ $heading->term_id ] as $child_facility ) {
 						$return .= '<li class="facility-item"><a href="' . get_term_link( $child_facility->slug, 'facility' ) . '">' . esc_html( $child_facility->name ) . '</a></li>';
 					}
 
@@ -152,7 +173,7 @@ function lsx_to_accommodation_facilities( $before = "", $after = "", $echo = tru
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function lsx_to_accommodation_spoken_languages( $before = "", $after = "", $echo = true ) {
+function lsx_to_accommodation_spoken_languages( $before = '', $after = '', $echo = true ) {
 	$spoken_languages = get_post_meta( get_the_ID(), 'spoken_languages', true );
 
 	if ( is_string( $spoken_languages ) && ! empty( $spoken_languages ) ) {
@@ -197,7 +218,7 @@ function lsx_to_accommodation_spoken_languages( $before = "", $after = "", $echo
  * @subpackage	template-tags
  * @category 	accommodation
  */
-function lsx_to_accommodation_special_interests( $before = "", $after = "", $echo = true, $post_id = false ) {
+function lsx_to_accommodation_special_interests( $before = '', $after = '', $echo = true, $post_id = false ) {
 	if ( false === $post_id ) {
 		$post_id = get_the_ID();
 	}
@@ -247,7 +268,7 @@ function lsx_to_accommodation_special_interests( $before = "", $after = "", $ech
  * @category 	accommodation
  * @category 	activity
  */
-function lsx_to_accommodation_activity_friendly( $before = "", $after = "", $echo = true ) {
+function lsx_to_accommodation_activity_friendly( $before = '', $after = '', $echo = true ) {
 	$friendly = get_post_meta( get_the_ID(), 'suggested_visitor_types', true );
 
 	if ( is_string( $friendly ) && ! empty( $friendly ) ) {
@@ -291,16 +312,16 @@ function lsx_to_accommodation_meta() {
 	if ( 'accommodation' === get_post_type() ) {
 		$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
 
-		lsx_to_price ( '<span class="'. $meta_class .'price">'. esc_html__( 'From price', 'tour-operator' ) .': ', '</span>' );
-		lsx_to_accommodation_room_total( '<span class="'. $meta_class .'rooms">'. esc_html__( 'Rooms', 'tour-operator' ) .': ', '</span>' );
-		lsx_to_accommodation_rating( '<span class="'. $meta_class .'rating">'. esc_html__( 'Rating', 'tour-operator') .': ', '</span>' );
-		the_terms( get_the_ID(), 'travel-style', '<span class="'. $meta_class .'style">'. esc_html__( 'Style', 'tour-operator' ) .': ', ', ', '</span>' );
-		the_terms( get_the_ID(), 'accommodation-brand', '<span class="'. $meta_class .'brand">'. esc_html__( 'Brand' , 'tour-operator' ) .': ', ', ', '</span>' );
-		the_terms( get_the_ID(), 'accommodation-type', '<span class="'. $meta_class .'type">'. esc_html__( 'Type', 'tour-operator' ) .': ', ', ', '</span>' );
-		lsx_to_accommodation_spoken_languages( '<span class="'. $meta_class .'languages">'. esc_html__( 'Spoken Languages', 'tour-operator' ) .': ', '</span>' );
-		lsx_to_accommodation_activity_friendly( '<span class="'. $meta_class .'friendly">'. esc_html__( 'Friendly', 'tour-operator' ) .': ', '</span>' );
-		lsx_to_accommodation_special_interests( '<span class="'. $meta_class .'special">'. esc_html__( 'Special Interests', 'tour-operator' ) .': ','</span>' );
-		lsx_to_connected_destinations( '<span class="'. $meta_class .'destinations">'. esc_html__( 'Location', 'tour-operator' ) .': ', '</span>' );
+		lsx_to_price( '<span class="' . $meta_class . 'price">' . esc_html__( 'From price', 'tour-operator' ) . ': ', '</span>' );
+		lsx_to_accommodation_room_total( '<span class="' . $meta_class . 'rooms">' . esc_html__( 'Rooms', 'tour-operator' ) . ': ', '</span>' );
+		lsx_to_accommodation_rating( '<span class="' . $meta_class . 'rating">' . esc_html__( 'Rating', 'tour-operator' ) . ': ', '</span>' );
+		the_terms( get_the_ID(), 'travel-style', '<span class="' . $meta_class . 'style">' . esc_html__( 'Style', 'tour-operator' ) . ': ', ', ', '</span>' );
+		the_terms( get_the_ID(), 'accommodation-brand', '<span class="' . $meta_class . 'brand">' . esc_html__( 'Brand' , 'tour-operator' ) . ': ', ', ', '</span>' );
+		the_terms( get_the_ID(), 'accommodation-type', '<span class="' . $meta_class . 'type">' . esc_html__( 'Type', 'tour-operator' ) . ': ', ', ', '</span>' );
+		lsx_to_accommodation_spoken_languages( '<span class="' . $meta_class . 'languages">' . esc_html__( 'Spoken Languages', 'tour-operator' ) . ': ', '</span>' );
+		lsx_to_accommodation_activity_friendly( '<span class="' . $meta_class . 'friendly">' . esc_html__( 'Friendly', 'tour-operator' ) . ': ', '</span>' );
+		lsx_to_accommodation_special_interests( '<span class="' . $meta_class . 'special">' . esc_html__( 'Special Interests', 'tour-operator' ) . ': ','</span>' );
+		lsx_to_connected_destinations( '<span class="' . $meta_class . 'destinations">' . esc_html__( 'Location', 'tour-operator' ) . ': ', '</span>' );
 	}
 }
 
@@ -316,6 +337,6 @@ function lsx_to_accommodation_meta() {
  * @subpackage	template-tags
  * @category 	connections
  */
-function lsx_to_connected_accommodation( $before = "", $after = "", $echo = true ) {
+function lsx_to_connected_accommodation( $before = '', $after = '', $echo = true ) {
 	lsx_to_connected_items_query( 'accommodation', get_post_type(), $before, $after, $echo );
 }

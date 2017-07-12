@@ -96,7 +96,7 @@ $metabox['fields'][] = array(
 	),
 );
 
-if ( post_type_exists( 'team' ) ) {
+if ( class_exists( 'LSX_TO_Team' ) ) {
 	$metabox['fields'][] = array(
 		'id'         => 'team_to_tour',
 		'name'       => esc_html__( 'Tour Expert', 'tour-operator' ),
@@ -212,25 +212,6 @@ if ( class_exists( 'Envira_Gallery' ) ) {
 	}
 }
 
-if ( post_type_exists( 'special' ) ) {
-	$metabox['fields'][] = array(
-		'id'         => 'special_to_tour',
-		'name'       => esc_html__( 'Specials related with this tour', 'tour-operator' ),
-		'type'       => 'post_select',
-		'use_ajax'   => false,
-		'allow_none' => true,
-		'repeatable' => true,
-		'sortable'   => true,
-		'query'      => array(
-			'post_type'      => 'special',
-			'nopagin'        => true,
-			'posts_per_page' => '-1',
-			'orderby'        => 'title',
-			'order'          => 'ASC',
-		),
-	);
-}
-
 $metabox['fields'][] = array(
 	'id'   => 'itinerary_title',
 	'name' => esc_html__( 'Itinerary', 'tour-operator' ),
@@ -253,6 +234,28 @@ $metabox['fields'][] = array(
 	'sortable'    => true,
 	'fields'      => lsx\legacy\Tour::get_instance()->itinerary_fields(),
 	'desc'        => '',
+);
+
+$metabox['fields'][] = array(
+	'id'   => 'posts_title',
+	'name' => esc_html__( 'Posts', 'tour-operator' ),
+	'type' => 'title',
+);
+
+$metabox['fields'][] = array(
+	'id'         => 'post_to_tour',
+	'name'       => esc_html__( 'Posts related with this tour', 'tour-operator' ),
+	'type'       => 'post_select',
+	'use_ajax'   => false,
+	'repeatable' => true,
+	'allow_none' => true,
+	'query'      => array(
+		'post_type'      => 'post',
+		'nopagin'        => true,
+		'posts_per_page' => '-1',
+		'orderby'        => 'title',
+		'order'          => 'ASC',
+	),
 );
 
 $metabox['fields'][] = array(

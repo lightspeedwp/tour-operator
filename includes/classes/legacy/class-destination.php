@@ -158,15 +158,16 @@ class Destination {
 	 * Outputs the destination meta
 	 */
 	public function content_meta() {
-		if ( 'destination' === get_post_type() ) {
-			?>
-			<div class="destination-details meta taxonomies">
-				<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">' . esc_html__( 'Travel Style', 'tour-operator' ) . ': ', ', ', '</div>' ); ?>
+		if ( 'destination' === get_post_type() ) { ?>
+			<?php
+				$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
 
-				<?php if ( function_exists( 'lsx_to_connected_activities' ) ) {
-					lsx_to_connected_activities( '<div class="meta activities">' . esc_html__( 'Activities', 'tour-operator' ) . ': ', '</div>' );
-				} ?>
-			</div>
+				the_terms( get_the_ID(), 'travel-style', '<span class="' . $meta_class . 'style">' . esc_html__( 'Travel Style', 'tour-operator' ) . ': ', ', ', '</span>' );
+
+				if ( function_exists( 'lsx_to_connected_activities' ) ) {
+					lsx_to_connected_activities( '<span class="' . $meta_class . 'activities">' . esc_html__( 'Activities', 'tour-operator' ) . ': ', '</span>' );
+				}
+			?>
 		<?php }
 	}
 
@@ -183,6 +184,10 @@ class Destination {
 
 			$this->get_travel_info_link();
 			$this->get_region_link();
+			$this->get_map_link();
+			$this->get_gallery_link();
+			$this->get_videos_link();
+
 			$this->get_related_tours_link();
 
 			if ( ! lsx_to_item_has_children( get_the_ID(), 'destination' ) ) {
@@ -190,9 +195,9 @@ class Destination {
 				$this->get_related_activities_link();
 			}
 
-			$this->get_map_link();
-			$this->get_gallery_link();
-			$this->get_videos_link();
+			$this->get_related_specials_link();
+			$this->get_related_reviews_link();
+			$this->get_related_posts_link();
 
 			$page_links = $this->page_links;
 		}
@@ -252,7 +257,9 @@ class Destination {
 	 */
 	public function get_map_link() {
 		if ( function_exists( 'lsx_to_has_map' ) && lsx_to_has_map() ) {
-			$this->page_links['destination-map'] = esc_html__( 'Map', 'tour-operator' );
+			if ( ! function_exists( 'lsx_to_has_destination_banner_map' ) || ! lsx_to_has_destination_banner_map() ) {
+				$this->page_links['destination-map'] = esc_html__( 'Map', 'tour-operator' );
+			}
 		}
 	}
 
@@ -335,6 +342,28 @@ class Destination {
 	}
 
 	/**
+	 * Tests for the Related Reviews and returns a link for the section
+	 */
+	public function get_related_specials_link() {
+		$connected_specials = get_post_meta( get_the_ID(), 'special_to_destination', false );
+
+		if ( post_type_exists( 'special' ) && is_array( $connected_specials ) && ! empty( $connected_specials ) ) {
+			$this->page_links['special'] = esc_html__( 'Specials', 'tour-operator' );
+		}
+	}
+
+	/**
+	 * Tests for the Related Reviews and returns a link for the section
+	 */
+	public function get_related_reviews_link() {
+		$connected_reviews = get_post_meta( get_the_ID(), 'review_to_destination', false );
+
+		if ( post_type_exists( 'review' ) && is_array( $connected_reviews ) && ! empty( $connected_reviews ) ) {
+			$this->page_links['review'] = esc_html__( 'Reviews', 'tour-operator' );
+		}
+	}
+
+	/**
 	 * Only return the upper lever countries
 	 */
 	public function filter_countries( $countries = array() ) {
@@ -357,6 +386,17 @@ class Destination {
 		}
 
 		return $countries;
+	}
+
+	/**
+	 * Tests for the Related Posts and returns a link for the section
+	 */
+	public function get_related_posts_link() {
+		$connected_posts = get_post_meta( get_the_ID(), 'post_to_destination', false );
+
+		if ( is_array( $connected_posts ) && ! empty( $connected_posts ) ) {
+			$this->page_links['posts'] = esc_html__( 'Posts', 'tour-operator' );
+		}
 	}
 
 }
