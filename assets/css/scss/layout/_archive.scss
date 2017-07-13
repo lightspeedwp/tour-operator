@@ -34,7 +34,9 @@
 
 		&.post,
 		&.page {
-			.entry-content { padding: 0; }
+			.search.search-results & {
+				.entry-content { padding: 0; }
+			}
 		}
 
 		&.destination {
@@ -137,6 +139,10 @@
 	.lsx-to-single-link {
 		margin-bottom: 0;
 		margin-top: $lsx-to-gap-half;
+
+		.fa {
+			margin-left: 5px;
+		}
 	}
 }
 
@@ -276,6 +282,7 @@
 	.lsx-to-label {
 		font-size: 60%;
 		line-height: 27px; // This must be the same line-height of its parent
+		margin-left: 5px;
 		padding: 4px 1rem;
 		vertical-align: top;
 
