@@ -3,7 +3,6 @@
  */
 
 jQuery(document).ready(function() {
-
 	/*
 	 * Choose Image
 	 */
