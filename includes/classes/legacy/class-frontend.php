@@ -306,7 +306,7 @@ class Frontend extends Tour_Operator {
 		$queried_post_type = get_query_var( 'post_type' );
 
 		if ( is_singular() && false !== $this->options && isset( $this->options[ $queried_post_type ] ) && isset( $this->options[ $queried_post_type ]['disable_single'] ) ) {
-			wp_redirect( home_url(), 301 );
+			wp_redirect( get_post_type_archive_link( $queried_post_type ), 301 );
 			exit;
 		}
 
@@ -314,7 +314,7 @@ class Frontend extends Tour_Operator {
 			$single_desabled = get_post_meta( get_the_ID(), 'disable_single', true );
 
 			if ( ! empty( $single_desabled ) ) {
-				wp_redirect( home_url(), 301 );
+				wp_redirect( get_post_type_archive_link( $queried_post_type ), 301 );
 				exit;
 			}
 		}

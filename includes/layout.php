@@ -237,7 +237,9 @@ function lsx_to_accommodation_archive_entry_bottom() {
 			<?php } ?>
 		</div>
 
-		<?php if ( 'grid' === tour_operator()->archive_layout ) : ?>
+		<?php $has_single = ! lsx_to_is_single_disabled(); ?>
+
+		<?php if ( $has_single && 'grid' === tour_operator()->archive_layout ) : ?>
 			<a href="<?php the_permalink(); ?>" class="moretag"><?php esc_html_e( 'View accommodation', 'tour-operator' ); ?></a>
 		<?php endif; ?>
 	<?php }
@@ -345,7 +347,9 @@ function lsx_to_destination_archive_entry_bottom() {
 			<?php } ?>
 		</div>
 
-		<?php if ( 'grid' === tour_operator()->archive_layout ) : ?>
+		<?php $has_single = ! lsx_to_is_single_disabled(); ?>
+
+		<?php if ( $has_single && 'grid' === tour_operator()->archive_layout ) : ?>
 			<a href="<?php the_permalink(); ?>" class="moretag"><?php esc_html_e( 'View more', 'tour-operator' ); ?></a>
 		<?php endif; ?>
 	<?php }
@@ -508,7 +512,9 @@ function lsx_to_tour_archive_entry_bottom() {
 			<?php } ?>
 		</div>
 
-		<?php if ( 'grid' === tour_operator()->archive_layout ) : ?>
+		<?php $has_single = ! lsx_to_is_single_disabled(); ?>
+
+		<?php if ( $has_single && 'grid' === tour_operator()->archive_layout ) : ?>
 			<a href="<?php the_permalink(); ?>" class="moretag"><?php esc_html_e( 'View tour', 'tour-operator' ); ?></a>
 		<?php endif; ?>
 	<?php }
