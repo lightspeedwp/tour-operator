@@ -230,7 +230,7 @@ function lsx_to_accommodation_archive_entry_bottom() {
 	if ( 'accommodation' === get_post_type() && ( is_archive() || $lsx_to_archive ) ) { ?>
 			</div>
 
-			<?php if ( empty( tour_operator()->options[ get_post_type() ]['disable_entry_metadata'] ) ) { ?>
+			<?php if ( is_search() || empty( tour_operator()->options[ get_post_type() ]['disable_entry_metadata'] ) ) { ?>
 				<div class="lsx-to-archive-meta-data">
 					<?php lsx_to_accommodation_meta(); ?>
 				</div>
@@ -332,7 +332,7 @@ function lsx_to_destination_archive_entry_bottom() {
 	if ( 'destination' === get_post_type() && ( is_archive() || $lsx_to_archive ) ) { ?>
 			</div>
 
-			<?php if ( empty( tour_operator()->options[ get_post_type() ]['disable_entry_metadata'] ) ) { ?>
+			<?php if ( is_search() || empty( tour_operator()->options[ get_post_type() ]['disable_entry_metadata'] ) ) { ?>
 				<div class="lsx-to-archive-meta-data">
 					<?php
 						$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
@@ -494,7 +494,7 @@ function lsx_to_tour_archive_entry_bottom() {
 	if ( 'tour' === get_post_type() && ( is_archive() || $lsx_to_archive ) ) { ?>
 			</div>
 
-			<?php if ( empty( tour_operator()->options[ get_post_type() ]['disable_entry_metadata'] ) ) { ?>
+			<?php if ( is_search() || empty( tour_operator()->options[ get_post_type() ]['disable_entry_metadata'] ) ) { ?>
 				<div class="lsx-to-archive-meta-data">
 					<?php
 						$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
