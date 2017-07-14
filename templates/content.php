@@ -35,9 +35,7 @@
 				</a>
 			</h3>
 
-			<div <?php lsx_to_entry_class( 'entry-content' ); ?>>
-				<?php the_excerpt(); ?>
-			</div>
+			<div <?php lsx_to_entry_class( 'entry-content' ); ?>><?php the_excerpt(); ?></div>
 		</div>
 	</div>
 

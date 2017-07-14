@@ -1319,6 +1319,8 @@
 
 .lsx-to-archive-template-grid .lsx-to-archive-content-title .lsx-to-label { display: none; }
 
+.lsx-to-archive-content-title + .entry-content:empty { display: none; }
+
 .lsx-to-archive-content-tagline:last-child { margin-bottom: 0; }
 
 @media (min-width: 768px) { .lsx-to-archive-content-tagline { margin-top: -1.2rem; } }

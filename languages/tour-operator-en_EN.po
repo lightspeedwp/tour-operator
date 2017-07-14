@@ -126,7 +126,7 @@ msgstr ""
 msgid "When to Go"
 msgstr ""
 
-#: includes/layout.php:353, templates/content-widget-travel-style.php:41, templates/content-widget.php:33, templates/content.php:45
+#: includes/layout.php:353, templates/content-widget-travel-style.php:41, templates/content-widget.php:33, templates/content.php:43
 msgid "View more"
 msgstr ""
 

@@ -288,6 +288,8 @@
 
 		.lsx-to-archive-template-grid & { display: none; }
 	}
+
+	& + .entry-content:empty { display: none; }
 }
 
 .lsx-to-archive-content-tagline {

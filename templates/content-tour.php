@@ -40,9 +40,7 @@ if ( 1 !== $lsx_to_archive ) {
 
 	<?php } elseif ( is_search() || empty( tour_operator()->options[ get_post_type() ]['disable_entry_text'] ) ) { ?>
 
-		<div <?php lsx_to_entry_class( 'entry-content' ); ?>>
-			<?php the_excerpt(); ?>
-		</div>
+		<div <?php lsx_to_entry_class( 'entry-content' ); ?>><?php the_excerpt(); ?></div>
 
 	<?php } ?>
 
