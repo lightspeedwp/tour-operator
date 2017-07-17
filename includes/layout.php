@@ -20,6 +20,9 @@ add_action( 'lsx_entry_bottom', 'lsx_to_accommodation_archive_entry_bottom' );
 add_action( 'lsx_entry_bottom', 'lsx_to_destination_archive_entry_bottom' );
 add_action( 'lsx_entry_bottom', 'lsx_to_tour_archive_entry_bottom' );
 
+add_action( 'lsx_content_bottom', 'lsx_to_destination_archive_content_bottom' );
+
+
 /**
  * Single
  */
@@ -352,6 +355,24 @@ function lsx_to_destination_archive_entry_bottom() {
 		<?php if ( $has_single && 'grid' === tour_operator()->archive_layout ) : ?>
 			<a href="<?php the_permalink(); ?>" class="moretag"><?php esc_html_e( 'View more', 'tour-operator' ); ?></a>
 		<?php endif; ?>
+	<?php }
+}
+
+/**
+ * Adds the template tags to the bottom of the single-destination.php
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tag
+ * @category 	destination
+ */
+function lsx_to_destination_archive_content_bottom() {
+	 if ( function_exists( 'lsx_to_has_map' ) && lsx_to_has_map() ) { ?>
+		<section id="destination-map">
+			<?php if ( ! lsx_to_has_destination_banner_map() ) : ?>
+				<h2 class="section-title"><?php esc_html_e( 'Map','tour-operator' ); ?></h2>
+			<?php endif ?>
+			<?php lsx_to_map() ?>
+		</section>
 	<?php }
 }
 
