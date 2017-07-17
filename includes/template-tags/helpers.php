@@ -538,47 +538,62 @@ function lsx_to_related_items( $taxonomy = false, $before = '', $after = '', $ec
  * @subpackage	template-tags
  * @category 	helper
  */
-function lsx_to_connected_list( $connected_ids = false, $type = false, $link = true, $seperator = ', ', $parent = false ) {
-	if ( false === $connected_ids || false === $type ) {
+function lsx_to_connected_list( $connected_ids = false, $post_type = false, $link = true, $seperator = ', ', $parent = false ) {
+	if ( false === $connected_ids || false === $post_type ) {
 		return false;
 	} else {
 		if ( ! is_array( $connected_ids ) ) {
 			$connected_ids = explode( ',',$connected_ids );
 		}
 
-		$filters = array(
-			'post_type' => $type,
+		$args = array(
+			'post_type' => $post_type,
 			'post_status' => 'publish',
 			'post__in'	=> $connected_ids,
 		);
 
 		if ( false !== $parent ) {
-			$filters['post_parent'] = $parent;
+			$args['post_parent'] = $parent;
 		}
 
-		$connected_query = get_posts( $filters );
+		$connected_query = new \WP_Query( $args );
 
-		if ( is_array( $connected_query ) ) {
+		if ( $connected_query->have_posts() ) {
 			$connected_list = array();
 
-			foreach ( $connected_query as $cp ) {
+			while ( $connected_query->have_posts() ) {
+				$connected_query->the_post();
 				$html = '';
 
 				if ( $link ) {
-					$html .= '<a href="' . get_the_permalink( $cp->ID ) . '">';
+					global $post;
+
+					$has_single = ! lsx_to_is_single_disabled();
+					$permalink = '';
+
+					if ( $has_single ) {
+						$permalink = get_the_permalink();
+					} elseif ( is_search() || ! is_post_type_archive( $post_type ) ) {
+						$has_single = true;
+						$permalink = get_post_type_archive_link( $post_type ) . '#' . $post_type . '-' . $post->post_name;
+					}
+
+					$html .= '<a href="' . $permalink . '">';
 				}
 
-				$html .= get_the_title( $cp->ID );
+				$html .= get_the_title();
 
 				if ( $link ) {
 					$html .= '</a>';
 				}
 
-				$html = apply_filters( 'lsx_to_connected_list_item',$html,$cp->ID,$link );
+				$html = apply_filters( 'lsx_to_connected_list_item', $html, $cp->ID, $link );
 				$connected_list[] = $html;
 			}
 
-			return implode( $seperator,$connected_list );
+			wp_reset_postdata();
+
+			return implode( $seperator, $connected_list );
 		}
 	}
 }
