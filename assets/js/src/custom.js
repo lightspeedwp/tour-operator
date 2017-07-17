@@ -7,14 +7,38 @@
 
 var lsx_to = Object.create( null );
 
+if ( window.location.hash ) {
+	( document.body || document.documentElement ).scrollIntoView();
+	setTimeout( function() { ( document.body || document.documentElement ).scrollIntoView(); }, 1 );
+}
+
 ;( function( $, window, document, undefined ) {
 
 	'use strict';
 
 	var $document    = $( document ),
 		$window      = $( window ),
-		windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight,
-		windowWidth  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+		window_height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight,
+		window_width  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+	/**
+	 * Easing browser scroll on page load (document URL with hash).
+	 *
+	 * @package    tour-operator
+	 * @subpackage scripts
+	 */
+	lsx_to.set_easing_scroll_on_page_load = function() {
+		if ( window.location.hash ) {
+			var $to = $( window.location.hash ),
+				top = parseInt( $to.offset().top );
+
+			top -= $( '#wpadminbar' ).length > 0 ? $( '#wpadminbar' ).outerHeight( true ) : 0;
+			top -= $( '.top-menu-fixed #masthead' ).length > 0 ? $( '.top-menu-fixed #masthead' ).outerHeight( true ) : 0;
+			top -= $( '.lsx-to-navigation' ).length > 0 ? $( '.lsx-to-navigation' ).outerHeight( true ) : 0;
+
+			$( 'html, body' ).animate( { scrollTop: top }, 800 );
+		}
+	};
 
 	/**
 	 * Remove empty widgets.
@@ -40,8 +64,8 @@ var lsx_to = Object.create( null );
 	 */
 	lsx_to.add_extra_class_to_meta = function() {
 		$( '.meta' ).parent().each( function() {
-			var nodes = $( this ).children( '.meta' );
-			nodes.last().addClass( 'last-meta' );
+			var $nodes = $( this ).children( '.meta' );
+			$nodes.last().addClass( 'last-meta' );
 		} );
 	};
 
@@ -151,7 +175,7 @@ var lsx_to = Object.create( null );
 			var $this = $( this ),
 				interval = $this.data( 'interval' ),
 				autoplay = false,
-				autoplaySpeed = 0;
+				autoplay_speed = 0;
 
 			lsx_to.pre_build_slider( $this );
 
@@ -160,7 +184,7 @@ var lsx_to = Object.create( null );
 
 				if ( ! isNaN( interval ) ) {
 					autoplay = true;
-					autoplaySpeed = interval;
+					autoplay_speed = interval;
 				}
 			}
 
@@ -173,7 +197,7 @@ var lsx_to = Object.create( null );
 				slidesToShow: 3,
 				slidesToScroll: 3,
 				autoplay: autoplay,
-				autoplaySpeed: autoplaySpeed,
+				autoplaySpeed: autoplay_speed,
 				responsive: [
 					{
 						breakpoint: 992,
@@ -226,12 +250,12 @@ var lsx_to = Object.create( null );
 			zIndex: 100,
 
 			marginTop: function () {
-				var mt = 0;
+				var margin_top = 0;
 
-				mt += $( '.top-menu-fixed #masthead' ).length > 0 ? $( '.top-menu-fixed #masthead' ).outerHeight( true ) :  0;
-				mt += $( '#wpadminbar' ).length > 0 ? $( '#wpadminbar' ).outerHeight() : 0;
+				margin_top += $( '#wpadminbar' ).length > 0 ? $( '#wpadminbar' ).outerHeight() : 0;
+				margin_top += $( '.top-menu-fixed #masthead' ).length > 0 ? $( '.top-menu-fixed #masthead' ).outerHeight( true ) :  0;
 
-				return mt;
+				return margin_top;
 			}
 		});
 	};
@@ -243,26 +267,24 @@ var lsx_to = Object.create( null );
 	 * @subpackage scripts
 	 */
 	lsx_to.set_anchor_menu_easing_scroll = function() {
-		$( '.lsx-to-navigation .scroll-easing a' ).on( 'click', function( e ) {
-			e.preventDefault();
+		$( '.lsx-to-navigation .scroll-easing a' ).on( 'click', function( event ) {
+			event.preventDefault();
 
 			var $from = $( this ),
 				$to = $( $from.attr( 'href' ) ),
-				top = parseInt( $to.offset().top ),
-				extra_header = $( '.top-menu-fixed #masthead' ).length > 0 ? $( '.top-menu-fixed #masthead' ).outerHeight( true ) : 0,
-				extra_navigation = $( '.lsx-to-navigation' ).length > 0 ? $( '.lsx-to-navigation' ).outerHeight( true ) : 0,
-				extra_attr = parseInt( $to.data( 'extra-top' ) ? $to.data( 'extra-top' ) : '0' ),
-				extra;
+				top = parseInt( $to.offset().top );
+
+			top -= $( '#wpadminbar' ).length > 0 ? $( '#wpadminbar' ).outerHeight( true ) : 0;
+			top -= $( '.top-menu-fixed #masthead' ).length > 0 ? $( '.top-menu-fixed #masthead' ).outerHeight( true ) : 0;
+			top -= $( '.lsx-to-navigation' ).length > 0 ? $( '.lsx-to-navigation' ).outerHeight( true ) : 0;
 
 			if ( '#summary' === $from.attr( 'href' ) ) {
-				extra_attr = 85;
+				top -= 85;
+			} else {
+				top -= parseInt( $to.data( 'extra-top' ) ? $to.data( 'extra-top' ) : '0' );
 			}
 
-			extra = - ( extra_header + extra_navigation + extra_attr );
-
-			$( 'html, body' ).animate({
-				scrollTop: ( top + extra )
-			}, 800);
+			$( 'html, body' ).animate( { scrollTop: top }, 800 );
 		} );
 	};
 
@@ -273,12 +295,15 @@ var lsx_to = Object.create( null );
 	 * @subpackage scripts
 	 */
 	lsx_to.set_anchor_menu_scroll_spy = function() {
-		var offset_header = $( '.top-menu-fixed #masthead' ).length > 0 ? $( '.top-menu-fixed #masthead' ).outerHeight( true ) : 0,
-			offset_navigation = $( '.lsx-to-navigation' ).length > 0 ? $( '.lsx-to-navigation' ).outerHeight( true ) : 0;
+		var offset = 10;
+
+		offset += $( '#wpadminbar' ).length > 0 ? $( '#wpadminbar' ).outerHeight( true ) : 0;
+		offset += $( '.top-menu-fixed #masthead' ).length > 0 ? $( '.top-menu-fixed #masthead' ).outerHeight( true ) : 0;
+		offset += $( '.lsx-to-navigation' ).length > 0 ? $( '.lsx-to-navigation' ).outerHeight( true ) : 0;
 
 		$( 'body' ).scrollspy( {
 			target: '.lsx-to-navigation',
-			offset: offset_header + offset_navigation + 10
+			offset: offset
 		} );
 	};
 
@@ -290,8 +315,8 @@ var lsx_to = Object.create( null );
 	 */
 	$window.resize( function() {
 
-		windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-		windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+		window_height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+		window_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
 	} );
 
@@ -311,7 +336,7 @@ var lsx_to = Object.create( null );
 		lsx_to.build_slider();
 		lsx_to.build_slider_lightbox();
 
-		if (windowWidth >= 1200) {
+		if (window_width >= 1200) {
 			lsx_to.fix_anchor_menu();
 			lsx_to.set_anchor_menu_easing_scroll();
 			lsx_to.set_anchor_menu_scroll_spy();
@@ -325,6 +350,10 @@ var lsx_to = Object.create( null );
 	 * @package    lsx
 	 * @subpackage scripts
 	 */
-	$window.load( function() {} );
+	$window.load( function() {
+
+		lsx_to.set_easing_scroll_on_page_load();
+
+	} );
 
 } )( jQuery, window, document );

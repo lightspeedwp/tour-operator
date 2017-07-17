@@ -164,7 +164,7 @@ class Template_Redirects {
 	 * @return    $path
 	 */
 	public function widget_path( $path, $slug ) {
-		if ( ( false !== $this->post_types && in_array( $slug, $this->post_types ) ) || ( false !== $this->taxonomies && in_array( $slug, $this->taxonomies ) ) || 'post' === $slug ) {
+		if ( ( false !== $this->post_types && in_array( $slug, $this->post_types ) ) || ( false !== $this->taxonomies && in_array( $slug, $this->taxonomies ) ) || 'post' === $slug || 'page' === $slug ) {
 			$path = $this->plugin_path;
 		}
 
@@ -180,7 +180,7 @@ class Template_Redirects {
 	 * @return    $path
 	 */
 	public function content_path( $path, $slug ) {
-		if ( ( false !== $this->post_types && in_array( $slug, $this->post_types ) ) || ( false !== $this->taxonomies && in_array( $slug, $this->taxonomies ) ) || 'post' === $slug ) {
+		if ( ( false !== $this->post_types && in_array( $slug, $this->post_types ) ) || ( false !== $this->taxonomies && in_array( $slug, $this->taxonomies ) ) || 'post' === $slug || 'page' === $slug ) {
 			$path = $this->plugin_path;
 		}
 

@@ -34,7 +34,9 @@
 
 		&.post,
 		&.page {
-			.entry-content { padding: 0; }
+			.search.search-results & {
+				.entry-content { padding: 0; }
+			}
 		}
 
 		&.destination {
@@ -137,11 +139,15 @@
 	.lsx-to-single-link {
 		margin-bottom: 0;
 		margin-top: $lsx-to-gap-half;
+
+		.fa {
+			margin-left: 5px;
+		}
 	}
 }
 
 .lsx-to-archive-items-separator.lsx-title {
-	margin-top: $lsx-to-gap;
+	margin-top: $lsx-to-gap-large;
 
 	&:first-child { margin-top: 0; }
 }
@@ -276,10 +282,16 @@
 	.lsx-to-label {
 		font-size: 60%;
 		line-height: 27px; // This must be the same line-height of its parent
+		margin-left: 5px;
 		padding: 4px 1rem;
 		vertical-align: top;
 
 		.lsx-to-archive-template-grid & { display: none; }
+	}
+
+	&,
+	& + .lsx-to-archive-content-tagline {
+		& + .entry-content:empty { display: none; }
 	}
 }
 
