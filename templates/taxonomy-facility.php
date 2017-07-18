@@ -18,8 +18,6 @@ get_header(); ?>
 
 			<?php lsx_content_top(); ?>
 
-			<?php lsx_to_content( 'content', get_queried_object()->taxonomy ) ?>
-
 			<?php if ( have_posts() ) : ?>
 
 				<div class="row lsx-to-archive-items lsx-to-archive-template-<?php echo esc_attr( tour_operator()->archive_layout ); ?>">
