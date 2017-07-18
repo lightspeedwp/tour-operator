@@ -15,9 +15,9 @@ add_action( 'lsx_entry_top', 'lsx_to_archive_entry_top' );
 /**
  * Archive Post type Specific
  */
-add_action( 'lsx_entry_bottom', 'lsx_to_accommodation_archive_entry_top' );
-add_action( 'lsx_entry_bottom', 'lsx_to_destination_archive_entry_top' );
-add_action( 'lsx_entry_bottom', 'lsx_to_tour_archive_entry_top' );
+add_action( 'lsx_entry_top', 'lsx_to_accommodation_archive_entry_top', 15 );
+add_action( 'lsx_entry_top', 'lsx_to_destination_archive_entry_top', 15 );
+add_action( 'lsx_entry_top', 'lsx_to_tour_archive_entry_top', 15 );
 
 add_action( 'lsx_entry_bottom', 'lsx_to_accommodation_archive_entry_bottom' );
 add_action( 'lsx_entry_bottom', 'lsx_to_destination_archive_entry_bottom' );
