@@ -179,10 +179,10 @@ class Admin {
 		foreach ( $items as $item ) {
 			$parts = parse_url( $item[2] );
 			parse_str( $parts['query'], $query );
-			$type_key      = $query['post_type'];
-			if(is_object(tour_operator()->post_types->{$type_key})) {
+			$type_key = $query['post_type'];
+			if ( is_object(tour_operator()->post_types->{$type_key} ) ) {
 				$menu_position = tour_operator()->post_types->{$type_key}->menu_position;
-			}else{
+			} else {
 				$menu_position = 80;
 			}
 			if ( isset( $new_submenu[ $menu_position ] ) ) {
