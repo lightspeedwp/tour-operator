@@ -20,7 +20,7 @@
  * @subpackage	template-tags
  * @category 	class
  */
-function lsx_to_is_single_disabled( $post_type = false ) {
+function lsx_to_is_single_disabled( $post_type = false, $post_id = false ) {
 	$tour_operator = tour_operator();
 
 	if ( false === $post_type ) {
@@ -30,10 +30,13 @@ function lsx_to_is_single_disabled( $post_type = false ) {
 	if ( is_object( $tour_operator ) && isset( $tour_operator->options[ $post_type ] ) && isset( $tour_operator->options[ $post_type ]['disable_single'] ) ) {
 		return true;
 	} else {
-		global $post;
+		if ( false === $post_id ) {
+			global $post;
+			$post_id = $post->ID;
+		}
 
-		if ( ! empty( $post->ID ) ) {
-			$single_desabled = get_post_meta( $post->ID, 'disable_single', true );
+		if ( ! empty( $post_id ) ) {
+			$single_desabled = get_post_meta( $post_id, 'disable_single', true );
 
 			if ( ! empty( $single_desabled ) ) {
 				return true;
@@ -538,50 +541,47 @@ function lsx_to_related_items( $taxonomy = false, $before = '', $after = '', $ec
  * @subpackage	template-tags
  * @category 	helper
  */
-function lsx_to_connected_list( $connected_ids = false, $post_type = false, $link = true, $seperator = ', ', $parent = false ) {
-	if ( false === $connected_ids || false === $post_type ) {
+function lsx_to_connected_list( $connected_ids = false, $type = false, $link = true, $seperator = ', ', $parent = false ) {
+	if ( false === $connected_ids || false === $type ) {
 		return false;
 	} else {
 		if ( ! is_array( $connected_ids ) ) {
-			$connected_ids = explode( ',',$connected_ids );
+			$connected_ids = explode( ',', $connected_ids );
 		}
 
-		$args = array(
-			'post_type' => $post_type,
+		$filters = array(
+			'post_type' => $type,
 			'post_status' => 'publish',
 			'post__in'	=> $connected_ids,
 		);
 
 		if ( false !== $parent ) {
-			$args['post_parent'] = $parent;
+			$filters['post_parent'] = $parent;
 		}
 
-		$connected_query = new \WP_Query( $args );
+		$connected_query = get_posts( $filters );
 
-		if ( $connected_query->have_posts() ) {
+		if ( is_array( $connected_query ) ) {
 			$connected_list = array();
 
-			while ( $connected_query->have_posts() ) {
-				$connected_query->the_post();
+			foreach ( $connected_query as $cp ) {
 				$html = '';
 
 				if ( $link ) {
-					global $post;
-
-					$has_single = ! lsx_to_is_single_disabled();
+					$has_single = ! lsx_to_is_single_disabled( $type, $cp->ID );
 					$permalink = '';
 
 					if ( $has_single ) {
-						$permalink = get_the_permalink();
-					} elseif ( is_search() || ! is_post_type_archive( $post_type ) ) {
+						$permalink = get_the_permalink( $cp->ID );
+					} elseif ( is_search() || ! is_post_type_archive( $type ) ) {
 						$has_single = true;
-						$permalink = get_post_type_archive_link( $post_type ) . '#' . $post_type . '-' . $post->post_name;
+						$permalink = get_post_type_archive_link( $type ) . '#' . $type . '-' . $post->post_name;
 					}
 
 					$html .= '<a href="' . $permalink . '">';
 				}
 
-				$html .= get_the_title();
+				$html .= get_the_title( $cp->ID );
 
 				if ( $link ) {
 					$html .= '</a>';
@@ -591,9 +591,7 @@ function lsx_to_connected_list( $connected_ids = false, $post_type = false, $lin
 				$connected_list[] = $html;
 			}
 
-			wp_reset_postdata();
-
-			return implode( $seperator, $connected_list );
+			return implode( $seperator,$connected_list );
 		}
 	}
 }
