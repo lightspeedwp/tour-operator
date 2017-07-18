@@ -575,7 +575,7 @@ function lsx_to_connected_list( $connected_ids = false, $type = false, $link = t
 						$permalink = get_the_permalink( $cp->ID );
 					} elseif ( is_search() || ! is_post_type_archive( $type ) ) {
 						$has_single = true;
-						$permalink = get_post_type_archive_link( $type ) . '#' . $type . '-' . $post->post_name;
+						$permalink = get_post_type_archive_link( $type ) . '#' . $type . '-' . $cp->post_name;
 					}
 
 					$html .= '<a href="' . $permalink . '">';
