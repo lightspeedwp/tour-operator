@@ -562,9 +562,13 @@ function lsx_to_connected_list( $connected_ids = false, $type = false, $link = t
 		$connected_query = get_posts( $filters );
 
 		if ( is_array( $connected_query ) ) {
+			global $post;
+
+			$post_original = $post;
 			$connected_list = array();
 
 			foreach ( $connected_query as $cp ) {
+				$post = $cp;
 				$html = '';
 
 				if ( $link ) {
@@ -590,6 +594,8 @@ function lsx_to_connected_list( $connected_ids = false, $type = false, $link = t
 				$html = apply_filters( 'lsx_to_connected_list_item', $html, $cp->ID, $link );
 				$connected_list[] = $html;
 			}
+
+			$post = $post_original;
 
 			return implode( $seperator,$connected_list );
 		}
