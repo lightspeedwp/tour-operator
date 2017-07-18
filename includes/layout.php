@@ -7,7 +7,6 @@
  * @license   	GPL3
  */
 
-
 /**
  * Archive
  */
@@ -16,12 +15,15 @@ add_action( 'lsx_entry_top', 'lsx_to_archive_entry_top' );
 /**
  * Archive Post type Specific
  */
+add_action( 'lsx_entry_bottom', 'lsx_to_accommodation_archive_entry_top' );
+add_action( 'lsx_entry_bottom', 'lsx_to_destination_archive_entry_top' );
+add_action( 'lsx_entry_bottom', 'lsx_to_tour_archive_entry_top' );
+
 add_action( 'lsx_entry_bottom', 'lsx_to_accommodation_archive_entry_bottom' );
 add_action( 'lsx_entry_bottom', 'lsx_to_destination_archive_entry_bottom' );
 add_action( 'lsx_entry_bottom', 'lsx_to_tour_archive_entry_bottom' );
 
 add_action( 'lsx_content_bottom', 'lsx_to_destination_archive_content_bottom' );
-
 
 /**
  * Single
@@ -221,6 +223,25 @@ function lsx_to_accommodation_single_content_bottom() {
 }
 
 /**
+ * Adds the template tags to the top of the content-accommodation
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tag
+ * @category 	accommodation
+ */
+function lsx_to_accommodation_archive_entry_top() {
+	global $lsx_to_archive;
+
+	if ( 'accommodation' === get_post_type() && ( is_archive() || $lsx_to_archive ) ) {
+		if ( is_search() || empty( tour_operator()->options[ get_post_type() ]['disable_entry_metadata'] ) ) { ?>
+			<div class="lsx-to-archive-meta-data lsx-to-archive-meta-data-grid-mode">
+				<?php lsx_to_accommodation_meta(); ?>
+			</div>
+		<?php }
+	}
+}
+
+/**
  * Adds the template tags to the bottom of the content-accommodation
  *
  * @package 	tour-operator
@@ -234,7 +255,7 @@ function lsx_to_accommodation_archive_entry_bottom() {
 			</div>
 
 			<?php if ( is_search() || empty( tour_operator()->options[ get_post_type() ]['disable_entry_metadata'] ) ) { ?>
-				<div class="lsx-to-archive-meta-data">
+				<div class="lsx-to-archive-meta-data lsx-to-archive-meta-data-list-mode">
 					<?php lsx_to_accommodation_meta(); ?>
 				</div>
 			<?php } ?>
@@ -247,7 +268,6 @@ function lsx_to_accommodation_archive_entry_bottom() {
 		<?php endif; ?>
 	<?php }
 }
-
 
 /**
  * Adds the template tags to the bottom of the single destination
@@ -323,6 +343,33 @@ function lsx_to_destination_single_content_bottom() {
 }
 
 /**
+ * Adds the template tags to the top of the content-destination.php
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tag
+ * @category 	destination
+ */
+function lsx_to_destination_archive_entry_top() {
+	global $lsx_to_archive;
+
+	if ( 'destination' === get_post_type() && ( is_archive() || $lsx_to_archive ) ) {
+		if ( is_search() || empty( tour_operator()->options[ get_post_type() ]['disable_entry_metadata'] ) ) { ?>
+			<div class="lsx-to-archive-meta-data lsx-to-archive-meta-data-grid-mode">
+				<?php
+					$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
+
+					the_terms( get_the_ID(), 'travel-style', '<span class="' . $meta_class . 'style">' . esc_html__( 'Travel Style', 'tour-operator' ) . ': ', ', ', '</span>' );
+
+					if ( function_exists( 'lsx_to_connected_activities' ) ) {
+						lsx_to_connected_activities( '<span class="' . $meta_class . 'activities">' . esc_html__( 'Activities', 'tour-operator' ) . ': ', '</span>' );
+					}
+				?>
+			</div>
+		<?php }
+	}
+}
+
+/**
  * Adds the template tags to the bottom of the content-destination.php
  *
  * @package 	tour-operator
@@ -336,7 +383,7 @@ function lsx_to_destination_archive_entry_bottom() {
 			</div>
 
 			<?php if ( is_search() || empty( tour_operator()->options[ get_post_type() ]['disable_entry_metadata'] ) ) { ?>
-				<div class="lsx-to-archive-meta-data">
+				<div class="lsx-to-archive-meta-data lsx-to-archive-meta-data-list-mode">
 					<?php
 						$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
 
@@ -366,14 +413,19 @@ function lsx_to_destination_archive_entry_bottom() {
  * @category 	destination
  */
 function lsx_to_destination_archive_content_bottom() {
-	 if ( function_exists( 'lsx_to_has_map' ) && lsx_to_has_map() ) { ?>
-		<section id="destination-map">
-			<?php if ( ! lsx_to_has_destination_banner_map() ) : ?>
-				<h2 class="section-title"><?php esc_html_e( 'Map','tour-operator' ); ?></h2>
-			<?php endif ?>
-			<?php lsx_to_map() ?>
-		</section>
-	<?php }
+	global $lsx_to_archive;
+
+	if ( 'destination' === get_post_type() && ( is_archive() || $lsx_to_archive ) ) {
+		if ( function_exists( 'lsx_to_has_map' ) && lsx_to_has_map() ) { ?>
+			<section id="destination-map">
+				<?php if ( ! lsx_to_has_destination_banner_map() ) : ?>
+					<h2 class="section-title"><?php esc_html_e( 'Map','tour-operator' ); ?></h2>
+				<?php endif ?>
+
+				<?php lsx_to_map(); ?>
+			</section>
+		<?php }
+	}
 }
 
 /**
@@ -503,6 +555,36 @@ function lsx_to_tour_single_content_bottom() {
 }
 
 /**
+ * Adds the template tags to the top of the content-tour.php
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tag
+ * @category 	tour
+ */
+function lsx_to_tour_archive_entry_top() {
+	global $lsx_to_archive;
+
+	if ( 'tour' === get_post_type() && ( is_archive() || $lsx_to_archive ) ) {
+		if ( is_search() || empty( tour_operator()->options[ get_post_type() ]['disable_entry_metadata'] ) ) { ?>
+			<div class="lsx-to-archive-meta-data lsx-to-archive-meta-data-grid-mode">
+				<?php
+					$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
+
+					lsx_to_price( '<span class="' . $meta_class . 'price">' . esc_html__( 'From price', 'tour-operator' ) . ': ', '</span>' );
+					lsx_to_duration( '<span class="' . $meta_class . 'duration">' . esc_html__( 'Duration', 'tour-operator' ) . ': ', '</span>' );
+					the_terms( get_the_ID(), 'travel-style', '<span class="' . $meta_class . 'style">' . esc_html__( 'Travel Style', 'tour-operator' ) . ': ', ', ', '</span>' );
+					lsx_to_connected_countries( '<span class="' . $meta_class . 'destinations">' . esc_html__( 'Destinations', 'tour-operator' ) . ': ', '</span>' );
+
+					if ( function_exists( 'lsx_to_connected_activities' ) ) {
+						lsx_to_connected_activities( '<span class="' . $meta_class . 'activities">' . esc_html__( 'Activities', 'tour-operator' ) . ': ', '</span>' );
+					}
+				?>
+			</div>
+		<?php }
+	}
+}
+
+/**
  * Adds the template tags to the bottom of the content-tour.php
  *
  * @package 	tour-operator
@@ -516,7 +598,7 @@ function lsx_to_tour_archive_entry_bottom() {
 			</div>
 
 			<?php if ( is_search() || empty( tour_operator()->options[ get_post_type() ]['disable_entry_metadata'] ) ) { ?>
-				<div class="lsx-to-archive-meta-data">
+				<div class="lsx-to-archive-meta-data lsx-to-archive-meta-data-list-mode">
 					<?php
 						$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
 

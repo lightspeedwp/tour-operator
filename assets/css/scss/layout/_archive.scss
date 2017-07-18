@@ -260,6 +260,12 @@
 .lsx-to-archive-meta-data {
 	margin-top: $lsx-to-gap-half;
 
+	.lsx-to-archive-template-grid & {
+		&.lsx-to-archive-meta-data-list-mode { display: none; }
+
+		& + .entry-content { margin-top: $lsx-to-gap-half; }
+	}
+
 	.lsx-to-archive-template-list & {
 		@include media('>=phone') {
 			flex-shrink: 0;
@@ -269,6 +275,18 @@
 		}
 
 		@include media('>=tablet') { width: 33%; }
+
+		&.lsx-to-archive-meta-data-grid-mode {
+			@include media('>=phone') { display: none; }
+		}
+
+		&.lsx-to-archive-meta-data-list-mode {
+			@include media('<phone') { display: none; }
+		}
+
+		& + .entry-content {
+			@include media('<phone') { margin-top: $lsx-to-gap-half; }
+		}
 	}
 }
 
