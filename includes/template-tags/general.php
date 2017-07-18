@@ -189,7 +189,7 @@ function lsx_to_page_navigation( $echo = true ) {
 
 	$page_links = apply_filters( 'lsx_to_page_navigation', $page_links );
 
-	if ( ! empty( $page_links ) ) {
+	if ( ! empty( $page_links ) && count( $page_links ) > 1 ) {
 		$return  = '<div class="lsx-to-navigation col-xs-12 ' . get_post_type() . '-navigation visible-lg-block">';
 		$return .= '<ul class="scroll-easing nav lsx-to-content-spy">';
 
