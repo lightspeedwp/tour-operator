@@ -1041,6 +1041,13 @@
 
 .lsx-to-slider-inner .lsx-to-widget-item-wrap { padding: 0 15px; }
 
+@media (min-width: 768px) { .lsx-to-slider-inner.slider-disabled .lsx-to-widget-item-wrap { float: left; width: 50%; }
+  .lsx-to-slider-inner.slider-disabled .lsx-to-widget-item-wrap:nth-child(2n+3) { clear: left; } }
+
+@media (min-width: 992px) { .lsx-to-slider-inner.slider-disabled .lsx-to-widget-item-wrap { width: 33.33333%; }
+  .lsx-to-slider-inner.slider-disabled .lsx-to-widget-item-wrap:nth-child(2n+3) { clear: none; }
+  .lsx-to-slider-inner.slider-disabled .lsx-to-widget-item-wrap:nth-child(3n+4) { clear: left; } }
+
 .lsx-to-widget-view-all { margin-top: 6rem; overflow: hidden; position: relative; text-align: center; }
 
 .lsx-to-widget-view-all > span { display: inline-block; position: relative; }
