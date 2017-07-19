@@ -171,7 +171,7 @@ if ( window.location.hash ) {
 	 * @subpackage scripts
 	 */
 	lsx_to.build_slider = function() {
-		$( '.lsx-to-slider .lsx-to-slider-inner' ).each( function() {
+		$( '.lsx-to-slider .lsx-to-slider-inner:not( .slider-disabled )' ).each( function() {
 			var $this = $( this ),
 				interval = $this.data( 'interval' ),
 				autoplay = false,

@@ -55,12 +55,19 @@ function lsx_to_region_accommodation() {
 /**
  * Outputs the child destinations
  *
+ * @param $args array
+ *
  * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	destination
  */
-function lsx_to_country_regions() {
+function lsx_to_country_regions( $args = array() ) {
 	global $lsx_to_archive, $wp_query;
+
+	$defaults = array(
+		'slider'	=>	true,
+	);
+	$settings = wp_parse_args( $args, $defaults );
 
 	if ( is_singular( 'destination' ) && lsx_to_item_has_children( get_the_ID(), 'destination' ) ) {
 		$region_args = array(
@@ -84,7 +91,7 @@ function lsx_to_country_regions() {
 				<div class="slider-container lsx-to-widget-items lsx-to-archive-template-grid">
 					<div id="slider-<?php echo esc_attr( rand( 20, 20000 ) ); ?>" class="lsx-to-slider">
 						<div class="lsx-to-slider-wrap">
-							<div class="lsx-to-slider-inner" data-interval="6000" data-slick='{ "slidesToShow": 3, "slidesToScroll": 3 }'>
+							<div class="lsx-to-slider-inner <?php if ( false === $settings['slider'] ) { esc_attr_e( 'slider-disabled', 'tour-operator' ); } ?>" data-interval="6000" data-slick='{ "slidesToShow": 3, "slidesToScroll": 3 }'>
 							<?php
 								$lsx_to_archive = 1;
 								$wp_query->is_single = 0;
