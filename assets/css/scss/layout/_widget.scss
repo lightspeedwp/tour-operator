@@ -4,6 +4,29 @@
 	margin-top: $lsx-to-gap;
 
 	.lsx-to-slider-inner & { padding: 0 15px; }
+
+	.lsx-to-slider-inner.slider-disabled & {
+		@include media('>=phone') {
+			float: left;
+			width: 50%;
+
+			&:nth-child(2n+3) {
+				clear: left;
+			}
+		}
+
+		@include media('>=tablet') {
+			width: 33.33333%;
+
+			&:nth-child(2n+3) {
+				clear: none;
+			}
+
+			&:nth-child(3n+4) {
+				clear: left;
+			}
+		}
+	}
 }
 
 .lsx-to-widget-view-all {

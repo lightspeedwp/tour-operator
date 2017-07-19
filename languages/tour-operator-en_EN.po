@@ -63,7 +63,7 @@ msgstr ""
 msgid "Villa"
 msgstr ""
 
-#: includes/functions.php:567, includes/layout.php:213, includes/layout.php:551, includes/template-tags/destination.php:47, includes/template-tags/destination.php:82, includes/template-tags/destination.php:131, includes/template-tags/destination.php:155, includes/classes/legacy/class-accommodation.php:291
+#: includes/functions.php:567, includes/layout.php:213, includes/layout.php:551, includes/template-tags/destination.php:47, includes/template-tags/destination.php:150, includes/template-tags/destination.php:174, includes/classes/legacy/class-accommodation.php:291
 msgstr ""
 
 #: includes/layout.php:89, templates/content.php:30
@@ -518,43 +518,43 @@ msgstr ""
 msgid "Travel Info"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:67, includes/template-tags/destination.php:187
+#: includes/metaboxes/config-destination.php:67, includes/template-tags/destination.php:206
 msgid "Electricity"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:76, includes/template-tags/destination.php:188
+#: includes/metaboxes/config-destination.php:76, includes/template-tags/destination.php:207
 msgid "Banking"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:85, includes/template-tags/destination.php:189
+#: includes/metaboxes/config-destination.php:85, includes/template-tags/destination.php:208
 msgid "Cuisine"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:94, includes/template-tags/destination.php:190
+#: includes/metaboxes/config-destination.php:94, includes/template-tags/destination.php:209
 msgid "Climate"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:103, includes/template-tags/destination.php:191
+#: includes/metaboxes/config-destination.php:103, includes/template-tags/destination.php:210
 msgid "Transport"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:112, includes/template-tags/destination.php:192
+#: includes/metaboxes/config-destination.php:112, includes/template-tags/destination.php:211
 msgid "Dress"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:121, includes/template-tags/destination.php:193
+#: includes/metaboxes/config-destination.php:121, includes/template-tags/destination.php:212
 msgid "Health"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:130, includes/template-tags/destination.php:194
+#: includes/metaboxes/config-destination.php:130, includes/template-tags/destination.php:213
 msgid "Safety"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:139, includes/template-tags/destination.php:195
+#: includes/metaboxes/config-destination.php:139, includes/template-tags/destination.php:214
 msgid "Visa"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:148, includes/partials/accommodation.php:4, includes/partials/destination.php:4, includes/partials/general.php:3, includes/partials/tour.php:4, includes/template-tags/destination.php:196, includes/classes/legacy/class-settings.php:131
+#: includes/metaboxes/config-destination.php:148, includes/partials/accommodation.php:4, includes/partials/destination.php:4, includes/partials/general.php:3, includes/partials/tour.php:4, includes/template-tags/destination.php:215, includes/classes/legacy/class-settings.php:131
 msgid "General"
 msgstr ""
 
@@ -1286,11 +1286,11 @@ msgstr ""
 msgid "Featured Posts"
 msgstr ""
 
-#: includes/template-tags/destination.php:200, includes/classes/legacy/class-destination.php:220
+#: includes/template-tags/destination.php:219, includes/classes/legacy/class-destination.php:220
 msgid "Travel Information"
 msgstr ""
 
-#: includes/template-tags/general.php:470
+#: includes/template-tags/general.php:475
 msgid "Enquire"
 msgstr ""
 

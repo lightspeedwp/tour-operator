@@ -71,7 +71,8 @@ function lsx_to_country_regions( $args = array() ) {
 		'tagline'	=>	false,
 		'exclude'	=>	false,
 	);
- 	$settings = wp_parse_args( $args, $defaults );
+
+	$settings = wp_parse_args( $args, $defaults );
 
 	if ( is_singular( 'destination' ) && ( lsx_to_item_has_children( get_the_ID(), 'destination' ) || isset( $args['parent'] ) ) ) {
 
@@ -95,23 +96,26 @@ function lsx_to_country_regions( $args = array() ) {
 
 		if ( $regions->have_posts() ) : ?>
 			<section id="regions" class="lsx-to-section">
-				<h2 class="lsx-to-section-title lsx-title"><?php esc_html_e( $settings['title'] , 'tour-operator' ); ?><?php if ( false !== $settings['tagline'] ) { echo '<small>' . wp_kses_post( $settings['tagline'] ) . '</small>'; } ?></h2>
+				<h2 class="lsx-to-section-title lsx-title"><?php echo esc_html( $settings['title'] ); ?></h2>
 
 				<div class="slider-container lsx-to-widget-items lsx-to-archive-template-grid">
 					<div id="slider-<?php echo esc_attr( rand( 20, 20000 ) ); ?>" class="lsx-to-slider">
 						<div class="lsx-to-slider-wrap">
-							<div class="lsx-to-slider-inner <?php if ( false === $settings['slider'] ) { esc_attr_e( 'slider-disabled', 'tour-operator' ); } ?>" data-interval="6000" data-slick='{ "slidesToShow": 3, "slidesToScroll": 3 }'>
+							<div class="lsx-to-slider-inner <?php if ( false === $settings['slider'] ) { echo esc_attr( 'slider-disabled' ); } ?>" data-interval="6000" data-slick='{ "slidesToShow": 3, "slidesToScroll": 3 }'>
+
 							<?php
 								$lsx_to_archive = 1;
 								$wp_query->is_single = 0;
 								$wp_query->is_singular = 0;
 								$wp_query->is_post_type_archive = 1;
 
-								while ( $regions->have_posts() ) : $regions->the_post();
-								echo '<div class="lsx-to-widget-item-wrap lsx-regions">';
-								lsx_to_content( 'content-widget', 'destination' );
-								echo '</div>';
-								endwhile;
+								while ( $regions->have_posts() ) {
+									$regions->the_post();
+
+									echo '<div class="lsx-to-widget-item-wrap lsx-regions">';
+									lsx_to_content( 'content-widget', 'destination' );
+									echo '</div>';
+								}
 
 								$lsx_to_archive = 0;
 								$wp_query->is_single = 1;
@@ -229,25 +233,25 @@ function lsx_to_destination_travel_info() {
 								<div class="travel-info-entry-content">
 									<?php
 										if ( str_word_count( $value, 0 ) > $limit_words ) {
-											$tokens       = array();
-											$value_output = '';
-											$has_more     = false;
-											$count        = 0;
+										$tokens       = array();
+										$value_output = '';
+										$has_more     = false;
+										$count        = 0;
 
-											preg_match_all( '/(<[^>]+>|[^<>\s]+)\s*/u', $value, $tokens );
+										preg_match_all( '/(<[^>]+>|[^<>\s]+)\s*/u', $value, $tokens );
 
-											foreach ( $tokens[0] as $token ) {
-												if ( $count >= $limit_words ) {
-													$value_output .= trim( $token );
-													$has_more = true;
-													break;
+										foreach ( $tokens[0] as $token ) {
+											if ( $count >= $limit_words ) {
+												$value_output .= trim( $token );
+												$has_more = true;
+												break;
 												}
 
-												$count++;
-												$value_output .= $token;
+											$count++;
+											$value_output .= $token;
 											}
 
-											$value = trim( force_balance_tags( $value_output . '...' . $more_button ) );
+										$value = trim( force_balance_tags( $value_output . '...' . $more_button ) );
 										}
 
 										echo wp_kses_post( apply_filters( 'the_content', $value ) );
