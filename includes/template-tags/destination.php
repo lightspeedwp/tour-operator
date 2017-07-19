@@ -68,6 +68,7 @@ function lsx_to_country_regions( $args = array() ) {
 		'slider'	=>	true,
 		'parent'	=>	get_the_ID(),
 		'title'		=>	lsx_to_get_post_type_section_title( 'destination', 'regions', 'Regions' ),
+		'exclude'	=>	false,
 	);
  	$settings = wp_parse_args( $args, $defaults );
 
@@ -82,6 +83,10 @@ function lsx_to_country_regions( $args = array() ) {
 			'orderby' => 'name',
 			'order' => 'ASC',
 		);
+
+		if ( false !== $settings['exclude'] ) {
+			$region_args['post__not_in'] = array( $settings['exclude'] );
+		}
 
 		$regions = new WP_Query( $region_args );
 		$region_counter = 0;
