@@ -187,6 +187,11 @@ function lsx_to_page_navigation( $echo = true ) {
 		$page_links['summary'] = esc_html__( 'Summary', 'tour-operator' );
 	}
 
+	//Allow 3rd party plugins and themes to disable the page links
+	if ( apply_filters( 'lsx_to_page_navigation_disable', false , get_post_type() ) ) {
+		return false;
+	}
+
 	$page_links = apply_filters( 'lsx_to_page_navigation', $page_links );
 
 	if ( ! empty( $page_links ) && count( $page_links ) > 1 ) {
