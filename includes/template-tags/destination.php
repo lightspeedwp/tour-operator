@@ -66,16 +66,19 @@ function lsx_to_country_regions( $args = array() ) {
 
 	$defaults = array(
 		'slider'	=>	true,
+		'parent'	=>	get_the_ID(),
+		'title'		=>	lsx_to_get_post_type_section_title( 'destination', 'regions', 'Regions' ),
 	);
-	$settings = wp_parse_args( $args, $defaults );
+ 	$settings = wp_parse_args( $args, $defaults );
 
-	if ( is_singular( 'destination' ) && lsx_to_item_has_children( get_the_ID(), 'destination' ) ) {
+	if ( is_singular( 'destination' ) && ( lsx_to_item_has_children( get_the_ID(), 'destination' ) || isset( $args['parent'] ) ) ) {
+
 		$region_args = array(
 			'post_type'	=> 'destination',
 			'post_status' => 'publish',
 			'nopagin' => true,
 			'posts_per_page' => '-1',
-			'post_parent' => get_the_ID(),
+			'post_parent' => $settings['parent'],
 			'orderby' => 'name',
 			'order' => 'ASC',
 		);
@@ -86,7 +89,7 @@ function lsx_to_country_regions( $args = array() ) {
 
 		if ( $regions->have_posts() ) : ?>
 			<section id="regions" class="lsx-to-section">
-				<h2 class="lsx-to-section-title lsx-title"><?php esc_html_e( lsx_to_get_post_type_section_title( 'destination', 'regions', 'Regions' ), 'tour-operator' ); ?></h2>
+				<h2 class="lsx-to-section-title lsx-title"><?php esc_html_e( $settings['title'] , 'tour-operator' ); ?></h2>
 
 				<div class="slider-container lsx-to-widget-items lsx-to-archive-template-grid">
 					<div id="slider-<?php echo esc_attr( rand( 20, 20000 ) ); ?>" class="lsx-to-slider">

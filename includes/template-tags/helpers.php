@@ -410,16 +410,18 @@ function lsx_to_connected_panel_query( $args = false ) {
 					echo '</div>';
 				endwhile;
 
+				wp_reset_postdata();
+				$lsx_to_archive = 0;
+
 				echo '</div>';
+				do_action( 'lsx_to_connected_panel_query_bottom', $args );
 				echo '</div>';
 				echo '</div>';
 				echo '</div>';
 
 				echo wp_kses_post( $args['after'] );
 
-				$lsx_to_archive = 0;
 
-				wp_reset_postdata();
 			endif;
 		}
 	}
