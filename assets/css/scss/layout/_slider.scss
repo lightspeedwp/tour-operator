@@ -65,6 +65,8 @@
 		&.slick-has-arrows { width: calc(100% + 30px); }
 	}
 
+	&.slider-disabled { overflow: hidden; }
+
 	.slick-dots:not(.dropdown-menu) {
 		align-items: center;
 		display: flex;
