@@ -68,6 +68,7 @@ function lsx_to_country_regions( $args = array() ) {
 		'slider'	=>	true,
 		'parent'	=>	get_the_ID(),
 		'title'		=>	lsx_to_get_post_type_section_title( 'destination', 'regions', 'Regions' ),
+		'tagline'	=>	false,
 		'exclude'	=>	false,
 	);
  	$settings = wp_parse_args( $args, $defaults );
@@ -94,7 +95,7 @@ function lsx_to_country_regions( $args = array() ) {
 
 		if ( $regions->have_posts() ) : ?>
 			<section id="regions" class="lsx-to-section">
-				<h2 class="lsx-to-section-title lsx-title"><?php esc_html_e( $settings['title'] , 'tour-operator' ); ?></h2>
+				<h2 class="lsx-to-section-title lsx-title"><?php esc_html_e( $settings['title'] , 'tour-operator' ); ?><?php if ( false !== $settings['tagline'] ) { echo '<small>' . wp_kses_post( $settings['tagline'] ) . '</small>'; } ?></h2>
 
 				<div class="slider-container lsx-to-widget-items lsx-to-archive-template-grid">
 					<div id="slider-<?php echo esc_attr( rand( 20, 20000 ) ); ?>" class="lsx-to-slider">
