@@ -28,8 +28,8 @@ if ( 1 !== $lsx_to_archive ) {
 					<?php
 						$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
 
-						lsx_to_price( '<span class="' . $meta_class . 'price">' . esc_html__( 'From price', 'tour-operator' ) . ': ', '</span>' );
-						lsx_to_duration( '<span class="' . $meta_class . 'duration">' . esc_html__( 'Duration', 'tour-operator' ) . ': ', '</span>' );
+						lsx_to_price( '<span class="' . $meta_class . 'price"><span class="lsx-to-meta-data-key">' . esc_html__( 'From price', 'tour-operator' ) . ':</span> ', '</span>' );
+						lsx_to_duration( '<span class="' . $meta_class . 'duration"><span class="lsx-to-meta-data-key">' . esc_html__( 'Duration', 'tour-operator' ) . ':</span> ', '</span>' );
 					?>
 				</div>
 			</div>

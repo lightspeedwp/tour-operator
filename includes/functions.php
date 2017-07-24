@@ -289,9 +289,9 @@ function lsx_to_itinerary_accommodation( $before = '', $after = '' ) {
 		//display the additional accommodation information.
 		if ( ! empty( $tour_itinerary->itinerary['accommodation_to_tour'] ) && is_array( $tour_itinerary->itinerary['accommodation_to_tour'] ) ) {
 			foreach ( $tour_itinerary->itinerary['accommodation_to_tour'] as $accommodation ) {
-				lsx_to_accommodation_rating( '<span class="' . $meta_class . 'rating">' . __( 'Rating', 'tour-operator' ) . ': ', '</span>', $accommodation );
-				the_terms( $accommodation, 'accommodation-type', '<span class="' . $meta_class . 'style">' . __( 'Type', 'tour-operator' ) . ': ', ', ', '</span>' );
-				lsx_to_accommodation_special_interests( '<span class="' . $meta_class . 'special">' . __( 'Special Interests', 'tour-operator' ) . ': ', '</span>', $accommodation );
+				lsx_to_accommodation_rating( '<span class="' . $meta_class . 'rating"><span class="lsx-to-meta-data-key">' . __( 'Rating', 'tour-operator' ) . ':</span> ', '</span>', $accommodation );
+				the_terms( $accommodation, 'accommodation-type', '<span class="' . $meta_class . 'style"><span class="lsx-to-meta-data-key">' . __( 'Type', 'tour-operator' ) . ':</span> ', ', ', '</span>' );
+				lsx_to_accommodation_special_interests( '<span class="' . $meta_class . 'special"><span class="lsx-to-meta-data-key">' . __( 'Special Interests', 'tour-operator' ) . ':</span> ', '</span>', $accommodation );
 			}
 		}
 	}
