@@ -87,7 +87,11 @@
 		}
 	}
 
-	.lsx-to-meta-data { color: $small; }
+	.lsx-to-meta-data {
+		color: $small;
+
+		.lsx-to-meta-data-key { color: $color; }
+	}
 
 	.lsx-to-archive-item {
 		& > .lsx-to-archive-container {

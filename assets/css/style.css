@@ -1580,6 +1580,8 @@ body.single-tour-operator .modal-body article .entry-content .moretag { width: 2
 
 .lsx-to-meta-data { color: #919191; }
 
+.lsx-to-meta-data .lsx-to-meta-data-key { color: #4A4A4A; }
+
 .lsx-to-archive-item > .lsx-to-archive-container { background-color: #FFF; }
 
 .lsx-to-section:nth-of-type(odd) .lsx-to-archive-item > .lsx-to-archive-container { background-color: #F6F6F6; }

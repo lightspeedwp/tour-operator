@@ -25,7 +25,7 @@ if ( 1 !== $lsx_to_archive ) {
 				<h2 class="lsx-to-summary-title"><?php esc_html_e( 'Summary' , 'tour-operator' ); ?></h2>
 
 				<div class="lsx-to-summary-meta-data">
-					<?php lsx_to_price( '<span class="lsx-to-meta-data lsx-to-meta-data-price">' . esc_html__( 'From price', 'tour-operator' ) . ': ', '</span>' ); ?>
+					<?php lsx_to_price( '<span class="lsx-to-meta-data lsx-to-meta-data-price"><span class="lsx-to-meta-data-key">' . esc_html__( 'From price', 'tour-operator' ) . ':</span> ', '</span>' ); ?>
 				</div>
 			</div>
 
