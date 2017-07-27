@@ -38,27 +38,18 @@ class Post_Expirator
 	    //Dashboard Views
 		add_action( 'manage_posts_custom_column', array(
 			$this,
-			'expirationdate_column_value',
+			'column_value',
 		) );
 
 		add_filter( 'manage_posts_columns', array(
 			$this,
-			'expirationdate_add_column',
+			'add_column',
 		), 10, 2 );
 
-		//Custom Field View
-		add_action( 'add_meta_boxes', array(
-			$this,
-			'register_metabox',
-		) );
-		add_action( 'admin_head', array(
-			$this,
-			'expirationdate_js_admin_header',
-		) );
 		add_action( 'save_post', array(
 			$this,
-			'expirationdate_update_post_meta',
-		) );
+			'update_post_meta',
+		), 20 );
 
 		//Expiration Methods
 		add_action( 'lsxToPostExpiratorExpire', array(
@@ -90,7 +81,7 @@ class Post_Expirator
 	 *
 	 * @since 1.1.0
 	 */
-	public function expirationdate_column_value( $column_name ) {
+	public function column_value( $column_name ) {
 		global $post;
 		$id = $post->ID;
 
@@ -105,7 +96,7 @@ class Post_Expirator
 	 *
 	 * @since 1.1.0
 	 */
-	public function expirationdate_add_column( $columns, $type ) {
+	public function add_column( $columns, $type ) {
 		if ( in_array( $type, array( 'special', 'tour' ) ) ) {
 			$columns['lsx_to_expirationdate'] = esc_html__( 'Expires', 'tour-operator' );
 		}
@@ -113,95 +104,89 @@ class Post_Expirator
 	}
 
 	/**
-	 * Registers the Expiration Date Meta Box.
-	 *
-	 * @since 1.1.0
-	 */
-	public function register_metabox() {
-		$custom_post_types = array( 'special', 'tour' );
-		foreach ( $custom_post_types as $t ) {
-			add_meta_box( 'lsxtoexpirationdatediv', esc_html__( 'Expires', 'tour-operator' ), array($this,'expirationdate_meta_box'), $t, 'side', 'core' );
-		}
-	}
-
-	/**
-	 * Outputs the JS needed for the expiration date metabox
-	 *
-	 * @since 1.1.0
-	 */
-	public function expirationdate_js_admin_header() {
-		?>
-        <script type="text/javascript">
-            //<![CDATA[
-            function lsx_to_expirationdate_ajax_add_meta(expireenable) {
-                var expire = document.getElementById(expireenable);
-
-                if (expire.checked == true) {
-                    if (document.getElementById('lsx_to_expirationdate_month')) {
-                        document.getElementById('lsx_to_expirationdate_month').disabled = false;
-                        document.getElementById('lsx_to_expirationdate_day').disabled = false;
-                        document.getElementById('lsx_to_expirationdate_year').disabled = false;
-                        document.getElementById('lsx_to_expirationdate_hour').disabled = false;
-                        document.getElementById('lsx_to_expirationdate_minute').disabled = false;
-                    }
-
-                    document.getElementById('lsx_to_expirationdate_expiretype').disabled = false;
-                } else {
-                    if (document.getElementById('lsx_to_expirationdate_month')) {
-                        document.getElementById('lsx_to_expirationdate_month').disabled = true;
-                        document.getElementById('lsx_to_expirationdate_day').disabled = true;
-                        document.getElementById('lsx_to_expirationdate_year').disabled = true;
-                        document.getElementById('lsx_to_expirationdate_hour').disabled = true;
-                        document.getElementById('lsx_to_expirationdate_minute').disabled = true;
-                    }
-
-                    document.getElementById('lsx_to_expirationdate_expiretype').disabled = true;
-                }
-
-                return true;
-            }
-            //]]>
-        </script>
-		<?php
-	}
-
-	/**
 	 * Saves the custom field
 	 *
 	 * @since 1.1.0
 	 */
-	public function expirationdate_update_post_meta( $id ) {
-		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
-			return;
-		}
-
-		if ( ! isset( $_POST['enable-lsx-to-expirationdate'] ) ) {
-			$this->unschedule_expirator_event( $id );
-
-			return;
-		}
+	public function update_post_meta( $id ) {
 
 		$posttype = get_post_type( $id );
-
-		if ( 'revision' == $posttype ) {
+		if ( 'special' !== $posttype && 'tour' !== $posttype ) {
 			return;
 		}
 
-		check_admin_referer( 'lsx_to_expirationdate_update_post_meta', '_to_expirationdate_update_post_meta_nonce' );
+		$booking_dates = $this->get_booking_dates();
+		if ( isset ( $_POST['expire_post'] ) && ! empty( $booking_dates ) ) {
 
-		$month  = (int) $_POST['lsx_to_expirationdate_month'];
-		$day    = (int) $_POST['lsx_to_expirationdate_day'];
-		$year   = (int) $_POST['lsx_to_expirationdate_year'];
-		$hour   = (int) $_POST['lsx_to_expirationdate_hour'];
-		$minute = (int) $_POST['lsx_to_expirationdate_minute'];
+			foreach ( $booking_dates as $date_range ) {
+				$month  = (int) $_POST['lsx_to_expirationdate_month'];
+				$day    = (int) $_POST['lsx_to_expirationdate_day'];
+				$year   = (int) $_POST['lsx_to_expirationdate_year'];
 
-		$opts = array();
-		$ts   = get_gmt_from_date( "$year-$month-$day $hour:$minute:0", 'U' );
+				$hour   = (int) '11';
+				$minute = (int) '30';
 
-		$opts['expiretype'] = sanitize_text_field( $_POST['lsx_to_expirationdate_expiretype'] );
-		$opts['id']         = $id;
+				$opts = array();
+				$ts   = get_gmt_from_date( "$year-$month-$day $hour:$minute:0", 'U' );
 
-		$this->schedule_expirator_event( $id, $ts, $opts );
+				$opts['expiretype'] = sanitize_text_field( $_POST['lsx_to_expirationdate_expiretype'] );
+				$opts['id']         = $id;
+
+				$this->schedule_expirator_event( $id, $ts, $opts );
+			}
+
+		} else {
+			$this->unschedule_expirator_event( $id );
+		}
+
+		return;
+
+	}
+
+	/**
+	 * Check the post array for the travel dates if there are any.
+	 *
+	 * @return array
+	 */
+	public function get_booking_dates() {
+		$dates = array();
+		$booking_validity_start = false;
+		$booking_validity_end = false;
+		if ( isset( $_POST['booking_validity_start'] ) && ! empty( $_POST['booking_validity_start'] ) ) {
+			$booking_validity_start = implode( '', $_POST['booking_validity_start'] );
+		}
+		if ( isset( $_POST['booking_validity_end'] ) && ! empty( $_POST['booking_validity_end'] ) ) {
+			$booking_validity_end = implode( '', $_POST['booking_validity_end'] );;
+		}
+		if ( false !== $booking_validity_start && false !== $booking_validity_end ) {
+			$dates[] = array( $booking_validity_start, $booking_validity_end );
+		}
+		$dates = $this->raw_format_dates( $dates );
+		return $dates;
+	}
+
+	/**
+	 * strtotime all the values in the array
+	 *
+	 * @param array $dates
+	 * @return array
+	 */
+	public function raw_format_dates( $dates = array() ) {
+		if ( ! empty( $dates ) ) {
+			$new_dates = array();
+			foreach ( $dates as $date_range ) {
+				$temp = array();
+				if ( isset( $date_range[0] ) && '' !== $date_range[0] ) {
+					$temp[] = strtotime( $date_range[0] );
+				}
+				if ( isset( $date_range[1] ) && '' !== $date_range[1] ) {
+					$temp[] = strtotime( $date_range[1] );
+				}
+				$new_dates[] = $temp;
+			}
+			$dates = $new_dates;
+		}
+		return $dates;
 	}
 
 	/**
@@ -276,36 +261,5 @@ class Post_Expirator
 		}
 
 		update_post_meta( $id, '_to_expiration-date-status', 'saved' );
-	}
-
-	/**
-	 * Outputs the Expire Type Drop Down
-	 *
-	 * @param  $opts array
-	 * @since 1.1.0
-	 * @return string
-	 */
-	function post_expirator_expire_type( $opts ) {
-		$return = false;
-		if ( ! empty( $opts ) && isset( $opts['name'] ) ) {
-
-			$opts = array_merge( array(
-				'id'       => $opts['name'],
-				'disabled' => false,
-				'onchange' => '',
-				'type'     => '',
-			), $opts );
-
-			$rv   = array();
-			$rv[] = '<select name="' . $opts['name'] . '" id="' . $opts['id'] . '"' . ( true == $opts['disabled'] ? ' disabled="disabled"' : '' ) . ' onchange="' . $opts['onchange'] . '">';
-			$rv[] = '<option value="draft" ' . ( 'draft' == $opts['selected'] ? 'selected="selected"' : '' ) . '>' . esc_html__( 'Draft', 'tour-operator' ) . '</option>';
-			$rv[] = '<option value="delete" ' . ( 'delete' == $opts['selected'] ? 'selected="selected"' : '' ) . '>' . esc_html__( 'Delete', 'tour-operator' ) . '</option>';
-			$rv[] = '<option value="private" ' . ( 'private' == $opts['selected'] ? 'selected="selected"' : '' ) . '>' . esc_html__( 'Private', 'tour-operator' ) . '</option>';
-
-			$rv[]   = '</select>';
-			$return = implode( "<br/>/n", $rv );
-		}
-
-		return $return;
 	}
 }

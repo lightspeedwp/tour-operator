@@ -159,6 +159,24 @@ $metabox['fields'][] = array(
 );
 
 $metabox['fields'][] = array(
+	'id'   => 'booking_validity_start',
+	'name' => esc_html__( 'Booking Validity (start)','tour-operator' ),
+	'type' => 'date',
+);
+
+$metabox['fields'][] = array(
+	'id'   => 'booking_validity_end',
+	'name' => esc_html__( 'Booking Validity (end)','tour-operator' ),
+	'type' => 'date',
+);
+
+$metabox['fields'][] = array(
+	'id'   => 'expire_post',
+	'name' => esc_html__( 'Expire this tour automatically', 'tour-operator' ),
+	'type' => 'checkbox',
+);
+
+$metabox['fields'][] = array(
 	'id'   => 'gallery_title',
 	'name' => esc_html__( 'Gallery', 'tour-operator' ),
 	'type' => 'title',

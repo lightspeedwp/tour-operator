@@ -136,6 +136,19 @@ class Tour {
 				<small><?php esc_html_e( 'If you have many Itinerary entries on your tours, then you may want to shorten the length of the page with a "read more" button.', 'tour-operator' ); ?></small>
 			</td>
 		</tr>
+		<tr class="form-field-wrap">
+			<th scope="row">
+				<label for="expiration_status"> <?php esc_html_e( 'Expiration Status', 'tour-operator' ); ?></label>
+			</th>
+			<td>
+				<select value="{{expiration_status}}" name="expiration_status">
+					<option value="draft" {{#is expiration_status value=""}}selected="selected"{{/is}} {{#is expiration_status value="draft"}} selected="selected"{{/is}}><?php esc_html_e( 'Draft', 'tour-operator' ); ?></option>
+					<option value="delete" {{#is expiration_status value="delete"}} selected="selected"{{/is}}><?php esc_html_e( 'Delete', 'tour-operator' ); ?></option>
+					<option value="private" {{#is expiration_status value="private"}} selected="selected"{{/is}}><?php esc_html_e( 'Private', 'tour-operator' ); ?></option>
+				</select>
+			</td>
+		</tr>
+
 		<?php
 	}
 
