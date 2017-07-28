@@ -41,6 +41,6 @@ if ( 1 !== $lsx_to_archive ) {
 
 	<?php lsx_entry_bottom(); ?>
 
-</article><!-- #post-## -->
+</article>
 
 <?php lsx_entry_after();
