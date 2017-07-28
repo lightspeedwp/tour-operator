@@ -32,10 +32,16 @@ $title_link = esc_url( get_term_link( $term, $taxonomy ) );
 		<h4 class="lsx-to-widget-title text-center"><a href="<?php echo esc_url( $title_link ); ?>"><?php echo esc_html( apply_filters( 'the_title', $term->name ) ); ?></a></h4>
 
 		<?php
-			if ( empty( $disable_text ) ) {
-				lsx_to_term_tagline( $term->term_id, '<p class="lsx-to-widget-tagline text-center">', '</p>' );
-			}
+			// if ( empty( $disable_text ) ) {
+			// 	lsx_to_term_tagline( $term->term_id, '<p class="lsx-to-widget-tagline text-center">', '</p>' );
+			// }
 		?>
+
+		<?php if ( empty( $disable_text ) && ! empty( $term->description ) ) { ?>
+			<p class="lsx-to-widget-description">
+				<?php echo wp_kses_post( $term->description ); ?>
+			</p>
+		<?php } ?>
 
 		<p>
 			<a href="<?php echo esc_url( $title_link ); ?>" class="moretag"><?php esc_html_e( 'View more', 'tour-operator' ); ?></a>
