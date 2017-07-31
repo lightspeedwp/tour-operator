@@ -9,6 +9,32 @@
  */
 
 /**
+ * Adds a shortcode to emulate Post Type widget.
+ */
+function lsx_to_post_type_widget_shortcode( $atts ) {
+	ob_start();
+
+	the_widget( 'lsx\legacy\Widget', $atts );
+
+	return ob_get_clean();
+}
+
+add_shortcode( 'lsx_to_post_type_widget', 'lsx_to_post_type_widget_shortcode' );
+
+/**
+ * Adds a shortcode to emulate Taxonomy widget.
+ */
+function lsx_to_taxonomy_widget_shortcode( $atts ) {
+	ob_start();
+
+	the_widget( 'lsx\legacy\Taxonomy_Widget', $atts );
+
+	return ob_get_clean();
+}
+
+add_shortcode( 'lsx_to_taxonomy_widget', 'lsx_to_taxonomy_widget_shortcode' );
+
+/**
  * TO Archive Shortcode.
  */
 function lsx_to_archive_shortcode( $atts ) {
