@@ -190,10 +190,6 @@ msgstr ""
 msgid "View tour"
 msgstr ""
 
-#: templates/content-accommodation.php:25, templates/content-destination.php:25, templates/content-tour.php:25, includes/template-tags/general.php:187
-msgid "Summary"
-msgstr ""
-
 #: templates/content-widget-accommodation.php:50, includes/taxonomies/config-accommodation-brand.php:19, includes/template-tags/accommodation.php:319, includes/classes/legacy/class-tour-operator.php:282
 msgid "Brand"
 msgstr ""
@@ -1300,6 +1296,10 @@ msgstr ""
 
 #: includes/template-tags/destination.php:220, includes/classes/legacy/class-destination.php:220
 msgid "Travel Information"
+msgstr ""
+
+#: includes/template-tags/general.php:187
+msgid "Summary"
 msgstr ""
 
 #: includes/template-tags/general.php:475

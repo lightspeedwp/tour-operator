@@ -22,7 +22,7 @@ if ( 1 !== $lsx_to_archive ) {
 
 		<div <?php lsx_to_entry_class( 'entry-content' ); ?>>
 			<div class="lsx-to-summary">
-				<h2 class="lsx-to-summary-title"><?php esc_html_e( 'Summary' , 'tour-operator' ); ?></h2>
+				<h2 class="lsx-to-summary-title"><?php the_title(); ?></h2>
 			</div>
 
 			<?php the_content(); ?>
