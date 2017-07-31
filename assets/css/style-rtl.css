@@ -1636,9 +1636,9 @@ article.team .lsx-to-team-socials > a:not(.btn):hover, article.team .lsx-to-team
 
 .lsx-to-navigation .lsx-to-content-spy:not(.dropdown-menu) > li > a, .lsx-to-navigation .lsx-to-content-spy:not(.dropdown-menu) > li > a:focus { background-color: transparent; color: #FFF; }
 
-.lsx-to-navigation .lsx-to-content-spy:not(.dropdown-menu) > li > a:hover { color: #1098AD; background-color: #2B3840; }
+.lsx-to-navigation .lsx-to-content-spy:not(.dropdown-menu) > li > a:hover { background-color: #2B3840; color: #1098AD; }
 
-.lsx-to-navigation .lsx-to-content-spy:not(.dropdown-menu) > li.active > a { color: #1098AD; background-color: #2B3840; }
+.lsx-to-navigation .lsx-to-content-spy:not(.dropdown-menu) > li.active > a { background-color: #2B3840; color: #1098AD; }
 
 #when-to-go .lsx-to-month { border-color: #374750; }
 
@@ -1646,4 +1646,4 @@ article.team .lsx-to-team-socials > a:not(.btn):hover, article.team .lsx-to-team
 
 #when-to-go .lsx-to-month > small { background-color: #374750; color: #FFF; }
 
-#when-to-go .lsx-to-month > .fa { color: #1098AD; }
+#when-to-go .lsx-to-month.lsx-to-month-check > .fa { color: #2B3840; }

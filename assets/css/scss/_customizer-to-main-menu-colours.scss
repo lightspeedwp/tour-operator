@@ -16,15 +16,15 @@
 					}
 
 					&:hover {
-						color: $dropdown-link-hover;
 						background-color: $dropdown-hover;
+						color: $dropdown-link-hover;
 					}
 				}
 
 				&.active {
 					& > a {
-						color: $dropdown-link-hover;
 						background-color: $dropdown-hover;
+						color: $dropdown-link-hover;
 					}
 				}
 			}
@@ -42,7 +42,9 @@
 				color: $dropdown-link;
 			}
 
-			& > .fa { color: $dropdown-link-hover; }
+			&.lsx-to-month-check {
+				& > .fa { color: $dropdown-hover; }
+			}
 		}
 	}
 }

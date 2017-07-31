@@ -246,13 +246,15 @@ function lsx_to_best_time_to_visit( $before = '', $after = '', $echo = true ) {
 
 		foreach ( $this_year as $month => $label ) {
 			$checked = '';
+			$checked_class = '';
 
 			if ( in_array( $month, $best_time_to_visit ) ) {
 				$checked = '<i class="fa fa-check-circle" aria-hidden="true"></i>';
+				$checked_class = 'lsx-to-month-check';
 			}
 
 			$shortname = str_split( $label, 3 );
-			$best_times[] = '<div class="col-xs-2 col-sm-1 lsx-to-month"><small>' . $shortname[0] . '</small>' . $checked . '</div>';
+			$best_times[] = '<div class="col-xs-2 col-sm-1 lsx-to-month ' . $checked_class . '"><small>' . $shortname[0] . '</small>' . $checked . '</div>';
 		};
 
 		$return = $before . implode( $best_times ) . $after;
