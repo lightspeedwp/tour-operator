@@ -436,10 +436,17 @@ function lsx_to_destination_archive_content_bottom() {
  * @category 	tour
  */
 function lsx_to_tour_single_content_bottom() {
-	if ( is_singular( 'tour' ) ) { ?>
+	if ( is_singular( 'tour' ) ) {
+		$highlights = get_post_meta( get_the_ID(), 'hightlights', true );
+		$column_class = 'col-xs-12';
+
+		if ( ! empty( $highlights ) ) {
+			$column_class .= ' col-sm-6';
+		}
+		?>
 		<section id="keynotes" class="lsx-to-section">
 			<div class="row">
-				<div class="col-xs-12 col-sm-6">
+				<div class="<?php echo esc_attr( $column_class ); ?>">
 					<section id="fast-facts">
 						<h2 class="lsx-to-section-title lsx-title"><?php echo esc_html__( 'Fast Facts', 'tour-operator' ); ?></h2>
 						<div class="lsx-to-section-inner">
@@ -458,14 +465,16 @@ function lsx_to_tour_single_content_bottom() {
 						</div>
 					</section>
 				</div>
-				<div class="col-xs-12 col-sm-6">
-					<section id="highlights">
-						<h2 class="lsx-to-section-title lsx-title"><?php echo esc_html__( 'Highlights', 'tour-operator' ); ?></h2>
-						<div class="lsx-to-section-inner">
-							<?php lsx_to_highlights(); ?>
-						</div>
-					</section>
-				</div>
+				<?php if ( ! empty( $highlights ) ) : ?>
+					<div class="col-xs-12 col-sm-6">
+						<section id="highlights">
+							<h2 class="lsx-to-section-title lsx-title"><?php echo esc_html__( 'Highlights', 'tour-operator' ); ?></h2>
+							<div class="lsx-to-section-inner">
+								<?php lsx_to_highlights(); ?>
+							</div>
+						</section>
+					</div>
+				<?php endif; ?>
 			</div>
 			<div class="row">
 				<div class="col-xs-12">
