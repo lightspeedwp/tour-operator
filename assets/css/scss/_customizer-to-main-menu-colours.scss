@@ -15,11 +15,17 @@
 						color: $dropdown-link;
 					}
 
-					&:hover { background-color: $dropdown-link-hover; }
+					&:hover {
+						color: $dropdown-link-hover;
+						background-color: $dropdown-hover;
+					}
 				}
 
 				&.active {
-					& > a { background-color: $dropdown-link-hover; }
+					& > a {
+						color: $dropdown-link-hover;
+						background-color: $dropdown-hover;
+					}
 				}
 			}
 		}

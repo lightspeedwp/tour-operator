@@ -57,6 +57,22 @@ if ( window.location.hash ) {
 	};
 
 	/**
+	 * Remove empty single fast facts.
+	 *
+	 * @package    tour-operator
+	 * @subpackage scripts
+	 */
+	lsx_to.remove_empty_fast_facts = function() {
+		$( '#keynotes .lsx-to-single-meta-data' ).each( function() {
+			var $this = $( this );
+
+			if ( '' === $.trim( $this.html() ) ) {
+				$this.closest( '#keynotes' ).addClass( 'hidden' );
+			}
+		} );
+	};
+
+	/**
 	 * Add extra HTML class to metadata tags.
 	 *
 	 * @package    tour-operator
@@ -329,6 +345,7 @@ if ( window.location.hash ) {
 	$document.ready( function() {
 
 		lsx_to.remove_empty_widgets();
+		lsx_to.remove_empty_fast_facts();
 		lsx_to.add_extra_class_to_meta();
 		lsx_to.set_read_more();
 		lsx_to.set_read_more_travel_info();
