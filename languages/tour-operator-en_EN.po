@@ -998,15 +998,15 @@ msgstr ""
 msgid "Premium Add-Ons"
 msgstr ""
 
-#: includes/partials/post.php:6, includes/classes/legacy/class-placeholders.php:521
+#: includes/partials/post.php:6, includes/classes/legacy/class-placeholders.php:537
 msgid "Banner"
 msgstr ""
 
-#: includes/partials/post.php:14, includes/classes/legacy/class-admin.php:282, includes/classes/legacy/class-placeholders.php:435, includes/classes/legacy/class-placeholders.php:460, includes/classes/legacy/class-placeholders.php:484, includes/classes/legacy/class-placeholders.php:537, includes/classes/legacy/class-placeholders.php:563, includes/classes/legacy/class-settings.php:348
+#: includes/partials/post.php:14, includes/classes/legacy/class-admin.php:282, includes/classes/legacy/class-placeholders.php:451, includes/classes/legacy/class-placeholders.php:476, includes/classes/legacy/class-placeholders.php:500, includes/classes/legacy/class-placeholders.php:553, includes/classes/legacy/class-placeholders.php:579, includes/classes/legacy/class-settings.php:348
 msgid "Choose Image"
 msgstr ""
 
-#: includes/partials/post.php:15, includes/classes/legacy/class-placeholders.php:438, includes/classes/legacy/class-placeholders.php:463, includes/classes/legacy/class-placeholders.php:487, includes/classes/legacy/class-placeholders.php:540, includes/classes/legacy/class-placeholders.php:566, includes/classes/legacy/class-settings.php:349, includes/classes/legacy/class-tour.php:146
+#: includes/partials/post.php:15, includes/classes/legacy/class-placeholders.php:454, includes/classes/legacy/class-placeholders.php:479, includes/classes/legacy/class-placeholders.php:503, includes/classes/legacy/class-placeholders.php:556, includes/classes/legacy/class-placeholders.php:582, includes/classes/legacy/class-settings.php:349, includes/classes/legacy/class-tour.php:146
 msgid "Delete"
 msgstr ""
 
@@ -1390,27 +1390,27 @@ msgstr ""
 msgid "Regions"
 msgstr ""
 
-#: includes/classes/legacy/class-placeholders.php:419
+#: includes/classes/legacy/class-placeholders.php:435
 msgid "Banner Placeholder"
 msgstr ""
 
-#: includes/classes/legacy/class-placeholders.php:444
+#: includes/classes/legacy/class-placeholders.php:460
 msgid "Archive Placeholder"
 msgstr ""
 
-#: includes/classes/legacy/class-placeholders.php:469
+#: includes/classes/legacy/class-placeholders.php:485
 msgid "Blog Placeholder"
 msgstr ""
 
-#: includes/classes/legacy/class-placeholders.php:493
+#: includes/classes/legacy/class-placeholders.php:509
 msgid "Disable Placeholder on Blog Posts"
 msgstr ""
 
-#: includes/classes/legacy/class-placeholders.php:499
+#: includes/classes/legacy/class-placeholders.php:515
 msgid "This disables the placeholder on blog posts."
 msgstr ""
 
-#: includes/classes/legacy/class-placeholders.php:547
+#: includes/classes/legacy/class-placeholders.php:563
 msgid "Archive Image"
 msgstr ""
 

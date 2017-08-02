@@ -129,6 +129,10 @@ class Placeholders {
 					$holdit_width = '&w=750&h=350';
 					break;
 
+				case 'lsx-thumbnail-square':
+					$holdit_width = '&w=350&h=350';
+					break;
+
 				case 'lsx-thumbnail-wide':
 				default:
 					$holdit_width = '&w=350&h=230';
@@ -296,6 +300,12 @@ class Placeholders {
 					$image[] = true;
 					break;
 
+				case 'lsx-thumbnail-square':
+					$image[] = 350;
+					$image[] = 350;
+					$image[] = true;
+					break;
+
 				case 'lsx-thumbnail-single':
 					$image[] = 750;
 					$image[] = 350;
@@ -357,6 +367,12 @@ class Placeholders {
 					'file'      => $this->placeholder_url( null, null, 'lsx-thumbnail-wide' ),
 					'width'     => '350',
 					'height'    => '230',
+					'mime-type' => 'image/jpeg',
+				),
+				'lsx-thumbnail-square' => array(
+					'file'      => $this->placeholder_url( null, null, 'lsx-thumbnail-square' ),
+					'width'     => '350',
+					'height'    => '350',
 					'mime-type' => 'image/jpeg',
 				),
 			);
