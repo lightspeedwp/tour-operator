@@ -27,11 +27,11 @@ msgstr ""
 msgid "Tour Operator"
 msgstr ""
 
-#: includes/functions.php:292, includes/layout.php:162, templates/content-widget-accommodation.php:53, includes/metaboxes/config-accommodation.php:125, includes/template-tags/accommodation.php:317
+#: includes/functions.php:292, includes/layout.php:162, templates/content-widget-accommodation.php:54, includes/metaboxes/config-accommodation.php:125, includes/template-tags/accommodation.php:317
 msgid "Rating"
 msgstr ""
 
-#: includes/functions.php:293, includes/layout.php:165, includes/metaboxes/config-accommodation.php:301, includes/template-tags/accommodation.php:320
+#: includes/functions.php:293, includes/layout.php:165, templates/content-widget-accommodation.php:51, includes/metaboxes/config-accommodation.php:301, includes/template-tags/accommodation.php:320
 msgid "Type"
 msgstr ""
 
@@ -82,7 +82,7 @@ msgstr ""
 msgid "Style"
 msgstr ""
 
-#: includes/layout.php:166, templates/content-widget-accommodation.php:52, includes/template-tags/accommodation.php:316
+#: includes/layout.php:166, templates/content-widget-accommodation.php:53, includes/template-tags/accommodation.php:316
 msgid "Rooms"
 msgstr ""
 
@@ -122,7 +122,7 @@ msgstr ""
 msgid "Related Tours"
 msgstr ""
 
-#: includes/layout.php:267, templates/content-widget-accommodation-brand.php:47, templates/content-widget-accommodation-type.php:47, templates/content-widget-accommodation.php:65
+#: includes/layout.php:267, templates/content-widget-accommodation-brand.php:47, templates/content-widget-accommodation-type.php:47, templates/content-widget-accommodation.php:66
 msgid "View accommodation"
 msgstr ""
 
@@ -194,7 +194,7 @@ msgstr ""
 msgid "Brand"
 msgstr ""
 
-#: templates/content-widget-accommodation.php:51, includes/metaboxes/config-accommodation.php:93, includes/metaboxes/config-destination.php:230, includes/metaboxes/config-destination.php:236, includes/template-tags/accommodation.php:324
+#: templates/content-widget-accommodation.php:52, includes/metaboxes/config-accommodation.php:93, includes/metaboxes/config-destination.php:230, includes/metaboxes/config-destination.php:236, includes/template-tags/accommodation.php:324
 msgid "Location"
 msgstr ""
 
