@@ -75,7 +75,7 @@ function lsx_to_archive_entry_top() {
 			<a <?php if ( $has_single ) echo 'href="' . esc_url( $permalink ) . '"'; ?> style="background-image: url('<?php echo esc_url( $image_src ); ?>')">
 				<?php
 					if ( 'team' === get_post_type() ) {
-						lsx_thumbnail( array( 285, 285 ) );
+						lsx_thumbnail( 'lsx-thumbnail-square' );
 					} else {
 						lsx_thumbnail( 'lsx-thumbnail-single' );
 					}
