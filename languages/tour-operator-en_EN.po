@@ -122,7 +122,7 @@ msgstr ""
 msgid "Related Tours"
 msgstr ""
 
-#: includes/layout.php:267, templates/content-widget-accommodation-brand.php:47, templates/content-widget-accommodation-type.php:47, templates/content-widget-accommodation.php:66
+#: includes/layout.php:267, templates/content-widget-accommodation-brand.php:56, templates/content-widget-accommodation-type.php:56, templates/content-widget-accommodation.php:66
 msgid "View accommodation"
 msgstr ""
 
@@ -134,7 +134,7 @@ msgstr ""
 msgid "When to Go"
 msgstr ""
 
-#: includes/layout.php:403, templates/content-widget-travel-style.php:47, templates/content-widget.php:33, templates/content.php:47
+#: includes/layout.php:403, templates/content-widget-travel-style.php:56, templates/content-widget.php:33, templates/content.php:47
 msgid "View more"
 msgstr ""
 
@@ -1630,93 +1630,97 @@ msgstr ""
 msgid "Any connected item showing on a single will display a preview in a modal."
 msgstr ""
 
-#: includes/classes/legacy/class-taxonomy-widget.php:264, includes/classes/legacy/class-widget.php:275
+#: includes/classes/legacy/class-taxonomy-widget.php:285, includes/classes/legacy/class-widget.php:275
 msgid "Title:"
 msgstr ""
 
-#: includes/classes/legacy/class-taxonomy-widget.php:270, includes/classes/legacy/class-widget.php:281
+#: includes/classes/legacy/class-taxonomy-widget.php:291, includes/classes/legacy/class-widget.php:281
 msgid "Title Link:"
 msgstr ""
 
-#: includes/classes/legacy/class-taxonomy-widget.php:274, includes/classes/legacy/class-widget.php:285
+#: includes/classes/legacy/class-taxonomy-widget.php:295, includes/classes/legacy/class-widget.php:285
 msgid ""
 "Link the widget title to\n"
 "				a URL"
 msgstr ""
 
-#: includes/classes/legacy/class-taxonomy-widget.php:277
+#: includes/classes/legacy/class-taxonomy-widget.php:298
 msgid "Query"
 msgstr ""
 
-#: includes/classes/legacy/class-taxonomy-widget.php:279
+#: includes/classes/legacy/class-taxonomy-widget.php:300
 msgid "Taxonomy:"
 msgstr ""
 
-#: includes/classes/legacy/class-taxonomy-widget.php:285
+#: includes/classes/legacy/class-taxonomy-widget.php:306
 msgid "None"
 msgstr ""
 
-#: includes/classes/legacy/class-taxonomy-widget.php:297, includes/classes/legacy/class-widget.php:304
+#: includes/classes/legacy/class-taxonomy-widget.php:317, includes/classes/legacy/class-widget.php:304
 msgid "Order By:"
 msgstr ""
 
-#: includes/classes/legacy/class-taxonomy-widget.php:316, includes/classes/legacy/class-widget.php:325
+#: includes/classes/legacy/class-taxonomy-widget.php:336, includes/classes/legacy/class-widget.php:325
 msgid "Order:"
 msgstr ""
 
-#: includes/classes/legacy/class-taxonomy-widget.php:332, includes/classes/legacy/class-widget.php:341
+#: includes/classes/legacy/class-taxonomy-widget.php:352, includes/classes/legacy/class-widget.php:341
 msgid "Maximum amount:"
 msgstr ""
 
-#: includes/classes/legacy/class-taxonomy-widget.php:335, includes/classes/legacy/class-widget.php:344
+#: includes/classes/legacy/class-taxonomy-widget.php:355, includes/classes/legacy/class-widget.php:344
 msgid "Leave empty to display all"
 msgstr ""
 
-#: includes/classes/legacy/class-taxonomy-widget.php:339
+#: includes/classes/legacy/class-taxonomy-widget.php:358
 msgid "Specify by ID:"
 msgstr ""
 
-#: includes/classes/legacy/class-taxonomy-widget.php:343, includes/classes/legacy/class-widget.php:352
+#: includes/classes/legacy/class-taxonomy-widget.php:362, includes/classes/legacy/class-widget.php:352
 msgid "Comma separated list, overrides limit setting"
 msgstr ""
 
-#: includes/classes/legacy/class-taxonomy-widget.php:348
+#: includes/classes/legacy/class-taxonomy-widget.php:364
 msgid "Layout"
 msgstr ""
 
-#: includes/classes/legacy/class-taxonomy-widget.php:350, includes/classes/legacy/class-widget.php:289
+#: includes/classes/legacy/class-taxonomy-widget.php:366, includes/classes/legacy/class-widget.php:289
 msgid "Columns:"
 msgstr ""
 
-#: includes/classes/legacy/class-taxonomy-widget.php:365, includes/classes/legacy/class-widget.php:412
+#: includes/classes/legacy/class-taxonomy-widget.php:381, includes/classes/legacy/class-widget.php:412
 msgid "Class:"
 msgstr ""
 
-#: includes/classes/legacy/class-taxonomy-widget.php:375, includes/classes/legacy/class-widget.php:365
+#: includes/classes/legacy/class-taxonomy-widget.php:391, includes/classes/legacy/class-widget.php:365
 msgid "Disable Featured Image"
 msgstr ""
 
-#: includes/classes/legacy/class-taxonomy-widget.php:381, includes/classes/legacy/class-widget.php:371
+#: includes/classes/legacy/class-taxonomy-widget.php:397, includes/classes/legacy/class-widget.php:371
 msgid "Disable Excerpt and Tagline"
 msgstr ""
 
-#: includes/classes/legacy/class-taxonomy-widget.php:387, includes/classes/legacy/class-widget.php:377
+#: includes/classes/legacy/class-taxonomy-widget.php:403
+msgid "Disable Single Link"
+msgstr ""
+
+#: includes/classes/legacy/class-taxonomy-widget.php:409, includes/classes/legacy/class-widget.php:377
 msgid "Display Button"
 msgstr ""
 
-#: includes/classes/legacy/class-taxonomy-widget.php:390, includes/classes/legacy/class-widget.php:380
+#: includes/classes/legacy/class-taxonomy-widget.php:412, includes/classes/legacy/class-widget.php:380
 msgid "Button Text:"
 msgstr ""
 
-#: includes/classes/legacy/class-taxonomy-widget.php:396
+#: includes/classes/legacy/class-taxonomy-widget.php:417
 msgid "Slider"
 msgstr ""
 
-#: includes/classes/legacy/class-taxonomy-widget.php:402, includes/classes/legacy/class-widget.php:389
+#: includes/classes/legacy/class-taxonomy-widget.php:422, includes/classes/legacy/class-widget.php:389
 msgid "Enable Carousel"
 msgstr ""
 
-#: includes/classes/legacy/class-taxonomy-widget.php:405, includes/classes/legacy/class-widget.php:392
+#: includes/classes/legacy/class-taxonomy-widget.php:425, includes/classes/legacy/class-widget.php:392
 msgid "Slide Interval:"
 msgstr ""
 
