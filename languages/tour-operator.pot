@@ -134,7 +134,7 @@ msgstr ""
 msgid "When to Go"
 msgstr ""
 
-#: includes/layout.php:403, templates/content-widget-travel-style.php:47, templates/content-widget.php:33, templates/content.php:43
+#: includes/layout.php:403, templates/content-widget-travel-style.php:47, templates/content-widget.php:33, templates/content.php:47
 msgid "View more"
 msgstr ""
 
@@ -1298,11 +1298,11 @@ msgstr ""
 msgid "Travel Information"
 msgstr ""
 
-#: includes/template-tags/general.php:187
+#: includes/template-tags/general.php:174
 msgid "Summary"
 msgstr ""
 
-#: includes/template-tags/general.php:475
+#: includes/template-tags/general.php:462
 msgid "Enquire"
 msgstr ""
 

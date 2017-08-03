@@ -135,3 +135,19 @@ if ( 'lsx' !== $current_template && 'LSX' !== $theme_name ) {
 		return $post_id;
 	}
 }
+
+function lsx_to_content( $slug, $name = null ) {
+	do_action( 'lsx_to_content', $slug, $name );
+}
+
+function lsx_to_modal_meta() {
+	do_action( 'lsx_to_modal_meta' );
+}
+
+function lsx_to_entry_content_top() {
+	do_action( 'lsx_to_entry_content_top' );
+}
+
+function lsx_to_entry_content_bottom() {
+	do_action( 'lsx_to_entry_content_bottom' );
+}

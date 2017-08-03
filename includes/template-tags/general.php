@@ -141,19 +141,6 @@ function lsx_to_tagline( $before = '', $after = '', $echo = false ) {
 	echo wp_kses_post( apply_filters( 'lsx_to_tagline', '', $before, $after ) );
 }
 
-/* ==================    BODY    ================== */
-
-/**
- * Outputs the tour Content
- *
- * @package 	tour-operator
- * @subpackage	template-tag
- * @category 	content
- */
-function lsx_to_content( $slug, $name = null ) {
-	do_action( 'lsx_to_content', $slug, $name );
-}
-
 /* ==================   ARCHIVE   ================== */
 
 /**
@@ -549,16 +536,6 @@ function lsx_to_enquire_modal( $cta_text = '', $before = '', $after = '', $echo 
 		?>
 	</div>
 <?php } }
-/**
- * Outputs a list of the ids you give it
- *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	meta
- */
-function lsx_to_modal_meta() {
-	do_action( 'lsx_to_modal_meta' );
-}
 
 /**
  * Outputs the TO Gallery
