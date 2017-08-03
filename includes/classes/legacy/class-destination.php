@@ -70,8 +70,6 @@ class Destination {
 		add_action( 'lsx_to_map_meta', array( $this, 'content_meta' ) );
 		add_action( 'lsx_to_modal_meta', array( $this, 'content_meta' ) );
 
-		add_action( 'lsx_to_framework_destination_tab_general_settings_bottom', array( $this, 'general_settings' ), 10, 1 );
-
 		add_filter( 'lsx_to_page_navigation', array( $this, 'page_links' ) );
 
 		add_filter( 'lsx_to_parents_only', array( $this, 'filter_countries' ) );
@@ -131,27 +129,6 @@ class Destination {
 		}
 
 		return $classes;
-	}
-
-	/**
-	 * Displays the destination specific settings
-	 *
-	 * @param $post_type string
-	 * @param $tab       string
-	 *
-	 * @return null
-	 */
-	public function general_settings() {
-		?>
-		<tr class="form-field -wrap">
-			<th scope="row">
-				<label for="description"><?php esc_html_e( 'Display the map in the banner', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="checkbox" {{#if enable_banner_map}} checked="checked" {{/if}} name="enable_banner_map" />
-			</td>
-		</tr>
-		<?php
 	}
 
 	/**
