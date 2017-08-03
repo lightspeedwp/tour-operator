@@ -33,13 +33,7 @@ if ( 1 !== $lsx_to_archive ) {
 
 		<div <?php lsx_to_entry_class( 'entry-content' ); ?>><?php
 			lsx_to_entry_content_top();
-
-			if ( is_post_type_archive( 'destination' ) && lsx_to_is_single_disabled() ) {
-				the_content();
-			} else {
-				the_excerpt();
-			}
-
+			the_excerpt();
 			lsx_to_entry_content_bottom();
 		?></div>
 
