@@ -151,3 +151,11 @@ function lsx_to_entry_content_top() {
 function lsx_to_entry_content_bottom() {
 	do_action( 'lsx_to_entry_content_bottom' );
 }
+
+function lsx_to_widget_entry_content_top() {
+	do_action( 'lsx_to_widget_entry_content_top' );
+}
+
+function lsx_to_widget_entry_content_bottom() {
+	do_action( 'lsx_to_widget_entry_content_bottom' );
+}

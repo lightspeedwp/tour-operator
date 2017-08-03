@@ -122,7 +122,7 @@ msgstr ""
 msgid "Related Tours"
 msgstr ""
 
-#: includes/layout.php:267, templates/content-widget-accommodation-brand.php:56, templates/content-widget-accommodation-type.php:56, templates/content-widget-accommodation.php:66
+#: includes/layout.php:267, templates/content-widget-accommodation-brand.php:56, templates/content-widget-accommodation-type.php:56, templates/content-widget-accommodation.php:68
 msgid "View accommodation"
 msgstr ""
 
@@ -186,7 +186,7 @@ msgstr ""
 msgid "Duration"
 msgstr ""
 
-#: includes/layout.php:630, templates/content-widget-tour.php:67
+#: includes/layout.php:630, templates/content-widget-tour.php:69
 msgid "View tour"
 msgstr ""
 
@@ -198,7 +198,7 @@ msgstr ""
 msgid "Location"
 msgstr ""
 
-#: templates/content-widget-destination.php:52
+#: templates/content-widget-destination.php:54
 msgid "View destination"
 msgstr ""
 
