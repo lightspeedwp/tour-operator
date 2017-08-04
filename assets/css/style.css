@@ -1363,8 +1363,6 @@
 
 .site-main > .lsx-to-section:first-of-type { padding-top: 0; }
 
-.single-lsx-to-team .site-main > .lsx-to-section:first-of-type { padding-bottom: 0; }
-
 .lsx-to-section .lsx-to-section { padding-bottom: 0; }
 
 .lsx-to-section-inner { margin-top: 4.25rem; padding: 2.4rem; }
@@ -1461,7 +1459,7 @@
 
 .rooms-info { -webkit-box-flex: 1; -ms-flex-positive: 1; flex-grow: 1; padding: 2.4rem 2.4rem 0; }
 
-.lsx-to-team-thumb { border-radius: 50%; display: block; height: 32rem; margin: 0 auto 10px; overflow: hidden; width: 32rem; }
+.lsx-to-team-thumb { border-radius: 50%; display: block; height: 32rem; margin: 0 auto 20px; overflow: hidden; width: 32rem; }
 
 .lsx-to-team-thumb > img { width: 100%; }
 
