@@ -119,17 +119,14 @@ class Post_Expirator
 		if ( isset ( $_POST['expire_post'] ) && ! empty( $booking_dates ) ) {
 
 			foreach ( $booking_dates as $date_range ) {
-				$month  = (int) $_POST['lsx_to_expirationdate_month'];
-				$day    = (int) $_POST['lsx_to_expirationdate_day'];
-				$year   = (int) $_POST['lsx_to_expirationdate_year'];
 
-				$hour   = (int) '11';
-				$minute = (int) '30';
+				$raw_date = date( 'Y-m-d', strtotime( $date_range ) );
+				$raw_date .= "11:30:0";
 
 				$opts = array();
-				$ts   = get_gmt_from_date( "$year-$month-$day $hour:$minute:0", 'U' );
+				$ts   = get_gmt_from_date( $raw_date, 'U' );
 
-				$opts['expiretype'] = sanitize_text_field( $_POST['lsx_to_expirationdate_expiretype'] );
+				$opts['expiretype'] = $this->get_expire_type( $id );
 				$opts['id']         = $id;
 
 				$this->schedule_expirator_event( $id, $ts, $opts );
@@ -144,24 +141,36 @@ class Post_Expirator
 	}
 
 	/**
+	 * Gets the expire type option
+	 *
+	 * @param $id string
+	 * @return string
+	 */
+	public function get_expire_type( $id = 0 ) {
+		$return = 'draft';
+		$tour_operator = tour_operator();
+		$post_type = get_post_type($id);
+		if ( isset( $tour_operator->options[ $post_type ] ) ) {
+			$return = $tour_operator->options[ $post_type ][ 'expiration_status' ];
+		}
+		return $return;
+	}
+
+	/**
 	 * Check the post array for the travel dates if there are any.
 	 *
 	 * @return array
 	 */
 	public function get_booking_dates() {
 		$dates = array();
-		$booking_validity_start = false;
 		$booking_validity_end = false;
-		if ( isset( $_POST['booking_validity_start'] ) && ! empty( $_POST['booking_validity_start'] ) ) {
-			$booking_validity_start = implode( '', $_POST['booking_validity_start'] );
-		}
 		if ( isset( $_POST['booking_validity_end'] ) && ! empty( $_POST['booking_validity_end'] ) ) {
 			$booking_validity_end = implode( '', $_POST['booking_validity_end'] );;
 		}
-		if ( false !== $booking_validity_start && false !== $booking_validity_end ) {
-			$dates[] = array( $booking_validity_start, $booking_validity_end );
+		if ( false !== $booking_validity_end ) {
+			$dates[] = $booking_validity_end;
 		}
-		$dates = $this->raw_format_dates( $dates );
+		//$dates = $this->raw_format_dates( $dates );
 		return $dates;
 	}
 
@@ -175,14 +184,9 @@ class Post_Expirator
 		if ( ! empty( $dates ) ) {
 			$new_dates = array();
 			foreach ( $dates as $date_range ) {
-				$temp = array();
-				if ( isset( $date_range[0] ) && '' !== $date_range[0] ) {
-					$temp[] = strtotime( $date_range[0] );
-				}
 				if ( isset( $date_range[1] ) && '' !== $date_range[1] ) {
-					$temp[] = strtotime( $date_range[1] );
+					$new_dates[] = strtotime( $date_range[1] );
 				}
-				$new_dates[] = $temp;
 			}
 			$dates = $new_dates;
 		}
