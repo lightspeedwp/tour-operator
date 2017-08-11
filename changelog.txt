@@ -3,7 +3,9 @@
 ### 1.1.0
 * Dev - Support LSX Theme 2.0 new designs
 * Dev - Added in a filter to call the Tours Featured image for the Departure Day.
-* Dev - Renamed the class-itinerary.php to class-itinerary-query.php
+* Fix - Renamed the class-itinerary.php to class-itinerary-query.php (travis-ci)
+* Dev - Added the accommodations room images to the pool of possible itinerary day images.
+* Fix - Renamed the class-itinerary.php to class-itinerary-query.php (travis-ci)
 
 ### 1.0.7
 * Dev - Added .editorconfig file to help developers to maintain consistent coding styles between different editors and IDEs

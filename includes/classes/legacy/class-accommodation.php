@@ -94,7 +94,7 @@ class Accommodation {
 
 		add_filter( 'lsx_to_custom_field_query', array( $this, 'rating' ), 5, 10 );
 
-		include( 'class-units.php' );
+		include( 'class-units-query.php' );
 
 		add_action( 'lsx_to_map_meta', 'lsx_to_accommodation_meta' );
 		add_action( 'lsx_to_modal_meta', 'lsx_to_accommodation_meta' );

@@ -142,10 +142,37 @@ class Itinerary_Query {
 	public function register_current_gallery( $accommodation_id = false ) {
 		if ( false !== $accommodation_id ) {
 			$gallery = get_post_meta( $accommodation_id, 'gallery', false );
+			$gallery = $this->append_room_images( $gallery );
 			if ( false !== $gallery && ! empty( $gallery ) ) {
 				$this->current_attachments[ $accommodation_id ] = $gallery;
 			}
 		}
+	}
+
+	/**
+	 * Adds the room images to the list of possible items.
+	 *
+	 * @param   $accommodation_id   | string
+	 * @param	$gallery	array
+	 */
+	public function append_room_images( $accommodation_id = false, $gallery = array() ) {
+		if ( false !== $accommodation_id ) {
+
+			$room_images = get_post_meta( $this->post_id, 'units', false );
+			if ( false !== $room_images && ! empty( $room_images ) ) {
+
+				$append = array();
+				foreach ( $room_images as $room ) {
+					if ( isset( $room['gallery'] ) ) {
+						$append[] = $room['gallery'];
+					}
+				}
+
+				$gallery = array_combine( $gallery, $append );
+			}
+		}
+
+		return $gallery;
 	}
 
 	/**
