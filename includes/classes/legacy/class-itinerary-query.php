@@ -163,11 +163,12 @@ class Itinerary_Query {
 
 				$append = array();
 				foreach ( $room_images as $room ) {
-					if ( isset( $room['gallery'] ) ) {
-						$append[] = $room['gallery'];
+					if ( isset( $room['gallery'] ) && is_array( $room['gallery'] ) && ! empty( $room['gallery'] ) ) {
+						foreach ( $room['gallery'] as $image ) {
+							$append[] = $image;
+						}
 					}
 				}
-
 				$gallery = array_combine( $gallery, $append );
 			}
 		}
