@@ -169,7 +169,7 @@ class Itinerary_Query {
 						}
 					}
 				}
-				$gallery = array_combine( $gallery, $append );
+				$gallery = array_merge( $gallery, $append );
 			}
 		}
 
