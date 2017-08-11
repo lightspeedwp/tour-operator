@@ -105,7 +105,7 @@ class Itinerary_Query {
 			$this->has_itinerary = true;
 			$this->count = count( $this->itineraries );
 		}
-		add_filter('lsx_to_itinerary_thumbnail_src', array( $this, 'departure_day_image' ), 10, 3 );
+		add_filter( 'lsx_to_itinerary_thumbnail_src', array( $this, 'departure_day_image' ), 10, 3 );
 	}
 
 	/**
@@ -119,9 +119,9 @@ class Itinerary_Query {
 	 * Used in the While loop to cycle through the field array
 	 */
 	public function while_itinerary() {
-		if( $this->index < $this->count ) {
+		if ( $this->index < $this->count ) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
@@ -140,9 +140,9 @@ class Itinerary_Query {
 	 * @param   $accommodation_id   | string
 	 */
 	public function register_current_gallery( $accommodation_id = false ) {
-		if( false !== $accommodation_id ) {
+		if ( false !== $accommodation_id ) {
 			$gallery = get_post_meta( $accommodation_id, 'gallery', false );
-			if( false !== $gallery && ! empty( $gallery ) ) {
+			if ( false !== $gallery && ! empty( $gallery ) ) {
 				$this->current_attachments[ $accommodation_id ] = $gallery;
 			}
 		}
@@ -182,10 +182,9 @@ class Itinerary_Query {
 	public function find_next_image( $accommodation_id = false ) {
 		$return = false;
 
-
 		if ( false !== $accommodation_id && isset( $this->current_attachments[ $accommodation_id ] ) && ! empty( $this->current_attachments[ $accommodation_id ] ) && ! empty( $this->images_used ) ) {
 			$images_left = array_diff( $this->current_attachments[ $accommodation_id ], $this->images_used );
-			if( is_array( $images_left ) && ! empty( $images_left ) ) {
+			if ( is_array( $images_left ) && ! empty( $images_left ) ) {
 				$images_left = array_values( $images_left );
 				$return = array_shift( $images_left );
 			}
@@ -203,15 +202,16 @@ class Itinerary_Query {
 	/**
 	 * Overwrites the departure days thumbanil with the tours featured image.
 	 *
-	 * @package     alluringafrica-lsx-child
-	 * @subpackage	itinerary
+	 * @param $thumbnail_src string
+	 * @param $index string
+	 * @param $count string
+	 * @return string
 	 */
 
 	function departure_day_image( $thumbnail_src = false, $index = 1, $count = 0 ){
-		if ( false === $thumbnail_src && $count === $index ){
+		if ( false === $thumbnail_src && $count === $index ) {
 			$thumbnail_src = get_the_post_thumbnail_url( get_the_ID() );
 		}
 		return $thumbnail_src;
 	}
-
 }

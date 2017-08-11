@@ -75,7 +75,7 @@ class Tour {
 
 		add_filter( 'lsx_to_search_fields', array( $this, 'single_fields_indexing' ) );
 
-		include( 'class-itinerary.php' );
+		include( 'class-itinerary-query.php' );
 
 		add_action( 'lsx_to_framework_tour_tab_general_settings_bottom', array( $this, 'general_settings' ), 10, 1 );
 
