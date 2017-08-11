@@ -100,17 +100,18 @@ class Itinerary_Query {
 	 */
 	public function __construct() {
 		$this->post_id = get_the_ID();
-		$this->itineraries = get_post_meta($this->post_id,'itinerary',false);
-		if(is_array($this->itineraries) && !empty($this->itineraries)){
+		$this->itineraries = get_post_meta( $this->post_id, 'itinerary', false );
+		if ( is_array( $this->itineraries ) && ! empty( $this->itineraries ) ) {
 			$this->has_itinerary = true;
-			$this->count = count($this->itineraries);
+			$this->count = count( $this->itineraries );
 		}
+		add_filter('lsx_to_itinerary_thumbnail_src', array( $this, 'departure_day_image' ), 10, 3 );
 	}
 
 	/**
 	 * A filter to set the content area to a small column on single
 	 */
-	public function has_itinerary( ) {
+	public function has_itinerary() {
 		return $this->has_itinerary;
 	}
 
@@ -118,7 +119,7 @@ class Itinerary_Query {
 	 * Used in the While loop to cycle through the field array
 	 */
 	public function while_itinerary() {
-		if($this->index < $this->count){
+		if( $this->index < $this->count ) {
 			return true;
 		}else{
 			return false;
@@ -129,7 +130,7 @@ class Itinerary_Query {
 	 * Sets the current itinerary item
 	 */
 	public function current_itinerary_item() {
-		$this->itinerary = $this->itineraries[$this->index];
+		$this->itinerary = $this->itineraries[ $this->index ];
 		$this->index++;
 	}
 
@@ -138,11 +139,11 @@ class Itinerary_Query {
 	 *
 	 * @param   $accommodation_id   | string
 	 */
-	public function register_current_gallery($accommodation_id = false) {
-		if(false !== $accommodation_id) {
-			$gallery = get_post_meta($accommodation_id,'gallery',false);
-			if(false !== $gallery && !empty($gallery)){
-				$this->current_attachments[$accommodation_id] = $gallery;
+	public function register_current_gallery( $accommodation_id = false ) {
+		if( false !== $accommodation_id ) {
+			$gallery = get_post_meta( $accommodation_id, 'gallery', false );
+			if( false !== $gallery && ! empty( $gallery ) ) {
+				$this->current_attachments[ $accommodation_id ] = $gallery;
 			}
 		}
 	}
@@ -152,8 +153,8 @@ class Itinerary_Query {
 	 *
 	 * @param   $image_id   | string
 	 */
-	public function save_used_image($image_id = false) {
-		if(false !== $image_id) {
+	public function save_used_image( $image_id = false ) {
+		if ( false !== $image_id ) {
 			$this->images_used[] = $image_id;
 		}
 	}
@@ -164,10 +165,10 @@ class Itinerary_Query {
 	 * @param   $image_id   | string
 	 * @return  boolean
 	 */
-	public function is_image_used($image_id = false) {
-		if(is_array($this->images_used) && in_array($image_id,$this->images_used)) {
+	public function is_image_used( $image_id = false ) {
+		if ( is_array( $this->images_used ) && in_array( $image_id, $this->images_used ) ) {
 			return true;
-		}else{
+		} else {
 			return false;
 		}
 	}
@@ -178,15 +179,15 @@ class Itinerary_Query {
 	 * @param   $accommodation_id   | string
 	 * @return  boolean | string
 	 */
-	public function find_next_image($accommodation_id = false) {
+	public function find_next_image( $accommodation_id = false ) {
 		$return = false;
 
 
-		if(false !== $accommodation_id && isset($this->current_attachments[$accommodation_id]) && !empty($this->current_attachments[$accommodation_id]) && !empty($this->images_used)){
-			$images_left = array_diff($this->current_attachments[$accommodation_id],$this->images_used);
-			if(is_array($images_left) && !empty($images_left)){
-				$images_left = array_values($images_left);
-				$return = array_shift($images_left);
+		if ( false !== $accommodation_id && isset( $this->current_attachments[ $accommodation_id ] ) && ! empty( $this->current_attachments[ $accommodation_id ] ) && ! empty( $this->images_used ) ) {
+			$images_left = array_diff( $this->current_attachments[ $accommodation_id ], $this->images_used );
+			if( is_array( $images_left ) && ! empty( $images_left ) ) {
+				$images_left = array_values( $images_left );
+				$return = array_shift( $images_left );
 			}
 		}
 		return $return;
@@ -198,4 +199,19 @@ class Itinerary_Query {
 	public function reset_loop() {
 		$this->index = 0;
 	}
+
+	/**
+	 * Overwrites the departure days thumbanil with the tours featured image.
+	 *
+	 * @package     alluringafrica-lsx-child
+	 * @subpackage	itinerary
+	 */
+
+	function departure_day_image( $thumbnail_src = false, $index = 1, $count = 0 ){
+		if ( false === $thumbnail_src && $count === $index ){
+			$thumbnail_src = get_the_post_thumbnail_url( get_the_ID() );
+		}
+		return $thumbnail_src;
+	}
+
 }
