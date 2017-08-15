@@ -421,7 +421,6 @@ function lsx_to_connected_panel_query( $args = false ) {
 
 				echo wp_kses_post( $args['after'] );
 
-
 			endif;
 		}
 	}

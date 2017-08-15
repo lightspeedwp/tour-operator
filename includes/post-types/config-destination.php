@@ -33,7 +33,9 @@ $post_type = array(
 	'show_in_menu'       => 'tour-operator',
 	'menu_position'      => 10,
 	'query_var'          => true,
-	'rewrite'            => array( 'slug' => 'destination' ),
+	'rewrite'            => array(
+		'slug' => 'destination',
+		),
 	'capability_type'    => 'page',
 	'has_archive'        => 'destinations',
 	'hierarchical'       => true,

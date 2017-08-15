@@ -19,7 +19,13 @@ if ( $has_single ) {
 	$permalink = get_post_type_archive_link( 'accommodation' ) . '#accommodation-' . $post->post_name;
 }
 ?>
+
+<?php lsx_widget_entry_before(); ?>
+
 <article <?php post_class(); ?>>
+
+	<?php lsx_widget_entry_top(); ?>
+
 	<?php if ( empty( $disable_placeholder ) ) { ?>
 		<div class="lsx-to-widget-thumb">
 			<?php if ( $has_single ) { ?><a href="<?php echo esc_url( $permalink ); ?>"><?php } ?>
@@ -29,6 +35,9 @@ if ( $has_single ) {
 	<?php } ?>
 
 	<div class="lsx-to-widget-content">
+
+		<?php lsx_widget_entry_content_top(); ?>
+
 		<h4 class="lsx-to-widget-title text-center">
 			<?php if ( $has_single ) { ?><a href="<?php echo esc_url( $permalink ); ?>"><?php } ?>
 				<?php the_title(); ?>
@@ -68,5 +77,12 @@ if ( $has_single ) {
 				<p><a href="<?php echo esc_url( $permalink ); ?>" class="moretag"><?php esc_html_e( 'View accommodation', 'tour-operator' ); ?></a></p>
 			<?php }
 		?>
+
+		<?php lsx_widget_entry_content_bottom(); ?>
+
 	</div>
+
+	<?php lsx_widget_entry_bottom(); ?>
+
 </article>
+<?php lsx_widget_entry_after(); ?>

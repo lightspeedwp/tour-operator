@@ -8,7 +8,7 @@
 				 * - 15	| single_settings()						class-framework-admin.php
 				 */
 			?>			
-			<?php do_action('lsx_to_framework_team_tab_content_top','team'); ?>
+			<?php do_action( 'lsx_to_framework_team_tab_content_top', 'team' ); ?>
 			<?php
 				/* Hooked
 				 * - 10	| settings_page_html()					class-placeholders.php
@@ -16,8 +16,8 @@
 				 * - 10	| tab_settings()						lsx-search-integration.php
 				 */
 			?>			
-			<?php do_action('lsx_to_framework_team_tab_content','team'); ?>
+			<?php do_action( 'lsx_to_framework_team_tab_content', 'team' ); ?>
 		</tbody>
 	</table>
-	<?php do_action('lsx_to_framework_team_tab_bottom','team'); ?>
+	<?php do_action( 'lsx_to_framework_team_tab_bottom', 'team' ); ?>
 </div>

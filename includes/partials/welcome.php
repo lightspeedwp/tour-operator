@@ -1,9 +1,9 @@
 <?php
-	$lsx_to_documentation = esc_url('https://www.lsdev.biz/documentation/tour-operator-plugin/');
-	$extensions_link = esc_url('https://ww.lsdev.biz/product-category/tour-operator-extensions/');
-	$tour_operator_link = esc_url('https://www.lsdev.biz/product/tour-operator-plugin/');
-	$release_notes_link = esc_url('https://www.lsdev.biz/lsx/');
-	$lsx_to_news_link = esc_url('https://www.lsdev.biz/tour-operators/');
+	$lsx_to_documentation = esc_url( 'https://www.lsdev.biz/documentation/tour-operator-plugin/' );
+	$extensions_link = esc_url( 'https://ww.lsdev.biz/product-category/tour-operator-extensions/' );
+	$tour_operator_link = esc_url( 'https://www.lsdev.biz/product/tour-operator-plugin/' );
+	$release_notes_link = esc_url( 'https://www.lsdev.biz/lsx/' );
+	$lsx_to_news_link = esc_url( 'https://www.lsdev.biz/tour-operators/' );
 ?>
 
 <div class="wrap about-wrap">
@@ -25,14 +25,14 @@
 					<div class="col-md-6">
 						<div class="box-clean">
 							<h3><?php esc_html_e( 'Getting started', 'tour-operator' ); ?></h3>
-							<p><a href="<?php echo wp_kses_post($lsx_to_documentation); ?>" target="_blank"><?php esc_html_e( 'Check out the documentation', 'tour-operator' ); ?></a></p>
+							<p><a href="<?php echo wp_kses_post( $lsx_to_documentation ); ?>" target="_blank"><?php esc_html_e( 'Check out the documentation', 'tour-operator' ); ?></a></p>
 						</div>
 					</div>
 
 					<div class="col-md-6">
 						<div class="box-clean">
 							<h3><?php esc_html_e( 'Release notes', 'tour-operator' ); ?></h3>
-							<p><a href="<?php echo wp_kses_post($release_notes_link); ?>" target="_blank"><?php esc_html_e( 'Get the latest on updates to the Tour Operator plugin', 'tour-operator' ); ?></a></p>
+							<p><a href="<?php echo wp_kses_post( $release_notes_link ); ?>" target="_blank"><?php esc_html_e( 'Get the latest on updates to the Tour Operator plugin', 'tour-operator' ); ?></a></p>
 						</div>
 					</div>
 				</div>
@@ -41,14 +41,14 @@
 					<div class="col-md-6">
 						<div class="box-clean">
 							<h3><?php esc_html_e( 'Looking for more features?', 'tour-operator' ); ?></h3>
-							<p><a href="<?php echo wp_kses_post($extensions_link); ?>" target="_blank"><?php esc_html_e( 'Check out our suite of add ons', 'tour-operator' ); ?></a></p>
+							<p><a href="<?php echo wp_kses_post( $extensions_link ); ?>" target="_blank"><?php esc_html_e( 'Check out our suite of add ons', 'tour-operator' ); ?></a></p>
 						</div>
 					</div>
 
 					<div class="col-md-6">
 						<div class="box-clean">
 							<h3><?php esc_html_e( 'News for Tour Operators', 'tour-operator' ); ?></h3>
-							<p><a href="<?php echo wp_kses_post($lsx_to_news_link); ?>" target="_blank"><?php esc_html_e( 'Check out our blog posts geared towards helping Tour Operators succeed online', 'tour-operator' ); ?></a></p>
+							<p><a href="<?php echo wp_kses_post( $lsx_to_news_link ); ?>" target="_blank"><?php esc_html_e( 'Check out our blog posts geared towards helping Tour Operators succeed online', 'tour-operator' ); ?></a></p>
 						</div>
 					</div>
 				</div>

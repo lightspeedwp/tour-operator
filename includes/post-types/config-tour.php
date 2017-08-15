@@ -33,7 +33,9 @@ $post_type = array(
 	'show_in_menu'       => 'tour-operator',
 	'menu_position'      => 20,
 	'query_var'          => true,
-	'rewrite'            => array( 'slug' => 'tour' ),
+	'rewrite'            => array(
+		'slug' => 'tour',
+		),
 	'capability_type'    => 'post',
 	'has_archive'        => 'tours',
 	'hierarchical'       => false,
