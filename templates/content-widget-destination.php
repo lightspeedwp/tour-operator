@@ -14,10 +14,7 @@ $permalink = '';
 
 if ( $has_single ) {
 	$permalink = get_the_permalink();
-} elseif ( ! is_post_type_archive( 'destination' ) ) {
-	$has_single = true;
-	$permalink = get_post_type_archive_link( 'destination' ) . '#destination-' . $post->post_name;
-};
+}
 ?>
 <article <?php post_class(); ?>>
 	<?php if ( empty( $disable_placeholder ) ) { ?>

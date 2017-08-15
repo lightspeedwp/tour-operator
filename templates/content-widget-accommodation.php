@@ -14,9 +14,6 @@ $permalink = '';
 
 if ( $has_single ) {
 	$permalink = get_the_permalink();
-} elseif ( ! is_post_type_archive( 'accommodation' ) ) {
-	$has_single = true;
-	$permalink = get_post_type_archive_link( 'accommodation' ) . '#accommodation-' . $post->post_name;
 }
 ?>
 
