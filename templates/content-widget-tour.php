@@ -71,7 +71,6 @@ if ( $has_single ) {
 
 			if ( empty( $disable_text ) && ! empty( $excerpt ) ) {
 				echo wp_kses_post( $excerpt );
-				lsx_gea_archive_add_modal_cta_on_grid();
 			} elseif ( $has_single ) { ?>
 				<p><a href="<?php echo esc_url( $permalink ); ?>" class="moretag"><?php esc_html_e( 'View tour', 'tour-operator' ); ?></a></p>
 			<?php
