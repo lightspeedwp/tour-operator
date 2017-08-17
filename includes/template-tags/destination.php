@@ -65,11 +65,11 @@ function lsx_to_country_regions( $args = array() ) {
 	global $lsx_to_archive, $wp_query;
 
 	$defaults = array(
-		'slider'	=>	true,
-		'parent'	=>	get_the_ID(),
-		'title'		=>	lsx_to_get_post_type_section_title( 'destination', 'regions', 'Regions' ),
-		'tagline'	=>	false,
-		'exclude'	=>	false,
+		'slider' => true,
+		'parent' => get_the_ID(),
+		'title' => lsx_to_get_post_type_section_title( 'destination', 'regions', 'Regions' ),
+		'tagline' => false,
+		'exclude' => false,
 	);
 
 	$settings = wp_parse_args( $args, $defaults );
@@ -200,8 +200,8 @@ function lsx_to_destination_travel_info() {
 	$general       	= get_post_meta( get_the_ID(), 'additional_info', true );
 
 	if ( ! empty( $electricity ) || ! empty( $banking ) || ! empty( $cuisine ) || ! empty( $climate ) || ! empty( $transport ) || ! empty( $dress ) || ! empty( $health ) || ! empty( $safety ) || ! empty( $visa ) || ! empty( $general ) ) :
-		$limit_words = 30;
-		$more_button = "\n\n" . '<a class="more-link more-link-remove-p" data-collapsed="true" href="#">Read More</a>' . "\n\n";
+		$limit_words = 20;
+		$more_button = "\n\n" . '<a class="moretag moretag-travel-info" href="#">Read More</a>' . "\n\n";
 
 		$items = array(
 			esc_html__( 'Electricity', 'tour-operator' ) 	=> $electricity,
@@ -219,48 +219,56 @@ function lsx_to_destination_travel_info() {
 		<section id="travel-info" class="lsx-to-section">
 			<h2 class="lsx-to-section-title lsx-title"><?php esc_html_e( 'Travel Information', 'tour-operator' ); ?></h2>
 
-			<div class="travel-info-wrapper row">
-				<?php foreach ( $items as $key => $value ) : ?>
-					<?php if ( ! empty( $value ) ) : ?>
-						<div class="col-xs-12 col-sm-6">
-							<article class="travel-info-content">
-								<h3><?php echo esc_html( $key ); ?></h3>
+			<div class="slider-container lsx-to-widget-items lsx-to-archive-template-grid">
+				<div id="slider-<?php echo esc_attr( rand( 20, 20000 ) ); ?>" class="lsx-to-slider">
+					<div class="lsx-to-slider-wrap">
+						<div class="lsx-to-slider-inner" data-slick='{ "slidesToShow": 4, "slidesToScroll": 4 }'>
+							<?php foreach ( $items as $key => $value ) : ?>
+								<?php if ( ! empty( $value ) ) : ?>
+									<div class="lsx-to-widget-item-wrap lsx-travel-info">
+										<article <?php post_class(); ?>>
+											<div class="travel-info-entry-content hidden">
+												<?php echo wp_kses_post( apply_filters( 'the_content', $value ) ); ?>
+											</div>
 
-								<div class="travel-info-entry-content hidden">
-									<?php echo wp_kses_post( apply_filters( 'the_content', $value ) ); ?>
-								</div>
+											<div class="lsx-to-widget-content">
+												<h4 class="lsx-to-widget-title text-center"><?php echo esc_html( $key ); ?></h4>
 
-								<div class="travel-info-entry-content">
-									<?php
-										if ( str_word_count( $value, 0 ) > $limit_words ) {
-										$tokens       = array();
-										$value_output = '';
-										$has_more     = false;
-										$count        = 0;
+												<?php
+													if ( str_word_count( $value, 0 ) > $limit_words ) {
+														$tokens       = array();
+														$value_output = '';
+														$has_more     = false;
+														$count        = 0;
 
-										preg_match_all( '/(<[^>]+>|[^<>\s]+)\s*/u', $value, $tokens );
+														preg_match_all( '/(<[^>]+>|[^<>\s]+)\s*/u', $value, $tokens );
 
-										foreach ( $tokens[0] as $token ) {
-											if ( $count >= $limit_words ) {
-												$value_output .= trim( $token );
-												$has_more = true;
-												break;
-												}
+														foreach ( $tokens[0] as $token ) {
+															if ( $count >= $limit_words ) {
+																$value_output .= trim( $token );
+																$has_more = true;
+																break;
+															}
 
-											$count++;
-											$value_output .= $token;
-											}
+															$count++;
+															$value_output .= $token;
+														}
 
-										$value = trim( force_balance_tags( $value_output . '...' . $more_button ) );
-										}
+														$value = trim( force_balance_tags( $value_output . '...' ) );
+													}
 
-										echo wp_kses_post( apply_filters( 'the_content', $value ) );
-									?>
-								</div>
-							</article>
+													$value = trim( force_balance_tags( $value . $more_button ) );
+
+													echo wp_kses_post( apply_filters( 'the_content', $value ) );
+												?>
+											</div>
+										</article>
+									</div>
+								<?php endif; ?>
+							<?php endforeach; ?>
 						</div>
-					<?php endif; ?>
-				<?php endforeach; ?>
+					</div>
+				</div>
 			</div>
 		</section>
 		<?php

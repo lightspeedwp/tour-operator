@@ -197,6 +197,19 @@ class Frontend extends Tour_Operator {
 			$lsx_to_archive = $temp;
 			wp_reset_postdata();
 		}
+		?>
+		<div class="lsx-modal modal fade" id="lsx-modal-placeholder" tabindex="-1" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<div class="modal-header">
+						<h4 class="modal-title"></h4>
+					</div>
+					<div class="modal-body"></div>
+				</div>
+			</div>
+		</div>
+		<?php
 	}
 
 	/**
