@@ -28,32 +28,32 @@ For support with using the Tour Operator plugin, please contact us at support@ls
 ### Parameters
 
 - Layout
- - parameter name: `layout`
- - accepts: list / grid
- - default: list
+	- parameter name: `layout`
+	- accepts: list / grid
+	- default: list
 - Post Type
- - parameter name: `post_type`
- - accepts: post type slug
- - default: tour
+	- parameter name: `post_type`
+	- accepts: post type slug
+	- default: tour
 - Order By
- - parameter name: `orderby`
- - accepts: WP_Query orderby acceptable value
- - default: date
+	- parameter name: `orderby`
+	- accepts: WP_Query orderby acceptable value
+	- default: date
 - Order
- - parameter name: `order`
- - accepts: ASC / DESC
- - default: DESC
+	- parameter name: `order`
+	- accepts: ASC / DESC
+	- default: DESC
 - Maximum Amount
- - parameter name: `limit`
- - accepts: numeric value
- - default: 10
+	- parameter name: `limit`
+	- accepts: numeric value
+	- default: 10
 - Specify Entries by ID
- - parameter name: `include`
- - accepts: comma seperated list of team member post IDs
+	- parameter name: `include`
+	- accepts: comma seperated list of team member post IDs
 - Featured Entries
- - parameter name: `featured`
- - accepts: 0 / 1
- - default: 0
+	- parameter name: `featured`
+	- accepts: 0 / 1
+	- default: 0
 
 ## Shortcode to emulate Post Type Widget
 
@@ -62,64 +62,64 @@ For support with using the Tour Operator plugin, please contact us at support@ls
 ### Parameters
 
 - Widget Title
- - parameter name: `title`
- - accepts: string
+	- parameter name: `title`
+	- accepts: string
 - Widget Link
- - parameter name: `title_link`
- - accepts: string
+	- parameter name: `title_link`
+	- accepts: string
 - Widget Class
- - parameter name: `class`
- - accepts: string
+	- parameter name: `class`
+	- accepts: string
 - Columns
- - parameter name: `columns`
- - accepts: numeric value
- - default: 1
+	- parameter name: `columns`
+	- accepts: numeric value
+	- default: 1
 - Post Type
- - parameter name: `post_type`
- - accepts: post type slug
- - default: tour
+	- parameter name: `post_type`
+	- accepts: post type slug
+	- default: tour
 - Order By
- - parameter name: `orderby`
- - accepts: WP_Query orderby acceptable value
- - default: date
+	- parameter name: `orderby`
+	- accepts: WP_Query orderby acceptable value
+	- default: date
 - Order
- - parameter name: `order`
- - accepts: ASC / DESC
- - default: DESC
+	- parameter name: `order`
+	- accepts: ASC / DESC
+	- default: DESC
 - Maximum Amount
- - parameter name: `limit`
- - accepts: numeric value
- - default: -1 (all)
+	- parameter name: `limit`
+	- accepts: numeric value
+	- default:	-1 (all)
 - Specify Entries by ID
- - parameter name: `include`
- - accepts: comma seperated list of team member post IDs
+	- parameter name: `include`
+	- accepts: comma seperated list of team member post IDs
 - Featured Entries
- - parameter name: `featured`
- - accepts: 0 / 1
- - default: 0
+	- parameter name: `featured`
+	- accepts: 0 / 1
+	- default: 0
 - Disable Placeholder
- - parameter: `disable_placeholder`
- - accepts: 0 / 1
- - default: 0
+	- parameter: `disable_placeholder`
+	- accepts: 0 / 1
+	- default: 0
 - Disable Text
- - parameter: `disable_text`
- - accepts: 0 / 1
- - default: 0
+	- parameter: `disable_text`
+	- accepts: 0 / 1
+	- default: 0
 - Enable Button
- - parameter: `buttons`
- - accepts: 0 / 1
- - default: 0
+	- parameter: `buttons`
+	- accepts: 0 / 1
+	- default: 0
 - Button Text
- - parameter name: `button_text`
- - accepts: string (button label)
+	- parameter name: `button_text`
+	- accepts: string (button label)
 - Enable Carousel
- - parameter: `carousel`
- - accepts: 0 / 1
- - default: 0
+	- parameter: `carousel`
+	- accepts: 0 / 1
+	- default: 0
 - Carousel Interval
- - parameter name: `interval`
- - accepts: numeric value
- - default: 7000 (ms)
+	- parameter name: `interval`
+	- accepts: numeric value
+	- default: 7000 (ms)
 
 ## Shortcode to emulate Taxonomy Widget
 
@@ -128,64 +128,64 @@ For support with using the Tour Operator plugin, please contact us at support@ls
 ### Parameters
 
 - Widget Title
- - parameter name: `title`
- - accepts: string
+	- parameter name: `title`
+	- accepts: string
 - Widget Link
- - parameter name: `title_link`
- - accepts: string
+	- parameter name: `title_link`
+	- accepts: string
 - Widget Class
- - parameter name: `class`
- - accepts: string
+	- parameter name: `class`
+	- accepts: string
 - Columns
- - parameter name: `columns`
- - accepts: numeric value
- - default: 1
+	- parameter name: `columns`
+	- accepts: numeric value
+	- default: 1
 - Taxonomy
- - parameter name: `taxonomy`
- - accepts: taxonomy slug
+	- parameter name: `taxonomy`
+	- accepts: taxonomy slug
 - Order By
- - parameter name: `orderby`
- - accepts: WP_Query orderby acceptable value
- - default: date
+	- parameter name: `orderby`
+	- accepts: WP_Query orderby acceptable value
+	- default: date
 - Order
- - parameter name: `order`
- - accepts: ASC / DESC
- - default: DESC
+	- parameter name: `order`
+	- accepts: ASC / DESC
+	- default: DESC
 - Maximum Amount
- - parameter name: `limit`
- - accepts: numeric value
- - default: -1 (all)
+	- parameter name: `limit`
+	- accepts: numeric value
+	- default:	-1 (all)
 - Specify Entries by ID
- - parameter name: `include`
- - accepts: comma seperated list of team member post IDs
+	- parameter name: `include`
+	- accepts: comma seperated list of team member post IDs
 - Featured Entries
- - parameter name: `featured`
- - accepts: 0 / 1
- - default: 0
+	- parameter name: `featured`
+	- accepts: 0 / 1
+	- default: 0
 - Disable Placeholder
- - parameter: `disable_placeholder`
- - accepts: 0 / 1
- - default: 0
+	- parameter: `disable_placeholder`
+	- accepts: 0 / 1
+	- default: 0
 - Disable Text
- - parameter: `disable_text`
- - accepts: 0 / 1
- - default: 0
+	- parameter: `disable_text`
+	- accepts: 0 / 1
+	- default: 0
 - Disable Single Link
- - parameter: `disable_single_link`
- - accepts: 0 / 1
- - default: 0
+	- parameter: `disable_single_link`
+	- accepts: 0 / 1
+	- default: 0
 - Enable Button
- - parameter: `buttons`
- - accepts: 0 / 1
- - default: 0
+	- parameter: `buttons`
+	- accepts: 0 / 1
+	- default: 0
 - Button Text
- - parameter name: `button_text`
- - accepts: string (button label)
+	- parameter name: `button_text`
+	- accepts: string (button label)
 - Enable Carousel
- - parameter: `carousel`
- - accepts: 0 / 1
- - default: 0
+	- parameter: `carousel`
+	- accepts: 0 / 1
+	- default: 0
 - Carousel Interval
- - parameter name: `interval`
- - accepts: numeric value
- - default: 7000 (ms)
+	- parameter name: `interval`
+	- accepts: numeric value
+	- default: 7000 (ms)
