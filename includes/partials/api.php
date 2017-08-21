@@ -28,11 +28,19 @@
 		<table class="form-table" style="margin-top:-13px !important;">
 			<tbody>
 				<?php
+
+				$current_theme = wp_get_theme();
+
 				$lsx = admin_url('themes.php?page=lsx-welcome');
 				$message = sprintf( "Please enter the license and API key's for your add-ons below." );
 
 				$tour_operator = admin_url('admin.php?page=to-addons');
-				$message .= sprintf( " Follow the links to see what extensions are available for <a href='%s' title='LSX add-ons'>LSX</a> Theme and the <a href='%s' title='TO add-ons'>Tour Operator</a> plugin.", $lsx, $tour_operator );
+
+				if ( 'lsx' === $current_theme->get_template() || 'lsx' === $current_theme->get_stylesheet() ) {
+					$message .= sprintf(" Follow the links to see what extensions are available for <a href='%s' title='LSX add-ons'>LSX</a> Theme and the <a href='%s' title='TO add-ons'>Tour Operator</a> plugin.", $lsx, $tour_operator);
+				} else {
+					$message .= sprintf( " Follow this <a href='%s' title='TO add-ons'>link</a> to see what extensions are available for Tour Operator plugin.", $tour_operator );
+				}
 
 				?>
 				<p class="info"><?php echo wp_kses_post($message); ?></p>
