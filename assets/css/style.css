@@ -1241,7 +1241,7 @@
 
 @media (min-width: 768px) { .lsx-to-archive-template-list .lsx-to-archive-item > .lsx-to-archive-container { -ms-flex-wrap: nowrap; flex-wrap: nowrap; } }
 
-.search.search-results .lsx-to-archive-item > .lsx-to-archive-container.post .entry-content, .search.search-results .lsx-to-archive-item > .lsx-to-archive-container.page .entry-content { padding: 0; }
+.search-results .lsx-to-archive-item > .lsx-to-archive-container.post .entry-content, .search-results .lsx-to-archive-item > .lsx-to-archive-container.page .entry-content { padding: 0; }
 
 .lsx-to-archive-template-grid .lsx-to-archive-item > .lsx-to-archive-container.destination .entry-content > p { margin-bottom: 0; }
 
