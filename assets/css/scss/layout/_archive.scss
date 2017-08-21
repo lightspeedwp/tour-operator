@@ -34,7 +34,7 @@
 
 		&.post,
 		&.page {
-			.search.search-results & {
+			.search-results & {
 				.entry-content { padding: 0; }
 			}
 		}

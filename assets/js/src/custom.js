@@ -131,13 +131,18 @@ if ( window.location.hash ) {
 	 * @subpackage scripts
 	 */
 	lsx_to.set_read_more_travel_info = function() {
-		$( '.travel-info-entry-content .more-link' ).click( function( event ) {
+		$( '.moretag-travel-info' ).click( function( event ) {
 			event.preventDefault();
-			$( this ).closest( '.travel-info-entry-content' ).hide();
 
-			$( this ).closest( '.travel-info-content' ).find( '.travel-info-entry-content.hidden' ).each( function() {
-				$( this ).removeClass( 'hidden' );
-			} );
+			var $modal = $( '#lsx-modal-placeholder' ),
+				$entry = $( this ).closest( '.lsx-travel-info' ),
+				title = $entry.find( '.lsx-to-widget-title' ).html(),
+				content = $entry.find( '.travel-info-entry-content' ).html();
+
+			$modal.find( '.modal-title' ).html( title );
+			$modal.find( '.modal-body' ).html( content );
+
+			$modal.modal();
 		} );
 	};
 
