@@ -15,7 +15,7 @@
 
 	<?php if ( false !== $display_settings_page ) { ?>
 		<div id="ui-settings" class="ui-tab active">
-			<p>Settings</p>
+			<p><?php esc_html_e('Please enter your user details (email address, API key, username, etc) below as required for the extensions that you have installed.','tour-operator' ); ?></p>
 			<table class="form-table" style="margin-top:-13px !important;">
 				<tbody>
 				<?php do_action('lsx_to_framework_api_tab_content','settings'); ?>
@@ -27,13 +27,18 @@
 	<div id="ui-keys" class="ui-tab <?php if ( false === $display_settings_page ) { ?>active<?php } ?>">
 		<table class="form-table" style="margin-top:-13px !important;">
 			<tbody>
-			<?php
-			if ( class_exists( 'LSX_API_Manager') ) {
-				?><p class="info"><?php esc_html_e('Enter the license keys for your add-ons in the boxes below.','tour-operator' ); ?></p><?php
-				do_action('lsx_to_framework_api_tab_content','api');
-			} else { ?>
-				<p class="info"><?php esc_html_e( 'You have not installed any add-ons yet. View our list of add-ons', 'tour-operator' ); ?> <a href="<?php echo esc_url(admin_url('admin.php')); ?>?page=to-addons"><?php esc_html_e( 'here', 'tour-operator' ); ?></a>.</p>
-			<?php }	?>
+				<?php
+				$lsx = admin_url('themes.php?page=lsx-welcome');
+				$message = sprintf( "Please enter the license and API key's for your add-ons below." );
+
+				$tour_operator = admin_url('admin.php?page=to-addons');
+				$message .= sprintf( " Follow the links to see what extensions are available for <a href='%s' title='LSX add-ons'>LSX</a> Theme and the <a href='%s' title='TO add-ons'>Tour Operator</a> plugin.", $lsx, $tour_operator );
+
+				?>
+				<p class="info"><?php echo wp_kses_post($message); ?></p>
+				<?php
+					do_action('lsx_to_framework_api_tab_content','api');
+				?>
 			</tbody>
 		</table>
 
