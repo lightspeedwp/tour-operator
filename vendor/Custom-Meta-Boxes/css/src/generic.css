@@ -44,24 +44,24 @@
 	}*/
 	.cmb_metabox .cmb-cell-12 .CMB_Group_Field.repeatable > .field-item {
 		width: 95% !important;
-	}	
+	}
 }
 
-.cmb_metabox_description { 
-	color: #AAA; 
-	font-style: italic; 
+.cmb_metabox_description {
+	color: #AAA;
+	font-style: italic;
 	margin: 0 0 16px !important;
 }
-.cmb_metabox input[type=text], 
-.cmb_metabox textarea, 
-.cmb_metabox select { 
+.cmb_metabox input[type=text],
+.cmb_metabox textarea,
+.cmb_metabox select {
 	width: 100%;
 	margin: 0;
 }
 
-.cmb_metabox .cmb-cell-12 input[type=text], 
-.cmb_metabox .cmb-cell-12 textarea, 
-.cmb_metabox .cmb-cell-12 select{ 
+.cmb_metabox .cmb-cell-12 input[type=text],
+.cmb_metabox .cmb-cell-12 textarea,
+.cmb_metabox .cmb-cell-12 select{
 	width: 25%;
 	margin: 0;
 }
@@ -70,60 +70,60 @@
 }
 
 @media screen and (max-width: 1147px) {
-	.cmb_metabox .cmb-cell-12 input[type=text], 
-	.cmb_metabox .cmb-cell-12 textarea, 
-	.cmb_metabox .cmb-cell-12 select { 
+	.cmb_metabox .cmb-cell-12 input[type=text],
+	.cmb_metabox .cmb-cell-12 textarea,
+	.cmb_metabox .cmb-cell-12 select {
 		width: 100%;
 		margin: 0;
 	}
-	
-	.cmb_metabox .cmb-cell-12 .select2-container { 
+
+	.cmb_metabox .cmb-cell-12 .select2-container {
 		width: 100% !important;
-	}	
+	}
 }
 
 @media screen and (min-width: 1148px) and (max-width: 1400px) {
-	.cmb_metabox .cmb-cell-12 input[type=text], 
-	.cmb_metabox .cmb-cell-12 textarea, 
-	.cmb_metabox .cmb-cell-12 select { 
+	.cmb_metabox .cmb-cell-12 input[type=text],
+	.cmb_metabox .cmb-cell-12 textarea,
+	.cmb_metabox .cmb-cell-12 select {
 		width: 75%;
 		margin: 0;
 	}
-	
-	.cmb_metabox .cmb-cell-12 .select2-container { 
+
+	.cmb_metabox .cmb-cell-12 .select2-container {
 		width: 75% !important;
-	}	
+	}
 }
 
 .cmb_metabox .cmb-cell-12 textarea.wp-editor-area {
 	width:100%;
 }
 
-.cmb_metabox input.cmb_text_small { 
-	width: 100px; 
+.cmb_metabox input.cmb_text_small {
+	width: 100px;
 }
 
 .cmb_metabox input.cmb_text_medium {
-	width: 230px; 
+	width: 230px;
 	margin-right: 15px;
 }
 
-.cmb_metabox input[type="radio"] { 
-	margin: 0 5px 0 0; 
+.cmb_metabox input[type="radio"] {
+	margin: 0 5px 0 0;
 	padding: 0;
 }
 
-.cmb_metabox input[type="checkbox"] { 
-	margin: 0 5px 0 0; 
+.cmb_metabox input[type="checkbox"] {
+	margin: 0 5px 0 0;
 	padding: 0;
 }
 
-.cmb_metabox .field-title { 
-	margin-top: -4px; 
-	margin-bottom: 11px; 
-	margin-top: 0; 
-	width: 166px;
-    display: inline-block;	
+.cmb_metabox .field-title {
+	margin-top: -4px;
+	margin-bottom: 11px;
+	margin-top: 0;
+	width: 265px;
+    display: inline-block;
     vertical-align: top;
 }
 

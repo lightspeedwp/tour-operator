@@ -1,47 +1,19 @@
 <?xml version="1.0"?>
-<ruleset name="WordPress Theme Coding Standards">
-	<!-- See https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml -->
-	<!-- See https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/blob/develop/WordPress-Core/ruleset.xml -->
-
-	<!-- Set a description for this ruleset. -->
-	<description>A custom set of code standard rules to check for WordPress themes.</description>
-
-	<!-- Include the WordPress ruleset, with exclusions. -->
+<ruleset name="WordPress-LSX-Theme">
+	<exclude-pattern>*/vendor/*</exclude-pattern>
 	<rule ref="WordPress">
-		<exclude name="Generic.Classes.OpeningBraceSameLine" />
-		<exclude name="Generic.Commenting" />
+		<!-- We will not fix these -->
 		<exclude name="Generic.ControlStructures.InlineControlStructure.NotAllowed" />
-		<exclude name="Generic.Files.EndFileNewline" />
-		<exclude name="Generic.Formatting.DisallowMultipleStatements.SameLine" />
-		<exclude name="Generic.Functions" />
-		<exclude name="Generic.PHP.LowerCaseConstant.Found" />
-		<exclude name="Generic.Strings.UnnecessaryStringConcat.Found" />
-		<exclude name="Generic.WhiteSpace" />
+		<exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact" />
 
-		<exclude name="PEAR.Functions.FunctionCallSignature" />
-
-		<exclude name="Squiz.Commenting" />
-		<exclude name="Squiz.ControlStructures.ControlSignature" />
-		<exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing" />
-		<exclude name="Squiz.Strings" />
-		<exclude name="Squiz.WhiteSpace" />
-
-		<exclude name="WordPress.Arrays" />
-		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
-		<exclude name="WordPress.Variables.GlobalVariables.OverrideProhibited" />
-		<exclude name="WordPress.WhiteSpace" />
-		<exclude name="WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet" />
-		<exclude name="WordPress.WP.EnqueuedResources.NonEnqueuedScript" />
-		<exclude name="WordPress.WP.I18n.MissingSingularPlaceholder" />
-		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralDomain" />
-		<exclude name="WordPress.WP.I18n.NonSingularStringLiteralText" />
-		<exclude name="WordPress.WP.I18n.nonsingularstringliteraltext" />
-		<exclude name="WordPress.WP.PreparedSQL.NotPrepared" />
-
+		<!-- We will not fix these (WordPress VIP) -->
 		<exclude name="WordPress.VIP" />
 
-		<exclude name="WordPress.Functions.DontExtract.extract" />
-		<exclude name="WordPress.Functions.DontExtract.extract_extract" />
+		<!-- Fix on next release (not override global WordPress variables) -->
+		<exclude name="WordPress.Variables.GlobalVariables.OverrideProhibited" />
 
+		<!-- Fix on next release (PHP Comments) -->
+		<exclude name="Generic.Commenting" />
+		<exclude name="Squiz.Commenting" />
 	</rule>
 </ruleset>

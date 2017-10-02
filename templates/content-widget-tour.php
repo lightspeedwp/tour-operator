@@ -6,29 +6,81 @@
  * @category	tours
  * @subpackage	widget
  */
-global $disable_placeholder;
-?>
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
- 	<?php if('1' !== $disable_placeholder && true !== $disable_placeholder) { ?>
-		<div class="thumbnail">
-			<a href="<?php the_permalink(); ?>">
+global $disable_placeholder, $disable_text, $post;
+
+$has_single = ! lsx_to_is_single_disabled();
+$permalink = '';
+
+if ( $has_single ) {
+	$permalink = get_the_permalink();
+}
+?>
+
+<?php lsx_widget_entry_before(); ?>
+
+<article <?php post_class(); ?>>
+
+	<?php lsx_widget_entry_top(); ?>
+
+	<?php if ( empty( $disable_placeholder ) ) { ?>
+		<div class="lsx-to-widget-thumb">
+			<?php if ( false !== $has_single ) { ?><a href="<?php echo esc_url( $permalink ); ?>"><?php } ?>
 				<?php lsx_thumbnail( 'lsx-thumbnail-single' ); ?>
-			</a>
+			<?php if ( false !== $has_single ) { ?></a><?php } ?>
 		</div>
 	<?php } ?>
 
-	<h4 class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-	<?php lsx_to_tagline('<p class="tagline">','</p>'); ?>
+	<div class="lsx-to-widget-content">
 
-	<div class="widget-content">
-		<div class="meta info"><?php lsx_to_price('<span class="price">'.esc_html__('From price','tour-operator').': ','</span>'); lsx_to_duration('<span class="duration">'.esc_html__('Duration','tour-operator').': ','</span>'); ?></div>
-		<?php the_terms( get_the_ID(), 'travel-style', '<div class="meta travel-style">'.esc_html__('Travel Style','tour-operator').': ', ', ', '</div>' ); ?>
-		<?php lsx_to_connected_countries('<div class="meta destination">'.esc_html__('Destinations','tour-operator').': ','</div>'); ?>
-		<?php if(function_exists('lsx_to_connected_activities')){ lsx_to_connected_activities('<div class="meta activities">'.esc_html__('Activities','tour-operator').': ','</div>'); } ?>
-		<div class="view-more" style="text-align:center;">
-			<a href="<?php the_permalink(); ?>" class="btn btn-primary text-center"><?php esc_html_e('View Tour','tour-operator'); ?></a>
+		<?php lsx_widget_entry_content_top(); ?>
+
+		<h4 class="lsx-to-widget-title text-center">
+			<?php if ( false !== $has_single ) { ?><a href="<?php echo esc_url( $permalink ); ?>"><?php } ?>
+				<?php the_title(); ?>
+			<?php if ( false !== $has_single ) { ?></a><?php } ?>
+		</h4>
+
+		<?php
+			// if ( empty( $disable_text ) ) {
+			// 	lsx_to_tagline( '<p class="lsx-to-widget-tagline text-center">', '</p>' );
+			// }
+		?>
+
+		<div class="lsx-to-widget-meta-data">
+			<?php
+				$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
+
+				lsx_to_price( '<span class="' . $meta_class . 'price"><span class="lsx-to-meta-data-key">' . esc_html__( 'From price', 'tour-operator' ) . ':</span> ', '</span>' );
+				lsx_to_duration( '<span class="' . $meta_class . 'duration"><span class="lsx-to-meta-data-key">' . esc_html__( 'Duration', 'tour-operator' ) . ':</span> ', '</span>' );
+				the_terms( get_the_ID(), 'travel-style', '<span class="' . $meta_class . 'style"><span class="lsx-to-meta-data-key">' . esc_html__( 'Travel Style', 'tour-operator' ) . ':</span> ', ', ', '</span>' );
+				lsx_to_connected_countries( '<span class="' . $meta_class . 'destinations"><span class="lsx-to-meta-data-key">' . esc_html__( 'Destinations', 'tour-operator' ) . ':</span> ', '</span>' );
+
+				if ( function_exists( 'lsx_to_connected_activities' ) ) {
+					lsx_to_connected_activities( '<span class="' . $meta_class . 'activities"><span class="lsx-to-meta-data-key">' . esc_html__( 'Activities', 'tour-operator' ) . ':</span> ', '</span>' );
+				}
+			?>
 		</div>
+
+		<?php
+			ob_start();
+			lsx_to_widget_entry_content_top();
+			the_excerpt();
+			lsx_to_widget_entry_content_bottom();
+			$excerpt = ob_get_clean();
+
+			if ( empty( $disable_text ) && ! empty( $excerpt ) ) {
+				echo wp_kses_post( $excerpt );
+			} elseif ( $has_single ) { ?>
+				<p><a href="<?php echo esc_url( $permalink ); ?>" class="moretag"><?php esc_html_e( 'View more', 'tour-operator' ); ?></a></p>
+			<?php
+			}
+		?>
+
+		<?php lsx_widget_entry_content_bottom(); ?>
 	</div>
 
+	<?php lsx_widget_entry_bottom(); ?>
+
 </article>
+<?php lsx_widget_entry_after(); ?>

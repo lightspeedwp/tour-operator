@@ -1,378 +1,96 @@
 <?php
 /**
- * Template Tags
+ * LSX Customizer integration.
  *
- * @package   Tour Operators
- * @license   GPL3
+ * @package   	tour-operator
+ * @subpackage 	layout
+ * @license   	GPL3
  */
 
 if ( ! defined( 'ABSPATH' ) ) return; // Exit if accessed directly
 
 /**
- * Add new selectors in "button" group of colours
+ * New colors scheme for LSX Customizer.
  */
-function lsx_to_customizer_colour_selectors_button( $css, $colors ) {
-	$css .= <<<CSS
-		/*
-		 *
-		 * Button - LSX Tour Operators - New selectors
-		 *
-		 */
+function lsx_to_customizer_colors_scheme( $array ) {
+	$array['tour-operator'] = array(
+		'label'  => esc_html__( 'Tour Operator', 'tour-operator' ),
+		'colors' => array(
+			'button_background_color'       => '#1098AD',
+			'button_background_hover_color' => '#0E8395',
+			'button_text_color'             => '#FFFFFF',
+			'button_text_color_hover'       => '#FFFFFF',
+			'button_shadow'                 => '#0C7383',
 
-		body.home aside.lsx-widget,
-		body.archive-tour-operator #safari-brands,
-		body.archive-tour-operator #travel-styles,
-		body.archive.post-type-archive-lsx-to-destination .countries .regions,
-		body.single-tour-operator {
-			.slider-container {
-				.slick-arrow {
-					&,
-					&:hover {
-						color: {$colors['button_background_color']};
-					}
-				}
+			'button_cta_background_color'       => '#F7AE00',
+			'button_cta_background_hover_color' => '#EDA700',
+			'button_cta_text_color'             => '#FFFFFF',
+			'button_cta_text_color_hover'       => '#FFFFFF',
+			'button_cta_shadow'                 => '#AB7800',
 
-				.slick-dots {
-					& > li {
-						& > button {
-							border-color: {$colors['button_background_color']};
-						}
+			'top_menu_background_color'          => '#F2F2F2',
+			'top_menu_link_color'                => '#1098AD',
+			'top_menu_link_hover_color'          => '#F7AE00',
+			'top_menu_icon_color'                => '#434343',
+			'top_menu_icon_hover_color'          => '#F7AE04',
+			'top_menu_dropdown_color'            => '#374750',
+			'top_menu_dropdown_hover_color'      => '#2B3840',
+			'top_menu_dropdown_link_color'       => '#FFFFFF',
+			'top_menu_dropdown_link_hover_color' => '#1098AD',
 
-						&.slick-active > button {
-							background-color: {$colors['button_background_color']};
-						}
-					}
-				}
-			}
-		}
+			'header_background_color'  => '#FFFFFF',
+			'header_link_color'        => '#1098AD',
+			'header_link_hover_color'  => '#F7AE00',
+			'header_description_color' => '#434343',
 
-		body.archive-tour-operator {
-			.facetwp-slider-reset {
-				&,
-				&:visited {
-					background-color: {$colors['button_background_color']};
-					color: {$colors['button_text_color']};
-				}
+			'main_menu_background_color'                => '#FFFFFF',
+			'main_menu_link_color'                      => '#515151',
+			'main_menu_link_hover_color'                => '#1098AD',
+			'main_menu_dropdown_background_color'       => '#374750',
+			'main_menu_dropdown_background_hover_color' => '#2B3840',
+			'main_menu_dropdown_link_color'             => '#FFFFFF',
+			'main_menu_dropdown_link_hover_color'       => '#1098AD',
 
-				&:hover,
-				&:focus,
-				&:active {
-					background-color: {$colors['button_background_hover_color']};
-					color: {$colors['button_text_color_hover']};
-				}
-			}
-		}
-CSS;
+			'banner_background_color'               => '#2B3840',
+			'banner_text_color'                     => '#FFFFFF',
+			'banner_text_image_color'               => '#FFFFFF',
+			'banner_breadcrumb_background_color'    => '#374750',
+			'banner_breadcrumb_text_color'          => '#919191',
+			'banner_breadcrumb_text_selected_color' => '#FFFFFF',
 
-	return $css;
+			'background_color'                       => '#F6F6F6',
+			'body_line_color'                        => '#DADDDF',
+			'body_text_heading_color'                => '#4A4A4A',
+			'body_text_small_color'                  => '#919191',
+			'body_text_color'                        => '#4A4A4A',
+			'body_link_color'                        => '#1098AD',
+			'body_link_hover_color'                  => '#F7AE00',
+			'body_section_full_background_color'     => '#333333',
+			'body_section_full_text_color'           => '#FFFFFF',
+			'body_section_full_link_color'           => '#1098AD',
+			'body_section_full_link_hover_color'     => '#F7AE00',
+			'body_section_full_cta_background_color' => '#1098AD',
+			'body_section_full_cta_text_color'       => '#FFFFFF',
+			'body_section_full_cta_link_color'       => '#374750',
+			'body_section_full_cta_link_hover_color' => '#F7AE00',
+
+			'footer_cta_background_color' => '#232222',
+			'footer_cta_text_color'       => '#FFFFFF',
+			'footer_cta_link_color'       => '#1098AD',
+			'footer_cta_link_hover_color' => '#F7AE00',
+
+			'footer_widgets_background_color' => '#333333',
+			'footer_widgets_text_color'       => '#FFFFFF',
+			'footer_widgets_link_color'       => '#1098AD',
+			'footer_widgets_link_hover_color' => '#F7AE00',
+
+			'footer_background_color' => '#232222',
+			'footer_text_color'       => '#ffffff',
+			'footer_link_color'       => '#1098AD',
+			'footer_link_hover_color' => '#F7AE00',
+		),
+	);
+
+	return $array;
 }
-add_filter( 'lsx_customizer_colour_selectors_button', 'lsx_to_customizer_colour_selectors_button', 10, 2 );
-
-/**
- * Add new selectors in "header" group of colours
- */
-function lsx_to_customizer_colour_selectors_header( $css, $colors ) {
-	$css .= <<<CSS
-		/*
-		 *
-		 * Header - LSX Tour Operators - New selectors
-		 *
-		 */
-
-		body.archive-tour-operator,
-		body.single-tour-operator {
-			#main {
-				& > .lsx-to-navigation {
-					ul {
-						background-color: {$colors['header_background_color']};
-					}
-				}
-			}
-		}
-CSS;
-
-	return $css;
-}
-add_filter( 'lsx_customizer_colour_selectors_header', 'lsx_to_customizer_colour_selectors_header', 10, 2 );
-
-/**
- * Add new selectors in "main meun" group of colours
- */
-function lsx_to_customizer_colour_selectors_main_menu( $css, $colors ) {
-	$css .= <<<CSS
-		/*
-		 *
-		 * Main Menu - LSX Tour Operators - New selectors
-		 *
-		 */
-
-		body.archive-tour-operator,
-		body.single-tour-operator {
-			#main {
-				& > .lsx-to-navigation {
-					a {
-						&,
-						&:active,
-						&:visited {
-							color: {$colors['main_menu_text_color']};
-						}
-
-						&:hover,
-						&:hover:active,
-						&:focus {
-							background-color: {$colors['main_menu_background_hover1_color']};
-							color: {$colors['main_menu_text_hover1_color']};
-						}
-					}
-
-					li.active {
-						a {
-							background-color: {$colors['main_menu_background_hover1_color']};
-							color: {$colors['main_menu_text_hover1_color']};
-						}
-					}
-				}
-			}
-		}
-CSS;
-
-	return $css;
-}
-add_filter( 'lsx_customizer_colour_selectors_main_menu', 'lsx_to_customizer_colour_selectors_main_menu', 10, 2 );
-
-/**
- * Add new selectors in "body" group of colours
- */
-function lsx_to_customizer_colour_selectors_body( $css, $colors ) {
-	$css .= <<<CSS
-		/*
-		 *
-		 * Body - LSX Tour Operators - New selectors
-		 *
-		 */
-
-		body {
-			&.home {
-				aside.lsx-widget {
-					& > .widget-title,
-					& > .section-title {
-						a:hover,
-						a:focus,
-						a:active {
-							color: {$colors['body_link_hover_color']};
-						}
-					}
-
-					.panel {
-						& > article {
-							h3 {
-								a {
-									&:hover,
-									&:active,
-									&:focus {
-										color: {$colors['body_link_hover_color']};
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-
-			&.archive-tour-operator {
-				.panel {
-					& > article {
-						h3 {
-							& + strong {
-								color: {$colors['body_text_color']};
-							}
-
-							a {
-								&:hover,
-								&:active,
-								&:focus {
-									color: {$colors['body_link_hover_color']};
-								}
-							}
-						}
-
-						.entry-content {
-							p {
-								color: {$colors['body_text_color']};
-							}
-						}
-					}
-				}
-
-				#safari-brands,
-				#travel-styles {
-					& > .widget-title,
-					& > .section-title {
-						a:hover,
-						a:focus,
-						a:active {
-							color: {$colors['body_link_hover_color']};
-						}
-					}
-
-					.panel {
-						& > article {
-							h3 {
-								a {
-									&:hover,
-									&:active,
-									&:focus {
-										color: {$colors['body_link_hover_color']};
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-
-			&.single-tour-operator {
-				#tours,
-				#regions,
-				#accommodation,
-				#destinations,
-				#activities,
-				#activites,
-				#related-items,
-				#videos {
-					.panel {
-						& > article {
-							h3 {
-								a {
-									&:hover,
-									&:active,
-									&:focus {
-										color: {$colors['body_link_hover_color']};
-									}
-								}
-							}
-
-							.entry-content {
-								p {
-									color: {$colors['body_text_color']};
-								}
-							}
-						}
-					}
-				}
-
-				#itinerary {
-					.panel {
-						.itinerary-inner {
-							h3 {
-								& + strong {
-									color: {$colors['body_text_color']};
-								}
-							}
-
-							.title {
-								a {
-									&:hover,
-									&:active,
-									&:focus {
-										color: {$colors['body_link_hover_color']};
-									}
-								}
-							}
-
-							.entry-content {
-								p {
-									color: {$colors['body_text_color']};
-								}
-							}
-						}
-					}
-				}
-
-				#rooms,
-				#chalets,
-				#tents,
-				#spas,
-				#villas {
-					.panel {
-						& > .unit {
-							h3 {
-								& + strong {
-									color: {$colors['body_text_color']};
-								}
-							}
-
-							.entry-content {
-								p {
-									color: {$colors['body_text_color']};
-								}
-							}
-						}
-					}
-				}
-
-				#rooms {
-					.panel {
-						& > .room {
-							.title {
-								a {
-									&:hover,
-									&:active,
-									&:focus {
-										color: {$colors['body_link_hover_color']};
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-
-			&.archive-tour-operator,
-			&.single-tour-operator {
-				#summary {
-					article.hentry {
-						.entry-content {
-							p,
-							ul > li {
-								color: {$colors['body_text_color']};
-							}
-
-							& + .col-sm-3 {
-								.team-member-widget {
-									.title {
-										a {
-											&:hover,
-											&:active,
-											&:focus {
-												color: {$colors['body_link_hover_color']};
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-
-			&.home,
-			&.archive-tour-operator,
-			&.single-tour-operator {
-				.info.meta {
-					.price,
-					.duration {
-						color: {$colors['body_text_color']};
-					}
-				}
-
-				.meta:not(.info) {
-					color: {$colors['body_text_color']};
-				}
-			}
-		}
-CSS;
-
-	return $css;
-}
-add_filter( 'lsx_customizer_colour_selectors_body', 'lsx_to_customizer_colour_selectors_body', 10, 2 );
+add_filter( 'lsx_customizer_colour_choices', 'lsx_to_customizer_colors_scheme' );

@@ -4,39 +4,6 @@
 
 @import '../vendor/flag-icon-css/flag-icon';
 
-/* Variables */
-
-$bg-grey: #f9f9f9;
-$bdr-grey: #cccccc;
-
-/* Placeholders */
-
-%white-box {
-	background-color: $bg-grey;
-	border: 1px solid $bdr-grey;
-	border-radius: 4px;
-	padding: 8px 20px 12px;
-}
-
-%heading-box {
-	background-color: $bg-grey;
-	margin-bottom: 10px;
-	padding: 6px 0 6px 12px;
-}
-
-%lists {
-	margin-bottom: 20px;
-	margin-left: 35px;
-}
-
-%error-hide {
-	.error {
-		display: none;
-	}
-}
-
-/* General */
-
 #banners {
 	.CMB_Group_Field {
 		display: block;
@@ -46,6 +13,12 @@ $bdr-grey: #cccccc;
 .CMB_Group_Field {
 	&.active {
 		display: block;
+	}
+}
+
+.CMB_Color_Picker {
+	.field-item {
+		float: none;
 	}
 }
 
@@ -75,7 +48,6 @@ $bdr-grey: #cccccc;
 	}
 }
 
-
 /* The Tab Styling */
 
 body.tour-operator_page_lsx-to-settings {
@@ -83,6 +55,7 @@ body.tour-operator_page_lsx-to-settings {
 		background-color: #fff;
 		border-radius: 10px;
 	}
+
 	.uix-field-wrapper {
 		.ui-tab-nav {
 			li {
@@ -120,7 +93,7 @@ body.tour-operator_page_lsx-to-settings {
 			display:none;
 
 			&.active {
-				display:block;
+				display: block;
 			}
 		}
 	}

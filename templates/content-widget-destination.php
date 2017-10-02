@@ -6,17 +6,50 @@
  * @category	activity
  * @subpackage	widget
  */
-global $disable_placeholder;
+
+global $disable_placeholder, $disable_text, $post;
+
+$has_single = ! lsx_to_is_single_disabled();
+$permalink = '';
+
+if ( $has_single ) {
+	$permalink = get_the_permalink();
+}
 ?>
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php if('1' !== $disable_placeholder && true !== $disable_placeholder) { ?>
-		<div class="thumbnail">
-			<a href="<?php the_permalink(); ?>">
+<article <?php post_class(); ?>>
+	<?php if ( empty( $disable_placeholder ) ) { ?>
+		<div class="lsx-to-widget-thumb">
+			<?php if ( $has_single ) { ?><a href="<?php echo esc_url( $permalink ); ?>"><?php } ?>
 				<?php lsx_thumbnail( 'lsx-thumbnail-single' ); ?>
-			</a>
+			<?php if ( $has_single ) { ?></a><?php } ?>
 		</div>
 	<?php } ?>
 
-	<h4 class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-	<?php lsx_to_tagline('<p class="tagline">','</p>'); ?>
+	<div class="lsx-to-widget-content">
+		<h4 class="lsx-to-widget-title text-center">
+			<?php if ( $has_single ) { ?><a href="<?php echo esc_url( $permalink ); ?>"><?php } ?>
+				<?php the_title(); ?>
+			<?php if ( $has_single ) { ?></a><?php } ?>
+		</h4>
+
+		<?php
+			// if ( empty( $disable_text ) ) {
+			// 	lsx_to_tagline( '<p class="lsx-to-widget-tagline text-center">', '</p>' );
+			// }
+		?>
+
+		<?php
+			ob_start();
+			lsx_to_widget_entry_content_top();
+			the_excerpt();
+			lsx_to_widget_entry_content_bottom();
+			$excerpt = ob_get_clean();
+
+			if ( empty( $disable_text ) && ! empty( $excerpt ) ) {
+				echo wp_kses_post( $excerpt );
+			} elseif ( $has_single ) { ?>
+				<p><a href="<?php echo esc_url( $permalink ); ?>" class="moretag"><?php esc_html_e( 'View more', 'tour-operator' ); ?></a></p>
+			<?php }
+		?>
+	</div>
 </article>

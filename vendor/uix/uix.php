@@ -3,10 +3,10 @@
  * UIX Setting Class.
  *
  * @package   uix
- * @author    David Cramer
+ * @author    LightSpeed
  * @license   GPL-2.0+
  * @link
- * @copyright 2016 David Cramer
+ * @copyright 2016 LightSpeed
  */
 
 namespace lsx_to\ui;
@@ -15,7 +15,7 @@ namespace lsx_to\ui;
  * Settings class
  *
  * @package uix
- * @author  David Cramer
+ * @author  LightSpeed
  */
 class uix {
 
@@ -81,7 +81,7 @@ class uix {
 		$this->plugin_slug = $slug;
 
 		// add admin page
-		add_action( 'admin_menu', array( $this, 'add_settings_pages' ), 25 );
+		//add_action( 'admin_menu', array( $this, 'add_settings_pages' ), 25 );
 
 		// add metaboxes
 		add_action( 'add_meta_boxes', array( $this, 'add_metaboxes' ), 25 );
@@ -108,7 +108,7 @@ class uix {
 	 * Return an instance of this class.
 	 *
 	 * @since 1.0.0
-	 * @return    object|\uix\uix    A single instance of this class.
+	 * @return    self    A single instance of this class.
 	 */
 	public static function get_instance( $slug ) {
 
@@ -302,9 +302,9 @@ class uix {
 	 * @since 1.0.0
 	 * @return    null
 	 */
-	public function enqueue_admin_stylescripts() {
+	public function enqueue_admin_stylescripts( $page_slug = null ) {
 
-		$uix = $this->get_page();
+		$uix = $this->get_page( $page_slug );
 		if ( false === $uix ) {
 			return;
 		}
@@ -404,17 +404,20 @@ class uix {
 	 * @since 0.0.1
 	 * @return array $page array structure of current uix page
 	 */
-	private function get_page() {
+	private function get_page( $page_slug = null ) {
 
 		// check that the scrren object is valid to be safe.
-		$screen = get_current_screen();
+		if ( is_null( $page_slug ) ) {
+			$screen = get_current_screen();
 
-		if ( empty( $screen ) || ! is_object( $screen ) ) {
-			return false;
+			if ( empty( $screen ) || ! is_object( $screen ) ) {
+				return false;
+			}
+
+
+			// get the page slug from base ID
+			$page_slug = array_search( $screen->base, $this->plugin_screen_hook_suffix );
 		}
-
-		// get the page slug from base ID
-		$page_slug = array_search( $screen->base, $this->plugin_screen_hook_suffix );
 		if ( empty( $page_slug ) || empty( $this->pages[ $page_slug ] ) ) {
 			return false; // in case its not found or the array item is no longer valid, just leave.
 		}
@@ -504,9 +507,9 @@ class uix {
 	 *
 	 * @since 0.0.1
 	 */
-	public function create_admin_page() {
+	public function create_admin_page( $page_slug = null ) {
 
-		$uix           = $this->get_page();
+		$uix           = $this->get_page( $page_slug );
 		$template_path = plugin_dir_path( dirname( __FILE__ ) );
 		?>
         <div class="wrap">
@@ -605,11 +608,14 @@ class uix {
 			?>
             <hr>
 			<?php if ( ! empty( $uix['save_button'] ) ) { ?>
-                <p class="uix-footer-bar"><button type="button" class="button button-primary" data-save-object="true">
-					<?php esc_html_e( $uix['save_button'], $this->plugin_slug ); ?>
-                </button>
-                <span class="spinner uix-save-spinner"></span>
-                <span class="save-confirm" style="display: none;"><span class="dashicons dashicons-yes"></span></span>
+                <p class="uix-footer-bar">
+                    <button type="button" class="button button-primary"
+                            data-save-object="true">
+						<?php esc_html_e( $uix['save_button'], $this->plugin_slug ); ?>
+                    </button>
+                    <span class="spinner uix-save-spinner"></span>
+                    <span class="save-confirm" style="display: none;"><span
+                                class="dashicons dashicons-yes"></span></span>
                 </p>
 			<?php } ?>
         </div>

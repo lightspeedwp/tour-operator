@@ -2,58 +2,51 @@
 /**
  * Accommodation Archive
  *
- * @package 	tour-operator
- * @category	accommodation
+ * @package  tour-operator
+ * @category accommodation
  */
 
 get_header(); ?>
 
 	<?php lsx_content_wrap_before(); ?>
 
-	<section id="primary" class="content-area <?php echo esc_attr( lsx_main_class() ); ?>">
+	<div id="primary" class="content-area <?php echo esc_attr( lsx_main_class() ); ?>">
 
 		<?php lsx_content_before(); ?>
 
 		<main id="main" class="site-main" role="main">
 
-		<?php
-		/**
-		 * Hooked
-		 *
-		 *  - lsx_to_global_header() - 100
-		 *  - lsx_to_archive_description() - 100
-		 */
-			lsx_content_top();
-		?>
+			<?php lsx_content_top(); ?>
 
-		<?php if ( have_posts() ) : ?>
+			<?php if ( have_posts() ) : ?>
 
-			<div class="row">
-			<?php while ( have_posts() ) : the_post(); ?>
-				<div class="panel col-sm-12">
-					<?php lsx_to_content( 'content', 'accommodation' ); ?>
+				<div class="row lsx-to-archive-items lsx-to-archive-template-<?php echo esc_attr( tour_operator()->archive_layout ); ?> lsx-to-archive-template-image-<?php echo esc_attr( tour_operator()->archive_list_layout_image_style ); ?>">
+
+					<?php while ( have_posts() ) : the_post(); ?>
+
+						<div class="<?php echo esc_attr( lsx_to_archive_class( 'lsx-to-archive-item' ) ); ?>">
+							<?php lsx_to_content( 'content', 'accommodation' ); ?>
+						</div>
+
+					<?php endwhile; ?>
+
 				</div>
-			<?php endwhile; ?>
-			</div>
-			<?php //lsx_to_paging_nav(); ?>
 
-		<?php else : ?>
+			<?php else : ?>
 
-			<?php get_template_part( 'content', 'none' ); ?>
+				<?php get_template_part( 'partials/content', 'none' ); ?>
 
-		<?php endif; ?>
+			<?php endif; ?>
 
-		<?php lsx_content_bottom(); ?>
-
-		<?php lsx_to_sharing(); ?>
+			<?php lsx_content_bottom(); ?>
 
 		</main><!-- #main -->
 
 		<?php lsx_content_after(); ?>
 
-	</section><!-- #primary -->
+	</div><!-- #primary -->
 
-<?php lsx_content_wrap_after(); ?>
+	<?php lsx_content_wrap_after(); ?>
 
 <?php get_sidebar(); ?>
 
