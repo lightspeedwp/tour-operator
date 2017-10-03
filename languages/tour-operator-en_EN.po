@@ -683,8 +683,8 @@ msgstr ""
 msgid "The Tour Operator Essentials Bundle comes with a select few extensions for LSX theme and the Tour Operator plug in, allowing you to expand the look, feel and functionality of your website."
 msgstr ""
 
-#: includes/partials/add-ons.php:54, includes/partials/add-ons.php:69, includes/partials/add-ons.php:86, includes/partials/add-ons.php:101, includes/partials/add-ons.php:116, includes/partials/add-ons.php:133, includes/partials/add-ons.php:148, includes/partials/add-ons.php:163, includes/partials/add-ons.php:180
-msgid "Get this extension"
+#: includes/partials/add-ons.php:54, includes/partials/add-ons.php:69
+msgid "Get the bundle"
 msgstr ""
 
 #: includes/partials/add-ons.php:64
@@ -701,6 +701,10 @@ msgstr ""
 
 #: includes/partials/add-ons.php:82
 msgid "Connect maps with location-marking pins to your Accommodation, Destination and Tour pages. Display maps with clusters of markers to display the set of Accommodations in each Destination. Show a mapped out trip itinerary that connects the dots of the accommodations visited in a tour package."
+msgstr ""
+
+#: includes/partials/add-ons.php:86, includes/partials/add-ons.php:101, includes/partials/add-ons.php:116, includes/partials/add-ons.php:133, includes/partials/add-ons.php:148, includes/partials/add-ons.php:163, includes/partials/add-ons.php:180
+msgid "Get this extension"
 msgstr ""
 
 #: includes/partials/add-ons.php:96, includes/partials/help.php:123, includes/classes/legacy/class-accommodation.php:379, includes/classes/legacy/class-destination.php:387, includes/classes/legacy/class-tour.php:575

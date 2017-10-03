@@ -2,8 +2,8 @@
 	$lsx_to_documentation = esc_url( 'https://www.lsdev.biz/documentation/tour-operator-plugin/' );
 	$extensions_link = esc_url( 'https://www.lsdev.biz/product-category/tour-operator-extensions/' );
 
-	$to_essentials_bundle_link = '#';
-	$to_complete_bundle_link = '#';
+	$to_essentials_bundle_link = esc_url( 'https://www.lsdev.biz/product/tour-operator-essentials-bundle/' );
+	$to_complete_bundle_link = esc_url( 'https://www.lsdev.biz/product/tour-operator-complete-bundle/' );
 	$tour_operator_link = esc_url( 'https://www.lsdev.biz/product/tour-operator-plugin/' );
 	$map_link = esc_url( 'https://www.lsdev.biz/product/tour-operator-maps/' );
 	$team_link = esc_url( 'https://www.lsdev.biz/product/tour-operators-team/' );
@@ -51,7 +51,7 @@
 
 				<div class="more-button">
 					<a href="<?php echo wp_kses_post( $to_essentials_bundle_link ); ?>" target="_blank" class="button button-primary">
-						<?php esc_html_e( 'Get this extension', 'tour-operator' ); ?>
+						<?php esc_html_e( 'Get the bundle', 'tour-operator' ); ?>
 					</a>
 				</div>
 			</div>
@@ -66,7 +66,7 @@
 
 				<div class="more-button">
 					<a href="<?php echo wp_kses_post( $to_complete_bundle_link ); ?>" target="_blank" class="button button-primary">
-						<?php esc_html_e( 'Get this extension', 'tour-operator' ); ?>
+						<?php esc_html_e( 'Get the bundle', 'tour-operator' ); ?>
 					</a>
 				</div>
 			</div>
