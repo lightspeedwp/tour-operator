@@ -1,0 +1,178 @@
+@mixin customizer-to-link-colour($color: #1098AD, $hover: #F7AE00) {
+	&,
+	&:active,
+	&:visited {
+		color: $color;
+	}
+
+	&:hover,
+	&:hover:active,
+	&:focus {
+		color: $hover;
+	}
+}
+
+@mixin customizer-to-body-colours($bg: #F6F6F6, $breaker: #DADDDF, $color: #4A4A4A, $link: #1098AD, $hover: #F7AE00, $small: #919191) {
+	.lsx-to-slider-inner,
+	.gallery {
+		.slick-dots {
+			& > li {
+				& > button { border-color: $color; }
+
+				&.slick-active > button { background-color: $color; }
+			}
+		}
+
+		.slick-arrow {
+			border-color: $color;
+			color: $color;
+
+			&:hover {
+				border-color: $hover;
+				color: $hover;
+			}
+
+			&.slick-disabled {
+				border-color: $breaker;
+				color: $breaker;
+			}
+		}
+	}
+
+	.slick-lightbox-inner {
+		.slick-arrow {
+			border-color: white;
+			color: white;
+
+			&:hover {
+				border-color: white;
+				color: white;
+			}
+
+			&.slick-disabled {
+				border-color: #ccc;
+				color: #ccc;
+			}
+		}
+	}
+
+	.lsx-to-widget-view-all {
+		& > span {
+			&:before,
+			&:after {
+				background-color: $breaker;
+			}
+		}
+	}
+
+	.lsx-to-widget-item-wrap {
+		.lsx-to-widget-content {
+			background-color: #FFF;
+
+			.lsx-to-section:nth-of-type(odd) & { background-color: #FFF; }
+			.lsx-to-section:nth-of-type(even) & { background-color: $bg; }
+
+			a.moretag {
+				background-color: $link;
+				color: #FFF;
+
+				&:hover {
+					background-color: $hover;
+					color: #FFF;
+				}
+			}
+		}
+
+		.lsx-to-widget-title > a:not(.btn) {
+			@include customizer-to-link-colour($color, $hover);
+		}
+	}
+
+	.lsx-to-meta-data {
+		color: $small;
+
+		.lsx-to-meta-data-key { color: $color; }
+	}
+
+	.lsx-to-archive-item {
+		& > .lsx-to-archive-container {
+			background-color: #FFF;
+
+			.lsx-to-section:nth-of-type(odd) & { background-color: #FFF; }
+			.lsx-to-section:nth-of-type(even) & { background-color: $bg; }
+
+			& > a.moretag {
+				background-color: $link;
+				color: #FFF;
+
+				&:hover {
+					background-color: $hover;
+					color: #FFF;
+				}
+			}
+
+			.lsx-to-archive-content-title > a {
+				@include customizer-to-link-colour($color, $hover);
+			}
+		}
+	}
+
+	.lsx-to-archive-wrapper {
+		.lsx-regions & { background-color: #FFF; }
+	}
+
+	.lsx-to-contact-widget {
+		background-color: $link;
+
+		.lsx-to-contact-prefix { color: #FFF; }
+
+		.lsx-to-contact-name {
+			color: #FFF;
+
+			& > a:not(.btn) {
+				@include customizer-to-link-colour(#FFF, $hover);
+			}
+		}
+
+		.lsx-to-contact-socials {
+			& > a:not(.btn) {
+				@include customizer-to-link-colour(#FFF, $hover);
+			}
+		}
+	}
+
+	.lsx-to-label {
+		background-color: $color;
+		color: #FFF;
+	}
+
+	.facilities-title { border-bottom-color: $breaker; }
+
+	.lsx-to-team-socials {
+		& > a:not(.btn) {
+			background-color: $color;
+
+			&:hover { background-color: $hover; }
+
+			article.team & {
+				@include customizer-to-link-colour(#FFF, #FFF);
+			}
+		}
+	}
+
+	.lsx-to-section {
+		.site-main > & {
+			&:nth-of-type(even) { background-color: #FFF; }
+			&:first-of-type { background-color: $bg; }
+		}
+	}
+
+	.lsx-to-section-inner { background-color: #FFF; }
+
+	.travel-info-content,
+	.rooms-content {
+		.lsx-to-section:nth-of-type(odd) & { background-color: #FFF; }
+		.lsx-to-section:nth-of-type(even) & { background-color: $bg; }
+	}
+
+}

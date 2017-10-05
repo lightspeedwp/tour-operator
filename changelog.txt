@@ -1,12 +1,20 @@
 ## Change log
 
-### 1.0.8
-* Fix - LSX tabs working integrated with TO tabs (dashboard settings)
-* Fix - Fixed admin styles (help and add-on pages)
-* Fix - UIX framework saving all tabs
+### 1.1.0
+* New totally awesome version! The visual was fully redesigned
+* Added compatibility with LSX 2.0
+* Dev - New project structure
+* Dev - UIX updated + Fixed issue with sub tabs click (settings)
+* Dev - Added in a filter to call the Tours Featured image for the Departure Day.
+* Dev - Added the accommodations room images to the pool of possible itinerary day images.
+* Dev - Allowing the to_country_regions() to be ordered by the menu order or any other valid WP_Query order
+* Fix - Fixed scripts/styles loading order
+* Fix - Fixed many small issues
 
 ### 1.0.7
 * Dev - Added .editorconfig file to help developers to maintain consistent coding styles between different editors and IDEs
+* Fix - Removed "read more" from regions excerpt widgets on destination archive page
+* Fix - Small fix on TO custom post type (single template - CSS) for small breakpoints
 * Dev - LSX Customizer SASS selector extented to new FacetWP selectors
 * Dev - Make the team image displays square
 * Dev - Enable BS sliders on all small breakpoints

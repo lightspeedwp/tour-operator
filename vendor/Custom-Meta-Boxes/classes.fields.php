@@ -921,8 +921,8 @@ class CMB_Checkbox_Group_Field extends CMB_Field {
 	<?php }
 
 	public function parse_save_values(){
-		$this->values = array( $this->values );	
-	}	
+		$this->values = array( $this->values );
+	}
 
 }
 
@@ -1614,7 +1614,7 @@ class CMB_Group_Field extends CMB_Field {
 
 			<button class="cmb-collapse-field">
 				<span class="cmb-collapse-field-icon down">&darr;</span>
-			</button>		
+			</button>
 			<button class="cmb-delete-field">
 				<span class="cmb-delete-field-icon ">&times;</span>
 				Remove <?php echo $button_name; ?>
@@ -1716,7 +1716,7 @@ class CMB_Gmap_Field extends CMB_Field {
 
 		parent::enqueue_scripts();
 
-		if(class_exists('Tour_Operator')){
+		if(function_exists( 'tour_operator' )){
 			$options = get_option('_lsx-to_settings',false);
 			$api_key = $options['api']['googlemaps_key'];
         }else{

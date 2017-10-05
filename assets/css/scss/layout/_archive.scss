@@ -1,0 +1,335 @@
+.archive,
+.search {
+	&.archive-tour-operator {
+		.site-main { width: 100%; }
+	}
+}
+
+.lsx-to-archive-items {
+	align-items: flex-start;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+	margin-top: -1 * $lsx-to-gap;
+	width: calc(100% + 30px);
+
+	&:after,
+	&:before {
+		display: none;
+	}
+}
+
+.lsx-to-archive-item {
+	margin-top: $lsx-to-gap;
+
+	& > .lsx-to-archive-container {
+		align-items: stretch;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: flex-start;
+
+		.lsx-to-archive-template-list & {
+			@include media('>=phone') { flex-wrap: nowrap; }
+		}
+
+		@include media('>=phone') {
+			.lsx-to-archive-template-list.lsx-to-archive-template-image-max-height & {
+				.lsx-to-archive-thumb {
+					& > a,
+					.lsx-to-thumb-slot {
+						display: block;
+						height: 0;
+						overflow: hidden;
+						// padding: 0 0 65.714285%; // lsx-thumbnail-wide (350x350)
+						padding: 0 0 100%; // square
+						position: relative;
+
+						& > img {
+							bottom: 0;
+							left: 0;
+							position: absolute;
+							height: 100%;
+							right: 0;
+							top: 0;
+							width: 100%;
+						}
+					}
+				}
+			}
+		}
+
+		&.post,
+		&.page {
+			.search-results & {
+				.entry-content { padding: 0; }
+			}
+		}
+
+		&.destination {
+			.lsx-to-archive-template-grid & {
+				.entry-content {
+					& > p { margin-bottom: 0; }
+				}
+			}
+		}
+
+		&.team {
+			.lsx-to-meta-data-socials {
+				padding-left: 0;
+
+				& > a {
+					font-size: 17px;
+
+					& + a { margin-left: 5px; }
+				}
+			}
+
+			.lsx-to-archive-template-grid & {
+				background-color: transparent;
+
+				.lsx-to-archive-content-title { margin-top: $lsx-to-gap-half; }
+
+				.lsx-to-archive-wrapper { padding: 0; }
+
+				.lsx-to-archive-thumb {
+					border-radius: 50%;
+					height: 170px;
+					margin: 0 auto;
+					overflow: hidden;
+					position: relative;
+					width: 170px;
+				}
+
+				.entry-content { text-align: center; }
+
+				.lsx-to-archive-meta-data {
+					text-align: center;
+
+					.lsx-to-meta-data {
+						padding-left: 0;
+
+						&:before {
+							left: auto;
+							margin-right: 5px;
+							position: relative;
+						}
+					}
+				}
+			}
+
+			// @include media('>=phone') {
+			// 	.lsx-to-archive-template-list.lsx-to-archive-template-image-max-height & {
+			// 		.lsx-to-archive-thumb {
+			// 			& > a,
+			// 			.lsx-to-thumb-slot { padding: 0 0 100%; } // square
+			// 		}
+			// 	}
+			// }
+		}
+
+		& > .moretag {
+			display: block;
+			padding: 1rem 0;
+			text-align: center;
+			transition: background 300ms ease;
+			width: 100%;
+
+			&:after {
+				color: inherit;
+				content: '\f178';
+				display: inline-block;
+				font-family: 'FontAwesome';
+				font-size: inherit;
+				margin-left: 5px;
+				text-rendering: auto;
+
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
+		}
+	}
+
+	.lsx-to-single-link {
+		margin-bottom: 0;
+		margin-top: $lsx-to-gap-half;
+
+		.fa {
+			margin-left: 5px;
+		}
+	}
+}
+
+.lsx-to-archive-items-separator.lsx-title {
+	margin-top: $lsx-to-gap-large;
+
+	&:first-child { margin-top: 0; }
+}
+
+.lsx-to-archive-description {
+	& > p {
+		&:last-child,
+		&:only-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.lsx-to-archive-thumb {
+	width: 100%;
+
+	@include media('<phone') {
+		& > a,
+		.lsx-to-thumb-slot {
+			background-image: none !important;
+
+			& > img { width: 100%; }
+		}
+	}
+
+	.lsx-to-archive-template-list & {
+		@include media('>=phone') {
+			flex-shrink: 0;
+			position: relative;
+			width: 25%;
+
+			& > a,
+			.lsx-to-thumb-slot {
+				background-position: center center;
+				background-repeat: no-repeat;
+				background-size: cover;
+				height: 100%;
+				left: 0;
+				position: absolute;
+				top: 0;
+				width: 100%;
+
+				& > img { display: none; }
+			}
+		}
+	}
+
+	.lsx-to-archive-template-grid & {
+		& > a,
+		.lsx-to-thumb-slot {
+			background-image: none !important;
+			display: block;
+
+			& > img { width: 100%; }
+		}
+	}
+}
+
+.lsx-to-archive-wrapper {
+	padding: 20px;
+
+	.lsx-to-archive-template-list & {
+		@include media('>=phone') {
+			align-items: flex-start;
+			display: flex;
+			flex-flow: row nowrap;
+			flex-grow: 1;
+			justify-content: flex-end;
+			min-height: 130px;
+			padding: $lsx-to-gap-half 15px;
+		}
+
+		@include media('>=tablet') { min-height: 170px; }
+		@include media('>=desktop') { min-height: 200px; }
+	}
+
+	.lsx-to-archive-template-grid & { width: 100%; }
+}
+
+.lsx-to-archive-content {
+	.lsx-to-archive-template-list & {
+		@include media('>=phone') {
+			flex-grow: 1;
+			padding-right: 15px;
+		}
+	}
+
+	.entry-content {
+		p:last-child { margin-bottom: 0; }
+
+		.moretag {
+			.lsx-to-archive-template-grid & { display: none; }
+
+			&:after {
+				color: inherit;
+				content: '\f178';
+				display: inline-block;
+				font-family: 'FontAwesome';
+				font-size: inherit;
+				margin-left: 5px;
+				text-rendering: auto;
+
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
+		}
+	}
+}
+
+.lsx-to-archive-meta-data {
+	margin-top: $lsx-to-gap-half;
+
+	.lsx-to-archive-template-grid & {
+		&.lsx-to-archive-meta-data-list-mode { display: none; }
+
+		& + .entry-content { margin-top: $lsx-to-gap-half; }
+	}
+
+	.lsx-to-archive-template-list & {
+		@include media('>=phone') {
+			flex-shrink: 0;
+			margin-top: 0;
+			padding-left: 15px;
+			width: 40%;
+		}
+
+		@include media('>=tablet') { width: 33%; }
+
+		&.lsx-to-archive-meta-data-grid-mode {
+			@include media('>=phone') { display: none; }
+		}
+
+		&.lsx-to-archive-meta-data-list-mode {
+			@include media('<phone') { display: none; }
+		}
+
+		& + .entry-content {
+			@include media('<phone') { margin-top: $lsx-to-gap-half; }
+		}
+	}
+}
+
+.lsx-to-archive-content-title {
+	.lsx-to-archive-template-grid & {
+		text-align: center;
+
+		&:only-child { margin-bottom: 0; }
+	}
+
+	.lsx-to-label {
+		font-size: 60%;
+		line-height: 27px; // This must be the same line-height of its parent
+		margin-left: 5px;
+		padding: 4px 1rem;
+		vertical-align: top;
+
+		.lsx-to-archive-template-grid & { display: none; }
+	}
+
+	&,
+	& + .lsx-to-archive-content-tagline {
+		& + .entry-content:empty { display: none; }
+	}
+}
+
+.lsx-to-archive-content-tagline {
+	&:last-child { margin-bottom: 0; }
+
+	@include media('>=phone') { margin-top: -1.2rem; }
+
+	.lsx-to-archive-template-grid & { text-align: center; }
+}

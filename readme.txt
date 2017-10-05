@@ -2,8 +2,9 @@
 Contributors: feedmymedia
 Donate link: https://www.lsdev.biz/
 Tags: tour operator, tour operators, tour, tours, tour itinerary, tour itineraries, accommodation, accommodation listings, destinations, regions, tourism, lsx
-Requires at least: 4.6
+Requires at least: 4.3
 Tested up to: 4.8
+Requires PHP: 7.0
 Stable tag: 1.0.8
 License: GPLv3
 
@@ -63,10 +64,8 @@ Yes you can! Join in on our [GitHub repository](https://github.com/lightspeeddev
 
 == Changelog ==
 
-= 1.0.8 =
-* Fix - LSX tabs working integrated with TO tabs (dashboard settings)
-* Fix - Fixed admin styles (help and add-on pages)
-* Fix - UIX framework saving all tabs
+= 1.1.0 =
+* Dev - Support LSX Theme 2.0 new designs
 
 = 1.0.7 =
 * Dev - Added .editorconfig file to help developers to maintain consistent coding styles between different editors and IDEs

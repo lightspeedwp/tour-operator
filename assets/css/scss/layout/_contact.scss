@@ -1,0 +1,82 @@
+.lsx-to-contact-widget {
+	margin-top: $lsx-to-gap;
+	padding: $lsx-to-gap-half / 2;
+
+	@include media('>=phone') {
+		display: flex;
+		justify-content: center;
+		padding: 0;
+	}
+
+	@include media('>=tablet') { margin-top: 0; }
+
+	#fast-facts + &, #highlights + & { margin-top: 0; }
+}
+
+.lsx-to-contact {
+	@include media('>=phone') { flex: 2; }
+
+	article {
+		@include media('>=phone') {
+			align-items: center;
+			display: flex;
+			justify-content: center;
+		}
+	}
+}
+
+.lsx-to-enquire-form {
+	article.type-lsx-to-team & {
+		margin-top: $lsx-to-gap-half;
+		text-align: center;
+	}
+
+	article:not(.type-lsx-to-team) &,
+	.lsx-to-archive-header & {
+		align-items: center;
+		display: flex;
+		flex: 1;
+		justify-content: center;
+		padding: $lsx-to-gap-half / 2;
+	}
+}
+
+.lsx-to-contact-thumb {
+	align-items: center;
+	display: flex;
+	flex: 1;
+	justify-content: center;
+	padding: $lsx-to-gap-half / 2;
+
+	img {
+		border-radius: 50%;
+		height: 96px;
+		width: 96px;
+
+		@include media('>=tablet') { margin: -$lsx-to-gap-half 0 ($lsx-to-gap-half / 2); }
+	}
+}
+
+.lsx-to-contact-info {
+	padding: $lsx-to-gap-half / 2;
+
+	@include media('>=phone') { flex: 1.5; }
+}
+
+.lsx-to-contact-prefix {
+	display: block;
+	font-size: 13px;
+}
+
+h4.lsx-to-contact-name {
+	font-size: 20px;
+	margin-bottom: 0;
+}
+
+.lsx-to-contact-socials {
+	& > a {
+		font-size: 17px;
+		line-height: 1;
+		padding: 0 5px;
+	}
+}
