@@ -316,8 +316,17 @@ if ( window.location.hash ) {
 	 * @subpackage scripts
 	 */
 	lsx_to.build_slider_lightbox = function() {
-		$( '.single-tour-operator .gallery' ).slickLightbox();
-		$( '.single-tour-operator .rooms-content' ).slickLightbox();
+		$( '.single-tour-operator .gallery' ).slickLightbox( {
+			caption: function( element, info ) {
+				return $( element ).find( 'img' ).attr( 'alt' );
+			}
+		} );
+
+		$( '.single-tour-operator .rooms-content' ).slickLightbox( {
+			caption: function( element, info ) {
+				return $( element ).find( 'img' ).attr( 'alt' );
+			}
+		} );
 	};
 
 	/**
