@@ -65,7 +65,15 @@ Yes you can! Join in on our [GitHub repository](https://github.com/lightspeeddev
 == Changelog ==
 
 = 1.1.0 =
-* Dev - Support LSX Theme 2.0 new designs
+* New totally awesome version! The visual was fully redesigned
+* Added compatibility with LSX 2.0
+* Dev - New project structure
+* Dev - UIX updated + Fixed issue with sub tabs click (settings)
+* Dev - Added in a filter to call the Tours Featured image for the Departure Day.
+* Dev - Added the accommodations room images to the pool of possible itinerary day images.
+* Dev - Allowing the to_country_regions() to be ordered by the menu order or any other valid WP_Query order
+* Fix - Fixed scripts/styles loading order
+* Fix - Fixed many small issues
 
 = 1.0.7 =
 * Dev - Added .editorconfig file to help developers to maintain consistent coding styles between different editors and IDEs
