@@ -172,7 +172,7 @@
 			<img src="<?php echo esc_url( LSX_TO_URL . 'assets/img/wetu-importer-full-width.png' ); ?>">
 
 			<div class="box box-top-image wetu">
-				<h3><?php esc_html_e( 'Wetu Importer', 'tour-operator' ); ?> - <span class="price">from $129.00 per yearly license</span></h3>
+				<h3><?php esc_html_e( 'Wetu Importer', 'tour-operator' ); ?> - <span class="price">from $149.00 per yearly license</span></h3>
 				<p><?php esc_html_e( 'Quickly and easily import accommodation data as well as entire tour itineraries and associated images from the WETU database to use in your day-by-day tour listings.', 'tour-operator' ); ?></p>
 
 				<div class="more-button">
