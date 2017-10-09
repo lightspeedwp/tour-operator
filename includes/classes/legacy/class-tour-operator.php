@@ -132,6 +132,10 @@ class Tour_Operator {
 	private function __construct() {
 		add_action( 'admin_init', array( $this, 'compatible_version_check' ) );
 
+		// Theme compatibility check
+		add_action( 'admin_notices', array( $this, 'compatible_theme_check' ) );
+		add_action( 'wp_ajax_lsx_to_theme_notice_dismiss', array( $this, 'theme_notice_dismiss' ) );
+
 		// Don't run anything else in the plugin, if we're on an incompatible PHP version.
 		if ( ! self::compatible_version() ) {
 			return;
@@ -875,6 +879,71 @@ class Tour_Operator {
 			deactivate_plugins( plugin_basename( LSX_TO_CORE ) );
 			wp_die( esc_html__( 'Tour Operator Plugin requires PHP 5.6 or higher.', 'tour-operator' ) );
 		}
+	}
+
+	/**
+	 * Check if the theme is compatible.
+	 *
+	 * @since 1.1.0
+	 */
+	public static function compatible_theme() {
+		$current_theme = wp_get_theme();
+		$current_template = $current_theme->get_template();
+		$theme_name = $current_theme->get( 'Name' );
+
+		if ( 'lsx' !== $current_template && 'LSX' !== $theme_name ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Adds an admin notice (requires LSX).
+	 *
+	 * @since 1.1.0
+	 */
+	public function compatible_theme_check() {
+		if ( ! self::compatible_theme() ) {
+			if ( is_plugin_active( plugin_basename( LSX_TO_CORE ) ) ) {
+				if ( empty( get_option( 'lsx-to-theme-notice-dismissed' ) ) ) {
+					add_action( 'admin_notices', array( $this, 'compatible_theme_notice' ), 199 );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Display an admin notice (requires LSX).
+	 *
+	 * @since 1.1.0
+	 */
+	public function compatible_theme_notice() {
+		?>
+			<div class="lsx-to-theme-notice notice notice-error is-dismissible">
+				<p>
+					<?php
+						printf(
+							/* Translators: 1: HTML open tag link, 2: HTML close tag link */
+							esc_html__( 'The Tour Operator Plugin requires the free LSX Theme be installed and active. Please download LSX Theme from %1$sWordPress.org%2$s to get started with your Tour Operator Plugin.', 'tour-operator' ),
+							'<a href="https://wordpress.org/themes/lsx/" target="_blank">',
+							'</a>'
+						);
+					?>
+				</p>
+				<p><a href="https://wordpress.org/themes/lsx/" class="button" style="text-decoration: none;"><?php esc_attr_e( 'Download LSX Theme', 'tour-operator' ); ?></a></p>
+			</div>
+		<?php
+	}
+
+	/**
+	 * Dismiss the admin notice (requires LSX).
+	 *
+	 * @since 1.1.0
+	 */
+	public function theme_notice_dismiss() {
+		update_option( 'lsx-to-theme-notice-dismissed', '1' );
+		wp_die();
 	}
 
 }
