@@ -3,6 +3,7 @@
  */
 
 jQuery(document).ready(function() {
+
 	/*
 	 * Choose Image
 	 */
@@ -83,5 +84,14 @@ jQuery(document).ready(function() {
 
 		window.lsx_thumbnail_subtabs_nav = true;
 	}
+
+	jQuery( document ).on( 'click', '.lsx-to-theme-notice .notice-dismiss', function() {
+		jQuery.ajax( {
+			url: ajaxurl,
+			data: {
+				action: 'lsx_to_theme_notice_dismiss'
+			}
+		} );
+	} );
 
 });

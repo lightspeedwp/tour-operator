@@ -1103,7 +1103,12 @@ class CMB_Select extends CMB_Field {
 
 		parent::enqueue_scripts();
 
-		wp_enqueue_script( 'select2', trailingslashit( CMB_URL ) . 'js/vendor/select2/select2.js', array( 'jquery' ) );
+		global $pagenow, $typenow;
+
+		if ( ! class_exists( 'WooCommerce' ) || ! ( 'post.php' === $pagenow && 'product' === $typenow ) ) {
+			wp_enqueue_script( 'select2', trailingslashit( CMB_URL ) . 'js/vendor/select2/select2.js', array( 'jquery' ) );
+		}
+
 		wp_enqueue_script( 'field-select', trailingslashit( CMB_URL ) . 'js/field.select.js', array( 'jquery', 'select2', 'cmb-scripts' ) );
 	}
 

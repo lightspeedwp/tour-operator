@@ -1124,6 +1124,8 @@
 
 .slick-lightbox-inner .slick-arrow:hover { opacity: 1; }
 
+.slick-lightbox-slick-caption { display: inline-block; }
+
 .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon:after { margin-right: 3px; margin-left: 3px; }
 
 .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.usd:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.nad:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.cad:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.hkd:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.sgd:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.nzd:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.aud:after { content: '\0024'; }

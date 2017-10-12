@@ -1,0 +1,19 @@
+<wpml-config>
+	<custom-types>
+		<custom-type translate="1">accommodation</custom-type>
+		<custom-type translate="1">tour</custom-type>
+		<custom-type translate="1">destination</custom-type>
+		<custom-type translate="1">activity</custom-type>
+		<custom-type translate="1">special</custom-type>
+		<custom-type translate="1">review</custom-type>
+		<custom-type translate="1">team</custom-type>
+	</custom-types>
+	<taxonomies>
+		<taxonomy translate="1">continent</taxonomy>
+		<taxonomy translate="1">travel-style</taxonomy>
+		<taxonomy translate="1">accommodation-type</taxonomy>
+		<taxonomy translate="1">accommodation-brand</taxonomy>
+		<taxonomy translate="1">facility</taxonomy>
+		<taxonomy translate="1">role</taxonomy>
+	</taxonomies>
+</wpml-config>

@@ -555,6 +555,14 @@ class Frontend extends Tour_Operator {
 
 			$continents = wp_get_post_terms( $post->ID, 'continent' );
 
+			if ( empty( $continents ) || ! is_array( $continents ) ) {
+				global $post;
+
+				if ( ! empty( $post->post_parent ) ) {
+					$continents = wp_get_post_terms( $post->post_parent, 'continent' );
+				}
+			}
+
 			if ( ! empty( $continents ) && is_array( $continents ) ) {
 				foreach ( $continents as $key => $continent ) {
 					$continent_breadcrumb = array(

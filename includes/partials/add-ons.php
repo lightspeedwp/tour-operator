@@ -78,7 +78,7 @@
 			<img src="<?php echo esc_url( LSX_TO_URL . 'assets/img/tour-operators-maps.png' ); ?>">
 
 			<div class="box box-top-image maps">
-				<h3><?php esc_html_e( 'Maps', 'tour-operator' ); ?> - <span class="price">from $79.00 per yearly license</span></h3>
+				<h3><?php esc_html_e( 'Maps', 'tour-operator' ); ?> - <span class="price">from $59.00 per yearly license</span></h3>
 				<p><?php esc_html_e( 'Connect maps with location-marking pins to your Accommodation, Destination and Tour pages. Display maps with clusters of markers to display the set of Accommodations in each Destination. Show a mapped out trip itinerary that connects the dots of the accommodations visited in a tour package.', 'tour-operator' ); ?></p>
 
 				<div class="more-button">
@@ -155,7 +155,7 @@
 			<img src="<?php echo esc_url( LSX_TO_URL . 'assets/img/tour-operators-search.png' ); ?>">
 
 			<div class="box box-top-image search">
-				<h3><?php esc_html_e( 'Search', 'tour-operator' ); ?> - <span class="price">from $79.00 per yearly license</span></h3>
+				<h3><?php esc_html_e( 'Search', 'tour-operator' ); ?> - <span class="price">from $59.00 per yearly license</span></h3>
 				<p><?php esc_html_e( 'The Search extension for the Tour Operators plugin adds robust search functionality to your WordPress Tour Operator site. It requires that you also have the FacetWP plugin installed, as that allows for much of the filtering functionality that the plugin provides.', 'tour-operator' ); ?></p>
 
 				<div class="more-button">
@@ -172,7 +172,7 @@
 			<img src="<?php echo esc_url( LSX_TO_URL . 'assets/img/wetu-importer-full-width.png' ); ?>">
 
 			<div class="box box-top-image wetu">
-				<h3><?php esc_html_e( 'Wetu Importer', 'tour-operator' ); ?> - <span class="price">from $129.00 per yearly license</span></h3>
+				<h3><?php esc_html_e( 'Wetu Importer', 'tour-operator' ); ?> - <span class="price">from $149.00 per yearly license</span></h3>
 				<p><?php esc_html_e( 'Quickly and easily import accommodation data as well as entire tour itineraries and associated images from the WETU database to use in your day-by-day tour listings.', 'tour-operator' ); ?></p>
 
 				<div class="more-button">
