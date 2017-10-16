@@ -323,8 +323,6 @@ function lsx_to_connected_items_query( $from = false, $to = false, $before = '',
 			$connected_ids = apply_filters( 'lsx_to_parents_only',$connected_ids );
 		}
 
-		print_r( $connected_ids );
-
 		if ( false !== $connected_ids && '' !== $connected_ids && ! empty( $connected_ids ) ) {
 			if ( ! is_array( $connected_ids ) ) {
 				$connected_ids = array( $connected_ids );
