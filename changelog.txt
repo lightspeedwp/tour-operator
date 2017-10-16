@@ -1,5 +1,8 @@
 ## Change log
 
+### 1.1.1
+* Fix - removed the "prepare" statement from the destinations "filter_countries" function.
+
 ### 1.1.0
 * New totally awesome version! The visual was fully redesigned
 * Added compatibility with LSX 2.0
