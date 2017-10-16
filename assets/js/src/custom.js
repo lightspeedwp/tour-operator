@@ -105,6 +105,7 @@ if ( window.location.hash ) {
 
 			// Add ul/li HTML tags to the wetu importer content
 			_html = _html.replace( new RegExp( '<br>', 'g' ), '</li><li>' );
+			_html = _html.replace( new RegExp( '</?p>', 'g' ), '' );
 			_html = _html.replace( /[•–-]/gi, '' );
 			_html = '<ul><li>' + _html + '</li></ul>';
 

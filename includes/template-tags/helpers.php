@@ -283,8 +283,13 @@ function lsx_to_custom_field_query( $meta_key = false, $before = '', $after = ''
 		}
 
 		if ( false !== $value && '' !== $value ) {
-			$return_html = $before . '<span class="values">' . $value . '</span>' . $after;
-			$return = apply_filters( 'lsx_to_custom_field_query',$return_html,$meta_key,$value,$before,$after );
+			if ( 'included' === $meta_key || 'not_included' === $meta_key ) {
+				$return_html = $before . $value . $after;
+			} else {
+				$return_html = $before . '<span class="values">' . $value . '</span>' . $after;
+			}
+
+			$return = apply_filters( 'lsx_to_custom_field_query', $return_html, $meta_key, $value, $before, $after );
 
 			if ( $echo ) {
 				// wp_kses_post is removing data-price-XX attribute.

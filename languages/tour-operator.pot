@@ -1347,31 +1347,31 @@ msgstr ""
 msgid "Enquire"
 msgstr ""
 
-#: includes/template-tags/helpers.php:669
+#: includes/template-tags/helpers.php:674
 msgid "Africa"
 msgstr ""
 
-#: includes/template-tags/helpers.php:670
+#: includes/template-tags/helpers.php:675
 msgid "Asia"
 msgstr ""
 
-#: includes/template-tags/helpers.php:671
+#: includes/template-tags/helpers.php:676
 msgid "Europe"
 msgstr ""
 
-#: includes/template-tags/helpers.php:672
+#: includes/template-tags/helpers.php:677
 msgid "Oceania"
 msgstr ""
 
-#: includes/template-tags/helpers.php:673
+#: includes/template-tags/helpers.php:678
 msgid "North America"
 msgstr ""
 
-#: includes/template-tags/helpers.php:674
+#: includes/template-tags/helpers.php:679
 msgid "South America"
 msgstr ""
 
-#: includes/template-tags/helpers.php:675
+#: includes/template-tags/helpers.php:680
 msgid "Antarctica"
 msgstr ""
 

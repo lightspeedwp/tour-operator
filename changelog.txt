@@ -1,7 +1,8 @@
 ## Change log
 
 ### 1.1.1
-* Fix - removed the "prepare" statement from the destinations "filter_countries" function.
+* Fix - Removed the "prepare" statement from the destinations "filter_countries" function.
+* Fix - Fixed extra spacing on Included and Not-Included items list
 
 ### 1.1.0
 * New totally awesome version! The visual was fully redesigned
