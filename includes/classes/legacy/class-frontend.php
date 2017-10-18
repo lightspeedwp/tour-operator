@@ -84,6 +84,13 @@ class Frontend extends Tour_Operator {
 		remove_filter( 'term_description', 'wpautop' );
 		add_filter( 'term_description', array( $this, 'modify_term_description' ) );
 
+		add_action( 'lsx_to_widget_entry_content_top', array( $this, 'enable_crop_excerpt' ) );
+		add_action( 'lsx_to_widget_entry_content_bottom', array( $this, 'disable_crop_excerpt' ) );
+
+		add_action( 'lsx_to_entry_content_top', array( $this, 'enable_crop_excerpt' ) );
+		add_action( 'lsx_to_entry_content_bottom', array( $this, 'disable_crop_excerpt' ) );
+
+
 		if ( is_admin() ) {
 			add_filter( 'lsx_customizer_colour_selectors_body', array( $this, 'customizer_to_body_colours_handler' ), 15, 2 );
 			add_filter( 'lsx_customizer_colour_selectors_main_menu', array( $this, 'customizer_to_main_menu_colours_handler' ), 15, 2 );
@@ -429,6 +436,75 @@ class Frontend extends Tour_Operator {
 		$content = str_replace( '<span id="more-' . get_the_ID() . '"></span>', '<a class="lsx-to-more-link more-link" data-collapsed="true" href="' . get_permalink() . '">' . esc_html__( 'Read More', 'tour-operator' ) . '</a>', $content );
 
 		return $content;
+	}
+
+	/**
+	 * Enable: crop huge excerpts o archive and widget items.
+	 */
+	public function enable_crop_excerpt() {
+		add_filter( 'get_the_excerpt', array( $this, 'crop_excerpt' ), 1, 15 );
+	}
+
+	/**
+	 * Disable: crop huge excerpts on archive and widget items.
+	 */
+	public function disable_crop_excerpt() {
+		remove_filter( 'get_the_excerpt', array( $this, 'crop_excerpt' ), 15 );
+	}
+
+	/**
+	 * Crop huge excerpts on archive and widget items.
+	 */
+	public function crop_excerpt( $wpse_excerpt ) {
+		global $post;
+
+		if ( ! empty( $wpse_excerpt ) ) {
+			$wpse_excerpt = get_the_content( '' );
+			$wpse_excerpt = strip_shortcodes( $wpse_excerpt );
+			$wpse_excerpt = apply_filters( 'the_content', $wpse_excerpt );
+			$wpse_excerpt = str_replace( ']]>', ']]>', $wpse_excerpt );
+			$wpse_excerpt = strip_tags( $wpse_excerpt, apply_filters( 'excerpt_strip_tags', '<h1>,<h2>,<h3>,<h4>,<h5>,<h6>,<a>,<button>,<blockquote>,<p>,<br>,<b>,<strong>,<i>,<u>,<ul>,<ol>,<li>,<span>,<div>' ) );
+
+			$excerpt_word_count = 50;
+			$excerpt_word_count = apply_filters( 'excerpt_length', $excerpt_word_count );
+
+			$tokens         = array();
+			$excerpt_output = '';
+			$has_more       = false;
+			$count          = 0;
+
+			preg_match_all( '/(<[^>]+>|[^<>\s]+)\s*/u', $wpse_excerpt, $tokens );
+
+			foreach ( $tokens[0] as $token ) {
+				if ( $count >= $excerpt_word_count ) {
+					$excerpt_output .= trim( $token );
+					$has_more = true;
+					break;
+				}
+
+				$count++;
+				$excerpt_output .= $token;
+			}
+
+			$wpse_excerpt = trim( force_balance_tags( $excerpt_output ) );
+
+			if ( $has_more ) {
+				$excerpt_end = '<a class="moretag" href="' . esc_url( get_permalink() ) . '">' . esc_html__( 'More', 'lsx' ) . '</a>';
+				$excerpt_end = apply_filters( 'excerpt_more', ' ' . $excerpt_end );
+
+				$pos = strrpos( $wpse_excerpt, '</' );
+
+				if ( false !== $pos ) {
+					// Inside last HTML tag
+					$wpse_excerpt = substr_replace( $wpse_excerpt, $excerpt_end, $pos, 0 ); /* Add read more next to last word */
+				} else {
+					// After the content
+					$wpse_excerpt .= $excerpt_end; /*Add read more in new paragraph */
+				}
+			}
+		}
+
+		return $wpse_excerpt;
 	}
 
 	/**
