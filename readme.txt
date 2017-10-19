@@ -1,4 +1,4 @@
-﻿=== Tour Operators ===
+=== Tour Operators ===
 Contributors: feedmymedia
 Donate link: https://www.lsdev.biz/
 Tags: tour operator, tour operators, tour, tours, tour itinerary, tour itineraries, accommodation, accommodation listings, destinations, regions, tourism, lsx
@@ -64,6 +64,12 @@ Yes you can! Join in on our [GitHub repository](https://github.com/lightspeeddev
 
 == Changelog ==
 
+= 1.1.1 =
+* Fix - Removed the "prepare" statement from the destinations "filter_countries" function.
+* Fix - Fixed extra spacing on Included and Not-Included items list
+* Fix - Crop huge excerpts o archive and widget items.
+* Fix - Fixed Post Type Widget specific IDs front-end
+
 = 1.1.0 =
 * New totally awesome version! The visual was fully redesigned
 * Added compatibility with LSX 2.0
@@ -74,6 +80,11 @@ Yes you can! Join in on our [GitHub repository](https://github.com/lightspeeddev
 * Dev - Allowing the to_country_regions() to be ordered by the menu order or any other valid WP_Query order
 * Fix - Fixed scripts/styles loading order
 * Fix - Fixed many small issues
+
+= 1.0.8 =
+* Fix - LSX tabs working integrated with TO tabs (dashboard settings)
+* Fix - Fixed admin styles (help and add-on pages)
+* Fix - UIX framework saving all tabs
 
 = 1.0.7 =
 * Dev - Added .editorconfig file to help developers to maintain consistent coding styles between different editors and IDEs
