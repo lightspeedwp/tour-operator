@@ -4,6 +4,7 @@
 * Fix - Removed the "prepare" statement from the destinations "filter_countries" function.
 * Fix - Fixed extra spacing on Included and Not-Included items list
 * Fix - Crop huge excerpts o archive and widget items.
+* Fix - Fixed Post Type Widget specific IDs front-end
 
 ### 1.1.0
 * New totally awesome version! The visual was fully redesigned

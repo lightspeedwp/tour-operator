@@ -57,12 +57,6 @@ class Widget extends \WP_Widget {
 			$limit = '-1';
 		}
 
-		if ( isset( $instance['group'] ) ) {
-			$group = $instance['group'];
-		} else {
-			$group = false;
-		}
-
 		if ( isset( $instance['include'] ) ) {
 			$include = $instance['include'];
 		} else {
@@ -139,13 +133,6 @@ class Widget extends \WP_Widget {
 			$after_title = '';
 		}
 
-		// Disregard specific ID setting if specific group is defined
-		if ( 'all' != $group ) {
-			$include = '';
-		} else {
-			$group = '';
-		}
-
 		if ( '' != $include ) {
 			$limit = '-1';
 		}
@@ -183,7 +170,6 @@ class Widget extends \WP_Widget {
 				'orderby' => $orderby,
 				'order' => $order,
 				'limit' => $limit,
-				'group' => $group,
 				'include' => $include,
 				'disable_placeholder' => $disable_placeholder,
 				'disable_text' => $disable_text,
