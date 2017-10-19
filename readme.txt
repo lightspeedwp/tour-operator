@@ -69,6 +69,7 @@ Yes you can! Join in on our [GitHub repository](https://github.com/lightspeeddev
 * Fix - Fixed extra spacing on Included and Not-Included items list
 * Fix - Crop huge excerpts o archive and widget items.
 * Fix - Fixed Post Type Widget specific IDs front-end
+* Fix - TO Maps undefined function removed
 
 = 1.1.0 =
 * New totally awesome version! The visual was fully redesigned
