@@ -143,7 +143,7 @@ msgstr ""
 msgid "Gallery"
 msgstr ""
 
-#: includes/layout.php:291, includes/layout.php:293, includes/layout.php:393, includes/layout.php:395, includes/layout.php:588, includes/layout.php:590, includes/partials/add-ons.php:143, includes/partials/help.php:126, includes/classes/legacy/class-accommodation.php:356, includes/classes/legacy/class-destination.php:292, includes/classes/legacy/class-tour.php:554
+#: includes/layout.php:291, includes/layout.php:293, includes/layout.php:393, includes/layout.php:395, includes/layout.php:588, includes/layout.php:590, includes/partials/add-ons.php:143, includes/partials/display.php:38, includes/partials/help.php:126, includes/classes/legacy/class-accommodation.php:356, includes/classes/legacy/class-destination.php:292, includes/classes/legacy/class-tour.php:554
 msgid "Videos"
 msgstr ""
 
@@ -643,7 +643,7 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
-#: includes/partials/accommodation.php:6, includes/partials/add-ons.php:158, includes/partials/destination.php:6, includes/partials/display.php:42, includes/partials/general.php:6, includes/partials/help.php:124, includes/partials/tour.php:6
+#: includes/partials/accommodation.php:6, includes/partials/add-ons.php:158, includes/partials/destination.php:6, includes/partials/display.php:46, includes/partials/general.php:6, includes/partials/help.php:124, includes/partials/tour.php:6
 msgid "Search"
 msgstr ""
 
@@ -695,7 +695,7 @@ msgstr ""
 msgid "The Complete bundle gives you complete control of your LSX-powered Tour Operator website. Expand LSX with the Sharing, Banners, Currencies, Customizer, Mega Menus and Blog Customizer extensions. Expand the Tour Operator plugin with the Reviews, Team, Videos, Specials, Maps and Search extensions."
 msgstr ""
 
-#: includes/partials/add-ons.php:81, includes/partials/display.php:38, includes/partials/help.php:118
+#: includes/partials/add-ons.php:81, includes/partials/display.php:42, includes/partials/help.php:118
 msgid "Maps"
 msgstr ""
 
@@ -779,11 +779,11 @@ msgstr ""
 msgid "Sharing"
 msgstr ""
 
-#: includes/partials/display.php:45
+#: includes/partials/display.php:49
 msgid "Basic"
 msgstr ""
 
-#: includes/partials/display.php:46
+#: includes/partials/display.php:50
 msgid "Advanced"
 msgstr ""
 

@@ -6,6 +6,7 @@
 * Fix - Crop huge excerpts o archive and widget items.
 * Fix - Fixed Post Type Widget specific IDs front-end
 * Fix - TO Maps undefined function removed
+* Dev - Added compatibility with LSX Videos
 
 ### 1.1.0
 * New totally awesome version! The visual was fully redesigned

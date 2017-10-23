@@ -34,6 +34,10 @@
 			<li><a href="#ui-sharing" class="<?php echo esc_attr( $class ) ?>"><?php esc_html_e( 'Sharing', 'tour-operator' ); ?></a></li>
 		<?php $class = ''; } ?>
 
+		<?php if ( class_exists( 'LSX_Videos' ) ) { ?>
+			<li><a href="#ui-videos" class="<?php echo esc_attr( $class ) ?>"><?php esc_html_e( 'Videos', 'tour-operator' ); ?></a></li>
+		<?php $class = ''; } ?>
+
 		<?php if ( class_exists( 'LSX_TO_Maps' ) ) { ?>
 			<li><a href="#ui-maps" class="<?php echo esc_attr( $class ); ?>"><?php esc_html_e( 'Maps', 'tour-operator' ); ?></a></li>
 		<?php $class = ''; } ?>
@@ -123,6 +127,16 @@
 			<table class="form-table">
 				<tbody>
 					<?php do_action( 'lsx_to_framework_display_tab_content', 'sharing' ); ?>
+				</tbody>
+			</table>
+		</div>
+	<?php $class = ''; } ?>
+
+	<?php if ( class_exists( 'LSX_Videos' ) ) { ?>
+		<div id="ui-videos" class="ui-tab <?php echo esc_attr( $class ) ?>">
+			<table class="form-table">
+				<tbody>
+					<?php do_action( 'lsx_to_framework_display_tab_content', 'videos' ); ?>
 				</tbody>
 			</table>
 		</div>
