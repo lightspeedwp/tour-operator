@@ -90,7 +90,6 @@ class Frontend extends Tour_Operator {
 		add_action( 'lsx_to_entry_content_top', array( $this, 'enable_crop_excerpt' ) );
 		add_action( 'lsx_to_entry_content_bottom', array( $this, 'disable_crop_excerpt' ) );
 
-
 		if ( is_admin() ) {
 			add_filter( 'lsx_customizer_colour_selectors_body', array( $this, 'customizer_to_body_colours_handler' ), 15, 2 );
 			add_filter( 'lsx_customizer_colour_selectors_main_menu', array( $this, 'customizer_to_main_menu_colours_handler' ), 15, 2 );
