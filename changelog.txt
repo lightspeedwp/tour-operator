@@ -7,6 +7,7 @@
 * Fix - Fixed Post Type Widget specific IDs front-end
 * Fix - TO Maps undefined function removed
 * Dev - Added compatibility with LSX Videos
+* Fix - Fixed PHP notice related to call is_singular() function
 
 ### 1.1.0
 * New totally awesome version! The visual was fully redesigned

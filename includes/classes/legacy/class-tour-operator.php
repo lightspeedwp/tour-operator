@@ -156,7 +156,7 @@ class Tour_Operator {
 		// Add our action to init to set up our vars first.
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 		add_action( 'init', array( $this, 'require_post_type_classes' ), 1 );
-		add_action( 'posts_selection', array( $this, 'set_archive_layout' ) );
+		add_action( 'wp', array( $this, 'set_archive_layout' ) );
 		// Allow extra tags and attributes to wp_kses_post().
 		add_filter( 'wp_kses_allowed_html', array(
 			$this,
