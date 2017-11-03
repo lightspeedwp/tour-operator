@@ -562,7 +562,7 @@ if ( ! function_exists( 'lsx_to_gallery' ) ) {
 				envira_gallery( $envira_gallery );
 				$return = ob_get_clean();
 			} else {
-				/*if ( function_exists( 'envira_dynamic' ) ) {
+				if ( function_exists( 'envira_dynamic' ) ) {
 					// Envira Gallery - Dynamic
 					ob_start();
 
@@ -572,11 +572,11 @@ if ( ! function_exists( 'lsx_to_gallery' ) ) {
 					) );
 
 					$return = ob_get_clean();
-				} else {*/
+				} else {
 				// WordPress Gallery
 					$columns = 3;
 					$return = do_shortcode( '[gallery ids="' . implode( ',', $gallery_ids ) . '" type="square" size="lsx-thumbnail-wide" columns="' . $columns . '" link="file"]' );
-				//}
+				}
 			}
 
 			$return = $before . $return . $after;
