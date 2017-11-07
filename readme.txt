@@ -5,7 +5,7 @@ Tags: tour operator, tour operators, tour, tours, tour itinerary, tour itinerari
 Requires at least: 4.3
 Tested up to: 4.8
 Requires PHP: 7.0
-Stable tag: 1.0.8
+Stable tag: 1.1.1
 License: GPLv3
 
 The Tour Operators plugin brings live availability, bookings, digital itineraries, and other post types tour operators need to succeed.
