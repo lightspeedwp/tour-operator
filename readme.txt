@@ -70,6 +70,9 @@ Yes you can! Join in on our [GitHub repository](https://github.com/lightspeeddev
 * Fix - Crop huge excerpts o archive and widget items.
 * Fix - Fixed Post Type Widget specific IDs front-end
 * Fix - TO Maps undefined function removed
+* Dev - Added compatibility with LSX Videos
+* Fix - Fixed PHP notice related to call is_singular() function
+* Fix - Changing the "id" to use a sanitized title string, to avoid cached sites pulling through the same gallery for each destination
 
 = 1.1.0 =
 * New totally awesome version! The visual was fully redesigned
