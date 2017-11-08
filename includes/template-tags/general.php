@@ -573,7 +573,7 @@ if ( ! function_exists( 'lsx_to_gallery' ) ) {
 
 					$return = ob_get_clean();
 				} else {
-				// WordPress Gallery
+					// WordPress Gallery
 					$columns = 3;
 					$return = do_shortcode( '[gallery ids="' . implode( ',', $gallery_ids ) . '" type="square" size="lsx-thumbnail-wide" columns="' . $columns . '" link="file"]' );
 				}
