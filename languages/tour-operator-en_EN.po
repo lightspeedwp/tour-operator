@@ -195,7 +195,7 @@ msgstr ""
 msgid "Location"
 msgstr ""
 
-#: templates/single-accommodation.php:24, templates/single-destination.php:24, templates/single-tour.php:24, includes/template-tags/general.php:174
+#: templates/single-accommodation.php:24, templates/single-destination.php:24, templates/single-tour.php:24, includes/template-tags/general.php:217
 msgid "Summary"
 msgstr ""
 
@@ -1343,35 +1343,35 @@ msgstr ""
 msgid "Travel Information"
 msgstr ""
 
-#: includes/template-tags/general.php:465
+#: includes/template-tags/general.php:508
 msgid "Enquire"
 msgstr ""
 
-#: includes/template-tags/helpers.php:674
+#: includes/template-tags/helpers.php:704
 msgid "Africa"
 msgstr ""
 
-#: includes/template-tags/helpers.php:675
+#: includes/template-tags/helpers.php:705
 msgid "Asia"
 msgstr ""
 
-#: includes/template-tags/helpers.php:676
+#: includes/template-tags/helpers.php:706
 msgid "Europe"
 msgstr ""
 
-#: includes/template-tags/helpers.php:677
+#: includes/template-tags/helpers.php:707
 msgid "Oceania"
 msgstr ""
 
-#: includes/template-tags/helpers.php:678
+#: includes/template-tags/helpers.php:708
 msgid "North America"
 msgstr ""
 
-#: includes/template-tags/helpers.php:679
+#: includes/template-tags/helpers.php:709
 msgid "South America"
 msgstr ""
 
-#: includes/template-tags/helpers.php:680
+#: includes/template-tags/helpers.php:710
 msgid "Antarctica"
 msgstr ""
 
@@ -1691,43 +1691,51 @@ msgstr ""
 msgid "When disabled you will be redirected to the homepage when trying to access a single tour page."
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:567
-msgid "Default Section Title"
+#: includes/classes/legacy/class-settings.php:564
+msgid "Disable Collapsible Sections"
+msgstr ""
+
+#: includes/classes/legacy/class-settings.php:568
+msgid "When disabled you will no longer be able to click to close and open the sections."
 msgstr ""
 
 #: includes/classes/legacy/class-settings.php:576
+msgid "Default Section Title"
+msgstr ""
+
+#: includes/classes/legacy/class-settings.php:585
 msgid "\"Related Tours\" Section Title"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:586
+#: includes/classes/legacy/class-settings.php:595
 msgid "\"Accommodation Brands\" Section Title"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:594
+#: includes/classes/legacy/class-settings.php:603
 msgid "\"Rooms\" Section Title"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:602
+#: includes/classes/legacy/class-settings.php:611
 msgid "\"Similar Accommodations\" Section Title"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:612
+#: includes/classes/legacy/class-settings.php:621
 msgid "\"Countries\" Section Title"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:620
+#: includes/classes/legacy/class-settings.php:629
 msgid "\"Regions\" Section Title"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:628
+#: includes/classes/legacy/class-settings.php:637
 msgid "\"Travel Styles\" Section Title"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:646
+#: includes/classes/legacy/class-settings.php:656
 msgid "Enable Connected Modals"
 msgstr ""
 
-#: includes/classes/legacy/class-settings.php:650
+#: includes/classes/legacy/class-settings.php:660
 msgid "Any connected item showing on a single will display a preview in a modal."
 msgstr ""
 
