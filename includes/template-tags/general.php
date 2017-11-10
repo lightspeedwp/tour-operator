@@ -96,6 +96,49 @@ function lsx_to_column_class( $classes = false ) {
 	echo wp_kses_post( 'class="' . implode( ' ', $classes ) . '"' );
 }
 
+/**
+ * Returns the collapsible class if it is active.
+ *
+ * @param bool $post_type
+ * @param bool $return
+ * @return string
+ */
+function lsx_to_collapsible_class( $post_type = false, $return = true ) {
+	if ( false === $post_type ) {
+		$post_type = get_post_type();
+	}
+	if ( ! lsx_to_is_collapsible( $post_type ) ) {
+
+		$output = 'lsx-to-collapse-section';
+		if ( false === $return ) {
+			echo esc_attr( $output );
+		} else {
+			return $output;
+		}
+	}
+}
+
+/**
+ * Returns the collapsible class if it is active.
+ *
+ * @param bool $target
+ * @param bool $post_type
+ * @param bool $return
+ * @return  string
+ */
+function lsx_to_collapsible_attributes( $target = false, $post_type = false, $return = true ) {
+	if ( false === $post_type ) {
+		$post_type = get_post_type();
+	}
+	if ( ! lsx_to_is_collapsible( $post_type ) ) {
+		$output = 'data-toggle="collapse" data-target="#' . $target .'"';
+		if ( false === $return ) {
+			echo esc_attr( $output );
+		} else {
+			return $output;
+		}
+	}
+}
 
 /* ==================   HEADER   ================== */
 

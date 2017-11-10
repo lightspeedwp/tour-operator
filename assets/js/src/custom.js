@@ -489,6 +489,8 @@ if ( window.location.hash ) {
 			lsx_to.set_anchor_menu_easing_scroll();
 			lsx_to.set_anchor_menu_scroll_spy();
 		} else {
+
+            //lsx-to-collapse-section
 			lsx_to.build_collapse( window_width );
 		}
 

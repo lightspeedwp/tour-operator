@@ -563,8 +563,8 @@ function lsx_to_accommodation_units() {
 		foreach ( $unit_types as $type_key => $type_label ) {
 			if ( lsx_to_accommodation_check_type( $type_key ) ) {
 				?>
-				<section id="<?php echo esc_attr( $type_key ); ?>s" class="lsx-to-section lsx-to-collapse-section">
-					<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" data-toggle="collapse" data-target="#collapse-<?php echo esc_attr( $type_key ); ?>s"><?php echo esc_html( lsx_to_get_post_type_section_title( 'accommodation', $type_key . 's', $type_label . 's' ) ); ?></h2>
+				<section id="<?php echo esc_attr( $type_key ); ?>s" class="lsx-to-section <?php lsx_to_collapsible_class( 'accommodation', false ); ?>">
+					<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" <?php lsx_to_collapsible_attributes( 'collapse-' . $type_key . 's' ); ?>><?php echo esc_html( lsx_to_get_post_type_section_title( 'accommodation', $type_key . 's', $type_label . 's' ) ); ?></h2>
 
 					<div id="collapse-<?php echo esc_attr( $type_key ); ?>s" class="collapse in">
 						<div class="collapse-inner">

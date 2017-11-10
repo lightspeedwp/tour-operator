@@ -559,6 +559,15 @@ class Settings extends Tour_Operator {
 				<small><?php esc_html_e( 'When disabled you will be redirected to the homepage when trying to access a single tour page.', 'tour-operator' ); ?></small>
 			</td>
 		</tr>
+		<tr class="form-field">
+			<th scope="row">
+				<label for="description"><?php esc_html_e( 'Disable Collapsible Sections', 'tour-operator' ); ?></label>
+			</th>
+			<td>
+				<input type="checkbox" {{#if disable_collapsible}} checked="checked" {{/if}} name="disable_collapsible" />
+				<small><?php esc_html_e( 'When disabled you will no longer be able to click to close and open the sections.', 'tour-operator' ); ?></small>
+			</td>
+		</tr>
 		<?php
 		do_action( 'lsx_to_framework_' . $post_type . '_tab_single_settings_top', $post_type );
 		if ( 'tour' == $post_type || 'accommodation' == $post_type || 'destination' == $post_type || 'activity' == $post_type ) : ?>
@@ -633,6 +642,7 @@ class Settings extends Tour_Operator {
 				</tr>
 			<?php endif ?>
 		<?php endif ?>
+
 		<?php do_action( 'lsx_to_framework_' . $post_type . '_tab_single_settings_bottom', $post_type );
 	}
 

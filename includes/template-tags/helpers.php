@@ -21,13 +21,43 @@
  * @category 	class
  */
 function lsx_to_is_single_disabled( $post_type = false, $post_id = false ) {
+	return lsx_to_is_helper( $post_type, $post_id, 'disable_single' );
+}
+
+/**
+ * Checks if the current post_type is disabled
+ *
+ * @param		$post_type | string
+ * @return		boolean
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tags
+ * @category 	class
+ */
+function lsx_to_is_collapsible( $post_type = false, $post_id = false ) {
+	return lsx_to_is_helper( $post_type, $post_id, 'disable_collapsible' );
+}
+
+/**
+ * A helper functions that checks the post type for a specific option
+ *
+ * @param		$post_type | string
+ * @param       $post_id string | boolean
+ * @param       $meta_key string | boolean
+ * @return		boolean
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tags
+ * @category 	class
+ */
+function lsx_to_is_helper( $post_type = false, $post_id = false, $meta_key = false ) {
 	$tour_operator = tour_operator();
 
 	if ( false === $post_type ) {
 		$post_type = get_post_type();
 	}
 
-	if ( is_object( $tour_operator ) && isset( $tour_operator->options[ $post_type ] ) && isset( $tour_operator->options[ $post_type ]['disable_single'] ) ) {
+	if ( is_object( $tour_operator ) && isset( $tour_operator->options[ $post_type ] ) && isset( $tour_operator->options[ $post_type ][ $meta_key ] ) ) {
 		return true;
 	} else {
 		if ( false === $post_id ) {
@@ -36,7 +66,7 @@ function lsx_to_is_single_disabled( $post_type = false, $post_id = false ) {
 		}
 
 		if ( ! empty( $post_id ) ) {
-			$single_desabled = get_post_meta( $post_id, 'disable_single', true );
+			$single_desabled = get_post_meta( $post_id, $meta_key, true );
 
 			if ( ! empty( $single_desabled ) ) {
 				return true;
