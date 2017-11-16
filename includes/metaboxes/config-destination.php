@@ -152,7 +152,7 @@ $metabox['fields'][] = array(
 	),
 );
 
-if ( class_exists( 'LSX_TO_Team' ) ) {
+/*if ( class_exists( 'LSX_TO_Team' ) ) {
 	$metabox['fields'][] = array(
 		'id'         => 'team_to_destination',
 		'name'       => esc_html__( 'Destination Expert', 'tour-operator' ),
@@ -168,7 +168,7 @@ if ( class_exists( 'LSX_TO_Team' ) ) {
 			'order'          => 'ASC',
 		),
 	);
-}
+}*/
 
 $metabox['fields'][] = array(
 	'id'   => 'gallery_title',
