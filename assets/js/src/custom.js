@@ -93,19 +93,20 @@ if ( window.location.hash ) {
 			// 	return;
 			// }
 
-			// Doesn't have HTML <br>
-			if ( -1 === _html.indexOf( '<br>' ) ) {
+			// Doesn't have HTML <br> or <p>
+			if ( -1 === _html.indexOf( '<br>' ) && -1 === _html.indexOf( '<p>' ) ) {
 				return;
 			}
 
-			// Has HTML <ul> or <liL
+			// Has HTML <ul> or <li>
 			if ( _html.indexOf( '<ul>' ) >= 0 && _html.indexOf( '<ul>' ) >= 0 ) {
 				return;
 			}
 
 			// Add ul/li HTML tags to the wetu importer content
-			_html = _html.replace( new RegExp( '<br>', 'g' ), '</li><li>' );
+			_html = _html.replace( new RegExp( '</p>[\n\s]+<p>', 'g' ), '<br>' );
 			_html = _html.replace( new RegExp( '</?p>', 'g' ), '' );
+			_html = _html.replace( new RegExp( '<br>', 'g' ), '</li><li>' );
 			_html = _html.replace( /[•–-]/gi, '' );
 			_html = '<ul><li>' + _html + '</li></ul>';
 
