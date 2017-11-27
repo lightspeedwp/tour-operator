@@ -610,7 +610,7 @@ if ( ! function_exists( 'lsx_to_gallery' ) ) {
 					ob_start();
 
 					envira_dynamic( array(
-						'id' => 'custom' . sanitize_title( get_the_title( get_the_ID() ) ) . '-3',
+						'id' => 'custom' . sanitize_title( get_the_title( get_the_ID() ) ) . '-' . date( 'H-i' ),
 						'images' => implode( ',', $gallery_ids ),
 					) );
 
