@@ -1,7 +1,7 @@
 ## Change log
 
 ### 1.1.2
-* Fix - Changing the "id" to use a sanitized title string, to avoid cached sites pulling through the same gallery for each destination
+* Fix - Changing the "id" to avoid cached sites pulling through the same gallery for each destination
 * Dev - Added in an option to disable the collapse function on single posts
 * Dev - Updated "Tested up to" WordPress version
 
