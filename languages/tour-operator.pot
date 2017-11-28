@@ -39,7 +39,7 @@ msgstr ""
 msgid "Special Interests"
 msgstr ""
 
-#: includes/functions.php:353, includes/classes/legacy/class-frontend.php:435, includes/classes/legacy/class-frontend.php:517
+#: includes/functions.php:353, includes/classes/legacy/class-frontend.php:435, includes/classes/legacy/class-frontend.php:520
 msgid "Read More"
 msgstr ""
 
@@ -123,7 +123,7 @@ msgstr ""
 msgid "Ends in"
 msgstr ""
 
-#: includes/layout.php:239, includes/layout.php:626, includes/layout.php:658, templates/content-widget-tour.php:57, includes/metaboxes/config-accommodation.php:357, includes/metaboxes/config-tour.php:303, includes/post-types/config-destination.php:16, includes/post-types/config-destination.php:22, includes/post-types/config-destination.php:28, includes/classes/legacy/class-frontend.php:621, includes/classes/legacy/class-tour-operator.php:268, includes/classes/legacy/class-tour.php:434
+#: includes/layout.php:239, includes/layout.php:626, includes/layout.php:658, templates/content-widget-tour.php:57, includes/metaboxes/config-accommodation.php:357, includes/metaboxes/config-tour.php:303, includes/post-types/config-destination.php:16, includes/post-types/config-destination.php:22, includes/post-types/config-destination.php:28, includes/classes/legacy/class-frontend.php:624, includes/classes/legacy/class-tour-operator.php:268, includes/classes/legacy/class-tour.php:434
 msgid "Destinations"
 msgstr ""
 
@@ -549,10 +549,6 @@ msgstr ""
 
 #: includes/metaboxes/config-destination.php:148, includes/partials/accommodation.php:3, includes/partials/destination.php:3, includes/partials/general.php:3, includes/partials/tour.php:3, includes/template-tags/destination.php:227, includes/classes/legacy/class-settings.php:131
 msgid "General"
-msgstr ""
-
-#: includes/metaboxes/config-destination.php:158
-msgid "Destination Expert"
 msgstr ""
 
 #: includes/metaboxes/config-destination.php:236

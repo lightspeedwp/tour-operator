@@ -457,8 +457,11 @@ class Frontend extends Tour_Operator {
 	public function crop_excerpt( $wpse_excerpt ) {
 		global $post;
 
-		if ( ! empty( $wpse_excerpt ) ) {
+		if ( empty( $wpse_excerpt ) ) {
 			$wpse_excerpt = get_the_content( '' );
+		}
+
+		if ( ! empty( $wpse_excerpt ) ) {
 			$wpse_excerpt = strip_shortcodes( $wpse_excerpt );
 			$wpse_excerpt = apply_filters( 'the_content', $wpse_excerpt );
 			$wpse_excerpt = str_replace( ']]>', ']]>', $wpse_excerpt );
