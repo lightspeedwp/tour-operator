@@ -1105,7 +1105,15 @@ class CMB_Select extends CMB_Field {
 
 		global $pagenow, $typenow;
 
-		if ( ! class_exists( 'WooCommerce' ) || ! ( 'post.php' === $pagenow && 'product' === $typenow ) ) {
+		$no_enqueue = array(
+			'product',
+			'shop_order',
+			'shop_coupon',
+			'shop_subscription',
+			'shop_wishlist',
+		);
+
+		if ( ! in_array( $typenow, $no_enqueue ) ) {
 			wp_enqueue_script( 'select2', trailingslashit( CMB_URL ) . 'js/vendor/select2/select2.js', array( 'jquery' ) );
 		}
 
