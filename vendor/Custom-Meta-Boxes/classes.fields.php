@@ -1110,7 +1110,11 @@ class CMB_Select extends CMB_Field {
 			'shop_order',
 			'shop_coupon',
 			'shop_subscription',
-			'shop_wishlist',
+			'wishlist',
+			'wc_membership_plan',
+			'wc_user_membership',
+			'wc_product_tab',
+			'wc_product_retailer'
 		);
 
 		if ( ! in_array( $typenow, $no_enqueue ) ) {
