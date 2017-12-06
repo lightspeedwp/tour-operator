@@ -17,7 +17,7 @@ namespace lsx;
  *
  * @package lsx
  */
-class Metaboxes extends Object {
+class Metaboxes extends Frame {
 
 	/**
 	 * Holds an type of object.

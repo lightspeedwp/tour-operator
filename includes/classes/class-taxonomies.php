@@ -17,7 +17,7 @@ namespace lsx;
  *
  * @package lsx
  */
-class Taxonomies extends Object {
+class Taxonomies extends Frame {
 
 	/**
 	 * Holds an type of object.

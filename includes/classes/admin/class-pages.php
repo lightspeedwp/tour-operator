@@ -17,7 +17,7 @@ namespace lsx\admin;
  *
  * @package lsx
  */
-class Pages extends \lsx\Object {
+class Pages extends \lsx\Frame {
 
 	/**
 	 * Holds an type of object.

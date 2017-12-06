@@ -18,7 +18,7 @@ namespace lsx;
  *
  * @package lsx
  */
-abstract class Object {
+abstract class Frame {
 
 	/**
 	 * Holds instances of the class

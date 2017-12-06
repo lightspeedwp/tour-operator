@@ -18,7 +18,7 @@ namespace lsx;
  * @package lsx
  */
 
-class Post_Types extends Object {
+class Post_Types extends Frame {
 
 	/**
 	 * Holds an type of object.
