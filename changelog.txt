@@ -6,6 +6,7 @@
 * Dev - Updated "Tested up to" WordPress version
 * Dev - Fixed archive excerpt display when there is not post content
 * Dev - Renamed the Object abstract class to Frame
+* Fix - Upgraded the mb_strtolower to strtolower for newer PHP versions.
 
 ### 1.1.1
 * Fix - Removed the "prepare" statement from the destinations "filter_countries" function.

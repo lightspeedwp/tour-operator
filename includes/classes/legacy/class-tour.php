@@ -374,16 +374,16 @@ class Tour {
 			$currency      = '';
 
 			if ( is_object( $tour_operator ) && isset( $tour_operator->options['general'] ) && is_array( $tour_operator->options['general'] ) ) {
+
 				if ( isset( $tour_operator->options['general']['currency'] ) && ! empty( $tour_operator->options['general']['currency'] ) ) {
 					$currency = $tour_operator->options['general']['currency'];
-					$currency = '<span class="currency-icon ' . mb_strtolower( $currency ) . '">' . $currency . '</span>';
+					$currency = '<span class="currency-icon ' . strtolower( $currency ) . '">' . $currency . '</span>';
 				}
 			}
 
 			$value = $currency . $value;
 			$html  = $before . $value . $after;
 		}
-
 		return $html;
 	}
 
