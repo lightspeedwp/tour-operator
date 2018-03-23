@@ -227,7 +227,7 @@ function lsx_to_destination_travel_info() {
 			esc_html__( 'General', 'tour-operator' )       	=> $general,
 		);
 		?>
-		<section id="travel-info" class="lsx-to-section <?php lsx_to_collapsible_class('destination', false ); ?>">
+		<section id="travel-info" class="lsx-to-section <?php lsx_to_collapsible_class( 'destination', false ); ?>">
 			<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" <?php lsx_to_collapsible_attributes( 'collapse-travel-info' ); ?>><?php esc_html_e( 'Travel Information', 'tour-operator' ); ?></h2>
 
 			<div id="collapse-travel-info" class="collapse in">

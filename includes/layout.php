@@ -513,7 +513,7 @@ function lsx_to_destination_archive_content_bottom() {
 function lsx_to_tour_single_content_bottom() {
 	if ( is_singular( 'tour' ) ) {
 		if ( function_exists( 'lsx_to_has_map' ) && lsx_to_has_map() ) { ?>
-			<section id="tour-map" class="lsx-to-section <?php lsx_to_collapsible_class('tour', false  ); ?>">
+			<section id="tour-map" class="lsx-to-section <?php lsx_to_collapsible_class( 'tour', false ); ?>">
 				<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title hidden-lg" <?php lsx_to_collapsible_attributes( 'collapse-tour-map' ); ?>><?php esc_html_e( 'Map', 'tour-operator' ); ?></h2>
 
 				<div id="collapse-tour-map" class="collapse in">
