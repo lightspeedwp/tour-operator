@@ -23,7 +23,7 @@ define( 'LSX_TO_CORE', __FILE__ );
 define( 'LSX_TO_URL', plugin_dir_url( __FILE__ ) );
 define( 'LSX_TO_VER', '1.1.2' );
 
-//Post Expirator
+// Post Expirator.
 define( 'LSX_TO_POSTEXPIRATOR_DATEFORMAT', esc_html__( 'l F jS, Y', 'tour-operator' ) );
 define( 'LSX_TO_POSTEXPIRATOR_TIMEFORMAT', esc_html__( 'g:ia', 'tour-operator' ) );
 

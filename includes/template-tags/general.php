@@ -131,7 +131,7 @@ function lsx_to_collapsible_attributes( $target = false, $post_type = false, $re
 		$post_type = get_post_type();
 	}
 	if ( ! lsx_to_is_collapsible( $post_type ) ) {
-		$output = 'data-toggle="collapse" data-target="#' . $target .'"';
+		$output = 'data-toggle="collapse" data-target="#' . $target . '"';
 		if ( false === $return ) {
 			echo esc_attr( $output );
 		} else {
@@ -217,8 +217,8 @@ function lsx_to_page_navigation( $echo = true ) {
 		$page_links['summary'] = esc_html__( 'Summary', 'tour-operator' );
 	}
 
-	//Allow 3rd party plugins and themes to disable the page links
-	if ( apply_filters( 'lsx_to_page_navigation_disable', false , get_post_type() ) ) {
+	// Allow 3rd party plugins and themes to disable the page links.
+	if ( apply_filters( 'lsx_to_page_navigation_disable', false, get_post_type() ) ) {
 		return false;
 	}
 
