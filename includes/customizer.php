@@ -7,7 +7,7 @@
  * @license   	GPL3
  */
 
-if ( ! defined( 'ABSPATH' ) ) return; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) return; // Exit if accessed directly.
 
 /**
  * New colors scheme for LSX Customizer.

@@ -215,7 +215,7 @@ function lsx_to_itinerary_thumbnail() {
 				$tour_itinerary->register_current_gallery( $accommodation_id );
 				$current_image_id = false;
 
-				//Try for a thumbnail first.
+				// Try for a thumbnail first.
 				$temp_id = get_post_thumbnail_id( $accommodation_id );
 
 				if ( false === $temp_id || $tour_itinerary->is_image_used( $temp_id ) ) {
@@ -241,7 +241,7 @@ function lsx_to_itinerary_thumbnail() {
 
 		$thumbnail_src = apply_filters( 'lsx_to_itinerary_thumbnail_src', $thumbnail_src, $tour_itinerary->index, $tour_itinerary->count );
 
-		//Check weather or not to display the placeholder.
+		// Check weather or not to display the placeholder.
 		if ( false === $thumbnail_src || '' === $thumbnail_src ) {
 			$thumbnail_src = \lsx\legacy\Placeholders::placeholder_url( null, 'tour' );
 		}
@@ -286,7 +286,7 @@ function lsx_to_itinerary_accommodation( $before = '', $after = '' ) {
 
 		$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
 
-		//display the additional accommodation information.
+		// Display the additional accommodation information.
 		if ( ! empty( $tour_itinerary->itinerary['accommodation_to_tour'] ) && is_array( $tour_itinerary->itinerary['accommodation_to_tour'] ) ) {
 			foreach ( $tour_itinerary->itinerary['accommodation_to_tour'] as $accommodation ) {
 				lsx_to_accommodation_rating( '<span class="' . $meta_class . 'rating"><span class="lsx-to-meta-data-key">' . __( 'Rating', 'tour-operator' ) . ':</span> ', '</span>', $accommodation );
