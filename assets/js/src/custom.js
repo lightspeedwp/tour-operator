@@ -505,7 +505,7 @@ if ( window.location.hash ) {
 	 */
 	$window.load( function() {
 
-		lsx_to.set_easing_scroll_on_page_load();
+		//lsx_to.set_easing_scroll_on_page_load();
 		lsx_to.build_slider_lightbox();
 
 	} );
