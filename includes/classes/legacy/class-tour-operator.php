@@ -640,10 +640,16 @@ class Tour_Operator {
 		$allowedtags['div']['itemscope']                            = true;
 		$allowedtags['div']['itemtype']                             = true;
 		$allowedtags['div']['data-row-height']                      = true;
-		$allowedtags['div']['data-gallery-theme']                   = true;
 		$allowedtags['div']['data-justified-margins']               = true;
-		$allowedtags['div']['data-envira-columns']                  = true;
 		$allowedtags['div']['data-slick']                           = true;
+
+		//Envirta Gallery tags
+		//
+		$allowedtags['div']['data-envira-id']                       = true;
+		$allowedtags['div']['data-gallery-config']                  = true;
+		$allowedtags['div']['data-gallery-images']                  = true;
+		$allowedtags['div']['data-gallery-theme']                   = true;
+		$allowedtags['div']['data-envira-columns']                  = true;
 
 		if ( ! isset( $allowedtags['img'] ) ) {
 			$allowedtags['img'] = array();
