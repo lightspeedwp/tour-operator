@@ -442,7 +442,7 @@ class Tour_Operator {
 	 * @return array List of taxonomies.
 	 */
 	public function get_taxonomies() {
-		return $this->taxonomies;
+		return apply_filters( 'lsx_to_framework_taxonomies', $this->taxonomies );
 	}
 
 	/**
