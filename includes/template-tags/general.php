@@ -140,6 +140,11 @@ function lsx_to_collapsible_attributes( $target = false, $post_type = false, $re
 	}
 }
 
+function lsx_to_collapsible_attributes_not_post( $target = false, $return = true ) {
+	$output = 'data-toggle="collapse" data-target="#' . $target . '"';
+	echo $output;
+}
+
 /* ==================   HEADER   ================== */
 
 /**
