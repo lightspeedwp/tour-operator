@@ -734,7 +734,7 @@ class Tour_Operator {
 	 * checks which plugin is active, and grabs those forms.
 	 */
 	public function show_default_form() {
-		if ( class_exists( 'Caldera_Forms_Forms' ) || class_exists( 'GFForms' ) || class_exists( 'Ninja_Forms' ) ) {
+		if ( class_exists( 'Caldera_Forms_Forms' ) || class_exists( 'GFForms' ) || class_exists( 'Ninja_Forms' ) || class_exists( 'WPForms' ) ) {
 			return true;
 		} else {
 			return false;
@@ -746,7 +746,10 @@ class Tour_Operator {
 	 */
 	public function get_activated_forms() {
 		$all_forms = false;
-		if ( class_exists( 'Ninja_Forms' ) ) {
+
+		if ( class_exists( 'WPForms' ) ) {
+			$all_forms = $this->get_wpforms();
+		} elseif ( class_exists( 'Ninja_Forms' ) ) {
 			$all_forms = $this->get_ninja_forms();
 		} elseif ( class_exists( 'GFForms' ) ) {
 			$all_forms = $this->get_gravity_forms();
@@ -755,6 +758,35 @@ class Tour_Operator {
 		}
 
 		return $all_forms;
+	}
+
+
+
+	/**
+	 * gets the current wpforms
+	 */
+	public function get_wpforms() {
+		global $wpdb;
+		$forms = false;
+
+		$args = array(
+			'post_type'     => 'wpforms',
+			'orderby'       => 'id',
+			'order'         => 'ASC',
+			'no_found_rows' => true,
+			'nopaging'      => true,
+		);
+
+		$posts = get_posts( $args );
+
+		if ( ! empty( $posts ) ) {
+			foreach ( $posts as $post ) {
+				$forms[ $post->id ] = $post->post_title;
+			}
+		} else {
+			$forms = false;
+		}
+		return $forms;
 	}
 
 	/**

@@ -560,7 +560,9 @@ function lsx_to_enquire_modal( $cta_text = '', $before = '', $after = '', $echo 
 								</div>
 								<div class="modal-body">
 									<?php
-										if ( class_exists( 'Ninja_Forms' ) ) {
+										if ( class_exists( 'WPForms' ) ) {
+											echo do_shortcode( '[wpforms id="' . $form_id . '"]' );
+										} elseif ( class_exists( 'Ninja_Forms' ) ) {
 											echo do_shortcode( '[ninja_form id="' . $form_id . '"]' );
 										} elseif ( class_exists( 'GFForms' ) ) {
 											echo do_shortcode( '[gravityform id="' . $form_id . '" title="false" description="false" ajax="true"]' );

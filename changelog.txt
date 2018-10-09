@@ -2,6 +2,7 @@
 
 ### 1.1.4 (in Progress)
 * Fix - Adding the list of Envira Gallery tags to the wp_kses_post allowed filter method.
+* Dev - Added in WPForms Lite as a list of forms to choose for your enquiry.
 
 ### 1.1.3
 *

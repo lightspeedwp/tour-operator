@@ -61,7 +61,6 @@ class Banner_Integration {
 	 */
 	public function enable_banners( $allowed_post_types ) {
 		$allowed_post_types = array_merge( $allowed_post_types, $this->post_types );
-
 		return $allowed_post_types;
 	}
 
