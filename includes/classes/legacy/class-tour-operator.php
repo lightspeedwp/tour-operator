@@ -781,7 +781,7 @@ class Tour_Operator {
 
 		if ( ! empty( $posts ) ) {
 			foreach ( $posts as $post ) {
-				$forms[ $post->id ] = $post->post_title;
+				$forms[ $post->ID ] = $post->post_title;
 			}
 		} else {
 			$forms = false;
