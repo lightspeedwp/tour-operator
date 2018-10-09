@@ -164,7 +164,7 @@ function lsx_to_included_block() {
 		}
 	?>
 		<section id="included-excluded" class="lsx-to-section <?php lsx_to_collapsible_class( 'tour',false ); ?>">
-			<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title hidden-lg" <?php lsx_to_collapsible_attributes( 'collapse-included-excluded' ); ?>><?php esc_html_e( 'Included / Not Included', 'tour-operator' ); ?></h2>
+			<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title hidden-lg" <?php lsx_to_collapsible_attributes_not_post( 'collapse-included-excluded' ); ?>><?php esc_html_e( 'Included / Not Included', 'tour-operator' ); ?></h2>
 
 			<div id="collapse-included-excluded" class="collapse in">
 				<div class="collapse-inner">

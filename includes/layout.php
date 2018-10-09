@@ -269,7 +269,7 @@ function lsx_to_accommodation_single_content_bottom() {
 	if ( is_singular( 'accommodation' ) ) {
 		if ( function_exists( 'lsx_to_has_map' ) && lsx_to_has_map() ) { ?>
 			<section id="accommodation-map" class="lsx-to-section <?php lsx_to_collapsible_class( 'accommodation', false ); ?>">
-				<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title hidden-lg" <?php lsx_to_collapsible_attributes( 'collapse-accommodation-map' ); ?>><?php esc_html_e( 'Map', 'tour-operator' ); ?></h2>
+				<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title hidden-lg" <?php lsx_to_collapsible_attributes_not_post( 'collapse-accommodation-map' ); ?>><?php esc_html_e( 'Map', 'tour-operator' ); ?></h2>
 
 				<div id="collapse-accommodation-map" class="collapse in">
 					<div class="collapse-inner">
@@ -371,7 +371,7 @@ function lsx_to_destination_single_content_bottom() {
 	if ( is_singular( 'destination' ) ) {
 		if ( function_exists( 'lsx_to_has_map' ) && lsx_to_has_map() ) { ?>
 			<section id="destination-map" class="lsx-to-section <?php lsx_to_collapsible_class( 'destination', false ); ?>">
-				<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title hidden-lg" <?php lsx_to_collapsible_attributes( 'collapse-destination-map' ); ?>><?php esc_html_e( 'Map', 'tour-operator' ); ?></h2>
+				<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title hidden-lg" <?php lsx_to_collapsible_attributes_not_post( 'collapse-destination-map' ); ?>><?php esc_html_e( 'Map', 'tour-operator' ); ?></h2>
 
 				<div id="collapse-destination-map" class="collapse in">
 					<div class="collapse-inner">
@@ -514,7 +514,7 @@ function lsx_to_tour_single_content_bottom() {
 	if ( is_singular( 'tour' ) ) {
 		if ( function_exists( 'lsx_to_has_map' ) && lsx_to_has_map() ) { ?>
 			<section id="tour-map" class="lsx-to-section <?php lsx_to_collapsible_class( 'tour', false ); ?>">
-				<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title hidden-lg" <?php lsx_to_collapsible_attributes( 'collapse-tour-map' ); ?>><?php esc_html_e( 'Map', 'tour-operator' ); ?></h2>
+				<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title hidden-lg" <?php lsx_to_collapsible_attributes_not_post( 'collapse-tour-map' ); ?>><?php esc_html_e( 'Map', 'tour-operator' ); ?></h2>
 
 				<div id="collapse-tour-map" class="collapse in">
 					<div class="collapse-inner">
@@ -528,7 +528,7 @@ function lsx_to_tour_single_content_bottom() {
 
 		if ( lsx_to_has_itinerary() ) { ?>
 			<section id="itinerary" class="lsx-to-section <?php lsx_to_collapsible_class( 'tour', false ); ?>">
-				<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" <?php lsx_to_collapsible_attributes( 'collapse-itinerary' ); ?>><?php esc_html_e( 'Full Day by Day Itinerary', 'tour-operator' ); ?></h2>
+				<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" data-toggle="collapse" data-target="#collapse-itinerary" aria-expanded="false"><?php esc_html_e( 'Full Day by Day Itinerary', 'tour-operator' ); ?></h2>
 
 				<div id="collapse-itinerary" class="collapse in">
 					<div class="collapse-inner">
