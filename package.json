@@ -39,7 +39,7 @@
     "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8",
     "gulp-wp-pot": "^2.3.1",
-    "jshint": "^2.9.5"
+    "jshint": "^2.9.6"
   },
   "dependencies": {
     "hoek": "^4.2.1"
