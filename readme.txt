@@ -5,7 +5,7 @@ Tags: tour operator, tour operators, tour, tours, tour itinerary, tour itinerari
 Requires at least: 4.3
 Tested up to: 4.9
 Requires PHP: 7.0
-Stable tag: 1.1.2
+Stable tag: 1.1.4
 License: GPLv3
 
 The Tour Operators plugin brings live availability, bookings, digital itineraries, and other post types tour operators need to succeed.
@@ -63,6 +63,14 @@ Yes you can! Join in on our [GitHub repository](https://github.com/lightspeeddev
 5. A single tour itinerary page.
 
 == Changelog ==
+
+= 1.1.4 =
+* Fix - Adding the list of Envira Gallery tags to the wp_kses_post allowed filter method.
+* Dev - Added in WPForms Lite as a list of forms to choose for your enquiry.
+* Fix - Fixed tours and destinations collapsible tabs on mobile issue.
+
+= 1.1.3 =
+* Fix - Cleaning code to meet more Wordpress Standards
 
 = 1.1.2 =
 * Fix - Changing the "id" to use a sanitized title string, to avoid cached sites pulling through the same gallery for each destination

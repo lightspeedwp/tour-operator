@@ -228,7 +228,7 @@ function lsx_to_destination_travel_info() {
 		);
 		?>
 		<section id="travel-info" class="lsx-to-section <?php lsx_to_collapsible_class( 'destination', false ); ?>">
-			<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" <?php lsx_to_collapsible_attributes( 'collapse-travel-info' ); ?>><?php esc_html_e( 'Travel Information', 'tour-operator' ); ?></h2>
+			<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" <?php lsx_to_collapsible_attributes_not_post( 'collapse-travel-info' ); ?>><?php esc_html_e( 'Travel Information', 'tour-operator' ); ?></h2>
 
 			<div id="collapse-travel-info" class="collapse in">
 				<div class="collapse-inner">
