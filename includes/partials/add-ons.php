@@ -41,39 +41,6 @@
 	</div>
 
 	<div class="row">
-		<div class="col-md-6">
-			<img src="<?php echo esc_url( LSX_TO_URL . 'assets/img/tour-operators-essentials.png' ); ?>">
-
-			<div class="box box-top-image maps">
-				<h3><?php esc_html_e( 'Tour Operator Essentials Bundle', 'tour-operator' ); ?></h3>
-				<p><?php esc_html_e( 'The Tour Operator Essentials Bundle comes with a select few extensions for LSX theme and the Tour Operator plug in, allowing you to expand the look, feel and functionality of your website.', 'tour-operator' ); ?></p>
-				<p><?php echo wp_kses_post( 'Included in this bundle:<br>LSX Extensions: Sharing and Banners.<br>Tour Operator Extensions: Reviews, Team and Videos.', 'tour-operator' ); ?></p>
-
-				<div class="more-button">
-					<a href="<?php echo wp_kses_post( $to_essentials_bundle_link ); ?>" target="_blank" class="button button-primary">
-						<?php esc_html_e( 'Get the bundle', 'tour-operator' ); ?>
-					</a>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-md-6">
-			<img src="<?php echo esc_url( LSX_TO_URL . 'assets/img/tour-operators-complete.png' ); ?>">
-
-			<div class="box box-top-image specials">
-				<h3><?php esc_html_e( 'Tour Operator Complete Bundle', 'tour-operator' ); ?></h3>
-				<p><?php esc_html_e( 'The Complete bundle gives you complete control of your LSX-powered Tour Operator website. Expand LSX with the Sharing, Banners, Currencies, Customizer, Mega Menus and Blog Customizer extensions. Expand the Tour Operator plugin with the Reviews, Team, Videos, Specials, Maps and Search extensions.', 'tour-operator' ); ?></p>
-
-				<div class="more-button">
-					<a href="<?php echo wp_kses_post( $to_complete_bundle_link ); ?>" target="_blank" class="button button-primary">
-						<?php esc_html_e( 'Get the bundle', 'tour-operator' ); ?>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="row">
 		<div class="col-md-4">
 			<img src="<?php echo esc_url( LSX_TO_URL . 'assets/img/tour-operators-maps.png' ); ?>">
 
