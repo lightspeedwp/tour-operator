@@ -10,7 +10,7 @@ get_header(); ?>
 
 <?php lsx_content_wrap_before(); ?>
 
-	<div id="primary" class="content-area <?php echo esc_attr( lsx_main_class() ); ?>">
+	<div id="primary" class="content-area col-sm-12 <?php echo esc_attr( lsx_main_class() ); ?>">
 
 		<?php lsx_content_before(); ?>
 
@@ -44,6 +44,6 @@ get_header(); ?>
 
 <?php lsx_content_wrap_after(); ?>
 
-<?php get_sidebar(); ?>
-<?php get_sidebar( 'alt' ); ?>
+<?php //get_sidebar(); ?>
+<?php //get_sidebar( 'alt' ); ?>
 <?php get_footer();
