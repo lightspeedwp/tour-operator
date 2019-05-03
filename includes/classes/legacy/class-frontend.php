@@ -631,6 +631,10 @@ class Frontend extends Tour_Operator {
 			$crumbs = $this->accommodation_breadcrumb_links( $crumbs );
 		}
 
+		if ( is_singular( 'tour' ) ) {
+			$crumbs = $this->tour_breadcrumb_links( $crumbs );
+		}
+
 		return $crumbs;
 	}
 
@@ -646,7 +650,7 @@ class Frontend extends Tour_Operator {
 			'url'  => get_post_type_archive_link( 'destination' ),
 		);
 
-		array_splice( $crumbs, 1, 0, array( $destination_breadcrumb ) );		
+		array_splice( $crumbs, 1, 0, array( $destination_breadcrumb ) );
 		return $crumbs;
 	}
 
@@ -677,10 +681,10 @@ class Frontend extends Tour_Operator {
 				array_splice( $crumbs, 2, 0, array( $continent_breadcrumb ) );
 				break;
 			}
-		}		
+		}
 		return $crumbs;
 	}
-	
+
 	/**
 	 * The Breadcrumbs Links for the Tours and Accommodation.
 	 *
@@ -696,7 +700,7 @@ class Frontend extends Tour_Operator {
 			array(
 				'text' =>  esc_attr__( 'Accommodation' , 'tour-operator' ),
 				'url'  => get_post_type_archive_link( 'accommodation' ),
-			),					
+			),
 		);
 		$current_destinations = get_post_meta( get_the_ID(), 'destination_to_accommodation', false );
 
@@ -708,7 +712,7 @@ class Frontend extends Tour_Operator {
 
 			foreach ( $current_destinations as $current_destination ) {
 				$all_destinations[] = get_post( $current_destination );
-			}	
+			}
 
 			//Find the country
 			foreach ( $all_destinations as $destination_index => $destination ) {
@@ -716,11 +720,11 @@ class Frontend extends Tour_Operator {
 					$new_crumbs[] = array(
 						'text' =>  $destination->post_title,
 						'url'  => get_permalink( $destination->ID ),
-					);	
-					unset( $all_destinations[ $destination_index ] );				
+					);
+					unset( $all_destinations[ $destination_index ] );
 				}
-			}	
-			
+			}
+
 			//Find the region
 			if ( ! empty( $all_destinations ) ) {
 				foreach ( $all_destinations as $destination_index => $destination ) {
@@ -737,5 +741,63 @@ class Frontend extends Tour_Operator {
 		);
 		$crumbs = $new_crumbs;
 		return $crumbs;
-	}	
+	}
+
+	/**
+	 * The Breadcrumbs Links for the Tours and Accommodation.
+	 *
+	 * @param array $crumbs
+	 * @return array
+	 */
+	public function tour_breadcrumb_links( $crumbs ) {
+		$new_crumbs = array(
+			array(
+				'text' =>  esc_attr__( 'Home' , 'tour-operator' ),
+				'url'  => home_url(),
+			),
+			array(
+				'text' =>  esc_attr__( 'Tour' , 'tour-operator' ),
+				'url'  => get_post_type_archive_link( 'tour' ),
+			),
+		);
+		$current_destinations = get_post_meta( get_the_ID(), 'departs_from', false );
+
+		$all_destinations = array();
+		if ( false !== $current_destinations && ! empty( $current_destinations ) ) {
+
+			$country = false;
+			$regions = array();
+
+			foreach ( $current_destinations as $current_destination ) {
+				$all_destinations[] = get_post( $current_destination );
+			}
+
+			//Find the country
+			foreach ( $all_destinations as $destination_index => $destination ) {
+				if ( 0 === $destination->post_parent || '0' === $destination->post_parent ) {
+					$new_crumbs[] = array(
+						'text' => $destination->post_parent,
+						'url'  => get_permalink( $destination->ID ),
+					);
+					unset( $all_destinations[ $destination_index ] );
+				}
+			}
+
+			//Find the region
+			if ( ! empty( $all_destinations ) ) {
+				foreach ( $all_destinations as $destination_index => $destination ) {
+					$new_crumbs[] = array(
+						'text' => $destination->post_title,
+						'url'  => get_permalink( $destination->ID ),
+					);
+				}
+			}
+		}
+		$new_crumbs[] = array(
+			'text' => get_the_title(),
+			'url'  => get_permalink(),
+		);
+		$crumbs = $new_crumbs;
+		return $crumbs;
+	}
 }
