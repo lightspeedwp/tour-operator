@@ -627,8 +627,8 @@ class Frontend extends Tour_Operator {
 			$crumbs = $this->destination_breadcrumb_links( $crumbs );
 		}
 
-		if ( is_singular( 'accommodation' ) /*|| is_singular( 'tour' )*/ ) {
-			$crumbs = $this->tour_accommodation_breadcrumb_links( $crumbs );
+		if ( is_singular( 'accommodation' ) ) {
+			$crumbs = $this->accommodation_breadcrumb_links( $crumbs );
 		}
 
 		return $crumbs;
@@ -687,26 +687,18 @@ class Frontend extends Tour_Operator {
 	 * @param array $crumbs
 	 * @return array
 	 */
-	public function tour_accommodation_breadcrumb_links( $crumbs ) {
+	public function accommodation_breadcrumb_links( $crumbs ) {
 		$new_crumbs = array(
 			array(
 				'text' =>  esc_attr__( 'Home' , 'tour-operator' ),
 				'url'  => home_url(),
-			),		
+			),
+			array(
+				'text' =>  esc_attr__( 'Accommodation' , 'tour-operator' ),
+				'url'  => get_post_type_archive_link( 'accommodation' ),
+			),					
 		);
-		if ( is_singular( 'accommodation' ) ) {
-			$new_crumbs[] = array(
-					'text' =>  esc_attr__( 'Accommodation' , 'tour-operator' ),
-					'url'  => get_post_type_archive_link( 'accommodation' ),
-				);
-			$current_destinations = get_post_meta( get_the_ID(), 'destination_to_accommodation', false );
-		} else {
-			$new_crumbs[] = array(
-					'text' =>  esc_attr__( 'Tours' , 'tour-operator' ),
-					'url'  => get_post_type_archive_link( 'tour' ),
-			);
-			$current_destinations = get_post_meta( get_the_ID(), 'destination_to_tour', false );
-		}
+		$current_destinations = get_post_meta( get_the_ID(), 'destination_to_accommodation', false );
 
 		$all_destinations = array();
 		if ( false !== $current_destinations && ! empty( $current_destinations ) ) {
