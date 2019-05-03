@@ -695,19 +695,15 @@ class Frontend extends Tour_Operator {
 			),		
 		);
 		if ( is_singular( 'accommodation' ) ) {
-			$new_crumbs = array(
-				array(
+			$new_crumbs[] = array(
 					'text' =>  esc_attr__( 'Accommodation' , 'tour-operator' ),
 					'url'  => get_post_type_archive_link( 'accommodation' ),
-				),			
-			);
+				);
 			$current_destinations = get_post_meta( get_the_ID(), 'destination_to_accommodation', false );
 		} else {
-			$new_crumbs = array(
-				array(
+			$new_crumbs[] = array(
 					'text' =>  esc_attr__( 'Tours' , 'tour-operator' ),
 					'url'  => get_post_type_archive_link( 'tour' ),
-				),		
 			);
 			$current_destinations = get_post_meta( get_the_ID(), 'destination_to_tour', false );
 		}
