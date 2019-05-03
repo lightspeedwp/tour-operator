@@ -620,40 +620,134 @@ class Frontend extends Tour_Operator {
 	 */
 	public function wpseo_breadcrumb_links( $crumbs ) {
 		if ( is_tax( 'continent' ) ) {
-			$destination_breadcrumb = array(
-				'text' => esc_html__( 'Destinations', 'tour-operator' ),
-				'url'  => get_post_type_archive_link( 'destination' ),
-			);
-
-			array_splice( $crumbs, 1, 0, array( $destination_breadcrumb ) );
+			$crumbs = $this->continent_breadcrumb_links( $crumbs );
 		}
 
 		if ( is_singular( 'destination' ) ) {
-			global $post;
+			$crumbs = $this->destination_breadcrumb_links( $crumbs );
+		}
 
-			$continents = wp_get_post_terms( $post->ID, 'continent' );
-
-			if ( empty( $continents ) || ! is_array( $continents ) ) {
-				global $post;
-
-				if ( ! empty( $post->post_parent ) ) {
-					$continents = wp_get_post_terms( $post->post_parent, 'continent' );
-				}
-			}
-
-			if ( ! empty( $continents ) && is_array( $continents ) ) {
-				foreach ( $continents as $key => $continent ) {
-					$continent_breadcrumb = array(
-						'text' => $continent->name,
-						'url'  => get_term_link( $continent ),
-					);
-
-					array_splice( $crumbs, 2, 0, array( $continent_breadcrumb ) );
-					break;
-				}
-			}
+		if ( is_singular( 'accommodation' ) /*|| is_singular( 'tour' )*/ ) {
+			$crumbs = $this->tour_accommodation_breadcrumb_links( $crumbs );
 		}
 
 		return $crumbs;
 	}
+
+	/**
+	 * The Breadcrumbs Links for the continents.
+	 *
+	 * @param array $crumbs
+	 * @return array
+	 */
+	public function continent_breadcrumb_links( $crumbs ) {
+		$destination_breadcrumb = array(
+			'text' => esc_html__( 'Destinations', 'tour-operator' ),
+			'url'  => get_post_type_archive_link( 'destination' ),
+		);
+
+		array_splice( $crumbs, 1, 0, array( $destination_breadcrumb ) );		
+		return $crumbs;
+	}
+
+	/**
+	 * The Breadcrumbs Links for the Destinations.
+	 *
+	 * @param array $crumbs
+	 * @return array
+	 */
+	public function destination_breadcrumb_links( $crumbs ) {
+		global $post;
+		$continents = wp_get_post_terms( $post->ID, 'continent' );
+		if ( empty( $continents ) || ! is_array( $continents ) ) {
+			global $post;
+
+			if ( ! empty( $post->post_parent ) ) {
+				$continents = wp_get_post_terms( $post->post_parent, 'continent' );
+			}
+		}
+
+		if ( ! empty( $continents ) && is_array( $continents ) ) {
+			foreach ( $continents as $key => $continent ) {
+				$continent_breadcrumb = array(
+					'text' => $continent->name,
+					'url'  => get_term_link( $continent ),
+				);
+
+				array_splice( $crumbs, 2, 0, array( $continent_breadcrumb ) );
+				break;
+			}
+		}		
+		return $crumbs;
+	}
+	
+	/**
+	 * The Breadcrumbs Links for the Tours and Accommodation.
+	 *
+	 * @param array $crumbs
+	 * @return array
+	 */
+	public function tour_accommodation_breadcrumb_links( $crumbs ) {
+		$new_crumbs = array(
+			array(
+				'text' =>  esc_attr__( 'Home' , 'tour-operator' ),
+				'url'  => home_url(),
+			),		
+		);
+		if ( is_singular( 'accommodation' ) ) {
+			$new_crumbs = array(
+				array(
+					'text' =>  esc_attr__( 'Accommodation' , 'tour-operator' ),
+					'url'  => get_post_type_archive_link( 'accommodation' ),
+				),			
+			);
+			$current_destinations = get_post_meta( get_the_ID(), 'destination_to_accommodation', false );
+		} else {
+			$new_crumbs = array(
+				array(
+					'text' =>  esc_attr__( 'Tours' , 'tour-operator' ),
+					'url'  => get_post_type_archive_link( 'tour' ),
+				),		
+			);
+			$current_destinations = get_post_meta( get_the_ID(), 'destination_to_tour', false );
+		}
+
+		$all_destinations = array();
+		if ( false !== $current_destinations && ! empty( $current_destinations ) ) {
+
+			$country = false;
+			$regions = array();
+
+			foreach ( $current_destinations as $current_destination ) {
+				$all_destinations[] = get_post( $current_destination );
+			}	
+
+			//Find the country
+			foreach ( $all_destinations as $destination_index => $destination ) {
+				if ( 0 === $destination->post_parent || '0' === $destination->post_parent ) {
+					$new_crumbs[] = array(
+						'text' =>  $destination->post_title,
+						'url'  => get_permalink( $destination->ID ),
+					);	
+					unset( $all_destinations[ $destination_index ] );				
+				}
+			}	
+			
+			//Find the region
+			if ( ! empty( $all_destinations ) ) {
+				foreach ( $all_destinations as $destination_index => $destination ) {
+					$new_crumbs[] = array(
+						'text' =>  $destination->post_title,
+						'url'  => get_permalink( $destination->ID ),
+					);
+				}
+			}
+		}
+		$new_crumbs[] = array(
+			'text' =>  get_the_title( ),
+			'url'  => get_permalink( ),
+		);
+		$crumbs = $new_crumbs;
+		return $crumbs;
+	}	
 }
