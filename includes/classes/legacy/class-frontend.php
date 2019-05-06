@@ -760,38 +760,19 @@ class Frontend extends Tour_Operator {
 				'url'  => get_post_type_archive_link( 'tour' ),
 			),
 		);
-		$current_destinations = get_post_meta( get_the_ID(), 'departs_from', false );
-
-		$all_destinations = array();
-		if ( false !== $current_destinations && ! empty( $current_destinations ) ) {
-
-			$country = false;
-			$regions = array();
-
-			foreach ( $current_destinations as $current_destination ) {
-				$all_destinations[] = get_post( $current_destination );
+		$region = get_post_meta( get_the_ID(), 'departs_from', false );
+		if ( false !== $region ) {
+			$country = wp_get_post_parent_id( $region );
+			if ( false !== $country && '' !== $country ) {
+				$new_crumbs[] = array(
+					'text' => get_the_title( $country ),
+					'url'  => get_permalink( $country ),
+				);
 			}
-
-			//Find the country
-			foreach ( $all_destinations as $destination_index => $destination ) {
-				if ( 0 === $destination->post_parent || '0' === $destination->post_parent ) {
-					$new_crumbs[] = array(
-						'text' => $destination->post_parent,
-						'url'  => get_permalink( $destination->ID ),
-					);
-					unset( $all_destinations[ $destination_index ] );
-				}
-			}
-
-			//Find the region
-			if ( ! empty( $all_destinations ) ) {
-				foreach ( $all_destinations as $destination_index => $destination ) {
-					$new_crumbs[] = array(
-						'text' => $destination->post_title,
-						'url'  => get_permalink( $destination->ID ),
-					);
-				}
-			}
+			$new_crumbs[] = array(
+				'text' => get_the_title( $region ),
+				'url'  => get_permalink( $region ),
+			);
 		}
 		$new_crumbs[] = array(
 			'text' => get_the_title(),
