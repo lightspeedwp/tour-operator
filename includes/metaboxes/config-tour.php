@@ -114,6 +114,15 @@ if ( class_exists( 'LSX_TO_Team' ) ) {
 }
 
 $metabox['fields'][] = array(
+	'id'      => 'group_size',
+	'name'    => esc_html__( 'Group Size', 'tour-operator' ),
+	'type'    => 'wysiwyg',
+	'options' => array(
+		'editor_height' => '50',
+	),
+);
+
+$metabox['fields'][] = array(
 	'id'      => 'hightlights',
 	'name'    => esc_html__( 'Hightlights', 'tour-operator' ),
 	'type'    => 'wysiwyg',
