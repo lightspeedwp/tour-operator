@@ -102,7 +102,7 @@ class Placeholders {
 		}
 
 		if ( null === $post_type ) {
-			$post_type = 'general';
+			$post_type = get_post_type();
 		}
 
 		if ( null === $size ) {
@@ -142,7 +142,7 @@ class Placeholders {
 			}
 		}
 
-		$placeholder    = LSX_TO_URL . '/assets/img/placeholders/placeholder-' . $post_type .'-' . $holdit_width . '.jpg';
+		$placeholder    = LSX_TO_URL . 'assets/img/placeholders/placeholder-' . $post_type .'-' . $holdit_width . '.jpg';
 		$placeholder_id = false;
 
 		//First Check for a default, then check if there is one set by post type.
