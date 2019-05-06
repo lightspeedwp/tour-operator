@@ -761,8 +761,8 @@ class Frontend extends Tour_Operator {
 			),
 		);
 		$region = get_post_meta( get_the_ID(), 'departs_from', false );
-		if ( false !== $region ) {
-			$country = wp_get_post_parent_id( $region );
+		if ( false !== $region && isset( $region[0] ) ) {
+			$country = wp_get_post_parent_id( $region[0] );
 			if ( false !== $country && '' !== $country ) {
 				$new_crumbs[] = array(
 					'text' => get_the_title( $country ),
@@ -770,8 +770,8 @@ class Frontend extends Tour_Operator {
 				);
 			}
 			$new_crumbs[] = array(
-				'text' => get_the_title( $region ),
-				'url'  => get_permalink( $region ),
+				'text' => get_the_title( $region[0] ),
+				'url'  => get_permalink( $region[0] ),
 			);
 		}
 		$new_crumbs[] = array(
