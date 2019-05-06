@@ -133,6 +133,7 @@ class Placeholders {
 
 				case 'lsx-banner':
 					$holdit_width = '1920x600';
+					$post_type = 'banner';
 					break;
 
 				case 'lsx-thumbnail-wide':
