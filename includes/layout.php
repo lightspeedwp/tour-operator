@@ -81,7 +81,7 @@ function lsx_to_archive_entry_top() {
 					if ( 'team' === get_post_type() ) {
 						lsx_thumbnail( 'lsx-thumbnail-square' );
 					} else {
-						lsx_thumbnail( 'lsx-thumbnail-single' );
+						lsx_thumbnail( 'lsx-thumbnail-wide' );
 					}
 				?>
 			</a>
