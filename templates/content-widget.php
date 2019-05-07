@@ -12,7 +12,7 @@ global $disable_placeholder, $disable_text;
 	 <?php if ( empty( $disable_placeholder ) ) { ?>
 		<div class="lsx-to-widget-thumb">
 			<a href="<?php the_permalink(); ?>">
-				<?php lsx_thumbnail( 'lsx-thumbnail-single' ); ?>
+				<?php lsx_thumbnail( 'lsx-thumbnail-wide' ); ?>
 			</a>
 		</div>
 	<?php } ?>

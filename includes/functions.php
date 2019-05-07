@@ -203,7 +203,7 @@ function lsx_to_itinerary_thumbnail() {
 
 		if ( ! empty( $tour_itinerary->itinerary['featured_image'] ) ) {
 			$tour_itinerary->save_used_image( $tour_itinerary->itinerary['featured_image'] );
-			$thumbnail = wp_get_attachment_image_src( $tour_itinerary->itinerary['featured_image'], 'lsx-thumbnail-single' );
+			$thumbnail = wp_get_attachment_image_src( $tour_itinerary->itinerary['featured_image'], 'lsx-thumbnail-wide' );
 
 			if ( is_array( $thumbnail ) ) {
 				$thumbnail_src = $thumbnail[0];
@@ -226,7 +226,7 @@ function lsx_to_itinerary_thumbnail() {
 
 				if ( false !== $current_image_id ) {
 					$tour_itinerary->save_used_image( $current_image_id );
-					$temp_src_array = wp_get_attachment_image_src( $current_image_id, 'lsx-thumbnail-single' );
+					$temp_src_array = wp_get_attachment_image_src( $current_image_id, 'lsx-thumbnail-wide' );
 
 					if ( is_array( $temp_src_array ) ) {
 						$accommodation_images[] = $temp_src_array[0];

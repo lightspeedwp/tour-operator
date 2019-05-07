@@ -20,7 +20,7 @@ if ( empty( $disable_single_link ) ) {
 		<?php if ( lsx_to_has_term_thumbnail( $term->term_id ) ) : ?>
 			<div class="lsx-to-widget-thumb">
 				<?php if ( ! empty( $title_link ) ) { ?><a href="<?php echo esc_url( $title_link ); ?>"><?php } ?>
-					<?php lsx_to_term_thumbnail( $term->term_id, 'lsx-thumbnail-single' ); ?>
+					<?php lsx_to_term_thumbnail( $term->term_id, 'lsx-thumbnail-wide' ); ?>
 				<?php if ( ! empty( $title_link ) ) { ?></a><?php } ?>
 			</div>
 		<?php else : ?>

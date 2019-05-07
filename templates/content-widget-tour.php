@@ -26,7 +26,7 @@ if ( $has_single ) {
 	<?php if ( empty( $disable_placeholder ) ) { ?>
 		<div class="lsx-to-widget-thumb">
 			<?php if ( false !== $has_single ) { ?><a href="<?php echo esc_url( $permalink ); ?>"><?php } ?>
-				<?php lsx_thumbnail( 'lsx-thumbnail-single' ); ?>
+				<?php lsx_thumbnail( 'lsx-thumbnail-wide' ); ?>
 			<?php if ( false !== $has_single ) { ?></a><?php } ?>
 		</div>
 	<?php } ?>
