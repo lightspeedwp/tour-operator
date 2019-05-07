@@ -71,6 +71,7 @@ class Pages extends \lsx\Frame {
 	 * @since 1.1.0
 	 */
 	public function create_pages() {
+		do_action( 'lsx_to_register_menu_pages' );
 		if ( ! empty( $this->pages['main'] ) ) {
 			array_map( array(
 				$this,
