@@ -243,7 +243,7 @@ function lsx_to_itinerary_thumbnail() {
 
 		// Check weather or not to display the placeholder.
 		if ( false === $thumbnail_src || '' === $thumbnail_src ) {
-			$thumbnail_src = \lsx\legacy\Placeholders::placeholder_url( null, 'tour' );
+			$thumbnail_src = \lsx\legacy\Placeholders::placeholder_url( null, 'tour', 'lsx-thumbnail-wide' );
 		}
 
 		return $thumbnail_src;
