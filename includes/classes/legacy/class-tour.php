@@ -280,7 +280,7 @@ class Tour {
 				'allow_none' => true,
 				'cols'       => 12,
 			);
-		}
+		}		
 
 		if ( $this->is_wetu_active ) {
 			$fields[] = array(
@@ -331,7 +331,7 @@ class Tour {
 				)
 			);*/
 		}
-
+		$fields = apply_filters( 'lsx_to_tours_itinerary_fields', $fields );
 		return $fields;
 	}
 

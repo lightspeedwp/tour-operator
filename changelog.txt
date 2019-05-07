@@ -6,6 +6,7 @@
 * Fix - Fixed tours and destinations collapsible tabs on mobile issue.
 * Dev - Added in the destinations to the Accommodation and Tour breadcrumbs
 * Dev - Changed the widgets and shortcodes images sizes from 'lsx-thumbnail-single' to 'lsx-thumbnail-wide'
+* Dev - Added in a filter to allow the extending of fields via 3rd party plugins and themes - 'lsx_to_tours_itinerary_fields'
 
 ### 1.1.3
 * Fix - Cleaning code to meet more Wordpress Standards
