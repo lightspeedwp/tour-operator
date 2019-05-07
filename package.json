@@ -4,7 +4,10 @@
   "description": "Tour Operators for LSX",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cgb-scripts start",
+    "build": "cgb-scripts build",
+    "eject": "cgb-scripts eject"
   },
   "repository": {
     "type": "git",
@@ -42,6 +45,8 @@
     "jshint": "^2.9.6"
   },
   "dependencies": {
+    "cgb-scripts": "1.17.0",
+    "classnames": "^2.2.6",
     "extend": "^3.0.2",
     "hoek": "^4.2.1",
     "lodash": "^4.17.11"
