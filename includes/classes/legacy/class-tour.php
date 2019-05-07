@@ -222,6 +222,8 @@ class Tour {
 			'show_size' => false,
 		);
 
+		$fields = apply_filters( 'lsx_to_tours_itinerary_fields', $fields );		
+
 		if ( post_type_exists( 'accommodation' ) ) {
 			$fields[] = array(
 				'id'         => 'accommodation_to_tour',
@@ -331,7 +333,6 @@ class Tour {
 				)
 			);*/
 		}
-		$fields = apply_filters( 'lsx_to_tours_itinerary_fields', $fields );
 		return $fields;
 	}
 
