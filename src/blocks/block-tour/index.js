@@ -46,7 +46,7 @@ const blockAttributes = {
 	},
 	shortcodetitle: {
 		type: 'string',
-		default: 'Tours',
+		default: 'Featured',
 	},
 	seeMoreButton: {
 		type: 'string',
@@ -54,11 +54,11 @@ const blockAttributes = {
 	},
 	seeMoreButtonText: {
 		type: 'string',
-		default: 'See All Tours',
+		default: 'See More',
 	},
 	seeMoreButtonLink: {
 		type: 'string',
-		default: '/tours/',
+		default: '/',
 	},
 	postType: {
 		type: 'string',
@@ -66,7 +66,7 @@ const blockAttributes = {
 	},
 	displaylimit: {
 		type: 'string',
-		default: '',
+		default: '9',
 	},
 	disableText: {
 		type: 'number',
@@ -256,14 +256,14 @@ registerBlockType( 'tour-operator/to-content', {
 								onChange={ ( value ) => setAttributes( { carousel: value } ) }
 							/>
 							<SelectControl
-								label={ __( 'Disable Text' ) }
+								label={ __( 'Disable Excerpt' ) }
 								description={ __( 'Choose if the text will show' ) }
 								options={ disableTextOptions }
 								value={ disableText }
 								onChange={ ( value ) => setAttributes( { disableText: value } ) }
 							/>
 							<SelectControl
-								label={ __( 'Disable Placeholder' ) }
+								label={ __( 'Disable Thumbnail' ) }
 								description={ __( 'Choose if the placeholder will show' ) }
 								options={ disablePlaceholderOptions }
 								value={ disablePlaceholder }
