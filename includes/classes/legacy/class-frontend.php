@@ -736,8 +736,8 @@ class Frontend extends Tour_Operator {
 			}
 		}
 		$new_crumbs[] = array(
-			'text' =>  get_the_title( ),
-			'url'  => get_permalink( ),
+			'text' => get_the_title(),
+			'url'  => get_permalink(),
 		);
 		$crumbs = $new_crumbs;
 		return $crumbs;
