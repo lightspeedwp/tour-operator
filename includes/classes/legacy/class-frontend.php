@@ -694,11 +694,11 @@ class Frontend extends Tour_Operator {
 	public function accommodation_breadcrumb_links( $crumbs ) {
 		$new_crumbs = array(
 			array(
-				'text' =>  esc_attr__( 'Home' , 'tour-operator' ),
+				'text' => esc_attr__( 'Home', 'tour-operator' ),
 				'url'  => home_url(),
 			),
 			array(
-				'text' =>  esc_attr__( 'Accommodation' , 'tour-operator' ),
+				'text' => esc_attr__( 'Accommodation', 'tour-operator' ),
 				'url'  => get_post_type_archive_link( 'accommodation' ),
 			),
 		);
@@ -718,7 +718,7 @@ class Frontend extends Tour_Operator {
 			foreach ( $all_destinations as $destination_index => $destination ) {
 				if ( 0 === $destination->post_parent || '0' === $destination->post_parent ) {
 					$new_crumbs[] = array(
-						'text' =>  $destination->post_title,
+						'text' => $destination->post_title,
 						'url'  => get_permalink( $destination->ID ),
 					);
 					unset( $all_destinations[ $destination_index ] );
@@ -729,15 +729,15 @@ class Frontend extends Tour_Operator {
 			if ( ! empty( $all_destinations ) ) {
 				foreach ( $all_destinations as $destination_index => $destination ) {
 					$new_crumbs[] = array(
-						'text' =>  $destination->post_title,
+						'text' => $destination->post_title,
 						'url'  => get_permalink( $destination->ID ),
 					);
 				}
 			}
 		}
 		$new_crumbs[] = array(
-			'text' =>  get_the_title( ),
-			'url'  => get_permalink( ),
+			'text' => get_the_title(),
+			'url'  => get_permalink(),
 		);
 		$crumbs = $new_crumbs;
 		return $crumbs;
@@ -752,11 +752,11 @@ class Frontend extends Tour_Operator {
 	public function tour_breadcrumb_links( $crumbs ) {
 		$new_crumbs = array(
 			array(
-				'text' =>  esc_attr__( 'Home' , 'tour-operator' ),
+				'text' => esc_attr__( 'Home', 'tour-operator' ),
 				'url'  => home_url(),
 			),
 			array(
-				'text' =>  esc_attr__( 'Tour' , 'tour-operator' ),
+				'text' => esc_attr__( 'Tour', 'tour-operator' ),
 				'url'  => get_post_type_archive_link( 'tour' ),
 			),
 		);
