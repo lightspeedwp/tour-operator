@@ -69,8 +69,8 @@ const blockAttributes = {
 		default: '9',
 	},
 	disableText: {
-		type: 'number',
-		default: 0,
+		type: 'string',
+		default: '0',
 	},
 	displayorder: {
 		type: 'string',
@@ -81,12 +81,12 @@ const blockAttributes = {
 		default: 'none',
 	},
 	carousel: {
-		type: 'number',
-		default: 1,
+		type: 'string',
+		default: '1',
 	},
 	disablePlaceholder: {
-		type: 'number',
-		default: 0,
+		type: 'string',
+		default: '0',
 	},
 	include: {
 		type: 'string',
@@ -165,7 +165,6 @@ registerBlockType( 'tour-operator/to-content', {
 			{ value: '1', label: __( 'Yes' ) },
 			{ value: '0', label: __( 'No' ) },
 		];
-
 		// Disable Text options
 		const disableTextOptions = [
 			{ value: '1', label: __( 'Yes' ) },
