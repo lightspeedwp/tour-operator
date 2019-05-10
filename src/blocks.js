@@ -9,4 +9,5 @@
  * Webpack is compiling as the input file.
  */
 
-import './blocks/block-tour/index.js';
+import './blocks/block-post-types/index.js';
+import './blocks/block-taxonomy/index.js';

@@ -1,5 +1,5 @@
 /**
- * BLOCK: my-block
+ * BLOCK: block-taxonomy
  *
  * Registering a basic block with Gutenberg.
  * Simple block, renders and saves the same content without any interactivity.
@@ -60,15 +60,15 @@ const blockAttributes = {
 		type: 'string',
 		default: '/',
 	},
-	postType: {
+	taxonomy: {
 		type: 'string',
-		default: 'tour',
+		default: 'accommodation-type',
 	},
 	displaylimit: {
 		type: 'string',
 		default: '9',
 	},
-	disableText: {
+	disableSingleLink: {
 		type: 'string',
 		default: '0',
 	},
@@ -76,7 +76,7 @@ const blockAttributes = {
 		type: 'string',
 		default: 'ASC',
 	},
-	orderby: {
+	orderBy: {
 		type: 'string',
 		default: 'none',
 	},
@@ -94,20 +94,20 @@ const blockAttributes = {
 	},
 };
 
-registerBlockType( 'tour-operator/to-content', {
+registerBlockType( 'tour-operator/block-taxonomy', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
-	title: __( 'Tour Operator Content' ), // Block title.
-	icon: 'admin-site', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
+	title: __( 'Tour Operator Taxonomies' ), // Block title.
+	icon: 'tag', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
 	category: 'common', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
 	keywords: [
-		__( 'TO Tours' ),
+		__( 'TO Taxonomies' ),
 		__( 'tours' ),
 		__( 'tour-operator' ),
 	],
 	attributes: blockAttributes,
 
 	edit( { attributes, className, setAttributes } ) {
-		const { columns, shortcodetitle, postType, displaylimit, displayorder, orderby, carousel, disablePlaceholder, seeMoreButton, seeMoreButtonText, seeMoreButtonLink, disableText, include } = attributes;
+		const { columns, shortcodetitle, taxonomy, displaylimit, displayorder, orderBy, carousel, disablePlaceholder, seeMoreButton, seeMoreButtonText, seeMoreButtonLink, disableSingleLink, include } = attributes;
 
 		function onChangeTitle( updatedTitle ) {
 			setAttributes( { shortcodetitle: updatedTitle } );
@@ -138,12 +138,15 @@ registerBlockType( 'tour-operator/to-content', {
 		}
 
 		// Post Type options
-		const postTypeOptions = [
-			{ value: 'tour', label: __( 'Tours' ) },
-			{ value: 'accommodation', label: __( 'Accommodations' ) },
-			{ value: 'destination', label: __( 'Destinations' ) },
-			{ value: 'review', label: __( 'Reviews' ) },
-			{ value: 'special', label: __( 'Specials' ) },
+		const taxonomyOptions = [
+			{ value: 'travel-style', label: __( 'Travel Styles' ) },
+			{ value: 'accommodation-type', label: __( 'Accommodation Types' ) },
+			{ value: 'accommodation-brand', label: __( 'Brands' ) },
+			{ value: 'facility', label: __( 'Facilities' ) },
+			{ value: 'continent', label: __( 'Continent' ) },
+			{ value: 'role', label: __( 'Roles' ) },
+			//{ value: 'region', label: __( 'Regions' ) },
+			//{ value: 'activity', label: __( 'Activities' ) },
 		];
 
 		// See More Buttom options
@@ -152,8 +155,8 @@ registerBlockType( 'tour-operator/to-content', {
 			{ value: '', label: __( 'No' ) },
 		];
 
-		// Orderby options
-		const orderbyOptions = [
+		// Order By options
+		const orderByOptions = [
 			{ value: 'none', label: __( 'None' ) },
 			{ value: 'ID', label: __( 'Post ID' ) },
 			{ value: 'name', label: __( 'Name' ) },
@@ -166,7 +169,7 @@ registerBlockType( 'tour-operator/to-content', {
 			{ value: '0', label: __( 'No' ) },
 		];
 		// Disable Text options
-		const disableTextOptions = [
+		const disableSingleLinkOptions = [
 			{ value: '1', label: __( 'Yes' ) },
 			{ value: '0', label: __( 'No' ) },
 		];
@@ -178,10 +181,10 @@ registerBlockType( 'tour-operator/to-content', {
 		];
 
 		return (
-			<div>
+			<div className={ className }>
 				{
 					<InspectorControls key="inspector">
-						<PanelBody title={ __( 'Shortcode Settings test' ) } >
+						<PanelBody title={ __( 'Shortcode Settings' ) } >
 							<TextControl
 								label={ __( 'Title' ) }
 								type="text"
@@ -214,9 +217,9 @@ registerBlockType( 'tour-operator/to-content', {
 							<SelectControl
 								label={ __( 'Type of Content' ) }
 								description={ __( 'Choose the parameter you wish your content to be' ) }
-								options={ postTypeOptions }
-								value={ postType }
-								onChange={ ( value ) => setAttributes( { postType: value } ) }
+								options={ taxonomyOptions }
+								value={ taxonomy }
+								onChange={ ( value ) => setAttributes( { taxonomy: value } ) }
 							/>
 							<RangeControl
 								label={ __( 'Columns' ) }
@@ -241,25 +244,25 @@ registerBlockType( 'tour-operator/to-content', {
 								onChange={ onChangeInclude }
 							/>
 							<SelectControl
-								label={ __( 'Orderby' ) }
-								description={ __( 'Choose the parameter you wish your testimonials to be ordered by' ) }
-								options={ orderbyOptions }
-								value={ orderby }
-								onChange={ ( value ) => setAttributes( { orderby: value } ) }
+								label={ __( 'Order By' ) }
+								description={ __( 'Choose the parameter you wish your items to be ordered by' ) }
+								options={ orderByOptions }
+								value={ orderBy }
+								onChange={ ( value ) => setAttributes( { orderBy: value } ) }
 							/>
 							<SelectControl
 								label={ __( 'Carousel' ) }
-								description={ __( 'Choose if the testimonials will show as carousel' ) }
+								description={ __( 'Choose if the items will show as carousel' ) }
 								options={ carouselOptions }
 								value={ carousel }
 								onChange={ ( value ) => setAttributes( { carousel: value } ) }
 							/>
 							<SelectControl
-								label={ __( 'Disable Excerpt' ) }
+								label={ __( 'Disable Single Link' ) }
 								description={ __( 'Choose if the text will show' ) }
-								options={ disableTextOptions }
-								value={ disableText }
-								onChange={ ( value ) => setAttributes( { disableText: value } ) }
+								options={ disableSingleLinkOptions }
+								value={ disableSingleLink }
+								onChange={ ( value ) => setAttributes( { disableSingleLink: value } ) }
 							/>
 							<SelectControl
 								label={ __( 'Disable Thumbnail' ) }
@@ -275,15 +278,15 @@ registerBlockType( 'tour-operator/to-content', {
 				<h2 className="lsx-title">
 					{ shortcodetitle }
 				</h2>
-				<div className="lsx-testimonial-body">
-						[lsx_to_post_type_widget post_type=&quot;{ postType }&quot; columns=&quot;{ columns }&quot; limit=&quot;{ displaylimit }&quot; disable_placeholder=&quot;{ disablePlaceholder }&quot; disable_text=&quot;{ disableText }&quot; order=&quot;{ displayorder }&quot; orderby=&quot;{ orderby }&quot; carousel=&quot;{ carousel }&quot; include=&quot;{ include }&quot; ]
+				<div className="lsx-taxonomy-body">
+						[lsx_to_taxonomy_widget taxonomy=&quot;{ taxonomy }&quot; columns=&quot;{ columns }&quot; limit=&quot;{ displaylimit }&quot; disable_placeholder=&quot;{ disablePlaceholder }&quot; disable_single_link=&quot;{ disableSingleLink }&quot; order=&quot;{ displayorder }&quot; orderby=&quot;{ orderBy }&quot; carousel=&quot;{ carousel }&quot; include=&quot;{ include }&quot; ]
 				</div>
 			</div>
 		);
 	},
 
 	save( { attributes, className } ) {
-		const { columns, shortcodetitle, postType, displaylimit, disablePlaceholder, displayorder, seeMoreButton, seeMoreButtonText, seeMoreButtonLink, disableText, orderby, carousel, include } = attributes;
+		const { columns, shortcodetitle, taxonomy, displaylimit, disablePlaceholder, displayorder, seeMoreButton, seeMoreButtonText, seeMoreButtonLink, disableSingleLink, orderBy, carousel, include } = attributes;
 
 		let seeMore;
 
@@ -307,8 +310,8 @@ registerBlockType( 'tour-operator/to-content', {
 				<h2 className="lsx-title">
 					{ shortcodetitle }
 				</h2>
-				<div className="lsx-testimonial-body">
-						[lsx_to_post_type_widget post_type=&quot;{ postType }&quot;  columns=&quot;{ columns }&quot; limit=&quot;{ displaylimit }&quot; disable_placeholder=&quot;{ disablePlaceholder }&quot; disable_text=&quot;{ disableText }&quot; order=&quot;{ displayorder }&quot; orderby=&quot;{ orderby }&quot; carousel=&quot;{ carousel }&quot; include=&quot;{ include }&quot; ]
+				<div className="lsx-taxonomy-body">
+						[lsx_to_taxonomy_widget taxonomy=&quot;{ taxonomy }&quot;  columns=&quot;{ columns }&quot; limit=&quot;{ displaylimit }&quot; disable_placeholder=&quot;{ disablePlaceholder }&quot; disable_single_link=&quot;{ disableSingleLink }&quot; order=&quot;{ displayorder }&quot; orderby=&quot;{ orderBy }&quot; carousel=&quot;{ carousel }&quot; include=&quot;{ include }&quot; ]
 				</div>
 				{ seeMore }
 			</div>
