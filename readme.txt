@@ -64,6 +64,10 @@ Yes you can! Join in on our [GitHub repository](https://github.com/lightspeeddev
 
 == Changelog ==
 
+= 1.2 =
+* Dev - Adding the Post Types blocks.
+* Dev - Adding the Taxonomy blocks.
+
 = 1.1.4 =
 * Fix - Adding the list of Envira Gallery tags to the wp_kses_post allowed filter method.
 * Dev - Added in WPForms Lite as a list of forms to choose for your enquiry.

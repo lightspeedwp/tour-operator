@@ -1,3 +1,7 @@
 .wp-block-tour-operator-block-taxonomy {
-
+	&.widget-white-bg {
+		.lsx-to-widget-content {
+			background-color: $light-gray;
+		}
+	}
 }

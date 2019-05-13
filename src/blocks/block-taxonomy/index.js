@@ -84,6 +84,10 @@ const blockAttributes = {
 		type: 'string',
 		default: '1',
 	},
+	disableText: {
+		type: 'string',
+		default: '0',
+	},
 	disablePlaceholder: {
 		type: 'string',
 		default: '0',
@@ -107,7 +111,7 @@ registerBlockType( 'tour-operator/block-taxonomy', {
 	attributes: blockAttributes,
 
 	edit( { attributes, className, setAttributes } ) {
-		const { columns, shortcodetitle, taxonomy, displaylimit, displayorder, orderBy, carousel, disablePlaceholder, seeMoreButton, seeMoreButtonText, seeMoreButtonLink, disableSingleLink, include } = attributes;
+		const { columns, shortcodetitle, taxonomy, displaylimit, displayorder, orderBy, carousel, disablePlaceholder, disableText, seeMoreButton, seeMoreButtonText, seeMoreButtonLink, disableSingleLink, include } = attributes;
 
 		function onChangeTitle( updatedTitle ) {
 			setAttributes( { shortcodetitle: updatedTitle } );
@@ -162,18 +166,21 @@ registerBlockType( 'tour-operator/block-taxonomy', {
 			{ value: 'name', label: __( 'Name' ) },
 			{ value: 'date', label: __( 'Date' ) },
 		];
-
 		// Carousel options
 		const carouselOptions = [
 			{ value: '1', label: __( 'Yes' ) },
 			{ value: '0', label: __( 'No' ) },
 		];
-		// Disable Text options
+		// Disable Single Link options
 		const disableSingleLinkOptions = [
 			{ value: '1', label: __( 'Yes' ) },
 			{ value: '0', label: __( 'No' ) },
 		];
-
+		// Disable Text options
+		const disableTextOptions = [
+			{ value: '1', label: __( 'Yes' ) },
+			{ value: '0', label: __( 'No' ) },
+		];
 		// Disable Placeholder options
 		const disablePlaceholderOptions = [
 			{ value: '1', label: __( 'Yes' ) },
@@ -265,6 +272,13 @@ registerBlockType( 'tour-operator/block-taxonomy', {
 								onChange={ ( value ) => setAttributes( { disableSingleLink: value } ) }
 							/>
 							<SelectControl
+								label={ __( 'Disable Excerpt' ) }
+								description={ __( 'Choose if the text will show' ) }
+								options={ disableTextOptions }
+								value={ disableText }
+								onChange={ ( value ) => setAttributes( { disableText: value } ) }
+							/>
+							<SelectControl
 								label={ __( 'Disable Thumbnail' ) }
 								description={ __( 'Choose if the placeholder will show' ) }
 								options={ disablePlaceholderOptions }
@@ -279,14 +293,14 @@ registerBlockType( 'tour-operator/block-taxonomy', {
 					{ shortcodetitle }
 				</h2>
 				<div className="lsx-taxonomy-body">
-						[lsx_to_taxonomy_widget taxonomy=&quot;{ taxonomy }&quot; columns=&quot;{ columns }&quot; limit=&quot;{ displaylimit }&quot; disable_placeholder=&quot;{ disablePlaceholder }&quot; disable_single_link=&quot;{ disableSingleLink }&quot; order=&quot;{ displayorder }&quot; orderby=&quot;{ orderBy }&quot; carousel=&quot;{ carousel }&quot; include=&quot;{ include }&quot; ]
+						[lsx_to_taxonomy_widget taxonomy=&quot;{ taxonomy }&quot; columns=&quot;{ columns }&quot; limit=&quot;{ displaylimit }&quot; disable_placeholder=&quot;{ disablePlaceholder }&quot; disable_text=&quot;{ disableText }&quot; disable_single_link=&quot;{ disableSingleLink }&quot; order=&quot;{ displayorder }&quot; orderby=&quot;{ orderBy }&quot; carousel=&quot;{ carousel }&quot; include=&quot;{ include }&quot; ]
 				</div>
 			</div>
 		);
 	},
 
 	save( { attributes, className } ) {
-		const { columns, shortcodetitle, taxonomy, displaylimit, disablePlaceholder, displayorder, seeMoreButton, seeMoreButtonText, seeMoreButtonLink, disableSingleLink, orderBy, carousel, include } = attributes;
+		const { columns, shortcodetitle, taxonomy, displaylimit, disablePlaceholder, displayorder, seeMoreButton, seeMoreButtonText, seeMoreButtonLink, disableSingleLink, disableText, orderBy, carousel, include } = attributes;
 
 		let seeMore;
 
@@ -311,7 +325,7 @@ registerBlockType( 'tour-operator/block-taxonomy', {
 					{ shortcodetitle }
 				</h2>
 				<div className="lsx-taxonomy-body">
-						[lsx_to_taxonomy_widget taxonomy=&quot;{ taxonomy }&quot;  columns=&quot;{ columns }&quot; limit=&quot;{ displaylimit }&quot; disable_placeholder=&quot;{ disablePlaceholder }&quot; disable_single_link=&quot;{ disableSingleLink }&quot; order=&quot;{ displayorder }&quot; orderby=&quot;{ orderBy }&quot; carousel=&quot;{ carousel }&quot; include=&quot;{ include }&quot; ]
+						[lsx_to_taxonomy_widget taxonomy=&quot;{ taxonomy }&quot;  columns=&quot;{ columns }&quot; limit=&quot;{ displaylimit }&quot; disable_placeholder=&quot;{ disablePlaceholder }&quot; disable_text=&quot;{ disableText }&quot; disable_single_link=&quot;{ disableSingleLink }&quot; order=&quot;{ displayorder }&quot; orderby=&quot;{ orderBy }&quot; carousel=&quot;{ carousel }&quot; include=&quot;{ include }&quot; ]
 				</div>
 				{ seeMore }
 			</div>
