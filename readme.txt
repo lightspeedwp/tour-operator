@@ -1,9 +1,9 @@
 === Tour Operators ===
 Contributors: feedmymedia
-Donate link: https://www.lsdev.biz/product/tour-operator-plugin/
+Donate link: https://tour-operator.lsdev.biz/
 Tags: tour operator, tour operators, tour, tours, tour itinerary, tour itineraries, accommodation, accommodation listings, destinations, regions, tourism, lsx
 Requires at least: 4.3
-Tested up to: 4.9
+Tested up to: 5.1.2
 Requires PHP: 7.0
 Stable tag: 1.1.4
 License: GPLv3
@@ -30,29 +30,31 @@ We’re firm believers in open source - that’s why we’re releasing the Tour 
 The Tour Operator plugin is actively developed with new features and exciting enhancements all the time. Keep track on the [Tour Operator GitHub repository](https://github.com/lightspeeddevelopment/tour-operator).
 Report any bugs via github issues.
 
-== Installation ==
+= Tour Operator Extensions =
 
-1. Upload the plugin files to the `/wp-content/plugins/tour-operator` directory, or install the plugin through the WordPress plugins screen directly.
-2. Activate the plugin through the 'Plugins' screen in WordPress
-3. Use the Settings->Tour Operator screen to configure the plugin
+Do you require functionality that the plugin alone does not provide? We've tried to forsee your requirements and provide you with a free solution! Check out [our extensions](https://tour-operator.lsdev.biz/extensions/), and enhance the power of your Tour Operator website! 
 
-== Frequently Asked Questions ==
+= Tour Operator Documentation =
 
-= Where can I find Tour Operator plugin documentation and user guides? =
-For help setting up and configuring the Tour Operator plugin please refer to our [user guide](https://www.lsdev.biz/documentation/tour-operator/)
+* [Getting Started](https://tour-operator.lsdev.biz/documentation/getting-started/) 
+* [General Settings](https://tour-operator.lsdev.biz/documentation/core-feature/) 
+* [Creating your Homepage](https://tour-operator.lsdev.biz/documentation/homepage/) 
+* [Custom Categories](https://tour-operator.lsdev.biz/documentation/custom-categories/) 
+* [Widgets](https://tour-operator.lsdev.biz/documentation/widgets/) 
+* [3rd-Party Plugins](https://tour-operator.lsdev.biz/documentation/3rd-party-plugins/) 
+* [Accommodations](https://tour-operator.lsdev.biz/documentation/core-feature/accommodation/)
+* [Destinations](https://tour-operator.lsdev.biz/documentation/core-feature/destinations/) 
+* [Tours](https://tour-operator.lsdev.biz/documentation/core-feature/tours/) 
 
-= Where can I get support or talk to other users =
-If you get stuck, you can ask for help in the [Tour Operator plugin forum](https://wordpress.org/support/plugin/tour-operator).
-For help with premium add-ons from LightSpeed, use [our contact page](https://www.lsdev.biz/contact-us/)
+= Tour Operator Help & Support =
 
-= Will the Tour Operator plugin work with my theme 
-Yes; the Tour Operator plugin will work with any theme, but may require some styling to make it match nicely. Please see our [codex](https://www.lsdev.biz/documentation/lsx/) for help. If you're looking for a theme with built in Tour Operator plugin integration we recommend [LSX Theme](https://www.lsdev.biz/product/lsx-wordpress-theme/).
+Take a look at all our [Frequently Asked Questions](https://tour-operator.lsdev.biz/documentation/faqs/), we are sure you'll find what you're looking for.
 
-= Where can I report bugs or contribute to the project? =
-Bugs can be reported either in our support forum or preferably on the [Tour Operator GitHub repository](https://github.com/lightspeeddevelopment/lsx/issues).
+If you are experiencing issues with the Tour Operator Plugin, please log any bug issues you are having on the [Tour Operator Github Issues](https://github.com/lightspeeddevelopment/tour-operator/issues) page.
 
-= The Tour Operator plugin is awesome! Can I contribute? =
-Yes you can! Join in on our [GitHub repository](https://github.com/lightspeeddevelopment/tour-operator) :)
+= Contributing to the Tour Operator Plugin =
+
+If you're a developer who's spotted a bug issue and have a fix, or simply have functionality you think would extend our plugin, we are always happy to accept your contribution! Visit the [Tour Operator Plugin on Github](https://github.com/lightspeeddevelopment/tour-operator) and submit a Pull Request with your updates.
 
 == Screenshots ==
 
