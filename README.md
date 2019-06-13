@@ -1,4 +1,4 @@
-<p align="center"><a href="https://tour-operator.lsdev.biz/"><img src="https://tour-operator.lsdev.biz/wp-content/uploads/2019/04/logo-tour-operator.png" alt="Tour Operator" width="300"></a></p>
+<h1 align="center"><a href="https://tour-operator.lsdev.biz/"><img src="https://tour-operator.lsdev.biz/wp-content/uploads/2019/04/logo-tour-operator.png" alt="Tour Operator" width="300"></a></h1>
 
 <p align="center">
   <a href="http://gulpjs.com/"><img src="https://img.shields.io/badge/built%20with-gulp.js-green.svg" alt="Built with gulp.js"></a> 
@@ -6,6 +6,7 @@
  <a href="https://codeclimate.com/github/lightspeeddevelopment/tour-operator/"><img src="https://codeclimate.com/github/lightspeeddevelopment/tour-operator/badges/gpa.svg" alt="Code Climate"></a>
  <a href="https://scrutinizer-ci.com/g/lightspeeddevelopment/tour-operator/?branch=master"><img src="https://scrutinizer-ci.com/g/lightspeeddevelopment/tour-operator/badges/quality-score.png?b=master" alt="Scrutinizer"></a>
 <a href="https://coveralls.io/github/lightspeeddevelopment/tour-operator?branch=master"><img src="https://coveralls.io/repos/github/lightspeeddevelopment/tour-operator/badge.svg?branch=master" alt="Coverals"></a>
+<a href="https://woocommerce.com/?aff=2873/"><img src="https://lsx.lsdev.biz/wp-content/uploads/2019/06/687474703a2f2f696d672e736869656c64732e696f2f62616467652f44657369676e6564253230666f722d576f6f436f6d6d657263652d6134363439372e737667-1.png" alt="Made for Woocommerce"></a>
 </p>
 
 The [Tour Operator plugin](https://tour-operator.lsdev.biz/) comes with three core features that are essential to any tour operator: Accommodation, Destinations and Tours. 
@@ -33,6 +34,8 @@ Do you require functionality that the plugin alone does not provide? We've tried
 Take a look at all our [Frequently Asked Questions](https://tour-operator.lsdev.biz/documentation/faqs/), we are sure you'll find what you're looking for.
 
 If you are experiencing issues with the Tour Operator Plugin, please log any bug issues you are having on the [Tour Operator Github Issues](https://github.com/lightspeeddevelopment/tour-operator/issues) page.
+
+You can also send an email to our [Support Team](support@lsdev.biz) if you have a request for the LightSpeed Development team.
 
 ## Contributing to the Tour Operator Plugin
 
