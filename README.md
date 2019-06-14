@@ -6,7 +6,6 @@
  <a href="https://codeclimate.com/github/lightspeeddevelopment/tour-operator/"><img src="https://codeclimate.com/github/lightspeeddevelopment/tour-operator/badges/gpa.svg" alt="Code Climate"></a>
  <a href="https://scrutinizer-ci.com/g/lightspeeddevelopment/tour-operator/?branch=master"><img src="https://scrutinizer-ci.com/g/lightspeeddevelopment/tour-operator/badges/quality-score.png?b=master" alt="Scrutinizer"></a>
 <a href="https://coveralls.io/github/lightspeeddevelopment/tour-operator?branch=master"><img src="https://coveralls.io/repos/github/lightspeeddevelopment/tour-operator/badge.svg?branch=master" alt="Coverals"></a>
-<a href="https://woocommerce.com/?aff=2873/"><img src="https://lsx.lsdev.biz/wp-content/uploads/2019/06/687474703a2f2f696d672e736869656c64732e696f2f62616467652f44657369676e6564253230666f722d576f6f436f6d6d657263652d6134363439372e737667-1.png" alt="Made for Woocommerce"></a>
 </p>
 
 The [Tour Operator plugin](https://tour-operator.lsdev.biz/) comes with three core features that are essential to any tour operator: Accommodation, Destinations and Tours. 
