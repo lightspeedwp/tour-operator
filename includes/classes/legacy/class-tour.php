@@ -222,7 +222,7 @@ class Tour {
 			'show_size' => false,
 		);
 
-		$fields = apply_filters( 'lsx_to_tours_itinerary_fields', $fields );		
+		$fields = apply_filters( 'lsx_to_tours_itinerary_fields', $fields );
 
 		if ( post_type_exists( 'accommodation' ) ) {
 			$fields[] = array(
@@ -282,7 +282,7 @@ class Tour {
 				'allow_none' => true,
 				'cols'       => 12,
 			);
-		}		
+		}
 
 		if ( $this->is_wetu_active ) {
 			$fields[] = array(
