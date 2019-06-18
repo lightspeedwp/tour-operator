@@ -21,7 +21,7 @@ Its destination management features make featuring destinations super simple, an
 Detailed accommodation listings show off room facilities, image galleries, video material, reviews, interactive digital tours, special offers, team members and more.
 
 = Works with the free LSX Theme =
-We've also made a fantastic [free theme](https://www.lsdev.biz/product/lsx-wordpress-theme/) that work well with the Tour Operator plugin.
+The Tour Operators plugin is designed for [LSX Theme](https://lsx.lsdev.biz/) that work well with the Tour Operator plugin.
 
 = It's free, and always will be. =
 We’re firm believers in open source - that’s why we’re releasing the Tour Operators plugin for free, forever. We offer free support on the [Tour Operator support forums](https://wordpress.org/support/plugin/tour-operator). 
