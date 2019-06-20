@@ -48,6 +48,10 @@ const blockAttributes = {
 		type: 'string',
 		default: 'Featured',
 	},
+	shortcodeSubTitle: {
+		type: 'string',
+		default: '',
+	},
 	seeMoreButton: {
 		type: 'string',
 		default: '',
@@ -111,10 +115,14 @@ registerBlockType( 'tour-operator/block-taxonomy', {
 	attributes: blockAttributes,
 
 	edit( { attributes, className, setAttributes } ) {
-		const { columns, shortcodetitle, taxonomy, displaylimit, displayorder, orderBy, carousel, disablePlaceholder, disableText, seeMoreButton, seeMoreButtonText, seeMoreButtonLink, disableSingleLink, include } = attributes;
+		const { columns, shortcodetitle, shortcodeSubTitle, taxonomy, displaylimit, displayorder, orderBy, carousel, disablePlaceholder, disableText, seeMoreButton, seeMoreButtonText, seeMoreButtonLink, disableSingleLink, include } = attributes;
 
 		function onChangeTitle( updatedTitle ) {
 			setAttributes( { shortcodetitle: updatedTitle } );
+		}
+
+		function onChangeSubTitle( updatedSubTitle ) {
+			setAttributes( { shortcodeSubTitle: updatedSubTitle } );
 		}
 
 		function onChangeseeMoreButtonText( updatedseeMoreButtonText ) {
@@ -197,6 +205,12 @@ registerBlockType( 'tour-operator/block-taxonomy', {
 								type="text"
 								value={ shortcodetitle }
 								onChange={ onChangeTitle }
+							/>
+							<TextControl
+								label={ __( 'Sub Title' ) }
+								type="text"
+								value={ shortcodeSubTitle }
+								onChange={ onChangeSubTitle }
 							/>
 							<SelectControl
 								label={ __( 'Add "See More Buttom"' ) }
@@ -290,7 +304,7 @@ registerBlockType( 'tour-operator/block-taxonomy', {
 				}
 
 				<h2 className="lsx-title">
-					{ shortcodetitle }
+					{ shortcodetitle }<small>{ shortcodeSubTitle }</small>
 				</h2>
 				<div className="lsx-taxonomy-body">
 						[lsx_to_taxonomy_widget taxonomy=&quot;{ taxonomy }&quot; columns=&quot;{ columns }&quot; limit=&quot;{ displaylimit }&quot; disable_placeholder=&quot;{ disablePlaceholder }&quot; disable_text=&quot;{ disableText }&quot; disable_single_link=&quot;{ disableSingleLink }&quot; order=&quot;{ displayorder }&quot; orderby=&quot;{ orderBy }&quot; carousel=&quot;{ carousel }&quot; include=&quot;{ include }&quot; ]
@@ -300,7 +314,7 @@ registerBlockType( 'tour-operator/block-taxonomy', {
 	},
 
 	save( { attributes, className } ) {
-		const { columns, shortcodetitle, taxonomy, displaylimit, disablePlaceholder, displayorder, seeMoreButton, seeMoreButtonText, seeMoreButtonLink, disableSingleLink, disableText, orderBy, carousel, include } = attributes;
+		const { columns, shortcodetitle, shortcodeSubTitle, taxonomy, displaylimit, disablePlaceholder, displayorder, seeMoreButton, seeMoreButtonText, seeMoreButtonLink, disableSingleLink, disableText, orderBy, carousel, include } = attributes;
 
 		let seeMore;
 
@@ -322,7 +336,7 @@ registerBlockType( 'tour-operator/block-taxonomy', {
 		return (
 			<div className={ className }>
 				<h2 className="lsx-title">
-					{ shortcodetitle }
+					{ shortcodetitle }<small>{ shortcodeSubTitle }</small>
 				</h2>
 				<div className="lsx-taxonomy-body">
 						[lsx_to_taxonomy_widget taxonomy=&quot;{ taxonomy }&quot;  columns=&quot;{ columns }&quot; limit=&quot;{ displaylimit }&quot; disable_placeholder=&quot;{ disablePlaceholder }&quot; disable_text=&quot;{ disableText }&quot; disable_single_link=&quot;{ disableSingleLink }&quot; order=&quot;{ displayorder }&quot; orderby=&quot;{ orderBy }&quot; carousel=&quot;{ carousel }&quot; include=&quot;{ include }&quot; ]

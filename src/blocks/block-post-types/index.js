@@ -48,6 +48,10 @@ const blockAttributes = {
 		type: 'string',
 		default: 'Featured',
 	},
+	shortcodeSubTitle: {
+		type: 'string',
+		default: '',
+	},
 	seeMoreButton: {
 		type: 'string',
 		default: '',
@@ -107,10 +111,14 @@ registerBlockType( 'tour-operator/block-post-types', {
 	attributes: blockAttributes,
 
 	edit( { attributes, className, setAttributes } ) {
-		const { columns, shortcodetitle, postType, displaylimit, displayorder, orderby, carousel, disablePlaceholder, seeMoreButton, seeMoreButtonText, seeMoreButtonLink, disableText, include } = attributes;
+		const { columns, shortcodetitle, shortcodeSubTitle, postType, displaylimit, displayorder, orderby, carousel, disablePlaceholder, seeMoreButton, seeMoreButtonText, seeMoreButtonLink, disableText, include } = attributes;
 
 		function onChangeTitle( updatedTitle ) {
 			setAttributes( { shortcodetitle: updatedTitle } );
+		}
+
+		function onChangeSubTitle( updatedSubTitle ) {
+			setAttributes( { shortcodeSubTitle: updatedSubTitle } );
 		}
 
 		function onChangeseeMoreButtonText( updatedseeMoreButtonText ) {
@@ -187,6 +195,12 @@ registerBlockType( 'tour-operator/block-post-types', {
 								type="text"
 								value={ shortcodetitle }
 								onChange={ onChangeTitle }
+							/>
+							<TextControl
+								label={ __( 'Sub Title' ) }
+								type="text"
+								value={ shortcodeSubTitle }
+								onChange={ onChangeSubTitle }
 							/>
 							<SelectControl
 								label={ __( 'Add "See More Buttom"' ) }
@@ -273,7 +287,7 @@ registerBlockType( 'tour-operator/block-post-types', {
 				}
 
 				<h2 className="lsx-title">
-					{ shortcodetitle }
+					{ shortcodetitle }<small>{ shortcodeSubTitle }</small>
 				</h2>
 				<div className="lsx-testimonial-body">
 						[lsx_to_post_type_widget post_type=&quot;{ postType }&quot; columns=&quot;{ columns }&quot; limit=&quot;{ displaylimit }&quot; disable_placeholder=&quot;{ disablePlaceholder }&quot; disable_text=&quot;{ disableText }&quot; order=&quot;{ displayorder }&quot; orderby=&quot;{ orderby }&quot; carousel=&quot;{ carousel }&quot; include=&quot;{ include }&quot; ]
@@ -283,7 +297,7 @@ registerBlockType( 'tour-operator/block-post-types', {
 	},
 
 	save( { attributes, className } ) {
-		const { columns, shortcodetitle, postType, displaylimit, disablePlaceholder, displayorder, seeMoreButton, seeMoreButtonText, seeMoreButtonLink, disableText, orderby, carousel, include } = attributes;
+		const { columns, shortcodetitle, shortcodeSubTitle, postType, displaylimit, disablePlaceholder, displayorder, seeMoreButton, seeMoreButtonText, seeMoreButtonLink, disableText, orderby, carousel, include } = attributes;
 
 		let seeMore;
 
@@ -305,7 +319,7 @@ registerBlockType( 'tour-operator/block-post-types', {
 		return (
 			<div className={ className }>
 				<h2 className="lsx-title">
-					{ shortcodetitle }
+					{ shortcodetitle }<small>{ shortcodeSubTitle }</small>
 				</h2>
 				<div className="lsx-testimonial-body">
 						[lsx_to_post_type_widget post_type=&quot;{ postType }&quot;  columns=&quot;{ columns }&quot; limit=&quot;{ displaylimit }&quot; disable_placeholder=&quot;{ disablePlaceholder }&quot; disable_text=&quot;{ disableText }&quot; order=&quot;{ displayorder }&quot; orderby=&quot;{ orderby }&quot; carousel=&quot;{ carousel }&quot; include=&quot;{ include }&quot; ]
