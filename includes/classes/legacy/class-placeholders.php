@@ -138,7 +138,7 @@ class Placeholders {
 
 				case 'lsx-thumbnail-wide':
 				default:
-					$holdit_width = '350x230';
+					$holdit_width = '350x168';
 					break;
 			}
 		}
