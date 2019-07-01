@@ -236,11 +236,15 @@ $metabox['fields'][] = array(
 	'type' => 'checkbox',
 );
 
+$google_api_key = '';
+if ( isset( tour_operator()->options['api']['googlemaps_key'] ) && ! empty( tour_operator()->options['api']['googlemaps_key'] ) ) {
+	$google_api_key = tour_operator()->options['api']['googlemaps_key'];
+}
 $metabox['fields'][] = array(
 	'id'             => 'location',
 	'name'           => esc_html__( 'Location', 'tour-operator' ),
 	'type'           => 'gmap',
-	'google_api_key' => tour_operator()->options['api']['googlemaps_key'],
+	'google_api_key' => $google_api_key,
 );
 
 $metabox['fields'][] = array(

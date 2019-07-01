@@ -9,6 +9,8 @@
 
 namespace lsx\legacy;
 
+use stdClass;
+
 // Setup the post connections.
 class Tour_Operator {
 
@@ -333,7 +335,7 @@ class Tour_Operator {
 
 	public function set_map_vars() {
 		$this->map_post_types = array( 'accommodation','activity','destination' );
-		$this->markers        = new stdClass();
+		$this->markers        = new \stdClass;
 
 		if ( ( false !== $this->options && isset( $this->options['api']['googlemaps_key'] ) ) || defined( 'GOOGLEMAPS_API_KEY' ) ) {
 			if ( ! defined( 'GOOGLEMAPS_API_KEY' ) ) {

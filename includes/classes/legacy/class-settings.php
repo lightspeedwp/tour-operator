@@ -76,7 +76,7 @@ class Settings extends Tour_Operator {
 					if ( isset( $this->options[ $post_type ]['googlemaps_marker'] ) && '' !== $this->options[ $post_type ]['googlemaps_marker'] ) {
 						$this->markers->post_types[ $post_type ] = $this->options[ $post_type ]['googlemaps_marker'];
 					} else {
-						$this->markers->post_types[ $post_type ] = LSX_TO_MAPS_URL . 'assets/img/' . $post_type . '-marker.png';
+						$this->markers->post_types[ $post_type ] = LSX_TO_URL . 'assets/img/markers/' . $post_type . '-marker.png';
 					}
 					add_action( 'lsx_to_framework_' . $post_type . '_tab_content', array( $this , 'post_type_map_settings' ), 10, 1 );
 				}
@@ -569,7 +569,7 @@ class Settings extends Tour_Operator {
 			</th>
 			<td>
 				<input type="checkbox" {{#if disable_single}} checked="checked" {{/if}} name="disable_single" />
-				<small><?php esc_html_e( 'When disabled you will be redirected to the homepage when trying to access a single tour page.', 'tour-operator' ); ?></small>
+				<small><?php esc_html_e( 'When disabled you will be redirected to the homepage when trying to access the single ', 'tour-operator' ); echo esc_attr( $post_type ); ?></small>
 			</td>
 		</tr>
 		<tr class="form-field">
