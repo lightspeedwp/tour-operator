@@ -42,6 +42,20 @@
 
 				<p class="info"><?php echo wp_kses_post( $message ); ?></p>
 
+				<tr class="form-field-wrap">
+					<th class="tour-operator_table_heading" style="padding-bottom:0px;" scope="row" colspan="2">
+						<h4 style="margin-bottom:0px;"><span><?php _e( 'Google Maps API', 'tour-operator' ); ?></span></h4>
+					</th>
+				</tr>
+				<tr class="form-field">
+					<th scope="row">
+						<i class="dashicons-before dashicons-admin-network"></i><label for="title"> <?php _e( 'Key', 'tour-operator' ); ?></label>
+					</th>
+					<td>
+						<input type="text" {{#if googlemaps_key}} value="{{googlemaps_key}}" {{/if}} name="googlemaps_key" />
+					</td>
+				</tr>				
+
 				<?php
 					do_action( 'lsx_to_framework_api_tab_content', 'api' );
 				?>

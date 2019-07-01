@@ -68,6 +68,18 @@ class Settings extends Tour_Operator {
 
 			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'dashboard_tab_content' ), 10, 1 );
 			add_action( 'lsx_to_framework_display_tab_content', array( $this, 'display_tab_content' ), 10, 1 );
+			add_action( 'lsx_to_framework_display_tab_content', array( $this, 'map_display_settings' ), 12, 1 );
+			if ( ! empty( $post_types ) ) {
+				foreach ( $this->post_types as $post_type ) {
+	
+					if ( isset( $this->options[ $post_type ]['googlemaps_marker'] ) && '' !== $this->options[ $post_type ]['googlemaps_marker'] ) {
+						$this->markers->post_types[ $post_type ] = $this->options[ $post_type ]['googlemaps_marker'];
+					} else {
+						$this->markers->post_types[ $post_type ] = LSX_TO_MAPS_URL . 'assets/img/' . $post_type . '-marker.png';
+					}
+					add_action( 'lsx_to_framework_' . $post_type . '_tab_content', array( $this , 'post_type_map_settings' ), 10, 1 );
+				}
+			}			
 		}
 	}
 
@@ -667,4 +679,158 @@ class Settings extends Tour_Operator {
 		do_action( 'lsx_to_framework_api_tab_content', $tab );
 	}
 
+	/**
+	 * outputs the post type map settings
+	 *
+	 * @param $tab string
+	 * @return null
+	 */
+	public function post_type_map_settings( $tab = 'general' ) {
+		$this->map_marker_field();
+	}
+
+	/**
+	 * outputs the map marker upload field
+	 */
+	public function map_marker_field() { ?>
+
+		<tr class="form-field default-marker-wrap">
+			<th scope="row">
+				<label for="banner"> <?php esc_html_e( 'Choose a default marker', 'tour-operator' ); ?></label>
+			</th>
+			<td>
+				<input class="input_image_id" type="hidden" {{#if googlemaps_marker_id}} value="{{googlemaps_marker_id}}" {{/if}} name="googlemaps_marker_id" />
+				<input class="input_image" type="hidden" {{#if googlemaps_marker}} value="{{googlemaps_marker}}" {{/if}} name="googlemaps_marker" />
+				<div class="thumbnail-preview">
+					{{#if googlemaps_marker}}<img src="{{googlemaps_marker}}" width="48" style="color:black;" />{{/if}}
+				</div>
+				<a {{#if googlemaps_marker}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
+				<a {{#unless googlemaps_marker}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
+			</td>
+		</tr>
+ 		<?php
+	}
+
+	/**
+	 * outputs the cluster marker upload field
+	 */
+	public function cluster_marker_field() { ?>
+		<tr class="form-field default-cluster-small-wrap">
+			<th scope="row">
+				<label for="banner"> <?php esc_html_e( 'Choose a cluster marker', 'tour-operator' ); ?></label>
+			</th>
+			<td>
+				<input class="input_image_id" type="hidden" {{#if gmap_cluster_small_id}} value="{{gmap_cluster_small_id}}" {{/if}} name="gmap_cluster_small_id" />
+				<input class="input_image" type="hidden" {{#if gmap_cluster_small}} value="{{gmap_cluster_small}}" {{/if}} name="gmap_cluster_small" />
+				<div class="thumbnail-preview">
+					{{#if gmap_cluster_small}}<img src="{{gmap_cluster_small}}" width="48" style="color:black;" />{{/if}}
+				</div>
+				<a {{#if gmap_cluster_small}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
+				<a {{#unless gmap_cluster_small}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
+			</td>
+		</tr>
+		<?php
+	}
+
+	/**
+	 * outputs the start/end marker upload field
+	 */
+	public function start_end_marker_fields() { ?>
+		<tr class="form-field default-cluster-small-wrap">
+			<th scope="row">
+				<label for="banner"> <?php esc_html_e( 'Choose a start marker', 'tour-operator' ); ?></label>
+			</th>
+			<td>
+				<input class="input_image_id" type="hidden" {{#if gmap_marker_start_id}} value="{{gmap_marker_start_id}}" {{/if}} name="gmap_marker_start_id" />
+				<input class="input_image" type="hidden" {{#if gmap_marker_start}} value="{{gmap_marker_start}}" {{/if}} name="gmap_marker_start" />
+				<div class="thumbnail-preview">
+					{{#if gmap_marker_start}}<img src="{{gmap_marker_start}}" width="48" style="color:black;" />{{/if}}
+				</div>
+				<a {{#if gmap_marker_start}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
+				<a {{#unless gmap_marker_start}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
+			</td>
+		</tr>
+		<tr class="form-field default-cluster-small-wrap">
+			<th scope="row">
+				<label for="banner"> <?php esc_html_e( 'Choose a end marker', 'tour-operator' ); ?></label>
+			</th>
+			<td>
+				<input class="input_image_id" type="hidden" {{#if gmap_marker_end_id}} value="{{gmap_marker_end_id}}" {{/if}} name="gmap_marker_end_id" />
+				<input class="input_image" type="hidden" {{#if gmap_marker_end}} value="{{gmap_marker_end}}" {{/if}} name="gmap_marker_end" />
+				<div class="thumbnail-preview">
+					{{#if gmap_marker_end}}<img src="{{gmap_marker_end}}" width="48" style="color:black;" />{{/if}}
+				</div>
+				<a {{#if gmap_marker_end}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
+				<a {{#unless gmap_marker_end}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
+			</td>
+		</tr>
+		<?php
+	}
+
+	/**
+	 * outputs the map marker upload field
+	 */
+	public function fusion_tables_fields() { ?>
+		<tr class="form-field">
+			<th scope="row" colspan="2">
+				<label>
+					<h3><?php esc_html_e('Fusion Tables Settings','tour-operator'); ?></h3>
+				</label>
+			</th>
+		</tr>
+		<tr class="form-field">
+			<th scope="row">
+				<label for="fusion_tables_enabled"><?php esc_html_e('Enable Fusion Tables','tour-operator'); ?></label>
+			</th>
+			<td>
+				<input type="checkbox" {{#if fusion_tables_enabled}} checked="checked" {{/if}} name="fusion_tables_enabled" />
+			</td>
+		</tr>
+		<tr class="form-field">
+			<th scope="row">
+				<label for="title"><?php esc_html_e('Border Width','tour-operator'); ?></label>
+			</th>
+			<td>
+				<input type="text" maxlength="2" {{#if fusion_tables_width_border}} value="{{fusion_tables_width_border}}" {{/if}} name="fusion_tables_width_border" />
+				<br>
+				<small>Default value: 2</small>
+			</td>
+		</tr>
+		<tr class="form-field">
+			<th scope="row">
+				<label for="title"><?php esc_html_e('Border Colour','tour-operator'); ?></label>
+			</th>
+			<td>
+				<input type="text" maxlength="7" {{#if fusion_tables_colour_border}} value="{{fusion_tables_colour_border}}" {{/if}} name="fusion_tables_colour_border" />
+				<br>
+				<small>Default value: #000000</small>
+			</td>
+		</tr>
+		<tr class="form-field">
+			<th scope="row">
+				<label for="title"><?php esc_html_e('Background Colour','tour-operator'); ?></label>
+			</th>
+			<td>
+				<input type="text" maxlength="7" {{#if fusion_tables_colour_background}} value="{{fusion_tables_colour_background}}" {{/if}} name="fusion_tables_colour_background" />
+				<br>
+				<small>Default value: #000000</small>
+			</td>
+		</tr>
+ 		<?php
+ 	}	
+
+	/**
+	 * outputs the display settings for the map tab
+	 *
+	 * @param $tab string
+	 * @return null
+	 */
+	public function map_display_settings( $tab = 'general' ){
+		if ( 'maps' === $tab ) {
+			$this->map_marker_field();
+			$this->cluster_marker_field();
+			$this->start_end_marker_fields();
+			$this->fusion_tables_fields();
+		}
+	}	
 }
