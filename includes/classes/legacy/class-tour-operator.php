@@ -115,6 +115,33 @@ class Tour_Operator {
 	public $is_wetu_active = false;
 
 	/**
+	 * Holds an array of the post types you can assign Map Markers to.
+	 *
+	 * @since 1.1.5
+	 *
+	 * @var array
+	 */
+	public $map_post_type = array();
+
+	/**
+	 * Holds an array of the marker URLs
+	 *
+	 * @since 1.1.5
+	 *
+	 * @var object
+	 */
+	public $markers = false;
+	
+	/**
+	 * Holds the Google API Key
+	 *
+	 * @since 1.1.5
+	 *
+	 * @var string
+	 */
+	public $google_api_key = false;	
+
+	/**
 	 * Holds the textdomain slug.
 	 *
 	 * @since 1.0.0
@@ -300,6 +327,59 @@ class Tour_Operator {
 		$this->base_taxonomies   = $this->taxonomies;
 		$this->taxonomies        = apply_filters( 'lsx_to_framework_taxonomies', $this->taxonomies );
 		$this->taxonomies_plural = apply_filters( 'lsx_to_framework_taxonomies_plural', $this->taxonomies_plural );
+
+		$this->set_map_vars();
+	}
+
+	public function set_map_vars() {
+		$this->map_post_types = array( 'accommodation','activity','destination' );
+		$this->markers        = new stdClass();
+
+		if ( ( false !== $this->options && isset( $this->options['api']['googlemaps_key'] ) ) || defined( 'GOOGLEMAPS_API_KEY' ) ) {
+			if ( ! defined( 'GOOGLEMAPS_API_KEY' ) ) {
+				$this->google_api_key = $this->options['api']['googlemaps_key'];
+			} else {
+				$this->google_api_key = GOOGLEMAPS_API_KEY;
+			}
+
+			if ( isset( $this->options['display']['googlemaps_marker'] ) && '' !== $this->options['display']['googlemaps_marker'] ) {
+				$this->markers->default_marker = $this->options['display']['googlemaps_marker'];
+			} else {
+				$this->markers->default_marker = LSX_TO_URL . 'assets/img/markers/gmaps-mark.svg';
+			}
+
+			if ( isset( $this->options['display']['gmap_cluster_small'] ) && '' !== $this->options['display']['gmap_cluster_small'] ) {
+				$this->markers->cluster_small = $this->options['display']['gmap_cluster_small'];
+			}else{
+				$this->markers->cluster_small = LSX_TO_URL . 'assets/img/markers/m1.png';
+			}
+
+			if ( isset( $this->options['display']['gmap_cluster_medium'] ) && '' !== $this->options['display']['gmap_cluster_medium'] ) {
+				$this->markers->cluster_medium = $this->options['display']['gmap_cluster_medium'];
+			} else {
+				$this->markers->cluster_medium = LSX_TO_URL . 'assets/img/markers/m2.png';
+			}
+
+			if ( isset( $this->options['display']['gmap_cluster_large'] ) && '' !== $this->options['display']['gmap_cluster_large'] ) {
+				$this->markers->cluster_large = $this->options['display']['gmap_cluster_large'];
+			} else {
+				$this->markers->cluster_large = LSX_TO_URL . 'assets/img/markers/m3.png';
+			}
+
+			if ( isset( $this->options['display']['gmap_marker_start'] ) && '' !== $this->options['display']['gmap_marker_start'] ) {
+				$this->markers->start = $this->options['display']['gmap_marker_start'];
+			} else {
+				$this->markers->start = LSX_TO_URL . 'assets/img/markers/start-marker.png';
+			}
+
+			if ( isset( $this->options['display']['gmap_marker_end'] ) && '' !== $this->options['display']['gmap_marker_end'] ) {
+				$this->markers->end = $this->options['display']['gmap_marker_end'];
+			} else {
+				$this->markers->end = LSX_TO_URL . 'assets/img/markers/end-marker.png';
+			}
+		} else {
+			$this->google_api_key = false;
+		}		
 	}
 
 	/**

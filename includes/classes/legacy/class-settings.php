@@ -69,6 +69,7 @@ class Settings extends Tour_Operator {
 			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'dashboard_tab_content' ), 10, 1 );
 			add_action( 'lsx_to_framework_display_tab_content', array( $this, 'display_tab_content' ), 10, 1 );
 			add_action( 'lsx_to_framework_display_tab_content', array( $this, 'map_display_settings' ), 12, 1 );
+			
 			if ( ! empty( $post_types ) ) {
 				foreach ( $this->post_types as $post_type ) {
 	
