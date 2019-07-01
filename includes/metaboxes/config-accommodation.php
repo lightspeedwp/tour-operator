@@ -87,20 +87,18 @@ if ( class_exists( 'LSX_TO_Team' ) ) {
 	);
 }
 
-if ( class_exists( 'LSX_TO_Maps' ) ) {
-	$metabox['fields'][] = array(
-		'id'   => 'location_title',
-		'name' => esc_html__( 'Location', 'tour-operator' ),
-		'type' => 'title',
-	);
+$metabox['fields'][] = array(
+	'id'   => 'location_title',
+	'name' => esc_html__( 'Location', 'tour-operator' ),
+	'type' => 'title',
+);
 
-	$metabox['fields'][] = array(
-		'id'             => 'location',
-		'name'           => esc_html__( 'Address', 'tour-operator' ),
-		'type'           => 'gmap',
-		'google_api_key' => tour_operator()->options['api']['googlemaps_key'],
-	);
-}
+$metabox['fields'][] = array(
+	'id'             => 'location',
+	'name'           => esc_html__( 'Address', 'tour-operator' ),
+	'type'           => 'gmap',
+	'google_api_key' => tour_operator()->options['api']['googlemaps_key'],
+);
 
 $fast_facts_fields = array(
 	array(
