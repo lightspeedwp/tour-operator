@@ -42,7 +42,7 @@
 
 	<div class="row">
 
-		<div class="col-md-3">
+		<div class="col-md-4">
 			<img src="<?php echo esc_url( LSX_TO_URL . 'assets/img/tour-operators-specials.png' ); ?>">
 
 			<div class="box box-top-image specials">
@@ -57,7 +57,7 @@
 			</div>
 		</div>
 
-		<div class="col-md-3">
+		<div class="col-md-4">
 			<img src="<?php echo esc_url( LSX_TO_URL . 'assets/img/tour-operators-reviews.png' ); ?>">
 
 			<div class="box box-top-image reviews">
@@ -72,7 +72,7 @@
 			</div>
 		</div>
 
-		<div class="col-md-3">
+		<div class="col-md-4">
 			<img src="<?php echo esc_url( LSX_TO_URL . 'assets/img/tour-operators-team.png' ); ?>">
 
 			<div class="box box-top-image team">
@@ -86,16 +86,50 @@
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<div class="col-md-3">
+	<div class="row">
+
+		<div class="col-md-4">
 			<img src="<?php echo esc_url( LSX_TO_URL . 'assets/img/tour-operators-search.png' ); ?>">
 
 			<div class="box box-top-image search">
 				<h3><?php esc_html_e( 'Search', 'tour-operator' ); ?></h3>
 				<p><?php esc_html_e( 'The Search extension for the Tour Operators plugin adds robust search functionality to your WordPress Tour Operator site. It requires that you also have the FacetWP plugin installed, as that allows for much of the filtering functionality that the plugin provides.', 'tour-operator' ); ?></p>
 				<br>
+				<br>
 				<div class="more-button">
 					<a href="<?php echo wp_kses_post( $search_link ); ?>" target="_blank" class="button button-primary">
+						<?php esc_html_e( 'Get this extension', 'tour-operator' ); ?>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<img src="<?php echo esc_url( LSX_TO_URL . 'assets/img/tour-operators-vehicles.png' ); ?>">
+
+			<div class="box box-top-image vehicles">
+				<h3><?php esc_html_e( 'Vehicles', 'tour-operator' ); ?></h3>
+				<p><?php esc_html_e( 'To help convince travellers of their comfort and safety when traveling with you, we’ve created the Vehicles extension. Fill in your fleets’ specs and display your vehicles on connected tours and destinations. With a range of avaiable options such as; type and number of gears, engine type (petrol/diesel), number of seats, vehicle code, and of course images and copy.', 'tour-operator' ); ?></p>
+
+				<div class="more-button">
+					<a href="<?php echo wp_kses_post( $vehicles_link ); ?>" target="_blank" class="button button-primary">
+						<?php esc_html_e( 'Get this extension', 'tour-operator' ); ?>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<img src="<?php echo esc_url( LSX_TO_URL . 'assets/img/tour-operators-activities.png' ); ?>">
+
+			<div class="box box-top-image activities">
+				<h3><?php esc_html_e( 'Activities', 'tour-operator' ); ?></h3>
+				<p><?php esc_html_e( 'Get your visitors excited about what they’ll be doing when they travel with you, whether it’s river rafting, whale watching or sandboarding – use the Activities post type with beautiful imagery and well-crafted copy and then set the activities as connected to particular tours, destinations and accommodations.', 'tour-operator' ); ?></p>
+				<br>
+				<div class="more-button">
+					<a href="<?php echo wp_kses_post( $activities_link ); ?>" target="_blank" class="button button-primary">
 						<?php esc_html_e( 'Get this extension', 'tour-operator' ); ?>
 					</a>
 				</div>
