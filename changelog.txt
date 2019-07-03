@@ -1,5 +1,9 @@
 ## Change log
 
+### 1.1.5 - 3th July 2019
+* Dev - Updated the help page.
+* Dev - Updated the Add-Ons page.
+
 ### 1.1.4 - 14th June 2019
 * Fix - Adding the list of Envira Gallery tags to the wp_kses_post allowed filter method.
 * Dev - Added in WPForms Lite as a list of forms to choose for your enquiry.
@@ -10,7 +14,7 @@
 * Dev - Converted the Shortcode in to a block
 * Dev - Updated default text for block and fixing travis issues
 * Dev - Changed the attributes from Numbers to strings.
-* Dev - Added the taxonomy block and updates  
+* Dev - Added the taxonomy block and updates
 
 ### 1.1.3
 * Fix - Cleaning code to meet more Wordpress Standards

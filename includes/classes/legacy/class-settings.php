@@ -556,7 +556,7 @@ class Settings extends Tour_Operator {
 			</th>
 			<td>
 				<input type="checkbox" {{#if disable_single}} checked="checked" {{/if}} name="disable_single" />
-				<small><?php esc_html_e( 'When disabled you will be redirected to the homepage when trying to access a single tour page.', 'tour-operator' ); ?></small>
+				<small><?php esc_html_e( 'When disabled you will be redirected to the homepage when trying to access a single page.', 'tour-operator' ); ?></small>
 			</td>
 		</tr>
 		<tr class="form-field">

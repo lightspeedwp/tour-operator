@@ -1,17 +1,17 @@
 <?php
-	$lsx_to_documentation = esc_url( 'https://www.lsdev.biz/documentation/tour-operator-plugin/' );
-	$extensions_link = esc_url( 'https://www.lsdev.biz/product-category/tour-operator-extensions/' );
+	$lsx_to_documentation = esc_url( 'https://tour-operator.lsdev.biz/documentation/' );
+	$extensions_link      = esc_url( 'https://tour-operator.lsdev.biz/features/' );
 
 	$to_essentials_bundle_link = esc_url( 'https://www.lsdev.biz/product/tour-operator-essentials-bundle/' );
 	$to_complete_bundle_link = esc_url( 'https://www.lsdev.biz/product/tour-operator-complete-bundle/' );
-	$tour_operator_link = esc_url( 'https://www.lsdev.biz/product/tour-operator-plugin/' );
-	$map_link = esc_url( 'https://www.lsdev.biz/product/tour-operator-maps/' );
-	$team_link = esc_url( 'https://www.lsdev.biz/product/tour-operators-team/' );
-	$reviews_link = esc_url( 'https://www.lsdev.biz/product/tour-operator-reviews/' );
-	$specials_link = esc_url( 'https://www.lsdev.biz/product/tour-operator-specials/' );
-	$search_link = esc_url( 'https://www.lsdev.biz/product/tour-operators-search/' );
-	$video_link = esc_url( 'https://www.lsdev.biz/product/tour-operator-videos/' );
-	$wetu_importer_link = esc_url( 'https://tour-operator.lsdev.biz/wetu-importer/' );
+	$tour_operator_link = esc_url( 'https://wordpress.org/plugins/tour-operator/' );
+	$team_link          = esc_url( 'https://wordpress.org/plugins/tour-operator-team/' );
+	$activities_link    = esc_url( 'https://wordpress.org/plugins/tour-operator-activities/' );
+	$reviews_link       = esc_url( 'https://wordpress.org/plugins/tour-operator-reviews/' );
+	$specials_link      = esc_url( 'https://wordpress.org/plugins/tour-operator-special-offers/' );
+	$search_link        = esc_url( 'https://wordpress.org/plugins/tour-operator-search/' );
+	$vehicles_link      = esc_url( 'https://wordpress.org/plugins/tour-operator-vehicles/' );
+	$wetu_importer_link = esc_url( 'https://wordpress.org/plugins/lsx-importer-for-wetu/' );
 ?>
 
 <div class="wrap about-wrap">
@@ -41,22 +41,8 @@
 	</div>
 
 	<div class="row">
-		<div class="col-md-4">
-			<img src="<?php echo esc_url( LSX_TO_URL . 'assets/img/tour-operators-maps.png' ); ?>">
 
-			<div class="box box-top-image maps">
-				<h3><?php esc_html_e( 'Maps', 'tour-operator' ); ?></h3>
-				<p><?php esc_html_e( 'Connect maps with location-marking pins to your Accommodation, Destination and Tour pages. Display maps with clusters of markers to display the set of Accommodations in each Destination. Show a mapped out trip itinerary that connects the dots of the accommodations visited in a tour package.', 'tour-operator' ); ?></p>
-
-				<div class="more-button">
-					<a href="<?php echo wp_kses_post( $map_link ); ?>" target="_blank" class="button button-primary">
-						<?php esc_html_e( 'Get this extension', 'tour-operator' ); ?>
-					</a>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<img src="<?php echo esc_url( LSX_TO_URL . 'assets/img/tour-operators-specials.png' ); ?>">
 
 			<div class="box box-top-image specials">
@@ -71,7 +57,7 @@
 			</div>
 		</div>
 
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<img src="<?php echo esc_url( LSX_TO_URL . 'assets/img/tour-operators-reviews.png' ); ?>">
 
 			<div class="box box-top-image reviews">
@@ -85,16 +71,14 @@
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="row">
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<img src="<?php echo esc_url( LSX_TO_URL . 'assets/img/tour-operators-team.png' ); ?>">
 
 			<div class="box box-top-image team">
 				<h3><?php esc_html_e( 'Team', 'tour-operator' ); ?></h3>
 				<p><?php esc_html_e( 'Real peoples\' faces go a long way to building trust with your valued clients. The Tour Operator: Team extension allows your company\'s staff to be added as Team Members with their own profile which can be associated with specific destinations and tours.', 'tour-operator' ); ?></p>
-
+				<br>
 				<div class="more-button">
 					<a href="<?php echo wp_kses_post( $team_link ); ?>" target="_blank" class="button button-primary">
 						<?php esc_html_e( 'Get this extension', 'tour-operator' ); ?>
@@ -103,28 +87,13 @@
 			</div>
 		</div>
 
-		<div class="col-md-4">
-			<img src="<?php echo esc_url( LSX_TO_URL . 'assets/img/tour-operators-videos.png' ); ?>">
-
-			<div class="box box-top-image videos">
-				<h3><?php esc_html_e( 'Videos', 'tour-operator' ); ?></h3>
-				<p><?php esc_html_e( 'With the Videos extension installed you’re able to display videos on all of your Tour Operator related post types. Whether you want to show a walk-through video of an accommodation or a highlights reel of a tour or destination, the videos extension takes care of all your video needs.', 'tour-operator' ); ?></p>
-
-				<div class="more-button">
-					<a href="<?php echo wp_kses_post( $video_link ); ?>" target="_blank" class="button button-primary">
-						<?php esc_html_e( 'Get this extension', 'tour-operator' ); ?>
-					</a>
-				</div>
-			</div>
-		</div>
-
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<img src="<?php echo esc_url( LSX_TO_URL . 'assets/img/tour-operators-search.png' ); ?>">
 
 			<div class="box box-top-image search">
 				<h3><?php esc_html_e( 'Search', 'tour-operator' ); ?></h3>
 				<p><?php esc_html_e( 'The Search extension for the Tour Operators plugin adds robust search functionality to your WordPress Tour Operator site. It requires that you also have the FacetWP plugin installed, as that allows for much of the filtering functionality that the plugin provides.', 'tour-operator' ); ?></p>
-
+				<br>
 				<div class="more-button">
 					<a href="<?php echo wp_kses_post( $search_link ); ?>" target="_blank" class="button button-primary">
 						<?php esc_html_e( 'Get this extension', 'tour-operator' ); ?>
