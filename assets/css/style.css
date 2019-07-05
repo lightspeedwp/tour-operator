@@ -1317,7 +1317,7 @@
 
 .lsx-to-archive-template-grid .lsx-to-archive-thumb > a, .lsx-to-archive-template-grid .lsx-to-archive-thumb .lsx-to-thumb-slot { background-image: none !important; display: block; }
 
-.lsx-to-archive-template-grid .lsx-to-archive-thumb > a > img, .lsx-to-archive-template-grid .lsx-to-archive-thumb .lsx-to-thumb-slot > img { width: 100%; }
+.lsx-to-archive-template-grid .lsx-to-archive-thumb > a > img, .lsx-to-archive-template-grid .lsx-to-archive-thumb .lsx-to-thumb-slot > img { width: 100%; min-height: 148px; -o-object-fit: cover; object-fit: cover; }
 
 .lsx-to-archive-wrapper { padding: 20px; }
 

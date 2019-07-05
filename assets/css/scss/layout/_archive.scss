@@ -176,13 +176,14 @@
 
 .lsx-to-archive-thumb {
 	width: 100%;
-
 	@include media('<phone') {
 		& > a,
 		.lsx-to-thumb-slot {
 			background-image: none !important;
 
-			& > img { width: 100%; }
+			& > img {
+				width: 100%;
+			}
 		}
 	}
 
@@ -214,7 +215,11 @@
 			background-image: none !important;
 			display: block;
 
-			& > img { width: 100%; }
+			& > img {
+				width: 100%;
+				min-height: 148px;
+				object-fit: cover;
+			}
 		}
 	}
 }
