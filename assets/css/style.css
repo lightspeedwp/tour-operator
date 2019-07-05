@@ -1086,6 +1086,10 @@
 
 .lsx-to-widget-item-wrap.lsx-review .lsx-to-widget-meta-data { margin-bottom: 0; }
 
+.white { color: white !important; }
+
+.gray-bg .lsx-to-widget-item-wrap article .lsx-to-widget-content, .gray-bg .has-thumb.slick-slide .lsx-block-post-grid-text { background: #F6F6F6; }
+
 .slick-lightbox-close { right: 32px; top: 32px; }
 
 .lsx-to-slider-inner .slick-arrow, .gallery .slick-arrow, .slick-lightbox-inner .slick-arrow { background: transparent; border-radius: 50%; border-style: solid; border-width: 2px; font: 0/0 a; height: 4rem; margin-top: calc((2.25rem - 17px) / 2); padding: 0; position: absolute; text-shadow: none; top: 50%; -webkit-transform: translateY(-50%); transform: translateY(-50%); transition: border 300ms ease; width: 4rem; z-index: 3; }

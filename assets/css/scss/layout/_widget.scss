@@ -1,3 +1,4 @@
+$light-gray: #F6F6F6;
 .lsx-to-widget-items { margin-top: -1 * $lsx-to-gap; }
 
 .lsx-to-widget-item-wrap {
@@ -134,4 +135,15 @@
 	position: relative;
 
 	.lsx-to-widget-item-wrap.lsx-review & { margin-bottom: 0; }
+}
+
+.white {
+	color: white !important;
+}
+
+.gray-bg {
+	.lsx-to-widget-item-wrap article .lsx-to-widget-content,
+	.has-thumb.slick-slide .lsx-block-post-grid-text {
+		background: $light-gray;
+	}
 }
