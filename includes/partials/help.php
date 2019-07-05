@@ -94,7 +94,7 @@
 					<div class="box news">
 						<h3><?php esc_html_e( 'Support', 'tour-operator' ); ?></h3>
 						<p><?php esc_html_e( 'If the documentation is not getting you where you need to be, you can contact us directly for support and assistance.', 'tour-operator' ); ?></p>
-						<p><?php esc_html_e( 'You can contact us for support at', 'tour-operator' ); ?> <a href="mailto:<?php echo esc_url( 'support@lsdev.biz' ); ?> "><?php esc_html_e( 'support@lsdev.biz.', 'tour-operator' ); ?></a></p>
+						<p><?php esc_html_e( 'You can contact us for support at', 'tour-operator' ); ?> <a href="mailto:support@lsdev.biz"><?php esc_html_e( 'support@lsdev.biz.', 'tour-operator' ); ?></a></p>
 					</div>
 				</div>
 			</div>
