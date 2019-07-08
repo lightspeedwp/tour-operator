@@ -72,6 +72,10 @@ const blockAttributes = {
 		type: 'string',
 		default: '9',
 	},
+	hideSingleLink: {
+		type: 'string',
+		default: 'no',
+	},
 	disableSingleLink: {
 		type: 'string',
 		default: '0',
@@ -115,7 +119,7 @@ registerBlockType( 'tour-operator/block-taxonomy', {
 	attributes: blockAttributes,
 
 	edit( { attributes, className, setAttributes } ) {
-		const { columns, shortcodetitle, shortcodeSubTitle, taxonomy, displaylimit, displayorder, orderBy, carousel, disablePlaceholder, disableText, seeMoreButton, seeMoreButtonText, seeMoreButtonLink, disableSingleLink, include } = attributes;
+		const { columns, shortcodetitle, shortcodeSubTitle, taxonomy, displaylimit, displayorder, orderBy, carousel, disablePlaceholder, disableText, seeMoreButton, seeMoreButtonText, seeMoreButtonLink, hideSingleLink, disableSingleLink, include } = attributes;
 
 		function onChangeTitle( updatedTitle ) {
 			setAttributes( { shortcodetitle: updatedTitle } );
@@ -178,6 +182,11 @@ registerBlockType( 'tour-operator/block-taxonomy', {
 		const carouselOptions = [
 			{ value: '1', label: __( 'Yes' ) },
 			{ value: '0', label: __( 'No' ) },
+		];
+		// Hide Single Link options
+		const hideSingleLinkOptions = [
+			{ value: 'yes', label: __( 'Yes' ) },
+			{ value: 'no', label: __( 'No' ) },
 		];
 		// Disable Single Link options
 		const disableSingleLinkOptions = [
@@ -279,8 +288,15 @@ registerBlockType( 'tour-operator/block-taxonomy', {
 								onChange={ ( value ) => setAttributes( { carousel: value } ) }
 							/>
 							<SelectControl
-								label={ __( 'Disable Single Link' ) }
-								description={ __( 'Choose if the text will show' ) }
+								label={ __( 'Remove Taxonomy Title' ) }
+								description={ __( 'Choose if the title text will show' ) }
+								options={ hideSingleLinkOptions }
+								value={ hideSingleLink }
+								onChange={ ( value ) => setAttributes( { hideSingleLink: value } ) }
+							/>
+							<SelectControl
+								label={ __( 'Disable View More Link' ) }
+								description={ __( 'Choose if the link will show' ) }
 								options={ disableSingleLinkOptions }
 								value={ disableSingleLink }
 								onChange={ ( value ) => setAttributes( { disableSingleLink: value } ) }
@@ -314,7 +330,7 @@ registerBlockType( 'tour-operator/block-taxonomy', {
 	},
 
 	save( { attributes, className } ) {
-		const { columns, shortcodetitle, shortcodeSubTitle, taxonomy, displaylimit, disablePlaceholder, displayorder, seeMoreButton, seeMoreButtonText, seeMoreButtonLink, disableSingleLink, disableText, orderBy, carousel, include } = attributes;
+		const { columns, shortcodetitle, shortcodeSubTitle, taxonomy, displaylimit, disablePlaceholder, displayorder, seeMoreButton, seeMoreButtonText, seeMoreButtonLink, hideSingleLink, disableSingleLink, disableText, orderBy, carousel, include } = attributes;
 
 		let seeMore;
 
@@ -338,7 +354,10 @@ registerBlockType( 'tour-operator/block-taxonomy', {
 				<h2 className="lsx-title">
 					{ shortcodetitle }<small>{ shortcodeSubTitle }</small>
 				</h2>
-				<div className="lsx-taxonomy-body">
+				<div className={ classnames(
+							'blsx-taxonomy-bodytn',
+							`hide-title-${hideSingleLink}`,
+						) }>
 						[lsx_to_taxonomy_widget taxonomy=&quot;{ taxonomy }&quot;  columns=&quot;{ columns }&quot; limit=&quot;{ displaylimit }&quot; disable_placeholder=&quot;{ disablePlaceholder }&quot; disable_text=&quot;{ disableText }&quot; disable_single_link=&quot;{ disableSingleLink }&quot; order=&quot;{ displayorder }&quot; orderby=&quot;{ orderBy }&quot; carousel=&quot;{ carousel }&quot; include=&quot;{ include }&quot; ]
 				</div>
 				{ seeMore }

@@ -4,4 +4,15 @@
 			background-color: $light-gray;
 		}
 	}
+	.hide-title-yes {
+		.lsx-to-widget-content {
+			padding-top: 0;
+			.lsx-to-widget-title {
+				display: none;
+			}
+			.lsx-to-widget-description {
+				padding-top: 2.4rem;
+			}
+		}
+	}
 }
