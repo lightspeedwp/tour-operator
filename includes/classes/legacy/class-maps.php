@@ -60,9 +60,6 @@ class Maps {
 		if ( isset( $settings->google_api_key ) ) {
 			$api_key = $settings->google_api_key;
 		}
-		print_r('<pre>');
-		//print_r($settings);
-		print_r('</pre>');
 		wp_enqueue_script( 'googlemaps_api', 'https://maps.googleapis.com/maps/api/js?key=' . $api_key . '&libraries=places', array( 'jquery' ), null, true );
 		wp_enqueue_script( 'googlemaps_api_markercluster', LSX_TO_URL . '/assets/js/vendor/google-markerCluster.js', array( 'googlemaps_api' ), null, true );
 		wp_enqueue_script( 'lsx_to_maps', LSX_TO_URL . '/assets/js/maps.min.js', array( 'jquery', 'googlemaps_api', 'googlemaps_api_markercluster' ), null, true );

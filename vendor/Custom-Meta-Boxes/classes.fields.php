@@ -1735,10 +1735,18 @@ class CMB_Gmap_Field extends CMB_Field {
 
 		if(function_exists( 'tour_operator' )){
 			$options = get_option('_lsx-to_settings',false);
-			$api_key = $options['api']['googlemaps_key'];
+			if ( isset( $options['api']['google_api_key'] ) ) {
+				$api_key = $options['api']['google_api_key'];
+			} else {
+				$api_key = '';
+			}
         }else{
 			$options = get_option('_lsx_lsx-settings',false);
-			$api_key = $options['general']['googlemaps_key'];
+			if ( isset( $options['general']['google_api_key'] ) ) {
+				$api_key = $options['general']['google_api_key'];
+			} else {
+				$api_key = '';
+			}
         }
 
 		if(false !== $api_key) {
