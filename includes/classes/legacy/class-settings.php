@@ -712,7 +712,7 @@ class Settings extends Tour_Operator {
 				<a {{#unless googlemaps_marker}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
 			</td>
 		</tr>
- 		<?php
+		<?php
 	}
 
 	/**
@@ -776,7 +776,8 @@ class Settings extends Tour_Operator {
 	/**
 	 * outputs the map marker upload field
 	 */
-	public function fusion_tables_fields() { ?>
+	public function fusion_tables_fields() {
+		?>
 		<tr class="form-field">
 			<th scope="row" colspan="2">
 				<label>
@@ -822,8 +823,8 @@ class Settings extends Tour_Operator {
 				<small>Default value: #000000</small>
 			</td>
 		</tr>
- 		<?php
- 	}
+		<?php
+	}
 
 	/**
 	 * outputs the display settings for the map tab.
