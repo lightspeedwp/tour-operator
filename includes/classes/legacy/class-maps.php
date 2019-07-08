@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Maps Class
  *
@@ -22,7 +22,7 @@ class Maps {
 	/**
 	 * Holds instances of the class
 	 */
-	protected static $instance;	
+	protected static $instance;
 
 	/**
 	 * Holds the value of the current marker
@@ -49,7 +49,7 @@ class Maps {
 		}
 
 		return self::$instance;
-	}	
+	}
 
 	/**
 	 * Enques the assets
@@ -115,6 +115,7 @@ class Maps {
 
 		$args = wp_parse_args( $args, $defaults );
 
+		//@codeStandardsIgnore
 		extract( $args );
 
 		$map_classes = array( 'lsx-map' );

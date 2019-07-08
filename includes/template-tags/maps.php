@@ -23,8 +23,8 @@
 if ( ! function_exists( 'lsx_to_map' ) ) {
 	function lsx_to_map( $before = '', $after = '', $echo = true ) {
 		global $wp_query, $post;
-
-		if ( false !== ( $location = get_transient( get_the_ID() . '_location' ) ) ) {
+		$location = get_transient( get_the_ID() . '_location' );
+		if ( false !== $location ) {
 			$zoom = 15;
 
 			if ( is_array( $location ) && isset( $location['zoom'] ) ) {
@@ -181,8 +181,7 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 					);
 
 					break;
-			}	
-
+			}
 			echo wp_kses_post( tour_operator()->frontend->maps->map_output( get_the_ID(), $args ) );
 		}
 	}
@@ -328,7 +327,8 @@ if ( ! function_exists( 'lsx_to_has_map' ) ) {
 		if ( ! lsx_to_maps_has_api_key() ) { return false; }
 
 		// Get any existing copy of our transient data
-		if ( false === ( $location = get_transient( get_the_ID() . '_location' ) ) ) {
+		$location = get_transient( get_the_ID() . '_location' );
+		if ( false === $location ) {
 			// It wasn't there, so regenerate the data and save the transient
 
 			$kml = false;
