@@ -22,7 +22,6 @@
  */
 function lsx_to_map( $before = '', $after = '', $echo = true ) {
 	global $wp_query, $post;
-	die('sdf');
 
 	if ( false !== ( $location = get_transient( get_the_ID() . '_location' ) ) ) {
 		$zoom = 15;
@@ -185,9 +184,9 @@ function lsx_to_map( $before = '', $after = '', $echo = true ) {
 				);
 
 				break;
-		}
+		}	
 
-		echo wp_kses_post( tour_operator()->map_output( get_the_ID(), $args ) );
+		echo wp_kses_post( tour_operator()->frontend->maps->map_output( get_the_ID(), $args ) );
 	}
 }
 

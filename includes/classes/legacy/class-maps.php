@@ -197,9 +197,6 @@ class Maps {
 			$map .= '</div>';
 			$map .= '</div>';
 
-			//print_r($map);
-			//die();
-
 			return $map;
 		}
 	}
@@ -209,20 +206,18 @@ class Maps {
 	 */
 	public function set_icon( $post_id = false ) {
 		$settings = tour_operator()->options;
-		$icon = $settings->markers->default_marker;
-
+		$icon = tour_operator()->markers->default_marker;
 		if ( false !== $post_id ) {
 			$connection_type = get_post_type( $post_id );
-
-			if ( in_array( $connection_type, $settings->post_types ) ) {
-				if ( isset( $settings->markers->post_types[ $connection_type ] ) ) {
-					$icon = $settings->markers->post_types[ $connection_type ];
+			$to_post_types = array_keys( lsx_to_get_post_types() );
+			if ( in_array( $connection_type, $to_post_types ) ) {
+				if ( isset( tour_operator()->markers->post_types[ $connection_type ] ) ) {
+					$icon = tour_operator()->markers->post_types[ $connection_type ];
 				}
 			} else {
-				$icon = apply_filters( 'lsx_to_default_map_marker', $settings->markers->default_marker );
+				$icon = apply_filters( 'lsx_to_default_map_marker', tour_operator()->markers->default_marker );
 			}
 		}
-
 		return $icon;
 	}	
 }

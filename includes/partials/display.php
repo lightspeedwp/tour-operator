@@ -141,10 +141,16 @@
 		</div>
 	<?php $class = ''; } ?>
 
-
+	<div id="ui-maps" class="ui-tab <?php echo esc_attr( $class ); ?>">
+		<table class="form-table">
+			<tbody>
+				<?php do_action( 'lsx_to_framework_display_tab_content', 'maps' ); ?>
+			</tbody>
+		</table>
+	</div>
 
 	<?php if ( class_exists( 'LSX_TO_Search' ) ) { ?>
-		<div id="ui-search" class="ui-tab <?php echo esc_attr( $class ); ?>">
+		<div id="ui-search" class="ui-tab">
 			<table class="form-table">
 				<tbody>
 					<?php do_action( 'lsx_to_framework_display_tab_content', 'search' ); ?>
@@ -153,7 +159,7 @@
 		</div>
 	<?php $class = ''; } ?>
 
-	<div id="ui-basic" class="ui-tab <?php echo esc_attr( $class ); ?>">
+	<div id="ui-basic" class="ui-tab">
 		<table class="form-table">
 			<tbody>
 				<?php do_action( 'lsx_to_framework_display_tab_content', 'basic' ); ?>
@@ -165,14 +171,6 @@
 		<table class="form-table">
 			<tbody>
 				<?php do_action( 'lsx_to_framework_display_tab_content', 'advanced' ); ?>
-			</tbody>
-		</table>
-	</div>
-
-	<div id="ui-maps" class="ui-tab <?php echo esc_attr( $class ); ?>">
-		<table class="form-table">
-			<tbody>
-				<?php do_action( 'lsx_to_framework_display_tab_content', 'maps' ); ?>
 			</tbody>
 		</table>
 	</div>

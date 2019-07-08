@@ -343,45 +343,45 @@ class Tour_Operator {
 			} else {
 				$this->google_api_key = GOOGLEMAPS_API_KEY;
 			}
-
-			if ( isset( $this->options['display']['googlemaps_marker'] ) && '' !== $this->options['display']['googlemaps_marker'] ) {
-				$this->markers->default_marker = $this->options['display']['googlemaps_marker'];
-			} else {
-				$this->markers->default_marker = LSX_TO_URL . 'assets/img/markers/gmaps-mark.svg';
-			}
-
-			if ( isset( $this->options['display']['gmap_cluster_small'] ) && '' !== $this->options['display']['gmap_cluster_small'] ) {
-				$this->markers->cluster_small = $this->options['display']['gmap_cluster_small'];
-			}else{
-				$this->markers->cluster_small = LSX_TO_URL . 'assets/img/markers/m1.png';
-			}
-
-			if ( isset( $this->options['display']['gmap_cluster_medium'] ) && '' !== $this->options['display']['gmap_cluster_medium'] ) {
-				$this->markers->cluster_medium = $this->options['display']['gmap_cluster_medium'];
-			} else {
-				$this->markers->cluster_medium = LSX_TO_URL . 'assets/img/markers/m2.png';
-			}
-
-			if ( isset( $this->options['display']['gmap_cluster_large'] ) && '' !== $this->options['display']['gmap_cluster_large'] ) {
-				$this->markers->cluster_large = $this->options['display']['gmap_cluster_large'];
-			} else {
-				$this->markers->cluster_large = LSX_TO_URL . 'assets/img/markers/m3.png';
-			}
-
-			if ( isset( $this->options['display']['gmap_marker_start'] ) && '' !== $this->options['display']['gmap_marker_start'] ) {
-				$this->markers->start = $this->options['display']['gmap_marker_start'];
-			} else {
-				$this->markers->start = LSX_TO_URL . 'assets/img/markers/start-marker.png';
-			}
-
-			if ( isset( $this->options['display']['gmap_marker_end'] ) && '' !== $this->options['display']['gmap_marker_end'] ) {
-				$this->markers->end = $this->options['display']['gmap_marker_end'];
-			} else {
-				$this->markers->end = LSX_TO_URL . 'assets/img/markers/end-marker.png';
-			}
 		} else {
 			$this->google_api_key = false;
-		}		
+		}
+		
+		if ( isset( $this->options['display']['googlemaps_marker'] ) && '' !== $this->options['display']['googlemaps_marker'] ) {
+			$this->markers->default_marker = $this->options['display']['googlemaps_marker'];
+		} else {
+			$this->markers->default_marker = LSX_TO_URL . 'assets/img/markers/gmaps-mark.svg';
+		}
+
+		if ( isset( $this->options['display']['gmap_cluster_small'] ) && '' !== $this->options['display']['gmap_cluster_small'] ) {
+			$this->markers->cluster_small = $this->options['display']['gmap_cluster_small'];
+		}else{
+			$this->markers->cluster_small = LSX_TO_URL . 'assets/img/markers/m1.png';
+		}
+
+		if ( isset( $this->options['display']['gmap_cluster_medium'] ) && '' !== $this->options['display']['gmap_cluster_medium'] ) {
+			$this->markers->cluster_medium = $this->options['display']['gmap_cluster_medium'];
+		} else {
+			$this->markers->cluster_medium = LSX_TO_URL . 'assets/img/markers/m2.png';
+		}
+
+		if ( isset( $this->options['display']['gmap_cluster_large'] ) && '' !== $this->options['display']['gmap_cluster_large'] ) {
+			$this->markers->cluster_large = $this->options['display']['gmap_cluster_large'];
+		} else {
+			$this->markers->cluster_large = LSX_TO_URL . 'assets/img/markers/m3.png';
+		}
+
+		if ( isset( $this->options['display']['gmap_marker_start'] ) && '' !== $this->options['display']['gmap_marker_start'] ) {
+			$this->markers->start = $this->options['display']['gmap_marker_start'];
+		} else {
+			$this->markers->start = LSX_TO_URL . 'assets/img/markers/start-marker.png';
+		}
+
+		if ( isset( $this->options['display']['gmap_marker_end'] ) && '' !== $this->options['display']['gmap_marker_end'] ) {
+			$this->markers->end = $this->options['display']['gmap_marker_end'];
+		} else {
+			$this->markers->end = LSX_TO_URL . 'assets/img/markers/end-marker.png';
+		}
 	}
 
 	/**
