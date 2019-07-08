@@ -64,8 +64,8 @@ class Maps {
 		//print_r($settings);
 		print_r('</pre>');
 		wp_enqueue_script( 'googlemaps_api', 'https://maps.googleapis.com/maps/api/js?key=' . $api_key . '&libraries=places', array( 'jquery' ), null, true );
-		wp_enqueue_script( 'googlemaps_api_markercluster', LSX_TO_URL . '/assets/js/google-markerCluster.js', array( 'googlemaps_api' ), null, true );
-		wp_enqueue_script( 'lsx_to_maps', LSX_TO_URL . '/assets/js/to-maps.min.js', array( 'jquery', 'googlemaps_api', 'googlemaps_api_markercluster' ), null, true );
+		wp_enqueue_script( 'googlemaps_api_markercluster', LSX_TO_URL . '/assets/js/vendor/google-markerCluster.js', array( 'googlemaps_api' ), null, true );
+		wp_enqueue_script( 'lsx_to_maps', LSX_TO_URL . '/assets/js/maps.min.js', array( 'jquery', 'googlemaps_api', 'googlemaps_api_markercluster' ), null, true );
 		if ( property_exists( tour_operator()->markers, 'start' ) && property_exists( tour_operator()->markers, 'end' ) ) {
 			wp_localize_script( 'lsx_to_maps', 'lsx_to_maps_params', array(
 				'apiKey' => $api_key,
