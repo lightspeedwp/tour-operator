@@ -696,8 +696,8 @@ class Settings extends Tour_Operator {
 	/**
 	 * outputs the map marker upload field
 	 */
-	public function map_marker_field() { ?>
-
+	public function map_marker_field() {
+		?>
 		<tr class="form-field default-marker-wrap">
 			<th scope="row">
 				<label for="banner"> <?php esc_html_e( 'Choose a default marker', 'tour-operator' ); ?></label>
@@ -718,7 +718,8 @@ class Settings extends Tour_Operator {
 	/**
 	 * outputs the cluster marker upload field
 	 */
-	public function cluster_marker_field() { ?>
+	public function cluster_marker_field() {
+		?>
 		<tr class="form-field default-cluster-small-wrap">
 			<th scope="row">
 				<label for="banner"> <?php esc_html_e( 'Choose a cluster marker', 'tour-operator' ); ?></label>
@@ -739,7 +740,8 @@ class Settings extends Tour_Operator {
 	/**
 	 * outputs the start/end marker upload field
 	 */
-	public function start_end_marker_fields() { ?>
+	public function start_end_marker_fields() {
+		?>
 		<tr class="form-field default-cluster-small-wrap">
 			<th scope="row">
 				<label for="banner"> <?php esc_html_e( 'Choose a start marker', 'tour-operator' ); ?></label>
@@ -778,13 +780,13 @@ class Settings extends Tour_Operator {
 		<tr class="form-field">
 			<th scope="row" colspan="2">
 				<label>
-					<h3><?php esc_html_e('Fusion Tables Settings','tour-operator'); ?></h3>
+					<h3><?php esc_html_e( 'Fusion Tables Settings', 'tour-operator' ); ?></h3>
 				</label>
 			</th>
 		</tr>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="fusion_tables_enabled"><?php esc_html_e('Enable Fusion Tables','tour-operator'); ?></label>
+				<label for="fusion_tables_enabled"><?php esc_html_e( 'Enable Fusion Tables', 'tour-operator' ); ?></label>
 			</th>
 			<td>
 				<input type="checkbox" {{#if fusion_tables_enabled}} checked="checked" {{/if}} name="fusion_tables_enabled" />
@@ -792,7 +794,7 @@ class Settings extends Tour_Operator {
 		</tr>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="title"><?php esc_html_e('Border Width','tour-operator'); ?></label>
+				<label for="title"><?php esc_html_e( 'Border Width', 'tour-operator' ); ?></label>
 			</th>
 			<td>
 				<input type="text" maxlength="2" {{#if fusion_tables_width_border}} value="{{fusion_tables_width_border}}" {{/if}} name="fusion_tables_width_border" />
@@ -802,7 +804,7 @@ class Settings extends Tour_Operator {
 		</tr>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="title"><?php esc_html_e('Border Colour','tour-operator'); ?></label>
+				<label for="title"><?php esc_html_e( 'Border Colour', 'tour-operator' ); ?></label>
 			</th>
 			<td>
 				<input type="text" maxlength="7" {{#if fusion_tables_colour_border}} value="{{fusion_tables_colour_border}}" {{/if}} name="fusion_tables_colour_border" />
@@ -812,7 +814,7 @@ class Settings extends Tour_Operator {
 		</tr>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="title"><?php esc_html_e('Background Colour','tour-operator'); ?></label>
+				<label for="title"><?php esc_html_e( 'Background Colour', 'tour-operator' ); ?></label>
 			</th>
 			<td>
 				<input type="text" maxlength="7" {{#if fusion_tables_colour_background}} value="{{fusion_tables_colour_background}}" {{/if}} name="fusion_tables_colour_background" />
@@ -821,20 +823,20 @@ class Settings extends Tour_Operator {
 			</td>
 		</tr>
  		<?php
- 	}	
+ 	}
 
 	/**
-	 * outputs the display settings for the map tab
+	 * outputs the display settings for the map tab.
 	 *
 	 * @param $tab string
 	 * @return null
 	 */
-	public function map_display_settings( $tab = 'general' ){
+	public function map_display_settings( $tab = 'general' ) {
 		if ( 'maps' === $tab ) {
 			$this->map_marker_field();
 			$this->cluster_marker_field();
 			$this->start_end_marker_fields();
 			$this->fusion_tables_fields();
 		}
-	}	
+	}
 }

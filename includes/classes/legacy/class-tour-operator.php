@@ -189,7 +189,7 @@ class Tour_Operator {
 		add_action( 'wp', array( $this, 'set_archive_layout' ) );
 		// Allow extra tags and attributes to wp_kses_post().
 		add_filter(
-			'wp_kses_allowed_html', 
+			'wp_kses_allowed_html',
 			array(
 				$this,
 				'wp_kses_allowed_html',
@@ -389,7 +389,7 @@ class Tour_Operator {
 
 		if ( isset( $this->options['display']['gmap_cluster_small'] ) && '' !== $this->options['display']['gmap_cluster_small'] ) {
 			$this->markers->cluster_small = $this->options['display']['gmap_cluster_small'];
-		}else{
+		} else {
 			$this->markers->cluster_small = LSX_TO_URL . 'assets/img/markers/m1.png';
 		}
 

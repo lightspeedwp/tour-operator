@@ -119,7 +119,7 @@ class Maps {
 		extract( $args );
 
 		$map_classes = array( 'lsx-map' );
-		if( true === $disable_auto_zoom ) {
+		if ( true === $disable_auto_zoom ) {
 			$map_classes[] = 'disable-auto-zoom';
 		}
 
@@ -227,5 +227,5 @@ class Maps {
 			}
 		}
 		return $icon;
-	}	
+	}
 }
