@@ -159,6 +159,7 @@ class Tour_Operator {
 	 * @access private
 	 */
 	private function __construct() {
+		add_action( 'init', array( $this, 'disable_deprecated' ), 0 );
 		add_action( 'admin_init', array( $this, 'compatible_version_check' ) );
 
 		// Theme compatibility check
@@ -277,6 +278,18 @@ class Tour_Operator {
 			delete_transient( '_tour_operators_welcome_redirect' );
 			wp_safe_redirect( 'admin.php?page=lsx-to-settings&welcome-page=1' );
 			exit();
+		}
+	}
+
+	/**
+	 * Disables any deprecated plugins.
+	 *
+	 * @return void
+	 */
+	public function disable_deprecated() {
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		if ( is_plugin_active( 'tour-operator-maps' ) ) {
+			deactivate_plugins( 'tour-operator-maps' );
 		}
 	}
 
