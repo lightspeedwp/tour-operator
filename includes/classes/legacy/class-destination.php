@@ -478,6 +478,7 @@ class Destination {
 	 * @return null
 	 */
 	public function general_settings() {
+		if ( class_exists( 'LSX_Banners' ) ) {
 		?>
 		<tr class="form-field -wrap">
 			<th scope="row">
@@ -497,5 +498,6 @@ class Destination {
 		</tr>
 
 		<?php
+		}
 	}
 }
