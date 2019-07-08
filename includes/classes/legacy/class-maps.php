@@ -115,7 +115,7 @@ class Maps {
 
 		$args = wp_parse_args( $args, $defaults );
 
-		//@codeStandardsIgnore
+		//phpcs:ignore
 		extract( $args );
 
 		$map_classes = array( 'lsx-map' );

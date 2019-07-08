@@ -43,7 +43,7 @@ class Settings extends Tour_Operator {
 			add_action( 'init', array( $this, 'create_settings_page' ), 100 );
 		}
 
-		//Incase the API tab is being loaded via another plugin, we add all the API hooks to the LSX ones
+		// Incase the API tab is being loaded via another plugin, we add all the API hooks to the LSX ones.
 		add_action( 'lsx_framework_api_tab_content', array( $this, 'lsx_to_framework_api_patch' ) );
 	}
 
@@ -69,18 +69,18 @@ class Settings extends Tour_Operator {
 			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'dashboard_tab_content' ), 10, 1 );
 			add_action( 'lsx_to_framework_display_tab_content', array( $this, 'display_tab_content' ), 10, 1 );
 			add_action( 'lsx_to_framework_display_tab_content', array( $this, 'map_display_settings' ), 12, 1 );
-			
+
 			if ( ! empty( $post_types ) ) {
 				foreach ( $this->post_types as $post_type ) {
-	
+
 					if ( isset( $this->options[ $post_type ]['googlemaps_marker'] ) && '' !== $this->options[ $post_type ]['googlemaps_marker'] ) {
 						$this->markers->post_types[ $post_type ] = $this->options[ $post_type ]['googlemaps_marker'];
 					} else {
 						$this->markers->post_types[ $post_type ] = LSX_TO_URL . 'assets/img/markers/' . $post_type . '-marker.png';
 					}
-					add_action( 'lsx_to_framework_' . $post_type . '_tab_content', array( $this , 'post_type_map_settings' ), 10, 1 );
+					add_action( 'lsx_to_framework_' . $post_type . '_tab_content', array( $this, 'post_type_map_settings' ), 10, 1 );
 				}
-			}			
+			}
 		}
 	}
 
@@ -569,7 +569,10 @@ class Settings extends Tour_Operator {
 			</th>
 			<td>
 				<input type="checkbox" {{#if disable_single}} checked="checked" {{/if}} name="disable_single" />
-				<small><?php esc_html_e( 'When disabled you will be redirected to the homepage when trying to access the single ', 'tour-operator' ); echo esc_attr( $post_type ); ?></small>
+				<small>
+					<?php esc_html_e( 'When disabled you will be redirected to the homepage when trying to access the single ', 'tour-operator' ); ?>
+					<?php echo esc_attr( $post_type ); ?>
+				</small>
 			</td>
 		</tr>
 		<tr class="form-field">

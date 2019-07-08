@@ -133,7 +133,7 @@ class Tour_Operator {
 	 * @var object
 	 */
 	public $markers = false;
-	
+
 	/**
 	 * Holds the Google API Key
 	 *
@@ -141,7 +141,7 @@ class Tour_Operator {
 	 *
 	 * @var string
 	 */
-	public $google_api_key = false;	
+	public $google_api_key = false;
 
 	/**
 	 * Holds the textdomain slug.
@@ -162,7 +162,7 @@ class Tour_Operator {
 		add_action( 'init', array( $this, 'disable_deprecated' ), 0 );
 		add_action( 'admin_init', array( $this, 'compatible_version_check' ) );
 
-		// Theme compatibility check
+		// Theme compatibility check.
 		add_action( 'admin_notices', array( $this, 'compatible_theme_check' ) );
 		add_action( 'wp_ajax_lsx_to_theme_notice_dismiss', array( $this, 'theme_notice_dismiss' ) );
 
@@ -188,15 +188,23 @@ class Tour_Operator {
 		add_action( 'init', array( $this, 'require_post_type_classes' ), 1 );
 		add_action( 'wp', array( $this, 'set_archive_layout' ) );
 		// Allow extra tags and attributes to wp_kses_post().
-		add_filter( 'wp_kses_allowed_html', array(
-			$this,
-			'wp_kses_allowed_html',
-		), 10, 2 );
+		add_filter(
+			'wp_kses_allowed_html', 
+			array(
+				$this,
+				'wp_kses_allowed_html',
+			),
+			10,
+			2
+		);
 		// Allow extra protocols to wp_kses_post().
-		add_filter( 'kses_allowed_protocols', array(
-			$this,
+		add_filter(
 			'kses_allowed_protocols',
-		) );
+			array(
+				$this,
+				'kses_allowed_protocols',
+			)
+		);
 		// Allow extra style attributes to wp_kses_post().
 		add_filter( 'safe_style_css', array( $this, 'safe_style_css' ) );
 
@@ -206,10 +214,15 @@ class Tour_Operator {
 		$this->settings = new Settings();
 		// init frontend object.
 		$this->frontend = new Frontend();
-		add_action( 'lsx_to_content', array(
-			$this->frontend->redirects,
-			'content_part',
-		), 10, 2 );
+		add_action(
+			'lsx_to_content',
+			array(
+				$this->frontend->redirects,
+				'content_part',
+			),
+			10,
+			2
+		);
 		// init placeholders.
 		$this->placeholders = new Placeholders( array_keys( $this->post_types ) );
 
@@ -221,10 +234,13 @@ class Tour_Operator {
 		// Integrations.
 		$this->lsx_to_search_integration();
 
-		add_action( 'admin_init', array(
-			$this,
-			'register_activation_hook_check',
-		) );
+		add_action(
+			'admin_init',
+			array(
+				$this,
+				'register_activation_hook_check',
+			)
+		);
 	}
 
 	/**
@@ -346,8 +362,13 @@ class Tour_Operator {
 		$this->set_map_vars();
 	}
 
+	/**
+	 * Set the map related variables.
+	 *
+	 * @return void
+	 */
 	public function set_map_vars() {
-		$this->map_post_types = array( 'accommodation','activity','destination' );
+		$this->map_post_types = array( 'accommodation', 'activity', 'destination' );
 		$this->markers        = new \stdClass;
 
 		if ( ( false !== $this->options && isset( $this->options['api']['googlemaps_key'] ) ) || defined( 'GOOGLEMAPS_API_KEY' ) ) {
@@ -359,7 +380,7 @@ class Tour_Operator {
 		} else {
 			$this->google_api_key = false;
 		}
-		
+
 		if ( isset( $this->options['display']['googlemaps_marker'] ) && '' !== $this->options['display']['googlemaps_marker'] ) {
 			$this->markers->default_marker = $this->options['display']['googlemaps_marker'];
 		} else {
