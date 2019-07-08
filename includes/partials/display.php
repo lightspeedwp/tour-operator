@@ -39,6 +39,7 @@
 		<?php $class = ''; } ?>
 
 		<li><a href="#ui-maps" class="<?php echo esc_attr( $class ); ?>"><?php esc_html_e( 'Maps', 'tour-operator' ); ?></a></li>
+		<?php $class = ''; ?>
 
 		<?php if ( class_exists( 'LSX_TO_Search' ) ) { ?>
 			<li><a href="#ui-search" class="<?php echo esc_attr( $class ); ?>"><?php esc_html_e( 'Search', 'tour-operator' ); ?></a></li>
