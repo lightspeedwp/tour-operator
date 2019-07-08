@@ -38,9 +38,8 @@
 			<li><a href="#ui-videos" class="<?php echo esc_attr( $class ) ?>"><?php esc_html_e( 'Videos', 'tour-operator' ); ?></a></li>
 		<?php $class = ''; } ?>
 
-		<?php if ( class_exists( 'LSX_TO_Maps' ) ) { ?>
-			<li><a href="#ui-maps" class="<?php echo esc_attr( $class ); ?>"><?php esc_html_e( 'Maps', 'tour-operator' ); ?></a></li>
-		<?php $class = ''; } ?>
+		<li><a href="#ui-maps" class="<?php echo esc_attr( $class ); ?>"><?php esc_html_e( 'Maps', 'tour-operator' ); ?></a></li>
+		<?php $class = ''; ?>
 
 		<?php if ( class_exists( 'LSX_TO_Search' ) ) { ?>
 			<li><a href="#ui-search" class="<?php echo esc_attr( $class ); ?>"><?php esc_html_e( 'Search', 'tour-operator' ); ?></a></li>
@@ -142,18 +141,16 @@
 		</div>
 	<?php $class = ''; } ?>
 
-	<?php if ( class_exists( 'LSX_TO_Maps' ) ) { ?>
-		<div id="ui-maps" class="ui-tab <?php echo esc_attr( $class ); ?>">
-			<table class="form-table">
-				<tbody>
-					<?php do_action( 'lsx_to_framework_display_tab_content', 'maps' ); ?>
-				</tbody>
-			</table>
-		</div>
-	<?php $class = ''; } ?>
+	<div id="ui-maps" class="ui-tab <?php echo esc_attr( $class ); ?>">
+		<table class="form-table">
+			<tbody>
+				<?php do_action( 'lsx_to_framework_display_tab_content', 'maps' ); ?>
+			</tbody>
+		</table>
+	</div>
 
 	<?php if ( class_exists( 'LSX_TO_Search' ) ) { ?>
-		<div id="ui-search" class="ui-tab <?php echo esc_attr( $class ); ?>">
+		<div id="ui-search" class="ui-tab">
 			<table class="form-table">
 				<tbody>
 					<?php do_action( 'lsx_to_framework_display_tab_content', 'search' ); ?>
@@ -162,7 +159,7 @@
 		</div>
 	<?php $class = ''; } ?>
 
-	<div id="ui-basic" class="ui-tab <?php echo esc_attr( $class ); ?>">
+	<div id="ui-basic" class="ui-tab">
 		<table class="form-table">
 			<tbody>
 				<?php do_action( 'lsx_to_framework_display_tab_content', 'basic' ); ?>
@@ -177,7 +174,7 @@
 			</tbody>
 		</table>
 	</div>
-
+	
 	<?php do_action( 'lsx_to_framework_display_tab_bottom', 'display' ); ?>
 
 </div>

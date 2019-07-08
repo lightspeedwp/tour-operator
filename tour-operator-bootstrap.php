@@ -30,6 +30,7 @@ if ( defined( 'WPINC' ) ) {
 	require_once( LSX_TO_PATH . 'includes/template-tags/accommodation.php' );
 	require_once( LSX_TO_PATH . 'includes/template-tags/destination.php' );
 	require_once( LSX_TO_PATH . 'includes/template-tags/tour.php' );
+	require_once( LSX_TO_PATH . 'includes/template-tags/maps.php' );
 
 	// General Includes.
 	require_once( LSX_TO_PATH . 'includes/customizer.php' );

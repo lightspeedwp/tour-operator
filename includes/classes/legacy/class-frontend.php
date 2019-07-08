@@ -41,6 +41,12 @@ class Frontend extends Tour_Operator {
 	public $modal_ids = array();
 
 	/**
+	 * Holds the maps class
+	 * @var      object
+	 */
+	public $maps = array();
+
+	/**
 	 * Initialize the plugin by setting localization, filters, and
 	 * administration functions.
 	 *
@@ -71,6 +77,7 @@ class Frontend extends Tour_Operator {
 		// add_filter( 'the_terms', array( $this, 'links_new_window' ), 10, 2 );
 
 		$this->redirects = new Template_Redirects( LSX_TO_PATH, array_keys( $this->base_post_types ), array_keys( $this->base_taxonomies ) );
+		$this->maps = Maps::get_instance();
 
 		add_filter( 'get_the_archive_title', array( $this, 'get_the_archive_title' ), 100 );
 

@@ -211,7 +211,7 @@ class Unit_Query {
 		if ( $this->have_query && false !== $this->query_item ) {
 			$images_return = array();
 
-			if ( false !== $this->query_item['gallery'] ) {
+			if ( isset( $this->query_item['gallery'] ) && false !== $this->query_item['gallery'] ) {
 				$images = array_values( $this->query_item['gallery'] );
 
 				foreach ( $images as $key => $value ) {

@@ -56,6 +56,7 @@ function lsx_to_archive_entry_top() {
 		<?php
 			global $post;
 			$post_type = get_post_type();
+			$image_src = '';
 
 			$has_single = ! lsx_to_is_single_disabled();
 			$permalink = '';

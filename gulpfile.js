@@ -112,7 +112,9 @@ gulp.task('styles-vendor-rtl', function () {
 		.pipe(gulp.dest('assets/css/vendor'))
 });
 
-gulp.task('compile-css', ['styles', 'styles-rtl', 'styles-vendor', 'styles-vendor-rtl']);
+gulp.task('compile-css', gulp.series( ['styles', 'styles-rtl', 'styles-vendor', 'styles-vendor-rtl'] , function() { 
+	console.log('Done');
+}));
 
 gulp.task('js', function() {
 	return gulp.src('assets/js/src/**/*.js')
@@ -146,7 +148,9 @@ gulp.task('js-vendor', function() {
 		.pipe(gulp.dest('assets/js/vendor'))
 });
 
-gulp.task('compile-js', (['js', 'js-vendor']));
+gulp.task('compile-js', gulp.series( ['js', 'js-vendor'] , function() { 
+	console.log('Done');
+}));
 
 gulp.task('watch-css', function () {
 	return gulp.watch('assets/css/**/*.scss', ['compile-css']);
@@ -156,7 +160,9 @@ gulp.task('watch-js', function () {
 	return gulp.watch('assets/js/src/**/*.js', ['compile-js']);
 });
 
-gulp.task('watch', ['watch-css', 'watch-js']);
+gulp.task('watch', gulp.series( ['watch-css', 'watch-js'] , function() { 
+	console.log('Done');
+}));
 
 gulp.task('wordpress-pot', function() {
 	return gulp.src('**/*.php')
@@ -182,13 +188,15 @@ gulp.task('wordpress-po', function() {
 		.pipe(gulp.dest('languages/tour-operator-en_EN.po'))
 });
 
-gulp.task('wordpress-po-mo', ['wordpress-po'], function() {
+gulp.task('wordpress-po-mo', gulp.series( ['wordpress-po'] , function() { 
 	return gulp.src('languages/tour-operator-en_EN.po')
 		.pipe(gettext())
 		.pipe(gulp.dest('languages'))
-});
+}));
 
-gulp.task('wordpress-lang', (['wordpress-pot', 'wordpress-po-mo']));
+gulp.task('wordpress-lang', gulp.series( ['wordpress-pot', 'wordpress-po-mo'] , function() { 
+	console.log('Done');
+}));
 
 gulp.task('reload-node-flag-icon-css', function() {
 	gulp.src('node_modules/flag-icon-css/sass/*').pipe(gulp.dest('assets/css/flag-icon-css').on('error', function (err) {console.log('Error!', err);}));

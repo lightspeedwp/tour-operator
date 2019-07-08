@@ -9,6 +9,8 @@
 
 namespace lsx\legacy;
 
+use stdClass;
+
 // Setup the post connections.
 class Tour_Operator {
 
@@ -115,6 +117,33 @@ class Tour_Operator {
 	public $is_wetu_active = false;
 
 	/**
+	 * Holds an array of the post types you can assign Map Markers to.
+	 *
+	 * @since 1.1.5
+	 *
+	 * @var array
+	 */
+	public $map_post_type = array();
+
+	/**
+	 * Holds an array of the marker URLs
+	 *
+	 * @since 1.1.5
+	 *
+	 * @var object
+	 */
+	public $markers = false;
+
+	/**
+	 * Holds the Google API Key
+	 *
+	 * @since 1.1.5
+	 *
+	 * @var string
+	 */
+	public $google_api_key = false;
+
+	/**
 	 * Holds the textdomain slug.
 	 *
 	 * @since 1.0.0
@@ -130,9 +159,10 @@ class Tour_Operator {
 	 * @access private
 	 */
 	private function __construct() {
+		add_action( 'init', array( $this, 'disable_deprecated' ), 0 );
 		add_action( 'admin_init', array( $this, 'compatible_version_check' ) );
 
-		// Theme compatibility check
+		// Theme compatibility check.
 		add_action( 'admin_notices', array( $this, 'compatible_theme_check' ) );
 		add_action( 'wp_ajax_lsx_to_theme_notice_dismiss', array( $this, 'theme_notice_dismiss' ) );
 
@@ -158,15 +188,23 @@ class Tour_Operator {
 		add_action( 'init', array( $this, 'require_post_type_classes' ), 1 );
 		add_action( 'wp', array( $this, 'set_archive_layout' ) );
 		// Allow extra tags and attributes to wp_kses_post().
-		add_filter( 'wp_kses_allowed_html', array(
-			$this,
+		add_filter(
 			'wp_kses_allowed_html',
-		), 10, 2 );
+			array(
+				$this,
+				'wp_kses_allowed_html',
+			),
+			10,
+			2
+		);
 		// Allow extra protocols to wp_kses_post().
-		add_filter( 'kses_allowed_protocols', array(
-			$this,
+		add_filter(
 			'kses_allowed_protocols',
-		) );
+			array(
+				$this,
+				'kses_allowed_protocols',
+			)
+		);
 		// Allow extra style attributes to wp_kses_post().
 		add_filter( 'safe_style_css', array( $this, 'safe_style_css' ) );
 
@@ -176,10 +214,15 @@ class Tour_Operator {
 		$this->settings = new Settings();
 		// init frontend object.
 		$this->frontend = new Frontend();
-		add_action( 'lsx_to_content', array(
-			$this->frontend->redirects,
-			'content_part',
-		), 10, 2 );
+		add_action(
+			'lsx_to_content',
+			array(
+				$this->frontend->redirects,
+				'content_part',
+			),
+			10,
+			2
+		);
 		// init placeholders.
 		$this->placeholders = new Placeholders( array_keys( $this->post_types ) );
 
@@ -191,10 +234,13 @@ class Tour_Operator {
 		// Integrations.
 		$this->lsx_to_search_integration();
 
-		add_action( 'admin_init', array(
-			$this,
-			'register_activation_hook_check',
-		) );
+		add_action(
+			'admin_init',
+			array(
+				$this,
+				'register_activation_hook_check',
+			)
+		);
 	}
 
 	/**
@@ -252,6 +298,18 @@ class Tour_Operator {
 	}
 
 	/**
+	 * Disables any deprecated plugins.
+	 *
+	 * @return void
+	 */
+	public function disable_deprecated() {
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		if ( is_plugin_active( 'tour-operator-maps' ) ) {
+			deactivate_plugins( 'tour-operator-maps' );
+		}
+	}
+
+	/**
 	 * Load the plugin text domain for translation.
 	 *
 	 * @since 0.0.1
@@ -300,6 +358,64 @@ class Tour_Operator {
 		$this->base_taxonomies   = $this->taxonomies;
 		$this->taxonomies        = apply_filters( 'lsx_to_framework_taxonomies', $this->taxonomies );
 		$this->taxonomies_plural = apply_filters( 'lsx_to_framework_taxonomies_plural', $this->taxonomies_plural );
+
+		$this->set_map_vars();
+	}
+
+	/**
+	 * Set the map related variables.
+	 *
+	 * @return void
+	 */
+	public function set_map_vars() {
+		$this->map_post_types = array( 'accommodation', 'activity', 'destination' );
+		$this->markers        = new \stdClass;
+
+		if ( ( false !== $this->options && isset( $this->options['api']['googlemaps_key'] ) ) || defined( 'GOOGLEMAPS_API_KEY' ) ) {
+			if ( ! defined( 'GOOGLEMAPS_API_KEY' ) ) {
+				$this->google_api_key = $this->options['api']['googlemaps_key'];
+			} else {
+				$this->google_api_key = GOOGLEMAPS_API_KEY;
+			}
+		} else {
+			$this->google_api_key = false;
+		}
+
+		if ( isset( $this->options['display']['googlemaps_marker'] ) && '' !== $this->options['display']['googlemaps_marker'] ) {
+			$this->markers->default_marker = $this->options['display']['googlemaps_marker'];
+		} else {
+			$this->markers->default_marker = LSX_TO_URL . 'assets/img/markers/gmaps-mark.svg';
+		}
+
+		if ( isset( $this->options['display']['gmap_cluster_small'] ) && '' !== $this->options['display']['gmap_cluster_small'] ) {
+			$this->markers->cluster_small = $this->options['display']['gmap_cluster_small'];
+		} else {
+			$this->markers->cluster_small = LSX_TO_URL . 'assets/img/markers/m1.png';
+		}
+
+		if ( isset( $this->options['display']['gmap_cluster_medium'] ) && '' !== $this->options['display']['gmap_cluster_medium'] ) {
+			$this->markers->cluster_medium = $this->options['display']['gmap_cluster_medium'];
+		} else {
+			$this->markers->cluster_medium = LSX_TO_URL . 'assets/img/markers/m2.png';
+		}
+
+		if ( isset( $this->options['display']['gmap_cluster_large'] ) && '' !== $this->options['display']['gmap_cluster_large'] ) {
+			$this->markers->cluster_large = $this->options['display']['gmap_cluster_large'];
+		} else {
+			$this->markers->cluster_large = LSX_TO_URL . 'assets/img/markers/m3.png';
+		}
+
+		if ( isset( $this->options['display']['gmap_marker_start'] ) && '' !== $this->options['display']['gmap_marker_start'] ) {
+			$this->markers->start = $this->options['display']['gmap_marker_start'];
+		} else {
+			$this->markers->start = LSX_TO_URL . 'assets/img/markers/start-marker.png';
+		}
+
+		if ( isset( $this->options['display']['gmap_marker_end'] ) && '' !== $this->options['display']['gmap_marker_end'] ) {
+			$this->markers->end = $this->options['display']['gmap_marker_end'];
+		} else {
+			$this->markers->end = LSX_TO_URL . 'assets/img/markers/end-marker.png';
+		}
 	}
 
 	/**

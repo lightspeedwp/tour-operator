@@ -224,26 +224,28 @@ if ( class_exists( 'Envira_Gallery' ) ) {
 	}
 }
 
-if ( class_exists( 'LSX_TO_Maps' ) ) {
-	$metabox['fields'][] = array(
-		'id'   => 'location_title',
-		'name' => esc_html__( 'Location', 'tour-operator' ),
-		'type' => 'title',
-	);
+$metabox['fields'][] = array(
+	'id'   => 'location_title',
+	'name' => esc_html__( 'Location', 'tour-operator' ),
+	'type' => 'title',
+);
 
-	$metabox['fields'][] = array(
-		'id'   => 'disable_auto_zoom',
-		'name' => esc_html__( 'Disable Auto Zoom', 'tour-operator' ),
-		'type' => 'checkbox',
-	);
+$metabox['fields'][] = array(
+	'id'   => 'disable_auto_zoom',
+	'name' => esc_html__( 'Disable Auto Zoom', 'tour-operator' ),
+	'type' => 'checkbox',
+);
 
-	$metabox['fields'][] = array(
-		'id'             => 'location',
-		'name'           => esc_html__( 'Location', 'tour-operator' ),
-		'type'           => 'gmap',
-		'google_api_key' => tour_operator()->options['api']['googlemaps_key'],
-	);
+$google_api_key = '';
+if ( isset( tour_operator()->options['api']['googlemaps_key'] ) && ! empty( tour_operator()->options['api']['googlemaps_key'] ) ) {
+	$google_api_key = tour_operator()->options['api']['googlemaps_key'];
 }
+$metabox['fields'][] = array(
+	'id'             => 'location',
+	'name'           => esc_html__( 'Location', 'tour-operator' ),
+	'type'           => 'gmap',
+	'google_api_key' => $google_api_key,
+);
 
 $metabox['fields'][] = array(
 	'id'   => 'posts_title',

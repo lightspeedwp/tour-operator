@@ -74,6 +74,7 @@ class Destination {
 
 		add_filter( 'lsx_to_parents_only', array( $this, 'filter_countries' ) );
 
+		add_action( 'lsx_to_framework_destination_tab_general_settings_bottom', array( $this, 'general_settings' ), 10, 1 );
 	}
 
 	/**
@@ -468,4 +469,35 @@ class Destination {
 		}
 	}
 
+	/**
+	 * Displays the destination specific settings
+	 *
+	 * @param $post_type string
+	 * @param $tab       string
+	 *
+	 * @return null
+	 */
+	public function general_settings() {
+		if ( class_exists( 'LSX_Banners' ) ) {
+		?>
+		<tr class="form-field -wrap">
+			<th scope="row">
+				<label for="enable_banner_map"><?php esc_html_e( 'Display the map in the banner', 'tour-operator' ); ?></label>
+			</th>
+			<td>
+				<input type="checkbox" {{#if enable_banner_map}} checked="checked" {{/if}} name="enable_banner_map" />
+			</td>
+		</tr>
+		<tr class="form-field -wrap">
+			<th scope="row">
+				<label for="disable_banner_map_cluster"><?php esc_html_e( 'Disable Banner Map Cluster', 'tour-operator' ); ?></label>
+			</th>
+			<td>
+				<input type="checkbox" {{#if disable_banner_map_cluster}} checked="checked" {{/if}} name="disable_banner_map_cluster" />
+			</td>
+		</tr>
+
+		<?php
+		}
+	}
 }
