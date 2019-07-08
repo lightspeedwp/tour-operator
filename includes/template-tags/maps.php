@@ -41,12 +41,8 @@ function lsx_to_map( $before = '', $after = '', $echo = true ) {
 			$map_type = 'region_archive';
 			$parent_id = '0';
 		} elseif ( is_singular( 'destination' ) ) {
-			global $post;
-
-			if ( 0 === $post->post_parent ) {
-				$map_type = 'region_archive';
-				$parent_id = $post->ID;
-			}
+			$map_type = 'region_archive';
+			$parent_id = get_queried_object_id();
 		} elseif ( is_tax( 'continent' ) ) {
 			$map_type = 'continent_archive';
 		}

@@ -1,5 +1,10 @@
 ## Change log
 
+### 1.2.0 - 
+* Dev - Integrated the TO Maps plugin into TO Core.
+* Fix - Hiding the banner title on regions when the map is set to output there.
+* Dev - Made sure the regions also move the map to the banner when the setting is activated.
+
 ### 1.1.4 - 14th June 2019
 * Fix - Adding the list of Envira Gallery tags to the wp_kses_post allowed filter method.
 * Dev - Added in WPForms Lite as a list of forms to choose for your enquiry.

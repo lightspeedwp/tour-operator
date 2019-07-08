@@ -63,7 +63,8 @@ var LSX_TO_Maps = {
 		this.bounds = [];
 
 		var $footerMap = jQuery(banner_class+':eq(0)');
-		if('cluster' === type){
+		console.log( type );
+		if('.lsx-map-preview' != banner_class){
 			height = $footerMap.css('height');
 			// container_html = $footerMap.find('.container').html();
 			$footerMap.find('.container').hide();
