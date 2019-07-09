@@ -78,7 +78,7 @@ const blockAttributes = {
 	},
 	disableSingleLink: {
 		type: 'string',
-		default: '0',
+		default: 'no',
 	},
 	displayorder: {
 		type: 'string',
@@ -190,8 +190,8 @@ registerBlockType( 'tour-operator/block-taxonomy', {
 		];
 		// Disable Single Link options
 		const disableSingleLinkOptions = [
-			{ value: '1', label: __( 'Yes' ) },
-			{ value: '0', label: __( 'No' ) },
+			{ value: 'yes', label: __( 'Yes' ) },
+			{ value: 'no', label: __( 'No' ) },
 		];
 		// Disable Text options
 		const disableTextOptions = [
@@ -323,7 +323,7 @@ registerBlockType( 'tour-operator/block-taxonomy', {
 					{ shortcodetitle }<small>{ shortcodeSubTitle }</small>
 				</h2>
 				<div className="lsx-taxonomy-body">
-						[lsx_to_taxonomy_widget taxonomy=&quot;{ taxonomy }&quot; columns=&quot;{ columns }&quot; limit=&quot;{ displaylimit }&quot; disable_placeholder=&quot;{ disablePlaceholder }&quot; disable_text=&quot;{ disableText }&quot; disable_single_link=&quot;{ disableSingleLink }&quot; order=&quot;{ displayorder }&quot; orderby=&quot;{ orderBy }&quot; carousel=&quot;{ carousel }&quot; include=&quot;{ include }&quot; ]
+						[lsx_to_taxonomy_widget taxonomy=&quot;{ taxonomy }&quot; columns=&quot;{ columns }&quot; limit=&quot;{ displaylimit }&quot; disable_placeholder=&quot;{ disablePlaceholder }&quot; disable_text=&quot;{ disableText }&quot; disable_single_link=&quot;0&quot; order=&quot;{ displayorder }&quot; orderby=&quot;{ orderBy }&quot; carousel=&quot;{ carousel }&quot; include=&quot;{ include }&quot; ]
 				</div>
 			</div>
 		);
@@ -357,8 +357,9 @@ registerBlockType( 'tour-operator/block-taxonomy', {
 				<div className={ classnames(
 							'blsx-taxonomy-bodytn',
 							`hide-title-${hideSingleLink}`,
+							`disable-link-${disableSingleLink}`,
 						) }>
-						[lsx_to_taxonomy_widget taxonomy=&quot;{ taxonomy }&quot;  columns=&quot;{ columns }&quot; limit=&quot;{ displaylimit }&quot; disable_placeholder=&quot;{ disablePlaceholder }&quot; disable_text=&quot;{ disableText }&quot; disable_single_link=&quot;{ disableSingleLink }&quot; order=&quot;{ displayorder }&quot; orderby=&quot;{ orderBy }&quot; carousel=&quot;{ carousel }&quot; include=&quot;{ include }&quot; ]
+						[lsx_to_taxonomy_widget taxonomy=&quot;{ taxonomy }&quot;  columns=&quot;{ columns }&quot; limit=&quot;{ displaylimit }&quot; disable_placeholder=&quot;{ disablePlaceholder }&quot; disable_text=&quot;{ disableText }&quot; disable_single_link=&quot;0&quot; order=&quot;{ displayorder }&quot; orderby=&quot;{ orderBy }&quot; carousel=&quot;{ carousel }&quot; include=&quot;{ include }&quot; ]
 				</div>
 				{ seeMore }
 			</div>
