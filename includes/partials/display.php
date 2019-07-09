@@ -6,10 +6,6 @@
 			<li><a href="#ui-placeholders" class="active"><?php esc_html_e( 'Placeholders', 'tour-operator' ); ?></a></li>
 		<?php $class = ''; } ?>
 
-		<?php if ( class_exists( 'LSX_Currencies' ) ) { ?>
-			<li><a href="#ui-currencies" class="<?php echo esc_attr( $class ) ?>"><?php esc_html_e( 'Currencies', 'tour-operator' ); ?></a></li>
-		<?php $class = ''; } ?>
-
 		<?php if ( class_exists( 'LSX_Team' ) ) { ?>
 			<li><a href="#ui-team" class="<?php echo esc_attr( $class ) ?>"><?php esc_html_e( 'Team', 'tour-operator' ); ?></a></li>
 		<?php $class = ''; } ?>
@@ -56,16 +52,6 @@
 			<table class="form-table">
 				<tbody>
 					<?php do_action( 'lsx_to_framework_display_tab_content', 'placeholders' ); ?>
-				</tbody>
-			</table>
-		</div>
-	<?php $class = ''; } ?>
-
-	<?php if ( class_exists( 'LSX_Currencies' ) ) { ?>
-		<div id="ui-currencies" class="ui-tab <?php echo esc_attr( $class ) ?>">
-			<table class="form-table">
-				<tbody>
-					<?php do_action( 'lsx_to_framework_display_tab_content', 'currency_switcher' ); ?>
 				</tbody>
 			</table>
 		</div>
