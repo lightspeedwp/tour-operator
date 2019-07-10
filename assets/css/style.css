@@ -1249,6 +1249,8 @@
 
 .lsx-to-meta-data.lsx-to-meta-data-type:before { content: '\f02b'; }
 
+.lsx-to-meta-data.lsx-to-meta-data-seating:before { content: '\f0c0'; }
+
 .lsx-to-meta-data.lsx-to-meta-data-valid-from:before { content: '\f073'; }
 
 .lsx-to-meta-data.lsx-to-meta-data-day-includes:before { content: '\f058'; }
