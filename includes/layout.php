@@ -406,6 +406,10 @@ function lsx_to_destination_single_content_bottom() {
 			lsx_to_destination_specials();
 		}
 
+		if ( function_exists( 'lsx_to_destination_vehicles' ) ) {
+			lsx_to_destination_vehicles();
+		}
+
 		if ( function_exists( 'lsx_to_destination_reviews' ) ) {
 			lsx_to_destination_reviews();
 		}
