@@ -9,7 +9,7 @@ global $disable_placeholder, $disable_text;
 
 ?>
 <article <?php post_class(); ?>>
-	 <?php if ( empty( $disable_placeholder ) ) { ?>
+	<?php if ( empty( $disable_placeholder ) ) { ?>
 		<div class="lsx-to-widget-thumb">
 			<a href="<?php the_permalink(); ?>">
 				<?php lsx_thumbnail( 'lsx-thumbnail-wide' ); ?>
@@ -25,11 +25,21 @@ global $disable_placeholder, $disable_text;
 		</h4>
 
 		<?php
-			if ( empty( $disable_text ) ) {
-				lsx_to_tagline( '<p class="lsx-to-widget-tagline text-center">', '</p>' );
-			}
-		?>
+			ob_start();
+			lsx_to_widget_entry_content_top();
+			the_excerpt();
+			lsx_to_widget_entry_content_bottom();
+			$excerpt = ob_get_clean();
 
-		<p><a href="<?php the_permalink(); ?>" class="moretag"><?php esc_html_e( 'View more', 'tour-operator' ); ?></a></p>
+		if ( empty( $disable_text ) && ! empty( $excerpt ) ) {
+			echo wp_kses_post( $excerpt );
+			lsx_to_tagline( '<p class="lsx-to-widget-tagline text-center">', '</p>' );
+		} elseif ( $has_single ) {
+			?>
+			<p><a href="<?php echo esc_url( $permalink ); ?>" class="moretag"><?php esc_html_e( 'View more', 'tour-operator' ); ?></a></p>
+		<?php
+		}
+
+		?>
 	</div>
 </article>
