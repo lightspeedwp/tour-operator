@@ -1433,6 +1433,8 @@ h4.lsx-to-contact-name { font-size: 20px; margin-bottom: 0; }
 
 .lsx-to-section-inner + #sharing { margin-top: 4.25rem; }
 
+#fast-facts.full-fact { display: block !important; }
+
 .lsx-to-section-title + .lsx-to-archive-items, .lsx-to-section-title + .lsx-to-widget-items { margin-top: -2.4rem; }
 
 .lsx-to-section-title + .envira-gallery-wrap { margin-top: 4.25rem; }
