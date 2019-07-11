@@ -147,3 +147,10 @@ $light-gray: #F6F6F6;
 		background: $light-gray;
 	}
 }
+
+.lsx-block-post-grid-link.lsx-text-link {
+	color: #1098ad !important;
+	&:hover {
+		color: #f7ae00 !important;
+	}
+}

@@ -46,7 +46,6 @@ if ( $has_single ) {
 			// 	lsx_to_tagline( '<p class="lsx-to-widget-tagline text-center">', '</p>' );
 			// }
 		?>
-
 		<div class="lsx-to-widget-meta-data">
 			<?php
 				$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';

@@ -474,7 +474,7 @@ class Frontend extends Tour_Operator {
 			$wpse_excerpt = str_replace( ']]>', ']]>', $wpse_excerpt );
 			$wpse_excerpt = strip_tags( $wpse_excerpt, apply_filters( 'excerpt_strip_tags', '<h1>,<h2>,<h3>,<h4>,<h5>,<h6>,<a>,<button>,<blockquote>,<p>,<br>,<b>,<strong>,<i>,<u>,<ul>,<ol>,<li>,<span>,<div>' ) );
 
-			$excerpt_word_count = 50;
+			$excerpt_word_count = 25;
 			$excerpt_word_count = apply_filters( 'excerpt_length', $excerpt_word_count );
 
 			$tokens         = array();
