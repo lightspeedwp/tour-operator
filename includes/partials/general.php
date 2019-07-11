@@ -7,7 +7,7 @@
 		<?php } ?>
 
 		<?php if ( class_exists( 'LSX_Currencies' ) ) { ?>
-			<li><a href="#ui-currencies"><?php esc_html_e( 'Currency', 'tour-operator' ); ?></a></li>
+			<li><a href="#ui-currencies"><?php esc_html_e( 'Currencies', 'tour-operator' ); ?></a></li>
 		<?php } ?>
 	</ul>
 
