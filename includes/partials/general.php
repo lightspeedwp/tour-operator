@@ -6,7 +6,7 @@
 			<li><a href="#ui-search"><?php esc_html_e( 'Search', 'tour-operator' ); ?></a></li>
 		<?php } ?>
 
-		<?php if ( class_exists( 'LSX_Currencies' ) ) { ?>
+		<?php if ( class_exists( '\lsx\currencies\classes\Currencies' ) ) { ?>
 			<li><a href="#ui-currencies"><?php esc_html_e( 'Currencies', 'tour-operator' ); ?></a></li>
 		<?php } ?>
 	</ul>
@@ -19,7 +19,7 @@
 		</table>
 	</div>
 
-	<?php if ( class_exists( 'LSX_Currencies' ) ) { ?>
+	<?php if ( class_exists( '\lsx\currencies\classes\Currencies' ) ) { ?>
 		<div id="ui-currencies" class="ui-tab">
 			<table class="form-table">
 				<tbody>

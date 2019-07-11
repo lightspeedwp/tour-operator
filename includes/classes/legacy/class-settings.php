@@ -250,7 +250,7 @@ class Settings extends Tour_Operator {
 	public function dashboard_tab_content( $tab = 'general' ) {
 		if ( 'general' !== $tab ) { return false;}
 		?>
-		<?php if ( ! class_exists( 'LSX_Currencies' ) ) { ?>
+		<?php if ( ! class_exists( '\lsx\currencies\classes\Currencies' ) ) { ?>
 			<tr class="form-field-wrap">
 				<th scope="row">
 					<label for="currency"> <?php esc_html_e( 'Currency', 'tour-operator' ); ?></label>
