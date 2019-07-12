@@ -48,10 +48,22 @@ class Maps {
 	public $enable_banner_map = false;
 
 	/**
+	 * The post types this post should work with
+	 *
+	 * @var array
+	 */
+	public $post_types = array();	
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		add_action( 'wp_enqueue_scripts', array( $this, 'assets' ), 1499 );
+		$this->post_types = array(
+			'destination',
+			'accommodation',
+			'tour',
+		);
 	}
 
 	/**
@@ -178,8 +190,8 @@ class Maps {
 
 			$map .= '<div class="lsx-map-preview" style="width:' . $width . ';height:' . $height . ';">';
 			if ( true === $this->placeholder_enabled ) {
-				$map .= '<img class="lsx-map-placeholder" src="' . LSX_TO_URL . 'assets/img/placeholders/placeholder-map.svg" style="cursor:pointer;width:' . $width . ';height:' . $height . ';" />';
-			}			
+				$map .= '<img class="lsx-map-placeholder" src="' . $this->get_map_preview_src() . '" style="cursor:pointer;width:' . $width . ';height:' . $height . ';" />';
+			}
 			$map .= '</div>';
 
 			$map .= '<div class="lsx-map-markers" style="display:none;">';
@@ -246,9 +258,12 @@ class Maps {
 		}
 	}
 
-	/**
-	 * outputs the genral tabs settings
-	 */
+/**
+ * Returns the map marker.
+ *
+ * @param boolean $post_id
+ * @return mixed
+ */
 	public function set_icon( $post_id = false ) {
 		$settings = tour_operator()->options;
 		$icon = tour_operator()->markers->default_marker;
@@ -265,4 +280,23 @@ class Maps {
 		}
 		return $icon;
 	}
+
+	/**
+	 * Gets the Map Preview image src.
+	 */
+	public function get_map_preview_src() {
+		$settings = tour_operator()->options;
+		$image = LSX_TO_URL . 'assets/img/placeholders/placeholder-map.svg';
+		if ( isset( $settings['display'] ) && isset( $settings['display']['map_placeholder'] ) && '' !== $settings['display']['map_placeholder'] ) {
+			$image = $settings['display']['map_placeholder'];
+		}
+		if ( is_post_type_archive( $this->post_types ) || is_singular( $this->post_types ) ) {
+			if ( isset( $settings[ get_post_type() ] ) && isset( $settings[ get_post_type() ]['map_placeholder'] ) && '' !== $settings[ get_post_type() ]['map_placeholder'] ) {
+				$image = $settings[ get_post_type() ]['map_placeholder'];
+			}
+		}
+		$image = apply_filters( 'lsx_to_map_preview_src', $image );
+		return $image;
+	}
+
 }

@@ -70,15 +70,14 @@ class Settings extends Tour_Operator {
 			add_action( 'lsx_to_framework_display_tab_content', array( $this, 'display_tab_content' ), 10, 1 );
 			add_action( 'lsx_to_framework_display_tab_content', array( $this, 'map_display_settings' ), 12, 1 );
 
-			if ( ! empty( $post_types ) ) {
-				foreach ( $this->post_types as $post_type ) {
-
+			if ( ! empty( $this->post_types ) ) {
+				foreach ( $this->post_types as $post_type => $label ) {
 					if ( isset( $this->options[ $post_type ]['googlemaps_marker'] ) && '' !== $this->options[ $post_type ]['googlemaps_marker'] ) {
 						$this->markers->post_types[ $post_type ] = $this->options[ $post_type ]['googlemaps_marker'];
 					} else {
 						$this->markers->post_types[ $post_type ] = LSX_TO_URL . 'assets/img/markers/' . $post_type . '-marker.png';
 					}
-					add_action( 'lsx_to_framework_' . $post_type . '_tab_content', array( $this, 'post_type_map_settings' ), 10, 1 );
+					add_action( 'lsx_to_framework_' . $post_type . '_tab_content', array( $this, 'post_type_map_settings' ), 10, 2 );
 				}
 			}
 		}
@@ -691,25 +690,30 @@ class Settings extends Tour_Operator {
 			$this->map_marker_field();
 			$this->cluster_marker_field();
 			$this->start_end_marker_fields();
-			$this->map_placeholder();
+			$this->map_placeholder_settings_title();
+			$this->enable_map_placeholder_checkbox();
+			$this->map_placeholder_field();
 			$this->fusion_tables_fields();
 		}
 	}	
 
 	/**
-	 * outputs the post type map settings
+	 * Outputs the post type map settings.
 	 *
 	 * @param $tab string
 	 * @return null
 	 */
-	public function post_type_map_settings( $tab = 'general' ) {
-		$this->map_marker_field();
+	public function post_type_map_settings( $post_type = '', $tab = 'general' ) {
+		if ( 'placeholders' === $tab ) {
+			$this->map_marker_field();
+			$this->map_placeholder_field();
+		}
 	}
 
 	/**
-	 * Outputs the map placeholder field
+	 * Outputs the map placeholder field header
 	 */
-	public function map_placeholder() {
+	public function map_placeholder_settings_title() {
 		?>
 		<tr class="form-field">
 			<th scope="row" colspan="2">
@@ -717,7 +721,15 @@ class Settings extends Tour_Operator {
 					<h3><?php esc_html_e( 'Placeholder Settings', 'tour-operator' ); ?></h3>
 				</label>
 			</th>
-		</tr>		
+		</tr>
+		<?php
+	}
+
+	/**
+	 * Outputs the map placeholder field
+	 */
+	public function enable_map_placeholder_checkbox() {
+		?>	
 		<tr class="form-field">
 			<th scope="row">
 				<label for="map_placeholder_enabled"><?php esc_html_e( 'Enable Map Placeholder', 'tour-operator' ); ?></label>
@@ -727,7 +739,14 @@ class Settings extends Tour_Operator {
 				<small><?php esc_html_e( 'Enable a placeholder users will click to load the map.', 'tour-operator' ); ?></small>
 			</td>
 		</tr>	
-		{{#if map_placeholder_enabled}}
+		<?php
+	}	
+
+	/**
+	 * Outputs the map placeholder field
+	 */
+	public function map_placeholder_field() {
+		?>
 		<tr class="form-field map-placeholder">
 			<th scope="row">
 				<label for="banner"> <?php esc_html_e( 'Upload a map placeholder', 'tour-operator' ); ?></label>
@@ -742,7 +761,6 @@ class Settings extends Tour_Operator {
 				<a {{#unless map_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
 			</td>
 		</tr>
-		{{/if}}
 		<?php
 	}
 
