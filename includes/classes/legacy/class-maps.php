@@ -161,7 +161,7 @@ class Maps {
 		extract( $args );
 
 		$map_classes = array( 'lsx-map' );
-		if ( true === $disable_auto_zoom ) {
+		if ( true === $args['disable_auto_zoom'] ) {
 			$map_classes[] = 'disable-auto-zoom';
 		}
 		if ( true === $this->placeholder_enabled ) {
@@ -173,48 +173,48 @@ class Maps {
 			$icon = $this->set_icon( $post_id );
 		}
 
-		if ( ( '-33.914482' !== $lat && '18.3758789' !== $long ) || false !== $search || 'cluster' === $type || 'route' === $type ) {
-			$map = '<div class="' . implode( ' ', $map_classes ) . '" data-zoom="' . $zoom . '" data-icon="' . $icon . '" data-type="' . $type . '" data-class="' . $selector . '" data-fusion-tables-colour-border="' . $fusion_tables_colour_border . '" data-fusion-tables-width-border="' . $fusion_tables_width_border . '" data-fusion-tables-colour-background="' . $fusion_tables_colour_background . '"';
+		if ( ( '-33.914482' !== $args['lat'] && '18.3758789' !== $args['long'] ) || false !== $search || 'cluster' === $args['type'] || 'route' === $args['type'] ) {
+			$map = '<div class="' . implode( ' ', $map_classes ) . '" data-zoom="' . $args['zoom'] . '" data-icon="' . $icon . '" data-type="' . $args['type'] . '" data-class="' . $args['selector'] . '" data-fusion-tables-colour-border="' . $args['fusion_tables_colour_border'] . '" data-fusion-tables-width-border="' . $args['fusion_tables_width_border'] . '" data-fusion-tables-colour-background="' . $args['fusion_tables_colour_background'] . '"';
 
-			if ( 'route' === $type && false !== $args['kml'] ) {
-				$map .= ' data-kml="' . $kml . '"';
+			if ( 'route' === $args['type'] && false !== $args['kml'] ) {
+				$map .= ' data-kml="' . $args['kml'] . '"';
 			}
 
-			$map .= ' data-lat="' . $lat . '" data-long="' . $long . '"';
+			$map .= ' data-lat="' . $args['lat'] . '" data-long="' . $args['long'] . '"';
 
 			if ( false === $disable_cluster_js ) {
-				$map .= ' data-cluster-small="' . $cluster_small . '" data-cluster-medium="' . $cluster_medium . '" data-cluster-large="' . $cluster_large . '"';
+				$map .= ' data-cluster-small="' . $args['cluster_small'] . '" data-cluster-medium="' . $args['cluster_medium'] . '" data-cluster-large="' . $args['cluster_large'] . '"';
 			}
 
 			$map .= '>';
 
-			$map .= '<div class="lsx-map-preview" style="width:' . $width . ';height:' . $height . ';">';
+			$map .= '<div class="lsx-map-preview" style="width:' . $args['width'] . ';height:' . $args['height'] . ';">';
 			if ( true === $this->placeholder_enabled ) {
-				$map .= '<img class="lsx-map-placeholder" src="' . $this->get_map_preview_src() . '" style="cursor:pointer;width:' . $width . ';height:' . $height . ';" />';
+				$map .= '<img class="lsx-map-placeholder" src="' . $this->get_map_preview_src() . '" style="cursor:pointer;width:' . $args['width'] . ';height:' . $args['height'] . ';" />';
 			}
 			$map .= '</div>';
 
 			$map .= '<div class="lsx-map-markers" style="display:none;">';
 
-			if ( 'single' === $type ) {
+			if ( 'single' === $args['type'] ) {
 				$thumbnail = get_the_post_thumbnail_url( $post_id, array( 100, 100 ) );
-				$tooltip = $search;
+				$tooltip   = $args['search'];
 
-				if ( 'excerpt' === $content ) {
+				if ( 'excerpt' === $args['content'] ) {
 					$tooltip = strip_tags( get_the_excerpt( $post_id ) );
 				}
 
 				$icon = $this->set_icon( $post_id );
 
-				$map .= '<div class="map-data" data-icon="' . $icon . '" data-id="' . $post_id . '" data-long="' . $long . '" data-lat="' . $lat . '" data-thumbnail="' . $thumbnail . '" data-link="' . get_permalink( $post_id ) . '" data-title="' . get_the_title( $post_id ) . '" data-fusion-tables="' . ( true === $fusion_tables ? '1' : '0' ) . '">
+				$map .= '<div class="map-data" data-icon="' . $icon . '" data-id="' . $post_id . '" data-long="' . $args['long'] . '" data-lat="' . $args['lat'] . '" data-thumbnail="' . $thumbnail . '" data-link="' . get_permalink( $post_id ) . '" data-title="' . get_the_title( $post_id ) . '" data-fusion-tables="' . ( true === $args['fusion_tables'] ? '1' : '0' ) . '">
 							<p style="line-height: 20px;">' . $tooltip . '</p>
 						</div>';
-			} elseif ( ( 'cluster' === $type || 'route' === $type ) && false !== $connections ) {
-				if ( ! is_array( $connections ) ) {
-					$connections = array( $connections );
+			} elseif ( ( 'cluster' === $args['type'] || 'route' === $args['type'] ) && false !== $args['connections'] ) {
+				if ( ! is_array( $args['connections'] ) ) {
+					$args['connections'] = array( $args['connections'] );
 				}
 
-				foreach ( $connections as $connection ) {
+				foreach ( $args['connections'] as $connection ) {
 					$location = get_post_meta( $connection, 'location', true );
 
 					if ( false !== $location && '' !== $location && is_array( $location ) ) {
@@ -233,7 +233,7 @@ class Maps {
 
 							$icon = $this->set_icon( $connection );
 
-							$map .= '<div class="map-data" data-icon="' . $icon . '" data-id="' . $connection . '" data-long="' . $location['long'] . '" data-lat="' . $location['lat'] . '" data-link="' . get_permalink( $connection ) . '" data-thumbnail="' . $thumbnail . '" data-title="' . get_the_title( $connection ) . '" data-fusion-tables="' . ( true === $fusion_tables ? '1' : '0' ) . '">';
+							$map .= '<div class="map-data" data-icon="' . $icon . '" data-id="' . $connection . '" data-long="' . $location['long'] . '" data-lat="' . $location['lat'] . '" data-link="' . get_permalink( $connection ) . '" data-thumbnail="' . $thumbnail . '" data-title="' . get_the_title( $connection ) . '" data-fusion-tables="' . ( true === $args['fusion_tables'] ? '1' : '0' ) . '">';
 
 							global $post;
 							$post = get_post( $connection );
