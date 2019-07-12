@@ -155,11 +155,7 @@ class Maps {
 			'disable_auto_zoom' => false,
 		);
 
-		$args = wp_parse_args( $args, $defaults );
-
-		//phpcs:ignore
-		extract( $args );
-
+		$args        = wp_parse_args( $args, $defaults );
 		$map_classes = array( 'lsx-map' );
 		if ( true === $args['disable_auto_zoom'] ) {
 			$map_classes[] = 'disable-auto-zoom';
@@ -169,11 +165,11 @@ class Maps {
 		}
 
 		$thumbnail = '';
-		if ( false === $icon ) {
+		if ( false === $args['icon'] ) {
 			$icon = $this->set_icon( $post_id );
 		}
 
-		if ( ( '-33.914482' !== $args['lat'] && '18.3758789' !== $args['long'] ) || false !== $search || 'cluster' === $args['type'] || 'route' === $args['type'] ) {
+		if ( ( '-33.914482' !== $args['lat'] && '18.3758789' !== $args['long'] ) || false !== $args['search'] || 'cluster' === $args['type'] || 'route' === $args['type'] ) {
 			$map = '<div class="' . implode( ' ', $map_classes ) . '" data-zoom="' . $args['zoom'] . '" data-icon="' . $icon . '" data-type="' . $args['type'] . '" data-class="' . $args['selector'] . '" data-fusion-tables-colour-border="' . $args['fusion_tables_colour_border'] . '" data-fusion-tables-width-border="' . $args['fusion_tables_width_border'] . '" data-fusion-tables-colour-background="' . $args['fusion_tables_colour_background'] . '"';
 
 			if ( 'route' === $args['type'] && false !== $args['kml'] ) {
@@ -182,7 +178,7 @@ class Maps {
 
 			$map .= ' data-lat="' . $args['lat'] . '" data-long="' . $args['long'] . '"';
 
-			if ( false === $disable_cluster_js ) {
+			if ( false === $args['disable_cluster_js'] ) {
 				$map .= ' data-cluster-small="' . $args['cluster_small'] . '" data-cluster-medium="' . $args['cluster_medium'] . '" data-cluster-large="' . $args['cluster_large'] . '"';
 			}
 
@@ -227,7 +223,7 @@ class Maps {
 
 							$tooltip = $location['address'];
 
-							if ( 'excerpt' === $content ) {
+							if ( 'excerpt' === $args['content'] ) {
 								$tooltip = strip_tags( get_the_excerpt( $connection ) );
 							}
 
