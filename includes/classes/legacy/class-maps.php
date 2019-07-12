@@ -188,7 +188,7 @@ class Maps {
 
 			$map .= '>';
 
-			$map .= '<div class="lsx-map-preview" style="width:' . $args['width'] . ';height:' . $args['height'] . ';">';
+			$map .= '<div class="lsx-map-preview" style="width:' . $args['width'] . ';height:' . $args['height'] . ';background-color: #D8D8D8;">';
 			if ( true === $this->placeholder_enabled ) {
 				$map .= '<img class="lsx-map-placeholder" src="' . $this->get_map_preview_src() . '" style="cursor:pointer;width:' . $args['width'] . ';height:' . $args['height'] . ';" />';
 			}
