@@ -21,18 +21,31 @@ class Maps {
 
 	/**
 	 * Holds instances of the class
+	 *
+	 * @var object \lsx\legacy\Maps()
 	 */
 	protected static $instance;
 
 	/**
 	 * Holds the value of the current marker
+	 *
+	 * @var bool
 	 */
 	public $current_marker = false;
 
 	/**
 	 * If the map placeholder is enabled.
+	 *
+	 * @var bool
 	 */
 	public $placeholder_enabled = false;
+
+	/**
+	 * If the map should display in the destinations banner.
+	 *
+	 * @var bool
+	 */
+	public $enable_banner_map = false;
 
 	/**
 	 * Constructor
@@ -65,8 +78,15 @@ class Maps {
 		if ( isset( $settings->google_api_key ) ) {
 			$api_key = $settings->google_api_key;
 		}
+		if ( isset( $settings['destination'] ) && isset( $settings['destination']['enable_banner_map'] ) && 'on' === $settings['destination']['enable_banner_map'] ) {
+			$this->enable_banner_map = true;
+		}
 		if ( isset( $settings['display'] ) && isset( $settings['display']['map_placeholder_enabled'] ) && 'on' === $settings['display']['map_placeholder_enabled'] ) {
-			$this->placeholder_enabled = true;
+			if ( is_post_type_archive( 'destination' ) && true === $this->enable_banner_map ) {
+				$this->placeholder_enabled = false;
+			} else {
+				$this->placeholder_enabled = true;
+			}
 		}
 
 		wp_enqueue_script( 'googlemaps_api', 'https://maps.googleapis.com/maps/api/js?key=' . $api_key . '&libraries=places', array( 'jquery' ), null, true );
@@ -85,6 +105,7 @@ class Maps {
 				'start_marker' => tour_operator()->markers->start,
 				'end_marker' => tour_operator()->markers->end,
 				'placeholder_enabled' => $this->placeholder_enabled,
+				'enable_banner_map' => $this->enable_banner_map,
 			) );
 		}
 	}
