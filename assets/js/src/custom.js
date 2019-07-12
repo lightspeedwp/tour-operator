@@ -67,12 +67,16 @@ if ( window.location.hash ) {
 			var $this = $( this );
 
 			if ( '' === $.trim( $this.html() ) ) {
+
 				if ( 0 === $this.closest( '#fast-facts' ).siblings( '#highlights' ).length && 0 === $this.closest( '#fast-facts' ).siblings( '.lsx-to-contact-widget' ).length ) {
 					$this.closest( '.col-xs-12' ).siblings( '.col-xs-12' ).attr( 'class', 'col-xs-12' );
 					$this.closest( '.col-xs-12' ).remove();
 				} else {
-					$this.closest( '#fast-facts' ).remove();
+					//$this.closest( '#fast-facts' ).remove();
+					$this.closest( '#fast-facts' ).addClass( 'empty-fact' );
 				}
+			} else {
+				$this.closest( '#fast-facts' ).addClass( 'full-fact' );
 			}
 		} );
 	};

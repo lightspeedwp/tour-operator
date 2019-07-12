@@ -156,7 +156,7 @@ function lsx_to_single_entry_bottom() {
  */
 function lsx_to_accommodation_single_fast_facts() {
 	if ( is_singular( 'accommodation' ) ) { ?>
-		<section id="fast-facts">
+		<section style="display: none;" id="fast-facts">
 			<div class="lsx-to-section-inner">
 				<h3 class="lsx-to-section-title"><?php esc_html_e( 'Accommodation Summary', 'tour-operator' ); ?></h3>
 
@@ -194,7 +194,7 @@ function lsx_to_accommodation_single_fast_facts() {
  */
 function lsx_to_destination_single_fast_facts() {
 	if ( is_singular( 'destination' ) ) { ?>
-		<section id="fast-facts">
+		<section style="display: none;" id="fast-facts">
 			<div class="lsx-to-section-inner">
 				<h3 class="lsx-to-section-title"><?php esc_html_e( 'Fast Facts', 'tour-operator' ); ?></h3>
 
@@ -225,7 +225,7 @@ function lsx_to_tour_single_fast_facts() {
 	if ( is_singular( 'tour' ) ) {
 		$highlights = get_post_meta( get_the_ID(), 'hightlights', true );
 		?>
-		<section id="fast-facts">
+		<section style="display: none;" id="fast-facts">
 			<div class="lsx-to-section-inner">
 				<h3 class="lsx-to-section-title"><?php esc_html_e( 'Tour Summary', 'tour-operator' ); ?></h3>
 

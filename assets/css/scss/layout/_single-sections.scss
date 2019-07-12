@@ -70,6 +70,12 @@
 	& + #sharing { margin-top: $lsx-to-gap; }
 }
 
+#fast-facts {
+	&.full-fact {
+		display: block !important;
+	}
+}
+
 .lsx-to-section-title {
 	& + .lsx-to-archive-items,
 	& + .lsx-to-widget-items {
