@@ -691,7 +691,7 @@ class Settings extends Tour_Operator {
 			$this->map_marker_field();
 			$this->cluster_marker_field();
 			$this->start_end_marker_fields();
-			//$this->map_placeholder();
+			$this->map_placeholder();
 			$this->fusion_tables_fields();
 		}
 	}	

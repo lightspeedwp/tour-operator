@@ -27,7 +27,12 @@ class Maps {
 	/**
 	 * Holds the value of the current marker
 	 */
-	var $current_marker = false;
+	public $current_marker = false;
+
+	/**
+	 * If the map placeholder is enabled.
+	 */
+	public $placeholder_enabled = false;
 
 	/**
 	 * Constructor
@@ -60,6 +65,10 @@ class Maps {
 		if ( isset( $settings->google_api_key ) ) {
 			$api_key = $settings->google_api_key;
 		}
+		if ( isset( $settings['display'] ) && isset( $settings['display']['map_placeholder_enabled'] ) && 'on' === $settings['display']['map_placeholder_enabled'] ) {
+			$this->placeholder_enabled = true;
+		}
+
 		wp_enqueue_script( 'googlemaps_api', 'https://maps.googleapis.com/maps/api/js?key=' . $api_key . '&libraries=places', array( 'jquery' ), null, true );
 		wp_enqueue_script( 'googlemaps_api_markercluster', LSX_TO_URL . '/assets/js/vendor/google-markerCluster.js', array( 'googlemaps_api' ), null, true );
 		if ( defined( 'SCRIPT_DEBUG' ) ) {
@@ -75,6 +84,7 @@ class Maps {
 				'apiKey' => $api_key,
 				'start_marker' => tour_operator()->markers->start,
 				'end_marker' => tour_operator()->markers->end,
+				'placeholder_enabled' => $this->placeholder_enabled,
 			) );
 		}
 	}
@@ -87,7 +97,6 @@ class Maps {
 	 * @return    null
 	 */
 	public function map_output( $post_id = false, $args = array() ) {
-		$settings = tour_operator()->options;
 		$defaults = array(
 			'lat' => '-33.914482',
 			'long' => '18.3758789',
@@ -122,9 +131,11 @@ class Maps {
 		if ( true === $disable_auto_zoom ) {
 			$map_classes[] = 'disable-auto-zoom';
 		}
+		if ( true === $this->placeholder_enabled ) {
+			$map_classes[] = 'map-has-placeholder';
+		}
 
 		$thumbnail = '';
-
 		if ( false === $icon ) {
 			$icon = $this->set_icon( $post_id );
 		}
@@ -143,7 +154,12 @@ class Maps {
 			}
 
 			$map .= '>';
-			$map .= '<div class="lsx-map-preview" style="width:' . $width . ';height:' . $height . ';"></div>';
+
+			$map .= '<div class="lsx-map-preview" style="width:' . $width . ';height:' . $height . ';">';
+			if ( true === $this->placeholder_enabled ) {
+				$map .= '<img class="lsx-map-placeholder" src="' . LSX_TO_URL . 'assets/img/placeholders/placeholder-map.svg" style="cursor:pointer;width:' . $width . ';height:' . $height . ';" />';
+			}			
+			$map .= '</div>';
 
 			$map .= '<div class="lsx-map-markers" style="display:none;">';
 

@@ -449,10 +449,22 @@ var LSX_TO_Maps = {
 		}
 	},
 
+	watchMapTriggers: function() {
+		jQuery(document).on( 'click', '.lsx-map-placeholder', function( event ) {
+			LSX_TO_Maps.initThis();
+		} );	
+	},
 };
 
+
+
 jQuery(document).ready(function($) {
-	if (jQuery('.lsx-map').length > 0) {
-		LSX_TO_Maps.initThis();
-	}
+	console.log( lsx_to_maps_params );
+	if ( jQuery('.lsx-map').length > 0 ) {
+		if ( '0' === lsx_to_maps_params.placeholder_enabled ) {
+			LSX_TO_Maps.initThis();
+		} else {
+			LSX_TO_Maps.watchMapTriggers();
+		}
+	} 
 });
