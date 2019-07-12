@@ -681,6 +681,22 @@ class Settings extends Tour_Operator {
 	}
 
 	/**
+	 * outputs the display settings for the map tab.
+	 *
+	 * @param $tab string
+	 * @return null
+	 */
+	public function map_display_settings( $tab = 'general' ) {
+		if ( 'maps' === $tab ) {
+			$this->map_marker_field();
+			$this->cluster_marker_field();
+			$this->start_end_marker_fields();
+			//$this->map_placeholder();
+			$this->fusion_tables_fields();
+		}
+	}	
+
+	/**
 	 * outputs the post type map settings
 	 *
 	 * @param $tab string
@@ -688,6 +704,46 @@ class Settings extends Tour_Operator {
 	 */
 	public function post_type_map_settings( $tab = 'general' ) {
 		$this->map_marker_field();
+	}
+
+	/**
+	 * Outputs the map placeholder field
+	 */
+	public function map_placeholder() {
+		?>
+		<tr class="form-field">
+			<th scope="row" colspan="2">
+				<label>
+					<h3><?php esc_html_e( 'Placeholder Settings', 'tour-operator' ); ?></h3>
+				</label>
+			</th>
+		</tr>		
+		<tr class="form-field">
+			<th scope="row">
+				<label for="map_placeholder_enabled"><?php esc_html_e( 'Enable Map Placeholder', 'tour-operator' ); ?></label>
+			</th>
+			<td>
+				<input type="checkbox" {{#if map_placeholder_enabled}} checked="checked" {{/if}} name="map_placeholder_enabled" /> 
+				<small><?php esc_html_e( 'Enable a placeholder users will click to load the map.', 'tour-operator' ); ?></small>
+			</td>
+		</tr>	
+		{{#if map_placeholder_enabled}}
+		<tr class="form-field map-placeholder">
+			<th scope="row">
+				<label for="banner"> <?php esc_html_e( 'Upload a map placeholder', 'tour-operator' ); ?></label>
+			</th>
+			<td>
+				<input class="input_image_id" type="hidden" {{#if map_placeholder}} value="{{map_placeholder}}" {{/if}} name="map_placeholder" />
+				<input class="input_image" type="hidden" {{#if map_placeholder}} value="{{map_placeholder}}" {{/if}} name="map_placeholder" />
+				<div class="thumbnail-preview">
+					{{#if map_placeholder}}<img src="{{map_placeholder}}" width="48" style="color:black;" />{{/if}}
+				</div>
+				<a {{#if map_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
+				<a {{#unless map_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
+			</td>
+		</tr>
+		{{/if}}
+		<?php
 	}
 
 	/**
@@ -821,20 +877,5 @@ class Settings extends Tour_Operator {
 			</td>
 		</tr>
 		<?php
-	}
-
-	/**
-	 * outputs the display settings for the map tab.
-	 *
-	 * @param $tab string
-	 * @return null
-	 */
-	public function map_display_settings( $tab = 'general' ) {
-		if ( 'maps' === $tab ) {
-			$this->map_marker_field();
-			$this->cluster_marker_field();
-			$this->start_end_marker_fields();
-			$this->fusion_tables_fields();
-		}
 	}
 }
