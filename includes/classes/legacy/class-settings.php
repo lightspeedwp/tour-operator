@@ -695,7 +695,7 @@ class Settings extends Tour_Operator {
 			$this->map_placeholder_field();
 			$this->fusion_tables_fields();
 		}
-	}	
+	}
 
 	/**
 	 * Outputs the post type map settings.
@@ -740,7 +740,7 @@ class Settings extends Tour_Operator {
 			</td>
 		</tr>	
 		<?php
-	}	
+	}
 
 	/**
 	 * Outputs the map placeholder field

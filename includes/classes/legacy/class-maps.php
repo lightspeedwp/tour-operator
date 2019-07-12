@@ -52,7 +52,7 @@ class Maps {
 	 *
 	 * @var array
 	 */
-	public $post_types = array();	
+	public $post_types = array();
 
 	/**
 	 * Constructor
@@ -258,12 +258,12 @@ class Maps {
 		}
 	}
 
-/**
- * Returns the map marker.
- *
- * @param boolean $post_id
- * @return mixed
- */
+	/**
+	 * Returns the map marker.
+	 *
+	 * @param boolean $post_id
+	 * @return mixed
+	 */
 	public function set_icon( $post_id = false ) {
 		$settings = tour_operator()->options;
 		$icon = tour_operator()->markers->default_marker;
