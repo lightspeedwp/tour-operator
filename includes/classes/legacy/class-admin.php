@@ -20,6 +20,13 @@ namespace lsx\legacy;
 class Admin extends Tour_Operator {
 
 	/**
+	 * Holds the maps class
+	 * 
+	 * @var object lsx\legacy\Videos_Admin();
+	 */
+	public $videos = '';
+
+	/**
 	 * Initialize the plugin by setting localization, filters, and
 	 * administration functions.
 	 *
@@ -29,6 +36,8 @@ class Admin extends Tour_Operator {
 	public function __construct() {
 		$this->options = get_option( '_lsx-to_settings', false );
 		$this->set_vars();
+
+		$this->videos = Videos::get_instance();
 
 		add_action( 'init', array( $this, 'init' ) );
 		//add_action( 'admin_menu', array( $this, 'register_menu_pages' ) );

@@ -1,12 +1,12 @@
 <?php
 /**
- * Video_Admin
+ * Video
  *
- * @package   Video_Admin
+ * @package   Video
  * @author    LightSpeed
- * @license   GPL-2.0+
+ * @license   GPL-3.0+
  * @link
- * @copyright 2018 LightSpeedDevelopment
+ * @copyright 2019 LightSpeedDevelopment
  */
 
 namespace lsx\legacy;
@@ -14,10 +14,15 @@ namespace lsx\legacy;
 /**
  * Main plugin class.
  *
- * @package Video_Admin
+ * @package Video
  * @author  LightSpeed
  */
-class Video_Admin {
+class Video {
+
+	/**
+	 * Holds instances of the class
+	 */
+	protected static $instance;
 	/**
 	 * Constructor
 	 */
@@ -30,6 +35,22 @@ class Video_Admin {
 		add_filter( 'lsx_to_special_custom_fields', array( $this, 'custom_fields' ) );
 		add_filter( 'lsx_to_vehicle_custom_fields', array( $this, 'custom_fields' ) );
 	}
+
+	/**
+	 * Return an instance of this class.
+	 *
+	 * @since 1.0.0
+	 * @return    object    A single instance of this class.
+	 */
+	public static function get_instance() {
+		// If the single instance hasn't been set, set it now.
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self;
+		}
+
+		return self::$instance;
+	}
+
 	/**
 	 * Adds in the gallery fields to the Tour Operators Post Types.
 	 */
@@ -80,4 +101,3 @@ class Video_Admin {
 		return $new_fields;
 	}
 }
-new Video_Admin();
