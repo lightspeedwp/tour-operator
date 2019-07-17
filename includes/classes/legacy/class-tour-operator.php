@@ -210,8 +210,6 @@ class Tour_Operator {
 
 		// init admin object.
 		$this->admin = new Admin();
-		// init settings object.
-		$this->settings = new Settings();
 		// init frontend object.
 		$this->frontend = new Frontend();
 		add_action(

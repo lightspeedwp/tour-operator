@@ -26,6 +26,10 @@ function tour_operator_autoload_class( $class ) {
 		array_shift( $parts );
 		$name = array_shift( $parts );
 
+		if ( 'Settings' === $name ) {
+			$name = 'admin\\' . $name;
+		}
+
 		if ( file_exists( $path . $name ) ) {
 			$file = str_replace( '_', '-', strtolower( array_pop( $parts ) ) );
 			if ( ! empty( $parts ) ) {

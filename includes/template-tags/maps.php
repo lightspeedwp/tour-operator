@@ -10,17 +10,28 @@
  */
 
 /**
- * Outputs the current post type map
+ * Checks if maps are enabled.
  *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
- *
- * @package 	to-maps
- * @subpackage	template-tags
+ * @return boolean
  */
+function lsx_to_is_map_enabled() {
+	$options = tour_operator()->legacy->options;
+	$return = true;
+	if ( false !== $options && isset( $options['display']['maps_disabled'] ) && 'on' === $options['display']['maps_disabled'] ) {
+		$return = false;
+	}
+	return $return;
+}
+
 if ( ! function_exists( 'lsx_to_map' ) ) {
+	/**
+	 * Outputs the current post type map.
+	 *
+	 * @param string  $before
+	 * @param string  $after
+	 * @param boolean $echo
+	 * @return void
+	 */
 	function lsx_to_map( $before = '', $after = '', $echo = true ) {
 		global $wp_query, $post;
 		$location = get_transient( get_the_ID() . '_location' );
@@ -162,8 +173,7 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 					if ( false !== $connections && '' !== $connections ) {
 						$args['connections'] = $connections;
 						$args['type'] = 'cluster';
-
-						if ( '0' === $parent_id  && ! lsx_to_has_destination_banner_cluster() ) {
+						if ( '0' === $parent_id && ! lsx_to_has_destination_banner_cluster() ) {
 							$args['disable_cluster_js'] = true;
 						}
 					}
@@ -187,26 +197,26 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 	}
 }
 
-/**
- * Outputs the map meta
- *
- * @package 	to-maps
- * @subpackage	template-tags
- * @category 	meta
- */
 if ( ! function_exists( 'lsx_to_map_meta' ) ) {
+	/**
+	 * Outputs the map meta
+	 *
+	 * @package to-maps
+	 * @subpackage template-tags
+	 * @category meta
+	 */
 	function lsx_to_map_meta() {
 		do_action( 'lsx_to_map_meta' );
 	}
 }
 
-/**
- * Return if the fusion tables are enabled or not
- *
- * @package 	to-maps
- * @subpackage	template-tags
- */
 if ( ! function_exists( 'lsx_to_display_fustion_tables' ) ) {
+	/**
+	 * Return if the fusion tables are enabled or not
+	 *
+	 * @package to-maps
+	 * @subpackage template-tags
+	 */
 	function lsx_to_display_fustion_tables() {
 		$temp = get_option( '_lsx-to_settings', false );
 
@@ -220,13 +230,13 @@ if ( ! function_exists( 'lsx_to_display_fustion_tables' ) ) {
 	}
 }
 
-/**
- * Return fusion tables attribute
- *
- * @package 	to-maps
- * @subpackage	template-tags
- */
 if ( ! function_exists( 'lsx_to_fustion_tables_attr' ) ) {
+	/**
+	 * Return fusion tables attribute.
+	 *
+	 * @package to-maps
+	 * @subpackage template-tags
+	 */
 	function lsx_to_fustion_tables_attr( $attribute, $default ) {
 		$temp = get_option( '_lsx-to_settings', false );
 
@@ -240,40 +250,38 @@ if ( ! function_exists( 'lsx_to_fustion_tables_attr' ) ) {
 	}
 }
 
-/**
- * Checks to see if the destination banner map is enabled.
- *
- * @package 	to-maps
- * @subpackage	template-tags
- * @category 	destination
- *
- * @return boolean
- */
 if ( ! function_exists( 'lsx_to_has_destination_banner_map' ) ) {
+	/**
+	 * Checks to see if the destination banner map is enabled.
+	 *
+	 * @package to-maps
+	 * @subpackage template-tags
+	 * @category destination
+	 *
+	 * @return boolean
+	 */
 	function lsx_to_has_destination_banner_map() {
-		$temp = get_option( '_lsx-to_settings', false );
+		$temp   = tour_operator()->legacy->options;
 		$return = false;
-
 		if ( false !== $temp && isset( $temp['destination'] ) && ! empty( $temp['destination'] ) ) {
 			if ( isset( $temp['destination']['enable_banner_map'] ) ) {
 				$return = true;
 			}
 		}
-
 		return apply_filters( 'lsx_to_has_destination_banner_map', $return );
 	}
 }
 
-/**
- * Checks to see if the destination banner map cluster is disabled.
- *
- * @package 	to-maps
- * @subpackage	template-tags
- * @category 	destination
- *
- * @return boolean
- */
 if ( ! function_exists( 'lsx_to_has_destination_banner_cluster' ) ) {
+	/**
+	 * Checks to see if the destination banner map cluster is disabled.
+	 *
+	 * @package to-maps
+	 * @subpackage template-tags
+	 * @category destination
+	 *
+	 * @return boolean
+	 */
 	function lsx_to_has_destination_banner_cluster() {
 		$temp = get_option( '_lsx-to_settings', false );
 
@@ -288,49 +296,45 @@ if ( ! function_exists( 'lsx_to_has_destination_banner_cluster' ) ) {
 	}
 }
 
-/**
- * Checks to see if the API key is actually set.
- *
- * @package 	to-maps
- * @subpackage	template-tags
- * @category 	meta
- */
 if ( ! function_exists( 'lsx_to_maps_has_api_key' ) ) {
+	/**
+	 * Checks to see if the API key is actually set.
+	 *
+	 * @package to-maps
+	 * @subpackage template-tags
+	 * @category meta
+	 */
 	function lsx_to_maps_has_api_key() {
-		$options = get_option( '_lsx-to_settings', false );
-
+		$options = tour_operator()->options;
 		if ( false !== $options && isset( $options['api']['googlemaps_key'] ) ) {
 			$return = true;
 		} else {
 			$return = $options;
 		}
-
 		return $return;
 	}
 }
 
-/**
- * Checks if the current item has a map
- *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
- *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	general
- */
 if ( ! function_exists( 'lsx_to_has_map' ) ) {
+	/**
+	 * Checks if the current item has a map
+	 *
+	 * @return boolean
+	 *
+	 * @package tour-operator
+	 * @subpackage template-tags
+	 * @category general
+	 */
 	function lsx_to_has_map() {
-		//If theres no API key then dont even try output the Map
-		if ( ! lsx_to_maps_has_api_key() ) { return false; }
+		// If the maps are disabled via the settings.
+		if ( ! lsx_to_is_map_enabled() ) {
+			return false;
+		}
 
-		// Get any existing copy of our transient data
+		// Get any existing copy of our transient data.
 		$location = get_transient( get_the_ID() . '_location' );
 		if ( false === $location ) {
-			// It wasn't there, so regenerate the data and save the transient
-
+			// It wasn't there, so regenerate the data and save the transient.
 			$kml = false;
 
 			if ( is_post_type_archive( 'destination' ) ) {
@@ -361,15 +365,18 @@ if ( ! function_exists( 'lsx_to_has_map' ) ) {
 				set_transient( get_the_ID() . '_location', $location, 30 );
 				return true;
 			} elseif ( false !== $kml ) {
-				set_transient( get_the_ID() . '_location', array(
-					'kml' => $kml,
-				), 30 );
-
+				set_transient(
+					get_the_ID() . '_location',
+					array(
+						'kml' => $kml,
+					),
+					30
+				);
 				return true;
 			} else {
 				return false;
 			}
-		} elseif ( is_array( $location ) && ((isset( $location['lat'] ) && '' !== $location['lat']) || (isset( $location['kml'] ) && '' !== $location['kml'])) ) {
+		} else if ( is_array( $location ) && ( ( isset( $location['lat'] ) && '' !== $location['lat'] ) || ( isset( $location['kml'] ) && '' !== $location['kml'] ) ) ) {
 			return true;
 		} else {
 			return false;

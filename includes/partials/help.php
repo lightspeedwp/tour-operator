@@ -75,7 +75,7 @@
 						<h2><?php esc_html_e( 'Tour Operator', 'tour-operator' ); ?></h2>
 
 						<ul>
-							<li><strong><?php esc_html_e( 'Latest Version:', 'tour-operator' ); ?></strong> <?php esc_html_e( $version ); ?></li>
+							<li><strong><?php esc_html_e( 'Latest Version:', 'tour-operator' ); ?></strong> <?php echo esc_attr( $version ); ?></li>
 							<li><strong><?php esc_html_e( 'Requires:', 'tour-operator' ); ?></strong> <?php esc_html_e( 'WordPress 5.0+', 'tour-operator' ); ?></li>
 							<li><strong><?php esc_html_e( 'Tested up to:', 'tour-operator' ); ?></strong> <?php esc_html_e( 'WordPress 5.0', 'tour-operator' ); ?></li>
 						</ul>

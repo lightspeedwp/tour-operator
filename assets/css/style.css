@@ -1617,6 +1617,11 @@ body.single-tour-operator .modal-body article .entry-content .moretag { width: 2
 
 @media (min-width: 992px) { .gm-style .gm-style-iw + div { box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px 0px; right: -10px !important; top: -10px !important; } }
 
+.lsx-map.map-has-placeholder .placeholder-text { text-align: center; cursor: pointer; }
+
+@media (max-width: 1199px) { .lsx-map.map-has-placeholder .placeholder-text .lsx-to-section-title.lsx-to-collapse-title { background-color: transparent; border-bottom-color: transparent; color: #4A4A4A; font-size: 20px; }
+  .lsx-map.map-has-placeholder .placeholder-text .lsx-to-section-title.lsx-to-collapse-title:after { display: none; } }
+
 .lsx-to-slider-inner .slick-dots > li > button, .gallery .slick-dots > li > button { border-color: #4A4A4A; }
 
 .lsx-to-slider-inner .slick-dots > li.slick-active > button, .gallery .slick-dots > li.slick-active > button { background-color: #4A4A4A; }

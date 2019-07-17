@@ -2,22 +2,38 @@
 /**
  * Backend actions for the LSX TO Plugin
  *
- * @package   \lsx\legacy\Admin
+ * @package   \lsx\admin
  * @author    LightSpeed
  * @license   GPL3
  * @link
- * @copyright 2016 LightSpeedDevelopment
+ * @copyright 2019 LightSpeedDevelopment
  */
 
-namespace lsx\legacy;
+namespace lsx\admin;
 
 /**
  * Main plugin class.
  *
- * @package Settings
+ * @package lsx
  * @author  LightSpeed
  */
-class Settings extends Tour_Operator {
+class Settings {
+
+	/**
+	 * Holds instance of the class
+	 *
+	 * @since   1.1.0
+	 * @var     \lsx\admin\Admin
+	 */
+	private static $instance;
+
+	/**
+	 * Holds the tour operators options
+	 *
+	 * @since   1.1.0
+	 * @var     array
+	 */
+	public $options;
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -27,9 +43,7 @@ class Settings extends Tour_Operator {
 	 * @access private
 	 */
 	public function __construct() {
-		$this->options = get_option( '_lsx-to_settings', false );
-		$this->set_vars();
-
+		$this->options = tour_operator()->options;
 		add_filter( 'lsx_to_framework_settings_tabs', array( $this, 'register_settings_tabs' ) );
 
 		if ( isset( $_GET['welcome-page'] ) ) {
@@ -48,6 +62,22 @@ class Settings extends Tour_Operator {
 	}
 
 	/**
+	 * Return an instance of this class.
+	 *
+	 * @since 1.1.0
+	 * @return  Tour_Operator  A single instance
+	 */
+	public static function init() {
+
+		// If the single instance hasn't been set, set it now.
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
 	 * Returns the array of settings to the UIX Class
 	 */
 	public function create_settings_page() {
@@ -60,7 +90,7 @@ class Settings extends Tour_Operator {
 			$uix = \lsx_to\ui\uix::get_instance( 'lsx-to' );
 			$uix->register_pages( $pages );
 
-			foreach ( $this->post_types as $post_type => $label ) {
+			foreach ( tour_operator()->legacy->post_types as $post_type => $label ) {
 				add_action( 'lsx_to_framework_' . $post_type . '_tab_content', array( $this, 'general_settings' ), 5 , 2 );
 				add_action( 'lsx_to_framework_' . $post_type . '_tab_content', array( $this, 'archive_settings' ), 12 , 2 );
 				add_action( 'lsx_to_framework_' . $post_type . '_tab_content', array( $this, 'single_settings' ), 15 , 2 );
@@ -70,15 +100,14 @@ class Settings extends Tour_Operator {
 			add_action( 'lsx_to_framework_display_tab_content', array( $this, 'display_tab_content' ), 10, 1 );
 			add_action( 'lsx_to_framework_display_tab_content', array( $this, 'map_display_settings' ), 12, 1 );
 
-			if ( ! empty( $post_types ) ) {
-				foreach ( $this->post_types as $post_type ) {
-
-					if ( isset( $this->options[ $post_type ]['googlemaps_marker'] ) && '' !== $this->options[ $post_type ]['googlemaps_marker'] ) {
-						$this->markers->post_types[ $post_type ] = $this->options[ $post_type ]['googlemaps_marker'];
+			if ( ! empty( tour_operator()->legacy->post_types ) ) {
+				foreach ( tour_operator()->legacy->post_types as $post_type => $label ) {
+					if ( isset( tour_operator()->legacy->options[ $post_type ]['googlemaps_marker'] ) && '' !== tour_operator()->legacy->options[ $post_type ]['googlemaps_marker'] ) {
+						tour_operator()->legacy->markers->post_types[ $post_type ] = tour_operator()->legacy->options[ $post_type ]['googlemaps_marker'];
 					} else {
-						$this->markers->post_types[ $post_type ] = LSX_TO_URL . 'assets/img/markers/' . $post_type . '-marker.png';
+						tour_operator()->legacy->markers->post_types[ $post_type ] = LSX_TO_URL . 'assets/img/markers/' . $post_type . '-marker.png';
 					}
-					add_action( 'lsx_to_framework_' . $post_type . '_tab_content', array( $this, 'post_type_map_settings' ), 10, 1 );
+					add_action( 'lsx_to_framework_' . $post_type . '_tab_content', array( $this, 'post_type_map_settings' ), 10, 2 );
 				}
 			}
 		}
@@ -102,15 +131,15 @@ class Settings extends Tour_Operator {
 	 * Returns the array of settings to the UIX Class in the lsx framework
 	 */
 	public function register_settings_tabs( $tabs ) {
-		// This array is for the Admin Pages. each element defines a page that is seen in the admin
+		// This array is for the Admin Pages. each element defines a page that is seen in the admin.
 
-		$post_types = apply_filters( 'lsx_to_post_types', $this->post_types );
+		$post_types = apply_filters( 'lsx_to_post_types', tour_operator()->legacy->post_types );
 
 		if ( false !== $post_types && ! empty( $post_types ) ) {
 			foreach ( $post_types as $index => $title ) {
 				$disabled = false;
 
-				if ( ! in_array( $index, $this->active_post_types ) ) {
+				if ( ! in_array( $index, tour_operator()->legacy->active_post_types ) ) {
 					$disabled = true;
 				}
 
@@ -276,8 +305,8 @@ class Settings extends Tour_Operator {
 				<label for="enquiry"><?php esc_html_e( 'General Enquiry', 'tour-operator' ); ?></label>
 			</th>
 			<?php
-			if ( true === $this->show_default_form() ) {
-				$forms = $this->get_activated_forms();
+			if ( true === tour_operator()->legacy->show_default_form() ) {
+				$forms = tour_operator()->legacy->get_activated_forms();
 				$selected_form = false;
 
 				if ( isset( $this->options['general'] ) && isset( $this->options['general']['enquiry'] ) ) {
@@ -384,8 +413,8 @@ class Settings extends Tour_Operator {
 				<label for="enquiry"><?php esc_attr_e( 'General Enquiry', 'tour-operator' ); ?></label>
 			</th>
 			<?php
-			if ( true === $this->show_default_form() ) {
-				$forms = $this->get_activated_forms(); ?>
+			if ( true === tour_operator()->legacy->show_default_form() ) {
+				$forms = tour_operator()->legacy->get_activated_forms(); ?>
 				<td>
 					<select value="{{enquiry}}" name="enquiry">
 						<?php
@@ -688,28 +717,51 @@ class Settings extends Tour_Operator {
 	 */
 	public function map_display_settings( $tab = 'general' ) {
 		if ( 'maps' === $tab ) {
+			$this->disable_maps_checkbox();
 			$this->map_marker_field();
 			$this->cluster_marker_field();
 			$this->start_end_marker_fields();
-			//$this->map_placeholder();
+			$this->map_placeholder_settings_title();
+			$this->enable_map_placeholder_checkbox();
+			$this->map_placeholder_field();
 			$this->fusion_tables_fields();
 		}
-	}	
+	}
 
 	/**
-	 * outputs the post type map settings
+	 * Outputs the post type map settings.
 	 *
 	 * @param $tab string
 	 * @return null
 	 */
-	public function post_type_map_settings( $tab = 'general' ) {
-		$this->map_marker_field();
+	public function post_type_map_settings( $post_type = '', $tab = 'general' ) {
+		if ( 'placeholders' === $tab ) {
+			$this->map_marker_field();
+			$this->map_placeholder_field();
+		}
 	}
 
 	/**
 	 * Outputs the map placeholder field
 	 */
-	public function map_placeholder() {
+	public function disable_maps_checkbox() {
+		?>
+		<tr class="form-field">
+			<th scope="row">
+				<label for="maps_disabled"><?php esc_html_e( 'Disable Maps', 'tour-operator' ); ?></label>
+			</th>
+			<td>
+				<input type="checkbox" {{#if maps_disabled}} checked="checked" {{/if}} name="maps_disabled" /> 
+				<small><?php esc_html_e( 'This will disable maps on all post types.', 'tour-operator' ); ?></small>
+			</td>
+		</tr>	
+		<?php
+	}
+
+	/**
+	 * Outputs the map placeholder field header
+	 */
+	public function map_placeholder_settings_title() {
 		?>
 		<tr class="form-field">
 			<th scope="row" colspan="2">
@@ -717,7 +769,15 @@ class Settings extends Tour_Operator {
 					<h3><?php esc_html_e( 'Placeholder Settings', 'tour-operator' ); ?></h3>
 				</label>
 			</th>
-		</tr>		
+		</tr>
+		<?php
+	}
+
+	/**
+	 * Outputs the map placeholder field
+	 */
+	public function enable_map_placeholder_checkbox() {
+		?>	
 		<tr class="form-field">
 			<th scope="row">
 				<label for="map_placeholder_enabled"><?php esc_html_e( 'Enable Map Placeholder', 'tour-operator' ); ?></label>
@@ -727,7 +787,14 @@ class Settings extends Tour_Operator {
 				<small><?php esc_html_e( 'Enable a placeholder users will click to load the map.', 'tour-operator' ); ?></small>
 			</td>
 		</tr>	
-		{{#if map_placeholder_enabled}}
+		<?php
+	}
+
+	/**
+	 * Outputs the map placeholder field
+	 */
+	public function map_placeholder_field() {
+		?>
 		<tr class="form-field map-placeholder">
 			<th scope="row">
 				<label for="banner"> <?php esc_html_e( 'Upload a map placeholder', 'tour-operator' ); ?></label>
@@ -736,13 +803,26 @@ class Settings extends Tour_Operator {
 				<input class="input_image_id" type="hidden" {{#if map_placeholder}} value="{{map_placeholder}}" {{/if}} name="map_placeholder" />
 				<input class="input_image" type="hidden" {{#if map_placeholder}} value="{{map_placeholder}}" {{/if}} name="map_placeholder" />
 				<div class="thumbnail-preview">
-					{{#if map_placeholder}}<img src="{{map_placeholder}}" width="48" style="color:black;" />{{/if}}
+					{{#if map_placeholder}}<img src="{{map_placeholder}}" width="480" style="color:black;" />{{/if}}
 				</div>
 				<a {{#if map_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
 				<a {{#unless map_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
 			</td>
 		</tr>
-		{{/if}}
+		<tr class="form-field map-mobile-placeholder">
+			<th scope="row">
+				<label for="banner"> <?php esc_html_e( 'Upload a mobile map placeholder', 'tour-operator' ); ?></label>
+			</th>
+			<td>
+				<input class="input_image_id" type="hidden" {{#if map_mobile_placeholder}} value="{{map_mobile_placeholder}}" {{/if}} name="map_mobile_placeholder" />
+				<input class="input_image" type="hidden" {{#if map_mobile_placeholder}} value="{{map_mobile_placeholder}}" {{/if}} name="map_mobile_placeholder" />
+				<div class="thumbnail-preview">
+					{{#if map_mobile_placeholder}}<img src="{{map_mobile_placeholder}}" width="150" style="color:black;" />{{/if}}
+				</div>
+				<a {{#if map_mobile_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
+				<a {{#unless map_mobile_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
+			</td>
+		</tr>
 		<?php
 	}
 
@@ -827,7 +907,7 @@ class Settings extends Tour_Operator {
 	}
 
 	/**
-	 * outputs the map marker upload field
+	 * Outputs the map marker upload field
 	 */
 	public function fusion_tables_fields() {
 		?>

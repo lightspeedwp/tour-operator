@@ -211,7 +211,8 @@ gulp.task('wordpress-lang', gulp.series( ['wordpress-pot', 'wordpress-po-mo'] , 
 	done();
 }));
 
-gulp.task('reload-node-flag-icon-css', function() {
+gulp.task('reload-node-flag-icon-css', function(done) {
 	gulp.src('node_modules/flag-icon-css/sass/*').pipe(gulp.dest('assets/css/flag-icon-css').on('error', function (err) {console.log('Error!', err);}));
 	gulp.src('node_modules/flag-icon-css/flags/**/*').pipe(gulp.dest('assets/flags').on('error', function (err) {console.log('Error!', err);}));
+	done();
 });

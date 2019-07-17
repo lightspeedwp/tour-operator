@@ -293,5 +293,4 @@ class Admin {
 		add_filter( 'custom_menu_order', array( $this, 'prepare_menu_order' ) );
 		$this->register_pages();
 	}
-
 }

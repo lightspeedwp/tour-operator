@@ -1,0 +1,21 @@
+.lsx-map.map-has-placeholder {
+	.placeholder-text {
+		text-align: center;
+		cursor: pointer;
+
+		@media (max-width: 1199px) {
+			.lsx-to-section-title.lsx-to-collapse-title {
+				background-color: transparent;
+				border-bottom-color: transparent;
+				color: #4A4A4A;
+				font-size: 20px;
+
+				&:after {
+					display:none;
+				}
+			}
+		}		
+	}
+}
+
+
