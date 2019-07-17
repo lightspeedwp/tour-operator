@@ -19,7 +19,7 @@
 .cmb_metabox .CMB_Group_Field.repeatable > .cmb-cell-12 .field-item {
 	width: 60% !important;
 }
-.cmb_metabox .cmb-cell-12 .CMB_Image_Field .field-item {
+.cmb_metabox .cmb-cell-12 .CMB_Image_Field .field-item, .cmb_metabox .cmb-cell-12 .CMB_File_Field .field-item {
 	width: 150px;
 }
 .cmb_metabox .cmb-cell-12 .CMB_Post_Select.repeatable .field-item {

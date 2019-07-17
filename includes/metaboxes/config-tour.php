@@ -185,6 +185,28 @@ $metabox['fields'][] = array(
 	'type' => 'checkbox',
 );
 
+if ( ! isset( tour_operator()->options['display']['maps_disable'] ) && empty( tour_operator()->options['display']['maps_disable'] ) ) {
+	$metabox['fields'][] = array(
+		'id'   => 'location_title',
+		'name' => esc_html__( 'Location', 'tour-operator' ),
+		'type' => 'title',
+	);
+	$metabox['fields'][] = array(
+		'id'         => 'map_placeholder',
+		'name'       => esc_html__( 'Map Placeholder', 'tour-operator' ),
+		'type'       => 'image',
+		'repeatable' => false,
+		'show_size'  => false,
+	);
+	$metabox['fields'][] = array(
+		'id'        => 'itinerary_kml',
+		'name'      => esc_html__( 'Itinerary KML File', 'tour-operator' ),
+		'type'      => 'file',
+		'repeatable' => false,
+		'show_size'  => false,
+	);
+}
+
 $metabox['fields'][] = array(
 	'id'   => 'gallery_title',
 	'name' => esc_html__( 'Gallery', 'tour-operator' ),
@@ -243,13 +265,6 @@ $metabox['fields'][] = array(
 	'id'   => 'itinerary_title',
 	'name' => esc_html__( 'Itinerary', 'tour-operator' ),
 	'type' => 'title',
-);
-
-$metabox['fields'][] = array(
-	'id'        => 'itinerary_kml',
-	'name'      => esc_html__( 'Itinerary KML File', 'tour-operator' ),
-	'type'      => 'file',
-	'show_size' => true,
 );
 
 $metabox['fields'][] = array(
