@@ -345,6 +345,7 @@ class Maps {
 		$preview_html = '';
 		if ( '' !== $preview_src ) {
 			$preview_html = '<img class="lsx-map-placeholder" src="' . $this->get_map_preview_src() . '" style="cursor:pointer;width:' . $width . ';height:' . $height . ';" />';
+			$preview_html .= '<div class="placeholder-text"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" style="margin-top:-' . ( ( $height / 2 ) + 31 ) . 'px">' . esc_html__( 'Click to display the map', 'tour-operator' ) . '</h2></div>';
 		}
 		return $preview_html;
 	}
