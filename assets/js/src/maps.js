@@ -451,8 +451,11 @@ var LSX_TO_Maps = {
 
 	watchMapTriggers: function() {
 		jQuery(document).on( 'click', '.lsx-map-placeholder', function( event ) {
-			LSX_TO_Maps.initThis();
-		} );	
+			jQuery.getScript(lsx_to_maps_params.google_url,function() {
+				jQuery.getScript(lsx_to_maps_params.google_cluster_url);
+				LSX_TO_Maps.initThis();
+			});
+		});
 	},
 };
 
