@@ -31,7 +31,7 @@ class Maps {
 	 *
 	 * @var bool
 	 */
-	public $maps_enabled = false;	
+	public $maps_enabled = false;
 
 	/**
 	 * Holds the value of the current marker
@@ -317,7 +317,7 @@ class Maps {
 		// $image = LSX_TO_URL . 'assets/img/placeholders/placeholder-map.svg';
 		$image = '';
 		if ( isset( $settings['display'] ) && isset( $settings['display'][ 'map' . $prefix . '_placeholder' ] ) && '' !== $settings['display'][ 'map' . $prefix . '_placeholder' ] ) {
-			$image = $settings['display']['map' . $prefix . '_placeholder'];
+			$image = $settings['display'][ 'map' . $prefix . '_placeholder' ];
 		}
 		if ( is_post_type_archive( $this->post_types ) ) {
 			if ( isset( $settings[ get_post_type() ] ) && isset( $settings[ get_post_type() ][ 'map' . $prefix . '_placeholder' ] ) && '' !== $settings[ get_post_type() ][ 'map' . $prefix . '_placeholder' ] ) {
@@ -353,7 +353,7 @@ class Maps {
 		$preview_html = '';
 		if ( '' !== $preview_src ) {
 			$preview_src_mobile = $this->get_map_preview_src( true );
-			if ( '' === $preview_src_mobile) {
+			if ( '' === $preview_src_mobile ) {
 				$preview_src_mobile = $preview_src;
 			}
 			$srcset = $preview_src_mobile . ' 600w,' . $preview_src;
