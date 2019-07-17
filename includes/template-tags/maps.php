@@ -261,15 +261,13 @@ if ( ! function_exists( 'lsx_to_has_destination_banner_map' ) ) {
 	 * @return boolean
 	 */
 	function lsx_to_has_destination_banner_map() {
-		$temp = get_option( '_lsx-to_settings', false );
+		$temp   = tour_operator()->legacy->options;
 		$return = false;
-
 		if ( false !== $temp && isset( $temp['destination'] ) && ! empty( $temp['destination'] ) ) {
 			if ( isset( $temp['destination']['enable_banner_map'] ) ) {
 				$return = true;
 			}
 		}
-
 		return apply_filters( 'lsx_to_has_destination_banner_map', $return );
 	}
 }

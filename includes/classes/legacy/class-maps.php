@@ -101,7 +101,7 @@ class Maps {
 			$this->enable_banner_map = true;
 		}
 		if ( isset( $settings['display'] ) && isset( $settings['display']['map_placeholder_enabled'] ) && 'on' === $settings['display']['map_placeholder_enabled'] ) {
-			if ( is_post_type_archive( 'destination' ) && true === $this->enable_banner_map ) {
+			if ( ( is_post_type_archive( 'destination' ) || is_singular( 'destination' ) ) && true === $this->enable_banner_map ) {
 				$this->placeholder_enabled = false;
 			} else {
 				$this->placeholder_enabled = true;
