@@ -199,6 +199,13 @@ if ( ! isset( tour_operator()->options['display']['maps_disable'] ) && empty( to
 		'show_size'  => false,
 	);
 	$metabox['fields'][] = array(
+		'id'         => 'map_mobile_placeholder',
+		'name'       => esc_html__( 'Mobile Placeholder', 'tour-operator' ),
+		'type'       => 'image',
+		'repeatable' => false,
+		'show_size'  => false,
+	);
+	$metabox['fields'][] = array(
 		'id'        => 'itinerary_kml',
 		'name'      => esc_html__( 'Itinerary KML File', 'tour-operator' ),
 		'type'      => 'file',
