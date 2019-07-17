@@ -92,8 +92,9 @@ class Maps {
 	 * Enques the assets
 	 */
 	public function assets() {
-		$settings = tour_operator()->options;
-		$api_key = '';
+		$settings    = tour_operator()->options;
+		$api_key     = '';
+		$preview_src = $this->get_map_preview_src();
 
 		if ( isset( $settings->google_api_key ) ) {
 			$api_key = $settings->google_api_key;
@@ -104,7 +105,7 @@ class Maps {
 		if ( isset( $settings['display'] ) && isset( $settings['display']['map_placeholder_enabled'] ) && 'on' === $settings['display']['map_placeholder_enabled'] ) {
 			if ( ( is_post_type_archive( 'destination' ) || is_singular( 'destination' ) ) && true === $this->enable_banner_map ) {
 				$this->placeholder_enabled = false;
-			} else {
+			} elseif ( '' !== $preview_src ) {
 				$this->placeholder_enabled = true;
 			}
 		}
@@ -116,14 +117,9 @@ class Maps {
 			$suffix = '.min';
 		}
 
-		$dependacies = array( 'jquery', 'googlemaps_api' );
+		$dependacies = array( 'jquery', 'googlemaps_api', 'googlemaps_api_markercluster' );
 		$google_url  = 'https://maps.googleapis.com/maps/api/js?key=' . $api_key . '&libraries=places';
-		//if ( isset( $settings['display'] ) && isset( $settings['display']['map_placeholder_enabled'] ) && 'on' === $settings['display']['map_placeholder_enabled'] ) {
-			$google_marker_cluster = LSX_TO_URL . '/assets/js/vendor/google-markerCluster.js';
-			$dependacies[] = 'googlemaps_api_markercluster';
-		//} else {
-			//$google_marker_cluster = '';
-		//}
+		$google_marker_cluster = LSX_TO_URL . '/assets/js/vendor/google-markerCluster.js';
 
 		if ( true === $this->placeholder_enabled ) {
 			$dependacies = array( 'jquery' );
@@ -218,7 +214,7 @@ class Maps {
 
 			$map .= '<div class="lsx-map-preview" style="width:' . $args['width'] . ';height:' . $args['height'] . ';background-color: #D8D8D8;">';
 			if ( true === $this->placeholder_enabled ) {
-				$map .= '<img class="lsx-map-placeholder" src="' . $this->get_map_preview_src() . '" style="cursor:pointer;width:' . $args['width'] . ';height:' . $args['height'] . ';" />';
+				$map .= $this->get_map_preview_html( $args['width'], $args['height'] );
 			}
 			$map .= '</div>';
 
@@ -314,17 +310,42 @@ class Maps {
 	 */
 	public function get_map_preview_src() {
 		$settings = tour_operator()->options;
-		$image = LSX_TO_URL . 'assets/img/placeholders/placeholder-map.svg';
+		// $image = LSX_TO_URL . 'assets/img/placeholders/placeholder-map.svg';
+		$image = '';
 		if ( isset( $settings['display'] ) && isset( $settings['display']['map_placeholder'] ) && '' !== $settings['display']['map_placeholder'] ) {
 			$image = $settings['display']['map_placeholder'];
 		}
-		if ( is_post_type_archive( $this->post_types ) || is_singular( $this->post_types ) ) {
+		if ( is_post_type_archive( $this->post_types ) ) {
 			if ( isset( $settings[ get_post_type() ] ) && isset( $settings[ get_post_type() ]['map_placeholder'] ) && '' !== $settings[ get_post_type() ]['map_placeholder'] ) {
 				$image = $settings[ get_post_type() ]['map_placeholder'];
+			}
+		}
+		if ( is_singular( $this->post_types ) ) {
+			$potential_placeholder = get_post_meta( get_the_ID(), 'map_placeholder', true );
+			if ( '' !== $potential_placeholder ) {
+				$potential_placeholder = wp_get_attachment_image_src( $potential_placeholder, 'full' );
+				if ( is_array( $potential_placeholder ) && ! empty( $potential_placeholder ) ) {
+					$image = $potential_placeholder[0];
+				}
 			}
 		}
 		$image = apply_filters( 'lsx_to_map_preview_src', $image );
 		return $image;
 	}
 
+	/**
+	 * Creates the map thumbnail HTML
+	 *
+	 * @param string $width
+	 * @param string $height
+	 * @return string
+	 */
+	public function get_map_preview_html( $width = '', $height = '' ) {
+		$preview_src = $this->get_map_preview_src();
+		$preview_html = '';
+		if ( '' !== $preview_src ) {
+			$preview_html = '<img class="lsx-map-placeholder" src="' . $this->get_map_preview_src() . '" style="cursor:pointer;width:' . $width . ';height:' . $height . ';" />';
+		}
+		return $preview_html;
+	}
 }
