@@ -15,10 +15,10 @@
  * @return boolean
  */
 function lsx_to_is_map_enabled() {
-	$options = tour_operator()->options;
-	$return = false;
-	if ( false !== $options && isset( $options['display']['maps_disabled'] ) && 'on' !== $options['display']['maps_disabled'] ) {
-		$return = true;
+	$options = tour_operator()->legacy->options;
+	$return = true;
+	if ( false !== $options && isset( $options['display']['maps_disabled'] ) && 'on' === $options['display']['maps_disabled'] ) {
+		$return = false;
 	}
 	return $return;
 }
@@ -330,11 +330,6 @@ if ( ! function_exists( 'lsx_to_has_map' ) ) {
 	function lsx_to_has_map() {
 		// If the maps are disabled via the settings.
 		if ( ! lsx_to_is_map_enabled() ) {
-			return false;
-		}
-
-		// If theres no API key then dont even try output the Map.
-		if ( ! lsx_to_maps_has_api_key() ) {
 			return false;
 		}
 
