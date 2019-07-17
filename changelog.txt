@@ -4,6 +4,8 @@
 * Dev - Integrated the TO Maps plugin into TO Core.
 * Fix - Hiding the banner title on regions when the map is set to output there.
 * Dev - Made sure the regions also move the map to the banner when the setting is activated.
+* Dev - Added in an option to disable the maps.
+* Dev - PHP Class updates
 
 ### 1.1.5 - 3th July 2019
 * Dev - Updated the help page.

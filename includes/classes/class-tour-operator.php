@@ -36,9 +36,17 @@ class Tour_Operator {
 	 * Holds the main admin page suffix
 	 *
 	 * @since   1.1.0
-	 * @var     array
+	 * @var     \lsx\admin\Admin
 	 */
 	public $admin;
+
+	/**
+	 * Holds the main settings object
+	 *
+	 * @since   1.1.0
+	 * @var     \lsx\admin\Settings
+	 */
+	public $settings;
 
 	/**
 	 * Holds the Post_Types instance.
@@ -86,7 +94,6 @@ class Tour_Operator {
 		$this->legacy = legacy\Tour_Operator::get_instance();
 		// Setup plugin.
 		add_action( 'init', array( $this, 'setup' ), 9 );
-
 	}
 
 	/**
@@ -206,6 +213,6 @@ class Tour_Operator {
 		$this->metaboxes  = Metaboxes::init();
 		$this->taxonomies = Taxonomies::init();
 		$this->admin      = Admin::init();
+		$this->settings   = \lsx\admin\Settings::init();
 	}
-
 }

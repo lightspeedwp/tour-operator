@@ -27,6 +27,13 @@ class Maps {
 	protected static $instance;
 
 	/**
+	 * If the maps are enabled.
+	 *
+	 * @var bool
+	 */
+	public $maps_enabled = false;	
+
+	/**
 	 * Holds the value of the current marker
 	 *
 	 * @var bool
