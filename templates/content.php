@@ -20,7 +20,7 @@
 
 	<div class="lsx-to-archive-thumb">
 		<a href="<?php the_permalink(); ?>" style="background-image: url('<?php echo esc_url( $image_src ); ?>')">
-			<?php lsx_thumbnail( 'lsx-thumbnail-square' ); ?>
+			<?php lsx_thumbnail( 'lsx-thumbnail-wide' ); ?>
 		</a>
 	</div>
 
