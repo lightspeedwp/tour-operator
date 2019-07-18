@@ -302,8 +302,11 @@ class Tour_Operator {
 	 */
 	public function disable_deprecated() {
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-		if ( is_plugin_active( 'tour-operator-maps' ) ) {
-			deactivate_plugins( 'tour-operator-maps' );
+		if ( defined( 'LSX_TO_MAPS_CORE' ) && is_plugin_active( plugin_basename( LSX_TO_MAPS_CORE ) ) ) {
+			deactivate_plugins( plugin_basename( LSX_TO_MAPS_CORE ) );
+		}
+		if ( defined( 'LSX_TO_VIDEOS_CORE' ) && is_plugin_active( plugin_basename( LSX_TO_VIDEOS_CORE ) ) ) {
+			deactivate_plugins( plugin_basename( LSX_TO_VIDEOS_CORE ) );
 		}
 	}
 
