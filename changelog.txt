@@ -8,6 +8,7 @@
 * Dev - Integrated the TO Maps plugin into TO Core.
 * Dev - Added in an option to disable the maps.
 * Dev - Added in a desktop and mobile map placeholder setting.
+* Dev - Added in the bot blocker function for google maps requests
 
 ### 1.1.5 - 3th July 2019
 * Dev - Updated the help page.
