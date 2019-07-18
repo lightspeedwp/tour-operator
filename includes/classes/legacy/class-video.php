@@ -2,7 +2,7 @@
 /**
  * Video
  *
- * @package   Video
+ * @package   tour-operator
  * @author    LightSpeed
  * @license   GPL-3.0+
  * @link
@@ -62,35 +62,35 @@ class Video {
 			if ( in_array( $field['id'], $key_ids ) ) {
 				$new_fields[] = array(
 					'id'   => 'video_title',
-					'name' => __( 'Videos', 'to-videos' ),
+					'name' => __( 'Videos', 'tour-operator' ),
 					'type' => 'title',
 				);
 				$new_fields[] = array(
 					'id'          => 'videos',
 					'name'        => '',
-					'single_name' => __( 'Video', 'to-videos' ),
+					'single_name' => __( 'Video', 'tour-operator' ),
 					'type'        => 'group',
 					'repeatable'  => true,
 					'sortable'    => true,
 					'fields'      => array(
 						array(
 							'id'   => 'title',
-							'name' => __( 'Title', 'to-videos' ),
+							'name' => __( 'Title', 'tour-operator' ),
 							'type' => 'text',
 						),
 						array(
 							'id'   => 'url',
-							'name' => __( 'Url', 'to-videos' ),
+							'name' => __( 'Url', 'tour-operator' ),
 							'type' => 'text',
 						),
 						array(
 							'id'   => 'description',
-							'name' => __( 'Caption', 'to-videos' ),
+							'name' => __( 'Caption', 'tour-operator' ),
 							'type' => 'text',
 						),
 						array(
 							'id'   => 'alt_text',
-							'name' => __( 'Alt Text', 'to-videos' ),
+							'name' => __( 'Alt Text', 'tour-operator' ),
 							'type' => 'text',
 						),
 					),
