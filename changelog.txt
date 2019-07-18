@@ -9,6 +9,7 @@
 * Dev - Added in an option to disable the maps.
 * Dev - Added in a desktop and mobile map placeholder setting.
 * Dev - Added in the bot blocker function for google maps requests
+* Dev - Integrated the TO Videos plugin into TO Core.
 
 ### 1.1.5 - 3th July 2019
 * Dev - Updated the help page.
