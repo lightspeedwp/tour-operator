@@ -179,7 +179,7 @@ function lsx_to_included_block() {
 						<?php }
 						if ( null !== $tour_not_included ) { ?>
 							<div class="<?php echo esc_attr( $class ); ?> not-included">
-								<h2 class="lsx-to-section-title lsx-to-section-title-small"><?php esc_html_e( 'Not Included', 'tour-operator' ); ?></h2>
+								<h2 class="lsx-to-section-title lsx-to-section-title-small"><?php esc_html_e( 'Excluded', 'tour-operator' ); ?></h2>
 								<div class="entry-content">
 									<?php echo wp_kses_post( apply_filters( 'the_content', wpautop( $tour_not_included ) ) ); ?>
 								</div>
