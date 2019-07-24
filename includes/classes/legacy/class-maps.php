@@ -314,11 +314,10 @@ class Maps {
 	public function get_map_preview_src( $mobile = false ) {
 		$settings = tour_operator()->options;
 		$prefix = '';
-		$default_size = '1920x656';
 		$default_size = '1170x400';
 		if ( false !== $mobile ) {
 			$prefix = '_mobile';
-			$default_size = '600x400';
+			$default_size = '400x400';
 		}
 		$image = LSX_TO_URL . 'assets/img/placeholders/placeholder-map-' . $default_size . '.jpg';
 
