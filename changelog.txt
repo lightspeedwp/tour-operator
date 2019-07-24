@@ -10,6 +10,8 @@
 * Dev - Added in a desktop and mobile map placeholder setting.
 * Dev - Added in the bot blocker function for google maps requests
 * Dev - Integrated the TO Videos plugin into TO Core.
+* Fix - Fixed the Room Section not collapsing on mobile
+* Fix - Fixed the collapse section title colour on mobile.
 
 ### 1.1.5 - 3th July 2019
 * Dev - Updated the help page.
