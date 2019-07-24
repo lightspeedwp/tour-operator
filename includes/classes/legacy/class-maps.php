@@ -122,7 +122,7 @@ class Maps {
 
 		$dependacies = array( 'jquery', 'googlemaps_api', 'googlemaps_api_markercluster' );
 		$google_url  = 'https://maps.googleapis.com/maps/api/js?key=' . $api_key . '&libraries=places';
-		$google_marker_cluster = LSX_TO_URL . '/assets/js/vendor/google-markerCluster.js';
+		$google_marker_cluster = LSX_TO_URL . 'assets/js/vendor/google-markerCluster.js';
 
 		if ( true === $this->placeholder_enabled ) {
 			$dependacies = array( 'jquery' );

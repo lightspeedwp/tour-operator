@@ -451,7 +451,7 @@ if ( window.location.hash ) {
 				}
 
 				if ( $map.length > 0 ) {
-					if ( undefined !== LSX_TO_Maps ) {
+					if ( undefined !== LSX_TO_Maps && $map.find('.lsx-map-placeholder').length <= 0 ) {
 						LSX_TO_Maps.initThis();
 					}
 				}
