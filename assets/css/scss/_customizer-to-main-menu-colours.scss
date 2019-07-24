@@ -32,7 +32,7 @@
 	}
 
 	.lsx-to-section-title {
-		&.lsx-to-collapse-title {
+		&.lsx-to-collapse-title, &.lsx-to-collapse-title.lsx-title {
 			@media (max-width: 1199px) {
 				background-color: $dropdown-hover;
 				border-bottom-color: $dropdown-hover;
