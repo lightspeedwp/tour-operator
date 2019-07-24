@@ -65,7 +65,7 @@ class Maps {
 	 * Constructor
 	 */
 	public function __construct() {
-		add_action( 'wp_enqueue_scripts', array( $this, 'assets' ), 5 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'assets' ), 1499 );
 		$this->post_types = array(
 			'destination',
 			'accommodation',
@@ -311,13 +311,16 @@ class Maps {
 	/**
 	 * Gets the Map Preview image src.
 	 */
-	public function get_map_preview_src( $mobile = false ) {
+	public function get_map_preview_src( $mobile = false, $laptop = false ) {
 		$settings = tour_operator()->options;
 		$prefix = '';
-		$default_size = '1170x400';
+		$default_size = '1920x656';
 		if ( false !== $mobile ) {
 			$prefix = '_mobile';
 			$default_size = '400x400';
+		}
+		if ( false !== $laptop ) {
+			$default_size = '1170x400';
 		}
 		$image = LSX_TO_URL . 'assets/img/placeholders/placeholder-map-' . $default_size . '.jpg';
 
@@ -361,8 +364,13 @@ class Maps {
 			if ( '' === $preview_src_mobile ) {
 				$preview_src_mobile = $preview_src;
 			}
-			$srcset = $preview_src_mobile . ' 600w,' . $preview_src;
-			$preview_html = '<img class="lsx-map-placeholder" src="' . $preview_src . '" srcset="' . $srcset . '" style="cursor:pointer;width:' . $width . ';height:' . $height . ';" />';
+			$preview_src_laptop = $this->get_map_preview_src( false, true );
+			if ( '' === $preview_src_laptop ) {
+				$preview_src_laptop = $preview_src;
+			}
+			$srcset = $preview_src_mobile . ' 600w,' . $preview_src_laptop . ' 1280w,' . $preview_src . ' 1920w';
+			$sizes = 'sizes="(max-width: 600) 10vw, (max-width: 1280px) 50vw, 100vw"';
+			$preview_html = '<img class="lsx-map-placeholder" ' . $sizes . ' src="' . $preview_src . '" srcset="' . $srcset . '" style="cursor:pointer;width:' . $width . ';height:' . $height . ';" />';
 			$preview_html .= '<div class="placeholder-text"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" style="margin-top:-' . ( ( (int) $height / 2 ) + 31 ) . 'px">' . esc_html__( 'Click to display the map', 'tour-operator' ) . '</h2></div>';
 		}
 		return $preview_html;
