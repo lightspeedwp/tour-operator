@@ -65,7 +65,7 @@ class Maps {
 	 * Constructor
 	 */
 	public function __construct() {
-		add_action( 'wp_enqueue_scripts', array( $this, 'assets' ), 1499 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'assets' ), 5 );
 		$this->post_types = array(
 			'destination',
 			'accommodation',

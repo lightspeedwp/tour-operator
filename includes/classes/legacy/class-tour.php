@@ -496,7 +496,7 @@ class Tour {
 		$tour_not_included = lsx_to_not_included( '', '', false );
 
 		if ( null !== $tour_included || null !== $tour_not_included ) {
-			$this->page_links['included-excluded'] = esc_html__( 'Included / Not Included', 'tour-operator' );
+			$this->page_links['included-excluded'] = esc_html__( 'Included / Excluded', 'tour-operator' );
 		}
 	}
 
