@@ -346,6 +346,7 @@ class Tour_Operator {
 			'accommodation-type'  => __( 'Accommodation Type', 'tour-operator' ),
 			'facility'            => __( 'Facility', 'tour-operator' ),
 			'continent'           => __( 'Continent', 'tour-operator' ),
+			'region'              => __( 'Region', 'tour-operator' ),
 		);
 
 		$this->taxonomies_plural = array(
@@ -354,6 +355,7 @@ class Tour_Operator {
 			'accommodation-type'  => __( 'Accommodation Types', 'tour-operator' ),
 			'facility'            => __( 'Facilities', 'tour-operator' ),
 			'continent'           => __( 'Continents', 'tour-operator' ),
+			'region'              => __( 'Regions', 'tour-operator' ),
 		);
 
 		$this->base_taxonomies   = $this->taxonomies;
@@ -444,6 +446,7 @@ class Tour_Operator {
 					break;
 
 				case 'continent':
+				case 'region':
 					$settings_tab = 'destination';
 					break;
 			}
