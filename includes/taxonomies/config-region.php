@@ -27,7 +27,7 @@ $taxonomy = array(
 			'new_item_name'     => __( 'New Region Name', 'tour-operator' ),
 			'menu_name'         => __( 'Region', 'tour-operator' ),
 		),
-		'show_ui'             => false,
+		'show_ui'             => true,
 		'show_in_quick_edit'  => true,
 		'show_in_nav_menus'   => false,
 		'public'              => true,

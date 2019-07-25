@@ -714,3 +714,23 @@ function to_continent_label( $continent_code = '' ) {
 	}
 	return $return;
 }
+
+/**
+ * Output the provided countries continent code
+ *
+ * @param $country_code string
+ * @return string
+ */
+function to_continent_region_label( $country_code = '' ) {
+	$return = '';
+	$intermediate_regions = include LSX_TO_PATH . '/includes/constants/continent-intermediate-regions.php';
+	if ( isset( $intermediate_regions[ $country_code ] ) ) {
+		$return = $intermediate_regions[ $country_code ];
+	} else {
+		$regions = include LSX_TO_PATH . '/includes/constants/continent-regions.php';
+		if ( isset( $regions[ $country_code ] ) ) {
+			$return = $regions[ $country_code ];
+		}
+	}
+	return $return;
+}

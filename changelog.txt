@@ -12,6 +12,7 @@
 * Dev - Integrated the TO Videos plugin into TO Core.
 * Fix - Fixed the Room Section not collapsing on mobile
 * Fix - Fixed the collapse section title colour on mobile.
+* Dev - Added in the region taxonomy for housing the Continent Sub Regions
 
 ### 1.1.5 - 3th July 2019
 * Dev - Updated the help page.
