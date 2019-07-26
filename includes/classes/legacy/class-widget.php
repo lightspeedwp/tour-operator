@@ -503,7 +503,7 @@ class Widget extends \WP_Widget {
 
 			wp_reset_postdata();
 
-			if ( 'review' === $post_type || 'team' === $post_type ) {
+			if ( 'team' === $post_type ) {
 				remove_filter( 'lsx_to_placeholder_url', array( $this, 'placeholder' ), 10, 1 );
 			}
 		}

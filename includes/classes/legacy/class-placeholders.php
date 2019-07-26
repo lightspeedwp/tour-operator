@@ -106,7 +106,7 @@ class Placeholders {
 		}
 
 		if ( null === $size ) {
-			$size = 'lsx-thumbnail-single';
+			$size = 'lsx-thumbnail-wide';
 		}
 
 		$options      = get_option( '_lsx-to_settings', false );
