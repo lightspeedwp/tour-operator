@@ -465,7 +465,7 @@ class Widget extends \WP_Widget {
 		$widget_query = new \WP_Query( $args );
 
 		if ( $widget_query->have_posts() ) {
-			if ( 'review' === $post_type || 'team' === $post_type ) {
+			if ( 'team' === $post_type ) {
 				add_filter( 'lsx_to_placeholder_url', array( $this, 'placeholder' ), 10, 1 );
 			}
 
