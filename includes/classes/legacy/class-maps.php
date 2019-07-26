@@ -99,8 +99,8 @@ class Maps {
 		$api_key     = '';
 		$preview_src = $this->get_map_preview_src();
 
-		if ( isset( $settings->google_api_key ) ) {
-			$api_key = $settings->google_api_key;
+		if ( isset( $settings['api']['googlemaps_key'] ) ) {
+			$api_key = $settings['api']['googlemaps_key'];
 		}
 		if ( isset( $settings['destination'] ) && isset( $settings['destination']['enable_banner_map'] ) && 'on' === $settings['destination']['enable_banner_map'] ) {
 			$this->enable_banner_map = true;
