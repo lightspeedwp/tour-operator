@@ -53,8 +53,8 @@ class Schema {
 	 * @return    object    A single instance of this class.
 	 */
 	public function my_schema() {
+	if ( is_singular( 'accommodation' ) ) {
 	 $meta = array(
-	 if ( is_singular( 'accommodation' ) ) {
 		  "@context" => "http://schema.org",
 		  "@type" => "LocalBusiness",
 		  "name" => "storename",
