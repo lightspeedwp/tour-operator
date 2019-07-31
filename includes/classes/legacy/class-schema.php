@@ -28,9 +28,7 @@ class Schema {
 	 * Constructor
 	 */
 	public function __construct() {
-		if ( is_singular( 'accommodation' ) ) {
-			add_action( 'wp_head', array( $this, 'my_schema' ), 1499 );
-		}
+	add_action( 'wp_head', array( $this, 'my_schema' ), 1499 );	
 	}
 
 	/**
@@ -56,32 +54,34 @@ class Schema {
 	 */
 	public function my_schema() {
 	 $meta = array(
-	  "@context" => "http://schema.org",
-	  "@type" => "LocalBusiness",
-	  "name" => "storename",
-	  "image" => "https://staticqa.store.com/wp-content/themes/faf/images/store-logo.png",
-	  "@id" => "id",
-	  "url" => "",
-	  "telephone" => "phone",
-	  "priceRange" => "$1-$20",
-	  "address" => array(
-	    "@type" => "PostalAddress",
-	    "streetAddress" => "address",
-	    "addressLocality" => "storecityaddress",
-	    "postalCode" => "storepostaladdress",
-	    "addressCountry" => "USA"
-	  ),
-	    "geo" => array(
-	    "@type" => "GeoCoordinates",
-	    "latitude" => "storelatitude",
-	    "longitude" => "storelongitude"
-	  )
- 	 );
-		$output = json_encode( $meta, JSON_UNESCAPED_SLASHES  );
-		?>
-		<script type="application/ld+json">
-		<?php echo $output; ?>
-		</script>
-		<?php
+	 if ( is_singular( 'accommodation' ) ) {
+		  "@context" => "http://schema.org",
+		  "@type" => "LocalBusiness",
+		  "name" => "storename",
+		  "image" => "https://staticqa.store.com/wp-content/themes/faf/images/store-logo.png",
+		  "@id" => "id",
+		  "url" => "",
+		  "telephone" => "phone",
+		  "priceRange" => "$1-$20",
+		  "address" => array(
+		    "@type" => "PostalAddress",
+		    "streetAddress" => "address",
+		    "addressLocality" => "storecityaddress",
+		    "postalCode" => "storepostaladdress",
+		    "addressCountry" => "USA"
+		  ),
+		    "geo" => array(
+		    "@type" => "GeoCoordinates",
+		    "latitude" => "storelatitude",
+		    "longitude" => "storelongitude"
+		  )
+	 	 );
+			$output = json_encode( $meta, JSON_UNESCAPED_SLASHES  );
+			?>
+			<script type="application/ld+json">
+			<?php echo $output; ?>
+			</script>
+			<?php
+		}
 	}
 }
