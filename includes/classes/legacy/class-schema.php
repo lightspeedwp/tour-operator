@@ -80,6 +80,7 @@ class Schema {
 			}
 			$meta = array(
 				array(
+					"@context" => "http://schema.org",
 					"@type" => "Trip",
 					"description" => "Description Text Here",
 					"image" => "URL for image goes here - banner",
