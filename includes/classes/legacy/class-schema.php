@@ -58,22 +58,27 @@ class Schema {
 	 */
 	public function tour_single_schema() {
 		if ( is_singular( 'tour' ) ) {
-			$tours_list = get_post_meta( get_the_ID(), 'itinerary', false );
-			$list_array = array();
-			$url_option = get_the_permalink() . '#itinerary';
+			$tours_list  = get_post_meta( get_the_ID(), 'itinerary', false );
+			$list_array  = array();
+			$url_option  = get_the_permalink() . '#itinerary';
+			$tour_title  = get_the_title();
+			$primary_url = get_the_permalink();
+			$itinerary_content = get_the_content();
+			$thumb_url   = get_the_post_thumbnail_url(get_the_ID(),'full');
 			$i = 0;
-				foreach($tours_list as $day) {
-				$day_title        = $day['title'];
-				$day_description  = $day['description'];
-				$i++;
-				$schema_day       = array(
-					"@type" => "ListItem",
-					"position"=> $i,
-					"item" =>
-					array(
-					"@id" => $url_option,
-					"name" => $day_title,
-					"description" => $day_description,
+
+			foreach ( $tours_list as $day ) {
+					$day_title        = $day['title'];
+					$day_description  = $day['description'];
+					$i++;
+					$schema_day       = array(
+						"@type" => "ListItem",
+						"position"=> $i,
+						"item" =>
+						array(
+						"@id" => $url_option,
+						"name" => $day_title,
+						"description" => $day_description,
 				)
 			);
 			$list_array[] = $schema_day;		
@@ -82,15 +87,15 @@ class Schema {
 				array(
 					"@context" => "http://schema.org",
 					"@type" => "Trip",
-					"description" => "Description Text Here",
-					"image" => "URL for image goes here - banner",
+					"description" => $itinerary_content,
+					"image" => $thumb_url,
 					"itinerary" => array(
 					"@type" => "ItemList",
 					"itemListElement" => $list_array,
 					),
-					"name" => "Title of tour post",
+					"name" => $tour_title,
 					"provider" => "Southern Destinations",
-					"url" => "the page url"
+					"url" => $primary_url
 				),
 			);
 			$output = json_encode( $meta, JSON_UNESCAPED_SLASHES  );
