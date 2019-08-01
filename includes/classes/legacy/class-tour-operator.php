@@ -137,8 +137,6 @@ class Tour_Operator {
 	/**
 	 * Holds the Google API Key
 	 *
-	 * @since 1.1.5
-	 *
 	 * @var string
 	 */
 	public $google_api_key = false;
@@ -146,10 +144,16 @@ class Tour_Operator {
 	/**
 	 * Holds the textdomain slug.
 	 *
-	 * @since 1.0.0
 	 * @var      array
 	 */
 	public $plugin_slug = 'tour-operator';
+
+	/**
+	 * Holds the Schema Class
+	 *
+	 * @var \lsx\legacy\Schema();
+	 */
+	public $schema = false;
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and
@@ -221,6 +225,10 @@ class Tour_Operator {
 			10,
 			2
 		);
+
+		// Initiates the Schema.
+		$this->schema = Schema::get_instance();
+
 		// init placeholders.
 		$this->placeholders = new Placeholders( array_keys( $this->post_types ) );
 
@@ -239,6 +247,8 @@ class Tour_Operator {
 				'register_activation_hook_check',
 			)
 		);
+
+		
 	}
 
 	/**

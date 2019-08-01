@@ -28,7 +28,7 @@ class Schema {
 	 * Constructor
 	 */
 	public function __construct() {
-	add_action( 'wp_head', array( $this, 'my_schema' ), 1499 );	
+		add_action( 'wp_head', array( $this, 'my_schema' ), 1499 );
 	}
 
 	/**
@@ -42,7 +42,6 @@ class Schema {
 		if ( is_null( self::$instance ) ) {
 			self::$instance = new self;
 		}
-
 		return self::$instance;
 	}
 
