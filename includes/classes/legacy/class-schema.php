@@ -68,6 +68,8 @@ class Schema {
 			$itinerary_content = get_the_content();
 			$thumb_url = get_the_post_thumbnail_url(get_the_ID(),'full');
 			$price = get_post_meta( get_the_ID(), 'price', false );
+			$start_validity = get_post_meta( get_the_ID(), 'booking_validity_start', false );
+			$end_validity = get_post_meta( get_the_ID(), 'booking_validity_end', false );
 			
 			$i = 0;
 			if ( ! empty( $tours_list ) ) {
@@ -88,6 +90,7 @@ class Schema {
 					$list_array[] = $schema_day;
 				}
 			}
+
 			if ( ! empty( $destination_list ) ) {
 				foreach( $destination_list as $single_destination ) {
 					$i++;
@@ -96,16 +99,22 @@ class Schema {
 					$schema_day       = array(
 					"@type" => "PostalAddress",
 					"addressLocality" => $destination_name,
-	
-			);
+				);
 					$destination_schema[] = $schema_day;
 				}
 			}
 			$meta = array(
 				array(
 					"@context" => "http://schema.org",
-					"@type" => array("Trip", "Place", "ProfessionalService"),
+					"@type" => array("Trip", "ProfessionalService", "Offer"),
+					"offers" => array(
+					"@type" => "Offer",
+					"price" => $price,
+					"availabilityStarts" => $start_validity,
+					"availabilityEnds" => $end_validity,
+ 					),
 					"address" => $destination_schema,
+					"telephone" => "0216713090",
 					"priceRange" => $price,
 					"description" => $itinerary_content,
 					"image" => $thumb_url,
