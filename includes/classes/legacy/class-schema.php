@@ -58,15 +58,18 @@ class Schema {
 	 */
 	public function tour_single_schema() {
 		if ( is_singular( 'tour' ) ) {
-			$tours_list  = get_post_meta( get_the_ID(), 'itinerary', false );
-			$list_array  = array();
-			$url_option  = get_the_permalink() . '#itinerary';
-			$tour_title  = get_the_title();
+			$tours_list = get_post_meta( get_the_ID(), 'itinerary', false );
+			$destination_list = get_post_meta( get_the_ID(), 'destination_to_tour', false );
+			$list_array = array();
+			$destination_schema = array();
+			$url_option = get_the_permalink() . '#itinerary';
+			$tour_title = get_the_title();
 			$primary_url = get_the_permalink();
 			$itinerary_content = get_the_content();
-			$thumb_url   = get_the_post_thumbnail_url( get_the_ID(), 'full' );
+			$thumb_url = get_the_post_thumbnail_url(get_the_ID(),'full');
+			$price = get_post_meta( get_the_ID(), 'price', false );
+			
 			$i = 0;
-
 			if ( ! empty( $tours_list ) ) {
 				foreach ( $tours_list as $day ) {
 					$i++;
@@ -85,19 +88,34 @@ class Schema {
 					$list_array[] = $schema_day;
 				}
 			}
+			if ( ! empty( $destination_list ) ) {
+				foreach( $destination_list as $single_destination ) {
+					$i++;
+					$url_option   = get_the_permalink() . '#destination-' . $i;
+					$destination_name = get_the_title($single_destination);
+					$schema_day       = array(
+					"@type" => "PostalAddress",
+					"addressLocality" => $destination_name,
+	
+			);
+					$destination_schema[] = $schema_day;
+				}
+			}
 			$meta = array(
 				array(
 					"@context" => "http://schema.org",
-					"@type" => "Trip",
+					"@type" => array("Trip", "Place", "ProfessionalService"),
+					"address" => $destination_schema,
+					"priceRange" => $price,
 					"description" => $itinerary_content,
 					"image" => $thumb_url,
-					"itinerary" => array(
-						"@type" => "ItemList",
-						"itemListElement" => $list_array,
-					),
 					"name" => $tour_title,
 					"provider" => "Southern Destinations",
-					"url" => $primary_url
+					"url" => $primary_url,
+					"itinerary" => array(
+					"@type" => "ItemList",
+					"itemListElement" => $list_array,
+					),
 				),
 			);
 			$output = json_encode( $meta, JSON_UNESCAPED_SLASHES  );
