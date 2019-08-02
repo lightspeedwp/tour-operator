@@ -69,9 +69,10 @@ class Schema {
 
 			if ( ! empty( $tours_list ) ) {
 				foreach ( $tours_list as $day ) {
+					$i++;
 					$day_title        = $day['title'];
 					$day_description  = $day['description'];
-					$i++;
+					$url_option       = get_the_permalink() . '#day-' . $i;
 					$schema_day = array(
 						"@type" => "ListItem",
 						"position"=> $i,
