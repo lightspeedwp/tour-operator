@@ -184,27 +184,52 @@ class Schema {
 	 */
 	public function accommodation_single_schema() {
 		if ( is_singular( 'accommodation' ) ) {
+		$i = 0;
+			$spoken_languages = get_post_meta( get_the_ID(), 'spoken_languages', false );
+			$checkin_accommodation = get_post_meta( get_the_ID(), 'checkin_time', false );
+			$checkout_accommodation = get_post_meta( get_the_ID(), 'checkout_time', false );
+			$accommodation_expert_id = get_post_meta( get_the_ID(), 'team_to_accommodation', true );
+			$address_accommodation = get_post_meta( get_the_ID(), 'address', true );
+			$accommodation_expert = get_the_title( $accommodation_expert_id );
+			$title_accommodation = get_the_title();
+			$url_accommodation = get_the_permalink();
+			$description_accommodation = get_the_content();
+			$image_accommodation = get_the_post_thumbnail_url(get_the_ID(),'full');
+			$rating_accommodation = get_post_meta( get_the_ID(), 'rating', true );
+			$rooms_accommodation = get_post_meta( get_the_ID(), 'number_of_rooms', true );
+
+				foreach ( $spoken_languages as $language ) {
+					foreach( $language as $morelanguage ) {
+					$i++;
+					$url_option       = get_the_permalink() . '#language-' . $i;
+					$language_list = array(
+						"@type" => "language",
+						"@id" => $url_option,
+						"name" => $morelanguage,
+					);
+					$final_lang_list[] = $language_list;
+				}
+			}
+
 			$meta = array(
-				"@context" => "http://schema.org",
-				"@type" => "LocalBusiness",
-				"name" => "storename",
-				"image" => "https://staticqa.store.com/wp-content/themes/faf/images/store-logo.png",
-				"@id" => "id",
-				"url" => "",
-				"telephone" => "phone",
-				"priceRange" => "$1-$20",
-				"address" => array(
-					"@type" => "PostalAddress",
-					"streetAddress" => "address",
-					"addressLocality" => "storecityaddress",
-					"postalCode" => "storepostaladdress",
-					"addressCountry" => "USA",
-				),
-				"geo" => array(
-					"@type" => "GeoCoordinates",
-					"latitude" => "storelatitude",
-					"longitude" => "storelongitude",
-				),
+				"@context" => "http://schema.org/",
+				"@type" => "LodgingBusiness",
+					"availableLanguage" => $final_lang_list,
+					"checkinTime" => $checkin_accommodation,
+					"checkoutTime" => $checkout_accommodation,
+					"description" => $description_accommodation,
+					"employee" => $accommodation_expert,
+					"image" => $image_accommodation,
+					"name" => $title_accommodation,
+					"numberOfRooms" =>$rooms_accommodation,
+					"priceRange" => $price_accommodation,
+					"url" => $url_accommodation,
+					"address" => $address_accommodation,
+					"aggregateRating" => array(
+					"@type" => "AggregateRating",
+					"itemReviewed" =>$title_accommodation,
+					"ratingValue" => $rating_accommodation
+					),
 			);
 			$output = json_encode( $meta, JSON_UNESCAPED_SLASHES  );
 			?>
