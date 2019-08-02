@@ -64,24 +64,25 @@ class Schema {
 			$tour_title  = get_the_title();
 			$primary_url = get_the_permalink();
 			$itinerary_content = get_the_content();
-			$thumb_url   = get_the_post_thumbnail_url(get_the_ID(),'full');
+			$thumb_url   = get_the_post_thumbnail_url( get_the_ID(), 'full' );
 			$i = 0;
 
-			foreach ( $tours_list as $day ) {
+			if ( ! empty( $tours_list ) ) {
+				foreach ( $tours_list as $day ) {
 					$day_title        = $day['title'];
 					$day_description  = $day['description'];
 					$i++;
-					$schema_day       = array(
+					$schema_day = array(
 						"@type" => "ListItem",
 						"position"=> $i,
-						"item" =>
-						array(
-						"@id" => $url_option,
-						"name" => $day_title,
-						"description" => $day_description,
-				)
-			);
-			$list_array[] = $schema_day;		
+						"item" => array(
+							"@id" => $url_option,
+							"name" => $day_title,
+							"description" => $day_description,
+						),
+					);
+					$list_array[] = $schema_day;
+				}
 			}
 			$meta = array(
 				array(
@@ -90,8 +91,8 @@ class Schema {
 					"description" => $itinerary_content,
 					"image" => $thumb_url,
 					"itinerary" => array(
-					"@type" => "ItemList",
-					"itemListElement" => $list_array,
+						"@type" => "ItemList",
+						"itemListElement" => $list_array,
 					),
 					"name" => $tour_title,
 					"provider" => "Southern Destinations",
@@ -126,16 +127,16 @@ class Schema {
 				"telephone" => "phone",
 				"priceRange" => "$1-$20",
 				"address" => array(
-				"@type" => "PostalAddress",
-				"streetAddress" => "address",
-				"addressLocality" => "storecityaddress",
-				"postalCode" => "storepostaladdress",
-				"addressCountry" => "USA"
+					"@type" => "PostalAddress",
+					"streetAddress" => "address",
+					"addressLocality" => "storecityaddress",
+					"postalCode" => "storepostaladdress",
+					"addressCountry" => "USA",
 				),
 				"geo" => array(
-				"@type" => "GeoCoordinates",
-				"latitude" => "storelatitude",
-				"longitude" => "storelongitude"
+					"@type" => "GeoCoordinates",
+					"latitude" => "storelatitude",
+					"longitude" => "storelongitude",
 				),
 			);
 			$output = json_encode( $meta, JSON_UNESCAPED_SLASHES  );
@@ -165,16 +166,16 @@ class Schema {
 				"telephone" => "phone",
 				"priceRange" => "$1-$20",
 				"address" => array(
-				"@type" => "PostalAddress",
-				"streetAddress" => "address",
-				"addressLocality" => "storecityaddress",
-				"postalCode" => "storepostaladdress",
-				"addressCountry" => "USA"
+					"@type" => "PostalAddress",
+					"streetAddress" => "address",
+					"addressLocality" => "storecityaddress",
+					"postalCode" => "storepostaladdress",
+					"addressCountry" => "USA",
 				),
 				"geo" => array(
-				"@type" => "GeoCoordinates",
-				"latitude" => "storelatitude",
-				"longitude" => "storelongitude"
+					"@type" => "GeoCoordinates",
+					"latitude" => "storelatitude",
+					"longitude" => "storelongitude",
 				),
 			);
 			$output = json_encode( $meta, JSON_UNESCAPED_SLASHES  );
@@ -204,16 +205,16 @@ class Schema {
 				"telephone" => "phone",
 				"priceRange" => "$1-$20",
 				"address" => array(
-				"@type" => "PostalAddress",
-				"streetAddress" => "address",
-				"addressLocality" => "storecityaddress",
-				"postalCode" => "storepostaladdress",
-				"addressCountry" => "USA"
+					"@type" => "PostalAddress",
+					"streetAddress" => "address",
+					"addressLocality" => "storecityaddress",
+					"postalCode" => "storepostaladdress",
+					"addressCountry" => "USA",
 				),
 				"geo" => array(
-				"@type" => "GeoCoordinates",
-				"latitude" => "storelatitude",
-				"longitude" => "storelongitude"
+					"@type" => "GeoCoordinates",
+					"latitude" => "storelatitude",
+					"longitude" => "storelongitude",
 				),
 			);
 			$output = json_encode( $meta, JSON_UNESCAPED_SLASHES  );
@@ -243,16 +244,16 @@ class Schema {
 				"telephone" => "phone",
 				"priceRange" => "$1-$20",
 				"address" => array(
-				"@type" => "PostalAddress",
-				"streetAddress" => "address",
-				"addressLocality" => "storecityaddress",
-				"postalCode" => "storepostaladdress",
-				"addressCountry" => "USA"
+					"@type" => "PostalAddress",
+					"streetAddress" => "address",
+					"addressLocality" => "storecityaddress",
+					"postalCode" => "storepostaladdress",
+					"addressCountry" => "USA",
 				),
 				"geo" => array(
-				"@type" => "GeoCoordinates",
-				"latitude" => "storelatitude",
-				"longitude" => "storelongitude"
+					"@type" => "GeoCoordinates",
+					"latitude" => "storelatitude",
+					"longitude" => "storelongitude",
 				),
 			);
 			$output = json_encode( $meta, JSON_UNESCAPED_SLASHES  );
@@ -282,16 +283,16 @@ class Schema {
 				"telephone" => "phone",
 				"priceRange" => "$1-$20",
 				"address" => array(
-				"@type" => "PostalAddress",
-				"streetAddress" => "address",
-				"addressLocality" => "storecityaddress",
-				"postalCode" => "storepostaladdress",
-				"addressCountry" => "USA"
+					"@type" => "PostalAddress",
+					"streetAddress" => "address",
+					"addressLocality" => "storecityaddress",
+					"postalCode" => "storepostaladdress",
+					"addressCountry" => "USA",
 				),
 				"geo" => array(
-				"@type" => "GeoCoordinates",
-				"latitude" => "storelatitude",
-				"longitude" => "storelongitude"
+					"@type" => "GeoCoordinates",
+					"latitude" => "storelatitude",
+					"longitude" => "storelongitude",
 				),
 			);
 			$output = json_encode( $meta, JSON_UNESCAPED_SLASHES  );
