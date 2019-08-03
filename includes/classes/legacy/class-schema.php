@@ -127,7 +127,7 @@ class Schema {
 					),
 				),
 			);
-			$output = json_encode( $meta, JSON_UNESCAPED_SLASHES  );
+			$output = wp_json_encode( $meta, JSON_UNESCAPED_SLASHES  );
 			?>
 			<script type="application/ld+json">
 				<?php echo $output; ?>
@@ -167,7 +167,7 @@ class Schema {
 					"longitude" => "storelongitude",
 				),
 			);
-			$output = json_encode( $meta, JSON_UNESCAPED_SLASHES  );
+			$output = wp_json_encode( $meta, JSON_UNESCAPED_SLASHES  );
 			?>
 			<script type="application/ld+json">
 				<?php echo $output; ?>
@@ -189,7 +189,8 @@ class Schema {
 			$checkin_accommodation = get_post_meta( get_the_ID(), 'checkin_time', false );
 			$checkout_accommodation = get_post_meta( get_the_ID(), 'checkout_time', false );
 			$accommodation_expert_id = get_post_meta( get_the_ID(), 'team_to_accommodation', true );
-			$address_accommodation = get_post_meta( get_the_ID(), 'address', true );
+			$address_accommodation = get_post_meta( get_the_ID(), 'location', true );
+			$street_address = $address_accommodation['address'];
 			$accommodation_expert = get_the_title( $accommodation_expert_id );
 			$title_accommodation = get_the_title();
 			$url_accommodation = get_the_permalink();
@@ -197,9 +198,12 @@ class Schema {
 			$image_accommodation = get_the_post_thumbnail_url(get_the_ID(),'full');
 			$rating_accommodation = get_post_meta( get_the_ID(), 'rating', true );
 			$rooms_accommodation = get_post_meta( get_the_ID(), 'number_of_rooms', true );
+			$destinations_in_accommodation = get_post_meta( get_the_ID(), 'destination_to_accommodation', false );
+			$country = get_the_title($destinations_in_accommodation[0]);
+			$region_destinations = get_the_title($destinations_in_accommodation[1]);
 
-				foreach ( $spoken_languages as $language ) {
-					foreach( $language as $morelanguage ) {
+			foreach ( $spoken_languages as $language ) {
+				foreach ( $language as $morelanguage ) {
 					$i++;
 					$url_option       = get_the_permalink() . '#language-' . $i;
 					$language_list = array(
@@ -215,6 +219,11 @@ class Schema {
 				"@context" => "http://schema.org/",
 				"@type" => "LodgingBusiness",
 					"availableLanguage" => $final_lang_list,
+					"address" => array(
+					"addressCountry" => $country,
+					"addressRegion" => $region_destinations,
+					"streetAddress" => $street_address
+					),
 					"checkinTime" => $checkin_accommodation,
 					"checkoutTime" => $checkout_accommodation,
 					"description" => $description_accommodation,
@@ -224,14 +233,13 @@ class Schema {
 					"numberOfRooms" =>$rooms_accommodation,
 					"priceRange" => $price_accommodation,
 					"url" => $url_accommodation,
-					"address" => $address_accommodation,
 					"aggregateRating" => array(
 					"@type" => "AggregateRating",
 					"itemReviewed" =>$title_accommodation,
 					"ratingValue" => $rating_accommodation
 					),
 			);
-			$output = json_encode( $meta, JSON_UNESCAPED_SLASHES  );
+			$output = wp_json_encode( $meta, JSON_UNESCAPED_SLASHES );
 			?>
 			<script type="application/ld+json">
 				<?php echo $output; ?>
@@ -270,7 +278,7 @@ class Schema {
 					"longitude" => "storelongitude",
 				),
 			);
-			$output = json_encode( $meta, JSON_UNESCAPED_SLASHES  );
+			$output = wp_json_encode( $meta, JSON_UNESCAPED_SLASHES  );
 			?>
 			<script type="application/ld+json">
 				<?php echo $output; ?>
@@ -309,7 +317,7 @@ class Schema {
 					"longitude" => "storelongitude",
 				),
 			);
-			$output = json_encode( $meta, JSON_UNESCAPED_SLASHES  );
+			$output = wp_json_encode( $meta, JSON_UNESCAPED_SLASHES  );
 			?>
 			<script type="application/ld+json">
 				<?php echo $output; ?>
@@ -348,7 +356,7 @@ class Schema {
 					"longitude" => "storelongitude",
 				),
 			);
-			$output = json_encode( $meta, JSON_UNESCAPED_SLASHES  );
+			$output = wp_json_encode( $meta, JSON_UNESCAPED_SLASHES  );
 			?>
 			<script type="application/ld+json">
 				<?php echo $output; ?>
