@@ -176,7 +176,7 @@ class Schema {
 		}
 	}
 
-		/**
+	/**
 	 * Creates the schema for the accommodation post type
 	 *
 	 * @since 1.0.0
@@ -201,9 +201,10 @@ class Schema {
 			$destinations_in_accommodation = get_post_meta( get_the_ID(), 'destination_to_accommodation', false );
 			$country = get_the_title($destinations_in_accommodation[0]);
 			$region_destinations = get_the_title($destinations_in_accommodation[1]);
+			$price_accommodation = get_post_meta( get_the_ID(), 'price', true );
 
-			foreach ( $spoken_languages as $language ) {
-				foreach ( $language as $morelanguage ) {
+				foreach ( $spoken_languages as $language ) {
+					foreach( $language as $morelanguage ) {
 					$i++;
 					$url_option       = get_the_permalink() . '#language-' . $i;
 					$language_list = array(
@@ -232,10 +233,12 @@ class Schema {
 					"name" => $title_accommodation,
 					"numberOfRooms" =>$rooms_accommodation,
 					"priceRange" => $price_accommodation,
-					"url" => $url_accommodation,
+					"url" => $url_accommodation, 
+					"telephone" => "+18666434336",
 					"aggregateRating" => array(
 					"@type" => "AggregateRating",
-					"itemReviewed" =>$title_accommodation,
+					"itemReviewed" => $title_accommodation,
+					"reviewCount" => "1",
 					"ratingValue" => $rating_accommodation
 					),
 			);
