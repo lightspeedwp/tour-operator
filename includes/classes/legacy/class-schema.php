@@ -137,7 +137,7 @@ class Schema {
 	}
 
 
-		/**
+/**
 	 * Creates the schema for the destination post type
 	 *
 	 * @since 1.0.0
@@ -145,29 +145,62 @@ class Schema {
 	 */
 	public function destination_single_schema() {
 		if ( is_singular( 'destination' ) ) {
+			$dest_travel_styles =  get_the_terms( get_the_ID(), 'travel-style' );
+			$destination_travel = array();
+			$destination_name = get_the_title();
+			$destination_url = get_the_permalink();
+			$destination_description = get_the_content();
+			$destination_address = get_the_terms( get_the_ID(), 'travel-style' );
+			$address_accommodation = get_post_meta( get_the_ID(), 'location', true );
+			$street_address = $address_accommodation['address'];
+			$lat_address = $address_accommodation['lat'];
+			$long_address = $address_accommodation['long'];
+			
+			if ( ! empty( $dest_travel_styles ) ) {
+				foreach( $dest_travel_styles as $single_travel_style ) {
+					$destination_travel[] = $single_travel_style->name;
+				}
+			}
+			global $post;
+
+			$args = array(
+				'post_parent' => $post->ID,
+				'posts_per_page' => -1,
+				'post_type' => 'destination',
+				);
+
+				$the_query = new \WP_Query( $args );
+				$the_regions = array();
+				if ( $the_query->have_posts() ) {
+				while ( $the_query->have_posts() ) { $the_query->the_post();
+				$region_title = get_the_title();
+				$region_description = get_the_content();
+				$region_list =	array(
+				"@type" => "TouristAttraction",
+				"name" => $region_title,
+				"description" => $region_description,
+				);
+					$the_regions[] = $region_list;
+				}
+			}
+			wp_reset_postdata();
+
 			$meta = array(
-				"@context" => "http://schema.org",
-				"@type" => "LocalBusiness",
-				"name" => "storename",
-				"image" => "https://staticqa.store.com/wp-content/themes/faf/images/store-logo.png",
-				"@id" => "id",
-				"url" => "",
-				"telephone" => "phone",
-				"priceRange" => "$1-$20",
-				"address" => array(
-					"@type" => "PostalAddress",
-					"streetAddress" => "address",
-					"addressLocality" => "storecityaddress",
-					"postalCode" => "storepostaladdress",
-					"addressCountry" => "USA",
-				),
-				"geo" => array(
-					"@type" => "GeoCoordinates",
-					"latitude" => "storelatitude",
-					"longitude" => "storelongitude",
-				),
+			"@context" => "http://schema.org",
+			"@type" => "TouristDestination",
+			"name" => $destination_name,
+			"address" => $street_address,
+			"description" => $destination_description,
+			"touristType" => $destination_travel,
+			"url" => $destination_url,
+			"geo" => array(
+				"@type" => "GeoCoordinates",
+				"latitude" => $lat_address,
+				"longitude" => $long_address
+			),
+			"containsPlace" => $the_regions,
 			);
-			$output = wp_json_encode( $meta, JSON_UNESCAPED_SLASHES  );
+			$output = json_encode( $meta, JSON_UNESCAPED_SLASHES  );
 			?>
 			<script type="application/ld+json">
 				<?php echo $output; ?>
@@ -185,23 +218,23 @@ class Schema {
 	public function accommodation_single_schema() {
 		if ( is_singular( 'accommodation' ) ) {
 		$i = 0;
-			$spoken_languages = get_post_meta( get_the_ID(), 'spoken_languages', false );
-			$checkin_accommodation = get_post_meta( get_the_ID(), 'checkin_time', false );
-			$checkout_accommodation = get_post_meta( get_the_ID(), 'checkout_time', false );
-			$accommodation_expert_id = get_post_meta( get_the_ID(), 'team_to_accommodation', true );
-			$address_accommodation = get_post_meta( get_the_ID(), 'location', true );
-			$street_address = $address_accommodation['address'];
-			$accommodation_expert = get_the_title( $accommodation_expert_id );
-			$title_accommodation = get_the_title();
-			$url_accommodation = get_the_permalink();
-			$description_accommodation = get_the_content();
-			$image_accommodation = get_the_post_thumbnail_url(get_the_ID(),'full');
-			$rating_accommodation = get_post_meta( get_the_ID(), 'rating', true );
-			$rooms_accommodation = get_post_meta( get_the_ID(), 'number_of_rooms', true );
-			$destinations_in_accommodation = get_post_meta( get_the_ID(), 'destination_to_accommodation', false );
-			$country = get_the_title($destinations_in_accommodation[0]);
-			$region_destinations = get_the_title($destinations_in_accommodation[1]);
-			$price_accommodation = get_post_meta( get_the_ID(), 'price', true );
+		$spoken_languages = get_post_meta( get_the_ID(), 'spoken_languages', false );
+		$checkin_accommodation = get_post_meta( get_the_ID(), 'checkin_time', false );
+		$checkout_accommodation = get_post_meta( get_the_ID(), 'checkout_time', false );
+		$accommodation_expert_id = get_post_meta( get_the_ID(), 'team_to_accommodation', true );
+		$address_accommodation = get_post_meta( get_the_ID(), 'location', true );
+		$street_address = $address_accommodation['address'];
+		$accommodation_expert = get_the_title( $accommodation_expert_id );
+		$title_accommodation = get_the_title();
+		$url_accommodation = get_the_permalink();
+		$description_accommodation = get_the_content();
+		$image_accommodation = get_the_post_thumbnail_url(get_the_ID(),'full');
+		$rating_accommodation = get_post_meta( get_the_ID(), 'rating', true );
+		$rooms_accommodation = get_post_meta( get_the_ID(), 'number_of_rooms', true );
+		$destinations_in_accommodation = get_post_meta( get_the_ID(), 'destination_to_accommodation', false );
+		$country = get_the_title($destinations_in_accommodation[0]);
+		$region_destinations = get_the_title($destinations_in_accommodation[1]);
+		$price_accommodation = get_post_meta( get_the_ID(), 'price', true );
 
 				foreach ( $spoken_languages as $language ) {
 					foreach( $language as $morelanguage ) {
