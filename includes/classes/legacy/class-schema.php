@@ -284,7 +284,7 @@ class Schema {
 		}
 	}
 
-		/**
+	/**
 	 * Creates the schema for the reviews post type
 	 *
 	 * @since 1.0.0
@@ -292,29 +292,43 @@ class Schema {
 	 */
 	public function reviews_single_schema() {
 		if ( is_singular( 'review' ) ) {
+
+			$rating_value = get_post_meta( get_the_ID(), 'rating', true );
+			$review_author = get_post_meta( get_the_ID(), 'reviewer_name', false );
+			$title_accommodation = get_the_title();
+			$url_accommodation = get_the_permalink();
+			$review_description = get_the_content();
+			$review_thumb = get_the_post_thumbnail_url(get_the_ID(),'full');
+			$review_email = get_post_meta( get_the_ID(), 'reviewer_email', false );
+
+
 			$meta = array(
-				"@context" => "http://schema.org",
-				"@type" => "LocalBusiness",
-				"name" => "storename",
-				"image" => "https://staticqa.store.com/wp-content/themes/faf/images/store-logo.png",
-				"@id" => "id",
-				"url" => "",
-				"telephone" => "phone",
-				"priceRange" => "$1-$20",
-				"address" => array(
-					"@type" => "PostalAddress",
-					"streetAddress" => "address",
-					"addressLocality" => "storecityaddress",
-					"postalCode" => "storepostaladdress",
-					"addressCountry" => "USA",
+			"@context" => "https://schema.org/",
+			"@type" => "Service",
+			"description" => $review_description,
+			"image" => $review_thumb,
+			"name" => $review_title,
+			"review" => array(
+				"@type" => "Review",
+				"reviewRating" => array(
+				"@type" => "Rating",
+				"ratingValue" => $rating_value,
 				),
-				"geo" => array(
-					"@type" => "GeoCoordinates",
-					"latitude" => "storelatitude",
-					"longitude" => "storelongitude",
+				"author" => array(
+				"@type" => "Person",
+				"name" => $review_author,
+				"email" => $review_email
 				),
+				"reviewBody" => $review_description
+			),
+			"aggregateRating" => array(
+				"@type" => "AggregateRating",
+				"ratingValue" => $rating_value,
+				"bestRating"  => $rating_value,
+				"ratingCount" => "1"
+			),
 			);
-			$output = wp_json_encode( $meta, JSON_UNESCAPED_SLASHES  );
+			$output = json_encode( $meta, JSON_UNESCAPED_SLASHES  );
 			?>
 			<script type="application/ld+json">
 				<?php echo $output; ?>
@@ -322,6 +336,7 @@ class Schema {
 			<?php
 		}
 	}
+
 
 		/**
 	 * Creates the schema for the specials post type
