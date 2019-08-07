@@ -65,12 +65,12 @@ class Schema {
 			$url_option = get_the_permalink() . '#itinerary';
 			$tour_title = get_the_title();
 			$primary_url = get_the_permalink();
-			$itinerary_content = get_the_content();
+			$itinerary_content = wp_strip_all_tags( get_the_content() );
 			$thumb_url = get_the_post_thumbnail_url(get_the_ID(),'full');
 			$price = get_post_meta( get_the_ID(), 'price', false );
 			$start_validity = get_post_meta( get_the_ID(), 'booking_validity_start', false );
 			$end_validity = get_post_meta( get_the_ID(), 'booking_validity_end', false );
-			
+
 			$i = 0;
 			if ( ! empty( $tours_list ) ) {
 				foreach ( $tours_list as $day ) {
@@ -112,7 +112,7 @@ class Schema {
 					"price" => $price,
 					"availabilityStarts" => $start_validity,
 					"availabilityEnds" => $end_validity,
- 					),
+				),
 					"address" => $destination_schema,
 					"telephone" => "0216713090",
 					"priceRange" => $price,
@@ -130,14 +130,14 @@ class Schema {
 			$output = wp_json_encode( $meta, JSON_UNESCAPED_SLASHES  );
 			?>
 			<script type="application/ld+json">
-				<?php echo $output; ?>
+				<?php echo wp_kses_post( $output ); ?>
 			</script>
 			<?php
 		}
 	}
 
 
-/**
+	/**
 	 * Creates the schema for the destination post type
 	 *
 	 * @since 1.0.0
@@ -149,13 +149,13 @@ class Schema {
 			$destination_travel = array();
 			$destination_name = get_the_title();
 			$destination_url = get_the_permalink();
-			$destination_description = get_the_content();
+			$destination_description = wp_strip_all_tags( get_the_content() );
 			$destination_address = get_the_terms( get_the_ID(), 'travel-style' );
 			$address_accommodation = get_post_meta( get_the_ID(), 'location', true );
 			$street_address = $address_accommodation['address'];
 			$lat_address = $address_accommodation['lat'];
 			$long_address = $address_accommodation['long'];
-			
+
 			if ( ! empty( $dest_travel_styles ) ) {
 				foreach( $dest_travel_styles as $single_travel_style ) {
 					$destination_travel[] = $single_travel_style->name;
@@ -164,17 +164,17 @@ class Schema {
 			global $post;
 
 			$args = array(
-				'post_parent' => $post->ID,
+				'post_parent'    => $post->ID,
 				'posts_per_page' => -1,
-				'post_type' => 'destination',
+				'post_type'      => 'destination',
 				);
 
-				$the_query = new \WP_Query( $args );
+				$the_query   = new \WP_Query( $args );
 				$the_regions = array();
 				if ( $the_query->have_posts() ) {
 				while ( $the_query->have_posts() ) { $the_query->the_post();
 				$region_title = get_the_title();
-				$region_description = get_the_content();
+				$region_description = wp_strip_all_tags( get_the_content() );
 				$region_list =	array(
 				"@type" => "TouristAttraction",
 				"name" => $region_title,
@@ -200,10 +200,10 @@ class Schema {
 			),
 			"containsPlace" => $the_regions,
 			);
-			$output = json_encode( $meta, JSON_UNESCAPED_SLASHES  );
+			$output = wp_json_encode( $meta, JSON_UNESCAPED_SLASHES  );
 			?>
 			<script type="application/ld+json">
-				<?php echo $output; ?>
+				<?php echo wp_kses_post( $output ); ?>
 			</script>
 			<?php
 		}
@@ -227,7 +227,7 @@ class Schema {
 		$accommodation_expert = get_the_title( $accommodation_expert_id );
 		$title_accommodation = get_the_title();
 		$url_accommodation = get_the_permalink();
-		$description_accommodation = get_the_content();
+		$description_accommodation = wp_strip_all_tags( get_the_content() );
 		$image_accommodation = get_the_post_thumbnail_url(get_the_ID(),'full');
 		$rating_accommodation = get_post_meta( get_the_ID(), 'rating', true );
 		$rooms_accommodation = get_post_meta( get_the_ID(), 'number_of_rooms', true );
@@ -278,7 +278,7 @@ class Schema {
 			$output = wp_json_encode( $meta, JSON_UNESCAPED_SLASHES );
 			?>
 			<script type="application/ld+json">
-				<?php echo $output; ?>
+				<?php echo wp_kses_post( $output ); ?>
 			</script>
 			<?php
 		}
@@ -297,7 +297,7 @@ class Schema {
 			$review_author = get_post_meta( get_the_ID(), 'reviewer_name', false );
 			$title_accommodation = get_the_title();
 			$url_accommodation = get_the_permalink();
-			$review_description = get_the_content();
+			$review_description = wp_strip_all_tags( get_the_content() );
 			$review_thumb = get_the_post_thumbnail_url(get_the_ID(),'full');
 			$review_email = get_post_meta( get_the_ID(), 'reviewer_email', false );
 
@@ -328,10 +328,10 @@ class Schema {
 				"ratingCount" => "1"
 			),
 			);
-			$output = json_encode( $meta, JSON_UNESCAPED_SLASHES  );
+			$output = wp_json_encode( $meta, JSON_UNESCAPED_SLASHES  );
 			?>
 			<script type="application/ld+json">
-				<?php echo $output; ?>
+				<?php echo wp_kses_post( $output ); ?>
 			</script>
 			<?php
 		}
@@ -352,17 +352,15 @@ class Schema {
 		$url_option = get_the_permalink();
 		$special_title = get_the_title();
 		$primary_url = get_the_permalink();
-		$special_content = get_the_content();
-		$thumb_url = get_the_post_thumbnail_url(get_the_ID(),'full');
+		$special_content = wp_strip_all_tags( get_the_content() );
+		$thumb_url = get_the_post_thumbnail_url( get_the_ID(), 'full' );
 		$price = get_post_meta( get_the_ID(), 'price', false );
 		$start_validity = get_post_meta( get_the_ID(), 'booking_validity_start', false );
 		$end_validity = get_post_meta( get_the_ID(), 'booking_validity_end', false );
-		
-		$i = 0;
+	
 
 		if ( ! empty( $destination_list_special ) ) {
 			foreach( $destination_list_special as $single_destination ) {
-				$i++;
 				$url_option   = get_the_permalink() . '#destination-' . $i;
 				$destination_name = get_the_title($single_destination);
 				$schema_day       = array(
@@ -392,10 +390,10 @@ class Schema {
 					"url" => $primary_url,
 				),
 			);
-			$output = json_encode( $meta, JSON_UNESCAPED_SLASHES  );
+			$output = wp_json_encode( $meta, JSON_UNESCAPED_SLASHES  );
 			?>
 			<script type="application/ld+json">
-				<?php echo $output; ?>
+				<?php echo wp_kses_post( $output ); ?>
 			</script>
 			<?php
 		}
@@ -410,34 +408,37 @@ class Schema {
 	 */
 	public function team_single_schema() {
 		if ( is_singular( 'team' ) ) {
-			$meta = array(
-				"@context" => "http://schema.org",
-				"@type" => "LocalBusiness",
-				"name" => "storename",
-				"image" => "https://staticqa.store.com/wp-content/themes/faf/images/store-logo.png",
-				"@id" => "id",
-				"url" => "",
-				"telephone" => "phone",
-				"priceRange" => "$1-$20",
-				"address" => array(
-					"@type" => "PostalAddress",
-					"streetAddress" => "address",
-					"addressLocality" => "storecityaddress",
-					"postalCode" => "storepostaladdress",
-					"addressCountry" => "USA",
-				),
-				"geo" => array(
-					"@type" => "GeoCoordinates",
-					"latitude" => "storelatitude",
-					"longitude" => "storelongitude",
-				),
-			);
-			$output = wp_json_encode( $meta, JSON_UNESCAPED_SLASHES  );
-			?>
-			<script type="application/ld+json">
-				<?php echo $output; ?>
-			</script>
-			<?php
+			$pinterest = get_post_meta( get_the_ID(), 'pinterest', true );
+			$googleplus = get_post_meta( get_the_ID(), 'googleplus', true );
+			$twitter = get_post_meta( get_the_ID(), 'twitter', true );
+			$linkedin = get_post_meta( get_the_ID(), 'linkedin', true );
+			$facebook = get_post_meta( get_the_ID(), 'facebook', true );
+			$phone_number_team = get_post_meta( get_the_ID(), 'contact_number', true );
+			$job_role_team = get_post_meta( get_the_ID(), 'role', true );
+			$email_team = get_post_meta( get_the_ID(), 'contact_email', true );
+			$name_team = get_the_title();
+			$team_description = wp_strip_all_tags( get_the_content() );
+
+		if (! empty($googleplus) || ! empty($pinterest) || ! empty($twitter) || ! empty($linkedin) ||  ! empty($facebook) ) {
+			$social_array = array( $googleplus, $pinterest, $twitter, $linkedin, $facebook );
+		}
+
+		$meta = array(
+		"@context" => "http://schema.org/",
+		"@type" => "Person",
+		"email" => $email_team,
+		"jobTitle" => $job_role_team,
+		"telephone" => $phone_number_team,
+		"description" => $team_description,
+		"name" => $name_team,
+		"sameAs" => $social_array,
+		);
+		$output = wp_json_encode( $meta, JSON_UNESCAPED_SLASHES  );
+		?>
+		<script type="application/ld+json">
+			<?php echo wp_kses_post( $output ); ?>
+		</script>
+		<?php
 		}
 	}
 }
