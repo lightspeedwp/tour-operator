@@ -35,7 +35,7 @@ Take a look at all our [Frequently Asked Questions](https://tour-operator.lsdev.
 
 If you are experiencing issues with the Tour Operator Plugin, please log any bug issues you are having on the [Tour Operator Github Issues](https://github.com/lightspeeddevelopment/tour-operator/issues) page.
 
-You can also send an email to our Support Team at support@lsdev.biz if you have a request for the LightSpeed Development team.
+You can also send an email to our Support Team at [support@lsdev.biz](mailto:support@lsdev.biz) if you have a request for the LightSpeed Development team.
 
 ## Contributing to the Tour Operator Plugin
 
