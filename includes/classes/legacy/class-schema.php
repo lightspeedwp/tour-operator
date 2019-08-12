@@ -68,6 +68,7 @@ class Schema {
 			$price      = get_post_meta( get_the_ID(), 'price', false );
 			$start_val  = get_post_meta( get_the_ID(), 'booking_validity_start', false );
 			$end_val    = get_post_meta( get_the_ID(), 'booking_validity_end', false );
+			$price_val = lsx_currencies()->base_currency;
 
 			$i = 0;
 			if ( ! empty( $tours_list ) ) {
@@ -118,6 +119,8 @@ class Schema {
 					'address' => $des_schema,
 					'telephone' => '0216713090',
 					'priceRange' => $price,
+					'price' => $price,
+   					'priceCurrency' => $price_val,
 					'description' => $itin_con,
 					'image' => $thumb_url,
 					'name' => $tour_title,
@@ -238,6 +241,7 @@ class Schema {
 			$country = get_the_title( $destinations_in_accommodation[0] );
 			$region_destinations = get_the_title( $destinations_in_accommodation[1] );
 			$price_accommodation = get_post_meta( get_the_ID(), 'price', true );
+			$price_val = lsx_currencies()->base_currency;
 
 			foreach ( $spoken_languages as $language ) {
 				foreach ( $language as $morelanguage ) {
@@ -254,7 +258,7 @@ class Schema {
 
 			$meta = array(
 				'@context' => 'http://schema.org/',
-				'@type' => 'LodgingBusiness',
+				'@type' => [ 'LodgingBusiness', 'Accommodation' ],
 				'availableLanguage' => $final_lang_list,
 				'address' => array(
 					'addressCountry' => $country,
@@ -268,7 +272,7 @@ class Schema {
 				'image' => $image_accommodation,
 				'name' => $title_accommodation,
 				'numberOfRooms' => $rooms_accommodation,
-				'priceRange' => $price_accommodation,
+				'priceRange' => $price_val . $price_accommodation,
 				'url' => $url_accommodation,
 				'telephone' => '+18666434336',
 				'aggregateRating' => array(
