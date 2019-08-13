@@ -247,8 +247,6 @@ class Tour_Operator {
 				'register_activation_hook_check',
 			)
 		);
-
-		
 	}
 
 	/**
