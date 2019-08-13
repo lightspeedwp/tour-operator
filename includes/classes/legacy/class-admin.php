@@ -65,8 +65,10 @@ class Admin extends Tour_Operator {
 			$this->taxonomies = apply_filters( 'lsx_to_taxonomies', $this->taxonomies );
 
 			add_filter( 'lsx_to_taxonomy_widget_taxonomies', array( $this, 'widget_taxonomies' ), 10, 1 );
+			add_filter( 'lsx_taxonomy_admin_taxonomies', array( $this, 'widget_taxonomies_slugs' ), 10, 1 );
 
 			if ( ! class_exists( 'LSX_Banners' ) && false !== $this->taxonomies ) {
+
 				add_action( 'create_term', array( $this, 'save_meta' ), 10, 2 );
 				add_action( 'edit_term', array( $this, 'save_meta' ), 10, 2 );
 
@@ -260,6 +262,18 @@ class Admin extends Tour_Operator {
 			$taxonomies = array_merge( $taxonomies, $this->taxonomies );
 		}
 
+		return $taxonomies;
+	}
+
+	/**
+	 * Output the form field for this metadata when adding a new term
+	 *
+	 * @since 1.0.0
+	 */
+	public function widget_taxonomies_slugs( $taxonomies ) {
+		if ( false !== $this->taxonomies ) {
+			$taxonomies = array_merge( $taxonomies, array_keys( $this->taxonomies ) );
+		}
 		return $taxonomies;
 	}
 
