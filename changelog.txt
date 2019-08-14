@@ -1,5 +1,8 @@
 ## Change log
 
+### 1.2.1 - In Development
+* Fix - Fixed the Post Type enquiry dropdown.
+
 ### 1.2.0 - 6 August 2019
 * Fix - Hiding the banner title on regions when the map is set to output there.
 * Dev - Made sure the regions also move the map to the banner when the setting is activated.

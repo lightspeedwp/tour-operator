@@ -414,18 +414,26 @@ class Settings {
 			</th>
 			<?php
 			if ( true === tour_operator()->legacy->show_default_form() ) {
-				$forms = tour_operator()->legacy->get_activated_forms(); ?>
+				$forms = tour_operator()->legacy->get_activated_forms();
+				$selected_form = false;
+
+				if ( isset( $this->options[ $post_type ] ) && isset( $this->options[ $post_type ]['enquiry'] ) ) {
+					$selected_form = $this->options[ $post_type ]['enquiry'];
+				}
+				?>
 				<td>
 					<select value="{{enquiry}}" name="enquiry">
 						<?php
-						if ( false !== $forms && '' !== $forms ) { ?>
+						if ( false !== $forms && '' !== $forms ) {
+							?>
 							<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}><?php esc_html_e( 'Select a form', 'tour-operator' ); ?></option>
 							<?php
 							foreach ( $forms as $form_id => $form_data ) { ?>
-								<option value="<?php echo esc_attr( $form_id ); ?>" {{#is enquiry value="<?php echo esc_attr( $form_id ); ?>"}} selected="selected"{{/is}}><?php echo wp_kses_post( $form_data ); ?></option>
+								<option value="<?php echo esc_attr( $form_id ); ?>" <?php if ( $selected_form == $form_id ) { echo esc_attr( 'selected="selected"' ); } ?>  ><?php echo esc_html( $form_data ); ?></option>
 								<?php
 							}
-						} else { ?>
+						} else {
+							?>
 							<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}><?php esc_html_e( 'You have no form available', 'tour-operator' ); ?></option>
 						<?php } ?>
 					</select>
