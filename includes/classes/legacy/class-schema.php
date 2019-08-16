@@ -75,7 +75,7 @@ class Schema {
 				foreach ( $tours_list as $day ) {
 					$i++;
 					$day_title        = $day['title'];
-					$day_description  = $day['description'];
+					$day_description  = wp_strip_all_tags( $day['description'] );
 					$url_option       = get_the_permalink() . '#day-' . $i;
 					$schema_day = array(
 						'@type' => 'ListItem',
