@@ -222,7 +222,7 @@ class Accommodation {
 			$counter       = 5;
 
 			while ( $counter > 0 ) {
-				if ( $value >= 0 ) {
+				if ( (int) $value > 0 ) {
 					$ratings_array[] = '<i class="fa fa-star"></i>';
 				} else {
 					$ratings_array[] = '<i class="fa fa-star-o"></i>';

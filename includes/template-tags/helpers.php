@@ -309,7 +309,7 @@ function lsx_to_custom_field_query( $meta_key = false, $before = '', $after = ''
 		$value = get_transient( $post_id . '_' . $meta_key );
 
 		if ( false === $value ) {
-			$value = get_post_meta( $post_id,$meta_key,true );
+			$value = get_post_meta( $post_id, $meta_key, true );
 		}
 
 		if ( false !== $value && '' !== $value ) {

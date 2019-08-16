@@ -142,7 +142,7 @@ $fast_facts_fields = array(
 		'id'         => 'rating',
 		'name'       => esc_html__( 'Rating', 'tour-operator' ),
 		'type'       => 'radio',
-		'options'    => array( '1', '2', '3', '4', '5' ),
+		'options'    => array( '0', '1', '2', '3', '4', '5' ),
 		'allow_none' => true,
 	),
 
