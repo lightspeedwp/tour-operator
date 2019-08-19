@@ -103,8 +103,9 @@ class Maps {
 			$api_key = $settings['api']['googlemaps_key'];
 		}
 		if ( isset( $settings['destination'] ) && isset( $settings['destination']['enable_banner_map'] ) && 'on' === $settings['destination']['enable_banner_map'] ) {
-			$this->enable_banner_map = true;
+			$this->enable_banner_map = apply_filters( 'lsx_to_has_destination_banner_map', true );
 		}
+
 		if ( isset( $settings['display'] ) && isset( $settings['display']['map_placeholder_enabled'] ) && 'on' === $settings['display']['map_placeholder_enabled'] ) {
 			if ( ( is_post_type_archive( 'destination' ) || is_singular( 'destination' ) ) && true === $this->enable_banner_map ) {
 				$this->placeholder_enabled = false;
