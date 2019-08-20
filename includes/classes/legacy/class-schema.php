@@ -30,9 +30,13 @@ class Schema {
 	 * Constructor
 	 */
 	public function __construct() {
-		add_action( 'wp_head', array( $this, 'tour_single_schema' ), 1499 );
-		add_action( 'wp_head', array( $this, 'destination_single_schema' ), 1499 );
-		add_action( 'wp_head', array( $this, 'accommodation_single_schema' ), 1499 );
+		require_once( LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-review.php' );
+		add_filter( 'wpseo_schema_graph_pieces', array( $this, 'add_graph_pieces' ), 11, 2 );
+
+		//add_action( 'init', array( $this, 'initialize_destination_schema' ) );
+		//add_action( 'wp_head', array( $this, 'destination_single_schema' ), 1499 );
+		//add_action( 'wp_head', array( $this, 'tour_single_schema' ), 1499 );
+		//add_action( 'wp_head', array( $this, 'accommodation_single_schema' ), 1499 );
 	}
 
 	/**
@@ -47,6 +51,19 @@ class Schema {
 			self::$instance = new self;
 		}
 		return self::$instance;
+	}
+
+	/**
+	 * Adds Schema pieces to our output.
+	 *
+	 * @param array                 $pieces  Graph pieces to output.
+	 * @param \WPSEO_Schema_Context $context Object with context variables.
+	 *
+	 * @return array $pieces Graph pieces to output.
+	 */
+	public function add_graph_pieces( $pieces, $context ) {
+		$pieces[] = new \LSX_TO_Schema_Review( $context );
+		return $pieces;
 	}
 
 	/**
