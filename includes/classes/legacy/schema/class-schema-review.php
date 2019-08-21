@@ -52,16 +52,16 @@ class LSX_TO_Schema_Review implements WPSEO_Graph_Piece {
 	 */
 	public function generate() {
 		$post          = get_post( $this->context->id );
-		$review_author = get_post_meta( $post->ID, 'reviewer_name', false );
-		$review_email  = get_post_meta( $post->ID, 'reviewer_email', false );
+		$review_author = get_post_meta( $post->ID, 'reviewer_name', true );
+		$review_email  = get_post_meta( $post->ID, 'reviewer_email', true );
 		$rating_value  = get_post_meta( $post->ID, 'rating', true );
 		$description   = wp_strip_all_tags( get_the_content() );
 		$tour_list     = get_post_meta( get_the_ID(), 'tour_to_review', false );
+		$accom_list    = get_post_meta( get_the_ID(), 'accommodation_to_review', false );
 		$comment_count = get_comment_count( $this->context->id );
 		$data          = array(
 			'@type'            => 'Review',
 			'@id'              => $this->context->canonical . '#review',
-			'isPartOf'         => array( '@id' => $this->context->canonical . WPSEO_Schema_IDs::WEBPAGE_HASH ),
 			'author'           => array(
 				'@type' => 'Person',
 				'@id'   => $this->get_review_author_schema_id( $review_author, $review_email, $this->context ),
@@ -81,7 +81,8 @@ class LSX_TO_Schema_Review implements WPSEO_Graph_Piece {
 				'bestRating'  => $rating_value,
 			),
 			'reviewBody'       => $description,
-			'itemReviewed'     => $this->get_item_reviewed_schema( $tour_list, 'trip' ),
+			'itemReviewed'     => $this->get_item_reviewed_schema( $tour_list, 'Trip' ),
+			'itemReviewed'     => $this->get_item_reviewed_schema( $accom_list, 'Accommodation' ),
 		);
 
 		if ( $this->context->site_represents_reference ) {
