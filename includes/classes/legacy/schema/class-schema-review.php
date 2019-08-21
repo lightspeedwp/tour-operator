@@ -56,7 +56,7 @@ class LSX_TO_Schema_Review implements WPSEO_Graph_Piece {
 		$review_email  = get_post_meta( $post->ID, 'reviewer_email', false );
 		$rating_value  = get_post_meta( $post->ID, 'rating', true );
 		$description   = wp_strip_all_tags( get_the_content() );
-		$tour_list     = array();
+		$tour_list     = get_post_meta( get_the_ID(), 'tour_to_review', false );
 		$comment_count = get_comment_count( $this->context->id );
 		$data          = array(
 			'@type'            => 'Review',
@@ -217,7 +217,7 @@ class LSX_TO_Schema_Review implements WPSEO_Graph_Piece {
 	 */
 	public function get_item_reviewed_schema( $items = array(), $type = '' ) {
 		$schema = array();
-		if ( ! empty( $items ) && '' !== $type ) {
+		if ( false !== $items && ! empty( $items ) && '' !== $type ) {
 			foreach ( $items as $item ) {
 				$title       = get_the_title( $item );
 				$item_schema = array(
