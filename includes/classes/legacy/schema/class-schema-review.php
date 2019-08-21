@@ -52,14 +52,16 @@ class LSX_TO_Schema_Review implements WPSEO_Graph_Piece {
 	 */
 	public function generate() {
 		$post          = get_post( $this->context->id );
-		$review_author = get_post_meta( get_the_ID(), 'reviewer_name', false );
-		$review_email  = get_post_meta( get_the_ID(), 'reviewer_email', false );
+		$review_author = get_post_meta( $post->ID, 'reviewer_name', false );
+		$review_email  = get_post_meta( $post->ID, 'reviewer_email', false );
+		$rating_value  = get_post_meta( $post->ID, 'rating', true );
 		$comment_count = get_comment_count( $this->context->id );
 		$data          = array(
 			'@type'            => 'Review',
 			'@id'              => $this->context->canonical . WPSEO_Schema_IDs::ARTICLE_HASH,
 			'isPartOf'         => array( '@id' => $this->context->canonical . WPSEO_Schema_IDs::WEBPAGE_HASH ),
 			'author'           => array(
+				'@type' => 'Person',
 				'@id'   => $this->get_review_author_schema_id( $review_author, $review_email, $this->context ),
 				'name'  => $review_author,
 				'email' => $review_email,
@@ -68,7 +70,14 @@ class LSX_TO_Schema_Review implements WPSEO_Graph_Piece {
 			'datePublished'    => mysql2date( DATE_W3C, $post->post_date_gmt, false ),
 			'dateModified'     => mysql2date( DATE_W3C, $post->post_modified_gmt, false ),
 			'commentCount'     => $comment_count['approved'],
-			'mainEntityOfPage' => array( '@id' => $this->context->canonical . WPSEO_Schema_IDs::WEBPAGE_HASH ),
+			'mainEntityOfPage' => array(
+				'@id' => $this->context->canonical . WPSEO_Schema_IDs::WEBPAGE_HASH,
+			),
+			'reviewRating' => array(
+				'@type'       => 'Rating',
+				'ratingValue' => $rating_value,
+				'bestRating'  => $rating_value,
+			),
 		);
 
 		if ( $this->context->site_represents_reference ) {
