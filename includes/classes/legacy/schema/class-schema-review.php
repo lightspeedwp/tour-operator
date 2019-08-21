@@ -60,7 +60,7 @@ class LSX_TO_Schema_Review implements WPSEO_Graph_Piece {
 		$comment_count = get_comment_count( $this->context->id );
 		$data          = array(
 			'@type'            => 'Review',
-			'@id'              => $this->context->canonical . WPSEO_Schema_IDs::ARTICLE_HASH,
+			'@id'              => $this->context->canonical . '#review',
 			'isPartOf'         => array( '@id' => $this->context->canonical . WPSEO_Schema_IDs::WEBPAGE_HASH ),
 			'author'           => array(
 				'@type' => 'Person',
