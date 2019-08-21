@@ -52,12 +52,18 @@ class LSX_TO_Schema_Review implements WPSEO_Graph_Piece {
 	 */
 	public function generate() {
 		$post          = get_post( $this->context->id );
+		$review_author = get_post_meta( get_the_ID(), 'reviewer_name', false );
+		$review_email  = get_post_meta( get_the_ID(), 'reviewer_email', false );
 		$comment_count = get_comment_count( $this->context->id );
 		$data          = array(
 			'@type'            => 'Review',
 			'@id'              => $this->context->canonical . WPSEO_Schema_IDs::ARTICLE_HASH,
 			'isPartOf'         => array( '@id' => $this->context->canonical . WPSEO_Schema_IDs::WEBPAGE_HASH ),
-			'author'           => array( '@id' => WPSEO_Schema_Utils::get_user_schema_id( $post->post_author, $this->context ) ),
+			'author'           => array(
+				'@id'   => $this->get_review_author_schema_id( $review_author, $review_email, $this->context ),
+				'name'  => $review_author,
+				'email' => $review_email,
+			),
 			'headline'         => get_the_title(),
 			'datePublished'    => mysql2date( DATE_W3C, $post->post_date_gmt, false ),
 			'dateModified'     => mysql2date( DATE_W3C, $post->post_modified_gmt, false ),
@@ -175,5 +181,17 @@ class LSX_TO_Schema_Review implements WPSEO_Graph_Piece {
 		}
 
 		return $data;
+	}
+
+	/**
+	 * Retrieve a users Schema ID.
+	 *
+	 * @param string               $name The Name of the Reviewer you need a for.
+	 * @param WPSEO_Schema_Context $context A value object with context variables.
+	 *
+	 * @return string The user's schema ID.
+	 */
+	public function get_review_author_schema_id( $name, $email, $context ) {
+		return $context->site_url . WPSEO_Schema_IDs::PERSON_HASH . wp_hash( $name . $email );
 	}
 }
