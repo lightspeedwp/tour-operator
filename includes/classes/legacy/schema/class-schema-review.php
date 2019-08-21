@@ -55,6 +55,8 @@ class LSX_TO_Schema_Review implements WPSEO_Graph_Piece {
 		$review_author = get_post_meta( $post->ID, 'reviewer_name', false );
 		$review_email  = get_post_meta( $post->ID, 'reviewer_email', false );
 		$rating_value  = get_post_meta( $post->ID, 'rating', true );
+		$description   = wp_strip_all_tags( get_the_content() );
+		$tour_list     = array();
 		$comment_count = get_comment_count( $this->context->id );
 		$data          = array(
 			'@type'            => 'Review',
@@ -78,6 +80,8 @@ class LSX_TO_Schema_Review implements WPSEO_Graph_Piece {
 				'ratingValue' => $rating_value,
 				'bestRating'  => $rating_value,
 			),
+			'reviewBody'       => $description,
+			'itemReviewed'     => $this->get_item_reviewed_schema( $tour_list, 'trip' ),
 		);
 
 		if ( $this->context->site_represents_reference ) {
@@ -202,5 +206,27 @@ class LSX_TO_Schema_Review implements WPSEO_Graph_Piece {
 	 */
 	public function get_review_author_schema_id( $name, $email, $context ) {
 		return $context->site_url . WPSEO_Schema_IDs::PERSON_HASH . wp_hash( $name . $email );
+	}
+
+	/**
+	 * Generates the itemReviewed schema
+	 *
+	 * @param  array  $items The array of IDS.
+	 * @param  string $type The schema type.
+	 * @return array $schema An array of the schema markup.
+	 */
+	public function get_item_reviewed_schema( $items = array(), $type = '' ) {
+		$schema = array();
+		if ( ! empty( $items ) && '' !== $type ) {
+			foreach ( $items as $item ) {
+				$title       = get_the_title( $item );
+				$item_schema = array(
+					'@type' => $type,
+					'name'  => $title,
+				);
+				$schema[]    = $item_schema;
+			}
+		}
+		return $schema;
 	}
 }
