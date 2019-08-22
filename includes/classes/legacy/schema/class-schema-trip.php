@@ -131,6 +131,7 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 					'@type'    => 'ListItem',
 					'position' => $i,
 					'item'     => array(
+						'@type'       => 'Thing',
 						'@id'         => $this->get_itinerary_day_schema_id( $day['title'], $this->context ),
 						'name'        => $day['title'],
 						'description' => wp_strip_all_tags( $day['description'] ),
