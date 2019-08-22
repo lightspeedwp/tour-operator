@@ -34,6 +34,20 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 	public $place_ids;
 
 	/**
+	 * This holds an object or the current trip post.
+	 *
+	 * @var WP_Post();
+	 */
+	public $post;
+
+	/**
+	 * This holds URL for the trip
+	 *
+	 * @var string
+	 */
+	public $post_url;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param \WPSEO_Schema_Context $context A value object with context variables.
@@ -45,6 +59,8 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 			'destination_to_tour'   => 'State',
 		);
 		$this->place_ids        = array();
+		$this->post             = get_post( $this->context->id );
+		$this->post_url         = get_permalink( $this->context->id );
 	}
 
 	/**
@@ -70,23 +86,37 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 	 * @return array $data Review data.
 	 */
 	public function generate() {
-		$this->post = get_post( $this->context->id );
 		$data = array(
-			'@type'            => 'Trip',
+			'@type'            => array(
+				'Trip',
+				'Product',
+			),
 			'@id'              => $this->context->canonical . '#tour',
 			'name'             => $this->post->post_title,
 			'description'      => wp_strip_all_tags( $this->post->post_content ),
+			'url'              => $this->post_url,
 			'mainEntityOfPage' => array(
 				'@id' => $this->context->canonical . WPSEO_Schema_IDs::WEBPAGE_HASH,
 			),
 		);
+
 		if ( $this->context->site_represents_reference ) {
 			$data['provider'] = $this->context->site_represents_reference;
+			$data['brand']    = $this->context->site_represents_reference;
 		}
+
+		$wetu_ref = get_post_meta( $this->context->id, 'lsx_wetu_ref', true );
+		if ( false !== $wetu_ref && '' !== $wetu_ref ) {
+			$data['sku']        = $wetu_ref;
+			$data['identifier'] = $wetu_ref;
+		}
+
 		$data = $this->add_itinerary( $data );
 		$data = $this->add_image( $data );
 		$data = $this->add_sub_trips( $data );
 		$data = $this->add_offers( $data );
+		$data = $this->add_reviews( $data );
+
 		if ( isset( $_GET['debug'] ) ) {
 			print_r('<pre>');
 			print_r($data);
@@ -268,6 +298,8 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 				'price'              => $price,
 				'priceCurrency'      => $currency,
 				'PriceSpecification' => __( 'Per Person Per Night', 'tour-operator' ),
+				'availability'       => 'https://schema.org/OnlineOnly',
+				'url'                => $this->post_url,
 			);
 			$data[]     = $this->add_offer( $data, $this->context->id, $offer_args, true );
 		}
@@ -294,7 +326,8 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 				'price'         => $price,
 				'priceCurrency' => $currency,
 				'category'      => __( 'Special', 'tour-operator' ),
-				'url'           => get_permalink( $price ),
+				'availability'  => 'https://schema.org/LimitedAvailability',
+				'url'           => get_permalink( $special_id ),
 			);
 			$price_type = get_post_meta( $special_id, 'price_type', true );
 			if ( false !== $price_type && '' !== $price_type && 'none' !== $price_type ) {
@@ -322,11 +355,87 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 	}
 
 	/**
-	 * Generates the place graph piece for the subtrip / Itinerary arrays.
+	 * Gets the connected reviews post type and set it as the "Review" schema
+	 *
+	 * @param  array $data An array of offers already added.
+	 * @return array $data
+	 */
+	private function add_reviews( $data ) {
+		$reviews       = get_post_meta( $this->context->id, 'review_to_tour', false );
+		$reviews_array = array();
+		if ( ! empty( $reviews ) ) {
+			$aggregate_value = 1;
+			$review_count    = 0;
+			foreach ( $reviews as $review_id ) {
+				$rating      = get_post_meta( $review_id, 'rating', true );
+				$author      = get_post_meta( $review_id, 'reviewer_name', true );
+				$description = wp_strip_all_tags( get_the_content( $review_id ) );
+				$review_args = array(
+					'author'     => $author,
+					'reviewBody' => $description,
+				);
+				// Add in the review rating.
+				if ( false !== $rating && '' !== $rating && '0' !== $rating && 0 !== $rating ) {
+					$review_args['reviewRating'] = array(
+						'@type'       => 'Rating',
+						'ratingValue' => $rating,
+					);
+				}
+				$reviews_array[] = $this->add_review( $reviews_array, $review_id, $review_args );
+				$review_count++;
+			}
+			if ( ! empty( $reviews_array ) ) {
+				$data['aggregateRating'] = array(
+					'@type'       => 'AggregateRating',
+					'ratingValue' => (string) $aggregate_value,
+					'reviewCount' => (string) $review_count,
+					'bestRating'  => '5',
+					'worstRating' => '1',
+				);
+				$data['reviews']         = $reviews_array;
+			}
+		}
+		return $data;
+	}
+
+	/**
+	 * Generates the "review" graph piece for the subtrip / Itinerary arrays.
 	 *
 	 * @param array  $data         subTrip / itinerary data.
 	 * @param string $post_id      The post ID of the current Place to add.
 	 * @param array  $args         and array of parameter you want added to the offer.
+	 * @param string $local        if the Schema is local true / false.
+	 *
+	 * @return mixed array $data Place data.
+	 */
+	private function add_review( $data, $post_id, $args = array(), $local = false ) {
+		$defaults = array(
+			'@id'           => $this->get_review_schema_id( $post_id, $this->context, $local ),
+			'author'        => get_the_author_meta( 'display_name', get_post_field( 'post_author', $post_id ) ),
+			'datePublished' => mysql2date( DATE_W3C, get_post_field( 'post_date_gmt', $post_id ), false ),
+			'reviewRating'  => false,
+		);
+		$args     = wp_parse_args( $args, $defaults );
+		$args     = apply_filters( 'lsx_to_schema_tour_review_args', $args );
+		$offer    = array(
+			'@type' => apply_filters( 'lsx_to_schema_tour_review_type', 'Review', $args ),
+		);
+		foreach ( $args as $key => $value ) {
+			if ( false !== $value ) {
+				$offer[ $key ] = $value;
+			}
+		}
+		$data[] = $offer;
+		return $data;
+	}
+
+	/**
+	 * Generates the "Offer" graph piece for the subtrip / Itinerary arrays.
+	 *
+	 * @param array  $data         subTrip / itinerary data.
+	 * @param string $post_id      The post ID of the current Place to add.
+	 * @param array  $args         and array of parameter you want added to the offer.
+	 * @param string $local        if the Schema is local true / false.
 	 *
 	 * @return mixed array $data Place data.
 	 */
@@ -336,6 +445,8 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 			'price'              => false,
 			'priceCurrency'      => false,
 			'PriceSpecification' => false,
+			'url'                => false,
+			'availability'       => false,
 			'category'           => __( 'Standard', 'tour-operator' ),
 		);
 		$args     = wp_parse_args( $args, $defaults );
@@ -429,6 +540,7 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 	 *
 	 * @param string               $id      post ID of the place being added.
 	 * @param WPSEO_Schema_Context $context A value object with context variables.
+	 * @param string               $local   if the Schema is local true / false.
 	 *
 	 * @return string The user's schema ID.
 	 */
@@ -439,6 +551,26 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 			$url = get_permalink( $context->id );
 		}
 		$url .= '#/schema/offer/';
+		$url .= wp_hash( $id . get_the_title( $id ) );
+		return trailingslashit( $url );
+	}
+
+	/**
+	 * Retrieve an review Schema ID.
+	 *
+	 * @param string               $id      post ID of the place being added.
+	 * @param WPSEO_Schema_Context $context A value object with context variables.
+	 * @param string               $local   if the Schema is local true / false.
+	 *
+	 * @return string The user's schema ID.
+	 */
+	public function get_review_schema_id( $id, $context, $local = false ) {
+		if ( false === $local ) {
+			$url = $context->site_url;
+		} else {
+			$url = get_permalink( $context->id );
+		}
+		$url .= '#/schema/review/';
 		$url .= wp_hash( $id . get_the_title( $id ) );
 		return trailingslashit( $url );
 	}
