@@ -51,10 +51,8 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 	 * @return array $data Review data.
 	 */
 	public function generate() {
-		$post          = get_post( $this->context->id );
-		$tour_author   = get_post_meta( $post->ID, 'tourer_name', true );
-		$tour_email    = get_post_meta( $post->ID, 'tourer_email', true );
-		$data          = array(
+		$post = get_post( $this->context->id );
+		$data = array(
 			'@type'            => 'Trip',
 			'@id'              => $this->context->canonical . '#tour',
 			'name'             => get_the_title(),
@@ -62,15 +60,12 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 				'@id' => $this->context->canonical . WPSEO_Schema_IDs::WEBPAGE_HASH,
 			),
 		);
-
 		if ( $this->context->site_represents_reference ) {
 			$data['provider'] = $this->context->site_represents_reference;
 		}
 
 		$data = $this->add_image( $data );
-		$data = $this->add_keywords( $data );
-		$data = $this->add_sections( $data );
-
+		$data = $this->add_itinerary( $data );
 		return $data;
 	}
 
@@ -97,64 +92,58 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 	}
 
 	/**
-	 * Adds tags as keywords, if tags are assigned.
+	 * Adds the itinerary destinations as an itemList
 	 *
-	 * @param array $data Review data.
+	 * @param array $data Trip data.
 	 *
-	 * @return array $data Review data.
+	 * @return array $data Trip data.
 	 */
-	private function add_keywords( $data ) {
+	private function add_itinerary( $data ) {
 		/**
-		 * Filter: 'wpseo_schema_tour_keywords_taxonomy' - Allow changing the taxonomy used to assign keywords to a post type Review data.
+		 * Filter: 'wpseo_schema_tour_itinerary_meta_key' - Allow changing the custom field meta_key used to assign the itinerary to a post type Trip data.
 		 *
-		 * @api string $taxonomy The chosen taxonomy.
+		 * @api string $meta_key The chosen meta_key.
 		 */
-		$taxonomy = apply_filters( 'wpseo_schema_tour_keywords_taxonomy', 'post_tag' );
+		$meta_key = apply_filters( 'wpseo_schema_tour_itinerary_meta_key', 'itinerary' );
 
-		return $this->add_terms( $data, 'keywords', $taxonomy );
+		return $this->add_days( $data, 'itinerary', $meta_key );
 	}
 
 	/**
-	 * Adds categories as sections, if categories are assigned.
+	 * Adds the days of the itinerary to the dta.
 	 *
-	 * @param array $data Review data.
-	 *
-	 * @return array $data Review data.
-	 */
-	private function add_sections( $data ) {
-		/**
-		 * Filter: 'wpseo_schema_tour_sections_taxonomy' - Allow changing the taxonomy used to assign keywords to a post type Review data.
-		 *
-		 * @api string $taxonomy The chosen taxonomy.
-		 */
-		$taxonomy = apply_filters( 'wpseo_schema_tour_sections_taxonomy', 'travel-style' );
-
-		return $this->add_terms( $data, 'tourSection', $taxonomy );
-	}
-
-	/**
-	 * Adds a term or multiple terms, comma separated, to a field.
-	 *
-	 * @param array  $data     Review data.
+	 * @param array  $data     Trip data.
 	 * @param string $key      The key in data to save the terms in.
 	 * @param string $taxonomy The taxonomy to retrieve the terms from.
 	 *
 	 * @return mixed array $data Review data.
 	 */
-	private function add_terms( $data, $key, $taxonomy ) {
-		$terms = get_the_terms( $this->context->id, $taxonomy );
-		if ( is_array( $terms ) ) {
-			$keywords = array();
-			foreach ( $terms as $term ) {
-				// We are checking against the WordPress internal translation.
-				// @codingStandardsIgnoreLine
-				if ( $term->name !== __( 'Uncategorized' ) ) {
-					$keywords[] = $term->name;
-				}
-			}
-			$data[ $key ] = implode( ',', $keywords );
-		}
+	private function add_days( $data, $key, $meta_key ) {
+		$itinerary  = get_post_meta( get_the_ID(), 'itinerary', false );
+		$list_array = array();
+		$i          = 0;
 
+		if ( ! empty( $itinerary ) ) {
+
+			foreach ( $itinerary as $day ) {
+				$i++;
+				$schema       = array(
+					'@type'    => 'ListItem',
+					'position' => $i,
+					'item'     => array(
+						'@id'         => $this->get_itinerary_day_schema_id( $day['title'], $this->context ),
+						'name'        => $day['title'],
+						'description' => wp_strip_all_tags( $day['description'] ),
+					),
+				);
+				$list_array[] = $day;
+			}
+
+			$data[ $key ] = array(
+				'@type' => 'ItemList',
+				'itemListElement' => implode( ',', $list_array ),
+			);
+		}
 		return $data;
 	}
 
@@ -183,29 +172,7 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 	 *
 	 * @return string The user's schema ID.
 	 */
-	public function get_tour_author_schema_id( $name, $email, $context ) {
-		return $context->site_url . WPSEO_Schema_IDs::PERSON_HASH . wp_hash( $name . $email );
-	}
-
-	/**
-	 * Generates the itemReviewed schema
-	 *
-	 * @param  array  $items The array of IDS.
-	 * @param  string $type The schema type.
-	 * @return array $schema An array of the schema markup.
-	 */
-	public function get_item_toured_schema( $items = array(), $type = '' ) {
-		$schema = array();
-		if ( false !== $items && ! empty( $items ) && '' !== $type ) {
-			foreach ( $items as $item ) {
-				$title       = get_the_title( $item );
-				$item_schema = array(
-					'@type' => $type,
-					'name'  => $title,
-				);
-				$schema[]    = $item_schema;
-			}
-		}
-		return $schema;
+	public function get_itinerary_day_schema_id( $name, $context ) {
+		return $context->site_url . 'day/' . wp_hash( $name . $context->id );
 	}
 }
