@@ -140,8 +140,8 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 			}
 
 			$data[ $key ] = array(
-				'@type' => 'ItemList',
-				'itemListElement' => implode( ',', $list_array ),
+				'@type'           => 'ItemList',
+				'itemListElement' => $list_array,
 			);
 		}
 		return $data;
