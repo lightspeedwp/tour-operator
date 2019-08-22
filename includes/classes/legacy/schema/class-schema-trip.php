@@ -54,27 +54,17 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 		$post          = get_post( $this->context->id );
 		$tour_author   = get_post_meta( $post->ID, 'tourer_name', true );
 		$tour_email    = get_post_meta( $post->ID, 'tourer_email', true );
-		$comment_count = get_comment_count( $this->context->id );
 		$data          = array(
 			'@type'            => 'Trip',
 			'@id'              => $this->context->canonical . '#tour',
-			'author'           => array(
-				'@type' => 'Person',
-				'@id'   => $this->get_tour_author_schema_id( $tour_author, $tour_email, $this->context ),
-				'name'  => $tour_author,
-				'email' => $tour_email,
-			),
-			'headline'         => get_the_title(),
-			'datePublished'    => mysql2date( DATE_W3C, $post->post_date_gmt, false ),
-			'dateModified'     => mysql2date( DATE_W3C, $post->post_modified_gmt, false ),
-			'commentCount'     => $comment_count['approved'],
+			'name'             => get_the_title(),
 			'mainEntityOfPage' => array(
 				'@id' => $this->context->canonical . WPSEO_Schema_IDs::WEBPAGE_HASH,
 			),
 		);
 
 		if ( $this->context->site_represents_reference ) {
-			$data['publisher'] = $this->context->site_represents_reference;
+			$data['provider'] = $this->context->site_represents_reference;
 		}
 
 		$data = $this->add_image( $data );
@@ -137,7 +127,7 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 		 *
 		 * @api string $taxonomy The chosen taxonomy.
 		 */
-		$taxonomy = apply_filters( 'wpseo_schema_tour_sections_taxonomy', 'category' );
+		$taxonomy = apply_filters( 'wpseo_schema_tour_sections_taxonomy', 'travel-style' );
 
 		return $this->add_terms( $data, 'tourSection', $taxonomy );
 	}
