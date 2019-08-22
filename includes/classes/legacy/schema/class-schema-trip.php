@@ -98,6 +98,7 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 			'mainEntityOfPage' => array(
 				'@id' => $this->context->canonical . WPSEO_Schema_IDs::WEBPAGE_HASH,
 			),
+			'mpn'              => $this->context->id,
 		);
 
 		if ( $this->context->site_represents_reference ) {
@@ -449,6 +450,10 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 			'@id'           => $this->get_article_schema_id( $post_id, $this->context, $local ),
 			'author'        => get_the_author_meta( 'display_name', get_post_field( 'post_author', $post_id ) ),
 			'datePublished' => mysql2date( DATE_W3C, get_post_field( 'post_date_gmt', $post_id ), false ),
+			'dateModified' => mysql2date( DATE_W3C, get_post_field( 'post_modified_gmt', $post_id ), false ),
+			/*'mainEntityOfPage' => array(
+				'@id' => $this->context->canonical . WPSEO_Schema_IDs::WEBPAGE_HASH,
+			),*/
 		);
 		$args     = wp_parse_args( $args, $defaults );
 		$args     = apply_filters( 'lsx_to_schema_tour_article_args', $args );
