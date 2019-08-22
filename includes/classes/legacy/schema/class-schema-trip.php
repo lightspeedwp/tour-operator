@@ -87,6 +87,11 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 		$data = $this->add_image( $data );
 		$data = $this->add_sub_trips( $data );
 		$data = $this->add_offers( $data );
+		if ( isset( $_GET['debug'] ) ) {
+			print_r('<pre>');
+			print_r($data);
+			print_r('</pre>');
+		}
 		return $data;
 	}
 
@@ -235,8 +240,8 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 	 */
 	private function add_offers( $data ) {
 		$offers = array();
-		$offers = $this->get_default_offer( $data );
-		$offers = $this->get_special_offers( $data );
+		$offers = $this->get_default_offer( $offers );
+		$offers = $this->get_special_offers( $offers );
 		if ( ! empty( $offers ) ) {
 			$data['offers'] = $offers;
 		}
@@ -292,7 +297,7 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 			);
 			$price_type = get_post_meta( $special_id, 'price_type', true );
 			if ( false !== $price_type && '' !== $price_type && 'none' !== $price_type ) {
-				$offer_args['PriceSpecification'] = $price_type;
+				$offer_args['PriceSpecification'] = lsx_to_get_price_type_label( $price_type );
 			}
 			$data[] = $this->add_offer( $data, $special_id, $offer_args );
 		}

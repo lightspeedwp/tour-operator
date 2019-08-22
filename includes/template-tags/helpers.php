@@ -734,3 +734,39 @@ function to_continent_region_label( $country_code = '' ) {
 	}
 	return $return;
 }
+
+/**
+ * Gets the price type label based on the index
+ *
+ * @param string $label_index the index of the label you want to retrive.
+ * @return string
+ */
+function lsx_to_get_price_type_label( $label_index = '' ) {
+	$label = '';
+	switch ( $label_index ) {
+		case '':
+			$label = '';
+			break;
+
+		case 'per_person_per_night':
+			$label = esc_html__( 'Per Person Per Night', 'tour-operator' );
+			break;
+
+		case 'per_person_sharing':
+			$label = esc_html__( 'Per Person Sharing', 'tour-operator' );
+			break;
+
+		case 'per_person_sharing_per_night':
+			$label = esc_html__( 'Per Person Sharing Per Night', 'tour-operator' );
+			break;
+
+		case 'total_percentage':
+			$label = esc_html__( 'Percentage Off Your Price.', 'tour-operator' );
+			break;
+
+		default:
+			$label = '';
+			break;
+	}
+	return $label;
+}
