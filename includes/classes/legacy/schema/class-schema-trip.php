@@ -234,30 +234,84 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 	 * @return array $offers Offer data.
 	 */
 	private function add_offers( $data ) {
-		$offers        = array();
+		$offers = array();
+		$offers = $this->get_default_offer( $data );
+		$offers = $this->get_special_offers( $data );
+		if ( ! empty( $offers ) ) {
+			$data['offers'] = $offers;
+		}
+		return $data;
+	}
+
+	/**
+	 * Gets the default price and sets it as a "Standard" "Offer"
+	 *
+	 * @param  array $data An array of offers already added.
+	 * @return array $data
+	 */
+	private function get_default_offer( $data ) {
+		$price         = get_post_meta( $this->context->id, 'price', true );
+		$currency      = 'USD';
 		$tour_operator = tour_operator();
 		if ( is_object( $tour_operator ) && isset( $tour_operator->options['general'] ) && is_array( $tour_operator->options['general'] ) ) {
 			if ( isset( $tour_operator->options['general']['currency'] ) && ! empty( $tour_operator->options['general']['currency'] ) ) {
 				$currency = $tour_operator->options['general']['currency'];
 			}
 		}
-
-		// Check for a default price.
-		$price = get_post_meta( get_the_ID(), 'price', true );
 		if ( false !== $price && '' !== $price ) {
 			$offer_args = array(
 				'price'              => $price,
 				'priceCurrency'      => $currency,
 				'PriceSpecification' => __( 'Per Person Per Night', 'tour-operator' ),
 			);
-			$offers[]   = $this->add_offer( $offers, $this->context->id, $offer_args );
+			$data[]     = $this->add_offer( $data, $this->context->id, $offer_args );
 		}
-		if ( ! empty( $offers ) ) {
-			$data['offers'] = $offers;
+		return $data;
+	}
+
+	/**
+	 * Gets the single special post and adds it as a special "Offer".
+	 *
+	 * @param  array $data An array of offers already added.
+	 * @return array $data
+	 */
+	private function get_special_offer( $data, $special_id ) {
+		$price         = get_post_meta( $special_id, 'price', true );
+		$currency      = 'USD';
+		$tour_operator = tour_operator();
+		if ( is_object( $tour_operator ) && isset( $tour_operator->options['general'] ) && is_array( $tour_operator->options['general'] ) ) {
+			if ( isset( $tour_operator->options['general']['currency'] ) && ! empty( $tour_operator->options['general']['currency'] ) ) {
+				$currency = $tour_operator->options['general']['currency'];
+			}
 		}
+		if ( false !== $price && '' !== $price ) {
+			$offer_args = array(
+				'price'         => $price,
+				'priceCurrency' => $currency,
+				'category'      => __( 'Special', 'tour-operator' ),
+			);
+			$price_type = get_post_meta( $special_id, 'price_type', true );
+			if ( false !== $price_type && '' !== $price_type && 'none' !== $price_type ) {
+				$offer_args['PriceSpecification'] = $price_type;
+			}
+			$data[] = $this->add_offer( $data, $special_id, $offer_args );
+		}
+		return $data;
+	}
 
-		// Check for any specials to add as Offers.
-
+	/**
+	 * Gets the default price and sets it as a "Standard" "Offer"
+	 *
+	 * @param  array $data An array of offers already added.
+	 * @return array $data
+	 */
+	private function get_special_offers( $data ) {
+		$specials = get_post_meta( $this->context->id, 'special_to_tour', false );
+		if ( ! empty( $specials ) ) {
+			foreach ( $specials as $special_id ) {
+				$data[] = $this->get_special_offer( $data, $special_id );
+			}
+		}
 		return $data;
 	}
 
@@ -276,7 +330,7 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 			'price'              => false,
 			'priceCurrency'      => false,
 			'PriceSpecification' => false,
-			'category'           => 'Standard',
+			'category'           => __( 'Standard', 'tour-operator' ),
 		);
 		$args     = wp_parse_args( $args, $defaults );
 		$args     = apply_filters( 'lsx_to_schema_tour_offer_args', $args );
