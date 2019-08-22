@@ -20,12 +20,31 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 	private $context;
 
 	/**
+	 * This holds the meta_key => scehma_type of the fields you want to add to your subtrip.
+	 *
+	 * @var array()
+	 */
+	public $itinerary_fields;
+
+	/**
+	 * This holds array of Places that have been generated
+	 *
+	 * @var array()
+	 */
+	public $place_ids;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param \WPSEO_Schema_Context $context A value object with context variables.
 	 */
 	public function __construct( WPSEO_Schema_Context $context ) {
-		$this->context = $context;
+		$this->context          = $context;
+		$this->itinerary_fields = array(
+			'accommodation_to_tour' => 'Accommodation',
+			'destination_to_tour'   => 'State',
+		);
+		$this->place_ids        = array();
 	}
 
 	/**
@@ -51,11 +70,12 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 	 * @return array $data Review data.
 	 */
 	public function generate() {
-		$post = get_post( $this->context->id );
+		$this->post = get_post( $this->context->id );
 		$data = array(
 			'@type'            => 'Trip',
 			'@id'              => $this->context->canonical . '#tour',
-			'name'             => get_the_title(),
+			'name'             => $this->post->post_title,
+			'description'      => wp_strip_all_tags( $this->post->post_content ),
 			'mainEntityOfPage' => array(
 				'@id' => $this->context->canonical . WPSEO_Schema_IDs::WEBPAGE_HASH,
 			),
@@ -63,9 +83,9 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 		if ( $this->context->site_represents_reference ) {
 			$data['provider'] = $this->context->site_represents_reference;
 		}
-
-		$data = $this->add_image( $data );
 		$data = $this->add_itinerary( $data );
+		$data = $this->add_image( $data );
+		$data = $this->add_sub_trips( $data );
 		return $data;
 	}
 
@@ -99,18 +119,44 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 	 * @return array $data Trip data.
 	 */
 	private function add_itinerary( $data ) {
-		/**
-		 * Filter: 'wpseo_schema_tour_itinerary_meta_key' - Allow changing the custom field meta_key used to assign the itinerary to a post type Trip data.
-		 *
-		 * @api string $meta_key The chosen meta_key.
-		 */
-		$meta_key = apply_filters( 'wpseo_schema_tour_itinerary_meta_key', 'itinerary' );
+		$places       = array();
+		$destinations = get_post_meta( $this->context->id, 'destination_to_tour', false );
+		if ( ! empty( $destinations ) ) {
+			foreach ( $destinations as $destination ) {
+				if ( '' !== $destination ) {
+					$parent = wp_get_post_parent_id( $destination );
+					if ( false === $parent || 0 === $parent ) {
+						$places = $this->add_place( $places, 'Country', $destination );
+					}
+				}
+			}
+			if ( ! empty( $places ) ) {
+				$data['itinerary'] = $places;
+			}
+		}
 
-		return $this->add_days( $data, 'itinerary', $meta_key );
+		return $data;
 	}
 
 	/**
-	 * Adds the days of the itinerary to the dta.
+	 * Adds the itinerary destinations as an itemList
+	 *
+	 * @param array $data Trip data.
+	 *
+	 * @return array $data Trip data.
+	 */
+	private function add_sub_trips( $data ) {
+		/**
+		 * Filter: 'wpseo_schema_tour_sub_trips_meta_key' - Allow changing the custom field meta_key used to assign the Sub Trips to a post type Trip data.
+		 *
+		 * @api string $meta_key The chosen meta_key.
+		 */
+		$meta_key = apply_filters( 'wpseo_schema_tour_sub_trips_meta_key', 'itinerary' );
+		return $this->add_subtrip_days( $data, 'subTrip', $meta_key );
+	}
+
+	/**
+	 * Adds the days of the subTrip to the dta.
 	 *
 	 * @param array  $data     Trip data.
 	 * @param string $key      The key in data to save the terms in.
@@ -118,33 +164,91 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 	 *
 	 * @return mixed array $data Review data.
 	 */
-	private function add_days( $data, $key, $meta_key ) {
+	private function add_subtrip_days( $data, $key, $meta_key ) {
 		$itinerary  = get_post_meta( get_the_ID(), 'itinerary', false );
 		$list_array = array();
 		$i          = 0;
 
 		if ( ! empty( $itinerary ) ) {
-
 			foreach ( $itinerary as $day ) {
 				$i++;
-				$schema       = array(
-					'@type'    => 'ListItem',
-					'position' => $i,
-					'item'     => array(
-						'@type'       => 'Thing',
-						'@id'         => $this->get_itinerary_day_schema_id( $day['title'], $this->context ),
-						'name'        => $day['title'],
-						'description' => wp_strip_all_tags( $day['description'] ),
-					),
+				$schema = array(
+					'@type'    => 'Trip',
+					'@id'         => $this->get_subtrip_schema_id( $day['title'], $this->context ),
+					'name'        => $day['title'],
+					'description' => wp_strip_all_tags( $day['description'] ),
 				);
-				$list_array[] = $day;
+
+				$itinerary_fields = apply_filters( 'wpseo_schema_tour_sub_trips_additional_fields', $this->itinerary_fields );
+				$places           = $this->add_subtrip_places( $itinerary_fields, $day );
+				if ( ! empty( $places ) ) {
+					$schema['itinerary'] = $places;
+				}
+
+				$list_array[] = $schema;
 			}
 
-			$data[ $key ] = array(
-				'@type'           => 'ItemList',
-				'itemListElement' => $list_array,
+			$data[ $key ] = $list_array;
+		}
+		return $data;
+	}
+
+	/**
+	 * Adds in the accommodation and destination Place if found.
+	 *
+	 * @param array  $itinerary_fields The array of fields to loop through.
+	 * @param string $day The itinrary day array to grab the post_ids from.
+	 *
+	 * @return array $palces Places data.
+	 */
+	private function add_subtrip_places( $itinerary_fields, $day ) {
+		$places = array();
+		if ( ! empty( $itinerary_fields ) ) {
+			foreach ( $itinerary_fields as $key => $type ) {
+
+				if ( isset( $day[ $key ] ) && '' !== $day[ $key ] && ! empty( $day[ $key ] ) ) {
+					foreach ( $day[ $key ] as $place_id  ) {
+						if ( '' !== $place_id ) {
+							// Here we are linking the regions to the country.
+							$contained_in = false;
+							$parent_id = wp_get_post_parent_id( $place_id );
+							if ( false !== $parent_id && ! empty( $this->place_ids ) && isset( $this->place_ids[ $parent_id ] ) ) {
+								$contained_in = $this->place_ids[ $parent_id ];
+							}
+							$places = $this->add_place( $places, $type, $place_id, $contained_in );
+						}
+					}
+				}
+			}
+		}
+		return $places;
+	}
+
+	/**
+	 * Generates the place graph piece for the subtrip / Itinerary arrays.
+	 *
+	 * @param array  $data         subTrip / itinerary data.
+	 * @param string $type         The type in data to save the terms in.
+	 * @param string $post_id      The post ID of the current Place to add.
+	 * @param string $contained_in The @id of the containedIn place.
+	 *
+	 * @return mixed array $data Place data.
+	 */
+	private function add_place( $data, $type, $post_id, $contained_in = false ) {
+		$place = array(
+			'@type'       => $type,
+			'@id'         => $this->get_places_schema_id( $post_id, $type, $this->context ),
+			'name'        => get_the_title( $post_id ),
+			'description' => get_the_excerpt( $post_id ),
+			'url'         => get_permalink( $post_id ),
+		);
+		if ( false !== $contained_in ) {
+			$place['containedInPlace'] = array(
+				'@type' => 'Country',
+				'@id'   => $contained_in,
 			);
 		}
+		$data[] = $place;
 		return $data;
 	}
 
@@ -173,7 +277,21 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 	 *
 	 * @return string The user's schema ID.
 	 */
-	public function get_itinerary_day_schema_id( $name, $context ) {
+	public function get_places_schema_id( $place_id, $type, $context ) {
+		$url                          = $context->site_url . $type . '/' . wp_hash( $place_id . $context->id );
+		$this->place_ids[ $place_id ] = $url;
+		return $url;
+	}
+
+	/**
+	 * Retrieve a users Schema ID.
+	 *
+	 * @param string               $name The Name of the Reviewer you need a for.
+	 * @param WPSEO_Schema_Context $context A value object with context variables.
+	 *
+	 * @return string The user's schema ID.
+	 */
+	public function get_subtrip_schema_id( $name, $context ) {
 		return $context->site_url . 'day/' . wp_hash( $name . $context->id );
 	}
 }

@@ -363,7 +363,7 @@ function lsx_to_connected_items_query( $from = false, $to = false, $before = '',
 				$connected_ids = array( $connected_ids );
 			}
 
-			$return = $before . lsx_to_connected_list( $connected_ids,$from,true,', ' ) . $after;
+			$return = $before . lsx_to_connected_list( $connected_ids, $from, true, ', ' ) . $after;
 
 			if ( $echo ) {
 				echo wp_kses_post( $return );
@@ -647,7 +647,7 @@ function lsx_to_connected_list( $connected_ids = false, $type = false, $link = t
 
 			$post = $post_original;
 
-			return implode( $seperator,$connected_list );
+			return implode( $seperator, $connected_list );
 		}
 	}
 }
