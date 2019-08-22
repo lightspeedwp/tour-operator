@@ -86,6 +86,7 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 		$data = $this->add_itinerary( $data );
 		$data = $this->add_image( $data );
 		$data = $this->add_sub_trips( $data );
+		$data = $this->add_offers( $data );
 		return $data;
 	}
 
@@ -225,6 +226,67 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 	}
 
 	/**
+	 * Adds in the default price and any special prices as Offers if found.
+	 *
+	 * @param array  $data The array of fields to loop through.
+	 * @param string $day The itinrary day array to grab the post_ids from.
+	 *
+	 * @return array $offers Offer data.
+	 */
+	private function add_offers( $data ) {
+		$offers = array();
+		$tour_operator = tour_operator();
+		if ( is_object( $tour_operator ) && isset( $tour_operator->options['general'] ) && is_array( $tour_operator->options['general'] ) ) {
+			if ( isset( $tour_operator->options['general']['currency'] ) && ! empty( $tour_operator->options['general']['currency'] ) ) {
+				$currency = $tour_operator->options['general']['currency'];
+			}
+		}
+
+		// Check for a price.
+		$price = get_post_meta( get_the_ID(), 'price', true );
+		if ( false !== $price && '' !== $price ) {
+			$offer_args = array(
+				'price'         => $price,
+				'priceCurrency' => $currency,
+			);
+			$offers[]   = $this->add_offer( $offers, $this->context->id, $offer_args );
+		}
+		if ( ! empty( $offers ) ) {
+			$data['offers'] = $offers;
+		}
+		return $data;
+	}
+
+	/**
+	 * Generates the place graph piece for the subtrip / Itinerary arrays.
+	 *
+	 * @param array  $data         subTrip / itinerary data.
+	 * @param string $post_id      The post ID of the current Place to add.
+	 * @param array  $args         and array of parameter you want added to the offer.
+	 *
+	 * @return mixed array $data Place data.
+	 */
+	private function add_offer( $data, $post_id, $args = array() ) {
+		$defaults = array(
+			'price'         => false,
+			'priceCurrency' => false,
+			'category'      => 'Standard',
+		);
+		$args     = wp_parse_args( $args, $defaults );
+		$offer    = array(
+			'@type' => 'Offer',
+			'@id'   => $this->get_offer_schema_id( $post_id, $this->context ),
+		);
+		foreach ( $args as $key => $value ) {
+			if ( false !== $value ) {
+				$offer[ $key ] = $value;
+			}
+		}
+		$data[] = $offer;
+		return $data;
+	}
+
+	/**
 	 * Generates the place graph piece for the subtrip / Itinerary arrays.
 	 *
 	 * @param array  $data         subTrip / itinerary data.
@@ -293,5 +355,18 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 	 */
 	public function get_subtrip_schema_id( $name, $context ) {
 		return $context->site_url . 'day/' . wp_hash( $name . $context->id );
+	}
+
+	/**
+	 * Retrieve a users Schema ID.
+	 *
+	 * @param string               $id      post ID of the place being added.
+	 * @param WPSEO_Schema_Context $context A value object with context variables.
+	 *
+	 * @return string The user's schema ID.
+	 */
+	public function get_offer_schema_id( $id, $context ) {
+		$url = $context->site_url . 'offer/' . wp_hash( $id . $context->id );
+		return $url;
 	}
 }
