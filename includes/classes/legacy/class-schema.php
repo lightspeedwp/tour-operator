@@ -33,8 +33,6 @@ class Schema {
 		require_once( LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-review.php' );
 		require_once( LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-trip.php' );
 		add_filter( 'wpseo_schema_graph_pieces', array( $this, 'add_graph_pieces' ), 11, 2 );
-
-		add_filter( 'wpseo_schema_publisher', array( $this, 'alter_graph_pieces' ), 10, 1 );
 	}
 
 	/**
@@ -63,18 +61,6 @@ class Schema {
 		$pieces[] = new \LSX_TO_Schema_Review( $context );
 		$pieces[] = new \LSX_TO_Schema_Trip( $context );
 		return $pieces;
-	}
-
-	/**
-	 * Change @type of Article Schema data.
-	 *
-	 * @param array $data Schema.org Article data array.
-	 *
-	 * @return array $data Schema.org Article data array.
-	 */
-	public function example_change_article( $data ) {
-		$data['@type'] = 'alter_graph_pieces';
-		return $data;
 	}
 
 	/**
