@@ -116,6 +116,7 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 		$data = $this->add_sub_trips( $data );
 		$data = $this->add_offers( $data );
 		$data = $this->add_reviews( $data );
+		$data = $this->add_articles( $data );
 
 		if ( isset( $_GET['debug'] ) ) {
 			print_r('<pre>');
@@ -301,7 +302,7 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 				'availability'       => 'https://schema.org/OnlineOnly',
 				'url'                => $this->post_url,
 			);
-			$data[]     = $this->add_offer( $data, $this->context->id, $offer_args, true );
+			$data       = $this->add_offer( $data, $this->context->id, $offer_args, true );
 		}
 		return $data;
 	}
@@ -333,7 +334,7 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 			if ( false !== $price_type && '' !== $price_type && 'none' !== $price_type ) {
 				$offer_args['PriceSpecification'] = lsx_to_get_price_type_label( $price_type );
 			}
-			$data[] = $this->add_offer( $data, $special_id, $offer_args );
+			$data = $this->add_offer( $data, $special_id, $offer_args );
 		}
 		return $data;
 	}
@@ -348,7 +349,7 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 		$specials = get_post_meta( $this->context->id, 'special_to_tour', false );
 		if ( ! empty( $specials ) ) {
 			foreach ( $specials as $special_id ) {
-				$data[] = $this->get_special_offer( $data, $special_id );
+				$data = $this->get_special_offer( $data, $special_id );
 			}
 		}
 		return $data;
@@ -381,7 +382,7 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 						'ratingValue' => $rating,
 					);
 				}
-				$reviews_array[] = $this->add_review( $reviews_array, $review_id, $review_args );
+				$reviews_array = $this->add_review( $reviews_array, $review_id, $review_args );
 				$review_count++;
 			}
 			if ( ! empty( $reviews_array ) ) {
@@ -395,6 +396,68 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 				$data['reviews']         = $reviews_array;
 			}
 		}
+		return $data;
+	}
+
+	/**
+	 * Gets the connected posts and set it as the "Article" schema
+	 *
+	 * @param  array $data An array of offers already added.
+	 * @return array $data
+	 */
+	private function add_articles( $data ) {
+		$posts       = get_post_meta( $this->context->id, 'post_to_tour', false );
+		$posts_array = array();
+		if ( ! empty( $posts ) ) {
+			foreach ( $posts as $post_id ) {
+				$post_args = array(
+					'articleBody' => wp_strip_all_tags( get_the_excerpt( $post_id ) ),
+					'headline'    => get_the_title( $post_id ),
+				);
+				$section   = get_the_term_list( $post_id, 'category' );
+				if ( ! is_wp_error( $section ) && '' !== $section && false !== $section ) {
+					$post_args['articleSection'] = wp_strip_all_tags( $section );
+				}
+				if ( $this->context->site_represents_reference ) {
+					$post_args['publisher'] = $this->context->site_represents_reference;
+				}
+
+				$posts_array = $this->add_article( $posts_array, $post_id, $post_args );
+			}
+			if ( ! empty( $posts_array ) ) {
+				$data['subjectOf'] = $posts_array;
+			}
+		}
+		return $data;
+	}
+
+	/**
+	 * Generates the "review" graph piece for the subtrip / Itinerary arrays.
+	 *
+	 * @param array  $data         subTrip / itinerary data.
+	 * @param string $post_id      The post ID of the current Place to add.
+	 * @param array  $args         and array of parameter you want added to the offer.
+	 * @param string $local        if the Schema is local true / false.
+	 *
+	 * @return mixed array $data Place data.
+	 */
+	private function add_article( $data, $post_id, $args = array(), $local = false ) {
+		$defaults = array(
+			'@id'           => $this->get_article_schema_id( $post_id, $this->context, $local ),
+			'author'        => get_the_author_meta( 'display_name', get_post_field( 'post_author', $post_id ) ),
+			'datePublished' => mysql2date( DATE_W3C, get_post_field( 'post_date_gmt', $post_id ), false ),
+		);
+		$args     = wp_parse_args( $args, $defaults );
+		$args     = apply_filters( 'lsx_to_schema_tour_article_args', $args );
+		$offer    = array(
+			'@type' => apply_filters( 'lsx_to_schema_tour_article_type', 'Article', $args ),
+		);
+		foreach ( $args as $key => $value ) {
+			if ( false !== $value ) {
+				$offer[ $key ] = $value;
+			}
+		}
+		$data[] = $offer;
 		return $data;
 	}
 
@@ -572,6 +635,24 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 		}
 		$url .= '#/schema/review/';
 		$url .= wp_hash( $id . get_the_title( $id ) );
+		return trailingslashit( $url );
+	}
+
+	/**
+	 * Retrieve an review Schema ID.
+	 *
+	 * @param string               $id      post ID of the place being added.
+	 * @param WPSEO_Schema_Context $context A value object with context variables.
+	 * @param string               $local   if the Schema is local true / false.
+	 *
+	 * @return string The user's schema ID.
+	 */
+	public function get_article_schema_id( $id, $context, $local = false ) {
+		if ( false === $local ) {
+			$url = get_permalink( $id ) . WPSEO_Schema_IDs::ARTICLE_HASH;
+		} else {
+			$url = get_permalink( $context->id ) . '#/schema/article/' . wp_hash( $id . get_the_title( $id ) );
+		}
 		return trailingslashit( $url );
 	}
 }
