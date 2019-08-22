@@ -110,9 +110,8 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 			$data['sku']        = $wetu_ref;
 			$data['identifier'] = $wetu_ref;
 		}
-
-		$data = $this->add_itinerary( $data );
 		$data = $this->add_image( $data );
+		$data = $this->add_itinerary( $data );
 		$data = $this->add_sub_trips( $data );
 		$data = $this->add_offers( $data );
 		$data = $this->add_reviews( $data );
@@ -420,6 +419,10 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 				}
 				if ( $this->context->site_represents_reference ) {
 					$post_args['publisher'] = $this->context->site_represents_reference;
+				}
+				$image_url = get_the_post_thumbnail_url( $post_id, 'lsx-thumbnail-wide' );
+				if ( false !== $image_url ) {
+					$post_args['image'] = $image_url;
 				}
 
 				$posts_array = $this->add_article( $posts_array, $post_id, $post_args );
