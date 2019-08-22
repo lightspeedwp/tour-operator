@@ -180,7 +180,7 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 					'description' => wp_strip_all_tags( $day['description'] ),
 				);
 
-				$itinerary_fields = apply_filters( 'wpseo_schema_tour_sub_trips_additional_fields', $this->itinerary_fields );
+				$itinerary_fields = apply_filters( 'lsx_to_schema_tour_sub_trips_additional_fields', $this->itinerary_fields );
 				$places           = $this->add_subtrip_places( $itinerary_fields, $day );
 				if ( ! empty( $places ) ) {
 					$schema['itinerary'] = $places;
@@ -234,7 +234,7 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 	 * @return array $offers Offer data.
 	 */
 	private function add_offers( $data ) {
-		$offers = array();
+		$offers        = array();
 		$tour_operator = tour_operator();
 		if ( is_object( $tour_operator ) && isset( $tour_operator->options['general'] ) && is_array( $tour_operator->options['general'] ) ) {
 			if ( isset( $tour_operator->options['general']['currency'] ) && ! empty( $tour_operator->options['general']['currency'] ) ) {
@@ -242,18 +242,22 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 			}
 		}
 
-		// Check for a price.
+		// Check for a default price.
 		$price = get_post_meta( get_the_ID(), 'price', true );
 		if ( false !== $price && '' !== $price ) {
 			$offer_args = array(
-				'price'         => $price,
-				'priceCurrency' => $currency,
+				'price'              => $price,
+				'priceCurrency'      => $currency,
+				'PriceSpecification' => __( 'Per Person Per Night', 'tour-operator' ),
 			);
 			$offers[]   = $this->add_offer( $offers, $this->context->id, $offer_args );
 		}
 		if ( ! empty( $offers ) ) {
 			$data['offers'] = $offers;
 		}
+
+		// Check for any specials to add as Offers.
+
 		return $data;
 	}
 
@@ -268,14 +272,16 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 	 */
 	private function add_offer( $data, $post_id, $args = array() ) {
 		$defaults = array(
-			'price'         => false,
-			'priceCurrency' => false,
-			'category'      => 'Standard',
+			'@id'                => $this->get_offer_schema_id( $post_id, $this->context ),
+			'price'              => false,
+			'priceCurrency'      => false,
+			'PriceSpecification' => false,
+			'category'           => 'Standard',
 		);
 		$args     = wp_parse_args( $args, $defaults );
+		$args     = apply_filters( 'lsx_to_schema_tour_offer_args', $args );
 		$offer    = array(
-			'@type' => 'Offer',
-			'@id'   => $this->get_offer_schema_id( $post_id, $this->context ),
+			'@type' => apply_filters( 'lsx_to_schema_tour_offer_type', 'Offer', $args ),
 		);
 		foreach ( $args as $key => $value ) {
 			if ( false !== $value ) {
