@@ -269,7 +269,7 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 				'priceCurrency'      => $currency,
 				'PriceSpecification' => __( 'Per Person Per Night', 'tour-operator' ),
 			);
-			$data[]     = $this->add_offer( $data, $this->context->id, $offer_args );
+			$data[]     = $this->add_offer( $data, $this->context->id, $offer_args, true );
 		}
 		return $data;
 	}
@@ -294,6 +294,7 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 				'price'         => $price,
 				'priceCurrency' => $currency,
 				'category'      => __( 'Special', 'tour-operator' ),
+				'url'           => get_permalink( $price ),
 			);
 			$price_type = get_post_meta( $special_id, 'price_type', true );
 			if ( false !== $price_type && '' !== $price_type && 'none' !== $price_type ) {
@@ -329,9 +330,9 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 	 *
 	 * @return mixed array $data Place data.
 	 */
-	private function add_offer( $data, $post_id, $args = array() ) {
+	private function add_offer( $data, $post_id, $args = array(), $local = false ) {
 		$defaults = array(
-			'@id'                => $this->get_offer_schema_id( $post_id, $this->context ),
+			'@id'                => $this->get_offer_schema_id( $post_id, $this->context, $local ),
 			'price'              => false,
 			'priceCurrency'      => false,
 			'PriceSpecification' => false,
@@ -405,9 +406,9 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 	 * @return string The user's schema ID.
 	 */
 	public function get_places_schema_id( $place_id, $type, $context ) {
-		$url                          = $context->site_url . $type . '/' . wp_hash( $place_id . $context->id );
+		$url                          = $context->site_url . '#/schema/' . strtolower( $type ) . '/' . wp_hash( $place_id . get_the_title( $place_id ) );
 		$this->place_ids[ $place_id ] = $url;
-		return $url;
+		return trailingslashit( $url );
 	}
 
 	/**
@@ -419,19 +420,26 @@ class LSX_TO_Schema_Trip implements WPSEO_Graph_Piece {
 	 * @return string The user's schema ID.
 	 */
 	public function get_subtrip_schema_id( $name, $context ) {
-		return $context->site_url . 'day/' . wp_hash( $name . $context->id );
+		$url = $context->site_url . '#/subtrip/' . wp_hash( $name . $context->id );
+		return trailingslashit( $url );
 	}
 
 	/**
-	 * Retrieve a users Schema ID.
+	 * Retrieve an offer Schema ID.
 	 *
 	 * @param string               $id      post ID of the place being added.
 	 * @param WPSEO_Schema_Context $context A value object with context variables.
 	 *
 	 * @return string The user's schema ID.
 	 */
-	public function get_offer_schema_id( $id, $context ) {
-		$url = $context->site_url . 'offer/' . wp_hash( $id . $context->id );
-		return $url;
+	public function get_offer_schema_id( $id, $context, $local = false ) {
+		if ( false === $local ) {
+			$url = $context->site_url;
+		} else {
+			$url = get_permalink( $context->id );
+		}
+		$url .= '#/schema/offer/';
+		$url .= wp_hash( $id . get_the_title( $id ) );
+		return trailingslashit( $url );
 	}
 }
