@@ -334,3 +334,62 @@ function lsx_to_connected_destinations( $before = '', $after = '', $echo = true 
 function lsx_to_connected_countries( $before = '', $after = '', $echo = true ) {
 	lsx_to_connected_items_query( 'destination', get_post_type(), $before, $after, $echo, true );
 }
+
+/**
+ * Gets the current connected destination children or parent list for fast facts section
+ *
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tags
+ * @category 	connections
+ */
+
+function destination_children($parent_id) {
+		$theid = get_the_ID();
+		$child = new WP_Query(array('post_parent' => $theid, 'post_type' => 'destination'));
+		$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
+		if ($child->have_posts()) {
+			$list_destinations = array();
+		
+			echo '<span class="' . esc_attr( $meta_class ) . 'regions"><span class="lsx-to-meta-data-key">' . esc_html__( 'Regions', 'tour-operator' ) . ':</span>';
+			while ($child->have_posts()) {
+				$child->the_post();
+				$childtitle = get_the_title();
+				$childlink = get_the_permalink();
+			$list_destinations[] = '<a href="' . esc_attr( $childlink ) . '"> ' . esc_attr( $childtitle ) . '</a>';	
+			}
+			echo implode(", ", $list_destinations);
+		} else {
+		echo '<span class="' . esc_attr( $meta_class ) . 'regions"><span class="lsx-to-meta-data-key">' . esc_html__( 'Country', 'tour-operator' ) . ':</span>';
+		$parent_title = get_the_title( wp_get_post_parent_id( $theid ) );
+		$parent_link = get_the_permalink(wp_get_post_parent_id( $theid ));
+		echo '<a href="' . esc_attr( $parent_link ) . '"> ' . esc_attr( $parent_title ) . '</a>';	
+		}
+		echo '</span>';
+		wp_reset_query();
+}
+
+/**
+ * Gets the current best months to visit
+ *
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tags
+ * @category 	connections
+ */
+
+function months_to_visit() {
+	$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
+	$months = get_post_meta(get_the_ID(), 'best_time_to_visit', true);
+	$month_list = array();
+		
+		foreach( $months as $single_month ) {
+			$single_month = str_split($single_month, 3);
+			$month_list[] = '<span>'.$single_month[0].
+			'</span>';
+		}
+
+	echo '<span class="'. esc_attr($meta_class) . 'best-time" style="text-transform:capitalize;"><span class="lsx-to-meta-data-key">' . esc_html__('Best Time', 'tour-operator') . ': </span>';
+	echo implode(", ", $month_list);
+	echo '</span>';
+}
