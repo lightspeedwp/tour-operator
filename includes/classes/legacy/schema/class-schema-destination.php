@@ -65,8 +65,7 @@ class LSX_TO_Schema_Country implements WPSEO_Graph_Piece {
 		$this->post             = get_post( $this->context->id );
 		$this->post_url         = get_permalink( $this->context->id );
 		$this->is_country       = false;
-		$parent                 = wp_get_post_parent_id( $this->context->id );
-		if ( false === $parent || '' === $parent ) {
+		if ( false === $this->post->post_parent || 0 === $this->post->post_parent || '' === $this->post->post_parent ) {
 			$this->is_country = true;
 		}
 	}
@@ -111,11 +110,12 @@ class LSX_TO_Schema_Country implements WPSEO_Graph_Piece {
 			),
 		);
 
-		if ( $this->context->site_represents_reference ) {
-			//$data['publisher'] = $this->context->site_represents_reference;
-		}
-
 		$data = $this->add_image( $data );
+		if ( $this->is_country ) {
+			$data = $this->add_regions( $data );
+		} else {
+			$data = $this->add_countries( $data );
+		}
 		//$data = $this->add_offers( $data );
 		$data = $this->add_reviews( $data );
 		$data = $this->add_articles( $data );
@@ -157,23 +157,38 @@ class LSX_TO_Schema_Country implements WPSEO_Graph_Piece {
 	 *
 	 * @return array $data Trip data.
 	 */
-	private function add_itinerary( $data ) {
-		$places       = array();
-		$destinations = get_post_meta( $this->context->id, 'destination_to_tour', false );
-		if ( ! empty( $destinations ) ) {
-			foreach ( $destinations as $destination ) {
-				if ( '' !== $destination ) {
-					$parent = wp_get_post_parent_id( $destination );
-					if ( false === $parent || 0 === $parent ) {
-						$places = $this->add_place( $places, 'Country', $destination );
-					}
+	private function add_regions( $data ) {
+		$places  = array();
+		$regions = get_children( $this->context->id, ARRAY_A );
+		if ( ! empty( $regions ) ) {
+			foreach ( $regions as $region_id => $region ) {
+				if ( '' !== $region ) {
+					$places = $this->add_place( $places, 'State', $region_id );
 				}
 			}
 			if ( ! empty( $places ) ) {
-				$data['itinerary'] = $places;
+				$data['containsPlace'] = $places;
 			}
 		}
+		return $data;
+	}
 
+	/**
+	 * Adds the itinerary destinations as an itemList
+	 *
+	 * @param array $data Trip data.
+	 *
+	 * @return array $data Trip data.
+	 */
+	private function add_countries( $data ) {
+		if ( '' !== $this->post->post_parent ) {
+			$countries = array();
+			$countries = $this->add_place( $countries, 'Country', $this->post->post_parent );
+			if ( 1 === count( $countries ) ) {
+				$countries = $countries[0];
+			}
+			$data['containedInPlace'] = $countries;
+		}
 		return $data;
 	}
 
