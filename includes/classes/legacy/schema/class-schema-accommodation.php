@@ -158,6 +158,8 @@ class LSX_TO_Schema_Accommodation implements WPSEO_Graph_Piece {
 					$parent = wp_get_post_parent_id( $destination );
 					if ( false === $parent || 0 === $parent ) {
 						$places = $this->add_place( $places, 'Country', $destination );
+					} else {
+						$places = $this->add_place( $places, 'State', $destination );
 					}
 				}
 			}
