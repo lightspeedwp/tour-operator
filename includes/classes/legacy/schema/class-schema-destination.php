@@ -111,11 +111,7 @@ class LSX_TO_Schema_Country implements WPSEO_Graph_Piece {
 		);
 
 		$data = $this->add_image( $data );
-		if ( $this->is_country ) {
-			$data = $this->add_regions( $data );
-		} else {
-			$data = $this->add_countries( $data );
-		}
+		$data = $this->add_places( $data );
 		//$data = $this->add_offers( $data );
 		$data = $this->add_reviews( $data );
 		$data = $this->add_articles( $data );
@@ -151,131 +147,82 @@ class LSX_TO_Schema_Country implements WPSEO_Graph_Piece {
 	}
 
 	/**
+	 * Adds the Places attached to the destination
+	 *
+	 * @param array $data Country / State data.
+	 *
+	 * @return array $data Country / State data.
+	 */
+	private function add_places( $data ) {
+		$places_array = array();
+		if ( $this->is_country ) {
+			$places_array = $this->add_regions( $places_array );
+			$places_array = $this->add_accommodation( $places_array );
+			if ( ! empty( $places_array ) ) {
+				$data['containsPlace'] = $places_array;
+			}
+		} else {
+			$places_array             = $this->add_countries( $places_array );
+			$data['containedInPlace'] = $places_array;
+
+			$places_array          = array();
+			$places_array          = $this->add_accommodation( $places_array );
+			$data['containsPlace'] = $places_array;
+
+		}
+		return $data;
+	}
+
+	/**
 	 * Adds the itinerary destinations as an itemList
 	 *
-	 * @param array $data Trip data.
+	 * @param array $places_array an array of Places.
 	 *
-	 * @return array $data Trip data.
+	 * @return array $places_array an array of Places.
 	 */
-	private function add_regions( $data ) {
-		$places  = array();
+	private function add_regions( $places_array ) {
 		$regions = get_children( $this->context->id, ARRAY_A );
 		if ( ! empty( $regions ) ) {
 			foreach ( $regions as $region_id => $region ) {
 				if ( '' !== $region ) {
-					$places = $this->add_place( $places, 'State', $region_id );
+					$places_array = $this->add_place( $places_array, 'State', $region_id );
 				}
 			}
-			if ( ! empty( $places ) ) {
-				$data['containsPlace'] = $places;
-			}
 		}
-		return $data;
+		return $places_array;
 	}
 
 	/**
 	 * Adds the itinerary destinations as an itemList
 	 *
-	 * @param array $data Trip data.
+	 * @param array $data an array of Places.
 	 *
-	 * @return array $data Trip data.
+	 * @return array $data an array of Places.
 	 */
-	private function add_countries( $data ) {
+	private function add_countries( $places_array ) {
 		if ( '' !== $this->post->post_parent ) {
-			$countries = array();
-			$countries = $this->add_place( $countries, 'Country', $this->post->post_parent );
-			if ( 1 === count( $countries ) ) {
-				$countries = $countries[0];
-			}
-			$data['containedInPlace'] = $countries;
+			$places_array = $this->add_place( $places_array, 'Country', $this->post->post_parent );
 		}
-		return $data;
+		return $places_array;
 	}
 
 	/**
-	 * Adds the itinerary destinations as an itemList
+	 * Adds the accommodation to the places array
 	 *
-	 * @param array $data Trip data.
+	 * @param array $places_array an array of Places.
 	 *
-	 * @return array $data Trip data.
+	 * @return array $places_array an array of Places.
 	 */
-	private function add_sub_trips( $data ) {
-		/**
-		 * Filter: 'wpseo_schema_tour_sub_trips_meta_key' - Allow changing the custom field meta_key used to assign the Sub Trips to a post type Trip data.
-		 *
-		 * @api string $meta_key The chosen meta_key.
-		 */
-		$meta_key = apply_filters( 'wpseo_schema_tour_sub_trips_meta_key', 'itinerary' );
-		return $this->add_subtrip_days( $data, 'subTrip', $meta_key );
-	}
-
-	/**
-	 * Adds the days of the subTrip to the dta.
-	 *
-	 * @param array  $data     Trip data.
-	 * @param string $key      The key in data to save the terms in.
-	 * @param string $taxonomy The taxonomy to retrieve the terms from.
-	 *
-	 * @return mixed array $data Review data.
-	 */
-	private function add_subtrip_days( $data, $key, $meta_key ) {
-		$itinerary  = get_post_meta( get_the_ID(), 'itinerary', false );
-		$list_array = array();
-		$i          = 0;
-
-		if ( ! empty( $itinerary ) ) {
-			foreach ( $itinerary as $day ) {
-				$i++;
-				$schema = array(
-					'@type'    => 'Trip',
-					'@id'         => $this->get_subtrip_schema_id( $day['title'], $this->context ),
-					'name'        => $day['title'],
-					'description' => wp_strip_all_tags( $day['description'] ),
-				);
-
-				$itinerary_fields = apply_filters( 'lsx_to_schema_tour_sub_trips_additional_fields', $this->itinerary_fields );
-				$places           = $this->add_subtrip_places( $itinerary_fields, $day );
-				if ( ! empty( $places ) ) {
-					$schema['itinerary'] = $places;
-				}
-
-				$list_array[] = $schema;
-			}
-
-			$data[ $key ] = $list_array;
-		}
-		return $data;
-	}
-
-	/**
-	 * Adds in the accommodation and destination Place if found.
-	 *
-	 * @param array  $itinerary_fields The array of fields to loop through.
-	 * @param string $day The itinrary day array to grab the post_ids from.
-	 *
-	 * @return array $palces Places data.
-	 */
-	private function add_subtrip_places( $itinerary_fields, $day ) {
-		$places = array();
-		if ( ! empty( $itinerary_fields ) ) {
-			foreach ( $itinerary_fields as $key => $type ) {
-
-				if ( isset( $day[ $key ] ) && '' !== $day[ $key ] && ! empty( $day[ $key ] ) ) {
-					foreach ( $day[ $key ] as $place_id  ) {
-						if ( '' !== $place_id ) {
-							// Here we are linking the regions to the country.
-							$contained_in = false;
-							$parent_id = wp_get_post_parent_id( $place_id );
-							if ( false !== $parent_id && ! empty( $this->place_ids ) && isset( $this->place_ids[ $parent_id ] ) ) {
-								$contained_in = $this->place_ids[ $parent_id ];
-							}
-							$places = $this->add_place( $places, $type, $place_id, $contained_in );
-						}
-					}
+	private function add_accommodation( $places_array ) {
+		$accommodation = get_post_meta( $this->context->id, 'accommodation_to_destination', false );
+		if ( ! empty( $accommodation ) ) {
+			foreach ( $accommodation as $accommodation_id ) {
+				if ( '' !== $accommodation_id ) {
+					$places_array = $this->add_place( $places_array, 'Accommodation', $accommodation_id );
 				}
 			}
 		}
-		return $places;
+		return $places_array;
 	}
 
 	/**
