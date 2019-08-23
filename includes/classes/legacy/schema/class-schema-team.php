@@ -119,7 +119,7 @@ class LSX_TO_Schema_Team implements WPSEO_Graph_Piece {
 	 *
 	 * @return bool True if it has tour schema, false if not.
 	 */
-	public static function is_destination_post_type( $post_type = null ) {
+	public static function is_team_post_type( $post_type = null ) {
 		if ( is_null( $post_type ) ) {
 			$post_type = get_post_type();
 		}
@@ -129,7 +129,7 @@ class LSX_TO_Schema_Team implements WPSEO_Graph_Piece {
 		 *
 		 * @api string[] $post_types The post types for which we output Review.
 		 */
-		$post_types = apply_filters( 'wpseo_schema_destination_post_types', array( 'destination' ) );
+		$post_types = apply_filters( 'wpseo_schema_team_post_types', array( 'team' ) );
 
 		return in_array( $post_type, $post_types );
 	}
