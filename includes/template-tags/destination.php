@@ -334,3 +334,33 @@ function lsx_to_connected_destinations( $before = '', $after = '', $echo = true 
 function lsx_to_connected_countries( $before = '', $after = '', $echo = true ) {
 	lsx_to_connected_items_query( 'destination', get_post_type(), $before, $after, $echo, true );
 }
+
+/**
+ * Gets the current connected destination children or parent list for fast facts section
+ *
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tags
+ * @category 	connections
+ */
+
+function destination_children($parent_id) {
+		$theid = get_the_ID();
+		$child = new WP_Query(array('post_parent' => $theid, 'post_type' => 'destination'));
+
+		if ($child->have_posts()) {
+			$list_destinations = array();
+			
+			while ($child->have_posts()) {
+				$child->the_post();
+				$childtitle = get_the_title();
+				$childlink = get_the_permalink();
+			$list_destinations[] = ' <a href="' . $childlink . '"> '  .  $childtitle . '</a>';	
+			}
+			echo implode(", ", $list_destinations);
+		} else {
+		$the_title = get_the_title( wp_get_post_parent_id( $theid ) );
+		echo $the_title;
+		}
+		wp_reset_query();
+}
