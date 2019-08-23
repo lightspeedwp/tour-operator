@@ -96,7 +96,7 @@ class LSX_TO_Schema_Special implements WPSEO_Graph_Piece {
 		);
 
 		if ( $this->context->site_represents_reference ) {
-			$data['publisher'] = $this->context->site_represents_reference;
+			//$data['publisher'] = $this->context->site_represents_reference;
 		}
 
 		$data = $this->add_image( $data );
