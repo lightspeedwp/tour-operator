@@ -348,7 +348,7 @@ class LSX_TO_Schema_Country implements WPSEO_Graph_Piece {
 	 * @return array $data
 	 */
 	private function get_special_offers( $data ) {
-		$specials = get_post_meta( $this->context->id, 'special_to_tour', false );
+		$specials = get_post_meta( $this->context->id, 'special_to_destination', false );
 		if ( ! empty( $specials ) ) {
 			foreach ( $specials as $special_id ) {
 				$data = $this->get_special_offer( $data, $special_id );
@@ -364,7 +364,7 @@ class LSX_TO_Schema_Country implements WPSEO_Graph_Piece {
 	 * @return array $data
 	 */
 	private function add_reviews( $data ) {
-		$reviews       = get_post_meta( $this->context->id, 'review_to_tour', false );
+		$reviews       = get_post_meta( $this->context->id, 'review_to_destination', false );
 		$reviews_array = array();
 		if ( ! empty( $reviews ) ) {
 			$aggregate_value = 1;
@@ -408,7 +408,7 @@ class LSX_TO_Schema_Country implements WPSEO_Graph_Piece {
 	 * @return array $data
 	 */
 	private function add_articles( $data ) {
-		$posts       = get_post_meta( $this->context->id, 'post_to_tour', false );
+		$posts       = get_post_meta( $this->context->id, 'post_to_destination', false );
 		$posts_array = array();
 		if ( ! empty( $posts ) ) {
 			foreach ( $posts as $post_id ) {
@@ -458,9 +458,9 @@ class LSX_TO_Schema_Country implements WPSEO_Graph_Piece {
 			),*/
 		);
 		$args     = wp_parse_args( $args, $defaults );
-		$args     = apply_filters( 'lsx_to_schema_tour_article_args', $args );
+		$args     = apply_filters( 'lsx_to_schema_destination_article_args', $args );
 		$offer    = array(
-			'@type' => apply_filters( 'lsx_to_schema_tour_article_type', 'Article', $args ),
+			'@type' => apply_filters( 'lsx_to_schema_destination_article_type', 'Article', $args ),
 		);
 		foreach ( $args as $key => $value ) {
 			if ( false !== $value ) {
@@ -489,9 +489,9 @@ class LSX_TO_Schema_Country implements WPSEO_Graph_Piece {
 			'reviewRating'  => false,
 		);
 		$args     = wp_parse_args( $args, $defaults );
-		$args     = apply_filters( 'lsx_to_schema_tour_review_args', $args );
+		$args     = apply_filters( 'lsx_to_schema_destination_review_args', $args );
 		$offer    = array(
-			'@type' => apply_filters( 'lsx_to_schema_tour_review_type', 'Review', $args ),
+			'@type' => apply_filters( 'lsx_to_schema_destination_review_type', 'Review', $args ),
 		);
 		foreach ( $args as $key => $value ) {
 			if ( false !== $value ) {
@@ -523,9 +523,9 @@ class LSX_TO_Schema_Country implements WPSEO_Graph_Piece {
 			'category'           => __( 'Standard', 'tour-operator' ),
 		);
 		$args     = wp_parse_args( $args, $defaults );
-		$args     = apply_filters( 'lsx_to_schema_tour_offer_args', $args );
+		$args     = apply_filters( 'lsx_to_schema_destination_offer_args', $args );
 		$offer    = array(
-			'@type' => apply_filters( 'lsx_to_schema_tour_offer_type', 'Offer', $args ),
+			'@type' => apply_filters( 'lsx_to_schema_destination_offer_type', 'Offer', $args ),
 		);
 		foreach ( $args as $key => $value ) {
 			if ( false !== $value ) {
