@@ -157,7 +157,6 @@ class Destination {
 			$this->page_links = $page_links;
 
 			$this->get_map_link();
-			$this->get_when_to_go();
 			$this->get_travel_info_link();
 			$this->get_region_link();
 			$this->get_gallery_link();
