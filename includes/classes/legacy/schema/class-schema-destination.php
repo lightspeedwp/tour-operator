@@ -112,11 +112,11 @@ class LSX_TO_Schema_Country implements WPSEO_Graph_Piece {
 		);
 
 		if ( $this->context->site_represents_reference ) {
-			$data['publisher'] = $this->context->site_represents_reference;
+			//$data['publisher'] = $this->context->site_represents_reference;
 		}
 
 		$data = $this->add_image( $data );
-		$data = $this->add_offers( $data );
+		//$data = $this->add_offers( $data );
 		$data = $this->add_reviews( $data );
 		$data = $this->add_articles( $data );
 
