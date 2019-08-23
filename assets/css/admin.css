@@ -1431,4 +1431,8 @@ body.tour-operator_page_to-help #wpbody-content .wrap .box-clean h3, body.tour-o
 
 body.tour-operator_page_to-help #wpbody-content .wrap .box-clean p:last-child, body.tour-operator_page_to-addons #wpbody-content .wrap .box-clean p:last-child { margin-bottom: 0; }
 
+.lsx-to-meta-data.lsx-to-meta-data-best-time:before { content: '\f073'; }
+
+.lsx-to-meta-data.lsx-to-meta-data-regions:before { content: '\f0ac'; }
+
 /*# sourceMappingURL=maps/admin.css.map */
