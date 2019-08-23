@@ -32,6 +32,8 @@ class Schema {
 	public function __construct() {
 		require_once( LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-review.php' );
 		require_once( LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-trip.php' );
+		require_once( LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-destination.php' );
+		require_once( LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-accommodation.php' );
 		add_filter( 'wpseo_schema_graph_pieces', array( $this, 'add_graph_pieces' ), 11, 2 );
 	}
 
@@ -60,6 +62,8 @@ class Schema {
 	public function add_graph_pieces( $pieces, $context ) {
 		$pieces[] = new \LSX_TO_Schema_Review( $context );
 		$pieces[] = new \LSX_TO_Schema_Trip( $context );
+		$pieces[] = new \LSX_TO_Schema_Country( $context );
+		$pieces[] = new \LSX_TO_Schema_Accommodation( $context );
 		return $pieces;
 	}
 
