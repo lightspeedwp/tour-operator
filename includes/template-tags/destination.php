@@ -368,3 +368,28 @@ function destination_children($parent_id) {
 		echo '</span>';
 		wp_reset_query();
 }
+
+/**
+ * Gets the current best months to visit
+ *
+ *
+ * @package 	tour-operator
+ * @subpackage	template-tags
+ * @category 	connections
+ */
+
+function months_to_visit() {
+	$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
+	$months = get_post_meta(get_the_ID(), 'best_time_to_visit', true);
+	$month_list = array();
+		
+		foreach( $months as $single_month ) {
+			$single_month = str_split($single_month, 3);
+			$month_list[] = '<span>'.$single_month[0].
+			'</span>';
+		}
+
+	echo '<span class="'. esc_attr($meta_class) . 'best-time" style="text-transform:capitalize;"><span class="lsx-to-meta-data-key">' . esc_html__('Best Time', 'tour-operator') . ': </span>';
+	echo implode(", ", $month_list);
+	echo '</span>';
+}
