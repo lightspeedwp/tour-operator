@@ -386,8 +386,6 @@ function lsx_to_destination_single_content_bottom() {
 			</section>
 		<?php }
 
-		lsx_to_best_time_to_visit( '<section id="when-to-go" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-when-to-go' ) . '>' . esc_html__( 'When to Go', 'tour-operator' ) . '</h2><div id="collapse-when-to-go" class="collapse in"><div class="collapse-inner clearfix">', '</div></div></section>' );
-
 		lsx_to_destination_travel_info();
 
 		lsx_to_country_regions();
