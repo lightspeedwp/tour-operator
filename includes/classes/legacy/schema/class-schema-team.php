@@ -1,6 +1,6 @@
 <?php
 /**
- * The Trip Schema for Tours
+ * The Team Schema for Tours
  *
  * @package tour-operator
  */
@@ -10,7 +10,7 @@
  *
  * @since 10.2
  */
-class LSX_TO_Schema_Country implements WPSEO_Graph_Piece {
+class LSX_TO_Schema_Team implements WPSEO_Graph_Piece {
 
 	/**
 	 * A value object with context variables.
@@ -48,13 +48,6 @@ class LSX_TO_Schema_Country implements WPSEO_Graph_Piece {
 	public $post_url;
 
 	/**
-	 * If this is a country or not
-	 *
-	 * @var boolean
-	 */
-	public $is_country;
-
-	/**
 	 * Constructor.
 	 *
 	 * @param \WPSEO_Schema_Context $context A value object with context variables.
@@ -64,11 +57,6 @@ class LSX_TO_Schema_Country implements WPSEO_Graph_Piece {
 		$this->place_ids        = array();
 		$this->post             = get_post( $this->context->id );
 		$this->post_url         = get_permalink( $this->context->id );
-		$this->is_country       = false;
-		$parent                 = wp_get_post_parent_id( $this->context->id );
-		if ( false === $parent || '' === $parent ) {
-			$this->is_country = true;
-		}
 	}
 
 	/**
@@ -85,7 +73,7 @@ class LSX_TO_Schema_Country implements WPSEO_Graph_Piece {
 			return false;
 		}
 
-		return self::is_destination_post_type( get_post_type() );
+		return self::is_team_post_type( get_post_type() );
 	}
 
 	/**
@@ -94,13 +82,9 @@ class LSX_TO_Schema_Country implements WPSEO_Graph_Piece {
 	 * @return array $data Review data.
 	 */
 	public function generate() {
-		$type = 'Country';
-		if ( ! $this->is_country ) {
-			$type = 'State';
-		}
 		$data = array(
 			'@type'            => array(
-				$type,
+				'Country',
 			),
 			'@id'              => $this->context->canonical . '#destination',
 			'name'             => $this->post->post_title,
