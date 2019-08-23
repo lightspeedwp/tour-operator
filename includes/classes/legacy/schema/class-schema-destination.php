@@ -125,7 +125,7 @@ class LSX_TO_Schema_Country implements WPSEO_Graph_Piece {
 	 *
 	 * @return bool True if it has tour schema, false if not.
 	 */
-	public static function is_tour_post_type( $post_type = null ) {
+	public static function is_destination_post_type( $post_type = null ) {
 		if ( is_null( $post_type ) ) {
 			$post_type = get_post_type();
 		}
@@ -135,7 +135,7 @@ class LSX_TO_Schema_Country implements WPSEO_Graph_Piece {
 		 *
 		 * @api string[] $post_types The post types for which we output Review.
 		 */
-		$post_types = apply_filters( 'wpseo_schema_tour_post_types', array( 'tour' ) );
+		$post_types = apply_filters( 'wpseo_schema_destination_post_types', array( 'destination' ) );
 
 		return in_array( $post_type, $post_types );
 	}
