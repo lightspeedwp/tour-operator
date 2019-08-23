@@ -108,8 +108,7 @@ class LSX_TO_Schema_Accommodation implements WPSEO_Graph_Piece {
 
 		$wetu_ref = get_post_meta( $this->context->id, 'lsx_wetu_ref', true );
 		if ( false !== $wetu_ref && '' !== $wetu_ref ) {
-			$data['sku']        = $wetu_ref;
-			$data['identifier'] = $wetu_ref;
+			$data['sku'] = $wetu_ref;
 		}
 		$data = $this->add_image( $data );
 		$data = $this->add_offers( $data );
