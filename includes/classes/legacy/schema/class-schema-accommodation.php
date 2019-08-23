@@ -77,7 +77,7 @@ class LSX_TO_Schema_Accommodation implements WPSEO_Graph_Piece {
 			return false;
 		}
 
-		return self::is_tour_post_type( get_post_type() );
+		return self::is_tour_accommodation_type( get_post_type() );
 	}
 
 	/**
