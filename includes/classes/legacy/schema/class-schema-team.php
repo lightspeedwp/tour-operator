@@ -84,9 +84,9 @@ class LSX_TO_Schema_Team implements WPSEO_Graph_Piece {
 	public function generate() {
 		$data = array(
 			'@type'            => array(
-				'Country',
+				'Person',
 			),
-			'@id'              => $this->context->canonical . '#destination',
+			'@id'              => $this->context->canonical . '#person',
 			'name'             => $this->post->post_title,
 			'description'      => wp_strip_all_tags( $this->post->post_content ),
 			'url'              => $this->post_url,
