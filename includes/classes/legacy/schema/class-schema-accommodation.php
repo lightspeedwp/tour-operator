@@ -98,7 +98,6 @@ class LSX_TO_Schema_Accommodation implements WPSEO_Graph_Piece {
 		);
 
 		if ( $this->context->site_represents_reference ) {
-			$data['publisher'] = $this->context->site_represents_reference;
 			$data['brand']    = $this->context->site_represents_reference;
 		}
 
