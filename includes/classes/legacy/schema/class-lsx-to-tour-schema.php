@@ -163,7 +163,7 @@ class LSX_TO_Tour_Schema extends LSX_TO_Schema_Graph_Piece {
 			foreach ( $itinerary_fields as $key => $type ) {
 
 				if ( isset( $day[ $key ] ) && '' !== $day[ $key ] && ! empty( $day[ $key ] ) ) {
-					foreach ( $day[ $key ] as $place_id  ) {
+					foreach ( $day[ $key ] as $place_id ) {
 						if ( '' !== $place_id ) {
 							// Here we are linking the regions to the country.
 							$contained_in = false;
