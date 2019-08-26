@@ -30,13 +30,15 @@ class Schema {
 	 * Constructor
 	 */
 	public function __construct() {
-		require_once( LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-utils.php' );
-		require_once( LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-review.php' );
-		require_once( LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-trip.php' );
-		require_once( LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-destination.php' );
-		require_once( LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-accommodation.php' );
-		require_once( LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-special.php' );
-		require_once( LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-team.php' );
+		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-utils.php';
+		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-graph-piece.php';
+
+		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-review.php';
+		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-trip.php';
+		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-destination.php';
+		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-accommodation.php';
+		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-special.php';
+		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-team.php';
 		add_filter( 'wpseo_schema_graph_pieces', array( $this, 'add_graph_pieces' ), 11, 2 );
 	}
 

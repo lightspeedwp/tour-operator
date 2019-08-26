@@ -14,6 +14,33 @@ namespace lsx\legacy;
 class Schema_Utils {
 
 	/**
+	 * Determines whether a given post type should have Review schema.
+	 *
+	 * @param string $post_type       Post type to check.
+	 * @param string $comparison_type Post type to check against.
+	 *
+	 * @return bool True if it has schema, false if not.
+	 */
+	public static function is_type( $post_type = null, $comparison_type = null ) {
+		if ( is_null( $comparison_type ) ) {
+			return false;
+		}
+
+		if ( is_null( $post_type ) ) {
+			$post_type = get_post_type();
+		}
+
+		/**
+		 * Filter: 'wpseo_schema_$this->post_type_post_types' - Allow changing for which post types we output Review schema.
+		 *
+		 * @api string[] $post_types The post types for which we output Review.
+		 */
+		$post_types = apply_filters( 'wpseo_schema_' . $comparison_type . '_post_types', array( $comparison_type ) );
+
+		return in_array( $post_type, $post_types );
+	}
+
+	/**
 	 * Retrieve a users Schema ID.
 	 *
 	 * @param string               $place_id The Name of the Reviewer you need a for.
