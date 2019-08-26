@@ -33,12 +33,9 @@ class Schema {
 		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-utils.php';
 		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-graph-piece.php';
 
-		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-review.php';
 		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-trip.php';
 		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-destination.php';
 		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-accommodation.php';
-		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-special.php';
-		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-team.php';
 		add_filter( 'wpseo_schema_graph_pieces', array( $this, 'add_graph_pieces' ), 11, 2 );
 	}
 
@@ -65,12 +62,9 @@ class Schema {
 	 * @return array $pieces Graph pieces to output.
 	 */
 	public function add_graph_pieces( $pieces, $context ) {
-		$pieces[] = new \LSX_TO_Schema_Review( $context );
 		$pieces[] = new \LSX_TO_Schema_Trip( $context );
 		$pieces[] = new \LSX_TO_Schema_Country( $context );
 		$pieces[] = new \LSX_TO_Schema_Accommodation( $context );
-		$pieces[] = new \LSX_TO_Schema_Special( $context );
-		$pieces[] = new \LSX_TO_Schema_Team( $context );
 		return $pieces;
 	}
 
@@ -282,8 +276,6 @@ class Schema {
 			}
 
 			$meta = array(
-				'@context' => 'http://schema.org/',
-				'@type' => [ 'LodgingBusiness', 'Accommodation' ],
 				'availableLanguage' => $final_lang_list,
 				'address' => array(
 					'addressCountry' => $country,
@@ -292,7 +284,6 @@ class Schema {
 				),
 				'checkinTime' => $checkin_accommodation,
 				'checkoutTime' => $checkout_accommodation,
-				'description' => $description_accommodation,
 				'employee' => $accommodation_expert,
 				'image' => $image_accommodation,
 				'name' => $title_accommodation,
@@ -300,12 +291,6 @@ class Schema {
 				'priceRange' => $price_val . $price_accommodation,
 				'url' => $url_accommodation,
 				'telephone' => '+18666434336',
-				'aggregateRating' => array(
-					'@type' => 'AggregateRating',
-					'itemReviewed' => $title_accommodation,
-					'reviewCount' => '1',
-					'ratingValue' => $rating_accommodation,
-				),
 			);
 			$output = wp_json_encode( $meta, JSON_UNESCAPED_SLASHES );
 			?>
