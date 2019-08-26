@@ -2,7 +2,7 @@
 /**
  * Schema Class
  *
- * @package   Schema
+ * @package   Tour Operator
  * @author    LightSpeed
  * @license   GPL3
  * @link
@@ -30,6 +30,7 @@ class Schema {
 	 * Constructor
 	 */
 	public function __construct() {
+		require_once( LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-utils.php' );
 		require_once( LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-review.php' );
 		require_once( LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-trip.php' );
 		require_once( LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-destination.php' );

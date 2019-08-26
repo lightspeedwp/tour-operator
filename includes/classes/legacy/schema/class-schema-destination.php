@@ -411,7 +411,7 @@ class LSX_TO_Schema_Country implements WPSEO_Graph_Piece {
 	 */
 	private function add_article( $data, $post_id, $args = array(), $local = false ) {
 		$defaults = array(
-			'@id'           => $this->get_article_schema_id( $post_id, $this->context, $local ),
+			'@id'           => \lsx\legacy\Schema_Utils::get_article_schema_id( $post_id, $this->context, $local ),
 			'author'        => get_the_author_meta( 'display_name', get_post_field( 'post_author', $post_id ) ),
 			'datePublished' => mysql2date( DATE_W3C, get_post_field( 'post_date_gmt', $post_id ), false ),
 			'dateModified' => mysql2date( DATE_W3C, get_post_field( 'post_modified_gmt', $post_id ), false ),
@@ -445,7 +445,7 @@ class LSX_TO_Schema_Country implements WPSEO_Graph_Piece {
 	 */
 	private function add_review( $data, $post_id, $args = array(), $local = false ) {
 		$defaults = array(
-			'@id'           => $this->get_review_schema_id( $post_id, $this->context, $local ),
+			'@id'           => \lsx\legacy\Schema_Utils::get_review_schema_id( $post_id, $this->context, $local ),
 			'author'        => get_the_author_meta( 'display_name', get_post_field( 'post_author', $post_id ) ),
 			'datePublished' => mysql2date( DATE_W3C, get_post_field( 'post_date_gmt', $post_id ), false ),
 			'reviewRating'  => false,
@@ -476,7 +476,7 @@ class LSX_TO_Schema_Country implements WPSEO_Graph_Piece {
 	 */
 	private function add_offer( $data, $post_id, $args = array(), $local = false ) {
 		$defaults = array(
-			'@id'                => $this->get_offer_schema_id( $post_id, $this->context, $local ),
+			'@id'                => \lsx\legacy\Schema_Utils::get_offer_schema_id( $post_id, $this->context, $local ),
 			'price'              => false,
 			'priceCurrency'      => false,
 			'PriceSpecification' => false,
@@ -499,34 +499,6 @@ class LSX_TO_Schema_Country implements WPSEO_Graph_Piece {
 	}
 
 	/**
-	 * Generates the place graph piece for the subtrip / Itinerary arrays.
-	 *
-	 * @param array  $data         subTrip / itinerary data.
-	 * @param string $type         The type in data to save the terms in.
-	 * @param string $post_id      The post ID of the current Place to add.
-	 * @param string $contained_in The @id of the containedIn place.
-	 *
-	 * @return mixed array $data Place data.
-	 */
-	private function add_place( $data, $type, $post_id, $contained_in = false ) {
-		$place = array(
-			'@type'       => $type,
-			'@id'         => $this->get_places_schema_id( $post_id, $type, $this->context ),
-			'name'        => get_the_title( $post_id ),
-			'description' => get_the_excerpt( $post_id ),
-			'url'         => get_permalink( $post_id ),
-		);
-		if ( false !== $contained_in ) {
-			$place['containedInPlace'] = array(
-				'@type' => 'Country',
-				'@id'   => $contained_in,
-			);
-		}
-		$data[] = $place;
-		return $data;
-	}
-
-	/**
 	 * Adds an image node if the post has a featured image.
 	 *
 	 * @param array $data The Review data.
@@ -541,90 +513,5 @@ class LSX_TO_Schema_Country implements WPSEO_Graph_Piece {
 		}
 
 		return $data;
-	}
-
-	/**
-	 * Retrieve a users Schema ID.
-	 *
-	 * @param string               $name The Name of the Reviewer you need a for.
-	 * @param WPSEO_Schema_Context $context A value object with context variables.
-	 *
-	 * @return string The user's schema ID.
-	 */
-	public function get_places_schema_id( $place_id, $type, $context ) {
-		$url                          = $context->site_url . '#/schema/' . strtolower( $type ) . '/' . wp_hash( $place_id . get_the_title( $place_id ) );
-		$this->place_ids[ $place_id ] = $url;
-		return trailingslashit( $url );
-	}
-
-	/**
-	 * Retrieve a users Schema ID.
-	 *
-	 * @param string               $name The Name of the Reviewer you need a for.
-	 * @param WPSEO_Schema_Context $context A value object with context variables.
-	 *
-	 * @return string The user's schema ID.
-	 */
-	public function get_subtrip_schema_id( $name, $context ) {
-		$url = $context->site_url . '#/subtrip/' . wp_hash( $name . $context->id );
-		return trailingslashit( $url );
-	}
-
-	/**
-	 * Retrieve an offer Schema ID.
-	 *
-	 * @param string               $id      post ID of the place being added.
-	 * @param WPSEO_Schema_Context $context A value object with context variables.
-	 * @param string               $local   if the Schema is local true / false.
-	 *
-	 * @return string The user's schema ID.
-	 */
-	public function get_offer_schema_id( $id, $context, $local = false ) {
-		if ( false === $local ) {
-			$url = $context->site_url;
-		} else {
-			$url = get_permalink( $context->id );
-		}
-		$url .= '#/schema/offer/';
-		$url .= wp_hash( $id . get_the_title( $id ) );
-		return trailingslashit( $url );
-	}
-
-	/**
-	 * Retrieve an review Schema ID.
-	 *
-	 * @param string               $id      post ID of the place being added.
-	 * @param WPSEO_Schema_Context $context A value object with context variables.
-	 * @param string               $local   if the Schema is local true / false.
-	 *
-	 * @return string The user's schema ID.
-	 */
-	public function get_review_schema_id( $id, $context, $local = false ) {
-		if ( false === $local ) {
-			$url = $context->site_url;
-		} else {
-			$url = get_permalink( $context->id );
-		}
-		$url .= '#/schema/review/';
-		$url .= wp_hash( $id . get_the_title( $id ) );
-		return trailingslashit( $url );
-	}
-
-	/**
-	 * Retrieve an review Schema ID.
-	 *
-	 * @param string               $id      post ID of the place being added.
-	 * @param WPSEO_Schema_Context $context A value object with context variables.
-	 * @param string               $local   if the Schema is local true / false.
-	 *
-	 * @return string The user's schema ID.
-	 */
-	public function get_article_schema_id( $id, $context, $local = false ) {
-		if ( false === $local ) {
-			$url = get_permalink( $id ) . WPSEO_Schema_IDs::ARTICLE_HASH;
-		} else {
-			$url = get_permalink( $context->id ) . '#/schema/article/' . wp_hash( $id . get_the_title( $id ) );
-		}
-		return trailingslashit( $url );
 	}
 }
