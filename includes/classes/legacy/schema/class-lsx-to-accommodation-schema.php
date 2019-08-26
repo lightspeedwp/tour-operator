@@ -10,7 +10,7 @@
  *
  * @since 10.2
  */
-class LSX_TO_Schema_Accommodation extends LSX_TO_Schema_Graph_Piece {
+class LSX_TO_Accommodation_Schema extends LSX_TO_Schema_Graph_Piece {
 
 	/**
 	 * Constructor.
@@ -56,12 +56,6 @@ class LSX_TO_Schema_Accommodation extends LSX_TO_Schema_Graph_Piece {
 		$data = $this->add_offers( $data );
 		$data = $this->add_reviews( $data );
 		$data = $this->add_articles( $data );
-
-		if ( isset( $_GET['debug'] ) ) {
-			print_r('<pre>');
-			print_r($data);
-			print_r('</pre>');
-		}
 		return $data;
 	}
 }

@@ -31,11 +31,10 @@ class Schema {
 	 */
 	public function __construct() {
 		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-utils.php';
-		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-graph-piece.php';
-
-		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-trip.php';
-		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-destination.php';
-		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-accommodation.php';
+		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-lsx-to-schema-graph-piece.php';
+		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-lsx-to-tour-schema.php';
+		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-lsx-to-accommodation-schema.php';
+		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-lsx-to-destination-schema.php';
 		add_filter( 'wpseo_schema_graph_pieces', array( $this, 'add_graph_pieces' ), 11, 2 );
 	}
 
@@ -62,9 +61,9 @@ class Schema {
 	 * @return array $pieces Graph pieces to output.
 	 */
 	public function add_graph_pieces( $pieces, $context ) {
-		$pieces[] = new \LSX_TO_Schema_Trip( $context );
-		$pieces[] = new \LSX_TO_Schema_Country( $context );
-		$pieces[] = new \LSX_TO_Schema_Accommodation( $context );
+		$pieces[] = new \LSX_TO_Tour_Schema( $context );
+		$pieces[] = new \LSX_TO_Accommodation_Schema( $context );
+		$pieces[] = new \LSX_TO_Destination_Schema( $context );
 		return $pieces;
 	}
 
@@ -123,32 +122,8 @@ class Schema {
 			}
 			$meta = array(
 				array(
-					'@context' => 'http://schema.org',
-					'@type' => array(
-						'Trip',
-						'ProfessionalService',
-						'Offer',
-					),
-					'offers' => array(
-						'@type' => 'Offer',
-						'price' => $price,
-						'availabilityStarts' => $start_val,
-						'availabilityEnds' => $end_val,
-					),
 					'address' => $des_schema,
 					'telephone' => '0216713090',
-					'priceRange' => $price,
-					'price' => $price,
-   					'priceCurrency' => $price_val,
-					'description' => $itin_con,
-					'image' => $thumb_url,
-					'name' => $tour_title,
-					'provider' => 'Southern Destinations',
-					'url' => $prim_url,
-					'itinerary' => array(
-						'@type' => 'ItemList',
-						'itemListElement' => $list_array,
-					),
 				),
 			);
 			$output = wp_json_encode( $meta, JSON_UNESCAPED_SLASHES );

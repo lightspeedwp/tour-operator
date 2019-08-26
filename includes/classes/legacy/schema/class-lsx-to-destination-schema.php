@@ -10,7 +10,7 @@
  *
  * @since 10.2
  */
-class LSX_TO_Schema_Country extends LSX_TO_Schema_Graph_Piece {
+class LSX_TO_Destination_Schema extends LSX_TO_Schema_Graph_Piece {
 
 	/**
 	 * Constructor.
@@ -49,12 +49,6 @@ class LSX_TO_Schema_Country extends LSX_TO_Schema_Graph_Piece {
 		$data = $this->add_places( $data );
 		$data = $this->add_reviews( $data );
 		$data = $this->add_articles( $data );
-
-		if ( isset( $_GET['debug'] ) ) {
-			print_r('<pre>');
-			print_r($data);
-			print_r('</pre>');
-		}
 		return $data;
 	}
 }
