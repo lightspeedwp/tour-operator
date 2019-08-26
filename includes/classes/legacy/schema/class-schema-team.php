@@ -175,7 +175,7 @@ class LSX_TO_Schema_Team implements WPSEO_Graph_Piece {
 				'availability'       => 'https://schema.org/OnlineOnly',
 				'url'                => $this->post_url,
 			);
-			$data       = $this->add_offer( $data, $this->context->id, $offer_args, true );
+			$data = \lsx\legacy\Schema_Utils::add_offer( $data, $this->context->id, $this->context, $offer_args, true );
 		}
 		return $data;
 	}
@@ -207,7 +207,7 @@ class LSX_TO_Schema_Team implements WPSEO_Graph_Piece {
 			if ( false !== $price_type && '' !== $price_type && 'none' !== $price_type ) {
 				$offer_args['PriceSpecification'] = lsx_to_get_price_type_label( $price_type );
 			}
-			$data = $this->add_offer( $data, $special_id, $offer_args );
+			$data = \lsx\legacy\Schema_Utils::add_offer( $data, $special_id, $this->context, $offer_args );
 		}
 		return $data;
 	}
@@ -304,40 +304,6 @@ class LSX_TO_Schema_Team implements WPSEO_Graph_Piece {
 				$data['subjectOf'] = $posts_array;
 			}
 		}
-		return $data;
-	}
-
-	/**
-	 * Generates the "Offer" graph piece for the subtrip / Itinerary arrays.
-	 *
-	 * @param array  $data         subTrip / itinerary data.
-	 * @param string $post_id      The post ID of the current Place to add.
-	 * @param array  $args         and array of parameter you want added to the offer.
-	 * @param string $local        if the Schema is local true / false.
-	 *
-	 * @return mixed array $data Place data.
-	 */
-	private function add_offer( $data, $post_id, $args = array(), $local = false ) {
-		$defaults = array(
-			'@id'                => \lsx\legacy\Schema_Utils::get_offer_schema_id( $post_id, $this->context, $local ),
-			'price'              => false,
-			'priceCurrency'      => false,
-			'PriceSpecification' => false,
-			'url'                => false,
-			'availability'       => false,
-			'category'           => __( 'Standard', 'tour-operator' ),
-		);
-		$args     = wp_parse_args( $args, $defaults );
-		$args     = apply_filters( 'lsx_to_schema_tour_offer_args', $args );
-		$offer    = array(
-			'@type' => apply_filters( 'lsx_to_schema_tour_offer_type', 'Offer', $args ),
-		);
-		foreach ( $args as $key => $value ) {
-			if ( false !== $value ) {
-				$offer[ $key ] = $value;
-			}
-		}
-		$data[] = $offer;
 		return $data;
 	}
 

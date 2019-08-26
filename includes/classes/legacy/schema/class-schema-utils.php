@@ -191,4 +191,39 @@ class Schema_Utils {
 		$data[] = $offer;
 		return $data;
 	}
+
+	/**
+	 * Generates the "Offer" graph piece for the subtrip / Itinerary arrays.
+	 *
+	 * @param array                $data         subTrip / itinerary data.
+	 * @param string               $post_id      The post ID of the current Place to add.
+	 * @param WPSEO_Schema_Context $context      The post ID of the current Place to add.
+	 * @param array                $args         and array of parameter you want added to the offer.
+	 * @param string               $local        if the Schema is local true / false.
+	 *
+	 * @return mixed array $data Place data.
+	 */
+	public static function add_offer( $data, $post_id, $context, $args = array(), $local = false ) {
+		$defaults = array(
+			'@id'                => self::get_offer_schema_id( $post_id, $context, $local ),
+			'price'              => false,
+			'priceCurrency'      => false,
+			'PriceSpecification' => false,
+			'url'                => false,
+			'availability'       => false,
+			'category'           => __( 'Standard', 'tour-operator' ),
+		);
+		$args     = wp_parse_args( $args, $defaults );
+		$args     = apply_filters( 'lsx_to_schema_accommodation_offer_args', $args );
+		$offer    = array(
+			'@type' => apply_filters( 'lsx_to_schema_accommodation_offer_type', 'Offer', $args ),
+		);
+		foreach ( $args as $key => $value ) {
+			if ( false !== $value ) {
+				$offer[ $key ] = $value;
+			}
+		}
+		$data[] = $offer;
+		return $data;
+	}
 }
