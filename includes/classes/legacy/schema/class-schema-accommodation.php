@@ -156,9 +156,11 @@ class LSX_TO_Schema_Accommodation implements WPSEO_Graph_Piece {
 				if ( '' !== $destination ) {
 					$parent = wp_get_post_parent_id( $destination );
 					if ( false === $parent || 0 === $parent ) {
-						$places = $this->add_place( $places, 'Country', $destination );
+						$places                          = \lsx\legacy\Schema_Utils::add_place( $places, 'Country', $destination, $this->context );
+						$this->place_ids[ $destination ] = \lsx\legacy\Schema_Utils::get_places_schema_id( $destination, 'Country', $this->context );
 					} else {
-						$places = $this->add_place( $places, 'State', $destination );
+						$places                          = \lsx\legacy\Schema_Utils::add_place( $places, 'State', $destination, $this->context );
+						$this->place_ids[ $destination ] = \lsx\legacy\Schema_Utils::get_places_schema_id( $destination, 'State', $this->context );
 					}
 				}
 			}
@@ -291,7 +293,7 @@ class LSX_TO_Schema_Accommodation implements WPSEO_Graph_Piece {
 						'ratingValue' => $rating,
 					);
 				}
-				$reviews_array = $this->add_review( $reviews_array, $review_id, $review_args );
+				$reviews_array = \lsx\legacy\Schema_Utils::add_review( $reviews_array, $review_id, $this->context, $review_args );
 				$review_count++;
 			}
 			if ( ! empty( $reviews_array ) ) {
@@ -334,8 +336,7 @@ class LSX_TO_Schema_Accommodation implements WPSEO_Graph_Piece {
 				if ( false !== $image_url ) {
 					$post_args['image'] = $image_url;
 				}
-
-				$posts_array = $this->add_article( $posts_array, $post_id, $post_args );
+				$posts_array = \lsx\legacy\Schema_Utils::add_article( $posts_array, $post_id, $this->context, $post_args );
 			}
 			if ( ! empty( $posts_array ) ) {
 				$data['subjectOf'] = $posts_array;
@@ -344,70 +345,7 @@ class LSX_TO_Schema_Accommodation implements WPSEO_Graph_Piece {
 		return $data;
 	}
 
-	/**
-	 * Generates the "review" graph piece for the subtrip / Itinerary arrays.
-	 *
-	 * @param array  $data         subTrip / itinerary data.
-	 * @param string $post_id      The post ID of the current Place to add.
-	 * @param array  $args         and array of parameter you want added to the offer.
-	 * @param string $local        if the Schema is local true / false.
-	 *
-	 * @return mixed array $data Place data.
-	 */
-	private function add_article( $data, $post_id, $args = array(), $local = false ) {
-		$defaults = array(
-			'@id'           => \lsx\legacy\Schema_Utils::get_article_schema_id( $post_id, $this->context, $local ),
-			'author'        => get_the_author_meta( 'display_name', get_post_field( 'post_author', $post_id ) ),
-			'datePublished' => mysql2date( DATE_W3C, get_post_field( 'post_date_gmt', $post_id ), false ),
-			'dateModified' => mysql2date( DATE_W3C, get_post_field( 'post_modified_gmt', $post_id ), false ),
-			/*'mainEntityOfPage' => array(
-				'@id' => $this->context->canonical . WPSEO_Schema_IDs::WEBPAGE_HASH,
-			),*/
-		);
-		$args     = wp_parse_args( $args, $defaults );
-		$args     = apply_filters( 'lsx_to_schema_tour_article_args', $args );
-		$offer    = array(
-			'@type' => apply_filters( 'lsx_to_schema_tour_article_type', 'Article', $args ),
-		);
-		foreach ( $args as $key => $value ) {
-			if ( false !== $value ) {
-				$offer[ $key ] = $value;
-			}
-		}
-		$data[] = $offer;
-		return $data;
-	}
 
-	/**
-	 * Generates the "review" graph piece for the subtrip / Itinerary arrays.
-	 *
-	 * @param array  $data         subTrip / itinerary data.
-	 * @param string $post_id      The post ID of the current Place to add.
-	 * @param array  $args         and array of parameter you want added to the offer.
-	 * @param string $local        if the Schema is local true / false.
-	 *
-	 * @return mixed array $data Place data.
-	 */
-	private function add_review( $data, $post_id, $args = array(), $local = false ) {
-		$defaults = array(
-			'@id'           => \lsx\legacy\Schema_Utils::get_review_schema_id( $post_id, $this->context, $local ),
-			'author'        => get_the_author_meta( 'display_name', get_post_field( 'post_author', $post_id ) ),
-			'datePublished' => mysql2date( DATE_W3C, get_post_field( 'post_date_gmt', $post_id ), false ),
-			'reviewRating'  => false,
-		);
-		$args     = wp_parse_args( $args, $defaults );
-		$args     = apply_filters( 'lsx_to_schema_tour_review_args', $args );
-		$offer    = array(
-			'@type' => apply_filters( 'lsx_to_schema_tour_review_type', 'Review', $args ),
-		);
-		foreach ( $args as $key => $value ) {
-			if ( false !== $value ) {
-				$offer[ $key ] = $value;
-			}
-		}
-		$data[] = $offer;
-		return $data;
-	}
 
 	/**
 	 * Generates the "Offer" graph piece for the subtrip / Itinerary arrays.
@@ -440,36 +378,6 @@ class LSX_TO_Schema_Accommodation implements WPSEO_Graph_Piece {
 			}
 		}
 		$data[] = $offer;
-		return $data;
-	}
-
-	/**
-	 * Generates the place graph piece for the subtrip / Itinerary arrays.
-	 *
-	 * @param array  $data         subTrip / itinerary data.
-	 * @param string $type         The type in data to save the terms in.
-	 * @param string $post_id      The post ID of the current Place to add.
-	 * @param string $contained_in The @id of the containedIn place.
-	 *
-	 * @return mixed array $data Place data.
-	 */
-	private function add_place( $data, $type, $post_id, $contained_in = false ) {
-		$at_id                       = \lsx\legacy\Schema_Utils::get_places_schema_id( $post_id, $type, $this->context );
-		$this->place_ids[ $post_id ] = $at_id;
-		$place                       = array(
-			'@type'       => $type,
-			'@id'         => $at_id,
-			'name'        => get_the_title( $post_id ),
-			'description' => get_the_excerpt( $post_id ),
-			'url'         => get_permalink( $post_id ),
-		);
-		if ( false !== $contained_in ) {
-			$place['containedInPlace'] = array(
-				'@type' => 'Country',
-				'@id'   => $contained_in,
-			);
-		}
-		$data[] = $place;
 		return $data;
 	}
 

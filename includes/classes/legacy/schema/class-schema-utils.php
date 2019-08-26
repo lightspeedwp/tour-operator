@@ -91,7 +91,7 @@ class Schema_Utils {
 	 */
 	public static function get_article_schema_id( $id, $context, $local = false ) {
 		if ( false === $local ) {
-			$url = get_permalink( $id ) . WPSEO_Schema_IDs::ARTICLE_HASH;
+			$url = get_permalink( $id ) . \WPSEO_Schema_IDs::ARTICLE_HASH;
 		} else {
 			$url = get_permalink( $context->id ) . '#/schema/article/' . wp_hash( $id . get_the_title( $id ) );
 		}
@@ -101,18 +101,17 @@ class Schema_Utils {
 	/**
 	 * Generates the place graph piece for the subtrip / Itinerary arrays.
 	 *
-	 * @param array  $data         subTrip / itinerary data.
-	 * @param string $type         The type in data to save the terms in.
-	 * @param string $post_id      The post ID of the current Place to add.
+	 * @param array                $data         subTrip / itinerary data.
+	 * @param string               $type         The type in data to save the terms in.
+	 * @param string               $post_id      The post ID of the current Place to add.
 	 * @param WPSEO_Schema_Context $context      The post ID of the current Place to add.
-	 * @param string $contained_in The @id of the containedIn place.
+	 * @param string               $contained_in The @id of the containedIn place.
 	 *
 	 * @return mixed array $data Place data.
 	 */
 	public static function add_place( $data, $type, $post_id, $context, $contained_in = false ) {
-		$at_id                       = self::get_places_schema_id( $post_id, $type, $context );
-		$this->place_ids[ $post_id ] = $at_id;
-		$place                       = array(
+		$at_id = self::get_places_schema_id( $post_id, $type, $context );
+		$place = array(
 			'@type'       => $type,
 			'@id'         => $at_id,
 			'name'        => get_the_title( $post_id ),
@@ -126,6 +125,70 @@ class Schema_Utils {
 			);
 		}
 		$data[] = $place;
+		return $data;
+	}
+
+	/**
+	 * Generates the "review" graph piece for the subtrip / Itinerary arrays.
+	 *
+	 * @param array                $data         subTrip / itinerary data.
+	 * @param string               $post_id      The post ID of the current Place to add.
+	 * @param WPSEO_Schema_Context $context      The post ID of the current Place to add.
+	 * @param array                $args         and array of parameter you want added to the offer.
+	 * @param string               $local        if the Schema is local true / false.
+	 *
+	 * @return mixed array $data Place data.
+	 */
+	public static function add_review( $data, $post_id, $context, $args = array(), $local = false ) {
+		$defaults = array(
+			'@id'           => self::get_review_schema_id( $post_id, $context, $local ),
+			'author'        => get_the_author_meta( 'display_name', get_post_field( 'post_author', $post_id ) ),
+			'datePublished' => mysql2date( DATE_W3C, get_post_field( 'post_date_gmt', $post_id ), false ),
+			'reviewRating'  => false,
+		);
+		$args     = wp_parse_args( $args, $defaults );
+		$args     = apply_filters( 'lsx_to_schema_tour_review_args', $args );
+		$offer    = array(
+			'@type' => apply_filters( 'lsx_to_schema_tour_review_type', 'Review', $args ),
+		);
+		foreach ( $args as $key => $value ) {
+			if ( false !== $value ) {
+				$offer[ $key ] = $value;
+			}
+		}
+		$data[] = $offer;
+		return $data;
+	}
+
+	/**
+	 * Generates the "review" graph piece for the subtrip / Itinerary arrays.
+	 *
+	 * @param array                $data         subTrip / itinerary data.
+	 * @param string               $post_id      The post ID of the current Place to add.
+	 * @param WPSEO_Schema_Context $context      The post ID of the current Place to add.
+	 * @param array                $args         and array of parameter you want added to the offer.
+	 * @param string               $local        if the Schema is local true / false.
+	 *
+	 * @return mixed array $data Place data.
+	 */
+	public static function add_article( $data, $post_id, $context, $args = array(), $local = false ) {
+		$defaults = array(
+			'@id'           => self::get_article_schema_id( $post_id, $context, $local ),
+			'author'        => get_the_author_meta( 'display_name', get_post_field( 'post_author', $post_id ) ),
+			'datePublished' => mysql2date( DATE_W3C, get_post_field( 'post_date_gmt', $post_id ), false ),
+			'dateModified' => mysql2date( DATE_W3C, get_post_field( 'post_modified_gmt', $post_id ), false ),
+		);
+		$args = wp_parse_args( $args, $defaults );
+		$args = apply_filters( 'lsx_to_schema_tour_article_args', $args );
+		$offer = array(
+			'@type' => apply_filters( 'lsx_to_schema_tour_article_type', 'Article', $args ),
+		);
+		foreach ( $args as $key => $value ) {
+			if ( false !== $value ) {
+				$offer[ $key ] = $value;
+			}
+		}
+		$data[] = $offer;
 		return $data;
 	}
 }
