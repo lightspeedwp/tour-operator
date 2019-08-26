@@ -27,6 +27,13 @@ class LSX_TO_Schema_Graph_Piece implements WPSEO_Graph_Piece {
 	public $post_type;
 
 	/**
+	 * If this is a top level parent
+	 *
+	 * @var boolean
+	 */
+	public $is_top_level;
+
+	/**
 	 * This holds the meta_key => scehma_type of the fields you want to add to your subtrip.
 	 *
 	 * @var array()
@@ -60,10 +67,14 @@ class LSX_TO_Schema_Graph_Piece implements WPSEO_Graph_Piece {
 	 * @param \WPSEO_Schema_Context $context A value object with context variables.
 	 */
 	public function __construct( WPSEO_Schema_Context $context ) {
-		$this->context          = $context;
-		$this->place_ids        = array();
-		$this->post             = get_post( $this->context->id );
-		$this->post_url         = get_permalink( $this->context->id );
+		$this->context      = $context;
+		$this->place_ids    = array();
+		$this->post         = get_post( $this->context->id );
+		$this->post_url     = get_permalink( $this->context->id );
+		$this->is_top_level = false;
+		if ( false === $this->post->post_parent || 0 === $this->post->post_parent || '' === $this->post->post_parent ) {
+			$this->is_top_level = true;
+		}
 	}
 
 	/**
@@ -294,5 +305,107 @@ class LSX_TO_Schema_Graph_Piece implements WPSEO_Graph_Piece {
 			}
 		}
 		return $data;
+	}
+
+	/**
+	 * Adds the Places attached to the destination
+	 *
+	 * @param array $data Country / State data.
+	 *
+	 * @return array $data Country / State data.
+	 */
+	public function add_places( $data ) {
+		$places_array = array();
+		if ( $this->is_top_level ) {
+			$places_array = $this->add_regions( $places_array );
+			$places_array = $this->add_accommodation( $places_array );
+			if ( ! empty( $places_array ) ) {
+				$data['containsPlace'] = $places_array;
+			}
+		} else {
+			$places_array             = $this->add_countries( $places_array );
+			$data['containedInPlace'] = $places_array;
+
+			$places_array          = array();
+			$places_array          = $this->add_accommodation( $places_array );
+			$data['containsPlace'] = $places_array;
+
+		}
+		return $data;
+	}
+
+	/**
+	 * Adds the itinerary destinations as an itemList
+	 *
+	 * @param array $places_array an array of Places.
+	 *
+	 * @return array $places_array an array of Places.
+	 */
+	public function add_regions( $places_array ) {
+		$regions = get_children( $this->context->id, ARRAY_A );
+		if ( ! empty( $regions ) ) {
+			foreach ( $regions as $region_id => $region ) {
+				if ( '' !== $region ) {
+					$places_array                  = \lsx\legacy\Schema_Utils::add_place( $places_array, 'State', $region_id, $this->context );
+					$this->place_ids[ $region_id ] = \lsx\legacy\Schema_Utils::get_places_schema_id( $region_id, 'State', $this->context );
+				}
+			}
+		}
+		return $places_array;
+	}
+
+	/**
+	 * Adds the itinerary destinations as an itemList
+	 *
+	 * @param array $places_array an array of Places.
+	 *
+	 * @return array $data an array of Places.
+	 */
+	public function add_countries( $places_array ) {
+		if ( '' !== $this->post->post_parent ) {
+			$places_array                                = \lsx\legacy\Schema_Utils::add_place( $places_array, 'Country', $this->post->post_parent, $this->context );
+			$this->place_ids[ $this->post->post_parent ] = \lsx\legacy\Schema_Utils::get_places_schema_id( $this->post->post_parent, 'Country', $this->context );
+		}
+		return $places_array;
+	}
+
+	/**
+	 * Adds the accommodation to the places array
+	 *
+	 * @param array $places_array an array of Places.
+	 *
+	 * @return array $places_array an array of Places.
+	 */
+	public function add_accommodation( $places_array ) {
+		$accommodation = get_post_meta( $this->context->id, 'accommodation_to_' . $this->post_type, false );
+		if ( ! empty( $accommodation ) ) {
+			foreach ( $accommodation as $accommodation_id ) {
+				if ( '' !== $accommodation_id ) {
+					$places_array                         = \lsx\legacy\Schema_Utils::add_place( $places_array, 'Accommodation', $accommodation_id, $this->context );
+					$this->place_ids[ $accommodation_id ] = \lsx\legacy\Schema_Utils::get_places_schema_id( $accommodation_id, 'Accommodation', $this->context );
+				}
+			}
+		}
+		return $places_array;
+	}
+
+	/**
+	 * Adds the terms for the taxonomy
+	 *
+	 * @param array $data     Review data.
+	 * @param array $data_key the parameter name you wish to assign it to.
+	 * @param array $taxonomy the taxonomy to grab terms for.
+	 *
+	 * @return array $data Review data.
+	 */
+	public function add_taxonomy_terms( $data, $data_key, $taxonomy ) {
+		/**
+		 * Filter: 'lsx_to_schema_' . $this->post_type . '_' . $data_key . '_taxonomy' - Allow changing the taxonomy used to assign keywords to a post type Review data.
+		 *
+		 * @api string $taxonomy The chosen taxonomy.
+		 */
+		$taxonomy = apply_filters( 'lsx_to_schema_' . $this->post_type . '_' . $data_key . '_taxonomy', $taxonomy );
+
+		return \lsx\legacy\Schema_Utils::add_terms( $data, $this->context->id, $data_key, $taxonomy );
 	}
 }

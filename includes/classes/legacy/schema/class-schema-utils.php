@@ -126,6 +126,18 @@ class Schema_Utils {
 	}
 
 	/**
+	 * Retrieve a users Schema ID.
+	 *
+	 * @param string               $name The Name of the Reviewer you need a for.
+	 * @param WPSEO_Schema_Context $context A value object with context variables.
+	 *
+	 * @return string The user's schema ID.
+	 */
+	public static function get_author_schema_id( $name, $email, $context ) {
+		return $context->site_url . \WPSEO_Schema_IDs::PERSON_HASH . wp_hash( $name . $email );
+	}
+
+	/**
 	 * Generates the place graph piece for the subtrip / Itinerary arrays.
 	 *
 	 * @param array                $data         subTrip / itinerary data.
@@ -268,6 +280,55 @@ class Schema_Utils {
 				'@id' => $context->canonical . \WPSEO_Schema_IDs::PRIMARY_IMAGE_HASH,
 			);
 		}
+		return $data;
+	}
+
+	/**
+	 * Generates the itemReviewed schema
+	 *
+	 * @param  array  $items The array of IDS.
+	 * @param  string $type The schema type.
+	 * @return array $schema An array of the schema markup.
+	 */
+	public static function get_item_reviewed( $items = array(), $type = '' ) {
+		$schema = array();
+		if ( false !== $items && ! empty( $items ) && '' !== $type ) {
+			foreach ( $items as $item ) {
+				$title       = get_the_title( $item );
+				$item_schema = array(
+					'@type' => $type,
+					'name'  => $title,
+				);
+				$schema[]    = $item_schema;
+			}
+		}
+		return $schema;
+	}
+
+	/**
+	 * Adds a term or multiple terms, comma separated, to a field.
+	 *
+	 * @param array  $data     Review data.
+	 * @param string $post_id  The ID of the item to fetch terms
+	 * @param string $key      The key in data to save the terms in.
+	 * @param string $taxonomy The taxonomy to retrieve the terms from.
+	 *
+	 * @return mixed array $data Review data.
+	 */
+	public static function add_terms( $data, $post_id, $key, $taxonomy ) {
+		$terms = get_the_terms( $post_id, $taxonomy );
+		if ( is_array( $terms ) ) {
+			$keywords = array();
+			foreach ( $terms as $term ) {
+				// We are checking against the WordPress internal translation.
+				// @codingStandardsIgnoreLine
+				if ( $term->name !== __( 'Uncategorized' ) ) {
+					$keywords[] = $term->name;
+				}
+			}
+			$data[ $key ] = implode( ',', $keywords );
+		}
+
 		return $data;
 	}
 }
