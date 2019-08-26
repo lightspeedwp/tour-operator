@@ -226,4 +226,21 @@ class Schema_Utils {
 		$data[] = $offer;
 		return $data;
 	}
+
+	/**
+	 * Adds an image node if the post has a featured image.
+	 *
+	 * @param array                $data         The Review data.
+	 * @param WPSEO_Schema_Context $context      The post ID of the current Place to add.
+	 *
+	 * @return array $data The Review data.
+	 */
+	public static function add_image( $data, $context ) {
+		if ( $context->has_image ) {
+			$data['image'] = array(
+				'@id' => $context->canonical . \WPSEO_Schema_IDs::PRIMARY_IMAGE_HASH,
+			);
+		}
+		return $data;
+	}
 }

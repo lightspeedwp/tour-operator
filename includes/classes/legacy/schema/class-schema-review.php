@@ -89,7 +89,7 @@ class LSX_TO_Schema_Review implements WPSEO_Graph_Piece {
 			$data['publisher'] = $this->context->site_represents_reference;
 		}
 
-		$data = $this->add_image( $data );
+		$data = \lsx\legacy\Schema_Utils::add_image( $data, $this->context );
 		$data = $this->add_keywords( $data );
 		$data = $this->add_sections( $data );
 
@@ -175,23 +175,6 @@ class LSX_TO_Schema_Review implements WPSEO_Graph_Piece {
 				}
 			}
 			$data[ $key ] = implode( ',', $keywords );
-		}
-
-		return $data;
-	}
-
-	/**
-	 * Adds an image node if the post has a featured image.
-	 *
-	 * @param array $data The Review data.
-	 *
-	 * @return array $data The Review data.
-	 */
-	private function add_image( $data ) {
-		if ( $this->context->has_image ) {
-			$data['image'] = array(
-				'@id' => $this->context->canonical . WPSEO_Schema_IDs::PRIMARY_IMAGE_HASH,
-			);
 		}
 
 		return $data;
