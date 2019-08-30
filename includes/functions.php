@@ -203,7 +203,7 @@ function lsx_to_itinerary_thumbnail() {
 
 		if ( ! empty( $tour_itinerary->itinerary['featured_image'] ) ) {
 			$tour_itinerary->save_used_image( $tour_itinerary->itinerary['featured_image'] );
-			$thumbnail = wp_get_attachment_image_src( $tour_itinerary->itinerary['featured_image'], 'lsx-thumbnail-wide' );
+			$thumbnail = wp_get_attachment_image_src( $tour_itinerary->itinerary['featured_image'], 'lsx-thumbnail-square' );
 
 			if ( is_array( $thumbnail ) ) {
 				$thumbnail_src = $thumbnail[0];
