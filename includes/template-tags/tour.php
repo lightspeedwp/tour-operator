@@ -314,7 +314,7 @@ function lsx_to_room_basis_label( $index = '' ) {
 function lsx_to_itinerary_room_basis( $before = '', $after = '' ) {
 	global $tour_itinerary;
 	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
-		if ( ! empty( $tour_itinerary->itinerary['room_basis'] ) && 'none' !== $tour_itinerary->itinerary['room_basis'] ) {
+		if ( ! empty( $tour_itinerary->itinerary['room_basis'] ) && 'None' !== $tour_itinerary->itinerary['room_basis'] ) {
 			$label = lsx_to_room_basis_label( $tour_itinerary->itinerary['room_basis'] );
 			echo wp_kses_post( $before . $label . $after );
 		}
@@ -346,7 +346,7 @@ function lsx_to_drinks_basis_label( $index = '' ) {
 function lsx_to_itinerary_drinks_basis( $before = '', $after = '' ) {
 	global $tour_itinerary;
 	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
-		if ( ! empty( $tour_itinerary->itinerary['drinks_basis'] ) && 'none' !== $tour_itinerary->itinerary['drinks_basis'] ) {
+		if ( ! empty( $tour_itinerary->itinerary['drinks_basis'] ) && 'None' !== $tour_itinerary->itinerary['drinks_basis'] ) {
 			$label = lsx_to_drinks_basis_label( $tour_itinerary->itinerary['drinks_basis'] );
 			echo wp_kses_post( $before . $label . $after );
 		}
