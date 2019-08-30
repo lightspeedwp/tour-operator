@@ -363,7 +363,7 @@ function lsx_to_connected_items_query( $from = false, $to = false, $before = '',
 				$connected_ids = array( $connected_ids );
 			}
 
-			$return = $before . lsx_to_connected_list( $connected_ids,$from,true,', ' ) . $after;
+			$return = $before . lsx_to_connected_list( $connected_ids, $from, true, ', ' ) . $after;
 
 			if ( $echo ) {
 				echo wp_kses_post( $return );
@@ -647,7 +647,7 @@ function lsx_to_connected_list( $connected_ids = false, $type = false, $link = t
 
 			$post = $post_original;
 
-			return implode( $seperator,$connected_list );
+			return implode( $seperator, $connected_list );
 		}
 	}
 }
@@ -733,4 +733,40 @@ function to_continent_region_label( $country_code = '' ) {
 		}
 	}
 	return $return;
+}
+
+/**
+ * Gets the price type label based on the index
+ *
+ * @param string $label_index the index of the label you want to retrive.
+ * @return string
+ */
+function lsx_to_get_price_type_label( $label_index = '' ) {
+	$label = '';
+	switch ( $label_index ) {
+		case '':
+			$label = '';
+			break;
+
+		case 'per_person_per_night':
+			$label = esc_html__( 'Per Person Per Night', 'tour-operator' );
+			break;
+
+		case 'per_person_sharing':
+			$label = esc_html__( 'Per Person Sharing', 'tour-operator' );
+			break;
+
+		case 'per_person_sharing_per_night':
+			$label = esc_html__( 'Per Person Sharing Per Night', 'tour-operator' );
+			break;
+
+		case 'total_percentage':
+			$label = esc_html__( 'Percentage Off Your Price.', 'tour-operator' );
+			break;
+
+		default:
+			$label = '';
+			break;
+	}
+	return $label;
 }

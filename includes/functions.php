@@ -226,7 +226,7 @@ function lsx_to_itinerary_thumbnail() {
 
 				if ( false !== $current_image_id ) {
 					$tour_itinerary->save_used_image( $current_image_id );
-					$temp_src_array = wp_get_attachment_image_src( $current_image_id, 'lsx-thumbnail-wide' );
+					$temp_src_array = wp_get_attachment_image_src( $current_image_id, 'lsx-thumbnail-square' );
 
 					if ( is_array( $temp_src_array ) ) {
 						$accommodation_images[] = $temp_src_array[0];
@@ -243,7 +243,7 @@ function lsx_to_itinerary_thumbnail() {
 
 		// Check weather or not to display the placeholder.
 		if ( false === $thumbnail_src || '' === $thumbnail_src ) {
-			$thumbnail_src = \lsx\legacy\Placeholders::placeholder_url( null, 'tour', 'lsx-thumbnail-wide' );
+			$thumbnail_src = \lsx\legacy\Placeholders::placeholder_url( null, 'tour', 'lsx-thumbnail-square' );
 		}
 
 		return $thumbnail_src;

@@ -202,6 +202,10 @@ function lsx_to_destination_single_fast_facts() {
 					<?php
 						$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
 
+						months_to_visit();
+
+						destination_children( get_the_ID() );
+
 						the_terms( get_the_ID(), 'travel-style', '<span class="' . $meta_class . 'style"><span class="lsx-to-meta-data-key">' . esc_html__( 'Travel Style', 'tour-operator' ) . ':</span> ', ', ', '</span>' );
 
 						if ( function_exists( 'lsx_to_connected_activities' ) ) {
@@ -382,8 +386,6 @@ function lsx_to_destination_single_content_bottom() {
 			</section>
 		<?php }
 
-		lsx_to_best_time_to_visit( '<section id="when-to-go" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-when-to-go' ) . '>' . esc_html__( 'When to Go', 'tour-operator' ) . '</h2><div id="collapse-when-to-go" class="collapse in"><div class="collapse-inner clearfix">', '</div></div></section>' );
-
 		lsx_to_destination_travel_info();
 
 		lsx_to_country_regions();
@@ -531,7 +533,9 @@ function lsx_to_tour_single_content_bottom() {
 
 		lsx_to_best_time_to_visit( '<section id="when-to-go" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-when-to-go' ) . '>' . esc_html__( 'When to Go', 'tour-operator' ) . '</h2><div id="collapse-when-to-go" class="collapse in"><div class="collapse-inner clearfix">', '</div></div></section>' );
 
-		if ( lsx_to_has_itinerary() ) { ?>
+		if ( lsx_to_has_itinerary() ) {
+			$itinerary_count = 1;
+			?>
 			<section id="itinerary" class="lsx-to-section <?php lsx_to_collapsible_class( 'tour', false ); ?>">
 				<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" data-toggle="collapse" data-target="#collapse-itinerary" aria-expanded="false"><?php esc_html_e( 'Full Day by Day Itinerary', 'tour-operator' ); ?></h2>
 
@@ -544,7 +548,7 @@ function lsx_to_tour_single_content_bottom() {
 									$thumb = lsx_to_itinerary_thumbnail();
 								?>
 
-								<div <?php lsx_to_itinerary_class( 'lsx-to-archive-item itinerary-item col-xs-12' ); ?>>
+								<div id="day-<?php echo esc_attr( $itinerary_count ); ?>" <?php lsx_to_itinerary_class( 'lsx-to-archive-item itinerary-item col-xs-12' ); ?>>
 									<div class="lsx-to-archive-container">
 										<div class="lsx-to-archive-thumb">
 											<div class="lsx-to-thumb-slot" style="background-image: url('<?php echo esc_url( $thumb ); ?>');">
@@ -576,7 +580,10 @@ function lsx_to_tour_single_content_bottom() {
 										</div>
 									</div>
 								</div>
-							<?php } ?>
+								<?php
+								$itinerary_count++;
+							}
+							?>
 						</div>
 					</div>
 				</div>

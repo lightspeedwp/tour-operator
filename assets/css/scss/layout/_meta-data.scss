@@ -192,3 +192,14 @@
 	&.lsx-to-meta-data-day-includes:before { content: '\f058'; }
 	&.lsx-to-meta-data-day-excludes:before { content: '\f057'; }
 }
+
+.lsx-to-meta-data.lsx-to-meta-data-best-time {
+	&:before {
+		content: '\f073';
+	}
+}
+.lsx-to-meta-data.lsx-to-meta-data-regions {
+	&:before {
+		content: '\f0ac';
+	}
+}

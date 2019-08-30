@@ -157,7 +157,6 @@ class Destination {
 			$this->page_links = $page_links;
 
 			$this->get_map_link();
-			$this->get_when_to_go();
 			$this->get_travel_info_link();
 			$this->get_region_link();
 			$this->get_gallery_link();
@@ -180,16 +179,6 @@ class Destination {
 		return $page_links;
 	}
 
-	/**
-	 * Tests for the When To Go links and adds it to the $page_links variable
-	 */
-	public function get_when_to_go() {
-		$best_time_to_visit = get_post_meta( get_the_ID(), 'best_time_to_visit', true );
-
-		if ( ! empty( $best_time_to_visit ) && is_array( $best_time_to_visit ) ) {
-			$this->page_links['when-to-go'] = esc_html__( 'Best Time', 'tour-operator' );
-		}
-	}
 
 	/**
 	 * Adds the Travel Information to the $page_links variable
