@@ -218,30 +218,29 @@ class Accommodation {
 	 */
 	public function rating( $html = '', $meta_key = false, $value = false, $before = '', $after = '' ) {
 		if ( get_post_type() === 'accommodation' && 'rating' === $meta_key ) {
-			$ratings_array = false;
+			$ratings_array = array();
 			$counter       = 5;
+			$html          = '';
+			if ( 0 !== (int) $value ) {
+				while ( $counter > 0 ) {
+					if ( (int) $value > 0 ) {
+						$ratings_array[] = '<i class="fa fa-star"></i>';
+					} else {
+						$ratings_array[] = '<i class="fa fa-star-o"></i>';
+					}
 
-			while ( $counter > 0 ) {
-				if ( (int) $value > 0 ) {
-					$ratings_array[] = '<i class="fa fa-star"></i>';
-				} else {
-					$ratings_array[] = '<i class="fa fa-star-o"></i>';
+					$counter --;
+					$value --;
 				}
+				$rating_type        = get_post_meta( get_the_ID(), 'rating_type', true );
+				$rating_description = '';
 
-				$counter --;
-				$value --;
+				if ( false !== $rating_type && '' !== $rating_type && esc_html__( 'Unspecified', 'tour-operator' ) !== $rating_type ) {
+					$rating_description = ' <small>(' . $rating_type . ')</small>';
+				}
+				$html = $before . implode( '', $ratings_array ) . $rating_description . $after;
 			}
-
-			$rating_type        = get_post_meta( get_the_ID(), 'rating_type', true );
-			$rating_description = '';
-
-			if ( false !== $rating_type && '' !== $rating_type && esc_html__( 'Unspecified', 'tour-operator' ) !== $rating_type ) {
-				$rating_description = ' <small>(' . $rating_type . ')</small>';
-			}
-
-			$html = $before . implode( '', $ratings_array ) . $rating_description . $after;
 		}
-
 		return $html;
 	}
 

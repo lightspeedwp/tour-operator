@@ -165,6 +165,7 @@ class Tour_Operator {
 	private function __construct() {
 		add_action( 'init', array( $this, 'disable_deprecated' ), 0 );
 		add_action( 'admin_init', array( $this, 'compatible_version_check' ) );
+		add_action( 'plugins_loaded', array( $this, 'trigger_schema' ), 10 );
 
 		// Theme compatibility check.
 		add_action( 'admin_notices', array( $this, 'compatible_theme_check' ) );
@@ -226,9 +227,6 @@ class Tour_Operator {
 			2
 		);
 
-		// Initiates the Schema.
-		$this->schema = Schema::get_instance();
-
 		// init placeholders.
 		$this->placeholders = new Placeholders( array_keys( $this->post_types ) );
 
@@ -262,6 +260,11 @@ class Tour_Operator {
 		}
 
 		return self::$instance;
+	}
+
+	public function trigger_schema() {
+		// Initiates the Schema.
+		$this->schema = Schema::get_instance();
 	}
 
 	/**

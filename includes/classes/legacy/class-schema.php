@@ -30,7 +30,7 @@ class Schema {
 	 * Constructor
 	 */
 	public function __construct() {
-		if ( class_exists( 'WPSEO_Graph_Piece' ) ) {
+		if ( interface_exists( 'WPSEO_Graph_Piece' ) ) {
 			require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-utils.php';
 			require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-lsx-to-schema-graph-piece.php';
 			require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-lsx-to-tour-schema.php';
