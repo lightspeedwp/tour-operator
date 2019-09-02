@@ -512,7 +512,7 @@ class Tour_Operator {
 	public function require_post_type_classes() {
 		foreach ( $this->post_types as $post_type => $label ) {
 			if ( class_exists( "lsx\\legacy\\{$post_type}" ) ) {
-				call_user_func_array( array( "lsx\\legacy\\{$post_type}", 'get_instance' ), array() );
+				$this->$post_type = call_user_func_array( array( "lsx\\legacy\\{$post_type}", 'get_instance' ), array() );
 			}
 		}
 

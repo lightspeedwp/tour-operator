@@ -288,3 +288,67 @@ function lsx_to_best_time_to_visit( $before = '', $after = '', $echo = true ) {
 function lsx_to_connected_tours( $before = '', $after = '', $echo = true ) {
 	lsx_to_connected_items_query( 'tour', get_post_type(), $before, $after, $echo );
 }
+
+/**
+ * Return the Room basis Label.
+ *
+ * @param string $index
+ * @return string
+ */
+function lsx_to_room_basis_label( $index = '' ) {
+	$label = $index;
+	if ( isset( tour_operator()->legacy->tour->room_basis[ $index ] ) ) {
+		$label = tour_operator()->legacy->tour->room_basis[ $index ];
+	}
+	return $label;
+}
+
+/**
+ * Outputs The current Itinerary connected destinations, can only be used in
+ * the itinerary loop.
+ *
+ * @package       tour-operator
+ * @subpackage    template-tags
+ * @category      itinerary
+ */
+function lsx_to_itinerary_room_basis( $before = '', $after = '' ) {
+	global $tour_itinerary;
+	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
+		if ( ! empty( $tour_itinerary->itinerary['room_basis'] ) && 'None' !== $tour_itinerary->itinerary['room_basis'] ) {
+			$label = lsx_to_room_basis_label( $tour_itinerary->itinerary['room_basis'] );
+			echo wp_kses_post( $before . $label . $after );
+		}
+	}
+}
+
+/**
+ * Return the Drinks basis Label.
+ *
+ * @param string $index
+ * @return string
+ */
+function lsx_to_drinks_basis_label( $index = '' ) {
+	$label = $index;
+	if ( isset( tour_operator()->legacy->tour->drinks_basis[ $index ] ) ) {
+		$label = tour_operator()->legacy->tour->drinks_basis[ $index ];
+	}
+	return $label;
+}
+
+/**
+ * Outputs The current Itinerary connected destinations, can only be used in
+ * the itinerary loop.
+ *
+ * @package       tour-operator
+ * @subpackage    template-tags
+ * @category      itinerary
+ */
+function lsx_to_itinerary_drinks_basis( $before = '', $after = '' ) {
+	global $tour_itinerary;
+	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
+		if ( ! empty( $tour_itinerary->itinerary['drinks_basis'] ) && 'None' !== $tour_itinerary->itinerary['drinks_basis'] ) {
+			$label = lsx_to_drinks_basis_label( $tour_itinerary->itinerary['drinks_basis'] );
+			echo wp_kses_post( $before . $label . $after );
+		}
+	}
+}

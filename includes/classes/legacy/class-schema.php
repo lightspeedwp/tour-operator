@@ -30,12 +30,14 @@ class Schema {
 	 * Constructor
 	 */
 	public function __construct() {
-		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-utils.php';
-		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-lsx-to-schema-graph-piece.php';
-		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-lsx-to-tour-schema.php';
-		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-lsx-to-accommodation-schema.php';
-		require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-lsx-to-destination-schema.php';
-		add_filter( 'wpseo_schema_graph_pieces', array( $this, 'add_graph_pieces' ), 11, 2 );
+		if ( class_exists( 'WPSEO_Graph_Piece' ) ) {
+			require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-utils.php';
+			require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-lsx-to-schema-graph-piece.php';
+			require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-lsx-to-tour-schema.php';
+			require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-lsx-to-accommodation-schema.php';
+			require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-lsx-to-destination-schema.php';
+			add_filter( 'wpseo_schema_graph_pieces', array( $this, 'add_graph_pieces' ), 11, 2 );
+		}
 	}
 
 	/**
