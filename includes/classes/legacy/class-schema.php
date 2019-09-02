@@ -30,7 +30,7 @@ class Schema {
 	 * Constructor
 	 */
 	public function __construct() {
-		if ( class_exists( 'WPSEO_Graph_Piece' ) ) {
+		if ( interface_exists( 'WPSEO_Graph_Piece' ) ) {
 			require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-schema-utils.php';
 			require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-lsx-to-schema-graph-piece.php';
 			require_once LSX_TO_PATH . 'includes/classes/legacy/schema/class-lsx-to-tour-schema.php';
@@ -76,39 +76,9 @@ class Schema {
 	 */
 	public function tour_single_schema() {
 		if ( is_singular( 'tour' ) ) {
-			$tours_list = get_post_meta( get_the_ID(), 'itinerary', false );
-			$des_list   = get_post_meta( get_the_ID(), 'destination_to_tour', false );
-			$list_array = array();
-			$des_schema = array();
-			$url_option = get_the_permalink() . '#itinerary';
-			$tour_title = get_the_title();
-			$prim_url   = get_the_permalink();
-			$itin_con   = wp_strip_all_tags( get_the_content() );
-			$thumb_url  = get_the_post_thumbnail_url( get_the_ID(), 'full' );
-			$price      = get_post_meta( get_the_ID(), 'price', false );
 			$start_val  = get_post_meta( get_the_ID(), 'booking_validity_start', false );
 			$end_val    = get_post_meta( get_the_ID(), 'booking_validity_end', false );
-			$price_val = lsx_currencies()->base_currency;
 
-			$i = 0;
-			if ( ! empty( $tours_list ) ) {
-				foreach ( $tours_list as $day ) {
-					$i++;
-					$day_title        = $day['title'];
-					$day_description  = wp_strip_all_tags( $day['description'] );
-					$url_option       = get_the_permalink() . '#day-' . $i;
-					$schema_day = array(
-						'@type' => 'ListItem',
-						'position' => $i,
-						'item' => array(
-							'@id' => $url_option,
-							'name' => $day_title,
-							'description' => $day_description,
-						),
-					);
-					$list_array[] = $schema_day;
-				}
-			}
 
 			if ( ! empty( $des_list ) ) {
 				foreach ( $des_list as $single_destination ) {
