@@ -201,7 +201,7 @@ class SCPO_Engine {
 			return false;
 		}
 
-		$id_arr = array();
+		/*$id_arr = array();
 
 		foreach ( $data as $key => $values ) {
 			foreach ( $values as $position => $id ) {
@@ -218,7 +218,7 @@ class SCPO_Engine {
 			}
 		}
 
-		sort( $menu_order_arr );
+		sort( $menu_order_arr );*/
 
 		foreach ( $data as $key => $values ) {
 			foreach ( $values as $position => $id ) {

@@ -99,7 +99,7 @@ class Itinerary_Query {
 	 * @access private
 	 */
 	public function __construct() {
-		$this->post_id = get_the_ID();
+		$this->post_id     = get_the_ID();
 		$this->itineraries = get_post_meta( $this->post_id, 'itinerary', false );
 		if ( is_array( $this->itineraries ) && ! empty( $this->itineraries ) ) {
 			$this->has_itinerary = true;
