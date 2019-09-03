@@ -7,7 +7,7 @@
  * @subpackage	widget
  */
 
-global $term, $taxonomy, $disable_placeholder, $disable_text, $disable_single_link;
+global $term, $taxonomy, $disable_placeholder, $disable_text, $disable_view_more, $disable_single_link;
 
 if ( empty( $disable_single_link ) ) {
 	$title_link = esc_url( get_term_link( $term, $taxonomy ) );
@@ -51,7 +51,7 @@ if ( empty( $disable_single_link ) ) {
 			</p>
 		<?php } ?>
 
-		<?php if ( ! empty( $title_link ) ) { ?>
+		<?php if ( ! empty( $title_link ) && true !== $disable_view_more ) { ?>
 			<p>
 				<a href="<?php echo esc_url( $title_link ); ?>" class="moretag"><?php esc_html_e( 'View more', 'tour-operator' ); ?></a>
 			</p>

@@ -7,7 +7,7 @@
  * @subpackage	widget
  */
 
-global $disable_placeholder, $disable_text, $disable_button, $post;
+global $disable_placeholder, $disable_text, $disable_view_more, $post;
 
 $has_single = ! lsx_to_is_single_disabled();
 $permalink = '';
@@ -38,20 +38,19 @@ if ( $has_single ) {
 			// }
 		?>
 
-		asdfasdfasdfasdfasdfasdf
-
 		<?php
 			ob_start();
 			lsx_to_widget_entry_content_top();
 			the_excerpt();
 			lsx_to_widget_entry_content_bottom();
 			$excerpt = ob_get_clean();
-			var_dump( $disable_button );
 			if ( empty( $disable_text ) && ! empty( $excerpt ) ) {
 				echo wp_kses_post( $excerpt );
-			} elseif ( $has_single && false !== $disable_button ) { ?>
+			} elseif ( $has_single && false !== $disable_view_more ) {
+				?>
 				<p><a href="<?php echo esc_url( $permalink ); ?>" class="moretag"><?php esc_html_e( 'View more', 'tour-operator' ); ?></a></p>
-			<?php }
+				<?php
+			}
 		?>
 	</div>
 </article>

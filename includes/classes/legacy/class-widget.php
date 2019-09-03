@@ -192,68 +192,71 @@ class Widget extends \WP_Widget {
 
 	/** @see WP_Widget::update -- do not rename this */
 	function update( $new_instance, $old_instance ) {
-		$instance = $old_instance;
-		$instance['title'] = wp_kses_post( force_balance_tags( $new_instance['title'] ) );
-		$instance['title_link'] = strip_tags( $new_instance['title_link'] );
-		$instance['columns'] = strip_tags( $new_instance['columns'] );
-		$instance['orderby'] = strip_tags( $new_instance['orderby'] );
-		$instance['order'] = strip_tags( $new_instance['order'] );
-		$instance['limit'] = strip_tags( $new_instance['limit'] );
-		$instance['include'] = strip_tags( $new_instance['include'] );
-		$instance['disable_placeholder'] = strip_tags( $new_instance['disable_placeholder'] );
-		$instance['disable_text'] = strip_tags( $new_instance['disable_text'] );
-		$instance['buttons'] = strip_tags( $new_instance['buttons'] );
-		$instance['button_text'] = $new_instance['button_text'];
-		$instance['carousel'] = strip_tags( $new_instance['carousel'] );
-		$instance['featured'] = strip_tags( $new_instance['featured'] );
-		$instance['post_type'] = strip_tags( $new_instance['post_type'] );
-		$instance['class'] = strip_tags( $new_instance['class'] );
-		$instance['interval'] = strip_tags( $new_instance['interval'] );
+		$instance                        = $old_instance;
+		$instance['title']               = wp_kses_post( force_balance_tags( $new_instance['title'] ) );
+		$instance['title_link']          = wp_strip_all_tags( $new_instance['title_link'] );
+		$instance['columns']             = wp_strip_all_tags( $new_instance['columns'] );
+		$instance['orderby']             = wp_strip_all_tags( $new_instance['orderby'] );
+		$instance['order']               = wp_strip_all_tags( $new_instance['order'] );
+		$instance['limit']               = wp_strip_all_tags( $new_instance['limit'] );
+		$instance['include']             = wp_strip_all_tags( $new_instance['include'] );
+		$instance['disable_placeholder'] = wp_strip_all_tags( $new_instance['disable_placeholder'] );
+		$instance['disable_text']        = wp_strip_all_tags( $new_instance['disable_text'] );
+		$instance['disable_view_more']   = wp_strip_all_tags( $new_instance['disable_view_more'] );
+		$instance['buttons']             = wp_strip_all_tags( $new_instance['buttons'] );
+		$instance['button_text']         = $new_instance['button_text'];
+		$instance['carousel']            = wp_strip_all_tags( $new_instance['carousel'] );
+		$instance['featured']            = wp_strip_all_tags( $new_instance['featured'] );
+		$instance['post_type']           = wp_strip_all_tags( $new_instance['post_type'] );
+		$instance['class']               = wp_strip_all_tags( $new_instance['class'] );
+		$instance['interval']            = wp_strip_all_tags( $new_instance['interval'] );
 		return $instance;
 	}
 
 	/** @see WP_Widget::form -- do not rename this */
-	function form( $instance ) {
+	public function form( $instance ) {
 
 		$defaults = array(
-			'title' => 'Featured',
-			'title_link' => '',
-			'columns' => '1',
-			'orderby' => 'date',
-			'order' => 'DESC',
-			'limit' => '',
-			'include' => '',
+			'title'               => 'Featured',
+			'title_link'          => '',
+			'columns'             => '1',
+			'orderby'             => 'date',
+			'order'               => 'DESC',
+			'limit'               => '',
+			'include'             => '',
 			'disable_placeholder' => 0,
-			'disable_text' => 0,
-			'buttons' => 1,
-			'button_text' => 'See All',
-			'featured' => 0,
-			'post_type' => 'accommodation',
-			'class' => '',
-			'interval' => '7000',
+			'disable_text'        => 0,
+			'disable_view_more'   => 0,
+			'buttons'             => 1,
+			'button_text'         => 'See All',
+			'featured'            => 0,
+			'post_type'           => 'accommodation',
+			'class'               => '',
+			'interval'            => '7000',
 		);
 
 		$defaults['carousel'] = 0;
 
 		$instance = wp_parse_args( (array) $instance, $defaults );
 
-		$title    = esc_attr( $instance['title'] );
-		$title_link    = esc_attr( $instance['title_link'] );
-		$columns  = esc_attr( $instance['columns'] );
-		$orderby  = esc_attr( $instance['orderby'] );
-		$order  = esc_attr( $instance['order'] );
-		$limit  = esc_attr( $instance['limit'] );
-		$include  = esc_attr( $instance['include'] );
-		$disable_placeholder  = esc_attr( $instance['disable_placeholder'] );
-		$disable_text  = esc_attr( $instance['disable_text'] );
-		$buttons = esc_attr( $instance['buttons'] );
-		$button_text = esc_attr( $instance['button_text'] );
-		$featured = esc_attr( $instance['featured'] );
-		$post_type = esc_attr( $instance['post_type'] );
-		$class = esc_attr( $instance['class'] );
-		$interval = esc_attr( $instance['interval'] );
-		$carousel = esc_attr( $instance['carousel'] );
-		$interval = esc_attr( $instance['interval'] );
+		$title               = esc_attr( $instance['title'] );
+		$title_link          = esc_attr( $instance['title_link'] );
+		$columns             = esc_attr( $instance['columns'] );
+		$orderby             = esc_attr( $instance['orderby'] );
+		$order               = esc_attr( $instance['order'] );
+		$limit               = esc_attr( $instance['limit'] );
+		$include             = esc_attr( $instance['include'] );
+		$disable_placeholder = esc_attr( $instance['disable_placeholder'] );
+		$disable_text        = esc_attr( $instance['disable_text'] );
+		$disable_view_more   = esc_attr( $instance['disable_view_more'] );
+		$buttons             = esc_attr( $instance['buttons'] );
+		$button_text         = esc_attr( $instance['button_text'] );
+		$featured            = esc_attr( $instance['featured'] );
+		$post_type           = esc_attr( $instance['post_type'] );
+		$class               = esc_attr( $instance['class'] );
+		$interval            = esc_attr( $instance['interval'] );
+		$carousel            = esc_attr( $instance['carousel'] );
+		$interval            = esc_attr( $instance['interval'] );
 		?>
 		<p>
 			<label for="<?php echo wp_kses_post( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:','tour-operator' ); ?></label>
@@ -354,11 +357,18 @@ class Widget extends \WP_Widget {
 				value="1" <?php checked( '1', $disable_text ); ?> /> <label
 				for="<?php echo wp_kses_post( $this->get_field_id( 'disable_text' ) ); ?>"><?php esc_html_e( 'Disable Excerpt and Tagline','tour-operator' ); ?></label>
 		</p>
+
+		<p>
+			<input id="<?php echo wp_kses_post( $this->get_field_id( 'disable_view_more' ) ); ?>"
+				name="<?php echo wp_kses_post( $this->get_field_name( 'disable_view_more' ) ); ?>" type="checkbox"
+				value="1" <?php checked( '1', $disable_view_more ); ?> /> <label
+				for="<?php echo wp_kses_post( $this->get_field_id( 'disable_view_more' ) ); ?>"><?php esc_html_e( 'Disable View More Button','tour-operator' ); ?></label>
+		</p>
 		<p>
 			<input id="<?php echo wp_kses_post( $this->get_field_id( 'buttons' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'buttons' ) ); ?>" type="checkbox"
 				value="1" <?php checked( '1', $buttons ); ?> /> <label
-				for="<?php echo wp_kses_post( $this->get_field_id( 'buttons' ) ); ?>"><?php esc_html_e( 'Disable Button','tour-operator' ); ?></label>
+				for="<?php echo wp_kses_post( $this->get_field_id( 'buttons' ) ); ?>"><?php esc_html_e( 'Display Button','tour-operator' ); ?></label>
 		</p>
 		<p>
 			<label for="<?php echo wp_kses_post( $this->get_field_id( 'button_text' ) ); ?>"><?php esc_html_e( 'Button Text:','tour-operator' ); ?></label>
@@ -404,7 +414,7 @@ class Widget extends \WP_Widget {
 	}
 
 	public function output( $atts ) {
-		global $columns, $disable_placeholder, $disable_text, $disable_button;
+		global $columns, $disable_placeholder, $disable_text, $disable_view_more;
 
 		// @codingStandardsIgnoreStart
 		extract( shortcode_atts( array(
@@ -417,6 +427,7 @@ class Widget extends \WP_Widget {
 			'include' => '',
 			'disable_placeholder' => false,
 			'disable_text' => false,
+			'disable_view_more' => false,
 			'buttons' => false,
 			'button_text' => false,
 			'carousel' => false,
@@ -461,8 +472,6 @@ class Widget extends \WP_Widget {
 		if ( 'none' !== $orderby ) {
 			$args['disabled_custom_post_order'] = true;
 		}
-
-		$disable_button = $buttons;
 
 		$widget_query = new \WP_Query( $args );
 
