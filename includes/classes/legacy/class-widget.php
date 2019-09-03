@@ -63,6 +63,12 @@ class Widget extends \WP_Widget {
 			$include = false;
 		}
 
+		if ( isset( $instance['parents_only'] ) ) {
+			$parents_only = $instance['parents_only'];
+		} else {
+			$parents_only = false;
+		}
+
 		if ( isset( $instance['disable_placeholder'] ) ) {
 			$disable_placeholder = $instance['disable_placeholder'];
 		} else {
@@ -73,6 +79,12 @@ class Widget extends \WP_Widget {
 			$disable_text = $instance['disable_text'];
 		} else {
 			$disable_text = false;
+		}
+
+		if ( isset( $instance['disable_view_more'] ) ) {
+			$disable_view_more = $instance['disable_view_more'];
+		} else {
+			$disable_view_more = false;
 		}
 
 		if ( isset( $instance['buttons'] ) ) {
@@ -171,8 +183,10 @@ class Widget extends \WP_Widget {
 				'order' => $order,
 				'limit' => $limit,
 				'include' => $include,
+				'parents_only' => $parents_only,
 				'disable_placeholder' => $disable_placeholder,
 				'disable_text' => $disable_text,
+				'disable_view_more' => $disable_view_more,
 				'buttons' => $buttons,
 				'button_text' => $button_text,
 				'featured' => $featured,
@@ -200,6 +214,7 @@ class Widget extends \WP_Widget {
 		$instance['order']               = wp_strip_all_tags( $new_instance['order'] );
 		$instance['limit']               = wp_strip_all_tags( $new_instance['limit'] );
 		$instance['include']             = wp_strip_all_tags( $new_instance['include'] );
+		$instance['parents_only']        = wp_strip_all_tags( $new_instance['parents_only'] );
 		$instance['disable_placeholder'] = wp_strip_all_tags( $new_instance['disable_placeholder'] );
 		$instance['disable_text']        = wp_strip_all_tags( $new_instance['disable_text'] );
 		$instance['disable_view_more']   = wp_strip_all_tags( $new_instance['disable_view_more'] );
@@ -224,6 +239,7 @@ class Widget extends \WP_Widget {
 			'order'               => 'DESC',
 			'limit'               => '',
 			'include'             => '',
+			'parents_only'        => 0,
 			'disable_placeholder' => 0,
 			'disable_text'        => 0,
 			'disable_view_more'   => 0,
@@ -246,6 +262,7 @@ class Widget extends \WP_Widget {
 		$order               = esc_attr( $instance['order'] );
 		$limit               = esc_attr( $instance['limit'] );
 		$include             = esc_attr( $instance['include'] );
+		$parents_only        = esc_attr( $instance['parents_only'] );
 		$disable_placeholder = esc_attr( $instance['disable_placeholder'] );
 		$disable_text        = esc_attr( $instance['disable_text'] );
 		$disable_view_more   = esc_attr( $instance['disable_view_more'] );
@@ -325,53 +342,60 @@ class Widget extends \WP_Widget {
 			</select>
 		</p>
 		<p>
-			<label for="<?php echo wp_kses_post( $this->get_field_id( 'limit' ) ); ?>"><?php esc_html_e( 'Maximum amount:','tour-operator' ); ?></label>
+			<label for="<?php echo wp_kses_post( $this->get_field_id( 'limit' ) ); ?>"><?php esc_html_e( 'Maximum amount:', 'tour-operator' ); ?></label>
 			<input class="widefat" id="<?php echo wp_kses_post( $this->get_field_id( 'limit' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'limit' ) ); ?>" type="text"
-				value="<?php echo wp_kses_post( $limit ); ?>" /> <small><?php esc_html_e( 'Leave empty to display all','tour-operator' ); ?></small>
+				value="<?php echo wp_kses_post( $limit ); ?>" /> <small><?php esc_html_e( 'Leave empty to display all', 'tour-operator' ); ?></small>
 		</p>
 
 		<p>
-			<label for="<?php echo wp_kses_post( $this->get_field_id( 'include' ) ); ?>"><?php esc_html_e( 'Specify Tours by ID:','tour-operator' ); ?></label>
+			<label for="<?php echo wp_kses_post( $this->get_field_id( 'include' ) ); ?>"><?php esc_html_e( 'Specify by ID:', 'tour-operator' ); ?></label>
 			<input class="widefat"
 				id="<?php echo wp_kses_post( $this->get_field_id( 'include' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'include' ) ); ?>" type="text"
-				value="<?php echo wp_kses_post( $include ); ?>" /> <small><?php esc_html_e( 'Comma separated list, overrides limit setting','tour-operator' ); ?></small>
+				value="<?php echo wp_kses_post( $include ); ?>" /> <small><?php esc_html_e( 'Comma separated list, overrides limit setting', 'tour-operator' ); ?></small>
+		</p>
+
+		<p>
+			<input id="<?php echo wp_kses_post( $this->get_field_id( 'parents_only' ) ); ?>"
+				name="<?php echo wp_kses_post( $this->get_field_name( 'parents_only' ) ); ?>" type="checkbox"
+				value="1" <?php checked( '1', $parents_only ); ?> /> <label
+				for="<?php echo wp_kses_post( $this->get_field_id( 'parents_only' ) ); ?>"><?php esc_html_e( 'Parents Only (post_parent =  0)', 'tour-operator' ); ?></label>
 		</p>
 
 		<p>
 			<input id="<?php echo wp_kses_post( $this->get_field_id( 'featured' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'featured' ) ); ?>"
 				type="checkbox" value="1" <?php checked( '1', $featured ); ?> /> <label
-				for="<?php echo wp_kses_post( $this->get_field_id( 'featured' ) ); ?>"><?php esc_html_e( 'Featured Items','tour-operator' ); ?></label>
+				for="<?php echo wp_kses_post( $this->get_field_id( 'featured' ) ); ?>"><?php esc_html_e( 'Featured Items', 'tour-operator' ); ?></label>
 		</p>
 		<p>
 			<input id="<?php echo wp_kses_post( $this->get_field_id( 'disable_placeholder' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'disable_placeholder' ) ); ?>" type="checkbox"
 				value="1" <?php checked( '1', $disable_placeholder ); ?> /> <label
-				for="<?php echo wp_kses_post( $this->get_field_id( 'disable_placeholder' ) ); ?>"><?php esc_html_e( 'Disable Featured Image','tour-operator' ); ?></label>
+				for="<?php echo wp_kses_post( $this->get_field_id( 'disable_placeholder' ) ); ?>"><?php esc_html_e( 'Disable Featured Image', 'tour-operator' ); ?></label>
 		</p>
 		<p>
 			<input id="<?php echo wp_kses_post( $this->get_field_id( 'disable_text' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'disable_text' ) ); ?>" type="checkbox"
 				value="1" <?php checked( '1', $disable_text ); ?> /> <label
-				for="<?php echo wp_kses_post( $this->get_field_id( 'disable_text' ) ); ?>"><?php esc_html_e( 'Disable Excerpt and Tagline','tour-operator' ); ?></label>
+				for="<?php echo wp_kses_post( $this->get_field_id( 'disable_text' ) ); ?>"><?php esc_html_e( 'Disable Excerpt and Tagline', 'tour-operator' ); ?></label>
 		</p>
 
 		<p>
 			<input id="<?php echo wp_kses_post( $this->get_field_id( 'disable_view_more' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'disable_view_more' ) ); ?>" type="checkbox"
 				value="1" <?php checked( '1', $disable_view_more ); ?> /> <label
-				for="<?php echo wp_kses_post( $this->get_field_id( 'disable_view_more' ) ); ?>"><?php esc_html_e( 'Disable View More Button','tour-operator' ); ?></label>
+				for="<?php echo wp_kses_post( $this->get_field_id( 'disable_view_more' ) ); ?>"><?php esc_html_e( 'Disable View More Button', 'tour-operator' ); ?></label>
 		</p>
 		<p>
 			<input id="<?php echo wp_kses_post( $this->get_field_id( 'buttons' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'buttons' ) ); ?>" type="checkbox"
 				value="1" <?php checked( '1', $buttons ); ?> /> <label
-				for="<?php echo wp_kses_post( $this->get_field_id( 'buttons' ) ); ?>"><?php esc_html_e( 'Display Button','tour-operator' ); ?></label>
+				for="<?php echo wp_kses_post( $this->get_field_id( 'buttons' ) ); ?>"><?php esc_html_e( 'Display Button', 'tour-operator' ); ?></label>
 		</p>
 		<p>
-			<label for="<?php echo wp_kses_post( $this->get_field_id( 'button_text' ) ); ?>"><?php esc_html_e( 'Button Text:','tour-operator' ); ?></label>
+			<label for="<?php echo wp_kses_post( $this->get_field_id( 'button_text' ) ); ?>"><?php esc_html_e( 'Button Text:', 'tour-operator' ); ?></label>
 			<input class="widefat" id="<?php echo wp_kses_post( $this->get_field_id( 'button_text' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'button_text' ) ); ?>" type="text"
 				value="<?php echo wp_kses_post( $button_text ); ?>" />
@@ -380,10 +404,10 @@ class Widget extends \WP_Widget {
 			<input id="<?php echo wp_kses_post( $this->get_field_id( 'carousel' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'carousel' ) ); ?>"
 				type="checkbox" value="1" <?php checked( '1', $carousel ); ?> /> <label
-				for="<?php echo wp_kses_post( $this->get_field_id( 'carousel' ) ); ?>"><?php esc_html_e( 'Enable Carousel','tour-operator' ); ?></label>
+				for="<?php echo wp_kses_post( $this->get_field_id( 'carousel' ) ); ?>"><?php esc_html_e( 'Enable Carousel', 'tour-operator' ); ?></label>
 		</p>
 		<p>
-			<label for="<?php echo wp_kses_post( $this->get_field_id( 'interval' ) ); ?>"><?php esc_html_e( 'Slide Interval:','tour-operator' ); ?></label>
+			<label for="<?php echo wp_kses_post( $this->get_field_id( 'interval' ) ); ?>"><?php esc_html_e( 'Slide Interval:', 'tour-operator' ); ?></label>
 			<input class="widefat" id="<?php echo wp_kses_post( $this->get_field_id( 'interval' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'interval' ) ); ?>" type="text"
 				value="<?php echo wp_kses_post( $interval ); ?>" />
@@ -403,11 +427,11 @@ class Widget extends \WP_Widget {
 		</p>
 
 		<p>
-			<label for="<?php echo wp_kses_post( $this->get_field_id( 'class' ) ); ?>"><?php esc_html_e( 'Class:','tour-operator' ); ?></label>
+			<label for="<?php echo wp_kses_post( $this->get_field_id( 'class' ) ); ?>"><?php esc_html_e( 'Class:', 'tour-operator' ); ?></label>
 			<input class="widefat" id="<?php echo wp_kses_post( $this->get_field_id( 'class' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'class' ) ); ?>" type="text"
 				value="<?php echo wp_kses_post( $class ); ?>" />
-			<small><?php esc_html_e( 'Add your own class to the opening element of the widget','tour-operator' ); ?></small>
+			<small><?php esc_html_e( 'Add your own class to the opening element of the widget', 'tour-operator' ); ?></small>
 		</p>
 		<?php
 
@@ -425,6 +449,7 @@ class Widget extends \WP_Widget {
 			'order' => 'DESC',
 			'limit' => '-1',
 			'include' => '',
+			'parents_only' => false,
 			'disable_placeholder' => false,
 			'disable_text' => false,
 			'disable_view_more' => false,
@@ -471,6 +496,10 @@ class Widget extends \WP_Widget {
 
 		if ( 'none' !== $orderby ) {
 			$args['disabled_custom_post_order'] = true;
+		}
+
+		if ( true === $parents_only || '1' === $parents_only ) {
+			$args ['post_parent'] = 0;
 		}
 
 		$widget_query = new \WP_Query( $args );
