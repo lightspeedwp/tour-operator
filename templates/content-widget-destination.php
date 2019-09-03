@@ -46,7 +46,8 @@ if ( $has_single ) {
 			$excerpt = ob_get_clean();
 			if ( empty( $disable_text ) && ! empty( $excerpt ) ) {
 				echo wp_kses_post( $excerpt );
-			} elseif ( $has_single && true !== $disable_view_more && '1' !== $disable_view_more ) {
+			}
+			if ( $has_single && true !== $disable_view_more && '1' !== $disable_view_more ) {
 				?>
 				<p><a href="<?php echo esc_url( $permalink ); ?>" class="moretag"><?php esc_html_e( 'View more', 'tour-operator' ); ?></a></p>
 				<?php
