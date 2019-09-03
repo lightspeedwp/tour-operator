@@ -358,7 +358,7 @@ class Widget extends \WP_Widget {
 			<input id="<?php echo wp_kses_post( $this->get_field_id( 'buttons' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'buttons' ) ); ?>" type="checkbox"
 				value="1" <?php checked( '1', $buttons ); ?> /> <label
-				for="<?php echo wp_kses_post( $this->get_field_id( 'buttons' ) ); ?>"><?php esc_html_e( 'Display Button','tour-operator' ); ?></label>
+				for="<?php echo wp_kses_post( $this->get_field_id( 'buttons' ) ); ?>"><?php esc_html_e( 'Disable Button','tour-operator' ); ?></label>
 		</p>
 		<p>
 			<label for="<?php echo wp_kses_post( $this->get_field_id( 'button_text' ) ); ?>"><?php esc_html_e( 'Button Text:','tour-operator' ); ?></label>
@@ -404,7 +404,7 @@ class Widget extends \WP_Widget {
 	}
 
 	public function output( $atts ) {
-		global $columns, $disable_placeholder, $disable_text;
+		global $columns, $disable_placeholder, $disable_text, $disable_button;
 
 		// @codingStandardsIgnoreStart
 		extract( shortcode_atts( array(
@@ -461,6 +461,8 @@ class Widget extends \WP_Widget {
 		if ( 'none' !== $orderby ) {
 			$args['disabled_custom_post_order'] = true;
 		}
+
+		$disable_button = $buttons;
 
 		$widget_query = new \WP_Query( $args );
 

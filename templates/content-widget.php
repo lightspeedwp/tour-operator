@@ -24,6 +24,8 @@ global $disable_placeholder, $disable_text;
 			</a>
 		</h4>
 
+		asdfasdfasdfasdfasdfasdf
+
 		<?php
 			ob_start();
 			lsx_to_widget_entry_content_top();
