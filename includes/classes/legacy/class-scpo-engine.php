@@ -225,7 +225,7 @@ class SCPO_Engine {
 				$wpdb->update(
 					$wpdb->posts,
 					array(
-						'menu_order' => $menu_order_arr[ $position ],
+						'menu_order' => $position,
 					),
 					array(
 						'ID' => intval( $id ),
