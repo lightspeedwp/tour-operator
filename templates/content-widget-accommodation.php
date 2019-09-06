@@ -73,7 +73,7 @@ if ( $has_single ) {
 		}
 		if ( $has_single && true !== $disable_view_more && '1' !== $disable_view_more ) {
 			?>
-			<p><a href="<?php echo esc_url( $permalink ); ?>" class="moretag"><?php esc_html_e( 'View more', 'tour-operator' ); ?></a></p>
+			<p class="moretag-wrapper"><a href="<?php echo esc_url( $permalink ); ?>" class="moretag"><?php esc_html_e( 'View more', 'tour-operator' ); ?></a></p>
 			<?php
 		}
 		?>

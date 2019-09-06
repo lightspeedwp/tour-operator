@@ -11,6 +11,13 @@ namespace lsx\legacy;
 class Widget extends \WP_Widget {
 
 	/**
+	 * Holds the widget args
+	 *
+	 * @var array
+	 */
+	public $args = array();
+
+	/**
 	 * Sets up the widgets name etc
 	 */
 	public function __construct() {
@@ -24,6 +31,7 @@ class Widget extends \WP_Widget {
 
 	/** @see WP_Widget::widget -- do not rename this */
 	public function widget( $args, $instance ) {
+		$this->args = $args;
 		if ( isset( $instance['title'] ) ) {
 			$title = $instance['title'];
 		} else {
@@ -658,7 +666,8 @@ class Widget extends \WP_Widget {
 		}
 
 		$original_name = $template;
-		$path          = apply_filters( 'lsx_to_widget_path', '', get_post_type() );
+		$path          = apply_filters( 'lsx_to_widget_path', '', get_post_type(), $this );
+		$template      = apply_filters( 'lsx_to_widget_template', $template, get_post_type(), $this );
 
 		if ( '' == locate_template( array( $template ) ) && file_exists( $path . 'templates/' . $template ) ) {
 			$template = $path . 'templates/' . $template;
