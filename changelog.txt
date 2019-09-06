@@ -3,6 +3,7 @@
 ### 1.2.1 - In Development
 * Fix - Fixed the Post Type enquiry dropdown.
 * Dev - Added in a view more disable for the post type widget
+* Dev - Adding the .gitattributes file to remove unnecessary files from the WordPress version.
 
 ### 1.2.0 - 6 August 2019
 * Fix - Hiding the banner title on regions when the map is set to output there.
