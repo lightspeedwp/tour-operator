@@ -72,7 +72,7 @@ class LSX_TO_Schema_Graph_Piece implements WPSEO_Graph_Piece {
 		$this->post         = get_post( $this->context->id );
 		$this->post_url     = get_permalink( $this->context->id );
 		$this->is_top_level = false;
-		if ( false === $this->post->post_parent || 0 === $this->post->post_parent || '' === $this->post->post_parent ) {
+		if ( is_object( $this->post ) && isset( $this->post->post_parent ) && ( false === $this->post->post_parent || 0 === $this->post->post_parent || '' === $this->post->post_parent ) ) {
 			$this->is_top_level = true;
 		}
 	}

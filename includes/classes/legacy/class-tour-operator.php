@@ -472,10 +472,10 @@ class Tour_Operator {
 			if ( isset( $this->options[ $settings_tab ] ) && isset( $this->options[ $settings_tab ]['grid_list_layout'] ) ) {
 				$archive_layout = $this->options[ $settings_tab ]['grid_list_layout'];
 			}
-
 			if ( empty( $archive_layout ) ) {
 				$archive_layout = 'list';
 			}
+			$archive_layout = apply_filters( 'lsx_to_archive_layout', $archive_layout, $settings_tab );
 
 			if ( isset( $this->options[ $settings_tab ] ) && isset( $this->options[ $settings_tab ]['list_layout_image_style'] ) ) {
 				$archive_list_layout_image_style = $this->options[ $settings_tab ]['list_layout_image_style'];
@@ -486,6 +486,7 @@ class Tour_Operator {
 			}
 
 			$this->archive_layout = $archive_layout;
+
 			$this->archive_list_layout_image_style = $archive_list_layout_image_style;
 		}
 	}
