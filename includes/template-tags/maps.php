@@ -362,6 +362,8 @@ if ( ! function_exists( 'lsx_to_has_map' ) ) {
 				$location = get_post_meta( get_the_ID(), 'location', true );
 			}
 
+			$location = apply_filters( 'lsx_to_has_maps_location', $location, get_the_ID() );
+
 			if ( false !== $location && '' !== $location && is_array( $location ) && isset( $location['lat'] ) && '' !== $location['lat'] ) {
 				set_transient( get_the_ID() . '_location', $location, 30 );
 				return true;
