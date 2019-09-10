@@ -192,6 +192,7 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 
 					break;
 			}
+			$args = apply_filters( 'lsx_to_maps_args', $args, get_the_ID() );
 			echo wp_kses_post( tour_operator()->frontend->maps->map_output( get_the_ID(), $args ) );
 		}
 	}
