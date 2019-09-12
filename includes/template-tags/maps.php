@@ -36,164 +36,170 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 		global $wp_query, $post;
 		$location = get_transient( get_the_ID() . '_location' );
 		if ( false !== $location ) {
-			$zoom = 15;
+			$map = '';
+			$map_override = apply_filters( 'lsx_to_map_override', false );
+			if ( false === $map_override ) {
+				$zoom = 15;
+				if ( is_array( $location ) && isset( $location['zoom'] ) ) {
+					$zoom = $location['zoom'];
+				}
 
-			if ( is_array( $location ) && isset( $location['zoom'] ) ) {
-				$zoom = $location['zoom'];
-			}
+				$zoom = apply_filters( 'lsx_to_map_zoom', $zoom );
+				$map_type = 'default';
+				$parent_id = false;
+				$connections = false;
 
-			$zoom = apply_filters( 'lsx_to_map_zoom', $zoom );
-			$map_type = 'default';
-			$parent_id = false;
-			$connections = false;
+				if ( is_singular( 'tour' ) ) {
+					$map_type = 'itinerary';
+				} elseif ( is_post_type_archive( 'destination' ) ) {
+					$map_type = 'region_archive';
+					$parent_id = '0';
+				} elseif ( is_singular( 'destination' ) ) {
+					$map_type = 'region_archive';
+					$parent_id = get_queried_object_id();
+				} elseif ( is_tax( 'continent' ) ) {
+					$map_type = 'continent_archive';
+				}
 
-			if ( is_singular( 'tour' ) ) {
-				$map_type = 'itinerary';
-			} elseif ( is_post_type_archive( 'destination' ) ) {
-				$map_type = 'region_archive';
-				$parent_id = '0';
-			} elseif ( is_singular( 'destination' ) ) {
-				$map_type = 'region_archive';
-				$parent_id = get_queried_object_id();
-			} elseif ( is_tax( 'continent' ) ) {
-				$map_type = 'continent_archive';
-			}
+				switch ( $map_type ) {
+					case 'itinerary':
+						$args = array(
+							'zoom' => $zoom,
+							'width' => '100%',
+							'height' => '500px',
+							'type' => 'route',
+						);
 
-			switch ( $map_type ) {
-				case 'itinerary':
-					$args = array(
-						'zoom' => $zoom,
-						'width' => '100%',
-						'height' => '500px',
-						'type' => 'route',
-					);
-
-					if ( isset( $location['kml'] ) ) {
-						$args['kml'] = $location['kml'];
-					} elseif ( isset( $location['connections'] ) ) {
-						$args['connections'] = $location['connections'];
-					}
-
-					break;
-
-				case 'region_archive':
-					$args = array();
-
-					$region_args = array(
-						'post_type'	=> 'destination',
-						'post_status' => 'publish',
-						'nopagin' => true,
-						'posts_per_page' => '-1',
-						'fields' => 'ids',
-					);
-
-					$region_args['post_parent'] = $parent_id;
-
-					if ( true === lsx_to_display_fustion_tables() ) {
-						$region_args['post_parent'] = 0;
-						$args['fusion_tables'] = true;
-						$args['fusion_tables_colour_border'] = lsx_to_fustion_tables_attr( 'colour_border', '#000000' );
-						$args['fusion_tables_width_border'] = lsx_to_fustion_tables_attr( 'width_border', '2' );
-						$args['fusion_tables_colour_background'] = lsx_to_fustion_tables_attr( 'colour_background', '#000000' );
-					}
-
-					$regions = new WP_Query( $region_args );
-
-					if ( isset( $regions->posts ) && ! empty( $regions->posts ) ) {
-						$connections = $regions->posts;
-					} else {
-						$args['long'] = $location['long'];
-						$args['lat'] = $location['lat'];
-					}
-
-					if ( lsx_to_has_destination_banner_map() ) {
-						$args['selector'] = '#lsx-banner .page-banner';
-					}
-
-					$args['content'] = 'excerpt';
-
-					if ( false !== $connections && '' !== $connections ) {
-						$args['connections'] = $connections;
-						$args['type'] = 'cluster';
-
-						if ( '0' === $parent_id  && ! lsx_to_has_destination_banner_cluster() ) {
-							$args['disable_cluster_js'] = true;
+						if ( isset( $location['kml'] ) ) {
+							$args['kml'] = $location['kml'];
+						} elseif ( isset( $location['connections'] ) ) {
+							$args['connections'] = $location['connections'];
 						}
-					}
 
-					//Check to see if the zoom is disabled
-					$manual_zoom = get_post_meta( $parent_id, 'disable_auto_zoom', true );
-					if ( false !== $manual_zoom && '' !== $manual_zoom ) {
-						$args['disable_auto_zoom'] = true;
-						$args['zoom'] = $zoom;
-						$args['long'] = $location['long'];
-						$args['lat'] = $location['lat'];
-					}
+						break;
 
-					break;
+					case 'region_archive':
+						$args = array();
 
-				case 'continent_archive':
-					$args = array();
+						$region_args = array(
+							'post_type'	=> 'destination',
+							'post_status' => 'publish',
+							'nopagin' => true,
+							'posts_per_page' => '-1',
+							'fields' => 'ids',
+						);
 
-					$country_args = array(
-						'post_type'	=> 'destination',
-						'post_status' => 'publish',
-						'nopagin' => true,
-						'posts_per_page' => '-1',
-						'fields' => 'ids',
-						'post_parent' => 0,
-						'tax_query' => array(
-							array(
-								'taxonomy' => 'continent',
-								'field'    => 'term_id',
-								'terms'    => array( get_queried_object()->term_id ),
+						$region_args['post_parent'] = $parent_id;
+
+						if ( true === lsx_to_display_fustion_tables() ) {
+							$region_args['post_parent'] = 0;
+							$args['fusion_tables'] = true;
+							$args['fusion_tables_colour_border'] = lsx_to_fustion_tables_attr( 'colour_border', '#000000' );
+							$args['fusion_tables_width_border'] = lsx_to_fustion_tables_attr( 'width_border', '2' );
+							$args['fusion_tables_colour_background'] = lsx_to_fustion_tables_attr( 'colour_background', '#000000' );
+						}
+
+						$regions = new WP_Query( $region_args );
+
+						if ( isset( $regions->posts ) && ! empty( $regions->posts ) ) {
+							$connections = $regions->posts;
+						} else {
+							$args['long'] = $location['long'];
+							$args['lat'] = $location['lat'];
+						}
+
+						if ( lsx_to_has_destination_banner_map() ) {
+							$args['selector'] = '#lsx-banner .page-banner';
+						}
+
+						$args['content'] = 'excerpt';
+
+						if ( false !== $connections && '' !== $connections ) {
+							$args['connections'] = $connections;
+							$args['type'] = 'cluster';
+
+							if ( '0' === $parent_id  && ! lsx_to_has_destination_banner_cluster() ) {
+								$args['disable_cluster_js'] = true;
+							}
+						}
+
+						//Check to see if the zoom is disabled
+						$manual_zoom = get_post_meta( $parent_id, 'disable_auto_zoom', true );
+						if ( false !== $manual_zoom && '' !== $manual_zoom ) {
+							$args['disable_auto_zoom'] = true;
+							$args['zoom'] = $zoom;
+							$args['long'] = $location['long'];
+							$args['lat'] = $location['lat'];
+						}
+
+						break;
+
+					case 'continent_archive':
+						$args = array();
+
+						$country_args = array(
+							'post_type'	=> 'destination',
+							'post_status' => 'publish',
+							'nopagin' => true,
+							'posts_per_page' => '-1',
+							'fields' => 'ids',
+							'post_parent' => 0,
+							'tax_query' => array(
+								array(
+									'taxonomy' => 'continent',
+									'field'    => 'term_id',
+									'terms'    => array( get_queried_object()->term_id ),
+								),
 							),
-						),
-					);
+						);
 
-					if ( true === lsx_to_display_fustion_tables() ) {
-						$args['fusion_tables'] = true;
-						$args['fusion_tables_colour_border'] = lsx_to_fustion_tables_attr( 'colour_border', '#000000' );
-						$args['fusion_tables_width_border'] = lsx_to_fustion_tables_attr( 'width_border', '2' );
-						$args['fusion_tables_colour_background'] = lsx_to_fustion_tables_attr( 'colour_background', '#000000' );
-					}
-
-					$countries = new WP_Query( $country_args );
-
-					if ( isset( $countries->posts ) && ! empty( $countries->posts ) ) {
-						$connections = $countries->posts;
-					}
-
-					if ( lsx_to_has_destination_banner_map() ) {
-						$args['selector'] = '#lsx-banner .page-banner';
-					}
-
-					$args['content'] = 'excerpt';
-
-					if ( false !== $connections && '' !== $connections ) {
-						$args['connections'] = $connections;
-						$args['type'] = 'cluster';
-						if ( '0' === $parent_id && ! lsx_to_has_destination_banner_cluster() ) {
-							$args['disable_cluster_js'] = true;
+						if ( true === lsx_to_display_fustion_tables() ) {
+							$args['fusion_tables'] = true;
+							$args['fusion_tables_colour_border'] = lsx_to_fustion_tables_attr( 'colour_border', '#000000' );
+							$args['fusion_tables_width_border'] = lsx_to_fustion_tables_attr( 'width_border', '2' );
+							$args['fusion_tables_colour_background'] = lsx_to_fustion_tables_attr( 'colour_background', '#000000' );
 						}
-					}
 
-					break;
+						$countries = new WP_Query( $country_args );
 
-				default:
-					$args = array(
-						'long' => $location['long'],
-						'lat' => $location['lat'],
-						'zoom' => $zoom,
+						if ( isset( $countries->posts ) && ! empty( $countries->posts ) ) {
+							$connections = $countries->posts;
+						}
 
-						'width' => '100%',
-						'height' => '500px',
-					);
+						if ( lsx_to_has_destination_banner_map() ) {
+							$args['selector'] = '#lsx-banner .page-banner';
+						}
 
-					break;
+						$args['content'] = 'excerpt';
+
+						if ( false !== $connections && '' !== $connections ) {
+							$args['connections'] = $connections;
+							$args['type'] = 'cluster';
+							if ( '0' === $parent_id && ! lsx_to_has_destination_banner_cluster() ) {
+								$args['disable_cluster_js'] = true;
+							}
+						}
+
+						break;
+
+					default:
+						$args = array(
+							'long' => $location['long'],
+							'lat' => $location['lat'],
+							'zoom' => $zoom,
+							'width' => '100%',
+							'height' => '500px',
+						);
+
+						break;
+				}
+				$args = apply_filters( 'lsx_to_maps_args', $args, get_the_ID() );
+				$map  = tour_operator()->frontend->maps->map_output( get_the_ID(), $args );
+			} else {
+				$map = $map_override;
 			}
-			$args = apply_filters( 'lsx_to_maps_args', $args, get_the_ID() );
-			echo wp_kses_post( tour_operator()->frontend->maps->map_output( get_the_ID(), $args ) );
+
+			echo wp_kses_post( $map );
 		}
 	}
 }
