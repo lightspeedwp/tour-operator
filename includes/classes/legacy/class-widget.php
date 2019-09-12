@@ -697,13 +697,11 @@ class Widget extends \WP_Widget {
 		}
 		$lazy_img = '';
 		if ( true === $lazyload && '' !== $img ) {
-			$img = '';
 			$temp_lazy = wp_get_attachment_image_src( $post_thumbnail_id, $size );
 			if ( ! empty( $temp_lazy ) ) {
 				$lazy_img = $temp_lazy[0];
 			}
-			$image_url = $img;
-			$img       = '<img alt="' . the_title_attribute( 'echo=0' ) . '" class="attachment-responsive wp-post-image lsx-responsive" ';
+			$img = '<img alt="' . the_title_attribute( 'echo=0' ) . '" class="attachment-responsive wp-post-image lsx-responsive" ';
 			if ( $srcset ) {
 				$img .= 'data-lazy="' . $lazy_img . '" srcset="' . esc_attr( $image_url ) . '" ';
 			} else {
@@ -714,5 +712,4 @@ class Widget extends \WP_Widget {
 		return $img;
 	}
 }
-
 ?>
