@@ -541,6 +541,12 @@ function lsx_to_enquire_modal( $cta_text = '', $before = '', $after = '', $echo 
 		}
 	}
 
+	if ( is_archive( $tour_operator->active_post_types ) ) {
+		if ( isset( $tour_operator->options[ get_post_type() ] ) && isset( $tour_operator->options[ get_post_type() ]['enquiry'] ) && '' !== $tour_operator->options[ get_post_type() ]['enquiry'] ) {
+			$form_id = $tour_operator->options[ get_post_type() ]['enquiry'];
+		}
+	}
+
 	if ( is_singular( $tour_operator->active_post_types ) ) {
 		if ( isset( $tour_operator->options[ get_post_type() ] ) && isset( $tour_operator->options[ get_post_type() ]['disable_enquire_modal'] ) && 'on' === $tour_operator->options[ get_post_type() ]['disable_enquire_modal'] ) {
 			$disable_modal = true;
