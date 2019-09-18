@@ -390,6 +390,26 @@ class LSX_TO_Schema_Graph_Piece implements WPSEO_Graph_Piece {
 	}
 
 	/**
+	 * Adds the accommodation to the places array
+	 *
+	 * @param array $places_array an array of Places.
+	 *
+	 * @return array $places_array an array of Places.
+	 */
+	public function add_tours( $places_array ) {
+		$tour = get_post_meta( $this->context->id, 'tour_to_' . $this->post_type, false );
+		if ( ! empty( $tour ) ) {
+			foreach ( $tour as $tour_id ) {
+				if ( '' !== $tour_id ) {
+					$places_array                = \lsx\legacy\Schema_Utils::add_place( $places_array, 'Trip', $tour_id, $this->context );
+					$this->place_ids[ $tour_id ] = \lsx\legacy\Schema_Utils::get_places_schema_id( $tour_id, 'Trip', $this->context );
+				}
+			}
+		}
+		return $places_array;
+	}
+
+	/**
 	 * Adds the terms for the taxonomy
 	 *
 	 * @param array $data     Review data.

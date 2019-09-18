@@ -13,6 +13,15 @@ namespace lsx\legacy;
  */
 class Schema_Utils {
 
+	public static function get_option( $key = '', $tab = 'general' ) {
+		$value = '';
+		$tour_operator = tour_operator();
+		if ( isset( $tour_operator->options[ $tab ] ) && isset( $tour_operator->options[ $tab ][ $key ] ) ) {
+			$value = $tour_operator->options[ $tab ][ $key ];
+		}
+		return $value;
+	}
+
 	/**
 	 * Determines whether a given post type should have Review schema.
 	 *
