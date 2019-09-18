@@ -245,7 +245,7 @@ class LSX_TO_Schema_Graph_Piece implements WPSEO_Graph_Piece {
 			foreach ( $reviews as $review_id ) {
 				$rating      = get_post_meta( $review_id, 'rating', true );
 				$author      = get_post_meta( $review_id, 'reviewer_name', true );
-				$description = wp_strip_all_tags( get_the_content( $review_id ) );
+				$description = wp_strip_all_tags( get_the_excerpt( $review_id ) );
 				$review_args = array(
 					'author'     => $author,
 					'reviewBody' => $description,
