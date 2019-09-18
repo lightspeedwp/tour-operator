@@ -408,4 +408,22 @@ class LSX_TO_Schema_Graph_Piece implements WPSEO_Graph_Piece {
 
 		return \lsx\legacy\Schema_Utils::add_terms( $data, $this->context->id, $data_key, $taxonomy );
 	}
+
+	/**
+	 * Adds the custom field value for the supplied key
+	 *
+	 * @param array   $data     Schema data.
+	 * @param string  $data_key the parameter name you wish to assign it to.
+	 * @param string  $meta_key the taxonomy to grab terms for.
+	 * @param boolean $single   A single custom field or an array
+	 *
+	 * @return array $data Review data.
+	 */
+	public function add_custom_field( $data, $data_key, $meta_key, $single = true ) {
+		$value = get_post_meta( $this->context->id, $meta_key, $single );
+		if ( '' !== $value && false !== $value ) {
+			$data[ $data_key ] = $value;
+		}
+		return $data;
+	}
 }
