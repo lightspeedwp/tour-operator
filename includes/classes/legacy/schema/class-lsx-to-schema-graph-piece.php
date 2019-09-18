@@ -231,10 +231,12 @@ class LSX_TO_Schema_Graph_Piece implements WPSEO_Graph_Piece {
 	/**
 	 * Gets the connected reviews post type and set it as the "Review" schema
 	 *
-	 * @param  array $data An array of offers already added.
-	 * @return array $data
+	 * @param  array    $data An array of offers already added.
+	 * @param  string   $data_key
+	 * @param  boolean  $include_aggregate
+	 * @return array    $data
 	 */
-	public function add_reviews( $data ) {
+	public function add_reviews( $data, $data_key = 'reviews', $include_aggregate = true ) {
 		$reviews       = get_post_meta( $this->context->id, 'review_to_' . $this->post_type, false );
 		$reviews_array = array();
 		if ( ! empty( $reviews ) ) {
@@ -259,14 +261,16 @@ class LSX_TO_Schema_Graph_Piece implements WPSEO_Graph_Piece {
 				$review_count++;
 			}
 			if ( ! empty( $reviews_array ) ) {
-				$data['aggregateRating'] = array(
-					'@type'       => 'AggregateRating',
-					'ratingValue' => (string) $aggregate_value,
-					'reviewCount' => (string) $review_count,
-					'bestRating'  => '5',
-					'worstRating' => '1',
-				);
-				$data['reviews']         = $reviews_array;
+				if ( true === $include_aggregate ) {
+					$data['aggregateRating'] = array(
+						'@type'       => 'AggregateRating',
+						'ratingValue' => (string) $aggregate_value,
+						'reviewCount' => (string) $review_count,
+						'bestRating'  => '5',
+						'worstRating' => '1',
+					);
+				}
+				$data[ $data_key ] = $reviews_array;
 			}
 		}
 		return $data;
@@ -275,10 +279,11 @@ class LSX_TO_Schema_Graph_Piece implements WPSEO_Graph_Piece {
 	/**
 	 * Gets the connected posts and set it as the "Article" schema
 	 *
-	 * @param  array $data An array of offers already added.
-	 * @return array $data
+	 * @param  array  $data An array of offers already added.
+	 * @param  string $data_key
+	 * @return array  $data
 	 */
-	public function add_articles( $data ) {
+	public function add_articles( $data, $data_key = 'subjectOf' ) {
 		$posts       = get_post_meta( $this->context->id, 'post_to_' . $this->post_type, false );
 		$posts_array = array();
 		if ( ! empty( $posts ) ) {
@@ -301,7 +306,7 @@ class LSX_TO_Schema_Graph_Piece implements WPSEO_Graph_Piece {
 				$posts_array = \lsx\legacy\Schema_Utils::add_article( $posts_array, $post_id, $this->context, $post_args );
 			}
 			if ( ! empty( $posts_array ) ) {
-				$data['subjectOf'] = $posts_array;
+				$data[ $data_key ] = $posts_array;
 			}
 		}
 		return $data;
