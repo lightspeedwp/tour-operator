@@ -142,12 +142,12 @@ class LSX_TO_Schema_Graph_Piece implements WPSEO_Graph_Piece {
 	 *
 	 * @return array $offers Offer data.
 	 */
-	public function add_offers( $data ) {
+	public function add_offers( $data, $data_key = 'offers' ) {
 		$offers = array();
 		$offers = $this->get_default_offer( $offers );
 		$offers = $this->get_special_offers( $offers );
 		if ( ! empty( $offers ) ) {
-			$data['offers'] = $offers;
+			$data[ $data_key ] = $offers;
 		}
 		return $data;
 	}
