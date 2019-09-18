@@ -303,12 +303,14 @@ class Schema_Utils {
 		$schema = array();
 		if ( false !== $items && ! empty( $items ) && '' !== $type ) {
 			foreach ( $items as $item ) {
-				$title       = get_the_title( $item );
-				$item_schema = array(
-					'@type' => $type,
-					'name'  => $title,
-				);
-				$schema[]    = $item_schema;
+				$title = get_the_title( $item );
+				if ( '' !== $title ) {
+					$item_schema = array(
+						'@type' => $type,
+						'name'  => $title,
+					);
+					$schema[]    = $item_schema;
+				}
 			}
 		}
 		return $schema;
