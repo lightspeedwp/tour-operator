@@ -127,7 +127,7 @@ function lsx_to_single_entry_bottom() {
 	global $lsx_to_archive;
 
 	if ( is_singular( array_keys( lsx_to_get_post_types() ) ) && false === $lsx_to_archive ) { ?>
-		<div class="col-xs-12 col-sm-12 col-md-6">
+		<div class="col-xs-12 col-sm-12 col-md-5 to-facts-wrapper">
 			<?php lsx_to_fast_facts(); ?>
 
 			<?php if ( lsx_to_has_enquiry_contact() ) : ?>

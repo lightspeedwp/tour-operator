@@ -46,6 +46,14 @@
 	}
 }
 
+.to-facts-wrapper {
+	@include media('>=tablet') {
+		max-width: 420px;
+		margin: 0 auto;
+		float: right;
+	}
+}
+
 .lsx-to-section-inner {
 	margin-top: $lsx-to-gap;
 	padding: $lsx-to-gap-half;

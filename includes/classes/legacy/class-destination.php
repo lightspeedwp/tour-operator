@@ -122,7 +122,7 @@ class Destination {
 		}
 
 		if ( is_main_query() && is_singular( $this->slug ) && false === $lsx_to_archive ) {
-			$classes[] = 'col-xs-12 col-sm-12 col-md-6';
+			$classes[] = 'col-xs-12 col-sm-12 col-md-7';
 		}
 
 		return $classes;

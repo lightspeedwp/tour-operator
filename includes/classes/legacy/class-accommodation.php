@@ -163,7 +163,7 @@ class Accommodation {
 		global $post;
 
 		if ( is_main_query() && is_singular( $this->slug ) ) {
-			$classes[] = 'col-xs-12 col-sm-12 col-md-6';
+			$classes[] = 'col-xs-12 col-sm-12 col-md-7';
 		}
 
 		return $classes;

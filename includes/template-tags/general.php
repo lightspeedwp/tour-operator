@@ -481,11 +481,11 @@ function lsx_to_enquiry_contact( $before = '', $after = '' ) {
 		<?php endif; ?>
 
 		<div class="lsx-to-contact-info">
-			<small class="lsx-to-contact-prefix text-center">Your travel expert:</small>
-			<h4 class="lsx-to-contact-name text-center"><?php echo esc_html( $fields['enquiry_contact_name'] ); ?></h4>
+			<small class="lsx-to-contact-prefix text-left">Your travel expert:</small>
+			<h4 class="lsx-to-contact-name text-left"><?php echo esc_html( $fields['enquiry_contact_name'] ); ?></h4>
 		</div>
 
-		<div class="lsx-to-contact-meta-data text-center hidden">
+		<div class="lsx-to-contact-meta-data text-left hidden">
 			<?php if ( ! empty( $fields['enquiry_contact_phone'] ) ) : ?>
 				<div class="lsx-to-meta-data contact-number"><i class="fa fa-phone"></i> <a href="tel:+<?php echo esc_attr( $fields['enquiry_contact_phone'] ); ?>"><?php echo esc_html( $fields['enquiry_contact_phone'] ); ?></a></div>
 			<?php endif; ?>
@@ -538,6 +538,12 @@ function lsx_to_enquire_modal( $cta_text = '', $before = '', $after = '', $echo 
 
 		if ( isset( $tour_operator->options['general']['enquire_link'] ) && '' !== $tour_operator->options['general']['enquire_link'] ) {
 			$link = $tour_operator->options['general']['enquire_link'];
+		}
+	}
+
+	if ( is_archive( $tour_operator->active_post_types ) ) {
+		if ( isset( $tour_operator->options[ get_post_type() ] ) && isset( $tour_operator->options[ get_post_type() ]['enquiry'] ) && '' !== $tour_operator->options[ get_post_type() ]['enquiry'] ) {
+			$form_id = $tour_operator->options[ get_post_type() ]['enquiry'];
 		}
 	}
 

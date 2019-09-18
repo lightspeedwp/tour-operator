@@ -4,6 +4,7 @@
 
 	@include media('>=phone') {
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		padding: 0;
 	}
@@ -37,7 +38,10 @@
 		display: flex;
 		flex: 1;
 		justify-content: center;
-		padding: $lsx-to-gap-half / 2;
+		padding: 0 1.2rem 1.2rem;
+		.btn {
+			width: 100%;
+		}
 	}
 }
 
@@ -47,6 +51,9 @@
 	flex: 1;
 	justify-content: center;
 	padding: $lsx-to-gap-half / 2;
+	@include media('>=tablet') {
+		padding: 1.2rem 0 0;
+	}
 
 	img {
 		border-radius: 50%;
@@ -60,17 +67,19 @@
 .lsx-to-contact-info {
 	padding: $lsx-to-gap-half / 2;
 
-	@include media('>=phone') { flex: 1.5; }
+	@include media('>=phone') { flex: 2; }
 }
 
 .lsx-to-contact-prefix {
 	display: block;
 	font-size: 13px;
+	text-align: left;
 }
 
 h4.lsx-to-contact-name {
 	font-size: 20px;
 	margin-bottom: 0;
+	text-align: left;
 }
 
 .lsx-to-contact-socials {
