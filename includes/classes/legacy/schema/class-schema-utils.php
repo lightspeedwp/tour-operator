@@ -302,6 +302,7 @@ class Schema_Utils {
 	public static function get_item_reviewed( $items = array(), $type = '' ) {
 		$schema = array();
 		if ( false !== $items && ! empty( $items ) && '' !== $type ) {
+			array_unique( $items );
 			foreach ( $items as $item ) {
 				$title = get_the_title( $item );
 				if ( '' !== $title ) {
