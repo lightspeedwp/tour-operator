@@ -47,8 +47,8 @@ class LSX_TO_Destination_Schema extends LSX_TO_Schema_Graph_Piece {
 
 		$data = \lsx\legacy\Schema_Utils::add_image( $data, $this->context );
 		$data = $this->add_places( $data );
-		$data = $this->add_reviews( $data );
 		$data = $this->add_articles( $data );
+		$data = $this->add_location( $data );
 		return $data;
 	}
 }
