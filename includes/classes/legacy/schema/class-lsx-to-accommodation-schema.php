@@ -47,7 +47,7 @@ class LSX_TO_Accommodation_Schema extends LSX_TO_Schema_Graph_Piece {
 			$data['brand']    = $this->context->site_represents_reference;
 		}
 
-		$wetu_ref = get_post_meta( $this->context->id, 'lsx_wetu_ref', true );
+		$wetu_ref = get_post_meta( $this->context->id, 'lsx_wetu_id', true );
 		if ( false !== $wetu_ref && '' !== $wetu_ref ) {
 			$data['sku'] = $wetu_ref;
 		}
