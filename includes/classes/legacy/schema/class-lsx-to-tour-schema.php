@@ -83,6 +83,9 @@ class LSX_TO_Tour_Schema extends LSX_TO_Schema_Graph_Piece {
 					if ( false === $parent || 0 === $parent ) {
 						$places                          = \lsx\legacy\Schema_Utils::add_place( $places, 'Country', $destination, $this->context );
 						$this->place_ids[ $destination ] = \lsx\legacy\Schema_Utils::get_places_schema_id( $destination, 'Country', $this->context );
+					} else {
+						$places                          = \lsx\legacy\Schema_Utils::add_place( $places, 'State', $destination, $this->context );
+						$this->place_ids[ $destination ] = \lsx\legacy\Schema_Utils::get_places_schema_id( $destination, 'State', $this->context );
 					}
 				}
 			}
