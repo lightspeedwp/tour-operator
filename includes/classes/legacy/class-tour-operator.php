@@ -1034,7 +1034,7 @@ class Tour_Operator {
 	 */
 	public function compatible_version_notice() {
 		$class   = 'notice notice-error';
-		$message = esc_html__( 'Tour Operator Plugin requires PHP 5.6 or higher.', 'tour-operator' );
+		$message = esc_html__( 'Tour Operator Plugin requires PHP 7.0 or higher.', 'tour-operator' );
 		printf( '<div class="%1$s"><p>%2$s</p></div>', esc_html( $class ), esc_html( $message ) );
 	}
 
@@ -1047,7 +1047,7 @@ class Tour_Operator {
 	public static function compatible_version_check_on_activation() {
 		if ( ! self::compatible_version() ) {
 			deactivate_plugins( plugin_basename( LSX_TO_CORE ) );
-			wp_die( esc_html__( 'Tour Operator Plugin requires PHP 5.6 or higher.', 'tour-operator' ) );
+			wp_die( esc_html__( 'Tour Operator Plugin requires PHP 7.0 or higher.', 'tour-operator' ) );
 		}
 	}
 

@@ -10,6 +10,7 @@
 * Dev - Added in a 'lsx_to_map_override' to allow 3rd party plugins to overrider the map before it generates.
 * Dev - Changing the single template width.
 * Dev - Added the possibility to call the form set on the options of each post type if the archive page requires it.
+* Dev - Updated the compatible version notice
 
 ### 1.2.0 - 6 August 2019
 * Fix - Hiding the banner title on regions when the map is set to output there.
