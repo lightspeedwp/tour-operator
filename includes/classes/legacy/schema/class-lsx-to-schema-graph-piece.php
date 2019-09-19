@@ -111,7 +111,7 @@ class LSX_TO_Schema_Graph_Piece implements WPSEO_Graph_Piece {
 	 *
 	 * @return array $data Trip data.
 	 */
-	public function add_destinations( $data ) {
+	public function add_destinations( $data, $data_key = 'containedInPlace' ) {
 		$places       = array();
 		$destinations = get_post_meta( $this->context->id, 'destination_to_' . $this->post_type, false );
 		if ( ! empty( $destinations ) ) {
@@ -128,7 +128,7 @@ class LSX_TO_Schema_Graph_Piece implements WPSEO_Graph_Piece {
 				}
 			}
 			if ( ! empty( $places ) ) {
-				$data['containedInPlace'] = $places;
+				$data[ $data_key ] = $places;
 			}
 		}
 
@@ -413,6 +413,8 @@ class LSX_TO_Schema_Graph_Piece implements WPSEO_Graph_Piece {
 		}
 		return $places_array;
 	}
+
+	
 
 	/**
 	 * Adds the terms for the taxonomy
