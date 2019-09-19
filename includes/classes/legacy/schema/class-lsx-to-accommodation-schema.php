@@ -56,6 +56,9 @@ class LSX_TO_Accommodation_Schema extends LSX_TO_Schema_Graph_Piece {
 		$data = $this->add_offers( $data );
 		$data = $this->add_reviews( $data );
 		$data = $this->add_articles( $data );
+		$data = $this->add_custom_field( $data, 'numberOfRooms', 'number_of_rooms' );
+		$data = $this->add_taxonomy_terms( $data, 'amenityFeature', 'facility' );
+		$data = $this->add_location( $data );
 		return $data;
 	}
 }
