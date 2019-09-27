@@ -344,29 +344,32 @@ function lsx_to_connected_countries( $before = '', $after = '', $echo = true ) {
  * @category 	connections
  */
 
-function destination_children($parent_id) {
-		$theid = get_the_ID();
-		$child = new WP_Query(array('post_parent' => $theid, 'post_type' => 'destination'));
-		$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
-		if ($child->have_posts()) {
-			$list_destinations = array();
+function destination_children( $parent_id ) {
+	$theid      = get_the_ID();
+	$child      = new WP_Query( array(
+		'post_parent' => $theid,
+		'post_type'   => 'destination',
+	) );
+	$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
+	if ( $child->have_posts() ) {
+		$list_destinations = array();
 
-			echo '<span class="' . esc_attr( $meta_class ) . 'regions"><span class="lsx-to-meta-data-key">' . esc_html__( 'Regions', 'tour-operator' ) . ':</span>';
-			while ($child->have_posts()) {
-				$child->the_post();
-				$childtitle = get_the_title();
-				$childlink = get_the_permalink();
+		echo '<span class="' . esc_attr( $meta_class ) . 'regions"><span class="lsx-to-meta-data-key">' . esc_html__( 'Regions', 'tour-operator' ) . ':</span>';
+		while ( $child->have_posts() ) {
+			$child->the_post();
+			$childtitle      = get_the_title();
+			$childlink       = get_the_permalink();
 			$list_destinations[] = '<a href="' . esc_attr( $childlink ) . '"> ' . esc_attr( $childtitle ) . '</a>';
-			}
-			echo implode(", ", $list_destinations);
-		} else {
+		}
+		echo implode( ', ', wp_kses_post( $list_destinations ) );
+	} else {
 		echo '<span class="' . esc_attr( $meta_class ) . 'regions"><span class="lsx-to-meta-data-key">' . esc_html__( 'Country', 'tour-operator' ) . ':</span>';
 		$parent_title = get_the_title( wp_get_post_parent_id( $theid ) );
-		$parent_link = get_the_permalink(wp_get_post_parent_id( $theid ));
+		$parent_link  = get_the_permalink( wp_get_post_parent_id( $theid ) );
 		echo '<a href="' . esc_attr( $parent_link ) . '"> ' . esc_attr( $parent_title ) . '</a>';
-		}
-		echo '</span>';
-		wp_reset_query();
+	}
+	echo '</span>';
+	wp_reset_postdata();
 }
 
 /**
