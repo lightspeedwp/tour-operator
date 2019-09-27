@@ -12,6 +12,7 @@
 * Dev - Added the possibility to call the form set on the options of each post type if the archive page requires it.
 * Dev - Updated the compatible version notice
 * Fix - Fix for the reviews thumbnails.
+* Fix - Making 'Best Time' show only if it has content.
 
 ### 1.2.0 - 6 August 2019
 * Fix - Hiding the banner title on regions when the map is set to output there.

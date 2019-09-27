@@ -350,20 +350,20 @@ function destination_children($parent_id) {
 		$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
 		if ($child->have_posts()) {
 			$list_destinations = array();
-		
+
 			echo '<span class="' . esc_attr( $meta_class ) . 'regions"><span class="lsx-to-meta-data-key">' . esc_html__( 'Regions', 'tour-operator' ) . ':</span>';
 			while ($child->have_posts()) {
 				$child->the_post();
 				$childtitle = get_the_title();
 				$childlink = get_the_permalink();
-			$list_destinations[] = '<a href="' . esc_attr( $childlink ) . '"> ' . esc_attr( $childtitle ) . '</a>';	
+			$list_destinations[] = '<a href="' . esc_attr( $childlink ) . '"> ' . esc_attr( $childtitle ) . '</a>';
 			}
 			echo implode(", ", $list_destinations);
 		} else {
 		echo '<span class="' . esc_attr( $meta_class ) . 'regions"><span class="lsx-to-meta-data-key">' . esc_html__( 'Country', 'tour-operator' ) . ':</span>';
 		$parent_title = get_the_title( wp_get_post_parent_id( $theid ) );
 		$parent_link = get_the_permalink(wp_get_post_parent_id( $theid ));
-		echo '<a href="' . esc_attr( $parent_link ) . '"> ' . esc_attr( $parent_title ) . '</a>';	
+		echo '<a href="' . esc_attr( $parent_link ) . '"> ' . esc_attr( $parent_title ) . '</a>';
 		}
 		echo '</span>';
 		wp_reset_query();
@@ -380,16 +380,19 @@ function destination_children($parent_id) {
 
 function months_to_visit() {
 	$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
-	$months = get_post_meta(get_the_ID(), 'best_time_to_visit', true);
+	$months     = get_post_meta( get_the_ID(), 'best_time_to_visit', true );
 	$month_list = array();
-		
-		foreach( $months as $single_month ) {
-			$single_month = str_split($single_month, 3);
-			$month_list[] = '<span>'.$single_month[0].
-			'</span>';
-		}
 
-	echo '<span class="'. esc_attr($meta_class) . 'best-time" style="text-transform:capitalize;"><span class="lsx-to-meta-data-key">' . esc_html__('Best Time', 'tour-operator') . ': </span>';
-	echo implode(", ", $month_list);
-	echo '</span>';
+	foreach ( $months as $single_month ) {
+		$single_month = str_split( $single_month, 3 );
+		$month_list[] = '<span>' . $single_month[0] .
+		'</span>';
+	}
+
+	if ( ! empty( $month_list ) ) {
+		echo '<span class="' . esc_attr( $meta_class ) . 'best-time" style="text-transform:capitalize;"><span class="lsx-to-meta-data-key">' . esc_html__( 'Best Time', 'tour-operator' ) . ': </span>';
+		echo implode( ', ', wp_kses_post( $month_list ) );
+		echo '</span>';
+	}
+
 }
