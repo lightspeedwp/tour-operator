@@ -479,7 +479,6 @@ if ( window.location.hash ) {
 	 * @subpackage scripts
 	 */
 	$document.ready( function() {
-
 		lsx_to.remove_empty_widgets();
 		lsx_to.remove_empty_fast_facts();
 		lsx_to.add_html_elements_to_include_and_exclude();
@@ -488,17 +487,17 @@ if ( window.location.hash ) {
 		lsx_to.set_read_more_travel_info();
 		lsx_to.set_read_more_itinerary();
 		lsx_to.build_slider( window_width );
+	} );
 
+	$document.load( function() {
 		if ( window_width >= 1200 ) {
 			lsx_to.fix_anchor_menu();
 			lsx_to.set_anchor_menu_easing_scroll();
 			lsx_to.set_anchor_menu_scroll_spy();
 		} else {
-
             //lsx-to-collapse-section
 			lsx_to.build_collapse( window_width );
 		}
-
 	} );
 
 	/**
