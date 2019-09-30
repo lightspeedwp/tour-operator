@@ -1076,6 +1076,8 @@
 
 .lsx-to-widget-item-wrap.lsx-review .lsx-to-widget-thumb { border-radius: 50%; height: 100px; margin: 0 auto 12px; overflow: hidden; position: relative; width: 100px; }
 
+.lsx-to-widget-item-wrap.lsx-review .lsx-to-widget-thumb img { height: 100%; -o-object-fit: cover; object-fit: cover; }
+
 @media (min-width: 992px) { .lsx-to-widget-item-wrap.lsx-review .lsx-to-widget-blockquote { max-width: none; } }
 
 .lsx-to-widget-item-wrap .lsx-to-widget-thumb img { width: 100%; }

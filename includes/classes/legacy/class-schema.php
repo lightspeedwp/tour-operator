@@ -79,7 +79,6 @@ class Schema {
 			$start_val  = get_post_meta( get_the_ID(), 'booking_validity_start', false );
 			$end_val    = get_post_meta( get_the_ID(), 'booking_validity_end', false );
 
-
 			if ( ! empty( $des_list ) ) {
 				foreach ( $des_list as $single_destination ) {
 					$i++;
