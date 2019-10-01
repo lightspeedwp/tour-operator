@@ -13,6 +13,8 @@
 * Dev - Updated the compatible version notice
 * Fix - Fix for the reviews thumbnails.
 * Fix - Making 'Best Time' show only if it has content.
+* Fix - Updating the gallery thumbnail image size.
+* Fix - Fixing PHP issue 'Invalid argument supplied for foreach()'.
 
 ### 1.2.0 - 6 August 2019
 * Fix - Hiding the banner title on regions when the map is set to output there.
