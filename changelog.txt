@@ -1,6 +1,6 @@
 ## Change log
 
-### 1.2.1 - In Development
+### 1.3.0 - 2 October 2019
 * Fix - Fixed the Post Type enquiry dropdown.
 * Dev - Added in a view more disable for the post type widget
 * Dev - Adding the .gitattributes file to remove unnecessary files from the WordPress version.
@@ -11,6 +11,7 @@
 * Dev - Changing the single template width.
 * Dev - Added the possibility to call the form set on the options of each post type if the archive page requires it.
 * Dev - Updated the compatible version notice
+* Dev - Added in the Schema for accommodation / destinations / tours, using the Yoast API.
 * Fix - Fix for the reviews thumbnails.
 * Fix - Making 'Best Time' show only if it has content.
 * Fix - Updating the gallery thumbnail image size.
