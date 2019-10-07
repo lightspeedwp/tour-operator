@@ -519,7 +519,7 @@ function lsx_to_enquire_modal( $cta_text = '', $before = '', $after = '', $echo 
 		$cta_text = esc_html__( 'Enquire', 'tour-operator' );
 	}
 
-	if ( false !== $form_id ) {
+	if ( false === $form_id ) {
 		// First set the general form
 		if ( isset( $tour_operator->options['general'] ) && isset( $tour_operator->options['general']['enquiry'] ) && '' !== $tour_operator->options['general']['enquiry'] ) {
 			$form_id = $tour_operator->options['general']['enquiry'];
