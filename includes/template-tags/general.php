@@ -502,31 +502,38 @@ function lsx_to_enquiry_contact( $before = '', $after = '' ) {
 /**
  * Outputs the Enquire Modal
  *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
+ * @param		$before	 | string
+ * @param		$after	 | string
+ * @param		$echo	 | boolean
+ * @param		$form_id | string
  * @return		string
  *
  * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_to_enquire_modal( $cta_text = '', $before = '', $after = '', $echo = true ) {
+function lsx_to_enquire_modal( $cta_text = '', $before = '', $after = '', $echo = true, $form_id = false ) {
 	$tour_operator = tour_operator();
 
 	if ( empty( $cta_text ) ) {
 		$cta_text = esc_html__( 'Enquire', 'tour-operator' );
 	}
 
-	$form_id = false;
-	// First set the general form
-	if ( isset( $tour_operator->options['general'] ) && isset( $tour_operator->options['general']['enquiry'] ) && '' !== $tour_operator->options['general']['enquiry'] ) {
-		$form_id = $tour_operator->options['general']['enquiry'];
-	}
+	if ( false !== $form_id ) {
+		// First set the general form
+		if ( isset( $tour_operator->options['general'] ) && isset( $tour_operator->options['general']['enquiry'] ) && '' !== $tour_operator->options['general']['enquiry'] ) {
+			$form_id = $tour_operator->options['general']['enquiry'];
+		}
 
-	if ( is_singular( $tour_operator->active_post_types ) ) {
-		if ( isset( $tour_operator->options[ get_post_type() ] ) && isset( $tour_operator->options[ get_post_type() ]['enquiry'] ) && '' !== $tour_operator->options[ get_post_type() ]['enquiry'] ) {
-			$form_id = $tour_operator->options[ get_post_type() ]['enquiry'];
+		if ( is_singular( $tour_operator->active_post_types ) ) {
+			if ( isset( $tour_operator->options[ get_post_type() ] ) && isset( $tour_operator->options[ get_post_type() ]['enquiry'] ) && '' !== $tour_operator->options[ get_post_type() ]['enquiry'] ) {
+				$form_id = $tour_operator->options[ get_post_type() ]['enquiry'];
+			}
+		}
+		if ( is_archive( $tour_operator->active_post_types ) ) {
+			if ( isset( $tour_operator->options[ get_post_type() ] ) && isset( $tour_operator->options[ get_post_type() ]['enquiry'] ) && '' !== $tour_operator->options[ get_post_type() ]['enquiry'] ) {
+				$form_id = $tour_operator->options[ get_post_type() ]['enquiry'];
+			}
 		}
 	}
 
@@ -535,22 +542,14 @@ function lsx_to_enquire_modal( $cta_text = '', $before = '', $after = '', $echo 
 
 	if ( isset( $tour_operator->options['general'] ) && isset( $tour_operator->options['general']['disable_enquire_modal'] ) && 'on' === $tour_operator->options['general']['disable_enquire_modal'] ) {
 		$disable_modal = true;
-
 		if ( isset( $tour_operator->options['general']['enquire_link'] ) && '' !== $tour_operator->options['general']['enquire_link'] ) {
 			$link = $tour_operator->options['general']['enquire_link'];
-		}
-	}
-
-	if ( is_archive( $tour_operator->active_post_types ) ) {
-		if ( isset( $tour_operator->options[ get_post_type() ] ) && isset( $tour_operator->options[ get_post_type() ]['enquiry'] ) && '' !== $tour_operator->options[ get_post_type() ]['enquiry'] ) {
-			$form_id = $tour_operator->options[ get_post_type() ]['enquiry'];
 		}
 	}
 
 	if ( is_singular( $tour_operator->active_post_types ) ) {
 		if ( isset( $tour_operator->options[ get_post_type() ] ) && isset( $tour_operator->options[ get_post_type() ]['disable_enquire_modal'] ) && 'on' === $tour_operator->options[ get_post_type() ]['disable_enquire_modal'] ) {
 			$disable_modal = true;
-
 			if ( isset( $tour_operator->options[ get_post_type() ]['enquire_link'] ) && '' !== $tour_operator->options[ get_post_type() ]['enquire_link'] ) {
 				$link = $tour_operator->options[ get_post_type() ]['enquire_link'];
 			}
@@ -558,7 +557,6 @@ function lsx_to_enquire_modal( $cta_text = '', $before = '', $after = '', $echo 
 	}
 
 	if ( false !== $form_id ) {
-
 	?>
 	<div class="lsx-to-enquire-form">
 		<a href="<?php echo esc_url( $link ); ?>" class="btn cta-btn" <?php if ( false === $disable_modal ) { ?>data-toggle="modal" data-target="#lsx-enquire-modal"<?php } ?> ><?php echo esc_html( $cta_text ); ?></a>
