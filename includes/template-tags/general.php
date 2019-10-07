@@ -506,13 +506,14 @@ function lsx_to_enquiry_contact( $before = '', $after = '' ) {
  * @param		$after	 | string
  * @param		$echo	 | boolean
  * @param		$form_id | string
+ * @param		$disable_modal | boolean
  * @return		string
  *
  * @package 	tour-operator
  * @subpackage	template-tags
  * @category 	tour
  */
-function lsx_to_enquire_modal( $cta_text = '', $before = '', $after = '', $echo = true, $form_id = false ) {
+function lsx_to_enquire_modal( $cta_text = '', $before = '', $after = '', $echo = true, $form_id = false, $disable_modal = false ) {
 	$tour_operator = tour_operator();
 
 	if ( empty( $cta_text ) ) {
@@ -537,11 +538,9 @@ function lsx_to_enquire_modal( $cta_text = '', $before = '', $after = '', $echo 
 		}
 	}
 
-	$disable_modal = false;
 	$link = '#';
 
 	if ( isset( $tour_operator->options['general'] ) && isset( $tour_operator->options['general']['disable_enquire_modal'] ) && 'on' === $tour_operator->options['general']['disable_enquire_modal'] ) {
-		$disable_modal = true;
 		if ( isset( $tour_operator->options['general']['enquire_link'] ) && '' !== $tour_operator->options['general']['enquire_link'] ) {
 			$link = $tour_operator->options['general']['enquire_link'];
 		}
