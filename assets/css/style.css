@@ -1552,6 +1552,12 @@ h4.lsx-to-contact-name { font-size: 20px; margin-bottom: 0; text-align: left; }
 
 .lsx-to-team-socials > a { -ms-flex-align: center; align-items: center; border-radius: 50%; display: -ms-flexbox; display: flex; height: 30px; -ms-flex-pack: center; justify-content: center; margin: 0 10px; transition: background 300ms ease; width: 30px; }
 
+.single-lsx-to-team:not(.page-has-banner) .banner-single { display: none; }
+
+.single-lsx-to-team:not(.page-has-banner) .team-navigation { margin-top: 50px; }
+
+@media (max-width: 1199px) { .single-lsx-to-team:not(.page-has-banner) #summary > .lsx-to-section-title { margin-top: 50px; } }
+
 .single-lsx-to-team .lsx-to-team-name { margin-bottom: 1.2rem; }
 
 .single-lsx-to-team .lsx-to-team-contact:not(.dropdown) { margin-bottom: 0; margin-left: 0; margin-top: 4.25rem; padding-left: 0; }
