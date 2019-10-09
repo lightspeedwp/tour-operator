@@ -454,19 +454,12 @@
 	}
 }
 
-.single-lsx-to-team {
+.lsx.single-lsx-to-team {
 	&:not(.page-has-banner) {
 		.banner-single {
-			display: none;
-		}
-		.team-navigation {
-			margin-top: 50px;
-		}
-		@media (max-width:1199px) {
-			#summary {
-				> .lsx-to-section-title {
-					margin-top: 50px;
-				}
+			margin-top: 49px;
+			.archive-header {
+				display: none;
 			}
 		}
 	}
