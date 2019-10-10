@@ -596,21 +596,33 @@ function lsx_to_enquire_modal( $cta_text = '', $before = '', $after = '', $echo 
 	</div>
 <?php } }
 
-/**
- * Outputs the TO Gallery
- *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
- *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	galleries
- */
 if ( ! function_exists( 'lsx_to_gallery' ) ) {
-	function lsx_to_gallery( $before = '', $after = '', $echo = true ) {
-		$gallery_ids = get_post_meta( get_the_ID(), 'gallery', false );
+	/**
+	 * Outputs the TO Gallery
+	 *
+	 * @param		$before	| string
+	 * @param		$after	| string
+	 * @param		$echo	| boolean
+	 * @param		$args	| array
+	 * @return		string
+	 *
+	 * @package 	tour-operator
+	 * @subpackage	template-tags
+	 * @category 	galleries
+	 */
+	function lsx_to_gallery( $before = '', $after = '', $echo = true, $args = array() ) {
+		$defaults = array(
+			'gallery_ids' => array(),
+		);
+		$args           = wp_parse_args( $args, $defaults );
+		if ( ! empty( $args['gallery_ids'] ) ) {
+			if ( ! is_array( $args['gallery_ids'] ) ) {
+				$args['gallery_ids'] = explode( ',', '', $args['gallery_ids'] );
+			}
+			$gallery_ids = $args['gallery_ids'];
+		} else {
+			$gallery_ids = get_post_meta( get_the_ID(), 'gallery', false );
+		}
 		$envira_gallery = get_post_meta( get_the_ID(), 'envira_gallery', true );
 
 		if ( ( ! empty( $gallery_ids ) && is_array( $gallery_ids ) ) || ( function_exists( 'envira_gallery' ) && ! empty( $envira_gallery ) && false === lsx_to_enable_envira_banner() ) ) {

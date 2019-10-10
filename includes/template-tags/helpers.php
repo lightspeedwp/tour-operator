@@ -355,10 +355,10 @@ function lsx_to_custom_field_query( $meta_key = false, $before = '', $after = ''
  */
 function lsx_to_connected_items_query( $from = false, $to = false, $before = '', $after = '', $echo = false, $parents = false, $extra = false ) {
 	if ( post_type_exists( $from ) && post_type_exists( $to ) ) {
-		$connected_ids = get_post_meta( get_the_ID(),$from . '_to_' . $to,false );
+		$connected_ids = get_post_meta( get_the_ID(), $from . '_to_' . $to, false );
 
 		if ( $parents ) {
-			$connected_ids = apply_filters( 'lsx_to_parents_only',$connected_ids );
+			$connected_ids = apply_filters( 'lsx_to_parents_only', $connected_ids );
 		}
 
 		if ( false !== $connected_ids && '' !== $connected_ids && ! empty( $connected_ids ) ) {
