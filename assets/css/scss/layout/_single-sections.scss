@@ -454,7 +454,15 @@
 	}
 }
 
-.single-lsx-to-team {
+.lsx.single-lsx-to-team {
+	&:not(.page-has-banner) {
+		.banner-single {
+			margin-top: 49px;
+			.archive-header {
+				display: none;
+			}
+		}
+	}
 	.lsx-to-team-name { margin-bottom: 1.2rem; }
 
 	.lsx-to-team-contact:not(.dropdown) {

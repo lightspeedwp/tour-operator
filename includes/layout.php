@@ -28,7 +28,7 @@ add_action( 'lsx_content_bottom', 'lsx_to_destination_archive_content_bottom' );
 /**
  * Single
  */
-add_action( 'lsx_content_wrap_before', 'lsx_to_single_content_top' );
+add_action( 'lsx_content_wrap_before', 'lsx_to_single_content_top', 110 );
 add_action( 'lsx_entry_bottom', 'lsx_to_single_entry_bottom' );
 
 /**

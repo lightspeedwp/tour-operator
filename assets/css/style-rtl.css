@@ -1552,18 +1552,22 @@ h4.lsx-to-contact-name { font-size: 20px; margin-bottom: 0; text-align: right; }
 
 .lsx-to-team-socials > a { -ms-flex-align: center; align-items: center; border-radius: 50%; display: -ms-flexbox; display: flex; height: 30px; -ms-flex-pack: center; justify-content: center; margin: 0 10px; transition: background 300ms ease; width: 30px; }
 
-.single-lsx-to-team .lsx-to-team-name { margin-bottom: 1.2rem; }
+.lsx.single-lsx-to-team:not(.page-has-banner) .banner-single { margin-top: 49px; }
 
-.single-lsx-to-team .lsx-to-team-contact:not(.dropdown) { margin-bottom: 0; margin-right: 0; margin-top: 4.25rem; padding-right: 0; }
+.lsx.single-lsx-to-team:not(.page-has-banner) .banner-single .archive-header { display: none; }
 
-.single-lsx-to-team .lsx-to-team-contact:not(.dropdown) > li { display: block; padding-right: 0; padding-left: 0; }
+.lsx.single-lsx-to-team .lsx-to-team-name { margin-bottom: 1.2rem; }
 
-.single-lsx-to-team .lsx-to-team-contact:not(.dropdown) > li + li { margin-top: 1.2rem; }
+.lsx.single-lsx-to-team .lsx-to-team-contact:not(.dropdown) { margin-bottom: 0; margin-right: 0; margin-top: 4.25rem; padding-right: 0; }
 
-@media (min-width: 992px) { .single-lsx-to-team .lsx-to-team-contact:not(.dropdown) > li { display: inline-block; }
-  .single-lsx-to-team .lsx-to-team-contact:not(.dropdown) > li + li { margin-right: 2.4rem; margin-top: 0; } }
+.lsx.single-lsx-to-team .lsx-to-team-contact:not(.dropdown) > li { display: block; padding-right: 0; padding-left: 0; }
 
-.single-lsx-to-team .lsx-to-team-contact:not(.dropdown) .fa { font-size: 22px; margin-left: 5px; vertical-align: middle; }
+.lsx.single-lsx-to-team .lsx-to-team-contact:not(.dropdown) > li + li { margin-top: 1.2rem; }
+
+@media (min-width: 992px) { .lsx.single-lsx-to-team .lsx-to-team-contact:not(.dropdown) > li { display: inline-block; }
+  .lsx.single-lsx-to-team .lsx-to-team-contact:not(.dropdown) > li + li { margin-right: 2.4rem; margin-top: 0; } }
+
+.lsx.single-lsx-to-team .lsx-to-team-contact:not(.dropdown) .fa { font-size: 22px; margin-left: 5px; vertical-align: middle; }
 
 body.single-tour-operator #gallery .gallery { margin: 0 auto; }
 

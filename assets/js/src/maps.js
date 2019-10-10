@@ -460,12 +460,12 @@ var LSX_TO_Maps = {
 };
 
 jQuery(document).ready(function($) {
-	console.log( lsx_to_maps_params );
+	//console.log( lsx_to_maps_params );
 	if ( jQuery('.lsx-map').length > 0 ) {
 		if ( '' === lsx_to_maps_params.placeholder_enabled ) {
 			LSX_TO_Maps.initThis();
 		} else {
 			LSX_TO_Maps.watchMapTriggers();
 		}
-	} 
+	}
 });
