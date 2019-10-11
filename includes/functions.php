@@ -653,7 +653,6 @@ function lsx_to_remove_menu_pages() {
 	remove_submenu_page( 'tour-operator', 'post-new.php?post_type=destination' );
 	remove_submenu_page( 'tour-operator', 'post-new.php?post_type=tour' );
 	remove_submenu_page( 'tour-operator', 'post-new.php?post_type=accommodation' );
-	remove_submenu_page( 'tour-operator', 'edit-tags.php?taxonomy=accommodation-type' );
 	remove_submenu_page( 'tour-operator', 'post-new.php?post_type=activity' );
 	remove_submenu_page( 'tour-operator', 'post-new.php?post_type=review' );
 	remove_submenu_page( 'tour-operator', 'post-new.php?post_type=special' );
