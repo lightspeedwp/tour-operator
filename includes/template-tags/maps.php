@@ -129,9 +129,9 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 						$manual_zoom = get_post_meta( $parent_id, 'disable_auto_zoom', true );
 						if ( false !== $manual_zoom && '' !== $manual_zoom ) {
 							$args['disable_auto_zoom'] = true;
+							$args['zoom'] = $manual_zoom;
+						} else {
 							$args['zoom'] = $zoom;
-							$args['long'] = $location['long'];
-							$args['lat'] = $location['lat'];
 						}
 
 						break;
