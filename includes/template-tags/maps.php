@@ -59,6 +59,7 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 					$parent_id = get_queried_object_id();
 				} elseif ( is_tax( 'continent' ) ) {
 					$map_type = 'continent_archive';
+					$parent_id = '0';
 				}
 
 				switch ( $map_type ) {
@@ -123,7 +124,8 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 							}
 						}
 
-						//Check to see if the zoom is disabled
+						// Check to see if the zoom is disabled.
+						$zoom = 10;
 						$manual_zoom = get_post_meta( $parent_id, 'disable_auto_zoom', true );
 						if ( false !== $manual_zoom && '' !== $manual_zoom ) {
 							$args['disable_auto_zoom'] = true;
@@ -143,15 +145,18 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 							'nopagin' => true,
 							'posts_per_page' => '-1',
 							'fields' => 'ids',
-							'post_parent' => 0,
-							'tax_query' => array(
+							'post_parent' => $parent_id,
+						);
+
+						if ( isset( get_queried_object()->term_id ) ) {
+							$country_args['tax_query'] = array(
 								array(
 									'taxonomy' => 'continent',
 									'field'    => 'term_id',
 									'terms'    => array( get_queried_object()->term_id ),
 								),
-							),
-						);
+							);
+						}
 
 						if ( true === lsx_to_display_fustion_tables() ) {
 							$args['fusion_tables'] = true;
