@@ -6,6 +6,7 @@
 * Dev - Adding in an $args parameter to lsx_to_gallery(), allowing you to specify what 'gallery_ids' to use to build the gallery.
 * Dev - Styles for single team page if banner is disabled.
 * Dev - Set the region archive map to a zoom level of 10
+* Fix - Added in a function to clear the term cache when ordering, so the order reflects immediately.
 
 ### 1.3.0 - 2 October 2019
 * Fix - Fixed the Post Type enquiry dropdown.

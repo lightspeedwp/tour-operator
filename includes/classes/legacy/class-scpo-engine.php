@@ -246,7 +246,12 @@ class SCPO_Engine {
 			return false;
 		}
 
-		$id_arr = array();
+		/*$current_user = wp_get_current_user();
+		if ( false === $current_user || 'lightspeed' !== $current_user->data->user_login ) {
+			return false;
+		}*/
+
+		/*$id_arr = array();
 
 		foreach ( $data as $key => $values ) {
 			foreach ( $values as $position => $id ) {
@@ -263,20 +268,23 @@ class SCPO_Engine {
 			}
 		}
 
-		sort( $menu_order_arr );
+		sort( $menu_order_arr );*/
 
 		foreach ( $data as $key => $values ) {
+			$term_ids = array();
 			foreach ( $values as $position => $id ) {
 				$wpdb->update(
 					$wpdb->terms,
 					array(
-						'lsx_to_term_order' => $menu_order_arr[ $position ],
+						'lsx_to_term_order' => $position + 1,
 					),
 					array(
 						'term_id' => intval( $id ),
 					)
 				);
+				$term_ids[] = intval( $id );
 			}
+			clean_term_cache( $term_ids );
 		}
 	}
 
@@ -398,6 +406,7 @@ class SCPO_Engine {
 	}
 
 	function lsx_to_scporder_get_terms_orderby( $orderby, $args ) {
+
 		if ( is_admin() ) {
 			return $orderby;
 		}
@@ -448,9 +457,7 @@ class SCPO_Engine {
 				return $terms;
 			}
 		}
-
 		usort( $terms, array( $this, 'taxcmp' ) );
-
 		return $terms;
 	}
 
