@@ -128,9 +128,9 @@ class Tour {
 
 		$this->is_wetu_active = false;
 
-		add_filter( 'lsx_to_custom_field_query', array( $this, 'price_filter' ), 5, 10 );
+		add_filter( 'lsx_to_custom_field_query', array( $this, 'price_filter' ), 10, 5 );
 
-		add_filter( 'lsx_to_custom_field_query', array( $this, 'rating' ), 5, 10 );
+		add_filter( 'lsx_to_custom_field_query', array( $this, 'rating' ), 10, 5 );
 
 		add_action( 'lsx_to_modal_meta', array( $this, 'content_meta' ) );
 

@@ -310,8 +310,11 @@ function lsx_to_custom_field_query( $meta_key = false, $before = '', $after = ''
 		}
 
 		$value = get_transient( $post_id . '_' . $meta_key );
+		if ( defined( 'WP_DEBUG' ) && ( true === WP_DEBUG || 'true' === WP_DEBUG ) ) {
+			$value = false;
+		}
 
-		if ( false === $value ) {
+		if ( false === $value || '' === $value ) {
 			$value = get_post_meta( $post_id, $meta_key, true );
 		}
 
