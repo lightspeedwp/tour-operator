@@ -22,6 +22,12 @@ $metabox['fields'][] = array(
 );
 
 $metabox['fields'][] = array(
+	'id'   => 'sticky_archive',
+	'name' => esc_html__( 'Stick to archive', 'tour-operator' ),
+	'type' => 'checkbox',
+);
+
+$metabox['fields'][] = array(
 	'id'   => 'disable_single',
 	'name' => esc_html__( 'Disable Single', 'tour-operator' ),
 	'type' => 'checkbox',
