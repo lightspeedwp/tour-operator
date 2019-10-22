@@ -258,6 +258,7 @@ $metabox['fields'][] = array(
 	'type'       => 'image',
 	'repeatable' => true,
 	'show_size'  => false,
+	'sortable'   => true,
 );
 
 if ( class_exists( 'Envira_Gallery' ) ) {
