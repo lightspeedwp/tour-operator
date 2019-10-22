@@ -483,13 +483,14 @@ class Settings {
 			?>
 			<tr class="form-field">
 				<th scope="row">
-					<label for="continents_instead_countries"><?php esc_html_e( 'Display continents instead countries', 'tour-operator' ); ?></label>
+					<label for="continents_instead_countries"><?php esc_html_e( 'Display continents instead', 'tour-operator' ); ?></label>
 				</th>
 				<td>
 					<input type="checkbox" {{#if continents_instead_countries}} checked="checked" {{/if}} name="continents_instead_countries" />
-					<small><?php esc_html_e( 'This groups archive items by continent taxonomy and display the continent title.', 'tour-operator' ); ?></small>
+					<small><?php esc_html_e( 'Enable this to display replace the countries with continets on the destination archive.', 'tour-operator' ); ?></small>
 				</td>
 			</tr>
+
 			<tr class="form-field">
 				<th scope="row">
 					<label for="group_items_by_continent"><?php esc_html_e( 'Group by Continent', 'tour-operator' ); ?></label>
@@ -499,6 +500,22 @@ class Settings {
 					<small><?php esc_html_e( 'This groups archive items by continent taxonomy and display the continent title.', 'tour-operator' ); ?></small>
 				</td>
 			</tr>
+
+			<tr class="form-field">
+				<th scope="row">
+					<label for="sticky_archives"><?php esc_html_e( 'Sticky Destinations', 'tour-operator' ); ?></label>
+				</th>
+				<td>
+					<select value="{{sticky_archvies}}" name="sticky_archvies">
+						<option value="" {{#is list_layout_image_style value=""}}selected="selected"{{/is}}><?php esc_html_e( 'Disable', 'tour-operator' ); ?></option>
+						<option value="sticky-only" {{#is list_layout_image_style value="sticky-only"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky destinations only', 'tour-operator' ); ?></option>
+						<option value="sticky-first" {{#is list_layout_image_style value="sticky-first"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky destinations first', 'tour-operator' ); ?></option>
+						<option value="sticky-last" {{#is list_layout_image_style value="sticky-last"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky destinations last', 'tour-operator' ); ?></option>
+					</select>
+				</td>
+			</tr>
+
+
 			<?php
 		endif;
 		?>
