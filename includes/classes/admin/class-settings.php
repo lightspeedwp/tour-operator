@@ -507,10 +507,10 @@ class Settings {
 				</th>
 				<td>
 					<select value="{{sticky_archvies}}" name="sticky_archvies">
-						<option value="" {{#is list_layout_image_style value=""}}selected="selected"{{/is}}><?php esc_html_e( 'Disable', 'tour-operator' ); ?></option>
-						<option value="sticky-only" {{#is list_layout_image_style value="sticky-only"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky items only', 'tour-operator' ); ?></option>
-						<option value="sticky-first" {{#is list_layout_image_style value="sticky-first"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky items first', 'tour-operator' ); ?></option>
-						<option value="sticky-last" {{#is list_layout_image_style value="sticky-last"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky items last', 'tour-operator' ); ?></option>
+						<option value="" {{#is sticky_archvies value=""}}selected="selected"{{/is}}><?php esc_html_e( 'Disable', 'tour-operator' ); ?></option>
+						<option value="sticky-only" {{#is sticky_archvies value="sticky-only"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky items only', 'tour-operator' ); ?></option>
+						<option value="sticky-first" {{#is sticky_archvies value="sticky-first"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky items first', 'tour-operator' ); ?></option>
+						<option value="sticky-last" {{#is sticky_archvies value="sticky-last"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky items last', 'tour-operator' ); ?></option>
 					</select>
 				</td>
 			</tr>
