@@ -21,9 +21,11 @@
     margin: 0 !important;	
     text-transform: uppercase !important;
     font-weight:bold !important;
-    
 }
 
+.field.CMB_Title .cmb_metabox_description {
+	position: absolute;
+}
 
 /**
  * Color Picker

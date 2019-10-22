@@ -221,12 +221,13 @@ $metabox['fields'][] = array(
 );
 
 $metabox['fields'][] = array(
-	'id'         => 'gallery',
-	'name'       => esc_html__( 'Gallery', 'tour-operator' ),
-	'type'       => 'image',
-	'repeatable' => true,
-	'show_size'  => false,
-	'sortable'   => true,
+	'id'                  => 'gallery',
+	'name'                => '',
+	'type'                => 'image',
+	'repeatable'          => true,
+	'show_size'           => false,
+	'sortable'            => true,
+	'string-repeat-field' => esc_html__( 'Add new image', 'tour-operator' ),
 );
 
 if ( class_exists( 'Envira_Gallery' ) ) {
