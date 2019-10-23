@@ -105,8 +105,8 @@ class Destination {
 			$query->set( 'post_parent', '0' );
 
 			$sticky_posts = '';
-			if ( is_array( $this->options ) && isset( $this->options[ $this->slug ] ) && isset( $this->options[ $this->slug ]['sticky_archvies'] ) ) {
-				$sticky_posts = $this->options[ $this->slug ]['sticky_archvies'];
+			if ( is_array( $this->options ) && isset( $this->options[ $this->slug ] ) && isset( $this->options[ $this->slug ]['sticky_archives'] ) ) {
+				$sticky_posts = $this->options[ $this->slug ]['sticky_archives'];
 				switch ( $sticky_posts ) {
 					case 'sticky-only':
 						$meta_query = array(

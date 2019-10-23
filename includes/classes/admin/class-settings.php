@@ -516,11 +516,11 @@ class Settings {
 					<label for="sticky_archives"><?php esc_html_e( 'Sticky Destinations', 'tour-operator' ); ?></label>
 				</th>
 				<td>
-					<select value="{{sticky_archvies}}" name="sticky_archvies">
-						<option value="" {{#is sticky_archvies value=""}}selected="selected"{{/is}}><?php esc_html_e( 'Disable', 'tour-operator' ); ?></option>
-						<option value="sticky-only" {{#is sticky_archvies value="sticky-only"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky items only', 'tour-operator' ); ?></option>
-						<option value="sticky-first" {{#is sticky_archvies value="sticky-first"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky items first', 'tour-operator' ); ?></option>
-						<option value="sticky-last" {{#is sticky_archvies value="sticky-last"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky items last', 'tour-operator' ); ?></option>
+					<select value="{{sticky_archives}}" name="sticky_archives">
+						<option value="" {{#is sticky_archives value=""}}selected="selected"{{/is}}><?php esc_html_e( 'Disable', 'tour-operator' ); ?></option>
+						<option value="sticky-only" {{#is sticky_archives value="sticky-only"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky items only', 'tour-operator' ); ?></option>
+						<option value="sticky-first" {{#is sticky_archives value="sticky-first"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky items first', 'tour-operator' ); ?></option>
+						<option value="sticky-last" {{#is sticky_archives value="sticky-last"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky items last', 'tour-operator' ); ?></option>
 					</select>
 				</td>
 			</tr>
