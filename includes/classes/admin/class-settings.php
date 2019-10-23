@@ -478,7 +478,17 @@ class Settings {
 		if ( 'archives' !== $tab ) {
 			return false;
 		}
-
+		?>
+		<tr class="form-field">
+			<th scope="row">
+				<label for="disable_archives"><?php esc_html_e( 'Disable Archives', 'tour-operator' ); ?></label>
+			</th>
+			<td>
+				<input type="checkbox" {{#if disable_archives}} checked="checked" {{/if}} name="disable_archives" />
+				<small><?php esc_html_e( 'This disables the "post type archive", if you create your own custom loop it will still work.', 'tour-operator' ); ?></small>
+			</td>
+		</tr>
+		<?php
 		if ( 'destination' === $post_type ) :
 			?>
 			<tr class="form-field">
@@ -514,20 +524,9 @@ class Settings {
 					</select>
 				</td>
 			</tr>
-
-
 			<?php
 		endif;
 		?>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="disable_archives"><?php esc_html_e( 'Disable Archives', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="checkbox" {{#if disable_archives}} checked="checked" {{/if}} name="disable_archives" />
-				<small><?php esc_html_e( 'This disables the "post type archive", if you create your own custom loop it will still work.', 'tour-operator' ); ?></small>
-			</td>
-		</tr>
 		<tr class="form-field">
 			<th scope="row">
 				<label for="disable_archive_pagination"><?php esc_html_e( 'Disable Pagination', 'tour-operator' ); ?></label>
@@ -636,6 +635,23 @@ class Settings {
 			</td>
 		</tr>
 		<?php
+		if ( 'destination' === $post_type ) {
+			?>
+			<tr class="form-field">
+				<th scope="row">
+					<label for="sticky_countries"><?php esc_html_e( 'Sticky Countries', 'tour-operator' ); ?></label>
+				</th>
+				<td>
+					<select value="{{sticky_countries}}" name="sticky_countries">
+						<option value="" {{#is sticky_countries value=""}}selected="selected"{{/is}}><?php esc_html_e( 'Disable', 'tour-operator' ); ?></option>
+						<option value="sticky-only" {{#is sticky_countries value="sticky-only"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky regions only', 'tour-operator' ); ?></option>
+						<option value="sticky-first" {{#is sticky_countries value="sticky-first"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky regions first', 'tour-operator' ); ?></option>
+						<option value="sticky-last" {{#is sticky_countries value="sticky-last"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky regions last', 'tour-operator' ); ?></option>
+					</select>
+				</td>
+			</tr>
+			<?php
+		}
 		do_action( 'lsx_to_framework_' . $post_type . '_tab_single_settings_top', $post_type );
 		if ( 'tour' == $post_type || 'accommodation' == $post_type || 'destination' == $post_type || 'activity' == $post_type ) : ?>
 			<tr class="form-field">

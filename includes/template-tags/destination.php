@@ -63,11 +63,11 @@ function lsx_to_region_accommodation() {
  */
 function lsx_to_country_regions( $args = array() ) {
 	global $lsx_to_archive, $wp_query;
-
-	$defaults = array(
-		'slider' => true,
-		'parent' => get_the_ID(),
-		'title' => lsx_to_get_post_type_section_title( 'destination', 'regions', 'Regions' ),
+	$tour_operator = tour_operator();
+	$defaults      = array(
+		'slider'  => true,
+		'parent'  => get_the_ID(),
+		'title'   => lsx_to_get_post_type_section_title( 'destination', 'regions', 'Regions' ),
 		'tagline' => false,
 		'exclude' => false,
 		'orderby' => 'name',
@@ -78,22 +78,58 @@ function lsx_to_country_regions( $args = array() ) {
 	if ( is_singular( 'destination' ) && ( lsx_to_item_has_children( get_the_ID(), 'destination' ) || isset( $args['parent'] ) ) ) {
 
 		$region_args = array(
-			'post_type'	=> 'destination',
-			'post_status' => 'publish',
-			'nopagin' => true,
+			'post_type'      => 'destination',
+			'post_status'    => 'publish',
+			'nopagin'        => true,
 			'posts_per_page' => '-1',
-			'post_parent' => $settings['parent'],
-			'orderby' => $settings['orderby'],
-			'order' => 'ASC',
+			'post_parent'    => $settings['parent'],
+			'orderby'        => $settings['orderby'],
+			'order'          => 'ASC',
 		);
 
+		if ( false === $settings['exclude'] && is_array( $tour_operator->options ) && isset( $tour_operator->options['destination'] ) && isset( $tour_operator->options['destination']['sticky_countries'] ) ) {
+			$sticky_posts = $tour_operator->options['destination']['sticky_countries'];
+			switch ( $sticky_posts ) {
+				case 'sticky-only':
+					$meta_query = array(
+						array(
+							'key'     => 'sticky_order',
+							'value'   => '0',
+							'compare' => '!=',
+						),
+					);
+					$region_args['meta_query'] = $meta_query;
+					$region_args['meta_key']   = 'sticky_order';
+					$region_args['orderby']    = 'meta_value_num';
+					$region_args['order']      = 'ASC';
+					break;
+
+				case 'sticky-first':
+					$region_args['meta_key'] = 'sticky_order';
+					$region_args['orderby']  = array(
+						'meta_value_num' => 'DESC',
+						'menu_order' => 'ASC',
+					);
+					break;
+
+				case 'sticky-last':
+					$region_args['meta_key'] = 'sticky_order';
+					$region_args['orderby']  = array(
+						'menu_order' => 'ASC',
+						'meta_value_num' => 'DESC',
+					);
+					break;
+
+				default:
+					break;
+			}
+		}
 		if ( false !== $settings['exclude'] ) {
 			$region_args['post__not_in'] = array( $settings['exclude'] );
 		}
-
-		$regions = new WP_Query( $region_args );
+		$regions        = new WP_Query( $region_args );
 		$region_counter = 0;
-		$total_counter = 0;
+		$total_counter  = 0;
 
 		if ( $regions->have_posts() ) : ?>
 			<section id="regions" class="lsx-to-section <?php lsx_to_collapsible_class( 'destination', false ); ?>">

@@ -111,19 +111,19 @@ class Destination {
 					case 'sticky-only':
 						$meta_query = array(
 							array(
-								'key'     => 'sticky_archive',
+								'key'     => 'sticky_order',
 								'value'   => '0',
 								'compare' => '!=',
 							),
 						);
 						$query->set( 'meta_query', $meta_query );
-						$query->set( 'meta_key', 'sticky_archive' );
+						$query->set( 'meta_key', 'sticky_order' );
 						$query->set( 'orderby', 'meta_value_num' );
 						$query->set( 'order', 'ASC' );
 					break;
 
 					case 'sticky-first':
-						$query->set( 'meta_key', 'sticky_archive' );
+						$query->set( 'meta_key', 'sticky_order' );
 						$query->set(
 							'orderby',
 							array(
@@ -134,7 +134,7 @@ class Destination {
 					break;
 
 					case 'sticky-last':
-						$query->set( 'meta_key', 'sticky_archive' );
+						$query->set( 'meta_key', 'sticky_order' );
 						$query->set(
 							'orderby',
 							array(
