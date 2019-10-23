@@ -101,7 +101,53 @@ class Destination {
 	 */
 	function pre_get_posts( $query ) {
 		if ( $query->is_main_query() && $query->is_post_type_archive( $this->slug ) ) {
+
 			$query->set( 'post_parent', '0' );
+
+			$sticky_posts = '';
+			if ( is_array( $this->options ) && isset( $this->options[ $this->slug ] ) && isset( $this->options[ $this->slug ]['sticky_archvies'] ) ) {
+				$sticky_posts = $this->options[ $this->slug ]['sticky_archvies'];
+				switch ( $sticky_posts ) {
+					case 'sticky-only':
+						$meta_query = array(
+							array(
+								'key'     => 'sticky_archive',
+								'value'   => '0',
+								'compare' => '!=',
+							),
+						);
+						$query->set( 'meta_query', $meta_query );
+						$query->set( 'meta_key', 'sticky_archive' );
+						$query->set( 'orderby', 'meta_value_num' );
+						$query->set( 'order', 'ASC' );
+					break;
+
+					case 'sticky-first':
+						$query->set( 'meta_key', 'sticky_archive' );
+						$query->set(
+							'orderby',
+							array(
+								'meta_value_num' => 'DESC',
+								'menu_order' => 'ASC',
+							)
+						);
+					break;
+
+					case 'sticky-last':
+						$query->set( 'meta_key', 'sticky_archive' );
+						$query->set(
+							'orderby',
+							array(
+								'menu_order' => 'ASC',
+								'meta_value_num' => 'DESC',
+							)
+						);
+					break;
+
+					default:
+					break;
+				}
+			}
 		}
 
 		return $query;

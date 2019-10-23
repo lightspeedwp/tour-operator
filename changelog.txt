@@ -7,6 +7,7 @@
 * Dev - Styles for single team page if banner is disabled.
 * Dev - Set the region archive map to a zoom level of 10
 * Dev - Enabled the sorting of Gallery images
+* Dev - Added in a sticky order field to destinations to allow  sticky posts functionality
 * Fix - Added in a function to clear the term cache when ordering, so the order reflects immediately.
 
 ### 1.3.0 - 2 October 2019
