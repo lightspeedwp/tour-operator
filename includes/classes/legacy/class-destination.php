@@ -119,7 +119,7 @@ class Destination {
 						$query->set( 'meta_query', $meta_query );
 						$query->set( 'meta_key', 'sticky_order' );
 						$query->set( 'orderby', 'meta_value_num' );
-						$query->set( 'order', 'ASC' );
+						$query->set( 'order', 'DESC' );
 					break;
 
 					case 'sticky-first':

@@ -101,7 +101,7 @@ function lsx_to_country_regions( $args = array() ) {
 					$region_args['meta_query'] = $meta_query;
 					$region_args['meta_key']   = 'sticky_order';
 					$region_args['orderby']    = 'meta_value_num';
-					$region_args['order']      = 'ASC';
+					$region_args['order']      = 'DESC';
 					break;
 
 				case 'sticky-first':
