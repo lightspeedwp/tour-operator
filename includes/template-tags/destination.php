@@ -101,13 +101,13 @@ function lsx_to_country_regions( $args = array() ) {
 					$region_args['meta_query'] = $meta_query;
 					$region_args['meta_key']   = 'sticky_order';
 					$region_args['orderby']    = 'meta_value_num';
-					$region_args['order']      = 'DESC';
+					$region_args['order']      = 'ASC';
 					break;
 
 				case 'sticky-first':
 					$region_args['meta_key'] = 'sticky_order';
 					$region_args['orderby']  = array(
-						'meta_value_num' => 'DESC',
+						'meta_value_num' => 'ASC',
 						'menu_order' => 'ASC',
 					);
 					break;
@@ -116,7 +116,7 @@ function lsx_to_country_regions( $args = array() ) {
 					$region_args['meta_key'] = 'sticky_order';
 					$region_args['orderby']  = array(
 						'menu_order' => 'ASC',
-						'meta_value_num' => 'DESC',
+						'meta_value_num' => 'ASC',
 					);
 					break;
 
