@@ -31,7 +31,7 @@ $metabox['fields'][] = array(
 	'id'      => 'sticky_order',
 	'name'    => esc_html__( 'Sticky order', 'tour-operator' ),
 	'type'    => 'text',
-	'default' => '0',
+	'default' => '',
 	//'desc'    => esc_html__( 'Stick an item on the archive page. Add a number to order the item.', 'tour-operator' ),
 );
 
