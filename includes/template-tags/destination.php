@@ -351,7 +351,10 @@ function lsx_to_destination_travel_info() {
  * @category 	connections
  */
 function lsx_to_connected_destinations( $before = '', $after = '', $echo = true ) {
-	lsx_to_connected_items_query( 'destination', get_post_type(), $before, $after, $echo );
+	$return = lsx_to_connected_items_query( 'destination', get_post_type(), $before, $after, $echo );
+	if ( true !== $echo ) {
+		return $return;
+	}
 }
 
 /**

@@ -371,7 +371,7 @@ function lsx_to_connected_items_query( $from = false, $to = false, $before = '',
 
 			$return = $before . lsx_to_connected_list( $connected_ids, $from, true, ', ' ) . $after;
 
-			if ( $echo ) {
+			if ( false !== $echo ) {
 				echo wp_kses_post( $return );
 			} else {
 				return $return;
