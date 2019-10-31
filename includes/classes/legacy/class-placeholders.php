@@ -113,7 +113,8 @@ class Placeholders {
 		$holdit_width = '';
 
 		if ( is_array( $size ) && 2 === count( $size ) ) {
-			$holdit_width = '&w=' . $size[0] . '&h=' . $size[1];
+			$post_type    = 'general';
+			$holdit_width = $size[0] . 'x' . $size[1];
 		} else {
 			switch ( $size ) {
 				case 'thumbnail':
