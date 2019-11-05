@@ -510,6 +510,7 @@ class Widget extends \WP_Widget {
 			$args ['post_parent'] = 0;
 		}
 
+		$args         = apply_filters( 'lsx_to_post_type_widget_query_args', $args, $this );
 		$widget_query = new \WP_Query( $args );
 
 		if ( $widget_query->have_posts() ) {
