@@ -405,6 +405,7 @@ function lsx_to_connected_panel_query( $args = false ) {
 			'before'		=> '',
 			'after'			=> '',
 			'featured'      => false,
+			'orderby'       => false,
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -421,6 +422,10 @@ function lsx_to_connected_panel_query( $args = false ) {
 				'post_status'	=> 'publish',
 				'post__in'		=> $items_array,
 			);
+
+			if ( false !== $args['orderby'] ) {
+				$items_query_args['orderby'] = $args['orderby'];
+			}
 
 			if ( true === $args['featured'] || 'true' === $args['featured'] ) {
 				$items_query_args['meta_query'] = array(
