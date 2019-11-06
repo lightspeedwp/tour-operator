@@ -18,6 +18,20 @@ class Widget extends \WP_Widget {
 	public $args = array();
 
 	/**
+	 * Holds the widgets parsed shortcode atts
+	 *
+	 * @var array
+	 */
+	public $parsed_atts = array();
+
+	/**
+	 * Holds the current widget instance
+	 *
+	 * @var array
+	 */
+	public $instance_args = array();
+
+	/**
 	 * Sets up the widgets name etc
 	 */
 	public function __construct() {
@@ -31,7 +45,9 @@ class Widget extends \WP_Widget {
 
 	/** @see WP_Widget::widget -- do not rename this */
 	public function widget( $args, $instance ) {
-		$this->args = $args;
+		$this->args          = $args;
+		$this->instance_args = $instance;
+
 		if ( isset( $instance['title'] ) ) {
 			$title = $instance['title'];
 		} else {
@@ -446,10 +462,9 @@ class Widget extends \WP_Widget {
 	}
 
 	public function output( $atts ) {
-		global $columns, $disable_placeholder, $disable_text, $disable_view_more;
+		global $columns, $disable_placeholder, $disable_text, $disable_view_more, $this_widget;
 
-		// @codingStandardsIgnoreStart
-		extract( shortcode_atts( array(
+		$args = shortcode_atts( array(
 			'tag' => 'h3',
 			'columns' => 1,
 			'orderby' => 'date',
@@ -468,11 +483,16 @@ class Widget extends \WP_Widget {
 			'featured' => false,
 			'post_type' => 'accommodation',
 			'interval' => '7000',
-		), $atts ) );
+		), $atts );
+		// @codingStandardsIgnoreStart
+		extract( $args );
 		// @codingStandardsIgnoreEnd
 
 		$output = '';
 		$paper = 'paper';
+
+		$this->parsed_atts = $args;
+		$this_widget       = $this;
 
 		if ( 'video' == $post_type ) {
 			$post_type = 'destination';
@@ -679,6 +699,7 @@ class Widget extends \WP_Widget {
 		}
 
 		if ( false !== $template ) {
+			$this_widget = $this;
 			load_template( $template, false );
 		} else {
 			echo wp_kses_post( '<p>No ' . $original_name . ' can be found.</p>' );
