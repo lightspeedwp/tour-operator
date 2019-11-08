@@ -255,33 +255,35 @@ if ( window.location.hash ) {
 				}
 			}
 
+			console.log(lsx_to_params);
+
 			$this.slick( {
-				draggable: false,
-				infinite: true,
-				swipe: false,
-				cssEase: 'ease-out',
-				dots: true,
-				slidesToShow: 3,
-				slidesToScroll: 3,
+				draggable: lsx_to_params.slickSlider.desktop.draggable,
+				infinite: lsx_to_params.slickSlider.desktop.infinite,
+				swipe: lsx_to_params.slickSlider.desktop.swipe,
+				cssEase: lsx_to_params.slickSlider.desktop.cssEase,
+				dots: lsx_to_params.slickSlider.desktop.dots,
+				slidesToShow: lsx_to_params.slickSlider.desktop.slidesToShow,
+				slidesToScroll: lsx_to_params.slickSlider.desktop.slidesToScroll,
 				autoplay: autoplay,
 				autoplaySpeed: autoplay_speed,
 				responsive: [
 					{
 						breakpoint: 992,
 						settings: {
-							draggable: true,
-							arrows: false,
-							swipe: true
+							draggable: lsx_to_params.slickSlider.tablet.draggable,
+							arrows: lsx_to_params.slickSlider.tablet.arrows,
+							swipe: lsx_to_params.slickSlider.tablet.swipe,
 						}
 					},
 					{
 						breakpoint: 768,
 						settings: {
-							slidesToShow: 1,
-							slidesToScroll: 1,
-							draggable: true,
-							arrows: false,
-							swipe: true
+							slidesToShow:   lsx_to_params.slickSlider.mobile.slidesToShow,
+							slidesToScroll: lsx_to_params.slickSlider.mobile.slidesToScroll,
+							draggable:      lsx_to_params.slickSlider.mobile.draggable,
+							arrows:         lsx_to_params.slickSlider.mobile.arrows,
+							swipe:          lsx_to_params.slickSlider.mobile.swipe
 						}
 					}
 				]

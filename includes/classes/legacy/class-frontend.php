@@ -253,6 +253,34 @@ class Frontend extends Tour_Operator {
 			}
 
 			wp_enqueue_script( 'tour-operator-script', LSX_TO_URL . 'assets/js/' . $prefix . 'custom' . $suffix . '.js', array( 'jquery', 'slick', 'slick-lightbox'/*, 'fixto'*/ ), LSX_TO_VER, true );
+
+			$param_array = array(
+				'slickSlider' => array(
+					'desktop' => array(
+						'draggable'      => false,
+						'infinite'       => true,
+						'swipe'          => false,
+						'cssEase'        => 'ease-out',
+						'dots'           => true,
+						'slidesToShow'   => 3,
+						'slidesToScroll' => 3,
+					),
+					'tablet'  => array(
+						'draggable' => true,
+						'arrows'    => false,
+						'swipe'     => true,
+					),
+					'mobile'  => array(
+						'slidesToShow'   => 1,
+						'slidesToScroll' => 1,
+						'draggable'      => true,
+						'arrows'         => false,
+						'swipe'          => true,
+					),
+				),
+			);
+			$param_array = apply_filters( 'lsx_to_js_params', $param_array );
+			wp_localize_script( 'tour-operator-script', 'lsx_to_params', $param_array );
 		}
 
 		if ( ! isset( $this->options['display']['disable_css'] ) ) {

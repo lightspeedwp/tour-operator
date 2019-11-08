@@ -10,6 +10,7 @@
 * Dev - Added in a sticky order field to destinations to allow  sticky posts functionality
 * Dev - Added in a "lsx_to_post_type_widget_query_args" to allow 3rd Party plugins to alter the queries.
 * Dev - Added in an "orderby" parameter to the "lsx_to_connected_panel_query" helper function.
+* Dev - Added in a 'lsx_to_js_params' filters which allows you to alter the JS params of the slick slider JS.
 * Fix - Added in a function to clear the term cache when ordering, so the order reflects immediately.
 * Fix - Fixing the returning variables of the destinations template tags.
 
