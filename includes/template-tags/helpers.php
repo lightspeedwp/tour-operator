@@ -449,10 +449,12 @@ function lsx_to_connected_panel_query( $args = false ) {
 
 				echo wp_kses_post( $args['before'] );
 
-				echo '<div class="slider-container lsx-to-widget-items">';
-				echo '<div id="slider-' . esc_attr( $carousel_id ) . '" class="lsx-to-slider">';
-				echo '<div class="lsx-to-slider-wrap">';
-				echo '<div class="lsx-to-slider-inner" data-interval="' . esc_attr( $interval ) . '" data-slick=\'{ "slidesToShow": ' . esc_attr( $columns ) . ', "slidesToScroll": ' . esc_attr( $columns ) . ' }\'>';
+				if ( 1 < $items->post_count ) {
+					echo '<div class="slider-container lsx-to-widget-items">';
+					echo '<div id="slider-' . esc_attr( $carousel_id ) . '" class="lsx-to-slider">';
+					echo '<div class="lsx-to-slider-wrap">';
+					echo '<div class="lsx-to-slider-inner" data-interval="' . esc_attr( $interval ) . '" data-slick=\'{ "slidesToShow": ' . esc_attr( $columns ) . ', "slidesToScroll": ' . esc_attr( $columns ) . ' }\'>';
+				}
 
 				while ( $items->have_posts() ) :
 					$items->the_post();
@@ -470,11 +472,16 @@ function lsx_to_connected_panel_query( $args = false ) {
 				wp_reset_postdata();
 				$lsx_to_archive = 0;
 
-				echo '</div>';
+				if ( 1 < $items->post_count ) {
+					echo '</div>';
+				}
 				do_action( 'lsx_to_connected_panel_query_bottom', $args );
-				echo '</div>';
-				echo '</div>';
-				echo '</div>';
+
+				if ( 1 < $items->post_count ) {
+					echo '</div>';
+					echo '</div>';
+					echo '</div>';
+				}
 
 				echo wp_kses_post( $args['after'] );
 

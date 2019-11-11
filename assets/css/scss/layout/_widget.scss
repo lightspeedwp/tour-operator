@@ -158,3 +158,18 @@ $light-gray: #F6F6F6;
 		color: #f7ae00 !important;
 	}
 }
+
+// Fixes for if the slider does not load
+
+.lsx-to-slider {
+	.lsx-to-slider-inner:not(.slick-initialized) {
+		.lsx-to-slider-inner {
+			display: flex;
+			flex-wrap: wrap;
+			.lsx-to-widget-item-wrap{
+				width: 33%;
+				display: block;
+			}
+		}
+	}
+}
