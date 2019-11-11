@@ -1096,9 +1096,9 @@
 
 .lsx-block-post-grid-link.lsx-text-link:hover { color: #f7ae00 !important; }
 
-.lsx-to-slider .lsx-to-slider-inner:not(.slick-initialized) .lsx-to-slider-inner { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; }
+.lsx-to-slider .lsx-to-slider-inner:not(.slick-initialized) { display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; }
 
-.lsx-to-slider .lsx-to-slider-inner:not(.slick-initialized) .lsx-to-slider-inner .lsx-to-widget-item-wrap { width: 33%; display: block; }
+.lsx-to-slider .lsx-to-slider-inner:not(.slick-initialized) .lsx-to-widget-item-wrap { width: 33%; display: block; }
 
 .slick-lightbox-close { left: 32px; top: 32px; }
 
