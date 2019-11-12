@@ -237,10 +237,9 @@ class Itinerary_Query {
 	 */
 
 	function departure_day_image( $thumbnail_src = false, $index = 1, $count = 0 ) {
-		if ( false === $thumbnail_src && $count === $index ) {
+		if ( false !== stripos( $thumbnail_src, 'placeholder' ) && $count === $index ) {
 			$thumbnail_src = get_the_post_thumbnail_url( get_the_ID() );
 		}
-
 		return $thumbnail_src;
 	}
 }

@@ -13,6 +13,7 @@
 * Dev - Added in a 'lsx_to_js_params' filters which allows you to alter the JS params of the slick slider JS.
 * Fix - Added in a function to clear the term cache when ordering, so the order reflects immediately.
 * Fix - Fixing the returning variables of the destinations template tags.
+* Fix - Fixed the Tour Itinerary not using the featured image for the departure day.
 
 ### 1.3.0 - 2 October 2019
 * Fix - Fixed the Post Type enquiry dropdown.
