@@ -113,6 +113,7 @@ class Maps {
 				$this->placeholder_enabled = true;
 			}
 		}
+		$this->placeholder_enabled = apply_filters( 'lsx_to_map_placeholder_enabled', $this->placeholder_enabled );
 		if ( defined( 'SCRIPT_DEBUG' ) ) {
 			$prefix = 'src/';
 			$suffix = '';
@@ -134,7 +135,7 @@ class Maps {
 
 		wp_enqueue_script(
 			'lsx_to_maps',
-			LSX_TO_URL . '/assets/js/' . $prefix . 'maps' . $suffix . '.js',
+			LSX_TO_URL . 'assets/js/' . $prefix . 'maps' . $suffix . '.js',
 			$dependacies,
 			LSX_TO_VER,
 			true
