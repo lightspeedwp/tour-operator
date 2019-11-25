@@ -11,9 +11,14 @@
 * Dev - Added in a "lsx_to_post_type_widget_query_args" to allow 3rd Party plugins to alter the queries.
 * Dev - Added in an "orderby" parameter to the "lsx_to_connected_panel_query" helper function.
 * Dev - Added in a 'lsx_to_js_params' filters which allows you to alter the JS params of the slick slider JS.
+* Add - Added a filter `lsx_to_map_placeholder_enabled` for the maps placeholder to enable 3rd parties to change the toggle.
+* Add - Added in a filter to `lsx_to_has_map()` to allow 3rd party functions to disable the map `lsx_to_disable_map`
+* Add - Added in a filter to allow the disabling of the map JS `lsx_to_disable_map_js`
 * Fix - Added in a function to clear the term cache when ordering, so the order reflects immediately.
 * Fix - Fixing the returning variables of the destinations template tags.
 * Fix - Fixed the Tour Itinerary not using the featured image for the departure day.
+* Fix - Fixed the map JS file url.
+* Fix - Restricted the map JS enqueue to only TO allowed pages.
 
 ### 1.3.0 - 2 October 2019
 * Fix - Fixed the Post Type enquiry dropdown.

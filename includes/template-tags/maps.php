@@ -337,9 +337,9 @@ if ( ! function_exists( 'lsx_to_has_map' ) ) {
 	 * @subpackage template-tags
 	 * @category general
 	 */
-	function lsx_to_has_map() {
+	function lsx_to_has_map( $is_enqueque_script = false ) {
 		// If the maps are disabled via the settings.
-		if ( ! lsx_to_is_map_enabled() ) {
+		if ( ! lsx_to_is_map_enabled() || true === apply_filters( 'lsx_to_disable_map', false ) ) {
 			return false;
 		}
 
