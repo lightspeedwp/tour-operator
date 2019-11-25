@@ -92,7 +92,7 @@ class Maps {
 	 * Enques the assets
 	 */
 	public function assets() {
-		if ( $this->is_a_bot() ) {
+		if ( $this->is_a_bot() || ! lsx_to_has_map() ) {
 			return;
 		}
 		$settings    = tour_operator()->options;
