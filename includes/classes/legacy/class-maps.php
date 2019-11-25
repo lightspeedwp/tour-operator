@@ -92,7 +92,7 @@ class Maps {
 	 * Enques the assets
 	 */
 	public function assets() {
-		if ( $this->is_a_bot() || ! lsx_to_has_map() ) {
+		if ( $this->is_a_bot() || ! lsx_to_has_map() || true === apply_filters( 'lsx_to_disable_map_js', false ) ) {
 			return;
 		}
 		$settings    = tour_operator()->options;

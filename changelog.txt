@@ -13,6 +13,7 @@
 * Dev - Added in a 'lsx_to_js_params' filters which allows you to alter the JS params of the slick slider JS.
 * Add - Added a filter `lsx_to_map_placeholder_enabled` for the maps placeholder to enable 3rd parties to change the toggle.
 * Add - Added in a filter to `lsx_to_has_map()` to allow 3rd party functions to disable the map `lsx_to_disable_map`
+* Add - Added in a filter to allow the disabling of the map JS `lsx_to_disable_map_js`
 * Fix - Added in a function to clear the term cache when ordering, so the order reflects immediately.
 * Fix - Fixing the returning variables of the destinations template tags.
 * Fix - Fixed the map JS file url.
