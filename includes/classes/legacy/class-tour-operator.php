@@ -654,7 +654,7 @@ class Tour_Operator {
 	public function get_post_type_archive_description( $description = false, $before = '', $after = '' ) {
 		if ( is_post_type_archive( $this->active_post_types ) && isset( $this->options[ get_post_type() ] ) && isset( $this->options[ get_post_type() ]['description'] ) && '' !== $this->options[ get_post_type() ]['description'] ) {
 			$description = $this->options[ get_post_type() ]['description'];
-			$description = $this->apply_filters_the_content( $description );
+			//$description = $this->apply_filters_the_content( $description );
 			$description = $before . $description . $after;
 		}
 
