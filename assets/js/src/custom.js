@@ -255,7 +255,7 @@ if ( window.location.hash ) {
 				}
 			}
 
-			if ( 1 < $this.children.length ) { 
+			if ( 1 < $this.children.length ) {
 				$this.slick( {
 					draggable: lsx_to_params.slickSlider.desktop.draggable,
 					infinite: lsx_to_params.slickSlider.desktop.infinite,
@@ -462,6 +462,20 @@ if ( window.location.hash ) {
 	};
 
 	/**
+	 * Add an extra class if a widget has only one item.
+	 *
+	 * @package    tour-operator
+	 * @subpackage scripts
+	 */
+	lsx_to.to_widget_item_size = function() {
+		$( '.lsx-to-widget-item-wrap:not(.slick-slide)' ).each(function() {
+			if ( $(this).children().length == 1 ) {
+				$(this).addClass('lsx-to-widget-just-one-item');
+			}
+		});
+	};
+
+	/**
 	 * On window resize.
 	 *
 	 * @package    lsx
@@ -489,6 +503,7 @@ if ( window.location.hash ) {
 		lsx_to.set_read_more_travel_info();
 		lsx_to.set_read_more_itinerary();
 		lsx_to.build_slider( window_width );
+		lsx_to.to_widget_item_size();
 	} );
 
 	/**

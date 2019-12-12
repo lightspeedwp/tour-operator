@@ -12,6 +12,12 @@
 	@include media('>=tablet') { margin-top: 0; }
 
 	#fast-facts + &, #highlights + & { margin-top: 0; }
+
+	& div:first-child {
+		&.lsx-to-enquire-form {
+			padding-top: $lsx-to-gap-half / 2;
+		}
+	}
 }
 
 .lsx-to-contact {

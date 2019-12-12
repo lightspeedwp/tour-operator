@@ -177,6 +177,9 @@
 			margin-bottom: 0;
 		}
 	}
+	body:not(.page-has-banner) & {
+		margin-top: $lsx-to-gap-large / 2;
+	}
 }
 
 .lsx-to-archive-thumb {

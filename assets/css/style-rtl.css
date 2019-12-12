@@ -22,6 +22,13 @@
   .lsx-to-slider-inner.slider-disabled .lsx-to-widget-item-wrap:nth-child(2n+3) { clear: none; }
   .lsx-to-slider-inner.slider-disabled .lsx-to-widget-item-wrap:nth-child(3n+4) { clear: right; } }
 
+@media (min-width: 992px) { .lsx-to-widget-item-wrap.lsx-to-widget-just-one-item .has-post-thumbnail { display: -ms-flexbox; display: flex; }
+  .lsx-to-widget-item-wrap.lsx-to-widget-just-one-item .has-post-thumbnail .lsx-to-widget-thumb { -ms-flex: 1 1 auto; flex: 1 1 auto; max-width: 30%; }
+  .lsx-to-widget-item-wrap.lsx-to-widget-just-one-item .has-post-thumbnail .lsx-to-widget-thumb a { min-width: 100%; }
+  .lsx-to-widget-item-wrap.lsx-to-widget-just-one-item .has-post-thumbnail .lsx-to-widget-thumb a img { min-width: 100%; min-height: 100%; width: auto; -o-object-fit: cover; object-fit: cover; }
+  .lsx-to-widget-item-wrap.lsx-to-widget-just-one-item .has-post-thumbnail .lsx-to-widget-content { -ms-flex: 4 1 auto; flex: 4 1 auto; display: -ms-flexbox; display: flex; -ms-flex-direction: column; flex-direction: column; -ms-flex-pack: justify; justify-content: space-between; }
+  .lsx-to-widget-item-wrap.lsx-to-widget-just-one-item .has-post-thumbnail .lsx-to-widget-content .lsx-to-widget-title { text-align: right; } }
+
 .lsx-to-widget-view-all { margin-top: 6rem; overflow: hidden; position: relative; text-align: center; }
 
 .lsx-to-widget-view-all > span { display: inline-block; position: relative; }
@@ -300,6 +307,8 @@
 
 .lsx-to-archive-description > p:last-child, .lsx-to-archive-description > p:only-child { margin-bottom: 0; }
 
+body:not(.page-has-banner) .lsx-to-archive-description { margin-top: 4.25rem; }
+
 .lsx-to-archive-thumb { width: 100%; }
 
 @media (max-width: 767px) { .lsx-to-archive-thumb > a, .lsx-to-archive-thumb .lsx-to-thumb-slot { background-image: none !important; }
@@ -371,6 +380,8 @@
 
 #fast-facts + .lsx-to-contact-widget, #highlights + .lsx-to-contact-widget { margin-top: 0; }
 
+.lsx-to-contact-widget div:first-child.lsx-to-enquire-form { padding-top: 1.2rem; }
+
 @media (min-width: 768px) { .lsx-to-contact { -ms-flex: 2; flex: 2; } }
 
 @media (min-width: 768px) { .lsx-to-contact article { -ms-flex-align: center; align-items: center; display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; } }
@@ -402,6 +413,8 @@ h4.lsx-to-contact-name { font-size: 20px; margin-bottom: 0; text-align: right; }
 .lsx-to-section { margin: 0 -9999rem; padding: 8.5rem 9999rem; }
 
 .lsx-to-section#activity-map, .lsx-to-section#special-map, .lsx-to-section#accommodation-map, .lsx-to-section#destination-map, .lsx-to-section#tour-map { margin: 0 calc(-50vw + 50%) 0 0; padding: 0; width: 100vw; }
+
+.archive .lsx-to-section#destination-map { margin-top: 8.5rem; }
 
 .site-main > .lsx-to-section:first-of-type { padding-top: 0; }
 
