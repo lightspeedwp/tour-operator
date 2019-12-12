@@ -22,12 +22,12 @@
   .lsx-to-slider-inner.slider-disabled .lsx-to-widget-item-wrap:nth-child(2n+3) { clear: none; }
   .lsx-to-slider-inner.slider-disabled .lsx-to-widget-item-wrap:nth-child(3n+4) { clear: left; } }
 
-@media (min-width: 992px) { .lsx-to-widget-item-wrap.lsx-to-widget-just-one-item .has-post-thumbnail { display: -ms-flexbox; display: flex; }
-  .lsx-to-widget-item-wrap.lsx-to-widget-just-one-item .has-post-thumbnail .lsx-to-widget-thumb { -ms-flex: 1 1 auto; flex: 1 1 auto; max-width: 30%; }
-  .lsx-to-widget-item-wrap.lsx-to-widget-just-one-item .has-post-thumbnail .lsx-to-widget-thumb a { min-width: 100%; }
-  .lsx-to-widget-item-wrap.lsx-to-widget-just-one-item .has-post-thumbnail .lsx-to-widget-thumb a img { min-width: 100%; min-height: 100%; width: auto; -o-object-fit: cover; object-fit: cover; }
-  .lsx-to-widget-item-wrap.lsx-to-widget-just-one-item .has-post-thumbnail .lsx-to-widget-content { -ms-flex: 4 1 auto; flex: 4 1 auto; display: -ms-flexbox; display: flex; -ms-flex-direction: column; flex-direction: column; -ms-flex-pack: justify; justify-content: space-between; }
-  .lsx-to-widget-item-wrap.lsx-to-widget-just-one-item .has-post-thumbnail .lsx-to-widget-content .lsx-to-widget-title { text-align: left; } }
+@media (min-width: 992px) { .lsx-to-widget-item-wrap.lsx-to-widget-just-one-item article { display: -ms-flexbox; display: flex; }
+  .lsx-to-widget-item-wrap.lsx-to-widget-just-one-item article .lsx-to-widget-thumb { -ms-flex: 1 1 auto; flex: 1 1 auto; max-width: 30%; }
+  .lsx-to-widget-item-wrap.lsx-to-widget-just-one-item article .lsx-to-widget-thumb a { min-width: 100%; }
+  .lsx-to-widget-item-wrap.lsx-to-widget-just-one-item article .lsx-to-widget-thumb a img { min-width: 100%; min-height: 100%; width: auto; -o-object-fit: cover; object-fit: cover; }
+  .lsx-to-widget-item-wrap.lsx-to-widget-just-one-item article .lsx-to-widget-content { -ms-flex: 4 1 auto; flex: 4 1 auto; display: -ms-flexbox; display: flex; -ms-flex-direction: column; flex-direction: column; -ms-flex-pack: justify; justify-content: space-between; }
+  .lsx-to-widget-item-wrap.lsx-to-widget-just-one-item article .lsx-to-widget-content .lsx-to-widget-title { text-align: left; } }
 
 .lsx-to-widget-view-all { margin-top: 6rem; overflow: hidden; position: relative; text-align: center; }
 
