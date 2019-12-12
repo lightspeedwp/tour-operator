@@ -204,7 +204,7 @@ function lsx_to_tagline( $before = '', $after = '', $echo = false ) {
  * @category 	description
  */
 function lsx_to_archive_description() {
-	echo wp_kses_post( apply_filters( 'lsx_to_archive_description', '', '<div class="lsx-to-archive-header row"><div class="col-xs-12 lsx-to-archive-description">', '</div></div>' ) );
+	echo wp_kses_post( apply_filters( 'lsx_to_archive_description', '', '<div class="content-area lsx-to-archive-header row"><div class="col-xs-12 lsx-to-archive-description">', '</div></div>' ) );
 }
 
 
