@@ -359,9 +359,11 @@ class SCPO_Engine {
 
 		if ( is_admin() ) {
 			if ( isset( $wp_query->query['post_type'] ) && ! isset( $_GET['orderby'] ) ) {
-				if ( array_key_exists( $wp_query->query['post_type'], $objects ) ) {
-					$wp_query->set( 'orderby', 'menu_order' );
-					$wp_query->set( 'order', 'ASC' );
+				if ( ! is_array( $wp_query->query['post_type'] ) ) {
+					if ( array_key_exists( $wp_query->query['post_type'], $objects ) ) {
+						$wp_query->set( 'orderby', 'menu_order' );
+						$wp_query->set( 'order', 'ASC' );
+					}
 				}
 			}
 		} else {
