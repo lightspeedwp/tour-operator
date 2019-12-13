@@ -1,6 +1,6 @@
 ## Change log
 
-### 1.3.1 - In Development
+### 1.4.0
 * Dev - Added in a parameter to lsx_to_enquire_modal() to allow a form_id to be specified
 * Dev - Allowing the modal to be disabled in lsx_to_enquire_modal via a parameter
 * Dev - Adding in an $args parameter to lsx_to_gallery(), allowing you to specify what 'gallery_ids' to use to build the gallery.
@@ -23,6 +23,7 @@
 * Fix - Removing the flag-icons vendor CSS and Images.
 * Fix - Fix for 'Content wider than screen' Google Console issue.
 * Fix - Fixed the undefined notice when using and array of post types with WP_Query
+* Fix - Moving the description text on main Archive pages above the filters.
 
 ### 1.3.0 - 2 October 2019
 * Fix - Fixed the Post Type enquiry dropdown.

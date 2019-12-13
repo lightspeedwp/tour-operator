@@ -165,7 +165,12 @@
 	&:first-child { margin-top: 0; }
 }
 
+.lsx-to-archive-header {
+	margin: 0;
+}
 .lsx-to-archive-description {
+	padding-left: 5px;
+	padding-right: 0;
 	& > p {
 		&:last-child,
 		&:only-child {
