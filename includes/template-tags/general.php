@@ -659,3 +659,24 @@ if ( ! function_exists( 'lsx_to_gallery' ) ) {
 		}
 	}
 }
+
+/* ==================  SITEMAP  ================== */
+
+if ( ! function_exists( 'to_sitemap_loops' ) ) {
+	/**
+	 * Add Hierarchy for Destinations Sitemap.
+	 *
+	 * @param [type] $sitemap_loops
+	 * @return void
+	 */
+	function to_sitemap_loops( $sitemap_loops ) {
+		$sitemap_loops['destination'] = array(
+			'type'      => 'post_type',
+			'label'     => __( 'Destinations', 'lsx' ),
+			'heirarchy' => true,
+		);
+
+		return $sitemap_loops;
+	}
+	add_filter( 'lsx_sitemap_loops_list', 'to_sitemap_loops', 1 );
+}
