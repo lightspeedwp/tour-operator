@@ -28,6 +28,36 @@ $light-gray: #F6F6F6;
 			}
 		}
 	}
+	&.lsx-to-widget-just-one-item {
+		article {
+			@include media('>=tablet') {
+				display: flex;
+				.lsx-to-widget-thumb {
+					flex: 1 1 auto;
+					max-width: 30%;
+					a {
+						min-width: 100%;
+						img {
+							min-width: 100%;
+							min-height: 100%;
+							width: auto;
+							object-fit: cover;
+						}
+					}
+
+				}
+				.lsx-to-widget-content {
+					flex: 4 1 auto;
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
+					.lsx-to-widget-title {
+						text-align: left;
+					}
+				}
+			}
+		}
+	}
 }
 
 .lsx-to-widget-view-all {

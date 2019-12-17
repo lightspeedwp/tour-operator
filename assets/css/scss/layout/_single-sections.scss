@@ -12,6 +12,12 @@
 		width: 100vw;
 	}
 
+	.archive & {
+		&#destination-map {
+			margin-top: $lsx-to-gap-large;
+		}
+	}
+
 	.site-main > & {
 		&:first-of-type { padding-top: 0; }
 	}
