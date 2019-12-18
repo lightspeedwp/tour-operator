@@ -51,6 +51,12 @@ $light-gray: #F6F6F6;
 					display: flex;
 					flex-direction: column;
 					justify-content: space-between;
+					/** IE 11 Fix for widget box **/
+					@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+						-ms-flex: 1;
+						-webkit-flex: 1;
+						flex: 1;
+					}
 					.lsx-to-widget-title {
 						text-align: left;
 					}
