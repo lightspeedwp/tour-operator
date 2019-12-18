@@ -25,6 +25,7 @@
 * Fix - Fixed the undefined notice when using and array of post types with WP_Query
 * Fix - Moving the description text on main Archive pages above the filters.
 * Dev - Adding hierarchy for the Destination sitemap section.
+* Dev - Changing the Destination Region to show the connected accommodation in the map instead of just a pin.
 
 ### 1.3.0 - 2 October 2019
 * Fix - Fixed the Post Type enquiry dropdown.
