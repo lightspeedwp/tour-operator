@@ -7,6 +7,10 @@
 		flex-direction: column;
 		justify-content: center;
 		padding: 0;
+		/** IE 11 Fix for widget box **/
+		@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+			display: block;
+		}
 	}
 
 	@include media('>=tablet') { margin-top: 0; }
