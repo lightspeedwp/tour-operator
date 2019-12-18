@@ -28,7 +28,7 @@ $light-gray: #F6F6F6;
 			}
 		}
 	}
-	&.lsx-to-widget-just-one-item {
+	&.lsx-to-widget-just-one-item:not(.lsx-review) {
 		article {
 			@include media('>=tablet') {
 				display: flex;
