@@ -1,6 +1,6 @@
 ## Change log
 
-### 1.4.0
+### 1.4.0 - 19 December 2019
 * Dev - Added in a parameter to lsx_to_enquire_modal() to allow a form_id to be specified
 * Dev - Allowing the modal to be disabled in lsx_to_enquire_modal via a parameter
 * Dev - Adding in an $args parameter to lsx_to_gallery(), allowing you to specify what 'gallery_ids' to use to build the gallery.
