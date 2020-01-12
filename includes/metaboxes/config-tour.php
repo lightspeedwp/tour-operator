@@ -124,7 +124,7 @@ $metabox['fields'][] = array(
 
 $metabox['fields'][] = array(
 	'id'      => 'hightlights',
-	'name'    => esc_html__( 'Hightlights', 'tour-operator' ),
+	'name'    => esc_html__( 'Highlights', 'tour-operator' ),
 	'type'    => 'wysiwyg',
 	'options' => array(
 		'editor_height' => '100',
