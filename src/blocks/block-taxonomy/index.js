@@ -165,7 +165,7 @@ registerBlockType( 'tour-operator/block-taxonomy', {
 			//{ value: 'activity', label: __( 'Activities' ) },
 		];
 
-		// See More Buttom options
+		// See More Button options
 		const seeMoreButtonOptions = [
 			{ value: '1', label: __( 'Yes' ) },
 			{ value: '', label: __( 'No' ) },
@@ -222,8 +222,8 @@ registerBlockType( 'tour-operator/block-taxonomy', {
 								onChange={ onChangeSubTitle }
 							/>
 							<SelectControl
-								label={ __( 'Add "See More Buttom"' ) }
-								description={ __( 'Add "See More Buttom" at the bottom' ) }
+								label={ __( 'Add "See More Button"' ) }
+								description={ __( 'Add "See More Button" at the bottom' ) }
 								options={ seeMoreButtonOptions }
 								value={ seeMoreButton }
 								onChange={ ( value ) => setAttributes( { seeMoreButton: value } ) }
