@@ -47,6 +47,8 @@ $post_type = array(
 		'custom-fields',
 		'page-attributes',
 	),
+	'show_in_rest'       => true,
+	'rest_base'          => 'destinations',
 );
 
 return $post_type;

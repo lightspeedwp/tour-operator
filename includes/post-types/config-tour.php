@@ -46,6 +46,8 @@ $post_type = array(
 		'excerpt',
 		'custom-fields',
 	),
+	'show_in_rest'       => true,
+	'rest_base'          => 'tours',
 );
 
 return $post_type;

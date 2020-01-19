@@ -48,6 +48,8 @@ $post_type = array(
 		'excerpt',
 		'custom-fields',
 	),
+	'show_in_rest'        => true,
+	'rest_base'           => 'accommodations',
 );
 
 return $post_type;

@@ -1,5 +1,8 @@
 ## Change log
 
+### 1.5.0 (In development)
+* Dev - Adding REST API Support For Custom Post Types.
+
 ### 1.4.0 - 19 December 2019
 * Dev - Added in a parameter to lsx_to_enquire_modal() to allow a form_id to be specified
 * Dev - Allowing the modal to be disabled in lsx_to_enquire_modal via a parameter
