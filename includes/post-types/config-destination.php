@@ -49,6 +49,7 @@ $post_type = array(
 	),
 	'show_in_rest'       => true,
 	'rest_base'          => 'destinations',
+	'rest_controller_class' => 'WP_REST_Posts_Controller',
 );
 
 return $post_type;
