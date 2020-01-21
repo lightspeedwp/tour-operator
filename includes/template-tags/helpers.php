@@ -123,10 +123,10 @@ function lsx_to_accommodation_display_connected_tours() {
 function lsx_to_item_has_children( $post_id = false, $post_type = false ) {
 	global $wpdb;
 
-	if ( false == $post_id ) {
+	if ( false === $post_id ) {
 		return false;
 	}
-	if ( false == $post_type ) {
+	if ( false === $post_type ) {
 		$post_type = 'page';
 	}
 
