@@ -291,7 +291,7 @@ if ( window.location.hash ) {
 		} );
 
 		if ( window_width < 768 ) {
-			$( '.gallery' ).slick( {
+			$( '.gallery' ).not('.slick-initialized').slick( {
 				slide: 'dl',
 				arrows: false,
 				draggable: true,
