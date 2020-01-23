@@ -469,7 +469,7 @@ if ( window.location.hash ) {
 	 */
 	lsx_to.to_widget_item_size = function() {
 		$( '.lsx-to-widget-item-wrap:not(.slick-slide)' ).each(function() {
-			if ( $(this).children().length == 1 ) {
+			if ( $(this).find('.lsx-to-archive-item').length == 1 ) {
 				$(this).addClass('lsx-to-widget-just-one-item');
 			}
 		});
