@@ -352,3 +352,28 @@ function lsx_to_itinerary_drinks_basis( $before = '', $after = '' ) {
 		}
 	}
 }
+
+/**
+ * Retrieves the accommodation ids from the itinerary, mostly for use in the map.
+ * the itinerary loop.
+ *
+ * @package       tour-operator
+ * @subpackage    template-tags
+ * @category      itinerary
+ *
+ * @return array
+ */
+function lsx_to_get_tour_itinerary_ids() {
+	$tour_itinerary = new \lsx\legacy\Itinerary_Query();
+	$itinerary_ids  = array();
+	if ( $tour_itinerary->has_itinerary() ) {
+		$itinerary_count = 1;
+		while ( $tour_itinerary->while_itinerary() ) {
+			$tour_itinerary->current_itinerary_item();
+			if ( ! empty( $tour_itinerary->itinerary['accommodation_to_tour'] ) && is_array( $tour_itinerary->itinerary['accommodation_to_tour'] ) ) {
+				$itinerary_ids = array_merge( $itinerary_ids, array_values( $tour_itinerary->itinerary['accommodation_to_tour'] ) );
+			}
+		}
+	}
+	return $itinerary_ids;
+}
