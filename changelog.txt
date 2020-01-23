@@ -1,5 +1,9 @@
 ## Change log
 
+### 1.4.1 - (in dev)
+* Fix - Adding in the 'lsx_to_get_tour_itinerary_ids' to fix the order of the map IDS
+* Fix - Fixing the departure day not using the tours featured image.
+
 ### 1.4.0 - 19 December 2019
 * Dev - Added in a parameter to lsx_to_enquire_modal() to allow a form_id to be specified
 * Dev - Allowing the modal to be disabled in lsx_to_enquire_modal via a parameter

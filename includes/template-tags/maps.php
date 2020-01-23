@@ -365,7 +365,7 @@ if ( ! function_exists( 'lsx_to_has_map' ) ) {
 				}
 
 				$location = false;
-				$accommodation_connected = get_post_meta( get_the_ID(), 'accommodation_to_tour' );
+				$accommodation_connected = lsx_to_get_tour_itinerary_ids();
 
 				if ( is_array( $accommodation_connected ) && ! empty( $accommodation_connected ) ) {
 					$location = array(
