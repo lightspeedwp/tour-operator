@@ -50,6 +50,9 @@ $post_type = array(
 	'show_in_rest'       => true,
 	'rest_base'          => 'destinations',
 	'rest_controller_class' => 'WP_REST_Posts_Controller',
+	'show_in_graphql'     => true,
+	'graphql_single_name' => 'Destination',
+	'graphql_plural_name' => 'Destinations',
 );
 
 return $post_type;

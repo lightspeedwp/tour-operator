@@ -49,6 +49,9 @@ $post_type = array(
 	'show_in_rest'       => true,
 	'rest_base'          => 'tours',
 	'rest_controller_class' => 'WP_REST_Posts_Controller',
+	'show_in_graphql'     => true,
+	'graphql_single_name' => 'Tour',
+	'graphql_plural_name' => 'Tours',
 );
 
 return $post_type;

@@ -51,6 +51,9 @@ $post_type = array(
 	'show_in_rest'        => true,
 	'rest_base'           => 'accommodations',
 	'rest_controller_class' => 'WP_REST_Posts_Controller',
+	'show_in_graphql'     => true,
+	'graphql_single_name' => 'Accommodation',
+	'graphql_plural_name' => 'Accommodations',
 );
 
 return $post_type;
