@@ -366,7 +366,7 @@ if ( ! function_exists( 'lsx_to_has_map' ) ) {
 
 				$location = false;
 				$accommodation_connected = lsx_to_get_tour_itinerary_ids();
-
+				$accommodation_connected = apply_filters( 'lsx_to_maps_tour_connections', $accommodation_connected );
 				if ( is_array( $accommodation_connected ) && ! empty( $accommodation_connected ) ) {
 					$location = array(
 						'lat' => true,
