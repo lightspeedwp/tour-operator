@@ -231,12 +231,11 @@ class Widget extends \WP_Widget {
 	/** @see WP_Widget::update -- do not rename this */
 	function update( $new_instance, $old_instance ) {
 		$instance                        = $old_instance;
-		$range_columns                   = range( 1, 6 );
 		$instance['title']               = esc_html( force_balance_tags( $new_instance['title'] ) );
 		$instance['title_link']          = esc_url_raw( $new_instance['title_link'] );
-		$instance['columns']             = in_array( $new_instance['columns'], $range_columns ) ? $new_instance['columns'] : 3;
-		$instance['orderby']             = sanitize_text_field( $new_instance['orderby'] );
-		$instance['order']               = sanitize_text_field( $new_instance['order'] );
+		$instance['columns']             = in_array( $new_instance['columns'], range( 1, 6 ) ) ? $new_instance['columns'] : 1;
+		$instance['orderby']             = in_array( $new_instance['columns'], range( 1, 7 ) ) ? $new_instance['orderby'] : 1;
+		$instance['order']               = in_array( $new_instance['columns'], range( 1, 2 ) ) ? $new_instance['order'] : 1;
 		$instance['limit']               = wp_kses_post( $new_instance['limit'] );
 		$instance['include']             = wp_kses_post( $new_instance['include'] );
 		$instance['parents_only']        = sanitize_text_field( $new_instance['parents_only'] );
@@ -247,7 +246,7 @@ class Widget extends \WP_Widget {
 		$instance['button_text']         = esc_html( force_balance_tags( $new_instance['button_text'] ) );
 		$instance['carousel']            = sanitize_text_field( $new_instance['carousel'] );
 		$instance['featured']            = sanitize_text_field( $new_instance['featured'] );
-		$instance['post_type']           = sanitize_text_field( $new_instance['post_type'] );
+		$instance['post_type']           = in_array( $new_instance['columns'], range( 1, 8 ) ) ? $new_instance['post_type'] : 1;
 		$instance['class']               = esc_html( $new_instance['class'] );
 		$instance['interval']            = esc_html( $new_instance['interval'] );
 		return $instance;
