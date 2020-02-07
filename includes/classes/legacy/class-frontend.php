@@ -473,7 +473,7 @@ class Frontend extends Tour_Operator {
 	 * @return    string $content
 	 */
 	public function modify_read_more_link( $content ) {
-		$content = str_replace( '<span id="more-' . get_the_ID() . '"></span>', '<a class="lsx-to-more-link more-link" data-collapsed="true" href="' . get_permalink() . '">' . esc_html__( 'Read More', 'tour-operator' ) . '</a>', $content );
+		$content = str_replace( '<span id="more-' . esc_attr( get_the_ID() ) . '"></span>', '<a class="lsx-to-more-link more-link" data-collapsed="true" href="' . get_permalink() . '">' . esc_html__( 'Read More', 'tour-operator' ) . '</a>', $content );
 
 		return $content;
 	}

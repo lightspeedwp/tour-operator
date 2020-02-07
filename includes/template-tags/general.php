@@ -490,7 +490,7 @@ function lsx_to_enquiry_contact( $before = '', $after = '' ) {
 				<div class="lsx-to-meta-data contact-number"><i class="fa fa-phone"></i> <a href="tel:+<?php echo esc_attr( $fields['enquiry_contact_phone'] ); ?>"><?php echo esc_html( $fields['enquiry_contact_phone'] ); ?></a></div>
 			<?php endif; ?>
 			<?php if ( ! empty( $fields['enquiry_contact_email'] ) ) : ?>
-				<div class="lsx-to-meta-data email"><i class="fa fa-envelope"></i> <a href="mailto:<?php echo esc_attr( $fields['enquiry_contact_email'] ); ?>"><?php echo esc_html( $fields['enquiry_contact_email'] ); ?></a></div>
+				<div class="lsx-to-meta-data email"><i class="fa fa-envelope"></i> <a href="mailto:<?php echo esc_attr( antispambot( $fields['enquiry_contact_email'] ) ); ?>"><?php echo esc_html( $fields['enquiry_contact_email'] ); ?></a></div>
 			<?php endif; ?>
 		</div>
 	</article>
