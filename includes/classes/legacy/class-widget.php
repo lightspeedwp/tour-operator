@@ -231,24 +231,25 @@ class Widget extends \WP_Widget {
 	/** @see WP_Widget::update -- do not rename this */
 	function update( $new_instance, $old_instance ) {
 		$instance                        = $old_instance;
-		$instance['title']               = wp_kses_post( force_balance_tags( $new_instance['title'] ) );
-		$instance['title_link']          = wp_strip_all_tags( $new_instance['title_link'] );
-		$$instance['columns']            = in_array( $new_instance['columns'], range( 1, 6 ), true ) ? $new_instance['columns'] : 1;
-		$instance['orderby']             = wp_strip_all_tags( $new_instance['orderby'] );
-		$instance['order']               = wp_strip_all_tags( $new_instance['order'] );
-		$instance['limit']               = wp_strip_all_tags( $new_instance['limit'] );
-		$instance['include']             = wp_strip_all_tags( $new_instance['include'] );
-		$instance['parents_only']        = wp_strip_all_tags( $new_instance['parents_only'] );
-		$instance['disable_placeholder'] = wp_strip_all_tags( $new_instance['disable_placeholder'] );
-		$instance['disable_text']        = wp_strip_all_tags( $new_instance['disable_text'] );
-		$instance['disable_view_more']   = wp_strip_all_tags( $new_instance['disable_view_more'] );
-		$instance['buttons']             = wp_strip_all_tags( $new_instance['buttons'] );
-		$instance['button_text']         = $new_instance['button_text'];
-		$instance['carousel']            = wp_strip_all_tags( $new_instance['carousel'] );
-		$instance['featured']            = wp_strip_all_tags( $new_instance['featured'] );
-		$instance['post_type']           = wp_strip_all_tags( $new_instance['post_type'] );
-		$instance['class']               = wp_strip_all_tags( $new_instance['class'] );
-		$instance['interval']            = wp_strip_all_tags( $new_instance['interval'] );
+		$range_columns                   = range( 1, 6 );
+		$instance['title']               = esc_html( force_balance_tags( $new_instance['title'] ) );
+		$instance['title_link']          = esc_url_raw( $new_instance['title_link'] );
+		$instance['columns']             = in_array( $new_instance['columns'], $range_columns ) ? $new_instance['columns'] : 3;
+		$instance['orderby']             = sanitize_text_field( $new_instance['orderby'] );
+		$instance['order']               = sanitize_text_field( $new_instance['order'] );
+		$instance['limit']               = wp_kses_post( $new_instance['limit'] );
+		$instance['include']             = wp_kses_post( $new_instance['include'] );
+		$instance['parents_only']        = sanitize_text_field( $new_instance['parents_only'] );
+		$instance['disable_placeholder'] = sanitize_text_field( $new_instance['disable_placeholder'] );
+		$instance['disable_text']        = sanitize_text_field( $new_instance['disable_text'] );
+		$instance['disable_view_more']   = sanitize_text_field( $new_instance['disable_view_more'] );
+		$instance['buttons']             = sanitize_text_field( $new_instance['buttons'] );
+		$instance['button_text']         = esc_html( force_balance_tags( $new_instance['button_text'] ) );
+		$instance['carousel']            = sanitize_text_field( $new_instance['carousel'] );
+		$instance['featured']            = sanitize_text_field( $new_instance['featured'] );
+		$instance['post_type']           = sanitize_text_field( $new_instance['post_type'] );
+		$instance['class']               = esc_html( $new_instance['class'] );
+		$instance['interval']            = esc_html( $new_instance['interval'] );
 		return $instance;
 	}
 
