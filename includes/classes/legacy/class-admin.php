@@ -288,7 +288,7 @@ class Admin extends Tour_Operator {
 			$image_preview = wp_get_attachment_image_src( $value, 'thumbnail' );
 
 			if ( is_array( $image_preview ) ) {
-				$image_preview = '<img src="' . $image_preview[0] . '" width="' . $image_preview[1] . '" height="' . $image_preview[2] . '" class="alignnone size-thumbnail wp-image-' . $value . '" />';
+				$image_preview = '<img src="' . esc_url( $image_preview[0] ) . '" width="' . $image_preview[1] . '" height="' . $image_preview[2] . '" class="alignnone size-thumbnail d wp-image-' . $value . '" />';
 			}
 		} else {
 			$image_preview = false;

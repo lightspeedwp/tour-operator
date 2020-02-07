@@ -240,7 +240,7 @@ function lsx_to_page_navigation( $echo = true ) {
 
 		if ( ! empty( $page_links ) ) {
 			foreach ( $page_links as $link_slug => $link_value ) {
-				$return .= '<li><a href="#' . $link_slug . '">' . $link_value . '</a></li>';
+				$return .= '<li><a href="#' . esc_html( $link_slug ) . '">' . $link_value . '</a></li>';
 			}
 		}
 

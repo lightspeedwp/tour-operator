@@ -449,7 +449,7 @@ class CMB_File_Field extends CMB_Field {
 		if ( $this->get_value() ) {
 			$src = wp_mime_type_icon( $this->get_value() );
 			$size = getimagesize( str_replace( site_url(), ABSPATH, $src ) );
-			$icon_img = '<img src="' . $src . '" ' . $size[3] . ' />';
+			$icon_img = '<img src="' . esc_url( $src ) . '" ' . $size[3] . ' />';
 		}
 
 		$data_type = ( ! empty( $this->args['library-type'] ) ? implode( ',', $this->args['library-type'] ) : null );

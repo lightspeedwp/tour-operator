@@ -567,7 +567,7 @@ class Widget extends \WP_Widget {
 			$this->after_while( $columns, $carousel, $post_type, $widget_query->post_count );
 
 			if ( false !== $buttons && false !== $link ) {
-				echo wp_kses_post( '<p class="lsx-to-widget-view-all"><span><a href="' . $link . '" class="btn border-btn">' . $button_text . ' <i class="fa fa-angle-right"></i></a></span></p>' );
+				echo wp_kses_post( '<p class="lsx-to-widget-view-all"><span><a href="' . esc_url( $link ) . '" class="btn border-btn">' . $button_text . ' <i class="fa fa-angle-right"></i></a></span></p>' );
 			}
 
 			wp_reset_postdata();
