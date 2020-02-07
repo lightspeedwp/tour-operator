@@ -233,7 +233,7 @@ class Widget extends \WP_Widget {
 		$instance                        = $old_instance;
 		$instance['title']               = wp_kses_post( force_balance_tags( $new_instance['title'] ) );
 		$instance['title_link']          = wp_strip_all_tags( $new_instance['title_link'] );
-		$instance['columns']             = wp_strip_all_tags( $new_instance['columns'] );
+		$$instance['columns']            = in_array( $new_instance['columns'], range( 1, 6 ), true ) ? $new_instance['columns'] : 1;
 		$instance['orderby']             = wp_strip_all_tags( $new_instance['orderby'] );
 		$instance['order']               = wp_strip_all_tags( $new_instance['order'] );
 		$instance['limit']               = wp_strip_all_tags( $new_instance['limit'] );
