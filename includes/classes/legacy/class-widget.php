@@ -231,24 +231,24 @@ class Widget extends \WP_Widget {
 	/** @see WP_Widget::update -- do not rename this */
 	function update( $new_instance, $old_instance ) {
 		$instance                        = $old_instance;
-		$instance['title']               = wp_kses_post( force_balance_tags( $new_instance['title'] ) );
-		$instance['title_link']          = wp_strip_all_tags( $new_instance['title_link'] );
-		$instance['columns']             = wp_strip_all_tags( $new_instance['columns'] );
-		$instance['orderby']             = wp_strip_all_tags( $new_instance['orderby'] );
-		$instance['order']               = wp_strip_all_tags( $new_instance['order'] );
-		$instance['limit']               = wp_strip_all_tags( $new_instance['limit'] );
-		$instance['include']             = wp_strip_all_tags( $new_instance['include'] );
-		$instance['parents_only']        = wp_strip_all_tags( $new_instance['parents_only'] );
-		$instance['disable_placeholder'] = wp_strip_all_tags( $new_instance['disable_placeholder'] );
-		$instance['disable_text']        = wp_strip_all_tags( $new_instance['disable_text'] );
-		$instance['disable_view_more']   = wp_strip_all_tags( $new_instance['disable_view_more'] );
-		$instance['buttons']             = wp_strip_all_tags( $new_instance['buttons'] );
-		$instance['button_text']         = $new_instance['button_text'];
-		$instance['carousel']            = wp_strip_all_tags( $new_instance['carousel'] );
-		$instance['featured']            = wp_strip_all_tags( $new_instance['featured'] );
-		$instance['post_type']           = wp_strip_all_tags( $new_instance['post_type'] );
-		$instance['class']               = wp_strip_all_tags( $new_instance['class'] );
-		$instance['interval']            = wp_strip_all_tags( $new_instance['interval'] );
+		$instance['title']               = esc_html( force_balance_tags( $new_instance['title'] ) );
+		$instance['title_link']          = esc_url_raw( $new_instance['title_link'] );
+		$instance['columns']             = in_array( $new_instance['columns'], range( 1, 6 ) ) ? $new_instance['columns'] : 1;
+		$instance['orderby']             = in_array( $new_instance['columns'], range( 1, 7 ) ) ? $new_instance['orderby'] : 1;
+		$instance['order']               = in_array( $new_instance['columns'], range( 1, 2 ) ) ? $new_instance['order'] : 1;
+		$instance['limit']               = wp_kses_post( $new_instance['limit'] );
+		$instance['include']             = wp_kses_post( $new_instance['include'] );
+		$instance['parents_only']        = sanitize_text_field( $new_instance['parents_only'] );
+		$instance['disable_placeholder'] = sanitize_text_field( $new_instance['disable_placeholder'] );
+		$instance['disable_text']        = sanitize_text_field( $new_instance['disable_text'] );
+		$instance['disable_view_more']   = sanitize_text_field( $new_instance['disable_view_more'] );
+		$instance['buttons']             = sanitize_text_field( $new_instance['buttons'] );
+		$instance['button_text']         = esc_html( force_balance_tags( $new_instance['button_text'] ) );
+		$instance['carousel']            = sanitize_text_field( $new_instance['carousel'] );
+		$instance['featured']            = sanitize_text_field( $new_instance['featured'] );
+		$instance['post_type']           = in_array( $new_instance['columns'], range( 1, 8 ) ) ? $new_instance['post_type'] : 1;
+		$instance['class']               = esc_html( $new_instance['class'] );
+		$instance['interval']            = esc_html( $new_instance['interval'] );
 		return $instance;
 	}
 
@@ -567,7 +567,7 @@ class Widget extends \WP_Widget {
 			$this->after_while( $columns, $carousel, $post_type, $widget_query->post_count );
 
 			if ( false !== $buttons && false !== $link ) {
-				echo wp_kses_post( '<p class="lsx-to-widget-view-all"><span><a href="' . $link . '" class="btn border-btn">' . $button_text . ' <i class="fa fa-angle-right"></i></a></span></p>' );
+				echo wp_kses_post( '<p class="lsx-to-widget-view-all"><span><a href="' . esc_url( $link ) . '" class="btn border-btn">' . $button_text . ' <i class="fa fa-angle-right"></i></a></span></p>' );
 			}
 
 			wp_reset_postdata();

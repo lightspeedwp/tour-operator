@@ -111,7 +111,7 @@
 
 			<div class="box box-top-image vehicles">
 				<h3><?php esc_html_e( 'Vehicles', 'tour-operator' ); ?></h3>
-				<p><?php esc_html_e( 'To help convince travellers of their comfort and safety when traveling with you, we’ve created the Vehicles extension. Fill in your fleets’ specs and display your vehicles on connected tours and destinations. With a range of avaiable options such as; type and number of gears, engine type (petrol/diesel), number of seats, vehicle code, and of course images and copy.', 'tour-operator' ); ?></p>
+				<p><?php esc_html_e( 'To help convince travellers of their comfort and safety when traveling with you, we’ve created the Vehicles extension. Fill in your fleets’ specs and display your vehicles on connected tours and destinations. With a range of available options such as; type and number of gears, engine type (petrol/diesel), number of seats, vehicle code, and of course images and copy.', 'tour-operator' ); ?></p>
 
 				<div class="more-button">
 					<a href="<?php echo wp_kses_post( $vehicles_link ); ?>" target="_blank" class="button button-primary">

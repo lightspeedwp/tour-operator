@@ -26,7 +26,7 @@ if ( empty( $disable_single_link ) ) {
 		<?php else : ?>
 			<div class="lsx-to-widget-thumb">
 				<?php if ( ! empty( $title_link ) ) { ?><a href="<?php echo esc_url( $title_link ); ?>"><?php } ?>
-					<img alt="Placeholder" class="attachment-responsive wp-post-image lsx-responsive" src="<?php echo esc_attr( lsx\legacy\Placeholders::placeholder_url( null, null, array( 750, 350 ) ) ); ?>">
+					<img alt="Placeholder" class="attachment-responsive wp-post-image lsx-responsive" src="<?php echo esc_url( lsx\legacy\Placeholders::placeholder_url( null, null, array( 750, 350 ) ) ); ?>">
 				<?php if ( ! empty( $title_link ) ) { ?></a><?php } ?>
 			</div>
 		<?php endif; ?>
