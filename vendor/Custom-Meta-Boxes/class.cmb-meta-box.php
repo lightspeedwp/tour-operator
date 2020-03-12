@@ -15,7 +15,7 @@ class CMB_Meta_Box {
 		if ( empty( $this->_meta_box['id'] ) )
 			$this->_meta_box['id'] = sanitize_title( $this->_meta_box['title'] );
 
-		add_action( 'dbx_post_advanced', array( &$this, 'init_fields_for_post' ) );
+		add_action( 'add_meta_boxes', array( &$this, 'init_fields_for_post' ) );
 		add_action( 'cmb_init_fields', array( &$this, 'init_fields' ) );
 
 		add_action( 'admin_menu', array( &$this, 'add' ) );
