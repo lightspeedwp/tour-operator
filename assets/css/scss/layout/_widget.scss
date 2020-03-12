@@ -1,6 +1,18 @@
 $light-gray: #F6F6F6;
 .lsx-to-widget-items { margin-top: -1 * $lsx-to-gap; }
 
+.lsx-to-widget-items {
+	.lsx-to-widget-item-wrap.lsx-team {
+		.team {
+			.lsx-team-description {
+				.moretag {
+					display: none;
+				}
+			}
+		}
+	}
+}
+
 .lsx-to-widget-item-wrap {
 	margin-top: $lsx-to-gap;
 
