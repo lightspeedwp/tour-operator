@@ -42,6 +42,7 @@
     "jshint": "^2.10.2"
   },
   "dependencies": {
+    "acorn": "^5.7.4",
     "cgb-scripts": "^1.18.1",
     "classnames": "^2.2.6",
     "clean-css": ">=4.1.11",
@@ -50,6 +51,7 @@
     "hoek": "^4.2.1",
     "lodash": "^4.17.13",
     "mem": "^5.1.1",
+    "minimist": "^1.2.2",
     "npm": "^6.13.4",
     "runtask": "^1.0.0",
     "tar": ">=2.2.2"
