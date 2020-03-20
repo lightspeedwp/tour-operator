@@ -1,6 +1,7 @@
 <h1 align="center"><a href="https://tour-operator.lsdev.biz/"><img src="https://tour-operator.lsdev.biz/wp-content/uploads/2019/04/logo-tour-operator.png" alt="Tour Operator" width="300"></a></h1>
 
 <p align="center">
+  <a href="https://packagist.org/packages/woocommerce/woocommerce"><img src="https://poser.pugx.org/woocommerce/woocommerce/license" alt="license"></a> 
   <a href="http://gulpjs.com/"><img src="https://img.shields.io/badge/built%20with-gulp.js-green.svg" alt="Built with gulp.js"></a> 
   <a href="https://travis-ci.org/lightspeeddevelopment/tour-operator/"><img src="https://travis-ci.org/lightspeeddevelopment/tour-operator.svg?branch=master" alt="Build Status"></a>
  <a href="https://codeclimate.com/github/lightspeeddevelopment/tour-operator/"><img src="https://codeclimate.com/github/lightspeeddevelopment/tour-operator/badges/gpa.svg" alt="Code Climate"></a>
