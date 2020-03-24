@@ -672,9 +672,9 @@ body.single-tour-operator .modal-body article .entry-content .moretag { width: 2
 
 .lsx-to-section:nth-of-type(even) .lsx-to-widget-item-wrap .lsx-to-widget-content { background-color: #F6F6F6; }
 
-.lsx-to-widget-item-wrap .lsx-to-widget-content a.moretag { background-color: #1098AD; color: #FFF; }
+.lsx-to-widget-item-wrap .lsx-to-widget-content a.moretag, .lsx-to-widget-item-wrap .lsx-to-widget-content a.moretag:visited { background-color: #1098AD; color: #FFF; }
 
-.lsx-to-widget-item-wrap .lsx-to-widget-content a.moretag:hover { background-color: #F7AE00; color: #FFF; }
+.lsx-to-widget-item-wrap .lsx-to-widget-content a.moretag:hover, .lsx-to-widget-item-wrap .lsx-to-widget-content a.moretag:visited:hover { background-color: #F7AE00; color: #FFF; }
 
 .lsx-to-widget-item-wrap .lsx-to-widget-title > a:not(.btn), .lsx-to-widget-item-wrap .lsx-to-widget-title > a:not(.btn):active, .lsx-to-widget-item-wrap .lsx-to-widget-title > a:not(.btn):visited { color: #4A4A4A; }
 
