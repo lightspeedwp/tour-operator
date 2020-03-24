@@ -11,6 +11,9 @@
 
 	<div class="entry-content">
 		<?php
+		if ( empty( $connection ) || '' === $connection || 'undefined' === $connection ) {
+			$connection = '';
+		}
 		$excerpt = get_the_excerpt( $connection );
 		if ( empty( $excerpt ) || '' === $excerpt ) {
 			$tooltip = apply_filters( 'get_the_excerpt', get_the_content() );

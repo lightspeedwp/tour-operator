@@ -15,6 +15,10 @@
 - Fix output escaping issues.
 - Fixed issue `PHP Deprecated: dbx_post_advanced is deprecated since version 3.7.0! Use add_meta_boxes instead`.
 - Fixed Slick slider bug.
+- Fixed PHP error `Undefined variable: connection`.
+- Fixed PHP error `preg_match() expects parameter 2 to be string, array given`.
+- Fixed PHP error `Undefined variable: accommodation_id`.
+- Fixed PHP error `Undefined variable: temp_id`.
 
 ### Security
 - Sanitizing widget fields.
