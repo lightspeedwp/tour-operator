@@ -588,7 +588,7 @@ function lsx_to_accommodation_units() {
 
 									<div class="col-xs-12 col-md-6">
 										<article class="rooms-content">
-											<?php if ( lsx_to_accommodation_room_has_thumbnail() ) { ?>
+											<?php if ( lsx_to_accommodation_room_has_thumbnail() && $rooms->item_thumbnails() ) { ?>
 												<div class="rooms-thumbnail-wrap">
 													<?php
 														$images = $rooms->item_thumbnails();
