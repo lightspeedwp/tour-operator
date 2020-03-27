@@ -391,8 +391,8 @@ function destination_children( $parent_id ) {
 	) );
 	$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
 	if ( $child->have_posts() ) {
-		$list_destinations = array();
-
+		$list_destinations       = array();
+		$final_list_destinations = '';
 		echo '<span class="' . esc_attr( $meta_class ) . 'regions"><span class="lsx-to-meta-data-key">' . esc_html__( 'Regions', 'tour-operator' ) . ':</span>';
 		while ( $child->have_posts() ) {
 			$child->the_post();
@@ -400,7 +400,8 @@ function destination_children( $parent_id ) {
 			$childlink       = get_the_permalink();
 			$list_destinations[] = '<a href="' . esc_attr( $childlink ) . '"> ' . esc_attr( $childtitle ) . '</a>';
 		}
-		echo implode( ', ', wp_kses_post( $list_destinations ) );
+		$final_list_destinations = implode( ', ', $list_destinations );
+		echo wp_kses_post( $final_list_destinations );
 	} else {
 		echo '<span class="' . esc_attr( $meta_class ) . 'regions"><span class="lsx-to-meta-data-key">' . esc_html__( 'Country', 'tour-operator' ) . ':</span>';
 		$parent_title = get_the_title( wp_get_post_parent_id( $theid ) );

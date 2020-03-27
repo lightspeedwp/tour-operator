@@ -197,7 +197,8 @@ function lsx_to_itinerary_has_thumbnail() {
  */
 function lsx_to_itinerary_thumbnail() {
 	global $tour_itinerary;
-
+	$accommodation_id = '';
+	$temp_id          = '';
 	if ( $tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary ) {
 		$thumbnail_src = false;
 
@@ -241,7 +242,9 @@ function lsx_to_itinerary_thumbnail() {
 
 		// If it is the last day of the itinerary and there is no image, then use the featured image of the tour.
 		if ( $tour_itinerary->index === $tour_itinerary->count && ( false === $thumbnail_src || '' === $thumbnail_src ) ) {
+
 			$temp_id = get_post_thumbnail_id( $accommodation_id );
+
 			if ( false !== $temp_id ) {
 				$current_image_id = $tour_itinerary->find_next_image( $accommodation_id );
 				$temp_src_array   = wp_get_attachment_image_src( $current_image_id, 'lsx-thumbnail-square' );

@@ -72,7 +72,8 @@
 			.lsx-to-section:nth-of-type(odd) & { background-color: #FFF; }
 			.lsx-to-section:nth-of-type(even) & { background-color: $bg; }
 
-			a.moretag {
+			a.moretag,
+			a.moretag:visited {
 				background-color: $link;
 				color: #FFF;
 
