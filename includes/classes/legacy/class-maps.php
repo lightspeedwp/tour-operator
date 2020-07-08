@@ -333,7 +333,7 @@ class Maps {
 			$image = $settings['display'][ 'map' . $prefix . '_placeholder' ];
 		}
 
-		if ( isset( $settings[ $queried_post_type ] ) && isset( $settings[ $queried_post_type ]['map' . $prefix . '_placeholder'] ) && '' !== $settings[ $queried_post_type ][ 'map' . $prefix . '_placeholder' ] ) {
+		if ( isset( $settings[ $queried_post_type ] ) && isset( $settings[ $queried_post_type ][ 'map' . $prefix . '_placeholder' ] ) && '' !== $settings[ $queried_post_type ][ 'map' . $prefix . '_placeholder' ] ) {
 			$image = $settings[ $queried_post_type ][ 'map' . $prefix . '_placeholder' ];
 		}
 
