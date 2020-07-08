@@ -324,11 +324,19 @@ class Maps {
 		if ( false !== $laptop ) {
 			$default_size = '1170x400';
 		}
+
+		$queried_post_type = get_query_var( 'post_type' );
+
 		$image = LSX_TO_URL . 'assets/img/placeholders/placeholder-map-' . $default_size . '.jpg';
 
 		if ( isset( $settings['display'] ) && isset( $settings['display'][ 'map' . $prefix . '_placeholder' ] ) && '' !== $settings['display'][ 'map' . $prefix . '_placeholder' ] ) {
 			$image = $settings['display'][ 'map' . $prefix . '_placeholder' ];
 		}
+
+		if ( isset( $settings[ $queried_post_type ] ) && isset( $settings[ $queried_post_type ]['map' . $prefix . '_placeholder'] ) && '' !== $settings[ $queried_post_type ][ 'map' . $prefix . '_placeholder' ] ) {
+			$image = $settings[ $queried_post_type ][ 'map' . $prefix . '_placeholder' ];
+		}
+
 		if ( is_post_type_archive( $this->post_types ) ) {
 			if ( isset( $settings[ get_post_type() ] ) && isset( $settings[ get_post_type() ][ 'map' . $prefix . '_placeholder' ] ) && '' !== $settings[ get_post_type() ][ 'map' . $prefix . '_placeholder' ] ) {
 				$image = $settings[ get_post_type() ][ 'map' . $prefix . '_placeholder' ];

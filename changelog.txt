@@ -1,5 +1,9 @@
 # Change log
 
+## [[1.4.2]] - In Development
+
+### Fixed
+- Fixing the map placeholder, so it can assign placeholders for each type of posts.
 
 ## [[1.4.1]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.1) - 2020-03-30
 
