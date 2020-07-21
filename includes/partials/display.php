@@ -22,14 +22,6 @@
 			<li><a href="#ui-services" class="<?php echo esc_attr( $class ) ?>"><?php esc_html_e( 'Services', 'tour-operator' ); ?></a></li>
 		<?php $class = ''; } ?>
 
-		<?php if ( class_exists( 'LSX_Blog_Customizer' ) ) { ?>
-			<li><a href="#ui-blog-customizer" class="<?php echo esc_attr( $class ) ?>"><?php esc_html_e( 'Blog Customizer (posts widget)', 'tour-operator' ); ?></a></li>
-		<?php $class = ''; } ?>
-
-		<?php if ( class_exists( 'LSX_Sharing' ) ) { ?>
-			<li><a href="#ui-sharing" class="<?php echo esc_attr( $class ) ?>"><?php esc_html_e( 'Sharing', 'tour-operator' ); ?></a></li>
-		<?php $class = ''; } ?>
-
 		<?php if ( class_exists( 'LSX_Videos' ) ) { ?>
 			<li><a href="#ui-videos" class="<?php echo esc_attr( $class ) ?>"><?php esc_html_e( 'Videos', 'tour-operator' ); ?></a></li>
 		<?php $class = ''; } ?>
@@ -92,26 +84,6 @@
 			<table class="form-table">
 				<tbody>
 					<?php do_action( 'lsx_to_framework_display_tab_content', 'services' ); ?>
-				</tbody>
-			</table>
-		</div>
-	<?php $class = ''; } ?>
-
-	<?php if ( class_exists( 'LSX_Blog_Customizer' ) ) { ?>
-		<div id="ui-blog-customizer" class="ui-tab <?php echo esc_attr( $class ) ?>">
-			<table class="form-table">
-				<tbody>
-					<?php do_action( 'lsx_to_framework_display_tab_content', 'blog-customizer' ); ?>
-				</tbody>
-			</table>
-		</div>
-	<?php $class = ''; } ?>
-
-	<?php if ( class_exists( 'LSX_Sharing' ) ) { ?>
-		<div id="ui-sharing" class="ui-tab <?php echo esc_attr( $class ) ?>">
-			<table class="form-table">
-				<tbody>
-					<?php do_action( 'lsx_to_framework_display_tab_content', 'sharing' ); ?>
 				</tbody>
 			</table>
 		</div>
