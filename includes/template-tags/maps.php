@@ -129,7 +129,6 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 						}
 
 						// Check to see if the zoom is disabled.
-						$zoom = 10;
 						$manual_zoom = get_post_meta( $parent_id, 'disable_auto_zoom', true );
 						if ( false !== $manual_zoom && '' !== $manual_zoom ) {
 							$args['disable_auto_zoom'] = true;

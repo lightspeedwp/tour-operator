@@ -131,12 +131,19 @@ var LSX_TO_Maps = {
 
 		//Do we fit to the screen or center the view.
 		if( !$map.hasClass('disable-auto-zoom') && ( 'cluster' == type || ('route' == type && (false == kml || undefined == kml))) ){
-			this.setBounds();
+			
+			
+			if ( 1 < this.bounds.length ) {
+				this.setBounds();
+			} else {
+				this.latlng = this.bounds[0];
+				console.log(this.latlng);
+				this.setCenter();
+			}
 			$footerMap.css('height',height);
-			// console.log('bounds set');
+			
 		}else{
 			this.setCenter();
-			// console.log('override');
 		}
 
 		this.resizeThis();
