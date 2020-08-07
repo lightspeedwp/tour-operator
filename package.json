@@ -38,7 +38,7 @@
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.2",
     "gulp-util": "^3.0.8",
-    "gulp-wp-pot": "^2.3.5",
+    "gulp-wp-pot": "^2.4.3",
     "jshint": "^2.12.0"
   },
   "dependencies": {
