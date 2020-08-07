@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "acorn": "^7.4.0",
-    "cgb-scripts": "^1.18.1",
+    "cgb-scripts": "^1.23.1",
     "classnames": "^2.2.6",
     "clean-css": ">=4.2.3",
     "extend": "^3.0.2",
