@@ -220,7 +220,6 @@ if ( ! function_exists( 'lsx_to_get_term_thumbnail' ) ) {
 			$img               = wp_get_attachment_image_src( $term_thumbnail_id,$size );
 			$image_url         = $img[0];
 			$img               = '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="' . esc_url( $image_url ) . '" />';
-			$img               = apply_filters( 'lsx_lazyload_slider_images', $img, $term_thumbnail_id, $size, false, $image_url );
 			return $img;
 		}
 	}

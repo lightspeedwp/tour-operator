@@ -476,7 +476,7 @@ function lsx_to_enquiry_contact( $before = '', $after = '' ) {
 	<article <?php post_class(); ?>>
 		<?php if ( ! empty( $fields['enquiry_contact_image'] ) ) : ?>
 			<div class="lsx-to-contact-thumb">
-				<?php echo wp_kses_post( apply_filters( 'lsx_to_lazyload_filter_images', '<img alt="' . esc_attr( $fields['enquiry_contact_name'] ) . '" class="attachment-responsive wp-post-image lsx-responsive" src="' . esc_url( $fields['enquiry_contact_image'] ) . '" />' ) ); ?>
+				<?php echo wp_kses_post( '<img alt="' . esc_attr( $fields['enquiry_contact_name'] ) . '" class="attachment-responsive wp-post-image lsx-responsive" src="' . esc_url( $fields['enquiry_contact_image'] ) . '" />' ); ?>
 			</div>
 		<?php endif; ?>
 

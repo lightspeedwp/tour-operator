@@ -622,7 +622,6 @@ class Widget extends \WP_Widget {
 		// Get the call for the active slide.
 		if ( $carousel ) {
 			$output .= "<div class='lsx-to-widget-item-wrap lsx-{$post_type}'>";
-			add_filter( 'lsx_lazyload_slider_images', array( $this, 'lazyload_slider_images' ), 10, 5 );
 		} elseif ( 1 === $count ) {
 			$output .= "<div class='row'>";
 		}
@@ -638,7 +637,6 @@ class Widget extends \WP_Widget {
 		// Close the current slide panel
 		if ( $carousel ) {
 			$output .= '</div>';
-			remove_filter( 'lsx_lazyload_slider_images', array( $this, 'lazyload_slider_images' ), 10, 5 );
 		} elseif ( 0 === $count % $columns || $count === $post_count ) {
 			$output .= '</div>';
 
@@ -706,32 +704,5 @@ class Widget extends \WP_Widget {
 		}
 	}
 
-	/**
-	 * Applies the lazy loading if needed.
-	 *
-	 * @param String $img
-	 * @return void
-	 */
-	public function lazyload_slider_images( $img, $post_thumbnail_id, $size, $srcset, $image_url ) {
-		$lazyload = true;
-		if ( get_theme_mod( 'lsx_lazyload_status', '1' ) === false || ! apply_filters( 'lsx_lazyload_is_enabled', true ) ) {
-			$lazyload = false;
-		}
-		$lazy_img = '';
-		if ( true === $lazyload && '' !== $img ) {
-			$temp_lazy = wp_get_attachment_image_src( $post_thumbnail_id, $size );
-			if ( ! empty( $temp_lazy ) ) {
-				$lazy_img = $temp_lazy[0];
-			}
-			$img = '<img alt="' . the_title_attribute( 'echo=0' ) . '" class="attachment-responsive wp-post-image lsx-responsive" ';
-			if ( $srcset ) {
-				$img .= 'data-lazy="' . $lazy_img . '" srcset="' . esc_attr( $image_url ) . '" ';
-			} else {
-				$img .= 'data-lazy="' . esc_url( $image_url ) . '" ';
-			}
-			$img .= '/>';
-		}
-		return $img;
-	}
 }
 ?>
