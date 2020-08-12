@@ -552,7 +552,7 @@ function lsx_to_tour_single_content_bottom() {
 									<div class="lsx-to-archive-container">
 										<div class="lsx-to-archive-thumb">
 											<div class="lsx-to-thumb-slot" style="background-image: url('<?php echo esc_url( $thumb ); ?>');">
-												<?php echo wp_kses_post( apply_filters( 'lsx_to_lazyload_filter_images', '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="' . $thumb . '">' ) ); ?>
+												<?php echo wp_kses_post( '<img alt="thumbnail" class="attachment-responsive wp-post-image lsx-responsive" src="' . $thumb . '">' ); ?>
 											</div>
 										</div>
 
