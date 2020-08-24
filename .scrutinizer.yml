@@ -20,8 +20,7 @@ checks:
     verify_argument_usable_as_reference: false
     verify_property_names: false
 filter:
-    dependency_paths:
-        - wordpress/
+    dependency_paths: [wordpress/*, wp-content/*, includes/classes/legacy/*, vendor/*]
     excluded_paths: [tests/*, bin/*, assets/*, languages/*, includes/classes/legacy/*, vendor/*]
 build:
   nodes:
@@ -37,7 +36,6 @@ build:
       tests:
         override:
           - php-scrutinizer-run
-          - js-scrutinizer-run
           - command: phpcs-run -p -s -v -n --standard=./.phpcs.xml --extensions=php --ignore=*/wordpress/*
       dependencies:
         before:
