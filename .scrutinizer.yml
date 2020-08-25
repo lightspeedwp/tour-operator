@@ -7,8 +7,6 @@ checks:
         argument_type_checks: false
         avoid_closing_tag: false
         avoid_superglobals: false
-        coding_standard:
-            name: WordPress
         encourage_shallow_comparison: false
         method_calls_on_non_object: false
         no_exit: false
@@ -43,6 +41,7 @@ checks:
         avoid_entity_manager_injection: false
         avoid_duplicate_types: false
         assignment_of_null_return: false
+        comparison_always_same_result: false
 
 filter:
     dependency_paths: [wordpress/*, wp-content/*, includes/classes/legacy/*, vendor/*]
