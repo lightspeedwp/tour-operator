@@ -8,7 +8,6 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^8.5",
-        "wpackagist-plugin/wordpress-seo": "^14.8",
         "wp-coding-standards/wpcs": "^2.3",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
         "wpackagist-plugin/wordpress-seo": "^14.8",
