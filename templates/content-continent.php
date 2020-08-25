@@ -13,7 +13,7 @@
 ?>
 
 	<div class="lsx-to-archive-header row">
-		<div class="col-xs-12 <?php echo lsx_to_has_enquiry_contact() ? 'col-sm-12 col-md-6' : '' ?> lsx-to-archive-description">
+		<div class="col-xs-12 <?php echo lsx_to_has_enquiry_contact() ? 'col-sm-12 col-md-6' : ''; ?> lsx-to-archive-description">
 			<?php echo wp_kses_post( $description ); ?>
 		</div>
 

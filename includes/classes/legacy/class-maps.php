@@ -82,7 +82,7 @@ class Maps {
 	public static function get_instance() {
 		// If the single instance hasn't been set, set it now.
 		if ( is_null( self::$instance ) ) {
-			self::$instance = new self;
+			self::$instance = new self();
 		}
 
 		return self::$instance;
@@ -177,9 +177,9 @@ class Maps {
 			'icon' => false,
 			'content' => 'address',
 			'kml' => false,
-			'cluster_small'		=> tour_operator()->markers->cluster_small,
-			'cluster_medium'	=> tour_operator()->markers->cluster_medium,
-			'cluster_large'		=> tour_operator()->markers->cluster_large,
+			'cluster_small'     => tour_operator()->markers->cluster_small,
+			'cluster_medium'    => tour_operator()->markers->cluster_medium,
+			'cluster_large'     => tour_operator()->markers->cluster_large,
 			'fusion_tables' => false,
 			'fusion_tables_colour_border' => '#000000',
 			'fusion_tables_width_border' => '2',

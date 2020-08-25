@@ -48,4 +48,5 @@ global $continent;
 
 </article>
 
-<?php lsx_entry_after();
+<?php 
+lsx_entry_after();

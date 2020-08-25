@@ -300,21 +300,25 @@ class Widget extends \WP_Widget {
 		$interval            = esc_attr( $instance['interval'] );
 		?>
 		<p>
-			<label for="<?php echo wp_kses_post( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:','tour-operator' ); ?></label>
+			<label for="<?php echo wp_kses_post( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'tour-operator' ); ?></label>
 			<input class="widefat" id="<?php echo wp_kses_post( $this->get_field_id( 'title' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'title' ) ); ?>" type="text"
 				value="<?php echo wp_kses_post( $title ); ?>" />
 		</p>
 		<p>
-			<label for="<?php echo wp_kses_post( $this->get_field_id( 'title_link' ) ); ?>"><?php esc_html_e( 'Title Link:','tour-operator' ); ?></label>
+			<label for="<?php echo wp_kses_post( $this->get_field_id( 'title_link' ) ); ?>"><?php esc_html_e( 'Title Link:', 'tour-operator' ); ?></label>
 			<input class="widefat"
 				id="<?php echo wp_kses_post( $this->get_field_id( 'title_link' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'title_link' ) ); ?>" type="text"
-				value="<?php echo wp_kses_post( $title_link ); ?>" /> <small><?php esc_html_e( 'Link the widget title to
-				a URL','tour-operator' ); ?></small>
+				value="<?php echo wp_kses_post( $title_link ); ?>" /> <small>
+                                  <?php 
+                esc_html_e( 'Link the widget title to
+				a URL', 'tour-operator' ); 
+?>
+</small>
 		</p>
 		<p>
-			<label for="<?php echo wp_kses_post( $this->get_field_id( 'columns' ) ); ?>"><?php esc_html_e( 'Columns:','tour-operator' ); ?></label>
+			<label for="<?php echo wp_kses_post( $this->get_field_id( 'columns' ) ); ?>"><?php esc_html_e( 'Columns:', 'tour-operator' ); ?></label>
 			<select name="<?php echo wp_kses_post( $this->get_field_name( 'columns' ) ); ?>"
 				id="<?php echo wp_kses_post( $this->get_field_id( 'columns' ) ); ?>"
 				class="widefat layout">
@@ -323,13 +327,15 @@ class Widget extends \WP_Widget {
 					foreach ( $options as $option ) {
 						$key = lcfirst( $option );
 						$selected = ($columns == $key) ? ' selected="selected"' : '';
-						?><option value="<?php echo wp_kses_post( $key ); ?>" id="<?php echo wp_kses_post( $option ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $option ); ?></option><?php
+						?>
+                        <option value="<?php echo wp_kses_post( $key ); ?>" id="<?php echo wp_kses_post( $option ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $option ); ?></option>
+                        <?php
 					}
 					?>
 					</select>
 		</p>
 		<p>
-			<label for="<?php echo wp_kses_post( $this->get_field_id( 'orderby' ) ); ?>"><?php esc_html_e( 'Order By:','tour-operator' ); ?></label>
+			<label for="<?php echo wp_kses_post( $this->get_field_id( 'orderby' ) ); ?>"><?php esc_html_e( 'Order By:', 'tour-operator' ); ?></label>
 			<select name="<?php echo wp_kses_post( $this->get_field_name( 'orderby' ) ); ?>"
 				id="<?php echo wp_kses_post( $this->get_field_id( 'orderby' ) ); ?>" class="widefat">
 					<?php
@@ -341,26 +347,30 @@ class Widget extends \WP_Widget {
 						'Modified Date' => 'modified',
 						'Random' => 'rand',
 						'Admin (custom order)' => 'menu_order',
-						);
+					);
 					foreach ( $options as $name => $value ) {
 						$selected = ($orderby == $value) ? ' selected="selected"' : '';
-						?><option value="<?php echo wp_kses_post( $value ); ?>" id="<?php echo wp_kses_post( $value ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $name ); ?></option><?php
+						?>
+                        <option value="<?php echo wp_kses_post( $value ); ?>" id="<?php echo wp_kses_post( $value ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $name ); ?></option>
+                        <?php
 					}
 					?>
 					</select>
 		</p>
 		<p>
-			<label for="<?php echo wp_kses_post( $this->get_field_id( 'order' ) ); ?>"><?php esc_html_e( 'Order:','tour-operator' ); ?></label>
+			<label for="<?php echo wp_kses_post( $this->get_field_id( 'order' ) ); ?>"><?php esc_html_e( 'Order:', 'tour-operator' ); ?></label>
 			<select name="<?php echo wp_kses_post( $this->get_field_name( 'order' ) ); ?>"
 				id="<?php echo wp_kses_post( $this->get_field_id( 'order' ) ); ?>" class="widefat">
 					<?php
 					$options = array(
 						'Ascending' => 'ASC',
 						'Descending' => 'DESC',
-						);
+					);
 					foreach ( $options as $name => $value ) {
 						$selected = ($order == $value) ? ' selected="selected"' : '';
-						?><option value="<?php echo wp_kses_post( $value ); ?>" id="<?php echo wp_kses_post( $value ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $name ); ?></option><?php
+						?>
+                        <option value="<?php echo wp_kses_post( $value ); ?>" id="<?php echo wp_kses_post( $value ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $name ); ?></option>
+                        <?php
 					}
 					?>
 			</select>
@@ -444,7 +454,9 @@ class Widget extends \WP_Widget {
 				$options = lsx_to_get_post_types();
 				foreach ( $options as $value => $name ) {
 					$selected = ($post_type == $value) ? ' selected="selected"' : '';
-					?><option value="<?php echo wp_kses_post( $value ); ?>" id="<?php echo wp_kses_post( $value ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $name ); ?></option><?php
+					?>
+                    <option value="<?php echo wp_kses_post( $value ); ?>" id="<?php echo wp_kses_post( $value ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $name ); ?></option>
+                    <?php
 				}
 				?>
 			</select>
@@ -468,7 +480,7 @@ class Widget extends \WP_Widget {
 			'tag' => 'h3',
 			'columns' => 1,
 			'orderby' => 'date',
-			'link'	=> false,
+			'link'  => false,
 			'order' => 'DESC',
 			'limit' => '-1',
 			'include' => '',
@@ -502,18 +514,18 @@ class Widget extends \WP_Widget {
 		if ( '' != $include ) {
 			$include = explode( ',', $include );
 			$args = array(
-					'post_type' => $post_type,
-					'posts_per_page' => $limit,
-					'post__in' => $include,
-					'orderby' => 'post__in',
-					'order' => $order,
+				'post_type' => $post_type,
+				'posts_per_page' => $limit,
+				'post__in' => $include,
+				'orderby' => 'post__in',
+				'order' => $order,
 			);
 		} else {
 			$args = array(
-					'post_type' => $post_type,
-					'posts_per_page' => $limit,
-					'orderby' => $orderby,
-					'order' => $order,
+				'post_type' => $post_type,
+				'posts_per_page' => $limit,
+				'orderby' => $orderby,
+				'order' => $order,
 			);
 		}
 

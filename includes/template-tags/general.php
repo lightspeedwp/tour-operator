@@ -2,10 +2,10 @@
 /**
  * Template Tags
  *
- * @package   		tour-operator
- * @subpackage 		template-tags
- * @category 		general
- * @license   		GPL3
+ * @package         tour-operator
+ * @subpackage      template-tags
+ * @category        general
+ * @license         GPL3
  */
 
 /* ==================   LAYOUT  ================== */
@@ -13,9 +13,9 @@
 /**
  * Returns the CSS class for the archive panels
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	class
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    class
  */
 function lsx_to_archive_class( $classes = array() ) {
 	$layout = tour_operator()->archive_layout;
@@ -40,9 +40,9 @@ function lsx_to_archive_class( $classes = array() ) {
 /**
  * Outputs the CSS class for the widget panels
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	class
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    class
  */
 function lsx_to_widget_class( $type = '', $return = false ) {
 	global $columns;
@@ -62,7 +62,7 @@ function lsx_to_widget_class( $type = '', $return = false ) {
 /**
  * Outputs the 'content' class.
  *
- * @param	$classes string or array
+ * @param   $classes string or array
  */
 function lsx_to_entry_class( $classes = false ) {
 	global $post;
@@ -75,13 +75,13 @@ function lsx_to_entry_class( $classes = false ) {
 		$classes = apply_filters( 'lsx_to_entry_class', $classes, $post->ID );
 	}
 
-	echo wp_kses_post( 'class="' . implode( ' ',$classes ) . '"' );
+	echo wp_kses_post( 'class="' . implode( ' ', $classes ) . '"' );
 }
 
 /**
  * Outputs the 'content' class.
  *
- * @param	$classes string or array
+ * @param   $classes string or array
  */
 function lsx_to_column_class( $classes = false ) {
 	global $post;
@@ -155,9 +155,9 @@ function lsx_to_collapsible_attributes_not_post( $target = false, $return = true
 /**
  * Global header.
  *
- * @package 	tour-operator
- * @subpackage	template-tag
- * @category 	header
+ * @package     tour-operator
+ * @subpackage  template-tag
+ * @category    header
  */
 function lsx_to_global_header() {
 	$default_size = 'sm';
@@ -186,9 +186,9 @@ function lsx_to_global_header() {
 /**
  * Taglines
  *
- * @package 	tour-operator
- * @subpackage	template-tag
- * @category 	header
+ * @package     tour-operator
+ * @subpackage  template-tag
+ * @category    header
  */
 function lsx_to_tagline( $before = '', $after = '', $echo = false ) {
 	echo wp_kses_post( apply_filters( 'lsx_to_tagline', '', $before, $after ) );
@@ -199,9 +199,9 @@ function lsx_to_tagline( $before = '', $after = '', $echo = false ) {
 /**
  * Archive Descriptions
  *
- * @package 	tour-operator
- * @subpackage	template-tag
- * @category 	description
+ * @package     tour-operator
+ * @subpackage  template-tag
+ * @category    description
  */
 function lsx_to_archive_description() {
 	echo wp_kses_post( apply_filters( 'lsx_to_archive_description', '', '<div class="content-area lsx-to-archive-header row"><div class="col-xs-12 lsx-to-archive-description">', '</div></div>' ) );
@@ -216,9 +216,9 @@ function lsx_to_archive_description() {
  * @param $echo
  * @return string
  *
- * @package 	tour-operator
- * @subpackage	template-tag
- * @category 	navigation
+ * @package     tour-operator
+ * @subpackage  template-tag
+ * @category    navigation
  */
 function lsx_to_page_navigation( $echo = true ) {
 	$page_links = array();
@@ -258,9 +258,9 @@ function lsx_to_page_navigation( $echo = true ) {
 /**
  * outputs the sharing
  *
- * @package 	tour-operator
- * @subpackage	setup
- * @category 	helper
+ * @package     tour-operator
+ * @subpackage  setup
+ * @category    helper
  */
 function lsx_to_sharing() {
 	echo '<section id="sharing">';
@@ -274,7 +274,7 @@ function lsx_to_sharing() {
 		}
 
 		if ( class_exists( 'Jetpack_Likes' ) ) {
-			$custom_likes = new Jetpack_Likes;
+			$custom_likes = new Jetpack_Likes();
 			echo wp_kses_post( $custom_likes->post_likes( '' ) );
 		}
 	}
@@ -285,14 +285,14 @@ function lsx_to_sharing() {
 /**
  * Outputs the Envira Video Gallery
  *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
+ * @param       $before | string
+ * @param       $after  | string
+ * @param       $echo   | boolean
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	tour
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    tour
  */
 function lsx_to_envira_videos( $before = '', $after = '', $echo = true ) {
 	$envira_video = get_post_meta( get_the_ID(), 'envira_video', true );
@@ -319,40 +319,40 @@ function lsx_to_envira_videos( $before = '', $after = '', $echo = true ) {
 /**
  * Outputs the widget with some styling
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	helper
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    helper
  */
 function lsx_to_safari_brands( $before = '', $after = '', $echo = true ) {
 	$args = array(
-			'name' => 'Home',
-			'id' => 'sidebar-home',
-			'description' => '',
-			'class' => '',
-			'before_widget' => '<aside id="lsx_to_taxonomy_widget-6" class="widget lsx-widget">',
-			'after_widget' => '</aside>',
-			'before_title' => '<h3 class="widget-title">',
-			'after_title' => '</h3>',
-			'widget_id' => 'lsx_to_taxonomy_widget-6',
-			'widget_name' => 'LSX Taxonomies',
+		'name' => 'Home',
+		'id' => 'sidebar-home',
+		'description' => '',
+		'class' => '',
+		'before_widget' => '<aside id="lsx_to_taxonomy_widget-6" class="widget lsx-widget">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+		'widget_id' => 'lsx_to_taxonomy_widget-6',
+		'widget_name' => 'LSX Taxonomies',
 	);
 	$instance = array(
-			'title' => '',
-			'title_link' => '',
-			'columns' => '4',
-			'orderby' => 'menu_order',
-			'order' => 'ASC',
-			'limit' => '100',
-			'include' => '',
-			'size' => '100',
-			'buttons' => '',
-			'button_text' => '',
-			'responsive' => '1',
-			'carousel' => '1',
-			'taxonomy' => 'accommodation-brand',
-			'class' => '',
-			'interval' => '7000',
-			'indicators' => '1',
+		'title' => '',
+		'title_link' => '',
+		'columns' => '4',
+		'orderby' => 'menu_order',
+		'order' => 'ASC',
+		'limit' => '100',
+		'include' => '',
+		'size' => '100',
+		'buttons' => '',
+		'button_text' => '',
+		'responsive' => '1',
+		'carousel' => '1',
+		'taxonomy' => 'accommodation-brand',
+		'class' => '',
+		'interval' => '7000',
+		'indicators' => '1',
 	);
 	$safari_brands = new \lsx\legacy\Taxonomy_Widget();
 	ob_start();
@@ -369,40 +369,40 @@ function lsx_to_safari_brands( $before = '', $after = '', $echo = true ) {
 /**
  * Outputs the travel styles widget with some styling
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	helper
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    helper
  */
 function lsx_to_travel_styles( $before = '', $after = '', $echo = true ) {
 	$args = array(
-			'name' => 'Home',
-			'id' => 'sidebar-home',
-			'description' => '',
-			'class' => '',
-			'before_widget' => '<aside id="lsx_to_taxonomy_widget-6" class="widget lsx-widget">',
-			'after_widget' => '</aside>',
-			'before_title' => '<h3 class="widget-title">',
-			'after_title' => '</h3>',
-			'widget_id' => 'lsx_to_taxonomy_widget-6',
-			'widget_name' => 'LSX Taxonomies',
+		'name' => 'Home',
+		'id' => 'sidebar-home',
+		'description' => '',
+		'class' => '',
+		'before_widget' => '<aside id="lsx_to_taxonomy_widget-6" class="widget lsx-widget">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+		'widget_id' => 'lsx_to_taxonomy_widget-6',
+		'widget_name' => 'LSX Taxonomies',
 	);
 	$instance = array(
-			'title' => '',
-			'title_link' => '',
-			'columns' => '3',
-			'orderby' => 'rand',
-			'order' => 'DESC',
-			'limit' => '100',
-			'include' => '',
-			'size' => '100',
-			'buttons' => '',
-			'button_text' => '',
-			'responsive' => '1',
-			'carousel' => '1',
-			'taxonomy' => 'travel-style',
-			'class' => '',
-			'interval' => '7000',
-			'indicators' => '1',
+		'title' => '',
+		'title_link' => '',
+		'columns' => '3',
+		'orderby' => 'rand',
+		'order' => 'DESC',
+		'limit' => '100',
+		'include' => '',
+		'size' => '100',
+		'buttons' => '',
+		'button_text' => '',
+		'responsive' => '1',
+		'carousel' => '1',
+		'taxonomy' => 'travel-style',
+		'class' => '',
+		'interval' => '7000',
+		'indicators' => '1',
 	);
 	$travel_styles = new \lsx\legacy\Taxonomy_Widget();
 	ob_start();
@@ -420,8 +420,8 @@ function lsx_to_travel_styles( $before = '', $after = '', $echo = true ) {
 /**
  * Test if Enquire Contact exists
  *
- * @return		boolean
- * @package 	tour-operator
+ * @return      boolean
+ * @package     tour-operator
  */
 function lsx_to_has_enquiry_contact() {
 	$tour_operator = tour_operator();
@@ -443,8 +443,8 @@ function lsx_to_has_enquiry_contact() {
 /**
  * Display Enquire Contact
  *
- * @return		void
- * @package 	tour-operator
+ * @return      void
+ * @package     tour-operator
  */
 function lsx_to_enquiry_contact( $before = '', $after = '' ) {
 	$tour_operator = tour_operator();
@@ -502,16 +502,16 @@ function lsx_to_enquiry_contact( $before = '', $after = '' ) {
 /**
  * Outputs the Enquire Modal
  *
- * @param		$before	 | string
- * @param		$after	 | string
- * @param		$echo	 | boolean
- * @param		$form_id | string
- * @param		$disable_modal | boolean
- * @return		string
+ * @param       $before  | string
+ * @param       $after   | string
+ * @param       $echo    | boolean
+ * @param       $form_id | string
+ * @param       $disable_modal | boolean
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	tour
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    tour
  */
 function lsx_to_enquire_modal( $cta_text = '', $before = '', $after = '', $echo = true, $form_id = false, $disable_modal = false ) {
 	$tour_operator = tour_operator();
@@ -558,7 +558,11 @@ function lsx_to_enquire_modal( $cta_text = '', $before = '', $after = '', $echo 
 	if ( false !== $form_id ) {
 	?>
 	<div class="lsx-to-enquire-form">
-		<a href="<?php echo esc_url( $link ); ?>" class="btn cta-btn" <?php if ( false === $disable_modal ) { ?>data-toggle="modal" data-target="#lsx-enquire-modal"<?php } ?> ><?php echo esc_html( $cta_text ); ?></a>
+		<a href="<?php echo esc_url( $link ); ?>" class="btn cta-btn" 
+                            <?php 
+        if ( false === $disable_modal ) {
+?>
+data-toggle="modal" data-target="#lsx-enquire-modal"<?php } ?> ><?php echo esc_html( $cta_text ); ?></a>
 
 		<?php
 			if ( false === $disable_modal ) {
@@ -582,7 +586,7 @@ function lsx_to_enquire_modal( $cta_text = '', $before = '', $after = '', $echo 
 										} elseif ( class_exists( 'Caldera_Forms_Forms' ) ) {
 											echo do_shortcode( '[caldera_form id="' . $form_id . '"]' );
 										} else {
-											echo wp_kses_post( apply_filters( 'the_content',$form_id ) );
+											echo wp_kses_post( apply_filters( 'the_content', $form_id ) );
 										}
 									?>
 								</div>
@@ -594,21 +598,22 @@ function lsx_to_enquire_modal( $cta_text = '', $before = '', $after = '', $echo 
 			}
 		?>
 	</div>
-<?php } }
+<?php 
+} }
 
 if ( ! function_exists( 'lsx_to_gallery' ) ) {
 	/**
 	 * Outputs the TO Gallery
 	 *
-	 * @param		$before	| string
-	 * @param		$after	| string
-	 * @param		$echo	| boolean
-	 * @param		$args	| array
-	 * @return		string
+	 * @param       $before | string
+	 * @param       $after  | string
+	 * @param       $echo   | boolean
+	 * @param       $args   | array
+	 * @return      string
 	 *
-	 * @package 	tour-operator
-	 * @subpackage	template-tags
-	 * @category 	galleries
+	 * @package     tour-operator
+	 * @subpackage  template-tags
+	 * @category    galleries
 	 */
 	function lsx_to_gallery( $before = '', $after = '', $echo = true, $args = array() ) {
 		$defaults = array(

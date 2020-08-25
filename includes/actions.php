@@ -2,9 +2,9 @@
 /**
  * All of the Tour Operators Actions.
  *
- * @package   	tour-operator
- * @subpackage 	layout
- * @license   	GPL3
+ * @package     tour-operator
+ * @subpackage  layout
+ * @license     GPL3
  */
 
 $current_theme = wp_get_theme();

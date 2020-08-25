@@ -35,7 +35,7 @@ $post_type = array(
 	'query_var'          => true,
 	'rewrite'            => array(
 		'slug' => 'tour',
-		),
+	),
 	'capability_type'    => 'post',
 	'has_archive'        => 'tours',
 	'hierarchical'       => false,

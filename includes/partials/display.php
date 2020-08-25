@@ -7,23 +7,23 @@
 		<?php $class = ''; } ?>
 
 		<?php if ( class_exists( 'LSX_Team' ) ) { ?>
-			<li><a href="#ui-team" class="<?php echo esc_attr( $class ) ?>"><?php esc_html_e( 'Team', 'tour-operator' ); ?></a></li>
+			<li><a href="#ui-team" class="<?php echo esc_attr( $class ); ?>"><?php esc_html_e( 'Team', 'tour-operator' ); ?></a></li>
 		<?php $class = ''; } ?>
 
 		<?php if ( class_exists( 'LSX_Testimonials' ) ) { ?>
-			<li><a href="#ui-testimonials" class="<?php echo esc_attr( $class ) ?>"><?php esc_html_e( 'Testimonials', 'tour-operator' ); ?></a></li>
+			<li><a href="#ui-testimonials" class="<?php echo esc_attr( $class ); ?>"><?php esc_html_e( 'Testimonials', 'tour-operator' ); ?></a></li>
 		<?php $class = ''; } ?>
 
 		<?php if ( class_exists( 'LSX_Projects' ) ) { ?>
-			<li><a href="#ui-projects" class="<?php echo esc_attr( $class ) ?>"><?php esc_html_e( 'Projects', 'tour-operator' ); ?></a></li>
+			<li><a href="#ui-projects" class="<?php echo esc_attr( $class ); ?>"><?php esc_html_e( 'Projects', 'tour-operator' ); ?></a></li>
 		<?php $class = ''; } ?>
 
 		<?php if ( class_exists( 'LSX_Services' ) ) { ?>
-			<li><a href="#ui-services" class="<?php echo esc_attr( $class ) ?>"><?php esc_html_e( 'Services', 'tour-operator' ); ?></a></li>
+			<li><a href="#ui-services" class="<?php echo esc_attr( $class ); ?>"><?php esc_html_e( 'Services', 'tour-operator' ); ?></a></li>
 		<?php $class = ''; } ?>
 
 		<?php if ( class_exists( 'LSX_Videos' ) ) { ?>
-			<li><a href="#ui-videos" class="<?php echo esc_attr( $class ) ?>"><?php esc_html_e( 'Videos', 'tour-operator' ); ?></a></li>
+			<li><a href="#ui-videos" class="<?php echo esc_attr( $class ); ?>"><?php esc_html_e( 'Videos', 'tour-operator' ); ?></a></li>
 		<?php $class = ''; } ?>
 
 		<li><a href="#ui-maps" class="<?php echo esc_attr( $class ); ?>"><?php esc_html_e( 'Maps', 'tour-operator' ); ?></a></li>
@@ -50,7 +50,7 @@
 	<?php $class = ''; } ?>
 
 	<?php if ( class_exists( 'LSX_Team' ) ) { ?>
-		<div id="ui-team" class="ui-tab <?php echo esc_attr( $class ) ?>">
+		<div id="ui-team" class="ui-tab <?php echo esc_attr( $class ); ?>">
 			<table class="form-table">
 				<tbody>
 					<?php do_action( 'lsx_to_framework_display_tab_content', 'team' ); ?>
@@ -60,7 +60,7 @@
 	<?php } ?>
 
 	<?php if ( class_exists( 'LSX_Testimonials' ) ) { ?>
-		<div id="ui-testimonials" class="ui-tab <?php echo esc_attr( $class ) ?>">
+		<div id="ui-testimonials" class="ui-tab <?php echo esc_attr( $class ); ?>">
 			<table class="form-table">
 				<tbody>
 					<?php do_action( 'lsx_to_framework_display_tab_content', 'testimonials' ); ?>
@@ -70,7 +70,7 @@
 	<?php $class = ''; } ?>
 
 	<?php if ( class_exists( 'LSX_Projects' ) ) { ?>
-		<div id="ui-projects" class="ui-tab <?php echo esc_attr( $class ) ?>">
+		<div id="ui-projects" class="ui-tab <?php echo esc_attr( $class ); ?>">
 			<table class="form-table">
 				<tbody>
 					<?php do_action( 'lsx_to_framework_display_tab_content', 'projects' ); ?>
@@ -80,7 +80,7 @@
 	<?php $class = ''; } ?>
 
 	<?php if ( class_exists( 'LSX_Services' ) ) { ?>
-		<div id="ui-services" class="ui-tab <?php echo esc_attr( $class ) ?>">
+		<div id="ui-services" class="ui-tab <?php echo esc_attr( $class ); ?>">
 			<table class="form-table">
 				<tbody>
 					<?php do_action( 'lsx_to_framework_display_tab_content', 'services' ); ?>
@@ -90,7 +90,7 @@
 	<?php $class = ''; } ?>
 
 	<?php if ( class_exists( 'LSX_Videos' ) ) { ?>
-		<div id="ui-videos" class="ui-tab <?php echo esc_attr( $class ) ?>">
+		<div id="ui-videos" class="ui-tab <?php echo esc_attr( $class ); ?>">
 			<table class="form-table">
 				<tbody>
 					<?php do_action( 'lsx_to_framework_display_tab_content', 'videos' ); ?>

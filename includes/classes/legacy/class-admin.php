@@ -302,8 +302,16 @@ class Admin extends Tour_Operator {
 				<div class="thumbnail-preview">
 					<?php echo wp_kses_post( $image_preview ); ?>
 				</div>
-				<a style="<?php if ( '' !== $value && false !== $value ) { ?>display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
-				<a style="<?php if ( '' === $value || false === $value ) { ?>display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-remove"><?php esc_html_e( 'Remove Image', 'tour-operator' ); ?></a>
+				<a style="
+                <?php 
+                if ( '' !== $value && false !== $value ) {
+?>
+display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
+				<a style="
+                <?php 
+                if ( '' === $value || false === $value ) {
+?>
+display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-remove"><?php esc_html_e( 'Remove Image', 'tour-operator' ); ?></a>
 				<?php wp_nonce_field( 'lsx_to_save_term_thumbnail', 'lsx_to_term_thumbnail_nonce' ); ?>
 			</td>
 		</tr>

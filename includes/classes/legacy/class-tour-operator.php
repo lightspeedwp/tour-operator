@@ -256,7 +256,7 @@ class Tour_Operator {
 	public static function get_instance() {
 		// If the single instance hasn't been set, set it now.
 		if ( is_null( self::$instance ) ) {
-			self::$instance = new self;
+			self::$instance = new self();
 		}
 
 		return self::$instance;
@@ -383,7 +383,7 @@ class Tour_Operator {
 	 */
 	public function set_map_vars() {
 		$this->map_post_types = array( 'accommodation', 'activity', 'destination' );
-		$this->markers        = new \stdClass;
+		$this->markers        = new \stdClass();
 
 		if ( ( false !== $this->options && isset( $this->options['api']['googlemaps_key'] ) ) || defined( 'GOOGLEMAPS_API_KEY' ) ) {
 			if ( ! defined( 'GOOGLEMAPS_API_KEY' ) ) {

@@ -2,9 +2,9 @@
 /**
  * Structure the TO pages
  *
- * @package   	tour-operator
- * @subpackage 	layout
- * @license   	GPL3
+ * @package     tour-operator
+ * @subpackage  layout
+ * @license     GPL3
  */
 
 /**
@@ -45,9 +45,9 @@ add_action( 'lsx_to_fast_facts', 'lsx_to_tour_single_fast_facts' );
 /**
  * Adds the template tags to the top of the content-accommodation
  *
- * @package 	tour-operator
- * @subpackage	template-tag
- * @category 	general
+ * @package     tour-operator
+ * @subpackage  template-tag
+ * @category    general
  */
 function lsx_to_archive_entry_top() {
 	global $lsx_to_archive;
@@ -91,24 +91,31 @@ function lsx_to_archive_entry_top() {
 		<div class="lsx-to-archive-wrapper">
 			<div class="lsx-to-archive-content">
 				<h3 class="lsx-to-archive-content-title">
-					<?php if ( $has_single ) { ?><a href="<?php echo esc_url( $permalink ); ?>" title="<?php esc_html_e( 'Read more', 'tour-operator' ); ?>"><?php } ?>
+					<?php 
+                    if ( $has_single ) {
+?>
+<a href="<?php echo esc_url( $permalink ); ?>" title="<?php esc_html_e( 'Read more', 'tour-operator' ); ?>"><?php } ?>
 						<?php
 							the_title();
 							do_action( 'lsx_to_the_title_end', get_the_ID() );
 						?>
-					<?php if ( $has_single ) { ?></a><?php } ?>
+					<?php 
+                    if ( $has_single ) {
+?>
+</a><?php } ?>
 				</h3>
 
 				<?php lsx_to_tagline( '<p class="lsx-to-archive-content-tagline">', '</p>' ); ?>
-	<?php }
+	<?php 
+    }
 }
 
 /**
  * Adds the template tags to the top of the lsx_content_top action
  *
- * @package 	tour-operator
- * @subpackage	template-tag
- * @category 	general
+ * @package     tour-operator
+ * @subpackage  template-tag
+ * @category    general
  */
 function lsx_to_single_content_top() {
 	if ( is_singular( array_keys( lsx_to_get_post_types() ) ) ) {
@@ -119,14 +126,15 @@ function lsx_to_single_content_top() {
 /**
  * Adds the template tags to the top of the content-{post-type}
  *
- * @package 	tour-operator
- * @subpackage	template-tag
- * @category 	general
+ * @package     tour-operator
+ * @subpackage  template-tag
+ * @category    general
  */
 function lsx_to_single_entry_bottom() {
 	global $lsx_to_archive;
 
-	if ( is_singular( array_keys( lsx_to_get_post_types() ) ) && false === $lsx_to_archive ) { ?>
+	if ( is_singular( array_keys( lsx_to_get_post_types() ) ) && false === $lsx_to_archive ) { 
+    ?>
 		<div class="col-xs-12 col-sm-12 col-md-5 to-facts-wrapper">
 			<?php lsx_to_fast_facts(); ?>
 
@@ -144,18 +152,20 @@ function lsx_to_single_entry_bottom() {
 				</div>
 			<?php endif; ?>
 		</div>
-	<?php }
+	<?php 
+    }
 }
 
 /**
  * Adds the template tags fast facts
  *
- * @package 	tour-operator
- * @subpackage	template-tag
- * @category 	general
+ * @package     tour-operator
+ * @subpackage  template-tag
+ * @category    general
  */
 function lsx_to_accommodation_single_fast_facts() {
-	if ( is_singular( 'accommodation' ) ) { ?>
+	if ( is_singular( 'accommodation' ) ) { 
+    ?>
 		<section style="display: none;" id="fast-facts">
 			<div class="lsx-to-section-inner">
 				<h3 class="lsx-to-section-title"><?php esc_html_e( 'Accommodation Summary', 'tour-operator' ); ?></h3>
@@ -182,18 +192,20 @@ function lsx_to_accommodation_single_fast_facts() {
 				</div>
 			</div>
 		</section>
-	<?php }
+	<?php 
+    }
 }
 
 /**
  * Adds the template tags fast facts
  *
- * @package 	tour-operator
- * @subpackage	template-tag
- * @category 	general
+ * @package     tour-operator
+ * @subpackage  template-tag
+ * @category    general
  */
 function lsx_to_destination_single_fast_facts() {
-	if ( is_singular( 'destination' ) ) { ?>
+	if ( is_singular( 'destination' ) ) { 
+    ?>
 		<section style="display: none;" id="fast-facts">
 			<div class="lsx-to-section-inner">
 				<h3 class="lsx-to-section-title"><?php esc_html_e( 'Fast Facts', 'tour-operator' ); ?></h3>
@@ -215,15 +227,16 @@ function lsx_to_destination_single_fast_facts() {
 				</div>
 			</div>
 		</section>
-	<?php }
+	<?php 
+    }
 }
 
 /**
  * Adds the template tags fast facts
  *
- * @package 	tour-operator
- * @subpackage	template-tag
- * @category 	general
+ * @package     tour-operator
+ * @subpackage  template-tag
+ * @category    general
  */
 function lsx_to_tour_single_fast_facts() {
 	if ( is_singular( 'tour' ) ) {
@@ -260,19 +273,21 @@ function lsx_to_tour_single_fast_facts() {
 				</div>
 			</section>
 		<?php endif; ?>
-	<?php }
+	<?php 
+    }
 }
 
 /**
  * Adds the template tags to the bottom of the single accommodation
  *
- * @package 	tour-operator
- * @subpackage	template-tag
- * @category 	accommodation
+ * @package     tour-operator
+ * @subpackage  template-tag
+ * @category    accommodation
  */
 function lsx_to_accommodation_single_content_bottom() {
 	if ( is_singular( 'accommodation' ) ) {
-		if ( function_exists( 'lsx_to_has_map' ) && lsx_to_has_map() ) { ?>
+		if ( function_exists( 'lsx_to_has_map' ) && lsx_to_has_map() ) { 
+        ?>
 			<section id="accommodation-map" class="lsx-to-section <?php lsx_to_collapsible_class( 'accommodation', false ); ?>">
 				<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title hidden-lg" <?php lsx_to_collapsible_attributes_not_post( 'collapse-accommodation-map' ); ?>><?php esc_html_e( 'Map', 'tour-operator' ); ?></h2>
 
@@ -282,7 +297,8 @@ function lsx_to_accommodation_single_content_bottom() {
 					</div>
 				</div>
 			</section>
-		<?php }
+		<?php 
+        }
 
 		lsx_to_accommodation_units();
 
@@ -311,7 +327,7 @@ function lsx_to_accommodation_single_content_bottom() {
 		$connected_tours = get_post_meta( get_the_ID(), 'tour_to_accommodation', false );
 
 		if ( lsx_to_accommodation_display_connected_tours() && post_type_exists( 'tour' ) && is_array( $connected_tours ) && ! empty( $connected_tours ) ) {
-			lsx_to_related_items( $connected_tours, '<section id="tours" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-related-items' ) . '>' . esc_html__( 'Related Tours' , 'tour-operator' ) . '</h2><div id="collapse-related-items" class="collapse in"><div class="collapse-inner">', '</div></div></section>', true, 'tour' );
+			lsx_to_related_items( $connected_tours, '<section id="tours" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-related-items' ) . '>' . esc_html__( 'Related Tours', 'tour-operator' ) . '</h2><div id="collapse-related-items" class="collapse in"><div class="collapse-inner">', '</div></div></section>', true, 'tour' );
 		}
 
 		lsx_to_accommodation_posts();
@@ -321,33 +337,36 @@ function lsx_to_accommodation_single_content_bottom() {
 /**
  * Adds the template tags to the top of the content-accommodation
  *
- * @package 	tour-operator
- * @subpackage	template-tag
- * @category 	accommodation
+ * @package     tour-operator
+ * @subpackage  template-tag
+ * @category    accommodation
  */
 function lsx_to_accommodation_archive_entry_top() {
 	global $lsx_to_archive;
 
 	if ( 'accommodation' === get_post_type() && ( is_archive() || $lsx_to_archive ) ) {
-		if ( is_search() || empty( tour_operator()->options[ get_post_type() ]['disable_entry_metadata'] ) ) { ?>
+		if ( is_search() || empty( tour_operator()->options[ get_post_type() ]['disable_entry_metadata'] ) ) { 
+        ?>
 			<div class="lsx-to-archive-meta-data lsx-to-archive-meta-data-grid-mode">
 				<?php lsx_to_accommodation_meta(); ?>
 			</div>
-		<?php }
+		<?php 
+        }
 	}
 }
 
 /**
  * Adds the template tags to the bottom of the content-accommodation
  *
- * @package 	tour-operator
- * @subpackage	template-tag
- * @category 	accommodation
+ * @package     tour-operator
+ * @subpackage  template-tag
+ * @category    accommodation
  */
 function lsx_to_accommodation_archive_entry_bottom() {
 	global $lsx_to_archive;
 
-	if ( 'accommodation' === get_post_type() && ( is_archive() || $lsx_to_archive ) ) { ?>
+	if ( 'accommodation' === get_post_type() && ( is_archive() || $lsx_to_archive ) ) { 
+    ?>
 			</div>
 
 			<?php if ( is_search() || empty( tour_operator()->options[ get_post_type() ]['disable_entry_metadata'] ) ) { ?>
@@ -362,19 +381,21 @@ function lsx_to_accommodation_archive_entry_bottom() {
 		<?php if ( $has_single && 'grid' === tour_operator()->archive_layout ) : ?>
 			<a href="<?php the_permalink(); ?>" class="moretag"><?php esc_html_e( 'View more', 'tour-operator' ); ?></a>
 		<?php endif; ?>
-	<?php }
+	<?php 
+    }
 }
 
 /**
  * Adds the template tags to the bottom of the single destination
  *
- * @package 	tour-operator
- * @subpackage	template-tag
- * @category 	destination
+ * @package     tour-operator
+ * @subpackage  template-tag
+ * @category    destination
  */
 function lsx_to_destination_single_content_bottom() {
 	if ( is_singular( 'destination' ) ) {
-		if ( function_exists( 'lsx_to_has_map' ) && lsx_to_has_map() ) { ?>
+		if ( function_exists( 'lsx_to_has_map' ) && lsx_to_has_map() ) { 
+        ?>
 			<section id="destination-map" class="lsx-to-section <?php lsx_to_collapsible_class( 'destination', false ); ?>">
 				<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title hidden-lg" <?php lsx_to_collapsible_attributes_not_post( 'collapse-destination-map' ); ?>><?php esc_html_e( 'Map', 'tour-operator' ); ?></h2>
 
@@ -384,7 +405,8 @@ function lsx_to_destination_single_content_bottom() {
 					</div>
 				</div>
 			</section>
-		<?php }
+		<?php 
+        }
 
 		lsx_to_destination_travel_info();
 
@@ -423,15 +445,16 @@ function lsx_to_destination_single_content_bottom() {
 /**
  * Adds the template tags to the top of the content-destination.php
  *
- * @package 	tour-operator
- * @subpackage	template-tag
- * @category 	destination
+ * @package     tour-operator
+ * @subpackage  template-tag
+ * @category    destination
  */
 function lsx_to_destination_archive_entry_top() {
 	global $lsx_to_archive;
 
 	if ( 'destination' === get_post_type() && ( is_archive() || $lsx_to_archive ) ) {
-		if ( is_search() || empty( tour_operator()->options[ get_post_type() ]['disable_entry_metadata'] ) ) { ?>
+		if ( is_search() || empty( tour_operator()->options[ get_post_type() ]['disable_entry_metadata'] ) ) { 
+        ?>
 			<div class="lsx-to-archive-meta-data lsx-to-archive-meta-data-grid-mode">
 				<?php
 					$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
@@ -443,21 +466,23 @@ function lsx_to_destination_archive_entry_top() {
 					}
 				?>
 			</div>
-		<?php }
+		<?php 
+        }
 	}
 }
 
 /**
  * Adds the template tags to the bottom of the content-destination.php
  *
- * @package 	tour-operator
- * @subpackage	template-tag
- * @category 	destination
+ * @package     tour-operator
+ * @subpackage  template-tag
+ * @category    destination
  */
 function lsx_to_destination_archive_entry_bottom() {
 	global $lsx_to_archive;
 
-	if ( 'destination' === get_post_type() && ( is_archive() || $lsx_to_archive ) ) { ?>
+	if ( 'destination' === get_post_type() && ( is_archive() || $lsx_to_archive ) ) { 
+    ?>
 			</div>
 
 			<?php if ( is_search() || empty( tour_operator()->options[ get_post_type() ]['disable_entry_metadata'] ) ) { ?>
@@ -480,21 +505,23 @@ function lsx_to_destination_archive_entry_bottom() {
 		<?php if ( $has_single && 'grid' === tour_operator()->archive_layout ) : ?>
 			<a href="<?php the_permalink(); ?>" class="moretag"><?php esc_html_e( 'View more', 'tour-operator' ); ?></a>
 		<?php endif; ?>
-	<?php }
+	<?php 
+    }
 }
 
 /**
  * Adds the template tags to the bottom of the single-destination.php
  *
- * @package 	tour-operator
- * @subpackage	template-tag
- * @category 	destination
+ * @package     tour-operator
+ * @subpackage  template-tag
+ * @category    destination
  */
 function lsx_to_destination_archive_content_bottom() {
 	global $lsx_to_archive;
 
 	if ( 'destination' === get_post_type() && ( is_archive() || $lsx_to_archive ) ) {
-		if ( function_exists( 'lsx_to_has_map' ) && lsx_to_has_map() ) { ?>
+		if ( function_exists( 'lsx_to_has_map' ) && lsx_to_has_map() ) { 
+        ?>
 			<section id="destination-map" class="lsx-to-section <?php lsx_to_collapsible_class( 'destination', false ); ?>">
 				<?php if ( ! lsx_to_has_destination_banner_map() ) : ?>
 					<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title hidden-lg" <?php lsx_to_collapsible_attributes( 'collapse-destination-map' ); ?>><?php esc_html_e( 'Map', 'tour-operator' ); ?></h2>
@@ -506,20 +533,22 @@ function lsx_to_destination_archive_content_bottom() {
 					</div>
 				</div>
 			</section>
-		<?php }
+		<?php 
+        }
 	}
 }
 
 /**
  * Adds the template tags to the bottom of the single tour
  *
- * @package 	tour-operator
- * @subpackage	template-tag
- * @category 	tour
+ * @package     tour-operator
+ * @subpackage  template-tag
+ * @category    tour
  */
 function lsx_to_tour_single_content_bottom() {
 	if ( is_singular( 'tour' ) ) {
-		if ( function_exists( 'lsx_to_has_map' ) && lsx_to_has_map() ) { ?>
+		if ( function_exists( 'lsx_to_has_map' ) && lsx_to_has_map() ) { 
+        ?>
 			<section id="tour-map" class="lsx-to-section <?php lsx_to_collapsible_class( 'tour', false ); ?>">
 				<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title hidden-lg" <?php lsx_to_collapsible_attributes_not_post( 'collapse-tour-map' ); ?>><?php esc_html_e( 'Map', 'tour-operator' ); ?></h2>
 
@@ -529,7 +558,8 @@ function lsx_to_tour_single_content_bottom() {
 					</div>
 				</div>
 			</section>
-		<?php }
+		<?php 
+        }
 
 		lsx_to_best_time_to_visit( '<section id="when-to-go" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-when-to-go' ) . '>' . esc_html__( 'When to Go', 'tour-operator' ) . '</h2><div id="collapse-when-to-go" class="collapse in"><div class="collapse-inner clearfix">', '</div></div></section>' );
 
@@ -559,7 +589,7 @@ function lsx_to_tour_single_content_bottom() {
 										<div class="lsx-to-archive-wrapper">
 											<div class="lsx-to-archive-content">
 												<h3 class="lsx-to-archive-content-title"><?php lsx_to_itinerary_title(); ?></h3>
-												<p class="lsx-to-archive-content-tagline"><?php lsx_to_itinerary_tagline() ?></p>
+												<p class="lsx-to-archive-content-tagline"><?php lsx_to_itinerary_tagline(); ?></p>
 
 												<div class="entry-content">
 													<?php lsx_to_itinerary_description(); ?>
@@ -590,7 +620,8 @@ function lsx_to_tour_single_content_bottom() {
 
 				<?php lsx_to_itinerary_read_more(); ?>
 			</section>
-		<?php }
+		<?php 
+        }
 
 		lsx_to_included_block();
 
@@ -619,15 +650,16 @@ function lsx_to_tour_single_content_bottom() {
 /**
  * Adds the template tags to the top of the content-tour.php
  *
- * @package 	tour-operator
- * @subpackage	template-tag
- * @category 	tour
+ * @package     tour-operator
+ * @subpackage  template-tag
+ * @category    tour
  */
 function lsx_to_tour_archive_entry_top() {
 	global $lsx_to_archive;
 
 	if ( 'tour' === get_post_type() && ( is_archive() || $lsx_to_archive ) ) {
-		if ( is_search() || empty( tour_operator()->options[ get_post_type() ]['disable_entry_metadata'] ) ) { ?>
+		if ( is_search() || empty( tour_operator()->options[ get_post_type() ]['disable_entry_metadata'] ) ) { 
+        ?>
 			<div class="lsx-to-archive-meta-data lsx-to-archive-meta-data-grid-mode">
 				<?php
 					$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
@@ -642,21 +674,23 @@ function lsx_to_tour_archive_entry_top() {
 					}
 				?>
 			</div>
-		<?php }
+		<?php 
+        }
 	}
 }
 
 /**
  * Adds the template tags to the bottom of the content-tour.php
  *
- * @package 	tour-operator
- * @subpackage	template-tag
- * @category 	tour
+ * @package     tour-operator
+ * @subpackage  template-tag
+ * @category    tour
  */
 function lsx_to_tour_archive_entry_bottom() {
 	global $lsx_to_archive;
 
-	if ( 'tour' === get_post_type() && ( is_archive() || $lsx_to_archive ) ) { ?>
+	if ( 'tour' === get_post_type() && ( is_archive() || $lsx_to_archive ) ) { 
+    ?>
 			</div>
 
 			<?php if ( is_search() || empty( tour_operator()->options[ get_post_type() ]['disable_entry_metadata'] ) ) { ?>
@@ -682,5 +716,6 @@ function lsx_to_tour_archive_entry_bottom() {
 		<?php if ( $has_single && 'grid' === tour_operator()->archive_layout ) : ?>
 			<a href="<?php the_permalink(); ?>" class="moretag"><?php esc_html_e( 'View more', 'tour-operator' ); ?></a>
 		<?php endif; ?>
-	<?php }
+	<?php 
+    }
 }

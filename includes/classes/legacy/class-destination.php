@@ -86,7 +86,7 @@ class Destination {
 	public static function get_instance() {
 		// If the single instance hasn't been set, set it now.
 		if ( null == self::$instance ) {
-			self::$instance = new self;
+			self::$instance = new self();
 		}
 
 		return self::$instance;
@@ -120,7 +120,7 @@ class Destination {
 						$query->set( 'meta_key', 'sticky_order' );
 						$query->set( 'orderby', 'meta_value_num' );
 						$query->set( 'order', 'DESC' );
-					break;
+					    break;
 
 					case 'sticky-first':
 						$query->set( 'meta_key', 'sticky_order' );
@@ -131,7 +131,7 @@ class Destination {
 								'menu_order' => 'ASC',
 							)
 						);
-					break;
+					    break;
 
 					case 'sticky-last':
 						$query->set( 'meta_key', 'sticky_order' );
@@ -142,10 +142,10 @@ class Destination {
 								'meta_value_num' => 'ASC',
 							)
 						);
-					break;
+					    break;
 
 					default:
-					break;
+					    break;
 				}
 			}
 		}
@@ -188,7 +188,8 @@ class Destination {
 					lsx_to_connected_activities( '<span class="' . $meta_class . 'activities"><span class="lsx-to-meta-data-key">' . esc_html__( 'Activities', 'tour-operator' ) . ':</span> ', '</span>' );
 				}
 			?>
-		<?php }
+		<?php 
+        }
 	}
 
 	/**

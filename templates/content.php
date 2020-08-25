@@ -35,11 +35,13 @@
 				</a>
 			</h3>
 
-			<div <?php lsx_to_entry_class( 'entry-content' ); ?>><?php
+			<div <?php lsx_to_entry_class( 'entry-content' ); ?>>
+                                           <?php
 				lsx_to_entry_content_top();
 				the_excerpt();
 				lsx_to_entry_content_bottom();
-			?></div>
+			?>
+            </div>
 		</div>
 	</div>
 
@@ -49,4 +51,5 @@
 
 </article>
 
-<?php lsx_entry_after();
+<?php 
+lsx_entry_after();
