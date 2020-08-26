@@ -2,9 +2,9 @@
 Contributors: feedmymedia
 Donate link: https://tour-operator.lsdev.biz/
 Tags: tour operator, tour operators, tour, tours, tour itinerary, tour itineraries, accommodation, accommodation listings, destinations, regions, tourism, lsx
-Requires at least: 5.1.1
-Tested up to: 5.4
-Requires PHP: 7.0
+Requires at least: 5.3
+Tested up to: 5.5
+Requires PHP: 7.2
 Stable tag: 1.4.1
 License: GPLv3
 
