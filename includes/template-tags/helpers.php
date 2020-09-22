@@ -429,12 +429,22 @@ function lsx_to_connected_panel_query( $args = false ) {
 
 			if ( true === $args['featured'] || 'true' === $args['featured'] ) {
 				$items_query_args['meta_query'] = array(
+					'relation' => 'OR',
 					array(
 						'key' => 'featured',
 						'value' => true,
 						'compare' => '=',
 					),
+					array(
+						'key' => 'featured',
+						'compare' => 'NOT EXISTS',
+					),
 				);
+				$items_query_args['meta_key']   = 'featured';
+				$items_query_args['orderby']    = 'meta_value title';
+				$items_query_args['order']      = 'DESC';
+
+				$items_query_args['orderby']    = array( 'meta_value' => 'DESC', 'title' => 'RAND' )
 			}
 
 			$items = new WP_Query( $items_query_args );
