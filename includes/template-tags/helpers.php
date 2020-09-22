@@ -435,15 +435,18 @@ function lsx_to_connected_panel_query( $args = false ) {
 						'value' => true,
 						'compare' => '=',
 					),
-					array(
-						'key' => 'featured',
-						'compare' => 'NOT EXISTS',
-					),
 				);
-				$items_query_args['meta_key']   = 'featured';
-				$items_query_args['orderby']    = 'meta_value title';
-				$items_query_args['order']      = 'DESC';
-				$items_query_args['orderby']    = array( 'meta_value' => 'DESC', 'title' => 'RAND' );
+
+				if ( 'accommodation' === $args['from'] ) {
+					$items_query_args['meta_query'][] = array(
+						'key'     => 'featured',
+						'compare' => 'NOT EXISTS',
+					);
+					$items_query_args['orderby']      = array(
+						'meta_value' => 'DESC',
+						'title'      => 'RAND',
+					);
+				}
 			}
 
 			$items = new WP_Query( $items_query_args );
