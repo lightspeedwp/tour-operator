@@ -245,7 +245,7 @@ class Frontend extends Tour_Operator {
 
 		if ( ! isset( $this->options['display']['disable_js'] ) ) {
 			if ( ! $has_slick ) {
-				wp_enqueue_script( 'slick', LSX_TO_URL . 'assets/js/vendor/slick.min.js', array( 'jquery' ) , LSX_TO_VER, true );
+				wp_enqueue_script( 'slick', LSX_TO_URL . 'assets/js/vendor/slick.min.js', array( 'jquery' ), LSX_TO_VER, true );
 			}
 
 			if ( ! $has_slick_lightbox ) {

@@ -15,7 +15,8 @@
 				 * - 10	| map_marker()							class-google-maps.php
 				 * - 10	| tab_settings()						lsx-search-integration.php
 				 */
-			?>			
+			?>
+            			
 			<?php do_action( 'lsx_to_framework_team_tab_content', 'team' ); ?>
 		</tbody>
 	</table>

@@ -268,20 +268,24 @@ class Taxonomy_Widget extends \WP_Widget {
 
 		?>
 		<p>
-			<label for="<?php echo wp_kses_post( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:','tour-operator' ); ?></label>
+			<label for="<?php echo wp_kses_post( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'tour-operator' ); ?></label>
 			<input class="widefat" id="<?php echo wp_kses_post( $this->get_field_id( 'title' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'title' ) ); ?>" type="text"
 				value="<?php echo wp_kses_post( $title ); ?>" />
 		</p>
 		<p>
-			<label for="<?php echo wp_kses_post( $this->get_field_id( 'title_link' ) ); ?>"><?php esc_html_e( 'Title Link:','tour-operator' ); ?></label>
+			<label for="<?php echo wp_kses_post( $this->get_field_id( 'title_link' ) ); ?>"><?php esc_html_e( 'Title Link:', 'tour-operator' ); ?></label>
 			<input class="widefat"
 				id="<?php echo wp_kses_post( $this->get_field_id( 'title_link' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'title_link' ) ); ?>" type="text"
-				value="<?php echo wp_kses_post( $title_link ); ?>" /> <small><?php esc_html_e( 'Link the widget title to
-				a URL','tour-operator' ); ?></small>
+				value="<?php echo wp_kses_post( $title_link ); ?>" /> <small>
+                                  <?php 
+                esc_html_e( 'Link the widget title to
+				a URL', 'tour-operator' ); 
+?>
+</small>
 		</p>
-		<h4 class="widget-title" style="border-top: 1px solid #e5e5e5;padding-top:10px;"><?php esc_html_e( 'Query','tour-operator' );?></h4>
+		<h4 class="widget-title" style="border-top: 1px solid #e5e5e5;padding-top:10px;"><?php esc_html_e( 'Query', 'tour-operator' ); ?></h4>
 		<p>
 			<label for="<?php echo wp_kses_post( $this->get_field_id( 'taxonomy' ) ); ?>"><?php esc_html_e( 'Taxonomy:', 'tour-operator' ); ?></label>
 			<select name="<?php echo wp_kses_post( $this->get_field_name( 'taxonomy' ) ); ?>" id="<?php echo wp_kses_post( $this->get_field_id( 'taxonomy' ) ); ?>"	class="widefat layout">
@@ -289,18 +293,20 @@ class Taxonomy_Widget extends \WP_Widget {
 				$options = array();
 				$options = lsx_to_get_taxonomies();
 				if ( empty( $options ) ) {
-					$options['none'] = esc_attr__( 'None','tour-operator' );
+					$options['none'] = esc_attr__( 'None', 'tour-operator' );
 				}
 
 				foreach ( $options as $key => $name ) {
 					$selected = ($taxonomy == $key) ? ' selected="selected"' : '';
-					?><option value="<?php echo wp_kses_post( $key ); ?>" id="<?php echo wp_kses_post( $key ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $name ); ?></option><?php
+					?>
+                    <option value="<?php echo wp_kses_post( $key ); ?>" id="<?php echo wp_kses_post( $key ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $name ); ?></option>
+                    <?php
 				}
 				?>
 			</select>
 		</p>
 		<p>
-			<label for="<?php echo wp_kses_post( $this->get_field_id( 'orderby' ) ); ?>"><?php esc_html_e( 'Order By:','tour-operator' ); ?></label>
+			<label for="<?php echo wp_kses_post( $this->get_field_id( 'orderby' ) ); ?>"><?php esc_html_e( 'Order By:', 'tour-operator' ); ?></label>
 			<select name="<?php echo wp_kses_post( $this->get_field_name( 'orderby' ) ); ?>"
 				id="<?php echo wp_kses_post( $this->get_field_id( 'orderby' ) ); ?>" class="widefat">
 					<?php
@@ -310,46 +316,50 @@ class Taxonomy_Widget extends \WP_Widget {
 						'ID' => 'term_id',
 						'Count' => 'count',
 						'Admin (custom order)' => 'none',
-						);
+					);
 					foreach ( $options as $name => $value ) {
 						$selected = ($orderby == $value) ? ' selected="selected"' : '';
-						?><option value="<?php echo wp_kses_post( $value ); ?>" id="<?php echo wp_kses_post( $value ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $name ); ?></option><?php
+						?>
+                        <option value="<?php echo wp_kses_post( $value ); ?>" id="<?php echo wp_kses_post( $value ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $name ); ?></option>
+                        <?php
 					}
 					?>
 					</select>
 		</p>
 		<p>
-			<label for="<?php echo wp_kses_post( $this->get_field_id( 'order' ) ); ?>"><?php esc_html_e( 'Order:','tour-operator' ); ?></label>
+			<label for="<?php echo wp_kses_post( $this->get_field_id( 'order' ) ); ?>"><?php esc_html_e( 'Order:', 'tour-operator' ); ?></label>
 			<select name="<?php echo wp_kses_post( $this->get_field_name( 'order' ) ); ?>"
 				id="<?php echo wp_kses_post( $this->get_field_id( 'order' ) ); ?>" class="widefat">
 					<?php
 					$options = array(
 						'Ascending' => 'ASC',
 						'Descending' => 'DESC',
-						);
+					);
 					foreach ( $options as $name => $value ) {
 						$selected = ($orderby == $value) ? ' selected="selected"' : '';
-						?><option value="<?php echo wp_kses_post( $value ); ?>" id="<?php echo wp_kses_post( $value ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $name ); ?></option><?php
+						?>
+                        <option value="<?php echo wp_kses_post( $value ); ?>" id="<?php echo wp_kses_post( $value ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $name ); ?></option>
+                        <?php
 					}
 					?>
 			</select>
 		</p>
 		<p>
-			<label for="<?php echo wp_kses_post( $this->get_field_id( 'limit' ) ); ?>"><?php esc_html_e( 'Maximum amount:','tour-operator' ); ?></label>
+			<label for="<?php echo wp_kses_post( $this->get_field_id( 'limit' ) ); ?>"><?php esc_html_e( 'Maximum amount:', 'tour-operator' ); ?></label>
 			<input class="widefat" id="<?php echo wp_kses_post( $this->get_field_id( 'limit' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'limit' ) ); ?>" type="text"
-				value="<?php echo wp_kses_post( $limit ); ?>" /> <small><?php esc_html_e( 'Leave empty to display all','tour-operator' ); ?></small>
+				value="<?php echo wp_kses_post( $limit ); ?>" /> <small><?php esc_html_e( 'Leave empty to display all', 'tour-operator' ); ?></small>
 		</p>
 		<p>
-			<label for="<?php echo wp_kses_post( $this->get_field_id( 'include' ) ); ?>"><?php esc_html_e( 'Specify by ID:','tour-operator' ); ?></label>
+			<label for="<?php echo wp_kses_post( $this->get_field_id( 'include' ) ); ?>"><?php esc_html_e( 'Specify by ID:', 'tour-operator' ); ?></label>
 			<input class="widefat"
 				id="<?php echo wp_kses_post( $this->get_field_id( 'include' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'include' ) ); ?>" type="text"
-				value="<?php echo wp_kses_post( $include ); ?>" /> <small><?php esc_html_e( 'Comma separated list, overrides limit setting','tour-operator' ); ?></small>
+				value="<?php echo wp_kses_post( $include ); ?>" /> <small><?php esc_html_e( 'Comma separated list, overrides limit setting', 'tour-operator' ); ?></small>
 		</p>
-		<h4 class="widget-title" style="border-top: 1px solid #e5e5e5;padding-top:10px;"><?php esc_html_e( 'Layout','tour-operator' );?></h4>
+		<h4 class="widget-title" style="border-top: 1px solid #e5e5e5;padding-top:10px;"><?php esc_html_e( 'Layout', 'tour-operator' ); ?></h4>
 		<p>
-			<label for="<?php echo wp_kses_post( $this->get_field_id( 'columns' ) ); ?>"><?php esc_html_e( 'Columns:','tour-operator' ); ?></label>
+			<label for="<?php echo wp_kses_post( $this->get_field_id( 'columns' ) ); ?>"><?php esc_html_e( 'Columns:', 'tour-operator' ); ?></label>
 			<select name="<?php echo wp_kses_post( $this->get_field_name( 'columns' ) ); ?>"
 				id="<?php echo wp_kses_post( $this->get_field_id( 'columns' ) ); ?>"
 				class="widefat layout">
@@ -358,13 +368,15 @@ class Taxonomy_Widget extends \WP_Widget {
 					foreach ( $options as $option ) {
 						$key = lcfirst( $option );
 						$selected = ($columns == $key) ? ' selected="selected"' : '';
-						?><option value="<?php echo wp_kses_post( $key ); ?>" id="<?php echo wp_kses_post( $key ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $option ); ?></option><?php
+						?>
+                        <option value="<?php echo wp_kses_post( $key ); ?>" id="<?php echo wp_kses_post( $key ); ?>" <?php echo wp_kses_post( $selected ); ?>><?php echo wp_kses_post( $option ); ?></option>
+                        <?php
 					}
 					?>
 			 </select>
 		</p>
 		<p>
-			<label for="<?php echo wp_kses_post( $this->get_field_id( 'class' ) ); ?>"><?php esc_html_e( 'Class:','tour-operator' ); ?></label>
+			<label for="<?php echo wp_kses_post( $this->get_field_id( 'class' ) ); ?>"><?php esc_html_e( 'Class:', 'tour-operator' ); ?></label>
 			<input class="widefat" id="<?php echo wp_kses_post( $this->get_field_id( 'class' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'class' ) ); ?>" type="text"
 				value="<?php echo wp_kses_post( $class ); ?>" />
@@ -374,41 +386,41 @@ class Taxonomy_Widget extends \WP_Widget {
 			<input id="<?php echo wp_kses_post( $this->get_field_id( 'disable_placeholder' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'disable_placeholder' ) ); ?>" type="checkbox"
 				value="1" <?php checked( '1', $disable_placeholder ); ?> /> <label
-				for="<?php echo wp_kses_post( $this->get_field_id( 'disable_placeholder' ) ); ?>"><?php esc_html_e( 'Disable Featured Image','tour-operator' ); ?></label>
+				for="<?php echo wp_kses_post( $this->get_field_id( 'disable_placeholder' ) ); ?>"><?php esc_html_e( 'Disable Featured Image', 'tour-operator' ); ?></label>
 		</p>
 		<p>
 			<input id="<?php echo wp_kses_post( $this->get_field_id( 'disable_text' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'disable_text' ) ); ?>" type="checkbox"
 				value="1" <?php checked( '1', $disable_text ); ?> /> <label
-				for="<?php echo wp_kses_post( $this->get_field_id( 'disable_text' ) ); ?>"><?php esc_html_e( 'Disable Excerpt and Tagline','tour-operator' ); ?></label>
+				for="<?php echo wp_kses_post( $this->get_field_id( 'disable_text' ) ); ?>"><?php esc_html_e( 'Disable Excerpt and Tagline', 'tour-operator' ); ?></label>
 		</p>
 		<p>
 			<input id="<?php echo wp_kses_post( $this->get_field_id( 'disable_single_link' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'disable_single_link' ) ); ?>" type="checkbox"
 				value="1" <?php checked( '1', $disable_single_link ); ?> /> <label
-				for="<?php echo wp_kses_post( $this->get_field_id( 'disable_single_link' ) ); ?>"><?php esc_html_e( 'Disable Single Link','tour-operator' ); ?></label>
+				for="<?php echo wp_kses_post( $this->get_field_id( 'disable_single_link' ) ); ?>"><?php esc_html_e( 'Disable Single Link', 'tour-operator' ); ?></label>
 		</p>
 		<p>
 			<input id="<?php echo wp_kses_post( $this->get_field_id( 'buttons' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'buttons' ) ); ?>" type="checkbox"
 				value="1" <?php checked( '1', $buttons ); ?> /> <label
-				for="<?php echo wp_kses_post( $this->get_field_id( 'buttons' ) ); ?>"><?php esc_html_e( 'Display Button','tour-operator' ); ?></label>
+				for="<?php echo wp_kses_post( $this->get_field_id( 'buttons' ) ); ?>"><?php esc_html_e( 'Display Button', 'tour-operator' ); ?></label>
 		</p>
 		<p>
-			<label for="<?php echo wp_kses_post( $this->get_field_id( 'button_text' ) ); ?>"><?php esc_html_e( 'Button Text:','tour-operator' ); ?></label>
+			<label for="<?php echo wp_kses_post( $this->get_field_id( 'button_text' ) ); ?>"><?php esc_html_e( 'Button Text:', 'tour-operator' ); ?></label>
 			<input class="widefat" id="<?php echo wp_kses_post( $this->get_field_id( 'button_text' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'button_text' ) ); ?>" type="text"
 				value="<?php echo wp_kses_post( $button_text ); ?>" />
 		</p>
-		<h4 class="widget-title" style="border-top: 1px solid #e5e5e5;padding-top:10px;"><?php esc_html_e( 'Slider','tour-operator' );?></h4>
+		<h4 class="widget-title" style="border-top: 1px solid #e5e5e5;padding-top:10px;"><?php esc_html_e( 'Slider', 'tour-operator' ); ?></h4>
 		<p>
 			<input id="<?php echo wp_kses_post( $this->get_field_id( 'carousel' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'carousel' ) ); ?>"
 				type="checkbox" value="1" <?php checked( '1', $carousel ); ?> /> <label
-				for="<?php echo wp_kses_post( $this->get_field_id( 'carousel' ) ); ?>"><?php esc_html_e( 'Enable Carousel','tour-operator' ); ?></label>
+				for="<?php echo wp_kses_post( $this->get_field_id( 'carousel' ) ); ?>"><?php esc_html_e( 'Enable Carousel', 'tour-operator' ); ?></label>
 		</p>
 		<p>
-			<label for="<?php echo wp_kses_post( $this->get_field_id( 'interval' ) ); ?>"><?php esc_html_e( 'Slide Interval:','tour-operator' ); ?></label>
+			<label for="<?php echo wp_kses_post( $this->get_field_id( 'interval' ) ); ?>"><?php esc_html_e( 'Slide Interval:', 'tour-operator' ); ?></label>
 			<input class="widefat" id="<?php echo wp_kses_post( $this->get_field_id( 'interval' ) ); ?>"
 				name="<?php echo wp_kses_post( $this->get_field_name( 'interval' ) ); ?>" type="text"
 				value="<?php echo wp_kses_post( $interval ); ?>" />
@@ -535,7 +547,6 @@ class Taxonomy_Widget extends \WP_Widget {
 
 		if ( $carousel ) {
 			$output .= "<div class='lsx-to-widget-item-wrap lsx-{$taxonomy}'>";
-			add_filter( 'lsx_lazyload_slider_images', array( $this, 'lazyload_slider_images' ), 10, 5 );
 		} elseif ( 1 === $count ) {
 			$output .= "<div class='row'>";
 		}
@@ -550,7 +561,6 @@ class Taxonomy_Widget extends \WP_Widget {
 
 		if ( $carousel ) {
 			$output .= '</div>';
-			remove_filter( 'lsx_lazyload_slider_images', array( $this, 'lazyload_slider_images' ), 10, 5 );
 		} elseif ( 0 === $count % $columns || $count === $post_count ) {
 			$output .= '</div>';
 			if ( $count < $post_count ) {
@@ -615,33 +625,6 @@ class Taxonomy_Widget extends \WP_Widget {
 		}
 	}
 
-	/**
-	 * Applies the lazy loading if needed.
-	 *
-	 * @param String $img
-	 * @return void
-	 */
-	public function lazyload_slider_images( $img, $post_thumbnail_id, $size, $srcset, $image_url ) {
-		$lazyload = true;
-		if ( get_theme_mod( 'lsx_lazyload_status', '1' ) === false || ! apply_filters( 'lsx_lazyload_is_enabled', true ) ) {
-			$lazyload = false;
-		}
-		$lazy_img = '';
-		if ( true === $lazyload && '' !== $img ) {
-			$temp_lazy = wp_get_attachment_image_src( $post_thumbnail_id, $size );
-			if ( ! empty( $temp_lazy ) ) {
-				$lazy_img = $temp_lazy[0];
-			}
-			$img = '<img alt="' . the_title_attribute( 'echo=0' ) . '" class="attachment-responsive wp-post-image lsx-responsive" ';
-			if ( $srcset ) {
-				$img .= 'data-lazy="' . $lazy_img . '" srcset="' . esc_attr( $image_url ) . '" ';
-			} else {
-				$img .= 'data-lazy="' . esc_url( $image_url ) . '" ';
-			}
-			$img .= '/>';
-		}
-		return $img;
-	}
 }
 
 ?>

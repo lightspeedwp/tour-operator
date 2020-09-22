@@ -2,9 +2,9 @@
 /**
  * Accommodation Widget Content Part
  *
- * @package 	tour-operator
- * @category	accommodation-type
- * @subpackage	widget
+ * @package     tour-operator
+ * @category    accommodation-type
+ * @subpackage  widget
  */
 
 global $term, $taxonomy, $disable_placeholder, $disable_text, $disable_single_link;
@@ -19,24 +19,42 @@ if ( empty( $disable_single_link ) ) {
 	<?php if ( empty( $disable_placeholder ) ) { ?>
 		<?php if ( lsx_to_has_term_thumbnail( $term->term_id ) ) : ?>
 			<div class="lsx-to-widget-thumb">
-				<?php if ( ! empty( $title_link ) ) { ?><a href="<?php echo esc_url( $title_link ); ?>"><?php } ?>
+				<?php 
+                if ( ! empty( $title_link ) ) {
+?>
+<a href="<?php echo esc_url( $title_link ); ?>"><?php } ?>
 					<?php lsx_to_term_thumbnail( $term->term_id, 'lsx-thumbnail-wide' ); ?>
-				<?php if ( ! empty( $title_link ) ) { ?></a><?php } ?>
+				<?php 
+                if ( ! empty( $title_link ) ) {
+?>
+</a><?php } ?>
 			</div>
 		<?php else : ?>
 			<div class="lsx-to-widget-thumb">
-				<?php if ( ! empty( $title_link ) ) { ?><a href="<?php echo esc_url( $title_link ); ?>"><?php } ?>
+				<?php 
+                if ( ! empty( $title_link ) ) {
+?>
+<a href="<?php echo esc_url( $title_link ); ?>"><?php } ?>
 					<img alt="Placeholder" class="attachment-responsive wp-post-image lsx-responsive" src="<?php echo esc_url( lsx\legacy\Placeholders::placeholder_url( null, null, array( 750, 350 ) ) ); ?>">
-				<?php if ( ! empty( $title_link ) ) { ?></a><?php } ?>
+				<?php 
+                if ( ! empty( $title_link ) ) {
+?>
+</a><?php } ?>
 			</div>
 		<?php endif; ?>
 	<?php } ?>
 
 	<div class="lsx-to-widget-content">
 		<h4 class="lsx-to-widget-title text-center">
-			<?php if ( ! empty( $title_link ) ) { ?><a href="<?php echo esc_url( $title_link ); ?>"><?php } ?>
+			<?php 
+            if ( ! empty( $title_link ) ) {
+?>
+<a href="<?php echo esc_url( $title_link ); ?>"><?php } ?>
 				<?php echo esc_html( apply_filters( 'the_title', $term->name ) ); ?>
-			<?php if ( ! empty( $title_link ) ) { ?></a><?php } ?>
+			<?php 
+            if ( ! empty( $title_link ) ) {
+?>
+</a><?php } ?>
 		</h4>
 
 		<?php

@@ -97,7 +97,10 @@ function lsx_to_archive_shortcode( $atts ) {
 				$lsx_to_archive = 1;
 			?>
 
-			<?php while ( $query->have_posts() ) : $query->the_post(); ?>
+			<?php 
+            while ( $query->have_posts() ) :
+$query->the_post(); 
+?>
 
 				<div class="<?php echo esc_attr( lsx_to_archive_class( 'lsx-to-archive-item' ) ); ?>">
 					<?php lsx_to_content( 'content', get_post_type() ); ?>
@@ -112,7 +115,8 @@ function lsx_to_archive_shortcode( $atts ) {
 
 		</div>
 
-	<?php endif;
+	<?php 
+    endif;
 
 	$content = ob_get_clean();
 	$content = preg_replace( '/<!--[^>]+-->/', '', $content );

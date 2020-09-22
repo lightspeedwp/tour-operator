@@ -2,8 +2,8 @@
 /**
  * Map Marker Content
  *
- * @package 	tour-operator
- * @category	google-maps
+ * @package     tour-operator
+ * @category    google-maps
  */
 ?>
 <article <?php post_class(); ?>>

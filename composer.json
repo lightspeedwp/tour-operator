@@ -1,0 +1,24 @@
+{
+    "name": "lightspeeddevelopment/tour-operator",
+    "description": "The Tour Operators Plugin provides 3 post types (Accommodations, Destinations and Tours) that are the core of any Tour Operator. Use them to build day-by-day itineraries for tours.",
+    "type": "wordpress-plugin",
+    "require": {
+        "php": ">=7.2",
+        "composer/installers": "^1.7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5",
+        "wp-coding-standards/wpcs": "^2.3",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+        "wpackagist-plugin/wordpress-seo": "^14.8",
+        "wpackagist-theme/lsx": "^2.8.0",
+        "phpcompatibility/phpcompatibility-wp": "^2.1.0"
+    },
+    "repositories":[{
+        "type":"composer",
+        "url":"https://wpackagist.org"
+    }],
+    "license": "GPL-3.0-or-later",
+    "prefer-stable": true,
+    "minimum-stability": "dev"
+}

@@ -63,19 +63,19 @@ var LSX_TO_Maps = {
 		this.bounds = [];
 
 		var $footerMap = jQuery(banner_class+':eq(0)');
-		if('.lsx-map-preview' != banner_class){
+		if ('.lsx-map-preview' != banner_class) {
 			height = $footerMap.css('height');
 			// container_html = $footerMap.find('.container').html();
 			$footerMap.find('.container').hide();
-		}else if('route' === type && 'undefined' !== $map.attr('data-kml')){
+		} else if ('route' === type && 'undefined' !== $map.attr('data-kml')) {
 			kml = $map.attr('data-kml');
-		}else{
+		} else {
 			$footerMap.css('height',height);
 		}
 
 		var $container = null;
 		var $breadcrumbs = null;
-		if('.lsx-map-preview' != banner_class){
+		if ('.lsx-map-preview' != banner_class) {
 			jQuery(banner_class).addClass('gmap-banner');
 
 			$map.closest('section').hide();
@@ -120,17 +120,17 @@ var LSX_TO_Maps = {
 
 
 		//Decide which method to draw on the map.
-		if(false != kml && undefined != kml){
+		if (false != kml && undefined != kml) {
 			this.addRoute();
-		}else{
+		} else {
 			this.refreshMarkers();
-			if('route' == type && (false == kml || undefined == kml)){
+			if ('route' == type && (false == kml || undefined == kml)) {
 				this.drawRoute();
 			}
 		}
 
 		//Do we fit to the screen or center the view.
-		if( !$map.hasClass('disable-auto-zoom') && ( 'cluster' == type || ('route' == type && (false == kml || undefined == kml))) ){
+		if ( !$map.hasClass('disable-auto-zoom') && ( 'cluster' == type || ('route' == type && (false == kml || undefined == kml))) ) {
 			
 			
 			if ( 1 < this.bounds.length ) {
@@ -142,7 +142,7 @@ var LSX_TO_Maps = {
 			}
 			$footerMap.css('height',height);
 			
-		}else{
+		} else {
 			this.setCenter();
 		}
 
@@ -164,7 +164,7 @@ var LSX_TO_Maps = {
 	},
 
 	resizeThis: function() {
-		if(google && google.maps){
+		if (google && google.maps) {
 			google.maps.event.trigger(this.mapObj, "resize");
 		}
 	},
@@ -172,7 +172,7 @@ var LSX_TO_Maps = {
 	drawRoute: function() {
 		var coordinates = [];
 
-		if(jQuery('.lsx-map-markers').length > 0){
+		if (jQuery('.lsx-map-markers').length > 0) {
 			jQuery('.lsx-map-markers .map-data').each(function(){
 				coordinates.push({lat: Number(jQuery(this).attr('data-lat')), lng: Number(jQuery(this).attr('data-long'))});
 			});
@@ -189,7 +189,7 @@ var LSX_TO_Maps = {
 	},
 
 	generateRoute: function() {
-		if(jQuery('.lsx-map-markers').length > 0){
+		if (jQuery('.lsx-map-markers').length > 0) {
 			jQuery('.lsx-map-markers .map-data').each(function(){
 				coordinates.push(jQuery(this).attr('data-lat')+' '+Number(jQuery(this).attr('data-long')));
 				//coordinates.push({lat: Number(jQuery(this).attr('data-lat')), lng: Number(jQuery(this).attr('data-long'))});
@@ -324,7 +324,7 @@ var LSX_TO_Maps = {
 		var bounds = [];
 		var $this = this;
 
-		if(jQuery('.lsx-map-markers').length){
+		if (jQuery('.lsx-map-markers').length) {
 			var counter = 0;
 			var marker_length = jQuery('.lsx-map-markers .map-data').length-1;
 
@@ -345,10 +345,10 @@ var LSX_TO_Maps = {
 					var icon_url = jQuery(this).attr('data-icon');
 					// console.log(icon_url);
 
-					if('route' == $this.type && (0==counter || marker_length == counter)){
-						if(0==counter){
+					if ('route' == $this.type && (0==counter || marker_length == counter)) {
+						if (0==counter) {
 							icon_url = lsx_to_maps_params.start_marker;
-						}else{
+						} else {
 							icon_url = lsx_to_maps_params.end_marker;
 						}
 					}
@@ -364,7 +364,7 @@ var LSX_TO_Maps = {
 
 			this.bounds = bounds;
 
-			if(true == this.cluster_disable && 'cluster' == this.type){
+			if (true == this.cluster_disable && 'cluster' == this.type) {
 				var styles = [{
 					url: this.cluster_small,
 					height: 52,
@@ -445,7 +445,7 @@ var LSX_TO_Maps = {
 	},
 
 	setBounds: function() {
-		if(google && google.maps){
+		if (google && google.maps) {
 			// map: an instance of google.maps.Map object
 			// latlng: an array of google.maps.LatLng objects
 			var latlngbounds = new google.maps.LatLngBounds();

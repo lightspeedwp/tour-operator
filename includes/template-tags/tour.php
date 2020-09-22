@@ -2,28 +2,28 @@
 /**
  * Template Tags
  *
- * @package   		tour-operator
- * @subpackage 		template-tags
- * @category 		tour
- * @license   		GPL3
+ * @package         tour-operator
+ * @subpackage      template-tags
+ * @category        tour
+ * @license         GPL3
  */
 
 /**
  * Outputs the posts attached tours
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	tour
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    tour
  */
 function lsx_to_tour_posts() {
 	global $lsx_to_archive;
 
 	$args = array(
-		'from'		=> 'post',
-		'to'		=> 'tour',
-		'column'	=> '3',
-		'before'	=> '<section id="posts" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-posts' ) . '>' . esc_html__( 'Featured Posts', 'tour-operator' ) . '</h2><div id="collapse-posts" class="collapse in"><div class="collapse-inner">',
-		'after'		=> '</div></div></section>',
+		'from'      => 'post',
+		'to'        => 'tour',
+		'column'    => '3',
+		'before'    => '<section id="posts" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-posts' ) . '>' . esc_html__( 'Featured Posts', 'tour-operator' ) . '</h2><div id="collapse-posts" class="collapse in"><div class="collapse-inner">',
+		'after'     => '</div></div></section>',
 	);
 
 	lsx_to_connected_panel_query( $args );
@@ -32,14 +32,14 @@ function lsx_to_tour_posts() {
 /**
  * Gets the current tours price
  *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
+ * @param       $before | string
+ * @param       $after  | string
+ * @param       $echo   | boolean
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	tour
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    tour
  */
 function lsx_to_price( $before = '', $after = '', $echo = true ) {
 	lsx_to_custom_field_query( 'price', $before, $after, $echo );
@@ -48,14 +48,14 @@ function lsx_to_price( $before = '', $after = '', $echo = true ) {
 /**
  * Gets the current tours duration
  *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
+ * @param       $before | string
+ * @param       $after  | string
+ * @param       $echo   | boolean
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	tour
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    tour
  */
 function lsx_to_duration( $before = '', $after = '', $echo = true ) {
 	lsx_to_custom_field_query( 'duration', $before, $after, $echo );
@@ -64,14 +64,14 @@ function lsx_to_duration( $before = '', $after = '', $echo = true ) {
 /**
  * Gets the current tours included pricing field
  *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
+ * @param       $before | string
+ * @param       $after  | string
+ * @param       $echo   | boolean
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	tour
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    tour
  */
 function lsx_to_included( $before = '', $after = '', $echo = true ) {
 	return lsx_to_custom_field_query( 'included', $before, $after, $echo );
@@ -80,14 +80,14 @@ function lsx_to_included( $before = '', $after = '', $echo = true ) {
 /**
  * Gets the current tours not included pricing field
  *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
+ * @param       $before | string
+ * @param       $after  | string
+ * @param       $echo   | boolean
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	tour
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    tour
  */
 function lsx_to_not_included( $before = '', $after = '', $echo = true ) {
 	return lsx_to_custom_field_query( 'not_included', $before, $after, $echo );
@@ -96,14 +96,14 @@ function lsx_to_not_included( $before = '', $after = '', $echo = true ) {
 /**
  * Gets the current tours departure points
  *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
+ * @param       $before | string
+ * @param       $after  | string
+ * @param       $echo   | boolean
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	tour
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    tour
  */
 function lsx_to_departure_point( $before = '', $after = '', $echo = true ) {
 	$departs_from = get_post_meta( get_the_ID(), 'departs_from', false );
@@ -122,14 +122,14 @@ function lsx_to_departure_point( $before = '', $after = '', $echo = true ) {
 /**
  * Gets the current tours end points
  *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
+ * @param       $before | string
+ * @param       $after  | string
+ * @param       $echo   | boolean
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	tour
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    tour
  */
 function lsx_to_end_point( $before = '', $after = '', $echo = true ) {
 	$end_point = get_post_meta( get_the_ID(), 'ends_in', false );
@@ -148,9 +148,9 @@ function lsx_to_end_point( $before = '', $after = '', $echo = true ) {
 /**
  * Outputs the tours included / not included block
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	tour
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    tour
  */
 function lsx_to_included_block() {
 	$tour_included = lsx_to_included( '', '', false );
@@ -163,7 +163,7 @@ function lsx_to_included_block() {
 			$class = 'col-xs-12';
 		}
 	?>
-		<section id="included-excluded" class="lsx-to-section <?php lsx_to_collapsible_class( 'tour',false ); ?>">
+		<section id="included-excluded" class="lsx-to-section <?php lsx_to_collapsible_class( 'tour', false ); ?>">
 			<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title hidden-lg" <?php lsx_to_collapsible_attributes_not_post( 'collapse-included-excluded' ); ?>><?php esc_html_e( 'Included / Not Included', 'tour-operator' ); ?></h2>
 
 			<div id="collapse-included-excluded" class="collapse in">
@@ -176,8 +176,10 @@ function lsx_to_included_block() {
 									<?php echo wp_kses_post( apply_filters( 'the_content', wpautop( $tour_included ) ) ); ?>
 								</div>
 							</div>
-						<?php }
-						if ( null !== $tour_not_included ) { ?>
+						<?php 
+                        }
+						if ( null !== $tour_not_included ) { 
+                        ?>
 							<div class="<?php echo esc_attr( $class ); ?> not-included">
 								<h2 class="lsx-to-section-title lsx-to-section-title-small"><?php esc_html_e( 'Excluded', 'tour-operator' ); ?></h2>
 								<div class="entry-content">
@@ -196,14 +198,14 @@ function lsx_to_included_block() {
 /**
  * Outputs the Tour Highlights
  *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
+ * @param       $before | string
+ * @param       $after  | string
+ * @param       $echo   | boolean
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	tour
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    tour
  */
 function lsx_to_highlights( $before = '', $after = '', $echo = true ) {
 	$highlights = get_post_meta( get_the_ID(), 'hightlights', true );
@@ -222,14 +224,14 @@ function lsx_to_highlights( $before = '', $after = '', $echo = true ) {
 /**
  * Outputs the Best Time to Visit HTML
  *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
+ * @param       $before | string
+ * @param       $after  | string
+ * @param       $echo   | boolean
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	tour
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    tour
  */
 function lsx_to_best_time_to_visit( $before = '', $after = '', $echo = true ) {
 	$best_time_to_visit = get_post_meta( get_the_ID(), 'best_time_to_visit', true );
@@ -276,14 +278,14 @@ function lsx_to_best_time_to_visit( $before = '', $after = '', $echo = true ) {
 /**
  * Gets the current specials connected tours
  *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
+ * @param       $before | string
+ * @param       $after  | string
+ * @param       $echo   | boolean
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	connections
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    connections
  */
 function lsx_to_connected_tours( $before = '', $after = '', $echo = true ) {
 	lsx_to_connected_items_query( 'tour', get_post_type(), $before, $after, $echo );

@@ -3,7 +3,7 @@
 
         var get_box = function(){
             var box = $('#tour-operator-plugin .inside');
-            if( !box.length ){
+            if ( !box.length ) {
                 box = $('#lsx-tour-operators .inside');
             }
             return box;

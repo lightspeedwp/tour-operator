@@ -31,7 +31,10 @@ get_header(); ?>
 					$count = 0;
 				?>
 
-				<?php while ( have_posts() ) : the_post(); ?>
+				<?php 
+                while ( have_posts() ) :
+the_post(); 
+?>
 
 					<?php
 						if ( true === $group_items_by_continent ) {
@@ -91,4 +94,5 @@ get_header(); ?>
 
 <?php //get_sidebar(); ?>
 
-<?php get_footer();
+<?php 
+get_footer();

@@ -2,17 +2,24 @@
 
 ## [[1.4.2]] - In Development
 
+### Added
+
+- Added support for native Lazy-loading images on WordPress 5.5 version.
+
 ### Fixed
+
 - Fixing the map placeholder, so it can assign placeholders for each type of posts.
 
 ## [[1.4.1]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.1) - 2020-03-30
 
 ### Added
+
 - Added in a filter `lsx_to_maps_tour_connections` to allow 3rd party filters of the tour itinerary map connections.
 - Adding in the `lsx_to_get_tour_itinerary_ids` to fix the order of the map IDS.
 - Updating the `lsx_to_to_widget_item_size()` function to be more specific.
 
 ### Fixed
+
 - Fixed a few typos.
 - Making sure the if conditions for the maps are strict.
 - Fixing the departure day not using the tours featured image.
@@ -25,22 +32,23 @@
 - Fixed PHP error `Undefined variable: temp_id`.
 
 ### Security
+
 - Sanitizing widget fields.
 - Updating dependencies to prevent vulnerabilities.
 - General testing to ensure compatibility with latest WordPress version (5.4).
 - General testing to ensure compatibility with latest LSX Theme version (2.7).
 
-
 ## [[1.4.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4) - 2019-12-19
 
 ### Added
+
 - Added in a parameter to lsx_to_enquire_modal() to allow a form_id to be specified.
 - Allowing the modal to be disabled in lsx_to_enquire_modal via a parameter.
-- Adding in an $args parameter to lsx_to_gallery(), allowing you to specify what 'gallery_ids' to use to build the gallery.
+- Adding in an \$args parameter to lsx_to_gallery(), allowing you to specify what 'gallery_ids' to use to build the gallery.
 - Styles for single team page if banner is disabled.
 - Set the region archive map to a zoom level of 10.
 - Enabled the sorting of Gallery images.
-- Added in a sticky order field to destinations to allow  sticky posts functionality.
+- Added in a sticky order field to destinations to allow sticky posts functionality.
 - Added in a "lsx_to_post_type_widget_query_args" to allow 3rd Party plugins to alter the queries.
 - Added in an "orderby" parameter to the "lsx_to_connected_panel_query" helper function.
 - Added in a 'lsx_to_js_params' filters which allows you to alter the JS params of the slick slider JS.
@@ -50,9 +58,11 @@
 - Adding hierarchy for the Destination sitemap section.
 
 ### Changed
+
 - Changing the Destination Region to show the connected accommodation in the map instead of just a pin.
 
 ### Fixed
+
 - Added in a function to clear the term cache when ordering, so the order reflects immediately.
 - Fixing the returning variables of the destinations template tags.
 - Fixed the Tour Itinerary not using the featured image for the departure day.
@@ -64,10 +74,10 @@
 - Fixed the undefined notice when using and array of post types with WP_Query
 - Moving the description text on main Archive pages above the filters.
 
-
 ## [[1.3.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.3.0) - 2019-10-02
 
 ### Added
+
 - Added in a view more disable for the post type widget.
 - Adding the .gitattributes file to remove unnecessary files from the WordPress version.
 - Added in a 'lsx_to_maps_args' to allow plugins to alter the map arguments before output.
@@ -79,9 +89,11 @@
 - Added in the Schema for accommodation / destinations / tours, using the Yoast API.
 
 ### Changed
+
 - Changing the single template width.
 
 ### Fixed
+
 - Fixed the Post Type enquiry dropdown.
 - Fix for the reviews thumbnails.
 - Making 'Best Time' show only if it has content.
@@ -89,10 +101,10 @@
 - Fixing PHP issue 'Invalid argument supplied for foreach()'.
 - Changing the priority of the enqueued assets.
 
-
 ## [[1.2.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.2.0) - 2019-08-06
 
 ### Added
+
 - Made sure the regions also move the map to the banner when the setting is activated.
 - PHP Class updates.
 - Removing old templates.
@@ -104,21 +116,22 @@
 - Added in the region taxonomy for housing the Continent Sub Regions.
 
 ### Fixed
+
 - Hiding the banner title on regions when the map is set to output there.
 - Fixed the Room Section not collapsing on mobile.
 - Fixed the collapse section title colour on mobile.
 
-
 ## [[1.1.5]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.1.5) - 2019-07-03
 
 ### Changed
+
 - Updated the help page.
 - Updated the Add-Ons page.
-
 
 ## [[1.1.4]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.1.4) - 2019-06-14
 
 ### Added
+
 - Added in WPForms Lite as a list of forms to choose for your enquiry.
 - Added in the destinations to the Accommodation and Tour breadcrumbs.
 - Changed the widgets and shortcodes images sizes from 'lsx-thumbnail-single' to 'lsx-thumbnail-wide'.
@@ -129,37 +142,41 @@
 - Added the taxonomy block and updates.
 
 ### Fixed
+
 - Fixed tours and destinations collapsible tabs on mobile issue.
 - Adding the list of Envira Gallery tags to the wp_kses_post allowed filter method.
-
 
 ## [[1.1.3]]()
 
 ### Security
-- Cleaning code to meet more Wordpress Standards
 
+- Cleaning code to meet more Wordpress Standards
 
 ## [[1.1.2]]()
 
 ### Added
+
 - Added in an option to disable the collapse function on single posts.
 
 ### Changed
+
 - Updated "Tested up to" WordPress version.
 - Renamed the Object abstract class to Frame.
 
 ### Fixed
+
 - Fixed archive excerpt display when there is not post content.
 - Changing the "id" to avoid cached sites pulling through the same gallery for each destination.
 - Upgraded the `mb_strtolower` to `strtolower` for newer PHP versions.
 
-
 ## [[1.1.1]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/v1.1.1) - 2017-11-07
 
 ### Added
+
 - Added compatibility with LSX Videos
 
 ### Fixed
+
 - Removed the "prepare" statement from the destinations "filter_countries" function.
 - Fixed extra spacing on Included and Not-Included items list.
 - Crop huge excerpts o archive and widget items.
@@ -167,10 +184,10 @@
 - TO Maps undefined function removed.
 - Fixed PHP notice related to call is_singular() function.
 
-
 ## [[1.1.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/v1.1.0) - 2017-10-07
 
 ### Added
+
 - New totally awesome version! The visual was fully redesigned.
 - Added compatibility with LSX 2.0.
 - New project structure.
@@ -180,21 +197,22 @@
 - Allowing the to_country_regions() to be ordered by the menu order or any other valid WP_Query order.
 
 ### Fixed
+
 - Fixed scripts/styles loading order
 - Fixed many small issues
-
 
 ## [[1.0.8]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/v1.0.8) - 2017-06-14
 
 ### Fixed
+
 - LSX tabs working integrated with TO tabs (dashboard settings).
 - Fixed admin styles (help and add-on pages).
 - UIX framework saving all tabs.
 
-
 ## [[1.0.7]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/v1.0.7) - 2017-06-08
 
 ### Added
+
 - Added .editorconfig file to help developers to maintain consistent coding styles between different editors and IDEs.
 - LSX Customizer SASS selector extended to new FacetWP selectors.
 - Make the team image displays square.
@@ -215,13 +233,16 @@
 - Added compatibility (styles) with different column order on single team extension.
 
 ### Changed
+
 - Restructure metabox.
 - Update all NPM packages and re-structure Gulp’s tasks.
 
 ### Deprecated
+
 - Removed from accommodation archive the brands slider.
 
 ### Fixed
+
 - Removed "read more" from regions excerpt widgets on destination archive page.
 - Small fix on TO custom post type (single template - CSS) for small breakpoints.
 - Added in a filter to fix the API tab not showing when certain LSX Extensions are enabled.
@@ -253,15 +274,15 @@
 - Fixed the API key settings tab.
 - Removing the enqueue for the metabox js and css.
 - Fixed the cropping options.
-- Declaring the $tour_operator variable for the archive destinations work properly.
+- Declaring the \$tour_operator variable for the archive destinations work properly.
 - Fixed lsx thumbnails parameter for single image size.
 - Help page updated with the current plugin version and WordPress requirement.
 - Travis CI file.
 
-
 ## [[1.0.6]]()
 
 ### Added
+
 - Added en_US language file.
 - Changed the "Insert into Post" button text from media modal to "Select featured image".
 - Added in the Day inclusions fields along with the styling.
@@ -270,14 +291,15 @@
 - Standardized the Gallery fields across the post types. Allowing the TO Videos to always inject after.
 
 ### Fixed
+
 - Load correctly the translations/language files.
 - Fixed the read more when you click it removes the formatting.
 - Fixed the display of the destination galleries.
 
-
 ## [[1.0.5]]()
 
 ### Added
+
 - Added TO Search as subtab on LSX TO settings page.
 - Styles from TO Search addon moved to it.
 - Made the function lsx_to_archive_entry_top function test all active post types, not only the three core post types.
@@ -290,6 +312,7 @@
 - New fields from Wetu Importer.
 
 ### Fixed
+
 - Fixed global variable (LSX TO) to enable/disable slider on mobile.
 - Fixed (back-end) checkbox to display map on destination archive.
 - Fixed menu navigation improved.
@@ -304,56 +327,61 @@
 - Fixed content_part filter for plugin and add-ons.
 - Removed general contact fields from post types.
 
-
 ## [[1.0.4]]()
 
 ### Added
+
 - Removed the last of the LSX_TO_POSTEXPIRATOR_TYPES constants.
 - Added generic business contact details for enquire call to action.
 - Best time to visit added to destination (copied from tour).
 - Enabled compatibility with LSX Blog Customizer (categories carousel).
 
 ### Fixed
+
 - Fixed an issue with empty post meta (depart from, end point).
 
 ### Deprecated
-- Removed Certain Travis CI code sniffers.
 
+- Removed Certain Travis CI code sniffers.
 
 ## [[1.0.3]]()
 
 ### Added
+
 - Added in a compatability check for all versions below PHP 7.
 - Hid the "Contact Details" custom field panel from Accommodation, these fields don't output to the frontend yet.
 - Updated the readme.txt content.
 
 ### Fixed
-- Fixed PHP errors when activating the plugin with a non LSX theme.
 
+- Fixed PHP errors when activating the plugin with a non LSX theme.
 
 ## [[1.0.2]]()
 
 ### Added
+
 - Added a test to avoid the plugin activate with older versions from PHP than 5.6.
 - Added a warning for users that have the plugin activated in older versions from PHP than 5.6.
 
 ### Fixed
-- Fixed a conflict with some plugins using https://github.com/humanmade/Custom-Meta-Boxes.
 
+- Fixed a conflict with some plugins using https://github.com/humanmade/Custom-Meta-Boxes.
 
 ## [[1.0.1]]()
 
 ### Added
+
 - Allowing the placeholder to overwrite any empty image on all post types.
 
 ### Fixed
+
 - Fixed PHP warning notice, removed the constant LSX_TO_POSTEXPIRATOR_TYPES.
 - Fixed the PHP warning with the post order class.
 - Fixed the selecting of the global default placeholders.
 - Fixed PHP compatibility errors.
 
-
 ## [[1.0.1]]()
 
 ### Added
+
 - First Version

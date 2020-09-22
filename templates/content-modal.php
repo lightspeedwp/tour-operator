@@ -2,8 +2,8 @@
 /**
  * Modal Content
  *
- * @package 	tour-operator
- * @category	modals
+ * @package     tour-operator
+ * @category    modals
  */
 ?>
 <article class="lsx-to-modal-content-area content-area">

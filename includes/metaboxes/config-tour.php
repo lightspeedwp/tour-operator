@@ -169,13 +169,13 @@ $metabox['fields'][] = array(
 
 $metabox['fields'][] = array(
 	'id'   => 'booking_validity_start',
-	'name' => esc_html__( 'Booking Validity (start)','tour-operator' ),
+	'name' => esc_html__( 'Booking Validity (start)', 'tour-operator' ),
 	'type' => 'date',
 );
 
 $metabox['fields'][] = array(
 	'id'   => 'booking_validity_end',
-	'name' => esc_html__( 'Booking Validity (end)','tour-operator' ),
+	'name' => esc_html__( 'Booking Validity (end)', 'tour-operator' ),
 	'type' => 'date',
 );
 

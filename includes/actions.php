@@ -2,9 +2,9 @@
 /**
  * All of the Tour Operators Actions.
  *
- * @package   	tour-operator
- * @subpackage 	layout
- * @license   	GPL3
+ * @package     tour-operator
+ * @subpackage  layout
+ * @license     GPL3
  */
 
 $current_theme = wp_get_theme();
@@ -84,6 +84,7 @@ if ( 'lsx' !== $current_template && 'LSX' !== $theme_name ) {
 	}
 
 	function lsx_get_thumbnail( $size, $image_src = false ) {
+		global $wp_version;
 		if ( false === $image_src ) {
 			$post_id           = get_the_ID();
 			$post_thumbnail_id = get_post_thumbnail_id( $post_id );
@@ -119,7 +120,17 @@ if ( 'lsx' !== $current_template && 'LSX' !== $theme_name ) {
 			$img = '<img alt="' . the_title_attribute( 'echo=0' ) . '" class="attachment-responsive wp-post-image lsx-responsive" src="' . esc_url( $img ) . '" />';
 		}
 
-		$img = apply_filters( 'lsx_lazyload_filter_images', $img );
+		if ( version_compare( $wp_version, '5.5', '>=' ) ) {
+			if ( $srcset ) {
+				$img = '<img loading="lazy" alt="' . the_title_attribute( 'echo=0' ) . '" class="attachment-responsive wp-post-image lsx-responsive wp-lazy" srcset="' . esc_attr( $img ) . '" />';
+			} else {
+				$img = '<img loading="lazy" alt="' . the_title_attribute( 'echo=0' ) . '" class="attachment-responsive wp-post-image lsx-responsive wp-lazy" src="' . esc_url( $img ) . '" />';
+			}
+		}
+
+		if ( ! version_compare( $wp_version, '5.5', '>=' ) ) {
+			$img = apply_filters( 'lsx_lazyload_filter_images', $img );
+		}
 		return $img;
 	}
 

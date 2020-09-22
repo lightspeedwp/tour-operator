@@ -35,7 +35,7 @@ $post_type = array(
 	'query_var'          => true,
 	'rewrite'            => array(
 		'slug' => 'destination',
-		),
+	),
 	'capability_type'    => 'page',
 	'has_archive'        => 'destinations',
 	'hierarchical'       => true,

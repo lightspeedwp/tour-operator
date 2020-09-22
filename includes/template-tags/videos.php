@@ -13,14 +13,14 @@ if ( ! function_exists( 'lsx_to_videos' ) ) {
 	/**
 	 * Outputs the Tours Videos
 	 *
-	 * @param		$before	| string
-	 * @param		$after	| string
-	 * @param		$echo	| boolean
-	 * @return		string
+	 * @param       $before | string
+	 * @param       $after  | string
+	 * @param       $echo   | boolean
+	 * @return      string
 	 *
-	 * @package 	tour-operator
-	 * @subpackage	template-tags
-	 * @category 	tour
+	 * @package     tour-operator
+	 * @subpackage  template-tags
+	 * @category    tour
 	 */
 	function lsx_to_videos( $before = '', $after = '', $echo = true ) {
 		global $columns;

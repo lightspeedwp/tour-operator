@@ -46,4 +46,5 @@ if ( 1 !== $lsx_to_archive ) {
 
 </article>
 
-<?php lsx_entry_after();
+<?php 
+lsx_entry_after();

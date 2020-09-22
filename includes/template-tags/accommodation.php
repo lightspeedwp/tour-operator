@@ -2,28 +2,28 @@
 /**
  * Template Tags
  *
- * @package   		tour-operator
- * @subpackage 		template-tags
- * @category 		accommodation
- * @license   		GPL3
+ * @package         tour-operator
+ * @subpackage      template-tags
+ * @category        accommodation
+ * @license         GPL3
  */
 
 /**
  * Outputs the posts attached accommodation
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	accommodation
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    accommodation
  */
 function lsx_to_accommodation_posts() {
 	global $lsx_to_archive;
 
 	$args = array(
-		'from'		=> 'post',
-		'to'		=> 'accommodation',
-		'column'	=> '3',
-		'before'	=> '<section id="posts" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-posts' ) . '>' . esc_html__( 'Featured Posts', 'tour-operator' ) . '</h2><div id="collapse-posts" class="collapse in"><div class="collapse-inner">',
-		'after'		=> '</div></div></section>',
+		'from'      => 'post',
+		'to'        => 'accommodation',
+		'column'    => '3',
+		'before'    => '<section id="posts" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-posts' ) . '>' . esc_html__( 'Featured Posts', 'tour-operator' ) . '</h2><div id="collapse-posts" class="collapse in"><div class="collapse-inner">',
+		'after'     => '</div></div></section>',
 	);
 
 	lsx_to_connected_panel_query( $args );
@@ -32,31 +32,31 @@ function lsx_to_accommodation_posts() {
 /**
  * Outputs the current accommodations room total
  *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
+ * @param       $before | string
+ * @param       $after  | string
+ * @param       $echo   | boolean
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	accommodation
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    accommodation
  */
 function lsx_to_accommodation_room_total( $before = '', $after = '', $echo = true ) {
-	lsx_to_custom_field_query( 'number_of_rooms' , $before, $after, $echo );
+	lsx_to_custom_field_query( 'number_of_rooms', $before, $after, $echo );
 }
 
 /**
  * Gets the current accommodations rating
  *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @param		$post_id	| boolean
- * @return		string
+ * @param       $before | string
+ * @param       $after  | string
+ * @param       $echo   | boolean
+ * @param       $post_id    | boolean
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	accommodation
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    accommodation
  */
 function lsx_to_accommodation_rating( $before = '', $after = '', $echo = true, $post_id = false ) {
 	lsx_to_custom_field_query( 'rating', $before, $after, $echo, $post_id );
@@ -65,14 +65,14 @@ function lsx_to_accommodation_rating( $before = '', $after = '', $echo = true, $
 /**
  * Outputs the accommodations facilities
  *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
+ * @param       $before | string
+ * @param       $after  | string
+ * @param       $echo   | boolean
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	accommodation
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    accommodation
  */
 function lsx_to_has_facilities() {
 	// Get any existing copy of our transient data
@@ -104,14 +104,14 @@ function lsx_to_has_facilities() {
 /**
  * Outputs the accommodations facilities
  *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
+ * @param       $before | string
+ * @param       $after  | string
+ * @param       $echo   | boolean
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	accommodation
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    accommodation
  */
 function lsx_to_accommodation_facilities( $before = '', $after = '', $echo = true ) {
 	$facilities = wp_get_object_terms( get_the_ID(), 'facility' );
@@ -164,14 +164,14 @@ function lsx_to_accommodation_facilities( $before = '', $after = '', $echo = tru
 /**
  * Outputs the Spoken Languages HTML
  *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
+ * @param       $before | string
+ * @param       $after  | string
+ * @param       $echo   | boolean
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	accommodation
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    accommodation
  */
 function lsx_to_accommodation_spoken_languages( $before = '', $after = '', $echo = true ) {
 	$spoken_languages = get_post_meta( get_the_ID(), 'spoken_languages', true );
@@ -209,14 +209,14 @@ function lsx_to_accommodation_spoken_languages( $before = '', $after = '', $echo
 /**
  * Outputs the Special Interests HTML
  *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
+ * @param       $before | string
+ * @param       $after  | string
+ * @param       $echo   | boolean
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	accommodation
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    accommodation
  */
 function lsx_to_accommodation_special_interests( $before = '', $after = '', $echo = true, $post_id = false ) {
 	if ( false === $post_id ) {
@@ -258,15 +258,15 @@ function lsx_to_accommodation_special_interests( $before = '', $after = '', $ech
 /**
  * Outputs the Friendly HTML
  *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
+ * @param       $before | string
+ * @param       $after  | string
+ * @param       $echo   | boolean
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	accommodation
- * @category 	activity
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    accommodation
+ * @category    activity
  */
 function lsx_to_accommodation_activity_friendly( $before = '', $after = '', $echo = true ) {
 	$friendly = get_post_meta( get_the_ID(), 'suggested_visitor_types', true );
@@ -304,9 +304,9 @@ function lsx_to_accommodation_activity_friendly( $before = '', $after = '', $ech
 /**
  * Outputs the accommodation meta
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	accommodation
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    accommodation
  */
 function lsx_to_accommodation_meta() {
 	if ( 'accommodation' === get_post_type() ) {
@@ -316,11 +316,11 @@ function lsx_to_accommodation_meta() {
 		lsx_to_accommodation_room_total( '<span class="' . $meta_class . 'rooms"><span class="lsx-to-meta-data-key">' . esc_html__( 'Rooms', 'tour-operator' ) . ':</span> ', '</span>' );
 		lsx_to_accommodation_rating( '<span class="' . $meta_class . 'rating"><span class="lsx-to-meta-data-key">' . esc_html__( 'Rating', 'tour-operator' ) . ':</span> ', '</span>' );
 		the_terms( get_the_ID(), 'travel-style', '<span class="' . $meta_class . 'style"><span class="lsx-to-meta-data-key">' . esc_html__( 'Style', 'tour-operator' ) . ':</span> ', ', ', '</span>' );
-		the_terms( get_the_ID(), 'accommodation-brand', '<span class="' . $meta_class . 'brand"><span class="lsx-to-meta-data-key">' . esc_html__( 'Brand' , 'tour-operator' ) . ':</span> ', ', ', '</span>' );
+		the_terms( get_the_ID(), 'accommodation-brand', '<span class="' . $meta_class . 'brand"><span class="lsx-to-meta-data-key">' . esc_html__( 'Brand', 'tour-operator' ) . ':</span> ', ', ', '</span>' );
 		the_terms( get_the_ID(), 'accommodation-type', '<span class="' . $meta_class . 'type"><span class="lsx-to-meta-data-key">' . esc_html__( 'Type', 'tour-operator' ) . ':</span> ', ', ', '</span>' );
 		lsx_to_accommodation_spoken_languages( '<span class="' . $meta_class . 'languages"><span class="lsx-to-meta-data-key">' . esc_html__( 'Spoken Languages', 'tour-operator' ) . ':</span> ', '</span>' );
 		lsx_to_accommodation_activity_friendly( '<span class="' . $meta_class . 'friendly"><span class="lsx-to-meta-data-key">' . esc_html__( 'Friendly', 'tour-operator' ) . ':</span> ', '</span>' );
-		lsx_to_accommodation_special_interests( '<span class="' . $meta_class . 'special"><span class="lsx-to-meta-data-key">' . esc_html__( 'Special Interests', 'tour-operator' ) . ':</span> ','</span>' );
+		lsx_to_accommodation_special_interests( '<span class="' . $meta_class . 'special"><span class="lsx-to-meta-data-key">' . esc_html__( 'Special Interests', 'tour-operator' ) . ':</span> ', '</span>' );
 		lsx_to_connected_countries( '<span class="' . $meta_class . 'destinations"><span class="lsx-to-meta-data-key">' . esc_html__( 'Location', 'tour-operator' ) . ':</span> ', '</span>' );
 	}
 }
@@ -328,14 +328,14 @@ function lsx_to_accommodation_meta() {
 /**
  * Gets the current specials connected accommodation
  *
- * @param		$before	| string
- * @param		$after	| string
- * @param		$echo	| boolean
- * @return		string
+ * @param       $before | string
+ * @param       $after  | string
+ * @param       $echo   | boolean
+ * @return      string
  *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	connections
+ * @package     tour-operator
+ * @subpackage  template-tags
+ * @category    connections
  */
 function lsx_to_connected_accommodation( $before = '', $after = '', $echo = true ) {
 	lsx_to_connected_items_query( 'accommodation', get_post_type(), $before, $after, $echo );

@@ -153,7 +153,7 @@ class Itinerary_Query {
 	 * Adds the room images to the list of possible items.
 	 *
 	 * @param   $accommodation_id   | string
-	 * @param	$gallery	array
+	 * @param   $gallery    array
 	 */
 	public function append_room_images( $accommodation_id = false, $gallery = array() ) {
 		if ( false !== $accommodation_id ) {

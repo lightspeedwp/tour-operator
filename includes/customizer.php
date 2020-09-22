@@ -2,9 +2,9 @@
 /**
  * LSX Customizer integration.
  *
- * @package   	tour-operator
- * @subpackage 	layout
- * @license   	GPL3
+ * @package     tour-operator
+ * @subpackage  layout
+ * @license     GPL3
  */
 
 if ( ! defined( 'ABSPATH' ) ) return; // Exit if accessed directly.

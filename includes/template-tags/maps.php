@@ -84,7 +84,7 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 						$connections = array();
 						if ( false !== lsx_to_item_has_children( $parent_id, 'destination' ) ) {
 							$region_args = array(
-								'post_type'	=> 'destination',
+								'post_type' => 'destination',
 								'post_status' => 'publish',
 								'nopagin' => true,
 								'posts_per_page' => '-1',
@@ -120,7 +120,7 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 							$args['connections'] = $connections;
 							$args['type'] = 'cluster';
 
-							if ( '0' === $parent_id  && ! lsx_to_has_destination_banner_cluster() ) {
+							if ( '0' === $parent_id && ! lsx_to_has_destination_banner_cluster() ) {
 								$args['disable_cluster_js'] = true;
 							}
 						} else {
@@ -143,7 +143,7 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 						$args = array();
 
 						$country_args = array(
-							'post_type'	=> 'destination',
+							'post_type' => 'destination',
 							'post_status' => 'publish',
 							'nopagin' => true,
 							'posts_per_page' => '-1',

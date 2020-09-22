@@ -146,7 +146,7 @@ class Tour {
 	public static function get_instance() {
 		// If the single instance hasn't been set, set it now.
 		if ( null == self::$instance ) {
-			self::$instance = new self;
+			self::$instance = new self();
 		}
 
 		return self::$instance;
@@ -449,7 +449,8 @@ class Tour {
 	 * Outputs the tour meta on the modal
 	 */
 	public function content_meta() {
-		if ( 'tour' === get_post_type() ) { ?>
+		if ( 'tour' === get_post_type() ) { 
+        ?>
 			<?php
 				$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
 
@@ -462,7 +463,8 @@ class Tour {
 					lsx_to_connected_activities( '<span class="' . $meta_class . 'activities"><span class="lsx-to-meta-data-key">' . esc_html__( 'Activities', 'tour-operator' ) . ':</span> ', '</span>' );
 				}
 			?>
-		<?php }
+		<?php 
+        }
 	}
 
 	/**
