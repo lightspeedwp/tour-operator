@@ -6,7 +6,6 @@
   <a href="https://travis-ci.org/lightspeeddevelopment/tour-operator/"><img src="https://travis-ci.org/lightspeeddevelopment/tour-operator.svg?branch=master" alt="Build Status"></a>
  <a href="https://codeclimate.com/github/lightspeeddevelopment/tour-operator/"><img src="https://codeclimate.com/github/lightspeeddevelopment/tour-operator/badges/gpa.svg" alt="Code Climate"></a>
  <a href="https://scrutinizer-ci.com/g/lightspeeddevelopment/tour-operator/?branch=master"><img src="https://scrutinizer-ci.com/g/lightspeeddevelopment/tour-operator/badges/quality-score.png?b=master" alt="Scrutinizer"></a>
-<a href="https://coveralls.io/github/lightspeeddevelopment/tour-operator?branch=master"><img src="https://coveralls.io/repos/github/lightspeeddevelopment/tour-operator/badge.svg?branch=master" alt="Coverals"></a>
 <a href="https://lsx.lsdev.biz/"><img src="https://www.lsdev.biz/lsx/wp-content/uploads/2019/06/Designed-for-LSX-Theme-blue.png" alt="Made for LSX"></a>
 </p>
 
