@@ -1,12 +1,16 @@
-<h1 align="center"><a href="https://www.lsdev.biz/lsx/extensions/tour-operator/"><img src="https://www.lsdev.biz/lsx/wp-content/uploads/2020/09/LSX-Tour-Operator-Extension-Logo.svg" alt="Tour Operator" width="300"></a></h1>
+<p align="center"><a target="_blank" href="https://www.lsdev.biz/lsx/extensions/tour-operator/"><img width="300px;" src="https://www.lsdev.biz/lsx/wp-content/uploads/2020/09/LSX-Tour-Operator-Extension-Logo.svg" alt="LSX Tour Operator Plugin"></a></h1>
+
 
 <p align="center">
   <a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://poser.pugx.org/woocommerce/woocommerce/license" alt="license"></a>
+  <a href="https://lsdev.biz/lsx/"><img src="https://www.lsdev.biz/lsx/wp-content/uploads/2019/06/Designed-for-LSX-Theme-blue.png" alt="Made for LSX Theme"></a>
+	<a href="https://lsdev.biz/lsx/extensions/tour-operator/"><img src="https://www.lsdev.biz/lsx/wp-content/uploads/2019/06/Designed-for-Tour-Operator-plugin-1098ad.png" alt="LSX Tour Operator"></a>
   <a href="http://gulpjs.com/"><img src="https://img.shields.io/badge/built%20with-gulp.js-green.svg" alt="Built with gulp.js"></a> 
-  <a href="https://travis-ci.org/lightspeeddevelopment/tour-operator/"><img src="https://travis-ci.org/lightspeeddevelopment/tour-operator.svg?branch=master" alt="Build Status"></a>
- <a href="https://codeclimate.com/github/lightspeeddevelopment/tour-operator/"><img src="https://codeclimate.com/github/lightspeeddevelopment/tour-operator/badges/gpa.svg" alt="Code Climate"></a>
- <a href="https://scrutinizer-ci.com/g/lightspeeddevelopment/tour-operator/?branch=master"><img src="https://scrutinizer-ci.com/g/lightspeeddevelopment/tour-operator/badges/quality-score.png?b=master" alt="Scrutinizer"></a>
-<a href="https://lsx.lsdev.biz/"><img src="https://www.lsdev.biz/lsx/wp-content/uploads/2019/06/Designed-for-LSX-Theme-blue.png" alt="Made for LSX"></a>
+  <a href="https://www.gnu.org/licenses/gpl-3.0.en.html"><img src="https://poser.pugx.org/woocommerce/woocommerce/license" alt="license"></a>
+  <a href="http://gulpjs.com/"><img src="https://img.shields.io/badge/built%20with-gulp.js-green.svg" alt="Built with gulp.js"></a> 
+  <a href="https://codeclimate.com/github/lightspeeddevelopment/tour-operator/"><img src="https://codeclimate.com/github/lightspeeddevelopment/tour-operator/badges/gpa.svg" alt="Code Climate"></a>
+  <a href="https://scrutinizer-ci.com/g/lightspeeddevelopment/tour-operator/?branch=master"><img src="https://scrutinizer-ci.com/g/lightspeeddevelopment/tour-operator/badges/quality-score.png?b=master" alt="Scrutinizer"></a>
+  <a href="https://travis-ci.org/github/lightspeeddevelopment/tour-operator/"><img src="https://travis-ci.org/lightspeeddevelopment/tour-operator.svg?branch=master" alt="Build Status"></a>
 </p>
 
 Welcome to the LSX Tour Operator repository on GitHub. Here you can browse the source, look at open issues and keep track of development. We recommend all developers to follow LightSpeed's [blog](https://www.lsdev.biz/tag/release-posts/) to stay up to date about everything happening with the LSX Theme & extensions.
@@ -15,7 +19,7 @@ Welcome to the LSX Tour Operator repository on GitHub. Here you can browse the s
 
 The [LSX Tour Operator plugin](https://www.lsdev.biz/lsx/extensions/tour-operator/) comes with three core features that are essential to any tour operator: Accommodation, Destinations and Tours. 
 
-With these post types and their internal connectivity, you’ll be able to show day-by-day itineraries, interactive galleries, maps, information on each destination, accommodation property listings, connect blog posts to any kind of content and much more with our [LSX Tour Operator extensions]().
+With these post types and their internal connectivity, you’ll be able to show day-by-day itineraries, interactive galleries, maps, information on each destination, accommodation property listings, connect blog posts to any kind of content and much more with our [LSX Tour Operator extensions](https://www.lsdev.biz/lsx/extensions/tour-operator/#h-extend-lsx-tour-operator).
 
 ## LSX Tour Operator Extensions
 
