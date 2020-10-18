@@ -9,7 +9,7 @@ Stable tag: 1.4.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
-The LSX Tour Operators plugin brings live availability, bookings, digital itineraries, and other post types tour operators need to succeed.
+The LSX Tour Operators is plugin specially designed & developed for the tourism and travel industry. Build to showcase your tours and accommodation.
 
 == Description ==
 
@@ -17,9 +17,9 @@ LightSpeed’s LSX Tour Operator plugin is here to help you take your Tour Opera
 
 The plugin features digital itineraries which include interactive galleries, day-by-day information, integrated maps that show a tour’s progression, information per destination, accommodation, activities and other features that will bring your tour offerings to life online. 
 
-Its destination management features make featuring destinations super simple, and attractive to boot. We’ve also built a “Travel Style” feature so you can categorize tours by the type of experience they offer.
+A tour operator needs the destinations they offer to look amazing so your customer cannot say no. The Tour Operator plugin makes this a reality. featured images capture attention, excerpts provide a glimpse into the magical world awaiting you. Click through and find out about the finer details. The LSX Tour Operator extension provide powerful destination content management features allowing you to featuring destinations super simple, and attractive to boot. We’ve also built a “Travel Style” feature so you can categorize tours by the type of experience they offer. 
 
-Detailed accommodation listings show off room facilities, image galleries, video material, reviews, interactive digital tours, special offers, team members and more.
+One of the essential ingredients in any tour is the accommodations that are stayed at along the way. Attach image galleries to each accommodation, Google Maps markers, assign a team member as an expert for each Accommodation, Choose an accommodation style, and much more. Detailed accommodation listings show off room facilities, image galleries, video material, reviews, interactive digital tours, special offers and team members.
 
 = Works with the free LSX Theme =
 The Tour Operators plugin is designed for [LSX Theme](https://lsdev.biz/lsx/) that work well with the Tour Operator plugin.
