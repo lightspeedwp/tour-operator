@@ -1,14 +1,15 @@
 === Tour Operators ===
-Contributors: feedmymedia
-Donate link: https://tour-operator.lsdev.biz/
-Tags: tour operator, tour operators, tour, tours, tour itinerary, tour itineraries, accommodation, accommodation listings, destinations, regions, tourism, lsx
-Requires at least: 5.3
-Tested up to: 5.5
-Requires PHP: 7.2
-Stable tag: 1.4.1
-License: GPLv3
+Contributors: feedmymedia, lightspeedwp, eleshar, krugazul, jacquesvdh, ignusvermaak
+Donate link: https://lsdev.biz/lsx/donate/
+Tags: tour operator, tours, travel, travel-agency, tourism
+Requires at least: 5.0
+Tested up to: 5.5.1
+Requires PHP: 7.0
+Stable tag: 1.4.2
+License: GPLv3 or later
+License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
-The Tour Operators plugin brings live availability, bookings, digital itineraries, and other post types tour operators need to succeed.
+The LSX Tour Operators plugin brings live availability, bookings, digital itineraries, and other post types tour operators need to succeed.
 
 == Description ==
 
@@ -21,38 +22,37 @@ Its destination management features make featuring destinations super simple, an
 Detailed accommodation listings show off room facilities, image galleries, video material, reviews, interactive digital tours, special offers, team members and more.
 
 = Works with the free LSX Theme =
-The Tour Operators plugin is designed for [LSX Theme](https://lsx.lsdev.biz/) that work well with the Tour Operator plugin.
+The Tour Operators plugin is designed for [LSX Theme](https://lsdev.biz/lsx/) that work well with the Tour Operator plugin.
 
 = It's free, and always will be. =
 We’re firm believers in open source - that’s why we’re releasing the Tour Operators plugin for free, forever. We offer free support on the [Tour Operator support forums](https://wordpress.org/support/plugin/tour-operator/). 
 
-= Actively Developed =
+= Developed =
 The Tour Operator plugin is actively developed with new features and exciting enhancements all the time. Keep track on the [Tour Operator GitHub repository](https://github.com/lightspeeddevelopment/tour-operator/).
 Report any bugs via github issues.
 
-= Tour Operator Extensions =
+= Extensions =
 
-Do you require functionality that the plugin alone does not provide? We've tried to forsee your requirements and provide you with a free solution! Check out [our extensions](https://tour-operator.lsdev.biz/extensions/), and enhance the power of your Tour Operator website! 
+Do you require functionality that the plugin alone does not provide? We've tried to forsee your requirements and provide you with a free solution! Check out [our extensions](https://lsdev.biz/lsx/extensions/tour-operator/), and enhance the power of your Tour Operator website! 
 
-= Tour Operator Documentation =
+= Documentation =
 
-* [Getting Started](https://tour-operator.lsdev.biz/documentation/getting-started/) 
-* [General Settings](https://tour-operator.lsdev.biz/documentation/core-feature/) 
-* [Creating your Homepage](https://tour-operator.lsdev.biz/documentation/homepage/) 
-* [Custom Categories](https://tour-operator.lsdev.biz/documentation/custom-categories/) 
-* [Widgets](https://tour-operator.lsdev.biz/documentation/widgets/) 
-* [3rd-Party Plugins](https://tour-operator.lsdev.biz/documentation/3rd-party-plugins/) 
-* [Accommodations](https://tour-operator.lsdev.biz/documentation/core-feature/accommodation/)
-* [Destinations](https://tour-operator.lsdev.biz/documentation/core-feature/destinations/) 
-* [Tours](https://tour-operator.lsdev.biz/documentation/core-feature/tours/) 
+* [Getting Started](https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/getting-started/) 
+* [General Settings](https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/general-settings/) 
+* [Custom Categories](https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/custom-categories/) 
+* [Widgets](https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/widgets/) 
+* [3rd-Party Plugins](https://www.lsdev.biz/lsx/documentation/lsx-theme/third-party-plugins/) 
+* [Accommodations](https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/accommodation/)
+* [Destinations](https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/destinations/) 
+* [Tours](hhttps://www.lsdev.biz/lsx/documentation/lsx-tour-operator/tours/) 
 
-= Tour Operator Help & Support =
+= Support =
 
-Take a look at all our [Frequently Asked Questions](https://tour-operator.lsdev.biz/documentation/faqs/), we are sure you'll find what you're looking for.
+Take a look at all our [Frequently Asked Questions](https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/faqs/), we are sure you'll find what you're looking for.
 
-If you are experiencing issues with the Tour Operator Plugin, please log any bug issues you are having on the [Tour Operator Github Issues](https://github.com/lightspeeddevelopment/tour-operator/issues/) page.
+If you are experiencing issues with the LSX Tour Operator Plugin, please log any bug issues you are having on the [Tour Operator Github Issues](https://github.com/lightspeeddevelopment/tour-operator/issues/) page.
 
-= Contributing to the Tour Operator Plugin =
+= Contributing =
 
 If you're a developer who's spotted a bug issue and have a fix, or simply have functionality you think would extend our plugin, we are always happy to accept your contribution! Visit the [Tour Operator Plugin on Github](https://github.com/lightspeeddevelopment/tour-operator/) and submit a Pull Request with your updates.
 
