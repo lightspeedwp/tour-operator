@@ -1,4 +1,4 @@
-<h1 align="center"><p align="center"><a target="_blank" href="https://www.lsdev.biz/lsx/extensions/tour-operator/"><img width="300px;" src="https://www.lsdev.biz/lsx/wp-content/uploads/2020/09/LSX-Tour-Operator-Extension-Logo.svg" alt="LSX Tour Operator Plugin"></a></h1>
+<h1 align="center"><p align="center"><a target="_blank" href="https://www.lsdev.biz/lsx/extensions/tour-operator/"><img src="https://www.lsdev.biz/lsx/wp-content/uploads/2020/09/tour-operator-banner-1544x500-1.png" alt="LSX Tour Operator Plugin"></a></h1>
 </h1>
 
 <p align="center">
