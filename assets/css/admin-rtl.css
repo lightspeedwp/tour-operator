@@ -26,15 +26,15 @@ body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li a { te
 
 body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li a.active { color: black; font-weight: bold; }
 
-body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li a:focus { box-shadow: none; }
+body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li a:focus { -webkit-box-shadow: none; box-shadow: none; }
 
 body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab { display: none; }
 
 body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab.active { display: block; }
 
-body.tour-operator_page_to-help #wpbody-content .wrap *, body.tour-operator_page_to-addons #wpbody-content .wrap * { box-sizing: border-box; }
+body.tour-operator_page_to-help #wpbody-content .wrap *, body.tour-operator_page_to-addons #wpbody-content .wrap * { -webkit-box-sizing: border-box; box-sizing: border-box; }
 
-body.tour-operator_page_to-help #wpbody-content .wrap *:before, body.tour-operator_page_to-help #wpbody-content .wrap *:after, body.tour-operator_page_to-addons #wpbody-content .wrap *:before, body.tour-operator_page_to-addons #wpbody-content .wrap *:after { box-sizing: border-box; }
+body.tour-operator_page_to-help #wpbody-content .wrap *:before, body.tour-operator_page_to-help #wpbody-content .wrap *:after, body.tour-operator_page_to-addons #wpbody-content .wrap *:before, body.tour-operator_page_to-addons #wpbody-content .wrap *:after { -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 body.tour-operator_page_to-help #wpbody-content .wrap .text-center, body.tour-operator_page_to-addons #wpbody-content .wrap .text-center { text-align: center; }
 
@@ -361,7 +361,7 @@ body.tour-operator_page_to-help #wpbody-content .wrap .box:before, body.tour-ope
 
 body.tour-operator_page_to-help #wpbody-content .wrap .box.box-top-image:before, body.tour-operator_page_to-addons #wpbody-content .wrap .box.box-top-image:before { display: none; }
 
-body.tour-operator_page_to-help #wpbody-content .wrap .box.featured, body.tour-operator_page_to-addons #wpbody-content .wrap .box.featured { border-width: 2px; border-color: #FFA107; box-shadow: 0 1px 1px #FFA107; }
+body.tour-operator_page_to-help #wpbody-content .wrap .box.featured, body.tour-operator_page_to-addons #wpbody-content .wrap .box.featured { border-width: 2px; border-color: #FFA107; -webkit-box-shadow: 0 1px 1px #FFA107; box-shadow: 0 1px 1px #FFA107; }
 
 body.tour-operator_page_to-help #wpbody-content .wrap .box.featured:before, body.tour-operator_page_to-addons #wpbody-content .wrap .box.featured:before { color: #FFA107; }
 
