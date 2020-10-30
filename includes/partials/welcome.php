@@ -9,7 +9,7 @@
 <div class="wrap about-wrap">
 	<div class="row">
 		<div class="col-md-12 top-header">
-			<h1 class="small"><?php esc_html_e( 'Welcome to the Tour Operator Plugin', 'tour-operator' ); ?></h1>
+			<h1 class="small"><?php esc_html_e( 'Welcome to the LSX Tour Operator Plugin', 'tour-operator' ); ?></h1>
 			<p><?php esc_html_e( 'You are running version 1.0 - Thanks for Keeping up to date!', 'tour-operator' ); ?></p>
 		</div>
 	</div>
@@ -32,7 +32,7 @@
 					<div class="col-md-6">
 						<div class="box-clean">
 							<h3><?php esc_html_e( 'Release notes', 'tour-operator' ); ?></h3>
-							<p><a href="<?php echo wp_kses_post( $release_notes_link ); ?>" target="_blank"><?php esc_html_e( 'Get the latest on updates to the Tour Operator plugin', 'tour-operator' ); ?></a></p>
+							<p><a href="<?php echo wp_kses_post( $release_notes_link ); ?>" target="_blank"><?php esc_html_e( 'Get the latest on updates to the LSX Tour Operator plugin', 'tour-operator' ); ?></a></p>
 						</div>
 					</div>
 				</div>
@@ -57,8 +57,8 @@
 
 		<div class="col-md-4">
 			<div class="box rate">
-				<h2><?php esc_html_e( 'Help us keep the Tour Operator core FREE', 'tour-operator' ); ?></h2>
-				<p><?php esc_html_e( '5-star ratings help us to bring the Tour Operator plugin to more users. The more users we have the more we get requests to add features to make the plugin even better for you. We couldn’t do it without your support.', 'tour-operator' ); ?></p>
+				<h2><?php esc_html_e( 'Help us keep the LSX Tour Operator core FREE', 'tour-operator' ); ?></h2>
+				<p><?php esc_html_e( '5-star ratings help us to bring the LSX Tour Operator plugin to more users. The more users we have the more we get requests to add features to make the plugin even better for you. We couldn’t do it without your support.', 'tour-operator' ); ?></p>
 
 				<p class="star-rating">
 					<span><?php esc_html_e( 'Rate it 5 stars', 'tour-operator' ); ?> - </span>

@@ -26,8 +26,8 @@
 <div class="wrap about-wrap">
 	<div class="row">
 		<div class="col-md-12 top-header">
-			<h1 class="small"><?php esc_html_e( 'LightSpeed’s Tour Operator Plugin', 'tour-operator' ); ?></h1>
-			<p><?php esc_html_e( 'Thank you for using the Tour Operator plugin. All of us here at LightSpeed appreciate your ongoing support and we can\'t wait to see what people create with the plugin. We\'re committed to ensuring you have all the help you need to make the most of the plugin.', 'tour-operator' ); ?></p>
+			<h1 class="small"><?php esc_html_e( 'LightSpeed’s LSX Tour Operator Plugin', 'tour-operator' ); ?></h1>
+			<p><?php esc_html_e( 'Thank you for using the LSX Tour Operator plugin. All of us here at LightSpeed appreciate your ongoing support and we can\'t wait to see what people create with the plugin. We\'re committed to ensuring you have all the help you need to make the most of the plugin.', 'tour-operator' ); ?></p>
 		</div>
 	</div>
 
@@ -59,7 +59,7 @@
 							<li><a href="<?php echo wp_kses_post( $activities_link_doc ); ?>" target="_blank"><strong><?php esc_html_e( 'Activities:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Create and configure your Activity listings which can then be set to display on Destinations, Accommodations and Tours.', 'tour-operator' ); ?></li>
 							<li><a href="<?php echo wp_kses_post( $reviews_link_doc ); ?>" target="_blank"><strong><?php esc_html_e( 'Reviews:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Gather reviews from your past clients and use this extension to display them proudly throughout your website. Associate the reviews with specific Accommodations and Tours to have them display on specific pages.', 'tour-operator' ); ?></li>
 							<li><a href="<?php echo wp_kses_post( $specials_link_doc ); ?>" target="_blank"><strong><?php esc_html_e( 'Specials:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Use the Specials module to specify time-sensitive special prices for your tour packages.', 'tour-operator' ); ?></li>
-							<li><a href="<?php echo wp_kses_post( $search_link_doc ); ?>" target="_blank"><strong><?php esc_html_e( 'Search:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Learn how to make the best use of the Search extension, which depends on the Facet WP extension and allows you to provide filterable search fields on your Tour Operator website.', 'tour-operator' ); ?></li>
+							<li><a href="<?php echo wp_kses_post( $search_link_doc ); ?>" target="_blank"><strong><?php esc_html_e( 'Search:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Learn how to make the best use of the Search extension, which depends on the Facet WP extension and allows you to provide filterable search fields on your LSX Tour Operator website.', 'tour-operator' ); ?></li>
 							<li><a href="<?php echo wp_kses_post( $vehicles_link_doc ); ?>" target="_blank"><strong><?php esc_html_e( 'Vehicles:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Specify your fleet\'s specifications with details such as type and number of gears, engine type (petrol/diesel), number of seats, vehicle code, and of course images and copy.', 'tour-operator' ); ?></li>
 							<li><a href="<?php echo wp_kses_post( $wetu_importer_link_doc ); ?>" target="_blank"><strong><?php esc_html_e( 'Wetu Importer:', 'tour-operator' ); ?></strong></a> <?php esc_html_e( 'Import accommodation data and entire tour itineraries from the WETU database to use in your day-by-day tour listings.', 'tour-operator' ); ?></li>
 						</ul>
@@ -72,7 +72,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="box info">
-						<h2><?php esc_html_e( 'Tour Operator', 'tour-operator' ); ?></h2>
+						<h2><?php esc_html_e( 'LSX Tour Operator', 'tour-operator' ); ?></h2>
 
 						<ul>
 							<li><strong><?php esc_html_e( 'Latest Version:', 'tour-operator' ); ?></strong> <?php echo esc_attr( $version ); ?></li>
@@ -102,7 +102,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="box premium">
-						<h3><?php esc_html_e( 'Tour Operator Add-Ons', 'tour-operator' ); ?></h3>
+						<h3><?php esc_html_e( 'LSX Tour Operator Add-Ons', 'tour-operator' ); ?></h3>
 
 						<ul>
 							<li><a href="<?php echo wp_kses_post( $team_link ); ?>" target="_blank"><?php esc_html_e( 'Team', 'tour-operator' ); ?></a></li>

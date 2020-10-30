@@ -1,6 +1,6 @@
 <?php
 /**
- * Tour Operator - Destination Metabox config
+ * LSX Tour Operator - Destination Metabox config
  *
  * @package   tour_operator
  * @author    LightSpeed
@@ -10,7 +10,7 @@
  */
 
 $metabox = array(
-	'title'  => esc_html__( 'Tour Operator Plugin', 'tour-operator' ),
+	'title'  => esc_html__( 'LSX Tour Operator Plugin', 'tour-operator' ),
 	'pages'  => 'destination',
 	'fields' => array(),
 );

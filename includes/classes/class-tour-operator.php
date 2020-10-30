@@ -6,7 +6,7 @@ use lsx\admin\Admin;
 use lsx\admin\Pages;
 
 /**
- * Tour Operator Main Class
+ * LSX Tour Operator Main Class
  *
  * @package   tour_operator
  * @author    LightSpeed
@@ -87,7 +87,7 @@ class Tour_Operator {
 	public $legacy;
 
 	/**
-	 * Tour Operator constructor.
+	 * LSX Tour Operator constructor.
 	 */
 	public function __construct() {
 		// init legacy.

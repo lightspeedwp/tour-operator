@@ -1,6 +1,6 @@
 <?php
 /**
- * CMB Field Patterns for the Tour Operator Plugin
+ * CMB Field Patterns for the LSX Tour Operator Plugin
  *
  * @package   Field_Pattern
  * @author    LightSpeed

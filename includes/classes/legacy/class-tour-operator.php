@@ -1034,7 +1034,7 @@ class Tour_Operator {
 	 */
 	public function compatible_version_notice() {
 		$class   = 'notice notice-error';
-		$message = esc_html__( 'Tour Operator Plugin requires PHP 7.0 or higher.', 'tour-operator' );
+		$message = esc_html__( 'LSX Tour Operator Plugin requires PHP 7.0 or higher.', 'tour-operator' );
 		printf( '<div class="%1$s"><p>%2$s</p></div>', esc_html( $class ), esc_html( $message ) );
 	}
 
@@ -1047,7 +1047,7 @@ class Tour_Operator {
 	public static function compatible_version_check_on_activation() {
 		if ( ! self::compatible_version() ) {
 			deactivate_plugins( plugin_basename( LSX_TO_CORE ) );
-			wp_die( esc_html__( 'Tour Operator Plugin requires PHP 7.0 or higher.', 'tour-operator' ) );
+			wp_die( esc_html__( 'LSX Tour Operator Plugin requires PHP 7.0 or higher.', 'tour-operator' ) );
 		}
 	}
 
@@ -1095,7 +1095,7 @@ class Tour_Operator {
 					<?php
 						printf(
 							/* Translators: 1: HTML open tag link, 2: HTML close tag link */
-							esc_html__( 'The Tour Operator Plugin requires the free LSX Theme be installed and active. Please download LSX Theme from %1$sWordPress.org%2$s to get started with your Tour Operator Plugin.', 'tour-operator' ),
+							esc_html__( 'The LSX Tour Operator Plugin requires the free LSX Theme be installed and active. Please download LSX Theme from %1$sWordPress.org%2$s to get started with your LSX Tour Operator Plugin.', 'tour-operator' ),
 							'<a href="https://wordpress.org/themes/lsx/" target="_blank">',
 							'</a>'
 						);

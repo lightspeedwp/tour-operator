@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) return; // Exit if accessed directly.
  */
 function lsx_to_customizer_colors_scheme( $array ) {
 	$array['tour-operator'] = array(
-		'label'  => esc_html__( 'Tour Operator', 'tour-operator' ),
+		'label'  => esc_html__( 'LSX Tour Operator', 'tour-operator' ),
 		'colors' => array(
 			'button_background_color'       => '#1098AD',
 			'button_background_hover_color' => '#0E8395',

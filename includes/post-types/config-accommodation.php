@@ -1,6 +1,6 @@
 <?php
 /**
- * Tour Operator - Accommodation Post Type config
+ * LSX Tour Operator - Accommodation Post Type config
  *
  * @package   tour_operator
  * @author    LightSpeed

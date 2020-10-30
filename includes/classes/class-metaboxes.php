@@ -1,6 +1,6 @@
 <?php
 /**
- * Tour Operator - Metabox Class
+ * LSX Tour Operator - Metabox Class
  *
  * @package   lsx
  * @author    LightSpeed
