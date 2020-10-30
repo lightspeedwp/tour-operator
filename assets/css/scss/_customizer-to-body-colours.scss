@@ -75,11 +75,11 @@
 			a.moretag,
 			a.moretag:visited {
 				background-color: $link;
-				color: #FFF;
+				color: #FFF !important;
 
 				&:hover {
 					background-color: $hover;
-					color: #FFF;
+					color: #FFF !important;
 				}
 			}
 		}
@@ -104,11 +104,11 @@
 
 			& > a.moretag {
 				background-color: $link;
-				color: #FFF;
+				color: #FFF !important;
 
 				&:hover {
 					background-color: $hover;
-					color: #FFF;
+					color: #FFF !important;
 				}
 			}
 
