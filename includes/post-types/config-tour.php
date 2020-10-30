@@ -39,6 +39,7 @@ $post_type = array(
 	'capability_type'    => 'post',
 	'has_archive'        => 'tours',
 	'hierarchical'       => false,
+	'show_in_rest'       => true,
 	'supports'           => array(
 		'title',
 		'editor',

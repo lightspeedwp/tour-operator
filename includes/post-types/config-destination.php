@@ -39,6 +39,7 @@ $post_type = array(
 	'capability_type'    => 'page',
 	'has_archive'        => 'destinations',
 	'hierarchical'       => true,
+	'show_in_rest'       => true,
 	'supports'           => array(
 		'title',
 		'editor',

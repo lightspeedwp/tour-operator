@@ -40,6 +40,7 @@ $post_type = array(
 	'capability_type'     => 'post',
 	'has_archive'         => 'accommodation',
 	'hierarchical'        => false,
+	'show_in_rest'        => true,
 	'supports'            => array(
 		'title',
 		'slug',
