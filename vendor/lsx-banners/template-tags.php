@@ -10,49 +10,13 @@
  */
 
 /**
- * A template tag to output the banner bg src
- *
- * @package     lsx-banners
- * @subpackage  template-tag
- * @category    image
- */
-function lsx_banner_src() {
-	global $lsx_banners;
-	$lsx_banners->frontend->banner();
-}
-
-/**
- * Returns a true or false if there is a banner.
- *
- * @package     lsx-banners
- * @subpackage  template-tag
- * @category    conditional
- */
-function lsx_has_banner() {
-	global $lsx_banners;
-	return $lsx_banners->has_banner;
-}
-
-/**
- * Returns a true or false if there is a banner.
- *
- * @package     lsx-banners
- * @subpackage  template-tag
- * @category    conditional
- */
-function lsx_is_banner_disabled() {
-	global $lsx_banners;
-	return $lsx_banners->frontend->banner_disabled;
-}
-
-/**
  * Down Arrow navigation for the homepage banner
  *
  * @package     lsx-banners
  * @subpackage  template-tag
  * @category    shortcode
  */
-function lsx_banner_navigation( $echo = false ) {
+function to_banner_navigation( $echo = false ) {
 	$atts = array(
 		'extra-top' => '0',
 	);

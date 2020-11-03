@@ -44,7 +44,7 @@ class TO_Banners_Frontend extends TO_Banners {
 			add_filter( 'lsx_customizer_colour_selectors_banner', array( $this, 'customizer_colours_handler' ), 15, 2 );
 		}
 		add_filter( 'lsx_fonts_css', array( $this, 'customizer_fonts_handler' ), 15 );
-		add_shortcode( 'banner_navigation', 'lsx_banner_navigation' );
+		add_shortcode( 'banner_navigation', 'to_banner_navigation' );
 		add_filter( 'wp_kses_allowed_html', array( $this, 'wp_kses_allowed_html' ), 10, 2 );
 		add_action( 'wp_footer', array( $this, 'add_form_modal' ) );
 	}
