@@ -96,14 +96,14 @@ class Admin extends Tour_Operator {
 
 		// TO Pages: Add-ons, Help, Settings and Welcome
 		// WP Terms: create/edit term
-		if ( 0 !== strpos( $hook, 'tour-operator_page' ) && 'term.php' !== $hook ) {
+		if ( 0 !== strpos( $hook, 'lsx-tour-operator_page_lsx-to-settings' ) && 'term.php' !== $hook ) {
 			return;
 		}
 
 		wp_enqueue_script( 'media-upload' );
 		wp_enqueue_script( 'thickbox' );
 		wp_enqueue_style( 'thickbox' );
-		wp_enqueue_script( 'tour-operator-admin-script', LSX_TO_URL . 'assets/js/admin.min.js', array( 'jquery' ), LSX_TO_VER, true );
+		wp_enqueue_script( 'tour-operator-admin-script', LSX_TO_URL . 'assets/js/src/admin.js', array( 'jquery' ), LSX_TO_VER, true );
 		wp_enqueue_style( 'tour-operator-admin-style', LSX_TO_URL . 'assets/css/admin.css', array(), LSX_TO_VER );
 		wp_style_add_data( 'tour-operator-admin-style', 'rtl', 'replace' );
 
