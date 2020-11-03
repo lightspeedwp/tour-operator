@@ -28,10 +28,7 @@ class TO_Taxonomy_Admin {
 		}
 
 		$this->fields = array(
-			'thumbnail' => esc_html__( 'Thumbnail', 'lsx-banners' ),
-			'tagline' => esc_html__( 'Tagline', 'lsx-banners' ),
 			'expert' => esc_html__( 'Expert', 'lsx-banners' ),
-			'banner_video' => esc_html__( 'Video URL', 'lsx-banners' ),
 		);
 	}
 
@@ -46,11 +43,8 @@ class TO_Taxonomy_Admin {
 		if ( false !== $this->taxonomies ) {
 			add_action( 'create_term', array( $this, 'save_meta' ), 10, 2 );
 			foreach ( $this->taxonomies as $taxonomy ) {
-				// add_action( "{$taxonomy}_add_form_fields",  array( $this, 'add_thumbnail_form_field'  ),3 );
 				add_action( "edit_{$taxonomy}", array( $this, 'save_meta' ), 10, 2 );
-				add_action( "{$taxonomy}_edit_form_fields", array( $this, 'add_thumbnail_form_field' ), 3, 1 );
 				add_action( "{$taxonomy}_edit_form_fields", array( $this, 'add_tagline_form_field' ), 3, 1 );
-				add_action( "{$taxonomy}_edit_form_fields", array( $this, 'add_banner_video_form_field' ), 3, 1 );
 			}
 		}
 	}
@@ -66,46 +60,6 @@ class TO_Taxonomy_Admin {
 		return $taxonomies;
 	}
 
-	/**
-	 * Output the form field for this metadata when adding a new term
-	 *
-	 * @since 1.0.0
-	 */
-	public function add_thumbnail_form_field( $term = false ) {
-
-		if ( is_object( $term ) ) {
-			$value = get_term_meta( $term->term_id, 'thumbnail', true );
-			$image_preview = wp_get_attachment_image_src( $value, 'thumbnail' );
-			if ( is_array( $image_preview ) ) {
-				$image_preview = '<img src="' . $image_preview[0] . '" width="' . $image_preview[1] . '" height="' . $image_preview[2] . '" class="alignnone size-thumbnail wp-image-' . $value . '" />';
-			}
-		} else {
-			$image_preview = false;
-			$value = false;
-		}
-		?>
-		<tr class="form-field term-thumbnail-wrap">
-			<th scope="row"><label for="thumbnail"><?php esc_html_e( 'Featured Image', 'lsx-banners' ); ?></label></th>
-			<td>
-				<input class="input_image_id" type="hidden" name="thumbnail" value="<?php echo esc_attr( $value ); ?>">
-				<div class="thumbnail-preview">
-					<?php echo wp_kses_post( $image_preview ); ?>
-				</div>
-				<a style="
-				<?php
-				if ( '' !== $value && false !== $value ) {
-					?>
-					display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'lsx-banners' ); ?></a>
-				<a style="
-				<?php
-				if ( '' === $value || false === $value ) {
-					?>
-					display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-remove"><?php esc_html_e( 'Remove Image', 'lsx-banners' ); ?></a>
-				<?php wp_nonce_field( 'lsx_banners_save_term_thumbnail', 'lsx_banners_term_thumbnail_nonce' ); ?>
-			</td>
-		</tr>
-		<?php
-	}
 	/**
 	 * Saves the Taxnomy term banner image
 	 *
@@ -127,48 +81,6 @@ class TO_Taxonomy_Admin {
 				}
 			}
 		}
-	}
-
-	/**
-	 * Output the form field for this metadata when adding a new term
-	 *
-	 * @since 1.0.0
-	 */
-	public function add_tagline_form_field( $term = false ) {
-		if ( is_object( $term ) ) {
-			$value = get_term_meta( $term->term_id, 'tagline', true );
-		} else {
-			$value = false;
-		}
-		?>
-		<tr class="form-field term-tagline-wrap">
-			<th scope="row"><label for="tagline"><?php esc_html_e( 'Banner tagline', 'lsx-banners' ); ?></label></th>
-			<td>
-				<input name="tagline" id="tagline" type="text" value="<?php echo esc_attr( $value ); ?>" size="40" aria-required="true">
-			</td>
-		</tr>
-		<?php
-	}
-
-	/**
-	 * Output the form field for this metadata when adding a new term
-	 *
-	 * @since 1.0.0
-	 */
-	public function add_banner_video_form_field( $term = false ) {
-		if ( is_object( $term ) ) {
-			$value = get_term_meta( $term->term_id, 'banner_video', true );
-		} else {
-			$value = false;
-		}
-		?>
-		<tr class="form-field term-youtube-wrap">
-			<th scope="row"><label for="banner_video"><?php esc_html_e( 'Banner Video URL (mp4)', 'lsx-banners' ); ?></label></th>
-			<td>
-				<input name="banner_video" id="banner_video" type="text" value="<?php echo esc_attr( $value ); ?>" size="40" aria-required="true">
-			</td>
-		</tr>
-		<?php
 	}
 
 	/**
