@@ -1,4 +1,4 @@
-var LSX_Banners = {
+var TO_Banners = {
 	initScrollable: function() {
 		jQuery( '.banner-easing a' ).on(
 			'click',
@@ -39,6 +39,6 @@ var LSX_Banners = {
 
 jQuery( document ).ready(
 	function() {
-		LSX_Banners.initScrollable();
+		TO_Banners.initScrollable();
 	}
 );

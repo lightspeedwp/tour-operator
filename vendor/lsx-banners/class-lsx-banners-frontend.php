@@ -8,10 +8,10 @@
  * @link
  * @copyright 2019 LightSpeed
  */
-class LSX_Banners_Frontend extends LSX_Banners {
+class TO_Banners_Frontend extends TO_Banners {
 
 	/**
-	 * This holds the class OBJ of LSX_Template_Redirects
+	 * This holds the class OBJ of TO_Template_Redirects
 	 */
 	public $redirects = false;
 
@@ -700,7 +700,7 @@ class LSX_Banners_Frontend extends LSX_Banners {
 					$button_attr = '';
 
 					if ( 'anchor' === $button_type ) {
-						$button_attr = ' onclick="LSX_Banners.doScroll(this); return false;"';
+						$button_attr = ' onclick="TO_Banners.doScroll(this); return false;"';
 					} elseif ( 'form' === $button_type ) {
 						$button_attr = ' data-toggle="modal"';
 						$button_link = '#cf-modal-' . $button_link;

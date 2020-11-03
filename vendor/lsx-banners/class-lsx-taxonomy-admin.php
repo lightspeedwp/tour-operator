@@ -8,7 +8,7 @@
  * @link
  * @copyright 2016 LightSpeed
  */
-class LSX_Taxonomy_Admin {
+class TO_Taxonomy_Admin {
 
 	public $taxonomies = array( 'category' );
 

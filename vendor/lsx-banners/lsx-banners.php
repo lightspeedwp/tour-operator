@@ -14,4 +14,4 @@ define( 'TO_BANNERS_VER', '1.2.5' );
 /* ======================= Below is the Plugin Class init ========================= */
 
 require_once( TO_BANNERS_PATH . 'class-lsx-banners.php' );
-$lsx_banners = new LSX_Banners();
+$lsx_banners = new TO_Banners();

@@ -8,7 +8,7 @@
  * @link
  * @copyright 2016 LightSpeed
  */
-class LSX_Placeholders {
+class TO_Placeholders {
 
 	/**
 	 * The slug for this plugin
@@ -423,7 +423,7 @@ class LSX_Placeholders {
 		if ( 'placeholders' !== $tab ) {
 			return false; }
 
-		if ( class_exists( 'LSX_Banners' ) ) { ?>
+		if ( class_exists( 'TO_Banners' ) ) { ?>
 			<tr class="form-field banner-placeholder-wrap">
 				<th scope="row">
 					<label for="banner"> <?php esc_html_e( 'Banner Placeholder', 'lsx-banners' ); ?></label>
@@ -492,7 +492,7 @@ class LSX_Placeholders {
 		if ( 'placeholders' !== $tab ) {
 			return false;}
 		?>
-		<?php if ( class_exists( 'LSX_Banners' ) ) { ?>
+		<?php if ( class_exists( 'TO_Banners' ) ) { ?>
 			<tr class="form-field banner-placeholder-wrap">
 				<th scope="row">
 					<label for="banner"> <?php esc_html_e( 'Banner', 'lsx-banners' ); ?></label>

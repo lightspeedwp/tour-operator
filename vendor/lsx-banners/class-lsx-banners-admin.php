@@ -8,7 +8,7 @@
  * @link
  * @copyright 2019 LightSpeed
  */
-class LSX_Banners_Admin extends LSX_Banners {
+class TO_Banners_Admin extends TO_Banners {
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -42,7 +42,7 @@ class LSX_Banners_Admin extends LSX_Banners {
 	 * Initializes the variables we need.
 	 **/
 	public function admin_init() {
-		$this->taxonomy_admin = new LSX_Taxonomy_Admin();
+		$this->taxonomy_admin = new TO_Taxonomy_Admin();
 		$allowed_taxonomies = $this->get_allowed_taxonomies();
 		if ( is_array( $allowed_taxonomies ) ) {
 			foreach ( $allowed_taxonomies as $taxonomy ) {
