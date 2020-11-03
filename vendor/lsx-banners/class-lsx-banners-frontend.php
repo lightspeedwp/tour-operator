@@ -37,7 +37,7 @@ class TO_Banners_Frontend extends TO_Banners {
 			$this->options = $lsx_to_options;
 		}
 		$this->set_vars();
-		add_action( 'wp_head', array( $this, 'init' ) );
+		add_action( 'wp_head', array( $this, 'init' ), 15 );
 		if ( ! is_admin() ) {
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ), 5 );
 		} else {
