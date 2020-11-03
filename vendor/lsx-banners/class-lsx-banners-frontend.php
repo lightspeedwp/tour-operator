@@ -250,9 +250,6 @@ class LSX_Banners_Frontend extends LSX_Banners {
 			// Default to the post archive banner.
 			if ( false === $banner_image ) {
 				$post_type = get_query_var( 'post_type' );
-				if ( class_exists( 'Tribe__Events__Main' ) && tribe_is_event_query() ) {
-					$post_type = 'tribe_events';
-				}
 				if ( isset( $this->options[ $post_type ] ) && ! empty( $this->options[ $post_type ]['banner'] ) && '' !== $this->options[ $post_type ]['banner'] ) {
 					$banner_image = $this->options[ $post_type ]['banner'];
 				}
@@ -267,9 +264,6 @@ class LSX_Banners_Frontend extends LSX_Banners {
 			}
 
 			$post_type = get_query_var( 'post_type' );
-			if ( class_exists( 'Tribe__Events__Main' ) && tribe_is_event_query() ) {
-				$post_type = 'tribe_events';
-			}
 			if ( isset( $this->options[ $post_type ] ) && ! empty( $this->options[ $post_type ]['banner'] ) ) {
 				$banner_image = $this->options[ $post_type ]['banner'];
 			}
@@ -359,33 +353,7 @@ class LSX_Banners_Frontend extends LSX_Banners {
 		}
 
 		// Soliloquy Slider.
-		$soliloquy_slider_id = get_post_meta( $this->post_id, 'soliloquy_slider', true );
-
-		if ( class_exists( 'Soliloquy' ) ) {
-			if ( ! empty( $soliloquy_slider_id ) ) {
-				$soliloquy_slider = Soliloquy::get_instance();
-				$soliloquy_slider_images = $soliloquy_slider->get_slider( $soliloquy_slider_id );
-				$soliloquy_slider_images = apply_filters( 'soliloquy_pre_data', $soliloquy_slider_images, $soliloquy_slider_id );
-
-				if ( is_array( $soliloquy_slider_images ) && count( $soliloquy_slider_images ) > 1 && apply_filters( 'lsx_banner_enable_sliders', true ) ) {
-					$img_group = array(
-						'banner_image' => array(),
-					);
-
-					$show_slider = true;
-
-					foreach ( $soliloquy_slider_images['slider'] as $key => $value ) {
-						$img_group['banner_image'][] = array(
-							'image_id' => $key,
-							'image_title' => $value['title'],
-							'image_text' => $value['caption'],
-						);
-					}
-				}
-			}
-		} else {
-			$soliloquy_slider_id = false;
-		}
+		$soliloquy_slider_id = false;
 
 		// This is where the title postition is determined.
 		$title_position = get_post_meta( $this->post_id, 'title_position', true );
