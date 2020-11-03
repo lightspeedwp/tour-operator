@@ -35,40 +35,10 @@ var LSX_Banners = {
 			800
 		);
 	},
-
-	initSliderSwiper: function() {
-		if (jQuery( '#page-banner-slider' ).length > 0) {
-			jQuery( '#page-banner-slider' ).slick(
-				{
-					draggable: false,
-					infinite: true,
-					slidesToShow: 1,
-					slidesToScroll: 1,
-					swipe: false,
-					cssEase: 'ease-out',
-					responsive: [{
-						breakpoint: 768,
-						settings: {
-							draggable: true,
-							swipe: true,
-							arrows: false,
-							dots: true
-						}
-					}]
-				}
-			);
-		}
-	},
-
-	openModal: function(_$el) {
-		var _href = (_$el.href).replace( /^[^#]*(#cf-modal-.+$)/gi, '$1' );
-		jQuery( _href ).modal()
-	}
 };
 
 jQuery( document ).ready(
 	function() {
 		LSX_Banners.initScrollable();
-		LSX_Banners.initSliderSwiper();
 	}
 );

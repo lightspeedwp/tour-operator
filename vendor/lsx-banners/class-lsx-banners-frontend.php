@@ -53,11 +53,7 @@ class LSX_Banners_Frontend extends LSX_Banners {
 	 * Enques the assets
 	 */
 	public function enqueue_stylescripts() {
-		wp_enqueue_script( 'jquery-touchswipe', LSX_BANNERS_URL . 'assets/js/vendor/jquery.touchSwipe.min.js', array( 'jquery' ), LSX_BANNERS_VER, true );
-		if ( ! wp_script_is( 'slick' ) ) {
-			wp_enqueue_script( 'slick', LSX_BANNERS_URL . '/assets/js/vendor/slick.min.js', array( 'jquery' ), LSX_VERSION, true );
-		}
-		wp_enqueue_script( 'lsx-banners', LSX_BANNERS_URL . 'assets/js/lsx-banners.min.js', array( 'jquery', 'slick', 'jquery-touchswipe' ), LSX_BANNERS_VER, true );
+		wp_enqueue_script( 'lsx-banners', LSX_BANNERS_URL . 'assets/js/lsx-banners.min.js', array( 'jquery' ), LSX_BANNERS_VER, true );
 
 		$params = apply_filters(
 			'lsx_banners_js_params',
