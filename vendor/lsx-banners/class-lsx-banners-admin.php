@@ -52,11 +52,6 @@ class LSX_Banners_Admin extends LSX_Banners {
 		}
 		add_action( 'create_term', array( $this, 'save_meta' ), 10, 2 );
 		add_action( 'edit_term', array( $this, 'save_meta' ), 10, 2 );
-
-		add_action( 'show_user_profile', array( $this, 'user_profile_fields' ), 1 );
-		add_action( 'edit_user_profile', array( $this, 'user_profile_fields' ), 1 );
-		add_action( 'personal_options_update', array( $this, 'save_profile_fields' ) );
-		add_action( 'edit_user_profile_update', array( $this, 'save_profile_fields' ) );
 	}
 
 	/**
@@ -168,12 +163,6 @@ class LSX_Banners_Admin extends LSX_Banners {
 			);
 		}
 
-		$fields[] = array(
-			'id'   => 'banner_video',
-			'name' => esc_html__( 'Video (mp4)', 'lsx-banners' ),
-			'type' => 'file',
-		);
-
 		// Envira Gallery.
 		if ( class_exists( 'Envira_Gallery' ) && ! function_exists( 'tour_operator' ) ) {
 			$fields[] = array(
@@ -191,30 +180,6 @@ class LSX_Banners_Admin extends LSX_Banners {
 				),
 			);
 		}
-
-		// Soliloquy.
-		if ( class_exists( 'Soliloquy' ) ) {
-			$fields[] = array(
-				'id'         => 'soliloquy_slider',
-				'name'       => esc_html__( 'Soliloquy Slider', 'lsx-banners' ),
-				'type'       => 'post_select',
-				'use_ajax'   => false,
-				'allow_none' => true,
-				'query'      => array(
-					'post_type'      => 'soliloquy',
-					'nopagin'        => true,
-					'posts_per_page' => '-1',
-					'orderby'        => 'title',
-					'order'          => 'ASC',
-				),
-			);
-		}
-
-		$fields[] = array(
-			'id'   => 'banner_mask',
-			'name' => esc_html__( 'Disable banner mask (image overlay)', 'lsx-banners' ),
-			'type' => 'checkbox',
-		);
 
 		$fields[] = array(
 			'id'      => 'banner_bg_color',
@@ -451,52 +416,6 @@ class LSX_Banners_Admin extends LSX_Banners {
 		}
 	}
 
-
-	/**
-	 * Displays the user banner field
-	 *
-	 * @since 1.0.0
-	 */
-	public function user_profile_fields( $user ) {
-		if ( is_object( $user ) ) {
-			$value         = get_user_meta( $user->ID, 'banner', true );
-			$image_preview = wp_get_attachment_image_src( $value, 'thumbnail' );
-
-			if ( is_array( $image_preview ) ) {
-				$image_preview = '<img src="' . $image_preview[0] . '" width="' . $image_preview[1] . '" height="' . $image_preview[2] . '" class="alignnone size-thumbnail wp-image-' . $value . '" />';
-			}
-		} else {
-			$image_preview = false;
-			$value = false;
-		}
-		?>
-		<h2><?php esc_html_e( 'Cover Image', 'lsx-banners' ); ?></h2>
-		<table class="form-table">
-			<tbody>
-				<tr>
-					<th><label for="banner"><?php esc_html_e( 'Banner', 'lsx-banners' ); ?></label></th>
-					<td>
-						<input class="input_image_id" type="hidden" name="banner" value="<?php echo esc_attr( $value ); ?>">
-						<div class="banner-preview">
-							<?php echo wp_kses_post( $image_preview ); ?>
-						</div>
-						<a style="
-						<?php
-						if ( '' !== $value && false !== $value ) {
-							?>
-							display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'lsx-banners' ); ?></a>
-						<a style="
-						<?php
-						if ( '' === $value || false === $value ) {
-							?>
-							display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-remove"><?php esc_html_e( 'Remove Image', 'lsx-banners' ); ?></a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		<?php
-	}
-
 	/**
 	 * Adds in the settings neccesary for the archives
 	 *
@@ -568,24 +487,6 @@ class LSX_Banners_Admin extends LSX_Banners {
 				</td>
 			</tr>
 			<?php
-		}
-	}
-
-	/**
-	 * Saves the Taxnomy term banner image
-	 *
-	 * @since 1.0.0
-	 *
-	 * @param  int    $term_id
-	 * @param  string $taxonomy
-	 */
-	public function save_profile_fields( $user_id ) {
-		$meta = ! empty( wp_verify_nonce( $_POST['banner'] ) ) ? wp_verify_nonce( $_POST['banner'] ) : '';
-
-		if ( empty( $meta ) ) {
-			delete_user_meta( $user_id, 'banner' );
-		} else {
-			update_user_meta( $user_id, 'banner', $meta );
 		}
 	}
 
