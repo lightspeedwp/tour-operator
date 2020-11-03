@@ -4,9 +4,9 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'LSX_BANNERS_PATH', plugin_dir_path( __FILE__ ) );
-define( 'LSX_BANNERS_CORE', __FILE__ );
-define( 'LSX_BANNERS_URL', plugin_dir_url( __FILE__ ) );
+define( 'LSX_BANNERS_PATH', LSX_TO_PATH . 'vendor/lsx-banners/' );
+define( 'LSX_BANNERS_CORE', LSX_TO_PATH . 'vendor/lsx-banners/lsx-banners.php' );
+define( 'LSX_BANNERS_URL', LSX_TO_URL . 'vendor/lsx-banners/' );
 define( 'LSX_BANNERS_VER', '1.2.5' );
 
 /* ======================= Below is the Plugin Class init ========================= */
