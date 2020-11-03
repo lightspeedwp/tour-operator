@@ -63,8 +63,8 @@ class LSX_Banners_Admin extends LSX_Banners {
 		// wp_enqueue_script( 'thickbox' );
 		// wp_enqueue_style( 'thickbox' );
 
-		wp_enqueue_script( 'lsx-banners-admin', LSX_BANNERS_URL . 'assets/js/lsx-banners-admin.min.js', array( 'jquery' ), LSX_BANNERS_VER, true );
-		wp_enqueue_style( 'lsx-banners-admin', LSX_BANNERS_URL . 'assets/css/lsx-banners-admin.css', array(), LSX_BANNERS_VER );
+		wp_enqueue_script( 'lsx-banners-admin', TO_BANNERS_URL . 'assets/js/lsx-banners-admin.min.js', array( 'jquery' ), TO_BANNERS_VER, true );
+		wp_enqueue_style( 'lsx-banners-admin', TO_BANNERS_URL . 'assets/css/lsx-banners-admin.css', array(), TO_BANNERS_VER );
 	}
 
 	/**
@@ -496,7 +496,7 @@ class LSX_Banners_Admin extends LSX_Banners {
 	public function create_settings_page() {
 		if ( is_admin() ) {
 			if ( ! class_exists( '\lsx\ui\uix' ) && ! function_exists( 'tour_operator' ) ) {
-				include_once LSX_BANNERS_PATH . 'vendor/uix/uix.php';
+				include_once TO_BANNERS_PATH . 'vendor/uix/uix.php';
 				$pages = $this->settings_page_array();
 				$uix = \lsx\ui\uix::get_instance( 'lsx' );
 				$uix->register_pages( $pages );
@@ -557,7 +557,7 @@ class LSX_Banners_Admin extends LSX_Banners {
 					'page_title'        => '',
 					'page_description'  => '',
 					'menu_title'        => esc_html__( 'Display', 'lsx-currencies' ),
-					'template'          => LSX_BANNERS_PATH . 'includes/settings/display.php',
+					'template'          => TO_BANNERS_PATH . 'includes/settings/display.php',
 					'default'           => $default,
 				);
 
@@ -574,7 +574,7 @@ class LSX_Banners_Admin extends LSX_Banners {
 						'page_title'        => esc_html__( 'Placeholders', 'lsx-banners' ),
 						'page_description'  => '',
 						'menu_title'        => ucwords( str_replace( '-', ' ', $index ) ),
-						'template'          => LSX_BANNERS_PATH . 'includes/settings/placeholder.php',
+						'template'          => TO_BANNERS_PATH . 'includes/settings/placeholder.php',
 						'default'           => $default,
 					);
 

@@ -53,7 +53,7 @@ class LSX_Banners_Frontend extends LSX_Banners {
 	 * Enques the assets
 	 */
 	public function enqueue_stylescripts() {
-		wp_enqueue_script( 'lsx-banners', LSX_BANNERS_URL . 'assets/js/lsx-banners.min.js', array( 'jquery' ), LSX_BANNERS_VER, true );
+		wp_enqueue_script( 'lsx-banners', TO_BANNERS_URL . 'assets/js/lsx-banners.min.js', array( 'jquery' ), TO_BANNERS_VER, true );
 
 		$params = apply_filters(
 			'lsx_banners_js_params',
@@ -64,7 +64,7 @@ class LSX_Banners_Frontend extends LSX_Banners {
 
 		wp_localize_script( 'lsx-banners', 'lsx_banners_params', $params );
 
-		wp_enqueue_style( 'lsx-banners', LSX_BANNERS_URL . 'assets/css/lsx-banners.css', array(), LSX_BANNERS_VER );
+		wp_enqueue_style( 'lsx-banners', TO_BANNERS_URL . 'assets/css/lsx-banners.css', array(), TO_BANNERS_VER );
 		wp_style_add_data( 'lsx-banners', 'rtl', 'replace' );
 	}
 
@@ -750,7 +750,7 @@ class LSX_Banners_Frontend extends LSX_Banners {
 	public function customizer_fonts_handler( $css_fonts ) {
 		global $wp_filesystem;
 
-		$css_fonts_file = LSX_BANNERS_PATH . '/assets/css/lsx-banners-fonts.css';
+		$css_fonts_file = TO_BANNERS_PATH . '/assets/css/lsx-banners-fonts.css';
 
 		if ( file_exists( $css_fonts_file ) ) {
 			if ( empty( $wp_filesystem ) ) {
@@ -771,7 +771,7 @@ class LSX_Banners_Frontend extends LSX_Banners {
 	 */
 	public function customizer_colours_handler( $css, $colors ) {
 		$css .= '
-			@import "' . LSX_BANNERS_PATH . '/assets/css/scss/customizer-banners-banner-colours";
+			@import "' . TO_BANNERS_PATH . '/assets/css/scss/customizer-banners-banner-colours";
 
 			/**
 			 * LSX Customizer - LSX Banners

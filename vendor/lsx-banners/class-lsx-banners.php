@@ -67,23 +67,23 @@ class LSX_Banners {
 		$this->set_vars();
 
 		if ( ! class_exists( 'LSX_Taxonomy_Admin' ) ) {
-			require_once( LSX_BANNERS_PATH . 'class-lsx-taxonomy-admin.php' );
+			require_once( TO_BANNERS_PATH . 'class-lsx-taxonomy-admin.php' );
 		}
 
 		if ( ! class_exists( 'LSX_Placeholders' ) ) {
-			require_once( LSX_BANNERS_PATH . 'class-lsx-placeholders.php' );
+			require_once( TO_BANNERS_PATH . 'class-lsx-placeholders.php' );
 			add_action( 'init', array( $this, 'init_placeholders' ), 100 );
 		}
-		require_once( LSX_BANNERS_PATH . 'class-lsx-banners-admin.php' );
+		require_once( TO_BANNERS_PATH . 'class-lsx-banners-admin.php' );
 		if ( class_exists( 'LSX_Banners_Admin' ) ) {
 			$this->admin = new LSX_Banners_Admin();
 		}
-		require_once( LSX_BANNERS_PATH . 'class-lsx-banners-frontend.php' );
+		require_once( TO_BANNERS_PATH . 'class-lsx-banners-frontend.php' );
 		if ( class_exists( 'LSX_Banners_Frontend' ) ) {
 			$this->frontend = new LSX_Banners_Frontend();
 		}
 
-		require_once( LSX_BANNERS_PATH . 'template-tags.php' );
+		require_once( TO_BANNERS_PATH . 'template-tags.php' );
 	}
 
 	/**
