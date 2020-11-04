@@ -39,13 +39,13 @@ Check out [our free extensions](https://www.lsdev.biz/lsx/extensions/tour-operat
 
 Take a look at all our [Frequently Asked Questions](https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/faqs/), we are sure you'll find what you're looking for.
 
-If you are experiencing issues with the Tour Operator Plugin, please log any bug issues you are having on the [Tour Operator Github Issues](https://github.com/lightspeeddevelopment/tour-operator/issues) page.
+If you are experiencing issues with the LSX Tour Operator Plugin, please log any bug issues you are having on the [LSX Tour Operator Github Issues](https://github.com/lightspeeddevelopment/tour-operator/issues) page.
 
 You can also send an email to our Support Team at [support@lsdev.biz](mailto:support@lsdev.biz) if you have a request for the [LightSpeed team](https://www.lsdev.biz/team/).
 
 ## Contributing to the Plugin
 
-If you're a developer who's spotted a bug issue and have a fix, or simply have functionality you think would extend our plugin, we are always happy to accept your contribution! Visit the [Tour Operator Plugin on Github](https://github.com/lightspeeddevelopment/tour-operator) and submit a Pull Request with your updates.
+If you're a developer who's spotted a bug issue and have a fix, or simply have functionality you think would extend our plugin, we are always happy to accept your contribution! Visit the [LSX Tour Operator Plugin on Github](https://github.com/lightspeeddevelopment/tour-operator) and submit a Pull Request with your updates.
 
 
 

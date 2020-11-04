@@ -24,7 +24,7 @@ msgid "g:ia"
 msgstr ""
 
 #: includes/customizer.php:17, includes/pages/config-tour-operator.php:14, includes/partials/help.php:83
-msgid "Tour Operator"
+msgid "LSX Tour Operator"
 msgstr ""
 
 #: includes/functions.php:292, includes/layout.php:167, templates/content-widget-accommodation.php:60, includes/metaboxes/config-accommodation.php:125, includes/template-tags/accommodation.php:317
@@ -200,7 +200,7 @@ msgid "Summary"
 msgstr ""
 
 #: includes/metaboxes/config-accommodation.php:13, includes/metaboxes/config-destination.php:13, includes/metaboxes/config-tour.php:13
-msgid "Tour Operator Plugin"
+msgid "LSX Tour Operator Plugin"
 msgstr ""
 
 #: includes/metaboxes/config-accommodation.php:20, includes/metaboxes/config-destination.php:20, includes/metaboxes/config-tour.php:20
@@ -628,7 +628,7 @@ msgid "Help"
 msgstr ""
 
 #: includes/pages/config-settings.php:16, includes/classes/legacy/class-settings.php:176
-msgid "Tour Operator Settings"
+msgid "LSX Tour Operator Settings"
 msgstr ""
 
 #: includes/pages/config-settings.php:17, includes/partials/api.php:11, includes/classes/legacy/class-admin.php:236, includes/classes/legacy/class-settings.php:78, includes/classes/legacy/class-settings.php:78, includes/classes/legacy/class-settings.php:177
@@ -656,15 +656,15 @@ msgid "Single"
 msgstr ""
 
 #: includes/partials/add-ons.php:20, includes/partials/add-ons.php:26, includes/partials/add-ons.php:27
-msgid "Tour Operator Add-ons"
+msgid "LSX Tour Operator Add-ons"
 msgstr ""
 
 #: includes/partials/add-ons.php:31
-msgid "Enhance Tour Operator"
+msgid "Enhance LSX Tour Operator"
 msgstr ""
 
 #: includes/partials/add-ons.php:32
-msgid "Extend the functionality of the Tour Operator plugin with one of our many extensions!"
+msgid "Extend the functionality of the LSX Tour Operator plugin with one of our many extensions!"
 msgstr ""
 
 #: includes/partials/add-ons.php:36, includes/partials/help.php:132
@@ -672,11 +672,11 @@ msgid "View all extensions"
 msgstr ""
 
 #: includes/partials/add-ons.php:48
-msgid "Tour Operator Essentials Bundle"
+msgid "LSX Tour Operator Essentials Bundle"
 msgstr ""
 
 #: includes/partials/add-ons.php:49
-msgid "The Tour Operator Essentials Bundle comes with a select few extensions for LSX theme and the Tour Operator plug in, allowing you to expand the look, feel and functionality of your website."
+msgid "The LSX Tour Operator Essentials Bundle comes with a select few extensions for LSX theme and the LSX Tour Operator plug in, allowing you to expand the look, feel and functionality of your website."
 msgstr ""
 
 #: includes/partials/add-ons.php:54, includes/partials/add-ons.php:69
@@ -684,11 +684,11 @@ msgid "Get the bundle"
 msgstr ""
 
 #: includes/partials/add-ons.php:64
-msgid "Tour Operator Complete Bundle"
+msgid "LSX Tour Operator Complete Bundle"
 msgstr ""
 
 #: includes/partials/add-ons.php:65
-msgid "The Complete bundle gives you complete control of your LSX-powered Tour Operator website. Expand LSX with the Sharing, Banners, Currencies, Customizer, Mega Menus and Blog Customizer extensions. Expand the Tour Operator plugin with the Reviews, Team, Videos, Specials, Maps and Search extensions."
+msgid "The Complete bundle gives you complete control of your LSX-powered LSX Tour Operator website. Expand LSX with the Sharing, Banners, Currencies, Customizer, Mega Menus and Blog Customizer extensions. Expand the LSX Tour Operator plugin with the Reviews, Team, Videos, Specials, Maps and Search extensions."
 msgstr ""
 
 #: includes/partials/add-ons.php:81, includes/partials/display.php:42, includes/partials/help.php:118
@@ -724,15 +724,15 @@ msgid "Team"
 msgstr ""
 
 #: includes/partials/add-ons.php:129
-msgid "Real peoples' faces go a long way to building trust with your valued clients. The Tour Operator: Team extension allows your company's staff to be added as Team Members with their own profile which can be associated with specific destinations and tours."
+msgid "Real peoples' faces go a long way to building trust with your valued clients. The LSX Tour Operator: Team extension allows your company's staff to be added as Team Members with their own profile which can be associated with specific destinations and tours."
 msgstr ""
 
 #: includes/partials/add-ons.php:144
-msgid "With the Videos extension installed you’re able to display videos on all of your Tour Operator related post types. Whether you want to show a walk-through video of an accommodation or a highlights reel of a tour or destination, the videos extension takes care of all your video needs."
+msgid "With the Videos extension installed you’re able to display videos on all of your LSX Tour Operator related post types. Whether you want to show a walk-through video of an accommodation or a highlights reel of a tour or destination, the videos extension takes care of all your video needs."
 msgstr ""
 
 #: includes/partials/add-ons.php:159
-msgid "The Search extension for the Tour Operators plugin adds robust search functionality to your WordPress Tour Operator site. It requires that you also have the FacetWP plugin installed, as that allows for much of the filtering functionality that the plugin provides."
+msgid "The Search extension for the Tour Operators plugin adds robust search functionality to your WordPress LSX Tour Operator site. It requires that you also have the FacetWP plugin installed, as that allows for much of the filtering functionality that the plugin provides."
 msgstr ""
 
 #: includes/partials/add-ons.php:175, includes/partials/help.php:127
@@ -788,11 +788,11 @@ msgid "Currency"
 msgstr ""
 
 #: includes/partials/help.php:34
-msgid "LightSpeed’s Tour Operator Plugin"
+msgid "LightSpeed’s LSX Tour Operator Plugin"
 msgstr ""
 
 #: includes/partials/help.php:35
-msgid "Thank you for using the Tour Operator plugin. All of us here at LightSpeed appreciate your ongoing support and we can't wait to see what people create with the plugin. We're committed to ensuring you have all the help you need to make the most of the plugin."
+msgid "Thank you for using the LSX Tour Operator plugin. All of us here at LightSpeed appreciate your ongoing support and we can't wait to see what people create with the plugin. We're committed to ensuring you have all the help you need to make the most of the plugin."
 msgstr ""
 
 #: includes/partials/help.php:44
@@ -900,7 +900,7 @@ msgid "Search:"
 msgstr ""
 
 #: includes/partials/help.php:69
-msgid "Learn how to make the best use of the Search extension, which depends on the Facet WP extension and allows you to provide filterable search fields on your Tour Operator website."
+msgid "Learn how to make the best use of the Search extension, which depends on the Facet WP extension and allows you to provide filterable search fields on your LSX Tour Operator website."
 msgstr ""
 
 #: includes/partials/help.php:70
@@ -916,7 +916,7 @@ msgid "Videos:"
 msgstr ""
 
 #: includes/partials/help.php:71
-msgid "With the Videos extension installed you’re able to display videos on all of your Tour Operator related post types."
+msgid "With the Videos extension installed you’re able to display videos on all of your LSX Tour Operator related post types."
 msgstr ""
 
 #: includes/partials/help.php:72
@@ -1016,7 +1016,7 @@ msgid "Edit this on the page you have set as the \"blog\""
 msgstr ""
 
 #: includes/partials/welcome.php:12
-msgid "Welcome to the Tour Operator Plugin"
+msgid "Welcome to the LSX Tour Operator Plugin"
 msgstr ""
 
 #: includes/partials/welcome.php:13
@@ -1036,7 +1036,7 @@ msgid "Release notes"
 msgstr ""
 
 #: includes/partials/welcome.php:35
-msgid "Get the latest on updates to the Tour Operator plugin"
+msgid "Get the latest on updates to the LSX Tour Operator plugin"
 msgstr ""
 
 #: includes/partials/welcome.php:43
@@ -1056,11 +1056,11 @@ msgid "Check out our blog posts geared towards helping Tour Operators succeed on
 msgstr ""
 
 #: includes/partials/welcome.php:60
-msgid "Help us keep the Tour Operator core FREE"
+msgid "Help us keep the LSX Tour Operator core FREE"
 msgstr ""
 
 #: includes/partials/welcome.php:61
-msgid "5-star ratings help us to bring the Tour Operator plugin to more users. The more users we have the more we get requests to add features to make the plugin even better for you. We couldn’t do it without your support."
+msgid "5-star ratings help us to bring the LSX Tour Operator plugin to more users. The more users we have the more we get requests to add features to make the plugin even better for you. We couldn’t do it without your support."
 msgstr ""
 
 #: includes/partials/welcome.php:64
@@ -1830,11 +1830,11 @@ msgid "Slide Interval:"
 msgstr ""
 
 #: includes/classes/legacy/class-tour-operator.php:867, includes/classes/legacy/class-tour-operator.php:880
-msgid "Tour Operator Plugin requires PHP 5.6 or higher."
+msgid "LSX Tour Operator Plugin requires PHP 5.6 or higher."
 msgstr ""
 
 #: includes/classes/legacy/class-tour-operator.php:928
-msgid "The Tour Operator Plugin requires the free LSX Theme be installed and active. Please download LSX Theme from %1$sWordPress.org%2$s to get started with your Tour Operator Plugin."
+msgid "The LSX Tour Operator Plugin requires the free LSX Theme be installed and active. Please download LSX Theme from %1$sWordPress.org%2$s to get started with your LSX Tour Operator Plugin."
 msgstr ""
 
 #: includes/classes/legacy/class-tour-operator.php:934

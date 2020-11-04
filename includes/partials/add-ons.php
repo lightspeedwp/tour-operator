@@ -17,19 +17,19 @@
 <div class="wrap about-wrap">
 	<div class="row">
 		<div class="col-md-12">
-			<h1 class="small" style="margin-bottom: 13px;"><?php esc_html_e( 'Tour Operator Add-ons', 'tour-operator' ); ?></h1>
+			<h1 class="small" style="margin-bottom: 13px;"><?php esc_html_e( 'LSX Tour Operator Add-ons', 'tour-operator' ); ?></h1>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-md-12">
-			<a href="<?php echo wp_kses_post( $tour_operator_link ); ?>" target="_blank" title="<?php esc_html_e( 'Tour Operator Add-ons', 'tour-operator' ); ?>">
-				<img src="<?php echo esc_url( LSX_TO_URL . 'assets/img/tour-operators-banner.png' ); ?>" alt="<?php esc_html_e( 'Tour Operator Add-ons', 'tour-operator' ); ?>">
+			<a href="<?php echo wp_kses_post( $tour_operator_link ); ?>" target="_blank" title="<?php esc_html_e( 'LSX Tour Operator Add-ons', 'tour-operator' ); ?>">
+				<img src="<?php echo esc_url( LSX_TO_URL . 'assets/img/tour-operators-banner.png' ); ?>" alt="<?php esc_html_e( 'LSX Tour Operator Add-ons', 'tour-operator' ); ?>">
 			</a>
 
 			<div class="box box-top-image enhance">
-				<h2><?php esc_html_e( 'Enhance Tour Operator', 'tour-operator' ); ?></h2>
-				<p><?php esc_html_e( 'Extend the functionality of the Tour Operator plugin with one of our many extensions!', 'tour-operator' ); ?></p>
+				<h2><?php esc_html_e( 'Enhance LSX Tour Operator', 'tour-operator' ); ?></h2>
+				<p><?php esc_html_e( 'Extend the functionality of the LSX Tour Operator plugin with one of our many extensions!', 'tour-operator' ); ?></p>
 
 				<!--<div class="more-button">
 					<a href="<?php echo wp_kses_post( $extensions_link ); ?>" target="_blank" class="button button-primary">
@@ -77,7 +77,7 @@
 
 			<div class="box box-top-image team">
 				<h3><?php esc_html_e( 'Team', 'tour-operator' ); ?></h3>
-				<p><?php esc_html_e( 'Real peoples\' faces go a long way to building trust with your valued clients. The Tour Operator: Team extension allows your company\'s staff to be added as Team Members with their own profile which can be associated with specific destinations and tours.', 'tour-operator' ); ?></p>
+				<p><?php esc_html_e( 'Real peoples\' faces go a long way to building trust with your valued clients. The LSX Tour Operator: Team extension allows your company\'s staff to be added as Team Members with their own profile which can be associated with specific destinations and tours.', 'tour-operator' ); ?></p>
 				<br>
 				<div class="more-button">
 					<a href="<?php echo wp_kses_post( $team_link ); ?>" target="_blank" class="button button-primary">
@@ -95,7 +95,7 @@
 
 			<div class="box box-top-image search">
 				<h3><?php esc_html_e( 'Search', 'tour-operator' ); ?></h3>
-				<p><?php esc_html_e( 'The Search extension for the Tour Operators plugin adds robust search functionality to your WordPress Tour Operator site. It requires that you also have the FacetWP plugin installed, as that allows for much of the filtering functionality that the plugin provides.', 'tour-operator' ); ?></p>
+				<p><?php esc_html_e( 'The Search extension for the Tour Operators plugin adds robust search functionality to your WordPress LSX Tour Operator site. It requires that you also have the FacetWP plugin installed, as that allows for much of the filtering functionality that the plugin provides.', 'tour-operator' ); ?></p>
 				<br>
 				<br>
 				<div class="more-button">

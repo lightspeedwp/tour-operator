@@ -2,7 +2,7 @@
 /**
  * Helper functions for the Schema class.
  *
- * @package Tour Operator
+ * @package LSX Tour Operator
  */
 namespace lsx\legacy;
 

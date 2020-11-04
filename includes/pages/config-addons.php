@@ -1,6 +1,6 @@
 <?php
 /**
- * Tour Operator - add-ons page config
+ * LSX Tour Operator - add-ons page config
  *
  * @package   tour_operator
  * @author    LightSpeed

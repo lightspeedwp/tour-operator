@@ -1,6 +1,6 @@
 {
     "name": "lightspeeddevelopment/tour-operator",
-    "description": "The Tour Operators Plugin provides 3 post types (Accommodations, Destinations and Tours) that are the core of any Tour Operator. Use them to build day-by-day itineraries for tours.",
+    "description": "The LSX Tour Operators Plugin provides 3 post types (Accommodations, Destinations and Tours) that are the core of any LSX Tour Operator. Use them to build day-by-day itineraries for tours.",
     "type": "wordpress-plugin",
     "require": {
         "php": ">=7.2",

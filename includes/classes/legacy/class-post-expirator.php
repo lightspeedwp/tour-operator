@@ -1,6 +1,6 @@
 <?php
 /**
- * Tour Operator - Post Expirator Class
+ * LSX Tour Operator - Post Expirator Class
  *
  * @package   tour_operator
  * @author    LightSpeed

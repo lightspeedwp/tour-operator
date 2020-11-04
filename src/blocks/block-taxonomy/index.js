@@ -108,7 +108,7 @@ const blockAttributes = {
 
 registerBlockType( 'tour-operator/block-taxonomy', {
 	// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
-	title: __( 'Tour Operator Taxonomies' ), // Block title.
+	title: __( 'LSX Tour Operator Taxonomies' ), // Block title.
 	icon: 'tag', // Block icon from Dashicons → https://developer.wordpress.org/resource/dashicons/.
 	category: 'common', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
 	keywords: [

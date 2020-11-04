@@ -1,6 +1,6 @@
 <?php
 /**
- * Tour Operator - Admin Main Class
+ * LSX Tour Operator - Admin Main Class
  *
  * @package   lsx
  * @author    LightSpeed
@@ -34,7 +34,7 @@ class Admin {
 	public $pages;
 
 	/**
-	 * Tour Operator Admin constructor.
+	 * LSX Tour Operator Admin constructor.
 	 */
 	public function __construct() {
 		// Setup Admin.

@@ -1,6 +1,6 @@
 <?php
 /**
- * Tour Operator - Dashboad holder page config
+ * LSX Tour Operator - Dashboad holder page config
  *
  * @package   tour_operator
  * @author    LightSpeed
@@ -11,7 +11,7 @@
 
 $page = array(
 	'page_title'    => esc_html__( 'Dashboard', 'tour-operator' ),
-	'menu_title'    => esc_html__( 'Tour Operator', 'tour-operator' ),
+	'menu_title'    => esc_html__( 'LSX Tour Operator', 'tour-operator' ),
 	'slug'          => 'tour-operator',
 	'menu_position' => 6,
 	'capability'    => 'edit_posts',

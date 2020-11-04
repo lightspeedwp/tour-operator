@@ -1,6 +1,6 @@
 <?php
 /**
- * Tour Operator Helper Functions
+ * LSX Tour Operator Helper Functions
  *
  * @package   tour_operator
  * @author    LightSpeed

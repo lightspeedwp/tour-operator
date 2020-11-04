@@ -1,6 +1,6 @@
 <?php
 /**
- * Tour Operator - Accommodation Post Type config
+ * LSX Tour Operator - Accommodation Post Type config
  *
  * @package   tour_operator
  * @author    LightSpeed
@@ -40,6 +40,7 @@ $post_type = array(
 	'capability_type'     => 'post',
 	'has_archive'         => 'accommodation',
 	'hierarchical'        => false,
+	'show_in_rest'        => true,
 	'supports'            => array(
 		'title',
 		'slug',
