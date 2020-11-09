@@ -73,7 +73,7 @@ class Admin extends Tour_Operator {
 				add_action( 'edit_term', array( $this, 'save_meta' ), 10, 2 );
 
 				foreach ( array_keys( $this->taxonomies ) as $taxonomy ) {
-					add_action( "{$taxonomy}_edit_form_fields", array( $this, 'add_thumbnail_form_field' ), 3, 1 );
+					add_action( "{$taxonomy}_edit_form_fields", array( $this, 'add_thumbnail_form_field' ), 1, 1 );
 					add_action( "{$taxonomy}_edit_form_fields", array( $this, 'add_tagline_form_field' ), 3, 1 );
 				}
 			}
