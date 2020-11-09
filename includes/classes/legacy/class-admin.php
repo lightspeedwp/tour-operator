@@ -96,9 +96,11 @@ class Admin extends Tour_Operator {
 
 		// TO Pages: Add-ons, Help, Settings and Welcome
 		// WP Terms: create/edit term
+		var_dump($hook);
 		$allowed_pages = array(
-			'lsx-tour-operator_page_to-addons',
+			'tour-operator_page_to-help',
 			'lsx-tour-operator_page_lsx-to-settings',
+			'tour-operator_page_lsx-to-settings',
 			'term.php',
 		);
 		if ( ! in_array( $hook, $allowed_pages ) ) {
@@ -137,6 +139,7 @@ class Admin extends Tour_Operator {
 	 */
 	function help_page() {
 		include( LSX_TO_PATH . 'includes/partials/help.php' );
+		include( LSX_TO_PATH . 'includes/partials/add-ons.php' );
 	}
 
 	/**
