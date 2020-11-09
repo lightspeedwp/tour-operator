@@ -96,10 +96,6 @@ class Admin extends Tour_Operator {
 
 		// TO Pages: Add-ons, Help, Settings and Welcome
 		// WP Terms: create/edit term
-		print_r('<pre>');
-		print_r($screen);
-		print_r('</pre>');
-
 		$allowed_pages = array(
 			'lsx-tour-operator_page_to-addons',
 			'lsx-tour-operator_page_lsx-to-settings',
