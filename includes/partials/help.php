@@ -1,6 +1,6 @@
 <?php
 	$lsx_to_documentation = esc_url( 'https://tour-operator.lsdev.biz/documentation/' );
-	$extensions_link      = esc_url( 'https://tour-operator.lsdev.biz/features/' );
+	$extensions_link      = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/' );
 	$version              = esc_html( LSX_TO_VER );
 
 	// Product Urls.
