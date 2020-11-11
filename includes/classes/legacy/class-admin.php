@@ -73,7 +73,7 @@ class Admin extends Tour_Operator {
 				add_action( 'edit_term', array( $this, 'save_meta' ), 10, 2 );
 
 				foreach ( array_keys( $this->taxonomies ) as $taxonomy ) {
-					add_action( "{$taxonomy}_edit_form_fields", array( $this, 'add_thumbnail_form_field' ), 3, 1 );
+					add_action( "{$taxonomy}_edit_form_fields", array( $this, 'add_thumbnail_form_field' ), 1, 1 );
 					add_action( "{$taxonomy}_edit_form_fields", array( $this, 'add_tagline_form_field' ), 3, 1 );
 				}
 			}
@@ -96,14 +96,20 @@ class Admin extends Tour_Operator {
 
 		// TO Pages: Add-ons, Help, Settings and Welcome
 		// WP Terms: create/edit term
-		if ( 0 !== strpos( $hook, 'tour-operator_page' ) && 'term.php' !== $hook ) {
+		$allowed_pages = array(
+			'tour-operator_page_to-help',
+			'lsx-tour-operator_page_lsx-to-settings',
+			'tour-operator_page_lsx-to-settings',
+			'term.php',
+		);
+		if ( ! in_array( $hook, $allowed_pages ) ) {
 			return;
 		}
 
 		wp_enqueue_script( 'media-upload' );
 		wp_enqueue_script( 'thickbox' );
 		wp_enqueue_style( 'thickbox' );
-		wp_enqueue_script( 'tour-operator-admin-script', LSX_TO_URL . 'assets/js/admin.min.js', array( 'jquery' ), LSX_TO_VER, true );
+		wp_enqueue_script( 'tour-operator-admin-script', LSX_TO_URL . 'assets/js/src/admin.js', array( 'jquery' ), LSX_TO_VER, true );
 		wp_enqueue_style( 'tour-operator-admin-style', LSX_TO_URL . 'assets/css/admin.css', array(), LSX_TO_VER );
 		wp_style_add_data( 'tour-operator-admin-style', 'rtl', 'replace' );
 
@@ -132,6 +138,7 @@ class Admin extends Tour_Operator {
 	 */
 	function help_page() {
 		include( LSX_TO_PATH . 'includes/partials/help.php' );
+		include( LSX_TO_PATH . 'includes/partials/add-ons.php' );
 	}
 
 	/**
@@ -245,8 +252,8 @@ class Admin extends Tour_Operator {
 	public function add_action_links( $links ) {
 		$mylinks = array(
 			'<a href="' . admin_url( 'admin.php?page=lsx-to-settings' ) . '">' . esc_html__( 'Settings', 'tour-operator' ) . '</a>',
-			'<a href="https://www.lsdev.biz/documentation/tour-operator-plugin/" target="_blank">' . esc_html__( 'Documentation', 'tour-operator' ) . '</a>',
-			'<a href="https://www.lsdev.biz/contact-us/" target="_blank">' . esc_html__( 'Support', 'tour-operator' ) . '</a>',
+			'<a href="https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/" target="_blank">' . esc_html__( 'Documentation', 'tour-operator' ) . '</a>',
+			'<a href="https://www.lsdev.biz/lsx/support/" target="_blank">' . esc_html__( 'Support', 'tour-operator' ) . '</a>',
 		);
 
 		return array_merge( $links, $mylinks );

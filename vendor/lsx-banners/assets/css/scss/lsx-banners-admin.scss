@@ -1,0 +1,134 @@
+/*
+ * lsx-banners-admin.css
+ */
+
+#banners {
+	.CMB_Group_Field {
+		display: block;
+	}
+}
+
+.CMB_Group_Field {
+	&.active {
+		display: block;
+	}
+}
+
+.CMB_Color_Picker {
+	.field-item {
+		float: none;
+	}
+}
+
+#lsx-tab-headings {
+	display: block;
+	float: left;
+	width: 10%;
+}
+
+#details .cmb_metabox {
+	display: block;
+	float: right;
+	width: 85%;
+
+	.cmb_metabox {
+		float:none;
+		width: 98%;
+	}
+}
+
+#lsx-tab-headings {
+	.tab-heading {
+		display: block;
+		text-transform:capitalize;
+		padding: 10px 15px;
+		width: 100%;
+	}
+}
+
+/* The Tab Styling */
+
+body.lsx-tour-operator_page_lsx-to-settings {
+	.uix-field-wrapper {
+		.ui-tab-nav {
+			li {
+				display: inline-block;
+
+				&:after {
+					content: "|";
+					display: inline-block;
+					padding: 0 3px 0 8px;
+				}
+
+				&:last-child {
+					&:after {
+						content: "";
+						padding-left: 0;
+					}
+				}
+
+				a {
+					text-decoration: none;
+
+					&.active {
+						color: black;
+						font-weight: bold;
+					}
+
+					&:focus {
+						box-shadow: none;
+					}
+				}
+			}
+		}
+
+		.ui-tab {
+			display:none;
+
+			&.active {
+				display: block;
+			}
+		}
+	}
+}
+
+
+.cmb-file-wrap, .cmb-file-wrap-placeholder {
+	min-width:150px;
+	min-height:150px;
+}
+
+/* Banner Meta box Tabs */
+
+// .meta-box-sortables {
+// 	#banners {
+// 		.inside {
+// 			.tab-toggle {
+// 				display:inline-block;
+
+// 				&.active {
+// 					border: 1px solid #ddd;
+// 					border-bottom-color: #fdfdfd;
+// 					background-color: #fdfdfd;
+
+// 					a {
+// 						color: #32373c;
+// 					}
+// 				}
+
+// 				a {
+// 					text-decoration: none;
+// 					padding: 5px;
+// 				}
+// 			}
+
+// 			.cmb_metabox {
+// 				padding: 0 .9em;
+// 				border-bottom: 1px solid #ddd;
+// 				border-right: 1px solid #ddd;
+// 				border-left: 1px solid #ddd;
+// 				background-color: #fdfdfd;
+// 			}
+// 		}
+// 	}
+// }
