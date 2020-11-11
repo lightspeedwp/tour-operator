@@ -1,19 +1,19 @@
 <?php
 	$lsx_to_documentation = esc_url( 'https://tour-operator.lsdev.biz/documentation/' );
-	$extensions_link      = esc_url( 'https://tour-operator.lsdev.biz/features/' );
+	$extensions_link      = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/' );
 	$version              = esc_html( LSX_TO_VER );
 
-	//Product Urls
-	$tour_operator_link = esc_url( 'https://wordpress.org/plugins/tour-operator/' );
-	$team_link          = esc_url( 'https://wordpress.org/plugins/tour-operator-team/' );
-	$activities_link    = esc_url( 'https://wordpress.org/plugins/tour-operator-activities/' );
-	$reviews_link       = esc_url( 'https://wordpress.org/plugins/tour-operator-reviews/' );
-	$specials_link      = esc_url( 'https://wordpress.org/plugins/tour-operator-special-offers/' );
-	$search_link        = esc_url( 'https://wordpress.org/plugins/tour-operator-search/' );
-	$vehicles_link      = esc_url( 'https://wordpress.org/plugins/tour-operator-vehicles/' );
-	$wetu_importer_link = esc_url( 'https://wordpress.org/plugins/lsx-importer-for-wetu/' );
+	// Product Urls.
+	$tour_operator_link = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/' );
+	$team_link          = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/team/' );
+	$activities_link    = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/activities/' );
+	$reviews_link       = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/reviews/' );
+	$specials_link      = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/specials/' );
+	$search_link        = esc_url( 'https://www.lsdev.biz/lsx/extensions/search/' );
+	$vehicles_link      = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/vehicles/' );
+	$wetu_importer_link = esc_url( 'https://www.lsdev.biz/lsx/extensions/wetu-importer/' );
 
-	//Documentation
+	// Documentation.
 	$team_link_doc          = esc_url( 'https://tour-operator.lsdev.biz/documentation/extension/team/' );
 	$activities_link_doc    = esc_url( 'https://tour-operator.lsdev.biz/documentation/extension/activities/' );
 	$reviews_link_doc       = esc_url( 'https://tour-operator.lsdev.biz/documentation/extension/reviews/' );
