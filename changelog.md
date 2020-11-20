@@ -12,6 +12,7 @@
 
 - Fixing the map placeholder, so it can assign placeholders for each type of posts.
 - Fixed LSX Search styling issues
+- Fixed Map placement issues.
 
 ### Changed
 
