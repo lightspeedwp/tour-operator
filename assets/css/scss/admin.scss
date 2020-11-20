@@ -197,6 +197,36 @@ body.lsx-tour-operator_page_to-addons {
 					border-top: 1px solid #eee;
 					clear: both;
 					text-align: right;
+					clear: both;
+
+					a {
+						&:first-child {
+							float:left;
+						}
+						&:last-child {
+							float:right;
+						}
+						&.button-secondary {
+							background-color: #F7AE00;
+							border-color: #C4771B;
+							color: #fff;
+							&:hover {
+								background-color: #C4771B;
+							}
+						}
+					}
+				}
+
+				&.wetu {
+					.more-button {
+						a {
+							float: none;
+
+							&:last-child {
+								margin-left: 20px;
+							}
+						}
+					}
 				}
 
 				.price {

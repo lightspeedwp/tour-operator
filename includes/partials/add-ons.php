@@ -37,6 +37,7 @@
 					<a href="<?php echo wp_kses_post( $specials_link_doc ); ?>" target="_blank" class="button button-secondary">
 						<?php esc_html_e( 'Documentation', 'tour-operator' ); ?>
 					</a>
+					<br clear="both" />
 				</div>
 			</div>
 		</div>
@@ -55,6 +56,7 @@
 					<a href="<?php echo wp_kses_post( $reviews_link_doc ); ?>" target="_blank" class="button button-secondary">
 						<?php esc_html_e( 'Documentation', 'tour-operator' ); ?>
 					</a>
+					<br clear="both" />
 				</div>
 			</div>
 		</div>
@@ -73,6 +75,7 @@
 					<a href="<?php echo wp_kses_post( $teams_link_doc ); ?>" target="_blank" class="button button-secondary">
 						<?php esc_html_e( 'Documentation', 'tour-operator' ); ?>
 					</a>
+					<br clear="both" />
 				</div>
 			</div>
 		</div>
@@ -95,6 +98,7 @@
 					<a href="<?php echo wp_kses_post( $search_link_doc ); ?>" target="_blank" class="button button-secondary">
 						<?php esc_html_e( 'Documentation', 'tour-operator' ); ?>
 					</a>
+					<br clear="both" />
 				</div>
 			</div>
 		</div>
@@ -113,6 +117,7 @@
 					<a href="<?php echo wp_kses_post( $vehicles_link_doc ); ?>" target="_blank" class="button button-secondary">
 						<?php esc_html_e( 'Documentation', 'tour-operator' ); ?>
 					</a>
+					<br clear="both" />
 				</div>
 			</div>
 		</div>
@@ -131,6 +136,7 @@
 					<a href="<?php echo wp_kses_post( $activities_link_doc ); ?>" target="_blank" class="button button-secondary">
 						<?php esc_html_e( 'Documentation', 'tour-operator' ); ?>
 					</a>
+					<br clear="both" />
 				</div>
 			</div>
 		</div>
@@ -151,6 +157,7 @@
 					<a href="<?php echo wp_kses_post( $wetu_importer_link_doc ); ?>" target="_blank" class="button button-secondary">
 						<?php esc_html_e( 'Documentation', 'tour-operator' ); ?>
 					</a>
+					<br clear="both" />
 				</div>
 			</div>
 		</div>

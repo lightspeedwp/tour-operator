@@ -5,6 +5,7 @@
 ### Added
 
 - Added support for native Lazy-loading images on WordPress 5.5 version.
+- Added banner functionality to the core plugin, to deprecate the usage of LSX Banners
 
 ### Fixed
 

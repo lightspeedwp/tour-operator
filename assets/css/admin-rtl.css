@@ -351,7 +351,19 @@ body.tour-operator_page_to-help #wpbody-content .wrap .box p, body.tour-operator
 
 body.tour-operator_page_to-help #wpbody-content .wrap .box p:last-child, body.tour-operator_page_to-help #wpbody-content .wrap .box ul:last-child, body.tour-operator_page_to-help #wpbody-content .wrap .box li:last-child, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box p:last-child, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box ul:last-child, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box li:last-child { margin-bottom: 0; }
 
-body.tour-operator_page_to-help #wpbody-content .wrap .box .more-button, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box .more-button { padding: 1em 0 0 0; border-top: 1px solid #eee; clear: both; text-align: left; }
+body.tour-operator_page_to-help #wpbody-content .wrap .box .more-button, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box .more-button { padding: 1em 0 0 0; border-top: 1px solid #eee; clear: both; text-align: left; clear: both; }
+
+body.tour-operator_page_to-help #wpbody-content .wrap .box .more-button a:first-child, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box .more-button a:first-child { float: right; }
+
+body.tour-operator_page_to-help #wpbody-content .wrap .box .more-button a:last-child, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box .more-button a:last-child { float: left; }
+
+body.tour-operator_page_to-help #wpbody-content .wrap .box .more-button a.button-secondary, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box .more-button a.button-secondary { background-color: #F7AE00; border-color: #C4771B; color: #fff; }
+
+body.tour-operator_page_to-help #wpbody-content .wrap .box .more-button a.button-secondary:hover, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box .more-button a.button-secondary:hover { background-color: #C4771B; }
+
+body.tour-operator_page_to-help #wpbody-content .wrap .box.wetu .more-button a, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.wetu .more-button a { float: none; }
+
+body.tour-operator_page_to-help #wpbody-content .wrap .box.wetu .more-button a:last-child, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.wetu .more-button a:last-child { margin-right: 20px; }
 
 body.tour-operator_page_to-help #wpbody-content .wrap .box .price, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box .price { color: #45B964; }
 

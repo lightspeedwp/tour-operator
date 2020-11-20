@@ -47,6 +47,7 @@
 							<a href="<?php echo wp_kses_post( $tour_operator_link ); ?>" target="_blank" class="button button-primary">
 								<?php esc_html_e( 'Visit plugin website', 'tour-operator' ); ?>
 							</a>
+							<br clear="both" />
 						</div>
 					</div>
 				</div>
