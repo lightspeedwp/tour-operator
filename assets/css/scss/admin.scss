@@ -208,10 +208,11 @@ body.lsx-tour-operator_page_to-addons {
 						}
 						&.button-secondary {
 							background-color: #F7AE00;
-							border-color: #C4771B;
+							border-color: #F7AE00;
 							color: #fff;
 							&:hover {
 								background-color: #C4771B;
+								border-color: #C4771B;
 							}
 						}
 					}
@@ -226,6 +227,24 @@ body.lsx-tour-operator_page_to-addons {
 								margin-left: 20px;
 							}
 						}
+					}
+				}
+
+				&.support {
+					.button-tertiary {
+						background-color: #6BA914;
+						border-color: #6BA914;
+						color: #fff;
+						&:hover {
+							background-color: #5d9410;
+						}
+					}
+				}
+
+				&.support,
+				&.info {
+					.more-button {
+						border-top: 0px solid #eee;
 					}
 				}
 
