@@ -23,6 +23,12 @@ if ( defined( 'WPINC' ) ) {
 		}
 	}
 
+	if ( ! function_exists( 'lsx_banners' ) ) {
+		if ( is_file( LSX_TO_PATH . 'vendor/lsx-banners/lsx-banners.php' ) ) {
+			require_once( LSX_TO_PATH . 'vendor/lsx-banners/lsx-banners.php' );
+		}
+	}
+
 	// Template Tags.
 	require_once( LSX_TO_PATH . 'includes/template-tags/general.php' );
 	require_once( LSX_TO_PATH . 'includes/template-tags/helpers.php' );

@@ -15,4 +15,20 @@
 /** Fields **/
 @import '../src/group.css';
 @import '../src/file.css';
-@import '../src/misc-fields.css'; 
+@import '../src/misc-fields.css';
+
+#wetu-settings #wetu_skip_banner,
+#wetu-settings #wetu_skip_featured {
+	display: flex;
+    flex-direction: row-reverse;
+}
+
+#wetu-settings #wetu_skip_banner .field-item,
+#wetu-settings #wetu_skip_featured .field-item {
+	width: 15%;
+}
+
+#wetu-settings #wetu_skip_banner .field-title label,
+#wetu-settings #wetu_skip_featured .field-title label {
+	margin-top: 1px;
+}

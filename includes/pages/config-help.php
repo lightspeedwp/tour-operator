@@ -19,6 +19,7 @@ $page = array(
 	'menu_position' => 91,
 	'callback'      => function () {
 		include( LSX_TO_PATH . 'includes/partials/help.php' );
+		include( LSX_TO_PATH . 'includes/partials/add-ons.php' );
 	},
 );
 

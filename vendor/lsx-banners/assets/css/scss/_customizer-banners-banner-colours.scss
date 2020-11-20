@@ -1,0 +1,35 @@
+@mixin customizer-banners-banner-colours ($color: #FFF) {
+	#lsx-banner {
+		.page-banner { color: $color; }
+
+		#page-banner-slider {
+			.slick-dots {
+				& > li {
+					& > button { border-color: $color; }
+
+					&.slick-active > button { background-color: $color; }
+				}
+			}
+
+			.slick-arrow {
+				border-color: $color;
+				color: $color;
+
+				&:hover {
+					border-color: $color;
+					color: $color;
+				}
+
+				&.slick-disabled {
+					border-color: $color;
+					color: $color;
+				}
+			}
+		}
+
+		.btn-scroll-to {
+			border-color: $color;
+			color: $color;
+		}
+	}
+}
