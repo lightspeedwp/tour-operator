@@ -185,7 +185,7 @@ body.lsx-tour-operator_page_to-addons {
 
 				p, ul, li {
 					font-size: 13px;
-					margin-bottom: 13px;
+					margin-bottom: 3px;
 
 					&:last-child {
 						margin-bottom: 0;
@@ -231,6 +231,16 @@ body.lsx-tour-operator_page_to-addons {
 				}
 
 				&.support {
+					display: flex;
+
+					.image {
+						margin-right: 25px;
+
+						img {
+							width: 100px;
+							margin-top: 15px;
+						}
+					}
 					.button-tertiary {
 						background-color: #6BA914;
 						border-color: #6BA914;
@@ -238,6 +248,16 @@ body.lsx-tour-operator_page_to-addons {
 						&:hover {
 							background-color: #5d9410;
 						}
+					}
+				}
+
+				&.info {
+					.more-button {
+						padding-top: 4px;
+					}
+
+					h2 {
+						margin-bottom: -3px;
 					}
 				}
 
@@ -256,18 +276,6 @@ body.lsx-tour-operator_page_to-addons {
 					padding: 0 !important;
 				}
 
-				&:before {
-					content: "\f324";
-					display: block;
-					position: absolute;
-					top: 30px;
-					right: 30px;
-					font-size: 1.618em;
-					font-family: 'Dashicons';
-					font-weight: 400;
-					-webkit-font-smoothing: antialiased;
-				}
-
 				&.box-top-image {
 					&:before {
 						display: none;
@@ -282,75 +290,6 @@ body.lsx-tour-operator_page_to-addons {
 					&:before {
 						color: #FFA107;
 					}
-				}
-
-				&.enhance:before {
-					content: "\f106";
-				}
-
-				&.maps:before {
-					content: "\f230";
-				}
-
-				&.specials:before,
-				&.rate:before {
-					content: "\f155";
-				}
-
-				&.reviews:before {
-					content: "\f130";
-				}
-
-				&.activities:before {
-					content: "\f481";
-				}
-
-				&.search:before {
-					content: "\f179";
-				}
-
-				&.galleries:before {
-					content: "\f161";
-				}
-
-				&.vehicles:before {
-					content: "\f311";
-				}
-
-				&.team:before {
-					content: "\f307";
-				}
-
-				&.videos:before {
-					content: "\f236";
-				}
-
-				&.wetu:before {
-					content: "\f316";
-				}
-
-				&.support:before {
-					content: "\f107";
-				}
-
-				&.documentation:before {
-					content: "\f123";
-				}
-
-				&.info:before {
-					content: "\f534";
-				}
-
-				&.premium:before {
-					content: "\f313";
-				}
-
-				&.news:before {
-					content: "\f319";
-				}
-
-				&.newsletter:before {
-					content: "\f465";
 				}
 			}
 

@@ -18,13 +18,18 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="box support">
-						<h2><?php esc_html_e( 'Getting Support', 'tour-operator' ); ?></h2>
-						<p><?php esc_html_e( 'Our website\'s', 'tour-operator' ); ?> <a href="<?php echo wp_kses_post( $lsx_to_documentation ); ?>" target="_blank"><?php esc_html_e( 'documentation', 'tour-operator' ); ?></a> <?php esc_html_e( 'page is a great place to start to learn how to configure and customize our plugin and its extensions.', 'tour-operator' ); ?></p>
-						<div class="more-button">
-							<a href="<?php echo wp_kses_post( $support_link ); ?>" target="_blank" class="button button-tertiary">
-								<?php esc_html_e( 'Get support today', 'tour-operator' ); ?>
-							</a>
-							<br clear="both" />
+						<div class="image">
+							<img width="200px" src="<?php echo esc_url( LSX_TO_URL . 'assets/img/support-cog.svg' ); ?>" />
+						</div>
+						<div class="content">
+							<h2><?php esc_html_e( 'Getting Support', 'tour-operator' ); ?></h2>
+							<p><?php esc_html_e( 'Our website\'s', 'tour-operator' ); ?> <a href="<?php echo wp_kses_post( $lsx_to_documentation ); ?>" target="_blank"><?php esc_html_e( 'documentation', 'tour-operator' ); ?></a> <?php esc_html_e( 'page is a great place to start to learn how to configure and customize our plugin and its extensions.', 'tour-operator' ); ?></p>
+							<div class="more-button">
+								<a href="<?php echo wp_kses_post( $support_link ); ?>" target="_blank" class="button button-tertiary">
+									<?php esc_html_e( 'Get support today', 'tour-operator' ); ?>
+								</a>
+								<br clear="both" />
+							</div>
 						</div>
 					</div>
 				</div>

@@ -347,7 +347,7 @@ body.tour-operator_page_to-help #wpbody-content .wrap .box.box-top-image, body.l
 
 body.tour-operator_page_to-help #wpbody-content .wrap .box h2, body.tour-operator_page_to-help #wpbody-content .wrap .box h3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box h2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box h3 { font-size: 17px; font-weight: 700; margin-right: 30px; margin-top: 0; text-align: left; }
 
-body.tour-operator_page_to-help #wpbody-content .wrap .box p, body.tour-operator_page_to-help #wpbody-content .wrap .box ul, body.tour-operator_page_to-help #wpbody-content .wrap .box li, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box p, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box ul, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box li { font-size: 13px; margin-bottom: 13px; }
+body.tour-operator_page_to-help #wpbody-content .wrap .box p, body.tour-operator_page_to-help #wpbody-content .wrap .box ul, body.tour-operator_page_to-help #wpbody-content .wrap .box li, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box p, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box ul, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box li { font-size: 13px; margin-bottom: 3px; }
 
 body.tour-operator_page_to-help #wpbody-content .wrap .box p:last-child, body.tour-operator_page_to-help #wpbody-content .wrap .box ul:last-child, body.tour-operator_page_to-help #wpbody-content .wrap .box li:last-child, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box p:last-child, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box ul:last-child, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box li:last-child { margin-bottom: 0; }
 
@@ -365,9 +365,19 @@ body.tour-operator_page_to-help #wpbody-content .wrap .box.wetu .more-button a, 
 
 body.tour-operator_page_to-help #wpbody-content .wrap .box.wetu .more-button a:last-child, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.wetu .more-button a:last-child { margin-left: 20px; }
 
+body.tour-operator_page_to-help #wpbody-content .wrap .box.support, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.support { display: -webkit-box; display: -ms-flexbox; display: flex; }
+
+body.tour-operator_page_to-help #wpbody-content .wrap .box.support .image, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.support .image { margin-right: 25px; }
+
+body.tour-operator_page_to-help #wpbody-content .wrap .box.support .image img, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.support .image img { width: 100px; margin-top: 15px; }
+
 body.tour-operator_page_to-help #wpbody-content .wrap .box.support .button-tertiary, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.support .button-tertiary { background-color: #6BA914; border-color: #6BA914; color: #fff; }
 
 body.tour-operator_page_to-help #wpbody-content .wrap .box.support .button-tertiary:hover, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.support .button-tertiary:hover { background-color: #5d9410; }
+
+body.tour-operator_page_to-help #wpbody-content .wrap .box.info .more-button, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.info .more-button { padding-top: 4px; }
+
+body.tour-operator_page_to-help #wpbody-content .wrap .box.info h2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.info h2 { margin-bottom: -3px; }
 
 body.tour-operator_page_to-help #wpbody-content .wrap .box.support .more-button, body.tour-operator_page_to-help #wpbody-content .wrap .box.info .more-button, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.support .more-button, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.info .more-button { border-top: 0px solid #eee; }
 
@@ -375,47 +385,11 @@ body.tour-operator_page_to-help #wpbody-content .wrap .box .price, body.lsx-tour
 
 body.tour-operator_page_to-help #wpbody-content .wrap .box form, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box form { padding: 0 !important; }
 
-body.tour-operator_page_to-help #wpbody-content .wrap .box:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box:before { content: "\f324"; display: block; position: absolute; top: 30px; right: 30px; font-size: 1.618em; font-family: 'Dashicons'; font-weight: 400; -webkit-font-smoothing: antialiased; }
-
 body.tour-operator_page_to-help #wpbody-content .wrap .box.box-top-image:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.box-top-image:before { display: none; }
 
 body.tour-operator_page_to-help #wpbody-content .wrap .box.featured, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.featured { border-width: 2px; border-color: #FFA107; -webkit-box-shadow: 0 1px 1px #FFA107; box-shadow: 0 1px 1px #FFA107; }
 
 body.tour-operator_page_to-help #wpbody-content .wrap .box.featured:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.featured:before { color: #FFA107; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.enhance:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.enhance:before { content: "\f106"; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.maps:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.maps:before { content: "\f230"; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.specials:before, body.tour-operator_page_to-help #wpbody-content .wrap .box.rate:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.specials:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.rate:before { content: "\f155"; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.reviews:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.reviews:before { content: "\f130"; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.activities:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.activities:before { content: "\f481"; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.search:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.search:before { content: "\f179"; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.galleries:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.galleries:before { content: "\f161"; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.vehicles:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.vehicles:before { content: "\f311"; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.team:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.team:before { content: "\f307"; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.videos:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.videos:before { content: "\f236"; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.wetu:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.wetu:before { content: "\f316"; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.support:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.support:before { content: "\f107"; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.documentation:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.documentation:before { content: "\f123"; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.info:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.info:before { content: "\f534"; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.premium:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.premium:before { content: "\f313"; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.news:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.news:before { content: "\f319"; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.newsletter:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.newsletter:before { content: "\f465"; }
 
 body.tour-operator_page_to-help #wpbody-content .wrap .box-clean, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box-clean { padding-top: 20px; }
 

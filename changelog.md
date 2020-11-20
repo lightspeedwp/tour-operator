@@ -17,6 +17,7 @@
 ### Changed
 
 - Changed the label "Tour Operator" to "LSX Tour Operator"
+- Merged the Dashboard Help and Add-ons page.
 
 ## [[1.4.1]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.1) - 2020-03-30
 
