@@ -14,23 +14,23 @@
 #lsx-tab-headings .tab-heading { display: block; text-transform: capitalize; padding: 10px 15px; width: 100%; }
 
 /* The Tab Styling */
-body.tour-operator_page_lsx-to-settings .spinner { background-color: #fff; border-radius: 10px; }
+body.tour-operator_page_lsx-to-settings .spinner, body.lsx-tour-operator_page_lsx-to-settings .spinner { background-color: #fff; border-radius: 10px; }
 
-body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li { display: inline-block; }
+body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li, body.lsx-tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li { display: inline-block; }
 
-body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li:after { content: "|"; display: inline-block; padding: 0 3px 0 8px; }
+body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li:after, body.lsx-tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li:after { content: "|"; display: inline-block; padding: 0 3px 0 8px; }
 
-body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li:last-child:after { content: ""; padding-left: 0; }
+body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li:last-child:after, body.lsx-tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li:last-child:after { content: ""; padding-left: 0; }
 
-body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li a { text-decoration: none; }
+body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li a, body.lsx-tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li a { text-decoration: none; }
 
-body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li a.active { color: black; font-weight: bold; }
+body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li a.active, body.lsx-tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li a.active { color: black; font-weight: bold; }
 
-body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li a:focus { -webkit-box-shadow: none; box-shadow: none; }
+body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li a:focus, body.lsx-tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li a:focus { -webkit-box-shadow: none; box-shadow: none; }
 
-body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab { display: none; }
+body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab, body.lsx-tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab { display: none; }
 
-body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab.active { display: block; }
+body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab.active, body.lsx-tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab.active { display: block; }
 
 body.tour-operator_page_to-help #wpbody-content .wrap *, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap * { -webkit-box-sizing: border-box; box-sizing: border-box; }
 
