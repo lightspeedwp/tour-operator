@@ -9,34 +9,18 @@
 	$search_link        = esc_url( 'https://www.lsdev.biz/lsx/extensions/search/' );
 	$vehicles_link      = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/vehicles/' );
 	$wetu_importer_link = esc_url( 'https://www.lsdev.biz/lsx/extensions/wetu-importer/' );
+
+	// Documentation.
+	$team_link_doc          = esc_url( 'https://tour-operator.lsdev.biz/documentation/extension/team/' );
+	$activities_link_doc    = esc_url( 'https://tour-operator.lsdev.biz/documentation/extension/activities/' );
+	$reviews_link_doc       = esc_url( 'https://tour-operator.lsdev.biz/documentation/extension/reviews/' );
+	$specials_link_doc      = esc_url( 'https://tour-operator.lsdev.biz/documentation/extension/specials/' );
+	$search_link_doc        = esc_url( 'https://tour-operator.lsdev.biz/documentation/extension/search/' );
+	$vehicles_link_doc      = esc_url( 'https://tour-operator.lsdev.biz/documentation/extension/tour-operator-vehicles/' );
+	$wetu_importer_link_doc = esc_url( 'https://tour-operator.lsdev.biz/documentation/extension/wetu-importer/' );
 ?>
 
 <div class="wrap about-wrap">
-	<div class="row">
-		<div class="col-md-12">
-			<h1 class="small" style="margin-bottom: 13px;"><?php esc_html_e( 'LSX Tour Operator Add-ons', 'tour-operator' ); ?></h1>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-md-12">
-			<a href="<?php echo wp_kses_post( $tour_operator_link ); ?>" target="_blank" title="<?php esc_html_e( 'LSX Tour Operator Add-ons', 'tour-operator' ); ?>">
-				<img src="<?php echo esc_url( LSX_TO_URL . 'assets/img/tour-operators-banner.png' ); ?>" alt="<?php esc_html_e( 'LSX Tour Operator Add-ons', 'tour-operator' ); ?>">
-			</a>
-
-			<div class="box box-top-image enhance">
-				<h2><?php esc_html_e( 'Enhance LSX Tour Operator', 'tour-operator' ); ?></h2>
-				<p><?php esc_html_e( 'Extend the functionality of the LSX Tour Operator plugin with one of our many extensions!', 'tour-operator' ); ?></p>
-
-				<!--<div class="more-button">
-					<a href="<?php echo wp_kses_post( $extensions_link ); ?>" target="_blank" class="button button-primary">
-						<?php esc_html_e( 'View all extensions', 'tour-operator' ); ?>
-					</a>
-				</div>-->
-			</div>
-		</div>
-	</div>
-
 	<div class="row">
 
 		<div class="col-md-4">
@@ -49,6 +33,9 @@
 				<div class="more-button">
 					<a href="<?php echo wp_kses_post( $specials_link ); ?>" target="_blank" class="button button-primary">
 						<?php esc_html_e( 'Get this extension', 'tour-operator' ); ?>
+					</a>
+					<a href="<?php echo wp_kses_post( $specials_link_doc ); ?>" target="_blank" class="button button-secondary">
+						<?php esc_html_e( 'Documentation', 'tour-operator' ); ?>
 					</a>
 				</div>
 			</div>
@@ -65,6 +52,9 @@
 					<a href="<?php echo wp_kses_post( $reviews_link ); ?>" target="_blank" class="button button-primary">
 						<?php esc_html_e( 'Get this extension', 'tour-operator' ); ?>
 					</a>
+					<a href="<?php echo wp_kses_post( $reviews_link_doc ); ?>" target="_blank" class="button button-secondary">
+						<?php esc_html_e( 'Documentation', 'tour-operator' ); ?>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -79,6 +69,9 @@
 				<div class="more-button">
 					<a href="<?php echo wp_kses_post( $team_link ); ?>" target="_blank" class="button button-primary">
 						<?php esc_html_e( 'Get this extension', 'tour-operator' ); ?>
+					</a>
+					<a href="<?php echo wp_kses_post( $teams_link_doc ); ?>" target="_blank" class="button button-secondary">
+						<?php esc_html_e( 'Documentation', 'tour-operator' ); ?>
 					</a>
 				</div>
 			</div>
@@ -99,6 +92,9 @@
 					<a href="<?php echo wp_kses_post( $search_link ); ?>" target="_blank" class="button button-primary">
 						<?php esc_html_e( 'Get this extension', 'tour-operator' ); ?>
 					</a>
+					<a href="<?php echo wp_kses_post( $search_link_doc ); ?>" target="_blank" class="button button-secondary">
+						<?php esc_html_e( 'Documentation', 'tour-operator' ); ?>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -114,6 +110,9 @@
 					<a href="<?php echo wp_kses_post( $vehicles_link ); ?>" target="_blank" class="button button-primary">
 						<?php esc_html_e( 'Get this extension', 'tour-operator' ); ?>
 					</a>
+					<a href="<?php echo wp_kses_post( $vehicles_link_doc ); ?>" target="_blank" class="button button-secondary">
+						<?php esc_html_e( 'Documentation', 'tour-operator' ); ?>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -128,6 +127,9 @@
 				<div class="more-button">
 					<a href="<?php echo wp_kses_post( $activities_link ); ?>" target="_blank" class="button button-primary">
 						<?php esc_html_e( 'Get this extension', 'tour-operator' ); ?>
+					</a>
+					<a href="<?php echo wp_kses_post( $activities_link_doc ); ?>" target="_blank" class="button button-secondary">
+						<?php esc_html_e( 'Documentation', 'tour-operator' ); ?>
 					</a>
 				</div>
 			</div>
@@ -145,6 +147,9 @@
 				<div class="more-button">
 					<a href="<?php echo wp_kses_post( $wetu_importer_link ); ?>" target="_blank" class="button button-primary">
 						<?php esc_html_e( 'Get this extension', 'tour-operator' ); ?>
+					</a>
+					<a href="<?php echo wp_kses_post( $wetu_importer_link_doc ); ?>" target="_blank" class="button button-secondary">
+						<?php esc_html_e( 'Documentation', 'tour-operator' ); ?>
 					</a>
 				</div>
 			</div>
