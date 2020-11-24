@@ -11,13 +11,13 @@
 	$wetu_importer_link = esc_url( 'https://www.lsdev.biz/lsx/extensions/wetu-importer/' );
 
 	// Documentation.
-	$team_link_doc          = esc_url( 'https://tour-operator.lsdev.biz/documentation/extension/team/' );
-	$activities_link_doc    = esc_url( 'https://tour-operator.lsdev.biz/documentation/extension/activities/' );
-	$reviews_link_doc       = esc_url( 'https://tour-operator.lsdev.biz/documentation/extension/reviews/' );
-	$specials_link_doc      = esc_url( 'https://tour-operator.lsdev.biz/documentation/extension/specials/' );
+	$team_link_doc          = esc_url( 'https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/team/' );
+	$activities_link_doc    = esc_url( 'https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/activities/' );
+	$reviews_link_doc       = esc_url( 'https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/reviews/' );
+	$specials_link_doc      = esc_url( 'https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/specials/' );
 	$search_link_doc        = esc_url( 'https://tour-operator.lsdev.biz/documentation/extension/search/' );
-	$vehicles_link_doc      = esc_url( 'https://tour-operator.lsdev.biz/documentation/extension/tour-operator-vehicles/' );
-	$wetu_importer_link_doc = esc_url( 'https://tour-operator.lsdev.biz/documentation/extension/wetu-importer/' );
+	$vehicles_link_doc      = esc_url( 'https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/vehicles' );
+	$wetu_importer_link_doc = esc_url( 'https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/wetu-content-importer/' );
 ?>
 
 <div class="wrap about-wrap">
