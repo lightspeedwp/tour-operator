@@ -235,7 +235,7 @@ class Frontend extends Tour_Operator {
 	public function enqueue_stylescripts() {
 		$has_slick = wp_script_is( 'slick', 'queue' );
 		$has_slick_lightbox = wp_script_is( 'slick-lightbox', 'queue' );
-		if ( defined( 'SCRIPT_DEBUG' ) ) {
+		if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
 			$prefix = 'src/';
 			$suffix = '';
 		} else {
