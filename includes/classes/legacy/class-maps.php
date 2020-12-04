@@ -114,7 +114,7 @@ class Maps {
 			}
 		}
 		$this->placeholder_enabled = apply_filters( 'lsx_to_map_placeholder_enabled', $this->placeholder_enabled );
-		if ( defined( 'SCRIPT_DEBUG' ) ) {
+		if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
 			$prefix = 'src/';
 			$suffix = '';
 		} else {
