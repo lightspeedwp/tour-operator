@@ -1,6 +1,6 @@
 # Change log
 
-## [[1.4.2]] - In Development
+## [[1.4.2]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.2) - 2021-01-15
 
 ### Added
 
@@ -18,6 +18,9 @@
 
 - Changed the label "Tour Operator" to "LSX Tour Operator"
 - Merged the Dashboard Help and Add-ons page.
+
+### Security
+- General testing to ensure compatibility with latest WordPress version (5.6).
 
 ## [[1.4.1]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.1) - 2020-03-30
 
