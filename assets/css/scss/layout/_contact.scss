@@ -22,7 +22,16 @@
 			padding-top: $lsx-to-gap-half / 2;
 		}
 	}
+
+	.lsx-to-contact-info {
+		h4 {
+			a {
+				color: #fff
+			}
+		}
+	}
 }
+
 
 .lsx-to-contact {
 	@include media('>=phone') { flex: 2; }
@@ -97,5 +106,19 @@ h4.lsx-to-contact-name {
 		font-size: 17px;
 		line-height: 1;
 		padding: 0 5px;
+	}
+}
+
+.single-lsx-to-accommodation {
+	.lsx-to-archive-container {
+		.lsx-to-contact-widget {
+			.lsx-to-contact-info {
+				h4 {
+					a {
+						color:#fff!important
+					}
+				}
+			}
+		}
 	}
 }

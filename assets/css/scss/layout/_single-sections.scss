@@ -15,7 +15,12 @@
 	.archive & {
 		&#destination-map {
 			margin-top: $lsx-to-gap-large;
-			width: auto;
+			.lsx-map-preview {
+				text-align: center;
+			}
+			.lsx-map-placeholder {
+				width: initial;
+			}
 		}
 	}
 
@@ -562,3 +567,28 @@ body.single-tour-operator {
 		}
 	}
 }
+
+.single-lsx-to-review {
+	#tours {
+		#collapse-tours {
+			.lsx-to-widget-item-wrap {
+				max-width: 33%;
+				margin: auto;
+				margin-top:45px;
+			}
+		}
+	}
+}
+.single-lsx-to-review {
+	#tours {
+		#collapse-tours {
+			.slider-container {
+				.lsx-to-widget-item-wrap {
+					max-width: initial;
+					margin: initial;
+					margin-top:45px;
+				}
+			}
+		}
+	}
+} 
