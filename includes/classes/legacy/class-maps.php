@@ -217,7 +217,7 @@ class Maps {
 
 			$map .= '>';
 
-			$map .= '<div class="lsx-map-preview" style="width:' . $args['width'] . ';height:' . $args['height'] . ';background-color: #D8D8D8;">';
+			$map .= '<div class="lsx-map-preview" style="width:' . $args['width'] . ';height:' . $args['height'] . ';background-color: #d5e0e6;">';
 			if ( true === $this->placeholder_enabled ) {
 				$map .= $this->get_map_preview_html( $args['width'], $args['height'] );
 			}

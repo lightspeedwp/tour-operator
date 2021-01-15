@@ -148,7 +148,7 @@
 	.lsx-to-meta-data-key { font-weight: bold; }
 
 	.lsx-to-archive-template-list &:not(.lsx-to-meta-data-duration):not(.lsx-to-meta-data-price) {
-		.lsx-to-meta-data-key { display: block; }
+		.lsx-to-meta-data-key { display: inline-block; }
 	}
 
 	&.lsx-to-meta-data-big {
@@ -178,7 +178,7 @@
 	&.lsx-to-meta-data-pin:before { content: '\f041'; }
 	&.lsx-to-meta-data-price:before { content: '\f0d6'; }
 	&.lsx-to-meta-data-rating:before { content: '\f006'; }
-	&.lsx-to-meta-data-role:before { content: '\f0c0'; }
+	&.lsx-to-meta-data-role:before { content: '\f0c0';  }
 	&.lsx-to-meta-data-rooms:before { content: '\f236'; }
 	&.lsx-to-meta-data-skype:before { content: '\f17e'; }
 	&.lsx-to-meta-data-special:before { content: '\f069'; }
