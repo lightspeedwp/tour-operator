@@ -1007,7 +1007,7 @@ h4.lsx-to-contact-name {
   padding: 0 5px;
 }
 
-.single-lsx-to-accommodation .lsx-to-archive-container .lsx-to-contact-widget .lsx-to-contact-info h4 a {
+.lsx-to-archive-container .lsx-to-contact-widget .lsx-to-contact-info h4 a {
   color: #fff !important;
 }
 
@@ -1547,6 +1547,14 @@ body.single-tour-operator #gallery .gallery br + br {
   max-width: initial;
   margin: initial;
   margin-top: 45px;
+}
+
+.single-lsx-to-destination .wp-block-media-text .wp-block-media-text__content {
+  padding: 0 15px;
+}
+
+.single-lsx-to-team #team-map {
+  padding: 8.5rem 0;
 }
 
 .lsx-to-navigation .lsx-to-content-spy:not(.dropdown-menu) {
