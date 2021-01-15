@@ -185,6 +185,12 @@ class Placeholders {
 
 			$post_type = get_post_field( 'post_type', $post_id );
 
+			if ( isset( $_GET['debug'] ) ) {
+				print_r('<pre>');
+				print_r($options);
+				print_r('</pre>');
+			}
+
 			//If the post types posts placeholder has been disabled then skip.
 			if ( 'post' === $post_type && isset( $options['general'] ) && isset( $options['general']['disable_blog_placeholder'] ) ) {
 				return $meta;
@@ -209,7 +215,7 @@ class Placeholders {
 			$this->checking_for_thumb = true;
 			$image                    = get_post_meta( $post_id, '_thumbnail_id', true );
 			$this->checking_for_thumb = false;
-			if ( ! empty( $image ) ) {
+			if ( ! empty( $image ) && 'lsx-placeholder' !== $image ) {
 				return $meta;
 			}
 
@@ -512,7 +518,7 @@ class Placeholders {
 
 		<tr class="form-field featured-placeholder-wrap">
 			<th scope="row">
-				<label for="featured_placeholder"><?php esc_html_e( 'Archive Image', 'tour-operator' ); ?></label>
+				<label for="featured_placeholder"><?php esc_html_e( 'Archive Placeholder', 'tour-operator' ); ?></label>
 			</th>
 			<td>
 				<input class="input_image_id" type="hidden" {{#if featured_placeholder_id}} value="{{featured_placeholder_id}}" {{/if}}
