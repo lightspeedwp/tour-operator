@@ -421,7 +421,7 @@ h4.lsx-to-contact-name { font-size: 20px; margin-bottom: 0; text-align: right; }
 
 .lsx-to-section#activity-map, .lsx-to-section#special-map, .lsx-to-section#accommodation-map, .lsx-to-section#destination-map, .lsx-to-section#tour-map { margin: 0 calc(-50vw + 50%) 0 0; padding: 0; width: 100vw; }
 
-.archive .lsx-to-section#destination-map { margin-top: 8.5rem; }
+.archive .lsx-to-section#destination-map { margin-top: 8.5rem; width: auto; }
 
 .site-main > .lsx-to-section:first-of-type { padding-top: 0; }
 

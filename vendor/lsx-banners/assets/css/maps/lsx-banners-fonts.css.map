@@ -1,0 +1,1 @@
+{"version":3,"sources":["lsx-banners-fonts.scss"],"names":[],"mappings":"AAAA,6DAE8B,oCAAkC,EAAK","file":"../lsx-banners-fonts.css","sourcesContent":["#lsx-banner {\n\t.soliloquy-container {\n\t\t.soliloquy-caption-inside { font-family: [font-family-headings]; }\n\t}\n}\n"]}

@@ -60,7 +60,7 @@ class Frontend extends Tour_Operator {
 		add_filter( 'post_class', array( $this, 'replace_class' ), 10, 1 );
 		add_filter( 'body_class', array( $this, 'replace_class' ), 10, 1 );
 
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ), 10 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ), 1 );
 		add_action( 'wp_head', array( $this, 'wp_head' ), 10 );
 		add_filter( 'body_class', array( $this, 'body_class' ), 15, 1 );
 
@@ -235,7 +235,7 @@ class Frontend extends Tour_Operator {
 	public function enqueue_stylescripts() {
 		$has_slick = wp_script_is( 'slick', 'queue' );
 		$has_slick_lightbox = wp_script_is( 'slick-lightbox', 'queue' );
-		if ( defined( 'SCRIPT_DEBUG' ) ) {
+		if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
 			$prefix = 'src/';
 			$suffix = '';
 		} else {

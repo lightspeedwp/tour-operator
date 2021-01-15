@@ -5,10 +5,19 @@
 ### Added
 
 - Added support for native Lazy-loading images on WordPress 5.5 version.
+- Added banner functionality to the core plugin, to deprecate the usage of LSX Banners
+- Enabled the ability to switch to the block editor on TO post types
 
 ### Fixed
 
 - Fixing the map placeholder, so it can assign placeholders for each type of posts.
+- Fixed LSX Search styling issues
+- Fixed Map placement issues.
+
+### Changed
+
+- Changed the label "Tour Operator" to "LSX Tour Operator"
+- Merged the Dashboard Help and Add-ons page.
 
 ## [[1.4.1]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.1) - 2020-03-30
 

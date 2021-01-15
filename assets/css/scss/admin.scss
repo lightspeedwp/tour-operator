@@ -48,7 +48,8 @@
 
 /* The Tab Styling */
 
-body.tour-operator_page_lsx-to-settings {
+body.tour-operator_page_lsx-to-settings,
+body.lsx-tour-operator_page_lsx-to-settings {
 	.spinner {
 		background-color: #fff;
 		border-radius: 10px;
@@ -102,7 +103,7 @@ body.tour-operator_page_lsx-to-settings {
 // Addons page content
 
 body.tour-operator_page_to-help,
-body.tour-operator_page_to-addons {
+body.lsx-tour-operator_page_to-addons {
 	#wpbody-content {
 		.wrap {
 
@@ -184,7 +185,7 @@ body.tour-operator_page_to-addons {
 
 				p, ul, li {
 					font-size: 13px;
-					margin-bottom: 13px;
+					margin-bottom: 3px;
 
 					&:last-child {
 						margin-bottom: 0;
@@ -196,6 +197,75 @@ body.tour-operator_page_to-addons {
 					border-top: 1px solid #eee;
 					clear: both;
 					text-align: right;
+					clear: both;
+
+					a {
+						&:first-child {
+							float:left;
+						}
+						&:last-child {
+							float:right;
+						}
+						&.button-secondary {
+							background-color: #F7AE00;
+							border-color: #F7AE00;
+							color: #fff;
+							&:hover {
+								background-color: #C4771B;
+								border-color: #C4771B;
+							}
+						}
+					}
+				}
+
+				&.wetu {
+					.more-button {
+						a {
+							float: none;
+
+							&:last-child {
+								margin-left: 20px;
+							}
+						}
+					}
+				}
+
+				&.support {
+					display: flex;
+
+					.image {
+						margin-right: 25px;
+
+						img {
+							width: 100px;
+							margin-top: 15px;
+						}
+					}
+					.button-tertiary {
+						background-color: #6BA914;
+						border-color: #6BA914;
+						color: #fff;
+						&:hover {
+							background-color: #5d9410;
+						}
+					}
+				}
+
+				&.info {
+					.more-button {
+						padding-top: 4px;
+					}
+
+					h2 {
+						margin-bottom: -3px;
+					}
+				}
+
+				&.support,
+				&.info {
+					.more-button {
+						border-top: 0px solid #eee;
+					}
 				}
 
 				.price {
@@ -204,18 +274,6 @@ body.tour-operator_page_to-addons {
 
 				form {
 					padding: 0 !important;
-				}
-
-				&:before {
-					content: "\f324";
-					display: block;
-					position: absolute;
-					top: 30px;
-					right: 30px;
-					font-size: 1.618em;
-					font-family: 'Dashicons';
-					font-weight: 400;
-					-webkit-font-smoothing: antialiased;
 				}
 
 				&.box-top-image {
@@ -232,75 +290,6 @@ body.tour-operator_page_to-addons {
 					&:before {
 						color: #FFA107;
 					}
-				}
-
-				&.enhance:before {
-					content: "\f106";
-				}
-
-				&.maps:before {
-					content: "\f230";
-				}
-
-				&.specials:before,
-				&.rate:before {
-					content: "\f155";
-				}
-
-				&.reviews:before {
-					content: "\f130";
-				}
-
-				&.activities:before {
-					content: "\f481";
-				}
-
-				&.search:before {
-					content: "\f179";
-				}
-
-				&.galleries:before {
-					content: "\f161";
-				}
-
-				&.vehicles:before {
-					content: "\f311";
-				}
-
-				&.team:before {
-					content: "\f307";
-				}
-
-				&.videos:before {
-					content: "\f236";
-				}
-
-				&.wetu:before {
-					content: "\f316";
-				}
-
-				&.support:before {
-					content: "\f107";
-				}
-
-				&.documentation:before {
-					content: "\f123";
-				}
-
-				&.info:before {
-					content: "\f534";
-				}
-
-				&.premium:before {
-					content: "\f313";
-				}
-
-				&.news:before {
-					content: "\f319";
-				}
-
-				&.newsletter:before {
-					content: "\f465";
 				}
 			}
 

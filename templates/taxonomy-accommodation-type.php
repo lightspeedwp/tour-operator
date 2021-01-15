@@ -53,5 +53,5 @@ the_post();
 
 <?php //get_sidebar(); ?>
 
-<?php 
+<?php
 get_footer();
