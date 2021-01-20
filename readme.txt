@@ -1,15 +1,15 @@
-=== Tour Operators ===
+=== LSX Tour Operator ===
 Contributors: feedmymedia, lightspeedwp, eleshar, krugazul, jacquesvdh, ignusvermaak
 Donate link: https://lsdev.biz/lsx/donate/
-Tags: tour operator, tours, travel, travel-agency, tourism
+Tags: lsx, tour operator, tours, travel, travel-agency
 Requires at least: 5.0
 Tested up to: 5.6
-Requires PHP: 7.0
+Requires PHP: 7.2
 Stable tag: 1.4.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
-The LSX Tour Operators is plugin specially designed & developed for the tourism and travel industry. Build to showcase your tours and accommodation.
+The LSX Tour Operator is plugin specially designed & developed for the tourism and travel industry. Build to showcase your tours and accommodation.
 
 == Description ==
 
