@@ -757,7 +757,7 @@ class Frontend extends Tour_Operator {
 
 			//Find the country
 			foreach ( $all_destinations as $destination_index => $destination ) {
-				if ( 0 === $destination->post_parent || '0' === $destination->post_parent ) {
+				if ( ( 0 === $destination->post_parent || '0' === $destination->post_parent ) && 'publish' === $destination->post_status ) {
 					$new_crumbs[] = array(
 						'text' => $destination->post_title,
 						'url'  => get_permalink( $destination->ID ),
@@ -769,10 +769,12 @@ class Frontend extends Tour_Operator {
 			//Find the region
 			if ( ! empty( $all_destinations ) ) {
 				foreach ( $all_destinations as $destination_index => $destination ) {
-					$new_crumbs[] = array(
-						'text' => $destination->post_title,
-						'url'  => get_permalink( $destination->ID ),
-					);
+					if ( 'publish' === $destination->post_status ) {
+						$new_crumbs[] = array(
+							'text' => $destination->post_title,
+							'url'  => get_permalink( $destination->ID ),
+						);
+					}
 				}
 			}
 		}
