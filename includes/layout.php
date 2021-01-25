@@ -181,7 +181,7 @@ function lsx_to_accommodation_single_fast_facts() {
 		if ( function_exists( 'lsx_to_connected_activities' ) ) {
 			lsx_to_connected_activities( '<span class="' . $meta_class . 'activities"><span class="lsx-to-meta-data-key">' . esc_html__( 'Activities', 'tour-operator' ) . ':</span> ', '</span>' );
 		}
-		$content = ob_end_clean();
+		$content = ob_get_clean();
 
 		if ( '' !== $content ) {
 			?>
@@ -215,7 +215,7 @@ function lsx_to_destination_single_fast_facts() {
 		if ( function_exists( 'lsx_to_connected_activities' ) ) {
 			lsx_to_connected_activities( '<span class="' . $meta_class . 'activities"><span class="lsx-to-meta-data-key">' . esc_html__( 'Activities', 'tour-operator' ) . ':</span> ', '</span>' );
 		}
-		$content = ob_end_clean();
+		$content = ob_get_clean();
 		if ( '' !== $content ) {
 			?>
 			<section style="display: none;" id="fast-facts">
