@@ -223,7 +223,7 @@ function lsx_to_destination_single_fast_facts() {
 					<h3 class="lsx-to-section-title"><?php esc_html_e( 'Fast Facts', 'tour-operator' ); ?></h3>
 
 					<div class="lsx-to-single-meta-data">
-
+						<?php echo wp_kses_post( $content ); ?>
 					</div>
 				</div>
 			</section>

@@ -168,7 +168,14 @@ class Destination {
 		}
 
 		if ( is_main_query() && is_singular( $this->slug ) && false === $lsx_to_archive ) {
-			$classes[] = 'col-xs-12 col-sm-12 col-md-7';
+			ob_start();
+			lsx_to_destination_single_fast_facts();
+			$highlights = ob_end_clean();
+			if ( '' === apply_filters( 'lsx_to_destination_has_highlights', $highlights ) ) {
+				$classes[] = 'col-xs-12 col-sm-12 col-md-12';
+			} else {
+				$classes[] = 'col-xs-12 col-sm-12 col-md-7';
+			}
 		}
 
 		return $classes;
