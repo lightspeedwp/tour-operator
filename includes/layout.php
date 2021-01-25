@@ -347,12 +347,12 @@ function lsx_to_accommodation_archive_entry_top() {
 
 	if ( 'accommodation' === get_post_type() && ( is_archive() || $lsx_to_archive ) ) {
 		if ( is_search() || empty( tour_operator()->options[ get_post_type() ]['disable_entry_metadata'] ) ) { 
-        ?>
+			?>
 			<div class="lsx-to-archive-meta-data lsx-to-archive-meta-data-grid-mode">
 				<?php lsx_to_accommodation_meta(); ?>
 			</div>
-		<?php 
-        }
+			<?php
+		}
 	}
 }
 
