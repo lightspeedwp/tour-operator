@@ -121,3 +121,12 @@
 }
 
 .slick-lightbox-slick-caption { display: inline-block; }
+
+.lsx-to-slider,
+.lsx-post-carousel-items {
+	.slick-slide {
+		.lazy-hidden {
+			max-height: 154px;
+		}
+	}
+}

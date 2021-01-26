@@ -126,6 +126,8 @@
 
 .slick-lightbox-slick-caption { display: inline-block; }
 
+.lsx-to-slider .slick-slide .lazy-hidden, .lsx-post-carousel-items .slick-slide .lazy-hidden { max-height: 154px; }
+
 .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon:after { margin-right: 3px; margin-left: 3px; }
 
 .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.usd:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.nad:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.cad:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.hkd:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.sgd:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.nzd:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.aud:after { content: '\0024'; }
@@ -191,7 +193,7 @@
 
 .lsx-to-meta-data .lsx-to-meta-data-key { font-weight: bold; }
 
-.lsx-to-archive-template-list .lsx-to-meta-data:not(.lsx-to-meta-data-duration):not(.lsx-to-meta-data-price) .lsx-to-meta-data-key { display: block; }
+.lsx-to-archive-template-list .lsx-to-meta-data:not(.lsx-to-meta-data-duration):not(.lsx-to-meta-data-price) .lsx-to-meta-data-key { display: inline-block; }
 
 .lsx-to-meta-data.lsx-to-meta-data-big { font-size: 18px; padding-right: 0; }
 
@@ -389,6 +391,8 @@ body:not(.page-has-banner) .lsx-to-archive-description { margin-top: 4.25rem; }
 
 .lsx-to-contact-widget div:first-child.lsx-to-enquire-form { padding-top: 1.2rem; }
 
+.lsx-to-contact-widget .lsx-to-contact-info h4 a { color: #fff; }
+
 @media (min-width: 768px) { .lsx-to-contact { -webkit-box-flex: 2; -ms-flex: 2; flex: 2; } }
 
 @media (min-width: 768px) { .lsx-to-contact article { -webkit-box-align: center; -ms-flex-align: center; align-items: center; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; } }
@@ -417,11 +421,17 @@ h4.lsx-to-contact-name { font-size: 20px; margin-bottom: 0; text-align: right; }
 
 .lsx-to-contact-socials > a { font-size: 17px; line-height: 1; padding: 0 5px; }
 
+.lsx-to-archive-container .lsx-to-contact-widget .lsx-to-contact-info h4 a { color: #fff !important; }
+
 .lsx-to-section { margin: 0 -9999rem; padding: 8.5rem 9999rem; }
 
 .lsx-to-section#activity-map, .lsx-to-section#special-map, .lsx-to-section#accommodation-map, .lsx-to-section#destination-map, .lsx-to-section#tour-map { margin: 0 calc(-50vw + 50%) 0 0; padding: 0; width: 100vw; }
 
-.archive .lsx-to-section#destination-map { margin-top: 8.5rem; width: auto; }
+.archive .lsx-to-section#destination-map { margin-top: 8.5rem; }
+
+.archive .lsx-to-section#destination-map .lsx-map-preview { text-align: center; }
+
+.archive .lsx-to-section#destination-map .lsx-map-placeholder { width: initial; }
 
 .site-main > .lsx-to-section:first-of-type { padding-top: 0; }
 
@@ -596,6 +606,14 @@ body.single-tour-operator #gallery .gallery dl, body.single-tour-operator #galle
 body.single-tour-operator #gallery .gallery br + br { display: none; }
 
 @media (max-width: 767px) { body.single-tour-operator #gallery .gallery img { margin: 0 auto; } }
+
+.single-lsx-to-review #tours #collapse-tours .lsx-to-widget-item-wrap { max-width: 33%; margin: auto; margin-top: 45px; }
+
+.single-lsx-to-review #tours #collapse-tours .slider-container .lsx-to-widget-item-wrap { max-width: initial; margin: initial; margin-top: 45px; }
+
+.single-lsx-to-destination .wp-block-media-text .wp-block-media-text__content { padding: 0 15px; }
+
+.single-lsx-to-team #team-map { padding: 8.5rem 0; }
 
 .lsx-to-navigation .lsx-to-content-spy:not(.dropdown-menu) { -webkit-box-align: start; -ms-flex-align: start; align-items: flex-start; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-orient: horizontal; -webkit-box-direction: normal; -ms-flex-flow: row nowrap; flex-flow: row nowrap; -webkit-box-pack: start; -ms-flex-pack: start; justify-content: flex-start; margin: 0 -9999rem; padding: 0 9996.6rem; }
 
