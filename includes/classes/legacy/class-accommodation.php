@@ -189,6 +189,8 @@ class Accommodation {
 				}
 			}
 
+			$value = apply_filters( 'lsx_to_accommodation_price', $value, $price_type, $currency );
+
 			switch ( $price_type ) {
 				case 'per_person_per_night':
 				case 'per_person_sharing':

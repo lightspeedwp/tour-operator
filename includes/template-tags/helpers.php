@@ -798,5 +798,6 @@ function lsx_to_get_price_type_label( $label_index = '' ) {
 			$label = '';
 			break;
 	}
+	$label = apply_filters( 'lsx_to_price_type_label', $label );
 	return $label;
 }
