@@ -1735,8 +1735,8 @@ class CMB_Gmap_Field extends CMB_Field {
 
 		if(function_exists( 'tour_operator' )){
 			$options = get_option('_lsx-to_settings',false);
-			if ( isset( $options['api']['google_api_key'] ) ) {
-				$api_key = $options['api']['google_api_key'];
+			if ( isset( $options['api']['googlemaps_key'] ) ) {
+				$api_key = $options['api']['googlemaps_key'];
 			} else {
 				$api_key = '';
 			}
