@@ -2130,15 +2130,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "15.7",
+            "version": "15.8",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/15.7"
+                "reference": "tags/15.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.15.7.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.15.8.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
