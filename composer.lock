@@ -2153,15 +2153,15 @@
         },
         {
             "name": "wpackagist-theme/lsx",
-            "version": "2.9.0",
+            "version": "2.9.2",
             "source": {
                 "type": "svn",
                 "url": "https://themes.svn.wordpress.org/lsx/",
-                "reference": "2.9.0"
+                "reference": "2.9.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/theme/lsx.2.9.0.zip"
+                "url": "https://downloads.wordpress.org/theme/lsx.2.9.2.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
