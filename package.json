@@ -27,7 +27,7 @@
   "homepage": "https://github.com/lightspeeddevelopment/tour-operator#readme",
   "devDependencies": {
     "gulp": "^4.0.2",
-    "gulp-autoprefixer": "^7.0.1",
+    "gulp-autoprefixer": "^8.0.0",
     "gulp-gettext": "^0.3.0",
     "gulp-jshint": "^2.1.0",
     "gulp-plumber": "^1.2.1",
