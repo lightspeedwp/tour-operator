@@ -1021,8 +1021,11 @@ h4.lsx-to-contact-name {
   padding: 8.5rem 9999rem;
 }
 .lsx-to-section#activity-map, .lsx-to-section#special-map, .lsx-to-section#accommodation-map, .lsx-to-section#destination-map, .lsx-to-section#tour-map {
+  margin: 0 0 0 calc(-50vw + 50%);
   padding: 0;
   width: 100vw;
+}
+.lsx-to-section#destination-map {
   margin-left: calc(-100vw / 2 + 500px / 2);
   margin-right: calc(-100vw / 2 + 500px / 2);
 }
