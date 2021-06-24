@@ -1025,12 +1025,10 @@ h4.lsx-to-contact-name {
   padding: 0;
   width: 100vw;
 }
-.lsx-to-section#destination-map {
-  margin-left: calc(-100vw / 2 + 500px / 2);
-  margin-right: calc(-100vw / 2 + 500px / 2);
-}
 .archive .lsx-to-section#destination-map {
   margin-top: 8.5rem;
+  margin-left: calc(-100vw / 2 + 500px / 2);
+  margin-right: calc(-100vw / 2 + 500px / 2);
 }
 .archive .lsx-to-section#destination-map .lsx-map-preview {
   text-align: center;

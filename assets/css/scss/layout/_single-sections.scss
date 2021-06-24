@@ -11,14 +11,12 @@
 		padding: 0;
 		width: 100vw;
 	}
-	&#destination-map {
-		margin-left: calc(-100vw / 2 + 500px / 2);
-		margin-right: calc(-100vw / 2 + 500px / 2);
-	}
 
 	.archive & {
 		&#destination-map {
 			margin-top: $lsx-to-gap-large;
+			margin-left: calc(-100vw / 2 + 500px / 2);
+			margin-right: calc(-100vw / 2 + 500px / 2);
 			.lsx-map-preview {
 				text-align: center;
 			}
