@@ -380,7 +380,7 @@ class Maps {
 			}
 			$srcset = $preview_src_mobile . ' 600w,' . $preview_src_laptop . ' 1280w,' . $preview_src . ' 1920w';
 			$sizes = 'sizes="(max-width: 600) 10vw, (max-width: 1280px) 50vw, 100vw"';
-			$preview_html = '<img class="lsx-map-placeholder" ' . $sizes . ' src="' . $preview_src . '" srcset="' . $srcset . '" style="cursor:pointer;width:' . $width . ';height:' . $height . ';" />';
+			$preview_html = '<img class="lsx-map-placeholder" ' . $sizes . ' src="' . $preview_src . '" srcset="' . $srcset . '" style="cursor:pointer;" />';
 			$preview_html .= '<div class="placeholder-text"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" style="margin-top:-' . ( ( (int) $height / 2 ) + 31 ) . 'px">' . esc_html__( 'Click to display the map', 'tour-operator' ) . '</h2></div>';
 		}
 		return $preview_html;

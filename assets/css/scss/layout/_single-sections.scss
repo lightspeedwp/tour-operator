@@ -7,9 +7,10 @@
 	&#accommodation-map,
 	&#destination-map,
 	&#tour-map {
-		margin: 0 0 0 calc(-50vw + 50%);
 		padding: 0;
 		width: 100vw;
+		margin-left: calc(-100vw / 2 + 500px / 2);
+		margin-right: calc(-100vw / 2 + 500px / 2);
 	}
 
 	.archive & {
