@@ -292,7 +292,7 @@ class Frontend extends Tour_Operator {
 				wp_enqueue_style( 'slick-lightbox', LSX_TO_URL . 'assets/css/vendor/slick-lightbox.css', array( 'slick' ), LSX_TO_VER );
 			}
 
-			wp_enqueue_style( 'tour-operator-style', LSX_TO_URL . 'assets/css/style.css', array( 'lsx_main' ), LSX_TO_VER );
+			wp_enqueue_style( 'tour-operator-style', LSX_TO_URL . 'assets/css/style.css', array( 'lsx_main' ) );
 			wp_style_add_data( 'tour-operator-style', 'rtl', 'replace' );
 		}
 	}
