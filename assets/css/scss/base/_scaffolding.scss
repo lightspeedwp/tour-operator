@@ -33,3 +33,13 @@
 		width: 20%;
 	}
 }
+
+// Gutenberg Fix for Breadcrumbs
+
+.breadcrumbs-container, .archive-header-wrapper {
+	margin-left: initial!important;
+	margin-right: initial!important;
+	padding-left: initial!important;
+	padding-right: initial!important;
+	width: auto;
+}

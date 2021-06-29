@@ -36,10 +36,10 @@
   }
 }
 .breadcrumbs-container, .archive-header-wrapper {
-  margin-left: initial;
-  margin-right: initial;
-  padding-left: initial;
-  padding-right: initial;
+  margin-left: initial !important;
+  margin-right: initial !important;
+  padding-left: initial !important;
+  padding-right: initial !important;
   width: auto;
 }
 

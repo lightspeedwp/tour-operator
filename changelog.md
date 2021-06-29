@@ -1,10 +1,10 @@
 # Change log
 
-## [[1.4.1]] - 2021-06-24
+## [[1.4.3]] - 2021-06-24
 
 ### Fixed
 
-- Styling Issue with Destination Map
+- Styling Issue with Destination Map on Various Pages
 
 ## [[1.4.2]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.2) - 2021-01-15
 
