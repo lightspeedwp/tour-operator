@@ -35,7 +35,7 @@
     width: 20%;
   }
 }
-.breadcrumbs-container, .archive-header-wrapper {
+.breadcrumbs-container {
   margin-left: initial !important;
   margin-right: initial !important;
   padding-left: initial !important;
