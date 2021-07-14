@@ -2,6 +2,10 @@
 
 ## [[1.4.3]] - 2021-06-24
 
+### Added
+
+ - Missing string translations.
+
 ### Fixed
 
 - Styling Issue with Destination Map on Various Pages

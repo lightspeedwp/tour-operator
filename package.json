@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cgb-scripts start",
     "build": "cgb-scripts build",
-    "eject": "cgb-scripts eject"
+    "eject": "cgb-scripts eject",
+	"build-pot": "wp i18n make-pot . languages/tour-operator.pot",
+	"build-mopo": "rm -R languages/tour-operator-en_EN.mo && cp languages/tour-operator.pot languages/tour-operator-en_EN.po && wp i18n make-mo languages",
+	"translate-US": "cp languages/tour-operator-en_EN.po languages/tour-operator-en_US.po && cp languages/tour-operator-en_EN.mo languages/tour-operator-en_US.mo"
   },
   "repository": {
     "type": "git",
@@ -50,7 +53,7 @@
     "fstream": ">=1.0.12",
     "hoek": "^6.1.3",
     "lodash": "^4.17.20",
-    "mem": "^8.0.0",
+    "mem": "^9.0.0",
     "minimist": "^1.2.5",
     "npm": "^7.5.2",
     "runtask": "^1.0.0",

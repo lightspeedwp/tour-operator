@@ -14,6 +14,10 @@ const wppot        = require('gulp-wp-pot');
 
 const browserlist  = ['last 2 version', '> 1%'];
 
+const errorreporter = function( error ) {
+	console.log( error );
+}
+
 gulp.task('default', function() {
 	console.log('Use the following commands');
 	console.log('--------------------------');
@@ -21,6 +25,8 @@ gulp.task('default', function() {
 	console.log('gulp compile-js                to compile the js to min.js');
 	console.log('gulp watch                     to continue watching the files for changes');
 	console.log('gulp wordpress-lang            to compile the tour-operator.pot, tour-operator-en_EN.po and tour-operator-en_EN.mo');
+	console.log('npm run build-pot              to compile the tour-operator.pot using WP-CLI');
+	console.log('npm run build-mopo             to compile the .mo .po files');
 });
 
 gulp.task('styles', function (done) {
@@ -172,8 +178,8 @@ gulp.task('watch', gulp.series( ['watch-css', 'watch-js'] , function(done) {
 	done();
 }));
 
+
 gulp.task('wordpress-pot', function(done) {
-	done();
 	return gulp.src('**/*.php')
 		.pipe(sort())
 		.pipe(wppot({
@@ -182,11 +188,12 @@ gulp.task('wordpress-pot', function(done) {
 			bugReport: 'https://github.com/lightspeeddevelopment/tour-operator/issues',
 			team: 'LightSpeed <webmaster@lsdev.biz>'
 		}))
-		.pipe(gulp.dest('languages/tour-operator.pot'));
+		.on('error', errorreporter)
+		.pipe(gulp.dest('languages/tour-operator.pot')),
+		done();
 });
 
 gulp.task('wordpress-po', function(done) {
-	done();
 	return gulp.src('**/*.php')
 		.pipe(sort())
 		.pipe(wppot({
@@ -195,17 +202,22 @@ gulp.task('wordpress-po', function(done) {
 			bugReport: 'https://github.com/lightspeeddevelopment/tour-operator/issues',
 			team: 'LightSpeed <webmaster@lsdev.biz>'
 		}))
-		.pipe(gulp.dest('languages/tour-operator-en_EN.po'));
+		.on('error', errorreporter)
+		.pipe(gulp.dest('languages/tour-operator-en_EN.po')),
+		done();
 });
 
 gulp.task('wordpress-po-mo', gulp.series( ['wordpress-po'] , function(done) {
-	done();
 	return gulp.src('languages/tour-operator-en_EN.po')
 		.pipe(gettext())
-		.pipe(gulp.dest('languages'));
+		.on('error', errorreporter)
+		.pipe(gulp.dest('languages')),
+		done();
 }));
 
 gulp.task('wordpress-lang', gulp.series( ['wordpress-pot', 'wordpress-po-mo'] , function(done) {
-	console.log('Done');
+	
+	console.log('Done')
 	done();
+	return ;
 }));
