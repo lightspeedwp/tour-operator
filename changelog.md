@@ -1,16 +1,17 @@
 # Change log
 
-## [[1.4.3]] - 2021-06-24
+## [[1.4.3]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.3) - 2021-07-20
 
 ### Added
-
  - Missing string translations.
 
 ### Fixed
-
 - Styling Issue with Destination Map on Various Pages
 - Fixed Placeholder Image not filling space
 - Fixed Breadcrumbs width
+
+### Security
+- General testing to ensure compatibility with latest WordPress version (5.8).
 
 ## [[1.4.2]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.2) - 2021-01-15
 
