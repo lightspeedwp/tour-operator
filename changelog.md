@@ -8,7 +8,7 @@
 ### Fixed
 - Styling Issue with Destination Map on Various Pages
 - Fixed Placeholder Image not filling space
-- Fixed Breadcrumbs width
+- Fixed Breadcrumbs width on search pages
 
 ### Security
 - General testing to ensure compatibility with latest WordPress version (5.8).
