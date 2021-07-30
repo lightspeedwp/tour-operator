@@ -105,6 +105,9 @@ class TO_Banners_Frontend extends TO_Banners {
 				if ( false === $img_group ) {
 					$img_group = array();
 				}
+				if ( ! is_array( $img_group ) ) {
+					$img_group = array( $img_group );
+				}
 				$img_group = array_filter( $img_group );
 				if ( ( is_single( $allowed_post_types ) ) || ( is_singular( 'post' ) ) ) {
 					if ( ! empty( $img_group ) ) {
