@@ -406,6 +406,7 @@ function lsx_to_connected_panel_query( $args = false ) {
 			'after'			=> '',
 			'featured'      => false,
 			'orderby'       => false,
+			'items'         => array(),
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -414,7 +415,11 @@ function lsx_to_connected_panel_query( $args = false ) {
 			$args['content_part'] = $args['from'];
 		}
 
-		$items_array = get_post_meta( get_the_ID(), $args['from'] . '_to_' . $args['to'], false );
+		if ( empty( $args['items'] ) ) {
+			$items_array = get_post_meta( get_the_ID(), $args['from'] . '_to_' . $args['to'], false );
+		} else {
+			$items_array = $args['items'];
+		}
 
 		if ( false !== $items_array && is_array( $items_array ) && ! empty( $items_array ) ) {
 			$items_query_args = array(

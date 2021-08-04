@@ -1,5 +1,10 @@
 # Change log
 
+## [[1.4.4]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.4) - ???
+
+### Added
+ - An `items` parameter to the `lsx_to_connected_panel_query` allowing you to specify tours to find.
+
 ## [[1.4.3]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.3) - 2021-07-20
 
 ### Added
