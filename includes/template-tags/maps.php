@@ -207,7 +207,8 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 				$map = $map_override;
 			}
 
-			echo wp_kses_post( $map );
+			// @codingStandardsIgnoreLine
+			echo $map;
 		}
 	}
 }
