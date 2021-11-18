@@ -512,7 +512,8 @@ if ( window.location.hash ) {
 	 * @package    lsx
 	 * @subpackage scripts
 	 */
-	$window.load( function() {
+
+	$window.on('load', function() {
 
 		if ( window_width >= 1200 ) {
 			lsx_to.fix_anchor_menu();
