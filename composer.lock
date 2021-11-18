@@ -2131,18 +2131,18 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "17.5",
+            "version": "17.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/17.5"
+                "reference": "tags/17.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.17.5.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.17.6.zip"
             },
             "require": {
-                "composer/installers": "~1.0 || ~2.0"
+                "composer/installers": "^1.0 || ^2.0"
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/wordpress-seo/"
@@ -2160,7 +2160,7 @@
                 "url": "https://downloads.wordpress.org/theme/lsx.2.9.5.zip"
             },
             "require": {
-                "composer/installers": "~1.0 || ~2.0"
+                "composer/installers": "^1.0 || ^2.0"
             },
             "type": "wordpress-theme",
             "homepage": "https://wordpress.org/themes/lsx/"
