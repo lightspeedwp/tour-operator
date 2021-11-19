@@ -461,6 +461,8 @@ class Tour_Operator {
 					$settings_tab = 'destination';
 					break;
 			}
+		} else if ( is_search() ) {
+			$settings_tab = 'global';
 		}
 
 		$settings_tab = apply_filters( 'lsx_to_settings_current_tab', $settings_tab );
