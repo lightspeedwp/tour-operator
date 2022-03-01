@@ -194,7 +194,7 @@ class Widget extends \WP_Widget {
 			if ( false != $title ) {
 
 				if ( 'video' != $post_type ) {
-					$title = $before_title . $link_open . $title . $link_close . $after_title;
+					$title = $before_title . $link_open . html_entity_decode( $title ) . $link_close . $after_title;
 					echo wp_kses_post( apply_filters( 'lsx_to_post_type_widget_title', $title ) );
 				}
 			}
