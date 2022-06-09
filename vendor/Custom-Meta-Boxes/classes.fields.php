@@ -1115,7 +1115,8 @@ class CMB_Select extends CMB_Field {
 			'wc_user_membership',
 			'wc_product_tab',
 			'wc_product_retailer',
-			'popup'
+			'popup',
+			'popup_theme'
 		);
 
 		if ( ! in_array( $typenow, $no_enqueue ) ) {
