@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0656994e17b8703ce2c50b6c2beb6144",
+    "content-hash": "2185ed9f121ab55700cf49fe96d22e8b",
     "packages": [
         {
             "name": "composer/installers",
@@ -2143,15 +2143,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "18.8",
+            "version": "19.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/18.8"
+                "reference": "tags/19.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.18.8.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -2161,15 +2161,15 @@
         },
         {
             "name": "wpackagist-theme/lsx",
-            "version": "2.9.5",
+            "version": "3.0",
             "source": {
                 "type": "svn",
                 "url": "https://themes.svn.wordpress.org/lsx/",
-                "reference": "2.9.5"
+                "reference": "3.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/theme/lsx.2.9.5.zip"
+                "url": "https://downloads.wordpress.org/theme/lsx.3.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"

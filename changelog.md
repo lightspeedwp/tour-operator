@@ -1,6 +1,9 @@
 # Change log
 
-## [[1.4.4]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.4) - ???
+## [[1.4.4]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.4) - 2022-05-25
+
+### Security
+- General testing to ensure compatibility with latest WordPress version (6.0).
 
 ### Added
  - An `items` parameter to the `lsx_to_connected_panel_query` allowing you to specify tours to find.
