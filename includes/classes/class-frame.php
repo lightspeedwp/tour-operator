@@ -197,6 +197,7 @@ abstract class Frame {
 			$position = $config['menu_position'];
 		}
 
+		$position = apply_filters( 'tour-operator-menu-position' , $position, $config );
 		return $position;
 	}
 
