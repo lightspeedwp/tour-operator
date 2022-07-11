@@ -21,7 +21,7 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'LSX_TO_PATH', plugin_dir_path( __FILE__ ) );
 define( 'LSX_TO_CORE', __FILE__ );
 define( 'LSX_TO_URL', plugin_dir_url( __FILE__ ) );
-define( 'LSX_TO_VER', '1.4.3' );
+define( 'LSX_TO_VER', '1.4.4' );
 
 // Post Expirator.
 define( 'LSX_TO_POSTEXPIRATOR_DATEFORMAT', esc_html__( 'l F jS, Y', 'tour-operator' ) );
