@@ -278,6 +278,8 @@ class Admin {
 			$this,
 			'is_page_menu_item',
 		) ) );
+		
+		$menu = apply_filters( 'tour-operator-menu-positions', $menu );
 		ksort( $menu );
 
 		return $menu;
