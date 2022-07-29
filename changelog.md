@@ -1,5 +1,11 @@
 # Change log
 
+## [[1.4.5]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.5) - In Development
+
+### Fixed
+
+- Fixed the impropper escaping of the months to visit function.
+
 ## [[1.4.4]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.4) - 2022-05-25
 
 ### Security

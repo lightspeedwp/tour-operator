@@ -444,7 +444,7 @@ function months_to_visit() {
 
 	if ( ! empty( $months ) ) {
 		echo '<span class="' . esc_attr( $meta_class ) . 'best-time" style="text-transform:capitalize;"><span class="lsx-to-meta-data-key">' . esc_html__( 'Best Time', 'tour-operator' ) . ': </span>';
-		echo implode( ', ', wp_kses_post( $month_list ) );
+		echo wp_kses_post( implode( ', ', $month_list ) );
 		echo '</span>';
 	}
 
