@@ -178,6 +178,8 @@ class Destination {
 			}
 		}
 
+		remove_filter( 'lsx_to_entry_class', array( $this, 'entry_class' ) );
+
 		return $classes;
 	}
 
