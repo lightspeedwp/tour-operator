@@ -195,7 +195,7 @@ function lsx_to_itinerary_has_thumbnail() {
  * @subpackage    template-tags
  * @category      itinerary
  */
-function lsx_to_itinerary_thumbnail() {
+function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square' ) {
 	global $tour_itinerary;
 	$accommodation_id = '';
 	$temp_id          = '';
@@ -204,7 +204,7 @@ function lsx_to_itinerary_thumbnail() {
 
 		if ( ! empty( $tour_itinerary->itinerary['featured_image'] ) ) {
 			$tour_itinerary->save_used_image( $tour_itinerary->itinerary['featured_image'] );
-			$thumbnail = wp_get_attachment_image_src( $tour_itinerary->itinerary['featured_image'], 'lsx-thumbnail-square' );
+			$thumbnail = wp_get_attachment_image_src( $tour_itinerary->itinerary['featured_image'], $size );
 
 			if ( is_array( $thumbnail ) ) {
 				$thumbnail_src = $thumbnail[0];
@@ -227,7 +227,7 @@ function lsx_to_itinerary_thumbnail() {
 
 				if ( false !== $current_image_id ) {
 					$tour_itinerary->save_used_image( $current_image_id );
-					$temp_src_array = wp_get_attachment_image_src( $current_image_id, 'lsx-thumbnail-square' );
+					$temp_src_array = wp_get_attachment_image_src( $current_image_id, $size );
 
 					if ( is_array( $temp_src_array ) ) {
 						$accommodation_images[] = $temp_src_array[0];
@@ -247,7 +247,7 @@ function lsx_to_itinerary_thumbnail() {
 
 			if ( false !== $temp_id ) {
 				$current_image_id = $tour_itinerary->find_next_image( $accommodation_id );
-				$temp_src_array   = wp_get_attachment_image_src( $current_image_id, 'lsx-thumbnail-square' );
+				$temp_src_array   = wp_get_attachment_image_src( $current_image_id, $size );
 				if ( is_array( $temp_src_array ) ) {
 					$thumbnail_src = $temp_src_array[0];
 				}
@@ -257,7 +257,7 @@ function lsx_to_itinerary_thumbnail() {
 
 		// Check weather or not to display the placeholder.
 		if ( false === $thumbnail_src || '' === $thumbnail_src ) {
-			$thumbnail_src = \lsx\legacy\Placeholders::placeholder_url( null, 'tour', 'lsx-thumbnail-square' );
+			$thumbnail_src = \lsx\legacy\Placeholders::placeholder_url( null, 'tour', $size );
 		}
 
 		return $thumbnail_src;

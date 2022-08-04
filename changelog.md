@@ -2,6 +2,10 @@
 
 ## [[1.4.5]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.5) - In Development
 
+### Added
+
+- Added a size parameter to `lsx_to_itinerary_thumbnail()` to allow selecting of different size images.
+
 ### Fixed
 
 - Fixed the impropper escaping of the months to visit function.
