@@ -44,7 +44,7 @@ class TO_Taxonomy_Admin {
 			add_action( 'create_term', array( $this, 'save_meta' ), 10, 2 );
 			foreach ( $this->taxonomies as $taxonomy ) {
 				add_action( "edit_{$taxonomy}", array( $this, 'save_meta' ), 10, 2 );
-				add_action( "{$taxonomy}_edit_form_fields", array( $this, 'add_tagline_form_field' ), 3, 1 );
+				add_action( "{$taxonomy}_edit_form_fields", array( $this, 'add_expert_form_field' ), 3, 1 );
 			}
 		}
 	}

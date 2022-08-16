@@ -9,6 +9,7 @@
 ### Fixed
 
 - Fixed the impropper escaping of the months to visit function.
+- Fixed the PHP error on taxonomies - missing add_expert_form_field
 
 ## [[1.4.4]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.4) - 2022-05-25
 
