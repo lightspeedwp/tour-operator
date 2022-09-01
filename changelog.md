@@ -10,6 +10,10 @@
 #### Destinations
 - Added the option to disable the countries regions only.
 
+#### Tours
+- Allowing the return of `lsx_to_itinerary_title`
+- Allowing the return of `lsx_to_itinerary_destinations`
+
 ### Fixed
 
 - Fixed the impropper escaping of the months to visit function.
