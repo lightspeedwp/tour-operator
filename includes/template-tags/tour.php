@@ -108,8 +108,13 @@ function lsx_to_not_included( $before = '', $after = '', $echo = true ) {
 function lsx_to_departure_point( $before = '', $after = '', $echo = true ) {
 	$departs_from = get_post_meta( get_the_ID(), 'departs_from', false );
 
+	$options = get_option( '_lsx-to_settings', false );
 	if ( ! empty( $departs_from ) && is_array( $departs_from ) && count( $departs_from ) > 0 ) {
-		$return = $before . lsx_to_connected_list( $departs_from, 'destination', true, ', ' ) . $after;
+		$connected_list = lsx_to_connected_list( $departs_from, 'destination', true, ', ' );
+		if ( false !== $options && isset( $options[ 'destination' ] ) && isset( $options[ 'destination' ]['disable_single_region'] ) ) {
+			$connected_list = strip_tags( $connected_list );
+		}
+		$return = $before . $connected_list . $after;
 
 		if ( $echo ) {
 			echo wp_kses_post( $return );
