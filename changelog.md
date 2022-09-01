@@ -4,7 +4,11 @@
 
 ### Added
 
+#### General
 - Added a size parameter to `lsx_to_itinerary_thumbnail()` to allow selecting of different size images.
+
+#### Destinations
+- Added the option to disable the countries regions only.
 
 ### Fixed
 

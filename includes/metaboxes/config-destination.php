@@ -28,6 +28,12 @@ $metabox['fields'][] = array(
 );
 
 $metabox['fields'][] = array(
+	'id'   => 'disable_single_regions',
+	'name' => esc_html__( 'Disable Regions', 'tour-operator' ),
+	'type' => 'checkbox',
+);
+
+$metabox['fields'][] = array(
 	'id'      => 'sticky_order',
 	'name'    => esc_html__( 'Sticky weight', 'tour-operator' ),
 	'type'    => 'text',
