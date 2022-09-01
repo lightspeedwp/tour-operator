@@ -13,6 +13,7 @@
 #### Tours
 - Allowing the return of `lsx_to_itinerary_title`
 - Allowing the return of `lsx_to_itinerary_destinations`
+- Allowing the return of `lsx_to_itinerary_accommodation`
 
 ### Fixed
 
