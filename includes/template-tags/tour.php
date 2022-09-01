@@ -138,9 +138,14 @@ function lsx_to_departure_point( $before = '', $after = '', $echo = true ) {
  */
 function lsx_to_end_point( $before = '', $after = '', $echo = true ) {
 	$end_point = get_post_meta( get_the_ID(), 'ends_in', false );
+	$options   = get_option( '_lsx-to_settings', false );
 
 	if ( ! empty( $end_point ) && is_array( $end_point ) && count( $end_point ) > 0 ) {
-		$return = $before . lsx_to_connected_list( $end_point, 'destination', true, ', ' ) . $after;
+		$connected_list = lsx_to_connected_list( $end_point, 'destination', true, ', ' );
+		if ( false !== $options && isset( $options[ 'destination' ] ) && isset( $options[ 'destination' ]['disable_single_region'] ) ) {
+			$connected_list = strip_tags( $connected_list );
+		}
+		$return = $before . $connected_list . $after;
 
 		if ( $echo ) {
 			echo wp_kses_post( $return );
