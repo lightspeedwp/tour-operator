@@ -409,7 +409,7 @@ class Frontend extends Tour_Operator {
 			exit;
 		}
 
-		if ( is_singular( array( 'destination' ) ) && ( 0 === get_post_parent() || false === get_post_parent() ) && false !== $this->options && isset( $this->options[ $queried_post_type ] ) && isset( $this->options[ $queried_post_type ]['disable_single_region'] ) ) {
+		if ( is_singular( array( 'destination' ) ) && ( 0 !== get_post_parent() && false !== get_post_parent() && NULL !== get_post_parent() ) && false !== $this->options && isset( $this->options[ $queried_post_type ] ) && isset( $this->options[ $queried_post_type ]['disable_single_region'] ) ) {
 			wp_redirect( get_permalink( get_post_parent() ), 301 );
 			exit;
 		}
