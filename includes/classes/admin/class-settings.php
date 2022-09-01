@@ -667,6 +667,15 @@ echo esc_attr( 'selected="selected"' ); }
 					</select>
 				</td>
 			</tr>
+			<tr class="form-field">
+				<th scope="row">
+					<label for="disable_single_region"><?php esc_html_e( 'Disable Regions Only', 'tour-operator' ); ?></label>
+				</th>
+				<td>
+					<input type="checkbox" {{#if disable_single_region}} checked="checked" {{/if}} name="disable_single_region" />
+					<small><?php esc_html_e( 'When you only want to display the countries.', 'tour-operator' ); ?></small>
+				</td>
+			</tr>
 			<?php
 		}
 		do_action( 'lsx_to_framework_' . $post_type . '_tab_single_settings_top', $post_type );
