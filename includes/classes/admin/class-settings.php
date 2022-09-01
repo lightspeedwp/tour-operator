@@ -642,6 +642,21 @@ echo esc_attr( 'selected="selected"' ); }
 				<small><?php esc_html_e( 'When disabled you will be redirected to the homepage when trying to access a single page.', 'tour-operator' ); ?></small>
 			</td>
 		</tr>
+		<?php
+		if ( 'destination' === $post_type ) {
+			?>
+			<tr class="form-field">
+				<th scope="row">
+					<label for="disable_single_region"><?php esc_html_e( 'Disable Regions Only', 'tour-operator' ); ?></label>
+				</th>
+				<td>
+					<input type="checkbox" {{#if disable_single_region}} checked="checked" {{/if}} name="disable_single_region" />
+					<small><?php esc_html_e( 'When you only want to display the countries.', 'tour-operator' ); ?></small>
+				</td>
+			</tr>
+			<?php
+		}
+		?>
 		<tr class="form-field">
 			<th scope="row">
 				<label for="description"><?php esc_html_e( 'Disable Collapsible Sections', 'tour-operator' ); ?></label>
@@ -665,15 +680,6 @@ echo esc_attr( 'selected="selected"' ); }
 						<option value="sticky-first" {{#is sticky_countries value="sticky-first"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky regions first', 'tour-operator' ); ?></option>
 						<option value="sticky-last" {{#is sticky_countries value="sticky-last"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky regions last', 'tour-operator' ); ?></option>
 					</select>
-				</td>
-			</tr>
-			<tr class="form-field">
-				<th scope="row">
-					<label for="disable_single_region"><?php esc_html_e( 'Disable Regions Only', 'tour-operator' ); ?></label>
-				</th>
-				<td>
-					<input type="checkbox" {{#if disable_single_region}} checked="checked" {{/if}} name="disable_single_region" />
-					<small><?php esc_html_e( 'When you only want to display the countries.', 'tour-operator' ); ?></small>
 				</td>
 			</tr>
 			<?php
