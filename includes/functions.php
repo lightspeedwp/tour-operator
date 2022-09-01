@@ -303,7 +303,10 @@ function lsx_to_itinerary_accommodation( $before = '', $after = '', $echo = true
 
 	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
 		if ( ! empty( $tour_itinerary->itinerary['accommodation_to_tour'] ) && is_array( $tour_itinerary->itinerary['accommodation_to_tour'] ) ) {
-			echo wp_kses_post( $before . lsx_to_connected_list( $tour_itinerary->itinerary['accommodation_to_tour'], 'accommodation', true, ', ' ) . $after );
+			$return = $before . lsx_to_connected_list( $tour_itinerary->itinerary['accommodation_to_tour'], 'accommodation', true, ', ' ) . $after;
+			if ( true === $echo ) {
+				echo wp_kses_post( $return );
+			}
 		}
 
 		$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
@@ -317,13 +320,17 @@ function lsx_to_itinerary_accommodation( $before = '', $after = '', $echo = true
 				the_terms( $accommodation, 'accommodation-type', '<span class="' . $meta_class . 'style"><span class="lsx-to-meta-data-key">' . __( 'Type', 'tour-operator' ) . ':</span> ', ', ', '</span>' );
 				lsx_to_accommodation_special_interests( '<span class="' . $meta_class . 'special"><span class="lsx-to-meta-data-key">' . __( 'Special Interests', 'tour-operator' ) . ':</span> ', '</span>', $accommodation );
 
-				$return = ob_get_clean();
+				$additional = ob_get_clean();
 				if ( true === $echo ) {
-					echo wp_kses_post( $return );
+					echo wp_kses_post( $additional );
 				} else {
-					return $return;
+					$return .= $additional;
 				}
 			}
+		}
+
+		if ( true !== $echo ) {
+			return $return;
 		}
 	}
 }
