@@ -37,6 +37,7 @@ $taxonomy = array(
 		'show_ui'             => true,
 		'public'              => true,
 		'show_tagcloud'       => false,
+		'show_in_rest'        => true,
 		'exclude_from_search' => true,
 		'show_admin_column'   => true,
 		'query_var'           => true,
