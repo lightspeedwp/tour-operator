@@ -278,7 +278,7 @@ if ( window.location.hash ) {
 							}
 						},
 						{
-							breakpoint: lsx_to_params.slickSlider.tablet.mobile,
+							breakpoint: lsx_to_params.slickSlider.mobile.breakpoint,
 							settings: {
 								slidesToShow:   lsx_to_params.slickSlider.mobile.slidesToShow,
 								slidesToScroll: lsx_to_params.slickSlider.mobile.slidesToScroll,
