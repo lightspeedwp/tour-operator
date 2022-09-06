@@ -268,15 +268,17 @@ if ( window.location.hash ) {
 					autoplaySpeed: autoplay_speed,
 					responsive: [
 						{
-							breakpoint: 992,
+							breakpoint: lsx_to_params.slickSlider.tablet.breakpoint,
 							settings: {
+								slidesToShow:   lsx_to_params.slickSlider.tablet.slidesToShow,
+								slidesToScroll: lsx_to_params.slickSlider.tablet.slidesToScroll,
 								draggable: lsx_to_params.slickSlider.tablet.draggable,
 								arrows: lsx_to_params.slickSlider.tablet.arrows,
 								swipe: lsx_to_params.slickSlider.tablet.swipe,
 							}
 						},
 						{
-							breakpoint: 768,
+							breakpoint: lsx_to_params.slickSlider.tablet.mobile,
 							settings: {
 								slidesToShow:   lsx_to_params.slickSlider.mobile.slidesToShow,
 								slidesToScroll: lsx_to_params.slickSlider.mobile.slidesToScroll,

@@ -266,9 +266,12 @@ class Frontend extends Tour_Operator {
 						'slidesToScroll' => 3,
 					),
 					'tablet'  => array(
-						'draggable' => true,
-						'arrows'    => false,
-						'swipe'     => true,
+						'slidesToShow'   => 3,
+						'slidesToScroll' => 3,
+						'draggable'  => true,
+						'arrows'     => false,
+						'swipe'      => true,
+						'breakpoint' => 992,
 					),
 					'mobile'  => array(
 						'slidesToShow'   => 1,
@@ -276,6 +279,7 @@ class Frontend extends Tour_Operator {
 						'draggable'      => true,
 						'arrows'         => false,
 						'swipe'          => true,
+						'breakpoint'     => 768,
 					),
 				),
 			);
