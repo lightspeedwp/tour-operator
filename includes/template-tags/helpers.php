@@ -563,7 +563,10 @@ function lsx_to_related_items( $taxonomy = false, $before = '', $after = '', $ec
 			$wp_query->is_single = 0;
 			$wp_query->is_singular = 0;
 			$wp_query->is_post_type_archive = 1;
-			$columns = 3;
+
+			if ( null ===  $columns || empty( $columns ) || '' === $columns ) {
+				$columns = 3;
+			}
 
 			ob_start();
 
