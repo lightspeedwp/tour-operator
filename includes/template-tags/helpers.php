@@ -576,7 +576,7 @@ function lsx_to_related_items( $taxonomy = false, $before = '', $after = '', $ec
 				'slidesToShow'   => esc_attr( $columns ),
 				'slidesToScroll' => esc_attr( $columns ),
 			);
-			$slider_atts = apply_filters( 'lsx_to_slider_attributes', $slider_atts, $wp_query );
+			$slider_atts = apply_filters( 'lsx_to_related_slider_attributes', $slider_atts );
 
 			echo '<div class="slider-container lsx-to-widget-items">';
 			echo '<div id="slider-' . esc_attr( $carousel_id ) . '" class="lsx-to-slider">';
