@@ -572,10 +572,16 @@ function lsx_to_related_items( $taxonomy = false, $before = '', $after = '', $ec
 			$interval = '6000';
 			$post_type = get_post_type();
 
+			$slider_atts = array(
+				'slidesToShow'   => esc_attr( $columns ),
+				'slidesToScroll' => esc_attr( $columns ),
+			);
+			$slider_atts = apply_filters( 'lsx_to_slider_attributes', $slider_atts, $wp_query );
+
 			echo '<div class="slider-container lsx-to-widget-items">';
 			echo '<div id="slider-' . esc_attr( $carousel_id ) . '" class="lsx-to-slider">';
 			echo '<div class="lsx-to-slider-wrap">';
-			echo '<div class="lsx-to-slider-inner" data-interval="' . esc_attr( $interval ) . '" data-slick=\'{ "slidesToShow": ' . esc_attr( $columns ) . ', "slidesToScroll": ' . esc_attr( $columns ) . ' }\'>';
+			echo '<div class="lsx-to-slider-inner" data-interval="' . esc_attr( $interval ) . '" data-slick=\'' . json_encode( $slider_atts ) .'\'>';
 
 			while ( $related_query->have_posts() ) :
 				$related_query->the_post();
