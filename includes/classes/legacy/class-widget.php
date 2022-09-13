@@ -615,10 +615,17 @@ class Widget extends \WP_Widget {
 			$landing_image     = '';
 			$this->carousel_id = rand( 20, 20000 );
 
+			$slider_atts = array(
+				'slidesToShow'   => esc_attr( $columns ),
+				'slidesToScroll' => esc_attr( $columns ),
+			);
+			$slider_atts = apply_filters( 'lsx_to_widget_slider_attributes', $slider_atts, $post_type );
+
 			$output .= "<div class='slider-container lsx-to-widget-items'>";
 			$output .= "<div id='slider-{$this->carousel_id}' class='lsx-to-slider'>";
 			$output .= '<div class="lsx-to-slider-wrap">';
-			$output .= "<div class='lsx-to-slider-inner' data-interval='{$interval}' data-slick='{ \"slidesToShow\": {$columns}, \"slidesToScroll\": {$columns} }'>";
+
+			$output .= '<div class="lsx-to-slider-inner" data-interval="' . esc_attr( $interval ) . '" data-slick=\'' . json_encode( $slider_atts ) .'\'>';
 		} else {
 			$output .= "<div class='lsx-to-widget-items'>";
 		}
