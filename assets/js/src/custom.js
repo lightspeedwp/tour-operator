@@ -241,6 +241,7 @@ if ( window.location.hash ) {
 		$( '.lsx-to-slider .lsx-to-slider-inner:not(.slider-disabled)' ).each( function() {
 			var $this = $( this ),
 				interval = $this.data( 'interval' ),
+				currentSettings = $this.data( 'slick' ),
 				autoplay = false,
 				autoplay_speed = 0;
 
@@ -252,6 +253,23 @@ if ( window.location.hash ) {
 				if ( ! isNaN( interval ) ) {
 					autoplay = true;
 					autoplay_speed = interval;
+				}
+			}
+
+
+			let tabletSlidesToShow = lsx_to_params.slickSlider.tablet.slidesToShow;
+			let tabletSlidesToScroll     = lsx_to_params.slickSlider.tablet.slidesToScroll;
+
+			if ( 'undefined' !== typeof currentSettings && 'boolean' !== typeof currentSettings ) {
+
+				// Tablet Settings.
+				if ( 'undefined' !== typeof currentSettings.tablet ) {
+					if ( 'undefined' !== typeof currentSettings.tablet.slidesToShow ) {
+						tabletSlidesToShow = currentSettings.tablet.slidesToShow;
+					}
+					if ( 'undefined' !== typeof currentSettings.tablet.slidesToShow ) {
+						tabletSlidesToScroll = currentSettings.tablet.slidesToScroll;
+					}
 				}
 			}
 
@@ -270,8 +288,8 @@ if ( window.location.hash ) {
 						{
 							breakpoint: lsx_to_params.slickSlider.tablet.breakpoint,
 							settings: {
-								slidesToShow:   lsx_to_params.slickSlider.tablet.slidesToShow,
-								slidesToScroll: lsx_to_params.slickSlider.tablet.slidesToScroll,
+								slidesToShow:   tabletSlidesToShow,
+								slidesToScroll: tabletSlidesToScroll,
 								draggable: lsx_to_params.slickSlider.tablet.draggable,
 								arrows: lsx_to_params.slickSlider.tablet.arrows,
 								swipe: lsx_to_params.slickSlider.tablet.swipe,
