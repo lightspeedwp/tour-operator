@@ -116,7 +116,7 @@ function lsx_to_itinerary_title( $echo = true ) {
 			if ( true === $echo ) {
 				echo wp_kses_post( $title );
 			} else {
-				return $echo;
+				return $title;
 			}
 		}
 	}

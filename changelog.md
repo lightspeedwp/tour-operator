@@ -7,6 +7,7 @@
 #### General
 - Added a size parameter to `lsx_to_itinerary_thumbnail()` to allow selecting of different size images.
 - Added the slider breakpoints and tablet slider amounts to the `lsx_to_js_params` params
+- Fixing the return of `lsx_to_itinerary_title`
 
 #### Destinations
 - Added the option to disable the countries regions only.
