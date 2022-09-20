@@ -199,7 +199,7 @@ function lsx_to_itinerary_has_thumbnail() {
  * @subpackage    template-tags
  * @category      itinerary
  */
-function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square' ) {
+function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square', $meta_key = 'accommodation_to_tour' ) {
 	global $tour_itinerary;
 	$accommodation_id = '';
 	$temp_id          = '';
@@ -213,10 +213,10 @@ function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square' ) {
 			if ( is_array( $thumbnail ) ) {
 				$thumbnail_src = $thumbnail[0];
 			}
-		} elseif ( ! empty( $tour_itinerary->itinerary['accommodation_to_tour'] ) ) {
+		} elseif ( ! empty( $tour_itinerary->itinerary[ $meta_key ] ) ) {
 			$accommodation_images = false;
 
-			foreach ( $tour_itinerary->itinerary['accommodation_to_tour'] as $accommodation_id ) {
+			foreach ( $tour_itinerary->itinerary[ $meta_key ] as $accommodation_id ) {
 				$tour_itinerary->register_current_gallery( $accommodation_id );
 				$current_image_id = false;
 
