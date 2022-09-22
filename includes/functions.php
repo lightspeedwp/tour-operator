@@ -449,10 +449,8 @@ function lsx_to_itinerary_excludes( $before = '', $after = '' ) {
 function lsx_to_itinerary_count( $echo = true ) {
 	global $tour_itinerary;
 	$count = 0;
-	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
-		if ( isset( $tour_itinerary->count ) && ! empty( $tour_itinerary->count ) ) {
-			$count = $tour_itinerary->count;
-		}
+	if ( $tour_itinerary && isset( $tour_itinerary->count ) && ! empty( $tour_itinerary->count ) ) {
+		$count = $tour_itinerary->count;
 	}
 	if ( true === $echo ) {
 		echo wp_kses_post( $count );
