@@ -440,6 +440,28 @@ function lsx_to_itinerary_excludes( $before = '', $after = '' ) {
 }
 
 /**
+ * Outputs The current Itinerary title, can only be used in the itinerary loop.
+ *
+ * @package       tour-operator
+ * @subpackage    template-tags
+ * @category      itinerary
+ */
+function lsx_to_itinerary_count( $echo = true ) {
+	global $tour_itinerary;
+	$count = 0;
+	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
+		if ( isset( $tour_itinerary->count ) && ! empty( $tour_itinerary->count ) ) {
+			$count = $tour_itinerary->count;
+		}
+	}
+	if ( true === $echo ) {
+		echo wp_kses_post( $count );
+	} else {
+		return $count;
+	}
+}
+
+/**
  * Checks if the current accommodation has rooms
  *
  * @package       tour-operator
