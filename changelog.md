@@ -1,6 +1,6 @@
 # Change log
 
-## [[1.4.5]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.5) - In Development
+## [[1.4.5]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.5) - 2022-09-21
 
 ### Added
 
@@ -22,6 +22,9 @@
 
 - Fixed the impropper escaping of the months to visit function.
 - Fixed the PHP error on taxonomies - missing add_expert_form_field
+
+### Security
+- General testing to ensure compatibility with latest WordPress version (6.0.2).
 
 ## [[1.4.4]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.4) - 2022-05-25
 
