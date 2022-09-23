@@ -1814,15 +1814,15 @@
         },
         {
             "name": "wpackagist-theme/lsx",
-            "version": "3.0",
+            "version": "3.0.1",
             "source": {
                 "type": "svn",
                 "url": "https://themes.svn.wordpress.org/lsx/",
-                "reference": "3.0"
+                "reference": "3.0.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/theme/lsx.3.0.zip"
+                "url": "https://downloads.wordpress.org/theme/lsx.3.0.1.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
