@@ -5,7 +5,7 @@ Tags: lsx, tour operator, tours, travel, travel-agency
 Requires at least: 5.0
 Tested up to: 6.0.2
 Requires PHP: 7.2
-Stable tag: 1.4.5
+Stable tag: 1.4.6
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 

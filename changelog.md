@@ -1,5 +1,11 @@
 # Change log
 
+## [[1.4.6]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.5) - 2022-09-22
+
+### Fixed
+- An issue causing the LSX TO Widget slider pagination to break.
+
+
 ## [[1.4.5]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.5) - 2022-09-21
 
 ### Added
