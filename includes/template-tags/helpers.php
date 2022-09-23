@@ -584,7 +584,9 @@ function lsx_to_related_items( $taxonomy = false, $before = '', $after = '', $ec
 			echo '<div class="slider-container lsx-to-widget-items">';
 			echo '<div id="slider-' . esc_attr( $carousel_id ) . '" class="lsx-to-slider">';
 			echo '<div class="lsx-to-slider-wrap">';
-			echo '<div class="lsx-to-slider-inner" data-interval="' . esc_attr( $interval ) . '" data-slick=\'' . json_encode( $slider_atts ) .'\'>';
+			
+			//echo '<div class="lsx-to-slider-inner" data-interval="' . esc_attr( $interval ) . '" data-slick=\'' . json_encode( $slider_atts ) .'\'>';
+			echo "<div class='lsx-to-slider-inner' data-interval='{$interval}' data-slick='{ \"slidesToShow\": {$columns}, \"slidesToScroll\": {$columns} }'>";
 
 			while ( $related_query->have_posts() ) :
 				$related_query->the_post();
