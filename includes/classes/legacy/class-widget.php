@@ -625,7 +625,8 @@ class Widget extends \WP_Widget {
 			$output .= "<div id='slider-{$this->carousel_id}' class='lsx-to-slider'>";
 			$output .= '<div class="lsx-to-slider-wrap">';
 
-			$output .= '<div class="lsx-to-slider-inner" data-interval="' . esc_attr( $interval ) . '" data-slick=\'' . json_encode( $slider_atts ) .'\'>';
+			//$output .= '<div class="lsx-to-slider-inner" data-interval="' . esc_attr( $interval ) . '" data-slick=\'' . json_encode( $slider_atts ) .'\'>';
+			$output .= "<div class='lsx-to-slider-inner' data-interval='{$interval}' data-slick='{ \"slidesToShow\": {$columns}, \"slidesToScroll\": {$columns} }'>";
 		} else {
 			$output .= "<div class='lsx-to-widget-items'>";
 		}
