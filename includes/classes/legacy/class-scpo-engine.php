@@ -474,13 +474,13 @@ class SCPO_Engine {
 	function get_to_scporder_options_objects() {
 		$tour_operator = tour_operator()->legacy;
 
-		return $tour_operator->post_types;
+		return apply_filters( 'lsx_to_scpo_engine_objects', $tour_operator->post_types );
 	}
 
 	function get_to_scporder_options_tags() {
 		$tour_operator = tour_operator()->legacy;
 
-		return $tour_operator->taxonomies;
+		return apply_filters( 'lsx_to_scpo_engine_taxonomies', $tour_operator->taxonomies );
 	}
 
 }
