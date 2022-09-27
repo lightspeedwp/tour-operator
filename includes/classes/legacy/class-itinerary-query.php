@@ -51,7 +51,7 @@ class Itinerary_Query {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @var      array
+	 * @var int
 	 */
 	public $count = 0;
 
@@ -122,6 +122,7 @@ class Itinerary_Query {
 		if ( $this->index < $this->count ) {
 			return true;
 		} else {
+			$this->itinerary = false;
 			return false;
 		}
 	}
