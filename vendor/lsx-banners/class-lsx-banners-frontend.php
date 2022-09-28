@@ -796,6 +796,7 @@ class TO_Banners_Frontend extends TO_Banners {
 		}
 
 		$allowedtags['a']['data-extra-top'] = true;
+		$allowedtags['a']['data-mobile-top'] = true;
 		$allowedtags['a']['onclick'] = true;
 
 		return $allowedtags;
