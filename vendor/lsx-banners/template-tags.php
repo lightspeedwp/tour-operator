@@ -19,13 +19,16 @@
 function to_banner_navigation( $echo = false ) {
 	$atts = array(
 		'extra-top' => '0',
+		'selector'  => '#main',
 	);
 
 	if ( is_array( $echo ) ) {
 		$atts = shortcode_atts( $atts, $echo, 'banner_navigation' );
 	}
 
-	$return = '<div class="banner-easing"><a class="btn-scroll-to" href="#main" data-extra-top="' . $atts['extra-top'] . '"><i class="fa fa-angle-down" aria-hidden="true"></i></a></div>';
+	$atts = apply_filters( 'to_banner_navigation_atts', $atts );
+
+	$return = '<div class="banner-easing"><a class="btn-scroll-to" href="' . $atts['selector'] . '" data-extra-top="' . $atts['extra-top'] . '"><i class="fa fa-angle-down" aria-hidden="true"></i></a></div>';
 
 	if ( true === $echo ) {
 		echo esc_attr( $return );

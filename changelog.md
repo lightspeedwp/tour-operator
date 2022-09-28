@@ -1,6 +1,12 @@
 # Change log
 
-## [[1.4.6]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.5) - 2022-09-22
+## [[1.4.7]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.7) - in Development
+
+### Added
+- A parameter to the `to_banner_navigation` shortcode to allow changing the element selector.
+- A filter to allowing the overwritting of the `banner_navigation` shortcode.  `to_banner_navigation_atts`
+
+## [[1.4.6]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.6) - 2022-09-22
 
 ### Fixed
 - An issue causing the LSX TO Widget slider pagination to break.
