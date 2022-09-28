@@ -10,11 +10,13 @@ var TO_Banners = {
 				_top = parseInt( _$to.offset().top ),
 				_extra = parseInt( _$from.data( 'extra-top' ) ? _$from.data( 'extra-top' ) : '-100' );
 
-				jQuery( 'html, body' ).animate(
+				console.log(_top + _extra);
+				
+				jQuery( 'html' ).animate(
 					{
 						scrollTop: (_top + _extra)
 					},
-					800
+					80
 				);
 
 				return false;

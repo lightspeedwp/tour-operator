@@ -6,6 +6,10 @@
 - A parameter to the `to_banner_navigation` shortcode to allow changing the element selector.
 - A filter to allowing the overwritting of the `banner_navigation` shortcode.  `to_banner_navigation_atts`
 
+### Fixed
+
+- The banner easing navigation.
+
 ## [[1.4.6]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.6) - 2022-09-22
 
 ### Fixed
