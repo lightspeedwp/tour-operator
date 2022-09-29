@@ -11,18 +11,25 @@ var TO_Banners = {
 				_extra = parseInt( _$from.data( 'extra-top' ) ? _$from.data( 'extra-top' ) : '-100' );
 				_mobile = parseInt( _$from.data( 'mobile-top' ) ? _$from.data( 'mobile-top' ) : '-50' );
 
-				console.log(_top + _extra);
+				console.log(_top);
 
 				let addtion = _extra;
 				if ( 900 >= jQuery(window).width() ) {
 					addtion = _mobile;
 				}
 
-				console.log( _top + addtion );
+				if ( addtion < 0 ) {
+					addtion = addtion + _top;
+					console.log( 'minus' );
+				} else {
+					addtion = _top + addtion;
+					console.log( 'plus' );
+				}
+				console.log( addtion );
 				
 				jQuery( 'html' ).animate(
 					{
-						scrollTop: (_top + addtion)
+						scrollTop: (addtion)
 					},
 					80
 				);

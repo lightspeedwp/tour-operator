@@ -170,12 +170,22 @@ class Tour {
 		?>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="description"><?php esc_html_e( 'Compress Itineraries', 'tour-operator' ); ?></label>
+				<label for="shorten_itinerary"><?php esc_html_e( 'Compress Itineraries', 'tour-operator' ); ?></label>
 			</th>
 			<td>
 				<input type="checkbox" {{#if shorten_itinerary}}
 					   checked="checked" {{/if}} name="shorten_itinerary" />
 				<small><?php esc_html_e( 'If you have many Itinerary entries on your tours, then you may want to shorten the length of the page with a "read more" button.', 'tour-operator' ); ?></small>
+			</td>
+		</tr>
+		<tr class="form-field">
+			<th scope="row">
+				<label for="itinerary_use_destination_images"><?php esc_html_e( 'Itinerary Destination Images', 'tour-operator' ); ?></label>
+			</th>
+			<td>
+				<input type="checkbox" {{#if itinerary_use_destination_images}}
+					   checked="checked" {{/if}} name="itinerary_use_destination_images" />
+				<small><?php esc_html_e( 'Switch the itinerary images to the attached region instead of accommodation.', 'tour-operator' ); ?></small>
 			</td>
 		</tr>
 		<tr class="form-field-wrap">
