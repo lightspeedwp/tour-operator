@@ -203,6 +203,12 @@ function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square', $meta_key =
 	global $tour_itinerary;
 	$accommodation_id = '';
 	$temp_id          = '';
+	$tour_operator    = tour_operator();
+	
+	if ( isset( $tour_operator->options['tour']['itinerary_use_destination_images'] ) && '' !== $tour_operator->options['tour']['itinerary_use_destination_images'] ) {
+		$meta_key = 'destination_to_tour';
+	}
+
 	if ( $tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary ) {
 		$thumbnail_src = false;
 
