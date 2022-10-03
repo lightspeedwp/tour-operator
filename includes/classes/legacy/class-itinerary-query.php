@@ -89,7 +89,7 @@ class Itinerary_Query {
 	 *
 	 * @var      string
 	 */
-	public $images_used = array();
+	public $images_used = array(0);
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -215,6 +215,7 @@ class Itinerary_Query {
 			$images_left = array_diff( $this->current_attachments[ $accommodation_id ], $this->images_used );
 			if ( is_array( $images_left ) && ! empty( $images_left ) ) {
 				$images_left = array_values( $images_left );
+				shuffle( $images_left );
 				$return = array_shift( $images_left );
 			}
 		}

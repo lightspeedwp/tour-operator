@@ -229,7 +229,7 @@ function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square', $meta_key =
 				// Try for a thumbnail first.
 				$temp_id = get_post_thumbnail_id( $accommodation_id );
 
-				if ( false === $temp_id || $tour_itinerary->is_image_used( $temp_id ) ) {
+				if ( false === $temp_id || 0 === $temp_id || $tour_itinerary->is_image_used( $temp_id ) ) {
 					$current_image_id = $tour_itinerary->find_next_image( $accommodation_id );
 				} else {
 					$current_image_id = $temp_id;

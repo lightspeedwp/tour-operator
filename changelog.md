@@ -8,7 +8,6 @@
 - Added in an option to switch the itinerary to the destination images instead of the accommodation images.
 
 ### Fixed
-
 - The banner easing navigation.
 
 ## [[1.4.6]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.6) - 2022-09-22
