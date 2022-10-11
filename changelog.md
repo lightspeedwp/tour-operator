@@ -9,6 +9,7 @@
 
 ### Fixed
 - The banner easing navigation.
+- The output of the Mobile Tours destinations.
 
 ## [[1.4.6]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.6) - 2022-09-22
 

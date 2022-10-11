@@ -285,14 +285,18 @@ function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square', $meta_key =
 function lsx_to_itinerary_destinations( $before = '', $after = '', $echo = true ) {
 	global $tour_itinerary;
 
-	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
-		if ( ! empty( $tour_itinerary->itinerary['destination_to_tour'] ) && is_array( $tour_itinerary->itinerary['destination_to_tour'] ) ) {
-			if ( true === $echo ) {
-				echo wp_kses_post( $before . lsx_to_connected_list( $tour_itinerary->itinerary['destination_to_tour'], 'destination', true, ', ' ) . $after );
-			} else {
-				return wp_kses_post( $before . lsx_to_connected_list( $tour_itinerary->itinerary['destination_to_tour'], 'destination', true, ', ' ) . $after );
-			}	
+	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) && ! empty( $tour_itinerary->itinerary['destination_to_tour'] ) ) {
+		$itinerary_destinations = $tour_itinerary->itinerary['destination_to_tour'];
+		if ( ! is_array( $itinerary_destinations ) ) {
+			$itinerary_destinations = array( $itinerary_destinations );
 		}
+		$itinerary_destinations = $before . lsx_to_connected_list( $itinerary_destinations, 'destination', true, ', ' ) . $after;
+
+		if ( true === $echo ) {
+			echo wp_kses_post( $itinerary_destinations );
+		} else {
+			return $itinerary_destinations;
+		}	
 	}
 }
 
