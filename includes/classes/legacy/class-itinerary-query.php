@@ -141,7 +141,7 @@ class Itinerary_Query {
 	 * @param   $accommodation_id   | string
 	 */
 	public function register_current_gallery( $accommodation_id = false ) {
-		if ( false !== $accommodation_id ) {
+		if ( false !== $accommodation_id && ! isset( $this->current_attachments[ $accommodation_id ] ) ) {
 			$gallery = get_post_meta( $accommodation_id, 'gallery', false );
 			$gallery = $this->append_room_images( $accommodation_id, $gallery );
 			if ( false !== $gallery && ! empty( $gallery ) ) {
@@ -239,7 +239,7 @@ class Itinerary_Query {
 	 */
 
 	function departure_day_image( $thumbnail_src = false, $index = 1, $count = 0 ) {
-		if ( false !== stripos( $thumbnail_src, 'placeholder' ) && $count === $index ) {
+		if ( false !== stripos( $thumbnail_src, 'placeholder' ) && $count <= $index ) {
 			$thumbnail_src = get_the_post_thumbnail_url( get_the_ID() );
 		}
 		return $thumbnail_src;
