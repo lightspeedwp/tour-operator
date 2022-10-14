@@ -383,8 +383,15 @@ function lsx_to_get_tour_itinerary_ids() {
 		$itinerary_count = 1;
 		while ( $tour_itinerary->while_itinerary() ) {
 			$tour_itinerary->current_itinerary_item();
-			if ( ! empty( $tour_itinerary->itinerary[ $meta_key ] ) && is_array( $tour_itinerary->itinerary[ $meta_key ] ) ) {
-				$itinerary_ids = array_merge( $itinerary_ids, array_values( $tour_itinerary->itinerary[ $meta_key ] ) );
+
+
+			if ( ! empty( $tour_itinerary->itinerary[ $meta_key ] ) && '' !== $tour_itinerary->itinerary[ $meta_key] ) {
+				if ( ! is_array( $tour_itinerary->itinerary[ $meta_key ] ) ) {
+					$d_ids = array( $tour_itinerary->itinerary[ $meta_key ] );
+				} else {
+					$d_ids = $tour_itinerary->itinerary[ $meta_key ];
+				}
+				$itinerary_ids = array_merge( $itinerary_ids, array_values( $d_ids ) );
 			}
 		}
 	}
