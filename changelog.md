@@ -6,6 +6,7 @@
 - A parameter to the `to_banner_navigation` shortcode to allow changing the element selector.
 - A filter to allowing the overwritting of the `banner_navigation` shortcode.  `to_banner_navigation_atts`
 - Added in an option to switch the itinerary to the destination images instead of the accommodation images.
+- A filter to allow the use of destination pins in the map, for rail and boat tours. `lsx_to_get_itinerary_ids_meta_key`
 
 ### Fixed
 - The banner easing navigation.

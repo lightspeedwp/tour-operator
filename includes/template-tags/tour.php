@@ -378,12 +378,13 @@ function lsx_to_itinerary_drinks_basis( $before = '', $after = '' ) {
 function lsx_to_get_tour_itinerary_ids() {
 	$tour_itinerary = new \lsx\legacy\Itinerary_Query();
 	$itinerary_ids  = array();
+	$meta_key       = apply_filters( 'lsx_to_get_itinerary_ids_meta_key', 'accommodation_to_tour' );
 	if ( $tour_itinerary->has_itinerary() ) {
 		$itinerary_count = 1;
 		while ( $tour_itinerary->while_itinerary() ) {
 			$tour_itinerary->current_itinerary_item();
-			if ( ! empty( $tour_itinerary->itinerary['accommodation_to_tour'] ) && is_array( $tour_itinerary->itinerary['accommodation_to_tour'] ) ) {
-				$itinerary_ids = array_merge( $itinerary_ids, array_values( $tour_itinerary->itinerary['accommodation_to_tour'] ) );
+			if ( ! empty( $tour_itinerary->itinerary[ $meta_key ] ) && is_array( $tour_itinerary->itinerary[ $meta_key ] ) ) {
+				$itinerary_ids = array_merge( $itinerary_ids, array_values( $tour_itinerary->itinerary[ $meta_key ] ) );
 			}
 		}
 	}
