@@ -113,6 +113,7 @@ function lsx_to_itinerary_title( $echo = true ) {
 	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
 		if ( ! empty( $tour_itinerary->itinerary['title'] ) ) {
 			$title = apply_filters( 'the_title', $tour_itinerary->itinerary['title'] );
+			$title = apply_filters( 'lsx_to_itinerary_title', $title );
 			if ( true === $echo ) {
 				echo wp_kses_post( $title );
 			} else {
