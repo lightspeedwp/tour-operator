@@ -361,7 +361,7 @@ function lsx_to_connected_items_query( $from = false, $to = false, $before = '',
 		$connected_ids = get_post_meta( get_the_ID(), $from . '_to_' . $to, false );
 
 		if ( $parents ) {
-			$connected_ids = apply_filters( 'lsx_to_parents_only', $connected_ids );
+			$connected_ids = apply_filters( 'lsx_to_parents_only', $connected_ids, $from . '_to_' . $to );
 		}
 
 		if ( false !== $connected_ids && '' !== $connected_ids && ! empty( $connected_ids ) ) {
@@ -646,9 +646,10 @@ function lsx_to_connected_list( $connected_ids = false, $type = false, $link = t
 		}
 
 		$filters = array(
-			'post_type' => $type,
+			'post_type'   => $type,
 			'post_status' => 'publish',
-			'post__in'	=> $connected_ids,
+			'post__in'	  => $connected_ids,
+			'orderby'     => 'post__in',
 		);
 
 		if ( false !== $parent ) {
