@@ -373,12 +373,13 @@ function lsx_to_itinerary_drinks_basis( $before = '', $after = '' ) {
  * @subpackage    template-tags
  * @category      itinerary
  *
+ * @param string $meta_key
  * @return array
  */
-function lsx_to_get_tour_itinerary_ids() {
+function lsx_to_get_tour_itinerary_ids( $meta_key = 'accommodation_to_tour' ) {
 	$tour_itinerary = new \lsx\legacy\Itinerary_Query();
 	$itinerary_ids  = array();
-	$meta_key       = apply_filters( 'lsx_to_get_itinerary_ids_meta_key', 'accommodation_to_tour' );
+	$meta_key       = apply_filters( 'lsx_to_get_itinerary_ids_meta_key', $meta_key );
 	if ( $tour_itinerary->has_itinerary() ) {
 		$itinerary_count = 1;
 		while ( $tour_itinerary->while_itinerary() ) {
