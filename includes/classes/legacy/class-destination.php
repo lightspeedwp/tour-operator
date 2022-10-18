@@ -471,7 +471,7 @@ class Destination {
 					$new_items[] = $country;
 				}
 			}
-			$countries = $new_items;
+			$countries = array_reverse( $new_items );
 		}
 		return $countries;
 	}
