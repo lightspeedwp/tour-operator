@@ -463,30 +463,16 @@ class Destination {
 	 * Only return the upper lever countries
 	 */
 	public function filter_countries( $countries = array() ) {
-		global $wpdb;
-
 		if ( ! empty( $countries ) ) {
-			$new_items           = array();
-			$formatted_countries = implode( ',', $countries );
-
-			// @codingStandardsIgnoreStart
-			$results = $wpdb->get_results( "
-				SELECT ID,post_parent
-				FROM {$wpdb->posts}
-				WHERE ID IN ({$formatted_countries})
-			" );
-			// @codingStandardsIgnoreEnd
-
-			if ( ! empty( $results ) ) {
-				foreach ( $results as $result ) {
-					if ( 0 === $result->post_parent || '0' === $result->post_parent ) {
-						$new_items[] = $result->ID;
-					}
+			$new_items = array();
+			foreach ( $countries as $country ) {
+				$temp_parent = wp_get_post_parent_id( $country );
+				if ( 0 === $temp_parent || '0' === $temp_parent ) {
+					$new_items[] = $country;
 				}
-				$countries = $new_items;
 			}
+			$countries = $new_items;
 		}
-
 		return $countries;
 	}
 
