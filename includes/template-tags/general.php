@@ -432,8 +432,13 @@ function lsx_to_has_enquiry_contact() {
 		$has_enquiry_contact = lsx_to_has_team_member();
 	}
 
-	if ( false === $has_enquiry_contact ) {
-		if ( isset( $tour_operator->options['general'] ) && isset( $tour_operator->options['general']['enquiry_contact_name'] ) && '' !== $tour_operator->options['general']['enquiry_contact_name'] ) {
+	if ( false === $has_enquiry_contact && isset( $tour_operator->options['general'] ) ) {
+		if ( isset( $tour_operator->options['general']['enquiry_contact_name'] ) && '' !== $tour_operator->options['general']['enquiry_contact_name'] ) {
+			$has_enquiry_contact = true;
+		}
+
+		// First set the general form
+		if ( isset( $tour_operator->options['general']['enquiry'] ) && '' !== $tour_operator->options['general']['enquiry'] ) {
 			$has_enquiry_contact = true;
 		}
 	}
