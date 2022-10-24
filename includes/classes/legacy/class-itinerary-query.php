@@ -268,5 +268,6 @@ class Itinerary_Query {
 				}
 			}
 		}
+		return $gallery;
 	}
 }
