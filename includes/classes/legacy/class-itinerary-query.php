@@ -217,6 +217,7 @@ class Itinerary_Query {
 	public function find_next_image( $accommodation_id = false ) {
 		$return = false;
 		if ( false !== $accommodation_id && isset( $this->current_attachments[ $accommodation_id ] ) && ! empty( $this->current_attachments[ $accommodation_id ] ) && ! empty( $this->images_used ) ) {
+			$this->last_item_id = $accommodation_id;
 			$images_left = array_diff( $this->current_attachments[ $accommodation_id ], $this->images_used );
 			if ( is_array( $images_left ) && ! empty( $images_left ) ) {
 				$images_left = array_values( $images_left );
