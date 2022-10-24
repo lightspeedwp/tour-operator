@@ -223,6 +223,8 @@ class Itinerary_Query {
 				$images_left = array_values( $images_left );
 				shuffle( $images_left );
 				$return = array_shift( $images_left );
+			} else {
+				$return = apply_filters( 'lsx_to_itinerary_empty_attachments', $accommodation_id, $this );
 			}
 		}
 		return $return;
