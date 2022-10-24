@@ -216,32 +216,18 @@ class Itinerary_Query {
 	 */
 	public function find_next_image( $accommodation_id = false ) {
 		$return = false;
-
-		var_dump( 'destination item - ' . $accommodation_id);
-		echo '<br />';
-
 		if ( false !== $accommodation_id && isset( $this->current_attachments[ $accommodation_id ] ) && ! empty( $this->current_attachments[ $accommodation_id ] ) && ! empty( $this->images_used ) ) {
 			$images_left = array_diff( $this->current_attachments[ $accommodation_id ], $this->images_used );
-			var_dump( 'images left item - ' . $accommodation_id);
-			echo '<br />';
 			if ( is_array( $images_left ) && ! empty( $images_left ) ) {
 				$images_left = array_values( $images_left );
 				shuffle( $images_left );
 				$return = array_shift( $images_left );
-				var_dump( 'here');
-				echo '<br />';
 			} else {
 				$return = apply_filters( 'lsx_to_itinerary_empty_attachments', $accommodation_id, $this );
-				var_dump( 'there');
-				echo '<br />';
 			}
 		} else {
 			$return = apply_filters( 'lsx_to_itinerary_empty_attachments', $accommodation_id, $this );
-			var_dump( 'none item - ' . $accommodation_id);
-			echo '<br />';
 		}
-
-		
 		return $return;
 	}
 
