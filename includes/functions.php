@@ -224,7 +224,7 @@ function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square', $meta_key =
 			$accommodation_images = false;
 
 			foreach ( $tour_itinerary->itinerary[ $meta_key ] as $accommodation_id ) {
-				$tour_itinerary->register_current_gallery( $accommodation_id );
+				$tour_itinerary->register_current_gallery( $accommodation_id, $meta_key );
 				$current_image_id = false;
 
 				// Try for a thumbnail first.

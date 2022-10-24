@@ -140,10 +140,16 @@ class Itinerary_Query {
 	 *
 	 * @param   $accommodation_id   | string
 	 */
-	public function register_current_gallery( $accommodation_id = false ) {
+	public function register_current_gallery( $accommodation_id = false, $meta_key = 'accommodation_to_tour' ) {
 		if ( false !== $accommodation_id && ! isset( $this->current_attachments[ $accommodation_id ] ) ) {
 			$gallery = get_post_meta( $accommodation_id, 'gallery', false );
-			$gallery = $this->append_room_images( $accommodation_id, $gallery );
+
+			if ( 'accommodation_to_tour' === $meta_key ) {
+				$gallery = $this->append_room_images( $accommodation_id, $gallery );
+			} else if ( 'destination_to_tour' === $meta_key ) {
+				$gallery = $this->maybe_append_parent( $accommodation_id, $gallery );
+			}
+			
 			if ( false !== $gallery && ! empty( $gallery ) ) {
 				$this->current_attachments[ $accommodation_id ] = $gallery;
 			}
@@ -243,5 +249,24 @@ class Itinerary_Query {
 			$thumbnail_src = get_the_post_thumbnail_url( get_the_ID() );
 		}
 		return $thumbnail_src;
+	}
+
+	/**
+	 * Will add the parent countries images to the pool of regions.
+	 *
+	 * @param int $item_id
+	 * @param array $gallery
+	 * @return void
+	 */
+	public function maybe_append_parent( $item_id, $gallery ) {
+		if ( false !== $item_id && true === apply_filters( 'lsx_to_itinerary_append_parent_destinations', false ) ) {
+			$parent = wp_get_post_parent_id( $item_id );
+			if ( null !== $parent && 0 !== $parent && '0' !== $parent && false !== $parent ) {
+				$parent_images = get_post_meta( $parent, 'gallery', false );
+				if ( false !== $parent_images && ! empty( $parent_images ) && is_array( $parent_images ) ) {
+					$gallery = array_merge( $gallery, $parent_images );
+				}
+			}
+		}
 	}
 }
