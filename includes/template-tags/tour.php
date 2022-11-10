@@ -381,7 +381,7 @@ function lsx_to_get_tour_itinerary_ids( $meta_key = 'accommodation_to_tour', $su
 	$tour_itinerary = new \lsx\legacy\Itinerary_Query();
 	$itinerary_ids  = array();
 
-	if ( false !== $supress_filters ) {
+	if ( false === $supress_filters ) {
 		$meta_key = apply_filters( 'lsx_to_get_itinerary_ids_meta_key', $meta_key );
 	}
 	
