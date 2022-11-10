@@ -73,6 +73,8 @@ var LSX_TO_Maps = {
 			$footerMap.css('height',height);
 		}
 
+		console.log($map.attr('data-kml'));
+
 		var $container = null;
 		var $breadcrumbs = null;
 		if ('.lsx-map-preview' != banner_class) {
@@ -121,7 +123,7 @@ var LSX_TO_Maps = {
 
 		//Decide which method to draw on the map.
 		if (false != kml && undefined != kml) {
-			this.addRoute();
+			this.addRoute( kml );
 		} else {
 			this.refreshMarkers();
 			if ('route' == type && (false == kml || undefined == kml)) {
@@ -436,11 +438,12 @@ var LSX_TO_Maps = {
 	},
 
 	addRoute: function(kml) {
+		console.log(kml);
 		var ctaLayer = new google.maps.KmlLayer({
 				url: kml,
 				map: this.mapObj
 			});
-
+		console.log(ctaLayer);
 		this.resizeThis();
 	},
 
