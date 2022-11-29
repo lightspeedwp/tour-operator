@@ -328,6 +328,8 @@ function lsx_to_accommodation_single_content_bottom() {
 		$connected_tours = get_post_meta( get_the_ID(), 'tour_to_accommodation', false );
 
 		if ( lsx_to_accommodation_display_connected_tours() && post_type_exists( 'tour' ) && is_array( $connected_tours ) && ! empty( $connected_tours ) ) {
+			global $columns;
+			$columns = 3;
 			lsx_to_related_items( $connected_tours, '<section id="tours" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-related-items' ) . '>' . esc_html__( 'Related Tours', 'tour-operator' ) . '</h2><div id="collapse-related-items" class="collapse in"><div class="collapse-inner">', '</div></div></section>', true, 'tour' );
 		}
 

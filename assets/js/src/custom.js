@@ -257,8 +257,8 @@ if ( window.location.hash ) {
 			}
 
 
-			let tabletSlidesToShow = lsx_to_params.slickSlider.tablet.slidesToShow;
-			let tabletSlidesToScroll     = lsx_to_params.slickSlider.tablet.slidesToScroll;
+			let tabletSlidesToShow   = lsx_to_params.slickSlider.tablet.slidesToShow;
+			let tabletSlidesToScroll = lsx_to_params.slickSlider.tablet.slidesToScroll;
 
 			if ( 'undefined' !== typeof currentSettings && 'boolean' !== typeof currentSettings ) {
 
