@@ -11,6 +11,8 @@
 
 #details .cmb_metabox .cmb_metabox { float: none; width: 98%; }
 
+.cmb_metabox .cmb-cell-12 select {padding-left: 30px;}
+
 #lsx-tab-headings .tab-heading { display: block; text-transform: capitalize; padding: 10px 15px; width: 100%; }
 
 /* The Tab Styling */
