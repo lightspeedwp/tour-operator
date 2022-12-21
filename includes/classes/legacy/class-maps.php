@@ -326,6 +326,9 @@ class Maps {
 		}
 
 		$queried_post_type = get_query_var( 'post_type' );
+		if ( is_array( $queried_post_type ) ) {
+			$queried_post_type = $queried_post_type[0];
+		}
 
 		$image = LSX_TO_URL . 'assets/img/placeholders/placeholder-map-' . $default_size . '.jpg';
 
