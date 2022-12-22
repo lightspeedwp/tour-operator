@@ -1,6 +1,6 @@
 # Change log
 
-## [[1.4.7]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.7) - in Development
+## [[1.4.7]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.7) - 2022-12-23
 
 ### Added
 - A parameter to the `to_banner_navigation` shortcode to allow changing the element selector.
