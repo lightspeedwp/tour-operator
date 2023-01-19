@@ -33,18 +33,22 @@
 	box-sizing: border-box;
 }
 
-.cmb_metabox .cmb-cell-1  { width: 8.333333333%; }
-.cmb_metabox .cmb-cell-2  { width: 16.666666667%; }
+.cmb_metabox .cmb-cell-12 select[multiple] {
+    min-height: 200px;
+}
+
+.cmb_metabox .cmb-cell-1  { width: 8.333333333%;    margin-bottom: 20px;}
+.cmb_metabox .cmb-cell-2  { width: 16.666666667%; margin-bottom: 20px; }
 .cmb_metabox .cmb-cell-3  { width: 25%; }
-.cmb_metabox .cmb-cell-4  { width: 33.333333333%; }
-.cmb_metabox .cmb-cell-5  { width: 41.666666667%; }
-.cmb_metabox .cmb-cell-6  { width: 50%; }
-.cmb_metabox .cmb-cell-7  { width: 58.333333333%; }
-.cmb_metabox .cmb-cell-8  { width: 66.666666667%; }
-.cmb_metabox .cmb-cell-9  { width: 75%; }
-.cmb_metabox .cmb-cell-10 { width: 83.333333333%; }
-.cmb_metabox .cmb-cell-11 { width: 91.666666667%; }
-.cmb_metabox .cmb-cell-12 { width: 100%; }
+.cmb_metabox .cmb-cell-4  { width: 33.333333333%;    margin-bottom: 20px; }
+.cmb_metabox .cmb-cell-5  { width: 41.666666667%;    margin-bottom: 20px; }
+.cmb_metabox .cmb-cell-6  { width: 50%;    margin-bottom: 20px; }
+.cmb_metabox .cmb-cell-7  { width: 58.333333333%;    margin-bottom: 20px; }
+.cmb_metabox .cmb-cell-8  { width: 66.666666667%;    margin-bottom: 20px; }
+.cmb_metabox .cmb-cell-9  { width: 75%;    margin-bottom: 20px; }
+.cmb_metabox .cmb-cell-10 { width: 83.333333333%;    margin-bottom: 20px; }
+.cmb_metabox .cmb-cell-11 { width: 91.666666667%;    margin-bottom: 20px; }
+.cmb_metabox .cmb-cell-12 { width: 100%;    margin-bottom: 20px; }
 
 @media all and ( max-width: 850px ) {
 
