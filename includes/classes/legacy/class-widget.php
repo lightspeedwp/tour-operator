@@ -639,7 +639,13 @@ class Widget extends \WP_Widget {
 		$output = '';
 		// Get the call for the active slide.
 		if ( $carousel ) {
-			$output .= "<div class='lsx-to-widget-item-wrap lsx-{$post_type}'>";
+			$class = '';
+			if ( 1 === $post_count ) {
+				$class = 'singular-item';
+			} else if ( 2 === $post_count ) {
+				$class = 'dual-item';
+			}	
+			$output .= "<div class='lsx-to-widget-item-wrap lsx-{$post_type}' {$class}>";
 		} elseif ( 1 === $count ) {
 			$output .= "<div class='row'>";
 		}

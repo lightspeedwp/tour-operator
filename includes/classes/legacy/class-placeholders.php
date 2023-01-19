@@ -185,12 +185,6 @@ class Placeholders {
 
 			$post_type = get_post_field( 'post_type', $post_id );
 
-			if ( isset( $_GET['debug'] ) ) {
-				print_r('<pre>');
-				print_r($options);
-				print_r('</pre>');
-			}
-
 			//If the post types posts placeholder has been disabled then skip.
 			if ( 'post' === $post_type && isset( $options['general'] ) && isset( $options['general']['disable_blog_placeholder'] ) ) {
 				return $meta;

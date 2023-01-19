@@ -481,7 +481,14 @@ function lsx_to_connected_panel_query( $args = false ) {
 					$disable_placeholder = apply_filters( 'lsx_to_widget_disable_placeholder', false, $args['to'], $post_type );
 					$disable_text = apply_filters( 'lsx_to_widget_disable_text', false, $args['to'], $post_type );
 
-					echo '<div class="lsx-to-widget-item-wrap lsx-' . esc_attr( $post_type ) . '">';
+					$class = '';
+					if ( 1 === $items->post_count ) {
+						$class = 'singular-item';
+					} else if ( 2 === $items->post_count ) {
+						$class = 'dual-item';
+					}
+
+					echo '<div class="lsx-to-widget-item-wrap lsx-' . esc_attr( $post_type ) . ' ' . esc_attr( $class ) . '">';
 					lsx_to_content( 'content-widget', $args['content_part'] );
 					echo '</div>';
 				endwhile;

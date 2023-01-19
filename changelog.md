@@ -14,6 +14,9 @@
 - The output of the Mobile Tours destinations.
 - A fatal error with maps outputting on the travel style archives.
 
+### Security
+- General testing to ensure compatibility with latest WordPress version (6.1.1).
+
 ## [[1.4.6]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.6) - 2022-09-22
 
 ### Fixed

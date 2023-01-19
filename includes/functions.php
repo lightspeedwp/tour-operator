@@ -210,6 +210,8 @@ function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square', $meta_key =
 		$meta_key = 'destination_to_tour';
 	}
 
+	$size = apply_filters( 'lsx_to_itinerary_thumbnail_size', $size );
+
 	if ( $tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary ) {
 		$thumbnail_src = false;
 
