@@ -44,7 +44,7 @@ class Admin extends Tour_Operator {
 		//add_action( 'custom_menu_order', array( $this, 'reorder_menu_pages' ) );
 		//add_action( 'admin_head', array( $this, 'select_submenu_pages' ) );
 
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_stylescripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_stylescripts' ), 999 );
 		add_action( 'cmb_save_custom', array( $this, 'post_relations' ), 3, 20 );
 
 		add_filter( 'plugin_action_links_' . plugin_basename( LSX_TO_CORE ), array( $this, 'add_action_links' ) );
@@ -93,6 +93,13 @@ class Admin extends Tour_Operator {
 		if ( ! is_object( $screen ) ) {
 			return;
 		}
+
+		//deregister scripts
+		if ( isset( $_GET['post'] ) && in_array( get_post_type( $_GET['post'] ), array( 'destination', 'accommodation', 'tour' ) ) ) {
+			wp_deregister_script( 'sgpbSelect2.js' );
+			wp_deregister_script( 'select2.min.js' );
+		}
+
 
 		// TO Pages: Add-ons, Help, Settings and Welcome
 		// WP Terms: create/edit term
