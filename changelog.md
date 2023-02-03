@@ -1,5 +1,11 @@
 # Change log
 
+## [[2.0.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.0) - IN DEVELOPMENT
+
+### Removed
+
+
+
 ## [[1.4.7]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.7) - 2022-12-23
 
 ### Added
