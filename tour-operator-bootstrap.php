@@ -29,6 +29,9 @@ if ( defined( 'WPINC' ) ) {
 		}
 	}
 
+	//Classes
+	require_once( LSX_TO_PATH . 'classes/class-block-patterns.php' );
+
 	// Template Tags.
 	require_once( LSX_TO_PATH . 'includes/template-tags/general.php' );
 	require_once( LSX_TO_PATH . 'includes/template-tags/helpers.php' );

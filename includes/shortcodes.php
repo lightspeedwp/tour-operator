@@ -125,3 +125,21 @@ $query->the_post();
 }
 
 add_shortcode( 'lsx_to_archive', 'lsx_to_archive_shortcode' );
+
+
+/**
+ * TO Custom Field Shortcode.
+ */
+function lsx_to_custom_field_shortcode( $atts ) {
+	$atts = shortcode_atts( array(
+		'name' => '',
+	), $atts, 'lsx_to_custom_field' );
+
+	$content = '';
+	if ( '' !== $atts['name'] && lsx_to_has_custom_field_query( $atts['name'] ) ) {
+		$content = lsx_to_custom_field_query( $atts['name'] );
+	}
+	
+	return $content;
+}
+add_shortcode( 'lsx_to_custom_field', 'lsx_to_custom_field_shortcode' );
