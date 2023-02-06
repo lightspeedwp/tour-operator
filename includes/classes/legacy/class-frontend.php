@@ -20,11 +20,6 @@ namespace lsx\legacy;
 class Frontend extends Tour_Operator {
 
 	/**
-	 * This holds the class OBJ of \lsx\legacy\Template_Redirects
-	 */
-	public $redirects = false;
-
-	/**
 	 * Enable Modals
 	 *
 	 * @since 1.0.0
@@ -75,15 +70,9 @@ class Frontend extends Tour_Operator {
 		add_filter( 'lsx_to_tagline', array( $this, 'get_tagline' ), 1, 3 );
 
 		// add_filter( 'the_terms', array( $this, 'links_new_window' ), 10, 2 );
-
-		$this->redirects = new Template_Redirects( LSX_TO_PATH, array_keys( $this->base_post_types ), array_keys( $this->base_taxonomies ) );
 		$this->maps = Maps::get_instance();
 
 		add_filter( 'get_the_archive_title', array( $this, 'get_the_archive_title' ), 100 );
-
-		// Redirects if disabled
-		add_action( 'template_redirect', array( $this, 'redirect_singles' ) );
-		add_action( 'template_redirect', array( $this, 'redirect_archive' ) );
 
 		// Readmore
 		add_filter( 'excerpt_more_p', array( $this, 'remove_read_more_link' ) );
@@ -395,54 +384,6 @@ class Frontend extends Tour_Operator {
 		}
 
 		return $title;
-	}
-
-	/**
-	 * Redirect the single links to the homepage if the single is set to be
-	 * disabled.
-	 *
-	 * @param    $template
-	 *
-	 * @return    $template
-	 */
-	public function redirect_singles() {
-		$queried_post_type = get_query_var( 'post_type' );
-
-		if ( is_singular() && false !== $this->options && isset( $this->options[ $queried_post_type ] ) && isset( $this->options[ $queried_post_type ]['disable_single'] ) ) {
-			wp_redirect( get_post_type_archive_link( $queried_post_type ), 301 );
-			exit;
-		}
-
-		if ( is_singular( array( 'destination' ) ) && ( 0 !== get_post_parent() && false !== get_post_parent() && NULL !== get_post_parent() ) && false !== $this->options && isset( $this->options[ $queried_post_type ] ) && isset( $this->options[ $queried_post_type ]['disable_single_region'] ) ) {
-			wp_redirect( get_permalink( get_post_parent() ), 301 );
-			exit;
-		}
-
-		if ( is_singular() ) {
-			$single_desabled = get_post_meta( get_the_ID(), 'disable_single', true );
-
-			if ( ! empty( $single_desabled ) ) {
-				wp_redirect( get_post_type_archive_link( $queried_post_type ), 301 );
-				exit;
-			}
-		}
-	}
-
-	/**
-	 * Redirect the archive links to the homepage if the disable archive is set
-	 * to be disabled.
-	 *
-	 * @param    $template
-	 *
-	 * @return    $template
-	 */
-	public function redirect_archive() {
-		$queried_post_type = get_query_var( 'post_type' );
-
-		if ( is_post_type_archive() && false !== $this->options && isset( $this->options[ $queried_post_type ] ) && isset( $this->options[ $queried_post_type ]['disable_archives'] ) ) {
-			wp_redirect( home_url(), 301 );
-			exit;
-		}
 	}
 
 	/**
