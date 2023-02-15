@@ -642,7 +642,7 @@ if ( ! function_exists( 'lsx_to_gallery' ) ) {
 				envira_gallery( $envira_gallery );
 				$return = ob_get_clean();
 			} else {
-				if ( function_exists( 'envira_dynamic' ) ) {
+				if ( function_exists( 'envira_dynamic' ) && false === apply_filters( 'lsx_to_disable_dynamic_gallery', false, 'destination' ) ) {
 					// Envira Gallery - Dynamic
 					ob_start();
 
