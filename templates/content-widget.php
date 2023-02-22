@@ -28,7 +28,7 @@ global $disable_placeholder, $disable_text;
 			lsx_to_widget_entry_content_top();
 			the_excerpt();
 			lsx_to_widget_entry_content_bottom();
-			$excerpt = ob_get_clean();
+			$excerpt = '<p>' . strip_tags( ob_get_clean(), array( 'a' ) ) . '</p>';
 
 		if ( empty( $disable_text ) && ! empty( $excerpt ) ) {
 			echo wp_kses_post( $excerpt );
