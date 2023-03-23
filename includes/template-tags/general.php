@@ -565,9 +565,7 @@ function lsx_to_enquire_modal( $cta_text = '', $before = '', $after = '', $echo 
 	<div class="lsx-to-enquire-form">
 		<a href="<?php echo esc_url( $link ); ?>" class="btn cta-btn" 
                             <?php 
-        if ( false === $disable_modal ) {
-?>
-data-toggle="modal" data-target="#lsx-enquire-modal"<?php } ?> ><?php echo esc_html( $cta_text ); ?></a>
+        if ( false === $disable_modal ) { ?> data-toggle="modal" data-target="#lsx-enquire-modal"<?php } else { ?> target="_blank" <?php } ?> ><?php echo esc_html( $cta_text ); ?></a>
 
 		<?php
 			if ( false === $disable_modal ) {
