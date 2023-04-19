@@ -1,6 +1,6 @@
 {
   "name": "tour-operator",
-  "version": "1.4.7",
+  "version": "1.4.8",
   "description": "Tour Operators for LSX",
   "main": "gulpfile.js",
   "scripts": {

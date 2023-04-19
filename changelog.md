@@ -1,12 +1,15 @@
 # Change log
 
-## [[1.4.8]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.8) - In Development
+## [[1.4.8]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.8) - 2023-04-20
 
 ### Added
 - Adding in the - `lsx_to_disable_dynamic_gallery` filter
 
 ### Fixed
 - A conflict with WooCommerce and select2
+
+### Security
+- General testing to ensure compatibility with latest WordPress version (6.2).
 
 ## [[1.4.7]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.7) - 2022-12-23
 
