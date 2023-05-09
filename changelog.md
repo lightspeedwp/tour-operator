@@ -1,5 +1,10 @@
 # Change log
 
+## [[1.4.9]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.9) - In Development
+
+### Added
+- Adding in suport for the read more block while using the Block Editor.
+
 ## [[1.4.8]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.8) - 2023-04-20
 
 ### Added

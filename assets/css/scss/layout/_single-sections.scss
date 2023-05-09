@@ -168,7 +168,8 @@
 	}
 }
 
-.lsx-to-more-link {
+.lsx-to-more-link,
+.single-tour-operator .wp-block-read-more {
 	&:after {
 		color: inherit;
 		content: '\f178';

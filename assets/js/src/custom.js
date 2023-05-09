@@ -138,13 +138,13 @@ if ( window.location.hash ) {
 	 * @subpackage scripts
 	 */
 	lsx_to.set_read_more = function() {
-		$( '.lsx-to-review-content .more-link, .lsx-to-team-content .more-link, .entry-content .more-link, .archive-description .more-link' ).each( function() {
-			if ( 'Read More' === $( this ).html() || $(this).hasClass('lsx-to-more-link') ) {
+		$( '.lsx-to-review-content .more-link, .lsx-to-team-content .more-link, .entry-content .more-link, .entry-content .wp-block-read-more, .archive-description .more-link' ).each( function() {
+			if ( 'Read More' === $( this ).html() || $(this).hasClass('lsx-to-more-link') || $(this).hasClass('wp-block-read-more') ) {
 				$( this ).closest( '.lsx-to-review-content, .lsx-to-team-content, .entry-content, .archive-description' ).each( function() {
 					var visible = true;
 
 					$( this ).children().each( function() {
-						if ( 'Read More' === $( this ).find( '.more-link' ).html() || 0 < $( this ).find( '.more-link' ).length ) {
+						if ( 'Read More' === $( this ).find( '.more-link' ).html() || 0 < $( this ).find( '.more-link' ).length || $(this).hasClass('wp-block-read-more') ) {
 							visible = false;
 						} else if ( ! visible && this.id !== 'sharing' ) {
 							$( this ).hide();
@@ -164,6 +164,10 @@ if ( window.location.hash ) {
 						} );
 					} else {
 						$( this ).closest( '.lsx-to-review-content, .lsx-to-team-content, .entry-content, .archive-description' ).children().show();
+					}
+
+					if ( $(this).hasClass('wp-block-read-more') ) {
+						$( this ).hide();
 					}
 				} );
 			}

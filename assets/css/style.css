@@ -1172,7 +1172,8 @@ h4.lsx-to-contact-name {
   }
 }
 
-.lsx-to-more-link:after {
+.lsx-to-more-link:after,
+.single-tour-operator .wp-block-read-more:after {
   color: inherit;
   content: "";
   display: inline-block;
