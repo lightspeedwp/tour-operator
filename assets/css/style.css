@@ -1978,3 +1978,8 @@ article.team .lsx-to-team-socials > a:not(.btn):hover, article.team .lsx-to-team
 #when-to-go .lsx-to-month.lsx-to-month-check > .fa {
   color: #2B3840;
 }
+
+/* WP 6.3 Fixes */
+.single-lsx-to-special #posts .lsx-to-widget-content .moretag {
+	margin-top: 2.4rem;
+}

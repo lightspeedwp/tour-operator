@@ -21,5 +21,7 @@
 @import 'layout/maps';
 @import 'layout/mobile';
 
+@import 'update-fixes';
+
 @include customizer-to-body-colours(#F6F6F6, #DADDDF, #4A4A4A, #1098AD, #F7AE00, #919191);
 @include customizer-to-main-menu-colours(#374750, #2B3840, #FFF, #1098AD);
