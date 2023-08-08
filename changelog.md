@@ -2,6 +2,9 @@
 
 ## [[1.4.9]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.9) - 2023-08-09
 
+### Fixes
+- Fixing the Single Specials "read more" spacing.
+
 ### Added
 - Adding in suport for the read more block while using the Block Editor.
 
