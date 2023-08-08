@@ -1,9 +1,12 @@
 # Change log
 
-## [[1.4.9]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.9) - In Development
+## [[1.4.9]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.9) - 2023-08-09
 
 ### Added
 - Adding in suport for the read more block while using the Block Editor.
+
+### Security
+- General testing to ensure compatibility with latest WordPress version (6.3).
 
 ## [[1.4.8]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.8) - 2023-04-20
 
