@@ -143,3 +143,18 @@ function lsx_to_custom_field_shortcode( $atts ) {
 	return $content;
 }
 add_shortcode( 'lsx_to_custom_field', 'lsx_to_custom_field_shortcode' );
+
+
+/**
+ * 
+ *
+ * @param [type] $content
+ * @return void
+ */
+function lsx_to_custom_field_merge_tag( $content ) {
+	if ( stripos( $content, 'lsx_to_price' ) && lsx_to_has_custom_field_query( 'price', get_the_ID() ) ) {
+		$content = str_replace( 'lsx_to_price', lsx_to_custom_field_query( 'price' ), $content );
+	}
+	return $content;
+}
+add_action( 'the_content', 'lsx_to_custom_field_merge_tag', 20, 1 );

@@ -76,6 +76,7 @@ class Block_Patterns {
 	public function register_block_patterns() {
 		$patterns = array(
 			'lsx-tour-operator/tour-price' => $this->tour_price(),
+			'lsx-tour-operator/tour-price-merge-tag' => $this->tour_price_merge_tag(),
 			'lsx-tour-operator/related-items' => $this->related_items(),
 		);
 
@@ -97,6 +98,22 @@ class Block_Patterns {
 			'content'     => '<!-- wp:shortcode -->
 			[lsx_to_custom_field name="price"]
 			<!-- /wp:shortcode -->',
+		);
+	}
+
+	/**
+	 * Portfolio - Featured Pattern - Basic Style
+	 *
+	 * @return void
+	 */
+	public function tour_price_merge_tag() {
+		return array(
+			'title'       => __( 'Tour Price (merge tag)', 'lsx-projects' ),
+			'description' => '',
+			'categories'  => array( $this->pattern_category ),
+			'content'     => '<!-- wp:paragraph -->
+			<p>lsx_to_price</p>
+			<!-- /wp:paragraph -->',
 		);
 	}
 
