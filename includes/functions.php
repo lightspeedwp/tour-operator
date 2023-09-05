@@ -256,11 +256,10 @@ function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square', $meta_key =
 		// If it is the last day of the itinerary and there is no image, then use the featured image of the tour.
 		if ( $tour_itinerary->index === $tour_itinerary->count && ( false === $thumbnail_src || '' === $thumbnail_src ) ) {
 
-			$temp_id = get_post_thumbnail_id( $accommodation_id );
+			$temp_id = get_post_thumbnail_id();
 
 			if ( false !== $temp_id ) {
-				$current_image_id = $tour_itinerary->find_next_image( $accommodation_id );
-				$temp_src_array   = wp_get_attachment_image_src( $current_image_id, $size );
+				$temp_src_array   = wp_get_attachment_image_src( $temp_id, $size );
 				if ( is_array( $temp_src_array ) ) {
 					$thumbnail_src = $temp_src_array[0];
 				}
