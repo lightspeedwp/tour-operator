@@ -403,9 +403,13 @@ class TO_Banners_Frontend extends TO_Banners {
 							};
 							?>
 
-								<?php if ( ! empty( $banner_image ) ) : ?>
+								<?php if ( ! empty( $banner_image ) ) {
+									
+									do_action( 'lsx_banner_image_before', $banner_image );
+									?>
 									<div class="page-banner-image" style="background-position: <?php echo esc_attr( $x_position ); ?> <?php echo esc_attr( $y_position ); ?>; background-image:url(<?php echo esc_attr( $banner_image ); ?>);"></div>
-								<?php endif; ?>
+									
+								<?php } ?>
 
 								<?php if ( ! empty( $embed_video ) ) : ?>
 									<div class="video-background">
