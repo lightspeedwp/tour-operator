@@ -1079,7 +1079,7 @@ class Tour_Operator {
 		if ( ! self::compatible_theme() ) {
 			if ( is_plugin_active( plugin_basename( LSX_TO_CORE ) ) ) {
 				if ( empty( get_option( 'lsx-to-theme-notice-dismissed' ) ) ) {
-					add_action( 'admin_notices', array( $this, 'compatible_theme_notice' ), 199 );
+					//add_action( 'admin_notices', array( $this, 'compatible_theme_notice' ), 199 );
 				}
 			}
 		}
