@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/lightspeeddevelopment/tour-operator#readme",
   "devDependencies": {
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.0",
     "gulp-autoprefixer": "^9.0.0",
     "gulp-gettext": "^0.3.0",
     "gulp-jshint": "^2.1.0",
