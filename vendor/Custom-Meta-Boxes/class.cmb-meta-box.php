@@ -44,6 +44,7 @@ class CMB_Meta_Box {
 			// If we are on a post edit screen - get metadata value of the field for this post
 			if ( $post_id ) {
 				$values = (array) get_post_meta( $post_id, $field['id'], false );
+				$values = apply_filters( 'cmb_admin_display_field_values_' . $field['type'] , $values );
 			}
 
 			if ( class_exists( $class ) ) {
