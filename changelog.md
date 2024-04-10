@@ -1,5 +1,10 @@
 # Change log
 
+## [[1.4.10]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.10) - 2024-
+
+### Fixes
+- Fixed the multiple select2 box bloat, causing slow pageloads.
+
 ## [[1.4.9]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.9) - 2023-08-09
 
 ### Fixes

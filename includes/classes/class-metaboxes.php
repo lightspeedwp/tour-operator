@@ -33,6 +33,8 @@ class Metaboxes extends Frame {
 	public function __construct() {
 		parent::__construct();
 		add_filter( 'cmb_meta_boxes', array( $this, 'metaboxes' ) );
+
+		add_filter( 'cmb_admin_display_field_values_post_select', array( $this, 'unique_arrays' ), 10, 1 );
 	}
 
 	/**
@@ -60,4 +62,18 @@ class Metaboxes extends Frame {
 		$this->object[ $slug ] = $config;
 	}
 
+	/**
+	 * Remove Duplicate IDS from the post select fields.
+	 *
+	 * @param array $values
+	 * @return array
+	 */
+	public function unique_arrays( $values ) {
+
+		if ( ! empty( $values ) && is_array( $values ) ) {
+			$values = array_unique( $values );
+		}
+
+		return $values;
+	}
 }
