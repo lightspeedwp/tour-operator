@@ -210,7 +210,6 @@ class Tour_Operator {
 		load_plugin_textdomain( 'tour-operator', false, LSX_TO_CORE . '/languages' );
 		$this->pages      = Pages::init();
 		$this->post_types = Post_Types::init();
-		$this->metaboxes  = Metaboxes::init();
 		$this->taxonomies = Taxonomies::init();
 		$this->admin      = Admin::init();
 		$this->settings   = \lsx\admin\Settings::init();

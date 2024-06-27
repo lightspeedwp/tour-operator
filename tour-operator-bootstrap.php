@@ -17,18 +17,6 @@ if ( defined( 'WPINC' ) ) {
 		define( 'LSX_TO_ASSET_DEBUG', '' );
 	}
 
-	if ( ! function_exists( 'cmb_init' ) && ! class_exists( 'CMB_Meta_Box' ) ) {
-		if ( is_file( LSX_TO_PATH . 'vendor/Custom-Meta-Boxes/custom-meta-boxes.php' ) ) {
-			require_once( LSX_TO_PATH . 'vendor/Custom-Meta-Boxes/custom-meta-boxes.php' );
-		}
-	}
-
-	if ( ! function_exists( 'lsx_banners' ) ) {
-		if ( is_file( LSX_TO_PATH . 'vendor/lsx-banners/lsx-banners.php' ) ) {
-			require_once( LSX_TO_PATH . 'vendor/lsx-banners/lsx-banners.php' );
-		}
-	}
-
 	//Classes
 	require_once( LSX_TO_PATH . 'classes/class-block-patterns.php' );
 
