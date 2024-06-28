@@ -17,6 +17,8 @@ if ( defined( 'WPINC' ) ) {
 		define( 'LSX_TO_ASSET_DEBUG', '' );
 	}
 
+	require_once( LSX_TO_PATH . 'vendor/cmb2-field-ajax-search/cmb2-field-ajax-search.php' );
+
 	//Classes
 	require_once( LSX_TO_PATH . 'classes/class-block-patterns.php' );
 
