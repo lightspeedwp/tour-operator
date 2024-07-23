@@ -154,7 +154,6 @@ class Frontend extends Tour_Operator {
 	public function archive_taxonomy_content_part() {
 		if ( is_tax( array_keys( $this->taxonomies ) ) && have_posts() ) {
 			lsx_to_content( 'content', get_queried_object()->taxonomy );
-			term_description();
 		}
 	}
 
