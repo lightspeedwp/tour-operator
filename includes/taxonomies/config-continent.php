@@ -29,6 +29,7 @@ $taxonomy = array(
 		),
 		'show_ui'             => true,
 		'show_in_quick_edit'  => true,
+		'show_in_rest'        => true,
 		'public'              => true,
 		'show_tagcloud'       => false,
 		'exclude_from_search' => true,
