@@ -139,7 +139,7 @@ if ( window.location.hash ) {
 	 */
 	lsx_to.set_read_more = function() {
 		$( '.lsx-to-review-content .more-link, .lsx-to-team-content .more-link, .entry-content .more-link, .archive-description .more-link' ).each( function() {
-			if ( 'Read More' === $( this ).html() ) {
+			if ( 'Read More' === $( this ).html() || 'Lees verder' === $( this ).html() ) {
 				$( this ).closest( '.lsx-to-review-content, .lsx-to-team-content, .entry-content, .archive-description' ).each( function() {
 					var visible = true;
 
