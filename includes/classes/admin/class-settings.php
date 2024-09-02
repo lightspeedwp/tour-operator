@@ -81,8 +81,9 @@ class Settings {
 	 */
 	public function create_settings_page() {
 		if ( is_admin() ) {
-			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'dashboard_tab_content' ), 10, 1 );
 			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'map_display_settings' ), 12, 1 );
+			add_action( 'lsx_to_framework_dashboard_tab_placeholder', array( $this, 'map_placeholder_settings' ), 12, 1 );
+			
 
 			if ( ! empty( tour_operator()->legacy->post_types ) ) {
 				foreach ( tour_operator()->legacy->post_types as $post_type => $label ) {
@@ -128,22 +129,6 @@ class Settings {
 			),
 		);
 
-		$tabs['display'] = array(
-			'page_title'        => '',
-			'page_description'  => '',
-			'menu_title'        => esc_html__( 'Display', 'tour-operator' ),
-			'template'          => LSX_TO_PATH . 'includes/partials/display.php',
-			'default'           => false,
-		);
-
-		$tabs['api'] = array(
-			'page_title'        => '',
-			'page_description'  => '',
-			'menu_title'        => esc_html__( 'API', 'tour-operator' ),
-			'template'          => LSX_TO_PATH . 'includes/partials/api.php',
-			'default'           => false,
-		);
-
 		$additional_tabs = false;
 		$additional_tabs = apply_filters( 'lsx_to_framework_settings_tabs', $additional_tabs );
 
@@ -164,51 +149,6 @@ class Settings {
 		);
 	}
 
-	/**
-	 * outputs the dashboard tabs settings
-	 *
-	 * @param $tab string
-	 * @return null
-	 */
-	public function dashboard_tab_content( $tab = 'general' ) {
-		if ( 'general' !== $tab ) {
-			return false;
-		}
-		?>
-		<?php if ( ! class_exists( '\lsx\currencies\classes\Currencies' ) ) { ?>
-			<tr class="form-field-wrap">
-				<th scope="row">
-					<label for="currency"> <?php esc_html_e( 'Currency', 'tour-operator' ); ?></label>
-				</th>
-				<td>
-					<select value="{{currency}}" name="currency">
-						<option value="USD" {{#is currency value=""}}selected="selected"{{/is}} {{#is currency value="USD"}} selected="selected"{{/is}}><?php esc_html_e( 'USD (united states dollar)', 'tour-operator' ); ?></option>
-						<option value="GBP" {{#is currency value="GBP"}} selected="selected"{{/is}}><?php esc_html_e( 'GBP (british pound)', 'tour-operator' ); ?></option>
-						<option value="ZAR" {{#is currency value="ZAR"}} selected="selected"{{/is}}><?php esc_html_e( 'ZAR (south african rand)', 'tour-operator' ); ?></option>
-						<option value="NAD" {{#is currency value="NAD"}} selected="selected"{{/is}}><?php esc_html_e( 'NAD (namibian dollar)', 'tour-operator' ); ?></option>
-						<option value="CAD" {{#is currency value="CAD"}} selected="selected"{{/is}}><?php esc_html_e( 'CAD (canadian dollar)', 'tour-operator' ); ?></option>
-						<option value="EUR" {{#is currency value="EUR"}} selected="selected"{{/is}}><?php esc_html_e( 'EUR (euro)', 'tour-operator' ); ?></option>
-						<option value="HKD" {{#is currency value="HKD"}} selected="selected"{{/is}}><?php esc_html_e( 'HKD (hong kong dollar)', 'tour-operator' ); ?></option>
-						<option value="SGD" {{#is currency value="SGD"}} selected="selected"{{/is}}><?php esc_html_e( 'SGD (singapore dollar)', 'tour-operator' ); ?></option>
-						<option value="NZD" {{#is currency value="NZD"}} selected="selected"{{/is}}><?php esc_html_e( 'NZD (new zealand dollar)', 'tour-operator' ); ?></option>
-						<option value="AUD" {{#is currency value="AUD"}} selected="selected"{{/is}}><?php esc_html_e( 'AUD (australian dollar)', 'tour-operator' ); ?></option>
-					</select>
-				</td>
-			</tr>
-		<?php } ?>
-
-		<tr class="form-field">
-			<th scope="row">
-				<label for="disable_archives"><?php esc_html_e( 'Disable Archives', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="checkbox" {{#if disable_archives}} checked="checked" {{/if}} name="disable_archives" />
-				<small><?php esc_html_e( 'This disables the "post type archive", if you create your own custom loop it will still work.', 'tour-operator' ); ?></small>
-			</td>
-		</tr>
-		<?php
-	}
-
 	public function lsx_to_framework_api_patch( $tab = 'settings' ) {
 		do_action( 'lsx_to_framework_api_tab_content', $tab );
 	}
@@ -221,14 +161,25 @@ class Settings {
 	 */
 	public function map_display_settings( $tab = 'general' ) {
 		if ( 'general' === $tab ) {
+			$this->map_settings_title();
 			$this->disable_maps_checkbox();
 			$this->map_marker_field();
 			$this->cluster_marker_field();
 			$this->start_end_marker_fields();
-			$this->map_placeholder_settings_title();
+			$this->fusion_tables_fields();
+		}
+	}
+
+	/**
+	 * outputs the display settings for the map tab.
+	 *
+	 * @param $tab string
+	 * @return null
+	 */
+	public function map_placeholder_settings( $tab = 'placeholder' ) {
+		if ( 'placeholder' === $tab ) {
 			$this->enable_map_placeholder_checkbox();
 			$this->map_placeholder_field();
-			$this->fusion_tables_fields();
 		}
 	}
 
@@ -246,6 +197,21 @@ class Settings {
 	}
 
 	/**
+	 * Outputs the map placeholder field header
+	 */
+	public function map_settings_title() {
+		?>
+		<tr class="form-field">
+			<th scope="row" colspan="2">
+				<label>
+					<h3><?php esc_html_e( 'Map Settings', 'tour-operator' ); ?></h3>
+				</label>
+			</th>
+		</tr>
+		<?php
+	}
+
+	/**
 	 * Outputs the map placeholder field
 	 */
 	public function disable_maps_checkbox() {
@@ -259,21 +225,6 @@ class Settings {
 				<small><?php esc_html_e( 'This will disable maps on all post types.', 'tour-operator' ); ?></small>
 			</td>
 		</tr>	
-		<?php
-	}
-
-	/**
-	 * Outputs the map placeholder field header
-	 */
-	public function map_placeholder_settings_title() {
-		?>
-		<tr class="form-field">
-			<th scope="row" colspan="2">
-				<label>
-					<h3><?php esc_html_e( 'Placeholder Settings', 'tour-operator' ); ?></h3>
-				</label>
-			</th>
-		</tr>
 		<?php
 	}
 

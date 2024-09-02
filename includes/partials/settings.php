@@ -8,8 +8,6 @@ $settings_pages = tour_operator()->settings->settings_page_array();
 		<?php
 		include( LSX_TO_PATH . 'includes/partials/navigation.php' );
 		include( LSX_TO_PATH . 'includes/partials/general.php' );
-		include( LSX_TO_PATH . 'includes/partials/display.php' );
-		include( LSX_TO_PATH . 'includes/partials/api.php' );
 		?>
 		<input name="submit" class="button button-primary" type="submit" value="Save Settings" />
 	</form>
