@@ -34,16 +34,6 @@
 				<?php do_action( 'lsx_to_framework_dashboard_tab_content', 'currency_switcher' ); ?>
 			<?php } ?>
 
-			<tr class="form-field">
-				<th scope="row">
-					<label for="disable_archives"><?php esc_html_e( 'Disable Archives', 'tour-operator' ); ?></label>
-				</th>
-				<td>
-					<input type="checkbox" {{#if disable_archives}} checked="checked" {{/if}} name="disable_archives" />
-					<small><?php esc_html_e( 'This disables the "post type archive", if you create your own custom loop it will still work.', 'tour-operator' ); ?></small>
-				</td>
-			</tr>
-
 			<?php do_action( 'lsx_to_framework_dashboard_tab_content', 'general' ); ?>
 
 			<tr class="form-field">
