@@ -121,11 +121,24 @@ class Settings {
 		$tabs = array( // tabs array are for setting the tab / section templates
 			// each array element is a tab with the key as the slug that will be the saved object property
 			'general'       => array(
-				'page_title'        => '',
-				'page_description'  => '',
 				'menu_title'        => esc_html__( 'General', 'tour-operator' ),
 				'template'          => LSX_TO_PATH . 'includes/partials/general.php',
 				'default'           => true,
+			),
+			'destination'       => array(
+				'menu_title'        => esc_html__( 'Destinations', 'tour-operator' ),
+				'template'          => 'post_type',
+				'default'           => false,
+			),
+			'tour'       => array(
+				'menu_title'        => esc_html__( 'Tours', 'tour-operator' ),
+				'template'          => 'post_type',
+				'default'           => false,
+			),
+			'accommodation'       => array(
+				'menu_title'        => esc_html__( 'Accommodation', 'tour-operator' ),
+				'template'          => 'post_type',
+				'default'           => false,
 			),
 		);
 
@@ -177,7 +190,7 @@ class Settings {
 	 * @return null
 	 */
 	public function map_placeholder_settings( $tab = 'placeholder' ) {
-		if ( 'placeholder' === $tab ) {
+		if ( 'general' === $tab ) {
 			$this->enable_map_placeholder_checkbox();
 			$this->map_placeholder_field();
 		}
@@ -221,7 +234,7 @@ class Settings {
 				<label for="maps_disabled"><?php esc_html_e( 'Disable Maps', 'tour-operator' ); ?></label>
 			</th>
 			<td>
-				<input type="checkbox" {{#if maps_disabled}} checked="checked" {{/if}} name="maps_disabled" /> 
+				<input type="checkbox" checked="checked" name="maps_disabled" /> 
 				<small><?php esc_html_e( 'This will disable maps on all post types.', 'tour-operator' ); ?></small>
 			</td>
 		</tr>	
@@ -239,7 +252,7 @@ class Settings {
 				<label for="map_placeholder_enabled"><?php esc_html_e( 'Enable Map Placeholder', 'tour-operator' ); ?></label>
 			</th>
 			<td>
-				<input type="checkbox" {{#if map_placeholder_enabled}} checked="checked" {{/if}} name="map_placeholder_enabled" /> 
+				<input type="checkbox" checked="checked" name="map_placeholder_enabled" /> 
 				<small><?php esc_html_e( 'Enable a placeholder users will click to load the map.', 'tour-operator' ); ?></small>
 			</td>
 		</tr>	
@@ -256,27 +269,13 @@ class Settings {
 				<label for="banner"> <?php esc_html_e( 'Upload a map placeholder', 'tour-operator' ); ?></label>
 			</th>
 			<td>
-				<input class="input_image_id" type="hidden" {{#if map_placeholder}} value="{{map_placeholder}}" {{/if}} name="map_placeholder" />
-				<input class="input_image" type="hidden" {{#if map_placeholder}} value="{{map_placeholder}}" {{/if}} name="map_placeholder" />
+				<input class="input_image_id" type="hidden" value="" name="map_placeholder" />
+				<input class="input_image" type="hidden" value="" name="map_placeholder" />
 				<div class="thumbnail-preview">
-					{{#if map_placeholder}}<img src="{{map_placeholder}}" width="480" style="color:black;" />{{/if}}
+					<img src="" width="480" style="color:black;" />
 				</div>
-				<a {{#if map_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
-				<a {{#unless map_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
-			</td>
-		</tr>
-		<tr class="form-field map-mobile-placeholder">
-			<th scope="row">
-				<label for="banner"> <?php esc_html_e( 'Upload a mobile map placeholder', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input class="input_image_id" type="hidden" {{#if map_mobile_placeholder}} value="{{map_mobile_placeholder}}" {{/if}} name="map_mobile_placeholder" />
-				<input class="input_image" type="hidden" {{#if map_mobile_placeholder}} value="{{map_mobile_placeholder}}" {{/if}} name="map_mobile_placeholder" />
-				<div class="thumbnail-preview">
-					{{#if map_mobile_placeholder}}<img src="{{map_mobile_placeholder}}" width="150" style="color:black;" />{{/if}}
-				</div>
-				<a {{#if map_mobile_placeholder}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
-				<a {{#unless map_mobile_placeholder}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
+				<a style="" class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
+				<a style="display:none;" class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
 			</td>
 		</tr>
 		<?php
@@ -292,13 +291,13 @@ class Settings {
 				<label for="banner"> <?php esc_html_e( 'Choose a default marker', 'tour-operator' ); ?></label>
 			</th>
 			<td>
-				<input class="input_image_id" type="hidden" {{#if googlemaps_marker_id}} value="{{googlemaps_marker_id}}" {{/if}} name="googlemaps_marker_id" />
-				<input class="input_image" type="hidden" {{#if googlemaps_marker}} value="{{googlemaps_marker}}" {{/if}} name="googlemaps_marker" />
+				<input class="input_image_id" type="hidden" value=""  name="googlemaps_marker_id" />
+				<input class="input_image" type="hidden" value="" name="googlemaps_marker" />
 				<div class="thumbnail-preview">
-					{{#if googlemaps_marker}}<img src="{{googlemaps_marker}}" width="48" style="color:black;" />{{/if}}
+					<img src="" width="48" style="color:black;" />
 				</div>
-				<a {{#if googlemaps_marker}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
-				<a {{#unless googlemaps_marker}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
+				<a style="" class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
+				<a style="display:none;" class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
 			</td>
 		</tr>
 		<?php
@@ -314,13 +313,13 @@ class Settings {
 				<label for="banner"> <?php esc_html_e( 'Choose a cluster marker', 'tour-operator' ); ?></label>
 			</th>
 			<td>
-				<input class="input_image_id" type="hidden" {{#if gmap_cluster_small_id}} value="{{gmap_cluster_small_id}}" {{/if}} name="gmap_cluster_small_id" />
-				<input class="input_image" type="hidden" {{#if gmap_cluster_small}} value="{{gmap_cluster_small}}" {{/if}} name="gmap_cluster_small" />
+				<input class="input_image_id" type="hidden" value="" name="gmap_cluster_small_id" />
+				<input class="input_image" type="hidden" value="" name="gmap_cluster_small" />
 				<div class="thumbnail-preview">
-					{{#if gmap_cluster_small}}<img src="{{gmap_cluster_small}}" width="48" style="color:black;" />{{/if}}
+					<img src="" width="48" style="color:black;" />
 				</div>
-				<a {{#if gmap_cluster_small}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
-				<a {{#unless gmap_cluster_small}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
+				<a style="" class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
+				<a style="display:none;" class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
 			</td>
 		</tr>
 		<?php
@@ -336,13 +335,13 @@ class Settings {
 				<label for="banner"> <?php esc_html_e( 'Choose a start marker', 'tour-operator' ); ?></label>
 			</th>
 			<td>
-				<input class="input_image_id" type="hidden" {{#if gmap_marker_start_id}} value="{{gmap_marker_start_id}}" {{/if}} name="gmap_marker_start_id" />
-				<input class="input_image" type="hidden" {{#if gmap_marker_start}} value="{{gmap_marker_start}}" {{/if}} name="gmap_marker_start" />
+				<input class="input_image_id" type="hidden" value=""  name="gmap_marker_start_id" />
+				<input class="input_image" type="hidden"  value="" name="gmap_marker_start" />
 				<div class="thumbnail-preview">
-					{{#if gmap_marker_start}}<img src="{{gmap_marker_start}}" width="48" style="color:black;" />{{/if}}
+					<img src="" width="48" style="color:black;" />
 				</div>
-				<a {{#if gmap_marker_start}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
-				<a {{#unless gmap_marker_start}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
+				<a style="" class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
+				<a style="display:none;" class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
 			</td>
 		</tr>
 		<tr class="form-field default-cluster-small-wrap">
@@ -350,13 +349,13 @@ class Settings {
 				<label for="banner"> <?php esc_html_e( 'Choose a end marker', 'tour-operator' ); ?></label>
 			</th>
 			<td>
-				<input class="input_image_id" type="hidden" {{#if gmap_marker_end_id}} value="{{gmap_marker_end_id}}" {{/if}} name="gmap_marker_end_id" />
-				<input class="input_image" type="hidden" {{#if gmap_marker_end}} value="{{gmap_marker_end}}" {{/if}} name="gmap_marker_end" />
+				<input class="input_image_id" type="hidden" value=""  name="gmap_marker_end_id" />
+				<input class="input_image" type="hidden" value=""  name="gmap_marker_end" />
 				<div class="thumbnail-preview">
-					{{#if gmap_marker_end}}<img src="{{gmap_marker_end}}" width="48" style="color:black;" />{{/if}}
+					<img src="" width="48" style="color:black;" />
 				</div>
-				<a {{#if gmap_marker_end}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
-				<a {{#unless gmap_marker_end}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
+				<a style="" class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
+				<a style="display:none;" class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
 			</td>
 		</tr>
 		<?php
@@ -379,7 +378,7 @@ class Settings {
 				<label for="fusion_tables_enabled"><?php esc_html_e( 'Enable Fusion Tables', 'tour-operator' ); ?></label>
 			</th>
 			<td>
-				<input type="checkbox" {{#if fusion_tables_enabled}} checked="checked" {{/if}} name="fusion_tables_enabled" />
+				<input type="checkbox" checked="checked" name="fusion_tables_enabled" />
 			</td>
 		</tr>
 		<tr class="form-field">
@@ -387,7 +386,7 @@ class Settings {
 				<label for="title"><?php esc_html_e( 'Border Width', 'tour-operator' ); ?></label>
 			</th>
 			<td>
-				<input type="text" maxlength="2" {{#if fusion_tables_width_border}} value="{{fusion_tables_width_border}}" {{/if}} name="fusion_tables_width_border" />
+				<input type="text" maxlength="2" value="" name="fusion_tables_width_border" />
 				<br>
 				<small>Default value: 2</small>
 			</td>
@@ -397,7 +396,7 @@ class Settings {
 				<label for="title"><?php esc_html_e( 'Border Colour', 'tour-operator' ); ?></label>
 			</th>
 			<td>
-				<input type="text" maxlength="7" {{#if fusion_tables_colour_border}} value="{{fusion_tables_colour_border}}" {{/if}} name="fusion_tables_colour_border" />
+				<input type="text" maxlength="7" value="" name="fusion_tables_colour_border" />
 				<br>
 				<small>Default value: #000000</small>
 			</td>
@@ -407,7 +406,7 @@ class Settings {
 				<label for="title"><?php esc_html_e( 'Background Colour', 'tour-operator' ); ?></label>
 			</th>
 			<td>
-				<input type="text" maxlength="7" {{#if fusion_tables_colour_background}} value="{{fusion_tables_colour_background}}" {{/if}} name="fusion_tables_colour_background" />
+				<input type="text" maxlength="7" value="" name="fusion_tables_colour_background" />
 				<br>
 				<small>Default value: #000000</small>
 			</td>
