@@ -22,11 +22,7 @@ $page = array(
 		},
 	),
 	'callback'      => function () {
-		include( LSX_TO_PATH . 'includes/partials/display.php' );
-		include( LSX_TO_PATH . 'includes/partials/general.php' );
-		include( LSX_TO_PATH . 'includes/partials/accommodation.php' );
-		include( LSX_TO_PATH . 'includes/partials/destination.php' );
-		include( LSX_TO_PATH . 'includes/partials/tour.php' );
+		include( LSX_TO_PATH . 'includes/partials/settings.php' );
 	},
 );
 

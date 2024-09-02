@@ -56,7 +56,7 @@ class Placeholders {
 		$this->post_types[] = 'post';
 		$this->post_types[] = 'page';
 
-		add_action( 'lsx_to_framework_display_tab_content', array(
+		add_action( 'lsx_to_framework_dashboard_tab_content', array(
 			$this,
 			'display_settings',
 		), 15, 1 );
@@ -492,24 +492,6 @@ class Placeholders {
 			return false;
 		}
 		?>
-		<?php if ( class_exists( 'LSX_Banners' ) ) { ?>
-			<tr class="form-field banner-placeholder-wrap">
-				<th scope="row">
-					<label for="banner"> <?php esc_html_e( 'Banner', 'tour-operator' ); ?></label>
-				</th>
-				<td>
-					<input class="input_image_id" type="hidden" {{#if banner_placeholder_id}} value="{{banner_placeholder_id}}" {{/if}}
-					name="banner_placeholder_id" />
-					<input class="input_image" type="hidden" {{#if banner_placeholder}} value="{{banner_placeholder}}" {{/if}} name="banner_placeholder" />
-					<div class="thumbnail-preview">
-						{{#if banner_placeholder}}<img src="{{banner_placeholder}}" width="150"/>{{/if}}
-					</div>
-					<a {{#if banner_placeholder}}style="display:none;" {{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
-					<a {{#unless banner_placeholder}}style="display:none;" {{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
-				</td>
-			</tr>
-		<?php } ?>
-
 		<tr class="form-field featured-placeholder-wrap">
 			<th scope="row">
 				<label for="featured_placeholder"><?php esc_html_e( 'Archive Placeholder', 'tour-operator' ); ?></label>

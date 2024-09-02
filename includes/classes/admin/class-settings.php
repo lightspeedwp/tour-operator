@@ -44,7 +44,6 @@ class Settings {
 	 */
 	public function __construct() {
 		$this->options = tour_operator()->options;
-		add_filter( 'lsx_to_framework_settings_tabs', array( $this, 'register_settings_tabs' ) );
 
 		if ( isset( $_GET['welcome-page'] ) ) {
 			$display_page = sanitize_text_field( $_GET['welcome-page'] );
@@ -82,15 +81,8 @@ class Settings {
 	 */
 	public function create_settings_page() {
 		if ( is_admin() ) {
-
-			foreach ( tour_operator()->legacy->post_types as $post_type => $label ) {
-				add_action( 'lsx_to_framework_' . $post_type . '_tab_content', array( $this, 'general_settings' ), 5, 2 );
-				add_action( 'lsx_to_framework_' . $post_type . '_tab_content', array( $this, 'archive_settings' ), 12, 2 );
-				add_action( 'lsx_to_framework_' . $post_type . '_tab_content', array( $this, 'single_settings' ), 15, 2 );
-			}
-
 			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'dashboard_tab_content' ), 10, 1 );
-			add_action( 'lsx_to_framework_display_tab_content', array( $this, 'map_display_settings' ), 12, 1 );
+			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'map_display_settings' ), 12, 1 );
 
 			if ( ! empty( tour_operator()->legacy->post_types ) ) {
 				foreach ( tour_operator()->legacy->post_types as $post_type => $label ) {
@@ -117,38 +109,6 @@ class Settings {
 	 */
 	public function welcome_page() {
 		include( LSX_TO_PATH . 'includes/partials/welcome.php' );
-	}
-
-	/**
-	 * Returns the array of settings to the UIX Class in the lsx framework
-	 */
-	public function register_settings_tabs( $tabs ) {
-		// This array is for the Admin Pages. each element defines a page that is seen in the admin.
-
-		$post_types = apply_filters( 'lsx_to_post_types', tour_operator()->legacy->post_types );
-
-		if ( false !== $post_types && ! empty( $post_types ) ) {
-			foreach ( $post_types as $index => $title ) {
-				$disabled = false;
-
-				if ( ! in_array( $index, tour_operator()->legacy->active_post_types ) ) {
-					$disabled = true;
-				}
-
-				$tabs[ $index ] = array(
-					'page_title'        => '',
-					'page_description'  => '',
-					'menu_title'        => $title,
-					'template'          => apply_filters( 'lsx_to_settings_path', LSX_TO_PATH, $index ) . 'includes/partials/' . $index . '.php',
-					'default'           => false,
-					'disabled'          => $disabled,
-				);
-			}
-
-			ksort( $tabs );
-		}
-
-		return $tabs;
 	}
 
 	/**
@@ -212,7 +172,8 @@ class Settings {
 	 */
 	public function dashboard_tab_content( $tab = 'general' ) {
 		if ( 'general' !== $tab ) {
-return false;}
+			return false;
+		}
 		?>
 		<?php if ( ! class_exists( '\lsx\currencies\classes\Currencies' ) ) { ?>
 			<tr class="form-field-wrap">
@@ -248,365 +209,6 @@ return false;}
 		<?php
 	}
 
-	/**
-	 * Adds in the settings necessary for the archives
-	 *
-	 * @param $post_type string
-	 * @param $tab string
-	 * @return null
-	 */
-	public function general_settings( $post_type = false, $tab = false ) {
-		if ( 'general' !== $tab ) {
-			return false;
-		}
-
-		do_action( 'lsx_to_framework_' . $post_type . '_tab_general_settings_top', $post_type );
-		?>
-		<tr class="form-field-wrap">
-			<th scope="row">
-				<label for="enquiry"><?php esc_attr_e( 'General Enquiry', 'tour-operator' ); ?></label>
-			</th>
-			<?php
-			if ( true === tour_operator()->legacy->show_default_form() ) {
-				$forms = tour_operator()->legacy->get_activated_forms();
-				$selected_form = false;
-
-				if ( isset( $this->options[ $post_type ] ) && isset( $this->options[ $post_type ]['enquiry'] ) ) {
-					$selected_form = $this->options[ $post_type ]['enquiry'];
-				}
-				?>
-				<td>
-					<select value="{{enquiry}}" name="enquiry">
-						<?php
-						if ( false !== $forms && '' !== $forms ) {
-							?>
-							<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}><?php esc_html_e( 'Select a form', 'tour-operator' ); ?></option>
-							<?php
-							foreach ( $forms as $form_id => $form_data ) { 
-                            ?>
-								<option value="<?php echo esc_attr( $form_id ); ?>" 
-                                                          <?php 
-                                if ( $selected_form == $form_id ) {
-echo esc_attr( 'selected="selected"' ); } 
-?>
-  ><?php echo esc_html( $form_data ); ?></option>
-								<?php
-							}
-						} else {
-							?>
-							<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}><?php esc_html_e( 'You have no form available', 'tour-operator' ); ?></option>
-						<?php } ?>
-					</select>
-				</td>
-			<?php } else { ?>
-				<td>
-					<textarea class="description enquiry" name="enquiry" rows="10">{{#if enquiry}}{{{enquiry}}}{{/if}}</textarea>
-				</td>
-				<?php
-			}
-			?>
-		</tr>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="disable_enquire_modal"><?php esc_attr_e( 'Disable Enquire Modal', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="checkbox" {{#if disable_enquire_modal}} checked="checked" {{/if}} name="disable_enquire_modal" />
-				<small><?php esc_attr_e( 'This disables the enquire modal, and instead redirects to the link you provide below.', 'tour-operator' ); ?></small>
-			</td>
-		</tr>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="enquire_link"><?php esc_attr_e( 'Enquire Link', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="text" {{#if enquire_link}} value="{{enquire_link}}" {{/if}} name="enquire_link" />
-			</td>
-		</tr>
-		<?php
-		do_action( 'lsx_to_framework_' . $post_type . '_tab_general_settings_bottom', $post_type );
-	}
-
-	/**
-	 * Adds in the settings necessary for the archives
-	 *
-	 * @param $post_type string
-	 * @param $tab string
-	 * @return null
-	 */
-	public function archive_settings( $post_type = false, $tab = false ) {
-		if ( 'archives' !== $tab ) {
-			return false;
-		}
-		?>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="disable_archives"><?php esc_html_e( 'Disable Archives', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="checkbox" {{#if disable_archives}} checked="checked" {{/if}} name="disable_archives" />
-				<small><?php esc_html_e( 'This disables the "post type archive", if you create your own custom loop it will still work.', 'tour-operator' ); ?></small>
-			</td>
-		</tr>
-		<?php
-		if ( 'destination' === $post_type ) :
-			?>
-			<tr class="form-field">
-				<th scope="row">
-					<label for="continents_instead_countries"><?php esc_html_e( 'Display continents instead', 'tour-operator' ); ?></label>
-				</th>
-				<td>
-					<input type="checkbox" {{#if continents_instead_countries}} checked="checked" {{/if}} name="continents_instead_countries" />
-					<small><?php esc_html_e( 'Enable this to display replace the countries with continets on the destination archive.', 'tour-operator' ); ?></small>
-				</td>
-			</tr>
-
-			<tr class="form-field">
-				<th scope="row">
-					<label for="group_items_by_continent"><?php esc_html_e( 'Group by Continent', 'tour-operator' ); ?></label>
-				</th>
-				<td>
-					<input type="checkbox" {{#if group_items_by_continent}} checked="checked" {{/if}} name="group_items_by_continent" />
-					<small><?php esc_html_e( 'This groups archive items by continent taxonomy and display the continent title.', 'tour-operator' ); ?></small>
-				</td>
-			</tr>
-
-			<tr class="form-field">
-				<th scope="row">
-					<label for="sticky_archives"><?php esc_html_e( 'Sticky Destinations', 'tour-operator' ); ?></label>
-				</th>
-				<td>
-					<select value="{{sticky_archives}}" name="sticky_archives">
-						<option value="" {{#is sticky_archives value=""}}selected="selected"{{/is}}><?php esc_html_e( 'Disable', 'tour-operator' ); ?></option>
-						<option value="sticky-only" {{#is sticky_archives value="sticky-only"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky items only', 'tour-operator' ); ?></option>
-						<option value="sticky-first" {{#is sticky_archives value="sticky-first"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky items first', 'tour-operator' ); ?></option>
-						<option value="sticky-last" {{#is sticky_archives value="sticky-last"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky items last', 'tour-operator' ); ?></option>
-					</select>
-				</td>
-			</tr>
-			<?php
-		endif;
-		?>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="disable_archive_pagination"><?php esc_html_e( 'Disable Pagination', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="checkbox" {{#if disable_archive_pagination}} checked="checked" {{/if}} name="disable_archive_pagination" />
-				<small><?php esc_html_e( 'This disables the pagination on post type archive.', 'tour-operator' ); ?></small>
-			</td>
-		</tr>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="disable_entry_text"><?php esc_html_e( 'Disable Excerpt', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="checkbox" {{#if disable_entry_text}} checked="checked" {{/if}} name="disable_entry_text" />
-				<small><?php esc_html_e( 'This disables the excerpt from entries on post type archive.', 'tour-operator' ); ?></small>
-			</td>
-		</tr>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="disable_entry_metadata"><?php esc_html_e( 'Disable Metadata', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="checkbox" {{#if disable_entry_metadata}} checked="checked" {{/if}} name="disable_entry_metadata" />
-				<small><?php esc_html_e( 'This disables the metadata from entries on post type archive.', 'tour-operator' ); ?></small>
-			</td>
-		</tr>
-		<tr class="form-field-wrap">
-			<th scope="row">
-				<label><?php esc_html_e( 'Grid/list layout', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<select value="{{grid_list_layout}}" name="grid_list_layout">
-					<option value="" {{#is grid_list_layout value=""}}selected="selected"{{/is}}><?php esc_html_e( 'List', 'tour-operator' ); ?></option>
-					<option value="grid" {{#is grid_list_layout value="grid"}} selected="selected"{{/is}}><?php esc_html_e( 'Grid', 'tour-operator' ); ?></option>
-				</select>
-			</td>
-		</tr>
-		<tr class="form-field-wrap">
-			<th scope="row">
-				<label><?php esc_html_e( 'List layout images', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<select value="{{list_layout_image_style}}" name="list_layout_image_style">
-					<option value="" {{#is list_layout_image_style value=""}}selected="selected"{{/is}}><?php esc_html_e( 'Full-height', 'tour-operator' ); ?></option>
-					<option value="max-height" {{#is list_layout_image_style value="max-height"}} selected="selected"{{/is}}><?php esc_html_e( 'Max-height', 'tour-operator' ); ?></option>
-				</select>
-			</td>
-		</tr>
-		<?php do_action( 'lsx_to_framework_' . $post_type . '_tab_archive_settings_top', $post_type ); ?>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="title"> <?php esc_html_e( 'Title', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="text" {{#if title}} value="{{title}}" {{/if}} name="title" />
-			</td>
-		</tr>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="tagline"> <?php esc_html_e( 'Tagline', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="text" {{#if tagline}} value="{{tagline}}" {{/if}} name="tagline" />
-			</td>
-		</tr>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="description"> <?php esc_html_e( 'Description', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<textarea class="description" name="description" rows="10">{{#if description}}{{{description}}}{{/if}}</textarea>
-			</td>
-		</tr>
-		<?php 
-        do_action( 'lsx_to_framework_' . $post_type . '_tab_archive_settings_bottom', $post_type );
-	}
-
-	/**
-	 * Adds in the settings necessary for the single
-	 *
-	 * @param $post_type string
-	 * @param $tab string
-	 * @return null
-	 */
-	public function single_settings( $post_type = false, $tab = false ) {
-		if ( 'single' !== $tab ) {
-			return false;
-		}
-		?>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="description"><?php esc_html_e( 'Disable Singles', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="checkbox" {{#if disable_single}} checked="checked" {{/if}} name="disable_single" />
-				<small><?php esc_html_e( 'When disabled you will be redirected to the homepage when trying to access a single page.', 'tour-operator' ); ?></small>
-			</td>
-		</tr>
-		<?php
-		if ( 'destination' === $post_type ) {
-			?>
-			<tr class="form-field">
-				<th scope="row">
-					<label for="disable_single_region"><?php esc_html_e( 'Disable Regions Only', 'tour-operator' ); ?></label>
-				</th>
-				<td>
-					<input type="checkbox" {{#if disable_single_region}} checked="checked" {{/if}} name="disable_single_region" />
-					<small><?php esc_html_e( 'When you only want to display the countries.', 'tour-operator' ); ?></small>
-				</td>
-			</tr>
-			<?php
-		}
-		?>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="description"><?php esc_html_e( 'Disable Collapsible Sections', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="checkbox" {{#if disable_collapsible}} checked="checked" {{/if}} name="disable_collapsible" />
-				<small><?php esc_html_e( 'When disabled you will no longer be able to click to close and open the sections.', 'tour-operator' ); ?></small>
-			</td>
-		</tr>
-		<?php
-		if ( 'destination' === $post_type ) {
-			?>
-			<tr class="form-field">
-				<th scope="row">
-					<label for="sticky_countries"><?php esc_html_e( 'Sticky Countries', 'tour-operator' ); ?></label>
-				</th>
-				<td>
-					<select value="{{sticky_countries}}" name="sticky_countries">
-						<option value="" {{#is sticky_countries value=""}}selected="selected"{{/is}}><?php esc_html_e( 'Disable', 'tour-operator' ); ?></option>
-						<option value="sticky-only" {{#is sticky_countries value="sticky-only"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky regions only', 'tour-operator' ); ?></option>
-						<option value="sticky-first" {{#is sticky_countries value="sticky-first"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky regions first', 'tour-operator' ); ?></option>
-						<option value="sticky-last" {{#is sticky_countries value="sticky-last"}} selected="selected"{{/is}}><?php esc_html_e( 'Sticky regions last', 'tour-operator' ); ?></option>
-					</select>
-				</td>
-			</tr>
-			<?php
-		}
-		do_action( 'lsx_to_framework_' . $post_type . '_tab_single_settings_top', $post_type );
-		if ( 'tour' == $post_type || 'accommodation' == $post_type || 'destination' == $post_type || 'activity' == $post_type ) : 
-        ?>
-			<tr class="form-field">
-				<th scope="row">
-					<label for="section_title"><?php esc_html_e( 'Default Section Title', 'tour-operator' ); ?></label>
-				</th>
-				<td>
-					<input type="text" {{#if section_title}} value="{{section_title}}" {{/if}} name="section_title" />
-				</td>
-			</tr>
-			<?php if ( 'tour' == $post_type ) : ?>
-				<tr class="form-field">
-					<th scope="row">
-						<label for="related_section_title"><?php esc_html_e( '"Related Tours" Section Title', 'tour-operator' ); ?></label>
-					</th>
-					<td>
-						<input type="text" {{#if related_section_title}} value="{{related_section_title}}" {{/if}} name="related_section_title" />
-					</td>
-				</tr>
-			<?php endif ?>
-			<?php if ( 'accommodation' == $post_type ) : ?>
-				<tr class="form-field">
-					<th scope="row">
-						<label for="brands_section_title"><?php esc_html_e( '"Accommodation Brands" Section Title', 'tour-operator' ); ?></label>
-					</th>
-					<td>
-						<input type="text" {{#if brands_section_title}} value="{{brands_section_title}}" {{/if}} name="brands_section_title" />
-					</td>
-				</tr>
-				<tr class="form-field">
-					<th scope="row">
-						<label for="rooms_section_title"><?php esc_html_e( '"Rooms" Section Title', 'tour-operator' ); ?></label>
-					</th>
-					<td>
-						<input type="text" {{#if rooms_section_title}} value="{{rooms_section_title}}" {{/if}} name="rooms_section_title" />
-					</td>
-				</tr>
-				<tr class="form-field">
-					<th scope="row">
-						<label for="similar_section_title"><?php esc_html_e( '"Similar Accommodations" Section Title', 'tour-operator' ); ?></label>
-					</th>
-					<td>
-						<input type="text" {{#if similar_section_title}} value="{{similar_section_title}}" {{/if}} name="similar_section_title" />
-					</td>
-				</tr>
-			<?php endif ?>
-			<?php if ( 'destination' == $post_type ) : ?>
-				<tr class="form-field">
-					<th scope="row">
-						<label for="countries_section_title"><?php esc_html_e( '"Countries" Section Title', 'tour-operator' ); ?></label>
-					</th>
-					<td>
-						<input type="text" {{#if countries_section_title}} value="{{countries_section_title}}" {{/if}} name="countries_section_title" />
-					</td>
-				</tr>
-				<tr class="form-field">
-					<th scope="row">
-						<label for="regions_section_title"><?php esc_html_e( '"Regions" Section Title', 'tour-operator' ); ?></label>
-					</th>
-					<td>
-						<input type="text" {{#if regions_section_title}} value="{{regions_section_title}}" {{/if}} name="regions_section_title" />
-					</td>
-				</tr>
-				<tr class="form-field">
-					<th scope="row">
-						<label for="travel_styles_section_title"><?php esc_html_e( '"Travel Styles" Section Title', 'tour-operator' ); ?></label>
-					</th>
-					<td>
-						<input type="text" {{#if travel_styles_section_title}} value="{{travel_styles_section_title}}" {{/if}} name="travel_styles_section_title" />
-					</td>
-				</tr>
-			<?php endif ?>
-		<?php endif ?>
-
-		<?php 
-        do_action( 'lsx_to_framework_' . $post_type . '_tab_single_settings_bottom', $post_type );
-	}
-
 	public function lsx_to_framework_api_patch( $tab = 'settings' ) {
 		do_action( 'lsx_to_framework_api_tab_content', $tab );
 	}
@@ -618,7 +220,7 @@ echo esc_attr( 'selected="selected"' ); }
 	 * @return null
 	 */
 	public function map_display_settings( $tab = 'general' ) {
-		if ( 'maps' === $tab ) {
+		if ( 'general' === $tab ) {
 			$this->disable_maps_checkbox();
 			$this->map_marker_field();
 			$this->cluster_marker_field();
