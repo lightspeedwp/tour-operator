@@ -82,13 +82,6 @@ class Settings {
 	 */
 	public function create_settings_page() {
 		if ( is_admin() ) {
-			if ( ! class_exists( '\lsx_to\ui\uix' ) ) {
-				include_once LSX_TO_PATH . 'vendor/uix/uix.php';
-			}
-
-			$pages = $this->settings_page_array();
-			$uix = \lsx_to\ui\uix::get_instance( 'lsx-to' );
-			$uix->register_pages( $pages );
 
 			foreach ( tour_operator()->legacy->post_types as $post_type => $label ) {
 				add_action( 'lsx_to_framework_' . $post_type . '_tab_content', array( $this, 'general_settings' ), 5, 2 );
