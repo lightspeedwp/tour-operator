@@ -9,8 +9,6 @@
  * @copyright 2017 LightSpeedDevelopment
  */
 
-//tour_operator()->settings->create_settings_page();
-
 $page = array(
 	'page_title'    => esc_html__( 'LSX Tour Operator Settings', 'tour-operator' ),
 	'menu_title'    => esc_html__( 'Settings', 'tour-operator' ),
@@ -21,12 +19,14 @@ $page = array(
 	'menu_position' => 90,
 	'assets'        => array(
 		'callback' => function () {
-			\lsx_to\ui\uix::get_instance( 'lsx-to' )->enqueue_admin_stylescripts( 'settings' );
 		},
 	),
 	'callback'      => function () {
-		$uix = \lsx_to\ui\uix::get_instance( 'lsx-to' );
-		$uix->create_admin_page( 'settings' );
+		include( LSX_TO_PATH . 'includes/partials/display.php' );
+		include( LSX_TO_PATH . 'includes/partials/general.php' );
+		include( LSX_TO_PATH . 'includes/partials/accommodation.php' );
+		include( LSX_TO_PATH . 'includes/partials/destination.php' );
+		include( LSX_TO_PATH . 'includes/partials/tour.php' );
 	},
 );
 

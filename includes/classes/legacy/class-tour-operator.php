@@ -191,7 +191,7 @@ class Tour_Operator {
 		// Add our action to init to set up our vars first.
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 		add_action( 'init', array( $this, 'require_post_type_classes' ), 1 );
-		add_action( 'wp', array( $this, 'set_archive_layout' ) );
+
 		// Allow extra tags and attributes to wp_kses_post().
 		add_filter(
 			'wp_kses_allowed_html',
@@ -217,26 +217,9 @@ class Tour_Operator {
 		$this->admin = new Admin();
 		// init frontend object.
 		$this->frontend = new Frontend();
-		add_action(
-			'lsx_to_content',
-			array(
-				$this->frontend->redirects,
-				'content_part',
-			),
-			10,
-			2
-		);
 
 		// init placeholders.
 		$this->placeholders = new Placeholders( array_keys( $this->post_types ) );
-
-		add_action( 'widgets_init', array( $this, 'register_widget' ) );
-
-		// These need to run after the plugins have all been read.
-		$this->lsx_banners = new Banner_Integration( array_keys( $this->post_types ), array_keys( $this->taxonomies ) );
-
-		// Integrations.
-		$this->lsx_to_search_integration();
 
 		add_action(
 			'admin_init',
@@ -433,75 +416,6 @@ class Tour_Operator {
 	}
 
 	/**
-	 * Sets the layout variable for the class.
-	 */
-	public function set_archive_layout() {
-		$settings_tab = false;
-
-		if ( is_post_type_archive( $this->active_post_types ) ) {
-			$settings_tab = get_query_var( 'post_type' );
-		} elseif ( is_singular( $this->active_post_types ) ) {
-			$settings_tab = get_query_var( 'post_type' );
-		} elseif ( is_tax( array_keys( $this->taxonomies ) ) ) {
-			$taxonomy = get_query_var( 'taxonomy' );
-
-			switch ( $taxonomy ) {
-				case 'travel-style':
-					$settings_tab = 'tour';
-					break;
-
-				case 'accommodation-type':
-				case 'accommodation-brand':
-				case 'facility':
-					$settings_tab = 'accommodation';
-					break;
-
-				case 'continent':
-				case 'region':
-					$settings_tab = 'destination';
-					break;
-			}
-		} else if ( is_search() ) {
-			$settings_tab = 'global';
-		}
-
-		$settings_tab = apply_filters( 'lsx_to_settings_current_tab', $settings_tab );
-
-		if ( ! empty( $settings_tab ) ) {
-			$archive_layout = '';
-			$archive_list_layout_image_style = '';
-
-			if ( isset( $this->options[ $settings_tab ] ) && isset( $this->options[ $settings_tab ]['grid_list_layout'] ) ) {
-				$archive_layout = $this->options[ $settings_tab ]['grid_list_layout'];
-			}
-			if ( empty( $archive_layout ) ) {
-				$archive_layout = 'list';
-			}
-			$archive_layout = apply_filters( 'lsx_to_archive_layout', $archive_layout, $settings_tab );
-
-			if ( isset( $this->options[ $settings_tab ] ) && isset( $this->options[ $settings_tab ]['list_layout_image_style'] ) ) {
-				$archive_list_layout_image_style = $this->options[ $settings_tab ]['list_layout_image_style'];
-			}
-
-			if ( empty( $archive_list_layout_image_style ) ) {
-				$archive_list_layout_image_style = 'full-height';
-			}
-
-			$this->archive_layout = $archive_layout;
-
-			$this->archive_list_layout_image_style = $archive_list_layout_image_style;
-		}
-	}
-
-	/**
-	 * Register the \lsx\legacy\Widget
-	 */
-	public function register_widget() {
-		register_widget( 'lsx\legacy\Widget' );
-		register_widget( 'lsx\legacy\Taxonomy_Widget' );
-	}
-
-	/**
 	 * Load the plugin text domain for translation.
 	 *
 	 * @since 0.0.1
@@ -543,14 +457,6 @@ class Tour_Operator {
 		}
 
 		return $connections;
-	}
-
-	/**
-	 * Include the post type for the search integration
-	 */
-	public function lsx_to_search_integration() {
-		add_filter( 'lsx_to_search_post_types', array( $this, 'post_types_filter' ) );
-		add_filter( 'lsx_to_search_taxonomies', array( $this, 'taxonomies_filter' ) );
 	}
 
 	/**
@@ -893,8 +799,6 @@ class Tour_Operator {
 
 		return $all_forms;
 	}
-
-
 
 	/**
 	 * gets the current wpforms

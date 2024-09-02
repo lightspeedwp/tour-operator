@@ -90,7 +90,6 @@ class Settings {
 			}
 
 			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'dashboard_tab_content' ), 10, 1 );
-			add_action( 'lsx_to_framework_display_tab_content', array( $this, 'display_tab_content' ), 10, 1 );
 			add_action( 'lsx_to_framework_display_tab_content', array( $this, 'map_display_settings' ), 12, 1 );
 
 			if ( ! empty( tour_operator()->legacy->post_types ) ) {
@@ -177,7 +176,6 @@ class Settings {
 			'default'           => false,
 		);
 
-		//if(in_array('LSX_Banners', get_declared_classes())){
 		$tabs['api'] = array(
 			'page_title'        => '',
 			'page_description'  => '',
@@ -185,19 +183,6 @@ class Settings {
 			'template'          => LSX_TO_PATH . 'includes/partials/api.php',
 			'default'           => false,
 		);
-		//}
-
-		$posts_page = get_option( 'page_for_posts', false );
-
-		if ( false === $posts_page ) {
-			$tabs['post'] = array(
-				'page_title'        => esc_html__( 'Posts', 'tour-operator' ),
-				'page_description'  => '',
-				'menu_title'        => esc_html__( 'Posts', 'tour-operator' ),
-				'template'          => LSX_TO_PATH . 'includes/partials/post.php',
-				'default'           => false,
-			);
-		}
 
 		$additional_tabs = false;
 		$additional_tabs = apply_filters( 'lsx_to_framework_settings_tabs', $additional_tabs );
@@ -217,51 +202,6 @@ class Settings {
 				'tabs'        => $tabs,
 			),
 		);
-	}
-
-	/**
-	 * outputs the display tabs settings
-	 */
-	public function display_tab_content( $subtab = 'basic' ) {
-		if ( 'basic' === $subtab ) {
-			if ( class_exists( 'LSX_Banners' ) && class_exists( 'Envira_Gallery' ) ) {
-				?>
-				<tr class="form-field">
-					<th scope="row">
-						<label for="description"><?php esc_html_e( 'Display galleries in the banner', 'tour-operator' ); ?></label>
-					</th>
-					<td>
-						<input type="checkbox" {{#if enable_galleries_in_banner}} checked="checked" {{/if}} name="enable_galleries_in_banner" />
-						<small><?php esc_html_e( 'Move the gallery on a page into the banner.', 'tour-operator' ); ?></small>
-					</td>
-				</tr>
-			<?php 
-            }
-
-			$this->modal_setting();
-		}
-		if ( 'advanced' === $subtab ) {
-			?>
-			<tr class="form-field">
-				<th scope="row">
-					<label for="description"><?php esc_html_e( 'Disable CSS', 'tour-operator' ); ?></label>
-				</th>
-				<td>
-					<input type="checkbox" {{#if disable_css}} checked="checked" {{/if}} name="disable_css" />
-					<small><?php esc_html_e( 'Disable the CSS if you want to include your own.', 'tour-operator' ); ?></small>
-				</td>
-			</tr>
-			<tr class="form-field">
-				<th scope="row">
-					<label for="description"><?php esc_html_e( 'Disable Javascript', 'tour-operator' ); ?></label>
-				</th>
-				<td>
-					<input type="checkbox" {{#if disable_js}} checked="checked" {{/if}} name="disable_js" />
-					<small><?php esc_html_e( 'Only disable the JS if you are debugging an error.', 'tour-operator' ); ?></small>
-				</td>
-			</tr>
-			<?php
-		}
 	}
 
 	/**
@@ -295,103 +235,14 @@ return false;}
 				</td>
 			</tr>
 		<?php } ?>
-		<tr class="form-field-wrap">
-			<th scope="row">
-				<label for="enquiry"><?php esc_html_e( 'General Enquiry', 'tour-operator' ); ?></label>
-			</th>
-			<?php
-			if ( true === tour_operator()->legacy->show_default_form() ) {
-				$forms = tour_operator()->legacy->get_activated_forms();
-				$selected_form = false;
 
-				if ( isset( $this->options['general'] ) && isset( $this->options['general']['enquiry'] ) ) {
-					$selected_form = $this->options['general']['enquiry'];
-				}
-				?>
-				<td>
-					<select value="{{enquiry}}" name="enquiry">
-						<?php
-						if ( false !== $forms && '' !== $forms ) { 
-                        ?>
-							<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}><?php esc_html_e( 'Select a form', 'tour-operator' ); ?></option>
-							<?php
-							foreach ( $forms as $form_id => $form_data ) { 
-                            ?>
-								<option value="<?php echo esc_attr( $form_id ); ?>" 
-                                                          <?php 
-                                if ( $selected_form == $form_id ) {
-echo esc_attr( 'selected="selected"' ); } 
-?>
-  ><?php echo esc_html( $form_data ); ?></option>
-								<?php
-							}
-						} else { 
-                        ?>
-							<option value="" {{#is enquiry value=""}}selected="selected"{{/is}}><?php esc_html_e( 'You have no form available', 'tour-operator' ); ?></option>
-						<?php } ?>
-					</select>
-				</td>
-			<?php } else { ?>
-				<td>
-					<textarea class="description enquiry" name="enquiry" rows="10">{{#if enquiry}}{{{enquiry}}}{{/if}}</textarea>
-				</td>
-				<?php
-			}
-			?>
-		</tr>
 		<tr class="form-field">
 			<th scope="row">
-				<label for="disable_enquire_modal"><?php esc_html_e( 'Disable Enquire Modal', 'tour-operator' ); ?></label>
+				<label for="disable_archives"><?php esc_html_e( 'Disable Archives', 'tour-operator' ); ?></label>
 			</th>
 			<td>
-				<input type="checkbox" {{#if disable_enquire_modal}} checked="checked" {{/if}} name="disable_enquire_modal" />
-				<small><?php esc_html_e( 'This disables the enquire modal, and instead redirects to the link you provide below.', 'tour-operator' ); ?></small>
-			</td>
-		</tr>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="enquire_link"><?php esc_html_e( 'Enquire Link', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="text" {{#if enquire_link}} value="{{enquire_link}}" {{/if}} name="enquire_link" />
-			</td>
-		</tr>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="enquiry_contact_name"><?php esc_html_e( 'Enquire Contact Name', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="text" {{#if enquiry_contact_name}} value="{{enquiry_contact_name}}" {{/if}} id="enquiry_contact_name" name="enquiry_contact_name" />
-			</td>
-		</tr>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="enquiry_contact_email"><?php esc_html_e( 'Enquire Contact Email', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="text" {{#if enquiry_contact_email}} value="{{enquiry_contact_email}}" {{/if}} id="enquiry_contact_email" name="enquiry_contact_email" />
-			</td>
-		</tr>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="enquiry_contact_phone"><?php esc_html_e( 'Enquire Contact Phone', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="text" {{#if enquiry_contact_phone}} value="{{enquiry_contact_phone}}" {{/if}} id="enquiry_contact_phone" name="enquiry_contact_phone" />
-			</td>
-		</tr>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="enquiry_contact_image"> <?php esc_html_e( 'Enquire Contact Image', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input class="input_image_id" type="hidden" {{#if enquiry_contact_image_id}} value="{{enquiry_contact_image_id}}" {{/if}} name="enquiry_contact_image_id" />
-				<input class="input_image" type="hidden" {{#if enquiry_contact_image}} value="{{enquiry_contact_image}}" {{/if}} name="enquiry_contact_image" />
-				<div class="thumbnail-preview">
-					{{#if enquiry_contact_image}}<img src="{{enquiry_contact_image}}" width="150" style="width:150px" />{{/if}}
-				</div>
-				<a {{#if enquiry_contact_image}}style="display:none;"{{/if}} class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
-				<a {{#unless enquiry_contact_image}}style="display:none;"{{/unless}} class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
+				<input type="checkbox" {{#if disable_archives}} checked="checked" {{/if}} name="disable_archives" />
+				<small><?php esc_html_e( 'This disables the "post type archive", if you create your own custom loop it will still work.', 'tour-operator' ); ?></small>
 			</td>
 		</tr>
 		<?php
@@ -754,23 +605,6 @@ echo esc_attr( 'selected="selected"' ); }
 
 		<?php 
         do_action( 'lsx_to_framework_' . $post_type . '_tab_single_settings_bottom', $post_type );
-	}
-
-	/**
-	 * outputs the modal setting field
-	 */
-	public function modal_setting() {
-		?>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="description"><?php esc_html_e( 'Enable Connected Modals', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="checkbox" {{#if enable_modals}} checked="checked" {{/if}} name="enable_modals" />
-				<small><?php esc_html_e( 'Any connected item showing on a single will display a preview in a modal.', 'tour-operator' ); ?></small>
-			</td>
-		</tr>
-		<?php
 	}
 
 	public function lsx_to_framework_api_patch( $tab = 'settings' ) {
