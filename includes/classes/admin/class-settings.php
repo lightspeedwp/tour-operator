@@ -317,8 +317,15 @@ class Settings {
 		$field[] = '<th scope="row"><label for="' . $field_id . '">' . $params['label'] . '</label></th>';
 		$field[] = '<td>';
 		$field[] = '<select type="' . $params['type'] . '" name="' . $field_id . '" />';
+
+		$selected = $this->get_value( $field_id, $params );
+
 		foreach ( $params['options'] as $o_key => $o_val ) {
-			$field[] = '<option val="' . $o_key . '">' . $o_val . '</option>';
+			$select_param = '';
+			if ( $o_key === $selected ) {
+				$select_param = 'selected="selected"';
+			}
+			$field[] = '<option ' . $select_param . ' value="' . $o_key . '">' . $o_val . '</option>';
 		}
 		$field[] = '</select>';
 		if ( '' !== $params['desc'] ) {
@@ -399,7 +406,6 @@ class Settings {
 		return implode( '', $field );
 	}
 
-
 	/**
 	 * Save the TO options.
 	 *
@@ -441,6 +447,27 @@ class Settings {
 
 		if ( ! empty( $settings_values ) ) {
 			update_option( 'lsx_to_settings', $settings_values );
+
+			wp_safe_redirect( $_POST[ '_wp_http_referer' ] );
+			exit;
 		}
+	}
+
+	/**
+	 * Get the value from the saved settings, or sets to the default.
+	 *
+	 * @param [type] $field_id
+	 * @param [type] $params
+	 * @return void
+	 */
+	public function get_value( $field_id, $params ) {
+		$value = '';
+		if ( isset( $params['default'] ) ) {
+			$value = $params['default'];
+		}
+		if ( isset( $this->options[ $field_id ] ) ) {
+			$value = $this->options[ $field_id ];
+		}
+		return $value;
 	}
 }

@@ -182,7 +182,7 @@ class Tour_Operator {
 		new Post_Expirator();
 
 		// Set the options.
-		$this->options = get_option( '_lsx-to_settings', false );
+		$this->options = get_option( 'lsx_to_settings', array() );
 		$this->set_vars();
 
 		// Make TO last plugin to load.
