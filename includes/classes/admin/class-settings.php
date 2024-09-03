@@ -44,7 +44,7 @@ class Settings {
 	 */
 	public function __construct() {
 		$this->options = tour_operator()->options;
-
+		
 		if ( isset( $_GET['welcome-page'] ) ) {
 			$display_page = sanitize_text_field( $_GET['welcome-page'] );
 			$display_page = ! empty( $display_page ) ? $display_page : '';
@@ -81,8 +81,9 @@ class Settings {
 	 */
 	public function create_settings_page() {
 		if ( is_admin() ) {
-			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'map_display_settings' ), 12, 1 );
-			add_action( 'lsx_to_framework_dashboard_tab_placeholder', array( $this, 'map_placeholder_settings' ), 12, 1 );
+			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'map_settings' ), 12, 1 );
+			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'fusion_table_settings' ), 13, 1 );
+			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'map_placeholder_settings' ), 14, 1 );
 			
 
 			if ( ! empty( tour_operator()->legacy->post_types ) ) {
@@ -172,14 +173,10 @@ class Settings {
 	 * @param $tab string
 	 * @return null
 	 */
-	public function map_display_settings( $tab = 'general' ) {
-		if ( 'general' === $tab ) {
-			$this->map_settings_title();
-			$this->disable_maps_checkbox();
-			$this->map_marker_field();
-			$this->cluster_marker_field();
-			$this->start_end_marker_fields();
-			$this->fusion_tables_fields();
+	public function map_settings( $tab = 'maps' ) {
+		if ( 'maps' === $tab ) {
+			$settings = $this->get_settings_fields();
+			echo wp_kses_post( $this->output_fields( $settings['maps'] ) );
 		}
 	}
 
@@ -189,10 +186,10 @@ class Settings {
 	 * @param $tab string
 	 * @return null
 	 */
-	public function map_placeholder_settings( $tab = 'placeholder' ) {
-		if ( 'general' === $tab ) {
-			$this->enable_map_placeholder_checkbox();
-			$this->map_placeholder_field();
+	public function map_placeholder_settings( $tab = 'general' ) {
+		if ( 'placeholders' === $tab ) {
+			$settings = $this->get_settings_fields();
+			echo wp_kses_post( $this->output_fields( $settings['placeholder'] ) );
 		}
 	}
 
@@ -210,207 +207,150 @@ class Settings {
 	}
 
 	/**
-	 * Outputs the map placeholder field header
-	 */
-	public function map_settings_title() {
-		?>
-		<tr class="form-field">
-			<th scope="row" colspan="2">
-				<label>
-					<h3><?php esc_html_e( 'Map Settings', 'tour-operator' ); ?></h3>
-				</label>
-			</th>
-		</tr>
-		<?php
-	}
-
-	/**
-	 * Outputs the map placeholder field
-	 */
-	public function disable_maps_checkbox() {
-		?>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="maps_disabled"><?php esc_html_e( 'Disable Maps', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="checkbox" checked="checked" name="maps_disabled" /> 
-				<small><?php esc_html_e( 'This will disable maps on all post types.', 'tour-operator' ); ?></small>
-			</td>
-		</tr>	
-		<?php
-	}
-
-	/**
-	 * Outputs the map placeholder field
-	 */
-	public function enable_map_placeholder_checkbox() {
-		?>
-        	
-		<tr class="form-field">
-			<th scope="row">
-				<label for="map_placeholder_enabled"><?php esc_html_e( 'Enable Map Placeholder', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="checkbox" checked="checked" name="map_placeholder_enabled" /> 
-				<small><?php esc_html_e( 'Enable a placeholder users will click to load the map.', 'tour-operator' ); ?></small>
-			</td>
-		</tr>	
-		<?php
-	}
-
-	/**
-	 * Outputs the map placeholder field
-	 */
-	public function map_placeholder_field() {
-		?>
-		<tr class="form-field map-placeholder">
-			<th scope="row">
-				<label for="banner"> <?php esc_html_e( 'Upload a map placeholder', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input class="input_image_id" type="hidden" value="" name="map_placeholder" />
-				<input class="input_image" type="hidden" value="" name="map_placeholder" />
-				<div class="thumbnail-preview">
-					<img src="" width="480" style="color:black;" />
-				</div>
-				<a style="" class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
-				<a style="display:none;" class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
-			</td>
-		</tr>
-		<?php
-	}
-
-	/**
-	 * outputs the map marker upload field
-	 */
-	public function map_marker_field() {
-		?>
-		<tr class="form-field default-marker-wrap">
-			<th scope="row">
-				<label for="banner"> <?php esc_html_e( 'Choose a default marker', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input class="input_image_id" type="hidden" value=""  name="googlemaps_marker_id" />
-				<input class="input_image" type="hidden" value="" name="googlemaps_marker" />
-				<div class="thumbnail-preview">
-					<img src="" width="48" style="color:black;" />
-				</div>
-				<a style="" class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
-				<a style="display:none;" class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
-			</td>
-		</tr>
-		<?php
-	}
-
-	/**
-	 * outputs the cluster marker upload field
-	 */
-	public function cluster_marker_field() {
-		?>
-		<tr class="form-field default-cluster-small-wrap">
-			<th scope="row">
-				<label for="banner"> <?php esc_html_e( 'Choose a cluster marker', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input class="input_image_id" type="hidden" value="" name="gmap_cluster_small_id" />
-				<input class="input_image" type="hidden" value="" name="gmap_cluster_small" />
-				<div class="thumbnail-preview">
-					<img src="" width="48" style="color:black;" />
-				</div>
-				<a style="" class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
-				<a style="display:none;" class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
-			</td>
-		</tr>
-		<?php
-	}
-
-	/**
-	 * outputs the start/end marker upload field
-	 */
-	public function start_end_marker_fields() {
-		?>
-		<tr class="form-field default-cluster-small-wrap">
-			<th scope="row">
-				<label for="banner"> <?php esc_html_e( 'Choose a start marker', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input class="input_image_id" type="hidden" value=""  name="gmap_marker_start_id" />
-				<input class="input_image" type="hidden"  value="" name="gmap_marker_start" />
-				<div class="thumbnail-preview">
-					<img src="" width="48" style="color:black;" />
-				</div>
-				<a style="" class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
-				<a style="display:none;" class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
-			</td>
-		</tr>
-		<tr class="form-field default-cluster-small-wrap">
-			<th scope="row">
-				<label for="banner"> <?php esc_html_e( 'Choose a end marker', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input class="input_image_id" type="hidden" value=""  name="gmap_marker_end_id" />
-				<input class="input_image" type="hidden" value=""  name="gmap_marker_end" />
-				<div class="thumbnail-preview">
-					<img src="" width="48" style="color:black;" />
-				</div>
-				<a style="" class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
-				<a style="display:none;" class="button-secondary lsx-thumbnail-image-delete"><?php esc_html_e( 'Delete', 'tour-operator' ); ?></a>
-			</td>
-		</tr>
-		<?php
-	}
-
-	/**
 	 * Outputs the map marker upload field
 	 */
-	public function fusion_tables_fields() {
-		?>
-		<tr class="form-field">
-			<th scope="row" colspan="2">
-				<label>
-					<h3><?php esc_html_e( 'Fusion Tables Settings', 'tour-operator' ); ?></h3>
-				</label>
-			</th>
-		</tr>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="fusion_tables_enabled"><?php esc_html_e( 'Enable Fusion Tables', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="checkbox" checked="checked" name="fusion_tables_enabled" />
-			</td>
-		</tr>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="title"><?php esc_html_e( 'Border Width', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="text" maxlength="2" value="" name="fusion_tables_width_border" />
-				<br>
-				<small>Default value: 2</small>
-			</td>
-		</tr>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="title"><?php esc_html_e( 'Border Colour', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="text" maxlength="7" value="" name="fusion_tables_colour_border" />
-				<br>
-				<small>Default value: #000000</small>
-			</td>
-		</tr>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="title"><?php esc_html_e( 'Background Colour', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="text" maxlength="7" value="" name="fusion_tables_colour_background" />
-				<br>
-				<small>Default value: #000000</small>
-			</td>
-		</tr>
-		<?php
+	public function fusion_table_settings( $tab = 'general' ) {
+		if ( 'fusion' === $tab ) {
+			$settings = $this->get_settings_fields();		
+			echo wp_kses_post( $this->output_fields( $settings['fusion'] ) );
+		}
+	}
+
+	public function output_fields( $section = array() ) {
+		$fields = array();
+		if ( ! empty( $section ) ) {
+			foreach ( $section as $field_id => $field ) {
+				
+				$field_html = '<tr class="form-field ' . sanitize_key( $field_id ) . '">';
+				switch( $field['type'] ) {
+					case 'checkbox':
+						$field_html .= $this->checkbox_field( $field_id, $field );
+					break;
+
+					case 'image':
+						$field_html .= $this->image_field( $field_id, $field );
+					break;
+
+					case 'text':
+					case 'number':
+						$field_html .= $this->checkbox_field( $field_id, $field );
+					break;
+
+					default;
+				}
+				$field_html .= '</tr>';
+				$fields[] = $field_html;
+			}
+		}
+		return implode( '', $fields ); 
+	}
+
+	/**
+	 * Outputs the settings page Select Field.
+	 *
+	 * @param string $field_id
+	 * @param array $args
+	 * @return string
+	 */
+	public function select_field( $field_id, $args = array() ) {
+		$defaults = array(
+			'label'   => '',
+			'desc'    => '',
+			'default' => 0,
+		);
+		$params = wp_parse_args( $args, $defaults );
+
+		$field = array();
+
+		$field[] = '<th scope="row"><label for="' . $field_id . '">' . $params['label'] . '</label></th>';
+		$field[] = '<td>';
+		$field[] = '<input type="' . $params['type'] . '" name="' . $field_id . '" />';
+		if ( '' !== $params['desc'] ) {
+			$field[] = '<br /><small>' . $params['desc'] . '</small>';
+		}
+		$field[] = '</td>';
+		
+		return implode( '', $field );
+	}
+
+	/**
+	 * Outputs the settings page Checkbox.
+	 *
+	 * @param string $field_id
+	 * @param array $args
+	 * @return string
+	 */
+	public function checkbox_field( $field_id, $args = array() ) {
+		$defaults = array(
+			'label'   => '',
+			'desc'    => '',
+			'default' => 0,
+		);
+		$params = wp_parse_args( $args, $defaults );
+
+		$field = array();
+
+		$field[] = '<th scope="row"><label for="' . $field_id . '">' . $params['label'] . '</label></th>';
+		$field[] = '<td>';
+		$field[] = '<input type="' . $params['type'] . '" name="' . $field_id . '" />';
+		if ( '' !== $params['desc'] ) {
+			$field[] = '<br /><small>' . $params['desc'] . '</small>';
+		}
+		$field[] = '</td>';
+		
+		return implode( '', $field );
+	}
+
+	/**
+	 * The image upload function.
+	 *
+	 * @param string $field_id
+	 * @param array $args
+	 * @return string
+	 */
+	public function image_field( $field_id, $args = array() ) {
+		$defaults = array(
+			'label'      => '',
+			'desc'       => '',
+			'default'    => 0,
+			'preview_w'  => 48,
+			'add_button' => esc_html__( 'Choose Image', 'tour-operator' ),
+			'del_button' => esc_html__( 'Delete', 'tour-operator' ),
+		);
+		$params = wp_parse_args( $args, $defaults );
+
+		$field = array();
+
+		$field[] = '<th scope="row"><label for="' . $field_id . '">' . $params['label'] . '</label></th>';
+		$field[] = '<td>';
+
+		//hidden fields for the ID
+		$field[] = '<input class="input_image_id" type="hidden" value="" name="' . $field_id . '_id" />';
+		$field[] = '<input class="input_image" type="hidden" value="" name="' . $field_id . '" />';
+
+		// Image Previews
+		$field[] = '<div class="thumbnail-preview"><img src="" width="' . $params['preview_w'] . '" style="color:black;" /></div>';
+
+		// Action Buttons
+		$field[] = '<a style="" class="button-secondary lsx-thumbnail-image-add">' . $params['add_button'] . '</a>';
+		$field[] = '<a style="display:none;" class="button-secondary lsx-thumbnail-image-delete">' . $params['del_button'] . '</a>';
+
+		if ( '' !== $params['desc'] ) {
+			$field[] = '<br /><small>' . $params['desc'] . '</small>';
+		}
+		$field[] = '</td>';
+		
+		return implode( '', $field );
+	}
+
+	/**
+	 * Returns the fields needed for the settings.
+	 *
+	 * @return array
+	 */
+	public function get_settings_fields() {
+		$settings = array();
+		$settings = include( LSX_TO_PATH . 'includes/constants/settings-fields.php' );
+		return $settings;
 	}
 }
