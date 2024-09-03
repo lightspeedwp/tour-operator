@@ -1,8 +1,24 @@
 <?php
 
 $settings_fields = array(
-	'general' => array(
-		
+	'currency' => array(
+		'currency' => array(
+			'label'   => esc_html__( 'Currency', 'tour-operator' ),
+			'type'    => 'select',
+			'default' => 0,
+			'options' => array(
+				'USD' => esc_html__( 'USD (united states dollar)', 'tour-operator' ),
+				'GBP' => esc_html__( 'GBP (british pound)', 'tour-operator' ),
+				'ZAR' => esc_html__( 'ZAR (south african rand)', 'tour-operator' ),
+				'NAD' => esc_html__( 'NAD (namibian dollar)', 'tour-operator' ),
+				'CAD' => esc_html__( 'CAD (canadian dollar)', 'tour-operator' ),
+				'EUR' => esc_html__( 'EUR (euro)', 'tour-operator' ),
+				'HKD' => esc_html__( 'HKD (hong kong dollar)', 'tour-operator' ),
+				'SGD' => esc_html__( 'SGD (singapore dollar)', 'tour-operator' ),
+				'NZD' => esc_html__( 'NZD (new zealand dollar)', 'tour-operator' ),
+				'AUD' => esc_html__( 'AUD (australian dollar)', 'tour-operator' ),
+			),
+		),
 	),
 	'maps' => array(
 		'maps_disabled' => array(
@@ -75,6 +91,12 @@ $settings_fields = array(
 			'default' => 000000,
 		),
 	),
+	'api' => array(
+		'googlemaps_key' => array(
+			'label'   => esc_html__( 'Google Maps API', 'tour-operator' ),
+			'type'    => 'text',
+		)
+	)
 );
 
 return $settings_fields;

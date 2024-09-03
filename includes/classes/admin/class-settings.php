@@ -55,9 +55,6 @@ class Settings {
 		} else {
 			add_action( 'init', array( $this, 'create_settings_page' ), 100 );
 		}
-
-		// Incase the API tab is being loaded via another plugin, we add all the API hooks to the LSX ones.
-		add_action( 'lsx_framework_api_tab_content', array( $this, 'lsx_to_framework_api_patch' ) );
 	}
 
 	/**
@@ -77,40 +74,14 @@ class Settings {
 	}
 
 	/**
-	 * Returns the array of settings to the UIX Class
+	 * Returns the fields needed for the settings.
+	 *
+	 * @return array
 	 */
-	public function create_settings_page() {
-		if ( is_admin() ) {
-			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'map_settings' ), 12, 1 );
-			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'fusion_table_settings' ), 13, 1 );
-			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'map_placeholder_settings' ), 14, 1 );
-			
-
-			if ( ! empty( tour_operator()->legacy->post_types ) ) {
-				foreach ( tour_operator()->legacy->post_types as $post_type => $label ) {
-					if ( isset( tour_operator()->legacy->options[ $post_type ]['googlemaps_marker'] ) && '' !== tour_operator()->legacy->options[ $post_type ]['googlemaps_marker'] ) {
-						tour_operator()->legacy->markers->post_types[ $post_type ] = tour_operator()->legacy->options[ $post_type ]['googlemaps_marker'];
-					} else {
-						tour_operator()->legacy->markers->post_types[ $post_type ] = LSX_TO_URL . 'assets/img/markers/' . $post_type . '-marker.png';
-					}
-					add_action( 'lsx_to_framework_' . $post_type . '_tab_content', array( $this, 'post_type_map_settings' ), 10, 2 );
-				}
-			}
-		}
-	}
-
-	/**
-	 * Add the welcome page
-	 */
-	public function create_welcome_page() {
-		add_submenu_page( 'tour-operator', esc_html__( 'Settings', 'tour-operator' ), esc_html__( 'Settings', 'tour-operator' ), 'manage_options', 'lsx-to-settings', array( $this, 'welcome_page' ) );
-	}
-
-	/**
-	 * Display the welcome page
-	 */
-	public function welcome_page() {
-		include( LSX_TO_PATH . 'includes/partials/welcome.php' );
+	public function get_settings_fields() {
+		$settings = array();
+		$settings = include( LSX_TO_PATH . 'includes/constants/settings-fields.php' );
+		return $settings;
 	}
 
 	/**
@@ -163,8 +134,56 @@ class Settings {
 		);
 	}
 
-	public function lsx_to_framework_api_patch( $tab = 'settings' ) {
-		do_action( 'lsx_to_framework_api_tab_content', $tab );
+	/**
+	 * Returns the array of settings to the UIX Class
+	 */
+	public function create_settings_page() {
+		if ( is_admin() ) {
+			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'currency_settings' ), 11, 1 );
+			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'map_settings' ), 12, 1 );
+			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'fusion_table_settings' ), 13, 1 );
+			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'map_placeholder_settings' ), 14, 1 );
+			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'api_settings' ), 15, 1 );
+			
+
+			if ( ! empty( tour_operator()->legacy->post_types ) ) {
+				foreach ( tour_operator()->legacy->post_types as $post_type => $label ) {
+					if ( isset( tour_operator()->legacy->options[ $post_type ]['googlemaps_marker'] ) && '' !== tour_operator()->legacy->options[ $post_type ]['googlemaps_marker'] ) {
+						tour_operator()->legacy->markers->post_types[ $post_type ] = tour_operator()->legacy->options[ $post_type ]['googlemaps_marker'];
+					} else {
+						tour_operator()->legacy->markers->post_types[ $post_type ] = LSX_TO_URL . 'assets/img/markers/' . $post_type . '-marker.png';
+					}
+					add_action( 'lsx_to_framework_' . $post_type . '_tab_content', array( $this, 'post_type_map_settings' ), 10, 2 );
+				}
+			}
+		}
+	}
+
+	/**
+	 * Add the welcome page
+	 */
+	public function create_welcome_page() {
+		add_submenu_page( 'tour-operator', esc_html__( 'Settings', 'tour-operator' ), esc_html__( 'Settings', 'tour-operator' ), 'manage_options', 'lsx-to-settings', array( $this, 'welcome_page' ) );
+	}
+
+	/**
+	 * Display the welcome page
+	 */
+	public function welcome_page() {
+		include( LSX_TO_PATH . 'includes/partials/welcome.php' );
+	}
+
+	/**
+	 * outputs the display settings for the map tab.
+	 *
+	 * @param $tab string
+	 * @return null
+	 */
+	public function currency_settings( $tab = 'maps' ) {
+		if ( 'currency' === $tab ) {
+			$settings = $this->get_settings_fields();
+			echo wp_kses_post( $this->output_fields( $settings['currency'] ) );
+		}
 	}
 
 	/**
@@ -177,6 +196,16 @@ class Settings {
 		if ( 'maps' === $tab ) {
 			$settings = $this->get_settings_fields();
 			echo wp_kses_post( $this->output_fields( $settings['maps'] ) );
+		}
+	}
+
+	/**
+	 * Outputs the map marker upload field
+	 */
+	public function fusion_table_settings( $tab = 'general' ) {
+		if ( 'fusion' === $tab ) {
+			$settings = $this->get_settings_fields();		
+			echo wp_kses_post( $this->output_fields( $settings['fusion'] ) );
 		}
 	}
 
@@ -194,6 +223,19 @@ class Settings {
 	}
 
 	/**
+	 * Outputs the display settings for the map tab.
+	 *
+	 * @param $tab string
+	 * @return null
+	 */
+	public function api_settings( $tab = 'general' ) {
+		if ( 'api' === $tab ) {
+			$settings = $this->get_settings_fields();
+			echo wp_kses_post( $this->output_fields( $settings['api'] ) );
+		}
+	}
+
+	/**
 	 * Outputs the post type map settings.
 	 *
 	 * @param $tab string
@@ -203,16 +245,6 @@ class Settings {
 		if ( 'placeholders' === $tab ) {
 			$this->map_marker_field();
 			$this->map_placeholder_field();
-		}
-	}
-
-	/**
-	 * Outputs the map marker upload field
-	 */
-	public function fusion_table_settings( $tab = 'general' ) {
-		if ( 'fusion' === $tab ) {
-			$settings = $this->get_settings_fields();		
-			echo wp_kses_post( $this->output_fields( $settings['fusion'] ) );
 		}
 	}
 
@@ -229,6 +261,10 @@ class Settings {
 
 					case 'image':
 						$field_html .= $this->image_field( $field_id, $field );
+					break;
+
+					case 'select':
+						$field_html .= $this->select_field( $field_id, $field );
 					break;
 
 					case 'text':
@@ -257,6 +293,7 @@ class Settings {
 			'label'   => '',
 			'desc'    => '',
 			'default' => 0,
+			'options' => array(),
 		);
 		$params = wp_parse_args( $args, $defaults );
 
@@ -264,7 +301,11 @@ class Settings {
 
 		$field[] = '<th scope="row"><label for="' . $field_id . '">' . $params['label'] . '</label></th>';
 		$field[] = '<td>';
-		$field[] = '<input type="' . $params['type'] . '" name="' . $field_id . '" />';
+		$field[] = '<select type="' . $params['type'] . '" name="' . $field_id . '" />';
+		foreach ( $params['options'] as $o_key => $o_val ) {
+			$field[] = '<option val="' . $o_key . '">' . $o_val . '</option>';
+		}
+		$field[] = '</select>';
 		if ( '' !== $params['desc'] ) {
 			$field[] = '<br /><small>' . $params['desc'] . '</small>';
 		}
@@ -343,14 +384,5 @@ class Settings {
 		return implode( '', $field );
 	}
 
-	/**
-	 * Returns the fields needed for the settings.
-	 *
-	 * @return array
-	 */
-	public function get_settings_fields() {
-		$settings = array();
-		$settings = include( LSX_TO_PATH . 'includes/constants/settings-fields.php' );
-		return $settings;
-	}
+
 }
