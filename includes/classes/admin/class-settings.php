@@ -52,10 +52,9 @@ class Settings {
 
 		if ( ! empty( $display_page ) ) {
 			add_action( 'admin_menu', array( $this, 'create_welcome_page' ) );
-		} else {
-			add_action( 'init', array( $this, 'create_settings_page' ), 100 );
 		}
 
+		add_action( 'admin_menu', array( $this, 'create_settings_page' ), 100 );
 		add_action( 'admin_init', array( $this, 'save_settings' ), 1 );
 	}
 
@@ -116,6 +115,8 @@ class Settings {
 			),
 		);
 
+		//tour_operator()->legacy->get_post_types();
+
 		$additional_tabs = false;
 		$additional_tabs = apply_filters( 'lsx_to_framework_settings_tabs', $additional_tabs );
 
@@ -140,13 +141,20 @@ class Settings {
 	 * Returns the array of settings to the UIX Class
 	 */
 	public function create_settings_page() {
+		add_options_page( esc_html__( 'Settings', 'tour-operator' ), esc_html__( 'Tour Operator', 'tour-operator' ), 'manage_options', 'lsx-to-settings', array( $this, 'settings_page' ) );
+
 		if ( is_admin() ) {
+
+			//Settings Page
 			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'hidden_settings' ), 10, 1 );
 			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'currency_settings' ), 11, 1 );
 			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'map_settings' ), 12, 1 );
 			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'fusion_table_settings' ), 13, 1 );
 			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'map_placeholder_settings' ), 14, 1 );
 			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'api_settings' ), 15, 1 );
+
+			//Post type pages
+			//add_action( 'lsx_to_framework_post_type_tab_content', array( $this, 'template_settings' ), 10, 2 );
 			
 
 			if ( ! empty( tour_operator()->legacy->post_types ) ) {
@@ -166,7 +174,7 @@ class Settings {
 	 * Add the welcome page
 	 */
 	public function create_welcome_page() {
-		add_submenu_page( 'tour-operator', esc_html__( 'Settings', 'tour-operator' ), esc_html__( 'Settings', 'tour-operator' ), 'manage_options', 'lsx-to-settings', array( $this, 'welcome_page' ) );
+		add_submenu_page( 'tour-operator', esc_html__( 'Welcome', 'tour-operator' ), esc_html__( 'Welcome', 'tour-operator' ), 'manage_options', 'lsx-to-settings', array( $this, 'welcome_page' ) );
 	}
 
 	/**
@@ -174,6 +182,15 @@ class Settings {
 	 */
 	public function welcome_page() {
 		include( LSX_TO_PATH . 'includes/partials/welcome.php' );
+	}
+
+	/**
+	 * Generate the settings page.
+	 *
+	 * @return void
+	 */
+	public function settings_page() {
+		include( LSX_TO_PATH . 'includes/partials/settings.php' );
 	}
 
 	/**
@@ -284,7 +301,7 @@ class Settings {
 
 					case 'text':
 					case 'number':
-						$field_html .= $this->checkbox_field( $field_id, $field );
+						$field_html .= $this->text_field( $field_id, $field );
 					break;
 
 					default;
@@ -355,7 +372,46 @@ class Settings {
 
 		$field[] = '<th scope="row"><label for="' . $field_id . '">' . $params['label'] . '</label></th>';
 		$field[] = '<td>';
-		$field[] = '<input type="' . $params['type'] . '" name="' . $field_id . '" />';
+
+
+		$checked      = $this->get_value( $field_id, $params );
+		$checked_param = '';
+		if ( 1 === (int) $checked ) {
+			$checked_param = 'checked="checked"';
+		}
+
+		$field[] = '<input ' . $checked_param . ' value="1" type="' . $params['type'] . '" name="' . $field_id . '" />';
+		if ( '' !== $params['desc'] ) {
+			$field[] = '<small>' . $params['desc'] . '</small>';
+		}
+		$field[] = '</td>';
+		
+		return implode( '', $field );
+	}
+
+	/**
+	 * Outputs the settings page Checkbox.
+	 *
+	 * @param string $field_id
+	 * @param array $args
+	 * @return string
+	 */
+	public function text_field( $field_id, $args = array() ) {
+		$defaults = array(
+			'label'   => '',
+			'desc'    => '',
+			'default' => 0,
+		);
+		$params = wp_parse_args( $args, $defaults );
+
+		$field = array();
+
+		$field[] = '<th scope="row"><label for="' . $field_id . '">' . $params['label'] . '</label></th>';
+		$field[] = '<td>';
+
+		$value = $this->get_value( $field_id, $params );
+
+		$field[] = '<input value="' . $value . '" type="' . $params['type'] . '" name="' . $field_id . '" />';
 		if ( '' !== $params['desc'] ) {
 			$field[] = '<br /><small>' . $params['desc'] . '</small>';
 		}
@@ -387,16 +443,31 @@ class Settings {
 		$field[] = '<th scope="row"><label for="' . $field_id . '">' . $params['label'] . '</label></th>';
 		$field[] = '<td>';
 
+		// Get the stored image
+		$image_id = $this->get_value( $field_id, $params );
+		$image    = '';
+		$prev_css = 'display:none;';
+		if ( 0 !== $image_id && '' !== $image_id ) {
+			$image = wp_get_attachment_image_src( $image_id, 'medium' );
+			$prev_css = '';
+		}
+
 		//hidden fields for the ID
-		$field[] = '<input class="input_image_id" type="hidden" value="" name="' . $field_id . '_id" />';
-		$field[] = '<input class="input_image" type="hidden" value="" name="' . $field_id . '" />';
+		$field[] = '<input class="input_image" type="hidden" value="' . $image_id . '" name="' . $field_id . '" />';
 
 		// Image Previews
-		$field[] = '<div class="thumbnail-preview"><img src="" width="' . $params['preview_w'] . '" style="color:black;" /></div>';
+		$field[] = '<div class="thumbnail-preview" style="' . $prev_css . '"><img src="' . $image[0] . '" width="' . $params['preview_w'] . '" style="color:black;" /></div>';
 
 		// Action Buttons
-		$field[] = '<a style="" class="button-secondary lsx-thumbnail-image-add">' . $params['add_button'] . '</a>';
-		$field[] = '<a style="display:none;" class="button-secondary lsx-thumbnail-image-delete">' . $params['del_button'] . '</a>';
+		$add_css = '';
+		$del_css = 'display:none;';
+		if ( '' !== $image ) {
+			$add_css = 'display:none;';
+			$del_css = '';
+		}
+
+		$field[] = '<a style="' . $add_css . '" class="button-secondary lsx-thumbnail-image-add">' . $params['add_button'] . '</a>';
+		$field[] = '<a style="' . $del_css . '" class="button-secondary lsx-thumbnail-image-delete">' . $params['del_button'] . '</a>';
 
 		if ( '' !== $params['desc'] ) {
 			$field[] = '<br /><small>' . $params['desc'] . '</small>';

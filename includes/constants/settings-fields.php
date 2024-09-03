@@ -52,6 +52,12 @@ $settings_fields = array(
 		),
 	),
 	'placeholder' => array(
+		'featured_placeholder' => array(
+			'label'     => esc_html__( 'Upload a placeholder', 'tour-operator' ),
+			'type'      => 'image',
+			'default'   => 0,
+			'preview_w' => 300,
+		),
 		'map_placeholder_enabled' => array(
 			'label'   => esc_html__( 'Enable Map Placeholder', 'tour-operator' ),
 			'desc'    => esc_html__( 'Enable a placeholder users will click to load the map.', 'tour-operator' ),
@@ -62,7 +68,7 @@ $settings_fields = array(
 			'label'     => esc_html__( 'Upload a map placeholder', 'tour-operator' ),
 			'type'      => 'image',
 			'default'   => 0,
-			'preview_w' => 480,
+			'preview_w' => 300,
 		),
 	),
 	'fusion' => array(
@@ -97,7 +103,40 @@ $settings_fields = array(
 		)
 	),
 	'post_types' => array(
-
+		'placeholder' => array(
+			'featured_placeholder' => array(
+				'label'     => esc_html__( 'Upload a placeholder', 'tour-operator' ),
+				'type'      => 'image',
+				'default'   => 0,
+				'preview_w' => 300,
+			),
+			'map_placeholder_enabled' => array(
+				'label'   => esc_html__( 'Enable Map Placeholder', 'tour-operator' ),
+				'desc'    => esc_html__( 'Enable a placeholder users will click to load the map.', 'tour-operator' ),
+				'type'    => 'checkbox',
+				'default' => 0,
+			),
+			'map_placeholder' => array(
+				'label'     => esc_html__( 'Upload a map placeholder', 'tour-operator' ),
+				'type'      => 'image',
+				'default'   => 0,
+				'preview_w' => 300,
+			),
+		),
+		'template' => array(
+			'disable_archives' => array(
+				'label'   => esc_html__( 'Disable Archives', 'tour-operator' ),
+				'desc'    => esc_html__( 'This disables the "post type archive", if you create your own custom loop it will still work.', 'tour-operator' ),
+				'type'    => 'checkbox',
+				'default' => 0,
+			),
+			'disable_single' => array(
+				'label'   => esc_html__( 'Disable Singles', 'tour-operator' ),
+				'desc'    => esc_html__( 'When disabled you will be redirected to the homepage when trying to access a single page.', 'tour-operator' ),
+				'type'    => 'checkbox',
+				'default' => 0,
+			),
+		)
 	)
 );
 

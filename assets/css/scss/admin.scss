@@ -51,12 +51,19 @@
 }
 
 /* The Tab Styling */
-
-body.tour-operator_page_lsx-to-settings,
-body.lsx-tour-operator_page_lsx-to-settings {
+.wrap.lsx-to-settings {
 	.spinner {
 		background-color: #fff;
 		border-radius: 10px;
+	}
+
+	.form-field {
+		input[type="text"],
+		input[type="number"],
+		select
+		 {
+			max-width: 300px;
+		}
 	}
 
 	.ui-tab {

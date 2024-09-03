@@ -2,7 +2,7 @@
 <?php
 $settings_pages = tour_operator()->settings->settings_page_array();
 ?>
-<div class="wrap">
+<div class="wrap lsx-to-settings">
 	<h1><?php echo esc_html( $settings_pages['settings']['page_title'] ); ?></h1>
 	<form method="post">
 		<?php

@@ -41,17 +41,19 @@
 }
 
 /* The Tab Styling */
-body.tour-operator_page_lsx-to-settings .spinner,
-body.lsx-tour-operator_page_lsx-to-settings .spinner {
+.wrap.lsx-to-settings .spinner {
   background-color: #fff;
   border-radius: 10px;
 }
-body.tour-operator_page_lsx-to-settings .ui-tab,
-body.lsx-tour-operator_page_lsx-to-settings .ui-tab {
+.wrap.lsx-to-settings .form-field input[type=text],
+.wrap.lsx-to-settings .form-field input[type=number],
+.wrap.lsx-to-settings .form-field select {
+  max-width: 300px;
+}
+.wrap.lsx-to-settings .ui-tab {
   display: none;
 }
-body.tour-operator_page_lsx-to-settings .ui-tab.active,
-body.lsx-tour-operator_page_lsx-to-settings .ui-tab.active {
+.wrap.lsx-to-settings .ui-tab.active {
   display: block;
 }
 
