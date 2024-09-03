@@ -4,7 +4,7 @@
 			<tr class="form-field">
 				<th scope="row" colspan="2">
 					<label>
-						<h3> <?php echo esc_html( $tab['menu_title'] ); ?> <?php esc_html_e( 'Placeholder Settings', 'tour-operator' ); ?></h3>
+						<h3> <?php echo esc_html( $tab ); ?> <?php esc_html_e( 'Placeholder Settings', 'tour-operator' ); ?></h3>
 					</label>
 				</th>
 			</tr>

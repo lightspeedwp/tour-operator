@@ -541,9 +541,9 @@ class Settings {
 			}
 		}
 
-		$settings_pages = $this->settings_page_array();
+		$settings_pages = tour_operator()->legacy->get_post_types();
 		//Run through each post type
-		foreach ( $settings_pages['settings']['tabs'] as $tab_index => $tab ) {
+		foreach ( $settings_pages as $tab_index => $tab ) {
 
 			//Loop through each of the post type sections
 			foreach ( $settings_fields['post_types'] as $section => $fields ) {
