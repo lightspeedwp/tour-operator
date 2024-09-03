@@ -9,7 +9,7 @@
 				</th>
 			</tr>
 
-			<?php do_action( 'lsx_to_framework_post_type_tab_content', 'placeholders', $tab_index ); ?>
+			<?php do_action( 'lsx_to_framework_post_type_tab_content', 'placeholder', $tab_index ); ?>
 
 			<tr class="form-field">
 				<th scope="row" colspan="2">

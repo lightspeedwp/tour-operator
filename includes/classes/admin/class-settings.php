@@ -154,7 +154,7 @@ class Settings {
 			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'api_settings' ), 15, 1 );
 
 			//Post type pages
-			//add_action( 'lsx_to_framework_post_type_tab_content', array( $this, 'template_settings' ), 10, 2 );
+			add_action( 'lsx_to_framework_post_type_tab_content', array( $this, 'post_type_map_settings' ), 10, 2 );
 			
 
 			if ( ! empty( tour_operator()->legacy->post_types ) ) {
@@ -273,14 +273,17 @@ class Settings {
 	 * @param $tab string
 	 * @return null
 	 */
-	public function post_type_map_settings( $post_type = '', $tab = 'general' ) {
-		if ( 'placeholders' === $tab ) {
-			$this->map_marker_field();
-			$this->map_placeholder_field();
+	public function post_type_map_settings( $tab, $post_type ) {
+		$settings = $this->get_settings_fields();
+		if ( 'placeholder' === $tab ) {
+			echo wp_kses_post( $this->output_fields( $settings['post_types'][ $tab ], $post_type ) );
+		}
+		if ( 'template' === $tab ) {
+			echo wp_kses_post( $this->output_fields( $settings['post_types'][ $tab ], $post_type ) );
 		}
 	}
 
-	public function output_fields( $section = array() ) {
+	public function output_fields( $section = array(), $post_type = '' ) {
 		$fields = array();
 		if ( ! empty( $section ) ) {
 			foreach ( $section as $field_id => $field ) {
@@ -288,25 +291,26 @@ class Settings {
 				$field_html = '<tr class="form-field ' . sanitize_key( $field_id ) . '">';
 				switch( $field['type'] ) {
 					case 'checkbox':
-						$field_html .= $this->checkbox_field( $field_id, $field );
+						$field_html .= $this->checkbox_field( $field_id, $field, $post_type );
 					break;
 
 					case 'image':
-						$field_html .= $this->image_field( $field_id, $field );
+						$field_html .= $this->image_field( $field_id, $field, $post_type );
 					break;
 
 					case 'select':
-						$field_html .= $this->select_field( $field_id, $field );
+						$field_html .= $this->select_field( $field_id, $field, $post_type );
 					break;
 
 					case 'text':
 					case 'number':
-						$field_html .= $this->text_field( $field_id, $field );
+						$field_html .= $this->text_field( $field_id, $field, $post_type );
 					break;
 
 					default;
 				}
 				$field_html .= '</tr>';
+
 				$fields[] = $field_html;
 			}
 		}
@@ -320,7 +324,7 @@ class Settings {
 	 * @param array $args
 	 * @return string
 	 */
-	public function select_field( $field_id, $args = array() ) {
+	public function select_field( $field_id, $args = array(), $post_type = '' ) {
 		$defaults = array(
 			'label'   => '',
 			'desc'    => '',
@@ -330,6 +334,11 @@ class Settings {
 		$params = wp_parse_args( $args, $defaults );
 
 		$field = array();
+
+		// If this is a generated type.
+		if ( '' !== $post_type ) {
+			$field_id = $post_type . '_' . $field_id;
+		}
 
 		$field[] = '<th scope="row"><label for="' . $field_id . '">' . $params['label'] . '</label></th>';
 		$field[] = '<td>';
@@ -360,7 +369,7 @@ class Settings {
 	 * @param array $args
 	 * @return string
 	 */
-	public function checkbox_field( $field_id, $args = array() ) {
+	public function checkbox_field( $field_id, $args = array(), $post_type = '' ) {
 		$defaults = array(
 			'label'   => '',
 			'desc'    => '',
@@ -370,11 +379,15 @@ class Settings {
 
 		$field = array();
 
+		// If this is a generated type.
+		if ( '' !== $post_type ) {
+			$field_id = $post_type . '_' . $field_id;
+		}
+
 		$field[] = '<th scope="row"><label for="' . $field_id . '">' . $params['label'] . '</label></th>';
 		$field[] = '<td>';
 
-
-		$checked      = $this->get_value( $field_id, $params );
+		$checked       = $this->get_value( $field_id, $params );
 		$checked_param = '';
 		if ( 1 === (int) $checked ) {
 			$checked_param = 'checked="checked"';
@@ -396,7 +409,7 @@ class Settings {
 	 * @param array $args
 	 * @return string
 	 */
-	public function text_field( $field_id, $args = array() ) {
+	public function text_field( $field_id, $args = array(), $post_type = '' ) {
 		$defaults = array(
 			'label'   => '',
 			'desc'    => '',
@@ -405,6 +418,11 @@ class Settings {
 		$params = wp_parse_args( $args, $defaults );
 
 		$field = array();
+
+		// If this is a generated type.
+		if ( '' !== $post_type ) {
+			$field_id = $post_type . '_' . $field_id;
+		}
 
 		$field[] = '<th scope="row"><label for="' . $field_id . '">' . $params['label'] . '</label></th>';
 		$field[] = '<td>';
@@ -427,7 +445,7 @@ class Settings {
 	 * @param array $args
 	 * @return string
 	 */
-	public function image_field( $field_id, $args = array() ) {
+	public function image_field( $field_id, $args = array(), $post_type = '' ) {
 		$defaults = array(
 			'label'      => '',
 			'desc'       => '',
@@ -440,11 +458,16 @@ class Settings {
 
 		$field = array();
 
+		// If this is a generated type.
+		if ( '' !== $post_type ) {
+			$field_id = $post_type . '_' . $field_id;
+		}
+
 		$field[] = '<th scope="row"><label for="' . $field_id . '">' . $params['label'] . '</label></th>';
 		$field[] = '<td>';
 
 		// Get the stored image
-		$image_id = $this->get_value( $field_id, $params );
+		$image_id = (int) $this->get_value( $field_id, $params );
 		$image    = '';
 		$prev_css = 'display:none;';
 		if ( 0 !== $image_id && '' !== $image_id ) {
@@ -461,7 +484,7 @@ class Settings {
 		// Action Buttons
 		$add_css = '';
 		$del_css = 'display:none;';
-		if ( '' !== $image ) {
+		if ( 0 !== $image_id && '' !== $image_id ) {
 			$add_css = 'display:none;';
 			$del_css = '';
 		}
@@ -503,16 +526,39 @@ class Settings {
 		
 		$settings_fields = $this->get_settings_fields();
 		$settings_values = array();
-		foreach ( $settings_fields as $fields ) {
-			foreach ( $fields as $key => $field ) {
-				$save = '';
-				if ( isset( $_POST[ $key ] ) ) {
-					$save = $_POST[ $key ];
-				} else if ( isset( $field['default'] ) ) {
-					$save = $field['default'];
+		foreach ( $settings_fields as $section => $fields ) {
+			if ( 'post_types' !== $section ) {
+				foreach ( $fields as $key => $field ) {
+					$save = '';
+					if ( isset( $_POST[ $key ] ) ) {
+						$save = $_POST[ $key ];
+					} else if ( isset( $field['default'] ) ) {
+						$save = $field['default'];
+					}
+	
+					$settings_values[ $key ] = $save;
 				}
+			}
+		}
 
-				$settings_values[ $key ] = $save;
+		$settings_pages = $this->settings_page_array();
+		//Run through each post type
+		foreach ( $settings_pages['settings']['tabs'] as $tab_index => $tab ) {
+
+			//Loop through each of the post type sections
+			foreach ( $settings_fields['post_types'] as $section => $fields ) {
+				
+				//Loop through each of the fields in the section.
+				foreach ( $fields as $key => $field ) {
+					$save = '';
+					if ( isset( $_POST[ $tab_index . '_' . $key ] ) ) {
+						$save = $_POST[ $tab_index . '_' . $key ];
+					} else if ( isset( $field['default'] ) ) {
+						$save = $field['default'];
+					}
+	
+					$settings_values[ $tab_index . '_' . $key ] = $save;
+				}
 			}
 		}
 
