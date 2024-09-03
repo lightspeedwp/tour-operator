@@ -1,6 +1,6 @@
-
-
 <div id="ui-general" class="ui-tab tabs-content active">
+	<?php do_action( 'lsx_to_framework_dashboard_tab_content', 'hidden' ); ?>
+
 	<table class="form-table">
 		<tbody>
 			<tr class="form-field">

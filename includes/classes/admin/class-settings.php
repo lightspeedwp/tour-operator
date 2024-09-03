@@ -55,6 +55,8 @@ class Settings {
 		} else {
 			add_action( 'init', array( $this, 'create_settings_page' ), 100 );
 		}
+
+		add_action( 'admin_init', array( $this, 'save_settings' ), 1 );
 	}
 
 	/**
@@ -139,6 +141,7 @@ class Settings {
 	 */
 	public function create_settings_page() {
 		if ( is_admin() ) {
+			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'hidden_settings' ), 10, 1 );
 			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'currency_settings' ), 11, 1 );
 			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'map_settings' ), 12, 1 );
 			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'fusion_table_settings' ), 13, 1 );
@@ -171,6 +174,18 @@ class Settings {
 	 */
 	public function welcome_page() {
 		include( LSX_TO_PATH . 'includes/partials/welcome.php' );
+	}
+
+	/**
+	 * outputs the display settings for the map tab.
+	 *
+	 * @param $tab string
+	 * @return null
+	 */
+	public function hidden_settings( $tab = 'hidden' ) {
+		if ( 'hidden' === $tab ) {
+			wp_nonce_field( 'lsx_to_settings_save', 'lsx_to_nonce' );
+		}
 	}
 
 	/**
@@ -385,4 +400,47 @@ class Settings {
 	}
 
 
+	/**
+	 * Save the TO options.
+	 *
+	 * @return void
+	 */
+	public function save_settings() {
+		if ( ! isset( $_GET['page'] ) ) {
+			return;
+		}
+
+		$page = sanitize_key( $_GET['page'] );
+		if ( 'lsx-to-settings' !== $page ) {
+			return;
+		}
+
+		if ( ! isset( $_POST['lsx_to_nonce'] ) ) {
+			return;
+		}
+
+		$nonce = sanitize_key( $_POST['lsx_to_nonce'] );
+		if ( false === wp_verify_nonce( $nonce, 'lsx_to_settings_save' ) ) {
+			return;
+		}
+		
+		$settings_fields = $this->get_settings_fields();
+		$settings_values = array();
+		foreach ( $settings_fields as $fields ) {
+			foreach ( $fields as $key => $field ) {
+				$save = '';
+				if ( isset( $_POST[ $key ] ) ) {
+					$save = $_POST[ $key ];
+				} else if ( isset( $field['default'] ) ) {
+					$save = $field['default'];
+				}
+
+				$settings_values[ $key ] = $save;
+			}
+		}
+
+		if ( ! empty( $settings_values ) ) {
+			update_option( 'lsx_to_settings', $settings_values );
+		}
+	}
 }

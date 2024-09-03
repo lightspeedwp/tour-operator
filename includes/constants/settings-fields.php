@@ -1,11 +1,10 @@
 <?php
-
 $settings_fields = array(
 	'currency' => array(
 		'currency' => array(
 			'label'   => esc_html__( 'Currency', 'tour-operator' ),
 			'type'    => 'select',
-			'default' => 0,
+			'default' => 'ZAR',
 			'options' => array(
 				'USD' => esc_html__( 'USD (united states dollar)', 'tour-operator' ),
 				'GBP' => esc_html__( 'GBP (british pound)', 'tour-operator' ),
@@ -82,13 +81,13 @@ $settings_fields = array(
 			'label'   => esc_html__( 'Border Colour', 'tour-operator' ),
 			'desc'    => esc_html__( 'Default value: #000000', 'tour-operator' ),
 			'type'    => 'text',
-			'default' => 000000,
+			'default' => '#000000',
 		),
 		'fusion_tables_colour_background' => array(
 			'label'   => esc_html__( 'Background Colour', 'tour-operator' ),
 			'desc'    => esc_html__( 'Default value: #000000', 'tour-operator' ),
 			'type'    => 'text',
-			'default' => 000000,
+			'default' => '#000000',
 		),
 	),
 	'api' => array(
@@ -96,6 +95,9 @@ $settings_fields = array(
 			'label'   => esc_html__( 'Google Maps API', 'tour-operator' ),
 			'type'    => 'text',
 		)
+	),
+	'post_types' => array(
+
 	)
 );
 
