@@ -36,6 +36,14 @@ class Setup {
 	public $options;
 
 	/**
+	 * Holds the array of core post types
+	 *
+	 * @since   1.1.0
+	 * @var     array
+	 */
+	public $post_types;
+
+	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
 	 *
 	 * @since 1.0.0
@@ -43,6 +51,11 @@ class Setup {
 	 * @access private
 	 */
 	public function __construct() {
+		$this->post_types = array(
+			'tour',
+			'accommodation',
+			'destination',
+		);
 		add_action( 'init', array( $this, 'register_meta_with_rest' ) );
 		add_action( 'cmb2_admin_init', array( $this, 'register_cmb2_fields' ) );
 	}
@@ -66,35 +79,70 @@ class Setup {
 	public function register_meta_with_rest() {
 
 		add_filter('acf/settings/remove_wp_meta_box', '__return_false');
-	
-		$fields = array(
-			//Not needed
-			'included'     => array(),
-			'not_included' => array(),
-	
-			//Search.
-			'duration'     => array(),
-			'price'        => array(),
-	
-			//Post Connections.
-		);
-		$defaults = array(
-			'default' => '',
-			'single' => true,
-			'type' => 'string',
-		);
-		foreach ( $fields as $key => $args ) {
-			$args = wp_parse_args( $args, $defaults );
-			register_meta(
-				'post',
-				$key,
-				array(
+
+		foreach ( $this->post_types as $post_type ) {
+			$fields = $this->get_custom_fields( $post_type );
+
+			foreach ( $fields['fields'] as $key => $field ) {
+
+				if ( 'title' === $field['type'] ) {
+					continue;
+				}
+
+				$args = array(
 					'show_in_rest' => true,
-					'single'       => $args['single'],
-					'type'         => $args['type'],
-					'default'      => $args['default'],
-				)
-			);
+					'single'       => true,
+				);
+
+				switch ( $field['type'] ) {
+					case 'text':
+					case 'post_ajax_search':
+					case 'multicheck':
+					case 'wysiwyg':
+					case 'text_date_timestamp':
+					case 'file':
+					case 'select':
+					case 'radio':
+						$args['type'] = 'string';	
+					break;
+
+					case 'number':
+					case 'image':
+						$args['type'] = 'number';
+					break;
+
+					case 'checkbox':
+						$args['type'] = 'boolean';	
+					break;
+
+					case 'group':
+						$args['type']   = 'string';
+						$args['single'] = false;
+					break;
+
+					case 'gmap':
+						$args['type']   = 'string';
+					break;	
+
+					default:
+						$args['type']   = 'string';
+					break;
+				}
+
+				if ( isset( $field['desc'] ) && ! empty( $field['desc'] ) ) {
+					$args['description'] = $field['desc'];
+				}
+
+				if ( isset( $field['default'] ) && ! empty( $field['default'] ) ) {
+					$args['default'] = $field['default'];
+				}
+	
+				$registered = register_meta(
+					'post',
+					$field['id'],
+					$args
+				);
+			}
 		}
 	}
 
@@ -107,14 +155,7 @@ class Setup {
 		/**
 		 * Initiate the metabox
 		 */
-
-		$post_types = array(
-			'tour',
-			'accommodation',
-			'destination',
-		);
-
-		foreach ( $post_types as $post_type ) {
+		foreach ( $this->post_types as $post_type ) {
 			$fields = $this->get_custom_fields( $post_type );
 
 			$cmb = new_cmb2_box( array(
@@ -138,52 +179,6 @@ class Setup {
 				$cmb->add_field( $field );
 			}
 		}
-	
-		/*$cmb->add_field( array(
-			'id'         => 'departs_from',
-			'name'       => esc_html__( 'Departs From', 'tour-operator' ),
-			'type'       => 'post_ajax_search',
-			'query_args'      => array(
-				'post_type'      => 'destination',
-				'nopagin'        => true,
-				'posts_per_page' => '-1',
-				'orderby'        => 'title',
-				'order'          => 'ASC',
-			),
-		) );
-	
-		$cmb->add_field( array(
-			'id'         => 'ends_in',
-			'name'       => esc_html__( 'Ends In', 'tour-operator' ),
-			'type'       => 'post_ajax_search',
-			'query_args'      => array(
-				'post_type'      => 'destination',
-				'nopagin'        => true,
-				'posts_per_page' => '-1',
-				'orderby'        => 'title',
-				'order'          => 'ASC',
-			),
-		) );
-	
-		$cmb->add_field( array(
-			'id'       => 'best_time_to_visit',
-			'name'     => esc_html__( 'Best months to visit', 'tour-operator' ),
-			'type'     => 'multicheck',
-			'options'  => array(
-				'january'   => 'January',
-				'february'  => 'February',
-				'march'     => 'March',
-				'april'     => 'April',
-				'may'       => 'May',
-				'june'      => 'June',
-				'july'      => 'July',
-				'august'    => 'August',
-				'september' => 'September',
-				'october'   => 'October',
-				'november'  => 'November',
-				'december'  => 'December',
-			),
-		));*/
 	}
 
 	/**

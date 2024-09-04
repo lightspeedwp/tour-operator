@@ -141,7 +141,7 @@ $fast_facts_fields = array(
 	array(
 		'id'         => 'rating',
 		'name'       => esc_html__( 'Rating', 'tour-operator' ),
-		'type'       => 'radio',
+		'type'       => 'radio_inline',
 		'options'    => array( '0', '1', '2', '3', '4', '5' ),
 		'allow_none' => true,
 	),
@@ -155,13 +155,13 @@ $fast_facts_fields = array(
 	array(
 		'id'   => 'checkin_time',
 		'name' => esc_html__( 'Check-in Time', 'tour-operator' ),
-		'type' => 'time',
+		'type' => 'text_time',
 	),
 
 	array(
 		'id'   => 'checkout_time',
 		'name' => esc_html__( 'Check-out Time', 'tour-operator' ),
-		'type' => 'time',
+		'type' => 'text_time',
 	),
 
 	array(
