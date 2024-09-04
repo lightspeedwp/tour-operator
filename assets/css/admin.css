@@ -1,400 +1,1250 @@
-/* LSX Tour Operators Administrator */
-#banners .CMB_Group_Field { display: block; }
+/*
+ * LSX Tour Operators Administrator
+ */
+#banners .CMB_Group_Field {
+  display: block;
+}
 
-.CMB_Group_Field.active { display: block; }
+.CMB_Group_Field.active {
+  display: block;
+}
 
-.CMB_Color_Picker .field-item { float: none; }
+.CMB_Color_Picker .field-item {
+  float: none;
+}
 
-#lsx-tab-headings { display: block; float: left; width: 10%; }
+#lsx-tab-headings {
+  display: block;
+  float: left;
+  width: 10%;
+}
 
-#details .cmb_metabox { display: block; float: right; width: 85%; }
+#details .cmb_metabox {
+  display: block;
+  float: right;
+  width: 85%;
+}
+#details .cmb_metabox .cmb_metabox {
+  float: none;
+  width: 98%;
+}
 
-#details .cmb_metabox .cmb_metabox { float: none; width: 98%; }
+.cmb_metabox .cmb-cell-12 select {
+  padding-left: 30px;
+}
 
-#lsx-tab-headings .tab-heading { display: block; text-transform: capitalize; padding: 10px 15px; width: 100%; }
+#lsx-tab-headings .tab-heading {
+  display: block;
+  text-transform: capitalize;
+  padding: 10px 15px;
+  width: 100%;
+}
 
 /* The Tab Styling */
-body.tour-operator_page_lsx-to-settings .spinner, body.lsx-tour-operator_page_lsx-to-settings .spinner { background-color: #fff; border-radius: 10px; }
-
-body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li, body.lsx-tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li { display: inline-block; }
-
-body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li:after, body.lsx-tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li:after { content: "|"; display: inline-block; padding: 0 3px 0 8px; }
-
-body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li:last-child:after, body.lsx-tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li:last-child:after { content: ""; padding-left: 0; }
-
-body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li a, body.lsx-tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li a { text-decoration: none; }
-
-body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li a.active, body.lsx-tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li a.active { color: black; font-weight: bold; }
-
-body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li a:focus, body.lsx-tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab-nav li a:focus { -webkit-box-shadow: none; box-shadow: none; }
-
-body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab, body.lsx-tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab { display: none; }
-
-body.tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab.active, body.lsx-tour-operator_page_lsx-to-settings .uix-field-wrapper .ui-tab.active { display: block; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap *, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap * { -webkit-box-sizing: border-box; box-sizing: border-box; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap *:before, body.tour-operator_page_to-help #wpbody-content .wrap *:after, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap *:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap *:after { -webkit-box-sizing: border-box; box-sizing: border-box; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .text-center, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .text-center { text-align: center; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .container, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .container { margin-right: auto; margin-left: auto; padding-left: 15px; padding-right: 15px; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .container:before, body.tour-operator_page_to-help #wpbody-content .wrap .container:after, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .container:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .container:after { content: " "; display: table; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .container:after, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .container:after { clear: both; }
-
-@media (min-width: 768px) { body.tour-operator_page_to-help #wpbody-content .wrap .container, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .container { width: 750px; } }
-
-@media (min-width: 992px) { body.tour-operator_page_to-help #wpbody-content .wrap .container, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .container { width: 970px; } }
-
-@media (min-width: 1200px) { body.tour-operator_page_to-help #wpbody-content .wrap .container, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .container { width: 1170px; } }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .container-fluid, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .container-fluid { margin-right: auto; margin-left: auto; padding-left: 15px; padding-right: 15px; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .container-fluid:before, body.tour-operator_page_to-help #wpbody-content .wrap .container-fluid:after, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .container-fluid:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .container-fluid:after { content: " "; display: table; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .container-fluid:after, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .container-fluid:after { clear: both; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .row, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .row { margin-left: -15px; margin-right: -15px; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .row:before, body.tour-operator_page_to-help #wpbody-content .wrap .row:after, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .row:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .row:after { content: " "; display: table; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .row:after, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .row:after { clear: both; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-1, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-1, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-1, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-1, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-2, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-2, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-2, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-2, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-3, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-3, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-3, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-3, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-4, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-4, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-4, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-4, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-5, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-5, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-5, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-5, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-6, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-6, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-6, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-6, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-7, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-7, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-7, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-7, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-8, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-8, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-8, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-8, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-9, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-9, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-9, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-9, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-10, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-10, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-10, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-10, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-11, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-11, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-11, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-11, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-12, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-12, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-12, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-12, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-1, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-1, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-1, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-1, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-4, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-4, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-4, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-4, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-5, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-5, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-5, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-5, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-6, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-6, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-6, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-6, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-7, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-7, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-7, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-7, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-8, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-8, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-8, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-8, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-9, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-9, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-9, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-9, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-10, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-10, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-10, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-10, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-11, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-11, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-11, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-11, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-12, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-12, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-12, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-12 { position: relative; min-height: 1px; padding-left: 15px; padding-right: 15px; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-1, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-2, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-3, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-4, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-5, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-6, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-7, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-8, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-9, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-10, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-11, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-12, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-1, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-4, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-5, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-6, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-7, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-8, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-9, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-10, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-11, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-12 { float: left; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-1, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-1 { width: 8.33333%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-2 { width: 16.66667%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-3 { width: 25%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-4, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-4 { width: 33.33333%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-5, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-5 { width: 41.66667%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-6, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-6 { width: 50%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-7, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-7 { width: 58.33333%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-8, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-8 { width: 66.66667%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-9, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-9 { width: 75%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-10, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-10 { width: 83.33333%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-11, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-11 { width: 91.66667%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-12, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-12 { width: 100%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-0, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-0 { right: auto; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-1, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-1 { right: 8.33333%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-2 { right: 16.66667%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-3 { right: 25%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-4, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-4 { right: 33.33333%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-5, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-5 { right: 41.66667%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-6, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-6 { right: 50%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-7, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-7 { right: 58.33333%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-8, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-8 { right: 66.66667%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-9, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-9 { right: 75%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-10, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-10 { right: 83.33333%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-11, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-11 { right: 91.66667%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-12, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-12 { right: 100%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-0, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-0 { left: auto; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-1, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-1 { left: 8.33333%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-2 { left: 16.66667%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-3 { left: 25%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-4, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-4 { left: 33.33333%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-5, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-5 { left: 41.66667%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-6, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-6 { left: 50%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-7, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-7 { left: 58.33333%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-8, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-8 { left: 66.66667%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-9, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-9 { left: 75%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-10, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-10 { left: 83.33333%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-11, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-11 { left: 91.66667%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-12, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-12 { left: 100%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-0, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-0 { margin-left: 0%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-1, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-1 { margin-left: 8.33333%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-2 { margin-left: 16.66667%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-3 { margin-left: 25%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-4, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-4 { margin-left: 33.33333%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-5, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-5 { margin-left: 41.66667%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-6, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-6 { margin-left: 50%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-7, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-7 { margin-left: 58.33333%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-8, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-8 { margin-left: 66.66667%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-9, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-9 { margin-left: 75%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-10, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-10 { margin-left: 83.33333%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-11, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-11 { margin-left: 91.66667%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-12, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-12 { margin-left: 100%; }
-
-@media (min-width: 768px) { body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-1, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-2, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-3, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-4, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-5, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-6, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-7, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-8, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-9, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-10, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-11, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-12, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-1, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-4, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-5, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-6, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-7, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-8, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-9, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-10, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-11, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-12 { float: left; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-1, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-1 { width: 8.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-2 { width: 16.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-3 { width: 25%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-4, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-4 { width: 33.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-5, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-5 { width: 41.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-6, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-6 { width: 50%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-7, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-7 { width: 58.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-8, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-8 { width: 66.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-9, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-9 { width: 75%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-10, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-10 { width: 83.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-11, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-11 { width: 91.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-12, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-12 { width: 100%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-0, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-0 { right: auto; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-1, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-1 { right: 8.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-2 { right: 16.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-3 { right: 25%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-4, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-4 { right: 33.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-5, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-5 { right: 41.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-6, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-6 { right: 50%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-7, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-7 { right: 58.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-8, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-8 { right: 66.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-9, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-9 { right: 75%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-10, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-10 { right: 83.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-11, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-11 { right: 91.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-12, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-12 { right: 100%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-0, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-0 { left: auto; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-1, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-1 { left: 8.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-2 { left: 16.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-3 { left: 25%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-4, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-4 { left: 33.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-5, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-5 { left: 41.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-6, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-6 { left: 50%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-7, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-7 { left: 58.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-8, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-8 { left: 66.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-9, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-9 { left: 75%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-10, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-10 { left: 83.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-11, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-11 { left: 91.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-12, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-12 { left: 100%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-0, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-0 { margin-left: 0%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-1, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-1 { margin-left: 8.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-2 { margin-left: 16.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-3 { margin-left: 25%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-4, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-4 { margin-left: 33.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-5, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-5 { margin-left: 41.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-6, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-6 { margin-left: 50%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-7, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-7 { margin-left: 58.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-8, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-8 { margin-left: 66.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-9, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-9 { margin-left: 75%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-10, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-10 { margin-left: 83.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-11, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-11 { margin-left: 91.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-12, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-12 { margin-left: 100%; } }
-
-@media (min-width: 992px) { body.tour-operator_page_to-help #wpbody-content .wrap .col-md-1, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-2, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-3, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-4, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-5, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-6, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-7, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-8, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-9, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-10, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-11, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-12, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-1, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-4, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-5, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-6, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-7, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-8, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-9, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-10, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-11, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-12 { float: left; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-1, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-1 { width: 8.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-2 { width: 16.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-3 { width: 25%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-4, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-4 { width: 33.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-5, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-5 { width: 41.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-6, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-6 { width: 50%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-7, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-7 { width: 58.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-8, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-8 { width: 66.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-9, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-9 { width: 75%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-10, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-10 { width: 83.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-11, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-11 { width: 91.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-12, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-12 { width: 100%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-0, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-0 { right: auto; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-1, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-1 { right: 8.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-2 { right: 16.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-3 { right: 25%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-4, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-4 { right: 33.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-5, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-5 { right: 41.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-6, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-6 { right: 50%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-7, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-7 { right: 58.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-8, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-8 { right: 66.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-9, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-9 { right: 75%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-10, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-10 { right: 83.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-11, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-11 { right: 91.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-12, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-12 { right: 100%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-0, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-0 { left: auto; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-1, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-1 { left: 8.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-2 { left: 16.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-3 { left: 25%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-4, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-4 { left: 33.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-5, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-5 { left: 41.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-6, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-6 { left: 50%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-7, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-7 { left: 58.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-8, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-8 { left: 66.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-9, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-9 { left: 75%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-10, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-10 { left: 83.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-11, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-11 { left: 91.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-12, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-12 { left: 100%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-0, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-0 { margin-left: 0%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-1, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-1 { margin-left: 8.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-2 { margin-left: 16.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-3 { margin-left: 25%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-4, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-4 { margin-left: 33.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-5, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-5 { margin-left: 41.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-6, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-6 { margin-left: 50%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-7, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-7 { margin-left: 58.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-8, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-8 { margin-left: 66.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-9, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-9 { margin-left: 75%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-10, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-10 { margin-left: 83.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-11, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-11 { margin-left: 91.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-12, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-12 { margin-left: 100%; } }
-
-@media (min-width: 1200px) { body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-1, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-2, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-3, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-4, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-5, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-6, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-7, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-8, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-9, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-10, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-11, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-12, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-1, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-4, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-5, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-6, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-7, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-8, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-9, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-10, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-11, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-12 { float: left; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-1, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-1 { width: 8.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-2 { width: 16.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-3 { width: 25%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-4, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-4 { width: 33.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-5, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-5 { width: 41.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-6, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-6 { width: 50%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-7, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-7 { width: 58.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-8, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-8 { width: 66.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-9, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-9 { width: 75%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-10, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-10 { width: 83.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-11, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-11 { width: 91.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-12, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-12 { width: 100%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-0, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-0 { right: auto; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-1, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-1 { right: 8.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-2 { right: 16.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-3 { right: 25%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-4, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-4 { right: 33.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-5, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-5 { right: 41.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-6, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-6 { right: 50%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-7, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-7 { right: 58.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-8, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-8 { right: 66.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-9, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-9 { right: 75%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-10, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-10 { right: 83.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-11, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-11 { right: 91.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-12, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-12 { right: 100%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-0, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-0 { left: auto; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-1, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-1 { left: 8.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-2 { left: 16.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-3 { left: 25%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-4, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-4 { left: 33.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-5, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-5 { left: 41.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-6, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-6 { left: 50%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-7, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-7 { left: 58.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-8, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-8 { left: 66.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-9, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-9 { left: 75%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-10, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-10 { left: 83.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-11, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-11 { left: 91.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-12, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-12 { left: 100%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-0, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-0 { margin-left: 0%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-1, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-1 { margin-left: 8.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-2 { margin-left: 16.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-3 { margin-left: 25%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-4, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-4 { margin-left: 33.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-5, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-5 { margin-left: 41.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-6, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-6 { margin-left: 50%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-7, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-7 { margin-left: 58.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-8, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-8 { margin-left: 66.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-9, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-9 { margin-left: 75%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-10, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-10 { margin-left: 83.33333%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-11, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-11 { margin-left: 91.66667%; }
-  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-12, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-12 { margin-left: 100%; } }
-
-body.tour-operator_page_to-help #wpbody-content .wrap h1.small, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap h1.small { font-size: 35px; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap h2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap h2 { margin-bottom: 20px; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap img, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap img { width: 100%; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .thumbnail, body.tour-operator_page_to-help #wpbody-content .wrap .video, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .thumbnail, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .video { margin-bottom: 40px; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .top-header, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .top-header { margin-bottom: 40px; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .top-header p, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .top-header p { font-size: 13px; margin-bottom: 13px; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .top-header p:last-child, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .top-header p:last-child { margin-bottom: 0; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box { background: #fff; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 40px; padding: 25px 30px; position: relative; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.box-top-image, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.box-top-image { border-top: none; border-top-left-radius: 0; border-top-right-radius: 0; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box h2, body.tour-operator_page_to-help #wpbody-content .wrap .box h3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box h2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box h3 { font-size: 17px; font-weight: 700; margin-right: 30px; margin-top: 0; text-align: left; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box p, body.tour-operator_page_to-help #wpbody-content .wrap .box ul, body.tour-operator_page_to-help #wpbody-content .wrap .box li, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box p, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box ul, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box li { font-size: 13px; margin-bottom: 3px; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box p:last-child, body.tour-operator_page_to-help #wpbody-content .wrap .box ul:last-child, body.tour-operator_page_to-help #wpbody-content .wrap .box li:last-child, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box p:last-child, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box ul:last-child, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box li:last-child { margin-bottom: 0; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box .more-button, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box .more-button { padding: 1em 0 0 0; border-top: 1px solid #eee; clear: both; text-align: right; clear: both; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box .more-button a:first-child, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box .more-button a:first-child { float: left; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box .more-button a:last-child, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box .more-button a:last-child { float: right; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box .more-button a.button-secondary, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box .more-button a.button-secondary { background-color: #F7AE00; border-color: #F7AE00; color: #fff; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box .more-button a.button-secondary:hover, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box .more-button a.button-secondary:hover { background-color: #C4771B; border-color: #C4771B; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.wetu .more-button a, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.wetu .more-button a { float: none; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.wetu .more-button a:last-child, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.wetu .more-button a:last-child { margin-left: 20px; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.support, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.support { display: -webkit-box; display: -ms-flexbox; display: flex; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.support .image, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.support .image { margin-right: 25px; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.support .image img, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.support .image img { width: 100px; margin-top: 15px; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.support .button-tertiary, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.support .button-tertiary { background-color: #6BA914; border-color: #6BA914; color: #fff; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.support .button-tertiary:hover, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.support .button-tertiary:hover { background-color: #5d9410; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.info .more-button, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.info .more-button { padding-top: 4px; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.info h2, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.info h2 { margin-bottom: -3px; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.support .more-button, body.tour-operator_page_to-help #wpbody-content .wrap .box.info .more-button, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.support .more-button, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.info .more-button { border-top: 0px solid #eee; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box .price, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box .price { color: #45B964; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box form, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box form { padding: 0 !important; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.box-top-image:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.box-top-image:before { display: none; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.featured, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.featured { border-width: 2px; border-color: #FFA107; -webkit-box-shadow: 0 1px 1px #FFA107; box-shadow: 0 1px 1px #FFA107; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box.featured:before, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.featured:before { color: #FFA107; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box-clean, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box-clean { padding-top: 20px; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box-clean h3, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box-clean h3 { font-weight: 700; }
-
-body.tour-operator_page_to-help #wpbody-content .wrap .box-clean p:last-child, body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box-clean p:last-child { margin-bottom: 0; }
-
-/*# sourceMappingURL=maps/admin.css.map */
+.wrap.lsx-to-settings .spinner {
+  background-color: #fff;
+  border-radius: 10px;
+}
+.wrap.lsx-to-settings .form-field input[type=text],
+.wrap.lsx-to-settings .form-field input[type=number],
+.wrap.lsx-to-settings .form-field select {
+  max-width: 300px;
+}
+.wrap.lsx-to-settings .ui-tab {
+  display: none;
+}
+.wrap.lsx-to-settings .ui-tab.active {
+  display: block;
+}
+
+body.tour-operator_page_to-help #wpbody-content .wrap *,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap * {
+  box-sizing: border-box;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap *:before,
+body.tour-operator_page_to-help #wpbody-content .wrap *:after,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap *:before,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap *:after {
+  box-sizing: border-box;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .text-center,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .text-center {
+  text-align: center;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .container,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .container:before, body.tour-operator_page_to-help #wpbody-content .wrap .container:after,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .container:before,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .container:after {
+  content: " ";
+  display: table;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .container:after,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .container:after {
+  clear: both;
+}
+@media (min-width: 768px) {
+  body.tour-operator_page_to-help #wpbody-content .wrap .container,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  body.tour-operator_page_to-help #wpbody-content .wrap .container,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  body.tour-operator_page_to-help #wpbody-content .wrap .container,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .container {
+    width: 1170px;
+  }
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .container-fluid,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .container-fluid:before, body.tour-operator_page_to-help #wpbody-content .wrap .container-fluid:after,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .container-fluid:before,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .container-fluid:after {
+  content: " ";
+  display: table;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .container-fluid:after,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .container-fluid:after {
+  clear: both;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .row,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .row {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .row:before, body.tour-operator_page_to-help #wpbody-content .wrap .row:after,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .row:before,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .row:after {
+  content: " ";
+  display: table;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .row:after,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .row:after {
+  clear: both;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-1, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-1, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-1, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-1, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-2, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-2, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-2, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-2, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-3, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-3, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-3, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-3, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-4, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-4, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-4, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-4, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-5, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-5, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-5, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-5, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-6, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-6, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-6, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-6, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-7, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-7, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-7, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-7, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-8, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-8, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-8, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-8, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-9, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-9, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-9, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-9, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-10, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-10, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-10, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-10, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-11, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-11, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-11, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-11, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-12, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-12, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-12, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-12,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-1,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-1,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-1,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-1,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-4,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-4,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-4,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-4,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-5,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-5,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-5,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-5,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-6,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-6,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-6,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-6,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-7,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-7,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-7,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-7,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-8,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-8,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-8,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-8,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-9,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-9,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-9,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-9,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-10,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-10,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-10,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-10,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-11,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-11,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-11,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-11,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-12,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-12,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-12,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-12 {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-1, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-2, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-3, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-4, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-5, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-6, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-7, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-8, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-9, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-10, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-11, body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-12,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-1,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-4,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-5,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-6,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-7,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-8,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-9,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-10,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-11,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-12 {
+  float: left;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-1,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-1 {
+  width: 8.3333333333%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-2 {
+  width: 16.6666666667%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-3 {
+  width: 25%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-4,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-4 {
+  width: 33.3333333333%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-5,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-5 {
+  width: 41.6666666667%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-6,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-6 {
+  width: 50%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-7,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-7 {
+  width: 58.3333333333%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-8,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-8 {
+  width: 66.6666666667%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-9,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-9 {
+  width: 75%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-10,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-10 {
+  width: 83.3333333333%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-11,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-11 {
+  width: 91.6666666667%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-12,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-12 {
+  width: 100%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-0,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-0 {
+  right: auto;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-1,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-1 {
+  right: 8.3333333333%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-2 {
+  right: 16.6666666667%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-3 {
+  right: 25%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-4,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-4 {
+  right: 33.3333333333%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-5,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-5 {
+  right: 41.6666666667%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-6,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-6 {
+  right: 50%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-7,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-7 {
+  right: 58.3333333333%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-8,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-8 {
+  right: 66.6666666667%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-9,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-9 {
+  right: 75%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-10,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-10 {
+  right: 83.3333333333%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-11,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-11 {
+  right: 91.6666666667%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-pull-12,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-pull-12 {
+  right: 100%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-0,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-0 {
+  left: auto;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-1,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-1 {
+  left: 8.3333333333%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-2 {
+  left: 16.6666666667%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-3 {
+  left: 25%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-4,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-4 {
+  left: 33.3333333333%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-5,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-5 {
+  left: 41.6666666667%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-6,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-6 {
+  left: 50%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-7,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-7 {
+  left: 58.3333333333%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-8,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-8 {
+  left: 66.6666666667%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-9,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-9 {
+  left: 75%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-10,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-10 {
+  left: 83.3333333333%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-11,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-11 {
+  left: 91.6666666667%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-push-12,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-push-12 {
+  left: 100%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-0,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-0 {
+  margin-left: 0%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-1,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-1 {
+  margin-left: 8.3333333333%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-2 {
+  margin-left: 16.6666666667%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-3 {
+  margin-left: 25%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-4,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-4 {
+  margin-left: 33.3333333333%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-5,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-5 {
+  margin-left: 41.6666666667%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-6,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-6 {
+  margin-left: 50%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-7,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-7 {
+  margin-left: 58.3333333333%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-8,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-8 {
+  margin-left: 66.6666666667%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-9,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-9 {
+  margin-left: 75%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-10,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-10 {
+  margin-left: 83.3333333333%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-11,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-11 {
+  margin-left: 91.6666666667%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .col-xs-offset-12,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-xs-offset-12 {
+  margin-left: 100%;
+}
+@media (min-width: 768px) {
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-1, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-2, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-3, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-4, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-5, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-6, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-7, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-8, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-9, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-10, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-11, body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-12,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-1,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-4,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-5,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-6,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-7,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-8,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-9,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-10,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-11,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-12 {
+    float: left;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-1,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-1 {
+    width: 8.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-2 {
+    width: 16.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-3 {
+    width: 25%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-4,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-4 {
+    width: 33.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-5,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-5 {
+    width: 41.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-6,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-6 {
+    width: 50%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-7,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-7 {
+    width: 58.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-8,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-8 {
+    width: 66.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-9,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-9 {
+    width: 75%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-10,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-10 {
+    width: 83.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-11,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-11 {
+    width: 91.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-12,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-12 {
+    width: 100%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-0,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-0 {
+    right: auto;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-1,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-1 {
+    right: 8.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-2 {
+    right: 16.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-3 {
+    right: 25%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-4,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-4 {
+    right: 33.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-5,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-5 {
+    right: 41.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-6,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-6 {
+    right: 50%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-7,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-7 {
+    right: 58.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-8,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-8 {
+    right: 66.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-9,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-9 {
+    right: 75%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-10,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-10 {
+    right: 83.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-11,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-11 {
+    right: 91.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-pull-12,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-pull-12 {
+    right: 100%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-0,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-0 {
+    left: auto;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-1,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-1 {
+    left: 8.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-2 {
+    left: 16.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-3 {
+    left: 25%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-4,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-4 {
+    left: 33.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-5,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-5 {
+    left: 41.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-6,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-6 {
+    left: 50%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-7,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-7 {
+    left: 58.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-8,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-8 {
+    left: 66.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-9,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-9 {
+    left: 75%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-10,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-10 {
+    left: 83.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-11,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-11 {
+    left: 91.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-push-12,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-push-12 {
+    left: 100%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-0,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-0 {
+    margin-left: 0%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-1,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-1 {
+    margin-left: 8.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-2 {
+    margin-left: 16.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-3 {
+    margin-left: 25%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-4,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-4 {
+    margin-left: 33.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-5,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-5 {
+    margin-left: 41.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-6,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-6 {
+    margin-left: 50%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-7,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-7 {
+    margin-left: 58.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-8,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-8 {
+    margin-left: 66.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-9,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-9 {
+    margin-left: 75%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-10,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-10 {
+    margin-left: 83.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-11,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-11 {
+    margin-left: 91.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-sm-offset-12,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-sm-offset-12 {
+    margin-left: 100%;
+  }
+}
+@media (min-width: 992px) {
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-1, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-2, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-3, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-4, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-5, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-6, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-7, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-8, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-9, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-10, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-11, body.tour-operator_page_to-help #wpbody-content .wrap .col-md-12,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-1,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-4,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-5,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-6,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-7,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-8,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-9,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-10,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-11,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-12 {
+    float: left;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-1,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-1 {
+    width: 8.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-2 {
+    width: 16.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-3 {
+    width: 25%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-4,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-4 {
+    width: 33.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-5,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-5 {
+    width: 41.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-6,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-6 {
+    width: 50%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-7,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-7 {
+    width: 58.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-8,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-8 {
+    width: 66.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-9,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-9 {
+    width: 75%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-10,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-10 {
+    width: 83.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-11,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-11 {
+    width: 91.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-12,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-12 {
+    width: 100%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-0,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-0 {
+    right: auto;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-1,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-1 {
+    right: 8.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-2 {
+    right: 16.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-3 {
+    right: 25%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-4,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-4 {
+    right: 33.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-5,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-5 {
+    right: 41.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-6,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-6 {
+    right: 50%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-7,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-7 {
+    right: 58.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-8,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-8 {
+    right: 66.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-9,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-9 {
+    right: 75%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-10,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-10 {
+    right: 83.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-11,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-11 {
+    right: 91.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-pull-12,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-pull-12 {
+    right: 100%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-0,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-0 {
+    left: auto;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-1,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-1 {
+    left: 8.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-2 {
+    left: 16.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-3 {
+    left: 25%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-4,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-4 {
+    left: 33.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-5,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-5 {
+    left: 41.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-6,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-6 {
+    left: 50%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-7,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-7 {
+    left: 58.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-8,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-8 {
+    left: 66.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-9,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-9 {
+    left: 75%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-10,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-10 {
+    left: 83.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-11,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-11 {
+    left: 91.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-push-12,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-push-12 {
+    left: 100%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-0,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-0 {
+    margin-left: 0%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-1,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-1 {
+    margin-left: 8.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-2 {
+    margin-left: 16.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-3 {
+    margin-left: 25%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-4,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-4 {
+    margin-left: 33.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-5,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-5 {
+    margin-left: 41.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-6,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-6 {
+    margin-left: 50%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-7,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-7 {
+    margin-left: 58.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-8,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-8 {
+    margin-left: 66.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-9,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-9 {
+    margin-left: 75%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-10,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-10 {
+    margin-left: 83.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-11,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-11 {
+    margin-left: 91.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-md-offset-12,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-md-offset-12 {
+    margin-left: 100%;
+  }
+}
+@media (min-width: 1200px) {
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-1, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-2, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-3, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-4, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-5, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-6, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-7, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-8, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-9, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-10, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-11, body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-12,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-1,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-4,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-5,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-6,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-7,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-8,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-9,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-10,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-11,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-12 {
+    float: left;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-1,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-1 {
+    width: 8.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-2 {
+    width: 16.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-3 {
+    width: 25%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-4,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-4 {
+    width: 33.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-5,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-5 {
+    width: 41.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-6,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-6 {
+    width: 50%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-7,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-7 {
+    width: 58.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-8,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-8 {
+    width: 66.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-9,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-9 {
+    width: 75%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-10,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-10 {
+    width: 83.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-11,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-11 {
+    width: 91.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-12,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-12 {
+    width: 100%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-0,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-0 {
+    right: auto;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-1,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-1 {
+    right: 8.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-2 {
+    right: 16.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-3 {
+    right: 25%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-4,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-4 {
+    right: 33.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-5,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-5 {
+    right: 41.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-6,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-6 {
+    right: 50%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-7,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-7 {
+    right: 58.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-8,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-8 {
+    right: 66.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-9,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-9 {
+    right: 75%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-10,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-10 {
+    right: 83.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-11,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-11 {
+    right: 91.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-pull-12,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-pull-12 {
+    right: 100%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-0,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-0 {
+    left: auto;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-1,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-1 {
+    left: 8.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-2 {
+    left: 16.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-3 {
+    left: 25%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-4,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-4 {
+    left: 33.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-5,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-5 {
+    left: 41.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-6,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-6 {
+    left: 50%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-7,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-7 {
+    left: 58.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-8,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-8 {
+    left: 66.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-9,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-9 {
+    left: 75%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-10,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-10 {
+    left: 83.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-11,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-11 {
+    left: 91.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-push-12,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-push-12 {
+    left: 100%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-0,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-0 {
+    margin-left: 0%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-1,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-1 {
+    margin-left: 8.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-2 {
+    margin-left: 16.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-3 {
+    margin-left: 25%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-4,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-4 {
+    margin-left: 33.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-5,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-5 {
+    margin-left: 41.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-6,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-6 {
+    margin-left: 50%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-7,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-7 {
+    margin-left: 58.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-8,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-8 {
+    margin-left: 66.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-9,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-9 {
+    margin-left: 75%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-10,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-10 {
+    margin-left: 83.3333333333%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-11,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-11 {
+    margin-left: 91.6666666667%;
+  }
+  body.tour-operator_page_to-help #wpbody-content .wrap .col-lg-offset-12,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .col-lg-offset-12 {
+    margin-left: 100%;
+  }
+}
+body.tour-operator_page_to-help #wpbody-content .wrap h1.small,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap h1.small {
+  font-size: 35px;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap h2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap h2 {
+  margin-bottom: 20px;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap img,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap img {
+  width: 100%;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .thumbnail,
+body.tour-operator_page_to-help #wpbody-content .wrap .video,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .thumbnail,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .video {
+  margin-bottom: 40px;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .top-header,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .top-header {
+  margin-bottom: 40px;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .top-header p,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .top-header p {
+  font-size: 13px;
+  margin-bottom: 13px;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .top-header p:last-child,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .top-header p:last-child {
+  margin-bottom: 0;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 40px;
+  padding: 25px 30px;
+  position: relative;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box.box-top-image,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.box-top-image {
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box h2, body.tour-operator_page_to-help #wpbody-content .wrap .box h3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box h2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-right: 30px;
+  margin-top: 0;
+  text-align: left;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box p, body.tour-operator_page_to-help #wpbody-content .wrap .box ul, body.tour-operator_page_to-help #wpbody-content .wrap .box li,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box p,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box ul,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box li {
+  font-size: 13px;
+  margin-bottom: 3px;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box p:last-child, body.tour-operator_page_to-help #wpbody-content .wrap .box ul:last-child, body.tour-operator_page_to-help #wpbody-content .wrap .box li:last-child,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box p:last-child,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box ul:last-child,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box li:last-child {
+  margin-bottom: 0;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box .more-button,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box .more-button {
+  padding: 1em 0 0 0;
+  border-top: 1px solid #eee;
+  clear: both;
+  text-align: right;
+  clear: both;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box .more-button a:first-child,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box .more-button a:first-child {
+  float: left;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box .more-button a:last-child,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box .more-button a:last-child {
+  float: right;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box .more-button a.button-secondary,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box .more-button a.button-secondary {
+  background-color: #F7AE00;
+  border-color: #F7AE00;
+  color: #fff;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box .more-button a.button-secondary:hover,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box .more-button a.button-secondary:hover {
+  background-color: #C4771B;
+  border-color: #C4771B;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box.wetu .more-button a,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.wetu .more-button a {
+  float: none;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box.wetu .more-button a:last-child,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.wetu .more-button a:last-child {
+  margin-left: 20px;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box.support,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.support {
+  display: flex;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box.support .image,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.support .image {
+  margin-right: 25px;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box.support .image img,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.support .image img {
+  width: 100px;
+  margin-top: 15px;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box.support .button-tertiary,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.support .button-tertiary {
+  background-color: #6BA914;
+  border-color: #6BA914;
+  color: #fff;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box.support .button-tertiary:hover,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.support .button-tertiary:hover {
+  background-color: #5d9410;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box.info .more-button,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.info .more-button {
+  padding-top: 4px;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box.info h2,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.info h2 {
+  margin-bottom: -3px;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box.support .more-button, body.tour-operator_page_to-help #wpbody-content .wrap .box.info .more-button,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.support .more-button,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.info .more-button {
+  border-top: 0px solid #eee;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box .price,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box .price {
+  color: #45B964;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box form,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box form {
+  padding: 0 !important;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box.box-top-image:before,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.box-top-image:before {
+  display: none;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box.featured,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.featured {
+  border-width: 2px;
+  border-color: #FFA107;
+  box-shadow: 0 1px 1px #FFA107;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box.featured:before,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box.featured:before {
+  color: #FFA107;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box-clean,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box-clean {
+  padding-top: 20px;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box-clean h3,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box-clean h3 {
+  font-weight: 700;
+}
+body.tour-operator_page_to-help #wpbody-content .wrap .box-clean p:last-child,
+body.lsx-tour-operator_page_to-addons #wpbody-content .wrap .box-clean p:last-child {
+  margin-bottom: 0;
+}
+/*# sourceMappingURL=admin.css.map */

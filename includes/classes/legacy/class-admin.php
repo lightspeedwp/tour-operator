@@ -105,8 +105,7 @@ class Admin extends Tour_Operator {
 		// WP Terms: create/edit term
 		$allowed_pages = array(
 			'tour-operator_page_to-help',
-			'lsx-tour-operator_page_lsx-to-settings',
-			'tour-operator_page_lsx-to-settings',
+			'settings_page_lsx-to-settings',
 			'term.php',
 		);
 		if ( ! in_array( $hook, $allowed_pages ) ) {

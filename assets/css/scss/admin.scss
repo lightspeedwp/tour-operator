@@ -51,53 +51,26 @@
 }
 
 /* The Tab Styling */
-
-body.tour-operator_page_lsx-to-settings,
-body.lsx-tour-operator_page_lsx-to-settings {
+.wrap.lsx-to-settings {
 	.spinner {
 		background-color: #fff;
 		border-radius: 10px;
 	}
 
-	.uix-field-wrapper {
-		.ui-tab-nav {
-			li {
-				display: inline-block;
-
-				&:after {
-					content: "|";
-					display: inline-block;
-					padding: 0 3px 0 8px;
-				}
-
-				&:last-child {
-					&:after {
-						content: "";
-						padding-left: 0;
-					}
-				}
-
-				a {
-					text-decoration: none;
-
-					&.active {
-						color: black;
-						font-weight: bold;
-					}
-
-					&:focus {
-						box-shadow: none;
-					}
-				}
-			}
+	.form-field {
+		input[type="text"],
+		input[type="number"],
+		select
+		 {
+			max-width: 300px;
 		}
+	}
 
-		.ui-tab {
-			display:none;
+	.ui-tab {
+		display:none;
 
-			&.active {
-				display: block;
-			}
+		&.active {
+			display: block;
 		}
 	}
 }
