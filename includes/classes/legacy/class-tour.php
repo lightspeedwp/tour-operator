@@ -280,7 +280,7 @@ class Tour {
 			$fields[] = array(
 				'id'         => 'accommodation_to_tour',
 				'name'       => esc_html__( 'Accommodation related with this itinerary', 'tour-operator' ),
-				'type'       => 'post_select',
+				'type'       => 'post_ajax_search',
 				'use_ajax'   => false,
 				'query'      => array(
 					'post_type'      => 'accommodation',
@@ -300,7 +300,7 @@ class Tour {
 			$fields[] = array(
 				'id'         => 'activity_to_tour',
 				'name'       => esc_html__( 'Activities related with this itinerary', 'tour-operator' ),
-				'type'       => 'post_select',
+				'type'       => 'post_ajax_search',
 				'use_ajax'   => false,
 				'query'      => array(
 					'post_type'      => 'activity',
@@ -320,7 +320,7 @@ class Tour {
 			$fields[] = array(
 				'id'         => 'destination_to_tour',
 				'name'       => esc_html__( 'Destinations related with this itinerary', 'tour-operator' ),
-				'type'       => 'post_select',
+				'type'       => 'post_ajax_search',
 				'use_ajax'   => false,
 				'query'      => array(
 					'post_type'      => 'destination',

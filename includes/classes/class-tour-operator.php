@@ -4,6 +4,8 @@ namespace lsx;
 
 use lsx\admin\Admin;
 use lsx\admin\Pages;
+use lsx\admin\Settings;
+use lsx\admin\Setup;
 
 /**
  * LSX Tour Operator Main Class
@@ -49,12 +51,21 @@ class Tour_Operator {
 	public $settings;
 
 	/**
+	 * Holds the main setup object
+	 *
+	 * @since   1.1.0
+	 * @var     \lsx\admin\Setup
+	 */
+	public $setup;
+
+	/**
 	 * Holds the Post_Types instance.
 	 *
 	 * @since   1.1.0
 	 * @var     \lsx\Post_Types
 	 */
 	public $post_types;
+
 	/**
 	 * Holds the Pages instance.
 	 *
@@ -212,6 +223,7 @@ class Tour_Operator {
 		$this->post_types = Post_Types::init();
 		$this->taxonomies = Taxonomies::init();
 		$this->admin      = Admin::init();
-		$this->settings   = \lsx\admin\Settings::init();
+		$this->settings   = Settings::init();
+		$this->setup      = Setup::init();
 	}
 }

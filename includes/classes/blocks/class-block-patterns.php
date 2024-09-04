@@ -1,5 +1,5 @@
 <?php
-namespace lsx\tour_operator\classes;
+namespace lsx\to\blocks;
 
 
 class Block_Patterns {

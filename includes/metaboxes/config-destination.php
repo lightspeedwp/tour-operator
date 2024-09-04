@@ -38,7 +38,7 @@ $metabox['fields'][] = array(
 $metabox['fields'][] = array(
 	'id'       => 'best_time_to_visit',
 	'name'     => esc_html__( 'Best months to visit', 'tour-operator' ),
-	'type'     => 'select',
+	'type'     => 'multicheck',
 	'multiple' => true,
 	'options'  => array(
 		'january'   => 'January',
@@ -56,13 +56,11 @@ $metabox['fields'][] = array(
 	),
 );
 
-if ( ! class_exists( 'LSX_Banners' ) ) {
-	$metabox['fields'][] = array(
-		'id'   => 'tagline',
-		'name' => esc_html__( 'Tagline', 'tour-operator' ),
-		'type' => 'text',
-	);
-}
+$metabox['fields'][] = array(
+	'id'   => 'tagline',
+	'name' => esc_html__( 'Tagline', 'tour-operator' ),
+	'type' => 'text',
+);
 
 $metabox['fields'][] = array(
 	'id'   => 'travel_info_title',
@@ -186,7 +184,7 @@ if ( class_exists( 'Envira_Gallery' ) ) {
 	$metabox['fields'][] = array(
 		'id'         => 'envira_gallery',
 		'name'       => esc_html__( 'Envira Gallery', 'tour-operator' ),
-		'type'       => 'post_select',
+		'type'       => 'post_ajax_search',
 		'use_ajax'   => false,
 		'allow_none' => true,
 		'query'      => array(
@@ -202,7 +200,7 @@ if ( class_exists( 'Envira_Gallery' ) ) {
 		$metabox['fields'][] = array(
 			'id'         => 'envira_video',
 			'name'       => esc_html__( 'Envira Video Gallery', 'tour-operator' ),
-			'type'       => 'post_select',
+			'type'       => 'post_ajax_search',
 			'use_ajax'   => false,
 			'allow_none' => true,
 			'query'      => array(
@@ -262,7 +260,7 @@ $metabox['fields'][] = array(
 $metabox['fields'][] = array(
 	'id'         => 'post_to_destination',
 	'name'       => esc_html__( 'Posts related with this destination', 'tour-operator' ),
-	'type'       => 'post_select',
+	'type'       => 'post_ajax_search',
 	'use_ajax'   => false,
 	'repeatable' => true,
 	'allow_none' => true,
@@ -284,7 +282,7 @@ $metabox['fields'][] = array(
 $metabox['fields'][] = array(
 	'id'         => 'accommodation_to_destination',
 	'name'       => esc_html__( 'Accommodation related with this destination', 'tour-operator' ),
-	'type'       => 'post_select',
+	'type'       => 'post_ajax_search',
 	'use_ajax'   => false,
 	'repeatable' => true,
 	'allow_none' => true,
@@ -306,7 +304,7 @@ $metabox['fields'][] = array(
 $metabox['fields'][] = array(
 	'id'         => 'tour_to_destination',
 	'name'       => esc_html__( 'Tours related with this destination', 'tour-operator' ),
-	'type'       => 'post_select',
+	'type'       => 'post_ajax_search',
 	'use_ajax'   => false,
 	'repeatable' => true,
 	'allow_none' => true,
