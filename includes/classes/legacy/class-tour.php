@@ -270,8 +270,15 @@ class Tour {
 		$fields[] = array(
 			'id'        => 'featured_image',
 			'name'      => esc_html__( 'Featured Image', 'tour-operator' ),
-			'type'      => 'image',
+			'type'      => 'file',
 			'show_size' => false,
+			'query_args' => array(
+				'type' => array(
+					'image/gif',
+					'image/jpeg',
+					'image/png',
+			   ),
+		   ), 
 		);
 
 		$fields = apply_filters( 'lsx_to_tours_itinerary_fields', $fields );
