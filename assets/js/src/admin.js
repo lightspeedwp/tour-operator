@@ -12,7 +12,7 @@ jQuery(document).ready(function() {
 			e.preventDefault();
 			e.stopPropagation();
 
-			tb_show('Choose a Featured Image', 'media-upload.php?type=image&feature_image_text_button=1&TB_iframe=1');
+			tb_show('Select an Image', 'media-upload.php?type=image&feature_image_text_button=1&TB_iframe=1');
 
 			var $this = jQuery(this),
 				$td = $this.parent('td');
@@ -26,9 +26,8 @@ jQuery(document).ready(function() {
 				image_class = $image.attr('class');
 				image_class = image_class.split('wp-image-');
 
-				$td.find('.thumbnail-preview, .banner-preview').append('<img width="150" src="' + image_src + '" />');
-				$td.find('input.input_image').val(image_src);
-				$td.find('input.input_image_id').val(image_class[1]);
+				$td.find('.thumbnail-preview img').attr('src', image_src).parent().show();
+				$td.find('input.input_image').val(image_class[1]);
 				$this.hide();
 				$td.find('.lsx-thumbnail-image-delete, .lsx-thumbnail-image-remove').show();
 
@@ -52,9 +51,8 @@ jQuery(document).ready(function() {
 			var $this = jQuery(this),
 				$td = $this.parent('td');
 
-			$td.find('input.input_image_id').val('');
 			$td.find('input.input_image').val('');
-			$td.find('.thumbnail-preview, .banner-preview' ).html('');
+			$td.find('.thumbnail-preview img' ).attr('src','').parent().hide();
 			$this.hide();
 			$td.find('.lsx-thumbnail-image-add' ).show();
 
@@ -68,16 +66,17 @@ jQuery(document).ready(function() {
 	 * Subtabs navigation
 	 */
 	if (undefined === window.lsx_thumbnail_subtabs_nav) {
-		jQuery(document).on('click', '.ui-tab-nav a', function(e) {
+
+		jQuery(document).on('click', '.nav-tab-wrapper a', function(e) {
 			e.preventDefault();
 			e.stopPropagation();
 
 			var $this = jQuery(this);
 
-			jQuery('.ui-tab-nav a.active').removeClass('active');
-			$this.addClass('active');
+			jQuery('.nav-tab-wrapper a.nav-tab-active').removeClass('nav-tab-active');
+			$this.addClass('nav-tab-active');
 			jQuery('.ui-tab.active').removeClass('active');
-			$this.closest('.uix-field-wrapper').find($this.attr('href')).addClass('active');
+			jQuery($this.attr('href')).addClass('active');
 
 			return false;
 		});
