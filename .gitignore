@@ -4,3 +4,4 @@ node_modules
 *.sublime-workspace
 package-lock.json
 wp-content
+vendor/.DS_Store

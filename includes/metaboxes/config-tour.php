@@ -185,7 +185,7 @@ $metabox['fields'][] = array(
 	'type' => 'checkbox',
 );
 
-if ( ! isset( tour_operator()->options['display']['maps_disable'] ) && empty( tour_operator()->options['display']['maps_disable'] ) ) {
+if ( ! isset( tour_operator()->options['maps_disable'] ) && empty( tour_operator()->options['maps_disable'] ) ) {
 	$metabox['fields'][] = array(
 		'id'   => 'location_title',
 		'name' => esc_html__( 'Location', 'tour-operator' ),
@@ -194,16 +194,16 @@ if ( ! isset( tour_operator()->options['display']['maps_disable'] ) && empty( to
 	$metabox['fields'][] = array(
 		'id'         => 'map_placeholder',
 		'name'       => esc_html__( 'Map Placeholder', 'tour-operator' ),
-		'type'       => 'image',
+		'type'       => 'file',
 		'repeatable' => false,
 		'show_size'  => false,
-	);
-	$metabox['fields'][] = array(
-		'id'         => 'map_mobile_placeholder',
-		'name'       => esc_html__( 'Mobile Placeholder', 'tour-operator' ),
-		'type'       => 'image',
-		'repeatable' => false,
-		'show_size'  => false,
+		'query_args' => array(
+			'type' => array(
+				'image/gif',
+				'image/jpeg',
+				'image/png',
+		   ),
+	   ), 
 	);
 	$metabox['fields'][] = array(
 		'id'        => 'itinerary_kml',
@@ -214,20 +214,35 @@ if ( ! isset( tour_operator()->options['display']['maps_disable'] ) && empty( to
 	);
 }
 
-$metabox['fields'][] = array(
-	'id'   => 'gallery_title',
-	'name' => esc_html__( 'Gallery', 'tour-operator' ),
-	'type' => 'title',
-);
+/*$metabox['fields'][] = array(
+    'name'    => esc_html__( 'Gallery', 'tour-operator' ),
+    'id'      => 'gallery',
+    'type'    => 'file',
+    // Optional:
+    'options' => array(
+        'url' => false, // Hide the text input for the url
+    ),
+    'text'    => array(
+        'add_upload_file_text' => esc_html__( 'Add new image', 'tour-operator' )
+    ),
+    'query_args' => array(
+         'type' => array(
+             'image/gif',
+             'image/jpeg',
+             'image/png',
+        ),
+    ), 
+);*/
 
 $metabox['fields'][] = array(
-	'id'                  => 'gallery',
-	'name'                => '',
-	'type'                => 'image',
-	'repeatable'          => true,
-	'show_size'           => false,
-	'sortable'            => true,
-	'string-repeat-field' => esc_html__( 'Add new image', 'tour-operator' ),
+    'name' => esc_html__( 'Gallery', 'tour-operator' ),
+    'id'   => 'gallery',
+    'type' => 'file_list',
+    'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
+    'query_args' => array( 'type' => 'image' ), // Only images attachment
+    'text' => array(
+        'add_upload_files_text' => esc_html__( 'Add new image', 'tour-operator' ), // default: "Add or Upload Files"
+    ),
 );
 
 if ( class_exists( 'Envira_Gallery' ) ) {
@@ -279,12 +294,17 @@ $metabox['fields'][] = array(
 $metabox['fields'][] = array(
 	'id'          => 'itinerary',
 	'name'        => '',
-	'single_name' => 'Day(s)',
+	'single_name' => __( 'Day(s)', 'tour-operator' ),
 	'type'        => 'group',
 	'repeatable'  => true,
-	'sortable'    => true,
 	'fields'      => lsx\legacy\Tour::get_instance()->itinerary_fields(),
 	'desc'        => '',
+    'options'     => array(
+        'group_title'       => __( 'Itinerary {#}', 'tour-operator' ), // since version 1.1.4, {#} gets replaced by row number
+        'add_button'        => __( 'Add Another', 'tour-operator' ),
+        'remove_button'     => __( 'Remove', 'tour-operator' ),
+        'sortable'          => false,
+    ),
 );
 
 $metabox['fields'][] = array(

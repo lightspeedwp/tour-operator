@@ -110,13 +110,6 @@ if ( ! isset( tour_operator()->options['display']['maps_disable'] ) && empty( to
 		'repeatable' => false,
 		'show_size'  => false,
 	);
-	$metabox['fields'][] = array(
-		'id'         => 'map_mobile_placeholder',
-		'name'       => esc_html__( 'Mobile Placeholder', 'tour-operator' ),
-		'type'       => 'image',
-		'repeatable' => false,
-		'show_size'  => false,
-	);
 }
 
 
@@ -247,19 +240,14 @@ $fast_facts_fields = array(
 $metabox['fields'] = array_merge( $metabox['fields'], $fast_facts_fields );
 
 $metabox['fields'][] = array(
-	'id'   => 'gallery_title',
-	'name' => esc_html__( 'Gallery', 'tour-operator' ),
-	'type' => 'title',
-);
-
-$metabox['fields'][] = array(
-	'id'                  => 'gallery',
-	'name'                => '',
-	'type'                => 'image',
-	'repeatable'          => true,
-	'show_size'           => false,
-	'sortable'            => true,
-	'string-repeat-field' => esc_html__( 'Add new image', 'tour-operator' ),
+    'name' => esc_html__( 'Gallery', 'tour-operator' ),
+    'id'   => 'gallery',
+    'type' => 'file_list',
+    'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
+    'query_args' => array( 'type' => 'image' ), // Only images attachment
+    'text' => array(
+        'add_upload_files_text' => esc_html__( 'Add new image', 'tour-operator' ), // default: "Add or Upload Files"
+    ),
 );
 
 if ( class_exists( 'Envira_Gallery' ) ) {
@@ -343,9 +331,16 @@ $metabox['fields'][] = array(
 		array(
 			'id'         => 'gallery',
 			'name'       => esc_html__( 'Gallery', 'tour-operator' ),
-			'type'       => 'image',
+			'type'       => 'file',
 			'repeatable' => true,
 			'show_size'  => false,
+			'query_args' => array(
+				'type' => array(
+					'image/gif',
+					'image/jpeg',
+					'image/png',
+			   ),
+		   ), 
 		),
 	),
 );
