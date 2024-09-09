@@ -166,7 +166,7 @@ $fast_facts_fields = array(
 	array(
 		'id'       => 'spoken_languages',
 		'name'     => esc_html__( 'Spoken Languages', 'tour-operator' ),
-		'type'     => 'select',
+		'type'     => 'multicheck',
 		'multiple' => true,
 		'options'  => array(
 			'afrikaans'  => esc_html__( 'Afrikaans', 'tour-operator' ),
@@ -191,7 +191,7 @@ $fast_facts_fields = array(
 	array(
 		'id'       => 'suggested_visitor_types',
 		'name'     => esc_html__( 'Friendly', 'tour-operator' ),
-		'type'     => 'select',
+		'type'     => 'multicheck',
 		'multiple' => true,
 		'options'  => array(
 			'business'   => esc_html__( 'Business', 'tour-operator' ),
@@ -209,7 +209,7 @@ $fast_facts_fields = array(
 	array(
 		'id'       => 'special_interests',
 		'name'     => esc_html__( 'Special Interests', 'tour-operator' ),
-		'type'     => 'select',
+		'type'     => 'multicheck',
 		'multiple' => true,
 		'options'  => array(
 			'adventure'              => esc_html__( 'Adventure', 'tour-operator' ),
@@ -329,18 +329,14 @@ $metabox['fields'][] = array(
 			'type' => 'text',
 		),
 		array(
-			'id'         => 'gallery',
-			'name'       => esc_html__( 'Gallery', 'tour-operator' ),
-			'type'       => 'file',
-			'repeatable' => true,
-			'show_size'  => false,
-			'query_args' => array(
-				'type' => array(
-					'image/gif',
-					'image/jpeg',
-					'image/png',
-			   ),
-		   ), 
+			'name' => esc_html__( 'Gallery', 'tour-operator' ),
+			'id'   => 'gallery',
+			'type' => 'file_list',
+			'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
+			'query_args' => array( 'type' => 'image' ), // Only images attachment
+			'text' => array(
+				'add_upload_files_text' => esc_html__( 'Add new image', 'tour-operator' ), // default: "Add or Upload Files"
+			),
 		),
 	),
 );
