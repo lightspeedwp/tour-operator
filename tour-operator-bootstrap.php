@@ -18,9 +18,7 @@ if ( defined( 'WPINC' ) ) {
 	}
 
 	require_once( LSX_TO_PATH . 'vendor/cmb2-field-ajax-search/cmb2-field-ajax-search.php' );
-
-	//Classes
-	require_once( LSX_TO_PATH . 'classes/class-block-patterns.php' );
+	require_once( LSX_TO_PATH . 'vendor/cmb2-field-map/cmb-field-map.php' );
 
 	// Template Tags.
 	require_once( LSX_TO_PATH . 'includes/template-tags/general.php' );

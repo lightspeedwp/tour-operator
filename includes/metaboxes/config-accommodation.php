@@ -74,7 +74,7 @@ if ( class_exists( 'LSX_TO_Team' ) ) {
 	$metabox['fields'][] = array(
 		'id'         => 'team_to_accommodation',
 		'name'       => esc_html__( 'Accommodation Expert', 'tour-operator' ),
-		'type'       => 'post_select',
+		'type'       => 'post_ajax_search',
 		'use_ajax'   => false,
 		'allow_none' => true,
 		'query'      => array(
@@ -110,13 +110,6 @@ if ( ! isset( tour_operator()->options['display']['maps_disable'] ) && empty( to
 		'repeatable' => false,
 		'show_size'  => false,
 	);
-	$metabox['fields'][] = array(
-		'id'         => 'map_mobile_placeholder',
-		'name'       => esc_html__( 'Mobile Placeholder', 'tour-operator' ),
-		'type'       => 'image',
-		'repeatable' => false,
-		'show_size'  => false,
-	);
 }
 
 
@@ -141,7 +134,7 @@ $fast_facts_fields = array(
 	array(
 		'id'         => 'rating',
 		'name'       => esc_html__( 'Rating', 'tour-operator' ),
-		'type'       => 'radio',
+		'type'       => 'radio_inline',
 		'options'    => array( '0', '1', '2', '3', '4', '5' ),
 		'allow_none' => true,
 	),
@@ -155,13 +148,13 @@ $fast_facts_fields = array(
 	array(
 		'id'   => 'checkin_time',
 		'name' => esc_html__( 'Check-in Time', 'tour-operator' ),
-		'type' => 'time',
+		'type' => 'text_time',
 	),
 
 	array(
 		'id'   => 'checkout_time',
 		'name' => esc_html__( 'Check-out Time', 'tour-operator' ),
-		'type' => 'time',
+		'type' => 'text_time',
 	),
 
 	array(
@@ -173,7 +166,7 @@ $fast_facts_fields = array(
 	array(
 		'id'       => 'spoken_languages',
 		'name'     => esc_html__( 'Spoken Languages', 'tour-operator' ),
-		'type'     => 'select',
+		'type'     => 'multicheck',
 		'multiple' => true,
 		'options'  => array(
 			'afrikaans'  => esc_html__( 'Afrikaans', 'tour-operator' ),
@@ -198,7 +191,7 @@ $fast_facts_fields = array(
 	array(
 		'id'       => 'suggested_visitor_types',
 		'name'     => esc_html__( 'Friendly', 'tour-operator' ),
-		'type'     => 'select',
+		'type'     => 'multicheck',
 		'multiple' => true,
 		'options'  => array(
 			'business'   => esc_html__( 'Business', 'tour-operator' ),
@@ -216,7 +209,7 @@ $fast_facts_fields = array(
 	array(
 		'id'       => 'special_interests',
 		'name'     => esc_html__( 'Special Interests', 'tour-operator' ),
-		'type'     => 'select',
+		'type'     => 'multicheck',
 		'multiple' => true,
 		'options'  => array(
 			'adventure'              => esc_html__( 'Adventure', 'tour-operator' ),
@@ -247,19 +240,14 @@ $fast_facts_fields = array(
 $metabox['fields'] = array_merge( $metabox['fields'], $fast_facts_fields );
 
 $metabox['fields'][] = array(
-	'id'   => 'gallery_title',
-	'name' => esc_html__( 'Gallery', 'tour-operator' ),
-	'type' => 'title',
-);
-
-$metabox['fields'][] = array(
-	'id'                  => 'gallery',
-	'name'                => '',
-	'type'                => 'image',
-	'repeatable'          => true,
-	'show_size'           => false,
-	'sortable'            => true,
-	'string-repeat-field' => esc_html__( 'Add new image', 'tour-operator' ),
+    'name' => esc_html__( 'Gallery', 'tour-operator' ),
+    'id'   => 'gallery',
+    'type' => 'file_list',
+    'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
+    'query_args' => array( 'type' => 'image' ), // Only images attachment
+    'text' => array(
+        'add_upload_files_text' => esc_html__( 'Add new image', 'tour-operator' ), // default: "Add or Upload Files"
+    ),
 );
 
 if ( class_exists( 'Envira_Gallery' ) ) {
@@ -272,7 +260,7 @@ if ( class_exists( 'Envira_Gallery' ) ) {
 	$metabox['fields'][] = array(
 		'id'         => 'envira_gallery',
 		'name'       => esc_html__( 'Envira Gallery', 'tour-operator' ),
-		'type'       => 'post_select',
+		'type'       => 'post_ajax_search',
 		'use_ajax'   => false,
 		'query'      => array(
 			'post_type'      => 'envira',
@@ -288,7 +276,7 @@ if ( class_exists( 'Envira_Gallery' ) ) {
 		$metabox['fields'][] = array(
 			'id'         => 'envira_video',
 			'name'       => esc_html__( 'Envira Video Gallery', 'tour-operator' ),
-			'type'       => 'post_select',
+			'type'       => 'post_ajax_search',
 			'use_ajax'   => false,
 			'allow_none' => true,
 			'query'      => array(
@@ -341,11 +329,14 @@ $metabox['fields'][] = array(
 			'type' => 'text',
 		),
 		array(
-			'id'         => 'gallery',
-			'name'       => esc_html__( 'Gallery', 'tour-operator' ),
-			'type'       => 'image',
-			'repeatable' => true,
-			'show_size'  => false,
+			'name' => esc_html__( 'Gallery', 'tour-operator' ),
+			'id'   => 'gallery',
+			'type' => 'file_list',
+			'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
+			'query_args' => array( 'type' => 'image' ), // Only images attachment
+			'text' => array(
+				'add_upload_files_text' => esc_html__( 'Add new image', 'tour-operator' ), // default: "Add or Upload Files"
+			),
 		),
 	),
 );
@@ -359,7 +350,7 @@ $metabox['fields'][] = array(
 $metabox['fields'][] = array(
 	'id'         => 'post_to_accommodation',
 	'name'       => esc_html__( 'Posts related with this accommodation', 'tour-operator' ),
-	'type'       => 'post_select',
+	'type'       => 'post_ajax_search',
 	'use_ajax'   => false,
 	'repeatable' => true,
 	'allow_none' => true,
@@ -381,7 +372,7 @@ $metabox['fields'][] = array(
 $metabox['fields'][] = array(
 	'id'         => 'destination_to_accommodation',
 	'name'       => esc_html__( 'Destinations related with this accommodation', 'tour-operator' ),
-	'type'       => 'post_select',
+	'type'       => 'post_ajax_search',
 	'use_ajax'   => false,
 	'repeatable' => true,
 	'allow_none' => true,
@@ -403,7 +394,7 @@ $metabox['fields'][] = array(
 $metabox['fields'][] = array(
 	'id'         => 'tour_to_accommodation',
 	'name'       => esc_html__( 'Tours related with this accommodation', 'tour-operator' ),
-	'type'       => 'post_select',
+	'type'       => 'post_ajax_search',
 	'use_ajax'   => false,
 	'repeatable' => true,
 	'allow_none' => true,

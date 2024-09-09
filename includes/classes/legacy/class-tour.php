@@ -270,8 +270,15 @@ class Tour {
 		$fields[] = array(
 			'id'        => 'featured_image',
 			'name'      => esc_html__( 'Featured Image', 'tour-operator' ),
-			'type'      => 'image',
+			'type'      => 'file',
 			'show_size' => false,
+			'query_args' => array(
+				'type' => array(
+					'image/gif',
+					'image/jpeg',
+					'image/png',
+			   ),
+		   ), 
 		);
 
 		$fields = apply_filters( 'lsx_to_tours_itinerary_fields', $fields );
@@ -280,7 +287,7 @@ class Tour {
 			$fields[] = array(
 				'id'         => 'accommodation_to_tour',
 				'name'       => esc_html__( 'Accommodation related with this itinerary', 'tour-operator' ),
-				'type'       => 'post_select',
+				'type'       => 'post_ajax_search',
 				'use_ajax'   => false,
 				'query'      => array(
 					'post_type'      => 'accommodation',
@@ -300,7 +307,7 @@ class Tour {
 			$fields[] = array(
 				'id'         => 'activity_to_tour',
 				'name'       => esc_html__( 'Activities related with this itinerary', 'tour-operator' ),
-				'type'       => 'post_select',
+				'type'       => 'post_ajax_search',
 				'use_ajax'   => false,
 				'query'      => array(
 					'post_type'      => 'activity',
@@ -320,7 +327,7 @@ class Tour {
 			$fields[] = array(
 				'id'         => 'destination_to_tour',
 				'name'       => esc_html__( 'Destinations related with this itinerary', 'tour-operator' ),
-				'type'       => 'post_select',
+				'type'       => 'post_ajax_search',
 				'use_ajax'   => false,
 				'query'      => array(
 					'post_type'      => 'destination',
