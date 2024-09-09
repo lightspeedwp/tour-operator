@@ -61,17 +61,18 @@ class Video {
 			$new_fields[] = $field;
 			if ( in_array( $field['id'], $key_ids ) ) {
 				$new_fields[] = array(
-					'id'   => 'video_title',
-					'name' => __( 'Videos', 'tour-operator' ),
-					'type' => 'title',
-				);
-				$new_fields[] = array(
 					'id'          => 'videos',
-					'name'        => '',
+					'name'        => __( 'Videos', 'tour-operator' ),
 					'single_name' => __( 'Video', 'tour-operator' ),
 					'type'        => 'group',
 					'repeatable'  => true,
 					'sortable'    => true,
+					'options'     => array(
+						'group_title'       => __( 'Video {#}', 'tour-operator' ), // since version 1.1.4, {#} gets replaced by row number
+						'add_button'        => __( 'Add Another', 'tour-operator' ),
+						'remove_button'     => __( 'Remove', 'tour-operator' ),
+						'sortable'          => false,
+					),
 					'fields'      => array(
 						array(
 							'id'   => 'title',

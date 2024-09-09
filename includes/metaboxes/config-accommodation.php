@@ -291,18 +291,18 @@ if ( class_exists( 'Envira_Gallery' ) ) {
 }
 
 $metabox['fields'][] = array(
-	'id'   => 'units_title',
-	'name' => esc_html__( 'Units', 'tour-operator' ),
-	'type' => 'title',
-);
-
-$metabox['fields'][] = array(
 	'id'         => 'units',
-	'name'       => '',
+	'name'       => esc_html__( 'Units', 'tour-operator' ),
 	'type'       => 'group',
 	'repeatable' => true,
 	'sortable'   => true,
 	'desc'       => '',
+    'options'     => array(
+        'group_title'       => __( 'Unit {#}', 'tour-operator' ), // since version 1.1.4, {#} gets replaced by row number
+        'add_button'        => __( 'Add Another', 'tour-operator' ),
+        'remove_button'     => __( 'Remove', 'tour-operator' ),
+        'sortable'          => false,
+    ),
 	'fields'     => array(
 		array(
 			'id'      => 'type',
