@@ -27,13 +27,11 @@ $metabox['fields'][] = array(
 	'type' => 'checkbox',
 );
 
-if ( ! class_exists( 'LSX_Banners' ) ) {
-	$metabox['fields'][] = array(
-		'id'   => 'tagline',
-		'name' => esc_html__( 'Tagline', 'tour-operator' ),
-		'type' => 'text',
-	);
-}
+$metabox['fields'][] = array(
+	'id'   => 'tagline',
+	'name' => esc_html__( 'Tagline', 'tour-operator' ),
+	'type' => 'text',
+);
 
 $metabox['fields'][] = array(
 	'id'   => 'duration',

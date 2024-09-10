@@ -97,24 +97,6 @@ function lsx_to_enable_envira_banner() {
 }
 
 /**
- * Checks weather or not the conencted tours should display.
- *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	accommodation
- */
-function lsx_to_accommodation_display_connected_tours() {
-	$tour_operator = tour_operator();
-	$return = false;
-
-	if ( isset( $tour_operator->options['accommodation']['display_connected_tours'] ) && 'on' === $tour_operator->options['accommodation']['display_connected_tours'] ) {
-		$return = true;
-	}
-
-	return $return;
- }
-
-/**
  * Check if the current item has child pages or if its a parent ""
  *
  * @param	$post_id string

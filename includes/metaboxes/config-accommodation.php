@@ -27,17 +27,17 @@ $metabox['fields'][] = array(
 	'type' => 'checkbox',
 );
 
-if ( ! class_exists( 'LSX_Banners' ) ) {
-	$metabox['fields'][] = array(
-		'id'   => 'tagline',
-		'name' => esc_html__( 'Tagline', 'tour-operator' ),
-		'type' => 'text',
-	);
-}
+$metabox['fields'][] = array(
+	'id'   => 'tagline',
+	'name' => esc_html__( 'Tagline', 'tour-operator' ),
+	'type' => 'text',
+);
 
-if ( class_exists( '\lsx\legacy\Field_Pattern' ) ) {
-	$metabox['fields'] = array_merge( $metabox['fields'], \lsx\legacy\Field_Pattern::price() );
-}
+$metabox['fields'][] = array(
+	'id' => 'price',
+	'name' => 'Price',
+	'type' => 'text',
+);
 
 $metabox['fields'][] = array(
 	'id'      => 'price_type',
