@@ -121,8 +121,8 @@ class Schema {
 			$destination_description = wp_strip_all_tags( get_the_content() );
 			$address_accommodation = get_post_meta( get_the_ID(), 'location', true );
 			$street_address = $address_accommodation['address'];
-			$lat_address = $address_accommodation['lat'];
-			$long_address = $address_accommodation['long'];
+			$lat_address = $address_accommodation['latitude'];
+			$long_address = $address_accommodation['longitude'];
 
 			if ( ! empty( $dest_travel_styles ) ) {
 				foreach ( $dest_travel_styles as $single_travel_style ) {

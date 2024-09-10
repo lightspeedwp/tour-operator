@@ -468,7 +468,7 @@ class Settings {
 
 		// Get the stored image
 		$image_id = (int) $this->get_value( $field_id, $params );
-		$image    = '';
+		$image    = array( '' );
 		$prev_css = 'display:none;';
 		if ( 0 !== $image_id && '' !== $image_id ) {
 			$image = wp_get_attachment_image_src( $image_id, 'medium' );

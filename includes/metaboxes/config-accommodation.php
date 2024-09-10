@@ -94,21 +94,32 @@ if ( ! isset( tour_operator()->options['display']['maps_disable'] ) && empty( to
 		'type' => 'title',
 	);
 	$google_api_key = '';
-	if ( isset( tour_operator()->options['api']['googlemaps_key'] ) && ! empty( tour_operator()->options['api']['googlemaps_key'] ) ) {
-		$google_api_key = tour_operator()->options['api']['googlemaps_key'];
+	if ( isset( tour_operator()->options['googlemaps_key'] ) && ! empty( tour_operator()->options['googlemaps_key'] ) ) {
+		$google_api_key = tour_operator()->options['googlemaps_key'];
 	}
 	$metabox['fields'][] = array(
 		'id'             => 'location',
 		'name'           => esc_html__( 'Address', 'tour-operator' ),
-		'type'           => 'gmap',
-		'google_api_key' => $google_api_key,
+		'type'           => 'pw_map',
+		'api_key' => $google_api_key,
 	);
 	$metabox['fields'][] = array(
 		'id'         => 'map_placeholder',
 		'name'       => esc_html__( 'Map Placeholder', 'tour-operator' ),
-		'type'       => 'image',
+		'type'       => 'file',
 		'repeatable' => false,
 		'show_size'  => false,
+		'preview_size' => 'thumbnail',
+		'query_args' => array(
+			 'type' => array(
+				 'image/gif',
+				 'image/jpeg',
+				 'image/png',
+			),
+		),
+		'options' => array(
+			'url' => false, // Hide the text input for the url
+		),
 	);
 }
 
@@ -260,14 +271,10 @@ if ( class_exists( 'Envira_Gallery' ) ) {
 	$metabox['fields'][] = array(
 		'id'         => 'envira_gallery',
 		'name'       => esc_html__( 'Envira Gallery', 'tour-operator' ),
-		'type'       => 'post_ajax_search',
+		'type'       => 'pw_multiselect',
 		'use_ajax'   => false,
-		'query'      => array(
-			'post_type'      => 'envira',
-			'nopagin'        => true,
-			'posts_per_page' => '-1',
-			'orderby'        => 'title',
-			'order'          => 'ASC',
+		'options'  => array(
+			'post_type_args' => 'envira',
 		),
 		'allow_none' => true,
 	);
@@ -276,15 +283,11 @@ if ( class_exists( 'Envira_Gallery' ) ) {
 		$metabox['fields'][] = array(
 			'id'         => 'envira_video',
 			'name'       => esc_html__( 'Envira Video Gallery', 'tour-operator' ),
-			'type'       => 'post_ajax_search',
+			'type'       => 'pw_multiselect',
 			'use_ajax'   => false,
 			'allow_none' => true,
-			'query'      => array(
-				'post_type'      => 'envira',
-				'nopagin'        => true,
-				'posts_per_page' => '-1',
-				'orderby'        => 'title',
-				'order'          => 'ASC',
+			'options'  => array(
+				'post_type_args' => 'envira',
 			),
 		);
 	}

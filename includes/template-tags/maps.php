@@ -124,8 +124,8 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 								$args['disable_cluster_js'] = true;
 							}
 						} else {
-							$args['long'] = $location['long'];
-							$args['lat'] = $location['lat'];
+							$args['longitude'] = $location['longitude'];
+							$args['latitude'] = $location['latitude'];
 						}
 
 						// Check to see if the zoom is disabled.
@@ -192,8 +192,8 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 
 					default:
 						$args = array(
-							'long' => $location['long'],
-							'lat' => $location['lat'],
+							'longitude' => $location['longitude'],
+							'latitude' => $location['latitude'],
 							'zoom' => $zoom,
 							'width' => '100%',
 							'height' => '500px',
@@ -355,7 +355,7 @@ if ( ! function_exists( 'lsx_to_has_map' ) ) {
 
 			if ( is_post_type_archive( 'destination' ) ) {
 				$location = array(
-					'lat' => true,
+					'latitude' => true,
 				);
 			} elseif ( is_singular( 'tour' ) ) {
 				$file_id = get_post_meta( get_the_ID(), 'itinerary_kml', true );
@@ -369,7 +369,7 @@ if ( ! function_exists( 'lsx_to_has_map' ) ) {
 				$accommodation_connected = apply_filters( 'lsx_to_maps_tour_connections', $accommodation_connected );
 				if ( is_array( $accommodation_connected ) && ! empty( $accommodation_connected ) ) {
 					$location = array(
-						'lat' => true,
+						'latitude' => true,
 						'connections' => $accommodation_connected,
 					);
 				}
@@ -379,7 +379,7 @@ if ( ! function_exists( 'lsx_to_has_map' ) ) {
 
 			$location = apply_filters( 'lsx_to_has_maps_location', $location, get_the_ID() );
 
-			if ( false !== $location && '' !== $location && is_array( $location ) && isset( $location['lat'] ) && '' !== $location['lat'] ) {
+			if ( false !== $location && '' !== $location && is_array( $location ) && isset( $location['latitude'] ) && '' !== $location['latitude'] ) {
 				set_transient( get_the_ID() . '_location', $location, 30 );
 				return true;
 			} elseif ( false !== $kml ) {
@@ -394,7 +394,7 @@ if ( ! function_exists( 'lsx_to_has_map' ) ) {
 			} else {
 				return false;
 			}
-		} else if ( is_array( $location ) && ( ( isset( $location['lat'] ) && '' !== $location['lat'] ) || ( isset( $location['kml'] ) && '' !== $location['kml'] ) ) ) {
+		} else if ( is_array( $location ) && ( ( isset( $location['latitude'] ) && '' !== $location['latitude'] ) || ( isset( $location['kml'] ) && '' !== $location['kml'] ) ) ) {
 			return true;
 		} else {
 			return false;
