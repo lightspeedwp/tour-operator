@@ -1,5 +1,5 @@
 <?php
-namespace lsx\to\blocks;
+namespace lsx\blocks;
 
 
 class Block_Patterns {
