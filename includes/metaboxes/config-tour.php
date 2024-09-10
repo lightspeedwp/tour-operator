@@ -330,46 +330,26 @@ $metabox['fields'][] = array(
 );
 
 $metabox['fields'][] = array(
-	'id'   => 'accommodation_title',
-	'name' => esc_html__( 'Accommodation', 'tour-operator' ),
-	'type' => 'title',
-);
-
-$metabox['fields'][] = array(
 	'id'         => 'accommodation_to_tour',
 	'name'       => esc_html__( 'Accommodation related with this tour', 'tour-operator' ),
-	'type'       => 'post_ajax_search',
+	'type'       => 'pw_multiselect',
 	'use_ajax'   => false,
-	'repeatable' => true,
-	'allow_none' => true,
-	'query'      => array(
-		'post_type'      => 'accommodation',
-		'nopagin'        => true,
-		'posts_per_page' => '-1',
-		'orderby'        => 'title',
-		'order'          => 'ASC',
+	'repeatable' => false,
+	'allow_none' => false,
+	'options'  => array(
+		'post_type_args' => 'accommodation',
 	),
-);
-
-$metabox['fields'][] = array(
-	'id'   => 'destinations_title',
-	'name' => esc_html__( 'Destinations', 'tour-operator' ),
-	'type' => 'title',
 );
 
 $metabox['fields'][] = array(
 	'id'         => 'destination_to_tour',
 	'name'       => esc_html__( 'Destinations related with this tour', 'tour-operator' ),
-	'type'       => 'post_ajax_search',
+	'type'       => 'pw_multiselect',
 	'use_ajax'   => false,
-	'repeatable' => true,
+	'repeatable' => false,
 	'allow_none' => true,
-	'query'      => array(
-		'post_type'      => 'destination',
-		'nopagin'        => true,
-		'posts_per_page' => '-1',
-		'orderby'        => 'title',
-		'order'          => 'ASC',
+	'options'  => array(
+		'post_type_args' => 'destination',
 	),
 );
 

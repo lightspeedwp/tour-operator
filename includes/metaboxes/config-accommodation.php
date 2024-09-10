@@ -166,7 +166,7 @@ $fast_facts_fields = array(
 	array(
 		'id'       => 'spoken_languages',
 		'name'     => esc_html__( 'Spoken Languages', 'tour-operator' ),
-		'type'     => 'multicheck',
+		'type'     => 'pw_multiselect',
 		'multiple' => true,
 		'options'  => array(
 			'afrikaans'  => esc_html__( 'Afrikaans', 'tour-operator' ),
@@ -191,7 +191,7 @@ $fast_facts_fields = array(
 	array(
 		'id'       => 'suggested_visitor_types',
 		'name'     => esc_html__( 'Friendly', 'tour-operator' ),
-		'type'     => 'multicheck',
+		'type'     => 'pw_multiselect',
 		'multiple' => true,
 		'options'  => array(
 			'business'   => esc_html__( 'Business', 'tour-operator' ),
@@ -209,7 +209,7 @@ $fast_facts_fields = array(
 	array(
 		'id'       => 'special_interests',
 		'name'     => esc_html__( 'Special Interests', 'tour-operator' ),
-		'type'     => 'multicheck',
+		'type'     => 'pw_multiselect',
 		'multiple' => true,
 		'options'  => array(
 			'adventure'              => esc_html__( 'Adventure', 'tour-operator' ),
@@ -342,68 +342,38 @@ $metabox['fields'][] = array(
 );
 
 $metabox['fields'][] = array(
-	'id'   => 'posts_title',
-	'name' => esc_html__( 'Posts', 'tour-operator' ),
-	'type' => 'title',
-);
-
-$metabox['fields'][] = array(
 	'id'         => 'post_to_accommodation',
 	'name'       => esc_html__( 'Posts related with this accommodation', 'tour-operator' ),
-	'type'       => 'post_ajax_search',
+	'type'       => 'pw_multiselect',
 	'use_ajax'   => false,
-	'repeatable' => true,
+	'repeatable' => false,
 	'allow_none' => true,
-	'query'      => array(
-		'post_type'      => 'post',
-		'nopagin'        => true,
-		'posts_per_page' => '-1',
-		'orderby'        => 'title',
-		'order'          => 'ASC',
+	'options'  => array(
+		'post_type_args' => 'post',
 	),
-);
-
-$metabox['fields'][] = array(
-	'id'   => 'destinations_title',
-	'name' => esc_html__( 'Destinations', 'tour-operator' ),
-	'type' => 'title',
 );
 
 $metabox['fields'][] = array(
 	'id'         => 'destination_to_accommodation',
 	'name'       => esc_html__( 'Destinations related with this accommodation', 'tour-operator' ),
-	'type'       => 'post_ajax_search',
+	'type'       => 'pw_multiselect',
 	'use_ajax'   => false,
-	'repeatable' => true,
+	'repeatable' => false,
 	'allow_none' => true,
-	'query'      => array(
-		'post_type'      => 'destination',
-		'nopagin'        => true,
-		'posts_per_page' => '-1',
-		'orderby'        => 'title',
-		'order'          => 'ASC',
+	'options'  => array(
+		'post_type_args' => 'destination',
 	),
-);
-
-$metabox['fields'][] = array(
-	'id'   => 'tours_title',
-	'name' => esc_html__( 'Tours', 'tour-operator' ),
-	'type' => 'title',
 );
 
 $metabox['fields'][] = array(
 	'id'         => 'tour_to_accommodation',
 	'name'       => esc_html__( 'Tours related with this accommodation', 'tour-operator' ),
-	'type'       => 'post_ajax_search',
+	'type'       => 'pw_multiselect',
 	'use_ajax'   => false,
-	'repeatable' => true,
+	'repeatable' => false,
 	'allow_none' => true,
-	'query'      => array(
-		'post_type'      => 'tour',
-		'nopagin'        => true,
-		'posts_per_page' => '-1',
-		'orderby'        => 'title',
-		'order'          => 'ASC',
+	'options'  => array(
+		'post_type_args' => 'tour',
 	),
 );
 
