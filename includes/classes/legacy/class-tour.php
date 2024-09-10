@@ -287,19 +287,14 @@ class Tour {
 			$fields[] = array(
 				'id'         => 'accommodation_to_tour',
 				'name'       => esc_html__( 'Accommodation related with this itinerary', 'tour-operator' ),
-				'type'       => 'post_ajax_search',
+				'type'       => 'pw_select',
 				'use_ajax'   => false,
-				'query'      => array(
-					'post_type'      => 'accommodation',
-					'nopagin'        => true,
-					'posts_per_page' => '-1',
-					'orderby'        => 'title',
-					'order'          => 'ASC',
+				'allow_none' => false,
+				'sortable'   => false,
+				'repeatable' => false,
+				'options'  => array(
+					'post_type_args' => 'accommodation',
 				),
-				'repeatable' => true,
-				'sortable'   => true,
-				'allow_none' => true,
-				'cols'       => 12,
 			);
 		}
 
@@ -307,19 +302,14 @@ class Tour {
 			$fields[] = array(
 				'id'         => 'activity_to_tour',
 				'name'       => esc_html__( 'Activities related with this itinerary', 'tour-operator' ),
-				'type'       => 'post_ajax_search',
+				'type'       => 'pw_select',
 				'use_ajax'   => false,
-				'query'      => array(
-					'post_type'      => 'activity',
-					'nopagin'        => true,
-					'posts_per_page' => '-1',
-					'orderby'        => 'title',
-					'order'          => 'ASC',
+				'allow_none' => false,
+				'sortable'   => false,
+				'repeatable' => false,
+				'options'  => array(
+					'post_type_args' => 'activity',
 				),
-				'repeatable' => true,
-				'sortable'   => true,
-				'allow_none' => true,
-				'cols'       => 12,
 			);
 		}
 
@@ -327,19 +317,14 @@ class Tour {
 			$fields[] = array(
 				'id'         => 'destination_to_tour',
 				'name'       => esc_html__( 'Destinations related with this itinerary', 'tour-operator' ),
-				'type'       => 'post_ajax_search',
+				'type'       => 'pw_select',
 				'use_ajax'   => false,
-				'query'      => array(
-					'post_type'      => 'destination',
-					'nopagin'        => true,
-					'posts_per_page' => '-1',
-					'orderby'        => 'title',
-					'order'          => 'ASC',
+				'allow_none' => false,
+				'sortable'   => false,
+				'repeatable' => false,
+				'options'  => array(
+					'post_type_args' => 'destination',
 				),
-				'repeatable' => true,
-				'sortable'   => true,
-				'allow_none' => true,
-				'cols'       => 12,
 			);
 		}
 

@@ -41,10 +41,17 @@ class PW_CMB2_Field_Select2 {
 			$field_type_object->type = new CMB2_Type_Select( $field_type_object );
 		}
 
+		$options = (array) $field_type_object->field->options();
+		if ( array_key_exists( 'post_type_args', $options ) ) {
+			$options = $this->get_pw_multiselect_options( $field_escaped_value, $field_type_object );
+		} else {
+			$options = '<option></option>' . $field_type_object->concat_items();
+		}
+
 		echo $field_type_object->select( array(
 			'class'            => 'pw_select2 pw_select',
 			'desc'             => $field_type_object->_desc( true ),
-			'options'          => '<option></option>' . $field_type_object->concat_items(),
+			'options'          => $options,
 			'data-placeholder' => $field->args( 'attributes', 'placeholder' ) ? $field->args( 'attributes', 'placeholder' ) : $field->args( 'description' ),
 		) );
 	}

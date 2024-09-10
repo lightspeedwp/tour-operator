@@ -44,34 +44,26 @@ $metabox['fields'][] = array(
 $metabox['fields'][] = array(
 	'id'         => 'departs_from',
 	'name'       => esc_html__( 'Departs From', 'tour-operator' ),
-	'type'       => 'post_ajax_search',
+	'type'       => 'pw_select',
 	'use_ajax'   => false,
-	'allow_none' => true,
-	'sortable'   => true,
-	'repeatable' => true,
-	'query'      => array(
-		'post_type'      => 'destination',
-		'nopagin'        => true,
-		'posts_per_page' => '-1',
-		'orderby'        => 'title',
-		'order'          => 'ASC',
+	'allow_none' => false,
+	'sortable'   => false,
+	'repeatable' => false,
+	'options'  => array(
+		'post_type_args' => 'destination',
 	),
 );
 
 $metabox['fields'][] = array(
 	'id'         => 'ends_in',
 	'name'       => esc_html__( 'Ends In', 'tour-operator' ),
-	'type'       => 'post_ajax_search',
+	'type'       => 'pw_select',
 	'use_ajax'   => false,
-	'allow_none' => true,
-	'sortable'   => true,
-	'repeatable' => true,
-	'query'      => array(
-		'post_type'      => 'destination',
-		'nopagin'        => true,
-		'posts_per_page' => 1000,
-		'orderby'        => 'title',
-		'order'          => 'ASC',
+	'allow_none' => false,
+	'sortable'   => false,
+	'repeatable' => false,
+	'options'  => array(
+		'post_type_args' => 'destination',
 	),
 );
 
@@ -100,15 +92,13 @@ if ( class_exists( 'LSX_TO_Team' ) ) {
 	$metabox['fields'][] = array(
 		'id'         => 'team_to_tour',
 		'name'       => esc_html__( 'Tour Expert', 'tour-operator' ),
-		'type'       => 'post_ajax_search',
+		'type'       => 'pw_select',
 		'use_ajax'   => false,
-		'allow_none' => true,
-		'query'      => array(
-			'post_type'      => 'team',
-			'nopagin'        => true,
-			'posts_per_page' => '-1',
-			'orderby'        => 'title',
-			'order'          => 'ASC',
+		'allow_none' => false,
+		'sortable'   => false,
+		'repeatable' => false,
+		'options'  => array(
+			'post_type_args' => 'team',
 		),
 	);
 }
@@ -300,24 +290,14 @@ $metabox['fields'][] = array(
 );
 
 $metabox['fields'][] = array(
-	'id'   => 'posts_title',
-	'name' => esc_html__( 'Posts', 'tour-operator' ),
-	'type' => 'title',
-);
-
-$metabox['fields'][] = array(
 	'id'         => 'post_to_tour',
 	'name'       => esc_html__( 'Posts related with this tour', 'tour-operator' ),
-	'type'       => 'post_ajax_search',
+	'type'       => 'pw_multiselect',
 	'use_ajax'   => false,
-	'repeatable' => true,
-	'allow_none' => true,
-	'query'      => array(
-		'post_type'      => 'post',
-		'nopagin'        => true,
-		'posts_per_page' => '-1',
-		'orderby'        => 'title',
-		'order'          => 'ASC',
+	'repeatable' => false,
+	'allow_none' => false,
+	'options'  => array(
+		'post_type_args' => 'post',
 	),
 );
 

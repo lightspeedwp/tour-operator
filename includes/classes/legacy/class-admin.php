@@ -27,6 +27,27 @@ class Admin extends Tour_Operator {
 	public $videos = '';
 
 	/**
+	 * Holds the post_type connection keys
+	 *
+	 * @var array
+	 */
+    public $connections;
+
+	/**
+	 * Holds the array of fields needed for the indexing and search
+	 *
+	 * @var array
+	 */
+    public $single_fields;
+
+	/**
+	 * Holds the array of taxonomies.
+	 *
+	 * @var array
+	 */
+    public $taxonomies;
+
+	/**
 	 * Initialize the plugin by setting localization, filters, and
 	 * administration functions.
 	 *

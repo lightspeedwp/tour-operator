@@ -172,8 +172,8 @@ class Setup {
 				/**
 				 * Fixes for the extensions
 				 */
-				if ( 'post_select' === $field['type'] ) {
-					$field['type'] = 'post_ajax_search';
+				if ( 'post_select' === $field['type'] || 'post_ajax_search' === $field['type'] ) {
+					$field['type'] = 'pw_multiselect';
 				}
 
 				$cmb->add_field( $field );

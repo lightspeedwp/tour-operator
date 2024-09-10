@@ -219,7 +219,7 @@ if ( ! isset( tour_operator()->options['display']['maps_disable'] ) && empty( to
 	$metabox['fields'][] = array(
 		'id'             => 'location',
 		'name'           => esc_html__( 'Address', 'tour-operator' ),
-		'type'           => 'gmap',
+		'type'           => 'pw_map',
 		'api_key' => $google_api_key,
 	);
 	$metabox['fields'][] = array(
