@@ -105,3 +105,5 @@ function lsx_wetu_render_block( $block_content, $parsed_block, $block_obj ) {
 
 	return $block_content;
 }
+
+die('hello');
