@@ -283,7 +283,7 @@ function lsx_to_has_custom_field_query( $meta_key = false, $id = false, $is_tax 
  * @subpackage	template-tags
  * @category 	helper
  */
-function lsx_to_custom_field_query( $meta_key = false, $before = '', $after = '', $echo = false, $post_id = false ) {
+function lsx_to_custom_field_query( $meta_key = false, $before = '', $after = '', $echo = false, $post_id = false, $single = true ) {
 	if ( false !== $meta_key ) {
 		//Check to see if we already have a transient set for this.
 		// TODO Need to move this to enclose the entire function and change to a !==,  that way you have to set up the custom field via the lsx_to_has_{custom_field} function
@@ -297,7 +297,11 @@ function lsx_to_custom_field_query( $meta_key = false, $before = '', $after = ''
 		}
 
 		if ( false === $value || '' === $value ) {
-			$value = get_post_meta( $post_id, $meta_key, true );
+			$value = get_post_meta( $post_id, $meta_key, $single );
+
+			if ( is_array( $value ) ) {
+				$value = implode( ',', $value );
+			}
 		}
 
 		if ( false !== $value && '' !== $value ) {

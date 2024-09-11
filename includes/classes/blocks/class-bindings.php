@@ -50,7 +50,15 @@ class Bindings {
 			'lsx/post-connection',
 			array(
 				'label' => __( 'Post Connection', 'lsx-wetu-importer' ),
-				'get_value_callback' => array( $this, 'lsx_wetu_bindings_callback' )
+				'get_value_callback' => array( $this, 'post_connections_callback' )
+			)
+		);
+
+		register_block_bindings_source(
+			'lsx/post-meta',
+			array(
+				'label' => __( 'Post Meta', 'lsx-wetu-importer' ),
+				'get_value_callback' => array( $this, 'post_meta_callback' )
 			)
 		);
 	
@@ -63,7 +71,7 @@ class Bindings {
 		);*/
 	}
 
-	public function lsx_wetu_bindings_callback( $source_args, $block_instance ) {
+	public function post_connections_callback( $source_args, $block_instance ) {
 		if ( 'core/image' === $block_instance->parsed_block['blockName'] ) {
 			return 'test_image';
 		} elseif ( 'core/paragraph' === $block_instance->parsed_block['blockName'] ) {
@@ -109,6 +117,20 @@ class Bindings {
 			}
 			return $value;
 		}
+	}
+
+	public function post_meta_callback( $source_args, $block_instance ) {
+		if ( 'core/image' === $block_instance->parsed_block['blockName'] ) {
+			return 'test_image';
+		} elseif ( 'core/paragraph' === $block_instance->parsed_block['blockName'] ) {
+	
+			$single = true;
+			if ( 'best_time_to_visit' === $source_args['key'] ) {
+				$single = false;
+			}
+			$value = lsx_to_custom_field_query( $source_args['key'], '', '', false, get_the_ID(), $single );
+		}
+		return $value;
 	}
 
 	public function lsx_wetu_bindings_itinerary_callback( $source_args, $block_instance ) {
