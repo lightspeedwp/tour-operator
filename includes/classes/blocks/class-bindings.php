@@ -25,6 +25,7 @@ class Bindings {
 	 */
 	public function __construct() {
 		add_action( 'init', array( $this, 'register_block_bindings' ) );
+		add_filter( 'render_block', array( $this, 'lsx_wetu_render_block' ), 10, 3 );
 	}
 
 	/**
@@ -62,13 +63,21 @@ class Bindings {
 			)
 		);
 	
-		/*register_block_bindings_source(
+		register_block_bindings_source(
 			'lsx/tour-itinerary',
 			array(
 				'label' => __( 'Tour Itinerary', 'lsx-wetu-importer' ),
-				'get_value_callback' => array( $this, 'lsx_wetu_bindings_itinerary_callback' )
+				'get_value_callback' => array( $this, 'itinerary_callback' )
 			)
-		);*/
+		);
+
+		register_block_bindings_source(
+			'lsx/itinerary-field',
+			array(
+				'label' => __( 'Itinerary Field', 'lsx-wetu-importer' ),
+				'get_value_callback' => array( $this, 'itinerary_field_callback' )
+			)
+		);
 	}
 
 	public function post_connections_callback( $source_args, $block_instance ) {
@@ -133,24 +142,32 @@ class Bindings {
 		return $value;
 	}
 
-	public function lsx_wetu_bindings_itinerary_callback( $source_args, $block_instance ) {
+	public function itinerary_callback( $source_args, $block_instance ) {
 		if ( 'core/paragraph' === $block_instance->parsed_block['blockName'] ) {
-			
+			return 'bindings';
 		}
 	}
 
-	//add_filter( 'render_block', 'lsx_wetu_render_block', 10, 3 );
+	public function itinerary_field_callback( $source_args, $block_instance ) {
+		if ( 'core/image' === $block_instance->parsed_block['blockName'] ) {
+			$value = 'test_image';
+		} elseif ( 'core/paragraph' === $block_instance->parsed_block['blockName'] || 'core/heading' === $block_instance->parsed_block['blockName'] ) {
+			$value = 'itin_field';
+		}
+		return $value;
+	}
+
+	//
 	function lsx_wetu_render_block( $block_content, $parsed_block, $block_obj ) {
 		// Determine if this is the custom block variation.
 		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
 			return $block_content;
 		}
 		$allowed_blocks = array(
-			'core/paragraph'
+			'core/group'
 		);
 		$allowed_sources = array(
-			'core/post-meta',
-			'lsx/post-connection'
+			'lsx/tour-itinerary'
 		);
 		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
 			return $block_content; 
@@ -163,6 +180,25 @@ class Bindings {
 		if ( ! in_array( $parsed_block['attrs']['metadata']['bindings']['content']['source'], $allowed_sources ) ) {
 			return $block_content;
 		}
+
+
+		// Create our tag manager object so we can inject the itinerary content.
+		/*$tags = new \WP_HTML_Tag_Processor( $block_content );
+		if ( $tags->next_tag( array( 'class_name' => 'itinerary-title' ) ) ) {
+
+
+			print_r('<pre>');
+			print_r($tags);
+			print_r('</pre>');
+		}*/
+		//die();
+
+		// Regular expression to match any heading tag (h1-h6) with class "itinerary-title"
+		$pattern = '/(<h[1-6]\s+[^>]*\bclass="[^"]*\bitinerary-title\b[^"]*"[^>]*>).*?(<\/h[1-6]>)/is';
+		// Replacement pattern to insert "test" as the new innerHTML
+		$replacement = '$1test$2';
+		// Perform the replacement
+		$block_content = preg_replace($pattern, $replacement, $block_content);
 
 		return $block_content;
 	}
