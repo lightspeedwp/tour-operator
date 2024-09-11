@@ -465,12 +465,12 @@ class LSX_TO_Schema_Graph_Piece implements WPSEO_Graph_Piece {
 			if ( isset( $value['address'] ) && '' !== $value['address'] ) {
 				$data['address'] = $value['address'];
 			}
-			if ( isset( $value['lat'] ) && isset( $value['long'] ) ) {
+			if ( isset( $value['latitude'] ) && isset( $value['longitude'] ) ) {
 
 				$data[ $data_key ] = array(
 					'@type'     => 'GeoCoordinates',
-					'latitude'  => $value['lat'],
-					'longitude' => $value['long'],
+					'latitude'  => $value['latitude'],
+					'longitude' => $value['longitude'],
 				);
 			}
 		}

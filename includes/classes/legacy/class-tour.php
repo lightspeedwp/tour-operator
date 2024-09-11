@@ -44,15 +44,6 @@ class Tour {
 	public $search_fields = false;
 
 	/**
-	 * Holds the $page_links array while its being built on the single
-	 * accommodation page.
-	 *
-	 * @since 0.0.1
-	 * @var      array
-	 */
-	public $page_links = false;
-
-	/**
 	 * Holds the meal plan options
 	 *
 	 * @var array
@@ -115,13 +106,7 @@ class Tour {
 		// activate property post type.
 		add_action( 'init', array( $this, 'set_vars' ) );
 
-		add_filter( 'lsx_to_entry_class', array( $this, 'entry_class' ) );
-
-		add_filter( 'lsx_to_search_fields', array( $this, 'single_fields_indexing' ) );
-
 		include( 'class-itinerary-query.php' );
-
-		add_action( 'lsx_to_framework_tour_tab_general_settings_bottom', array( $this, 'general_settings' ), 10, 1 );
 
 		add_filter( 'lsx_to_itinerary_class', array( $this, 'itinerary_class' ) );
 		add_filter( 'lsx_to_itinerary_needs_read_more', array( $this, 'itinerary_needs_read_more' ) );
@@ -133,8 +118,6 @@ class Tour {
 		add_filter( 'lsx_to_custom_field_query', array( $this, 'rating' ), 10, 5 );
 
 		add_action( 'lsx_to_modal_meta', array( $this, 'content_meta' ) );
-
-		add_filter( 'lsx_to_page_navigation', array( $this, 'page_links' ) );
 	}
 
 	/**
@@ -164,81 +147,6 @@ class Tour {
 	}
 
 	/**
-	 * Adds the tour specific options
-	 */
-	public function general_settings() {
-		?>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="shorten_itinerary"><?php esc_html_e( 'Compress Itineraries', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="checkbox" {{#if shorten_itinerary}}
-					   checked="checked" {{/if}} name="shorten_itinerary" />
-				<small><?php esc_html_e( 'If you have many Itinerary entries on your tours, then you may want to shorten the length of the page with a "read more" button.', 'tour-operator' ); ?></small>
-			</td>
-		</tr>
-		<tr class="form-field">
-			<th scope="row">
-				<label for="itinerary_use_destination_images"><?php esc_html_e( 'Itinerary Destination Images', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<input type="checkbox" {{#if itinerary_use_destination_images}}
-					   checked="checked" {{/if}} name="itinerary_use_destination_images" />
-				<small><?php esc_html_e( 'Switch the itinerary images to the attached region instead of accommodation.', 'tour-operator' ); ?></small>
-			</td>
-		</tr>
-		<tr class="form-field-wrap">
-			<th scope="row">
-				<label for="expiration_status"> <?php esc_html_e( 'Expiration Status', 'tour-operator' ); ?></label>
-			</th>
-			<td>
-				<select value="{{expiration_status}}" name="expiration_status">
-					<option value="draft" {{#is expiration_status value=""}}selected="selected"{{/is}} {{#is expiration_status value="draft"}} selected="selected"{{/is}}><?php esc_html_e( 'Draft', 'tour-operator' ); ?></option>
-					<option value="delete" {{#is expiration_status value="delete"}} selected="selected"{{/is}}><?php esc_html_e( 'Delete', 'tour-operator' ); ?></option>
-					<option value="private" {{#is expiration_status value="private"}} selected="selected"{{/is}}><?php esc_html_e( 'Private', 'tour-operator' ); ?></option>
-				</select>
-			</td>
-		</tr>
-
-		<?php
-	}
-
-	/**
-	 * Sets up the "post relations"
-	 *
-	 * @since 1.0.0
-	 * @return    object    A single instance of this class.
-	 */
-	public function single_fields_indexing( $search_fields ) {
-		$search_fields['itinerary'] = array(
-			'destination_to_tour',
-			'activity_to_tour',
-			'accommodation_to_tour',
-		);
-
-		return $search_fields;
-
-	}
-
-	/**
-	 * A filter to set the content area to a small column on single
-	 */
-	public function entry_class( $classes ) {
-		global $lsx_to_archive;
-
-		if ( 1 !== $lsx_to_archive ) {
-			$lsx_to_archive = false;
-		}
-
-		if ( is_main_query() && is_singular( $this->slug ) && false === $lsx_to_archive ) {
-			$classes[] = 'col-xs-12 col-sm-12 col-md-7';
-		}
-
-		return $classes;
-	}
-
-	/**
 	 * returns the itinerary metabox fields
 	 */
 	public function itinerary_fields() {
@@ -250,13 +158,11 @@ class Tour {
 			'type' => 'text',
 		);
 
-		if ( ! class_exists( 'LSX_Banners' ) ) {
-			$fields[] = array(
-				'id'   => 'tagline',
-				'name' => esc_html__( 'Tagline', 'tour-operator' ),
-				'type' => 'text',
-			);
-		}
+		$fields[] = array(
+			'id'   => 'tagline',
+			'name' => esc_html__( 'Tagline', 'tour-operator' ),
+			'type' => 'text',
+		);
 
 		$fields[] = array(
 			'id'      => 'description',
@@ -270,8 +176,15 @@ class Tour {
 		$fields[] = array(
 			'id'        => 'featured_image',
 			'name'      => esc_html__( 'Featured Image', 'tour-operator' ),
-			'type'      => 'image',
+			'type'      => 'file',
 			'show_size' => false,
+			'query_args' => array(
+				'type' => array(
+					'image/gif',
+					'image/jpeg',
+					'image/png',
+			   ),
+		   ), 
 		);
 
 		$fields = apply_filters( 'lsx_to_tours_itinerary_fields', $fields );
@@ -280,19 +193,14 @@ class Tour {
 			$fields[] = array(
 				'id'         => 'accommodation_to_tour',
 				'name'       => esc_html__( 'Accommodation related with this itinerary', 'tour-operator' ),
-				'type'       => 'post_select',
+				'type'       => 'pw_select',
 				'use_ajax'   => false,
-				'query'      => array(
-					'post_type'      => 'accommodation',
-					'nopagin'        => true,
-					'posts_per_page' => '-1',
-					'orderby'        => 'title',
-					'order'          => 'ASC',
+				'allow_none' => false,
+				'sortable'   => false,
+				'repeatable' => false,
+				'options'  => array(
+					'post_type_args' => 'accommodation',
 				),
-				'repeatable' => true,
-				'sortable'   => true,
-				'allow_none' => true,
-				'cols'       => 12,
 			);
 		}
 
@@ -300,19 +208,14 @@ class Tour {
 			$fields[] = array(
 				'id'         => 'activity_to_tour',
 				'name'       => esc_html__( 'Activities related with this itinerary', 'tour-operator' ),
-				'type'       => 'post_select',
+				'type'       => 'pw_select',
 				'use_ajax'   => false,
-				'query'      => array(
-					'post_type'      => 'activity',
-					'nopagin'        => true,
-					'posts_per_page' => '-1',
-					'orderby'        => 'title',
-					'order'          => 'ASC',
+				'allow_none' => false,
+				'sortable'   => false,
+				'repeatable' => false,
+				'options'  => array(
+					'post_type_args' => 'activity',
 				),
-				'repeatable' => true,
-				'sortable'   => true,
-				'allow_none' => true,
-				'cols'       => 12,
 			);
 		}
 
@@ -320,19 +223,14 @@ class Tour {
 			$fields[] = array(
 				'id'         => 'destination_to_tour',
 				'name'       => esc_html__( 'Destinations related with this itinerary', 'tour-operator' ),
-				'type'       => 'post_select',
+				'type'       => 'pw_select',
 				'use_ajax'   => false,
-				'query'      => array(
-					'post_type'      => 'destination',
-					'nopagin'        => true,
-					'posts_per_page' => '-1',
-					'orderby'        => 'title',
-					'order'          => 'ASC',
+				'allow_none' => false,
+				'sortable'   => false,
+				'repeatable' => false,
+				'options'  => array(
+					'post_type_args' => 'destination',
 				),
-				'repeatable' => true,
-				'sortable'   => true,
-				'allow_none' => true,
-				'cols'       => 12,
 			);
 		}
 
@@ -427,7 +325,7 @@ class Tour {
 	 */
 	public function rating( $html = '', $meta_key = false, $value = false, $before = '', $after = '' ) {
 		if ( get_post_type() === 'tour' && 'rating' === $meta_key ) {
-			$ratings_array = false;
+			$ratings_array = array();
 			$counter       = 5;
 
 			while ( $counter > 0 ) {
@@ -476,227 +374,4 @@ class Tour {
 		<?php 
         }
 	}
-
-	/**
-	 * Adds our navigation links to the accommodation single post
-	 *
-	 * @param $page_links array
-	 *
-	 * @return $page_links array
-	 */
-	public function page_links( $page_links ) {
-		if ( is_singular( 'tour' ) ) {
-			$this->page_links = $page_links;
-
-			$this->get_map_link();
-			$this->get_when_to_go();
-			$this->get_itinerary_link();
-			$this->get_include_link();
-			$this->get_gallery_link();
-			$this->get_videos_link();
-
-			$this->get_related_specials_link();
-			$this->get_related_reviews_link();
-			$this->get_related_tours_link();
-			$this->get_related_posts_link();
-
-			$page_links = $this->page_links;
-		}
-
-		return $page_links;
-	}
-
-	/**
-	 * Tests for the When To Go links and adds it to the $page_links variable
-	 */
-	public function get_when_to_go() {
-		$best_time_to_visit = get_post_meta( get_the_ID(), 'best_time_to_visit', true );
-
-		if ( ! empty( $best_time_to_visit ) && is_array( $best_time_to_visit ) ) {
-			$this->page_links['when-to-go'] = esc_html__( 'When to Go', 'tour-operator' );
-		}
-	}
-
-	/**
-	 * Tests for the Itinerary links and adds it to the $page_links variable
-	 */
-	public function get_itinerary_link() {
-		if ( lsx_to_has_itinerary() ) {
-			$this->page_links['itinerary'] = esc_html__( 'Itinerary', 'tour-operator' );
-		}
-	}
-
-	/**
-	 * Tests for the Included / Not Included Block $page_links variable
-	 */
-	public function get_include_link() {
-		$tour_included     = lsx_to_included( '', '', false );
-		$tour_not_included = lsx_to_not_included( '', '', false );
-
-		if ( null !== $tour_included || null !== $tour_not_included ) {
-			$this->page_links['included-excluded'] = esc_html__( 'Included / Excluded', 'tour-operator' );
-		}
-	}
-
-	/**
-	 * Tests for the Google Map and returns a link for the section
-	 */
-	public function get_map_link() {
-		if ( function_exists( 'lsx_to_has_map' ) && lsx_to_has_map() ) {
-			$this->page_links['tour-map'] = esc_html__( 'Map', 'tour-operator' );
-		}
-	}
-
-	/**
-	 * Tests for the Gallery and returns a link for the section
-	 */
-	public function get_gallery_link() {
-		$gallery_ids = get_post_meta( get_the_ID(), 'gallery', false );
-		$envira_gallery = get_post_meta( get_the_ID(), 'envira_gallery', true );
-
-		if ( ( ! empty( $gallery_ids ) && is_array( $gallery_ids ) ) || ( function_exists( 'envira_gallery' ) && ! empty( $envira_gallery ) && false === lsx_to_enable_envira_banner() ) ) {
-			if ( function_exists( 'envira_gallery' ) && ! empty( $envira_gallery ) && false === lsx_to_enable_envira_banner() ) {
-				// Envira Gallery
-				$this->page_links['gallery'] = esc_html__( 'Gallery', 'tour-operator' );
-				return;
-			} else {
-				if ( function_exists( 'envira_dynamic' ) ) {
-					// Envira Gallery - Dynamic
-					$this->page_links['gallery'] = esc_html__( 'Gallery', 'tour-operator' );
-					return;
-				} else {
-					// WordPress Gallery
-					$this->page_links['gallery'] = esc_html__( 'Gallery', 'tour-operator' );
-					return;
-				}
-			}
-		}
-	}
-
-	/**
-	 * Tests for the Videos and returns a link for the section
-	 */
-	public function get_videos_link() {
-		$videos_id = false;
-
-		if ( class_exists( 'Envira_Videos' ) ) {
-			$videos_id = get_post_meta( get_the_ID(), 'envira_video', true );
-		}
-
-		if ( empty( $videos_id ) && function_exists( 'lsx_to_videos' ) ) {
-			$videos_id = get_post_meta( get_the_ID(), 'videos', true );
-		}
-
-		if ( ! empty( $videos_id ) ) {
-			$this->page_links['videos'] = esc_html__( 'Videos', 'tour-operator' );
-		}
-	}
-
-	/**
-	 * Tests for the Related Reviews and returns a link for the section
-	 */
-	public function get_related_specials_link() {
-		$connected_specials = get_post_meta( get_the_ID(), 'special_to_tour', false );
-
-		if ( post_type_exists( 'special' ) && is_array( $connected_specials ) && ! empty( $connected_specials ) ) {
-			$connected_specials = new \WP_Query( array(
-				'post_type' => 'special',
-				'post__in' => $connected_specials,
-				'post_status' => 'publish',
-				'nopagin' => true,
-				'posts_per_page' => '-1',
-				'fields' => 'ids',
-			) );
-
-			if ( is_array( $connected_specials ) && ! empty( $connected_specials ) ) {
-				$this->page_links['special'] = esc_html__( 'Specials', 'tour-operator' );
-			}
-		}
-	}
-
-	/**
-	 * Tests for the Related Reviews and returns a link for the section
-	 */
-	public function get_related_reviews_link() {
-		$connected_reviews = get_post_meta( get_the_ID(), 'review_to_tour', false );
-
-		if ( post_type_exists( 'review' ) && is_array( $connected_reviews ) && ! empty( $connected_reviews ) ) {
-			$connected_reviews = new \WP_Query( array(
-				'post_type' => 'review',
-				'post__in' => $connected_reviews,
-				'post_status' => 'publish',
-				'nopagin' => true,
-				'posts_per_page' => '-1',
-				'fields' => 'ids',
-			) );
-
-			$connected_reviews = $connected_reviews->posts;
-
-			if ( is_array( $connected_reviews ) && ! empty( $connected_reviews ) ) {
-				$this->page_links['review'] = esc_html__( 'Reviews', 'tour-operator' );
-			}
-		}
-	}
-
-	/**
-	 * Tests for the Related Posts and returns a link for the section
-	 */
-	public function get_related_posts_link() {
-		$connected_posts = get_post_meta( get_the_ID(), 'post_to_tour', false );
-
-		if ( is_array( $connected_posts ) && ! empty( $connected_posts ) ) {
-			$connected_posts = new \WP_Query( array(
-				'post_type' => 'post',
-				'post__in' => $connected_posts,
-				'post_status' => 'publish',
-				'nopagin' => true,
-				'posts_per_page' => '-1',
-				'fields' => 'ids',
-			) );
-
-			$connected_posts = $connected_posts->posts;
-
-			if ( is_array( $connected_posts ) && ! empty( $connected_posts ) ) {
-				$this->page_links['posts'] = esc_html__( 'Posts', 'tour-operator' );
-			}
-		}
-	}
-
-	/**
-	 * Tests for the Related Tours and returns a link for the section
-	 */
-	public function get_related_tours_link() {
-		$taxonomy = 'travel-style';
-		$post_type = 'tour';
-
-		$filters = array();
-
-		$filters['post_type'] = $post_type;
-		$filters['posts_per_page'] = 15;
-		$filters['post__not_in'] = array( get_the_ID() );
-		$filters['orderby'] = 'rand';
-
-		$terms = wp_get_object_terms( get_the_ID(), $taxonomy );
-
-		if ( is_array( $terms ) && ! empty( $terms ) ) {
-			$filters['tax_query'] = array(
-				array(
-					'taxonomy' => $taxonomy,
-					'field'    => 'slug',
-					'terms'    => array(),
-				),
-			);
-
-			foreach ( $terms as $term ) {
-				$filters['tax_query'][0]['terms'][] = $term->slug;
-			}
-		}
-
-		$related_query = new \WP_Query( $filters );
-
-		if ( $related_query->have_posts() ) {
-			$this->page_links['related-items'] = esc_html__( 'Tours', 'tour-operator' );
-		}
-	}
-
 }
