@@ -179,15 +179,11 @@ if ( class_exists( 'Envira_Gallery' ) ) {
 	$metabox['fields'][] = array(
 		'id'         => 'envira_gallery',
 		'name'       => esc_html__( 'Envira Gallery', 'tour-operator' ),
-		'type'       => 'post_ajax_search',
+		'type'       => 'pw_multiselect',
 		'use_ajax'   => false,
 		'allow_none' => true,
-		'query'      => array(
-			'post_type'      => 'envira',
-			'nopagin'        => true,
-			'posts_per_page' => '-1',
-			'orderby'        => 'title',
-			'order'          => 'ASC',
+		'options'  => array(
+			'post_type_args' => 'envira',
 		),
 	);
 
@@ -195,15 +191,11 @@ if ( class_exists( 'Envira_Gallery' ) ) {
 		$metabox['fields'][] = array(
 			'id'         => 'envira_video',
 			'name'       => esc_html__( 'Envira Video Gallery', 'tour-operator' ),
-			'type'       => 'post_ajax_search',
+			'type'       => 'pw_multiselect',
 			'use_ajax'   => false,
 			'allow_none' => true,
-			'query'      => array(
-				'post_type'      => 'envira',
-				'nopagin'        => true,
-				'posts_per_page' => '-1',
-				'orderby'        => 'title',
-				'order'          => 'ASC',
+			'options'  => array(
+				'post_type_args' => 'envira',
 			),
 		);
 	}
@@ -221,14 +213,14 @@ if ( ! isset( tour_operator()->options['display']['maps_disable'] ) && empty( to
 		'type' => 'checkbox',
 	);
 	$google_api_key = '';
-	if ( isset( tour_operator()->options['api']['googlemaps_key'] ) && ! empty( tour_operator()->options['api']['googlemaps_key'] ) ) {
-		$google_api_key = tour_operator()->options['api']['googlemaps_key'];
+	if ( isset( tour_operator()->options['googlemaps_key'] ) && ! empty( tour_operator()->options['googlemaps_key'] ) ) {
+		$google_api_key = tour_operator()->options['googlemaps_key'];
 	}
 	$metabox['fields'][] = array(
 		'id'             => 'location',
 		'name'           => esc_html__( 'Address', 'tour-operator' ),
-		'type'           => 'gmap',
-		'google_api_key' => $google_api_key,
+		'type'           => 'pw_map',
+		'api_key' => $google_api_key,
 	);
 	$metabox['fields'][] = array(
 		'id'         => 'map_placeholder',
@@ -247,68 +239,38 @@ if ( ! isset( tour_operator()->options['display']['maps_disable'] ) && empty( to
 }
 
 $metabox['fields'][] = array(
-	'id'   => 'posts_title',
-	'name' => esc_html__( 'Posts', 'tour-operator' ),
-	'type' => 'title',
-);
-
-$metabox['fields'][] = array(
 	'id'         => 'post_to_destination',
 	'name'       => esc_html__( 'Posts related with this destination', 'tour-operator' ),
-	'type'       => 'post_ajax_search',
+	'type'       => 'pw_multiselect',
 	'use_ajax'   => false,
-	'repeatable' => true,
+	'repeatable' => false,
 	'allow_none' => true,
-	'query'      => array(
-		'post_type'      => 'post',
-		'nopagin'        => true,
-		'posts_per_page' => '-1',
-		'orderby'        => 'title',
-		'order'          => 'ASC',
+	'options'  => array(
+		'post_type_args' => 'post',
 	),
-);
-
-$metabox['fields'][] = array(
-	'id'   => 'accommodation_title',
-	'name' => esc_html__( 'Accommodation', 'tour-operator' ),
-	'type' => 'title',
 );
 
 $metabox['fields'][] = array(
 	'id'         => 'accommodation_to_destination',
 	'name'       => esc_html__( 'Accommodation related with this destination', 'tour-operator' ),
-	'type'       => 'post_ajax_search',
+	'type'       => 'pw_multiselect',
 	'use_ajax'   => false,
-	'repeatable' => true,
+	'repeatable' => false,
 	'allow_none' => true,
-	'query'      => array(
-		'post_type'      => 'accommodation',
-		'nopagin'        => true,
-		'posts_per_page' => '-1',
-		'orderby'        => 'title',
-		'order'          => 'ASC',
+	'options'  => array(
+		'post_type_args' => 'accommodation',
 	),
-);
-
-$metabox['fields'][] = array(
-	'id'   => 'tours_title',
-	'name' => esc_html__( 'Tours', 'tour-operator' ),
-	'type' => 'title',
 );
 
 $metabox['fields'][] = array(
 	'id'         => 'tour_to_destination',
 	'name'       => esc_html__( 'Tours related with this destination', 'tour-operator' ),
-	'type'       => 'post_ajax_search',
+	'type'       => 'pw_multiselect',
 	'use_ajax'   => false,
-	'repeatable' => true,
+	'repeatable' => false,
 	'allow_none' => true,
-	'query'      => array(
-		'post_type'      => 'tour',
-		'nopagin'        => true,
-		'posts_per_page' => '-1',
-		'orderby'        => 'title',
-		'order'          => 'ASC',
+	'options'  => array(
+		'post_type_args' => 'tour',
 	),
 );
 

@@ -124,11 +124,6 @@ class Frontend extends Tour_Operator {
 		if ( ( is_post_type_archive( $this->active_post_types ) ) || ( is_tax( array_keys( $this->taxonomies ) ) ) ) {
 			add_filter( 'use_default_gallery_style', '__return_false' );
 
-			if ( ! class_exists( 'LSX_Banners' ) ) {
-				remove_action( 'lsx_content_wrap_before', 'lsx_global_header' );
-				add_action( 'lsx_content_wrap_before', 'lsx_to_global_header', 100 );
-			}
-
 			add_action( 'lsx_content_wrap_before', 'lsx_to_archive_description', 100 );
 			add_filter( 'lsx_to_archive_description', array( $this, 'get_post_type_archive_description' ), 1, 3 );
 
@@ -136,15 +131,6 @@ class Frontend extends Tour_Operator {
 
 			// LSX default pagination
 			add_action( 'lsx_content_bottom', array( 'lsx\legacy\Frontend', 'lsx_default_pagination' ) );
-		}
-
-		if ( is_singular( $this->active_post_types ) ) {
-			add_filter( 'use_default_gallery_style', '__return_false' );
-
-			if ( ! class_exists( 'LSX_Banners' ) ) {
-				remove_action( 'lsx_content_wrap_before', 'lsx_global_header' );
-				add_action( 'lsx_content_wrap_before', 'lsx_to_global_header', 100 );
-			}
 		}
 	}
 

@@ -6,6 +6,7 @@ use lsx\admin\Admin;
 use lsx\admin\Pages;
 use lsx\admin\Settings;
 use lsx\admin\Setup;
+use lsx\blocks\Bindings;
 
 /**
  * LSX Tour Operator Main Class
@@ -225,5 +226,6 @@ class Tour_Operator {
 		$this->admin      = Admin::init();
 		$this->settings   = Settings::init();
 		$this->setup      = Setup::init();
+		$this->bindings   = Bindings::init();
 	}
 }
