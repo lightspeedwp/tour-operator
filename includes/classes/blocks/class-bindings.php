@@ -202,6 +202,11 @@ class Bindings {
 				$build   = $pattern;
 				$build   = $this->build_itinerary_field( $build, 'title' );
 				$build   = $this->build_itinerary_field( $build, 'description' );
+				$build   = $this->build_itinerary_field( $build, 'location' );
+				$build   = $this->build_itinerary_field( $build, 'accommodation' );
+				$build   = $this->build_itinerary_field( $build, 'type' );
+				$build   = $this->build_itinerary_field( $build, 'drinks' );
+				$build   = $this->build_itinerary_field( $build, 'room' );
 				$group[] = $build;
 
 				$itinerary_count++;
@@ -233,17 +238,54 @@ class Bindings {
 			break;
 
 			case 'description':
-
 				// Maintain any formatting set of the parent tag.
 				$classes = $this->find_description_classes( $build );
-
 				if ( '' !== $classes ) {
-					// Regular expression to match any paragraph with class "itinerary-description"
+					// Regular expression to replace any paragraph with class "itinerary-description"
 					$pattern     = '/<p\s+[^>]*\bclass="[^"]*\bitinerary-description\b[^"]*"[^>]*>.*?<\/p>/is';
 					// Replacement pattern to insert "test" as the new innerHTML
 					$replacement = '$1<div class="' . $classes . '"/>' . lsx_to_itinerary_description( false ) . '</div>$2';
 				}
-				
+			break;
+
+			case 'location':
+				// Regular expression to match any paragraph tag with class "itinerary-location"
+				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-location\b[^"]*"[^>]*>).*?(<\/p>)/is';
+    
+				// Replacement pattern to insert "test" as the new innerHTML
+				$replacement = '$1' . lsx_to_itinerary_destinations( '', '', false ) . '$2';
+			break;
+
+			case 'accommodation':
+				// Regular expression to match any paragraph tag with class "itinerary-accommodation"
+				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-accommodation\b[^"]*"[^>]*>).*?(<\/p>)/is';
+    
+				// Replacement pattern to insert "test" as the new innerHTML
+				$replacement = '$1' . lsx_to_itinerary_accommodation( '', '', false ) . '$2';
+			break;
+
+			case 'type':
+				// Regular expression to match any paragraph tag with class "itinerary-accommodation"
+				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-type\b[^"]*"[^>]*>).*?(<\/p>)/is';
+    
+				// Replacement pattern to insert "test" as the new innerHTML
+				$replacement = '$1' . lsx_to_itinerary_accommodation_type( '', '', false ) . '$2';
+			break;
+
+			case 'drinks':
+				// Regular expression to match any paragraph tag with class "itinerary-accommodation"
+				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-drinks\b[^"]*"[^>]*>).*?(<\/p>)/is';
+    
+				// Replacement pattern to insert "test" as the new innerHTML
+				$replacement = '$1' . lsx_to_itinerary_drinks_basis( '', '', false ) . '$2';
+			break;
+
+			case 'room':
+				// Regular expression to match any paragraph tag with class "itinerary-accommodation"
+				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-room\b[^"]*"[^>]*>).*?(<\/p>)/is';
+    
+				// Replacement pattern to insert "test" as the new innerHTML
+				$replacement = '$1' . lsx_to_itinerary_room_basis( '', '', false ) . '$2';
 			break;
 
 			default:
