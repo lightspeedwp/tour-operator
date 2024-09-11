@@ -157,7 +157,7 @@ class Bindings {
 		return $value;
 	}
 
-	//
+
 	function lsx_wetu_render_block( $block_content, $parsed_block, $block_obj ) {
 		// Determine if this is the custom block variation.
 		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
@@ -181,35 +181,116 @@ class Bindings {
 			return $block_content;
 		}
 
-
 		// Create our tag manager object so we can inject the itinerary content.
 		/*$tags = new \WP_HTML_Tag_Processor( $block_content );
 		if ( $tags->next_tag( array( 'class_name' => 'itinerary-title' ) ) ) {
-
-
 			print_r('<pre>');
 			print_r($tags);
 			print_r('</pre>');
 		}*/
 		//die();
 
-		// Regular expression to match any heading tag (h1-h6) with class "itinerary-title"
-		$pattern = '/(<h[1-6]\s+[^>]*\bclass="[^"]*\bitinerary-title\b[^"]*"[^>]*>).*?(<\/h[1-6]>)/is';
-		// Replacement pattern to insert "test" as the new innerHTML
-		$replacement = '$1test$2';
-		// Perform the replacement
-		$block_content = preg_replace($pattern, $replacement, $block_content);
+		$pattern = $block_content;
+		$group   = array();
 
+		// Iterate through and build our itinerary from the block content template.
+		if ( lsx_to_has_itinerary() ) {
+			$itinerary_count = 1;
+			while ( lsx_to_itinerary_loop() ) {
+				lsx_to_itinerary_loop_item();
+
+				$build   = $pattern;
+				$build   = $this->build_itinerary_field( $build, 'title' );
+				$build   = $this->build_itinerary_field( $build, 'description' );
+				$group[] = $build;
+
+				$itinerary_count++;
+			}
+		}
+
+		$block_content = implode( '', $group );
 		return $block_content;
 	}
+
+	/**
+	 * Modifies the HTML content by updating the innerHTML of any heading tag (h1-h6) 
+	 * that has the class "itinerary-title" with the result of the lsx_to_itinerary_title function.
+	 *
+	 * @param string $build The original HTML content to be modified. Default is an empty string.
+	 * @param string $field The field to build.
+	 * @return string The modified HTML content where the specified heading tags have updated innerHTML.
+	 */
+	public function build_itinerary_field( $build = '', $field = '' ) {
+		$pattern     = '';
+		$replacement = '';
+		switch ( $field ) {
+			case 'title':
+				// Regular expression to match any heading tag (h1-h6) with class "itinerary-title"
+				$pattern     = '/(<h[1-6]\s+[^>]*\bclass="[^"]*\bitinerary-title\b[^"]*"[^>]*>).*?(<\/h[1-6]>)/is';
+
+				// Replacement pattern to insert "test" as the new innerHTML
+				$replacement = '$1' . lsx_to_itinerary_title( false ) . '$2';
+			break;
+
+			case 'description':
+
+				// Maintain any formatting set of the parent tag.
+				$classes = $this->find_description_classes( $build );
+
+				if ( '' !== $classes ) {
+					// Regular expression to match any paragraph with class "itinerary-description"
+					$pattern     = '/<p\s+[^>]*\bclass="[^"]*\bitinerary-description\b[^"]*"[^>]*>.*?<\/p>/is';
+					// Replacement pattern to insert "test" as the new innerHTML
+					$replacement = '$1<div class="' . $classes . '"/>' . lsx_to_itinerary_description( false ) . '</div>$2';
+				}
+				
+			break;
+
+			default:
+			break;
+		}
+
+		// Perform the replacement if the pattern is not empty
+		if ( '' !== $pattern ) {
+			$build = preg_replace($pattern, $replacement, $build);
+		}
+		return $build;
+	}
+
+	/**
+	 * Finds all class names of the <p> tag that includes the class "itinerary-description".
+	 *
+	 * @param string $content The original HTML content.
+	 * @return string An string containing class names found with "itinerary-description".
+	 */
+	public function find_description_classes( $content ) {
+		$classes = '';
+
+		// Regular expression to match any <p> tag with class "itinerary-description" among other classes
+		$pattern = '/<p\s+[^>]*\bclass="([^"]*\bitinerary-description\b[^"]*)"/is';
+		// Array to hold the matches
+		$matches = [];
+		// Perform the matching
+		$match_count = preg_match_all( $pattern, $content, $matches );
+		// $matches[1] contains the matched class attribute values
+
+		if ( 0 < $match_count ) {
+			$classes = implode( '', $matches[1] );
+		}
+		return $classes;
+	}
+
+	/**
+	 * Removes all "class" attributes from a given HTML content.
+	 *
+	 * @param string $content The original HTML content.
+	 * @return string The HTML content without any "class" attributes.
+	 */
+	function purge_class_attribute( $content ) {
+		// Regular expression to match class attributes
+		$pattern = '/\s*class="[^"]*"/i';
+		// Replace matched class attributes with an empty string
+		$result = preg_replace($pattern, '', $content);
+		return $result;
+	}
 }
-
-
-
-
-
-
-
-
-
-

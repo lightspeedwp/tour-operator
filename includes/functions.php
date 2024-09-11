@@ -167,12 +167,16 @@ function lsx_to_itinerary_tagline() {
  * @subpackage    template-tags
  * @category      itinerary
  */
-function lsx_to_itinerary_description() {
+function lsx_to_itinerary_description( $echo = true ) {
 	global $tour_itinerary;
 
 	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
 		if ( ! empty( $tour_itinerary->itinerary['description'] ) ) {
-			echo wp_kses_post( apply_filters( 'the_content', $tour_itinerary->itinerary['description'] ) );
+			if ( $echo ) {
+				echo wp_kses_post( apply_filters( 'the_content', $tour_itinerary->itinerary['description'] ) );
+			} else {
+				return wp_kses_post( apply_filters( 'the_content', $tour_itinerary->itinerary['description'] ) );
+			}
 		}
 	}
 }
