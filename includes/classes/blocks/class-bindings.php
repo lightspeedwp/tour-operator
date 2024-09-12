@@ -288,6 +288,14 @@ class Bindings {
 				$replacement = '$1' . lsx_to_itinerary_room_basis( '', '', false ) . '$2';
 			break;
 
+			case 'image':
+				// Regular expression to match any paragraph tag with class "itinerary-accommodation"
+				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-image\b[^"]*"[^>]*>).*?(<\/p>)/is';
+    
+				// Replacement pattern to insert "test" as the new innerHTML
+				$replacement = '$1' . lsx_to_itinerary_thumbnail( '', '', false ) . '$2';
+			break;
+
 			default:
 			break;
 		}
