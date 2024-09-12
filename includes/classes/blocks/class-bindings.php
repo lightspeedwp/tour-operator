@@ -25,7 +25,7 @@ class Bindings {
 	 */
 	public function __construct() {
 		add_action( 'init', array( $this, 'register_block_bindings' ) );
-		add_filter( 'render_block', array( $this, 'lsx_wetu_render_block' ), 10, 3 );
+		add_filter( 'render_block', array( $this, 'render_itinerary_block' ), 10, 3 );
 	}
 
 	/**
@@ -158,7 +158,7 @@ class Bindings {
 	}
 
 
-	public function lsx_wetu_render_block( $block_content, $parsed_block, $block_obj ) {
+	public function render_itinerary_block( $block_content, $parsed_block, $block_obj ) {
 		// Determine if this is the custom block variation.
 		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
 			return $block_content;

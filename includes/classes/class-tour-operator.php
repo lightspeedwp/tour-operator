@@ -7,6 +7,8 @@ use lsx\admin\Pages;
 use lsx\admin\Settings;
 use lsx\admin\Setup;
 use lsx\blocks\Bindings;
+use lsx\blocks\Patterns;
+use lsx\blocks\Variations;
 
 /**
  * LSX Tour Operator Main Class
@@ -227,5 +229,7 @@ class Tour_Operator {
 		$this->settings   = Settings::init();
 		$this->setup      = Setup::init();
 		$this->bindings   = Bindings::init();
+		$this->variations = Variations::init();
+		$this->patterns   = Patterns::init();
 	}
 }

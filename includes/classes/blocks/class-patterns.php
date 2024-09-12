@@ -2,7 +2,7 @@
 namespace lsx\blocks;
 
 
-class Block_Patterns {
+class Patterns {
 
 	/**
 	 * Holds class instance
@@ -33,27 +33,21 @@ class Block_Patterns {
 
 		// Register our block patterns
 		add_action( 'init', array( $this, 'register_block_patterns' ), 10 );
-
-		// Register our the content filters.
-		add_filter( 'query_loop_block_query_vars', array( $this, 'replace_related_vars' ), 10, 3 );
 	}
 
 	/**
 	 * Return an instance of this class.
 	 *
-	 * @since 1.0.0
-	 *
-	 * @return    object \lsx\tour_operator\classes\Block_Patterns();    A single instance of this class.
+	 * @return  \lsx\blocks\Patterns
 	 */
-	public static function get_instance() {
+	public static function init() {
 
 		// If the single instance hasn't been set, set it now.
-		if ( null == self::$instance ) {
-			self::$instance = new self;
+		if ( ! isset( self::$instance ) ) {
+			self::$instance = new self();
 		}
 
 		return self::$instance;
-
 	}
 
 	/**
@@ -75,9 +69,7 @@ class Block_Patterns {
 	 */
 	public function register_block_patterns() {
 		$patterns = array(
-			'lsx-tour-operator/tour-price' => $this->tour_price(),
-			'lsx-tour-operator/tour-price-merge-tag' => $this->tour_price_merge_tag(),
-			'lsx-tour-operator/related-items' => $this->related_items(),
+			'lsx-tour-operator/itinerary-card' => $this->itinerary_pattern( 'card' ),
 		);
 
 		foreach ( $patterns as $key => $function ) {
@@ -86,112 +78,128 @@ class Block_Patterns {
 	}
 
 	/**
-	 * Portfolio - Featured Pattern - Basic Style
+	 * Itinerary Pattern
 	 *
 	 * @return void
 	 */
-	public function tour_price() {
+	public function itinerary_pattern( $style = 'card' ) {
 		return array(
-			'title'       => __( 'Tour Price', 'lsx-projects' ),
+			'title'       => __( 'Itinerary (list)', 'lsx-projects' ),
 			'description' => '',
 			'categories'  => array( $this->pattern_category ),
-			'content'     => '<!-- wp:shortcode -->
-			[lsx_to_custom_field name="price"]
-			<!-- /wp:shortcode -->',
-		);
-	}
+			//'postTypes'  => array( 'tour' ),
+			'blockTypes'  => array( 'core/group' ),
+			'content'     => '
+				<!-- wp:columns {"align":"wide"} -->
+				<div class="wp-block-columns alignwide"><!-- wp:column {"width":"20%"} -->
+				<div class="wp-block-column" style="flex-basis:20%"><!-- wp:image {"id":2981,"sizeSlug":"full","linkDestination":"none","className":"itinerary-image"} -->
+				<figure class="wp-block-image size-full itinerary-image"><img src="https://beta.local/wp-content/uploads/2024/09/R0I3460.jpg" alt="" class="wp-image-2981" title=""/></figure>
+				<!-- /wp:image --></div>
+				<!-- /wp:column -->
 
-	/**
-	 * Portfolio - Featured Pattern - Basic Style
-	 *
-	 * @return void
-	 */
-	public function tour_price_merge_tag() {
-		return array(
-			'title'       => __( 'Tour Price (merge tag)', 'lsx-projects' ),
-			'description' => '',
-			'categories'  => array( $this->pattern_category ),
-			'content'     => '<!-- wp:paragraph -->
-			<p>lsx_to_price</p>
-			<!-- /wp:paragraph -->',
-		);
-	}
-
-	/**
-	 * Portfolio - Related Posts
-	 *
-	 * @return void
-	 */
-	public function related_items() {
-		return array(
-			'title'       => __( 'Related Projects', 'lsx-projects' ),
-			'description' => __( 'Displays the related portfolio based on the matching project category.', 'lsx-projects' ),
-			'categories'  => array( $this->pattern_category ),
-			'content'     => $this->get_related_content(),
-		);
-	}
-
-	private function get_related_content() {
-		$content = '
-		<!-- wp:group {"tagName":"main","style":{"spacing":{"margin":{"top":"0"},"padding":{"top":"40px","bottom":"80px"}}},"backgroundColor":"base","className":"site-content","layout":{"type":"constrained"}} -->
-			<main class="wp-block-group site-content has-base-background-color has-background" style="margin-top:0;padding-top:40px;padding-bottom:80px">
-				<!-- wp:group {"align":"wide","layout":{"type":"constrained"}} -->
-					<div class="wp-block-group alignwide">
-						<!-- wp:heading {"level":3,"align":"wide","style":{"typography":{"fontStyle":"normal","fontWeight":"700"},"spacing":{"padding":{"bottom":"var:preset|spacing|x-small"}}},"fontSize":"max-48"} -->
-							<h3 class="wp-block-heading alignwide has-max-48-font-size" style="padding-bottom:var(--wp--preset--spacing--x-small);font-style:normal;font-weight:700"><strong>' . __( 'Related Projects', 'lsx-projects' ) . '</strong></h3>
-						<!-- /wp:heading -->
-						
-						<!-- wp:query {"queryId":5,"query":{"related":1,"perPage":2,"pages":0,"offset":0,"postType":"project","order":"asc","orderBy":"title","author":"","search":"","exclude":[],"sticky":"","inherit":false,"parents":[]},"displayLayout":{"type":"flex","columns":2},"align":"full","layout":{"type":"constrained"}} -->
-							<div class="wp-block-query alignfull">
-								<!-- wp:post-template -->
-									<!-- wp:post-title /-->
-									
-									<!-- wp:post-excerpt /-->
-								<!-- /wp:post-template -->
-								
-								<!-- wp:query-no-results -->
-									<!-- wp:paragraph {"placeholder":"Add text or blocks that will display when a query returns no results."} -->
-									<p></p>
-									<!-- /wp:paragraph -->
-								<!-- /wp:query-no-results -->
-							</div>
-						<!-- /wp:query -->
-					</div>
+				<!-- wp:column {"width":"80%"} -->
+				<div class="wp-block-column" style="flex-basis:80%"><!-- wp:group {"layout":{"type":"constrained"}} -->
+				<div class="wp-block-group"><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"bottom":"10px"}},"border":{"bottom":{"color":"var:preset|color|primary","width":"2px"},"top":[],"right":[],"left":[]}},"layout":{"type":"constrained"}} -->
+				<div class="wp-block-group alignwide" style="border-bottom-color:var(--wp--preset--color--primary);border-bottom-width:2px;padding-bottom:10px"><!-- wp:heading {"level":3,"align":"wide","className":"itinerary-title","style":{"elements":{"link":{"color":{"text":"var:preset|color|primary"}}}},"textColor":"primary"} -->
+				<h3 class="wp-block-heading alignwide itinerary-title has-primary-color has-text-color has-link-color">Day 1 (itinerary day)</h3>
+				<!-- /wp:heading --></div>
 				<!-- /wp:group -->
-			</main>
-		<!-- /wp:group -->';
-		return $content;
-	}
 
-	/**
-	 * A function to replace the query post vars.
-	 *
-	 * @param array $query
-	 * @param WP_Block $block
-	 * @param int $page
-	 * @return array
-	 */
-	public function replace_related_vars( $query, $block, $page ) {
-		if ( ! is_admin() && is_singular( array( 'tour', 'accommodation', 'destination' ) ) && isset( $block->context['query']['related'] ) ) {
-			$group     = array();
-			$terms     = get_the_terms( get_the_ID(), 'project-group' );
+				<!-- wp:columns {"align":"wide"} -->
+				<div class="wp-block-columns alignwide"><!-- wp:column {"width":"66.66%"} -->
+				<div class="wp-block-column" style="flex-basis:66.66%"><!-- wp:paragraph {"className":"itinerary-description","style":{"elements":{"link":{"color":{"text":"var:preset|color|septenary"}}}},"textColor":"septenary"} -->
+				<p class="itinerary-description has-septenary-color has-text-color has-link-color"><strong>Itinerary Description</strong></p>
+				<!-- /wp:paragraph --></div>
+				<!-- /wp:column -->
 
-			if ( is_array( $terms ) && ! empty( $terms ) ) {
-				foreach( $terms as $term ) {
-					$group[] = $term->term_id;
-				}
-			}
-			$query['tax_query'] = array(
-				array(
-					'taxonomy' => 'project-group',
-					'field'    => 'term_id',
-					'terms'     => $group,
-				)
-			);
-			$query['orderby']      = 'rand';
-			$query['post__not_in'] = array( get_the_ID() );
-		}
-		return $query;
+				<!-- wp:column {"width":"33.33%"} -->
+				<div class="wp-block-column" style="flex-basis:33.33%"><!-- wp:group {"style":{"spacing":{"padding":{"top":"10px","bottom":"10px","left":"10px","right":"10px"}},"border":{"radius":"8px"}},"backgroundColor":"base","layout":{"type":"constrained"}} -->
+				<div class="wp-block-group has-base-background-color has-background" style="border-radius:8px;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px"><!-- wp:group {"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":"0"}},"layout":{"type":"constrained"}} -->
+				<div class="wp-block-group" style="margin-top:0;margin-bottom:0"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+				<div class="wp-block-group"><!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|senary"}}}},"textColor":"senary"} -->
+				<p class="has-senary-color has-text-color has-link-color"><strong>Icon</strong></p>
+				<!-- /wp:paragraph -->
+
+				<!-- wp:paragraph -->
+				<p><strong>Location</strong>:</p>
+				<!-- /wp:paragraph --></div>
+				<!-- /wp:group -->
+
+				<!-- wp:paragraph {"className":"itinerary-location","style":{"elements":{"link":{"color":{"text":"var:preset|color|septenary"}}}},"textColor":"septenary"} -->
+				<p class="itinerary-location has-septenary-color has-text-color has-link-color"><strong>Location</strong></p>
+				<!-- /wp:paragraph --></div>
+				<!-- /wp:group -->
+
+				<!-- wp:group {"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":"0"}},"layout":{"type":"constrained"}} -->
+				<div class="wp-block-group" style="margin-top:0;margin-bottom:0"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+				<div class="wp-block-group"><!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|senary"}}}},"textColor":"senary"} -->
+				<p class="has-senary-color has-text-color has-link-color"><strong>Icon</strong></p>
+				<!-- /wp:paragraph -->
+
+				<!-- wp:paragraph -->
+				<p><strong>Accommodation</strong>:</p>
+				<!-- /wp:paragraph --></div>
+				<!-- /wp:group -->
+
+				<!-- wp:paragraph {"className":"itinerary-accommodation","style":{"elements":{"link":{"color":{"text":"var:preset|color|septenary"}}}},"textColor":"septenary"} -->
+				<p class="itinerary-accommodation has-septenary-color has-text-color has-link-color"><strong>Accommodation </strong></p>
+				<!-- /wp:paragraph --></div>
+				<!-- /wp:group -->
+
+				<!-- wp:group {"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":"0"}},"layout":{"type":"constrained"}} -->
+				<div class="wp-block-group" style="margin-top:0;margin-bottom:0"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+				<div class="wp-block-group"><!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|senary"}}}},"textColor":"senary"} -->
+				<p class="has-senary-color has-text-color has-link-color"><strong>Icon</strong></p>
+				<!-- /wp:paragraph -->
+
+				<!-- wp:paragraph -->
+				<p><strong>Type</strong>:</p>
+				<!-- /wp:paragraph --></div>
+				<!-- /wp:group -->
+
+				<!-- wp:paragraph {"className":"itinerary-type","style":{"elements":{"link":{"color":{"text":"var:preset|color|septenary"}}}},"textColor":"septenary"} -->
+				<p class="itinerary-type has-septenary-color has-text-color has-link-color"><strong>Accommodation Type </strong></p>
+				<!-- /wp:paragraph --></div>
+				<!-- /wp:group -->
+
+				<!-- wp:group {"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":"0"}},"layout":{"type":"constrained"}} -->
+				<div class="wp-block-group" style="margin-top:0;margin-bottom:0"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+				<div class="wp-block-group"><!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|senary"}}}},"textColor":"senary"} -->
+				<p class="has-senary-color has-text-color has-link-color"><strong>Icon</strong></p>
+				<!-- /wp:paragraph -->
+
+				<!-- wp:paragraph -->
+				<p><strong>Drinks Basis</strong>:</p>
+				<!-- /wp:paragraph --></div>
+				<!-- /wp:group -->
+
+				<!-- wp:paragraph {"className":"itinerary-drinks","style":{"elements":{"link":{"color":{"text":"var:preset|color|septenary"}}}},"textColor":"septenary"} -->
+				<p class="itinerary-drinks has-septenary-color has-text-color has-link-color"><strong>Drinks Basis </strong></p>
+				<!-- /wp:paragraph --></div>
+				<!-- /wp:group -->
+
+				<!-- wp:group {"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":"0"}},"layout":{"type":"constrained"}} -->
+				<div class="wp-block-group" style="margin-top:0;margin-bottom:0"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+				<div class="wp-block-group"><!-- wp:paragraph {"style":{"elements":{"link":{"color":{"text":"var:preset|color|senary"}}}},"textColor":"senary"} -->
+				<p class="has-senary-color has-text-color has-link-color"><strong>Icon</strong></p>
+				<!-- /wp:paragraph -->
+
+				<!-- wp:paragraph -->
+				<p><strong>Room Basis</strong>:</p>
+				<!-- /wp:paragraph --></div>
+				<!-- /wp:group -->
+
+				<!-- wp:paragraph {"className":"itinerary-room","style":{"elements":{"link":{"color":{"text":"var:preset|color|septenary"}}}},"textColor":"septenary"} -->
+				<p class="itinerary-room has-septenary-color has-text-color has-link-color"><strong>Room Basis </strong></p>
+				<!-- /wp:paragraph --></div>
+				<!-- /wp:group --></div>
+				<!-- /wp:group --></div>
+				<!-- /wp:column --></div>
+				<!-- /wp:columns --></div>
+				<!-- /wp:group --></div>
+				<!-- /wp:column --></div>
+				<!-- /wp:columns -->
+			',
+		);
 	}
 }
-Block_Patterns::get_instance();
