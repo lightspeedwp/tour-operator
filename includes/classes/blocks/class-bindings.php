@@ -158,7 +158,7 @@ class Bindings {
 	}
 
 
-	function lsx_wetu_render_block( $block_content, $parsed_block, $block_obj ) {
+	public function lsx_wetu_render_block( $block_content, $parsed_block, $block_obj ) {
 		// Determine if this is the custom block variation.
 		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
 			return $block_content;
@@ -181,15 +181,6 @@ class Bindings {
 			return $block_content;
 		}
 
-		// Create our tag manager object so we can inject the itinerary content.
-		/*$tags = new \WP_HTML_Tag_Processor( $block_content );
-		if ( $tags->next_tag( array( 'class_name' => 'itinerary-title' ) ) ) {
-			print_r('<pre>');
-			print_r($tags);
-			print_r('</pre>');
-		}*/
-		//die();
-
 		$pattern = $block_content;
 		$group   = array();
 
@@ -198,7 +189,6 @@ class Bindings {
 			$itinerary_count = 1;
 			while ( lsx_to_itinerary_loop() ) {
 				lsx_to_itinerary_loop_item();
-
 				$build   = $pattern;
 				$build   = $this->build_itinerary_field( $build, 'title' );
 				$build   = $this->build_itinerary_field( $build, 'description' );
@@ -207,6 +197,7 @@ class Bindings {
 				$build   = $this->build_itinerary_field( $build, 'type' );
 				$build   = $this->build_itinerary_field( $build, 'drinks' );
 				$build   = $this->build_itinerary_field( $build, 'room' );
+				$build   = $this->build_itinerary_image( $build );
 				$group[] = $build;
 
 				$itinerary_count++;
@@ -288,14 +279,6 @@ class Bindings {
 				$replacement = '$1' . lsx_to_itinerary_room_basis( '', '', false ) . '$2';
 			break;
 
-			case 'image':
-				// Regular expression to match any paragraph tag with class "itinerary-accommodation"
-				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-image\b[^"]*"[^>]*>).*?(<\/p>)/is';
-    
-				// Replacement pattern to insert "test" as the new innerHTML
-				$replacement = '$1' . lsx_to_itinerary_thumbnail( '', '', false ) . '$2';
-			break;
-
 			default:
 			break;
 		}
@@ -304,6 +287,29 @@ class Bindings {
 		if ( '' !== $pattern ) {
 			$build = preg_replace($pattern, $replacement, $build);
 		}
+		return $build;
+	}
+
+	/**
+	 * Modifies the HTML content by updating the innerHTML of any heading tag (h1-h6) 
+	 * that has the class "itinerary-title" with the result of the lsx_to_itinerary_title function.
+	 *
+	 * @param string $build The original HTML content to be modified. Default is an empty string.
+	 * @param string $field The field to build.
+	 * @return string The modified HTML content where the specified heading tags have updated innerHTML.
+	 */
+	public function build_itinerary_image( $build = '' ) {
+
+		//Create our tag manager object so we can inject the itinerary content.
+		$tags = new \WP_HTML_Tag_Processor( $build );
+		if ( $tags->next_tag( array( 'class_name' => 'itinerary-image' ) ) ) {
+			if ( $tags->next_tag( array( 'tag_name' => 'img' ) ) ) {
+				$img_src = lsx_to_itinerary_thumbnail();
+				$tags->set_attribute( 'src', $img_src );
+				$build = $tags->get_updated_html();
+			}
+		}
+		
 		return $build;
 	}
 
