@@ -679,7 +679,7 @@ class Frontend extends Tour_Operator {
 				'url'  => get_post_type_archive_link( 'accommodation' ),
 			),
 		);
-		$current_destinations = get_post_meta( get_the_ID(), 'destination_to_accommodation', false );
+		$current_destinations = get_post_meta( get_the_ID(), 'destination_to_accommodation', true );
 
 		$all_destinations = array();
 		if ( false !== $current_destinations && ! empty( $current_destinations ) ) {
@@ -739,7 +739,7 @@ class Frontend extends Tour_Operator {
 				'url'  => get_post_type_archive_link( 'tour' ),
 			),
 		);
-		$region = get_post_meta( get_the_ID(), 'departs_from', false );
+		$region = get_post_meta( get_the_ID(), 'departs_from', true );
 		if ( false !== $region && isset( $region[0] ) ) {
 			$country = wp_get_post_parent_id( $region[0] );
 			if ( false !== $country && '' !== $country ) {

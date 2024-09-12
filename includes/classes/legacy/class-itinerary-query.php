@@ -142,18 +142,20 @@ class Itinerary_Query {
 	 */
 	public function register_current_gallery( $accommodation_id = false, $meta_key = 'accommodation_to_tour' ) {
 		if ( false !== $accommodation_id && ! isset( $this->current_attachments[ $accommodation_id ] ) ) {
-			$gallery = get_post_meta( $accommodation_id, 'gallery', true );			
+			$gallery = get_post_meta( $accommodation_id, 'gallery', true );
 			if ( false !== $gallery && ! empty( $gallery ) ) {
-
+				
 				if ( ! is_array( $gallery ) ) {
 					$gallery = array( $gallery );
+				} else {
+					$gallery = array_keys( $gallery );
 				}
 
-				if ( 'accommodation_to_tour' === $meta_key ) {
+				/*if ( 'accommodation_to_tour' === $meta_key ) {
 					$gallery = $this->append_room_images( $accommodation_id, $gallery );
 				} else if ( 'destination_to_tour' === $meta_key ) {
 					$gallery = $this->maybe_append_parent( $accommodation_id, $gallery );
-				}
+				}*/
 
 				$this->current_attachments[ $accommodation_id ] = $gallery;
 			}
