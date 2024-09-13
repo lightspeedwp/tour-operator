@@ -4,3 +4,5 @@ node_modules
 *.sublime-workspace
 package-lock.json
 wp-content
+vendor/cmb-field-select2/.DS_Store
+vendor/cmb2-field-map/.DS_Store
