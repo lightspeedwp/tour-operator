@@ -350,7 +350,7 @@ class Maps {
 			if ( '' !== $potential_placeholder ) {
 				$size = 'full';
 				if ( false !== $mobile ) {
-					$size = 'lsx-thumbnail-square';
+					$size = 'medium';
 				}
 				$potential_placeholder = wp_get_attachment_image_src( $potential_placeholder, 'full' );
 				if ( is_array( $potential_placeholder ) && ! empty( $potential_placeholder ) ) {
