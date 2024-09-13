@@ -54,7 +54,7 @@ class Variations {
 				'lsx-to-block-variations',  // Handle for the script.
 				LSX_TO_URL . 'assets/js/blocks/variations.js', // Path to your JavaScript file.
 				array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),  // Dependencies.
-				filemtime( LSX_TO_URL . 'assets/js/blocks/variations.js' ), // Versioning with file modification time.
+				filemtime( LSX_TO_PATH . 'assets/js/blocks/variations.js' ), // Versioning with file modification time.
 				true  // Enqueue in the footer.
 			);
 		}
