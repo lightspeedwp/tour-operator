@@ -27,17 +27,17 @@ $metabox['fields'][] = array(
 	'type' => 'checkbox',
 );
 
-if ( ! class_exists( 'LSX_Banners' ) ) {
-	$metabox['fields'][] = array(
-		'id'   => 'tagline',
-		'name' => esc_html__( 'Tagline', 'tour-operator' ),
-		'type' => 'text',
-	);
-}
+$metabox['fields'][] = array(
+	'id'   => 'tagline',
+	'name' => esc_html__( 'Tagline', 'tour-operator' ),
+	'type' => 'text',
+);
 
-if ( class_exists( '\lsx\legacy\Field_Pattern' ) ) {
-	$metabox['fields'] = array_merge( $metabox['fields'], \lsx\legacy\Field_Pattern::price() );
-}
+$metabox['fields'][] = array(
+	'id' => 'price',
+	'name' => 'Price',
+	'type' => 'text',
+);
 
 $metabox['fields'][] = array(
 	'id'      => 'price_type',
@@ -74,15 +74,13 @@ if ( class_exists( 'LSX_TO_Team' ) ) {
 	$metabox['fields'][] = array(
 		'id'         => 'team_to_accommodation',
 		'name'       => esc_html__( 'Accommodation Expert', 'tour-operator' ),
-		'type'       => 'post_select',
+		'type'       => 'pw_select',
 		'use_ajax'   => false,
-		'allow_none' => true,
-		'query'      => array(
-			'post_type'      => 'team',
-			'nopagin'        => true,
-			'posts_per_page' => '-1',
-			'orderby'        => 'title',
-			'order'          => 'ASC',
+		'allow_none' => false,
+		'sortable'   => false,
+		'repeatable' => false,
+		'options'  => array(
+			'post_type_args' => 'team',
 		),
 	);
 }
@@ -94,28 +92,32 @@ if ( ! isset( tour_operator()->options['display']['maps_disable'] ) && empty( to
 		'type' => 'title',
 	);
 	$google_api_key = '';
-	if ( isset( tour_operator()->options['api']['googlemaps_key'] ) && ! empty( tour_operator()->options['api']['googlemaps_key'] ) ) {
-		$google_api_key = tour_operator()->options['api']['googlemaps_key'];
+	if ( isset( tour_operator()->options['googlemaps_key'] ) && ! empty( tour_operator()->options['googlemaps_key'] ) ) {
+		$google_api_key = tour_operator()->options['googlemaps_key'];
 	}
 	$metabox['fields'][] = array(
 		'id'             => 'location',
 		'name'           => esc_html__( 'Address', 'tour-operator' ),
-		'type'           => 'gmap',
-		'google_api_key' => $google_api_key,
+		'type'           => 'pw_map',
+		'api_key' => $google_api_key,
 	);
 	$metabox['fields'][] = array(
 		'id'         => 'map_placeholder',
 		'name'       => esc_html__( 'Map Placeholder', 'tour-operator' ),
-		'type'       => 'image',
+		'type'       => 'file',
 		'repeatable' => false,
 		'show_size'  => false,
-	);
-	$metabox['fields'][] = array(
-		'id'         => 'map_mobile_placeholder',
-		'name'       => esc_html__( 'Mobile Placeholder', 'tour-operator' ),
-		'type'       => 'image',
-		'repeatable' => false,
-		'show_size'  => false,
+		'preview_size' => 'thumbnail',
+		'query_args' => array(
+			 'type' => array(
+				 'image/gif',
+				 'image/jpeg',
+				 'image/png',
+			),
+		),
+		'options' => array(
+			'url' => false, // Hide the text input for the url
+		),
 	);
 }
 
@@ -141,7 +143,7 @@ $fast_facts_fields = array(
 	array(
 		'id'         => 'rating',
 		'name'       => esc_html__( 'Rating', 'tour-operator' ),
-		'type'       => 'radio',
+		'type'       => 'radio_inline',
 		'options'    => array( '0', '1', '2', '3', '4', '5' ),
 		'allow_none' => true,
 	),
@@ -155,13 +157,13 @@ $fast_facts_fields = array(
 	array(
 		'id'   => 'checkin_time',
 		'name' => esc_html__( 'Check-in Time', 'tour-operator' ),
-		'type' => 'time',
+		'type' => 'text_time',
 	),
 
 	array(
 		'id'   => 'checkout_time',
 		'name' => esc_html__( 'Check-out Time', 'tour-operator' ),
-		'type' => 'time',
+		'type' => 'text_time',
 	),
 
 	array(
@@ -173,7 +175,7 @@ $fast_facts_fields = array(
 	array(
 		'id'       => 'spoken_languages',
 		'name'     => esc_html__( 'Spoken Languages', 'tour-operator' ),
-		'type'     => 'select',
+		'type'     => 'pw_multiselect',
 		'multiple' => true,
 		'options'  => array(
 			'afrikaans'  => esc_html__( 'Afrikaans', 'tour-operator' ),
@@ -198,7 +200,7 @@ $fast_facts_fields = array(
 	array(
 		'id'       => 'suggested_visitor_types',
 		'name'     => esc_html__( 'Friendly', 'tour-operator' ),
-		'type'     => 'select',
+		'type'     => 'pw_multiselect',
 		'multiple' => true,
 		'options'  => array(
 			'business'   => esc_html__( 'Business', 'tour-operator' ),
@@ -216,7 +218,7 @@ $fast_facts_fields = array(
 	array(
 		'id'       => 'special_interests',
 		'name'     => esc_html__( 'Special Interests', 'tour-operator' ),
-		'type'     => 'select',
+		'type'     => 'pw_multiselect',
 		'multiple' => true,
 		'options'  => array(
 			'adventure'              => esc_html__( 'Adventure', 'tour-operator' ),
@@ -247,19 +249,14 @@ $fast_facts_fields = array(
 $metabox['fields'] = array_merge( $metabox['fields'], $fast_facts_fields );
 
 $metabox['fields'][] = array(
-	'id'   => 'gallery_title',
-	'name' => esc_html__( 'Gallery', 'tour-operator' ),
-	'type' => 'title',
-);
-
-$metabox['fields'][] = array(
-	'id'                  => 'gallery',
-	'name'                => '',
-	'type'                => 'image',
-	'repeatable'          => true,
-	'show_size'           => false,
-	'sortable'            => true,
-	'string-repeat-field' => esc_html__( 'Add new image', 'tour-operator' ),
+    'name' => esc_html__( 'Gallery', 'tour-operator' ),
+    'id'   => 'gallery',
+    'type' => 'file_list',
+    'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
+    'query_args' => array( 'type' => 'image' ), // Only images attachment
+    'text' => array(
+        'add_upload_files_text' => esc_html__( 'Add new image', 'tour-operator' ), // default: "Add or Upload Files"
+    ),
 );
 
 if ( class_exists( 'Envira_Gallery' ) ) {
@@ -272,14 +269,10 @@ if ( class_exists( 'Envira_Gallery' ) ) {
 	$metabox['fields'][] = array(
 		'id'         => 'envira_gallery',
 		'name'       => esc_html__( 'Envira Gallery', 'tour-operator' ),
-		'type'       => 'post_select',
+		'type'       => 'pw_multiselect',
 		'use_ajax'   => false,
-		'query'      => array(
-			'post_type'      => 'envira',
-			'nopagin'        => true,
-			'posts_per_page' => '-1',
-			'orderby'        => 'title',
-			'order'          => 'ASC',
+		'options'  => array(
+			'post_type_args' => 'envira',
 		),
 		'allow_none' => true,
 	);
@@ -288,33 +281,29 @@ if ( class_exists( 'Envira_Gallery' ) ) {
 		$metabox['fields'][] = array(
 			'id'         => 'envira_video',
 			'name'       => esc_html__( 'Envira Video Gallery', 'tour-operator' ),
-			'type'       => 'post_select',
+			'type'       => 'pw_multiselect',
 			'use_ajax'   => false,
 			'allow_none' => true,
-			'query'      => array(
-				'post_type'      => 'envira',
-				'nopagin'        => true,
-				'posts_per_page' => '-1',
-				'orderby'        => 'title',
-				'order'          => 'ASC',
+			'options'  => array(
+				'post_type_args' => 'envira',
 			),
 		);
 	}
 }
 
 $metabox['fields'][] = array(
-	'id'   => 'units_title',
-	'name' => esc_html__( 'Units', 'tour-operator' ),
-	'type' => 'title',
-);
-
-$metabox['fields'][] = array(
 	'id'         => 'units',
-	'name'       => '',
+	'name'       => esc_html__( 'Units', 'tour-operator' ),
 	'type'       => 'group',
 	'repeatable' => true,
 	'sortable'   => true,
 	'desc'       => '',
+    'options'     => array(
+        'group_title'       => __( 'Unit {#}', 'tour-operator' ), // since version 1.1.4, {#} gets replaced by row number
+        'add_button'        => __( 'Add Another', 'tour-operator' ),
+        'remove_button'     => __( 'Remove', 'tour-operator' ),
+        'sortable'          => false,
+    ),
 	'fields'     => array(
 		array(
 			'id'      => 'type',
@@ -341,78 +330,51 @@ $metabox['fields'][] = array(
 			'type' => 'text',
 		),
 		array(
-			'id'         => 'gallery',
-			'name'       => esc_html__( 'Gallery', 'tour-operator' ),
-			'type'       => 'image',
-			'repeatable' => true,
-			'show_size'  => false,
+			'name' => esc_html__( 'Gallery', 'tour-operator' ),
+			'id'   => 'gallery',
+			'type' => 'file_list',
+			'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
+			'query_args' => array( 'type' => 'image' ), // Only images attachment
+			'text' => array(
+				'add_upload_files_text' => esc_html__( 'Add new image', 'tour-operator' ), // default: "Add or Upload Files"
+			),
 		),
 	),
 );
 
 $metabox['fields'][] = array(
-	'id'   => 'posts_title',
-	'name' => esc_html__( 'Posts', 'tour-operator' ),
-	'type' => 'title',
-);
-
-$metabox['fields'][] = array(
 	'id'         => 'post_to_accommodation',
 	'name'       => esc_html__( 'Posts related with this accommodation', 'tour-operator' ),
-	'type'       => 'post_select',
+	'type'       => 'pw_multiselect',
 	'use_ajax'   => false,
-	'repeatable' => true,
+	'repeatable' => false,
 	'allow_none' => true,
-	'query'      => array(
-		'post_type'      => 'post',
-		'nopagin'        => true,
-		'posts_per_page' => '-1',
-		'orderby'        => 'title',
-		'order'          => 'ASC',
+	'options'  => array(
+		'post_type_args' => 'post',
 	),
-);
-
-$metabox['fields'][] = array(
-	'id'   => 'destinations_title',
-	'name' => esc_html__( 'Destinations', 'tour-operator' ),
-	'type' => 'title',
 );
 
 $metabox['fields'][] = array(
 	'id'         => 'destination_to_accommodation',
 	'name'       => esc_html__( 'Destinations related with this accommodation', 'tour-operator' ),
-	'type'       => 'post_select',
+	'type'       => 'pw_multiselect',
 	'use_ajax'   => false,
-	'repeatable' => true,
+	'repeatable' => false,
 	'allow_none' => true,
-	'query'      => array(
-		'post_type'      => 'destination',
-		'nopagin'        => true,
-		'posts_per_page' => '-1',
-		'orderby'        => 'title',
-		'order'          => 'ASC',
+	'options'  => array(
+		'post_type_args' => 'destination',
 	),
-);
-
-$metabox['fields'][] = array(
-	'id'   => 'tours_title',
-	'name' => esc_html__( 'Tours', 'tour-operator' ),
-	'type' => 'title',
 );
 
 $metabox['fields'][] = array(
 	'id'         => 'tour_to_accommodation',
 	'name'       => esc_html__( 'Tours related with this accommodation', 'tour-operator' ),
-	'type'       => 'post_select',
+	'type'       => 'pw_multiselect',
 	'use_ajax'   => false,
-	'repeatable' => true,
+	'repeatable' => false,
 	'allow_none' => true,
-	'query'      => array(
-		'post_type'      => 'tour',
-		'nopagin'        => true,
-		'posts_per_page' => '-1',
-		'orderby'        => 'title',
-		'order'          => 'ASC',
+	'options'  => array(
+		'post_type_args' => 'tour',
 	),
 );
 

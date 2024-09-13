@@ -100,7 +100,7 @@ class Itinerary_Query {
 	 */
 	public function __construct() {
 		$this->post_id     = get_the_ID();
-		$this->itineraries = get_post_meta( $this->post_id, 'itinerary', false );
+		$this->itineraries = get_post_meta( $this->post_id, 'itinerary', true );
 		if ( is_array( $this->itineraries ) && ! empty( $this->itineraries ) ) {
 			$this->has_itinerary = true;
 			$this->count = count( $this->itineraries );
@@ -142,15 +142,21 @@ class Itinerary_Query {
 	 */
 	public function register_current_gallery( $accommodation_id = false, $meta_key = 'accommodation_to_tour' ) {
 		if ( false !== $accommodation_id && ! isset( $this->current_attachments[ $accommodation_id ] ) ) {
-			$gallery = get_post_meta( $accommodation_id, 'gallery', false );
-
-			if ( 'accommodation_to_tour' === $meta_key ) {
-				$gallery = $this->append_room_images( $accommodation_id, $gallery );
-			} else if ( 'destination_to_tour' === $meta_key ) {
-				$gallery = $this->maybe_append_parent( $accommodation_id, $gallery );
-			}
-			
+			$gallery = get_post_meta( $accommodation_id, 'gallery', true );
 			if ( false !== $gallery && ! empty( $gallery ) ) {
+				
+				if ( ! is_array( $gallery ) ) {
+					$gallery = array( $gallery );
+				} else {
+					$gallery = array_keys( $gallery );
+				}
+
+				/*if ( 'accommodation_to_tour' === $meta_key ) {
+					$gallery = $this->append_room_images( $accommodation_id, $gallery );
+				} else if ( 'destination_to_tour' === $meta_key ) {
+					$gallery = $this->maybe_append_parent( $accommodation_id, $gallery );
+				}*/
+
 				$this->current_attachments[ $accommodation_id ] = $gallery;
 			}
 		}
@@ -164,9 +170,12 @@ class Itinerary_Query {
 	 */
 	public function append_room_images( $accommodation_id = false, $gallery = array() ) {
 		if ( false !== $accommodation_id ) {
-
-			$room_images = get_post_meta( $accommodation_id, 'units', false );
+			$room_images = get_post_meta( $accommodation_id, 'units', true );
 			if ( false !== $room_images && ! empty( $room_images ) ) {
+
+				if ( ! is_array( $room_images ) ) {
+					$room_images = array( $room_images );
+				}
 
 				$append = array();
 				foreach ( $room_images as $room ) {
@@ -266,7 +275,7 @@ class Itinerary_Query {
 		if ( false !== $item_id && true === apply_filters( 'lsx_to_itinerary_append_parent_destinations', false ) ) {
 			$parent = wp_get_post_parent_id( $item_id );
 			if ( null !== $parent && 0 !== $parent && '0' !== $parent && false !== $parent ) {
-				$parent_images = get_post_meta( $parent, 'gallery', false );
+				$parent_images = get_post_meta( $parent, 'gallery', true );
 				if ( false !== $parent_images && ! empty( $parent_images ) && is_array( $parent_images ) ) {
 					$gallery = array_merge( $gallery, $parent_images );
 				}

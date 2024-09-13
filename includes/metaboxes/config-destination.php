@@ -38,7 +38,7 @@ $metabox['fields'][] = array(
 $metabox['fields'][] = array(
 	'id'       => 'best_time_to_visit',
 	'name'     => esc_html__( 'Best months to visit', 'tour-operator' ),
-	'type'     => 'select',
+	'type'     => 'multicheck',
 	'multiple' => true,
 	'options'  => array(
 		'january'   => 'January',
@@ -56,13 +56,11 @@ $metabox['fields'][] = array(
 	),
 );
 
-if ( ! class_exists( 'LSX_Banners' ) ) {
-	$metabox['fields'][] = array(
-		'id'   => 'tagline',
-		'name' => esc_html__( 'Tagline', 'tour-operator' ),
-		'type' => 'text',
-	);
-}
+$metabox['fields'][] = array(
+	'id'   => 'tagline',
+	'name' => esc_html__( 'Tagline', 'tour-operator' ),
+	'type' => 'text',
+);
 
 $metabox['fields'][] = array(
 	'id'   => 'travel_info_title',
@@ -161,19 +159,14 @@ $metabox['fields'][] = array(
 );
 
 $metabox['fields'][] = array(
-	'id'   => 'gallery_title',
-	'name' => esc_html__( 'Gallery', 'tour-operator' ),
-	'type' => 'title',
-);
-
-$metabox['fields'][] = array(
-	'id'                  => 'gallery',
-	'name'                => '',
-	'type'                => 'image',
-	'repeatable'          => true,
-	'show_size'           => false,
-	'sortable'            => true,
-	'string-repeat-field' => esc_html__( 'Add new image', 'tour-operator' ),
+    'name' => esc_html__( 'Gallery', 'tour-operator' ),
+    'id'   => 'gallery',
+    'type' => 'file_list',
+    'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
+    'query_args' => array( 'type' => 'image' ), // Only images attachment
+    'text' => array(
+        'add_upload_files_text' => esc_html__( 'Add new image', 'tour-operator' ), // default: "Add or Upload Files"
+    ),
 );
 
 if ( class_exists( 'Envira_Gallery' ) ) {
@@ -186,15 +179,11 @@ if ( class_exists( 'Envira_Gallery' ) ) {
 	$metabox['fields'][] = array(
 		'id'         => 'envira_gallery',
 		'name'       => esc_html__( 'Envira Gallery', 'tour-operator' ),
-		'type'       => 'post_select',
+		'type'       => 'pw_multiselect',
 		'use_ajax'   => false,
 		'allow_none' => true,
-		'query'      => array(
-			'post_type'      => 'envira',
-			'nopagin'        => true,
-			'posts_per_page' => '-1',
-			'orderby'        => 'title',
-			'order'          => 'ASC',
+		'options'  => array(
+			'post_type_args' => 'envira',
 		),
 	);
 
@@ -202,15 +191,11 @@ if ( class_exists( 'Envira_Gallery' ) ) {
 		$metabox['fields'][] = array(
 			'id'         => 'envira_video',
 			'name'       => esc_html__( 'Envira Video Gallery', 'tour-operator' ),
-			'type'       => 'post_select',
+			'type'       => 'pw_multiselect',
 			'use_ajax'   => false,
 			'allow_none' => true,
-			'query'      => array(
-				'post_type'      => 'envira',
-				'nopagin'        => true,
-				'posts_per_page' => '-1',
-				'orderby'        => 'title',
-				'order'          => 'ASC',
+			'options'  => array(
+				'post_type_args' => 'envira',
 			),
 		);
 	}
@@ -228,94 +213,64 @@ if ( ! isset( tour_operator()->options['display']['maps_disable'] ) && empty( to
 		'type' => 'checkbox',
 	);
 	$google_api_key = '';
-	if ( isset( tour_operator()->options['api']['googlemaps_key'] ) && ! empty( tour_operator()->options['api']['googlemaps_key'] ) ) {
-		$google_api_key = tour_operator()->options['api']['googlemaps_key'];
+	if ( isset( tour_operator()->options['googlemaps_key'] ) && ! empty( tour_operator()->options['googlemaps_key'] ) ) {
+		$google_api_key = tour_operator()->options['googlemaps_key'];
 	}
 	$metabox['fields'][] = array(
 		'id'             => 'location',
 		'name'           => esc_html__( 'Address', 'tour-operator' ),
-		'type'           => 'gmap',
-		'google_api_key' => $google_api_key,
+		'type'           => 'pw_map',
+		'api_key' => $google_api_key,
 	);
 	$metabox['fields'][] = array(
 		'id'         => 'map_placeholder',
 		'name'       => esc_html__( 'Map Placeholder', 'tour-operator' ),
-		'type'       => 'image',
+		'type'       => 'file',
 		'repeatable' => false,
 		'show_size'  => false,
-	);
-	$metabox['fields'][] = array(
-		'id'         => 'map_mobile_placeholder',
-		'name'       => esc_html__( 'Mobile Placeholder', 'tour-operator' ),
-		'type'       => 'image',
-		'repeatable' => false,
-		'show_size'  => false,
+		'query_args' => array(
+			'type' => array(
+				'image/gif',
+				'image/jpeg',
+				'image/png',
+		   ),
+	   ), 
 	);
 }
 
 $metabox['fields'][] = array(
-	'id'   => 'posts_title',
-	'name' => esc_html__( 'Posts', 'tour-operator' ),
-	'type' => 'title',
-);
-
-$metabox['fields'][] = array(
 	'id'         => 'post_to_destination',
 	'name'       => esc_html__( 'Posts related with this destination', 'tour-operator' ),
-	'type'       => 'post_select',
+	'type'       => 'pw_multiselect',
 	'use_ajax'   => false,
-	'repeatable' => true,
+	'repeatable' => false,
 	'allow_none' => true,
-	'query'      => array(
-		'post_type'      => 'post',
-		'nopagin'        => true,
-		'posts_per_page' => '-1',
-		'orderby'        => 'title',
-		'order'          => 'ASC',
+	'options'  => array(
+		'post_type_args' => 'post',
 	),
-);
-
-$metabox['fields'][] = array(
-	'id'   => 'accommodation_title',
-	'name' => esc_html__( 'Accommodation', 'tour-operator' ),
-	'type' => 'title',
 );
 
 $metabox['fields'][] = array(
 	'id'         => 'accommodation_to_destination',
 	'name'       => esc_html__( 'Accommodation related with this destination', 'tour-operator' ),
-	'type'       => 'post_select',
+	'type'       => 'pw_multiselect',
 	'use_ajax'   => false,
-	'repeatable' => true,
+	'repeatable' => false,
 	'allow_none' => true,
-	'query'      => array(
-		'post_type'      => 'accommodation',
-		'nopagin'        => true,
-		'posts_per_page' => '-1',
-		'orderby'        => 'title',
-		'order'          => 'ASC',
+	'options'  => array(
+		'post_type_args' => 'accommodation',
 	),
-);
-
-$metabox['fields'][] = array(
-	'id'   => 'tours_title',
-	'name' => esc_html__( 'Tours', 'tour-operator' ),
-	'type' => 'title',
 );
 
 $metabox['fields'][] = array(
 	'id'         => 'tour_to_destination',
 	'name'       => esc_html__( 'Tours related with this destination', 'tour-operator' ),
-	'type'       => 'post_select',
+	'type'       => 'pw_multiselect',
 	'use_ajax'   => false,
-	'repeatable' => true,
+	'repeatable' => false,
 	'allow_none' => true,
-	'query'      => array(
-		'post_type'      => 'tour',
-		'nopagin'        => true,
-		'posts_per_page' => '-1',
-		'orderby'        => 'title',
-		'order'          => 'ASC',
+	'options'  => array(
+		'post_type_args' => 'tour',
 	),
 );
 
