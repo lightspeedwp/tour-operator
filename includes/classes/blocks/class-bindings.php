@@ -590,6 +590,8 @@ class Bindings {
 			return $block_content;
 		}
 
+		//var_dump($parsed_block['attrs']);
+
 		$gallery = get_post_meta( get_the_ID(), 'gallery', true );
 		if ( false === $gallery || empty($gallery ) ) {
 			return $block_content;
@@ -598,10 +600,23 @@ class Bindings {
 		$classes = $this->find_gallery_classes( $block_content );
 		$images  = array();
 
+		$link_prefix = '';
+		$link_suffix = '';
+		$link        = false;
+		if ( isset( $parsed_block['attrs']['linkTo'] ) && 'media' === $parsed_block['attrs']['linkTo'] ) {
+			$link = true;
+		}
+
 		$count = 1;
 		foreach ( $gallery as $gid => $gurl ) {
+
+			if ( $link ) {
+				$link_prefix = '<a rel="gallery" href="' . $gurl . '">';
+				$link_suffix = '</a>';
+			}
+
 			$build = '<figure class="wp-block-image">';
-			$build .= '<img src="' . $gurl . '" alt="" class="wp-image-' . $gid . '"/>';
+			$build .= $link_prefix . '<img src="' . $gurl . '" alt="" class="wp-image-' . $gid . '"/>' . $link_suffix;
 			$build .= '</figure>';
 			$images[] = $build;
 			$count++;
