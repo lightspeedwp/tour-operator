@@ -70,6 +70,7 @@ class Bindings {
 		add_action( 'init', array( $this, 'register_block_bindings' ) );
 		add_filter( 'render_block', array( $this, 'render_itinerary_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'render_units_block' ), 10, 3 );
+		add_filter( 'render_block', array( $this, 'render_gallery_block' ), 10, 3 );
 	}
 
 	/**
@@ -120,6 +121,14 @@ class Bindings {
 			array(
 				'label' => __( 'Accommodation Units', 'lsx-wetu-importer' ),
 				'get_value_callback' => array( $this, 'units_callback' )
+			)
+		);
+
+		register_block_bindings_source(
+			'lsx/gallery',
+			array(
+				'label' => __( 'TO Gallery', 'lsx-wetu-importer' ),
+				'get_value_callback' => array( $this, 'gallery_callback' )
 			)
 		);
 	}
@@ -537,5 +546,91 @@ class Bindings {
 		// Replace matched class attributes with an empty string
 		$result = preg_replace($pattern, '', $content);
 		return $result;
+	}
+
+	/**
+	 * Callback function to process gallery blocks.
+	 *
+	 * This function checks if the given block instance is of type 'core/group'
+	 * and returns an empty string if it is. It serves as a conditional handler
+	 * based on the block type.
+	 *
+	 * @param array $source_args Arguments provided by the source.
+	 * @param object $block_instance Instance of the block currently being processed.
+	 * 
+	 * @return string Returns an empty string if the block is of type 'core/group', otherwise no return value.
+	 */
+	public function gallery_callback( $source_args, $block_instance ) {
+		if ( 'core/group' === $block_instance->parsed_block['blockName'] ) {
+			return '';
+		}
+	}
+
+	public function render_gallery_block( $block_content, $parsed_block, $block_obj ) {
+		// Determine if this is the custom block variation.
+		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
+			return $block_content;
+		}
+		$allowed_blocks = array(
+			'core/gallery'
+		);
+		$allowed_sources = array(
+			'lsx/gallery'
+		);
+
+		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
+			return $block_content; 
+		}
+
+		if ( ! isset( $parsed_block['attrs']['metadata']['bindings']['content']['source'] ) ) {
+			return $block_content;
+		}
+
+		if ( ! in_array( $parsed_block['attrs']['metadata']['bindings']['content']['source'], $allowed_sources ) ) {
+			return $block_content;
+		}
+
+		$gallery = get_post_meta( get_the_ID(), 'gallery', true );
+		if ( false === $gallery || empty($gallery ) ) {
+			return $block_content;
+		}
+
+		$classes = $this->find_gallery_classes( $block_content );
+		$images  = array();
+
+		$count = 1;
+		foreach ( $gallery as $gid => $gurl ) {
+			$build = '<figure class="wp-block-image">';
+			$build .= '<img src="' . $gurl . '" alt="" class="wp-image-' . $gid . '"/>';
+			$build .= '</figure>';
+			$images[] = $build;
+			$count++;
+		}
+		$block_content = '<figure class="' . $classes . '">' . implode( '', $images ) . '</figure>';
+		return $block_content;
+	}
+
+	/**
+	 * Finds all class names of the current gallery.
+	 *
+	 * @param string $content The original HTML content.
+	 * @param string $prefix The css classname prefix before the -description.
+	 * @return string An string containing class names found with "{$prefix}-description".
+	 */
+	public function find_gallery_classes( $content ) {
+		$classes = '';
+
+		// Regular expression to match any <p> tag with class "itinerary-description" among other classes
+		$pattern = '/<figure\s+[^>]*\bclass="([^"]*\bwp-block-gallery\b[^"]*)"/is';
+		// Array to hold the matches
+		$matches = [];
+		// Perform the matching
+		$match_count = preg_match_all( $pattern, $content, $matches );
+		// $matches[1] contains the matched class attribute values
+
+		if ( 0 < $match_count ) {
+			$classes = implode( '', $matches[1] );
+		}
+		return $classes;
 	}
 }
