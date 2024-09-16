@@ -11,10 +11,30 @@ class Bindings {
 	/**
 	 * Holds instance of the class
 	 *
-	 * @since   1.1.0
 	 * @var     \lsx\blocks\Bindings
 	 */
 	private static $instance;
+
+	/**
+	 * Holds array of itinerary fields slugs
+	 *
+	 * @var array
+	 */
+	public $itinerary_fields;
+
+	/**
+	 * Holds array of unit fields slugs
+	 *
+	 * @var array
+	 */
+	public $unit_fields;
+
+	/**
+	 * Holds array of unit types
+	 *
+	 * @var array
+	 */
+	public $unit_types;
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -24,8 +44,32 @@ class Bindings {
 	 * @access private
 	 */
 	public function __construct() {
+		$this->itinerary_fields = array(
+			'title',
+			'description',
+			'location',
+			'accommodation',
+			'type',
+			'drinks',
+			'room',
+		);
+		$this->unit_fields = array(
+			'type',
+			'title',
+			'description',
+			'price',
+			'gallery',
+		);
+		$this->unit_types = array(
+			'chalet' => esc_html__( 'Chalet', 'tour-operator' ),
+			'room'   => esc_html__( 'Room', 'tour-operator' ),
+			'spa'    => esc_html__( 'Spa', 'tour-operator' ),
+			'tent'   => esc_html__( 'Tent', 'tour-operator' ),
+			'villa'  => esc_html__( 'Villa', 'tour-operator' ),
+		);
 		add_action( 'init', array( $this, 'register_block_bindings' ) );
 		add_filter( 'render_block', array( $this, 'render_itinerary_block' ), 10, 3 );
+		add_filter( 'render_block', array( $this, 'render_units_block' ), 10, 3 );
 	}
 
 	/**
@@ -72,10 +116,10 @@ class Bindings {
 		);
 
 		register_block_bindings_source(
-			'lsx/itinerary-field',
+			'lsx/accommodation-units',
 			array(
-				'label' => __( 'Itinerary Field', 'lsx-wetu-importer' ),
-				'get_value_callback' => array( $this, 'itinerary_field_callback' )
+				'label' => __( 'Accommodation Units', 'lsx-wetu-importer' ),
+				'get_value_callback' => array( $this, 'units_callback' )
 			)
 		);
 	}
@@ -142,22 +186,37 @@ class Bindings {
 		return $value;
 	}
 
+	/**
+	 * Callback function to process itinerary-related blocks.
+	 *
+	 * This function checks if the given block instance is of type 'core/paragraph'
+	 * and returns an empty string if it is. It serves as a conditional handler
+	 * based on the block type.
+	 *
+	 * @param array $source_args Arguments provided by the source.
+	 * @param object $block_instance Instance of the block currently being processed.
+	 * 
+	 * @return string Returns an empty string if the block is of type 'core/paragraph', otherwise no return value.
+	 */
 	public function itinerary_callback( $source_args, $block_instance ) {
-		if ( 'core/paragraph' === $block_instance->parsed_block['blockName'] ) {
-			return 'bindings';
+		if ( 'core/group' === $block_instance->parsed_block['blockName'] ) {
+			return '';
 		}
 	}
 
-	public function itinerary_field_callback( $source_args, $block_instance ) {
-		if ( 'core/image' === $block_instance->parsed_block['blockName'] ) {
-			$value = 'test_image';
-		} elseif ( 'core/paragraph' === $block_instance->parsed_block['blockName'] || 'core/heading' === $block_instance->parsed_block['blockName'] ) {
-			$value = 'itin_field';
-		}
-		return $value;
-	}
-
-
+	/**
+	 * Renders the itinerary block with custom content.
+	 *
+	 * This function processes the block content by checking if it belongs to a specific
+	 * custom block variation and then iteratively builds the itinerary content based on
+	 * predefined fields and templates. It returns the final rendered block content.
+	 *
+	 * @param string $block_content The original content of the block.
+	 * @param array  $parsed_block  Parsed data for the block, including type and attributes.
+	 * @param object $block_obj     Block object instance for the current block being processed.
+	 * 
+	 * @return string Returns the modified block content after processing itinerary data.
+	 */
 	public function render_itinerary_block( $block_content, $parsed_block, $block_obj ) {
 		// Determine if this is the custom block variation.
 		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
@@ -190,14 +249,10 @@ class Bindings {
 			while ( lsx_to_itinerary_loop() ) {
 				lsx_to_itinerary_loop_item();
 				$build   = $pattern;
-				$build   = $this->build_itinerary_field( $build, 'title' );
-				$build   = $this->build_itinerary_field( $build, 'description' );
-				$build   = $this->build_itinerary_field( $build, 'location' );
-				$build   = $this->build_itinerary_field( $build, 'accommodation' );
-				$build   = $this->build_itinerary_field( $build, 'type' );
-				$build   = $this->build_itinerary_field( $build, 'drinks' );
-				$build   = $this->build_itinerary_field( $build, 'room' );
-				$build   = $this->build_itinerary_image( $build );
+				foreach ( $this->itinerary_fields as $field ) {
+					$build   = $this->build_itinerary_field( $build, $field, $itinerary_count );
+				}
+				$build   = $this->build_image( $build, 'itinerary' );
 				$group[] = $build;
 
 				$itinerary_count++;
@@ -216,7 +271,7 @@ class Bindings {
 	 * @param string $field The field to build.
 	 * @return string The modified HTML content where the specified heading tags have updated innerHTML.
 	 */
-	public function build_itinerary_field( $build = '', $field = '' ) {
+	public function build_itinerary_field( $build = '', $field = '', $count = 1 ) {
 		$pattern     = '';
 		$replacement = '';
 		switch ( $field ) {
@@ -230,7 +285,7 @@ class Bindings {
 
 			case 'description':
 				// Maintain any formatting set of the parent tag.
-				$classes = $this->find_description_classes( $build );
+				$classes = $this->find_description_classes( $build, 'itinerary' );
 				if ( '' !== $classes ) {
 					// Regular expression to replace any paragraph with class "itinerary-description"
 					$pattern     = '/<p\s+[^>]*\bclass="[^"]*\bitinerary-description\b[^"]*"[^>]*>.*?<\/p>/is';
@@ -298,13 +353,19 @@ class Bindings {
 	 * @param string $field The field to build.
 	 * @return string The modified HTML content where the specified heading tags have updated innerHTML.
 	 */
-	public function build_itinerary_image( $build = '' ) {
-
+	public function build_image( $build = '', $classname = 'itinerary-image' ) {
+		global $rooms;
 		//Create our tag manager object so we can inject the itinerary content.
 		$tags = new \WP_HTML_Tag_Processor( $build );
-		if ( $tags->next_tag( array( 'class_name' => 'itinerary-image' ) ) ) {
+		if ( $tags->next_tag( array( 'class_name' => $classname ) ) ) {
 			if ( $tags->next_tag( array( 'tag_name' => 'img' ) ) ) {
-				$img_src = lsx_to_itinerary_thumbnail();
+
+				if ( 'itinerary-image' === $classname ) {
+					$img_src = lsx_to_itinerary_thumbnail();
+				} else {
+					$img_src = $rooms->item_thumbnail();
+				}
+				
 				$tags->set_attribute( 'src', $img_src );
 				$build = $tags->get_updated_html();
 			}
@@ -314,16 +375,144 @@ class Bindings {
 	}
 
 	/**
+	 * Callback function to process itinerary-related blocks.
+	 *
+	 * This function checks if the given block instance is of type 'core/group'
+	 * and returns an empty string if it is. It serves as a conditional handler
+	 * based on the block type.
+	 *
+	 * @param array $source_args Arguments provided by the source.
+	 * @param object $block_instance Instance of the block currently being processed.
+	 * 
+	 * @return string Returns an empty string if the block is of type 'core/group', otherwise no return value.
+	 */
+	public function units_callback( $source_args, $block_instance ) {
+		if ( 'core/group' === $block_instance->parsed_block['blockName'] ) {
+			return '';
+		}
+	}
+
+	public function render_units_block( $block_content, $parsed_block, $block_obj ) {
+		// Determine if this is the custom block variation.
+		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
+			return $block_content;
+		}
+		$allowed_blocks = array(
+			'core/group'
+		);
+		$allowed_sources = array(
+			'lsx/accommodation-units'
+		);
+
+		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
+			return $block_content; 
+		}
+
+		if ( ! isset( $parsed_block['attrs']['metadata']['bindings']['content']['source'] ) ) {
+			return $block_content;
+		}
+
+		if ( ! in_array( $parsed_block['attrs']['metadata']['bindings']['content']['source'], $allowed_sources ) ) {
+			return $block_content;
+		}
+
+		
+		$pattern = $block_content;
+		$group   = array();
+
+		// Iterate through and build our unit tempalte from the block content template.
+		if ( lsx_to_accommodation_has_rooms() ) {
+			// Loop through the rooms outputing only the current type.
+			global $rooms;
+
+			$count = 1;
+			while ( lsx_to_accommodation_room_loop() ) {
+				lsx_to_accommodation_room_loop_item();
+				
+				$build   = $pattern;
+				foreach ( $this->unit_fields as $field ) {
+					$build   = $this->build_unit_field( $build, $field, $count );
+				}
+				$build   = $this->build_image( $build, 'unit-gallery' );
+				$group[] = $build;
+				$count++;
+				
+			}
+		}
+		$block_content = implode( '', $group );
+		return $block_content;
+	}
+
+	/**
+	 * Modifies the HTML content by updating the innerHTML
+	 *
+	 * @param string $build The original HTML content to be modified. Default is an empty string.
+	 * @param string $field The field to build.
+	 * @return string The modified HTML content where the specified heading tags have updated innerHTML.
+	 */
+	public function build_unit_field( $build = '', $field = '', $count = 1 ) {
+		global $rooms;
+		$pattern     = '';
+		$replacement = '';
+		switch ( $field ) {
+			case 'title':
+				// Regular expression to match any heading tag (h1-h6) with class "unit-title"
+				$pattern = '/(<h[1-6]\s+[^>]*\bclass="[^"]*\bunit-title\b[^"]*"[^>]*>).*?(<\/h[1-6]>)/is';
+
+				// Replacement pattern to insert "test" as the new innerHTML
+				$replacement = '$1' . $rooms->item_title( '', '', false ) . '$2';
+			break;
+
+			case 'description':
+				// Maintain any formatting set of the parent tag.
+				$classes = $this->find_description_classes( $build, 'unit' );
+				if ( '' !== $classes ) {
+					// Regular expression to replace any paragraph with class "unit-description"
+					$pattern     = '/<p\s+[^>]*\bclass="[^"]*\bunit-description\b[^"]*"[^>]*>.*?<\/p>/is';
+					// Replacement pattern to insert "test" as the new innerHTML
+					$replacement = '$1<div class="' . $classes . '"/>' . $rooms->item_description( false ) . '</div>$2';
+				}
+			break;
+
+			case 'type':
+				// Regular expression to match any paragraph tag with class "unit-type"
+				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bunit-type\b[^"]*"[^>]*>).*?(<\/p>)/is';
+    
+				// Replacement pattern to insert "test" as the new innerHTML
+				$replacement = '$1' . $rooms->item_type( '', '', false ) . '$2';
+			break;
+
+			case 'price':
+				// Regular expression to match any paragraph tag with class "itinerary-accommodation"
+				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bunit-price\b[^"]*"[^>]*>).*?(<\/p>)/is';
+    
+				// Replacement pattern to insert "test" as the new innerHTML
+				$replacement = '$1' . $rooms->item_price( '', '', false ) . '$2';
+			break;
+
+			default:
+			break;
+		}
+
+		// Perform the replacement if the pattern is not empty
+		if ( '' !== $pattern ) {
+			$build = preg_replace($pattern, $replacement, $build);
+		}
+		return $build;
+	}
+
+	/**
 	 * Finds all class names of the <p> tag that includes the class "itinerary-description".
 	 *
 	 * @param string $content The original HTML content.
-	 * @return string An string containing class names found with "itinerary-description".
+	 * @param string $prefix The css classname prefix before the -description.
+	 * @return string An string containing class names found with "{$prefix}-description".
 	 */
-	public function find_description_classes( $content ) {
+	public function find_description_classes( $content, $prefix = '' ) {
 		$classes = '';
 
 		// Regular expression to match any <p> tag with class "itinerary-description" among other classes
-		$pattern = '/<p\s+[^>]*\bclass="([^"]*\bitinerary-description\b[^"]*)"/is';
+		$pattern = '/<p\s+[^>]*\bclass="([^"]*\b' . $prefix . '-description\b[^"]*)"/is';
 		// Array to hold the matches
 		$matches = [];
 		// Perform the matching

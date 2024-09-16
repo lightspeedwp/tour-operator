@@ -41,7 +41,7 @@ class Unit_Query {
 	 * @since 1.0.0
 	 * @var      array
 	 */
-	public $titles = false;
+	public $titles = array();
 
 	/**
 	 * Holds current queried item
@@ -49,7 +49,7 @@ class Unit_Query {
 	 * @since 1.0.0
 	 * @var      array
 	 */
-	public $query_item = false;
+	public $query_item = array();
 
 	/**
 	 * The Number of Queried Items
@@ -63,7 +63,7 @@ class Unit_Query {
 	 * The Current Query Index
 	 *
 	 * @since 1.0.0
-	 * @var      array
+	 * @var      int
 	 */
 	public $index = 0;
 
@@ -84,7 +84,7 @@ class Unit_Query {
 	 */
 	public function __construct( $type = false ) {
 		$this->post_id       = get_the_ID();
-		$this->queried_items = get_post_meta( $this->post_id, 'units', false );
+		$this->queried_items = get_post_meta( $this->post_id, 'units', true );
 		if ( is_array( $this->queried_items ) && ! empty( $this->queried_items ) ) {
 			$this->have_query = true;
 			$this->count      = count( $this->queried_items );
@@ -119,14 +119,8 @@ class Unit_Query {
 	 * Sets the current itinerary item
 	 */
 	public function current_queried_item( $type = false ) {
-		$return = false;
-		if ( false === $type || $type === $this->queried_items[ $this->index ]['type'] ) {
-			$this->query_item = $this->queried_items[ $this->index ];
-			$return           = true;
-		}
-		$this->index ++;
-
-		return $return;
+		$this->query_item = $this->queried_items[ $this->index ];
+		$this->index++;
 	}
 
 	/**
@@ -180,28 +174,57 @@ class Unit_Query {
 	}
 
 	/**
+	 * Outputs the current items "description" field
+	 */
+	public function item_price( $before = '', $after = '', $echo = false ) {
+		if ( $this->have_query && false !== $this->query_item ) {
+			if ( false !== $this->query_item['price'] ) {
+				$return = $before . $this->query_item['price'] . $after;
+				if ( $echo ) {
+					echo wp_kses_post( $return );
+				} else {
+					return $return;
+				}
+			}
+		}
+	}
+
+	/**
+	 * Outputs the current items "description" field
+	 */
+	public function item_type( $before = '', $after = '', $echo = false ) {
+		if ( $this->have_query && false !== $this->query_item ) {
+			if ( false !== $this->query_item['type'] ) {
+				$return = $before . $this->query_item['type'] . $after;
+				if ( $echo ) {
+					echo wp_kses_post( $return );
+				} else {
+					return $return;
+				}
+			}
+		}
+	}
+
+	/**
 	 * Outputs the current items "gallery" field
 	 */
 	public function item_thumbnail() {
-		if ( $this->have_query && false !== $this->query_item ) {
-			$thumbnail_src = false;
-			$thumbnail_src = apply_filters( 'lsx_to_accommodation_room_thumbnail', $thumbnail_src );
-
+		$thumbnail_src = false;
+		$thumbnail_src = apply_filters( 'lsx_to_accommodation_room_thumbnail', $thumbnail_src );
+		if ( $this->have_query && false !== $this->query_item && ! empty( $this->query_item ) ) {
 			if ( false !== $this->query_item['gallery'] ) {
-				$images = array_values( $this->query_item['gallery'] );
-				$thumbnail = wp_get_attachment_image_src( $images[0], 'lsx-thumbnail-wide' );
-
+				$images = array_keys( $this->query_item['gallery'] );
+				$thumbnail = wp_get_attachment_image_src( $images[0], 'medium' );
 				if ( is_array( $thumbnail ) ) {
 					$thumbnail_src = $thumbnail[0];
 				}
 			}
-
-			if ( false === $thumbnail_src || '' === $thumbnail_src ) {
-				$thumbnail_src = \lsx\legacy\Placeholders::placeholder_url( null, 'accommodation' );
-			}
-
-			return $thumbnail_src;
 		}
+		if ( false === $thumbnail_src || '' === $thumbnail_src ) {
+			$thumbnail_src = \lsx\legacy\Placeholders::placeholder_url( null, 'accommodation' );
+		}
+
+		return $thumbnail_src;
 	}
 
 	/**
@@ -212,7 +235,7 @@ class Unit_Query {
 			$images_return = array();
 
 			if ( isset( $this->query_item['gallery'] ) && false !== $this->query_item['gallery'] ) {
-				$images = array_values( $this->query_item['gallery'] );
+				$images = array_keys( $this->query_item['gallery'] );
 
 				foreach ( $images as $key => $value ) {
 					$thumbnail_src = false;

@@ -204,13 +204,13 @@ function lsx_to_itinerary_has_thumbnail() {
  * @subpackage    template-tags
  * @category      itinerary
  */
-function lsx_to_itinerary_thumbnail( $size = 'medium', $meta_key = 'accommodation_to_tour' ) {
+function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square', $meta_key = 'accommodation_to_tour' ) {
 	global $tour_itinerary;
 	$accommodation_id = '';
 	$temp_id          = '';
 	$tour_operator    = tour_operator();
 	
-	if ( isset( $tour_operator->options['itinerary_use_destination_images'] ) && '' !== $tour_operator->options['itinerary_use_destination_images'] ) {
+	if ( isset( $tour_operator->options['tour']['itinerary_use_destination_images'] ) && '' !== $tour_operator->options['tour']['itinerary_use_destination_images'] ) {
 		$meta_key = 'destination_to_tour';
 	}
 
@@ -227,38 +227,32 @@ function lsx_to_itinerary_thumbnail( $size = 'medium', $meta_key = 'accommodatio
 				$thumbnail_src = $thumbnail[0];
 			}
 		} elseif ( ! empty( $tour_itinerary->itinerary[ $meta_key ] ) ) {
-			$accommodation_images = array();
-			$items                = $tour_itinerary->itinerary[ $meta_key ];
-			if ( false !== $items ) {
-				if ( ! is_array( $items ) ) {
-					$items = array( $items );
+			$accommodation_images = false;
+
+			foreach ( $tour_itinerary->itinerary[ $meta_key ] as $accommodation_id ) {
+				$tour_itinerary->register_current_gallery( $accommodation_id, $meta_key );
+				$current_image_id = false;
+
+				// Try for a thumbnail first.
+				$temp_id = get_post_thumbnail_id( $accommodation_id );
+
+				if ( false === $temp_id || 0 === $temp_id || $tour_itinerary->is_image_used( $temp_id ) ) {
+					$current_image_id = $tour_itinerary->find_next_image( $accommodation_id );
+				} else {
+					$current_image_id = $temp_id;
 				}
-	
-				foreach ( $items as $accommodation_id ) {
-					$tour_itinerary->register_current_gallery( $accommodation_id, $meta_key );
-					$current_image_id = false;
-	
-					// Try for a thumbnail first.
-					$temp_id = get_post_thumbnail_id( $accommodation_id );
-	
-					if ( false === $temp_id || 0 === $temp_id || $tour_itinerary->is_image_used( $temp_id ) ) {
-						$current_image_id = $tour_itinerary->find_next_image( $accommodation_id );
-					} else {
-						$current_image_id = $temp_id;
-					}
-	
-					if ( false !== $current_image_id ) {
-						$tour_itinerary->save_used_image( $current_image_id );
-						$temp_src_array = wp_get_attachment_image_src( $current_image_id, $size );
-	
-						if ( is_array( $temp_src_array ) ) {
-							$accommodation_images[] = $temp_src_array[0];
-						}
+
+				if ( false !== $current_image_id ) {
+					$tour_itinerary->save_used_image( $current_image_id );
+					$temp_src_array = wp_get_attachment_image_src( $current_image_id, $size );
+
+					if ( is_array( $temp_src_array ) ) {
+						$accommodation_images[] = $temp_src_array[0];
 					}
 				}
 			}
 
-			if ( ! empty( $accommodation_images ) ) {
+			if ( false !== $accommodation_images ) {
 				$thumbnail_src = $accommodation_images[0];
 			}
 		}
@@ -625,81 +619,6 @@ function lsx_to_accommodation_reset_units_loop() {
 	global $rooms;
 
 	return $rooms->reset_loop();
-}
-
-/**
- * Outputs various units attached to the accommodation
- *
- * @package       tour-operator
- * @subpackage    template-tags
- * @category      unit
- */
-function lsx_to_accommodation_units() {
-	global $rooms;
-
-	if ( lsx_to_accommodation_has_rooms() ) {
-		$unit_types = array(
-			'chalet' => esc_html__( 'Chalet', 'tour-operator' ),
-			'room'   => esc_html__( 'Room', 'tour-operator' ),
-			'spa'    => esc_html__( 'Spa', 'tour-operator' ),
-			'tent'   => esc_html__( 'Tent', 'tour-operator' ),
-			'villa'  => esc_html__( 'Villa', 'tour-operator' ),
-		);
-
-		foreach ( $unit_types as $type_key => $type_label ) {
-			if ( lsx_to_accommodation_check_type( $type_key ) ) {
-				?>
-				<section id="<?php echo esc_attr( $type_key ); ?>s" class="lsx-to-section <?php lsx_to_collapsible_class( 'accommodation', false ); ?>">
-					<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" <?php lsx_to_collapsible_attributes_not_post( 'collapse-' . $type_key . 's' ); ?>><?php echo esc_html( lsx_to_get_post_type_section_title( 'accommodation', $type_key . 's', $type_label . 's' ) ); ?></h2>
-
-					<div id="collapse-<?php echo esc_attr( $type_key ); ?>s" class="collapse in">
-						<div class="collapse-inner">
-							<div class="<?php echo esc_attr( $type_key ); ?>s-wrapper rooms-wrapper row">
-								<?php while ( lsx_to_accommodation_room_loop() ) { ?>
-
-									<?php 
-                                    if ( ! lsx_to_accommodation_room_loop_item( $type_key ) ) {
-										continue;
-									} 
-                                    ?>
-
-									<div class="col-xs-12 col-md-6">
-										<article class="rooms-content">
-											<?php if ( lsx_to_accommodation_room_has_thumbnail() && $rooms->item_thumbnails() ) { ?>
-												<div class="rooms-thumbnail-wrap">
-													<?php
-														$images = $rooms->item_thumbnails();
-														$count = 0;
-
-														foreach ( $images as $thumbnail_wide_src => $thumbnail_single_src ) {
-															$count++;
-															?>
-                                                            <a href="<?php echo esc_url( $thumbnail_single_src ); ?>" class="rooms-thumbnail <?php if ( $count > 1 ) echo 'hidden'; ?>" style="background-image:url('<?php echo esc_url( $thumbnail_wide_src ); ?>')"></a>
-                                                            <?php
-														}
-													?>
-												</div>
-											<?php } ?>
-
-											<div class="rooms-info">
-												<?php lsx_to_accommodation_room_title( '<h5>', '</h5>' ); ?>
-												<?php lsx_to_accommodation_room_description( '<div class="entry-content">', '</div>' ); ?>
-											</div>
-										</article>
-									</div>
-
-								<?php 
-                                }
-								lsx_to_accommodation_reset_units_loop(); 
-                                ?>
-							</div>
-						</div>
-					</div>
-				</section>
-			<?php 
-            }
-		}
-	}
 }
 
 /**
