@@ -261,7 +261,7 @@ class Bindings {
 				foreach ( $this->itinerary_fields as $field ) {
 					$build   = $this->build_itinerary_field( $build, $field, $itinerary_count );
 				}
-				$build   = $this->build_image( $build, 'itinerary' );
+				$build   = $this->build_image( $build, 'itinerary-image' );
 				$group[] = $build;
 
 				$itinerary_count++;
@@ -368,6 +368,8 @@ class Bindings {
 		$tags = new \WP_HTML_Tag_Processor( $build );
 		if ( $tags->next_tag( array( 'class_name' => $classname ) ) ) {
 			if ( $tags->next_tag( array( 'tag_name' => 'img' ) ) ) {
+
+				var_dump($classname);
 
 				if ( 'itinerary-image' === $classname ) {
 					$img_src = lsx_to_itinerary_thumbnail();
