@@ -369,8 +369,6 @@ class Bindings {
 		if ( $tags->next_tag( array( 'class_name' => $classname ) ) ) {
 			if ( $tags->next_tag( array( 'tag_name' => 'img' ) ) ) {
 
-				var_dump($classname);
-
 				if ( 'itinerary-image' === $classname ) {
 					$img_src = lsx_to_itinerary_thumbnail();
 				} else {
