@@ -90,18 +90,13 @@ wp.domReady(() => {
 		attributes: {
 			metadata: {
 				name: 'Price',
-				bindings: {
-					content: {
-						source: 'lsx/post-meta'
-					}
-				}
 			},
 			align: 'wide',
             layout: {
                 type: 'flex',
                 flexWrap: 'nowrap'
             },
-			className: 'facts-price-wrapper'
+			className: 'lsx-price-wrapper'
 		},
 		innerBlocks: [
 			[ 'core/paragraph', {
