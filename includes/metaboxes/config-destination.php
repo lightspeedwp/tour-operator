@@ -169,38 +169,6 @@ $metabox['fields'][] = array(
     ),
 );
 
-if ( class_exists( 'Envira_Gallery' ) ) {
-	$metabox['fields'][] = array(
-		'id'   => 'envira_title',
-		'name' => esc_html__( 'Envira Gallery', 'tour-operator' ),
-		'type' => 'title',
-	);
-
-	$metabox['fields'][] = array(
-		'id'         => 'envira_gallery',
-		'name'       => esc_html__( 'Envira Gallery', 'tour-operator' ),
-		'type'       => 'pw_multiselect',
-		'use_ajax'   => false,
-		'allow_none' => true,
-		'options'  => array(
-			'post_type_args' => 'envira',
-		),
-	);
-
-	if ( class_exists( 'Envira_Videos' ) ) {
-		$metabox['fields'][] = array(
-			'id'         => 'envira_video',
-			'name'       => esc_html__( 'Envira Video Gallery', 'tour-operator' ),
-			'type'       => 'pw_multiselect',
-			'use_ajax'   => false,
-			'allow_none' => true,
-			'options'  => array(
-				'post_type_args' => 'envira',
-			),
-		);
-	}
-}
-
 if ( ! isset( tour_operator()->options['display']['maps_disable'] ) && empty( tour_operator()->options['display']['maps_disable'] ) ) {
 	$metabox['fields'][] = array(
 		'id'   => 'location_title',
