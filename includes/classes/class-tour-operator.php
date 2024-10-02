@@ -229,7 +229,7 @@ class Tour_Operator {
 		$this->settings   = Settings::init();
 		$this->setup      = Setup::init();
 		$this->bindings   = Bindings::init();
-		$this->variations = Variations::init();
+		$this->variations = new Variations();
 		$this->patterns   = Patterns::init();
 	}
 }
