@@ -227,7 +227,11 @@ function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square', $meta_key =
 				$thumbnail_src = $thumbnail[0];
 			}
 		} elseif ( ! empty( $tour_itinerary->itinerary[ $meta_key ] ) ) {
-			$accommodation_images = false;
+			$accommodation_images = [];
+
+			if ( is_string( $tour_itinerary->itinerary[ $meta_key ] ) ) {
+				$tour_itinerary->itinerary[ $meta_key ] = array( $tour_itinerary->itinerary[ $meta_key ] );
+			}
 
 			foreach ( $tour_itinerary->itinerary[ $meta_key ] as $accommodation_id ) {
 				$tour_itinerary->register_current_gallery( $accommodation_id, $meta_key );
@@ -252,7 +256,7 @@ function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square', $meta_key =
 				}
 			}
 
-			if ( false !== $accommodation_images ) {
+			if ( ! empty( $accommodation_images ) ) {
 				$thumbnail_src = $accommodation_images[0];
 			}
 		}

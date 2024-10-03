@@ -607,7 +607,6 @@ class Tour_Operator {
 		if ( ! isset( $allowedtags['i'] ) ) {
 			$allowedtags['i'] = array();
 		}
-
 		$allowedtags['i']['aria-hidden']    = true;
 
 		if ( ! isset( $allowedtags['span'] ) ) {
