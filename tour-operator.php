@@ -35,7 +35,34 @@ require_once LSX_TO_PATH . 'tour-operator-bootstrap.php';
  */
 require_once LSX_TO_PATH . 'src/init.php';
 
+function lsx_to_get_template_content( $template ) {
+	ob_start();
+	include __DIR__ . "/templates/{$template}";
+	return ob_get_clean();
+}
+
+add_action( 'init', 'lsx_to_register_plugin_templates' );
+
+function lsx_to_register_plugin_templates() {
+	// Add calls to wp_register_block_template() here.
+    wp_register_block_template( 'tour-operator//single-tour', [
+        'title'       => __( 'Single Tour', 'tour-operator' ),
+        'description' => __( 'Displays a single Tour.', 'tour-operator' ),
+        'post-type'   => [ 'tours' ],
+        'content'     => lsx_to_get_template_content( 'single-tour.php' )
+    ] );
+
+    wp_register_block_template( 'tour-operator//single-accommodation', [
+        'title'       => __( 'Single Accommodation', 'tour-operator' ),
+        'description' => __( 'Displays a single accommodation.', 'tour-operator' ),
+        'post-type'   => [ 'accommodations' ],
+        'content'     => lsx_to_get_template_content( 'single-accommodation.php' )
+    ] );
+}
+
+
 add_action( 'init', 'to_register_tour_type' );
+add_action( 'init', 'to_register_accommodation_type' );
 
 function to_register_tour_type() {
     register_post_type( 'tours', [
@@ -70,3 +97,23 @@ function to_register_accommodation_type() {
         ]
     ] );
 }
+
+// Add the single_template filter to use custom templates for single posts
+add_filter( 'single_template', 'to_custom_single_templates' );
+
+function to_custom_single_templates( $single ) {
+    global $post;
+
+    if ( $post->post_type == 'tours' ) {
+        if ( file_exists( get_template_directory() . '/templates/single-tour.php' ) ) {
+            return get_template_directory() . '/templates/single-tour.php';
+        }
+    } elseif ( $post->post_type == 'accommodations' ) {
+        if ( file_exists( get_template_directory() . '/templates/single-accommodation.php' ) ) {
+            return get_template_directory() . '/templates/single-accommodation.php';
+        }
+    }
+
+    return $single;
+}
+
