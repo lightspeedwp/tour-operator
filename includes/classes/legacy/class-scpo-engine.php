@@ -148,31 +148,31 @@ class SCPO_Engine {
 						),
 						array(
 							'ID' => $result->ID,
-						)
-					);
-				}
-			}
-		}
+                        )
+                    );
+                }
+            }
+        }
 
-		if ( ! empty( $tags ) ) {
-			foreach ( $tags as $taxonomy => $taxonomy_data ) {
-				$result = $wpdb->get_results( $wpdb->prepare( "
-					SELECT count(*) as cnt, max(lsx_to_term_order) as max, min(lsx_to_term_order) as min
-					FROM $wpdb->terms AS terms
-					INNER JOIN $wpdb->term_taxonomy AS term_taxonomy ON ( terms.term_id = term_taxonomy.term_id )
-					WHERE term_taxonomy.taxonomy = '%s'
-				", $taxonomy ) );
+        if ( ! empty( $tags ) ) {
+            foreach ( $tags as $taxonomy => $taxonomy_data ) {
+                $result = $wpdb->get_results( $wpdb->prepare( "
+                    SELECT count(*) as cnt, max(lsx_to_term_order) as max, min(lsx_to_term_order) as min
+                    FROM $wpdb->terms AS terms
+                    INNER JOIN $wpdb->term_taxonomy AS term_taxonomy ON ( terms.term_id = term_taxonomy.term_id )
+                    WHERE term_taxonomy.taxonomy = '%s'
+                ", $taxonomy ) );
 
-				if ( 0 == $result[0]->cnt || $result[0]->cnt == $result[0]->max ) {
-					continue;
-				}
+                if ( !empty($result) && isset($result[0]) && isset($result[0]->cnt) && (0 == $result[0]->cnt || $result[0]->cnt == $result[0]->max) ) {
+                    continue;
+                }
 
-				$results = $wpdb->get_results( $wpdb->prepare( "
-					SELECT terms.term_id
-					FROM $wpdb->terms AS terms
-					INNER JOIN $wpdb->term_taxonomy AS term_taxonomy ON ( terms.term_id = term_taxonomy.term_id )
-					WHERE term_taxonomy.taxonomy = '%s'
-					ORDER BY lsx_to_term_order ASC
+                $results = $wpdb->get_results( $wpdb->prepare( "
+                    SELECT terms.term_id
+                    FROM $wpdb->terms AS terms
+                    INNER JOIN $wpdb->term_taxonomy AS term_taxonomy ON ( terms.term_id = term_taxonomy.term_id )
+                    WHERE term_taxonomy.taxonomy = '%s'
+                    ORDER BY lsx_to_term_order ASC
 				", $taxonomy ) );
 
 				foreach ( $results as $key => $result ) {

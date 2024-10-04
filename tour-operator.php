@@ -35,8 +35,38 @@ require_once LSX_TO_PATH . 'tour-operator-bootstrap.php';
  */
 require_once LSX_TO_PATH . 'src/init.php';
 
-// Register activation hook.
-/*register_activation_hook( LSX_TO_CORE, array(
-	'Tour_Operator',
-	'register_activation_hook',
-) );*/
+add_action( 'init', 'to_register_tour_type' );
+
+function to_register_tour_type() {
+    register_post_type( 'tours', [
+        'public'             => true,
+		'show_ui'            => true,
+        'show_in_rest'       => true,
+        'capability_type'    => 'post',
+        'has_archive'        => 'tours',
+        'menu_icon'          => 'dashicons-palmtree',
+        'supports'           => [ 'editor', 'excerpt', 'title', 'thumbnail' ],
+        'labels'             => [
+            'name'          => __( 'Tours',        'tour-operator' ),
+            'singular_name' => __( 'Tour',         'tour-operator' ),
+            'add_new'       => __( 'Add New Tour', 'tour-operator' )
+        ]
+    ] );
+}
+
+function to_register_accommodation_type() {
+    register_post_type( 'accommodations', [
+        'public'             => true,
+		'show_ui'            => true,
+        'show_in_rest'       => true,
+        'capability_type'    => 'post',
+        'has_archive'        => 'accommodations',
+        'menu_icon'          => 'dashicons-building',
+        'supports'           => [ 'editor', 'excerpt', 'title', 'thumbnail' ],
+        'labels'             => [
+            'name'          => __( 'Accommodations',        'tour-operator' ),
+            'singular_name' => __( 'Accommodation',         'tour-operator' ),
+            'add_new'       => __( 'Add New Accommodation', 'tour-operator' )
+        ]
+    ] );
+}

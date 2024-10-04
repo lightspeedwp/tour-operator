@@ -92,13 +92,13 @@ class Maps {
 	 * Enques the assets
 	 */
 	public function assets() {
-		if ( $this->is_a_bot() || ! lsx_to_has_map() || true === apply_filters( 'lsx_to_disable_map_js', false ) ) {
+		if ( $this->is_a_bot() || true === apply_filters( 'lsx_to_disable_map_js', false ) ) {
 			return;
 		}
 		$settings    = tour_operator()->options;
 		$api_key     = '';
 		$preview_src = $this->get_map_preview_src();
-
+	
 		if ( isset( $settings['api']['googlemaps_key'] ) ) {
 			$api_key = $settings['api']['googlemaps_key'];
 		}

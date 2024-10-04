@@ -69,3 +69,4 @@ function lsx_share() {
 	// init shared.
 	return \lsx\Share::init();
 }
+
