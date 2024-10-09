@@ -1,0 +1,86 @@
+version: 2.1
+orbs:
+  node: circleci/node@5
+  php: circleci/php@1
+  evals: circleci/evals@1.0
+jobs:
+  test-node:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+          cache-path: ~/project/node_modules
+          override-ci-command: npm install
+      - run:
+          name: Run tests
+          command: echo \"No test specified in package.json\"
+  build-node:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages:
+          cache-path: ~/project/node_modules
+          override-ci-command: npm install
+      - run:
+          command: npm run build
+      - run:
+          name: Create the ~/artifacts directory if it doesn't exist
+          command: mkdir -p ~/artifacts
+      - run:
+          name: Copy artifacts
+          command: cp -R build dist public .output .next .docusaurus ~/artifacts
+            2>/dev/null || true
+      - store_artifacts:
+          path: ~/artifacts
+          destination: node-build
+  test-php:
+    docker:
+      - image: cimg/php:8.2.7-node
+    steps:
+      - checkout
+      - php/install-packages
+      - run:
+          name: run tests
+          command: ./vendor/bin/phpunit
+  deploy:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - run:
+          name: deploy
+          command: "#e.g. ./deploy.sh"
+      - run:
+          name: found github actions config
+          command: ":"
+  eval-default-node-npm:
+    docker:
+      - image: cimg/node:18.16
+    steps:
+      - checkout
+      - run:
+          name: install dependencies
+          command: |
+            
+            npm install
+      - evals/eval:
+          circle_pipeline_id: << pipeline.id >>
+          cmd: npm run evals
+workflows:
+  build-and-test:
+    jobs:
+      - test-node:
+          context: &a1
+            - OpenAI-circleci-lightspeedwp
+      - build-node:
+          requires:
+            - test-node
+            - test-php
+          context:
+            - OpenAI-circleci-lightspeedwp
+      - test-php:
+          context: *a1
+  evals:
+    jobs:
+      - eval-default-node-npm:
+          context:
+            - OpenAI-circleci-lightspeedwp
