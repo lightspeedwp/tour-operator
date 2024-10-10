@@ -1,0 +1,79 @@
+{
+    "type": "postType",
+    "postType": "tours",
+    "slug": "tours",
+    "label": "Tours",
+    "pluralLabel": "Tours",
+    "icon": "admin-post",
+    "template": [
+        {
+            "blockName": "core\/paragraph",
+            "attrs": {
+                "placeholder": "Price",
+                "metadata": {
+                    "name": "Price",
+                    "slug": "price",
+                    "bindings": {
+                        "content": {
+                            "source": "lsx\/post-meta",
+                            "args": {
+                                "key": "price"
+                            }
+                        }
+                    }
+                }
+            },
+            "innerBlocks": [],
+            "innerHTML": "\n<p>Price<\/p>\n",
+            "innerContent": [
+                "\n<p>Price<\/p>\n"
+            ]
+        },
+        {
+            "blockName": null,
+            "attrs": [],
+            "innerBlocks": [],
+            "innerHTML": "\n\n",
+            "innerContent": [
+                "\n\n"
+            ]
+        },
+        {
+            "blockName": "core\/paragraph",
+            "attrs": {
+                "placeholder": "Duration",
+                "metadata": {
+                    "name": "Duration",
+                    "slug": "duration",
+                    "bindings": {
+                        "content": {
+                            "source": "lsx\/post-meta",
+                            "args": {
+                                "key": "duration"
+                            }
+                        }
+                    }
+                }
+            },
+            "innerBlocks": [],
+            "innerHTML": "\n<p>Duration<\/p>\n",
+            "innerContent": [
+                "\n<p>Duration<\/p>\n"
+            ]
+        }
+    ],
+    "fields": [
+        {
+            "slug": "price",
+            "type": "string",
+            "label": "price",
+            "description": ""
+        },
+        {
+            "slug": "duration",
+            "type": "string",
+            "label": "duration",
+            "description": ""
+        }
+    ]
+}
