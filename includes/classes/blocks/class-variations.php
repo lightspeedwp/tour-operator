@@ -2,7 +2,7 @@
 namespace lsx\blocks;
 
 /**
- * Registers our Custom Fields
+ * The creation of the block variants and the code to control the display.
  *
  * @package lsx
  * @author  LightSpeed
@@ -25,21 +25,7 @@ class Variations {
 	 */
 	public function __construct() {
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_variations_script' ), 10 );
-	}
-
-	/**
-	 * Return an instance of this class.
-	 *
-	 * @return  \lsx\blocks\Bindings
-	 */
-	public static function init() {
-
-		// If the single instance hasn't been set, set it now.
-		if ( ! isset( self::$instance ) ) {
-			self::$instance = new self();
-		}
-
-		return self::$instance;
+		add_filter( 'render_block', array( $this, 'maybe_hide_varitaion' ), 10, 3 );
 	}
 
 	/**
@@ -58,5 +44,45 @@ class Variations {
 				true  // Enqueue in the footer.
 			);
 		}
+	}
+
+	/**
+	 * A function to detect variation, and alter the query args.
+	 * 
+	 * Following the https://developer.wordpress.org/news/2022/12/building-a-book-review-grid-with-a-query-loop-block-variation/
+	 *
+	 * @param string|null   $pre_render   The pre-rendered content. Default null.
+	 * @param array         $parsed_block The block being rendered.
+	 * @param WP_Block|null $parent_block If this is a nested block, a reference to the parent block.
+	 */
+	public function maybe_hide_varitaion( $block_content, $parsed_block, $block_obj ) {
+		// Determine if this is the custom block variation.
+		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
+			return $block_content;
+		}
+		$allowed_blocks = array(
+			'core/group',
+		);
+
+		$allowed_classes = array(
+			'lsx-price-wrapper' => 'price',
+		);
+
+		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
+			return $block_content; 
+		}
+		if ( ! isset( $parsed_block['attrs']['className'] ) || '' === $parsed_block['attrs']['className'] || false === $parsed_block['attrs']['className'] ) {
+			return $block_content;
+		}
+
+		if ( ! array_key_exists( $parsed_block['attrs']['className'], $allowed_classes ) ) {
+			return $block_content;
+		}
+
+		$value = lsx_to_custom_field_query( 'price', '', '', false );
+		if ( empty( $value ) || '' === $value ) {
+			$block_content = '';
+		}
+		return $block_content;
 	}
 }
