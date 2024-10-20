@@ -63,10 +63,20 @@ class Admin {
 	 * @since 1.1.0
 	 */
 	public function register_pages() {
+		
+		/**
+		 * TODO
+		 * 
+		 * Add in a new way of sorting the admin pages, if we are still going to use the TO menu?
+		 * 
+		 */
+
+		$cmm = \Content_Model_Manager::get_instance();
+
 		array_map( array(
 			$this,
 			'register_post_type_page',
-		), tour_operator()->post_types->get_all() );
+		), $cmm->get_content_models() );
 		array_map( array(
 			$this,
 			'register_taxonomy_page',
@@ -82,13 +92,13 @@ class Admin {
 	public function register_post_type_page( $post_type ) {
 		$args = array(
 			'parent_slug' => 'tour-operator',
-			'page_title'  => $post_type->labels->add_new_item,
-			'menu_title'  => $post_type->labels->add_new_item,
+			'page_title'  => $post_type->title,
+			'menu_title'  => $post_type->title,
 			'capability'  => 'edit_posts',
 			'type'        => 'sub',
 			'callback'    => null,
 		);
-		tour_operator()->pages->register_object( 'post-new.php?post_type=' . $post_type->name, $args );
+		tour_operator()->pages->register_object( 'post-new.php?post_type=' . $post_type->slug, $args );
 	}
 
 	/**
@@ -177,16 +187,12 @@ class Admin {
 	private function sort_post_type_menu( $items ) {
 		$new_submenu = array();
 
+		$menu_position = 10;
+
 		foreach ( $items as $item ) {
 			$parts = parse_url( $item[2] );
 			parse_str( $parts['query'], $query );
 			$type_key = $query['post_type'];
-
-			if ( is_object( tour_operator()->post_types->{$type_key} ) ) {
-				$menu_position = tour_operator()->post_types->{$type_key}->menu_position;
-			} else {
-				$menu_position = 80;
-			}
 
 			if ( isset( $new_submenu[ $menu_position ] ) ) {
 				$menu_position ++;
@@ -293,6 +299,6 @@ class Admin {
 	 */
 	private function setup() {
 		add_filter( 'custom_menu_order', array( $this, 'prepare_menu_order' ) );
-		$this->register_pages();
+		add_action( 'admin_init', array( $this, 'register_pages' ) );
 	}
 }

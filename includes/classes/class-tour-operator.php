@@ -62,14 +62,6 @@ class Tour_Operator {
 	public $setup;
 
 	/**
-	 * Holds the Post_Types instance.
-	 *
-	 * @since   1.1.0
-	 * @var     \lsx\Post_Types
-	 */
-	public $post_types;
-
-	/**
 	 * Holds the Pages instance.
 	 *
 	 * @since   1.1.0
@@ -223,7 +215,6 @@ class Tour_Operator {
 	public function setup() {
 		load_plugin_textdomain( 'tour-operator', false, LSX_TO_CORE . '/languages' );
 		$this->pages      = Pages::init();
-		$this->post_types = Post_Types::init();
 		$this->taxonomies = Taxonomies::init();
 		$this->admin      = Admin::init();
 		$this->settings   = Settings::init();

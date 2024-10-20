@@ -1,0 +1,172 @@
+{
+	"type": "postType",
+	"postType": "accommodation",
+	"slug": "accommodation",
+	"label": "Accommodation",
+	"pluralLabel": "Accommodation",
+	"icon": "admin-multisite",
+	"hasArchive": "accommodation",
+	"hierarchical": false,
+	"showInRest": true,
+	"showInMenu": "tour-operator",
+	"menuPosition": 20,
+	"template": [
+		{
+			"blockName": "core/paragraph",
+			"attrs": {
+				"placeholder": "Add placeholder value for Rating",
+				"metadata": {
+					"name": "Rating",
+					"slug": "rating",
+					"bindings": {
+						"content": {
+							"source": "core/post-meta",
+							"args": {
+								"key": "rating"
+							}
+						}
+					}
+				}
+			},
+			"innerBlocks": [],
+			"innerHTML": "\n<p>Rating</p>\n",
+			"innerContent": [
+				"\n<p>Rating</p>\n"
+			]
+		},
+		{
+			"blockName": null,
+			"attrs": [],
+			"innerBlocks": [],
+			"innerHTML": "\n\n",
+			"innerContent": [
+				"\n\n"
+			]
+		},
+		{
+			"blockName": "core/paragraph",
+			"attrs": {
+				"placeholder": "Add placeholder value for Spoken Languages",
+				"metadata": {
+					"name": "Spoken Languages",
+					"slug": "spoken_languages",
+					"bindings": {
+						"content": {
+							"source": "core/post-meta",
+							"args": {
+								"key": "spoken_languages"
+							}
+						}
+					}
+				}
+			},
+			"innerBlocks": [],
+			"innerHTML": "\n<p>Languages</p>\n",
+			"innerContent": [
+				"\n<p>Languages</p>\n"
+			]
+		},
+		{
+			"blockName": null,
+			"attrs": [],
+			"innerBlocks": [],
+			"innerHTML": "\n\n",
+			"innerContent": [
+				"\n\n"
+			]
+		},
+		{
+			"blockName": "core/paragraph",
+			"attrs": {
+				"placeholder": "Add placeholder value for Number Of Rooms",
+				"metadata": {
+					"name": "Number Of Rooms",
+					"slug": "number_of_rooms",
+					"bindings": {
+						"content": {
+							"source": "core/post-meta",
+							"args": {
+								"key": "number_of_rooms"
+							}
+						}
+					}
+				}
+			},
+			"innerBlocks": [],
+			"innerHTML": "\n<p>Number of Units</p>\n",
+			"innerContent": [
+				"\n<p>Number of Units</p>\n"
+			]
+		},
+		{
+			"blockName": null,
+			"attrs": [],
+			"innerBlocks": [],
+			"innerHTML": "\n\n",
+			"innerContent": [
+				"\n\n"
+			]
+		},
+		{
+			"blockName": "core/paragraph",
+			"attrs": {
+				"placeholder": "Add placeholder value for Suggested Visitor Types",
+				"metadata": {
+					"name": "Suggested Visitor Types",
+					"slug": "suggested_visitor_types",
+					"bindings": {
+						"content": {
+							"source": "core/post-meta",
+							"args": {
+								"key": "suggested_visitor_types"
+							}
+						}
+					}
+				}
+			},
+			"innerBlocks": [],
+			"innerHTML": "\n<p>Suggested Visitor Types</p>\n",
+			"innerContent": [
+				"\n<p>Suggested Visitor Types</p>\n"
+			]
+		}
+	],
+	"fields": [
+		{
+			"slug": "rating",
+			"type": "string",
+			"label": "rating",
+			"description": ""
+		},
+		{
+			"slug": "spoken_languages",
+			"type": "string",
+			"label": "spoken_languages",
+			"description": ""
+		},
+		{
+			"slug": "number_of_rooms",
+			"type": "string",
+			"label": "number_of_rooms",
+			"description": ""
+		},
+		{
+			"slug": "spoken_languages",
+			"type": "string",
+			"label": "spoken_languages",
+			"description": ""
+		},
+		{
+			"slug": "number_of_rooms",
+			"type": "string",
+			"label": "number_of_rooms",
+			"description": ""
+		},
+		{
+			"slug": "suggested_visitor_types",
+			"type": "string",
+			"label": "suggested_visitor_types",
+			"description": ""
+		}
+	]
+}
