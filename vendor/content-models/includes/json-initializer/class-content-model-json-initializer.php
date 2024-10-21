@@ -30,6 +30,9 @@ class Content_Model_Json_Initializer {
 
 		$plugin_data = get_plugin_data( CONTENT_MODEL_PLUGIN_FILE );
 
+		/**
+		 * TODO: Make sure this uses the plugin version.
+		 */
 		if ( ! isset( $plugin_data['Version'] ) || empty( $plugin_data['Version'] ) ) {
 			$plugin_data['Version'] = time();
 		}

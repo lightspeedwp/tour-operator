@@ -97,8 +97,8 @@ final class Content_Model {
 		 *
 		 * The Editor reads the whole post, while the front-end reads only the post content.
 		 */
-		add_action( 'the_post', array( $this, 'hydrate_bound_groups' ) );
-		add_filter( 'the_content', array( $this, 'swap_post_content_with_hydrated_template' ) );
+		//add_action( 'the_post', array( $this, 'hydrate_bound_groups' ) );
+		//add_filter( 'the_content', array( $this, 'swap_post_content_with_hydrated_template' ) );
 
 		add_filter( 'get_post_metadata', array( $this, 'cast_meta_field_types' ), 10, 3 );
 	}

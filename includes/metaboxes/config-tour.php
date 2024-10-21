@@ -28,18 +28,6 @@ $metabox['fields'][] = array(
 );
 
 $metabox['fields'][] = array(
-	'id'   => 'tagline',
-	'name' => esc_html__( 'Tagline', 'tour-operator' ),
-	'type' => 'text',
-);
-
-$metabox['fields'][] = array(
-	'id'   => 'duration',
-	'name' => esc_html__( 'Duration', 'tour-operator' ),
-	'type' => 'text',
-);
-
-$metabox['fields'][] = array(
 	'id'         => 'departs_from',
 	'name'       => esc_html__( 'Departs From', 'tour-operator' ),
 	'type'       => 'pw_select',
@@ -120,24 +108,6 @@ $metabox['fields'][] = array(
 );
 
 $metabox['fields'][] = array(
-	'id'   => 'price_title',
-	'name' => esc_html__( 'Price', 'tour-operator' ),
-	'type' => 'title',
-);
-
-$metabox['fields'][] = array(
-	'id'   => 'price',
-	'name' => esc_html__( 'Price', 'tour-operator' ),
-	'type' => 'text',
-);
-
-$metabox['fields'][] = array(
-	'id'   => 'single_supplement',
-	'name' => esc_html__( 'Single Supplement', 'tour-operator' ),
-	'type' => 'text',
-);
-
-$metabox['fields'][] = array(
 	'id'      => 'included',
 	'name'    => esc_html__( 'Included', 'tour-operator' ),
 	'type'    => 'wysiwyg',
@@ -201,26 +171,6 @@ if ( ! isset( tour_operator()->options['maps_disable'] ) && empty( tour_operator
 		'show_size'  => false,
 	);
 }
-
-/*$metabox['fields'][] = array(
-    'name'    => esc_html__( 'Gallery', 'tour-operator' ),
-    'id'      => 'gallery',
-    'type'    => 'file',
-    // Optional:
-    'options' => array(
-        'url' => false, // Hide the text input for the url
-    ),
-    'text'    => array(
-        'add_upload_file_text' => esc_html__( 'Add new image', 'tour-operator' )
-    ),
-    'query_args' => array(
-         'type' => array(
-             'image/gif',
-             'image/jpeg',
-             'image/png',
-        ),
-    ), 
-);*/
 
 $metabox['fields'][] = array(
     'name' => esc_html__( 'Gallery', 'tour-operator' ),

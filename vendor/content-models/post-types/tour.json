@@ -9,75 +9,31 @@
 	"showInRest": true,
 	"showInMenu": "tour-operator",
 	"menuPosition": 10,
-	"template": [
-		{
-			"blockName": "core/paragraph",
-			"attrs": {
-				"placeholder": "Add placeholder value for Price",
-				"metadata": {
-					"name": "Price",
-					"slug": "price",
-					"bindings": {
-						"content": {
-							"source": "core/post-meta",
-							"args": {
-								"key": "price"
-							}
-						}
-					}
-				}
-			},
-			"innerBlocks": [],
-			"innerHTML": "\n<p>Price<\/p>\n",
-			"innerContent": [
-				"\n<p>Price<\/p>\n"
-			]
-		},
-		{
-			"blockName": null,
-			"attrs": [],
-			"innerBlocks": [],
-			"innerHTML": "\n\n",
-			"innerContent": [
-				"\n\n"
-			]
-		},
-		{
-			"blockName": "core/paragraph",
-			"attrs": {
-				"placeholder": "Add placeholder value for Duration",
-				"metadata": {
-					"name": "Duration",
-					"slug": "duration",
-					"bindings": {
-						"content": {
-							"source": "core/post-meta",
-							"args": {
-								"key": "duration"
-							}
-						}
-					}
-				}
-			},
-			"innerBlocks": [],
-			"innerHTML": "\n<p>Duration<\/p>\n",
-			"innerContent": [
-				"\n<p>Duration<\/p>\n"
-			]
-		}
-	],
+	"template": [],
 	"fields": [
+        {
+            "slug": "tagline",
+            "type": "string",
+            "label": "Tagline",
+            "description": ""
+        },
 		{
-			"slug": "price",
-			"type": "string",
-			"label": "price",
-			"description": ""
-		},
-		{
-			"slug": "duration",
-			"type": "string",
-			"label": "duration",
-			"description": ""
-		}
-	]
+            "slug": "price",
+            "type": "string",
+            "label": "Price",
+            "description": ""
+        },
+        {
+            "slug": "duration",
+            "type": "string",
+            "label": "Duration",
+            "description": ""
+        },
+        {
+            "slug": "single_supplement",
+            "type": "string",
+            "label": "Single Supplement",
+            "description": ""
+        }
+    ]
 }

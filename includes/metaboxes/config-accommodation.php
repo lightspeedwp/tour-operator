@@ -28,18 +28,6 @@ $metabox['fields'][] = array(
 );
 
 $metabox['fields'][] = array(
-	'id'   => 'tagline',
-	'name' => esc_html__( 'Tagline', 'tour-operator' ),
-	'type' => 'text',
-);
-
-$metabox['fields'][] = array(
-	'id' => 'price',
-	'name' => 'Price',
-	'type' => 'text',
-);
-
-$metabox['fields'][] = array(
 	'id'      => 'price_type',
 	'name'    => esc_html__( 'Price Type', 'tour-operator' ),
 	'type'    => 'select',
