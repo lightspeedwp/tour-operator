@@ -98,6 +98,7 @@ if ( ! isset( tour_operator()->options['display']['maps_disable'] ) && empty( to
 
 $metabox['fields'][] = array(
     'name' => esc_html__( 'Gallery', 'tour-operator' ),
+	'desc' => esc_html__( 'Add images related to the accommodation to be displayed in the Accommodation\'s gallery.', 'tour-operator' ),
     'id'   => 'gallery',
     'type' => 'file_list',
     'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
@@ -123,18 +124,21 @@ $metabox['fields'][] = array(
 	'fields'     => array(
 		array(
 			'id'      => 'type',
-			'name'    => esc_html__( 'Type', 'tour-operator' ),
+			'name'    => esc_html__( 'Unit Type', 'tour-operator' ),
+			'desc'    => esc_html__( 'Select the type of unit (e.g., room, suite) from the dropdown.', 'tour-operator' ),
 			'type'    => 'select',
 			'options' => \lsx\legacy\Accommodation::get_instance()->unit_types,
 		),
 		array(
 			'id'   => 'title',
-			'name' => esc_html__( 'Title', 'tour-operator' ),
+			'name' => esc_html__( 'Unit Title', 'tour-operator' ),
+			'desc'    => esc_html__( 'Enter the name or title of the unit (e.g., Deluxe Room, Family Suite).', 'tour-operator' ),
 			'type' => 'text',
 		),
 		array(
 			'id'      => 'description',
-			'name'    => esc_html__( 'Description', 'tour-operator' ),
+			'name'    => esc_html__( 'Unit Description', 'tour-operator' ),
+			'desc'    => esc_html__( 'Provide a brief description of the unit’s features and amenities.', 'tour-operator' ),
 			'type'    => 'textarea',
 			'options' => array(
 				'editor_height' => '100',
@@ -142,11 +146,13 @@ $metabox['fields'][] = array(
 		),
 		array(
 			'id'   => 'price',
-			'name' => esc_html__( 'Price', 'tour-operator' ),
+			'name' => esc_html__( 'Unit Price', 'tour-operator' ),
+			'desc' => esc_html__( 'Enter the price of the unit.', 'tour-operator' ),
 			'type' => 'text',
 		),
 		array(
-			'name' => esc_html__( 'Gallery', 'tour-operator' ),
+			'name' => esc_html__( 'Unit Images', 'tour-operator' ),
+			'desc'    => esc_html__( 'Showcase the unit by adding images.', 'tour-operator' ),
 			'id'   => 'gallery',
 			'type' => 'file_list',
 			'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
@@ -160,7 +166,8 @@ $metabox['fields'][] = array(
 
 $metabox['fields'][] = array(
 	'id'         => 'post_to_accommodation',
-	'name'       => esc_html__( 'Posts related with this accommodation', 'tour-operator' ),
+	'name'       => esc_html__( 'Related Posts', 'tour-operator' ),
+	'desc'       => esc_html__( 'Select blog posts about this Accommodation.', 'tour-operator' ),
 	'type'       => 'pw_multiselect',
 	'use_ajax'   => false,
 	'repeatable' => false,
@@ -172,7 +179,8 @@ $metabox['fields'][] = array(
 
 $metabox['fields'][] = array(
 	'id'         => 'destination_to_accommodation',
-	'name'       => esc_html__( 'Destinations related with this accommodation', 'tour-operator' ),
+	'name'       => esc_html__( 'Related Destinations', 'tour-operator' ),
+	'desc'       => esc_html__( 'The Destination (country or region) where this Accommodation is found.', 'tour-operator' ),
 	'type'       => 'pw_multiselect',
 	'use_ajax'   => false,
 	'repeatable' => false,
@@ -184,7 +192,8 @@ $metabox['fields'][] = array(
 
 $metabox['fields'][] = array(
 	'id'         => 'tour_to_accommodation',
-	'name'       => esc_html__( 'Tours related with this accommodation', 'tour-operator' ),
+	'name'       => esc_html__( 'Related Tours', 'tour-operator' ),
+	'desc'       => esc_html__( 'Choose tours that are linked to the accommodation.', 'tour-operator' ),
 	'type'       => 'pw_multiselect',
 	'use_ajax'   => false,
 	'repeatable' => false,

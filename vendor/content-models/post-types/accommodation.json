@@ -22,15 +22,22 @@
 		{
 			"slug": "price",
 			"type": "string",
-			"label": "Price",
-			"description": "",
+			"label": "Price From",
+			"description": "Set the minimum price of the accommodation.",
 			"visible": true
 		},
+        {
+            "slug": "single_supplement",
+            "type": "string",
+            "label": "Single Supplement",
+            "description": "Set the additional cost for a single person booking the accommodation.",
+			"visible": true
+        },
 		{
 			"slug": "price_type",
 			"type": "select",
 			"label": "Price Type",
-			"description": "",
+			"description": "Set the additional cost for a single person booking the accommodation.",
 			"visible": true,
 			"options": [ 
 				{
@@ -59,7 +66,7 @@
 			"slug": "rating",
 			"type": "select",
 			"label": "Rating",
-			"description": "",
+			"description": "Select the star rating for the accommodation (e.g., 3 stars, 5 stars).",
 			"visible": true,
 			"options": [
 				{
@@ -93,7 +100,7 @@
 			"slug": "rating_type",
 			"type": "select",
 			"label": "Rating Type",
-			"description": "",
+			"description": "Choose the rating type (e.g., user reviews, official star ratings).",
 			"visible": true,
 			"options": [
 				{
@@ -171,7 +178,7 @@
 			"slug": "spoken_languages",
 			"type": "multiselect",
 			"label": "Spoken Languages",
-			"description": "",
+			"description": "Select the languages commonly spoken by the staff.",
 			"visible": true,
 			"options": [
 				{
@@ -244,7 +251,7 @@
 			"slug": "suggested_visitor_types",
 			"type": "multiselect",
 			"label": "Friendly",
-			"description": "",
+			"description": "Choose the types of visitors the accommodation is best suited for (e.g., family-friendly, pet-friendly).",
 			"visible": true,
 			"options": [
 				{
@@ -382,21 +389,21 @@
 			"slug": "number_of_rooms",
 			"type": "text",
 			"label": "Number of Rooms",
-			"description": "",
+			"description": "Enter the total number of rooms or units at the accommodation.",
 			"visible": true
 		},
 		{
 			"slug": "checkin_time",
 			"type": "text_time",
 			"label": "Check-in Time",
-			"description": "",
+			"description": "Enter the standard check-in time for the accommodation.",
 			"visible": true
 		},
 		{
 			"slug": "checkout_time",
 			"type": "text_time",
 			"label": "Check-out Time",
-			"description": "",
+			"description": "Enter the standard check-out time for the accommodation.",
 			"visible": true
 		},
 		{
