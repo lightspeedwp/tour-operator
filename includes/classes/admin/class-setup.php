@@ -161,11 +161,13 @@ class Setup {
 		/**
 		 * Initiate the metabox
 		 */
+		$cmb = [];
 		foreach ( $this->post_types as $post_type ) {
 			$fields = $this->get_custom_fields( $post_type );
 
-			$cmb = new_cmb2_box( array(
-				'id'            => 'lsx_to_metabox_' . $post_type,
+			$metabox_counter = 1;
+			$cmb[ $metabox_counter ] = new_cmb2_box( array(
+				'id'            => 'lsx_to_metabox_' . $post_type . '_' . $metabox_counter,
 				'title'         => $fields['title'],
 				'object_types'  => array( $post_type ), // Post type
 				'context'       => 'normal',
@@ -175,6 +177,19 @@ class Setup {
 
 			foreach ( $fields['fields'] as $field ) {
 
+				if ( 'title' === $field['type'] ) {
+					$metabox_counter++;
+					$cmb[ $metabox_counter ] = new_cmb2_box( array(
+						'id'            => 'lsx_to_metabox_' . $post_type . '_' . $metabox_counter,
+						'title'         => $field['name'],
+						'object_types'  => array( $post_type ), // Post type
+						'context'       => 'normal',
+						'priority'      => 'high',
+						'show_names'    => true,
+					) );
+					continue;
+				}
+
 				/**
 				 * Fixes for the extensions
 				 */
@@ -182,7 +197,7 @@ class Setup {
 					$field['type'] = 'pw_multiselect';
 				}
 
-				$cmb->add_field( $field );
+				$cmb[ $metabox_counter ]->add_field( $field );
 			}
 		}
 	}

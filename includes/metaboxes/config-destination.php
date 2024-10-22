@@ -10,7 +10,7 @@
  */
 
 $metabox = array(
-	'title'  => esc_html__( 'LSX Tour Operator Plugin', 'tour-operator' ),
+	'title'  => esc_html__( 'Travel Info', 'tour-operator' ),
 	'pages'  => 'destination',
 	'fields' => array(),
 );
@@ -19,12 +19,6 @@ $metabox['fields'][] = array(
 	'id'   => 'disable_single',
 	'name' => esc_html__( 'Disable Single', 'tour-operator' ),
 	'type' => 'checkbox',
-);
-
-$metabox['fields'][] = array(
-	'id'   => 'travel_info_title',
-	'name' => esc_html__( 'Travel Info', 'tour-operator' ),
-	'type' => 'title',
 );
 
 $metabox['fields'][] = array(
@@ -128,6 +122,12 @@ $metabox['fields'][] = array(
 );
 
 $metabox['fields'][] = array(
+	'id'   => 'media_title',
+	'name' => esc_html__( 'Media', 'tour-operator' ),
+	'type' => 'title',
+);
+
+$metabox['fields'][] = array(
     'name' => esc_html__( 'Gallery', 'tour-operator' ),
     'id'   => 'gallery',
     'type' => 'file_list',
@@ -175,6 +175,12 @@ if ( ! isset( tour_operator()->options['display']['maps_disable'] ) && empty( to
 	   ), 
 	);
 }
+
+$metabox['fields'][] = array(
+	'id'   => 'related_title',
+	'name' => esc_html__( 'Related', 'tour-operator' ),
+	'type' => 'title',
+);
 
 $metabox['fields'][] = array(
 	'id'         => 'post_to_destination',

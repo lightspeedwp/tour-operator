@@ -91,6 +91,12 @@ if ( ! isset( tour_operator()->options['display']['maps_disable'] ) && empty( to
 }
 
 $metabox['fields'][] = array(
+	'id'   => 'media_title',
+	'name' => esc_html__( 'Media', 'tour-operator' ),
+	'type' => 'title',
+);
+
+$metabox['fields'][] = array(
     'name' => esc_html__( 'Gallery', 'tour-operator' ),
 	'desc' => esc_html__( 'Add images related to the accommodation to be displayed in the Accommodation\'s gallery.', 'tour-operator' ),
     'id'   => 'gallery',
@@ -103,8 +109,13 @@ $metabox['fields'][] = array(
 );
 
 $metabox['fields'][] = array(
+	'id'   => 'units_title',
+	'name' => esc_html__( 'Units', 'tour-operator' ),
+	'type' => 'title',
+);
+$metabox['fields'][] = array(
 	'id'         => 'units',
-	'name'       => esc_html__( 'Units', 'tour-operator' ),
+	'name'       => '',
 	'type'       => 'group',
 	'repeatable' => true,
 	'sortable'   => true,
@@ -158,6 +169,11 @@ $metabox['fields'][] = array(
 	),
 );
 
+$metabox['fields'][] = array(
+	'id'   => 'related_title',
+	'name' => esc_html__( 'Related', 'tour-operator' ),
+	'type' => 'title',
+);
 $metabox['fields'][] = array(
 	'id'         => 'post_to_accommodation',
 	'name'       => esc_html__( 'Related Posts', 'tour-operator' ),

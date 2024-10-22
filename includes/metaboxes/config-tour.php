@@ -135,6 +135,12 @@ if ( ! isset( tour_operator()->options['maps_disable'] ) && empty( tour_operator
 }
 
 $metabox['fields'][] = array(
+	'id'   => 'media_title',
+	'name' => esc_html__( 'Media', 'tour-operator' ),
+	'type' => 'title',
+);
+
+$metabox['fields'][] = array(
     'name' => esc_html__( 'Gallery', 'tour-operator' ),
 	'desc' => esc_html__( 'Add images related to the tour to be displayed in the Tour gallery.', 'tour-operator' ),
     'id'   => 'gallery',
@@ -166,6 +172,12 @@ $metabox['fields'][] = array(
         'remove_button'     => __( 'Remove', 'tour-operator' ),
         'sortable'          => false,
     ),
+);
+
+$metabox['fields'][] = array(
+	'id'   => 'related_title',
+	'name' => esc_html__( 'Related', 'tour-operator' ),
+	'type' => 'title',
 );
 
 $metabox['fields'][] = array(

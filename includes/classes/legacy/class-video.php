@@ -62,8 +62,9 @@ class Video {
 			if ( in_array( $field['id'], $key_ids ) ) {
 				$new_fields[] = array(
 					'id'          => 'videos',
-					'name'        => __( 'Videos', 'tour-operator' ),
-					'single_name' => __( 'Video', 'tour-operator' ),
+					'name'        => __( 'Video Gallery', 'tour-operator' ),
+					'desc'        => __( 'Link to videos about this item, including a title, URL, caption, and alt text.', 'tour-operator' ),
+					
 					'type'        => 'group',
 					'repeatable'  => true,
 					'sortable'    => true,
