@@ -82,7 +82,7 @@ final class Content_Model {
 		$this->fields = $this->parse_fields();
 		$this->register_meta_fields();
 
-		add_action( 'enqueue_block_editor_assets', array( $this, 'maybe_enqueue_templating_scripts' ) );
+		//add_action( 'enqueue_block_editor_assets', array( $this, 'maybe_enqueue_templating_scripts' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'maybe_enqueue_data_entry_scripts' ) );
 
 		add_filter( 'block_categories_all', array( $this, 'register_block_category' ) );

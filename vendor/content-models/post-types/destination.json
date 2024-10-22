@@ -16,7 +16,8 @@
             "slug": "tagline",
             "type": "string",
             "label": "Tagline",
-            "description": ""
+            "description": "",
+			"visible": true
         }
     ]
 }

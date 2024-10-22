@@ -1,1 +1,276 @@
-(()=>{"use strict";const e=window.wp.plugins,t=window.wp.element,n=window.wp.coreData,l=window.wp.data,a=window.wp.blockEditor,r=window.wp.blocks,{POST_TYPE:o,FIELDS:c,FALLBACK_VALUE_PLACEHOLDER:i}=window.contentModelData,s=(e,t={})=>{for(const n of e){if("core/group"!==n.name)continue;const e=n.attributes.metadata?.bindings?.content?.args?.key;e&&"post_content"!==e&&(t[e]=(0,r.serialize)(n.innerBlocks)),n.innerBlocks.length>0&&(t=s(n.innerBlocks,t))}return t},d=Object.keys({"core/group":["content"],"core/paragraph":["content"],"core/heading":["content"],"core/image":["id","url","title","alt"],"core/button":["url","text","linkTarget","rel"]}),u=(e,t,n=!1)=>{e.forEach((e=>{e.innerBlocks.length>0&&e.attributes.metadata?.bindings?(t(e.clientId,"default"),e.innerBlocks&&u(e.innerBlocks,t,!0)):e.innerBlocks.length>0?(m(e.innerBlocks)||((0,l.dispatch)("core/block-editor").updateBlock(e.clientId,{...e,attributes:{...e.attributes,templateLock:"contentOnly"}}),t(e.clientId,"disabled")),e.innerBlocks&&u(e.innerBlocks,t)):d.includes(e.name)&&e.attributes.metadata?.bindings||n?t(e.clientId,""):t(e.clientId,"disabled")}))},m=e=>{for(const t of e){if("core/group"===t.name&&t.attributes.metadata?.bindings)return t;if(t.innerBlocks.length>0){const e=m(t.innerBlocks);if(e)return e}}return null},g=window.React,p=window.wp.editor,E=window.wp.components,k=window.wp.i18n,b=({fields:e})=>(0,g.createElement)(E.__experimentalVStack,null,e.filter((e=>e.visible)).map((e=>(0,g.createElement)(f,{key:e.slug,field:e})))),f=({field:e})=>{var t;const[l,a]=(0,n.useEntityProp)("postType",o,"meta"),r=null!==(t=l[e.slug])&&void 0!==t?t:"";return(0,g.createElement)("div",null,(0,g.createElement)(w,{field:e,value:r,saveChanges:(e,t)=>{a({[e]:t})}}),(0,g.createElement)("small",null,(0,g.createElement)("em",null,e.description)))},w=({field:e,isDisabled:t=!1,value:n,saveChanges:l})=>"image"===e.type?(0,g.createElement)(g.Fragment,null,(0,g.createElement)("span",{style:{textTransform:"uppercase",fontSize:"11px",marginBottom:"calc(8px)",fontWeight:"500"}},e.label),!n&&(0,g.createElement)(a.MediaPlaceholder,{allowedTypes:["image"],accept:"image",multiple:!1,onSelect:t=>l(e.slug,t.url)}),n&&(0,g.createElement)(E.Card,null,(0,g.createElement)(E.CardBody,null,(0,g.createElement)("img",{src:n,alt:e.label,style:{width:"100%"}})),(0,g.createElement)(E.CardFooter,null,(0,g.createElement)(E.Button,{isDestructive:!0,onClick:()=>l(e.slug,"")},(0,k.__)("Remove Image"))))):"textarea"===e.type?(0,g.createElement)(E.TextareaControl,{label:e.label,readOnly:t,value:n,onChange:t=>l(e.slug,t)}):(0,g.createElement)(E.TextControl,{label:e.label,type:e.type,readOnly:t,value:n,onChange:t=>l(e.slug,t)});(0,e.registerPlugin)("create-content-model-bound-group-extractor",{render:()=>{(()=>{const e=(0,l.useSelect)((e=>e(a.store).getBlocks())),[,r]=(0,n.useEntityProp)("postType",o,"meta");(0,t.useEffect)((()=>{const t=s(e);0!==Object.keys(t).length&&r(t)}),[e,r])})()}}),(0,e.registerPlugin)("create-content-model-fields-ui",{render:function(){const[e,n]=(0,t.useState)(!1);return 0===c.filter((e=>e.visible)).length?null:(0,g.createElement)(p.PluginDocumentSettingPanel,{name:"create-content-model-page-settings",title:(0,k.__)("Custom Fields"),className:"create-content-model-page-settings"},(0,g.createElement)(E.__experimentalVStack,null,(0,g.createElement)(b,{fields:c}),(0,g.createElement)(E.Button,{variant:"secondary",onClick:()=>n(!0)},(0,k.__)("Expand Fields"))),e&&(0,g.createElement)(E.Modal,{title:(0,k.__)("Manage Fields"),size:"large",onRequestClose:()=>n(!1)},(0,g.createElement)(b,{fields:c})))}}),(0,e.registerPlugin)("create-content-model-content-locking",{render:()=>{!function(){const e=wp.data.select("core/block-editor").getBlocks(),n=wp.data.select("core/block-editor").getSelectedBlock(),{setBlockEditingMode:r}=(0,l.useDispatch)(a.store);(0,t.useEffect)((()=>{e.length>0&&u(e,r)}),[e,r,n])}()}}),(0,e.registerPlugin)("create-content-model-fallback-value-clearer",{render:()=>{(()=>{const[e,r]=(0,n.useEntityProp)("postType",o,"meta"),c=(0,l.useSelect)((e=>{const t=e(a.store).getBlocks(),n={},l=e=>{const t=e.attributes?.metadata?.bindings||{};Object.entries(t).forEach((([,t])=>{"core/post-meta"===t.source&&(n[e.clientId]||(n[e.clientId]=[]),n[e.clientId].push({metaKey:t.args.key,blockName:e.attributes.metadata.name}))})),e.innerBlocks&&e.innerBlocks.length>0&&e.innerBlocks.forEach(l)};return t.forEach(l),n}),[]);(0,t.useLayoutEffect)((()=>{Object.entries(c).forEach((([,t])=>{t.forEach((({metaKey:t})=>{e[t]===i&&r({[t]:""})}))}))}),[e,r,c])})()}})})();
+(() => {
+  "use strict";
+  
+  const plugins = window.wp.plugins;
+  const element = window.wp.element;
+  const coreData = window.wp.coreData;
+  const data = window.wp.data;
+  const blockEditor = window.wp.blockEditor;
+  const blocks = window.wp.blocks;
+  
+  const {
+	POST_TYPE,
+	FIELDS,
+	FALLBACK_VALUE_PLACEHOLDER
+  } = window.contentModelData;
+
+  // Function to serialize inner blocks
+  const serializeInnerBlocks = (blocks, metadata = {}) => {
+	for (const block of blocks) {
+	  if ("core/group" !== block.name) continue;
+	  
+	  const key = block.attributes.metadata?.bindings?.content?.args?.key;
+	  
+	  if (key && "post_content" !== key) {
+		metadata[key] = blocks.serialize(block.innerBlocks);
+	  }
+	  
+	  if (block.innerBlocks.length > 0) {
+		metadata = serializeInnerBlocks(block.innerBlocks, metadata);
+	  }
+	}
+	return metadata;
+  };
+  
+  // List of supported block types with their respective attributes
+  const supportedBlockTypes = Object.keys({
+	"core/group": ["content"],
+	"core/paragraph": ["content"],
+	"core/heading": ["content"],
+	"core/image": ["id", "url", "title", "alt"],
+	"core/button": ["url", "text", "linkTarget", "rel"]
+  });
+
+  // Function to update block editing mode
+  const updateBlockEditingMode = (blocks, setBlockEditingMode, recursive = false) => {
+	blocks.forEach((block) => {
+	  if (block.innerBlocks.length > 0 && block.attributes.metadata?.bindings) {
+		setBlockEditingMode(block.clientId, "default");
+		
+		if (block.innerBlocks) {
+		  updateBlockEditingMode(block.innerBlocks, setBlockEditingMode, true);
+		}
+	  } else if (block.innerBlocks.length > 0) {
+		findEditableGroup(block.innerBlocks) || (
+		  data.dispatch("core/block-editor").updateBlock(block.clientId, {
+			...block,
+			attributes: { ...block.attributes, templateLock: "contentOnly" }
+		  }),
+		  setBlockEditingMode(block.clientId, "disabled")
+		);
+		
+		if (block.innerBlocks) {
+		  updateBlockEditingMode(block.innerBlocks, setBlockEditingMode);
+		}
+	  } else if (
+		supportedBlockTypes.includes(block.name) &&
+		block.attributes.metadata?.bindings ||
+		recursive
+	  ) {
+		setBlockEditingMode(block.clientId, "");
+	  } else {
+		setBlockEditingMode(block.clientId, "disabled");
+	  }
+	});
+  };
+
+  // Recursive function to find an editable group block
+  const findEditableGroup = (blocks) => {
+	for (const block of blocks) {
+	  if ("core/group" === block.name && block.attributes.metadata?.bindings) {
+		return block;
+	  }
+	  
+	  if (block.innerBlocks.length > 0) {
+		const foundBlock = findEditableGroup(block.innerBlocks);
+		if (foundBlock) return foundBlock;
+	  }
+	}
+	
+	return null;
+  };
+
+  const React = window.React;
+  const editor = window.wp.editor;
+  const components = window.wp.components;
+  const i18n = window.wp.i18n;
+
+  // UI Components
+  const FieldsUI = ({ fields }) => (
+	React.createElement(components.__experimentalVStack, null,
+	  fields.filter(field => field.visible).map(field =>
+		React.createElement(Field, { key: field.slug, field })
+	  )
+	)
+  );
+
+  const Field = ({ field }) => {
+	const [meta, setMeta] = coreData.useEntityProp("postType", POST_TYPE, "meta");
+	const value = meta[field.slug] !== null && meta[field.slug] !== undefined ? meta[field.slug] : '';
+	
+	return React.createElement("div", null,
+	  React.createElement(FieldInput, {
+		field,
+		value,
+		saveChanges: (slug, newValue) => { setMeta({ [slug]: newValue }); }
+	  }),
+	  React.createElement("small", null, React.createElement("em", null, field.description))
+	);
+  };
+
+  const FieldInput = ({ field, isDisabled = false, value, saveChanges }) => {
+	if (field.type === "image") {
+	  return React.createElement(React.Fragment, null,
+		React.createElement("span", {
+		  style: {
+			textTransform: "uppercase",
+			fontSize: "11px",
+			marginBottom: "calc(8px)",
+			fontWeight: "500"
+		  }
+		}, field.label),
+		!value && React.createElement(blockEditor.MediaPlaceholder, {
+		  allowedTypes: ["image"],
+		  accept: "image",
+		  multiple: false,
+		  onSelect: (media) => saveChanges(field.slug, media.url)
+		}),
+		value && React.createElement(components.Card, null,
+		  React.createElement(components.CardBody, null,
+			React.createElement("img", { src: value, alt: field.label, style: { width: "100%" } })
+		  ),
+		  React.createElement(components.CardFooter, null,
+			React.createElement(components.Button, {
+			  isDestructive: true,
+			  onClick: () => saveChanges(field.slug, "")
+			}, i18n.__("Remove Image"))
+		  )
+		)
+	  );
+	}
+
+	if (field.type === "textarea") {
+	  return React.createElement(components.TextareaControl, {
+		label: field.label,
+		readOnly: isDisabled,
+		value,
+		onChange: (newValue) => saveChanges(field.slug, newValue)
+	  });
+	}
+
+	return React.createElement(components.TextControl, {
+	  label: field.label,
+	  type: field.type,
+	  readOnly: isDisabled,
+	  value,
+	  onChange: (newValue) => saveChanges(field.slug, newValue)
+	});
+  };
+
+  // Registering Plugins
+  plugins.registerPlugin("create-content-model-bound-group-extractor", {
+	render: () => {
+	  (() => {
+		const blocks = data.useSelect((select) => select(blockEditor.store).getBlocks());
+		const [, setMeta] = coreData.useEntityProp("postType", POST_TYPE, "meta");
+
+		element.useEffect(() => {
+		  const metadata = serializeInnerBlocks(blocks);
+		  
+		  if (Object.keys(metadata).length !== 0) {
+			setMeta(metadata);
+		  }
+		}, [blocks, setMeta]);
+	  })();
+	}
+  });
+
+  plugins.registerPlugin("create-content-model-fields-ui", {
+	render: function() {
+	  const [isOpen, setOpen] = element.useState(false);
+	  console.log( FIELDS );
+	  return FIELDS.filter(field => field.visible).length === 0 ? null :
+		React.createElement(editor.PluginDocumentSettingPanel, {
+		  name: "create-content-model-page-settings",
+		  title: i18n.__("Custom Fields"),
+		  className: "create-content-model-page-settings"
+		},
+		React.createElement(components.__experimentalVStack, null,
+		  React.createElement(FieldsUI, { fields: FIELDS }),
+		  React.createElement(components.Button, {
+			variant: "secondary",
+			onClick: () => setOpen(true)
+		  }, i18n.__("Expand Fields"))
+		),
+		isOpen && React.createElement(components.Modal, {
+		  title: i18n.__("Manage Fields"),
+		  size: "large",
+		  onRequestClose: () => setOpen(false)
+		},
+		React.createElement(FieldsUI, { fields: FIELDS })
+		)
+	  );
+	}
+  });
+
+  /*plugins.registerPlugin("create-content-model-content-locking", {
+	render: () => {
+	  (() => {
+		const blocks = wp.data.select("core/block-editor").getBlocks();
+		const selectedBlock = wp.data.select("core/block-editor").getSelectedBlock();
+		const { setBlockEditingMode } = data.useDispatch(blockEditor.store);
+
+		element.useEffect(() => {
+		  if (blocks.length > 0) {
+			updateBlockEditingMode(blocks, setBlockEditingMode);
+		  }
+		}, [blocks, setBlockEditingMode, selectedBlock]);
+	  })();
+	}
+  });*/
+
+  plugins.registerPlugin("create-content-model-fallback-value-clearer", {
+	render: () => {
+	  (() => {
+		const [meta, setMeta] = coreData.useEntityProp("postType", POST_TYPE, "meta");
+		
+		const bindingsMap = data.useSelect((select) => {
+		  const blocks = select(blockEditor.store).getBlocks();
+		  const map = {};
+		  
+		  const processBlock = (block) => {
+			const bindings = block.attributes?.metadata?.bindings || {};
+			
+			Object.entries(bindings).forEach(([_, binding]) => {
+			  if (binding.source === "core/post-meta") {
+				map[block.clientId] || (map[block.clientId] = []);
+				map[block.clientId].push({
+				  metaKey: binding.args.key,
+				  blockName: block.attributes.metadata.name
+				});
+			  }
+			});
+
+			if (block.innerBlocks && block.innerBlocks.length > 0) {
+			  block.innerBlocks.forEach(processBlock);
+			}
+		  };
+
+		  blocks.forEach(processBlock);
+		  return map;
+		}, []);
+
+		element.useLayoutEffect(() => {
+		  Object.entries(bindingsMap).forEach(([, bindings]) => {
+			bindings.forEach(({ metaKey }) => {
+			  if (meta[metaKey] === FALLBACK_VALUE_PLACEHOLDER) {
+				setMeta({ [metaKey]: "" });
+			  }
+			});
+		  });
+		}, [meta, setMeta, bindingsMap]);
+	  })();
+	}
+  });
+
+})();

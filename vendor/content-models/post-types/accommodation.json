@@ -16,19 +16,22 @@
 			"slug": "tagline",
 			"type": "string",
 			"label": "Tagline",
-			"description": ""
+			"description": "",
+			"visible": true
 		},
 		{
 			"slug": "price",
 			"type": "string",
 			"label": "Price",
-			"description": ""
+			"description": "",
+			"visible": true
 		},
 		{
 			"slug": "price_type",
 			"type": "string",
 			"label": "Price Type",
-			"description": ""
+			"description": "",
+			"visible": true
 		}
 	]
 }
