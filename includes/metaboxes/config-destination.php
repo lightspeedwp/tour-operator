@@ -184,7 +184,7 @@ if ( ! isset( tour_operator()->options['display']['maps_disable'] ) && empty( to
 
 $metabox['fields'][] = array(
 	'id'         => 'post_to_destination',
-	'name'       => esc_html__( 'Posts related with this destination', 'tour-operator' ),
+	'name'       => esc_html__( 'Related Posts', 'tour-operator' ),
 	'type'       => 'pw_multiselect',
 	'desc'       => esc_html__( 'Select related posts by typing the post name and choosing from the dropdown.', 'tour-operator' ),
 	'use_ajax'   => false,
@@ -197,7 +197,7 @@ $metabox['fields'][] = array(
 
 $metabox['fields'][] = array(
 	'id'         => 'accommodation_to_destination',
-	'name'       => esc_html__( 'Accommodation related with this destination', 'tour-operator' ),
+	'name'       => esc_html__( 'Related Accommodation', 'tour-operator' ),
 	'desc'       => esc_html__( 'Attach related accommodations by selecting the relevant accommodation from the dropdown.', 'tour-operator' ),
 	'type'       => 'pw_multiselect',
 	'use_ajax'   => false,
@@ -210,7 +210,7 @@ $metabox['fields'][] = array(
 
 $metabox['fields'][] = array(
 	'id'         => 'tour_to_destination',
-	'name'       => esc_html__( 'Tours related with this destination', 'tour-operator' ),
+	'name'       => esc_html__( 'Related Tours', 'tour-operator' ),
 	'desc'       => esc_html__( 'Choose related tours by typing the tour name and selecting from the dropdown.', 'tour-operator' ),
 	'type'       => 'pw_multiselect',
 	'use_ajax'   => false,

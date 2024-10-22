@@ -22,28 +22,28 @@
             "slug": "price",
             "type": "string",
             "label": "Price",
-            "description": "",
+            "description": "Set the price of the tour.",
 			"visible": true
         },
         {
             "slug": "duration",
             "type": "string",
             "label": "Duration",
-            "description": "",
+            "description": "Enter the duration of the tour (in days)",
 			"visible": true
         },
         {
             "slug": "single_supplement",
             "type": "string",
             "label": "Single Supplement",
-            "description": "",
+            "description": "Set the additional cost for a single person booking the tour.",
 			"visible": true
         },
         {
             "slug": "best_time_to_visit",
             "type": "multiselect",
             "label": "Best time to visit",
-            "description": "",
+            "description": "Select the best months to take the tour.",
 			"visible": true,
 			"options": [ 
 				{

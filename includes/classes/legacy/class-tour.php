@@ -155,18 +155,21 @@ class Tour {
 		$fields[] = array(
 			'id'   => 'title',
 			'name' => esc_html__( 'Title', 'tour-operator' ),
+			'desc' => esc_html__( 'Enter the title for the time frame (e.g., Day 1, Day 1-3).', 'tour-operator' ),
 			'type' => 'text',
 		);
 
 		$fields[] = array(
 			'id'   => 'tagline',
-			'name' => esc_html__( 'Tagline', 'tour-operator' ),
+			'name' => esc_html__( 'Tagline (Optional)', 'tour-operator' ),
+			'desc' => esc_html__( 'Add an optional tagline for the itinerary entry (if left blank, it won’t display).', 'tour-operator' ),
 			'type' => 'text',
 		);
 
 		$fields[] = array(
 			'id'      => 'description',
 			'name'    => esc_html__( 'Description', 'tour-operator' ),
+			'desc'    => esc_html__( 'Provide a description of what happens during this time frame.', 'tour-operator' ),
 			'type'    => 'wysiwyg',
 			'options' => array(
 				'editor_height' => '100',
@@ -176,6 +179,7 @@ class Tour {
 		$fields[] = array(
 			'id'        => 'featured_image',
 			'name'      => esc_html__( 'Featured Image', 'tour-operator' ),
+			'desc'      => esc_html__( 'Upload or select a featured image for the itinerary entry.', 'tour-operator' ),
 			'type'      => 'file',
 			'show_size' => false,
 			'query_args' => array(
@@ -192,7 +196,8 @@ class Tour {
 		if ( post_type_exists( 'accommodation' ) ) {
 			$fields[] = array(
 				'id'         => 'accommodation_to_tour',
-				'name'       => esc_html__( 'Accommodation related with this itinerary', 'tour-operator' ),
+				'name'       => esc_html__( 'Related Accommodation', 'tour-operator' ),
+				'desc'       => esc_html__( 'Select the accommodation associated with this Itinerary entry.', 'tour-operator' ),
 				'type'       => 'pw_select',
 				'use_ajax'   => false,
 				'allow_none' => false,
@@ -204,25 +209,11 @@ class Tour {
 			);
 		}
 
-		if ( post_type_exists( 'activity' ) ) {
-			$fields[] = array(
-				'id'         => 'activity_to_tour',
-				'name'       => esc_html__( 'Activities related with this itinerary', 'tour-operator' ),
-				'type'       => 'pw_select',
-				'use_ajax'   => false,
-				'allow_none' => false,
-				'sortable'   => false,
-				'repeatable' => false,
-				'options'  => array(
-					'post_type_args' => 'activity',
-				),
-			);
-		}
-
 		if ( post_type_exists( 'destination' ) ) {
 			$fields[] = array(
 				'id'         => 'destination_to_tour',
-				'name'       => esc_html__( 'Destinations related with this itinerary', 'tour-operator' ),
+				'name'       => esc_html__( 'Related Destination', 'tour-operator' ),
+				'desc'       => esc_html__( 'Choose the destination (region or country) associated with this Itinerary entry.', 'tour-operator' ),
 				'type'       => 'pw_select',
 				'use_ajax'   => false,
 				'allow_none' => false,
@@ -233,35 +224,38 @@ class Tour {
 				),
 			);
 		}
+		
+		$fields[] = array(
+			'id'      => 'included',
+			'name'    => esc_html__( 'Included', 'tour-operator' ),
+			'desc'    => esc_html__( '', 'tour-operator' ),
+			'type'    => 'wysiwyg',
+			'options' => array(
+				'editor_height' => '100',
+			),
+		);
 
-		if ( $this->is_wetu_active ) {
-			$fields[] = array(
-				'id'      => 'included',
-				'name'    => esc_html__( 'Included', 'tour-operator' ),
-				'type'    => 'wysiwyg',
-				'options' => array(
-					'editor_height' => '100',
-				),
-			);
+		$fields[] = array(
+			'id'      => 'excluded',
+			'name'    => esc_html__( 'Excluded', 'tour-operator' ),
+			'desc'    => esc_html__( '', 'tour-operator' ),
+			'type'    => 'wysiwyg',
+			'options' => array(
+				'editor_height' => '100',
+			),
+		);
 
-			$fields[] = array(
-				'id'      => 'excluded',
-				'name'    => esc_html__( 'Excluded', 'tour-operator' ),
-				'type'    => 'wysiwyg',
-				'options' => array(
-					'editor_height' => '100',
-				),
-			);
-		}
 		$fields[] = array(
 			'id'      => 'drinks_basis',
 			'name'    => esc_html__( 'Drinks Basis', 'tour-operator' ),
+			'desc'    => esc_html__( 'Select the drinks basis for the itinerary (e.g., tea & coffee, all local drinks).', 'tour-operator' ),
 			'type'    => 'select',
 			'options' => $this->drinks_basis,
 		);
 		$fields[] = array(
 			'id'      => 'room_basis',
 			'name'    => esc_html__( 'Room Basis', 'tour-operator' ),
+			'desc'    => esc_html__( 'Choose the room basis for the itinerary (e.g., breakfast only, full board).', 'tour-operator' ),
 			'type'    => 'select',
 			'options' => $this->room_basis,
 		);
