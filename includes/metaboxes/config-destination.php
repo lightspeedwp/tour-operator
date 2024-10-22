@@ -28,41 +28,6 @@ $metabox['fields'][] = array(
 );
 
 $metabox['fields'][] = array(
-	'id'      => 'sticky_order',
-	'name'    => esc_html__( 'Sticky weight', 'tour-operator' ),
-	'type'    => 'text',
-	'default' => '',
-	//'desc'    => esc_html__( 'Stick an item on the archive page. Add a number to order the item.', 'tour-operator' ),
-);
-
-$metabox['fields'][] = array(
-	'id'       => 'best_time_to_visit',
-	'name'     => esc_html__( 'Best months to visit', 'tour-operator' ),
-	'type'     => 'multicheck',
-	'multiple' => true,
-	'options'  => array(
-		'january'   => 'January',
-		'february'  => 'February',
-		'march'     => 'March',
-		'april'     => 'April',
-		'may'       => 'May',
-		'june'      => 'June',
-		'july'      => 'July',
-		'august'    => 'August',
-		'september' => 'September',
-		'october'   => 'October',
-		'november'  => 'November',
-		'december'  => 'December',
-	),
-);
-
-$metabox['fields'][] = array(
-	'id'   => 'tagline',
-	'name' => esc_html__( 'Tagline', 'tour-operator' ),
-	'type' => 'text',
-);
-
-$metabox['fields'][] = array(
 	'id'   => 'travel_info_title',
 	'name' => esc_html__( 'Travel Info', 'tour-operator' ),
 	'type' => 'title',

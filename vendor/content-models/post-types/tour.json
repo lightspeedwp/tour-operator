@@ -1,0 +1,100 @@
+{
+	"type": "postType",
+	"postType": "tour",
+	"slug": "tour",
+	"label": "Tour",
+	"pluralLabel": "Tours",
+	"icon": "palmtree",
+	"hierarchical": false,
+	"showInRest": true,
+	"showInMenu": "tour-operator",
+	"menuPosition": 10,
+	"template": [],
+	"fields": [
+        {
+            "slug": "tagline",
+            "type": "string",
+            "label": "Tagline",
+            "description": "",
+			"visible": true
+        },
+		{
+            "slug": "price",
+            "type": "string",
+            "label": "Price",
+            "description": "",
+			"visible": true
+        },
+        {
+            "slug": "duration",
+            "type": "string",
+            "label": "Duration",
+            "description": "",
+			"visible": true
+        },
+        {
+            "slug": "single_supplement",
+            "type": "string",
+            "label": "Single Supplement",
+            "description": "",
+			"visible": true
+        },
+        {
+            "slug": "best_time_to_visit",
+            "type": "multiselect",
+            "label": "Best time to visit",
+            "description": "",
+			"visible": true,
+			"options": [ 
+				{
+					"label": "January",
+					"value": "january"
+				},
+				{
+					"label": "February",
+					"value": "february"
+				},
+				{
+					"label": "March",
+					"value": "march"
+				},
+				{
+					"label": "April",
+					"value": "april"
+				},
+				{
+					"label": "May",
+					"value": "may"
+				},
+				{
+					"label": "June",
+					"value": "june"
+				},
+				{
+					"label": "July",
+					"value": "july"
+				},
+				{
+					"label": "August",
+					"value": "august"
+				},
+				{
+					"label": "September",
+					"value": "september"
+				},
+				{
+					"label": "October",
+					"value": "october"
+				},
+				{
+					"label": "November",
+					"value": "november"
+				},
+				{
+					"label": "December",
+					"value": "december"
+				}
+			]
+        }
+    ]
+}

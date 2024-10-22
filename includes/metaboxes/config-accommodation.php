@@ -28,31 +28,6 @@ $metabox['fields'][] = array(
 );
 
 $metabox['fields'][] = array(
-	'id'   => 'tagline',
-	'name' => esc_html__( 'Tagline', 'tour-operator' ),
-	'type' => 'text',
-);
-
-$metabox['fields'][] = array(
-	'id' => 'price',
-	'name' => 'Price',
-	'type' => 'text',
-);
-
-$metabox['fields'][] = array(
-	'id'      => 'price_type',
-	'name'    => esc_html__( 'Price Type', 'tour-operator' ),
-	'type'    => 'select',
-	'options' => array(
-		'none'                         => 'Select a type',
-		'per_person_per_night'         => esc_html__( 'Per Person Per Night', 'tour-operator' ),
-		'per_person_sharing'           => esc_html__( 'Per Person Sharing', 'tour-operator' ),
-		'per_person_sharing_per_night' => esc_html__( 'Per Person Sharing Per Night', 'tour-operator' ),
-		'total_percentage'             => esc_html__( 'Percentage Off Your Price.', 'tour-operator' ),
-	),
-);
-
-$metabox['fields'][] = array(
 	'id'      => 'included',
 	'name'    => esc_html__( 'Included', 'tour-operator' ),
 	'type'    => 'wysiwyg',
@@ -121,133 +96,6 @@ if ( ! isset( tour_operator()->options['display']['maps_disable'] ) && empty( to
 	);
 }
 
-
-$fast_facts_fields = array(
-	array(
-		'id'   => 'fast_facts_title',
-		'name' => esc_html__( 'Fast Facts', 'tour-operator' ),
-		'type' => 'title',
-	),
-
-	array(
-		'id'      => 'rating_type',
-		'name'    => esc_html__( 'Rating Type', 'tour-operator' ),
-		'type'    => 'select',
-		'options' => array(
-			'Unspecified'      => esc_html__( 'Unspecified', 'tour-operator' ),
-			'TGCSA'            => esc_html__( 'TGCSA', 'tour-operator' ),
-			'Hotelstars Union' => esc_html__( 'Hotelstars Union', 'tour-operator' ),
-		),
-	),
-
-	array(
-		'id'         => 'rating',
-		'name'       => esc_html__( 'Rating', 'tour-operator' ),
-		'type'       => 'radio_inline',
-		'options'    => array( '0', '1', '2', '3', '4', '5' ),
-		'allow_none' => true,
-	),
-
-	array(
-		'id'   => 'number_of_rooms',
-		'name' => esc_html__( 'Number of Rooms', 'tour-operator' ),
-		'type' => 'text',
-	),
-
-	array(
-		'id'   => 'checkin_time',
-		'name' => esc_html__( 'Check-in Time', 'tour-operator' ),
-		'type' => 'text_time',
-	),
-
-	array(
-		'id'   => 'checkout_time',
-		'name' => esc_html__( 'Check-out Time', 'tour-operator' ),
-		'type' => 'text_time',
-	),
-
-	array(
-		'id'   => 'minimum_child_age',
-		'name' => esc_html__( 'Minimum Child Age', 'tour-operator' ),
-		'type' => 'text',
-	),
-
-	array(
-		'id'       => 'spoken_languages',
-		'name'     => esc_html__( 'Spoken Languages', 'tour-operator' ),
-		'type'     => 'pw_multiselect',
-		'multiple' => true,
-		'options'  => array(
-			'afrikaans'  => esc_html__( 'Afrikaans', 'tour-operator' ),
-			'chinese'    => esc_html__( 'Chinese', 'tour-operator' ),
-			'dutch'      => esc_html__( 'Dutch', 'tour-operator' ),
-			'english'    => esc_html__( 'English', 'tour-operator' ),
-			'flemish'    => esc_html__( 'Flemish', 'tour-operator' ),
-			'french'     => esc_html__( 'French', 'tour-operator' ),
-			'german'     => esc_html__( 'German', 'tour-operator' ),
-			'indian'     => esc_html__( 'Indian', 'tour-operator' ),
-			'italian'    => esc_html__( 'Italian', 'tour-operator' ),
-			'japanese'   => esc_html__( 'Japanese', 'tour-operator' ),
-			'portuguese' => esc_html__( 'Portuguese', 'tour-operator' ),
-			'russian'    => esc_html__( 'Russian', 'tour-operator' ),
-			'spanish'    => esc_html__( 'Spanish', 'tour-operator' ),
-			'swahili'    => esc_html__( 'Swahili', 'tour-operator' ),
-			'xhosa'      => esc_html__( 'Xhosa', 'tour-operator' ),
-			'zulu'       => esc_html__( 'Zulu', 'tour-operator' ),
-		),
-	),
-
-	array(
-		'id'       => 'suggested_visitor_types',
-		'name'     => esc_html__( 'Friendly', 'tour-operator' ),
-		'type'     => 'pw_multiselect',
-		'multiple' => true,
-		'options'  => array(
-			'business'   => esc_html__( 'Business', 'tour-operator' ),
-			'children'   => esc_html__( 'Children', 'tour-operator' ),
-			'disability' => esc_html__( 'Disability', 'tour-operator' ),
-			'leisure'    => esc_html__( 'Leisure', 'tour-operator' ),
-			'luxury'     => esc_html__( 'Luxury', 'tour-operator' ),
-			'pet'        => esc_html__( 'Pet', 'tour-operator' ),
-			'romance'    => esc_html__( 'Romance', 'tour-operator' ),
-			'vegetarian' => esc_html__( 'Vegetarian', 'tour-operator' ),
-			'weddings'   => esc_html__( 'Weddings', 'tour-operator' ),
-		),
-	),
-
-	array(
-		'id'       => 'special_interests',
-		'name'     => esc_html__( 'Special Interests', 'tour-operator' ),
-		'type'     => 'pw_multiselect',
-		'multiple' => true,
-		'options'  => array(
-			'adventure'              => esc_html__( 'Adventure', 'tour-operator' ),
-			'battlefields'           => esc_html__( 'Battlefields', 'tour-operator' ),
-			'beach_coastal'          => esc_html__( 'Beach / Coastal', 'tour-operator' ),
-			'big-5'                  => esc_html__( 'Big 5', 'tour-operator' ),
-			'birding'                => esc_html__( 'Birding', 'tour-operator' ),
-			'cycling'                => esc_html__( 'Cycling', 'tour-operator' ),
-			'fishing'                => esc_html__( 'Fishing', 'tour-operator' ),
-			'flora'                  => esc_html__( 'Flora', 'tour-operator' ),
-			'golf'                   => esc_html__( 'Golf', 'tour-operator' ),
-			'gourmet'                => esc_html__( 'Gourmet', 'tour-operator' ),
-			'hiking'                 => esc_html__( 'Hiking', 'tour-operator' ),
-			'history-and-culture'    => esc_html__( 'History & Culture', 'tour-operator' ),
-			'indigenous-culture-art' => esc_html__( 'Indigenous Culture / Art', 'tour-operator' ),
-			'leisure'                => esc_html__( 'Leisure', 'tour-operator' ),
-			'nature-relaxation'      => esc_html__( 'Nature Relaxation', 'tour-operator' ),
-			'shopping'               => esc_html__( 'Shopping', 'tour-operator' ),
-			'sports'                 => esc_html__( 'Sports', 'tour-operator' ),
-			'star-gazing'            => esc_html__( 'Star Gazing', 'tour-operator' ),
-			'watersports'            => esc_html__( 'Watersports', 'tour-operator' ),
-			'wildlife'               => esc_html__( 'Wildlife', 'tour-operator' ),
-			'wine'                   => esc_html__( 'Wine', 'tour-operator' ),
-		),
-	),
-);
-
-$metabox['fields'] = array_merge( $metabox['fields'], $fast_facts_fields );
-
 $metabox['fields'][] = array(
     'name' => esc_html__( 'Gallery', 'tour-operator' ),
     'id'   => 'gallery',
@@ -258,38 +106,6 @@ $metabox['fields'][] = array(
         'add_upload_files_text' => esc_html__( 'Add new image', 'tour-operator' ), // default: "Add or Upload Files"
     ),
 );
-
-if ( class_exists( 'Envira_Gallery' ) ) {
-	$metabox['fields'][] = array(
-		'id'   => 'envira_title',
-		'name' => esc_html__( 'Envira Gallery', 'tour-operator' ),
-		'type' => 'title',
-	);
-
-	$metabox['fields'][] = array(
-		'id'         => 'envira_gallery',
-		'name'       => esc_html__( 'Envira Gallery', 'tour-operator' ),
-		'type'       => 'pw_multiselect',
-		'use_ajax'   => false,
-		'options'  => array(
-			'post_type_args' => 'envira',
-		),
-		'allow_none' => true,
-	);
-
-	if ( class_exists( 'Envira_Videos' ) ) {
-		$metabox['fields'][] = array(
-			'id'         => 'envira_video',
-			'name'       => esc_html__( 'Envira Video Gallery', 'tour-operator' ),
-			'type'       => 'pw_multiselect',
-			'use_ajax'   => false,
-			'allow_none' => true,
-			'options'  => array(
-				'post_type_args' => 'envira',
-			),
-		);
-	}
-}
 
 $metabox['fields'][] = array(
 	'id'         => 'units',
