@@ -251,20 +251,33 @@ final class Content_Model {
 				if ( strpos( $field['type'], 'core' ) !== false ) {
 					continue;
 				}
+
+				switch ( $field['type'] ) {
+					case 'multiselect';
+						$type   = 'string';
+						$single = false;
+					break;
+
+					default;
+						$type   = 'string';
+						$single = true;
+					break;
+				}
+
 				register_post_meta(
 					$this->slug,
 					$field['slug'],
 					array(
 						'description'  => $field['description'],
 						'show_in_rest' => true,
-						'single'       => true,
-						'type'         => 'string', // todo: support other types.
+						'single'       => $single,
+						'type'         => $type, // todo: support other types.
 					)
 				);
 			}
 		}
 
-		foreach ( $this->blocks as $block ) {
+		/*foreach ( $this->blocks as $block ) {
 			foreach ( $block->get_bindings() as $attribute_name => $binding ) {
 				$field = $binding['args']['key'];
 
@@ -295,7 +308,7 @@ final class Content_Model {
 					$args
 				);
 			}
-		}
+		}*/
 	}
 
 	/**

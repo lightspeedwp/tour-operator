@@ -107,12 +107,11 @@
   const Field = ({ field }) => {
 	const [meta, setMeta] = coreData.useEntityProp("postType", POST_TYPE, "meta");
 	const value = meta[field.slug] !== null && meta[field.slug] !== undefined ? meta[field.slug] : '';
-	
 	return React.createElement("div", null,
 	  React.createElement(FieldInput, {
 		field,
 		value,
-		saveChanges: (slug, newValue) => { setMeta({ [slug]: newValue }); }
+		saveChanges: (slug, newValue) => { console.log(slug);console.log(newValue); setMeta({ [slug]: newValue }); }
 	  }),
 	  React.createElement("small", null, React.createElement("em", null, field.description))
 	);
@@ -156,6 +155,31 @@
 		value,
 		onChange: (newValue) => saveChanges(field.slug, newValue)
 	  });
+	}
+
+	if (field.type === "multiselect") {
+		console.log(value);
+		return React.createElement(components.SelectControl, {
+			multiple: true,
+			label: field.label,
+			readOnly: isDisabled,
+			//selectedValues: value, // Assuming `value` is an array of selected values
+			value,
+			options: field.options, // Assuming `field.options` contains the available options
+			onChange: (selectedOptions ) => saveChanges(field.slug, selectedOptions),
+		});
+	}
+
+	if (field.type === "select") {
+		return React.createElement(components.SelectControl, {
+			//multiple: true,
+			label: field.label,
+			readOnly: isDisabled,
+			//selectedValues: value, // Assuming `value` is an array of selected values
+			value,
+			options: field.options, // Assuming `field.options` contains the available options
+			onChange: (selectedOptions ) => saveChanges(field.slug, selectedOptions),
+		});
 	}
 
 	return React.createElement(components.TextControl, {

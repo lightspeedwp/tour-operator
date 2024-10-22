@@ -76,10 +76,15 @@ class Setup {
 		return self::$instance;
 	}
 
+	/**
+	 * TODO: Remove this function when sure we dont need to register our rest fields.
+	 *
+	 * @return void
+	 */
 	public function register_meta_with_rest() {
 
 		add_filter('acf/settings/remove_wp_meta_box', '__return_false');
-
+		/*
 		foreach ( $this->post_types as $post_type ) {
 			$fields = $this->get_custom_fields( $post_type );
 
@@ -144,6 +149,7 @@ class Setup {
 				);
 			}
 		}
+		*/
 	}
 
 	/**

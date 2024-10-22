@@ -53,27 +53,6 @@ $metabox['fields'][] = array(
 	),
 );
 
-$metabox['fields'][] = array(
-	'id'       => 'best_time_to_visit',
-	'name'     => esc_html__( 'Best months to visit', 'tour-operator' ),
-	'type'     => 'multicheck',
-	'multiple' => true,
-	'options'  => array(
-		'january'   => 'January',
-		'february'  => 'February',
-		'march'     => 'March',
-		'april'     => 'April',
-		'may'       => 'May',
-		'june'      => 'June',
-		'july'      => 'July',
-		'august'    => 'August',
-		'september' => 'September',
-		'october'   => 'October',
-		'november'  => 'November',
-		'december'  => 'December',
-	),
-);
-
 if ( class_exists( 'LSX_TO_Team' ) ) {
 	$metabox['fields'][] = array(
 		'id'         => 'team_to_tour',
