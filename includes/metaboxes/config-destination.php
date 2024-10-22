@@ -16,12 +16,6 @@ $metabox = array(
 );
 
 $metabox['fields'][] = array(
-	'id'   => 'featured',
-	'name' => esc_html__( 'Featured', 'tour-operator' ),
-	'type' => 'checkbox',
-);
-
-$metabox['fields'][] = array(
 	'id'   => 'disable_single',
 	'name' => esc_html__( 'Disable Single', 'tour-operator' ),
 	'type' => 'checkbox',
