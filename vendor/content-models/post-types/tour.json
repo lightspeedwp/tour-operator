@@ -40,13 +40,6 @@
 			"visible": true
         },
         {
-            "slug": "group_size",
-            "type": "textarea",
-            "label": "Group Size",
-            "description": "",
-			"visible": true
-        },
-        {
             "slug": "best_time_to_visit",
             "type": "multiselect",
             "label": "Best time to visit",

@@ -28,10 +28,87 @@
 		},
 		{
 			"slug": "price_type",
-			"type": "string",
+			"type": "select",
 			"label": "Price Type",
 			"description": "",
-			"visible": true
+			"visible": true,
+			"options": [ 
+				{
+					"label": "Select a type",
+					"value": "none"
+				},
+				{
+					"label": "Per Person Per Night",
+					"value": "per_person_per_night"
+				},
+				{
+					"label": "Per Person Sharing",
+					"value": "per_person_sharing"
+				},
+				{
+					"label": "Per Person Sharing Per Night",
+					"value": "per_person_sharing_per_night"
+				},
+				{
+					"label": "Percentage Off Your Price",
+					"value": "total_percentage"
+				}
+			]
+		},
+		{
+			"slug": "rating",
+			"type": "select",
+			"label": "Rating",
+			"description": "",
+			"visible": true,
+			"options": [
+				{
+				"label": "0",
+				"value": "0"
+				},
+				{
+				"label": "1",
+				"value": "1"
+				},
+				{
+				"label": "2",
+				"value": "2"
+				},
+				{
+				"label": "3",
+				"value": "3"
+				},
+				{
+				"label": "4",
+				"value": "4"
+				},
+				{
+				"label": "5",
+				"value": "5"
+				}
+			],
+			"allow_none": true
+		},
+		{
+			"slug": "rating_type",
+			"type": "select",
+			"label": "Rating Type",
+			"description": "",
+			"visible": true,
+			"options": [
+				{
+				"label": "Unspecified",
+				"value": "unspecified"
+				},
+				{
+				"label": "TGCSA",
+				"value": "tgcsa"
+				},
+				{
+				"label": "Hotelstars Union",
+				"value": "hotelstars_union"
+				}
+			]
 		},
         {
             "slug": "best_time_to_visit",
@@ -89,6 +166,245 @@
 					"value": "december"
 				}
 			]
-        }
+        },
+		{
+			"slug": "spoken_languages",
+			"type": "multiselect",
+			"label": "Spoken Languages",
+			"description": "",
+			"visible": true,
+			"options": [
+				{
+				"label": "Afrikaans",
+				"value": "afrikaans"
+				},
+				{
+				"label": "Chinese",
+				"value": "chinese"
+				},
+				{
+				"label": "Dutch",
+				"value": "dutch"
+				},
+				{
+				"label": "English",
+				"value": "english"
+				},
+				{
+				"label": "Flemish",
+				"value": "flemish"
+				},
+				{
+				"label": "French",
+				"value": "french"
+				},
+				{
+				"label": "German",
+				"value": "german"
+				},
+				{
+				"label": "Indian",
+				"value": "indian"
+				},
+				{
+				"label": "Italian",
+				"value": "italian"
+				},
+				{
+				"label": "Japanese",
+				"value": "japanese"
+				},
+				{
+				"label": "Portuguese",
+				"value": "portuguese"
+				},
+				{
+				"label": "Russian",
+				"value": "russian"
+				},
+				{
+				"label": "Spanish",
+				"value": "spanish"
+				},
+				{
+				"label": "Swahili",
+				"value": "swahili"
+				},
+				{
+				"label": "Xhosa",
+				"value": "xhosa"
+				},
+				{
+				"label": "Zulu",
+				"value": "zulu"
+				}
+			]
+		},
+		{
+			"slug": "suggested_visitor_types",
+			"type": "multiselect",
+			"label": "Friendly",
+			"description": "",
+			"visible": true,
+			"options": [
+				{
+				"label": "Business",
+				"value": "business"
+				},
+				{
+				"label": "Children",
+				"value": "children"
+				},
+				{
+				"label": "Disability",
+				"value": "disability"
+				},
+				{
+				"label": "Leisure",
+				"value": "leisure"
+				},
+				{
+				"label": "Luxury",
+				"value": "luxury"
+				},
+				{
+				"label": "Pet",
+				"value": "pet"
+				},
+				{
+				"label": "Romance",
+				"value": "romance"
+				},
+				{
+				"label": "Vegetarian",
+				"value": "vegetarian"
+				},
+				{
+				"label": "Weddings",
+				"value": "weddings"
+				}
+			]
+		},
+		{
+			"slug": "special_interests",
+			"type": "multiselect",
+			"label": "Special Interests",
+			"description": "",
+			"visible": true,
+			"options": [
+				{
+				"label": "Adventure",
+				"value": "adventure"
+				},
+				{
+				"label": "Battlefields",
+				"value": "battlefields"
+				},
+				{
+				"label": "Beach / Coastal",
+				"value": "beach_coastal"
+				},
+				{
+				"label": "Big 5",
+				"value": "big-5"
+				},
+				{
+				"label": "Birding",
+				"value": "birding"
+				},
+				{
+				"label": "Cycling",
+				"value": "cycling"
+				},
+				{
+				"label": "Fishing",
+				"value": "fishing"
+				},
+				{
+				"label": "Flora",
+				"value": "flora"
+				},
+				{
+				"label": "Golf",
+				"value": "golf"
+				},
+				{
+				"label": "Gourmet",
+				"value": "gourmet"
+				},
+				{
+				"label": "Hiking",
+				"value": "hiking"
+				},
+				{
+				"label": "History & Culture",
+				"value": "history-and-culture"
+				},
+				{
+				"label": "Indigenous Culture / Art",
+				"value": "indigenous-culture-art"
+				},
+				{
+				"label": "Leisure",
+				"value": "leisure"
+				},
+				{
+				"label": "Nature Relaxation",
+				"value": "nature-relaxation"
+				},
+				{
+				"label": "Shopping",
+				"value": "shopping"
+				},
+				{
+				"label": "Sports",
+				"value": "sports"
+				},
+				{
+				"label": "Star Gazing",
+				"value": "star-gazing"
+				},
+				{
+				"label": "Watersports",
+				"value": "watersports"
+				},
+				{
+				"label": "Wildlife",
+				"value": "wildlife"
+				},
+				{
+				"label": "Wine",
+				"value": "wine"
+				}
+			]
+		},
+		{
+			"slug": "number_of_rooms",
+			"type": "text",
+			"label": "Number of Rooms",
+			"description": "",
+			"visible": true
+		},
+		{
+			"slug": "checkin_time",
+			"type": "text_time",
+			"label": "Check-in Time",
+			"description": "",
+			"visible": true
+		},
+		{
+			"slug": "checkout_time",
+			"type": "text_time",
+			"label": "Check-out Time",
+			"description": "",
+			"visible": true
+		},
+		{
+			"slug": "minimum_child_age",
+			"type": "text",
+			"label": "Minimum Child Age",
+			"description": "",
+			"visible": true
+		}	
 	]
 }

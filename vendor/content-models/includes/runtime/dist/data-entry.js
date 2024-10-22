@@ -158,7 +158,6 @@
 	}
 
 	if (field.type === "multiselect") {
-		console.log(value);
 		return React.createElement(components.SelectControl, {
 			multiple: true,
 			label: field.label,
@@ -171,7 +170,7 @@
 	}
 
 	if (field.type === "select") {
-		return React.createElement(components.SelectControl, {
+		return React.createElement(components.ComboboxControl, {
 			//multiple: true,
 			label: field.label,
 			readOnly: isDisabled,
