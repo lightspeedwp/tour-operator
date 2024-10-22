@@ -37,6 +37,7 @@ $metabox['fields'][] = array(
 	'id'      => 'electricity',
 	'name'    => esc_html__( 'Electricity', 'tour-operator' ),
 	'type'    => 'wysiwyg',
+	'desc'    => esc_html__( 'Enter details about the country\'s electrical system (e.g., voltage, plug types).', 'tour-operator' ),
 	'options' => array(
 		'editor_height' => '100',
 	),
@@ -46,6 +47,7 @@ $metabox['fields'][] = array(
 	'id'      => 'banking',
 	'name'    => esc_html__( 'Banking', 'tour-operator' ),
 	'type'    => 'wysiwyg',
+	'desc'    => esc_html__( 'Provide information about banking services and currency in the country.', 'tour-operator' ),
 	'options' => array(
 		'editor_height' => '100',
 	),
@@ -55,6 +57,7 @@ $metabox['fields'][] = array(
 	'id'      => 'cuisine',
 	'name'    => esc_html__( 'Cuisine', 'tour-operator' ),
 	'type'    => 'wysiwyg',
+	'desc'    => esc_html__( 'Describe the typical cuisine or food experiences in the country.', 'tour-operator' ),
 	'options' => array(
 		'editor_height' => '100',
 	),
@@ -64,6 +67,7 @@ $metabox['fields'][] = array(
 	'id'      => 'climate',
 	'name'    => esc_html__( 'Climate', 'tour-operator' ),
 	'type'    => 'wysiwyg',
+	'desc'    => esc_html__( 'Give an overview of the country\'s climate and weather patterns.', 'tour-operator' ),
 	'options' => array(
 		'editor_height' => '100',
 	),
@@ -73,6 +77,7 @@ $metabox['fields'][] = array(
 	'id'      => 'transport',
 	'name'    => esc_html__( 'Transport', 'tour-operator' ),
 	'type'    => 'wysiwyg',
+	'desc'    => esc_html__( 'Provide information on transportation options available in the country.', 'tour-operator' ),
 	'options' => array(
 		'editor_height' => '100',
 	),
@@ -82,6 +87,7 @@ $metabox['fields'][] = array(
 	'id'      => 'dress',
 	'name'    => esc_html__( 'Dress', 'tour-operator' ),
 	'type'    => 'wysiwyg',
+	'desc'    => esc_html__( 'Describe any local dress customs or recommended clothing for visitors.', 'tour-operator' ),
 	'options' => array(
 		'editor_height' => '100',
 	),
@@ -91,6 +97,7 @@ $metabox['fields'][] = array(
 	'id'      => 'health',
 	'name'    => esc_html__( 'Health', 'tour-operator' ),
 	'type'    => 'wysiwyg',
+	'desc'    => esc_html__( 'Provide important health-related information for travellers (e.g., vaccinations, health services).', 'tour-operator' ),
 	'options' => array(
 		'editor_height' => '100',
 	),
@@ -100,6 +107,7 @@ $metabox['fields'][] = array(
 	'id'      => 'safety',
 	'name'    => esc_html__( 'Safety', 'tour-operator' ),
 	'type'    => 'wysiwyg',
+	'desc'    => esc_html__( 'Enter safety tips or advice for staying secure in the country.', 'tour-operator' ),
 	'options' => array(
 		'editor_height' => '100',
 	),
@@ -109,6 +117,7 @@ $metabox['fields'][] = array(
 	'id'      => 'visa',
 	'name'    => esc_html__( 'Visa', 'tour-operator' ),
 	'type'    => 'wysiwyg',
+	'desc'    => esc_html__( 'Provide details on visa requirements for entering the country.', 'tour-operator' ),
 	'options' => array(
 		'editor_height' => '100',
 	),
@@ -118,6 +127,7 @@ $metabox['fields'][] = array(
 	'id'      => 'additional_info',
 	'name'    => esc_html__( 'General', 'tour-operator' ),
 	'type'    => 'wysiwyg',
+	'desc'    => esc_html__( 'Add any other relevant general travel information about the country.', 'tour-operator' ),
 	'options' => array(
 		'editor_height' => '100',
 	),
@@ -127,6 +137,7 @@ $metabox['fields'][] = array(
     'name' => esc_html__( 'Gallery', 'tour-operator' ),
     'id'   => 'gallery',
     'type' => 'file_list',
+	'desc'    => esc_html__( 'Add images related to the country to be displayed in the Destination’s gallery.', 'tour-operator' ),
     'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
     'query_args' => array( 'type' => 'image' ), // Only images attachment
     'text' => array(
