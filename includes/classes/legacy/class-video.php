@@ -64,7 +64,6 @@ class Video {
 					'id'          => 'videos',
 					'name'        => __( 'Video Gallery', 'tour-operator' ),
 					'desc'        => __( 'Link to videos about this item, including a title, URL, caption, and alt text.', 'tour-operator' ),
-					
 					'type'        => 'group',
 					'repeatable'  => true,
 					'sortable'    => true,

@@ -10,7 +10,7 @@
  */
 
 $metabox = array(
-	'title'  => esc_html__( 'LSX Tour Operator Plugin', 'tour-operator' ),
+	'title'  => esc_html__( 'Details', 'tour-operator' ),
 	'pages'  => 'accommodation',
 	'fields' => array(),
 );
@@ -110,7 +110,7 @@ $metabox['fields'][] = array(
 
 $metabox['fields'][] = array(
 	'id'   => 'units_title',
-	'name' => esc_html__( 'Units', 'tour-operator' ),
+	'name' => esc_html__( 'Rooms / Units', 'tour-operator' ),
 	'type' => 'title',
 );
 $metabox['fields'][] = array(

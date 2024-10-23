@@ -10,7 +10,7 @@
  */
 
 $metabox = array(
-	'title'  => esc_html__( 'LSX Tour Operator Plugin', 'tour-operator' ),
+	'title'  => esc_html__( 'Details', 'tour-operator' ),
 	'pages'  => 'tour',
 	'fields' => array(),
 );
