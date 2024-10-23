@@ -77,12 +77,11 @@ class Setup {
 	}
 
 	/**
-	 * TODO: Remove this function when sure we dont need to register our rest fields.
+	 * Register our sticky posts and disable_single meta fields with rest.
 	 *
 	 * @return void
 	 */
 	public function register_meta_with_rest() {
-
 		add_filter('acf/settings/remove_wp_meta_box', '__return_false');
 		
 		register_meta(
@@ -95,69 +94,15 @@ class Setup {
 			)
 		);
 
-		foreach ( $this->post_types as $post_type ) {
-			/*foreach ( $fields['fields'] as $key => $field ) {
-
-				if ( 'title' === $field['type'] ) {
-					continue;
-				}
-
-				$args = array(
-					'show_in_rest' => true,
-					'single'       => true,
-				);
-
-				switch ( $field['type'] ) {
-					case 'text':
-					case 'post_ajax_search':
-					case 'multicheck':
-					case 'wysiwyg':
-					case 'text_date_timestamp':
-					case 'file':
-					case 'select':
-					case 'radio':
-						$args['type'] = 'string';	
-					break;
-
-					case 'number':
-					case 'image':
-						$args['type'] = 'number';
-					break;
-
-					case 'checkbox':
-						$args['type'] = 'boolean';	
-					break;
-
-					case 'group':
-						$args['type']   = 'string';
-						$args['single'] = false;
-					break;
-
-					case 'gmap':
-						$args['type']   = 'string';
-					break;	
-
-					default:
-						$args['type']   = 'string';
-					break;
-				}
-
-				if ( isset( $field['desc'] ) && ! empty( $field['desc'] ) ) {
-					$args['description'] = $field['desc'];
-				}
-
-				if ( isset( $field['default'] ) && ! empty( $field['default'] ) ) {
-					$args['default'] = $field['default'];
-				}
-	
-				$registered = register_meta(
-					'post',
-					$field['id'],
-					$args
-				);
-			}*/
-		}
-		
+		register_meta(
+			'post',
+			'disable_single',
+			array(
+				'type'         => 'boolean',
+				'single'       => true,
+				'show_in_rest' => true
+			)
+		);
 	}
 
 	/**
