@@ -10,8 +10,6 @@
 	const StickyToggle = () => {
 		const { editPost } = useDispatch("core/editor");
 		const handleChange = (newChecked) => {
-			//setChecked(newChecked);
-			console.log(newChecked);
 			editPost({ meta: { 'featured': newChecked } });
 		};
 
@@ -31,19 +29,43 @@
 		);
 	};
 
-	const StickyPostPlugin = function() {
+	// Custom Disable Single Toggle Component
+	const DisableSingleToggle = () => {
+		const { editPost } = useDispatch("core/editor");
+		const handleChange = (newChecked) => {
+			editPost({ meta: { 'disable_single': newChecked } });
+		};
+
+		const isSticky = useSelect( function ( select ) {
+			return select( 'core/editor' ).getEditedPostAttribute(
+				'meta'
+			)[ 'disable_single' ];
+		}, [] );
+
 		return createElement(
-			PluginPostStatusInfo,
+			ToggleControl,
 			{
-				name: 'sticky-post-toggle',
-				className: 'sticky-post-toggle-panel'
-			},
-			createElement(StickyToggle)
+				label: i18n.__('Disable Single'),
+				checked: isSticky,
+				onChange: handleChange
+			}
 		);
 	};
 
-	registerPlugin('sticky-post-toggle', {
-		render: StickyPostPlugin,
+	const LsxToStatusPlugin = function() {
+		return createElement(
+			PluginPostStatusInfo,
+			{
+				name: 'lsx-to-toggles',
+				className: 'lsx-to-toggles'
+			},
+			createElement(StickyToggle),
+			createElement(DisableSingleToggle)
+		);
+	};
+
+	registerPlugin('lsx-to-status-plugin', {
+		render: LsxToStatusPlugin,
 		icon: null,
 	});
 })(window.wp);
