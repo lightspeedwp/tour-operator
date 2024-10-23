@@ -111,7 +111,7 @@
 	  React.createElement(FieldInput, {
 		field,
 		value,
-		saveChanges: (slug, newValue) => { console.log(slug);console.log(newValue); setMeta({ [slug]: newValue }); }
+		saveChanges: (slug, newValue) => { setMeta({ [slug]: newValue }); }
 	  }),
 	  React.createElement("small", null, React.createElement("em", null, field.description))
 	);
@@ -211,7 +211,6 @@
   plugins.registerPlugin("create-content-model-fields-ui", {
 	render: function() {
 	  const [isOpen, setOpen] = element.useState(false);
-	  console.log( FIELDS );
 	  return FIELDS.filter(field => field.visible).length === 0 ? null :
 		React.createElement(editor.PluginDocumentSettingPanel, {
 		  name: "create-content-model-page-settings",

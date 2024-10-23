@@ -84,11 +84,19 @@ class Setup {
 	public function register_meta_with_rest() {
 
 		add_filter('acf/settings/remove_wp_meta_box', '__return_false');
-		/*
-		foreach ( $this->post_types as $post_type ) {
-			$fields = $this->get_custom_fields( $post_type );
+		
+		register_meta(
+			'post',
+			'featured',
+			array(
+				'type'         => 'boolean',
+				'single'       => true,
+				'show_in_rest' => true
+			)
+		);
 
-			foreach ( $fields['fields'] as $key => $field ) {
+		foreach ( $this->post_types as $post_type ) {
+			/*foreach ( $fields['fields'] as $key => $field ) {
 
 				if ( 'title' === $field['type'] ) {
 					continue;
@@ -147,9 +155,9 @@ class Setup {
 					$field['id'],
 					$args
 				);
-			}
+			}*/
 		}
-		*/
+		
 	}
 
 	/**
