@@ -18,12 +18,14 @@ $metabox = array(
 $metabox['fields'][] = array(
 	'id'   => 'disable_single',
 	'name' => esc_html__( 'Disable Single', 'tour-operator' ),
+	'desc' => esc_html__( 'Disable the Single Accommodation page, redirecting users to the enquiry form when clicking on the accommodation card.', 'tour-operator' ),
 	'type' => 'checkbox',
 );
 
 $metabox['fields'][] = array(
 	'id'      => 'included',
 	'name'    => esc_html__( 'Included', 'tour-operator' ),
+	'desc'    => esc_html__( 'Items or services provided with the accommodation.', 'tour-operator' ),
 	'type'    => 'wysiwyg',
 	'options' => array(
 		'editor_height' => '100',
@@ -33,6 +35,7 @@ $metabox['fields'][] = array(
 $metabox['fields'][] = array(
 	'id'      => 'not_included',
 	'name'    => esc_html__( 'Not Included', 'tour-operator' ),
+	'desc'    => esc_html__( 'Items or services not provided with the accommodation.', 'tour-operator' ),
 	'type'    => 'wysiwyg',
 	'options' => array(
 		'editor_height' => '100',
@@ -67,12 +70,14 @@ if ( ! isset( tour_operator()->options['display']['maps_disable'] ) && empty( to
 	$metabox['fields'][] = array(
 		'id'             => 'location',
 		'name'           => esc_html__( 'Address', 'tour-operator' ),
+		'desc'           => esc_html__( 'The address of the accommodation for map display.', 'tour-operator' ),
 		'type'           => 'pw_map',
 		'api_key' => $google_api_key,
 	);
 	$metabox['fields'][] = array(
 		'id'         => 'map_placeholder',
 		'name'       => esc_html__( 'Map Placeholder', 'tour-operator' ),
+		'desc'       => esc_html__( 'A placeholder image for the map if no address or GPS data is available.', 'tour-operator' ),
 		'type'       => 'file',
 		'repeatable' => false,
 		'show_size'  => false,

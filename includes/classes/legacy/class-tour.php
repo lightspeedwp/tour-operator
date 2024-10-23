@@ -228,7 +228,7 @@ class Tour {
 		$fields[] = array(
 			'id'      => 'included',
 			'name'    => esc_html__( 'Included', 'tour-operator' ),
-			'desc'    => esc_html__( '', 'tour-operator' ),
+			'desc'    => esc_html__( 'Items or services provided during that part of the tour itinerary.', 'tour-operator' ),
 			'type'    => 'wysiwyg',
 			'options' => array(
 				'editor_height' => '100',
@@ -238,7 +238,7 @@ class Tour {
 		$fields[] = array(
 			'id'      => 'excluded',
 			'name'    => esc_html__( 'Excluded', 'tour-operator' ),
-			'desc'    => esc_html__( '', 'tour-operator' ),
+			'desc'    => esc_html__( 'Items or services not provided during that part of the tour itinerary.', 'tour-operator' ),
 			'type'    => 'wysiwyg',
 			'options' => array(
 				'editor_height' => '100',

@@ -26,6 +26,7 @@ $taxonomy = array(
 			'add_new_item'      => esc_html__( 'Add New Accommodation Type', 'tour-operator' ),
 			'new_item_name'     => esc_html__( 'New Accommodation Type', 'tour-operator' ),
 			'menu_name'         => esc_html__( 'Accommodation Types', 'tour-operator' ),
+			'description'       => esc_html__( 'Select the type(s) of accommodation (e.g., hotel, resort).', 'tour-operator' ),
 		),
 		'show_ui'             => true,
 		'public'              => true,

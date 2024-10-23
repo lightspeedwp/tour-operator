@@ -18,6 +18,7 @@ $metabox = array(
 $metabox['fields'][] = array(
 	'id'   => 'disable_single',
 	'name' => esc_html__( 'Disable Single', 'tour-operator' ),
+	'desc' => esc_html__( 'Disable the Single Tour page, redirecting users to the enquiry form when clicking on the tour card.', 'tour-operator' ),
 	'type' => 'checkbox',
 );
 
@@ -52,7 +53,7 @@ $metabox['fields'][] = array(
 $metabox['fields'][] = array(
 	'id'      => 'group_size',
 	'name'    => esc_html__( 'Group Size', 'tour-operator' ),
-	'desc'    => esc_html__( '', 'tour-operator' ),
+	'desc'    => esc_html__( 'The range of group sizes for the tour (e.g., 2 - 20 people).', 'tour-operator' ),
 	'type'    => 'wysiwyg',
 	'options' => array(
 		'editor_height' => '50',
@@ -62,7 +63,7 @@ $metabox['fields'][] = array(
 $metabox['fields'][] = array(
 	'id'      => 'hightlights',
 	'name'    => esc_html__( 'Highlights', 'tour-operator' ),
-	'desc'    => esc_html__( '', 'tour-operator' ),
+	'desc'    => esc_html__( 'Key experiences or features of the tour.', 'tour-operator' ),
 	'type'    => 'wysiwyg',
 	'options' => array(
 		'editor_height' => '100',
@@ -92,15 +93,22 @@ $metabox['fields'][] = array(
 $metabox['fields'][] = array(
 	'id'   => 'booking_validity_start',
 	'name' => esc_html__( 'Booking Validity (start)', 'tour-operator' ),
-	'desc'    => esc_html__( '', 'tour-operator' ),
+	'desc'    => esc_html__( 'The start date for when the tour can be booked.', 'tour-operator' ),
 	'type' => 'text_date_timestamp',
 );
 
 $metabox['fields'][] = array(
 	'id'   => 'booking_validity_end',
 	'name' => esc_html__( 'Booking Validity (end)', 'tour-operator' ),
-	'desc'    => esc_html__( '', 'tour-operator' ),
+	'desc'    => esc_html__( 'The end date for when the tour can be booked.', 'tour-operator' ),
 	'type' => 'text_date_timestamp',
+);
+
+$metabox['fields'][] = array(
+	'id'   => 'expire_post',
+	'name' => esc_html__( 'Expire this tour automatically', 'tour-operator' ),
+	'desc' => esc_html__( 'This tour will expire automatically when the Booking Validity ends.', 'tour-operator' ),
+	'type' => 'checkbox',
 );
 
 if ( ! isset( tour_operator()->options['maps_disable'] ) && empty( tour_operator()->options['maps_disable'] ) ) {
@@ -112,7 +120,7 @@ if ( ! isset( tour_operator()->options['maps_disable'] ) && empty( tour_operator
 	$metabox['fields'][] = array(
 		'id'         => 'map_placeholder',
 		'name'       => esc_html__( 'Map Placeholder', 'tour-operator' ),
-		'desc'       => esc_html__( '', 'tour-operator' ),
+		'desc'       => esc_html__( 'A placeholder image for the map if no address or GPS data is available.', 'tour-operator' ),
 		'type'       => 'file',
 		'repeatable' => false,
 		'show_size'  => false,
@@ -127,7 +135,7 @@ if ( ! isset( tour_operator()->options['maps_disable'] ) && empty( tour_operator
 	$metabox['fields'][] = array(
 		'id'        => 'itinerary_kml',
 		'name'      => esc_html__( 'Itinerary KML File', 'tour-operator' ),
-		'desc'      => esc_html__( '', 'tour-operator' ),
+		'desc'      => esc_html__( 'A file containing GPS points for the tour route.', 'tour-operator' ),
 		'type'      => 'file',
 		'repeatable' => false,
 		'show_size'  => false,

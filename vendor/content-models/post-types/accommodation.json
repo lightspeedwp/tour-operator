@@ -121,7 +121,7 @@
             "slug": "best_time_to_visit",
             "type": "multiselect",
             "label": "Best time to visit",
-            "description": "",
+            "description": "The ideal months or season for visiting the accommodation.",
 			"visible": true,
 			"options": [ 
 				{
@@ -296,7 +296,7 @@
 			"slug": "special_interests",
 			"type": "multiselect",
 			"label": "Special Interests",
-			"description": "",
+			"description": "Special interests that the accommodation caters to, such as wildlife or adventure.",
 			"visible": true,
 			"options": [
 				{
@@ -410,7 +410,7 @@
 			"slug": "minimum_child_age",
 			"type": "text",
 			"label": "Minimum Child Age",
-			"description": "",
+			"description": "Items or services not provided with the accommodation.",
 			"visible": true
 		}	
 	]

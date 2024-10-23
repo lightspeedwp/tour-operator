@@ -26,6 +26,7 @@ $taxonomy = array(
 			'add_new_item'      => esc_html__( 'Add New Brand', 'tour-operator' ),
 			'new_item_name'     => esc_html__( 'New Brand', 'tour-operator' ),
 			'menu_name'         => esc_html__( 'Brands', 'tour-operator' ),
+			'description'       => esc_html__( 'Select the brand the Accommodation belongs to.', 'tour-operator' ),
 		),
 		'show_ui'             => true,
 		'public'              => true,
