@@ -47,9 +47,9 @@ class Variations {
 			if ( array_key_exists( get_post_type(), tour_operator()->get_post_types() ) ) {
 				wp_enqueue_script(
 					'lsx-to-slotfills',  // Handle for the script.
-					LSX_TO_URL . 'assets/js/blocks/sticky-slotfill.js', // Path to your JavaScript file.
+					LSX_TO_URL . 'assets/js/blocks/slotfills.js', // Path to your JavaScript file.
 					array( 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-components', 'wp-data' ),  // Dependencies.
-					filemtime( LSX_TO_PATH . 'assets/js/blocks/sticky-slotfill.js' ), // Versioning with file modification time.
+					filemtime( LSX_TO_PATH . 'assets/js/blocks/slotfills.js' ), // Versioning with file modification time.
 					true  // Enqueue in the footer.
 				);
 			}

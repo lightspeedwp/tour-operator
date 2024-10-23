@@ -16,13 +16,6 @@ $metabox = array(
 );
 
 $metabox['fields'][] = array(
-	'id'   => 'disable_single',
-	'name' => esc_html__( 'Disable Single', 'tour-operator' ),
-	'desc' => esc_html__( 'Disable the Single Tour page, redirecting users to the enquiry form when clicking on the tour card.', 'tour-operator' ),
-	'type' => 'checkbox',
-);
-
-$metabox['fields'][] = array(
 	'id'         => 'departs_from',
 	'name'       => esc_html__( 'Departs From', 'tour-operator' ),
 	'desc'       => esc_html__( 'Select the destination where the tour starts.', 'tour-operator' ),

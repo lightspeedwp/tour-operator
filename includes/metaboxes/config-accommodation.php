@@ -16,13 +16,6 @@ $metabox = array(
 );
 
 $metabox['fields'][] = array(
-	'id'   => 'disable_single',
-	'name' => esc_html__( 'Disable Single', 'tour-operator' ),
-	'desc' => esc_html__( 'Disable the Single Accommodation page, redirecting users to the enquiry form when clicking on the accommodation card.', 'tour-operator' ),
-	'type' => 'checkbox',
-);
-
-$metabox['fields'][] = array(
 	'id'      => 'included',
 	'name'    => esc_html__( 'Included', 'tour-operator' ),
 	'desc'    => esc_html__( 'Items or services provided with the accommodation.', 'tour-operator' ),

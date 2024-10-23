@@ -4,6 +4,7 @@
 	const { ToggleControl } = wp.components;
 	const { useSelect, useDispatch } = wp.data;
 	const { createElement, useState } = wp.element;
+	const { HStack } = wp.components;
 	const i18n = window.wp.i18n;
 
 	// Custom Sticky Post Toggle Component
@@ -59,8 +60,26 @@
 				name: 'lsx-to-toggles',
 				className: 'lsx-to-toggles'
 			},
-			createElement(StickyToggle),
-			createElement(DisableSingleToggle)
+			createElement(
+				'div',
+				{
+					className: 'lsx-to-toggles__inner'
+				},
+				createElement(
+					'div',
+					{
+						className: 'toggle-row'
+					},
+					createElement(StickyToggle),
+				),
+				createElement(
+					'div',
+					{
+						className: 'toggle-row'
+					},
+					createElement(DisableSingleToggle),
+				)
+			)
 		);
 	};
 
