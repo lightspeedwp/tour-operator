@@ -23,7 +23,7 @@
 		return createElement(
 			ToggleControl,
 			{
-				label: i18n.__('Sticky Post'),
+				label: i18n.__('Featured'),
 				checked: isSticky,
 				onChange: handleChange
 			}
