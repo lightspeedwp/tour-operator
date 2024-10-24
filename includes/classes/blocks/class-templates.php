@@ -38,6 +38,7 @@ class Templates {
 		 * The slugs of the built in post types we are using.
 		 */
 		$post_types = [
+			// accommodation
 			'accommodation' => [
 				'single'  => [
 					'title'       => __( 'Single Accommodations', 'tour-operator' ),
@@ -49,7 +50,27 @@ class Templates {
 				],
 			],
 			//'destination',
+			'destination' => [
+				'single'  => [
+					'title'       => __( 'Single Destination', 'tour-operator' ),
+					'description' => __( 'Displays a single destination', 'tour-operator' ),
+				],
+				'archive' => [
+					'title'       => __( 'Destination Archive', 'tour-operator' ),
+					'description' => __( 'Displays all the destinations.', 'tour-operator' ),
+				],
+			],
 			//'tour',
+			'tour' => [
+				'single'  => [
+					'title'       => __( 'Single Tour', 'tour-operator' ),
+					'description' => __( 'Displays a single tour', 'tour-operator' ),
+				],
+				'archive' => [
+					'title'       => __( 'Accommodation Archive', 'tour-operator' ),
+					'description' => __( 'Displays all the tours.', 'tour-operator' ),
+				],
+			],
 		];
 
 		foreach ( $post_types as $key => $labels ) {
@@ -67,6 +88,50 @@ class Templates {
 				'post_types'  => [ $key ]
 			] );
 		}
+
+		register_block_template( 'lsx-tour-operator//search-results', [
+			'title'       => __( 'Search Results', 'tour-operator' ),
+			'description' => __( 'Displays when a visitor performs a search on your website.', 'tour-operator' ),
+			'content'     => $this->get_template_content( 'search-results.html' ),
+		] );
+
+		register_block_template( 'lsx-tour-operator//index', [
+			'title'       => __( 'Index', 'tour-operator' ),
+			'description' => __( 'Used as a fallback template for all pages when a more specific template is not defined.', 'tour-operator' ),
+			'content'     => $this->get_template_content( 'index.html' ),
+		] );
+
+		register_block_template( 'lsx-tour-operator//no-title', [
+			'title'       => __( 'No Title', 'tour-operator' ),
+			'description' => __( 'A generic page template with no page title displayed', 'tour-operator' ),
+			'content'     => $this->get_template_content( 'no-title.html' ),
+		] );
+
+		register_block_template( 'lsx-tour-operator//pages', [
+			'title'       => __( 'Pages', 'tour-operator' ),
+			'description' => __( 'A generic page template with a page title displayed', 'tour-operator' ),
+			'content'     => $this->get_template_content( 'no-title.html' ),
+		] );
+
+		register_block_template( 'lsx-tour-operator//single-region', [
+			'title'       => __( 'Single Region', 'tour-operator' ),
+			'description' => __( 'Used to display a region of a country in the Destination post-type', 'tour-operator' ),
+			'content'     => $this->get_template_content( 'single-region.html' ),
+			'post_types'  => [ 'destination' ]
+		] );
+
+		register_block_template( 'lsx-tour-operator//single-country', [
+			'title'       => __( 'Single Region', 'tour-operator' ),
+			'description' => __( 'Used to display a country in the Destination post-type', 'tour-operator' ),
+			'content'     => $this->get_template_content( 'single-country.html' ),
+			'post_types'  => [ 'destination' ]
+		] );
+
+		register_block_template( 'lsx-tour-operator//archive', [
+			'title'       => __( 'All Archives', 'tour-operator' ),
+			'description' => __( 'Displays any archive, including posts by a single author, category, tag, taxonomy, custom post type, and date. This template will serve as a fallback when more specific templates (e.g., Category or Tag) cannot be found.', 'tour-operator' ),
+			'content'     => $this->get_template_content( 'archive.html' ),
+		] );
 	}
 
 	/**
