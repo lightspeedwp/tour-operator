@@ -185,7 +185,7 @@ final class Content_Model {
 				'has_archive'  => true,
 				'show_in_rest' => true,
 				'menu_icon'    => "dashicons-{$this->get_icon()}",
-				'supports'     => array( 'title', 'editor', 'custom-fields' ),
+				'supports'     => array( 'title', 'slug', 'excerpt', 'editor', 'custom-fields','thumbnail' ),
 			)
 		);
 	}
