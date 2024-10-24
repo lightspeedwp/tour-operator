@@ -18,7 +18,7 @@ class Patterns {
 	 *
 	 * @access private
 	 */
-	private function __construct() {
+	public function __construct() {
 		//Register our pattern category
 		add_action( 'init', array( $this, 'register_block_category' ) );
 
