@@ -8,12 +8,6 @@ namespace lsx\blocks;
  * @author  LightSpeed
  */
 class Bindings {
-	/**
-	 * Holds instance of the class
-	 *
-	 * @var     \lsx\blocks\Bindings
-	 */
-	private static $instance;
 
 	/**
 	 * Holds array of itinerary fields slugs
@@ -71,21 +65,6 @@ class Bindings {
 		add_filter( 'render_block', array( $this, 'render_itinerary_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'render_units_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'render_gallery_block' ), 10, 3 );
-	}
-
-	/**
-	 * Return an instance of this class.
-	 *
-	 * @return  \lsx\blocks\Bindings
-	 */
-	public static function init() {
-
-		// If the single instance hasn't been set, set it now.
-		if ( ! isset( self::$instance ) ) {
-			self::$instance = new self();
-		}
-
-		return self::$instance;
 	}
 
 	public function register_block_bindings() {

@@ -5,15 +5,6 @@ namespace lsx\blocks;
 class Patterns {
 
 	/**
-	 * Holds class instance
-	 *
-	 * @since 1.0.0
-	 *
-	 * @var      object
-	 */
-	protected static $instance = null;
-
-	/**
 	 * Holds the slug of the projects pattern category.
 	 *
 	 * @var string
@@ -33,21 +24,6 @@ class Patterns {
 
 		// Register our block patterns
 		add_action( 'init', array( $this, 'register_block_patterns' ), 10 );
-	}
-
-	/**
-	 * Return an instance of this class.
-	 *
-	 * @return  \lsx\blocks\Patterns
-	 */
-	public static function init() {
-
-		// If the single instance hasn't been set, set it now.
-		if ( ! isset( self::$instance ) ) {
-			self::$instance = new self();
-		}
-
-		return self::$instance;
 	}
 
 	/**

@@ -219,8 +219,8 @@ class Tour_Operator {
 		$this->admin      = Admin::init();
 		$this->settings   = Settings::init();
 		$this->setup      = Setup::init();
-		$this->bindings   = Bindings::init();
+		$this->bindings   = new Bindings();
 		$this->variations = new Variations();
-		$this->patterns   = Patterns::init();
+		$this->patterns   = new Patterns();
 	}
 }
