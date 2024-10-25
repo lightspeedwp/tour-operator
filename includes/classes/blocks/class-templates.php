@@ -110,7 +110,7 @@ class Templates {
 		register_block_template( 'lsx-tour-operator//pages', [
 			'title'       => __( 'Pages', 'tour-operator' ),
 			'description' => __( 'A generic page template with a page title displayed', 'tour-operator' ),
-			'content'     => $this->get_template_content( 'no-title.html' ),
+			'content'     => $this->get_template_content( 'pages.html' ),
 		] );
 
 		register_block_template( 'lsx-tour-operator//single-region', [
@@ -121,7 +121,7 @@ class Templates {
 		] );
 
 		register_block_template( 'lsx-tour-operator//single-country', [
-			'title'       => __( 'Single Region', 'tour-operator' ),
+			'title'       => __( 'Single Country', 'tour-operator' ),
 			'description' => __( 'Used to display a country in the Destination post-type', 'tour-operator' ),
 			'content'     => $this->get_template_content( 'single-country.html' ),
 			'post_types'  => [ 'destination' ]
