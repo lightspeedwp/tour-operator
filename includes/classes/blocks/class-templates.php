@@ -67,7 +67,7 @@ class Templates {
 					'description' => __( 'Displays a single tour', 'tour-operator' ),
 				],
 				'archive' => [
-					'title'       => __( 'Accommodation Archive', 'tour-operator' ),
+					'title'       => __( 'Tour Archive', 'tour-operator' ),
 					'description' => __( 'Displays all the tours.', 'tour-operator' ),
 				],
 			],
