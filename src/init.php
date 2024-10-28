@@ -33,7 +33,7 @@ function to_block_block_assets() {
 		'to_block-style-css', // Handle.
 		plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ), // Block style CSS.
 		array(), // Dependency to include the CSS after it.
-		null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.style.build.css' ) // Version: File modification time.
+		null // Version: File modification time.
 	);
 
 	// Register block editor script for backend.
@@ -41,7 +41,7 @@ function to_block_block_assets() {
 		'to_block-block-js', // Handle.
 		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ), // Block.build.js: We register the block here. Built with Webpack.
 		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ), // Dependencies, defined above.
-		null, // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
+		null, // Version: filemtime — Gets file modification time.
 		true // Enqueue the script in the footer.
 	);
 
@@ -50,7 +50,7 @@ function to_block_block_assets() {
 		'to_block-block-editor-css', // Handle.
 		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) ), // Block editor CSS.
 		array( 'wp-edit-blocks' ), // Dependency to include the CSS after it.
-		null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: File modification time.
+		null // Version: File modification time.
 	);
 
 	/**
@@ -64,7 +64,8 @@ function to_block_block_assets() {
 	 * @since 1.16.0
 	 */
 	register_block_type(
-		'tour-operator/block-post-types', array(
+		'tour-operator/block-post-types',
+		array(
 			// Enqueue blocks.style.build.css on both frontend & backend.
 			'style'         => 'to_block-style-css',
 			// Enqueue blocks.build.js in the editor only.
@@ -87,3 +88,26 @@ function to_block_block_assets() {
 
 // Hook: Block assets.
 add_action( 'init', 'to_block_block_assets' );
+
+/**
+ * Enqueues linked cover block.
+ */
+function lsx_enqueue_block_assets() {
+	// Enqueue block editor script for the block variations
+	wp_enqueue_script(
+		'lsx-block-variations',
+		plugins_url( 'assets/js/blocks/variations.js', dirname( __FILE__ ) ),
+		array( 'wp-blocks', 'wp-dom-ready', 'wp-hooks', 'wp-compose', 'wp-element', 'wp-block-editor', 'wp-components' ),
+		filemtime( plugin_dir_path( dirname( __FILE__ ) ) . 'assets/js/blocks/variations.js' )
+	);
+
+	// Enqueue linked-cover.js
+	wp_enqueue_script(
+		'lsx-linked-cover',
+		plugins_url( 'assets/js/blocks/linked-cover.js', dirname( __FILE__ ) ),
+		array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-data', 'wp-hooks' ),
+		filemtime( plugin_dir_path( dirname( __FILE__ ) ) . 'assets/js/blocks/linked-cover.js' )
+	);
+}
+
+add_action( 'enqueue_block_editor_assets', 'lsx_enqueue_block_assets' );
