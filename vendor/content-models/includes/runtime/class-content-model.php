@@ -78,7 +78,7 @@ final class Content_Model {
 		$this->register_post_type();
 
 		// TODO: Not load this eagerly.
-		$this->blocks = $this->inflate_template_blocks( $this->template );
+		//$this->blocks = $this->inflate_template_blocks( $this->template );
 		$this->fields = $this->parse_fields();
 		$this->register_meta_fields();
 
@@ -90,7 +90,7 @@ final class Content_Model {
 		add_filter( 'rest_request_before_callbacks', array( $this, 'remove_default_meta_keys_on_save' ), 10, 3 );
 		add_filter( 'rest_post_dispatch', array( $this, 'fill_empty_meta_keys_with_default_values' ), 10, 3 );
 
-		add_action( 'rest_after_insert_' . $this->slug, array( $this, 'extract_post_content_from_blocks' ), 99, 1 );
+		//add_action( 'rest_after_insert_' . $this->slug, array( $this, 'extract_post_content_from_blocks' ), 99, 1 );
 
 		/**
 		 * We need two different hooks here because the Editor and the front-end read from different sources.
