@@ -93,13 +93,6 @@ add_action( 'init', 'to_block_block_assets' );
  * Enqueues linked cover block.
  */
 function lsx_enqueue_block_assets() {
-	// Enqueue block editor script for the block variations
-	wp_enqueue_script(
-		'lsx-block-variations',
-		plugins_url( 'assets/js/blocks/variations.js', dirname( __FILE__ ) ),
-		array( 'wp-blocks', 'wp-dom-ready', 'wp-hooks', 'wp-compose', 'wp-element', 'wp-block-editor', 'wp-components' ),
-		filemtime( plugin_dir_path( dirname( __FILE__ ) ) . 'assets/js/blocks/variations.js' )
-	);
 
 	// Enqueue linked-cover.js
 	wp_enqueue_script(
