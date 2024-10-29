@@ -244,23 +244,15 @@ class Admin extends Tour_Operator {
 			$value         = false;
 		}
 		?>
-		<tr class="form-field form-required term-thumbnail-wrap">
+		<tr class="form-field term-thumbnail-wrap">
 			<th scope="row"><label for="thumbnail"><?php esc_html_e( 'Featured Image', 'tour-operator' ); ?></label></th>
 			<td>
-				<input class="input_image_id" type="hidden" name="thumbnail" value="<?php echo wp_kses_post( $value ); ?>">
+				<input class="input_image" type="hidden" name="thumbnail" value="<?php echo wp_kses_post( $value ); ?>">
 				<div class="thumbnail-preview">
 					<?php echo wp_kses_post( $image_preview ); ?>
 				</div>
-				<a style="
-                <?php 
-                if ( '' !== $value && false !== $value ) {
-?>
-display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
-				<a style="
-                <?php 
-                if ( '' === $value || false === $value ) {
-?>
-display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-remove"><?php esc_html_e( 'Remove Image', 'tour-operator' ); ?></a>
+				<a style="<?php if ( '' !== $value && false !== $value ) { ?> display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e( 'Choose Image', 'tour-operator' ); ?></a>
+				<a style="<?php if ( '' === $value || false === $value ) { ?>display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-remove"><?php esc_html_e( 'Remove Image', 'tour-operator' ); ?></a>
 				<?php wp_nonce_field( 'lsx_to_save_term_thumbnail', 'lsx_to_term_thumbnail_nonce' ); ?>
 			</td>
 		</tr>
@@ -285,32 +277,26 @@ display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-remove"><?p
 		}
 
 		if ( check_admin_referer( 'lsx_to_save_term_thumbnail', 'lsx_to_term_thumbnail_nonce' ) ) {
-			if ( ! isset( $_POST['thumbnail'] ) ) {
-				return;
+			if ( isset( $_POST['thumbnail'] ) && ! empty( $_POST['thumbnail'] ) ) {
+				$thumbnail_meta = sanitize_text_field( $_POST['thumbnail'] );
+				$thumbnail_meta = ! empty( $thumbnail_meta ) ? $thumbnail_meta : '';
+	
+				if ( empty( $thumbnail_meta ) ) {
+					delete_term_meta( $term_id, 'thumbnail' );
+				} else {
+					update_term_meta( $term_id, 'thumbnail', $thumbnail_meta );
+				}
 			}
 
-			$thumbnail_meta = sanitize_text_field( $_POST['thumbnail'] );
-			$thumbnail_meta = ! empty( $thumbnail_meta ) ? $thumbnail_meta : '';
-
-			if ( empty( $thumbnail_meta ) ) {
-				delete_term_meta( $term_id, 'thumbnail' );
-			} else {
-				update_term_meta( $term_id, 'thumbnail', $thumbnail_meta );
-			}
-		}
-
-		if ( check_admin_referer( 'lsx_to_save_term_tagline', 'lsx_to_term_tagline_nonce' ) ) {
-			if ( ! isset( $_POST['tagline'] ) ) {
-				return;
-			}
-
-			$meta = sanitize_text_field( $_POST['tagline'] );
-			$meta = ! empty( $meta ) ? $meta : '';
-
-			if ( empty( $meta ) ) {
-				delete_term_meta( $term_id, 'tagline' );
-			} else {
-				update_term_meta( $term_id, 'tagline', $meta );
+			if ( isset( $_POST['tagline'] ) && ! empty( $_POST['tagline'] ) ) {
+				$meta = sanitize_text_field( $_POST['tagline'] );
+				$meta = ! empty( $meta ) ? $meta : '';
+	
+				if ( empty( $meta ) ) {
+					delete_term_meta( $term_id, 'tagline' );
+				} else {
+					update_term_meta( $term_id, 'tagline', $meta );
+				}
 			}
 		}
 	}
@@ -327,12 +313,11 @@ display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-remove"><?p
 			$value = false;
 		}
 		?>
-		<tr class="form-field form-required term-tagline-wrap">
+		<tr class="form-field term-tagline-wrap">
 			<th scope="row"><label for="tagline"><?php esc_html_e( 'Tagline', 'tour-operator' ); ?></label></th>
 			<td>
 				<input name="tagline" id="tagline" type="text" value="<?php echo wp_kses_post( $value ); ?>" size="40">
 			</td>
-			<?php wp_nonce_field( 'lsx_to_save_term_tagline', 'lsx_to_term_tagline_nonce' ); ?>
 		</tr>
 		<?php
 	}
