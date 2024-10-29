@@ -74,10 +74,6 @@ class Registration {
 			'core/group',
 		);
 
-		$allowed_classes = array(
-			'lsx-price-wrapper' => 'price',
-		);
-
 		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
 			return $block_content; 
 		}
@@ -85,11 +81,18 @@ class Registration {
 			return $block_content;
 		}
 
-		if ( ! array_key_exists( $parsed_block['attrs']['className'], $allowed_classes ) ) {
+		$pattern = "/lsx-[^-]+-wrapper/";
+
+		if ( preg_match( $pattern, $parsed_block['attrs']['className'], $matches ) ) {
+			// Save the first match to a variable
+			$meta_key = str_replace( [ 'lsx-', '-wrapper' ], '', $matches[0] );
+		} else {
 			return $block_content;
 		}
 
-		$value = lsx_to_custom_field_query( 'price', '', '', false );
+		do_action( 'qm/debug', $meta_key );
+
+		$value = lsx_to_custom_field_query( $meta_key, '', '', false );
 		if ( empty( $value ) || '' === $value ) {
 			$block_content = '';
 		}
