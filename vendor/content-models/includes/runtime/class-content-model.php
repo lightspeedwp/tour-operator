@@ -188,6 +188,7 @@ final class Content_Model {
 
 		if ( 'destination' === $this->slug ) {
 			$post_type_args['hierarchical'] = true;
+			$post_type_args['supports'][]   = 'page-attributes';
 		}
 
 		register_post_type(
