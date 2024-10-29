@@ -44,6 +44,14 @@ class Variations {
 				true  // Enqueue in the footer.
 			);
 
+			// Enqueue linked-cover.js
+			wp_enqueue_script(
+				'lsx-linked-cover',
+				plugins_url( 'assets/js/blocks/linked-cover.js', dirname( __FILE__ ) ),
+				array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-data', 'wp-hooks' ),
+				filemtime( plugin_dir_path( dirname( __FILE__ ) ) . 'assets/js/blocks/linked-cover.js' )
+			);
+
 			if ( array_key_exists( get_post_type(), tour_operator()->get_post_types() ) ) {
 				wp_enqueue_script(
 					'lsx-to-slotfills',  // Handle for the script.
