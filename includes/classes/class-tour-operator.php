@@ -217,7 +217,7 @@ class Tour_Operator {
 		load_plugin_textdomain( 'tour-operator', false, LSX_TO_CORE . '/languages' );
 		$this->pages      = Pages::init();
 		$this->taxonomies = Taxonomies::init();
-		$this->admin      = Admin::init();
+		$this->admin      = new Admin();
 		$this->settings   = Settings::init();
 		$this->setup      = Setup::init();
 		$this->bindings   = new Bindings();

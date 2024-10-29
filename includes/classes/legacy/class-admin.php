@@ -61,17 +61,8 @@ class Admin extends Tour_Operator {
 		$this->videos = Video::get_instance();
 
 		add_action( 'init', array( $this, 'init' ) );
-		//add_action( 'admin_menu', array( $this, 'register_menu_pages' ) );
-		//add_action( 'custom_menu_order', array( $this, 'reorder_menu_pages' ) );
-		//add_action( 'admin_head', array( $this, 'select_submenu_pages' ) );
-
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_stylescripts' ), 999 );
 		add_action( 'cmb_save_custom', array( $this, 'post_relations' ), 3, 20 );
-
-		add_filter( 'plugin_action_links_' . plugin_basename( LSX_TO_CORE ), array( $this, 'add_action_links' ) );
-
-		add_action( 'default_hidden_meta_boxes', array( $this, 'default_hidden_meta_boxes' ), 10, 2 );
-		add_filter( 'upload_mimes', array( $this, 'allow_svgimg_types' ) );
 	}
 
 	/**
@@ -85,9 +76,6 @@ class Admin extends Tour_Operator {
 			$this->single_fields = apply_filters( 'lsx_to_search_fields', array() );
 			$this->taxonomies = apply_filters( 'lsx_to_taxonomies', $this->taxonomies );
 
-			add_filter( 'lsx_to_taxonomy_widget_taxonomies', array( $this, 'widget_taxonomies' ), 10, 1 );
-			add_filter( 'lsx_taxonomy_admin_taxonomies', array( $this, 'widget_taxonomies_slugs' ), 10, 1 );
-
 			if ( false !== $this->taxonomies ) {
 
 				add_action( 'create_term', array( $this, 'save_meta' ), 10, 2 );
@@ -98,8 +86,6 @@ class Admin extends Tour_Operator {
 					add_action( "{$taxonomy}_edit_form_fields", array( $this, 'add_tagline_form_field' ), 3, 1 );
 				}
 			}
-
-			add_filter( 'type_url_form_media', array( $this, 'change_attachment_field_button' ), 20, 1 );
 		}
 	}
 
@@ -140,39 +126,6 @@ class Admin extends Tour_Operator {
 		wp_enqueue_style( 'tour-operator-admin-style', LSX_TO_URL . 'assets/css/admin.css', array(), LSX_TO_VER );
 		wp_style_add_data( 'tour-operator-admin-style', 'rtl', 'replace' );
 
-	}
-
-	/**
-	 * Display a custom menu page
-	 */
-	function menu_dashboard() {
-		?>
-		<div class="wrap">
-			<h1><?php esc_html_e( 'Dashboard', 'tour-operator' ); ?></h1>
-		</div>
-		<?php
-	}
-
-	/**
-	 * Display the addons page
-	 */
-	function addons_page() {
-		include( LSX_TO_PATH . 'includes/partials/add-ons.php' );
-	}
-
-	/**
-	 * Display the help page
-	 */
-	function help_page() {
-		include( LSX_TO_PATH . 'includes/partials/help.php' );
-		include( LSX_TO_PATH . 'includes/partials/add-ons.php' );
-	}
-
-	/**
-	 * Display the licenses page
-	 */
-	function licenses_page() {
-		include( LSX_TO_PATH . 'includes/partials/licenses.php' );
 	}
 
 	/**
@@ -271,44 +224,6 @@ class Admin extends Tour_Operator {
 				}
 			}
 		}
-	}
-
-	/**
-	 * Adds in the "settings" link for the plugins.php page
-	 */
-	public function add_action_links( $links ) {
-		$mylinks = array(
-			'<a href="' . admin_url( 'admin.php?page=lsx-to-settings' ) . '">' . esc_html__( 'Settings', 'tour-operator' ) . '</a>',
-			'<a href="https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/" target="_blank">' . esc_html__( 'Documentation', 'tour-operator' ) . '</a>',
-			'<a href="https://www.lsdev.biz/lsx/support/" target="_blank">' . esc_html__( 'Support', 'tour-operator' ) . '</a>',
-		);
-
-		return array_merge( $links, $mylinks );
-	}
-
-	/**
-	 * Output the form field for this metadata when adding a new term
-	 *
-	 * @since 0.1.0
-	 */
-	public function widget_taxonomies( $taxonomies ) {
-		if ( false !== $this->taxonomies ) {
-			$taxonomies = array_merge( $taxonomies, $this->taxonomies );
-		}
-
-		return $taxonomies;
-	}
-
-	/**
-	 * Output the form field for this metadata when adding a new term
-	 *
-	 * @since 1.0.0
-	 */
-	public function widget_taxonomies_slugs( $taxonomies ) {
-		if ( false !== $this->taxonomies ) {
-			$taxonomies = array_merge( $taxonomies, array_keys( $this->taxonomies ) );
-		}
-		return $taxonomies;
 	}
 
 	/**
@@ -415,53 +330,12 @@ display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-remove"><?p
 		<tr class="form-field form-required term-tagline-wrap">
 			<th scope="row"><label for="tagline"><?php esc_html_e( 'Tagline', 'tour-operator' ); ?></label></th>
 			<td>
-				<input name="tagline" id="tagline" type="text" value="<?php echo wp_kses_post( $value ); ?>" size="40" aria-required="true">
+				<input name="tagline" id="tagline" type="text" value="<?php echo wp_kses_post( $value ); ?>" size="40">
 			</td>
 			<?php wp_nonce_field( 'lsx_to_save_term_tagline', 'lsx_to_term_tagline_nonce' ); ?>
 		</tr>
 		<?php
 	}
 
-	/**
-	 * Change the "Insert into Post" button text when media modal is used for
-	 * feature images
-	 */
-	public function change_attachment_field_button( $html ) {
-		if ( isset( $_GET['feature_image_text_button'] ) ) {
-			$html = str_replace( 'value="Insert into Post"', sprintf( 'value="%s"', esc_html__( 'Select featured image', 'tour-operator' ) ), $html );
-		}
-
-		return $html;
-	}
-
-	/**
-	 * Allow SVG files for upload
-	 */
-	public function allow_svgimg_types( $mimes ) {
-		$mimes['svg'] = 'image/svg+xml';
-		$mimes['kml'] = 'image/kml+xml';
-
-		return $mimes;
-	}
-
-	/**
-	 * Hide a few of the meta boxes by default
-	 */
-	public function default_hidden_meta_boxes( $hidden, $screen ) {
-		$post_type = $screen->post_type;
-
-		if ( in_array( $post_type, $this->post_types ) ) {
-			$hidden = array(
-				'authordiv',
-				'revisionsdiv',
-				'slugdiv',
-				'sharing_meta',
-			);
-
-			return $hidden;
-		}
-
-		return $hidden;
-	}
 
 }
