@@ -41,7 +41,7 @@ if ( class_exists( 'LSX_TO_Team' ) ) {
 		'name'       => esc_html__( 'Accommodation Expert', 'tour-operator' ),
 		'type'       => 'pw_select',
 		'use_ajax'   => false,
-		'allow_none' => false,
+		'allow_none' => true,
 		'sortable'   => false,
 		'repeatable' => false,
 		'options'  => array(
