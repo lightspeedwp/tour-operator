@@ -81,21 +81,36 @@ class Registration {
 			return $block_content;
 		}
 
-		$pattern = "/lsx-[^-]+-wrapper/";
+		$pattern = "/lsx(?:-[^-]+)+-wrapper/";
+		preg_match( $pattern, $parsed_block['attrs']['className'], $matches );
 
-		if ( preg_match( $pattern, $parsed_block['attrs']['className'], $matches ) ) {
+		if ( empty( $matches ) ) {
+			return $block_content;
+		}
+		
+		if ( ! empty( $matches ) && isset( $matches[0] ) ) {
 			// Save the first match to a variable
-			$meta_key = str_replace( [ 'lsx-', '-wrapper' ], '', $matches[0] );
+			$key = str_replace( [ 'lsx-', '-wrapper' ], '', $matches[0] );
 		} else {
 			return $block_content;
 		}
-
-		do_action( 'qm/debug', $meta_key );
-
-		$value = lsx_to_custom_field_query( $meta_key, '', '', false );
-		if ( empty( $value ) || '' === $value ) {
-			$block_content = '';
+		
+		// Check to see if this is a taxonomy or a custom field.
+		if ( taxonomy_exists( $key ) ) {
+			$tax_args = array(
+				'fields' => 'ids'
+			);
+			if ( empty( wp_get_post_terms( get_the_ID(), $key, $tax_args ) ) ) {
+				$block_content = '';
+			}
+		} else {
+			$key = str_replace( '-', '_', $key );
+			$value = lsx_to_custom_field_query( $key, '', '', false );
+			if ( empty( $value ) || '' === $value ) {
+				$block_content = '';
+			}
 		}
+
 		return $block_content;
 	}
 }
