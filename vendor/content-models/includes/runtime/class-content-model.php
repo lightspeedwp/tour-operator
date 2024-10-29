@@ -176,17 +176,23 @@ final class Content_Model {
 			'not_found_in_trash' => sprintf( __( 'No %s found in trash' ), $plural_name ),
 		);
 
+		$post_type_args = array(
+			'labels'       => $labels,
+			'public'       => true,
+			'show_in_menu' => true,
+			'has_archive'  => true,
+			'show_in_rest' => true,
+			'menu_icon'    => "dashicons-{$this->get_icon()}",
+			'supports'     => array( 'title', 'slug', 'excerpt', 'editor', 'custom-fields','thumbnail' ),
+		);
+
+		if ( 'destination' === $this->slug ) {
+			$post_type_args['hierarchical'] = true;
+		}
+
 		register_post_type(
 			$this->slug,
-			array(
-				'labels'       => $labels,
-				'public'       => true,
-				'show_in_menu' => true,
-				'has_archive'  => true,
-				'show_in_rest' => true,
-				'menu_icon'    => "dashicons-{$this->get_icon()}",
-				'supports'     => array( 'title', 'slug', 'excerpt', 'editor', 'custom-fields','thumbnail' ),
-			)
+			$post_type_args
 		);
 	}
 
@@ -196,13 +202,14 @@ final class Content_Model {
 	 * @return array Fields associated with the Content Model.
 	 */
 	private function parse_fields() {
-		$fields = get_post_meta( $this->post_id, 'fields', true );
-
+		$fields = get_post_meta( $this->post_id, 'fields', true );	
 		if ( ! $fields ) {
 			return array();
 		}
 
 		$decoded_files = json_decode( $fields, true );
+
+		do_action( 'qm/debug', $decoded_files );
 
 		if ( is_array( $decoded_files ) ) {
 			return $decoded_files;
