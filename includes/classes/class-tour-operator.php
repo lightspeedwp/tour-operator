@@ -8,7 +8,7 @@ use lsx\admin\Settings;
 use lsx\admin\Setup;
 use lsx\blocks\Bindings;
 use lsx\blocks\Patterns;
-use lsx\blocks\Variations;
+use lsx\blocks\Registration;
 use lsx\blocks\Templates;
 
 /**
@@ -221,7 +221,7 @@ class Tour_Operator {
 		$this->settings   = Settings::init();
 		$this->setup      = Setup::init();
 		$this->bindings   = new Bindings();
-		$this->variations = new Variations();
+		$this->registration = new Registration();
 		$this->patterns   = new Patterns();
 		$this->templates   = new Templates();
 	}

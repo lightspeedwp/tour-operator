@@ -7,15 +7,7 @@ namespace lsx\blocks;
  * @package lsx
  * @author  LightSpeed
  */
-class Variations {
-	/**
-	 * Holds instance of the class
-	 *
-	 * @since   1.1.0
-	 * @var     \lsx\blocks\Variations
-	 */
-	private static $instance;
-
+class Registration {
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
 	 *
