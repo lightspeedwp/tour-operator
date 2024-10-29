@@ -88,19 +88,3 @@ function to_block_block_assets() {
 
 // Hook: Block assets.
 add_action( 'init', 'to_block_block_assets' );
-
-/**
- * Enqueues linked cover block.
- */
-function lsx_enqueue_block_assets() {
-
-	// Enqueue linked-cover.js
-	wp_enqueue_script(
-		'lsx-linked-cover',
-		plugins_url( 'assets/js/blocks/linked-cover.js', dirname( __FILE__ ) ),
-		array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-data', 'wp-hooks' ),
-		filemtime( plugin_dir_path( dirname( __FILE__ ) ) . 'assets/js/blocks/linked-cover.js' )
-	);
-}
-
-add_action( 'enqueue_block_editor_assets', 'lsx_enqueue_block_assets' );
