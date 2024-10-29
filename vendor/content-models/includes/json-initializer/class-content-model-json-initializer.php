@@ -62,6 +62,7 @@ class Content_Model_Json_Initializer {
 		$content_models = self::group_content_models_by_slug();
 
 		foreach ( $post_types as $post_type ) {
+
 			$content_model_post = array(
 				'post_name'    => $post_type['slug'],
 				'post_title'   => $post_type['label'],
@@ -80,7 +81,6 @@ class Content_Model_Json_Initializer {
 
 			update_post_meta( $post_id, 'plural_label', $post_type['pluralLabel'] );
 			update_post_meta( $post_id, 'icon', $post_type['icon'] );
-
 			update_post_meta( $post_id, 'fields', wp_json_encode( $post_type['fields'] ) );
 		}
 	}

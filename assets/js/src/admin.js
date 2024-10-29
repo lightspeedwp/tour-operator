@@ -18,6 +18,7 @@ jQuery(document).ready(function() {
 				$td = $this.parent('td');
 
 			window.send_to_editor = function(html) {
+
 				var $image = jQuery(html).is('img') ? jQuery(html) : jQuery('img', html),
 					image_thumbnail = $image.html(),
 					image_src = $image.attr('src'),
@@ -27,7 +28,7 @@ jQuery(document).ready(function() {
 				image_class = image_class.split('wp-image-');
 
 				$td.find('.thumbnail-preview img').attr('src', image_src).parent().show();
-				$td.find('input.input_image').val(image_class[1]);
+				$td.find('input.input_image').val(image_class[1]).attr( 'width', $image.attr('width') ).attr( 'height', $image.attr('height') );
 				$this.hide();
 				$td.find('.lsx-thumbnail-image-delete, .lsx-thumbnail-image-remove').show();
 

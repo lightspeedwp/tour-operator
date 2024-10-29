@@ -7,15 +7,7 @@ namespace lsx\blocks;
  * @package lsx
  * @author  LightSpeed
  */
-class Variations {
-	/**
-	 * Holds instance of the class
-	 *
-	 * @since   1.1.0
-	 * @var     \lsx\blocks\Variations
-	 */
-	private static $instance;
-
+class Registration {
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
 	 *
@@ -47,9 +39,9 @@ class Variations {
 			// Enqueue linked-cover.js
 			wp_enqueue_script(
 				'lsx-linked-cover',
-				plugins_url( 'assets/js/blocks/linked-cover.js', dirname( __FILE__ ) ),
+				LSX_TO_URL . 'assets/js/blocks/linked-cover.js',
 				array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-data', 'wp-hooks' ),
-				filemtime( plugin_dir_path( dirname( __FILE__ ) ) . 'assets/js/blocks/linked-cover.js' )
+				filemtime( LSX_TO_PATH . 'assets/js/blocks/linked-cover.js' )
 			);
 
 			if ( array_key_exists( get_post_type(), tour_operator()->get_post_types() ) ) {

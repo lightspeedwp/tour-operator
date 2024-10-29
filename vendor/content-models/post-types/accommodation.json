@@ -37,7 +37,7 @@
 			"slug": "price_type",
 			"type": "select",
 			"label": "Price Type",
-			"description": "Set the additional cost for a single person booking the accommodation.",
+			"description": "The type of pricing for this accommodation. (e.g. per person per night)",
 			"visible": true,
 			"options": [ 
 				{
@@ -410,7 +410,7 @@
 			"slug": "minimum_child_age",
 			"type": "text",
 			"label": "Minimum Child Age",
-			"description": "Items or services not provided with the accommodation.",
+			"description": "Set the minimum child age allowed by the accommodation.",
 			"visible": true
 		}	
 	]
