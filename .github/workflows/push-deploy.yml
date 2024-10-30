@@ -2,7 +2,10 @@ name: Deploy to WordPress.org
 on:
   push:
     tags:
-    - "*"
+    - 'v*'
+    - '!v*-alpha*'
+    - '!v*-beta*'
+    - '!v*-rc*'
 jobs:
   tag:
     name: New tag
