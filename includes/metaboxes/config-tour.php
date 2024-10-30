@@ -21,7 +21,7 @@ $metabox['fields'][] = array(
 	'desc'       => esc_html__( 'Select the destination where the tour starts.', 'tour-operator' ),
 	'type'       => 'pw_select',
 	'use_ajax'   => false,
-	'allow_none' => false,
+	'allow_none' => true,
 	'sortable'   => false,
 	'repeatable' => false,
 	'options'  => array(
@@ -35,7 +35,7 @@ $metabox['fields'][] = array(
 	'desc'       => esc_html__( 'Select the destination where the tour ends.', 'tour-operator' ),
 	'type'       => 'pw_select',
 	'use_ajax'   => false,
-	'allow_none' => false,
+	'allow_none' => true,
 	'sortable'   => false,
 	'repeatable' => false,
 	'options'  => array(
@@ -159,13 +159,121 @@ $metabox['fields'][] = array(
 	'type' => 'title',
 );
 
+$itinerary_fields[] = array(
+	'id'   => 'title',
+	'name' => esc_html__( 'Title', 'tour-operator' ),
+	'desc' => esc_html__( 'Enter the title for the time frame (e.g., Day 1, Day 1-3).', 'tour-operator' ),
+	'type' => 'text',
+);
+
+$itinerary_fields[] = array(
+	'id'   => 'tagline',
+	'name' => esc_html__( 'Tagline (Optional)', 'tour-operator' ),
+	'desc' => esc_html__( 'Add an optional tagline for the itinerary entry (if left blank, it won’t display).', 'tour-operator' ),
+	'type' => 'text',
+);
+
+$itinerary_fields[] = array(
+	'id'      => 'description',
+	'name'    => esc_html__( 'Description', 'tour-operator' ),
+	'desc'    => esc_html__( 'Provide a description of what happens during this time frame.', 'tour-operator' ),
+	'type'    => 'wysiwyg',
+	'options' => array(
+		'editor_height' => '100',
+	),
+);
+
+$itinerary_fields[] = array(
+	'id'        => 'featured_image',
+	'name'      => esc_html__( 'Featured Image', 'tour-operator' ),
+	'desc'      => esc_html__( 'Upload or select a featured image for the itinerary entry.', 'tour-operator' ),
+	'type'      => 'file',
+	'show_size' => false,
+	'query_args' => array(
+		'type' => array(
+			'image/gif',
+			'image/jpeg',
+			'image/png',
+	   ),
+   ), 
+);
+
+$itinerary_fields = apply_filters( 'lsx_to_tours_itinerary_fields', $itinerary_fields );
+
+if ( post_type_exists( 'accommodation' ) ) {
+	$itinerary_fields[] = array(
+		'id'         => 'accommodation_to_tour',
+		'name'       => esc_html__( 'Related Accommodation', 'tour-operator' ),
+		'desc'       => esc_html__( 'Select the accommodation associated with this Itinerary entry.', 'tour-operator' ),
+		'type'       => 'pw_select',
+		'use_ajax'   => false,
+		'allow_none' => true,
+		'sortable'   => false,
+		'repeatable' => false,
+		'options'  => array(
+			'post_type_args' => 'accommodation',
+		),
+	);
+}
+
+if ( post_type_exists( 'destination' ) ) {
+	$itinerary_fields[] = array(
+		'id'         => 'destination_to_tour',
+		'name'       => esc_html__( 'Related Destination', 'tour-operator' ),
+		'desc'       => esc_html__( 'Choose the destination (region or country) associated with this Itinerary entry.', 'tour-operator' ),
+		'type'       => 'pw_select',
+		'use_ajax'   => false,
+		'allow_none' => true,
+		'sortable'   => false,
+		'repeatable' => false,
+		'options'  => array(
+			'post_type_args' => 'destination',
+		),
+	);
+}
+
+$itinerary_fields[] = array(
+	'id'      => 'included',
+	'name'    => esc_html__( 'Included', 'tour-operator' ),
+	'desc'    => esc_html__( 'Items or services provided during that part of the tour itinerary.', 'tour-operator' ),
+	'type'    => 'wysiwyg',
+	'options' => array(
+		'editor_height' => '100',
+	),
+);
+
+$itinerary_fields[] = array(
+	'id'      => 'excluded',
+	'name'    => esc_html__( 'Excluded', 'tour-operator' ),
+	'desc'    => esc_html__( 'Items or services not provided during that part of the tour itinerary.', 'tour-operator' ),
+	'type'    => 'wysiwyg',
+	'options' => array(
+		'editor_height' => '100',
+	),
+);
+
+$itinerary_fields[] = array(
+	'id'      => 'drinks_basis',
+	'name'    => esc_html__( 'Drinks Basis', 'tour-operator' ),
+	'desc'    => esc_html__( 'Select the drinks basis for the itinerary (e.g., tea & coffee, all local drinks).', 'tour-operator' ),
+	'type'    => 'select',
+	'options' => $this->drinks_basis,
+);
+$itinerary_fields[] = array(
+	'id'      => 'room_basis',
+	'name'    => esc_html__( 'Room Basis', 'tour-operator' ),
+	'desc'    => esc_html__( 'Choose the room basis for the itinerary (e.g., breakfast only, full board).', 'tour-operator' ),
+	'type'    => 'select',
+	'options' => $this->room_basis,
+);
+
 $metabox['fields'][] = array(
 	'id'          => 'itinerary',
 	'name'        => '',
 	'single_name' => __( 'Day(s)', 'tour-operator' ),
 	'type'        => 'group',
 	'repeatable'  => true,
-	'fields'      => lsx\legacy\Tour::get_instance()->itinerary_fields(),
+	'fields'      => $itinerary_fields,
 	'desc'        => '',
     'options'     => array(
         'group_title'       => __( 'Itinerary {#}', 'tour-operator' ), // since version 1.1.4, {#} gets replaced by row number
@@ -188,7 +296,7 @@ $metabox['fields'][] = array(
 	'type'       => 'pw_multiselect',
 	'use_ajax'   => false,
 	'repeatable' => false,
-	'allow_none' => false,
+	'allow_none' => true,
 	'options'  => array(
 		'post_type_args' => 'post',
 	),
@@ -201,7 +309,7 @@ $metabox['fields'][] = array(
 	'type'       => 'pw_multiselect',
 	'use_ajax'   => false,
 	'repeatable' => false,
-	'allow_none' => false,
+	'allow_none' => true,
 	'options'  => array(
 		'post_type_args' => 'accommodation',
 	),

@@ -210,8 +210,6 @@ final class Content_Model {
 
 		$decoded_files = json_decode( $fields, true );
 
-		do_action( 'qm/debug', $decoded_files );
-
 		if ( is_array( $decoded_files ) ) {
 			return $decoded_files;
 		}
