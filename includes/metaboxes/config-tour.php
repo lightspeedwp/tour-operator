@@ -54,7 +54,7 @@ $metabox['fields'][] = array(
 );
 
 $metabox['fields'][] = array(
-	'id'      => 'hightlights',
+	'id'      => 'highlights',
 	'name'    => esc_html__( 'Highlights', 'tour-operator' ),
 	'desc'    => esc_html__( 'Key experiences or features of the tour.', 'tour-operator' ),
 	'type'    => 'wysiwyg',
