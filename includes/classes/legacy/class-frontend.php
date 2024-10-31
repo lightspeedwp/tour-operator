@@ -262,6 +262,8 @@ class Frontend extends Tour_Operator {
 			wp_localize_script( 'tour-operator-script', 'lsx_to_params', $param_array );
 		}
 
+		
+
 		if ( ! isset( $this->options['display']['disable_css'] ) ) {
 			if ( ! $has_slick ) {
 				wp_enqueue_style( 'slick', LSX_TO_URL . 'assets/css/vendor/slick.css', array(), LSX_TO_VER );
@@ -271,7 +273,7 @@ class Frontend extends Tour_Operator {
 				wp_enqueue_style( 'slick-lightbox', LSX_TO_URL . 'assets/css/vendor/slick-lightbox.css', array( 'slick' ), LSX_TO_VER );
 			}
 
-			wp_enqueue_style( 'tour-operator-style', LSX_TO_URL . 'assets/css/style.css', array( 'lsx_main' ), LSX_TO_VER );
+			wp_enqueue_style( 'tour-operator-style', LSX_TO_URL . 'assets/css/style.css', array(), LSX_TO_VER );
 			wp_style_add_data( 'tour-operator-style', 'rtl', 'replace' );
 		}
 	}

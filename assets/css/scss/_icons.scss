@@ -103,6 +103,10 @@
 	}
 }
 
+.lsx-price-wrapper {
+	
+}
+
 .lsx-to-meta-data {
 	display: block;
 	font-size: 13px;
@@ -123,13 +127,6 @@
 
 	.lsx-to-summary-meta-data & {
 		font-size: 15px;
-
-		@include media ('>=tablet') {
-			display: inline-block;
-			margin-top: 0;
-
-			& + .lsx-to-meta-data { margin-left: $lsx-to-gap-half; }
-		}
 	}
 
 	&:before {
