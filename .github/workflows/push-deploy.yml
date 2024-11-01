@@ -6,6 +6,9 @@ on:
     - '!v*-alpha*'
     - '!v*-beta*'
     - '!v*-rc*'
+    - '!*-alpha*'
+    - '!*-beta*'
+    - '!*-rc*'
 jobs:
   tag:
     name: New tag
