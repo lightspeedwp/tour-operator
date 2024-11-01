@@ -2,208 +2,87 @@
 /*
  * LSX Tour Operators
  */
-.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon:after {
+.lsx-price-wrapper .amount .currency-icon:after {
   margin-left: 3px;
   margin-right: 3px;
 }
-.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.usd:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.nad:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.cad:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.hkd:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.sgd:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.nzd:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.aud:after {
+.lsx-price-wrapper .amount .currency-icon.usd:after, .lsx-price-wrapper .amount .currency-icon.nad:after, .lsx-price-wrapper .amount .currency-icon.cad:after, .lsx-price-wrapper .amount .currency-icon.hkd:after, .lsx-price-wrapper .amount .currency-icon.sgd:after, .lsx-price-wrapper .amount .currency-icon.nzd:after, .lsx-price-wrapper .amount .currency-icon.aud:after {
   content: "$";
 }
-.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.eur:after {
+.lsx-price-wrapper .amount .currency-icon.eur:after {
   content: "€";
 }
-.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.gbp:after {
+.lsx-price-wrapper .amount .currency-icon.gbp:after {
   content: "£";
 }
-.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.zar:after {
+.lsx-price-wrapper .amount .currency-icon.zar:after {
   content: "R";
 }
-.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.brl:after {
+.lsx-price-wrapper .amount .currency-icon.brl:after {
   content: "R$";
 }
-.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.bwp:after {
+.lsx-price-wrapper .amount .currency-icon.bwp:after {
   content: "P";
 }
-.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.cny:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.jpy:after {
+.lsx-price-wrapper .amount .currency-icon.cny:after, .lsx-price-wrapper .amount .currency-icon.jpy:after {
   content: "¥";
 }
-.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.inr:after {
+.lsx-price-wrapper .amount .currency-icon.inr:after {
   content: "₹";
 }
-.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.idr:after {
+.lsx-price-wrapper .amount .currency-icon.idr:after {
   content: "₹";
 }
-.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.ils:after {
+.lsx-price-wrapper .amount .currency-icon.ils:after {
   content: "₪";
 }
-.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.kes:after {
+.lsx-price-wrapper .amount .currency-icon.kes:after {
   content: "K";
 }
-.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.lak:after {
+.lsx-price-wrapper .amount .currency-icon.lak:after {
   content: "₭";
 }
-.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.mwk:after {
+.lsx-price-wrapper .amount .currency-icon.mwk:after {
   content: "MK";
 }
-.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.myr:after {
+.lsx-price-wrapper .amount .currency-icon.myr:after {
   content: "RM";
 }
-.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.mzn:after {
+.lsx-price-wrapper .amount .currency-icon.mzn:after {
   content: "MT";
 }
-.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.nok:after, .lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.sek:after {
+.lsx-price-wrapper .amount .currency-icon.nok:after, .lsx-price-wrapper .amount .currency-icon.sek:after {
   content: "kr";
 }
-.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.rub:after {
+.lsx-price-wrapper .amount .currency-icon.rub:after {
   content: "руб";
 }
-.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.chf:after {
+.lsx-price-wrapper .amount .currency-icon.chf:after {
   content: "CHF";
 }
-.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.tzs:after {
+.lsx-price-wrapper .amount .currency-icon.tzs:after {
   content: "TSh";
 }
-.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.aed:after {
+.lsx-price-wrapper .amount .currency-icon.aed:after {
   content: "د.إ";
 }
-.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.zmw:after {
+.lsx-price-wrapper .amount .currency-icon.zmw:after {
   content: "Zk";
 }
-.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon.zwl:after {
+.lsx-price-wrapper .amount .currency-icon.zwl:after {
   content: "Z$";
 }
 
-.lsx-to-meta-data {
-  display: block;
-  font-size: 13px;
-  padding-left: 22px;
-  position: relative;
+.lsx-price-wrapper:before {
+  background-image: url(../img/icons/price-icon.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 20px;
+  height: 30px;
+  content: " ";
+  background-position: center top;
 }
-.lsx-to-contact-meta-data .lsx-to-meta-data {
-  padding-left: 0;
-}
-.lsx-to-meta-data + .lsx-to-meta-data {
-  margin-top: 5px;
-}
-#fast-facts .lsx-to-meta-data {
-  font-size: 15px;
-  margin-top: 0;
-  padding-top: 1.2rem;
-}
-#fast-facts .lsx-to-meta-data:first-child {
-  padding-top: 0;
-}
-.lsx-to-summary-meta-data .lsx-to-meta-data {
-  font-size: 15px;
-}
-.lsx-to-meta-data:before {
-  color: inherit;
-  display: inline-block;
-  font-family: "FontAwesome";
-  font-size: inherit;
-  left: 0;
-  position: absolute;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-.lsx-to-meta-data .lsx-to-meta-data-key {
-  font-weight: bold;
-}
-.lsx-to-archive-template-list .lsx-to-meta-data:not(.lsx-to-meta-data-duration):not(.lsx-to-meta-data-price) .lsx-to-meta-data-key {
-  display: inline-block;
-}
-.lsx-to-meta-data.lsx-to-meta-data-big {
-  font-size: 18px;
-  padding-left: 0;
-}
-.lsx-to-meta-data.lsx-to-meta-data-big:before {
-  display: none;
-}
-.lsx-to-meta-data.lsx-to-meta-data-price .currency-icon:after {
+.lsx-price-wrapper .amount .currency-icon:after {
   margin-right: 0px;
-}
-.lsx-to-meta-data.lsx-to-meta-data-accommodations:before {
-  content: "\f015";
-}
-.lsx-to-meta-data.lsx-to-meta-data-activities:before {
-  content: "\f1e5";
-}
-.lsx-to-meta-data.lsx-to-meta-data-brand:before {
-  content: "\f1ad";
-}
-.lsx-to-meta-data.lsx-to-meta-data-destinations:before {
-  content: "\f0ac";
-}
-.lsx-to-meta-data.lsx-to-meta-data-duration:before {
-  content: "\f133";
-}
-.lsx-to-meta-data.lsx-to-meta-data-email:before {
-  content: "\f0e0";
-}
-.lsx-to-meta-data.lsx-to-meta-data-friendly:before {
-  content: "\f046";
-}
-.lsx-to-meta-data.lsx-to-meta-data-languages:before {
-  content: "\f1ab";
-}
-.lsx-to-meta-data.lsx-to-meta-data-phone:before {
-  content: "\f095";
-}
-.lsx-to-meta-data.lsx-to-meta-data-pin:before {
-  content: "\f041";
-}
-.lsx-to-meta-data.lsx-to-meta-data-price:before {
-  content: "\f0d6";
-}
-.lsx-to-meta-data.lsx-to-meta-data-rating:before {
-  content: "\f006";
-}
-.lsx-to-meta-data.lsx-to-meta-data-role:before {
-  content: "\f0c0";
-}
-.lsx-to-meta-data.lsx-to-meta-data-rooms:before {
-  content: "\f236";
-}
-.lsx-to-meta-data.lsx-to-meta-data-skype:before {
-  content: "\f17e";
-}
-.lsx-to-meta-data.lsx-to-meta-data-special:before {
-  content: "\f069";
-}
-.lsx-to-meta-data.lsx-to-meta-data-style:before {
-  content: "\f02b";
-}
-.lsx-to-meta-data.lsx-to-meta-data-team:before {
-  content: "\f007";
-}
-.lsx-to-meta-data.lsx-to-meta-data-tours:before {
-  content: "\f072";
-}
-.lsx-to-meta-data.lsx-to-meta-data-travel-dates:before {
-  content: "\f073";
-}
-.lsx-to-meta-data.lsx-to-meta-data-type:before {
-  content: "\f02b";
-}
-.lsx-to-meta-data.lsx-to-meta-data-seating:before {
-  content: "\f0c0";
-}
-.lsx-to-meta-data.lsx-to-meta-data-valid-from:before {
-  content: "\f073";
-}
-.lsx-to-meta-data.lsx-to-meta-data-day-includes:before {
-  content: "\f058";
-}
-.lsx-to-meta-data.lsx-to-meta-data-day-excludes:before {
-  content: "\f057";
-}
-
-.lsx-to-meta-data.lsx-to-meta-data-best-time:before {
-  content: "\f073";
-}
-
-.lsx-to-meta-data.lsx-to-meta-data-regions:before {
-  content: "\f0ac";
 }
 /*# sourceMappingURL=style.css.map */

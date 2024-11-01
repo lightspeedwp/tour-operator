@@ -96,7 +96,12 @@ wp.domReady(() => {
                 type: 'flex',
                 flexWrap: 'nowrap'
             },
-			className: 'lsx-price-wrapper'
+			className: 'lsx-price-wrapper',
+			style: {
+				spacing: {
+					blockGap: "5px"
+				}
+			}
 		},
 		innerBlocks: [
 			[ 'core/paragraph', {
@@ -120,7 +125,7 @@ wp.domReady(() => {
 							}
 						}
 					},
-					className: 'has-primary-color has-text-color has-link-color',
+					className: 'amount has-primary-color has-text-color has-link-color',
 					color: {
 						link: 'primary-700',
 						text: 'primary-700'

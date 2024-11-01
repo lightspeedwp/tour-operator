@@ -61,7 +61,6 @@ class Frontend extends Tour_Operator {
 
 		if ( ! is_admin() ) {
 			add_filter( 'pre_get_posts', array( $this, 'travel_style_post_types' ), 10, 1 );
-			add_action( 'pre_get_posts', array( $this, 'disable_pagination_on_archive' ) );
 			add_filter( 'posts_orderby', array( $this, 'enable_continent_taxonomy_order' ), 10, 2 );
 		}
 
@@ -86,12 +85,6 @@ class Frontend extends Tour_Operator {
 		add_action( 'lsx_to_entry_content_top', array( $this, 'enable_crop_excerpt' ) );
 		add_action( 'lsx_to_entry_content_bottom', array( $this, 'disable_crop_excerpt' ) );
 
-		if ( is_admin() ) {
-			add_filter( 'lsx_customizer_colour_selectors_body', array( $this, 'customizer_to_body_colours_handler' ), 15, 2 );
-			add_filter( 'lsx_customizer_colour_selectors_main_menu', array( $this, 'customizer_to_main_menu_colours_handler' ), 15, 2 );
-		}
-
-		add_filter( 'lsx_fonts_css', array( $this, 'customizer_to_fonts_handler' ), 15 );
 		add_filter( 'wpseo_breadcrumb_links', array( $this, 'wpseo_breadcrumb_links' ), 20 );
 	}
 
@@ -227,7 +220,7 @@ class Frontend extends Tour_Operator {
 				wp_enqueue_script( 'slick-lightbox', LSX_TO_URL . 'assets/js/vendor/slick-lightbox.min.js', array( 'jquery', 'slick' ), LSX_TO_VER, true );
 			}
 
-			wp_enqueue_script( 'tour-operator-script', LSX_TO_URL . 'assets/js/' . $prefix . 'custom' . $suffix . '.js', array( 'jquery', 'slick', 'slick-lightbox'/*, 'fixto'*/ ), LSX_TO_VER, true );
+			//wp_enqueue_script( 'tour-operator-script', LSX_TO_URL . 'assets/js/' . $prefix . 'custom' . $suffix . '.js', array( 'jquery', 'slick', 'slick-lightbox'/*, 'fixto'*/ ), LSX_TO_VER, true );
 
 			$param_array = array(
 				'slickSlider' => array(
@@ -287,19 +280,6 @@ class Frontend extends Tour_Operator {
 		}
 
 		return $query;
-	}
-
-	/**
-	 * Disable pagination.
-	 */
-	public function disable_pagination_on_archive( $query ) {
-		if ( $query->is_main_query() && $query->is_post_type_archive( array_keys( $this->post_types ) ) ) {
-			$queried_post_type = get_query_var( 'post_type' );
-
-			if ( isset( $this->options[ $queried_post_type ] ) && isset( $this->options[ $queried_post_type ]['disable_archive_pagination'] ) ) {
-				$query->set( 'posts_per_page', -1 );
-			}
-		}
 	}
 
 	/**
@@ -526,72 +506,6 @@ class Frontend extends Tour_Operator {
 	 */
 	public static function lsx_default_pagination() {
 		lsx_paging_nav();
-	}
-
-	/**
-	 * Handle fonts that might be change by LSX Customiser
-	 */
-	public function customizer_to_fonts_handler( $css_fonts ) {
-		global $wp_filesystem;
-
-		$css_fonts_file = LSX_TO_PATH . '/assets/css/to-fonts.css';
-
-		if ( file_exists( $css_fonts_file ) ) {
-			if ( empty( $wp_filesystem ) ) {
-				require_once( ABSPATH . 'wp-admin/includes/file.php' );
-				WP_Filesystem();
-			}
-
-			if ( $wp_filesystem ) {
-				$css_fonts .= $wp_filesystem->get_contents( $css_fonts_file );
-			}
-		}
-
-		return $css_fonts;
-	}
-
-	/**
-	 * Handle body colours that might be change by LSX Customiser
-	 */
-	public function customizer_to_body_colours_handler( $css, $colors ) {
-		$css .= '
-			@import "' . LSX_TO_PATH . '/assets/css/scss/customizer-to-body-colours";
-
-			/**
-			 * LSX Customizer - Body (Tour Operators)
-			 */
-			@include customizer-to-body-colours (
-				$bg:   		' . $colors['background_color'] . ',
-				$breaker:   ' . $colors['body_line_color'] . ',
-				$color:    	' . $colors['body_text_color'] . ',
-				$link:    	' . $colors['body_link_color'] . ',
-				$hover:    	' . $colors['body_link_hover_color'] . ',
-				$small:    	' . $colors['body_text_small_color'] . '
-			);
-		';
-
-		return $css;
-	}
-
-	/**
-	 * Handle main menu colours that might be change by LSX Customiser
-	 */
-	public function customizer_to_main_menu_colours_handler( $css, $colors ) {
-		$css .= '
-			@import "' . LSX_TO_PATH . '/assets/css/scss/customizer-to-main-menu-colours";
-
-			/**
-			 * LSX Customizer - Main Menu (Tour Operators)
-			 */
-			@include customizer-to-main-menu-colours (
-				$dropdown:            ' . $colors['main_menu_dropdown_background_color'] . ',
-				$dropdown-hover:      ' . $colors['main_menu_dropdown_background_hover_color'] . ',
-				$dropdown-link:       ' . $colors['main_menu_dropdown_link_color'] . ',
-				$dropdown-link-hover: ' . $colors['main_menu_dropdown_link_hover_color'] . '
-			);
-		';
-
-		return $css;
 	}
 
 	/**
