@@ -17,7 +17,8 @@ class Registration {
 	 */
 	public function __construct() {
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_variations_script' ), 10 );
-		add_filter( 'render_block', array( $this, 'maybe_hide_varitaion' ), 10, 3 );
+
+		add_filter( 'pre_render_block', array( $this, 'pre_render_featured_block' ), 10, 2 );
 	}
 
 	/**
@@ -33,6 +34,14 @@ class Registration {
 				LSX_TO_URL . 'assets/js/blocks/variations.js', // Path to your JavaScript file.
 				array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),  // Dependencies.
 				filemtime( LSX_TO_PATH . 'assets/js/blocks/variations.js' ), // Versioning with file modification time.
+				true  // Enqueue in the footer.
+			);
+
+			wp_enqueue_script(
+				'lsx-to-query-loops',  // Handle for the script.
+				LSX_TO_URL . 'assets/js/blocks/query-loops.js', // Path to your JavaScript file.
+				array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),  // Dependencies.
+				filemtime( LSX_TO_PATH . 'assets/js/blocks/query-loops.js' ), // Versioning with file modification time.
 				true  // Enqueue in the footer.
 			);
 
@@ -65,52 +74,44 @@ class Registration {
 	 * @param array         $parsed_block The block being rendered.
 	 * @param WP_Block|null $parent_block If this is a nested block, a reference to the parent block.
 	 */
-	public function maybe_hide_varitaion( $block_content, $parsed_block, $block_obj ) {
+	public function pre_render_featured_block( $pre_render, $parsed_block ) {
 		// Determine if this is the custom block variation.
-		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
-			return $block_content;
-		}
-		$allowed_blocks = array(
-			'core/group',
-		);
-
-		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
-			return $block_content; 
-		}
-		if ( ! isset( $parsed_block['attrs']['className'] ) || '' === $parsed_block['attrs']['className'] || false === $parsed_block['attrs']['className'] ) {
-			return $block_content;
-		}
-
-		$pattern = "/lsx(?:-[^-]+)+-wrapper/";
-		preg_match( $pattern, $parsed_block['attrs']['className'], $matches );
-
-		if ( empty( $matches ) ) {
-			return $block_content;
-		}
-		
-		if ( ! empty( $matches ) && isset( $matches[0] ) ) {
-			// Save the first match to a variable
-			$key = str_replace( [ 'lsx-', '-wrapper' ], '', $matches[0] );
-		} else {
-			return $block_content;
-		}
-		
-		// Check to see if this is a taxonomy or a custom field.
-		if ( taxonomy_exists( $key ) ) {
-			$tax_args = array(
-				'fields' => 'ids'
+		if ( isset( $parsed_block['attrs']['namespace'] ) && 'lsx/lsx-featured-posts' === $parsed_block['attrs']['namespace'] ) {
+			add_filter(
+				'query_loop_block_query_vars',
+				function( $query, $block ) use ( $parsed_block ) {
+	
+					// Add rating meta key/value pair if queried.
+					if ( 'lsx/lsx-featured-posts' === $parsed_block['attrs']['namespace'] ) {	
+						unset( $query['post__not_in'] );
+						unset( $query['offset'] );
+						$query['nopaging'] = false;
+						
+						// if its sticky posts, only include those.
+						if ( 'post' === $query['post_type'] ) {
+							$sticky_posts = get_option( 'sticky_posts', array() );
+							if ( ! is_array( $sticky_posts ) ) {
+								$sticky_posts = array( $sticky_posts );
+							}
+							$query['post__in'] = $sticky_posts;
+							$query['ignore_sticky_posts'] = 1;
+						} else {
+							//Use the "featured" custom field.
+							$query['meta_query'] = array(
+								array(
+									'key'     => 'featured',
+									'compare' => 'EXISTS',
+								)
+							);
+						}
+					}
+					return $query;
+				},
+				10,
+				2
 			);
-			if ( empty( wp_get_post_terms( get_the_ID(), $key, $tax_args ) ) ) {
-				$block_content = '';
-			}
-		} else {
-			$key = str_replace( '-', '_', $key );
-			$value = lsx_to_custom_field_query( $key, '', '', false );
-			if ( empty( $value ) || '' === $value ) {
-				$block_content = '';
-			}
 		}
-
-		return $block_content;
+		return $pre_render;
 	}
+
 }

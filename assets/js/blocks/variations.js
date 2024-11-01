@@ -135,57 +135,106 @@ wp.domReady(() => {
 		],
 		isDefault: false
 	});
-	
+
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx/destination-to-tour',
-		title: 'Tour Destinations',
-		icon : 'admin-site-alt',
+		name: 'lsx-destination-to-tour',
+		title: 'Destination to Tour Wrapper',
 		attributes: {
-			metadata: {
-				name: 'Tour Destinations',
-			},
-			align: 'wide',
-            layout: {
-                type: 'flex',
-                flexWrap: 'nowrap'
-            },
+			name: 'Destination to Tour Wrapper',
 			className: 'lsx-destination-to-tour-wrapper',
 			style: {
 				spacing: {
-					blockGap: "5px"
+					blockGap: '5px'
 				}
+			},
+			layout: {
+				type: 'constrained'
 			}
 		},
 		innerBlocks: [
-			[ 'core/paragraph', {
-					padding: {
-						top: '2px',
-						bottom: '2px'
-					},
-					typography: { 
-						fontSize: 'x-small'
-					},
-					content : '<strong>Destinations:</strong>',
-					className: 'has-x-small-font-size',
-				}
-			],
-			[ 'core/paragraph', {
-					metadata: {
-						bindings: {
-							content: {
-								source: 'lsx/post-connection',
-								args: { key: 'destination_to_tour' }
-							}
+			[
+				'core/group',
+				{
+					style: {
+						spacing: {
+							blockGap: '5px'
 						}
 					},
-					className: 'has-primary-color has-text-color has-link-color',
-					color: {
-						link: 'primary-700',
-						text: 'primary-700'
+					layout: {
+						type: 'flex',
+						flexWrap: 'nowrap',
+						verticalAlignment: 'top'
 					}
-				}
+				},
+				[
+					[
+						'core/image',
+						{
+							width: 20,
+							sizeSlug: 'large',
+							url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/09/Typelocation-icon.png',
+							alt: ''
+						}
+					],
+					[
+						'core/paragraph',
+						{
+							style: {
+								spacing: {
+									padding: {
+										top: '2px',
+										bottom: '2px'
+									}
+								}
+							},
+							fontSize: 'x-small',
+							content: '<strong>Destinations:</strong>'
+						}
+					]
+				]
+			],
+			[
+				'core/group',
+				{
+					style: {
+						spacing: {
+							blockGap: '5px'
+						}
+					},
+					layout: {
+						type: 'flex',
+						flexWrap: 'nowrap'
+					}
+				},
+				[
+					[
+						'core/paragraph',
+						{
+							metadata: {
+								bindings: {
+									content: {
+										source: 'lsx/post-connection',
+										args: {
+											key: 'destination_to_tour'
+										}
+									}
+								}
+							},
+							style: {
+								elements: {
+									link: {
+										color: {
+											text: 'var:preset|color|primary-700'
+										}
+									}
+								}
+							},
+							textColor: 'primary-700',
+							content: ''
+						}
+					]
+				]
 			]
-		],
-		isDefault: false
+		]
 	});
 });
