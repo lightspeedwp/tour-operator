@@ -65,6 +65,7 @@ class Bindings {
 		add_filter( 'render_block', array( $this, 'render_itinerary_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'render_units_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'render_gallery_block' ), 10, 3 );
+		add_filter( 'render_block', array( $this, 'maybe_hide_varitaion' ), 10, 3 );
 	}
 
 	public function register_block_bindings() {
@@ -626,5 +627,63 @@ class Bindings {
 			$classes = implode( '', $matches[1] );
 		}
 		return $classes;
+	}
+
+	/**
+	 * A function to detect variation, and alter the query args.
+	 * 
+	 * Following the https://developer.wordpress.org/news/2022/12/building-a-book-review-grid-with-a-query-loop-block-variation/
+	 *
+	 * @param string|null   $pre_render   The pre-rendered content. Default null.
+	 * @param array         $parsed_block The block being rendered.
+	 * @param WP_Block|null $parent_block If this is a nested block, a reference to the parent block.
+	 */
+	public function maybe_hide_varitaion( $block_content, $parsed_block, $block_obj ) {
+		// Determine if this is the custom block variation.
+		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
+			return $block_content;
+		}
+		$allowed_blocks = array(
+			'core/group',
+		);
+
+		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
+			return $block_content; 
+		}
+		if ( ! isset( $parsed_block['attrs']['className'] ) || '' === $parsed_block['attrs']['className'] || false === $parsed_block['attrs']['className'] ) {
+			return $block_content;
+		}
+
+		$pattern = "/lsx(?:-[^-]+)+-wrapper/";
+		preg_match( $pattern, $parsed_block['attrs']['className'], $matches );
+
+		if ( empty( $matches ) ) {
+			return $block_content;
+		}
+		
+		if ( ! empty( $matches ) && isset( $matches[0] ) ) {
+			// Save the first match to a variable
+			$key = str_replace( [ 'lsx-', '-wrapper' ], '', $matches[0] );
+		} else {
+			return $block_content;
+		}
+		
+		// Check to see if this is a taxonomy or a custom field.
+		if ( taxonomy_exists( $key ) ) {
+			$tax_args = array(
+				'fields' => 'ids'
+			);
+			if ( empty( wp_get_post_terms( get_the_ID(), $key, $tax_args ) ) ) {
+				$block_content = '';
+			}
+		} else {
+			$key = str_replace( '-', '_', $key );
+			$value = lsx_to_custom_field_query( $key, '', '', false );
+			if ( empty( $value ) || '' === $value ) {
+				$block_content = '';
+			}
+		}
+
+		return $block_content;
 	}
 }

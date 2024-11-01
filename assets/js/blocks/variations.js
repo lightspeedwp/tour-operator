@@ -96,7 +96,12 @@ wp.domReady(() => {
                 type: 'flex',
                 flexWrap: 'nowrap'
             },
-			className: 'lsx-price-wrapper'
+			className: 'lsx-price-wrapper',
+			style: {
+				spacing: {
+					blockGap: "5px"
+				}
+			}
 		},
 		innerBlocks: [
 			[ 'core/paragraph', {
@@ -120,7 +125,7 @@ wp.domReady(() => {
 							}
 						}
 					},
-					className: 'has-primary-color has-text-color has-link-color',
+					className: 'amount has-primary-color has-text-color has-link-color',
 					color: {
 						link: 'primary-700',
 						text: 'primary-700'
@@ -130,6 +135,106 @@ wp.domReady(() => {
 		],
 		isDefault: false
 	});
-	
 
+	wp.blocks.registerBlockVariation('core/group', {
+		name: 'lsx-destination-to-tour',
+		title: 'Destination to Tour Wrapper',
+		attributes: {
+			name: 'Destination to Tour Wrapper',
+			className: 'lsx-destination-to-tour-wrapper',
+			style: {
+				spacing: {
+					blockGap: '5px'
+				}
+			},
+			layout: {
+				type: 'constrained'
+			}
+		},
+		innerBlocks: [
+			[
+				'core/group',
+				{
+					style: {
+						spacing: {
+							blockGap: '5px'
+						}
+					},
+					layout: {
+						type: 'flex',
+						flexWrap: 'nowrap',
+						verticalAlignment: 'top'
+					}
+				},
+				[
+					[
+						'core/image',
+						{
+							width: 20,
+							sizeSlug: 'large',
+							url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/09/Typelocation-icon.png',
+							alt: ''
+						}
+					],
+					[
+						'core/paragraph',
+						{
+							style: {
+								spacing: {
+									padding: {
+										top: '2px',
+										bottom: '2px'
+									}
+								}
+							},
+							fontSize: 'x-small',
+							content: '<strong>Destinations:</strong>'
+						}
+					]
+				]
+			],
+			[
+				'core/group',
+				{
+					style: {
+						spacing: {
+							blockGap: '5px'
+						}
+					},
+					layout: {
+						type: 'flex',
+						flexWrap: 'nowrap'
+					}
+				},
+				[
+					[
+						'core/paragraph',
+						{
+							metadata: {
+								bindings: {
+									content: {
+										source: 'lsx/post-connection',
+										args: {
+											key: 'destination_to_tour'
+										}
+									}
+								}
+							},
+							style: {
+								elements: {
+									link: {
+										color: {
+											text: 'var:preset|color|primary-700'
+										}
+									}
+								}
+							},
+							textColor: 'primary-700',
+							content: ''
+						}
+					]
+				]
+			]
+		]
+	});
 });
