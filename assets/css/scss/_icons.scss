@@ -103,15 +103,22 @@
 	}
 }
 
-.lsx-price-wrapper {
+// Add the block class name here to create spacing for the icon.
+.lsx-price-wrapper,
+.lsx-destination-to-tour-wrapper {
 	&:before {
-		background-image: url( ../img/icons/price-icon.png );
 		background-repeat: no-repeat;
 		background-size: contain;
 		width: 20px;
 		height: 30px;
 		content: " ";
 		background-position: center top;
+	}
+}
+
+.lsx-price-wrapper {
+	&:before {
+		background-image: url( ../img/icons/price-icon.png );
 	}
 
 	& .amount {
@@ -122,3 +129,6 @@
 		}
 	}
 }
+
+// Add the icon ULR here.
+.lsx-destination-to-tour-wrapper::before { background-image: url( ../img/icons/destinations-icon.webp ); }

@@ -73,8 +73,8 @@
   content: "Z$";
 }
 
-.lsx-price-wrapper:before {
-  background-image: url(../img/icons/price-icon.png);
+.lsx-price-wrapper:before,
+.lsx-destination-to-tour-wrapper:before {
   background-repeat: no-repeat;
   background-size: contain;
   width: 20px;
@@ -82,7 +82,15 @@
   content: " ";
   background-position: center top;
 }
+
+.lsx-price-wrapper:before {
+  background-image: url(../img/icons/price-icon.png);
+}
 .lsx-price-wrapper .amount .currency-icon:after {
   margin-right: 0px;
+}
+
+.lsx-destination-to-tour-wrapper::before {
+  background-image: url(../img/icons/destinations-icon.webp);
 }
 /*# sourceMappingURL=style.css.map */

@@ -136,5 +136,56 @@ wp.domReady(() => {
 		isDefault: false
 	});
 	
-
+	wp.blocks.registerBlockVariation('core/group', {
+		name: 'lsx/destination-to-tour',
+		title: 'Tour Destinations',
+		icon : 'admin-site-alt',
+		attributes: {
+			metadata: {
+				name: 'Tour Destinations',
+			},
+			align: 'wide',
+            layout: {
+                type: 'flex',
+                flexWrap: 'nowrap'
+            },
+			className: 'lsx-destination-to-tour-wrapper',
+			style: {
+				spacing: {
+					blockGap: "5px"
+				}
+			}
+		},
+		innerBlocks: [
+			[ 'core/paragraph', {
+					padding: {
+						top: '2px',
+						bottom: '2px'
+					},
+					typography: { 
+						fontSize: 'x-small'
+					},
+					content : '<strong>Destinations:</strong>',
+					className: 'has-x-small-font-size',
+				}
+			],
+			[ 'core/paragraph', {
+					metadata: {
+						bindings: {
+							content: {
+								source: 'lsx/post-connection',
+								args: { key: 'destination_to_tour' }
+							}
+						}
+					},
+					className: 'has-primary-color has-text-color has-link-color',
+					color: {
+						link: 'primary-700',
+						text: 'primary-700'
+					}
+				}
+			]
+		],
+		isDefault: false
+	});
 });
