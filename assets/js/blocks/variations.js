@@ -5,6 +5,7 @@ wp.domReady(() => {
 		name: 'lsx/itinerary',
 		title: 'Itinerary',
 		icon: 'list-view',
+		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
 				name: 'Itinerary',
@@ -33,6 +34,7 @@ wp.domReady(() => {
 		name: 'lsx/accommodation-units',
 		title: 'Units',
 		icon : 'admin-multisite',
+		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
 				name: 'Units',
@@ -61,6 +63,7 @@ wp.domReady(() => {
 		name: 'lsx/gallery',
 		title: 'TO Gallery',
 		icon : 'admin-multisite',
+		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
 				name: 'TO Gallery',
@@ -92,6 +95,7 @@ wp.domReady(() => {
 		name: 'lsx/price',
 		title: 'Price',
 		icon : 'bank',
+		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
 				name: 'Price',
