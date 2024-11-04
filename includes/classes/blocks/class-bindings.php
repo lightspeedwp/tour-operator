@@ -669,14 +669,36 @@ class Bindings {
 		} else {
 			return $block_content;
 		}
-		
-		do_action( 'qm/debug', $key );
-		do_action( 'qm/debug', stripos( $key, '-query' ) );
 
 		if ( 0 < stripos( $key, '-query' ) ) {
 			
-			return $block_content;
+			$query_key      = str_replace( [ '-query' ], '', $key );
+			$current_parent = get_post_parent( get_the_ID() );
 
+			switch ( $query_key ) {
+				case 'regions':
+					// If the current item is not a country
+					if ( null !== $current_parent ) {
+						return '';
+					}
+
+					/**
+					 * TODO: we need to check if there are any children.
+					 */
+				break;
+
+				case 'related-regions':
+					// If the current item is a country, then there wont be any other child regions.
+					if ( null === $current_parent ) {
+						return '';
+					}
+
+					/**
+					 * TODO: we need to check if there are any other children of the current post parent.
+					 */
+				default:
+				break;
+			}
 		} else if ( taxonomy_exists( $key ) ) {
 			// Check to see if this is a taxonomy or a custom field.
 			$tax_args = array(
