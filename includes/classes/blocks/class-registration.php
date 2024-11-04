@@ -91,7 +91,10 @@ class Registration {
 
 		switch ( $matches[0] ) {
 			case 'lsx-regions-query':
-				$query['post_parent__in'] = [ get_the_ID() ];
+				// We only restric this on the destination post type, in case the block is used on a landing page.
+				if ( 'destination' === get_post_type() ) {
+					$query['post_parent__in'] = [ get_the_ID() ];
+				}
 			break;
 
 			default:
