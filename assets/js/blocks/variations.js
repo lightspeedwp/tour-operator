@@ -255,11 +255,11 @@ wp.domReady(() => {
 			style: {
 				spacing: {
 					blockGap: '5px'
-				},
-				layout: {
-					type: 'flex',
-					flexWrap: 'nowrap'
 				}
+			},
+			layout: {
+				type: 'flex',
+				flexWrap: 'nowrap'
 			}
 		},
 		innerBlocks: [
@@ -267,12 +267,12 @@ wp.domReady(() => {
 				style: {
 					spacing: {
 						blockGap: '5px'
-					},
-					layout: {
-						type: 'flex',
-						flexWrap: 'nowrap',
-						verticalAlignment: 'top'
 					}
+				},
+				layout: {
+					type: 'flex',
+					flexWrap: 'nowrap',
+					verticalAlignment: 'top'
 				}
 			}, [
 				['core/image', {
@@ -298,11 +298,11 @@ wp.domReady(() => {
 				style: {
 					spacing: {
 						blockGap: '5px'
-					},
-					layout: {
-						type: 'flex',
-						flexWrap: 'nowrap'
 					}
+				},
+				layout: {
+					type: 'flex',
+					flexWrap: 'nowrap'
 				}
 			}, [
 				['core/paragraph', {
