@@ -654,12 +654,14 @@ class Bindings {
 			return $block_content;
 		}
 
-		$pattern = "/lsx(?:-[^-]+)+-wrapper/";
+		$pattern = "/lsx-(.*?)-wrapper/";
 		preg_match( $pattern, $parsed_block['attrs']['className'], $matches );
 
 		if ( empty( $matches ) ) {
 			return $block_content;
 		}
+
+		do_action( 'qm/debug', $matches );
 		
 		if ( ! empty( $matches ) && isset( $matches[0] ) ) {
 			// Save the first match to a variable
@@ -668,8 +670,15 @@ class Bindings {
 			return $block_content;
 		}
 		
-		// Check to see if this is a taxonomy or a custom field.
-		if ( taxonomy_exists( $key ) ) {
+		do_action( 'qm/debug', $key );
+		do_action( 'qm/debug', stripos( $key, '-query' ) );
+
+		if ( 0 < stripos( $key, '-query' ) ) {
+			
+			return $block_content;
+
+		} else if ( taxonomy_exists( $key ) ) {
+			// Check to see if this is a taxonomy or a custom field.
 			$tax_args = array(
 				'fields' => 'ids'
 			);

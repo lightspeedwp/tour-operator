@@ -8,7 +8,7 @@ wp.domReady( function() {
 			metadata: {
 				name: 'Regions'
 			},
-			className: "lsx-travel-style-wrapper",
+			className: "lsx-regions-query-wrapper",
 			align: 'full',
 			style: {
 				spacing: {
@@ -40,15 +40,14 @@ wp.domReady( function() {
 					layout: { type: 'flex', flexWrap: 'nowrap' }
 				}, [
 					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ],
-					[ 'core/heading', { textAlign: 'center', content: 'Top Rated Destinations' } ],
+					[ 'core/heading', { textAlign: 'center', content: 'Regions' } ],
 					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ]
 				] ],
 				[ 'core/query', {
-					attributes: {
-						metadata: {
-							name: 'Regions Query'
-						}
+					metadata: {
+						name: 'Regions Query'
 					},
+					className: "lsx-regions",
 					query: {
 						perPage: 8,
 						postType: 'destination',
