@@ -3,7 +3,6 @@ return array(
 	'title'         => __( 'Destination Card', 'tour-operator' ),
 	'description'   => __( '', 'tour-operator' ),
 	'categories'    => array( $this->pattern_category ),
-	//'blockTypes'    => array( 'lsx/itinerary' ),
 	'templateTypes' => array( 'single' ),
 	'content'     => '
 		<!-- wp:group {"metadata":{"categories":["lsx-tour-operator"],"patternName":"lsx-tour-operator/destination-card","name":"' . __( 'Destination Card', 'tour-operator' ) . '"},"className":"is-style-shadow-xsm","style":{"border":{"radius":"8px"}},"layout":{"type":"constrained"}} -->

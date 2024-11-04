@@ -660,8 +660,6 @@ class Bindings {
 		if ( empty( $matches ) ) {
 			return $block_content;
 		}
-
-		do_action( 'qm/debug', $matches );
 		
 		if ( ! empty( $matches ) && isset( $matches[0] ) ) {
 			// Save the first match to a variable

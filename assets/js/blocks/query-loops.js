@@ -47,7 +47,6 @@ wp.domReady( function() {
 					metadata: {
 						name: 'Regions Query'
 					},
-					className: "lsx-regions",
 					query: {
 						perPage: 8,
 						postType: 'destination',
@@ -59,6 +58,7 @@ wp.domReady( function() {
 					[ 
 						'core/post-template', 
 						{
+							className: "lsx-regions-query",
 							layout: {
 								type: 'grid',
 								columnCount: 4
