@@ -45,7 +45,8 @@ class Patterns {
 	 */
 	public function register_block_patterns() {
 		$patterns = array(
-			'lsx-tour-operator/itinerary-card' => require( LSX_TO_PATH . '/includes/patterns/itinerary-card.php' ),
+			'lsx-tour-operator/itinerary-list' => require( LSX_TO_PATH . '/includes/patterns/itinerary-list.php' ),
+			'lsx-tour-operator/destination-card' => require( LSX_TO_PATH . '/includes/patterns/destination-card.php' ),
 		);
 
 		foreach ( $patterns as $key => $function ) {

@@ -1,13 +1,14 @@
 wp.domReady( function() {
 	wp.blocks.registerBlockVariation( 'core/group', {
-		name: 'lsx/top-rated-destinations',
-		title: 'Top-Rated Destinations',
-		description: 'A section highlighting top destinations.',
-		category: 'layout',
+		name: 'lsx-tour-operator/regions',
+		title: 'Regions',
+		description: 'Display any regions attached to this destination.',
+		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
-				name: 'Top-Rated Destinations'
+				name: 'Regions'
 			},
+			className: "lsx-travel-style-wrapper",
 			align: 'full',
 			style: {
 				spacing: {
@@ -45,29 +46,31 @@ wp.domReady( function() {
 				[ 'core/query', {
 					attributes: {
 						metadata: {
-							name: 'Top-Rated Destinations'
+							name: 'Regions Query'
 						}
 					},
 					query: {
 						perPage: 8,
-						pages: 0,
-						offset: 0,
 						postType: 'destination',
 						order: 'asc',
-						orderBy: 'date',
-						author: '',
-						search: '',
-						exclude: [],
-						sticky: '',
-						inherit: false,
-						parents: []
+						orderBy: 'date'
 					},
 					align: 'wide'
 				}, [
-					[ 'core/post-template', { layout: { type: 'grid', columnCount: 4 } }, [
-						[ 'core/block', { ref: '3164' } ]
-					]]
-				]]
+					[ 
+						'core/post-template', 
+						{
+							layout: {
+								type: 'grid',
+								columnCount: 4
+							}
+						},
+						[
+							[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
+						]
+					]
+				   ]
+				]
 			]]
 		]
 	});

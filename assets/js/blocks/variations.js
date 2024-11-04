@@ -90,13 +90,7 @@ wp.domReady(() => {
 		  },
 		},
 		innerBlocks: [
-		  [
-			"core/paragraph",
-			{
-			  placeholder: "Insert your Itinerary pattern here.",
-			  align: "center",
-			},
-		  ],
+			[ 'core/pattern', { slug: 'lsx-tour-operator/itinerary-list' } ]
 		],
 		isDefault: false,
 		scope: ["inserter"],
