@@ -1,4 +1,5 @@
 wp.domReady(() => {
+
 	// Itinerary Wrapper
 	wp.blocks.registerBlockVariation("core/group", {
 	  name: "lsx/itinerary",
@@ -8,28 +9,99 @@ wp.domReady(() => {
 	  attributes: {
 		metadata: {
 		  name: "Itinerary",
-		  bindings: {
-			content: {
-			  source: "lsx/tour-itinerary",
-			},
-		  },
 		},
 		align: "wide",
 		layout: {
 		  type: "constrained",
 		},
+		className: "lsx-itinerary-wrapper"
 	  },
 	  innerBlocks: [
-		[
-		  "core/paragraph",
-		  {
-			placeholder: "Insert your Itinerary pattern here.",
-			align: "center",
-		  },
+        [ 	'core/group',
+			{
+				layout: {
+					type: "flex",
+					flexWrap: "nowrap",
+				}
+			},
+			[
+				[
+					'core/separator',
+					{
+						style: {
+							layout: {
+								selfStretch: 'fill',
+								flexSize: null,
+							},
+						},
+						backgroundColor: 'primary',
+					}
+				],
+				[
+					'core/heading',
+					{
+						textAlign: 'center',
+						content: 'Tour Itinerary',
+					},
+				],
+				[
+					'core/separator',
+					{
+						style: {
+							layout: {
+								selfStretch: 'fill',
+								flexSize: null,
+							},
+						},
+						backgroundColor: 'primary',
+					}
+				]
+			]
 		],
-	  ],
+        [
+			"core/paragraph",
+			{
+			  placeholder: "Replace this with the Day by Day block, and select a pattern.",
+			  align: "center",
+			},
+		]
+    ],
 	  isDefault: false,
 	});
+
+	// Itinerary Day by Day
+	wp.blocks.registerBlockVariation("core/group", {
+		name: "lsx/day-by-day",
+		title: "Day by day",
+		icon: "list-view",
+		category: "lsx-tour-operator",
+		attributes: {
+		  metadata: {
+			name: "Day by day",
+			bindings: {
+			  content: {
+				source: "lsx/tour-itinerary",
+			  },
+			},
+		  },
+		  align: "wide",
+		  layout: {
+			type: "constrained",
+		  },
+		},
+		innerBlocks: [
+		  [
+			"core/paragraph",
+			{
+			  placeholder: "Insert your Itinerary pattern here.",
+			  align: "center",
+			},
+		  ],
+		],
+		isDefault: false,
+		scope: ["inserter"],
+		parent: ["lsx/itinerary"], // Restricts to "lsx/itinerary" block
+	  });
   
 	// Accommodation Units Wrapper
 	wp.blocks.registerBlockVariation("core/group", {

@@ -679,6 +679,7 @@ class Bindings {
 		} else {
 			$key = str_replace( '-', '_', $key );
 			$value = lsx_to_custom_field_query( $key, '', '', false );
+			do_action( 'qm/debug', [ $key, $value ] );
 			if ( empty( $value ) || '' === $value ) {
 				$block_content = '';
 			}
