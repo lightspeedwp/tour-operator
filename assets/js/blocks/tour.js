@@ -14,35 +14,46 @@ wp.domReady(() => {
 						source: 'lsx/map',
 						type: 'wetu'
 					}
-				},
-				style: {
-					spacing: {
-						margin: {
-							top: 0,
-							bottom: 0
-						},
-						padding: {
-							top: 0,
-							bottom: 0,
-							left: 0,
-							right: 0
-						}
-					}
-				},
-				layout: {
-					type: "constrained"
 				}
+			},
+			style: {
+				spacing: {
+					margin: {
+						top: 0,
+						bottom: 0
+					},
+					padding: {
+						top: "var:preset|spacing|x-small",
+						bottom: "var:preset|spacing|x-small",
+						left: 0,
+						right: 0
+					}
+				}
+			},
+			layout: {
+				type: "constrained"
 			}
 		},
 		innerBlocks: [
 			[
-				"core/image",
+				"core/group",
 				{
-					align: "full",
-					sizeSlug: "large",
-					url: "https://tour-operator.lsx.design/wp-content/uploads/2024/09/wetu-map-figme-prototype-image.png",
-					alt: "",
-				}
+					align: "wide",
+					layout:{
+						type:"default"
+					}
+				},
+				[
+					[
+						"core/image",
+						{
+							align: "full",
+							sizeSlug: "large",
+							url: "https://tour-operator.lsx.design/wp-content/uploads/2024/09/wetu-map-figme-prototype-image.png",
+							alt: "",
+						}
+					]
+				]
 			]
 		],
 		isDefault: false,
