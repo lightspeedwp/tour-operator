@@ -1,6 +1,8 @@
 <?php
 namespace lsx\blocks;
 
+use stdClass;
+
 /**
  * Registers our Custom Fields
  *
@@ -128,14 +130,14 @@ class Bindings {
 					$children = lsx_to_item_has_children( get_the_ID(), 'destination' );
 					if ( false !== $children && ! empty( $children ) ) {
 						$value = $this->prep_links( $children );
-						do_action( 'qm/debug', $children );
 					}
 				break;
 
 				case 'post_parent':
-
+					$args     = new stdClass;
+					$args->ID = wp_get_post_parent_id();
+					$value    = $this->prep_links( [ $args ] );
 				break;
-
 
 				default:
 					// For custom fields.	
@@ -720,6 +722,16 @@ class Bindings {
 					if ( false === lsx_to_item_has_children( $current_parent, 'destination' ) ) {
 						return '';
 					}
+				
+				break;
+
+				case 'country':
+					// If the current item is not a country
+					if ( null === $current_parent ) {
+						return '';
+					}
+
+				break;
 
 				default:
 				break;

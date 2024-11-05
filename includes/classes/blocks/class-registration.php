@@ -82,8 +82,6 @@ class Registration {
 			return $query;
 		}
 
-		
-
 		switch ( $key ) {
 			case 'regions':
 				// We only restric this on the destination post type, in case the block is used on a landing page.
@@ -92,7 +90,6 @@ class Registration {
 				}
 			break;
 
-			case 'related-regions-query':
 			case 'related-regions':
 				// We only restric this on the destination post type, in case the block is used on a landing page.
 				$parent = wp_get_post_parent_id();
@@ -105,8 +102,6 @@ class Registration {
 			default:
 			break;
 		}
-
-		do_action( 'qm/debug', $query );
 
 		// Add rating meta key/value pair if queried.
 		/*if ( 'lsx/lsx-featured-posts' === $parsed_block['attrs']['namespace'] ) {	

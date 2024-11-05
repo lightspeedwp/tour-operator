@@ -4107,6 +4107,7 @@ wp.domReady(() => {
 	  ],
 	});
 
+	// Destination - Regions
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/facts-regions-wrapper',
 		title: 'Regions List',
@@ -4193,6 +4194,120 @@ wp.domReady(() => {
 									content: {
 										source: "lsx/post-connection",
 										args: { key: "post_children" },
+									},
+								},
+							},
+							style: {
+								elements: {
+									link: {
+										color: {
+											text: 'var:preset|color|septenary'
+										}
+									}
+								},
+								spacing: {
+									padding: {
+										top: '2px',
+										bottom: '2px'
+									}
+								}
+							},
+							textColor: 'septenary',
+							content: ''
+						}
+					]
+				]
+			]
+		]
+	});
+
+	// Destination - Country List
+	wp.blocks.registerBlockVariation('core/group', {
+		name: 'lsx-tour-operator/facts-country-wrapper',
+		title: 'Country',
+		attributes: {
+			metadata: {
+				name: 'Country'
+			},
+			className: 'facts-country-query-wrapper',
+			style: {
+				spacing: {
+					blockGap: '5px'
+				}
+			},
+			layout: {
+				type: 'flex',
+				flexWrap: 'nowrap'
+			}
+		},
+		innerBlocks: [
+			[
+				'core/group',
+				{
+					style: {
+						spacing: {
+							blockGap: '5px'
+						}
+					},
+					layout: {
+						type: 'flex',
+						flexWrap: 'nowrap',
+						verticalAlignment: 'top'
+					}
+				},
+				[
+					[
+						'core/image',
+						{
+							width: '20px',
+							sizeSlug: 'large',
+							url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/09/destinations-icon-black-20px.png',
+							alt: ''
+						}
+					],
+					[
+						'core/paragraph',
+						{
+							style: {
+								spacing: {
+									padding: {
+										top: '0',
+										bottom: '0'
+									}
+								}
+							},
+							fontSize: 'x-small',
+							content: '<strong>Country:</strong>'
+						}
+					]
+				]
+			],
+			[
+				'core/group',
+				{
+					style: {
+						spacing: {
+							blockGap: '5px',
+							padding: {
+								top: '0',
+								bottom: '0'
+							}
+						}
+					},
+					layout: {
+						type: 'flex',
+						flexWrap: 'nowrap'
+					}
+				},
+				[
+					[
+						'core/paragraph',
+						{
+							metadata: {
+								bindings: {
+									content: {
+										source: "lsx/post-connection",
+										args: { key: "post_parent" },
 									},
 								},
 							},
