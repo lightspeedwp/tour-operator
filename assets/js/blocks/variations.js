@@ -2,7 +2,7 @@ wp.domReady(() => {
 
 	// Itinerary Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx/itinerary',
+		name: 'lsx-tour-operator/itinerary',
 		title: 'Itinerary',
 		icon: 'list-view',
 		category: 'lsx-tour-operator',
@@ -27,7 +27,7 @@ wp.domReady(() => {
 
 	// Accommodation Units Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx/accommodation-units',
+		name: 'lsx-tour-operator/accommodation-units',
 		title: 'Units',
 		icon : 'admin-multisite',
 		category: 'lsx-tour-operator',
@@ -60,7 +60,7 @@ wp.domReady(() => {
 
 	// Gallery Wrapper
 	wp.blocks.registerBlockVariation('core/gallery', {
-		name: 'lsx/gallery',
+		name: 'lsx-tour-operator/gallery',
 		title: 'TO Gallery',
 		icon : 'admin-multisite',
 		category: 'lsx-tour-operator',
@@ -92,7 +92,7 @@ wp.domReady(() => {
 
 	// Price Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx/price',
+		name: 'lsx-tour-operator/price',
 		title: 'Price',
 		icon : 'bank',
 		category: 'lsx-tour-operator',
@@ -247,12 +247,14 @@ wp.domReady(() => {
 		isDefault: false
 	});
 
-	// Destination to Tour Wrapper
+	// Destination to Tour
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-destination-to-tour',
-		title: 'Destination to Tour Wrapper',
+		name: 'lsx-tour-operator/destination-to-tour',
+		title: 'Destination to Tour',
 		attributes: {
-			name: 'Destination to Tour Wrapper',
+			metadata: {
+				name: 'Destination to Tour',
+			},
 			className: 'lsx-destination-to-tour-wrapper',
 			style: {
 					spacing: {
@@ -429,13 +431,15 @@ wp.domReady(() => {
 	  ],
 	});
 
-	// Duration Wrapper
+	// Duration
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-duration-wrapper',
-		title: 'Duration Wrapper',
+		name: 'lsx-tour-operator/duration',
+		title: 'Duration',
 		category: 'layout',
 		attributes: {
-			name: 'Duration Wrapper',
+			metadata: {
+				name: 'Duration',
+			},
 			className: 'lsx-duration-wrapper',
 			style: {
 				spacing: {
@@ -544,21 +548,24 @@ wp.domReady(() => {
 		]
 	});
 	
-	// Group Size Wrapper
+	// Group Size
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-group-size-wrapper',
-		title: 'Group Size Wrapper',
-		category: 'layout',
+		name: 'lsx-tour-operator/group-size',
+		title: 'Group Size',
+		category: 'lsx-tour-operator',
 		attributes: {
+			metadata: {
+				name: 'Group Size',
+			},
 			className: 'lsx-group-size-wrapper',
 			style: {
 				spacing: {
 					blockGap: '5px'
-				},
-				layout: {
-					type: 'flex',
-					flexWrap: 'nowrap'
 				}
+			},
+			layout: {
+				type: 'flex',
+				flexWrap: 'nowrap'
 			}
 		},
 		innerBlocks: [
@@ -639,21 +646,24 @@ wp.domReady(() => {
 		]
 	});
 	
-	// Single Supplement Wrapper
+	// Single Supplement
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-single-supplement-wrapper',
-		title: 'Single Supplement Wrapper',
-		category: 'layout',
+		name: 'lsx-tour-operator/single-supplement-wrapper',
+		title: 'Single Supplement',
+		category: 'lsx-tour-operator',
 		attributes: {
+			metadata: {
+				name: 'Single Supplement',
+			},
 			className: 'lsx-single-supplement-wrapper',
 			style: {
 				spacing: {
 					blockGap: '5px'
-				},
-				layout: {
-					type: 'flex',
-					flexWrap: 'nowrap'
 				}
+			},
+			layout: {
+				type: 'flex',
+				flexWrap: 'nowrap'
 			}
 		},
 		innerBlocks: [
@@ -737,19 +747,22 @@ wp.domReady(() => {
 	
 	// Booking Validity Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-booking-validity-start-wrapper',
-		title: 'Booking Validity Start Wrapper',
-		category: 'layout',
+		name: 'lsx-tour-operator/booking-validity-start',
+		title: 'Booking Validity Start',
+		category: 'lsx-tour-operator',
 		attributes: {
+			metadata: {
+				name: 'Booking Validity',
+			},
 			className: 'lsx-booking-validity-start-wrapper',
 			style: {
 				spacing: {
 					blockGap: '5px'
-				},
-				layout: {
-					type: 'flex',
-					flexWrap: 'nowrap'
 				}
+			},
+			layout: {
+				type: 'flex',
+				flexWrap: 'nowrap'
 			}
 		},
 		innerBlocks: [
@@ -864,20 +877,23 @@ wp.domReady(() => {
 		]
 	});
 	
-	// Departs From Wrapper
+	// Departs From
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-departs-from-wrapper',
-		title: 'Departs From Wrapper',
-		category: 'layout',
+		name: 'lsx-tour-operator/departs-from',
+		title: 'Departs From',
+		category: 'lsx-tour-operator',
 		attributes: {
+			metadata: {
+				name: 'Departs From',
+			},
 			className: 'lsx-departs-from-wrapper',
 			style: {
 				spacing: {
 					blockGap: '5px'
-				},
-				layout: {
-					type: 'constrained'
 				}
+			},
+			layout: {
+				type: 'constrained'
 			}
 		},
 		innerBlocks: [
@@ -944,21 +960,23 @@ wp.domReady(() => {
 		]
 	});
 	
-	// Ends In Wrapper
+	// Ends In
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-ends-in-wrapper',
+		name: 'lsx-tour-operator/ends-in',
 		title: 'Ends In Wrapper',
-		category: 'layout',
+		category: 'lsx-tour-operator',
 		attributes: {
-			name: 'Ends In',
+			metadata: {
+				name: 'Ends In',
+			},
 			className: 'lsx-ends-in-wrapper',
 			style: {
 				spacing: {
 					blockGap: '5px'
-				},
-				layout: {
-					type: 'constrained'
 				}
+			},
+			layout: {
+				type: 'constrained'
 			}
 		},
 		innerBlocks: [
@@ -1027,10 +1045,13 @@ wp.domReady(() => {
 	
 	// Travel Styles Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-travel-style-wrapper',
-		title: 'Travel Style Wrapper',
-		category: 'layout',
+		name: 'lsx-tour-operator/travel-styles',
+		title: 'Travel Styles',
+		category: 'lsx-tour-operator',
 		attributes: {
+			metadata: {
+				name: 'Travel Styles',
+			},
 			className: 'lsx-travel-style-wrapper',
 			style: {
 				spacing: {
@@ -1124,10 +1145,13 @@ wp.domReady(() => {
 	
 	// Best Months to Visit Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-best-time-to-visit-wrapper',
-		title: 'Best Time to Visit Wrapper',
-		category: 'layout',
+		name: 'lsx-tour-operator/best-time-to-visit',
+		title: 'Best Time to Visit',
+		category: 'lsx-tour-operator',
 		attributes: {
+			metadata: {
+				name: 'Best Time to Visit',
+			},
 			className: 'lsx-best-time-to-visit-wrapper',
 			style: {
 				spacing: {
@@ -1201,18 +1225,21 @@ wp.domReady(() => {
 	});
 	
 	// Included Wrapper
-	wp.blocks.registerBlockVariation('core/column', {
-		name: 'lsx-included-wrapper',
-		title: 'Included Items Wrapper',
-		category: 'layout',
+	wp.blocks.registerBlockVariation('core/group', {
+		name: 'lsx-tour-operator/included',
+		title: 'Included Items',
+		category: 'lsx-tour-operator',
 		attributes: {
+			metadata: {
+				name: 'Included',
+			},
 			style: {
 				spacing: {
 					blockGap: '0'
 				},
 				width: '50%'
 			},
-			id: 'lsx-included-wrapper'
+			className: 'lsx-included-wrapper'
 		},
 		innerBlocks: [
 			['core/paragraph', {
@@ -1245,11 +1272,14 @@ wp.domReady(() => {
 	});
 	
 	// Not Included Wrapper
-	wp.blocks.registerBlockVariation('core/column', {
-		name: 'lsx-not-included-wrapper',
-		title: 'Excluded Items Wrapper',
-		category: 'layout',
+	wp.blocks.registerBlockVariation('core/group', {
+		name: 'lsx-tour-operator/not-included',
+		title: 'Excluded Items',
+		category: 'lsx-tour-operator',
 		attributes: {
+			metadata: {
+				name: 'Not Included',
+			},
 			style: {
 				spacing: {
 					blockGap: '0'
@@ -1290,10 +1320,13 @@ wp.domReady(() => {
 	
 	// Rating Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-rating-wrapper',
-		title: 'Rating Wrapper',
-		category: 'layout',
+		name: 'lsx-tour-operator/rating',
+		title: 'Rating',
+		category: 'lsx-tour-operator',
 		attributes: {
+			metadata: {
+				name: 'Rating',
+			},
 			className: 'lsx-rating-wrapper',
 			style: {
 				spacing: {
@@ -1363,7 +1396,7 @@ wp.domReady(() => {
 							}
 						}
 					},
-					className: 'has-septenary-color has-text-color has-link-color has-primary-700-color',
+					className: 'has-text-color has-link-color has-primary-700-color',
 					style: {
 						elements: {
 							link: {
@@ -1468,10 +1501,13 @@ wp.domReady(() => {
 	
 	// Number of Units Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-number-of-rooms-wrapper',
-		title: 'Number of Rooms Wrapper',
-		category: 'layout',
+		name: 'lsx-tour-operator/number-of-rooms',
+		title: 'Number of Rooms',
+		category: 'lsx-tour-operator',
 		attributes: {
+			metadata: {
+				name: 'Number if Rooms',
+			},
 			className: 'lsx-number-of-rooms-wrapper',
 			style: {
 				spacing: {
@@ -1547,10 +1583,13 @@ wp.domReady(() => {
 	
 	// Check In Time Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-checkin-time-wrapper',
-		title: 'Check In Time Wrapper',
-		category: 'layout',
+		name: 'lsx-tour-operator/checkin-time',
+		title: 'Check In Time',
+		category: 'lsx-tour-operator',
 		attributes: {
+			metadata: {
+				name: 'Check In Time',
+			},
 			className: 'lsx-checkin-time-wrapper',
 			style: {
 				spacing: {
@@ -1630,10 +1669,13 @@ wp.domReady(() => {
 	
 	// Check Out Time Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-checkout-time-wrapper',
-		title: 'Check Out Time Wrapper',
-		category: 'layout',
+		name: 'lsx-tour-operator/checkout-time',
+		title: 'Check Out Time',
+		category: 'lsx-tour-operator',
 		attributes: {
+			metadata: {
+				name: 'Check Out Time',
+			},
 			className: 'lsx-checkout-time-wrapper',
 			style: {
 				spacing: {
@@ -1713,10 +1755,13 @@ wp.domReady(() => {
 	
 	// Minimum Child Age Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-minimum-child-age-wrapper',
-		title: 'Minimum Child Age Wrapper',
-		category: 'layout',
+		name: 'lsx-tour-operator/minimum-child-age',
+		title: 'Minimum Child Age',
+		category: 'lsx-tour-operator',
 		attributes: {
+			metadata: {
+				name: 'Minimum Child Age',
+			},
 			className: 'lsx-minimum-child-age-wrapper',
 			style: {
 				spacing: {
@@ -1796,10 +1841,13 @@ wp.domReady(() => {
 	
 	// Location Wrapper (Destination to Accommodation)
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-destination-to-accommodation-wrapper',
-		title: 'Destination to Accommodation Wrapper',
-		category: 'layout',
+		name: 'lsx-tour-operator/destination-to-accommodation',
+		title: 'Destination to Accommodation',
+		category: 'lsx-tour-operator',
 		attributes: {
+			metadata: {
+				name: 'Destination to Accommodation',
+			},
 			className: 'lsx-destination-to-accommodation-wrapper',
 			style: {
 				spacing: {
@@ -1896,10 +1944,13 @@ wp.domReady(() => {
 	
 	// Spoken Languages Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-spoken-languages-wrapper',
-		title: 'Spoken Languages Wrapper',
-		category: 'layout',
+		name: 'lsx-tour-operator/spoken-languages',
+		title: 'Spoken Languages',
+		category: 'lsx-tour-operator',
 		attributes: {
+			metadata: {
+				name: 'Spoken Languages',
+			},
 			className: 'lsx-spoken-languages-wrapper',
 			style: {
 				spacing: {
@@ -1987,10 +2038,13 @@ wp.domReady(() => {
 	
 	// Accommodation Type Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-accommodation-type-wrapper',
-		title: 'Accommodation Type Wrapper',
-		category: 'layout',
+		name: 'lsx-tour-operator/accommodation-type',
+		title: 'Accommodation Type',
+		category: 'lsx-tour-operator',
 		attributes: {
+			metadata: {
+				name: 'Accommodation Type',
+			},
 			className: 'lsx-accommodation-type-wrapper',
 			style: {
 				spacing: {
@@ -2068,10 +2122,13 @@ wp.domReady(() => {
 	
 	// Suggested Visitor Types (Friendly) Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-suggested-visitor-types-wrapper',
-		title: 'Suggested Visitor Types Wrapper',
-		category: 'layout',
+		name: 'llsx-tour-operator/suggested-visitor-types',
+		title: 'Suggested Visitor Types',
+		category: 'lsx-tour-operator',
 		attributes: {
+			metadata: {
+				name: 'Suggested Visitor Types',
+			},
 			className: 'lsx-suggested-visitor-types-wrapper',
 			style: {
 				spacing: {
@@ -2150,10 +2207,13 @@ wp.domReady(() => {
 	
 	// Special Interests Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-special-interests-wrapper',
-		title: 'Special Interests Wrapper',
-		category: 'layout',
+		name: 'lsx-tour-operator/special-interests',
+		title: 'Special Interests',
+		category: 'lsx-tour-operator',
 		attributes: {
+			metadata: {
+				name: 'Special Interests',
+			},
 			className: 'lsx-special-interests-wrapper',
 			style: {
 				spacing: {
@@ -2234,10 +2294,13 @@ wp.domReady(() => {
 	
 	// Facilities Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-facilities-wrapper',
-		title: 'Facilities Wrapper',
-		category: 'layout',
+		name: 'lsx-tour-operator/facilities',
+		title: 'Facilities',
+		category: 'lsx-tour-operator',
 		attributes: {
+			metadata: {
+				name: 'Facilities',
+			},
 			className: 'lsx-facilities-wrapper',
 			style: {
 				spacing: {
@@ -2319,11 +2382,14 @@ wp.domReady(() => {
 
 	// Travel Information - Additional Information Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-additional-info-wrapper',
-		title: 'Additional Information Wrapper',
-		category: 'layout',
+		name: 'lsx-tour-operator/additional-info',
+		title: 'Additional Information',
+		category: 'lsx-tour-operator',
 		attributes: {
-			className: 'lsx-additional-info-wrapper is-style-shadow-xsm',
+			metadata: {
+				name: 'Additional Info',
+			},
+			className: 'lsx-additional-info-wrapper',
 			style: {
 				border: {
 					radius: '8px'
@@ -2441,11 +2507,14 @@ wp.domReady(() => {
 	
 	// Travel Information - Electricity Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-electricity-wrapper',
-		title: 'Electricity Wrapper',
-		category: 'layout',
+		name: 'lsx-tour-operator/electricity',
+		title: 'Electricity',
+		category: 'lsx-tour-operator',
 		attributes: {
-			className: 'lsx-additional-info-wrapper is-style-shadow-xsm',
+			metadata: {
+				name: 'Electricity',
+			},
+			className: 'lsx-additional-info-wrapper',
 			style: {
 				border: {
 					radius: '8px'
@@ -2562,11 +2631,14 @@ wp.domReady(() => {
 	
 	// Travel Information - Banking Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-banking-wrapper',
-		title: 'Banking Wrapper',
-		category: 'layout',
+		name: 'lsx-tour-operator/banking',
+		title: 'Banking',
+		category: 'lsx-tour-operator',
 		attributes: {
-			className: 'lsx-additional-info-wrapper is-style-shadow-xsm',
+			metadata: {
+				name: 'Banking',
+			},
+			className: 'lsx-additional-info-wrapper',
 			style: {
 				border: {
 					radius: '8px'
@@ -2683,11 +2755,14 @@ wp.domReady(() => {
 	
 	// Travel Information - Cuisine Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-cuisine-wrapper',
-		title: 'Cuisine Wrapper',
-		category: 'layout',
+		name: 'lsx-tour-operator/cuisine',
+		title: 'Cuisine',
+		category: 'lsx-tour-operator',
 		attributes: {
-			className: 'lsx-additional-info-wrapper is-style-shadow-xsm',
+			metadata: {
+				name: 'Cuisine',
+			},
+			className: 'lsx-additional-info-wrapper',
 			style: {
 				border: {
 					radius: '8px'
@@ -2804,11 +2879,14 @@ wp.domReady(() => {
 	
 	// Travel Information - Climate Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-climate-wrapper',
-		title: 'Climate Wrapper',
-		category: 'layout',
+		name: 'lsx-tour-operator/climate',
+		title: 'Climate',
+		category: 'lsx-tour-operator',
 		attributes: {
-			className: 'lsx-additional-info-wrapper is-style-shadow-xsm',
+			metadata: {
+				name: 'Climate',
+			},
+			className: 'lsx-additional-info-wrapper',
 			style: {
 				border: {
 					radius: '8px'
@@ -2925,11 +3003,14 @@ wp.domReady(() => {
 	
 	// Travel Information - Transport Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-transport-wrapper',
-		title: 'Transport Wrapper',
-		category: 'layout',
+		name: 'lsx-tour-operator/transport',
+		title: 'Transport',
+		category: 'lsx-tour-operator',
 		attributes: {
-			className: 'lsx-additional-info-wrapper is-style-shadow-xsm',
+			metadata: {
+				name: 'Transport',
+			},
+			className: 'lsx-additional-info-wrapper',
 			style: {
 				border: {
 					radius: '8px'
@@ -3046,11 +3127,14 @@ wp.domReady(() => {
 	
 	// Travel Information - Dress Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-dress-wrapper',
-		title: 'Dress Wrapper',
-		category: 'layout',
+		name: 'lsx-tour-operator/dress',
+		title: 'Dress',
+		category: 'lsx-tour-operator',
 		attributes: {
-			className: 'lsx-additional-info-wrapper is-style-shadow-xsm',
+			metadata: {
+				name: 'Dress',
+			},
+			className: 'lsx-additional-info-wrapper',
 			style: {
 				border: {
 					radius: '8px'
@@ -3167,11 +3251,14 @@ wp.domReady(() => {
 	
 	// Travel Information - Health Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-health-wrapper',
-		title: 'Health Wrapper',
-		category: 'layout',
+		name: 'lsx-tour-operator/health',
+		title: 'Health',
+		category: 'lsx-tour-operator',
 		attributes: {
-			className: 'lsx-additional-info-wrapper is-style-shadow-xsm',
+			metadata: {
+				name: 'Health',
+			},
+			className: 'lsx-additional-info-wrapper',
 			style: {
 				border: {
 					radius: '8px'
@@ -3290,12 +3377,14 @@ wp.domReady(() => {
 	wp.blocks.registerBlockVariation(
 		'core/group',
 		{
-			name: 'lsx-safety-info',
-			title: 'Safety Info Block',
-			description: 'A block variation for displaying safety information.',
-			category: 'common',
+			name: 'lsx-tour-operator/safety',
+			title: 'Safety',
+			category: 'lsx-tour-operator',
 			attributes: {
-				className: 'lsx-additional-info-wrapper is-style-shadow-xsm has-base-background-color has-background',
+				metadata: {
+					name: 'Safety',
+				},
+				className: 'lsx-additional-info-wrapper',
 				style: {
 					border: {
 						radius: '8px',
@@ -3445,12 +3534,14 @@ wp.domReady(() => {
 	wp.blocks.registerBlockVariation(
 		'core/group',
 		{
-			name: 'lsx-visa-info',
-			title: 'Visa Info Block',
-			description: 'A block variation for displaying visa information.',
-			category: 'common',
+			name: 'lsx-tour-operator/visa',
+			title: 'Visa',
+			category: 'lsx-tour-operator',
 			attributes: {
-				className: 'lsx-additional-info-wrapper is-style-shadow-xsm has-base-background-color has-background',
+				metadata: {
+					name: 'Visa',
+				},
+				className: 'lsx-additional-info-wrapper',
 				style: {
 					border: {
 						radius: '8px',
