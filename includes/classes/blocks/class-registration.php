@@ -17,8 +17,7 @@ class Registration {
 	 */
 	public function __construct() {
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_variations_script' ), 10 );
-
-		add_filter( 'pre_render_block', array( $this, 'pre_render_featured_block' ), 10, 2 );
+		add_filter( 'query_loop_block_query_vars', array( $this, 'query_args_filter' ), 10, 2 );
 	}
 
 	/**
@@ -65,53 +64,69 @@ class Registration {
 		}
 	}
 
-	/**
-	 * A function to detect variation, and alter the query args.
-	 * 
-	 * Following the https://developer.wordpress.org/news/2022/12/building-a-book-review-grid-with-a-query-loop-block-variation/
-	 *
-	 * @param string|null   $pre_render   The pre-rendered content. Default null.
-	 * @param array         $parsed_block The block being rendered.
-	 * @param WP_Block|null $parent_block If this is a nested block, a reference to the parent block.
-	 */
-	public function pre_render_featured_block( $pre_render, $parsed_block ) {
-		// Determine if this is the custom block variation.
-		if ( isset( $parsed_block['attrs']['namespace'] ) && 'lsx/lsx-featured-posts' === $parsed_block['attrs']['namespace'] ) {
-			add_filter(
-				'query_loop_block_query_vars',
-				function( $query, $block ) use ( $parsed_block ) {
-	
-					// Add rating meta key/value pair if queried.
-					if ( 'lsx/lsx-featured-posts' === $parsed_block['attrs']['namespace'] ) {	
-						unset( $query['post__not_in'] );
-						unset( $query['offset'] );
-						$query['nopaging'] = false;
-						
-						// if its sticky posts, only include those.
-						if ( 'post' === $query['post_type'] ) {
-							$sticky_posts = get_option( 'sticky_posts', array() );
-							if ( ! is_array( $sticky_posts ) ) {
-								$sticky_posts = array( $sticky_posts );
-							}
-							$query['post__in'] = $sticky_posts;
-							$query['ignore_sticky_posts'] = 1;
-						} else {
-							//Use the "featured" custom field.
-							$query['meta_query'] = array(
-								array(
-									'key'     => 'featured',
-									'compare' => 'EXISTS',
-								)
-							);
-						}
-					}
-					return $query;
-				},
-				10,
-				2
-			);
-		}
-		return $pre_render;
-	}
+	public function query_args_filter( $query, $block ) {
+		$block = $block->parsed_block;
 
+		// Determine if this is the custom block variation.
+		if ( ! isset( $block['attrs']['className'] )  ) {
+			return $query;
+		}
+		
+		$pattern = "/(lsx|facts)-(.*?)-query/";
+		preg_match( $pattern, $block['attrs']['className'], $matches );
+
+		if ( ! empty( $matches ) && isset( $matches[0] ) ) {
+			// Save the first match to a variable
+			$key = str_replace( [ 'facts-', 'lsx-', '-query' ], '', $matches[0] );
+		} else {
+			return $query;
+		}
+
+		switch ( $key ) {
+			case 'regions':
+				// We only restric this on the destination post type, in case the block is used on a landing page.
+				if ( 'destination' === get_post_type() ) {
+					$query['post_parent__in'] = [ get_the_ID() ];
+				}
+			break;
+
+			case 'related-regions':
+				// We only restric this on the destination post type, in case the block is used on a landing page.
+				$parent = wp_get_post_parent_id();
+				if ( 'destination' === get_post_type() ) {
+					$query['post_parent'] = $parent;
+					$query['post__not_in'] = [ get_the_ID() ];
+				}
+			break;
+
+			default:
+			break;
+		}
+
+		// Add rating meta key/value pair if queried.
+		/*if ( 'lsx/lsx-featured-posts' === $parsed_block['attrs']['namespace'] ) {	
+			unset( $query['post__not_in'] );
+			unset( $query['offset'] );
+			$query['nopaging'] = false;
+			
+			// if its sticky posts, only include those.
+			if ( 'post' === $query['post_type'] ) {
+				$sticky_posts = get_option( 'sticky_posts', array() );
+				if ( ! is_array( $sticky_posts ) ) {
+					$sticky_posts = array( $sticky_posts );
+				}
+				$query['post__in'] = $sticky_posts;
+				$query['ignore_sticky_posts'] = 1;
+			} else {
+				//Use the "featured" custom field.
+				$query['meta_query'] = array(
+					array(
+						'key'     => 'featured',
+						'compare' => 'EXISTS',
+					)
+				);
+			}
+		}*/
+		return $query;
+	}
 }
