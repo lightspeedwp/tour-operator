@@ -65,8 +65,6 @@ class Registration {
 	}
 
 	public function query_args_filter( $query, $block ) {
-
-		
 		$block = $block->parsed_block;
 
 		// Determine if this is the custom block variation.
@@ -74,33 +72,41 @@ class Registration {
 			return $query;
 		}
 		
-		$allowed_classes = [
-			'lsx-regions-query',
-			'lsx-top-rate-destinations-query'
-		];
-
-		$pattern = "/\\blsx-[a-zA-Z0-9-]+/";
+		$pattern = "/(lsx|facts)-(.*?)-query/";
 		preg_match( $pattern, $block['attrs']['className'], $matches );
 
-		if ( empty( $matches ) || ! isset( $matches[0] ) ) {
+		if ( ! empty( $matches ) && isset( $matches[0] ) ) {
+			// Save the first match to a variable
+			$key = str_replace( [ 'facts-', 'lsx-', '-query' ], '', $matches[0] );
+		} else {
 			return $query;
 		}
 
-		if ( ! in_array( $matches[0], $allowed_classes ) ) {
-			return $query;
-		}
+		
 
-		switch ( $matches[0] ) {
-			case 'lsx-regions-query':
+		switch ( $key ) {
+			case 'regions':
 				// We only restric this on the destination post type, in case the block is used on a landing page.
 				if ( 'destination' === get_post_type() ) {
 					$query['post_parent__in'] = [ get_the_ID() ];
 				}
 			break;
 
+			case 'related-regions-query':
+			case 'related-regions':
+				// We only restric this on the destination post type, in case the block is used on a landing page.
+				$parent = wp_get_post_parent_id();
+				if ( 'destination' === get_post_type() ) {
+					$query['post_parent'] = $parent;
+					$query['post__not_in'] = [ get_the_ID() ];
+				}
+			break;
+
 			default:
 			break;
 		}
+
+		do_action( 'qm/debug', $query );
 
 		// Add rating meta key/value pair if queried.
 		/*if ( 'lsx/lsx-featured-posts' === $parsed_block['attrs']['namespace'] ) {	

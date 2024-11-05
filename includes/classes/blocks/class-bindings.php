@@ -717,9 +717,10 @@ class Bindings {
 						return '';
 					}
 
-					/**
-					 * TODO: we need to check if there are any other children of the current post parent.
-					 */
+					if ( false === lsx_to_item_has_children( $current_parent, 'destination' ) ) {
+						return '';
+					}
+
 				default:
 				break;
 			}
