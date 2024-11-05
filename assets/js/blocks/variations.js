@@ -2314,7 +2314,7 @@ wp.domReady(() => {
 
 	// Suggested Visitor Types (Friendly) Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'llsx-tour-operator/suggested-visitor-types',
+		name: 'lsx-tour-operator/suggested-visitor-types',
 		title: 'Suggested Visitor Types',
 		category: 'lsx-tour-operator',
 		attributes: {
