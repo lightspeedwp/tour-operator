@@ -91,7 +91,7 @@ class Bindings {
 		register_block_bindings_source(
 			'lsx/tour-itinerary',
 			array(
-				'label' => __( 'Tour Itinerary', 'lsx-wetu-importer' ),
+				'label' => __( 'Itinerary', 'lsx-wetu-importer' ),
 				'get_value_callback' => array( $this, 'itinerary_callback' )
 			)
 		);
@@ -99,7 +99,7 @@ class Bindings {
 		register_block_bindings_source(
 			'lsx/accommodation-units',
 			array(
-				'label' => __( 'Accommodation Units', 'lsx-wetu-importer' ),
+				'label' => __( 'Units', 'lsx-wetu-importer' ),
 				'get_value_callback' => array( $this, 'units_callback' )
 			)
 		);
@@ -107,8 +107,16 @@ class Bindings {
 		register_block_bindings_source(
 			'lsx/gallery',
 			array(
-				'label' => __( 'TO Gallery', 'lsx-wetu-importer' ),
-				'get_value_callback' => array( $this, 'gallery_callback' )
+				'label' => __( 'Gallery', 'lsx-wetu-importer' ),
+				'get_value_callback' => array( $this, 'empty_callback' )
+			)
+		);
+
+		register_block_bindings_source(
+			'lsx/map',
+			array(
+				'label' => __( 'Map', 'lsx-wetu-importer' ),
+				'get_value_callback' => array( $this, 'empty_callback' )
 			)
 		);
 	}
@@ -540,7 +548,7 @@ class Bindings {
 	 * 
 	 * @return string Returns an empty string if the block is of type 'core/group', otherwise no return value.
 	 */
-	public function gallery_callback( $source_args, $block_instance ) {
+	public function empty_callback( $source_args, $block_instance ) {
 		if ( 'core/group' === $block_instance->parsed_block['blockName'] ) {
 			return '';
 		}
