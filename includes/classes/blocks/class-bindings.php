@@ -703,7 +703,7 @@ class Bindings {
 			case 'wetu':
 				$wetu_id = get_post_meta( get_the_ID(), 'lsx_wetu_id', true );
 				if ( ! empty( $wetu_id ) ) {
-					$map = '<iframe width="100%" height="500" frameborder="0" allowfullscreen="" class="wetu-map" class="block perfmatters-lazy entered pmloaded" data-src="https://wetu.com/Itinerary/VI/' . $wetu_id . '?m=bdep" data-ll-status="loaded" src="https://wetu.com/Itinerary/VI/c5ab6e23-b482-4256-b509-1069506fe1c2?m=bdep"></iframe>';
+					$map = '<iframe width="100%" height="500" frameborder="0" allowfullscreen="" class="wetu-map" class="block perfmatters-lazy entered pmloaded" data-src="https://wetu.com/Itinerary/VI/' . $wetu_id . '?m=bdep" data-ll-status="loaded" src="https://wetu.com/Itinerary/VI/' . $wetu_id . '?m=bdep"></iframe>';
 				}
 			break;
 
