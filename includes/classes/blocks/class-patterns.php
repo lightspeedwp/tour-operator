@@ -9,7 +9,7 @@ class Patterns {
 	 *
 	 * @var string
 	 */
-	private $pattern_category = 'lsx-tour-operator';
+	private $category = 'lsx-tour-operator';
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -19,8 +19,9 @@ class Patterns {
 	 * @access private
 	 */
 	public function __construct() {
-		//Register our pattern category
-		add_action( 'init', array( $this, 'register_block_category' ) );
+		//Register our categories
+		add_filter( 'block_categories_all', array( $this, 'register_block_category' ), 10, 1 );
+		add_action( 'init', array( $this, 'register_block_pattern_category' ) );
 
 		// Register our block patterns
 		add_action( 'init', array( $this, 'register_block_patterns' ), 10 );
@@ -31,9 +32,22 @@ class Patterns {
 	 *
 	 * @return void
 	 */
-	public function register_block_category() {
+	public function register_block_category( $categories ) {
+		$categories[] = array(
+			'slug'  => $this->category,
+			'title' => __( 'LSX Tour Operator', 'lsx-tour-operator' )
+		);
+		return $categories;
+	}
+
+	/**
+	 * Registers the Tour Operator pattern category
+	 *
+	 * @return void
+	 */
+	public function register_block_pattern_category() {
 		register_block_pattern_category(
-			$this->pattern_category,
+			$this->category,
 			array( 'label' => __( 'LSX Tour Operator', 'lsx-tour-operator' ) )
 		);
 	}  
