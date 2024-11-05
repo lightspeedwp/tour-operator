@@ -4114,7 +4114,7 @@ wp.domReady(() => {
 			metadata: {
 				name: 'Regions List'
 			},
-			className: 'facts-regions-wrapper',
+			className: 'facts-regions-query-wrapper',
 			style: {
 				spacing: {
 					blockGap: '5px'

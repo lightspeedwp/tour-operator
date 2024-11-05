@@ -679,7 +679,7 @@ class Bindings {
 			return $block_content;
 		}
 
-		$pattern = "/lsx-(.*?)-wrapper/";
+		$pattern = "/(lsx|facts)-(.*?)-wrapper/";
 		preg_match( $pattern, $parsed_block['attrs']['className'], $matches );
 
 		if ( empty( $matches ) ) {
@@ -688,7 +688,7 @@ class Bindings {
 		
 		if ( ! empty( $matches ) && isset( $matches[0] ) ) {
 			// Save the first match to a variable
-			$key = str_replace( [ 'lsx-', '-wrapper' ], '', $matches[0] );
+			$key = str_replace( [ 'facts-', 'lsx-', '-wrapper' ], '', $matches[0] );
 		} else {
 			return $block_content;
 		}
@@ -705,9 +705,10 @@ class Bindings {
 						return '';
 					}
 
-					/**
-					 * TODO: we need to check if there are any children.
-					 */
+					if ( false === lsx_to_item_has_children( get_the_ID(), 'destination' ) ) {
+						return '';
+					}
+
 				break;
 
 				case 'related-regions':
