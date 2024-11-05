@@ -76,6 +76,7 @@ class Registration {
 		
 		$allowed_classes = [
 			'lsx-regions-query',
+			'lsx-top-rate-destinations-query'
 		];
 
 		$pattern = "/\\blsx-[a-zA-Z0-9-]+/";
@@ -125,7 +126,6 @@ class Registration {
 				);
 			}
 		}*/
-		do_action( 'qm/debug', $query );
 		return $query;
 	}
 }

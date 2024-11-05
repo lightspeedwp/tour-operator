@@ -118,45 +118,70 @@ class Bindings {
 			return 'test_image';
 		} elseif ( 'core/paragraph' === $block_instance->parsed_block['blockName'] ) {
 	
-			// Gets the single
-			$single = true;
-			if ( isset( $source_args['single'] ) ) {
-				$single = (bool) $source_args['single'];
+			if ( ! isset( $source_args['key'] ) ) {
+				return '';
 			}
-	
-			// Get the 
-			$only_parents = false;
-			if ( isset( $source_args['parents'] ) ) {
-				$only_parents = (bool) $source_args['parents'];
-			}
+
+			switch ( $source_args['key'] ) {
+
+				case 'post_children':
+					$children = lsx_to_item_has_children( get_the_ID(), 'destination' );
+					if ( false !== $children && ! empty( $children ) ) {
+						$value = $this->prep_links( $children );
+						do_action( 'qm/debug', $children );
+					}
+				break;
+
+				case 'post_parent':
+
+				break;
+
+
+				default:
+					// For custom fields.	
+
+					$single = true;
+					if ( isset( $source_args['single'] ) ) {
+						$single = (bool) $source_args['single'];
+					}
 			
-			$value = get_post_meta( get_the_ID(), $source_args['key'], $single );
-	
-			if ( is_array( $value ) && ! empty( $value ) ) {
-				$values = array();
-				foreach( $value as $pid ) {
-					if ( true === $only_parents ) {
-						$pid_parent = get_post_parent( $pid );
-						if ( null !== $pid_parent ) {
-							continue;
+					// Get the 
+					$only_parents = false;
+					if ( isset( $source_args['parents'] ) ) {
+						$only_parents = (bool) $source_args['parents'];
+					}
+					
+					$value = get_post_meta( get_the_ID(), $source_args['key'], $single );
+			
+					if ( is_array( $value ) && ! empty( $value ) ) {
+						$values = array();
+						foreach( $value as $pid ) {
+							if ( true === $only_parents ) {
+								$pid_parent = get_post_parent( $pid );
+								if ( null !== $pid_parent ) {
+									continue;
+								}
+							}
+			
+							$values[] = '<a href="' . get_permalink( $pid ) . '">' . get_the_title( $pid ) . '</a>';
+						}
+						$value = implode( ',', $values );
+					} else if ( ! is_array( $value ) && '' !== $value ) {
+						
+						switch ( $source_args['key'] ) {
+							case 'lsx_wetu_id':
+								$value = '<iframe width="100%" height="500" frameborder="0" allowfullscreen="" id="wetu_map" data-ll-status="loaded" src="https://wetu.com/Map/indexv2.html?itinerary=' . $value . '?m=b"></iframe>';
+								break;
+			
+							default:
+								$value = '<a href="' . get_permalink( $value ) . '">' . get_the_title( $value ) . '</a>';
+							break;	
 						}
 					}
-	
-					$values[] = '<a href="' . get_permalink( $pid ) . '">' . get_the_title( $pid ) . '</a>';
-				}
-				$value = implode( ',', $values );
-			} else if ( ! is_array( $value ) && '' !== $value ) {
-				
-				switch ( $source_args['key'] ) {
-					case 'lsx_wetu_id':
-						$value = '<iframe width="100%" height="500" frameborder="0" allowfullscreen="" id="wetu_map" data-ll-status="loaded" src="https://wetu.com/Map/indexv2.html?itinerary=' . $value . '?m=b"></iframe>';
-						break;
-	
-					default:
-						$value = '<a href="' . get_permalink( $value ) . '">' . get_the_title( $value ) . '</a>';
-					break;	
-				}
+				break;
+
 			}
+
 			return $value;
 		}
 	}
@@ -708,12 +733,28 @@ class Bindings {
 		} else {
 			$key = str_replace( '-', '_', $key );
 			$value = lsx_to_custom_field_query( $key, '', '', false );
-			do_action( 'qm/debug', [ $key, $value ] );
 			if ( empty( $value ) || '' === $value ) {
 				$block_content = '';
 			}
 		}
 
 		return $block_content;
+	}
+
+	/**
+	 * Takes an array of IDs and iterate to return the post links.
+	 *
+	 * @param array $items
+	 * @return string
+	 */
+	public function prep_links( $items ) {
+		if ( ! is_array( $items ) ) {
+			$items = [ $items ];
+		}
+		$item_links = [];
+		foreach ( $items as $item ) {
+			$item_links[] = '<a href="' . get_permalink( $item->ID ) . '" title="' . get_the_title( $item->ID ) . '">' . get_the_title( $item->ID ) . '</a>';
+		}
+		return implode( ', ', $item_links );
 	}
 }

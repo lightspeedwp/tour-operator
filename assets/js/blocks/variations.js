@@ -2,7 +2,7 @@ wp.domReady(() => {
 
 	// Itinerary Wrapper
 	wp.blocks.registerBlockVariation("core/group", {
-	  name: "lsx/itinerary",
+	  name: "lsx-tour-operator/itinerary",
 	  title: "Itinerary",
 	  icon: "list-view",
 	  category: "lsx-tour-operator",
@@ -71,7 +71,7 @@ wp.domReady(() => {
 
 	// Itinerary Day by Day
 	wp.blocks.registerBlockVariation("core/group", {
-		name: "lsx/day-by-day",
+		name: "lsx-tour-operator/day-by-day",
 		title: "Day by day",
 		icon: "list-view",
 		category: "lsx-tour-operator",
@@ -94,12 +94,12 @@ wp.domReady(() => {
 		],
 		isDefault: false,
 		scope: ["inserter"],
-		parent: ["lsx/itinerary"], // Restricts to "lsx/itinerary" block
+		parent: ["lsx-tour-operator/itinerary"], // Restricts to "lsx/itinerary" block
 	  });
   
 	// Accommodation Units Wrapper
 	wp.blocks.registerBlockVariation("core/group", {
-	  name: "lsx/accommodation-units",
+	  name: "lsx-tour-operator/accommodation-units",
 	  title: "Units",
 	  icon: "admin-multisite",
 	  category: "lsx-tour-operator",
@@ -172,7 +172,7 @@ wp.domReady(() => {
   
 	// Price Wrapper
 	wp.blocks.registerBlockVariation("core/group", {
-	  name: "lsx/price",
+	  name: "lsx-tour-operator/price",
 	  title: "Price",
 	  icon: "bank",
 	  attributes: {
@@ -1253,7 +1253,7 @@ wp.domReady(() => {
   
 	// Included Wrapper
 	wp.blocks.registerBlockVariation("core/column", {
-	  name: "lsx-included-wrapper",
+	  name: "lsx-tour-operator/included",
 	  title: "Included",
 	  category: "lsx-tour-operator",
 	  attributes: {
@@ -1265,7 +1265,7 @@ wp.domReady(() => {
 		  },
 		  width: "50%",
 		},
-		id: "lsx-included-wrapper",
+		className: "lsx-included-wrapper",
 	  },
 	  innerBlocks: [
 		[
@@ -4105,6 +4105,119 @@ wp.domReady(() => {
 		  ],
 		],
 	  ],
+	});
+
+	wp.blocks.registerBlockVariation('core/group', {
+		name: 'lsx-tour-operator/facts-regions-wrapper',
+		title: 'Regions List',
+		attributes: {
+			metadata: {
+				name: 'Regions List'
+			},
+			className: 'facts-regions-wrapper',
+			style: {
+				spacing: {
+					blockGap: '5px'
+				}
+			},
+			layout: {
+				type: 'flex',
+				flexWrap: 'nowrap'
+			}
+		},
+		innerBlocks: [
+			[
+				'core/group',
+				{
+					style: {
+						spacing: {
+							blockGap: '5px'
+						}
+					},
+					layout: {
+						type: 'flex',
+						flexWrap: 'nowrap',
+						verticalAlignment: 'top'
+					}
+				},
+				[
+					[
+						'core/image',
+						{
+							width: '20px',
+							sizeSlug: 'large',
+							url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/09/destinations-icon-black-20px.png',
+							alt: ''
+						}
+					],
+					[
+						'core/paragraph',
+						{
+							style: {
+								spacing: {
+									padding: {
+										top: '0',
+										bottom: '0'
+									}
+								}
+							},
+							fontSize: 'x-small',
+							content: '<strong>Regions:</strong>'
+						}
+					]
+				]
+			],
+			[
+				'core/group',
+				{
+					style: {
+						spacing: {
+							blockGap: '5px',
+							padding: {
+								top: '0',
+								bottom: '0'
+							}
+						}
+					},
+					layout: {
+						type: 'flex',
+						flexWrap: 'nowrap'
+					}
+				},
+				[
+					[
+						'core/paragraph',
+						{
+							metadata: {
+								bindings: {
+									content: {
+										source: "lsx/post-connection",
+										args: { key: "post_children" },
+									},
+								},
+							},
+							style: {
+								elements: {
+									link: {
+										color: {
+											text: 'var:preset|color|septenary'
+										}
+									}
+								},
+								spacing: {
+									padding: {
+										top: '2px',
+										bottom: '2px'
+									}
+								}
+							},
+							textColor: 'septenary',
+							content: ''
+						}
+					]
+				]
+			]
+		]
 	});
   });
   

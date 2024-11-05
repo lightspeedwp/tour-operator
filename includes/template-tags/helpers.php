@@ -118,7 +118,8 @@ function lsx_to_item_has_children( $post_id = false, $post_type = false ) {
 			FROM {$wpdb->posts}
 			WHERE (post_type = %s AND post_status = 'publish')
 			AND post_parent = %d
-			LIMIT 1",
+			ORDER BY post_title ASC
+			LIMIT 100",
 			$post_type,$post_id
 		)
 	);
