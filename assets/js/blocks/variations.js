@@ -304,6 +304,10 @@ wp.domReady(() => {
 						},
 					},
 					className: "amount has-primary-color has-text-color has-link-color",
+					padding: {
+						top: "2px",
+						bottom: "2px",
+					},
 					color: {
 						link: "primary-700",
 						text: "primary-700",
@@ -314,7 +318,8 @@ wp.domReady(() => {
 		isDefault: false,
 	});
 
-	// Destination to Tour Wrapper
+
+	// Destination to Tour
 	wp.blocks.registerBlockVariation("core/group", {
 		name: "lsx-destination-to-tour",
 		title: "Destination to Tour",
@@ -333,33 +338,84 @@ wp.domReady(() => {
 		},
 		innerBlocks: [
 			[
-				"core/group",
+				'core/group',
 				{
 					style: {
 						spacing: {
-							blockGap: "5px",
-						},
+							blockGap: '5px'
+						}
 					},
 					layout: {
-						type: "flex",
-						flexWrap: "nowrap",
-						verticalAlignment: "top",
-					},
+						type: 'flex',
+						flexWrap: 'nowrap',
+						verticalAlignment: 'top'
+					}
 				},
 				[
 					[
-						"core/image",
+						'core/image',
 						{
 							width: 20,
-							sizeSlug: "large",
-							url: "https://tour-operator.lsx.design/wp-content/uploads/2024/09/Typelocation-icon.png",
-							alt: "",
-						},
+							sizeSlug: 'large',
+							url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/09/Typelocation-icon.png',
+							alt: ''
+						}
 					],
+					[
+						'core/paragraph',
+						{
+							content: '<strong>Destinations:</strong>',
+							style: {
+								spacing: {
+									padding: {
+										top: '2px',
+										bottom: '2px'
+									}
+								}
+							},
+							fontSize: 'x-small'
+						}
+					]
+				]
+			],
+			[
+				'core/group',
+				{
+					style: {
+						spacing: {
+							padding: {
+								left: '25px'
+							}
+						}
+					},
+					layout: {
+						type: 'flex',
+						flexWrap: 'nowrap'
+					}
+				},
+				[
 					[
 						"core/paragraph",
 						{
+							metadata: {
+								bindings: {
+									content: {
+										source: "lsx/post-connection",
+										args: {
+											key: "destination_to_tour",
+										},
+									},
+								},
+							},
+							className: "has-primary-color has-text-color has-link-color",
 							style: {
+								elements: {
+									link: {
+										color: {
+											text: "var:preset|color|primary-700",
+										},
+									},
+								},
 								spacing: {
 									padding: {
 										top: "2px",
@@ -367,68 +423,20 @@ wp.domReady(() => {
 									},
 								},
 							},
-							fontSize: "x-small",
-							content: "<strong>Destinations:</strong>",
+							textColor: "primary-700",
+							content: "",
 						},
 					],
-				],
-			]
-		],
-		isDefault: false
-	});
-
-	// Destination to Tour
-	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-tour-operator/destination-to-tour',
-		title: 'Destination to Tour',
-		attributes: {
-			metadata: {
-				name: 'Destination to Tour',
-			},
-			className: 'lsx-destination-to-tour-wrapper',
-			style: {
-				spacing: {
-					blockGap: "5px",
-				},
-			},
-			layout: {
-				type: "flex",
-				flexWrap: "nowrap",
-			},
-		},
-		innerBlocks: [
-			[
-				"core/paragraph",
-				{
-					metadata: {
-						bindings: {
-							content: {
-								source: "lsx/post-connection",
-								args: {
-									key: "destination_to_tour",
-								}
-							}
-						}
-					},
-					style: {
-						elements: {
-							link: {
-								color: {
-									text: "var:preset|color|primary-700",
-								}
-							}
-						}
-					},
-					textColor: "primary-700",
-					content: "",
-				}
+				]
 			]
 		]
 	});
+	
+
 
 	// Duration Wrapper
 	wp.blocks.registerBlockVariation("core/group", {
-		name: "lsx-duration-wrapper",
+		name: "lsx-tour-operator/duration",
 		title: "Duration",
 		category: "lsx-tour-operator",
 		attributes: {
@@ -563,126 +571,126 @@ wp.domReady(() => {
 		],
 	});
 
-	// Duration
-	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-tour-operator/duration',
-		title: 'Duration',
-		category: 'layout',
-		attributes: {
-			metadata: {
-				name: 'Duration',
-			},
-			className: 'lsx-duration-wrapper',
-			style: {
-				spacing: {
-					blockGap: '5px'
-				}
-			},
-			layout: {
-				type: 'flex',
-				flexWrap: 'nowrap'
-			}
-		},
-		innerBlocks: [
-			['core/group', {
-					style: {
-						spacing: {
-							blockGap: '5px'
-						}
-					},
-					layout: {
-						type: 'flex',
-						flexWrap: 'nowrap',
-						verticalAlignment: 'top'
-					}
-				},
-				[
-					['core/image', {
-						width: 20,
-						sizeSlug: 'large',
-						url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/09/duration-TO-black-20px-icon.png',
-						alt: ''
-					}],
-					['core/paragraph', {
-						style: {
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
-						fontSize: 'x-small',
-						content: '<strong>Duration:</strong>'
-					}]
-				]
-			],
-			['core/group', {
-					style: {
-						spacing: {
-							blockGap: '5px'
-						}
-					},
-					layout: {
-						type: 'flex',
-						flexWrap: 'nowrap'
-					}
-				},
-				[
-					['core/paragraph', {
-						metadata: {
-							bindings: {
-								content: {
-									source: 'lsx/post-meta',
-									args: {
-										key: 'duration'
-									}
-								}
-							}
-						},
-						className: 'has-primary-color has-text-color has-link-color',
-						style: {
-							elements: {
-								link: {
-									color: {
-										text: 'var:preset|color|primary-700'
-									}
-								}
-							},
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
-						textColor: 'primary-700',
-						content: ''
-					}],
-					['core/paragraph', {
-						className: 'has-primary-color has-text-color has-link-color',
-						style: {
-							elements: {
-								link: {
-									color: {
-										text: 'var:preset|color|primary-700'
-									}
-								}
-							},
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
-						textColor: 'primary-700',
-						content: 'Days'
-					}]
-				]
-			]
-		]
-	});
+	// // Duration
+	// wp.blocks.registerBlockVariation('core/group', {
+	// 	name: 'lsx-tour-operator/duration',
+	// 	title: 'Duration',
+	// 	category: 'layout',
+	// 	attributes: {
+	// 		metadata: {
+	// 			name: 'Duration',
+	// 		},
+	// 		className: 'lsx-duration-wrapper',
+	// 		style: {
+	// 			spacing: {
+	// 				blockGap: '5px'
+	// 			}
+	// 		},
+	// 		layout: {
+	// 			type: 'flex',
+	// 			flexWrap: 'nowrap'
+	// 		}
+	// 	},
+	// 	innerBlocks: [
+	// 		['core/group', {
+	// 				style: {
+	// 					spacing: {
+	// 						blockGap: '5px'
+	// 					}
+	// 				},
+	// 				layout: {
+	// 					type: 'flex',
+	// 					flexWrap: 'nowrap',
+	// 					verticalAlignment: 'top'
+	// 				}
+	// 			},
+	// 			[
+	// 				['core/image', {
+	// 					width: 20,
+	// 					sizeSlug: 'large',
+	// 					url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/09/duration-TO-black-20px-icon.png',
+	// 					alt: ''
+	// 				}],
+	// 				['core/paragraph', {
+	// 					style: {
+	// 						spacing: {
+	// 							padding: {
+	// 								top: '2px',
+	// 								bottom: '2px'
+	// 							}
+	// 						}
+	// 					},
+	// 					fontSize: 'x-small',
+	// 					content: '<strong>Duration:</strong>'
+	// 				}]
+	// 			]
+	// 		],
+	// 		['core/group', {
+	// 				style: {
+	// 					spacing: {
+	// 						blockGap: '5px'
+	// 					}
+	// 				},
+	// 				layout: {
+	// 					type: 'flex',
+	// 					flexWrap: 'nowrap'
+	// 				}
+	// 			},
+	// 			[
+	// 				['core/paragraph', {
+	// 					metadata: {
+	// 						bindings: {
+	// 							content: {
+	// 								source: 'lsx/post-meta',
+	// 								args: {
+	// 									key: 'duration'
+	// 								}
+	// 							}
+	// 						}
+	// 					},
+	// 					className: 'has-primary-color has-text-color has-link-color',
+	// 					style: {
+	// 						elements: {
+	// 							link: {
+	// 								color: {
+	// 									text: 'var:preset|color|primary-700'
+	// 								}
+	// 							}
+	// 						},
+	// 						spacing: {
+	// 							padding: {
+	// 								top: '2px',
+	// 								bottom: '2px'
+	// 							}
+	// 						}
+	// 					},
+	// 					textColor: 'primary-700',
+	// 					content: ''
+	// 				}],
+	// 				['core/paragraph', {
+	// 					className: 'has-primary-color has-text-color has-link-color',
+	// 					style: {
+	// 						elements: {
+	// 							link: {
+	// 								color: {
+	// 									text: 'var:preset|color|primary-700'
+	// 								}
+	// 							}
+	// 						},
+	// 						spacing: {
+	// 							padding: {
+	// 								top: '2px',
+	// 								bottom: '2px'
+	// 							}
+	// 						}
+	// 					},
+	// 					textColor: 'primary-700',
+	// 					content: 'Days'
+	// 				}]
+	// 			]
+	// 		]
+	// 	]
+	// });
 
 	// Group Size
 	wp.blocks.registerBlockVariation('core/group', {
@@ -709,13 +717,13 @@ wp.domReady(() => {
 					style: {
 						spacing: {
 							blockGap: '5px'
-						},
+						}
+					},
 						layout: {
 							type: 'flex',
 							flexWrap: 'nowrap',
 							verticalAlignment: 'top'
 						}
-					}
 				},
 				[
 					['core/image', {
@@ -811,13 +819,13 @@ wp.domReady(() => {
 					style: {
 						spacing: {
 							blockGap: '5px'
-						},
+						}
+					},
 						layout: {
 							type: 'flex',
 							flexWrap: 'nowrap',
 							verticalAlignment: 'top'
 						}
-					}
 				},
 				[
 					['core/image', {
@@ -889,10 +897,10 @@ wp.domReady(() => {
 		]
 	});
 
-	// Booking Validity Wrapper
+	// Booking Validity 
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/booking-validity-start',
-		title: 'Booking Validity Start',
+		title: 'Booking Validity',
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -914,13 +922,13 @@ wp.domReady(() => {
 					style: {
 						spacing: {
 							blockGap: '5px'
-						},
+						}
+					},
 						layout: {
 							type: 'flex',
 							flexWrap: 'nowrap',
 							verticalAlignment: 'top'
 						}
-					}
 				},
 				[
 					['core/image', {
@@ -949,12 +957,12 @@ wp.domReady(() => {
 					style: {
 						spacing: {
 							blockGap: '5px'
-						},
+						}
+					},
 						layout: {
 							type: 'flex',
 							flexWrap: 'nowrap'
 						}
-					}
 				},
 				[
 					['core/paragraph', {
@@ -1046,17 +1054,17 @@ wp.domReady(() => {
 		},
 		innerBlocks: [
 			['core/group', {
-					style: {
-						spacing: {
-							blockGap: '5px'
-						},
-						layout: {
-							type: 'flex',
-							flexWrap: 'nowrap',
-							verticalAlignment: 'top'
-						}
+				style: {
+					spacing: {
+						blockGap: '5px'
 					}
 				},
+				layout: {
+					type: 'flex',
+					flexWrap: 'nowrap',
+					verticalAlignment: 'top'
+				}
+			},
 				[
 					['core/image', {
 						width: 20,
@@ -1078,42 +1086,60 @@ wp.domReady(() => {
 					}]
 				]
 			],
-			['core/paragraph', {
-				metadata: {
-					bindings: {
-						content: {
-							source: 'lsx/post-connection',
-							args: {
-								key: 'departs_from'
-							}
-						}
-					}
-				},
-				style: {
-					elements: {
-						link: {
-							color: {
-								text: 'var:preset|color|primary-700'
+			[
+				'core/group',
+				{
+					style: {
+						spacing: {
+							padding: {
+								left: '25px'
 							}
 						}
 					},
-					spacing: {
-						padding: {
-							top: '2px',
-							bottom: '2px'
-						}
+					layout: {
+						type: 'flex',
+						flexWrap: 'nowrap'
 					}
 				},
-				textColor: 'primary-700',
-				content: ''
-			}]
+				[
+					['core/paragraph', {
+						metadata: {
+							bindings: {
+								content: {
+									source: 'lsx/post-connection',
+									args: {
+										key: 'departs_from'
+									}
+								}
+							}
+						},
+						style: {
+							elements: {
+								link: {
+									color: {
+										text: 'var:preset|color|primary-700'
+									}
+								}
+							},
+							spacing: {
+								padding: {
+									top: '2px',
+									bottom: '2px'
+								}
+							}
+						},
+						textColor: 'primary-700',
+						content: ''
+					}],
+				]
+			]
 		]
 	});
 
 	// Ends In
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/ends-in',
-		title: 'Ends In Wrapper',
+		title: 'Ends In',
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -1131,17 +1157,17 @@ wp.domReady(() => {
 		},
 		innerBlocks: [
 			['core/group', {
-					style: {
-						spacing: {
-							blockGap: '5px'
-						},
-						layout: {
-							type: 'flex',
-							flexWrap: 'nowrap',
-							verticalAlignment: 'top'
-						}
+				style: {
+					spacing: {
+						blockGap: '5px'
 					}
 				},
+				layout: {
+					type: 'flex',
+					flexWrap: 'nowrap',
+					verticalAlignment: 'top'
+				}
+			},
 				[
 					['core/image', {
 						width: 20,
@@ -1163,35 +1189,53 @@ wp.domReady(() => {
 					}]
 				]
 			],
-			['core/paragraph', {
-				metadata: {
-					bindings: {
-						content: {
-							source: 'lsx/post-connection',
-							args: {
-								key: 'ends_in'
-							}
-						}
-					}
-				},
-				style: {
-					elements: {
-						link: {
-							color: {
-								text: 'var:preset|color|primary-700'
+			[
+				'core/group',
+				{
+					style: {
+						spacing: {
+							padding: {
+								left: '25px'
 							}
 						}
 					},
-					spacing: {
-						padding: {
-							top: '2px',
-							bottom: '2px'
-						}
+					layout: {
+						type: 'flex',
+						flexWrap: 'nowrap'
 					}
 				},
-				textColor: 'primary-700',
-				content: ''
-			}]
+				[
+					['core/paragraph', {
+						metadata: {
+							bindings: {
+								content: {
+									source: 'lsx/post-connection',
+									args: {
+										key: 'ends_in'
+									}
+								}
+							}
+						},
+						style: {
+							elements: {
+								link: {
+									color: {
+										text: 'var:preset|color|primary-700'
+									}
+								}
+							},
+							spacing: {
+								padding: {
+									top: '2px',
+									bottom: '2px'
+								}
+							}
+						},
+						textColor: 'primary-700',
+						content: ''
+					}]
+				]
+			]
 		]
 	});
 	
@@ -1219,13 +1263,13 @@ wp.domReady(() => {
 					style: {
 						spacing: {
 							blockGap: '5px'
-						},
+						}
+					},
 						layout: {
 							type: 'flex',
 							flexWrap: 'nowrap',
 							verticalAlignment: 'top'
 						}
-					}
 				},
 				[
 					['core/image', {
@@ -1255,12 +1299,13 @@ wp.domReady(() => {
 							flexSize: null
 						},
 						spacing: {
-							blockGap: '5px'
+							blockGap: '5px',
+							padding: {'left': '25px'}
 						}
 					},
 					layout: {
 						type: 'flex',
-						orientation: 'vertical'
+						flexWrap: 'nowrap'
 					}
 				},
 				[
@@ -1323,13 +1368,13 @@ wp.domReady(() => {
 					style: {
 						spacing: {
 							blockGap: '5px'
-						},
+						}
+					},
 						layout: {
 							type: 'flex',
 							flexWrap: 'nowrap',
 							verticalAlignment: 'top'
 						}
-					}
 				},
 				[
 					['core/image', {
@@ -1352,33 +1397,51 @@ wp.domReady(() => {
 					}]
 				]
 			],
-			['core/paragraph', {
-				metadata: {
-					bindings: {
-						content: {
-							source: 'lsx/post-meta',
-							args: {
-								key: 'best_time_to_visit'
-							}
-						}
-					}
-				},
-				className: 'has-septenary-color has-text-color has-link-color has-primary-700-color',
-				style: {
-					elements: {
-						link: {
-							color: {
-								text: 'var:preset|color|primary-700'
+			[
+				'core/group',
+				{
+					style: {
+						spacing: {
+							padding: {
+								left: '25px'
 							}
 						}
 					},
-					typography: {
-						textTransform: 'capitalize'
+					layout: {
+						type: 'flex',
+						flexWrap: 'nowrap'
 					}
 				},
-				textColor: 'primary-700',
-				content: 'Best Months to Visit'
-			}]
+				[
+					['core/paragraph', {
+						metadata: {
+							bindings: {
+								content: {
+									source: 'lsx/post-meta',
+									args: {
+										key: 'best_time_to_visit'
+									}
+								}
+							}
+						},
+						className: 'has-text-color has-link-color has-primary-700-color',
+						style: {
+							elements: {
+								link: {
+									color: {
+										text: 'var:preset|color|primary-700'
+									}
+								}
+							},
+							typography: {
+								textTransform: 'capitalize'
+							}
+						},
+						textColor: 'primary-700',
+						content: 'Best Months to Visit'
+					}]
+				]
+			]
 		]
 	});
 
@@ -2078,7 +2141,8 @@ wp.domReady(() => {
 			['core/group', {
 					style: {
 						spacing: {
-							blockGap: '5px'
+							blockGap: '5px',
+							padding: {left: '25px'}
 						}
 					},
 					layout: {
@@ -2183,8 +2247,7 @@ wp.domReady(() => {
 						spacing: {
 							blockGap: '5px',
 							padding: {
-								top: '0',
-								bottom: '0'
+								left: '25px',
 							}
 						}
 					},
@@ -2281,8 +2344,7 @@ wp.domReady(() => {
 						spacing: {
 							blockGap: '5px',
 							padding: {
-								top: '0',
-								bottom: '0'
+								left: '25px',
 							}
 						}
 					},
@@ -2314,7 +2376,7 @@ wp.domReady(() => {
 
 	// Suggested Visitor Types (Friendly) Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-tour-operator/suggested-visitor-types',
+		name: 'llsx-tour-operator/suggested-visitor-types',
 		title: 'Suggested Visitor Types',
 		category: 'lsx-tour-operator',
 		attributes: {
@@ -2365,6 +2427,13 @@ wp.domReady(() => {
 				]
 			],
 			['core/group', {
+							style: {
+						spacing: {
+							padding: {
+								left: '25px',
+							}
+						}
+					},
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap'
@@ -2456,6 +2525,13 @@ wp.domReady(() => {
 				]
 			],
 			['core/group', {
+					style: {
+						spacing: {
+							padding: {
+								left: '25px',
+							}
+						}
+					},
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap'
@@ -2666,7 +2742,7 @@ wp.domReady(() => {
 									}
 								},
 								fontSize: 'small',
-								content: '**General**'
+								content: '<strong>General</strong>'
 							}]
 						]
 					],
@@ -2812,7 +2888,7 @@ wp.domReady(() => {
 									}
 								},
 								fontSize: 'small',
-								content: '**Electricity**'
+								content: '<strong>Electricity</strong>'
 							}]
 						]
 					],
@@ -2958,7 +3034,7 @@ wp.domReady(() => {
 									}
 								},
 								fontSize: 'small',
-								content: '**Banking**'
+								content: '<strong>Banking</strong>'
 							}]
 						]
 					],
@@ -3104,7 +3180,7 @@ wp.domReady(() => {
 									}
 								},
 								fontSize: 'small',
-								content: '**Cuisine**'
+								content: '<strong>Cuisine</strong>'
 							}]
 						]
 					],
@@ -3250,7 +3326,7 @@ wp.domReady(() => {
 									}
 								},
 								fontSize: 'small',
-								content: '**Climate**'
+								content: '<strong>Climate</strong>'
 							}]
 						]
 					],
@@ -3396,7 +3472,7 @@ wp.domReady(() => {
 									}
 								},
 								fontSize: 'small',
-								content: '**Transport**'
+								content: '<strong>Transport</strong>'
 							}]
 						]
 					],
@@ -3542,7 +3618,7 @@ wp.domReady(() => {
 									}
 								},
 								fontSize: 'small',
-								content: '**Dress**'
+								content: '<strong>Dress</strong>'
 							}]
 						]
 					],
@@ -3688,7 +3764,7 @@ wp.domReady(() => {
 									}
 								},
 								fontSize: 'small',
-								content: '**Health**'
+								content: '<strong>Health</strong>'
 							}]
 						]
 					],
@@ -4161,7 +4237,7 @@ wp.domReady(() => {
 								elements: {
 									link: {
 										color: {
-											text: 'var:preset|color|septenary'
+											text: 'var:preset|color|primary-700'
 										}
 									}
 								},
@@ -4172,7 +4248,7 @@ wp.domReady(() => {
 									}
 								}
 							},
-							textColor: 'septenary',
+							textColor: 'primary-700',
 							content: ''
 						}
 					]
@@ -4277,7 +4353,7 @@ wp.domReady(() => {
 								elements: {
 									link: {
 										color: {
-											text: 'var:preset|color|septenary'
+											text: 'var:preset|color|primary-700'
 										}
 									}
 								},
@@ -4288,7 +4364,7 @@ wp.domReady(() => {
 									}
 								}
 							},
-							textColor: 'septenary',
+							textColor: 'primary-700',
 							content: ''
 						}
 					]
