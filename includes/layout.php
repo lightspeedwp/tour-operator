@@ -307,8 +307,6 @@ function lsx_to_accommodation_single_content_bottom() {
 
 		lsx_to_included_block();
 
-		lsx_to_gallery( '<section id="gallery" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-gallery' ) . '>' . esc_html__( 'Gallery', 'tour-operator' ) . '</h2><div id="collapse-gallery" class="collapse in"><div class="collapse-inner">', '</div></div></section>' );
-
 		if ( function_exists( 'lsx_to_accommodation_specials' ) ) {
 			lsx_to_accommodation_specials();
 		}
@@ -398,10 +396,6 @@ function lsx_to_destination_single_content_bottom() {
         }
 
 		lsx_to_destination_travel_info();
-
-		lsx_to_country_regions();
-
-		lsx_to_gallery( '<section id="gallery" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-gallery' ) . '>' . esc_html__( 'Gallery', 'tour-operator' ) . '</h2><div id="collapse-gallery" class="collapse in"><div class="collapse-inner">', '</div></div></section>' );
 
 		lsx_to_destination_tours();
 
@@ -607,8 +601,6 @@ function lsx_to_tour_single_content_bottom() {
         }
 
 		lsx_to_included_block();
-
-		lsx_to_gallery( '<section id="gallery" class="lsx-to-section ' . lsx_to_collapsible_class() . '"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" ' . lsx_to_collapsible_attributes( 'collapse-gallery' ) . '>' . esc_html__( 'Gallery', 'tour-operator' ) . '</h2><div id="collapse-gallery" class="collapse in"><div class="collapse-inner">', '</div></div></section>' );
 
 		if ( function_exists( 'lsx_to_tour_specials' ) ) {
 			lsx_to_tour_specials();

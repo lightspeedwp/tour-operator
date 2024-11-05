@@ -80,23 +80,6 @@ function lsx_to_is_helper( $post_type = false, $post_id = false, $meta_key = fal
 }
 
 /**
- * Output the envira gallery in the
- *
- * @package 	lsx-framework
- * @subpackage	hook
- * @category 	modal
- */
-function lsx_to_enable_envira_banner() {
-	$tour_operator = tour_operator();
-
-	if ( isset( $tour_operator->options ) && isset( $tour_operator->options['display'] ) && isset( $tour_operator->options['display']['enable_galleries_in_banner'] ) ) {
-		return true;
-	} else {
-		return false;
-	}
-}
-
-/**
  * Check if the current item has child pages or if its a parent ""
  *
  * @param	$post_id string
