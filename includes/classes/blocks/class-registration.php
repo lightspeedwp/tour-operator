@@ -37,6 +37,14 @@ class Registration {
 			);
 
 			wp_enqueue_script(
+				'lsx-to-block-tour-variations',  // Handle for the script.
+				LSX_TO_URL . 'assets/js/blocks/tour.js', // Path to your JavaScript file.
+				array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),  // Dependencies.
+				filemtime( LSX_TO_PATH . 'assets/js/blocks/tour.js' ), // Versioning with file modification time.
+				true  // Enqueue in the footer.
+			);
+
+			wp_enqueue_script(
 				'lsx-to-query-loops',  // Handle for the script.
 				LSX_TO_URL . 'assets/js/blocks/query-loops.js', // Path to your JavaScript file.
 				array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),  // Dependencies.

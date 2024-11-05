@@ -67,6 +67,7 @@ class Bindings {
 		add_filter( 'render_block', array( $this, 'render_itinerary_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'render_units_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'render_gallery_block' ), 10, 3 );
+		add_filter( 'render_block', array( $this, 'render_map_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'maybe_hide_varitaion' ), 10, 3 );
 	}
 
@@ -93,7 +94,7 @@ class Bindings {
 		register_block_bindings_source(
 			'lsx/tour-itinerary',
 			array(
-				'label' => __( 'Tour Itinerary', 'lsx-wetu-importer' ),
+				'label' => __( 'Itinerary', 'lsx-wetu-importer' ),
 				'get_value_callback' => array( $this, 'itinerary_callback' )
 			)
 		);
@@ -101,7 +102,7 @@ class Bindings {
 		register_block_bindings_source(
 			'lsx/accommodation-units',
 			array(
-				'label' => __( 'Accommodation Units', 'lsx-wetu-importer' ),
+				'label' => __( 'Units', 'lsx-wetu-importer' ),
 				'get_value_callback' => array( $this, 'units_callback' )
 			)
 		);
@@ -109,8 +110,16 @@ class Bindings {
 		register_block_bindings_source(
 			'lsx/gallery',
 			array(
-				'label' => __( 'TO Gallery', 'lsx-wetu-importer' ),
-				'get_value_callback' => array( $this, 'gallery_callback' )
+				'label' => __( 'Gallery', 'lsx-wetu-importer' ),
+				'get_value_callback' => array( $this, 'empty_callback' )
+			)
+		);
+
+		register_block_bindings_source(
+			'lsx/map',
+			array(
+				'label' => __( 'Map', 'lsx-wetu-importer' ),
+				'get_value_callback' => array( $this, 'empty_callback' )
 			)
 		);
 	}
@@ -567,7 +576,7 @@ class Bindings {
 	 * 
 	 * @return string Returns an empty string if the block is of type 'core/group', otherwise no return value.
 	 */
-	public function gallery_callback( $source_args, $block_instance ) {
+	public function empty_callback( $source_args, $block_instance ) {
 		if ( 'core/group' === $block_instance->parsed_block['blockName'] ) {
 			return '';
 		}
@@ -654,6 +663,58 @@ class Bindings {
 			$classes = implode( '', $matches[1] );
 		}
 		return $classes;
+	}
+
+	public function render_map_block( $block_content, $parsed_block, $block_obj ) {
+		// Determine if this is the custom block variation.
+		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
+			return $block_content;
+		}
+		$allowed_blocks = array(
+			'core/group'
+		);
+		$allowed_sources = array(
+			'lsx/map'
+		);
+
+		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
+			return $block_content; 
+		}
+
+		do_action( 'qm/debug', $parsed_block['attrs']['metadata']['bindings']['content']['source'] );
+
+		if ( ! isset( $parsed_block['attrs']['metadata']['bindings']['content']['source'] ) ) {
+			return $block_content;
+		}
+
+		if ( ! in_array( $parsed_block['attrs']['metadata']['bindings']['content']['source'], $allowed_sources ) ) {
+			return $block_content;
+		}
+
+		$type = 'wetu';
+		if ( isset( $parsed_block['attrs']['metadata']['bindings']['content']['type'] ) ) {
+			$type = $parsed_block['attrs']['metadata']['bindings']['content']['type'];
+		}
+
+		do_action( 'qm/debug', $block_content );
+
+		$map = '';
+		switch ( $type ) {
+			case 'wetu':
+				$wetu_id = get_post_meta( get_the_ID(), 'lsx_wetu_id', true );
+				if ( ! empty( $wetu_id ) ) {
+					$map = '<iframe width="100%" height="500" frameborder="0" allowfullscreen="" class="wetu-map" class="block perfmatters-lazy entered pmloaded" data-src="https://wetu.com/Itinerary/VI/' . $wetu_id . '?m=bdep" data-ll-status="loaded" src="https://wetu.com/Itinerary/VI/c5ab6e23-b482-4256-b509-1069506fe1c2?m=bdep"></iframe>';
+				}
+			break;
+
+			default:
+			break;
+		}
+
+		$pattern       = '/<figure\b[^>]*>(.*?)<\/figure>/s';
+		$block_content = preg_replace( $pattern, $map, $block_content );
+
+		return $block_content;
 	}
 
 	/**
