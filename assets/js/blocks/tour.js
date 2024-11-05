@@ -23,8 +23,8 @@ wp.domReady(() => {
 						bottom: 0
 					},
 					padding: {
-						top: "var:preset|spacing|x-small",
-						bottom: "var:preset|spacing|x-small",
+						top: "var:preset|spacing|medium",
+						bottom: "var:preset|spacing|medium",
 						left: 0,
 						right: 0
 					}
