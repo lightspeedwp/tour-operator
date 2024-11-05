@@ -44,13 +44,27 @@ class Patterns {
 	 * @return void
 	 */
 	public function register_block_patterns() {
-		$patterns = array(
+		$directory = LSX_TO_PATH . '/includes/patterns/';
+		
+		foreach ( glob( $directory . '*.php') as $file ) {
+			// Extract the filename without the directory path and extension
+			$filename = basename( $file, '.php' );
+			
+			// Use the filename to create the key
+			$key = 'lsx-tour-operator/' . $filename;
+		
+			// Require the file and add it to the patterns array
+			register_block_pattern( $key, require $file );
+		}
+
+		/*$patterns = array(
 			'lsx-tour-operator/itinerary-list' => require( LSX_TO_PATH . '/includes/patterns/itinerary-list.php' ),
 			'lsx-tour-operator/destination-card' => require( LSX_TO_PATH . '/includes/patterns/destination-card.php' ),
+			'lsx-tour-operator/room-card' => require( LSX_TO_PATH . '/includes/patterns/room-card.php' ),
 		);
 
 		foreach ( $patterns as $key => $function ) {
 			register_block_pattern( $key, $function );
-		}
+		}*/
 	}
 }

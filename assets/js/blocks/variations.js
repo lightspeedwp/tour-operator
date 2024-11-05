@@ -99,35 +99,115 @@ wp.domReady(() => {
   
 	// Accommodation Units Wrapper
 	wp.blocks.registerBlockVariation("core/group", {
-	  name: "lsx-tour-operator/accommodation-units",
-	  title: "Units",
-	  icon: "admin-multisite",
-	  category: "lsx-tour-operator",
-	  attributes: {
-		metadata: {
-		  name: "Units",
-		  bindings: {
-			content: {
-			  source: "lsx/accommodation-units",
+		name: "lsx-tour-operator/units",
+		title: "Units",
+		icon: "admin-multisite",
+		category: "lsx-tour-operator",
+		attributes: {
+			metadata: {
+				name: "Units",
+			},
+			align: "wide",
+			layout: {
+				type: "constrained",
+			},
+			className: "lsx-units-wrapper",
+			backgroundColor: 'primary-bg',
+			style: {
+				spacing: {
+					padding: {
+						top: "var:preset|spacing|medium",
+						bottom: "var:preset|spacing|medium",
+						left: "var:preset|spacing|x-small",
+						right: "var:preset|spacing|x-small",
+					},
+					margin : {
+						top : 0,
+						bottom: 0
+					}
+				}
+			}
+		},
+		innerBlocks: [
+		  [ 	'core/group',
+			  {
+				  layout: {
+					  type: "flex",
+					  flexWrap: "nowrap",
+				  }
+			  },
+			  [
+				  [
+					  'core/separator',
+					  {
+						  style: {
+							  layout: {
+								  selfStretch: 'fill',
+								  flexSize: null,
+							  },
+						  },
+						  backgroundColor: 'primary',
+					  }
+				  ],
+				  [
+					  'core/heading',
+					  {
+						  textAlign: 'center',
+						  content: 'Units',
+					  },
+				  ],
+				  [
+					  'core/separator',
+					  {
+						  style: {
+							  layout: {
+								  selfStretch: 'fill',
+								  flexSize: null,
+							  },
+						  },
+						  backgroundColor: 'primary',
+					  }
+				  ]
+			  ]
+		  ],
+		  [
+			  "core/paragraph",
+			  {
+				placeholder: "Replace this with the Rooms block, and select a pattern.",
+				align: "center",
+			  },
+		  ]
+	  ],
+		isDefault: false,
+	  });
+
+	  wp.blocks.registerBlockVariation("core/group", {
+		name: "lsx-tour-operator/unit-rooms",
+		title: "Rooms",
+		icon: "admin-multisite",
+		category: "lsx-tour-operator",
+		attributes: {
+		  metadata: {
+			name: "Rooms",
+			bindings: {
+			  content: {
+				source: "lsx/accommodation-units",
+				type: "rooms"
+			  },
 			},
 		  },
-		},
-		align: "wide",
-		layout: {
-		  type: "constrained",
-		},
-	  },
-	  innerBlocks: [
-		[
-		  "core/paragraph",
-		  {
-			placeholder: "Insert your Room pattern here.",
-			align: "center",
+		  align: "wide",
+		  layout: {
+			type: "constrained",
 		  },
+		},
+		innerBlocks: [
+			[ 'core/pattern', { slug: 'lsx-tour-operator/room-card' } ]
 		],
-	  ],
-	  isDefault: false,
-	});
+		isDefault: false,
+		scope: ["inserter"],
+		parent: ["lsx-tour-operator/units"], // Restricts to "lsx-tour-operator/units" block
+	  });
   
 	// Gallery Wrapper
 	wp.blocks.registerBlockVariation("core/gallery", {
