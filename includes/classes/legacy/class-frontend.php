@@ -74,16 +74,7 @@ class Frontend extends Tour_Operator {
 		add_filter( 'get_the_archive_title', array( $this, 'get_the_archive_title' ), 100 );
 
 		// Readmore
-		add_filter( 'excerpt_more_p', array( $this, 'remove_read_more_link' ) );
-		add_filter( 'the_content', array( $this, 'modify_read_more_link' ) );
 		remove_filter( 'term_description', 'wpautop' );
-		add_filter( 'term_description', array( $this, 'modify_term_description' ) );
-
-		add_action( 'lsx_to_widget_entry_content_top', array( $this, 'enable_crop_excerpt' ) );
-		add_action( 'lsx_to_widget_entry_content_bottom', array( $this, 'disable_crop_excerpt' ) );
-
-		add_action( 'lsx_to_entry_content_top', array( $this, 'enable_crop_excerpt' ) );
-		add_action( 'lsx_to_entry_content_bottom', array( $this, 'disable_crop_excerpt' ) );
 
 		add_filter( 'wpseo_breadcrumb_links', array( $this, 'wpseo_breadcrumb_links' ), 20 );
 	}
@@ -325,17 +316,6 @@ class Frontend extends Tour_Operator {
 	}
 
 	/**
-	 * add target="_blank" to the travel style links
-	 */
-	// public function links_new_window( $terms, $taxonomy ) {
-	// 	if ( 'travel-style' === $taxonomy || 'accommodation-type' === $taxonomy ) {
-	// 		$terms = str_replace( '<a', '<a target="_blank"', $terms );
-	// 	}
-
-	// 	return $terms;
-	// }
-
-	/**
 	 * Remove the "Archives:" from the post type archives.
 	 *
 	 * @param    $title
@@ -352,153 +332,6 @@ class Frontend extends Tour_Operator {
 		}
 
 		return $title;
-	}
-
-	/**
-	 * Remove the read more link.
-	 */
-	public function remove_read_more_link( $excerpt_more ) {
-		$post_type = get_post_type();
-
-		if ( isset( tour_operator()->options[ $post_type ] ) ) {
-			global $post;
-
-			$has_single = ! lsx_to_is_single_disabled();
-			$permalink = '';
-
-			if ( $has_single ) {
-				$permalink = get_the_permalink();
-			} elseif ( ! is_post_type_archive( $post_type ) ) {
-				$has_single = true;
-				$permalink = get_post_type_archive_link( $post_type ) . '#' . $post_type . '-' . $post->post_name;
-			}
-
-			if ( ! empty( $permalink ) ) {
-				$excerpt_more = '<p><a class="moretag" href="' . esc_url( $permalink ) . '">' . esc_html__( 'View more', 'lsx' ) . '</a></p>';
-			} else {
-				$excerpt_more = '';
-			}
-		}
-
-		return $excerpt_more;
-	}
-
-	/**
-	 * Modify the read more link
-	 *
-	 * @param        string $content
-	 *
-	 * @return    string $content
-	 */
-	public function modify_read_more_link( $content ) {
-		$content = str_replace( '<span id="more-' . esc_attr( get_the_ID() ) . '"></span>', '<a class="lsx-to-more-link more-link" data-collapsed="true" href="' . esc_url( get_permalink() ) . '">' . esc_html__( 'Read More', 'tour-operator' ) . '</a>', $content );
-
-		return $content;
-	}
-
-	/**
-	 * Enable: crop huge excerpts o archive and widget items.
-	 */
-	public function enable_crop_excerpt() {
-		add_filter( 'get_the_excerpt', array( $this, 'crop_excerpt' ), 1, 15 );
-	}
-
-	/**
-	 * Disable: crop huge excerpts on archive and widget items.
-	 */
-	public function disable_crop_excerpt() {
-		remove_filter( 'get_the_excerpt', array( $this, 'crop_excerpt' ), 15 );
-	}
-
-	/**
-	 * Crop huge excerpts on archive and widget items.
-	 */
-	public function crop_excerpt( $wpse_excerpt ) {
-		global $post;
-
-		if ( empty( $wpse_excerpt ) ) {
-			$wpse_excerpt = get_the_content( '' );
-		}
-
-		if ( ! empty( $wpse_excerpt ) ) {
-			$wpse_excerpt = strip_shortcodes( $wpse_excerpt );
-			$wpse_excerpt = apply_filters( 'the_content', $wpse_excerpt );
-			$wpse_excerpt = str_replace( ']]>', ']]>', $wpse_excerpt );
-			$wpse_excerpt = strip_tags( $wpse_excerpt, apply_filters( 'excerpt_strip_tags', '<h1>,<h2>,<h3>,<h4>,<h5>,<h6>,<a>,<button>,<blockquote>,<p>,<br>,<b>,<strong>,<i>,<u>,<ul>,<ol>,<li>,<span>,<div>' ) );
-
-			$excerpt_word_count = 25;
-			$excerpt_word_count = apply_filters( 'excerpt_length', $excerpt_word_count );
-
-			$tokens         = array();
-			$excerpt_output = '';
-			$has_more       = false;
-			$count          = 0;
-
-			preg_match_all( '/(<[^>]+>|[^<>\s]+)\s*/u', $wpse_excerpt, $tokens );
-
-			foreach ( $tokens[0] as $token ) {
-				if ( $count >= $excerpt_word_count ) {
-					$excerpt_output .= trim( $token );
-					$has_more = true;
-					break;
-				}
-
-				$count++;
-				$excerpt_output .= $token;
-			}
-
-			$wpse_excerpt = trim( force_balance_tags( $excerpt_output ) );
-
-			if ( $has_more ) {
-				$excerpt_end = '<a class="moretag" href="' . esc_url( get_permalink() ) . '">' . esc_html__( 'More', 'lsx' ) . '</a>';
-				$excerpt_end = apply_filters( 'excerpt_more', ' ' . $excerpt_end );
-
-				$pos = strrpos( $wpse_excerpt, '</' );
-
-				if ( false !== $pos ) {
-					// Inside last HTML tag
-					$wpse_excerpt = substr_replace( $wpse_excerpt, $excerpt_end, $pos, 0 ); /* Add read more next to last word */
-				} else {
-					// After the content
-					$wpse_excerpt .= $excerpt_end; /*Add read more in new paragraph */
-				}
-			}
-		}
-
-		return $wpse_excerpt;
-	}
-
-	/**
-	 * Modify term_description to use the_content filter
-	 *
-	 * @param        string $content
-	 *
-	 * @return    string $content
-	 */
-	public function modify_term_description( $content ) {
-		$more_link_text = esc_html__( 'Read More', 'tour-operator' );
-		$output         = '';
-
-		if ( preg_match( '/<!--more(.*?)?-->/', $content, $matches ) ) {
-			$content = explode( $matches[0], $content, 2 );
-
-			if ( ! empty( $matches[1] ) && ! empty( $more_link_text ) ) {
-				$more_link_text = strip_tags( wp_kses_no_null( trim( $matches[1] ) ) );
-			}
-		} else {
-			$content = array( $content );
-		}
-
-		$teaser = $content[0];
-		$output .= $teaser;
-
-		if ( count( $content ) > 1 ) {
-			$output .= "<a class=\"btn btn-default more-link\" data-collapsed=\"true\" href=\"#more-000\">{$more_link_text}</a>" . $content[1];
-		}
-
-		$output = apply_filters( 'the_content', $output );
-
-		return $output;
 	}
 
 	/**

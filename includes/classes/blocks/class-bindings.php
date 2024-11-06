@@ -203,6 +203,7 @@ class Bindings {
 				$single = false;
 			}
 			$value = lsx_to_custom_field_query( $source_args['key'], '', '', false, get_the_ID(), $single );
+			$value = preg_replace( '/^<p>(.*?)<\/p>$/', '$1', $value );
 		}
 		return $value;
 	}
