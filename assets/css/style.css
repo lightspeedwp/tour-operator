@@ -93,7 +93,8 @@
   margin-right: 0px;
 }
 
-.lsx-itinerary-wrapper .hidden {
+.lsx-itinerary-wrapper .hidden,
+.lsx-units-wrapper .hidden {
   display: none;
 }
 /*# sourceMappingURL=style.css.map */

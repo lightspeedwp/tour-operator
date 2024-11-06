@@ -65,6 +65,7 @@ class Accommodation {
 		$this->options = get_option( '_lsx-to_settings', false );
 
 		$this->unit_types = array(
+			''       => esc_html__( 'None', 'tour-operator' ),
 			'chalet' => esc_html__( 'Chalet', 'tour-operator' ),
 			'room'   => esc_html__( 'Room', 'tour-operator' ),
 			'spa'    => esc_html__( 'Spa', 'tour-operator' ),

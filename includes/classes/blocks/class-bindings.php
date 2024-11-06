@@ -291,7 +291,7 @@ class Bindings {
 					$pattern = '/<p\s+[^>]*\bclass="[^"]*\bitinerary-description\b[^"]*"[^>]*>.*?<\/p>/is';
 					
 					if ( ! empty( $value ) ) {
-						$value = '<div class="' . $classes . '"/>' . lsx_to_itinerary_description( false ) . '</div>';
+						$value = '<div class="' . $classes . '"/>' . $value . '</div>';
 					}
 				}
 			break;
@@ -325,8 +325,6 @@ class Bindings {
 			break;
 		}
 
-		do_action( 'qm/debug', $build );
-
 		// if the value is emtpy than add a css class to hide the element.
 		if ( '' === $value ) {
 			$pattern = '/\bitin-' . $field . '-wrapper\b/';
@@ -351,6 +349,9 @@ class Bindings {
 		global $rooms;
 		//Create our tag manager object so we can inject the itinerary content.
 		$tags = new \WP_HTML_Tag_Processor( $build );
+
+		do_action( 'qm/debug', $classname );
+
 		if ( $tags->next_tag( array( 'class_name' => $classname ) ) ) {
 			if ( $tags->next_tag( array( 'tag_name' => 'img' ) ) ) {
 
@@ -409,7 +410,7 @@ class Bindings {
 				foreach ( $this->unit_fields as $field ) {
 					$build   = $this->build_unit_field( $build, $field, $count );
 				}
-				$build   = $this->build_image( $build, 'unit-gallery' );
+				$build   = $this->build_image( $build, 'unit-image' );
 				$group[] = $build;
 				$count++;
 				
@@ -433,48 +434,46 @@ class Bindings {
 
 		switch ( $field ) {
 			case 'title':
-				// Regular expression to match any heading tag (h1-h6) with class "unit-title"
+				$value   = $rooms->item_title( '', '', false );
 				$pattern = '/(<h[1-6]\s+[^>]*\bclass="[^"]*\bunit-title\b[^"]*"[^>]*>).*?(<\/h[1-6]>)/is';
-
-				// Replacement pattern to insert "test" as the new innerHTML
-				$replacement = '$1' . $rooms->item_title( '', '', false ) . '$2';
 			break;
 
 			case 'description':
 				// Maintain any formatting set of the parent tag.
 				$classes = $this->find_description_classes( $build, 'unit' );
+
 				if ( '' !== $classes ) {
-					// Regular expression to replace any paragraph with class "unit-description"
-					$pattern     = '/<p\s+[^>]*\bclass="[^"]*\bunit-description\b[^"]*"[^>]*>.*?<\/p>/is';
-					// Replacement pattern to insert "test" as the new innerHTML
-					$replacement = '$1<div class="' . $classes . '"/>' . $rooms->item_description( false ) . '</div>$2';
+					$value   = $rooms->item_description( false );
+					$pattern = '/<p\s+[^>]*\bclass="[^"]*\bunit-description\b[^"]*"[^>]*>.*?<\/p>/is';
+					
+					if ( ! empty( $value ) ) {
+						$value = '<div class="' . $classes . '"/>' . $value . '</div>';
+					}
 				}
+
 			break;
 
 			case 'type':
-				// Regular expression to match any paragraph tag with class "unit-type"
+				$value   = $rooms->item_type( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bunit-type\b[^"]*"[^>]*>).*?(<\/p>)/is';
-    
-				// Replacement pattern to insert "test" as the new innerHTML
-				$replacement = '$1' . $rooms->item_type( '', '', false ) . '$2';
 			break;
 
 			case 'price':
-				// Regular expression to match any paragraph tag with class "itinerary-accommodation"
+				$value   = $rooms->item_price( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bunit-price\b[^"]*"[^>]*>).*?(<\/p>)/is';
-    
-				// Replacement pattern to insert "test" as the new innerHTML
-				$replacement = '$1' . $rooms->item_price( '', '', false ) . '$2';
 			break;
 
 			default:
 			break;
 		}
 
-		// Perform the replacement if the pattern is not empty
-		if ( '' !== $pattern ) {
-			$build = preg_replace($pattern, $replacement, $build);
+		// if the value is emtpy than add a css class to hide the element.
+		if ( '' === $value ) {
+			$pattern = '/\bunit-' . $field . '-wrapper\b/';
+			$value   = 'hidden unit-' . $field . '-wrapper';
 		}
+		$replacement = '$1' . $value . '$2';
+		$build       = preg_replace($pattern, $replacement, $build);
 		return $build;
 	}
 
