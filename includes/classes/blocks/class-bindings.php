@@ -95,7 +95,7 @@ class Bindings {
 			'lsx/tour-itinerary',
 			array(
 				'label' => __( 'Itinerary', 'lsx-wetu-importer' ),
-				'get_value_callback' => array( $this, 'itinerary_callback' )
+				'get_value_callback' => array( $this, 'empty_callback' )
 			)
 		);
 
@@ -103,7 +103,7 @@ class Bindings {
 			'lsx/accommodation-units',
 			array(
 				'label' => __( 'Units', 'lsx-wetu-importer' ),
-				'get_value_callback' => array( $this, 'units_callback' )
+				'get_value_callback' => array( $this, 'empty_callback' )
 			)
 		);
 
@@ -205,24 +205,6 @@ class Bindings {
 			$value = lsx_to_custom_field_query( $source_args['key'], '', '', false, get_the_ID(), $single );
 		}
 		return $value;
-	}
-
-	/**
-	 * Callback function to process itinerary-related blocks.
-	 *
-	 * This function checks if the given block instance is of type 'core/paragraph'
-	 * and returns an empty string if it is. It serves as a conditional handler
-	 * based on the block type.
-	 *
-	 * @param array $source_args Arguments provided by the source.
-	 * @param object $block_instance Instance of the block currently being processed.
-	 * 
-	 * @return string Returns an empty string if the block is of type 'core/paragraph', otherwise no return value.
-	 */
-	public function itinerary_callback( $source_args, $block_instance ) {
-		if ( 'core/group' === $block_instance->parsed_block['blockName'] ) {
-			return '';
-		}
 	}
 
 	/**
@@ -386,24 +368,6 @@ class Bindings {
 		return $build;
 	}
 
-	/**
-	 * Callback function to process itinerary-related blocks.
-	 *
-	 * This function checks if the given block instance is of type 'core/group'
-	 * and returns an empty string if it is. It serves as a conditional handler
-	 * based on the block type.
-	 *
-	 * @param array $source_args Arguments provided by the source.
-	 * @param object $block_instance Instance of the block currently being processed.
-	 * 
-	 * @return string Returns an empty string if the block is of type 'core/group', otherwise no return value.
-	 */
-	public function units_callback( $source_args, $block_instance ) {
-		if ( 'core/group' === $block_instance->parsed_block['blockName'] ) {
-			return '';
-		}
-	}
-
 	public function render_units_block( $block_content, $parsed_block, $block_obj ) {
 		// Determine if this is the custom block variation.
 		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
@@ -464,8 +428,9 @@ class Bindings {
 	 */
 	public function build_unit_field( $build = '', $field = '', $count = 1 ) {
 		global $rooms;
-		$pattern     = '';
-		$replacement = '';
+		$pattern = '';
+		$value   = '';
+
 		switch ( $field ) {
 			case 'title':
 				// Regular expression to match any heading tag (h1-h6) with class "unit-title"
