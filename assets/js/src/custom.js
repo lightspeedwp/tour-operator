@@ -125,6 +125,9 @@ if ( window.location.hash ) {
 	 * @subpackage scripts
 	 */
 	lsx_to.pre_build_slider = function( $slider ) {
+
+		$slider.removeClass( 'is-layout-grid' );
+
 		$slider.on( 'init', function( event, slick ) {
 			if ( slick.options.arrows && slick.slideCount > slick.options.slidesToShow ) {
 				$slider.addClass( 'slick-has-arrows' );
@@ -183,6 +186,8 @@ if ( window.location.hash ) {
 			}
 
 			if ( 1 < $this.children.length ) {
+				console.log($this);
+
 				$this.slick( {
 					draggable: lsx_to_params.slickSlider.desktop.draggable,
 					infinite: lsx_to_params.slickSlider.desktop.infinite,
@@ -193,6 +198,8 @@ if ( window.location.hash ) {
 					slidesToScroll: lsx_to_params.slickSlider.desktop.slidesToScroll,
 					autoplay: autoplay,
 					autoplaySpeed: autoplay_speed,
+					appendArrows: $this.parent(),
+					appendDots: $this.parent(),
 					responsive: [
 						{
 							breakpoint: lsx_to_params.slickSlider.tablet.breakpoint,
