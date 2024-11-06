@@ -176,14 +176,10 @@ class Bindings {
 			
 							$values[] = '<a href="' . get_permalink( $pid ) . '">' . get_the_title( $pid ) . '</a>';
 						}
-						$value = implode( ',', $values );
+						$value = implode( ', ', $values );
 					} else if ( ! is_array( $value ) && '' !== $value ) {
 						
 						switch ( $source_args['key'] ) {
-							case 'lsx_wetu_id':
-								$value = '<iframe width="100%" height="500" frameborder="0" allowfullscreen="" id="wetu_map" data-ll-status="loaded" src="https://wetu.com/Map/indexv2.html?itinerary=' . $value . '?m=b"></iframe>';
-								break;
-			
 							default:
 								$value = '<a href="' . get_permalink( $value ) . '">' . get_the_title( $value ) . '</a>';
 							break;	
@@ -695,8 +691,6 @@ class Bindings {
 		if ( isset( $parsed_block['attrs']['metadata']['bindings']['content']['type'] ) ) {
 			$type = $parsed_block['attrs']['metadata']['bindings']['content']['type'];
 		}
-
-		do_action( 'qm/debug', $block_content );
 
 		$map = '';
 		switch ( $type ) {
