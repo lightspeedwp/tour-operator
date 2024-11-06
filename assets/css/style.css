@@ -92,4 +92,8 @@
 .lsx-price-wrapper .amount .currency-icon:after {
   margin-right: 0px;
 }
+
+.lsx-itinerary-wrapper .hidden {
+  display: none;
+}
 /*# sourceMappingURL=style.css.map */

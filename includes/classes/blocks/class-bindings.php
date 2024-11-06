@@ -294,75 +294,66 @@ class Bindings {
 	 */
 	public function build_itinerary_field( $build = '', $field = '', $count = 1 ) {
 		$pattern     = '';
-		$replacement = '';
+		$value       = '';
+
 		switch ( $field ) {
 			case 'title':
-				// Regular expression to match any heading tag (h1-h6) with class "itinerary-title"
-				$pattern     = '/(<h[1-6]\s+[^>]*\bclass="[^"]*\bitinerary-title\b[^"]*"[^>]*>).*?(<\/h[1-6]>)/is';
-
-				// Replacement pattern to insert "test" as the new innerHTML
-				$replacement = '$1' . lsx_to_itinerary_title( false ) . '$2';
+				$value   = lsx_to_itinerary_title( false );
+				$pattern = '/(<h[1-6]\s+[^>]*\bclass="[^"]*\bitinerary-title\b[^"]*"[^>]*>).*?(<\/h[1-6]>)/is';
 			break;
 
 			case 'description':
-				// Maintain any formatting set of the parent tag.
 				$classes = $this->find_description_classes( $build, 'itinerary' );
 				if ( '' !== $classes ) {
-					// Regular expression to replace any paragraph with class "itinerary-description"
-					$pattern     = '/<p\s+[^>]*\bclass="[^"]*\bitinerary-description\b[^"]*"[^>]*>.*?<\/p>/is';
-					// Replacement pattern to insert "test" as the new innerHTML
-					$replacement = '$1<div class="' . $classes . '"/>' . lsx_to_itinerary_description( false ) . '</div>$2';
+					$value   = lsx_to_itinerary_description( false );
+					$pattern = '/<p\s+[^>]*\bclass="[^"]*\bitinerary-description\b[^"]*"[^>]*>.*?<\/p>/is';
+					
+					if ( ! empty( $value ) ) {
+						$value = '<div class="' . $classes . '"/>' . lsx_to_itinerary_description( false ) . '</div>';
+					}
 				}
 			break;
 
 			case 'location':
-				// Regular expression to match any paragraph tag with class "itinerary-location"
+				$value   = lsx_to_itinerary_destinations( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-location\b[^"]*"[^>]*>).*?(<\/p>)/is';
-    
-				// Replacement pattern to insert "test" as the new innerHTML
-				$replacement = '$1' . lsx_to_itinerary_destinations( '', '', false ) . '$2';
 			break;
 
 			case 'accommodation':
-				// Regular expression to match any paragraph tag with class "itinerary-accommodation"
+				$value   = lsx_to_itinerary_accommodation( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-accommodation\b[^"]*"[^>]*>).*?(<\/p>)/is';
-    
-				// Replacement pattern to insert "test" as the new innerHTML
-				$replacement = '$1' . lsx_to_itinerary_accommodation( '', '', false ) . '$2';
 			break;
 
 			case 'type':
-				// Regular expression to match any paragraph tag with class "itinerary-accommodation"
+				$value   = lsx_to_itinerary_accommodation_type( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-type\b[^"]*"[^>]*>).*?(<\/p>)/is';
-    
-				// Replacement pattern to insert "test" as the new innerHTML
-				$replacement = '$1' . lsx_to_itinerary_accommodation_type( '', '', false ) . '$2';
 			break;
 
 			case 'drinks':
-				// Regular expression to match any paragraph tag with class "itinerary-accommodation"
-				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-drinks\b[^"]*"[^>]*>).*?(<\/p>)/is';
-    
-				// Replacement pattern to insert "test" as the new innerHTML
-				$replacement = '$1' . lsx_to_itinerary_drinks_basis( '', '', false ) . '$2';
+				$value = lsx_to_itinerary_drinks_basis( '', '', false );
+				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-drinks\b[^"]*"[^>]*>).*?(<\/p>)/is';	
 			break;
 
 			case 'room':
-				// Regular expression to match any paragraph tag with class "itinerary-accommodation"
+				$value = lsx_to_itinerary_room_basis( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-room\b[^"]*"[^>]*>).*?(<\/p>)/is';
-    
-				// Replacement pattern to insert "test" as the new innerHTML
-				$replacement = '$1' . lsx_to_itinerary_room_basis( '', '', false ) . '$2';
 			break;
 
 			default:
 			break;
 		}
 
-		// Perform the replacement if the pattern is not empty
-		if ( '' !== $pattern ) {
-			$build = preg_replace($pattern, $replacement, $build);
+		do_action( 'qm/debug', $build );
+
+		// if the value is emtpy than add a css class to hide the element.
+		if ( '' === $value ) {
+			$pattern = '/\bitin-' . $field . '-wrapper\b/';
+			$value   = 'hidden itin-' . $field . '-wrapper';
 		}
+
+		$replacement = '$1' . $value . '$2';
+		$build = preg_replace( $pattern, $replacement, $build);
+		
 		return $build;
 	}
 
@@ -740,13 +731,20 @@ class Bindings {
 		if ( empty( $matches ) ) {
 			return $block_content;
 		}
-		
+
 		if ( ! empty( $matches ) && isset( $matches[0] ) ) {
 			// Save the first match to a variable
 			$key = str_replace( [ 'facts-', 'lsx-', '-wrapper' ], '', $matches[0] );
 		} else {
 			return $block_content;
 		}
+
+		/*
+		 * 1 - Check if it is an itinerary or a units query
+		 * 2 - See if it is a post query
+		 * 3 - See if it is a taxonomy query
+		 * 4 - Lastly default to the custom fields
+		 */
 
 		if ( 0 < stripos( $key, '-query' ) ) {
 			
@@ -806,8 +804,6 @@ class Bindings {
 			if ( 'include_exclude' === $key ) {
 				$key_array = [ 'included', 'not_included' ];
 			}
-
-			do_action( 'qm/debug', $key_array );
 
 			foreach ( $key_array as $meta_key ) {
 				$value = lsx_to_custom_field_query( $meta_key, '', '', false );
