@@ -677,8 +677,6 @@ class Bindings {
 			return $block_content; 
 		}
 
-		do_action( 'qm/debug', $parsed_block['attrs']['metadata']['bindings']['content']['source'] );
-
 		if ( ! isset( $parsed_block['attrs']['metadata']['bindings']['content']['source'] ) ) {
 			return $block_content;
 		}
@@ -800,9 +798,25 @@ class Bindings {
 				$block_content = '';
 			}
 		} else {
-			$key = str_replace( '-', '_', $key );
-			$value = lsx_to_custom_field_query( $key, '', '', false );
-			if ( empty( $value ) || '' === $value ) {
+			$key        = str_replace( '-', '_', $key );
+			$key_array  = [ $key ];
+			$has_values = false;
+
+			// If this is a wrapper that houses many fields, then we need to review them all.
+			if ( 'include_exclude' === $key ) {
+				$key_array = [ 'included', 'not_included' ];
+			}
+
+			do_action( 'qm/debug', $key_array );
+
+			foreach ( $key_array as $meta_key ) {
+				$value = lsx_to_custom_field_query( $meta_key, '', '', false );
+				if ( ! empty( $value ) && '' !== $value ) {
+					$has_values = true;
+				}
+			}
+			
+			if ( false === $has_values ) {
 				$block_content = '';
 			}
 		}
