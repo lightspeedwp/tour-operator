@@ -147,7 +147,7 @@ if ( window.location.hash ) {
 	 * @subpackage scripts
 	 */
 	lsx_to.build_slider = function( window_width ) {
-		$( '.lsx-to-slider .lsx-to-slider-inner:not(.slider-disabled)' ).each( function() {
+		$( '.lsx-to-slider .wp-block-post-template:not(.slider-disabled)' ).each( function() {
 			var $this = $( this ),
 				interval = $this.data( 'interval' ),
 				currentSettings = $this.data( 'slick' ),

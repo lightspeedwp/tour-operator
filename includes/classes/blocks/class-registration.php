@@ -50,10 +50,18 @@ class Registration {
 
 			// Enqueue linked-cover.js
 			wp_enqueue_script(
-				'lsx-linked-cover',
+				'lsx-to-linked-cover',
 				LSX_TO_URL . 'assets/js/blocks/linked-cover.js',
 				array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-data', 'wp-hooks' ),
 				filemtime( LSX_TO_PATH . 'assets/js/blocks/linked-cover.js' )
+			);
+
+			// Enqueue linked-cover.js
+			wp_enqueue_script(
+				'lsx-to-slider-query',
+				LSX_TO_URL . 'assets/js/blocks/slider-query.js',
+				array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components' ),
+				filemtime( LSX_TO_PATH . 'assets/js/blocks/slider-query.js' )
 			);
 
 			if ( array_key_exists( get_post_type(), tour_operator()->get_post_types() ) ) {
