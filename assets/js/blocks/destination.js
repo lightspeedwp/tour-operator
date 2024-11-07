@@ -301,7 +301,7 @@ wp.domReady(() => {
 			metadata: {
 				name: 'Banking',
 			},
-			className: 'lsx-additional-info-wrapper',
+			className: 'lsx-banking-wrapper',
 			style: {
 				border: {
 					radius: '8px'
@@ -314,6 +314,10 @@ wp.domReady(() => {
 						right: '0px'
 					},
 					blockGap: '0px'
+				},
+				layout: {
+					selfStretch: 'fixed',
+					flexSize: '25%'
 				}
 			},
 			backgroundColor: 'base',
@@ -323,6 +327,9 @@ wp.domReady(() => {
 		},
 		innerBlocks: [
 			['core/group', {
+					metadata: {
+						name: 'Content'
+					},
 					style: {
 						spacing: {
 							margin: {
@@ -346,6 +353,9 @@ wp.domReady(() => {
 				},
 				[
 					['core/group', {
+							metadata: {
+								name: 'Title'
+							},
 							style: {
 								dimensions: {
 									minHeight: ''
@@ -378,6 +388,10 @@ wp.domReady(() => {
 						]
 					],
 					['core/group', {
+							className: 'lsx-to-more-content',
+							metadata: {
+								name: 'Description'
+							},
 							style: {
 								spacing: {
 									padding: {
@@ -421,6 +435,10 @@ wp.domReady(() => {
 			['core/buttons', {},
 				[
 					['core/button', {
+						metadata: {
+							name: 'More Button'
+						},
+						className: 'lsx-to-more-link more-link',
 						backgroundColor: 'primary',
 						width: 100,
 						style: {
@@ -431,7 +449,7 @@ wp.domReady(() => {
 								}
 							}
 						},
-						content: 'View More'
+						text: 'View More'
 					}]
 				]
 			]
