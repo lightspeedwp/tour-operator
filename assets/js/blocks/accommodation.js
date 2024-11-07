@@ -1011,7 +1011,7 @@ wp.domReady(() => {
 								content: {
 									source: 'lsx/post-meta',
 									args: {
-										key: 'special-interests'
+										key: 'special_interests'
 									}
 								}
 							}

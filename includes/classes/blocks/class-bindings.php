@@ -198,8 +198,15 @@ class Bindings {
 			return 'test_image';
 		} elseif ( 'core/paragraph' === $block_instance->parsed_block['blockName'] ) {
 	
+			$multiples = [
+				'best_time_to_visit',
+				'spoken_languages',
+				'suggested_visitor_types',
+				'special_interests'
+			];
+
 			$single = true;
-			if ( 'best_time_to_visit' === $source_args['key'] ) {
+			if (  in_array( $source_args['key'], $multiples )  ) {
 				$single = false;
 			}
 			$value = lsx_to_custom_field_query( $source_args['key'], '', '', false, get_the_ID(), $single );
