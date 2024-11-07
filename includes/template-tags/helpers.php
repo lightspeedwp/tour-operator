@@ -284,7 +284,7 @@ function lsx_to_custom_field_query( $meta_key = false, $before = '', $after = ''
 			$value = get_post_meta( $post_id, $meta_key, $single );
 
 			if ( is_array( $value ) ) {
-				$value = implode( ',', $value );
+				$value = implode( ', ', $value );
 			}
 		}
 
