@@ -405,26 +405,28 @@ wp.domReady(() => {
 	});
 
 	wp.blocks.registerBlockVariation('core/button', {
-        name: 'lsx-tour-operator/read-more',
-        title: 'Read More Button',
-        attributes: {
-            className: 'wp-block-buttons is-layout-flex wp-block-buttons-is-layout-flex',
-        },
-        innerBlocks: [
-            {
-                name: 'core/button',
-                attributes: {
-                    className: 'lsx-to-more-link more-link has-custom-width wp-block-button__width-100',
-                    style: {
-                        borderBottomLeftRadius: '8px',
-                        borderBottomRightRadius: '8px',
-                    },
-                    backgroundColor: 'primary',
-                    text: 'View More',
-                },
-            },
-        ],
+        name: 'lsx-tour-operator/more-link',
+        title: 'More Button',
+		name: 'core/button',
+		attributes: {
+			className: 'lsx-to-more-link more-link',
+			metadata: {
+				name: 'More Button'
+			},
+			style: {
+				border: {
+					radius: {
+						topLeft: '0px 8px 8px 0px',
+						topRight: '0px 8px 8px 0px',
+						bottomLeft: '8px',
+						bottomRight: '8px'
+					}
+				}
+			},
+			backgroundColor: 'primary',
+			width: 100,
+			text: 'View More',
+		}
     });
-
 });
-  
+
