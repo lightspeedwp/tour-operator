@@ -315,6 +315,7 @@ class Bindings {
 			break;
 
 			case 'type':
+				do_action( 'qm/debug', lsx_to_itinerary_accommodation_type( '', '', false ) );
 				$value   = lsx_to_itinerary_accommodation_type( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-type\b[^"]*"[^>]*>).*?(<\/p>)/is';
 			break;
@@ -334,7 +335,7 @@ class Bindings {
 		}
 
 		// if the value is emtpy than add a css class to hide the element.
-		if ( '' === $value ) {
+		if ( '' === $value || false === $value || empty( $value ) ) {
 			$pattern = '/\bitin-' . $field . '-wrapper\b/';
 			$value   = 'hidden itin-' . $field . '-wrapper';
 		}
