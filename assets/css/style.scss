@@ -3,4 +3,13 @@
  */
 
 @import 'scss/icons';
+@import 'scss/slider';
+
+
+.lsx-itinerary-wrapper,
+.lsx-units-wrapper {
+	.hidden {
+		display: none;
+	}
+}
  

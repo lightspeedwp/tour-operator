@@ -95,7 +95,7 @@ class Bindings {
 			'lsx/tour-itinerary',
 			array(
 				'label' => __( 'Itinerary', 'lsx-wetu-importer' ),
-				'get_value_callback' => array( $this, 'itinerary_callback' )
+				'get_value_callback' => array( $this, 'empty_callback' )
 			)
 		);
 
@@ -103,7 +103,7 @@ class Bindings {
 			'lsx/accommodation-units',
 			array(
 				'label' => __( 'Units', 'lsx-wetu-importer' ),
-				'get_value_callback' => array( $this, 'units_callback' )
+				'get_value_callback' => array( $this, 'empty_callback' )
 			)
 		);
 
@@ -176,14 +176,10 @@ class Bindings {
 			
 							$values[] = '<a href="' . get_permalink( $pid ) . '">' . get_the_title( $pid ) . '</a>';
 						}
-						$value = implode( ',', $values );
+						$value = implode( ', ', $values );
 					} else if ( ! is_array( $value ) && '' !== $value ) {
 						
 						switch ( $source_args['key'] ) {
-							case 'lsx_wetu_id':
-								$value = '<iframe width="100%" height="500" frameborder="0" allowfullscreen="" id="wetu_map" data-ll-status="loaded" src="https://wetu.com/Map/indexv2.html?itinerary=' . $value . '?m=b"></iframe>';
-								break;
-			
 							default:
 								$value = '<a href="' . get_permalink( $value ) . '">' . get_the_title( $value ) . '</a>';
 							break;	
@@ -202,31 +198,30 @@ class Bindings {
 			return 'test_image';
 		} elseif ( 'core/paragraph' === $block_instance->parsed_block['blockName'] ) {
 	
+			$multiples = [
+				'best_time_to_visit',
+				'spoken_languages',
+				'suggested_visitor_types',
+				'special_interests'
+			];
+
 			$single = true;
-			if ( 'best_time_to_visit' === $source_args['key'] ) {
+			if (  in_array( $source_args['key'], $multiples )  ) {
 				$single = false;
 			}
 			$value = lsx_to_custom_field_query( $source_args['key'], '', '', false, get_the_ID(), $single );
+
+			$date_transforms = [
+				'booking_validity_start',
+				'booking_validity_end',
+			];
+			if (  in_array( $source_args['key'], $date_transforms )  ) {
+				$value = wp_date( 'j M Y', $value );
+			}
+
+			$value = preg_replace( '/^<p>(.*?)<\/p>$/', '$1', $value );
 		}
 		return $value;
-	}
-
-	/**
-	 * Callback function to process itinerary-related blocks.
-	 *
-	 * This function checks if the given block instance is of type 'core/paragraph'
-	 * and returns an empty string if it is. It serves as a conditional handler
-	 * based on the block type.
-	 *
-	 * @param array $source_args Arguments provided by the source.
-	 * @param object $block_instance Instance of the block currently being processed.
-	 * 
-	 * @return string Returns an empty string if the block is of type 'core/paragraph', otherwise no return value.
-	 */
-	public function itinerary_callback( $source_args, $block_instance ) {
-		if ( 'core/group' === $block_instance->parsed_block['blockName'] ) {
-			return '';
-		}
 	}
 
 	/**
@@ -298,75 +293,65 @@ class Bindings {
 	 */
 	public function build_itinerary_field( $build = '', $field = '', $count = 1 ) {
 		$pattern     = '';
-		$replacement = '';
+		$value       = '';
+
 		switch ( $field ) {
 			case 'title':
-				// Regular expression to match any heading tag (h1-h6) with class "itinerary-title"
-				$pattern     = '/(<h[1-6]\s+[^>]*\bclass="[^"]*\bitinerary-title\b[^"]*"[^>]*>).*?(<\/h[1-6]>)/is';
-
-				// Replacement pattern to insert "test" as the new innerHTML
-				$replacement = '$1' . lsx_to_itinerary_title( false ) . '$2';
+				$value   = lsx_to_itinerary_title( false );
+				$pattern = '/(<h[1-6]\s+[^>]*\bclass="[^"]*\bitinerary-title\b[^"]*"[^>]*>).*?(<\/h[1-6]>)/is';
 			break;
 
 			case 'description':
-				// Maintain any formatting set of the parent tag.
 				$classes = $this->find_description_classes( $build, 'itinerary' );
 				if ( '' !== $classes ) {
-					// Regular expression to replace any paragraph with class "itinerary-description"
-					$pattern     = '/<p\s+[^>]*\bclass="[^"]*\bitinerary-description\b[^"]*"[^>]*>.*?<\/p>/is';
-					// Replacement pattern to insert "test" as the new innerHTML
-					$replacement = '$1<div class="' . $classes . '"/>' . lsx_to_itinerary_description( false ) . '</div>$2';
+					$value   = lsx_to_itinerary_description( false );
+					$pattern = '/<p\s+[^>]*\bclass="[^"]*\bitinerary-description\b[^"]*"[^>]*>.*?<\/p>/is';
+					
+					if ( ! empty( $value ) ) {
+						$value = '<div class="' . $classes . '"/>' . $value . '</div>';
+					}
 				}
 			break;
 
 			case 'location':
-				// Regular expression to match any paragraph tag with class "itinerary-location"
+				$value   = lsx_to_itinerary_destinations( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-location\b[^"]*"[^>]*>).*?(<\/p>)/is';
-    
-				// Replacement pattern to insert "test" as the new innerHTML
-				$replacement = '$1' . lsx_to_itinerary_destinations( '', '', false ) . '$2';
 			break;
 
 			case 'accommodation':
-				// Regular expression to match any paragraph tag with class "itinerary-accommodation"
+				$value   = lsx_to_itinerary_accommodation( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-accommodation\b[^"]*"[^>]*>).*?(<\/p>)/is';
-    
-				// Replacement pattern to insert "test" as the new innerHTML
-				$replacement = '$1' . lsx_to_itinerary_accommodation( '', '', false ) . '$2';
 			break;
 
 			case 'type':
-				// Regular expression to match any paragraph tag with class "itinerary-accommodation"
+				do_action( 'qm/debug', lsx_to_itinerary_accommodation_type( '', '', false ) );
+				$value   = lsx_to_itinerary_accommodation_type( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-type\b[^"]*"[^>]*>).*?(<\/p>)/is';
-    
-				// Replacement pattern to insert "test" as the new innerHTML
-				$replacement = '$1' . lsx_to_itinerary_accommodation_type( '', '', false ) . '$2';
 			break;
 
 			case 'drinks':
-				// Regular expression to match any paragraph tag with class "itinerary-accommodation"
-				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-drinks\b[^"]*"[^>]*>).*?(<\/p>)/is';
-    
-				// Replacement pattern to insert "test" as the new innerHTML
-				$replacement = '$1' . lsx_to_itinerary_drinks_basis( '', '', false ) . '$2';
+				$value = lsx_to_itinerary_drinks_basis( '', '', false );
+				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-drinks\b[^"]*"[^>]*>).*?(<\/p>)/is';	
 			break;
 
 			case 'room':
-				// Regular expression to match any paragraph tag with class "itinerary-accommodation"
+				$value = lsx_to_itinerary_room_basis( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-room\b[^"]*"[^>]*>).*?(<\/p>)/is';
-    
-				// Replacement pattern to insert "test" as the new innerHTML
-				$replacement = '$1' . lsx_to_itinerary_room_basis( '', '', false ) . '$2';
 			break;
 
 			default:
 			break;
 		}
 
-		// Perform the replacement if the pattern is not empty
-		if ( '' !== $pattern ) {
-			$build = preg_replace($pattern, $replacement, $build);
+		// if the value is emtpy than add a css class to hide the element.
+		if ( '' === $value || false === $value || empty( $value ) ) {
+			$pattern = '/\bitin-' . $field . '-wrapper\b/';
+			$value   = 'hidden itin-' . $field . '-wrapper';
 		}
+
+		$replacement = '$1' . $value . '$2';
+		$build = preg_replace( $pattern, $replacement, $build);
+		
 		return $build;
 	}
 
@@ -382,6 +367,9 @@ class Bindings {
 		global $rooms;
 		//Create our tag manager object so we can inject the itinerary content.
 		$tags = new \WP_HTML_Tag_Processor( $build );
+
+		do_action( 'qm/debug', $classname );
+
 		if ( $tags->next_tag( array( 'class_name' => $classname ) ) ) {
 			if ( $tags->next_tag( array( 'tag_name' => 'img' ) ) ) {
 
@@ -397,24 +385,6 @@ class Bindings {
 		}
 		
 		return $build;
-	}
-
-	/**
-	 * Callback function to process itinerary-related blocks.
-	 *
-	 * This function checks if the given block instance is of type 'core/group'
-	 * and returns an empty string if it is. It serves as a conditional handler
-	 * based on the block type.
-	 *
-	 * @param array $source_args Arguments provided by the source.
-	 * @param object $block_instance Instance of the block currently being processed.
-	 * 
-	 * @return string Returns an empty string if the block is of type 'core/group', otherwise no return value.
-	 */
-	public function units_callback( $source_args, $block_instance ) {
-		if ( 'core/group' === $block_instance->parsed_block['blockName'] ) {
-			return '';
-		}
 	}
 
 	public function render_units_block( $block_content, $parsed_block, $block_obj ) {
@@ -458,7 +428,7 @@ class Bindings {
 				foreach ( $this->unit_fields as $field ) {
 					$build   = $this->build_unit_field( $build, $field, $count );
 				}
-				$build   = $this->build_image( $build, 'unit-gallery' );
+				$build   = $this->build_image( $build, 'unit-image' );
 				$group[] = $build;
 				$count++;
 				
@@ -477,52 +447,51 @@ class Bindings {
 	 */
 	public function build_unit_field( $build = '', $field = '', $count = 1 ) {
 		global $rooms;
-		$pattern     = '';
-		$replacement = '';
+		$pattern = '';
+		$value   = '';
+
 		switch ( $field ) {
 			case 'title':
-				// Regular expression to match any heading tag (h1-h6) with class "unit-title"
+				$value   = $rooms->item_title( '', '', false );
 				$pattern = '/(<h[1-6]\s+[^>]*\bclass="[^"]*\bunit-title\b[^"]*"[^>]*>).*?(<\/h[1-6]>)/is';
-
-				// Replacement pattern to insert "test" as the new innerHTML
-				$replacement = '$1' . $rooms->item_title( '', '', false ) . '$2';
 			break;
 
 			case 'description':
 				// Maintain any formatting set of the parent tag.
 				$classes = $this->find_description_classes( $build, 'unit' );
+
 				if ( '' !== $classes ) {
-					// Regular expression to replace any paragraph with class "unit-description"
-					$pattern     = '/<p\s+[^>]*\bclass="[^"]*\bunit-description\b[^"]*"[^>]*>.*?<\/p>/is';
-					// Replacement pattern to insert "test" as the new innerHTML
-					$replacement = '$1<div class="' . $classes . '"/>' . $rooms->item_description( false ) . '</div>$2';
+					$value   = $rooms->item_description( false );
+					$pattern = '/<p\s+[^>]*\bclass="[^"]*\bunit-description\b[^"]*"[^>]*>.*?<\/p>/is';
+					
+					if ( ! empty( $value ) ) {
+						$value = '<div class="' . $classes . '"/>' . $value . '</div>';
+					}
 				}
+
 			break;
 
 			case 'type':
-				// Regular expression to match any paragraph tag with class "unit-type"
+				$value   = $rooms->item_type( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bunit-type\b[^"]*"[^>]*>).*?(<\/p>)/is';
-    
-				// Replacement pattern to insert "test" as the new innerHTML
-				$replacement = '$1' . $rooms->item_type( '', '', false ) . '$2';
 			break;
 
 			case 'price':
-				// Regular expression to match any paragraph tag with class "itinerary-accommodation"
+				$value   = $rooms->item_price( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bunit-price\b[^"]*"[^>]*>).*?(<\/p>)/is';
-    
-				// Replacement pattern to insert "test" as the new innerHTML
-				$replacement = '$1' . $rooms->item_price( '', '', false ) . '$2';
 			break;
 
 			default:
 			break;
 		}
 
-		// Perform the replacement if the pattern is not empty
-		if ( '' !== $pattern ) {
-			$build = preg_replace($pattern, $replacement, $build);
+		// if the value is emtpy than add a css class to hide the element.
+		if ( '' === $value ) {
+			$pattern = '/\bunit-' . $field . '-wrapper\b/';
+			$value   = 'hidden unit-' . $field . '-wrapper';
 		}
+		$replacement = '$1' . $value . '$2';
+		$build       = preg_replace($pattern, $replacement, $build);
 		return $build;
 	}
 
@@ -681,8 +650,6 @@ class Bindings {
 			return $block_content; 
 		}
 
-		do_action( 'qm/debug', $parsed_block['attrs']['metadata']['bindings']['content']['source'] );
-
 		if ( ! isset( $parsed_block['attrs']['metadata']['bindings']['content']['source'] ) ) {
 			return $block_content;
 		}
@@ -695,8 +662,6 @@ class Bindings {
 		if ( isset( $parsed_block['attrs']['metadata']['bindings']['content']['type'] ) ) {
 			$type = $parsed_block['attrs']['metadata']['bindings']['content']['type'];
 		}
-
-		do_action( 'qm/debug', $block_content );
 
 		$map = '';
 		switch ( $type ) {
@@ -748,13 +713,20 @@ class Bindings {
 		if ( empty( $matches ) ) {
 			return $block_content;
 		}
-		
+
 		if ( ! empty( $matches ) && isset( $matches[0] ) ) {
 			// Save the first match to a variable
 			$key = str_replace( [ 'facts-', 'lsx-', '-wrapper' ], '', $matches[0] );
 		} else {
 			return $block_content;
 		}
+
+		/*
+		 * 1 - Check if it is an itinerary or a units query
+		 * 2 - See if it is a post query
+		 * 3 - See if it is a taxonomy query
+		 * 4 - Lastly default to the custom fields
+		 */
 
 		if ( 0 < stripos( $key, '-query' ) ) {
 			
@@ -806,9 +778,23 @@ class Bindings {
 				$block_content = '';
 			}
 		} else {
-			$key = str_replace( '-', '_', $key );
-			$value = lsx_to_custom_field_query( $key, '', '', false );
-			if ( empty( $value ) || '' === $value ) {
+			$key        = str_replace( '-', '_', $key );
+			$key_array  = [ $key ];
+			$has_values = false;
+
+			// If this is a wrapper that houses many fields, then we need to review them all.
+			if ( 'include_exclude' === $key ) {
+				$key_array = [ 'included', 'not_included' ];
+			}
+
+			foreach ( $key_array as $meta_key ) {
+				$value = lsx_to_custom_field_query( $meta_key, '', '', false );
+				if ( ! empty( $value ) && '' !== $value ) {
+					$has_values = true;
+				}
+			}
+			
+			if ( false === $has_values ) {
 				$block_content = '';
 			}
 		}

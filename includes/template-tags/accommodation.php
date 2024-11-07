@@ -183,8 +183,6 @@ function lsx_to_accommodation_spoken_languages( $before = '', $after = '', $echo
 	$return = '';
 
 	if ( ! empty( $spoken_languages ) && ! is_wp_error( $spoken_languages ) ) {
-		$return .= '<span class="values">';
-
 		foreach ( $spoken_languages as $i => $spoken_language ) {
 			$return .= ucwords( str_replace( '_', ' / ', str_replace( '-', ' ', str_replace( '-and-', ' & ', $spoken_language ) ) ) );
 
@@ -192,8 +190,6 @@ function lsx_to_accommodation_spoken_languages( $before = '', $after = '', $echo
 				$return .= ', ';
 			}
 		}
-
-		$return .= '</span>';
 		$return = $before . $return . $after;
 
 		if ( $echo ) {
@@ -232,8 +228,6 @@ function lsx_to_accommodation_special_interests( $before = '', $after = '', $ech
 	$return = '';
 
 	if ( ! empty( $special_interests ) && ! is_wp_error( $special_interests ) ) {
-		$return .= '<span class="values">';
-
 		foreach ( $special_interests as $i => $special_interest ) {
 			$return .= ucwords( str_replace( '_', ' / ', str_replace( '-', ' ', str_replace( '-and-', ' & ', $special_interest ) ) ) );
 
@@ -241,8 +235,6 @@ function lsx_to_accommodation_special_interests( $before = '', $after = '', $ech
 				$return .= ', ';
 			}
 		}
-
-		$return .= '</span>';
 		$return = $before . $return . $after;
 
 		if ( $echo ) {
@@ -278,8 +270,6 @@ function lsx_to_accommodation_activity_friendly( $before = '', $after = '', $ech
 	$return = '';
 
 	if ( ! empty( $friendly ) && ! is_wp_error( $friendly ) ) {
-		$return .= '<span class="values">';
-
 		foreach ( $friendly as $i => $friendly_item ) {
 			$return .= ucwords( str_replace( '_', ' / ', str_replace( '-', ' ', str_replace( '-and-', ' & ', $friendly_item ) ) ) );
 
@@ -287,8 +277,6 @@ function lsx_to_accommodation_activity_friendly( $before = '', $after = '', $ech
 				$return .= ', ';
 			}
 		}
-
-		$return .= '</span>';
 		$return = $before . $return . $after;
 
 		if ( $echo ) {

@@ -26,38 +26,42 @@ class Registration {
 	 * @return void
 	 */
 	public function enqueue_block_variations_script() {
+
+		$scripts = [
+			'general'       => '',
+			'tour'          => '',
+			'accommodation' => '',
+			'destination'   => '',
+			'query-loops'   => '',
+		];
+
 		// Make sure the script is only enqueued in the block editor.
 		if ( is_admin() && function_exists( 'register_block_type' ) ) {
-			wp_enqueue_script(
-				'lsx-to-block-variations',  // Handle for the script.
-				LSX_TO_URL . 'assets/js/blocks/variations.js', // Path to your JavaScript file.
-				array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),  // Dependencies.
-				filemtime( LSX_TO_PATH . 'assets/js/blocks/variations.js' ), // Versioning with file modification time.
-				true  // Enqueue in the footer.
-			);
+			
+			foreach ( $scripts as $slug => $restrictions ) {
+				wp_enqueue_script(
+					'lsx-to-block-' . $slug . '-variations',  // Handle for the script.
+					LSX_TO_URL . 'assets/js/blocks/' . $slug . '.js', // Path to your JavaScript file.
+					array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),  // Dependencies.
+					filemtime( LSX_TO_PATH . 'assets/js/blocks/' . $slug . '.js' ), // Versioning with file modification time.
+					true  // Enqueue in the footer.
+				);
+			}
 
+			// Enqueue linked-cover.js
 			wp_enqueue_script(
-				'lsx-to-block-tour-variations',  // Handle for the script.
-				LSX_TO_URL . 'assets/js/blocks/tour.js', // Path to your JavaScript file.
-				array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),  // Dependencies.
-				filemtime( LSX_TO_PATH . 'assets/js/blocks/tour.js' ), // Versioning with file modification time.
-				true  // Enqueue in the footer.
-			);
-
-			wp_enqueue_script(
-				'lsx-to-query-loops',  // Handle for the script.
-				LSX_TO_URL . 'assets/js/blocks/query-loops.js', // Path to your JavaScript file.
-				array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),  // Dependencies.
-				filemtime( LSX_TO_PATH . 'assets/js/blocks/query-loops.js' ), // Versioning with file modification time.
-				true  // Enqueue in the footer.
+				'lsx-to-linked-cover',
+				LSX_TO_URL . 'assets/js/blocks/linked-cover.js',
+				array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-data', 'wp-hooks' ),
+				filemtime( LSX_TO_PATH . 'assets/js/blocks/linked-cover.js' )
 			);
 
 			// Enqueue linked-cover.js
 			wp_enqueue_script(
-				'lsx-linked-cover',
-				LSX_TO_URL . 'assets/js/blocks/linked-cover.js',
-				array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-data', 'wp-hooks' ),
-				filemtime( LSX_TO_PATH . 'assets/js/blocks/linked-cover.js' )
+				'lsx-to-slider-query',
+				LSX_TO_URL . 'assets/js/blocks/slider-query.js',
+				array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components' ),
+				filemtime( LSX_TO_PATH . 'assets/js/blocks/slider-query.js' )
 			);
 
 			if ( array_key_exists( get_post_type(), tour_operator()->get_post_types() ) ) {
