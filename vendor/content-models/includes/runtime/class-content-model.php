@@ -180,7 +180,7 @@ final class Content_Model {
 			'labels'       => $labels,
 			'public'       => true,
 			'show_in_menu' => true,
-			'has_archive'  => true,
+			'has_archive'  => sanitize_key( $plural_name ),
 			'show_in_rest' => true,
 			'menu_icon'    => "dashicons-{$this->get_icon()}",
 			'supports'     => array( 'title', 'slug', 'excerpt', 'editor', 'custom-fields','thumbnail' ),
@@ -190,7 +190,7 @@ final class Content_Model {
 			$post_type_args['hierarchical'] = true;
 			$post_type_args['supports'][]   = 'page-attributes';
 		}
-
+ 
 		register_post_type(
 			$this->slug,
 			$post_type_args
