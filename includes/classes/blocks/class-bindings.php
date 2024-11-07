@@ -210,6 +210,15 @@ class Bindings {
 				$single = false;
 			}
 			$value = lsx_to_custom_field_query( $source_args['key'], '', '', false, get_the_ID(), $single );
+
+			$date_transforms = [
+				'booking_validity_start',
+				'booking_validity_end',
+			];
+			if (  in_array( $source_args['key'], $date_transforms )  ) {
+				$value = wp_date( 'j M Y', $value );
+			}
+
 			$value = preg_replace( '/^<p>(.*?)<\/p>$/', '$1', $value );
 		}
 		return $value;
