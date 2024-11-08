@@ -111,34 +111,103 @@ class Registration {
 				}
 			break;
 
+			case 'featured-accommodation':
+			case 'featured-tours':
+			case 'featured-destinations':
+				$query['meta_query'] = array(
+					'relation' => 'OR',
+					array(
+						'key' => 'featured',
+						'value' => true,
+						'compare' => '=',
+					),
+				);
+
+			break;
+	
+			// Accommodation relating to the tour via the destinations.
+			case 'accommodation-related-tour':
+			case 'tour-related-tour':
+
+			// Tour Query Loops
+			case 'tour-related-accommodation':
+			case 'accommodation-related-accommodation':
+
+				$to         = '';
+				$from       = '';
+				$directions = explode( '-related-', $key );
+				$to         = $directions[0];
+				$from       = $directions[1];
+
+				// Get the current item IDS to exclude
+				if ( $to === $from ) {
+					$excluded_items = [ get_the_ID() ];
+				} else {
+					$excluded_items = get_post_meta( get_the_ID(), $to . '_to_' . $from, true );
+					if ( ! empty( $excluded_items ) ) {
+						if ( ! is_array( $excluded_items ) ) {
+							$excluded_items = [ $excluded_items ];
+						}
+					} else {
+						$excluded_items = [];
+					}
+				}
+
+				// Get the current destinations attached 
+				$destinations = get_post_meta( get_the_ID(), 'destination_to_' . $from, true );
+				if ( ! empty( $destinations ) ) {
+					$items = [];
+
+					foreach ( $destinations as $destination ) {
+						$found_items = get_post_meta( $destination, $to . '_to_destination', true );
+
+						if ( ! empty( $found_items ) ) {
+							if ( ! is_array( $found_items ) ) {
+								$found_items = [ $found_items ];
+							}
+							$items = array_merge( $items, $found_items );
+						}
+					}
+					if ( ! empty( $items ) ) {
+						$items = array_unique( $items );
+						$items = array_diff( $items, $excluded_items );
+						$query['post__in'] = $items;
+					}
+				}
+				$query['post__not_in'] = $excluded_items;
+
+			break;
+
+			// Destination Query Loops
+			case 'tour-related-destination':
+			case 'accommodation-related-destination':
+
+			// CPTs Reviews Query Loops
+			case 'review-related-tour':
+			case 'review-related-accommodation':
+			case 'review-related-destination':
+				
+				$to         = '';
+				$from       = '';
+				$directions = explode( '-related-', $key );
+				$to         = $directions[0];
+				$from       = $directions[1];
+
+				$found_items = get_post_meta( get_the_ID(), $to . '_to_' . $from, true );
+				if ( false !== $found_items && ! empty( $found_items ) ) {
+					if ( ! is_array( $found_items ) ) {
+						$found_items = [ $found_items ];
+					}
+					
+					$query['post__in'] = $found_items;
+				}
+
+			break;
+
 			default:
 			break;
 		}
 
-		// Add rating meta key/value pair if queried.
-		/*if ( 'lsx/lsx-featured-posts' === $parsed_block['attrs']['namespace'] ) {	
-			unset( $query['post__not_in'] );
-			unset( $query['offset'] );
-			$query['nopaging'] = false;
-			
-			// if its sticky posts, only include those.
-			if ( 'post' === $query['post_type'] ) {
-				$sticky_posts = get_option( 'sticky_posts', array() );
-				if ( ! is_array( $sticky_posts ) ) {
-					$sticky_posts = array( $sticky_posts );
-				}
-				$query['post__in'] = $sticky_posts;
-				$query['ignore_sticky_posts'] = 1;
-			} else {
-				//Use the "featured" custom field.
-				$query['meta_query'] = array(
-					array(
-						'key'     => 'featured',
-						'compare' => 'EXISTS',
-					)
-				);
-			}
-		}*/
 		return $query;
 	}
 }

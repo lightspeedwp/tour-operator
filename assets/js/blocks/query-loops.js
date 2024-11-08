@@ -1,6 +1,4 @@
 wp.domReady( function() {
-
-
 	// DESTINATION - COUNTRY - REGION
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/regions',
@@ -77,9 +75,7 @@ wp.domReady( function() {
 		]
 	});
 
-
 	// DESTINATION - REGION - RELATED REGIONS
-
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/related-regions',
 		title: 'Related Regions',
@@ -155,9 +151,7 @@ wp.domReady( function() {
 		]
 	});
 
-
 	// Featured Accommodation
-
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/featured-accommodation',
 		title: 'Featured Accommodation',
@@ -233,9 +227,7 @@ wp.domReady( function() {
 		]
 	});
 
-
 	// Featured Tours
-
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/featured-tours',
 		title: 'Featured Tours',
@@ -311,165 +303,6 @@ wp.domReady( function() {
 		]
 	});
 
-
-	// Related Accommodation - Tour
-	// Should display Accommodation listed in the Related Accommodation custom field for a Tour
-
-	wp.blocks.registerBlockVariation( 'core/group', {
-		name: 'lsx-tour-operator/tour-related-accommodation',
-		title: 'Related Accommodation - Tour',
-		description: 'Displays Accommodation related to a Tour.',
-		category: 'lsx-tour-operator',
-		attributes: {
-			metadata: {
-				name: 'Related Accommodation - Tour'
-			},
-			className: "lsx-tour-related-accommodation-query-wrapper",
-			align: 'full',
-			style: {
-				spacing: {
-					padding: {
-						top: 'var:preset|spacing|medium',
-						bottom: 'var:preset|spacing|medium',
-						left: 'var:preset|spacing|x-small',
-						right: 'var:preset|spacing|x-small'
-					},
-					blockGap: 'var:preset|spacing|small'
-				}
-			},
-			backgroundColor: 'primary-200',
-			layout: {
-				type: 'constrained'
-			}
-		},
-		innerBlocks: [
-			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } }, [
-				[ 'core/group', {
-					align: 'wide',
-					style: {
-						spacing: {
-							margin: { top: '0', bottom: '0' },
-							padding: { top: '0', bottom: 'var:preset|spacing|small', left: '0', right: '0' },
-							blockGap: 'var:preset|spacing|small'
-						}
-					},
-					layout: { type: 'flex', flexWrap: 'nowrap' }
-				}, [
-					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ],
-					[ 'core/heading', { textAlign: 'center', content: 'Related Accommodation' } ],
-					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ]
-				] ],
-				[ 'core/query', {
-					metadata: {
-						name: 'Related Accommodation Query'
-					},
-					query: {
-						perPage: 8,
-						postType: 'accommodation',
-						order: 'asc',
-						orderBy: 'date'
-					},
-					align: 'wide'
-				}, [
-					[ 
-						'core/post-template', 
-						{
-							className: "lsx-tour-related-accommodation-query",
-							layout: {
-								type: 'grid',
-								columnCount: 3
-							}
-						},
-						[
-							[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
-						]
-					]
-				   ]
-				]
-			]]
-		]
-	});
-
-
-	// Related Tours - Accommodation
-	// Should display Tours listed in the Related Tours custom field for an Accommodation
-
-	wp.blocks.registerBlockVariation( 'core/group', {
-		name: 'lsx-tour-operator/accommodation-related-tour',
-		title: 'Related Accommodation - Tour',
-		description: 'Displays Tours related to an Accommodation.',
-		category: 'lsx-tour-operator',
-		attributes: {
-			metadata: {
-				name: 'Related Tour - Accommodation'
-			},
-			className: "lsx-accommodation-related-tour-query-wrapper",
-			align: 'full',
-			style: {
-				spacing: {
-					padding: {
-						top: 'var:preset|spacing|medium',
-						bottom: 'var:preset|spacing|medium',
-						left: 'var:preset|spacing|x-small',
-						right: 'var:preset|spacing|x-small'
-					},
-					blockGap: 'var:preset|spacing|small'
-				}
-			},
-			backgroundColor: 'primary-200',
-			layout: {
-				type: 'constrained'
-			}
-		},
-		innerBlocks: [
-			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } }, [
-				[ 'core/group', {
-					align: 'wide',
-					style: {
-						spacing: {
-							margin: { top: '0', bottom: '0' },
-							padding: { top: '0', bottom: 'var:preset|spacing|small', left: '0', right: '0' },
-							blockGap: 'var:preset|spacing|small'
-						}
-					},
-					layout: { type: 'flex', flexWrap: 'nowrap' }
-				}, [
-					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ],
-					[ 'core/heading', { textAlign: 'center', content: 'Related Tours' } ],
-					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ]
-				] ],
-				[ 'core/query', {
-					metadata: {
-						name: 'Related Tour Query'
-					},
-					query: {
-						perPage: 8,
-						postType: 'accommodation',
-						order: 'asc',
-						orderBy: 'date'
-					},
-					align: 'wide'
-				}, [
-					[ 
-						'core/post-template', 
-						{
-							className: "lsx-accommodation-related-tour-query",
-							layout: {
-								type: 'grid',
-								columnCount: 3
-							}
-						},
-						[
-							[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
-						]
-					]
-				   ]
-				]
-			]]
-		]
-	});
-
-
 	// Featured Destinations
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/featured-destinations',
@@ -517,7 +350,7 @@ wp.domReady( function() {
 				] ],
 				[ 'core/query', {
 					metadata: {
-						name: 'Related Tour Query'
+						name: 'Featured Destination Query'
 					},
 					query: {
 						perPage: 8,
@@ -530,7 +363,7 @@ wp.domReady( function() {
 					[ 
 						'core/post-template', 
 						{
-							className: "lsx-featured-destinations-tour-query",
+							className: "lsx-featured-destinations-query",
 							layout: {
 								type: 'grid',
 								columnCount: 3
@@ -546,20 +379,22 @@ wp.domReady( function() {
 		]
 	});
 
+	/**
+	 * Query Loops for the Single Tour Page
+	 */
 
-	// Related Accommodation - Destination
-	// Should display Accommodation listed in the Related Accommodation custom field for a Destination
-
+	// Related Accommodation - Tour
+	// Should displays accommodation in the same "destinations" as the tour.
 	wp.blocks.registerBlockVariation( 'core/group', {
-		name: 'lsx-tour-operator/destination-related-accommodation',
-		title: 'Related Accommodation - Destination',
-		description: 'Displays Accommodation related to a Destination.',
+		name: 'lsx-tour-operator/accommodation-related-tour',
+		title: 'Related Accommodation - Tour',
+		description: 'Displays Accommodation related to this Tour via the destinations.',
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
 				name: 'Related Accommodation - Tour'
 			},
-			className: "lsx-destination-related-accommodation-query-wrapper",
+			className: "lsx-accommodation-related-tour-query-wrapper",
 			align: 'full',
 			style: {
 				spacing: {
@@ -609,7 +444,7 @@ wp.domReady( function() {
 					[ 
 						'core/post-template', 
 						{
-							className: "lsx-destination-related-accommodation-query",
+							className: "lsx-accommodation-related-tour-query",
 							layout: {
 								type: 'grid',
 								columnCount: 3
@@ -625,20 +460,19 @@ wp.domReady( function() {
 		]
 	});
 
-
-	// Related Tours - Destination
-	// Should display Tours listed in the Related Tours custom field for a Destination
+	// Related Tours - Tour
+	// Displays tours that run through the same "destinations" as this tour.
 
 	wp.blocks.registerBlockVariation( 'core/group', {
-		name: 'lsx-tour-operator/destination-related-tour',
-		title: 'Related Tours - Destinations',
-		description: 'Displays Tours related to an Destination.',
+		name: 'lsx-tour-operator/tour-related-tour',
+		title: 'Related Tours - Tour',
+		description: 'Displays tours related to this Tour via the destinations.',
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
-				name: 'Related Tour - Destination'
+				name: 'Related Tours - Tour'
 			},
-			className: "lsx-destination-related-tour-query-wrapper",
+			className: "lsx-tour-related-tour-query-wrapper",
 			align: 'full',
 			style: {
 				spacing: {
@@ -675,7 +509,7 @@ wp.domReady( function() {
 				] ],
 				[ 'core/query', {
 					metadata: {
-						name: 'Related Tour Query'
+						name: 'Related Tours Query'
 					},
 					query: {
 						perPage: 8,
@@ -688,7 +522,89 @@ wp.domReady( function() {
 					[ 
 						'core/post-template', 
 						{
-							className: "lsx-destination-related-tour-query",
+							className: "lsx-tour-related-tour-query",
+							layout: {
+								type: 'grid',
+								columnCount: 3
+							}
+						},
+						[
+							[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
+						]
+					]
+				   ]
+				]
+			]]
+		]
+	});	
+
+
+	/**
+	 * Query Loops for the Single Accommodation Page
+	 */
+	// Related Tours - Accommodation
+	// Should display Tours that are tagged in the same "destination" as the accommodation.
+
+	wp.blocks.registerBlockVariation( 'core/group', {
+		name: 'lsx-tour-operator/tour-related-accommodation',
+		title: 'Related Tours - Accommodation',
+		description: 'Displays Tours related to an Accommodation via the destination.',
+		category: 'lsx-tour-operator',
+		attributes: {
+			metadata: {
+				name: 'Related Tour - Accommodation'
+			},
+			className: "lsx-tour-related-accommodation-query-wrapper",
+			align: 'full',
+			style: {
+				spacing: {
+					padding: {
+						top: 'var:preset|spacing|medium',
+						bottom: 'var:preset|spacing|medium',
+						left: 'var:preset|spacing|x-small',
+						right: 'var:preset|spacing|x-small'
+					},
+					blockGap: 'var:preset|spacing|small'
+				}
+			},
+			backgroundColor: 'primary-200',
+			layout: {
+				type: 'constrained'
+			}
+		},
+		innerBlocks: [
+			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } }, [
+				[ 'core/group', {
+					align: 'wide',
+					style: {
+						spacing: {
+							margin: { top: '0', bottom: '0' },
+							padding: { top: '0', bottom: 'var:preset|spacing|small', left: '0', right: '0' },
+							blockGap: 'var:preset|spacing|small'
+						}
+					},
+					layout: { type: 'flex', flexWrap: 'nowrap' }
+				}, [
+					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ],
+					[ 'core/heading', { textAlign: 'center', content: 'Related Tours' } ],
+					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ]
+				] ],
+				[ 'core/query', {
+					metadata: {
+						name: 'Related Tours Query'
+					},
+					query: {
+						perPage: 8,
+						postType: 'tour',
+						order: 'asc',
+						orderBy: 'date'
+					},
+					align: 'wide'
+				}, [
+					[ 
+						'core/post-template', 
+						{
+							className: "lsx-tour-related-accommodation-query",
 							layout: {
 								type: 'grid',
 								columnCount: 3
@@ -704,12 +620,251 @@ wp.domReady( function() {
 		]
 	});
 
+	// Related Accommodation - Accommodation
+	// Displays tours that run through the same "destinations" as this tour.
+
+	wp.blocks.registerBlockVariation( 'core/group', {
+		name: 'lsx-tour-operator/accommodation-related-accommodation',
+		title: 'Related Accommodation - Accommodation',
+		description: 'Displays other accommodation in the area.',
+		category: 'lsx-tour-operator',
+		attributes: {
+			metadata: {
+				name: 'Related Accommodation - Accommodation'
+			},
+			className: "lsx-accommodation-related-accommodation-query-wrapper",
+			align: 'full',
+			style: {
+				spacing: {
+					padding: {
+						top: 'var:preset|spacing|medium',
+						bottom: 'var:preset|spacing|medium',
+						left: 'var:preset|spacing|x-small',
+						right: 'var:preset|spacing|x-small'
+					},
+					blockGap: 'var:preset|spacing|small'
+				}
+			},
+			backgroundColor: 'primary-200',
+			layout: {
+				type: 'constrained'
+			}
+		},
+		innerBlocks: [
+			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } }, [
+				[ 'core/group', {
+					align: 'wide',
+					style: {
+						spacing: {
+							margin: { top: '0', bottom: '0' },
+							padding: { top: '0', bottom: 'var:preset|spacing|small', left: '0', right: '0' },
+							blockGap: 'var:preset|spacing|small'
+						}
+					},
+					layout: { type: 'flex', flexWrap: 'nowrap' }
+				}, [
+					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ],
+					[ 'core/heading', { textAlign: 'center', content: 'Related Accommodation' } ],
+					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ]
+				] ],
+				[ 'core/query', {
+					metadata: {
+						name: 'Related Accommodation Query'
+					},
+					query: {
+						perPage: 8,
+						postType: 'accommodation',
+						order: 'asc',
+						orderBy: 'date'
+					},
+					align: 'wide'
+				}, [
+					[ 
+						'core/post-template', 
+						{
+							className: "lsx-accommodation-related-accommodation-query",
+							layout: {
+								type: 'grid',
+								columnCount: 3
+							}
+						},
+						[
+							[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
+						]
+					]
+				   ]
+				]
+			]]
+		]
+	});
+
+	/**
+	 * Query Loops for the Single Destination Page
+	 */
+
+	// Related Accommodation - Destination
+	// Should display Accommodation listed in the Related Accommodation custom field for a Destination
+
+	wp.blocks.registerBlockVariation( 'core/group', {
+		name: 'lsx-tour-operator/accommodation-related-destination',
+		title: 'Related Accommodation - Destination',
+		description: 'Displays Accommodation related to a Destination.',
+		category: 'lsx-tour-operator',
+		attributes: {
+			metadata: {
+				name: 'Related Accommodation - Destination'
+			},
+			className: "lsx-accommodation-related-destination-query-wrapper",
+			align: 'full',
+			style: {
+				spacing: {
+					padding: {
+						top: 'var:preset|spacing|medium',
+						bottom: 'var:preset|spacing|medium',
+						left: 'var:preset|spacing|x-small',
+						right: 'var:preset|spacing|x-small'
+					},
+					blockGap: 'var:preset|spacing|small'
+				}
+			},
+			backgroundColor: 'primary-200',
+			layout: {
+				type: 'constrained'
+			}
+		},
+		innerBlocks: [
+			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } }, [
+				[ 'core/group', {
+					align: 'wide',
+					style: {
+						spacing: {
+							margin: { top: '0', bottom: '0' },
+							padding: { top: '0', bottom: 'var:preset|spacing|small', left: '0', right: '0' },
+							blockGap: 'var:preset|spacing|small'
+						}
+					},
+					layout: { type: 'flex', flexWrap: 'nowrap' }
+				}, [
+					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ],
+					[ 'core/heading', { textAlign: 'center', content: 'Related Accommodation' } ],
+					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ]
+				] ],
+				[ 'core/query', {
+					metadata: {
+						name: 'Related Accommodation Query'
+					},
+					query: {
+						perPage: 8,
+						postType: 'accommodation',
+						order: 'asc',
+						orderBy: 'date'
+					},
+					align: 'wide'
+				}, [
+					[ 
+						'core/post-template', 
+						{
+							className: "lsx-accommodation-related-destination-query",
+							layout: {
+								type: 'grid',
+								columnCount: 3
+							}
+						},
+						[
+							[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
+						]
+					]
+				   ]
+				]
+			]]
+		]
+	});
+
+	// Related Tours - Destination
+	// Should display Tours listed in the Related Tours custom field for a Destination
+	wp.blocks.registerBlockVariation( 'core/group', {
+		name: 'lsx-tour-operator/tour-related-destination',
+		title: 'Related Tours - Destinations',
+		description: 'Displays Tours related to a Destination.',
+		category: 'lsx-tour-operator',
+		attributes: {
+			metadata: {
+				name: 'Related Tour - Destination'
+			},
+			className: "lsx-tour-related-destination-query-wrapper",
+			align: 'full',
+			style: {
+				spacing: {
+					padding: {
+						top: 'var:preset|spacing|medium',
+						bottom: 'var:preset|spacing|medium',
+						left: 'var:preset|spacing|x-small',
+						right: 'var:preset|spacing|x-small'
+					},
+					blockGap: 'var:preset|spacing|small'
+				}
+			},
+			backgroundColor: 'primary-200',
+			layout: {
+				type: 'constrained'
+			}
+		},
+		innerBlocks: [
+			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } }, [
+				[ 'core/group', {
+					align: 'wide',
+					style: {
+						spacing: {
+							margin: { top: '0', bottom: '0' },
+							padding: { top: '0', bottom: 'var:preset|spacing|small', left: '0', right: '0' },
+							blockGap: 'var:preset|spacing|small'
+						}
+					},
+					layout: { type: 'flex', flexWrap: 'nowrap' }
+				}, [
+					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ],
+					[ 'core/heading', { textAlign: 'center', content: 'Related Tours' } ],
+					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ]
+				] ],
+				[ 'core/query', {
+					metadata: {
+						name: 'Related Tours Query'
+					},
+					query: {
+						perPage: 8,
+						postType: 'tour',
+						order: 'asc',
+						orderBy: 'date'
+					},
+					align: 'wide'
+				}, [
+					[ 
+						'core/post-template', 
+						{
+							className: "lsx-tour-related-destination-query",
+							layout: {
+								type: 'grid',
+								columnCount: 3
+							}
+						},
+						[
+							[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
+						]
+					]
+				   ]
+				]
+			]]
+		]
+	});
+
+	/**
+	 * Query Loops for the Reviews to the custom post type Pages
+	 */
 
 	// Related Reviews - Destination
 	// Should display Reviews listed in the Related Reviews custom field for a Destination
-
 	wp.blocks.registerBlockVariation( 'core/group', {
-		name: 'lsx-tour-operator/destination-related-review',
+		name: 'lsx-tour-operator/review-related-destination',
 		title: 'Related Reviews - Destinations',
 		description: 'Displays Reviews related to an Destination.',
 		category: 'lsx-tour-operator',
@@ -717,7 +872,7 @@ wp.domReady( function() {
 			metadata: {
 				name: 'Related Reviews - Destination'
 			},
-			className: "lsx-destination-related-review-query-wrapper",
+			className: "lsx-review-related-destination-query-wrapper",
 			align: 'full',
 			style: {
 				spacing: {
@@ -767,7 +922,7 @@ wp.domReady( function() {
 					[ 
 						'core/post-template', 
 						{
-							className: "lsx-destination-related-review-query",
+							className: "lsx-review-related-destination-query",
 							layout: {
 								type: 'grid',
 								columnCount: 2
@@ -783,12 +938,10 @@ wp.domReady( function() {
 		]
 	});
 
-
 	// Related Reviews - Tours
 	// Should display Reviews listed in the Related Reviews custom field for a Tour
-
 	wp.blocks.registerBlockVariation( 'core/group', {
-		name: 'lsx-tour-operator/tour-related-review',
+		name: 'lsx-tour-operator/review-related-tour',
 		title: 'Related Reviews - Tour',
 		description: 'Displays Reviews related to a Tour.',
 		category: 'lsx-tour-operator',
@@ -796,7 +949,7 @@ wp.domReady( function() {
 			metadata: {
 				name: 'Related Reviews - Tour'
 			},
-			className: "lsx-tour-related-review-query-wrapper",
+			className: "lsx-review-related-tour-query-wrapper",
 			align: 'full',
 			style: {
 				spacing: {
@@ -833,7 +986,7 @@ wp.domReady( function() {
 				] ],
 				[ 'core/query', {
 					metadata: {
-						name: 'Related Review Query - Tour'
+						name: 'Related Reviews Query - Tour'
 					},
 					query: {
 						perPage: 8,
@@ -846,7 +999,7 @@ wp.domReady( function() {
 					[ 
 						'core/post-template', 
 						{
-							className: "lsx-tour-related-review-query",
+							className: "lsx-review-related-tour-query",
 							layout: {
 								type: 'grid',
 								columnCount: 2
@@ -864,9 +1017,8 @@ wp.domReady( function() {
 
 	// Related Reviews - Accommodation
 	// Should display Reviews listed in the Related Reviews custom field for an Accommodation
-
 	wp.blocks.registerBlockVariation( 'core/group', {
-		name: 'lsx-tour-operator/accommodation-related-review',
+		name: 'lsx-tour-operator/review-related-accommodation',
 		title: 'Related Reviews - Accommodation',
 		description: 'Displays Reviews related to an Accommodation.',
 		category: 'lsx-tour-operator',
@@ -874,7 +1026,7 @@ wp.domReady( function() {
 			metadata: {
 				name: 'Related Reviews - Tour'
 			},
-			className: "lsx-accommodation-related-review-query-wrapper",
+			className: "lsx-review-related-accommodation-query-wrapper",
 			align: 'full',
 			style: {
 				spacing: {
@@ -924,7 +1076,7 @@ wp.domReady( function() {
 					[ 
 						'core/post-template', 
 						{
-							className: "lsx-accommodation-related-review-query",
+							className: "lsx-review-related-accommodation-query",
 							layout: {
 								type: 'grid',
 								columnCount: 2

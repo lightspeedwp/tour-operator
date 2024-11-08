@@ -324,7 +324,6 @@ class Bindings {
 			break;
 
 			case 'type':
-				do_action( 'qm/debug', lsx_to_itinerary_accommodation_type( '', '', false ) );
 				$value   = lsx_to_itinerary_accommodation_type( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-type\b[^"]*"[^>]*>).*?(<\/p>)/is';
 			break;
@@ -367,8 +366,6 @@ class Bindings {
 		global $rooms;
 		//Create our tag manager object so we can inject the itinerary content.
 		$tags = new \WP_HTML_Tag_Processor( $build );
-
-		do_action( 'qm/debug', $classname );
 
 		if ( $tags->next_tag( array( 'class_name' => $classname ) ) ) {
 			if ( $tags->next_tag( array( 'tag_name' => 'img' ) ) ) {
