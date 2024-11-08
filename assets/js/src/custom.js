@@ -47,37 +47,55 @@ if ( window.location.hash ) {
 	 * @subpackage scripts
 	 */
 	lsx_to.set_read_more = function() {
-		$( '.lsx-to-review-content .more-link, .lsx-to-team-content .more-link, .entry-content .more-link, .archive-description .more-link' ).each( function() {
-			if ( 'Read More' === $( this ).html() || 'Lees verder' === $( this ).html() ) {
-				$( this ).closest( '.lsx-to-review-content, .lsx-to-team-content, .entry-content, .archive-description' ).each( function() {
-					var visible = true;
+		$( '.single-tour-operator .wp-block-read-more' ).each( function() {
+			lsx_to.readMoreSet( $(this) );
+		} );
 
-					$( this ).children().each( function() {
-						if ( 'Read More' === $( this ).find( '.more-link' ).html() ) {
-							visible = false;
-						} else if ( ! visible && this.id !== 'sharing' ) {
-							$( this ).hide();
-						}
-					} );
-				} );
+		$( '.single-tour-operator .wp-block-read-more' ).on( 'click', function( event ) {
+			event.preventDefault();
+			$( this ).hide();
 
-				$( this ).click( function( event ) {
-					event.preventDefault();
-					$( this ).hide();
-
-					if ($( this ).hasClass( 'more-link-remove-p' ) ) {
-						var html = '';
-
-						$( this ).closest( '.lsx-to-review-content, .lsx-to-team-content, .entry-content, .archive-description' ).children().each( function() {
-							$( this ).show();
-						} );
-					} else {
-						$( this ).closest( '.lsx-to-review-content, .lsx-to-team-content, .entry-content, .archive-description' ).children().show();
-					}
-				} );
+			if ( $( this ).hasClass( 'less-link' ) ) {
+				lsx_to.readMoreSet($( this ));
+			} else {
+				lsx_to.readMoreOpen($( this ));
 			}
+
+			$( this ).show();
 		} );
 	};
+
+	lsx_to.readMoreSet = function( button ) {
+		let contentWrapper = button.closest( '.wp-block-group' ).find('.wp-block-post-content');
+		if ( 0 < contentWrapper.length ) {
+			if ( 1 < contentWrapper.find('p').length ) {
+
+				var limit = 1;
+				let counter = 0;
+
+				contentWrapper.find('p').each( function() {
+					if ( limit <= counter ) {
+						$(this).hide();
+					}
+					counter++;
+				});
+			} else {
+				button.hide();
+			}
+			button.removeClass('less-link');
+		}
+	}
+
+	lsx_to.readMoreOpen = function( button ) {
+		let contentWrapper = button.closest( '.wp-block-group' ).find('.wp-block-post-content p');
+		if ( 0 < contentWrapper.length ) {
+			contentWrapper.each( function() {
+				$(this).show();
+			});
+			button.addClass( 'less-link' );
+			button.show();
+		}
+	}
 
 	/**
 	 * Read more (travel info) effect.
@@ -294,8 +312,8 @@ if ( window.location.hash ) {
 	 */
 	$document.ready( function() {
 		lsx_to.set_read_more();
-		lsx_to.set_read_more_travel_info();
-		lsx_to.set_read_more_itinerary();
+		//lsx_to.set_read_more_travel_info();
+		//lsx_to.set_read_more_itinerary();
 		lsx_to.build_slider( window_width );
 	} );
 
