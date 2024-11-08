@@ -124,16 +124,14 @@ class Registration {
 				);
 
 			break;
-
-			case 'tour-related-accommodation':
-				// Get the departs from and ends in meta values, and their parent IDs.
-				// Then Grab the "
-			break;
-
-			
+	
 			// Accommodation relating to the tour via the destinations.
 			case 'accommodation-related-tour':
 			case 'tour-related-tour':
+
+			// Tour Query Loops
+			case 'tour-related-accommodation':
+			case 'accommodation-related-accommodation':
 
 				$to         = '';
 				$from       = '';
