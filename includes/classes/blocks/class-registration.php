@@ -139,8 +139,6 @@ class Registration {
 				$to         = $directions[0];
 				$from       = $directions[1];
 
-				do_action( 'qm/debug', $directions );
-
 				// Get the current item IDS to exclude
 				if ( $to === $from ) {
 					$excluded_items = [ get_the_ID() ];
@@ -176,15 +174,39 @@ class Registration {
 						$query['post__in'] = $items;
 					}
 				}
-
 				$query['post__not_in'] = $excluded_items;
+
+			break;
+
+			// Destination Query Loops
+			case 'tour-related-destination':
+			case 'accommodation-related-destination':
+
+			// CPTs Reviews Query Loops
+			case 'review-related-tour':
+			case 'review-related-accommodation':
+			case 'review-related-destination':
+				
+				$to         = '';
+				$from       = '';
+				$directions = explode( '-related-', $key );
+				$to         = $directions[0];
+				$from       = $directions[1];
+
+				$found_items = get_post_meta( get_the_ID(), $to . '_to_' . $from, true );
+				if ( false !== $found_items && ! empty( $found_items ) ) {
+					if ( ! is_array( $found_items ) ) {
+						$found_items = [ $found_items ];
+					}
+					
+					$query['post__in'] = $found_items;
+				}
 
 			break;
 
 			default:
 			break;
 		}
-		do_action( 'qm/debug', $query );
 
 		return $query;
 	}
