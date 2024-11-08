@@ -112,7 +112,8 @@ class Registration {
 			break;
 
 			case 'featured-accommodation':
-
+			case 'featured-tours':
+			case 'featured-destinations':
 				$query['meta_query'] = array(
 					'relation' => 'OR',
 					array(
@@ -127,6 +128,8 @@ class Registration {
 			default:
 			break;
 		}
+		do_action( 'qm/debug', $key );
+		do_action( 'qm/debug', $query );
 
 		// Add rating meta key/value pair if queried.
 		/*if ( 'lsx/lsx-featured-posts' === $parsed_block['attrs']['namespace'] ) {	
