@@ -103,21 +103,70 @@ if ( window.location.hash ) {
 	 * @package    tour-operator
 	 * @subpackage scripts
 	 */
+	lsx_to.readMoreTIText = '';
+
 	lsx_to.set_read_more_travel_info = function() {
-		$( '.moretag-travel-info' ).click( function( event ) {
-			event.preventDefault();
 
-			var $modal = $( '#lsx-modal-placeholder' ),
-				$entry = $( this ).closest( '.lsx-travel-info' ),
-				title = $entry.find( '.lsx-to-widget-title' ).html(),
-				content = $entry.find( '.travel-info-entry-content' ).html();
-
-			$modal.find( '.modal-title' ).html( title );
-			$modal.find( '.modal-body' ).html( content );
-
-			$modal.modal();
+		$( '.single-tour-operator .additional-info .lsx-to-more-link' ).each( function() {
+			lsx_to.readMoreTIText = $(this).find('a').text();
+			lsx_to.readMoreSetTI( $(this) );
 		} );
+
+		$( '.single-tour-operator .additional-info .lsx-to-more-link' ).on( 'click', function( event ) {
+			event.preventDefault();
+			$( this ).hide();
+
+			if ( $( this ).hasClass( 'less-link' ) ) {
+				lsx_to.readMoreSetTI($( this ));
+			} else {
+				lsx_to.readMoreOpenTI($( this ));
+			}
+
+			$( this ).show();
+		} );
+
 	};
+	lsx_to.readMoreSetTI = function( button ) {
+		let contentWrapper = button.closest( '.additional-info' ).find('.content');
+		if ( 0 < contentWrapper.length ) {
+			if ( 1 < contentWrapper.find('p').length ) {
+
+				//first remove empty p tags.
+				contentWrapper.find('p').each( function() {
+					if ( '' === $(this).html() ) {
+						$(this).remove();
+					}
+				});
+
+				var limit = 1;
+				let counter = 0;
+
+				contentWrapper.find('p').each( function() {
+					if ( limit <= counter ) {
+						$(this).hide();
+					}
+					counter++;
+				});
+			} else {
+				button.hide();
+			}
+			button.removeClass('less-link');
+			button.find('a').text( lsx_to.readMoreTIText );
+		}
+	}
+
+	lsx_to.readMoreOpenTI = function( button ) {
+		let contentWrapper = button.closest( '.additional-info' ).find('.content p');
+		if ( 0 < contentWrapper.length ) {
+			contentWrapper.each( function() {
+				$(this).show();
+			});
+			button.addClass( 'less-link' );
+			button.find('a').text( 'View Less' );
+			button.show();
+			
+		}
+	}
 
 	/**
 	 * Read more (itinerary) effect.
@@ -312,7 +361,7 @@ if ( window.location.hash ) {
 	 */
 	$document.ready( function() {
 		lsx_to.set_read_more();
-		//lsx_to.set_read_more_travel_info();
+		lsx_to.set_read_more_travel_info();
 		//lsx_to.set_read_more_itinerary();
 		lsx_to.build_slider( window_width );
 	} );

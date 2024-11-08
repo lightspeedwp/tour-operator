@@ -155,7 +155,7 @@ wp.domReady(() => {
 			metadata: {
 				name: 'Electricity',
 			},
-			className: 'lsx-additional-info-wrapper',
+			className: 'lsx-electricity-wrapper',
 			style: {
 				border: {
 					radius: '8px'
@@ -465,7 +465,7 @@ wp.domReady(() => {
 			metadata: {
 				name: 'Cuisine',
 			},
-			className: 'lsx-additional-info-wrapper',
+			className: 'lsx-cuisine-wrapper',
 			style: {
 				border: {
 					radius: '8px'
@@ -611,7 +611,7 @@ wp.domReady(() => {
 			metadata: {
 				name: 'Climate',
 			},
-			className: 'lsx-additional-info-wrapper',
+			className: 'lsx-climate-wrapper',
 			style: {
 				border: {
 					radius: '8px'
@@ -757,7 +757,7 @@ wp.domReady(() => {
 			metadata: {
 				name: 'Transport',
 			},
-			className: 'lsx-additional-info-wrapper',
+			className: 'lsx-transport-wrapper',
 			style: {
 				border: {
 					radius: '8px'
@@ -903,7 +903,7 @@ wp.domReady(() => {
 			metadata: {
 				name: 'Dress',
 			},
-			className: 'lsx-additional-info-wrapper',
+			className: 'lsx-dress-wrapper',
 			style: {
 				border: {
 					radius: '8px'
@@ -1049,7 +1049,7 @@ wp.domReady(() => {
 			metadata: {
 				name: 'Health',
 			},
-			className: 'lsx-additional-info-wrapper',
+			className: 'lsx-health-wrapper',
 			style: {
 				border: {
 					radius: '8px'
@@ -1196,7 +1196,7 @@ wp.domReady(() => {
 				metadata: {
 					name: 'Safety',
 				},
-				className: 'lsx-additional-info-wrapper',
+				className: 'lsx-safety-wrapper',
 				style: {
 					border: {
 						radius: '8px',
@@ -1352,7 +1352,7 @@ wp.domReady(() => {
 				metadata: {
 					name: 'Visa',
 				},
-				className: 'lsx-additional-info-wrapper',
+				className: 'lsx-visa-wrapper',
 				style: {
 					border: {
 						radius: '8px',
