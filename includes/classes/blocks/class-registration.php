@@ -111,6 +111,19 @@ class Registration {
 				}
 			break;
 
+			case 'featured-accommodation':
+
+				$query['meta_query'] = array(
+					'relation' => 'OR',
+					array(
+						'key' => 'featured',
+						'value' => true,
+						'compare' => '=',
+					),
+				);
+
+			break;
+
 			default:
 			break;
 		}
