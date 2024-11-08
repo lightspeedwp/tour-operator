@@ -381,18 +381,18 @@ wp.domReady( function() {
 
 
 	// Related Accommodation - Tour
-	// Should display Accommodation listed in the Related Accommodation custom field for a Tour
+	// Should displays accommodation in the same "destinations" as the tour.
 
 	wp.blocks.registerBlockVariation( 'core/group', {
-		name: 'lsx-tour-operator/tour-related-accommodation',
+		name: 'lsx-tour-operator/accommodation-related-tour',
 		title: 'Related Accommodation - Tour',
-		description: 'Displays Accommodation related to a Tour.',
+		description: 'Displays Accommodation related to a Tour via the destination.',
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
 				name: 'Related Accommodation - Tour'
 			},
-			className: "lsx-tour-related-accommodation-query-wrapper",
+			className: "lsx-accommodation-related-tour-query-wrapper",
 			align: 'full',
 			style: {
 				spacing: {
@@ -442,7 +442,7 @@ wp.domReady( function() {
 					[ 
 						'core/post-template', 
 						{
-							className: "lsx-tour-related-accommodation-query",
+							className: "lsx-accommodation-related-tour-query",
 							layout: {
 								type: 'grid',
 								columnCount: 3
@@ -460,18 +460,18 @@ wp.domReady( function() {
 
 
 	// Related Tours - Accommodation
-	// Should display Tours listed in the Related Tours custom field for an Accommodation
+	// Should display Tours that are tagged in the same "destination" as the accommodation.
 
 	wp.blocks.registerBlockVariation( 'core/group', {
-		name: 'lsx-tour-operator/accommodation-related-tour',
-		title: 'Related Accommodation - Tour',
+		name: 'lsx-tour-operator/tour-related-accommodation',
+		title: 'Related Tours - Accommodation',
 		description: 'Displays Tours related to an Accommodation.',
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
 				name: 'Related Tour - Accommodation'
 			},
-			className: "lsx-accommodation-related-tour-query-wrapper",
+			className: "lsx-tour-related-accommodation-query-wrapper",
 			align: 'full',
 			style: {
 				spacing: {
@@ -521,7 +521,7 @@ wp.domReady( function() {
 					[ 
 						'core/post-template', 
 						{
-							className: "lsx-accommodation-related-tour-query",
+							className: "lsx-tour-related-accommodation-query",
 							layout: {
 								type: 'grid',
 								columnCount: 3

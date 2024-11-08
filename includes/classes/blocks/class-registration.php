@@ -125,6 +125,42 @@ class Registration {
 
 			break;
 
+			case 'tour-related-accommodation':
+				// Get the departs from and ends in meta values, and their parent IDs.
+				// Then Grab the "
+			break;
+
+			
+			// Accommodation relating to the tour via the destinations.
+			case 'accommodation-related-tour':
+
+				// Get the current accommodation to exclude
+				$excluded_accommodation = get_post_meta( get_the_ID(), 'accommodation_to_tour', true );
+
+				// Get the current destinations attached 
+				$destinations = get_post_meta( get_the_ID(), 'destination_to_tour', true );
+				if ( ! empty( $destinations ) ) {
+					$accommodation = [];
+
+					foreach ( $destinations as $destination ) {
+						$found_accommodation = get_post_meta( $destination, 'accommodation_to_destination', true );
+
+						if ( ! empty( $found_accommodation ) ) {
+							if ( ! is_array( $found_accommodation ) ) {
+								$found_accommodation = [ $found_accommodation ];
+							}
+							$accommodation = array_merge( $accommodation, $found_accommodation );
+						}
+					}
+					if ( ! empty( $accommodation ) ) {
+						$query['post__in'] = $accommodation;
+					}
+				}
+
+				$query['post__not_in'] = $excluded_accommodation;
+
+			break;
+
 			default:
 			break;
 		}
