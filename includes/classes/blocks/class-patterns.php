@@ -70,15 +70,5 @@ class Patterns {
 			// Require the file and add it to the patterns array
 			register_block_pattern( $key, require $file );
 		}
-
-		/*$patterns = array(
-			'lsx-tour-operator/itinerary-list' => require( LSX_TO_PATH . '/includes/patterns/itinerary-list.php' ),
-			'lsx-tour-operator/destination-card' => require( LSX_TO_PATH . '/includes/patterns/destination-card.php' ),
-			'lsx-tour-operator/room-card' => require( LSX_TO_PATH . '/includes/patterns/room-card.php' ),
-		);
-
-		foreach ( $patterns as $key => $function ) {
-			register_block_pattern( $key, $function );
-		}*/
 	}
 }

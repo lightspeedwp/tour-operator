@@ -155,7 +155,7 @@ wp.domReady(() => {
 			metadata: {
 				name: 'Electricity',
 			},
-			className: 'lsx-additional-info-wrapper',
+			className: 'lsx-electricity-wrapper',
 			style: {
 				border: {
 					radius: '8px'
