@@ -61,40 +61,44 @@ class Video {
 			$new_fields[] = $field;
 			if ( in_array( $field['id'], $key_ids ) ) {
 				$new_fields[] = array(
-					'id'   => 'video_title',
-					'name' => __( 'Videos', 'tour-operator' ),
-					'type' => 'title',
-				);
-				$new_fields[] = array(
 					'id'          => 'videos',
-					'name'        => '',
-					'single_name' => __( 'Video', 'tour-operator' ),
+					'name'        => __( 'Video Gallery', 'tour-operator' ),
+					'desc'        => __( 'Link to videos about this item, including a title, URL, caption, and alt text.', 'tour-operator' ),
 					'type'        => 'group',
 					'repeatable'  => true,
 					'sortable'    => true,
+					'options'     => array(
+						'group_title'       => __( 'Video {#}', 'tour-operator' ), // since version 1.1.4, {#} gets replaced by row number
+						'add_button'        => __( 'Add Video', 'tour-operator' ),
+						'remove_button'     => __( 'Remove Video', 'tour-operator' ),
+						'sortable'          => false,
+					),
 					'fields'      => array(
 						array(
 							'id'   => 'title',
 							'name' => __( 'Title', 'tour-operator' ),
+							'desc' => __( 'The title of the video.', 'tour-operator' ),
 							'type' => 'text',
 						),
 						array(
 							'id'   => 'url',
 							'name' => __( 'Url', 'tour-operator' ),
+							'desc' => __( 'The URL link to the video.', 'tour-operator' ),
 							'type' => 'text',
 						),
 						array(
 							'id'   => 'description',
 							'name' => __( 'Caption', 'tour-operator' ),
+							'desc' => __( 'The caption displayed with the video on the frontend.', 'tour-operator' ),
 							'type' => 'text',
 						),
 						array(
 							'id'   => 'alt_text',
 							'name' => __( 'Alt Text', 'tour-operator' ),
+							'desc' => __( 'Alternative text for accessibility, describing the video for screen readers.', 'tour-operator' ),
 							'type' => 'text',
 						),
 					),
-					'desc'        => '',
 				);
 			}
 		}

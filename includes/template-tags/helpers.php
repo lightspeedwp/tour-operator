@@ -80,41 +80,6 @@ function lsx_to_is_helper( $post_type = false, $post_id = false, $meta_key = fal
 }
 
 /**
- * Output the envira gallery in the
- *
- * @package 	lsx-framework
- * @subpackage	hook
- * @category 	modal
- */
-function lsx_to_enable_envira_banner() {
-	$tour_operator = tour_operator();
-
-	if ( isset( $tour_operator->options ) && isset( $tour_operator->options['display'] ) && isset( $tour_operator->options['display']['enable_galleries_in_banner'] ) ) {
-		return true;
-	} else {
-		return false;
-	}
-}
-
-/**
- * Checks weather or not the conencted tours should display.
- *
- * @package 	tour-operator
- * @subpackage	template-tags
- * @category 	accommodation
- */
-function lsx_to_accommodation_display_connected_tours() {
-	$tour_operator = tour_operator();
-	$return = false;
-
-	if ( isset( $tour_operator->options['accommodation']['display_connected_tours'] ) && 'on' === $tour_operator->options['accommodation']['display_connected_tours'] ) {
-		$return = true;
-	}
-
-	return $return;
- }
-
-/**
  * Check if the current item has child pages or if its a parent ""
  *
  * @param	$post_id string
@@ -136,7 +101,8 @@ function lsx_to_item_has_children( $post_id = false, $post_type = false ) {
 			FROM {$wpdb->posts}
 			WHERE (post_type = %s AND post_status = 'publish')
 			AND post_parent = %d
-			LIMIT 1",
+			ORDER BY post_title ASC
+			LIMIT 100",
 			$post_type,$post_id
 		)
 	);
@@ -301,7 +267,7 @@ function lsx_to_has_custom_field_query( $meta_key = false, $id = false, $is_tax 
  * @subpackage	template-tags
  * @category 	helper
  */
-function lsx_to_custom_field_query( $meta_key = false, $before = '', $after = '', $echo = false, $post_id = false ) {
+function lsx_to_custom_field_query( $meta_key = false, $before = '', $after = '', $echo = false, $post_id = false, $single = true ) {
 	if ( false !== $meta_key ) {
 		//Check to see if we already have a transient set for this.
 		// TODO Need to move this to enclose the entire function and change to a !==,  that way you have to set up the custom field via the lsx_to_has_{custom_field} function
@@ -315,15 +281,15 @@ function lsx_to_custom_field_query( $meta_key = false, $before = '', $after = ''
 		}
 
 		if ( false === $value || '' === $value ) {
-			$value = get_post_meta( $post_id, $meta_key, true );
+			$value = get_post_meta( $post_id, $meta_key, $single );
+
+			if ( is_array( $value ) ) {
+				$value = implode( ', ', $value );
+			}
 		}
 
 		if ( false !== $value && '' !== $value ) {
-			if ( 'included' === $meta_key || 'not_included' === $meta_key ) {
-				$return_html = $before . $value . $after;
-			} else {
-				$return_html = $before . '<span class="values">' . $value . '</span>' . $after;
-			}
+			$return_html = $before . $value . $after;
 
 			$return = apply_filters( 'lsx_to_custom_field_query', $return_html, $meta_key, $value, $before, $after );
 

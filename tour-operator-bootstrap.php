@@ -17,17 +17,10 @@ if ( defined( 'WPINC' ) ) {
 		define( 'LSX_TO_ASSET_DEBUG', '' );
 	}
 
-	if ( ! function_exists( 'cmb_init' ) && ! class_exists( 'CMB_Meta_Box' ) ) {
-		if ( is_file( LSX_TO_PATH . 'vendor/Custom-Meta-Boxes/custom-meta-boxes.php' ) ) {
-			require_once( LSX_TO_PATH . 'vendor/Custom-Meta-Boxes/custom-meta-boxes.php' );
-		}
-	}
-
-	if ( ! function_exists( 'lsx_banners' ) ) {
-		if ( is_file( LSX_TO_PATH . 'vendor/lsx-banners/lsx-banners.php' ) ) {
-			require_once( LSX_TO_PATH . 'vendor/lsx-banners/lsx-banners.php' );
-		}
-	}
+	require_once( LSX_TO_PATH . 'vendor/cmb2/init.php' );
+	require_once( LSX_TO_PATH . 'vendor/cmb2-field-map/cmb-field-map.php' );
+	require_once( LSX_TO_PATH . 'vendor/cmb-field-select2/cmb-field-select2.php' );
+	require_once( LSX_TO_PATH . 'vendor/content-models/create-content-model.php' );
 
 	// Template Tags.
 	require_once( LSX_TO_PATH . 'includes/template-tags/general.php' );
@@ -42,7 +35,6 @@ if ( defined( 'WPINC' ) ) {
 	// General Includes.
 	require_once( LSX_TO_PATH . 'includes/customizer.php' );
 	require_once( LSX_TO_PATH . 'includes/layout.php' );
-	require_once( LSX_TO_PATH . 'includes/shortcodes.php' );
 
 	add_action( 'after_setup_theme', function() {
 		require_once( LSX_TO_PATH . 'includes/actions.php' );

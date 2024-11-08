@@ -282,38 +282,6 @@ function lsx_to_sharing() {
 	echo '</section>';
 }
 
-/**
- * Outputs the Envira Video Gallery
- *
- * @param       $before | string
- * @param       $after  | string
- * @param       $echo   | boolean
- * @return      string
- *
- * @package     tour-operator
- * @subpackage  template-tags
- * @category    tour
- */
-function lsx_to_envira_videos( $before = '', $after = '', $echo = true ) {
-	$envira_video = get_post_meta( get_the_ID(), 'envira_video', true );
-	$return = false;
-
-	if ( function_exists( 'envira_gallery' ) && ! empty( $envira_video ) ) {
-		// Envira Gallery
-		ob_start();
-		envira_gallery( $envira_video );
-		$return = ob_get_clean();
-
-		$return = $before . $return . $after;
-
-		if ( $echo ) {
-			echo wp_kses_post( $return );
-		} else {
-			return $return;
-		}
-	}
-}
-
 /* ==================  TAXONOMIES  ================== */
 
 /**
@@ -603,70 +571,6 @@ function lsx_to_enquire_modal( $cta_text = '', $before = '', $after = '', $echo 
 	</div>
 <?php 
 } }
-
-if ( ! function_exists( 'lsx_to_gallery' ) ) {
-	/**
-	 * Outputs the TO Gallery
-	 *
-	 * @param       $before | string
-	 * @param       $after  | string
-	 * @param       $echo   | boolean
-	 * @param       $args   | array
-	 * @return      string
-	 *
-	 * @package     tour-operator
-	 * @subpackage  template-tags
-	 * @category    galleries
-	 */
-	function lsx_to_gallery( $before = '', $after = '', $echo = true, $args = array() ) {
-		$defaults = array(
-			'gallery_ids' => array(),
-		);
-		$args           = wp_parse_args( $args, $defaults );
-		if ( ! empty( $args['gallery_ids'] ) ) {
-			if ( ! is_array( $args['gallery_ids'] ) ) {
-				$args['gallery_ids'] = explode( ',', '', $args['gallery_ids'] );
-			}
-			$gallery_ids = $args['gallery_ids'];
-		} else {
-			$gallery_ids = get_post_meta( get_the_ID(), 'gallery', false );
-		}
-		$envira_gallery = get_post_meta( get_the_ID(), 'envira_gallery', true );
-
-		if ( ( ! empty( $gallery_ids ) && is_array( $gallery_ids ) ) || ( function_exists( 'envira_gallery' ) && ! empty( $envira_gallery ) && false === lsx_to_enable_envira_banner() ) ) {
-			if ( function_exists( 'envira_gallery' ) && ! empty( $envira_gallery ) && false === lsx_to_enable_envira_banner() ) {
-				// Envira Gallery
-				ob_start();
-				envira_gallery( $envira_gallery );
-				$return = ob_get_clean();
-			} else {
-				if ( function_exists( 'envira_dynamic' ) && false === apply_filters( 'lsx_to_disable_dynamic_gallery', false, 'destination' ) ) {
-					// Envira Gallery - Dynamic
-					ob_start();
-
-					envira_dynamic( array(
-						'id' => 'custom' . sanitize_title( get_the_title( get_the_ID() ) ) . '-' . date( 'H-i' ),
-						'images' => implode( ',', $gallery_ids ),
-					) );
-
-					$return = ob_get_clean();
-				} else {
-					// WordPress Gallery
-					$columns = 3;
-					$return = do_shortcode( '[gallery ids="' . implode( ',', $gallery_ids ) . '" size="large" columns="' . $columns . '" link="file"]' );
-				}
-			}
-
-			$return = $before . $return . $after;
-
-			if ( $echo ) {
-				echo wp_kses_post( $return );
-			} else {
-				return $return;
-			}
-		}
-	}
-}
 
 /* ==================  SITEMAP  ================== */
 

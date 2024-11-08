@@ -1,0 +1,134 @@
+%currency-icons {
+	.currency-icon {
+		&:after {
+			margin-left: 3px;
+			margin-right: 3px;
+		}
+
+		&.usd,
+		&.nad,
+		&.cad,
+		&.hkd,
+		&.sgd,
+		&.nzd,
+		&.aud {
+			&:after { content: '\0024'; }
+		}
+
+		&.eur {
+			&:after { content: '\20AC'; }
+		}
+
+		&.gbp {
+			&:after { content: '\00A3'; }
+		}
+
+		&.zar {
+			&:after { content: '\0052'; }
+		}
+
+		&.brl {
+			&:after { content: '\0052\0024'; }
+		}
+
+		&.bwp {
+			&:after { content: '\0050'; }
+		}
+
+		&.cny,
+		&.jpy {
+			&:after { content: '\00A5'; }
+		}
+
+		&.inr {
+			&:after { content: '\20B9'; }
+		}
+
+		&.idr {
+			&:after { content: '\20B9'; }
+		}
+
+		&.ils {
+			&:after { content: '\20AA'; }
+		}
+
+		&.kes {
+			&:after { content: '\004b'; }
+		}
+
+		&.lak {
+			&:after { content: '\20ad'; }
+		}
+
+		&.mwk {
+			&:after { content: '\004d\004b'; }
+		}
+
+		&.myr {
+			&:after { content: '\0052\004d'; }
+		}
+
+		&.mzn {
+			&:after { content: '\004d\0054'; }
+		}
+
+		&.nok,
+		&.sek {
+			&:after { content: '\006b\0072'; }
+		}
+
+		&.rub {
+			&:after { content: '\0440\0443\0431'; }
+		}
+
+		&.chf {
+			&:after { content: '\0043\0048\0046'; }
+		}
+
+		&.tzs {
+			&:after { content: '\0054\0053\0068'; }
+		}
+
+		&.aed {
+			&:after { content: '\062f\002e\0625'; }
+		}
+
+		&.zmw {
+			&:after { content: '\005a\006b'; }
+		}
+
+		&.zwl {
+			&:after { content: '\005a\0024'; }
+		}
+	}
+}
+
+// Add the block class name here to create spacing for the icon.
+/*.lsx-price-wrapper,
+.lsx-destination-to-tour-wrapper {
+	&:before {
+		background-repeat: no-repeat;
+		background-size: contain;
+		width: 20px;
+		height: 30px;
+		content: " ";
+		background-position: center top;
+	}
+}*/
+
+.lsx-price-wrapper {
+	/*&:before {
+		background-image: url( ../img/icons/price-icon.png );
+	}*/
+
+	& .amount {
+		@extend %currency-icons;
+
+		.currency-icon {
+			&:after { margin-right: 0px; }
+		}
+	}
+}
+
+// Add the icon ULR here.
+//.lsx-destination-to-tour-wrapper::before { background-image: url( ../img/icons/destinations-icon.webp ); }

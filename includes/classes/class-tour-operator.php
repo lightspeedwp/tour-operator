@@ -4,6 +4,12 @@ namespace lsx;
 
 use lsx\admin\Admin;
 use lsx\admin\Pages;
+use lsx\admin\Settings;
+use lsx\admin\Setup;
+use lsx\blocks\Bindings;
+use lsx\blocks\Patterns;
+use lsx\blocks\Registration;
+use lsx\blocks\Templates;
 
 /**
  * LSX Tour Operator Main Class
@@ -49,12 +55,13 @@ class Tour_Operator {
 	public $settings;
 
 	/**
-	 * Holds the Post_Types instance.
+	 * Holds the main setup object
 	 *
 	 * @since   1.1.0
-	 * @var     \lsx\Post_Types
+	 * @var     \lsx\admin\Setup
 	 */
-	public $post_types;
+	public $setup;
+
 	/**
 	 * Holds the Pages instance.
 	 *
@@ -209,10 +216,13 @@ class Tour_Operator {
 	public function setup() {
 		load_plugin_textdomain( 'tour-operator', false, LSX_TO_CORE . '/languages' );
 		$this->pages      = Pages::init();
-		$this->post_types = Post_Types::init();
-		$this->metaboxes  = Metaboxes::init();
 		$this->taxonomies = Taxonomies::init();
-		$this->admin      = Admin::init();
-		$this->settings   = \lsx\admin\Settings::init();
+		$this->admin      = new Admin();
+		$this->settings   = Settings::init();
+		$this->setup      = Setup::init();
+		$this->bindings   = new Bindings();
+		$this->registration = new Registration();
+		$this->patterns   = new Patterns();
+		$this->templates   = new Templates();
 	}
 }

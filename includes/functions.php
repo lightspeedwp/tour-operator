@@ -167,12 +167,16 @@ function lsx_to_itinerary_tagline() {
  * @subpackage    template-tags
  * @category      itinerary
  */
-function lsx_to_itinerary_description() {
+function lsx_to_itinerary_description( $echo = true ) {
 	global $tour_itinerary;
 
 	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
 		if ( ! empty( $tour_itinerary->itinerary['description'] ) ) {
-			echo wp_kses_post( apply_filters( 'the_content', $tour_itinerary->itinerary['description'] ) );
+			if ( $echo ) {
+				echo wp_kses_post( apply_filters( 'the_content', $tour_itinerary->itinerary['description'] ) );
+			} else {
+				return wp_kses_post( apply_filters( 'the_content', $tour_itinerary->itinerary['description'] ) );
+			}
 		}
 	}
 }
@@ -223,7 +227,11 @@ function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square', $meta_key =
 				$thumbnail_src = $thumbnail[0];
 			}
 		} elseif ( ! empty( $tour_itinerary->itinerary[ $meta_key ] ) ) {
-			$accommodation_images = false;
+			$accommodation_images = [];
+
+			if ( is_string( $tour_itinerary->itinerary[ $meta_key ] ) ) {
+				$tour_itinerary->itinerary[ $meta_key ] = array( $tour_itinerary->itinerary[ $meta_key ] );
+			}
 
 			foreach ( $tour_itinerary->itinerary[ $meta_key ] as $accommodation_id ) {
 				$tour_itinerary->register_current_gallery( $accommodation_id, $meta_key );
@@ -248,7 +256,7 @@ function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square', $meta_key =
 				}
 			}
 
-			if ( false !== $accommodation_images ) {
+			if ( ! empty( $accommodation_images ) ) {
 				$thumbnail_src = $accommodation_images[0];
 			}
 		}
@@ -312,39 +320,44 @@ function lsx_to_itinerary_destinations( $before = '', $after = '', $echo = true 
  */
 function lsx_to_itinerary_accommodation( $before = '', $after = '', $echo = true ) {
 	global $tour_itinerary;
+	$return = '';
 
-	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
-		if ( ! empty( $tour_itinerary->itinerary['accommodation_to_tour'] ) && is_array( $tour_itinerary->itinerary['accommodation_to_tour'] ) ) {
-			$return = $before . lsx_to_connected_list( $tour_itinerary->itinerary['accommodation_to_tour'], 'accommodation', true, ', ' ) . $after;
-			if ( true === $echo ) {
-				echo wp_kses_post( $return );
-			}
+	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) && ! empty( $tour_itinerary->itinerary['accommodation_to_tour'] ) ) {
+		$itinerary_accommodation = $tour_itinerary->itinerary['accommodation_to_tour'];
+		if ( ! is_array( $itinerary_accommodation ) ) {
+			$itinerary_accommodation = array( $itinerary_accommodation );
 		}
-
-		$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
-
-		// Display the additional accommodation information.
-		if ( ! empty( $tour_itinerary->itinerary['accommodation_to_tour'] ) && is_array( $tour_itinerary->itinerary['accommodation_to_tour'] ) ) {
-			foreach ( $tour_itinerary->itinerary['accommodation_to_tour'] as $accommodation ) {
-
-				ob_start();
-				lsx_to_accommodation_rating( '<span class="' . $meta_class . 'rating"><span class="lsx-to-meta-data-key">' . __( 'Rating', 'tour-operator' ) . ':</span> ', '</span>', $accommodation );
-				the_terms( $accommodation, 'accommodation-type', '<span class="' . $meta_class . 'style"><span class="lsx-to-meta-data-key">' . __( 'Type', 'tour-operator' ) . ':</span> ', ', ', '</span>' );
-				lsx_to_accommodation_special_interests( '<span class="' . $meta_class . 'special"><span class="lsx-to-meta-data-key">' . __( 'Special Interests', 'tour-operator' ) . ':</span> ', '</span>', $accommodation );
-
-				$additional = ob_get_clean();
-				if ( true === $echo ) {
-					echo wp_kses_post( $additional );
-				} else {
-					$return .= $additional;
-				}
-			}
-		}
-
-		if ( true !== $echo ) {
-			return $return;
+		$return = $before . lsx_to_connected_list( $itinerary_accommodation, 'accommodation', true, ', ' ) . $after;
+		if ( true === $echo ) {
+			echo wp_kses_post( $return );
 		}
 	}
+	return $return;
+}
+
+/**
+ * Outputs The current Itinerary connected accommodation, can only be used in
+ * the itinerary loop.
+ *
+ * @package       tour-operator
+ * @subpackage    template-tags
+ * @category      itinerary
+ */
+function lsx_to_itinerary_accommodation_type( $before = '', $after = '', $echo = true ) {
+	global $tour_itinerary;
+	$return = '';
+
+	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) && ! empty( $tour_itinerary->itinerary['accommodation_to_tour'] ) ) {
+		$itinerary_accommodation = $tour_itinerary->itinerary['accommodation_to_tour'];
+		if ( ! is_array( $itinerary_accommodation ) ) {
+			$itinerary_accommodation = array( $itinerary_accommodation );
+		}
+		$return = get_the_term_list( $itinerary_accommodation[0], 'accommodation-type', $before, ', ', $after );
+		if ( true === $echo ) {
+			echo wp_kses_post( $return );
+		}
+	}
+	return $return;
 }
 
 /**
@@ -609,81 +622,6 @@ function lsx_to_accommodation_reset_units_loop() {
 	global $rooms;
 
 	return $rooms->reset_loop();
-}
-
-/**
- * Outputs various units attached to the accommodation
- *
- * @package       tour-operator
- * @subpackage    template-tags
- * @category      unit
- */
-function lsx_to_accommodation_units() {
-	global $rooms;
-
-	if ( lsx_to_accommodation_has_rooms() ) {
-		$unit_types = array(
-			'chalet' => esc_html__( 'Chalet', 'tour-operator' ),
-			'room'   => esc_html__( 'Room', 'tour-operator' ),
-			'spa'    => esc_html__( 'Spa', 'tour-operator' ),
-			'tent'   => esc_html__( 'Tent', 'tour-operator' ),
-			'villa'  => esc_html__( 'Villa', 'tour-operator' ),
-		);
-
-		foreach ( $unit_types as $type_key => $type_label ) {
-			if ( lsx_to_accommodation_check_type( $type_key ) ) {
-				?>
-				<section id="<?php echo esc_attr( $type_key ); ?>s" class="lsx-to-section <?php lsx_to_collapsible_class( 'accommodation', false ); ?>">
-					<h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" <?php lsx_to_collapsible_attributes_not_post( 'collapse-' . $type_key . 's' ); ?>><?php echo esc_html( lsx_to_get_post_type_section_title( 'accommodation', $type_key . 's', $type_label . 's' ) ); ?></h2>
-
-					<div id="collapse-<?php echo esc_attr( $type_key ); ?>s" class="collapse in">
-						<div class="collapse-inner">
-							<div class="<?php echo esc_attr( $type_key ); ?>s-wrapper rooms-wrapper row">
-								<?php while ( lsx_to_accommodation_room_loop() ) { ?>
-
-									<?php 
-                                    if ( ! lsx_to_accommodation_room_loop_item( $type_key ) ) {
-										continue;
-									} 
-                                    ?>
-
-									<div class="col-xs-12 col-md-6">
-										<article class="rooms-content">
-											<?php if ( lsx_to_accommodation_room_has_thumbnail() && $rooms->item_thumbnails() ) { ?>
-												<div class="rooms-thumbnail-wrap">
-													<?php
-														$images = $rooms->item_thumbnails();
-														$count = 0;
-
-														foreach ( $images as $thumbnail_wide_src => $thumbnail_single_src ) {
-															$count++;
-															?>
-                                                            <a href="<?php echo esc_url( $thumbnail_single_src ); ?>" class="rooms-thumbnail <?php if ( $count > 1 ) echo 'hidden'; ?>" style="background-image:url('<?php echo esc_url( $thumbnail_wide_src ); ?>')"></a>
-                                                            <?php
-														}
-													?>
-												</div>
-											<?php } ?>
-
-											<div class="rooms-info">
-												<?php lsx_to_accommodation_room_title( '<h5>', '</h5>' ); ?>
-												<?php lsx_to_accommodation_room_description( '<div class="entry-content">', '</div>' ); ?>
-											</div>
-										</article>
-									</div>
-
-								<?php 
-                                }
-								lsx_to_accommodation_reset_units_loop(); 
-                                ?>
-							</div>
-						</div>
-					</div>
-				</section>
-			<?php 
-            }
-		}
-	}
 }
 
 /**

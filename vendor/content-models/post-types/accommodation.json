@@ -1,0 +1,417 @@
+{
+	"type": "postType",
+	"postType": "accommodation",
+	"slug": "accommodation",
+	"label": "Accommodation",
+	"pluralLabel": "Accommodation",
+	"icon": "admin-multisite",
+	"hasArchive": "accommodation",
+	"hierarchical": false,
+	"showInRest": true,
+	"showInMenu": "tour-operator",
+	"menuPosition": 20,
+	"template": [],
+	"fields": [
+		{
+			"slug": "tagline",
+			"type": "string",
+			"label": "Tagline",
+			"description": "",
+			"visible": true
+		},
+		{
+			"slug": "price",
+			"type": "string",
+			"label": "Price From",
+			"description": "Set the minimum price of the accommodation.",
+			"visible": true
+		},
+        {
+            "slug": "single_supplement",
+            "type": "string",
+            "label": "Single Supplement",
+            "description": "Set the additional cost for a single person booking the accommodation.",
+			"visible": true
+        },
+		{
+			"slug": "price_type",
+			"type": "select",
+			"label": "Price Type",
+			"description": "The type of pricing for this accommodation. (e.g. per person per night)",
+			"visible": true,
+			"options": [ 
+				{
+					"label": "Select a type",
+					"value": "none"
+				},
+				{
+					"label": "Per Person Per Night",
+					"value": "per_person_per_night"
+				},
+				{
+					"label": "Per Person Sharing",
+					"value": "per_person_sharing"
+				},
+				{
+					"label": "Per Person Sharing Per Night",
+					"value": "per_person_sharing_per_night"
+				},
+				{
+					"label": "Percentage Off Your Price",
+					"value": "total_percentage"
+				}
+			]
+		},
+		{
+			"slug": "rating",
+			"type": "select",
+			"label": "Rating",
+			"description": "Select the star rating for the accommodation (e.g., 3 stars, 5 stars).",
+			"visible": true,
+			"options": [
+				{
+				"label": "0",
+				"value": "0"
+				},
+				{
+				"label": "1",
+				"value": "1"
+				},
+				{
+				"label": "2",
+				"value": "2"
+				},
+				{
+				"label": "3",
+				"value": "3"
+				},
+				{
+				"label": "4",
+				"value": "4"
+				},
+				{
+				"label": "5",
+				"value": "5"
+				}
+			],
+			"allow_none": true
+		},
+		{
+			"slug": "rating_type",
+			"type": "select",
+			"label": "Rating Type",
+			"description": "Choose the rating type (e.g., user reviews, official star ratings).",
+			"visible": true,
+			"options": [
+				{
+				"label": "Unspecified",
+				"value": "unspecified"
+				},
+				{
+				"label": "TGCSA",
+				"value": "tgcsa"
+				},
+				{
+				"label": "Hotelstars Union",
+				"value": "hotelstars_union"
+				}
+			]
+		},
+        {
+            "slug": "best_time_to_visit",
+            "type": "multiselect",
+            "label": "Best time to visit",
+            "description": "The ideal months or season for visiting the accommodation.",
+			"visible": true,
+			"options": [ 
+				{
+					"label": "January",
+					"value": "january"
+				},
+				{
+					"label": "February",
+					"value": "february"
+				},
+				{
+					"label": "March",
+					"value": "march"
+				},
+				{
+					"label": "April",
+					"value": "april"
+				},
+				{
+					"label": "May",
+					"value": "may"
+				},
+				{
+					"label": "June",
+					"value": "june"
+				},
+				{
+					"label": "July",
+					"value": "july"
+				},
+				{
+					"label": "August",
+					"value": "august"
+				},
+				{
+					"label": "September",
+					"value": "september"
+				},
+				{
+					"label": "October",
+					"value": "october"
+				},
+				{
+					"label": "November",
+					"value": "november"
+				},
+				{
+					"label": "December",
+					"value": "december"
+				}
+			]
+        },
+		{
+			"slug": "spoken_languages",
+			"type": "multiselect",
+			"label": "Spoken Languages",
+			"description": "Select the languages commonly spoken by the staff.",
+			"visible": true,
+			"options": [
+				{
+				"label": "Afrikaans",
+				"value": "afrikaans"
+				},
+				{
+				"label": "Chinese",
+				"value": "chinese"
+				},
+				{
+				"label": "Dutch",
+				"value": "dutch"
+				},
+				{
+				"label": "English",
+				"value": "english"
+				},
+				{
+				"label": "Flemish",
+				"value": "flemish"
+				},
+				{
+				"label": "French",
+				"value": "french"
+				},
+				{
+				"label": "German",
+				"value": "german"
+				},
+				{
+				"label": "Indian",
+				"value": "indian"
+				},
+				{
+				"label": "Italian",
+				"value": "italian"
+				},
+				{
+				"label": "Japanese",
+				"value": "japanese"
+				},
+				{
+				"label": "Portuguese",
+				"value": "portuguese"
+				},
+				{
+				"label": "Russian",
+				"value": "russian"
+				},
+				{
+				"label": "Spanish",
+				"value": "spanish"
+				},
+				{
+				"label": "Swahili",
+				"value": "swahili"
+				},
+				{
+				"label": "Xhosa",
+				"value": "xhosa"
+				},
+				{
+				"label": "Zulu",
+				"value": "zulu"
+				}
+			]
+		},
+		{
+			"slug": "suggested_visitor_types",
+			"type": "multiselect",
+			"label": "Friendly",
+			"description": "Choose the types of visitors the accommodation is best suited for (e.g., family-friendly, pet-friendly).",
+			"visible": true,
+			"options": [
+				{
+				"label": "Business",
+				"value": "business"
+				},
+				{
+				"label": "Children",
+				"value": "children"
+				},
+				{
+				"label": "Disability",
+				"value": "disability"
+				},
+				{
+				"label": "Leisure",
+				"value": "leisure"
+				},
+				{
+				"label": "Luxury",
+				"value": "luxury"
+				},
+				{
+				"label": "Pet",
+				"value": "pet"
+				},
+				{
+				"label": "Romance",
+				"value": "romance"
+				},
+				{
+				"label": "Vegetarian",
+				"value": "vegetarian"
+				},
+				{
+				"label": "Weddings",
+				"value": "weddings"
+				}
+			]
+		},
+		{
+			"slug": "special_interests",
+			"type": "multiselect",
+			"label": "Special Interests",
+			"description": "Special interests that the accommodation caters to, such as wildlife or adventure.",
+			"visible": true,
+			"options": [
+				{
+				"label": "Adventure",
+				"value": "adventure"
+				},
+				{
+				"label": "Battlefields",
+				"value": "battlefields"
+				},
+				{
+				"label": "Beach / Coastal",
+				"value": "beach_coastal"
+				},
+				{
+				"label": "Big 5",
+				"value": "big-5"
+				},
+				{
+				"label": "Birding",
+				"value": "birding"
+				},
+				{
+				"label": "Cycling",
+				"value": "cycling"
+				},
+				{
+				"label": "Fishing",
+				"value": "fishing"
+				},
+				{
+				"label": "Flora",
+				"value": "flora"
+				},
+				{
+				"label": "Golf",
+				"value": "golf"
+				},
+				{
+				"label": "Gourmet",
+				"value": "gourmet"
+				},
+				{
+				"label": "Hiking",
+				"value": "hiking"
+				},
+				{
+				"label": "History & Culture",
+				"value": "history-and-culture"
+				},
+				{
+				"label": "Indigenous Culture / Art",
+				"value": "indigenous-culture-art"
+				},
+				{
+				"label": "Leisure",
+				"value": "leisure"
+				},
+				{
+				"label": "Nature Relaxation",
+				"value": "nature-relaxation"
+				},
+				{
+				"label": "Shopping",
+				"value": "shopping"
+				},
+				{
+				"label": "Sports",
+				"value": "sports"
+				},
+				{
+				"label": "Star Gazing",
+				"value": "star-gazing"
+				},
+				{
+				"label": "Watersports",
+				"value": "watersports"
+				},
+				{
+				"label": "Wildlife",
+				"value": "wildlife"
+				},
+				{
+				"label": "Wine",
+				"value": "wine"
+				}
+			]
+		},
+		{
+			"slug": "number_of_rooms",
+			"type": "text",
+			"label": "Number of Rooms",
+			"description": "Enter the total number of rooms or units at the accommodation.",
+			"visible": true
+		},
+		{
+			"slug": "checkin_time",
+			"type": "text_time",
+			"label": "Check-in Time",
+			"description": "Enter the standard check-in time for the accommodation.",
+			"visible": true
+		},
+		{
+			"slug": "checkout_time",
+			"type": "text_time",
+			"label": "Check-out Time",
+			"description": "Enter the standard check-out time for the accommodation.",
+			"visible": true
+		},
+		{
+			"slug": "minimum_child_age",
+			"type": "text",
+			"label": "Minimum Child Age",
+			"description": "Set the minimum child age allowed by the accommodation.",
+			"visible": true
+		}	
+	]
+}

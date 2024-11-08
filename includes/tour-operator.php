@@ -18,9 +18,7 @@
  * @param string $class class name to be checked and loaded.
  */
 function tour_operator_autoload_class( $class ) {
-
 	$parts = explode( '\\', $class );
-
 	if ( 'lsx' === $parts[0] ) {
 		$path = LSX_TO_PATH . 'includes/classes/';
 		array_shift( $parts );

@@ -33,6 +33,7 @@ $taxonomy = array(
 			'add_new_item'      => esc_html__( 'Add New Travel Style', 'tour-operator' ),
 			'new_item_name'     => esc_html__( 'New Travel Style', 'tour-operator' ),
 			'menu_name'         => esc_html__( 'Travel Styles', 'tour-operator' ),
+			'description'       => esc_html__( 'Select the relevant travel styles that apply to this item.', 'tour-operator' ),
 		),
 		'show_ui'             => true,
 		'public'              => true,

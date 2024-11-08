@@ -1,43 +1,55 @@
-<div class="uix-field-wrapper">
-	<ul class="ui-tab-nav">
-		<li><a href="#ui-general" class="active"><?php esc_html_e( 'General', 'tour-operator' ); ?></a></li>
+<div id="ui-general" class="ui-tab tabs-content active">
+	<?php do_action( 'lsx_to_framework_dashboard_tab_content', 'hidden' ); ?>
 
-		<?php if ( class_exists( 'LSX_TO_Search' ) ) { ?>
-			<li><a href="#ui-search"><?php esc_html_e( 'Search', 'tour-operator' ); ?></a></li>
-		<?php } ?>
+	<table class="form-table">
+		<tbody>
+			<tr class="form-field">
+				<th scope="row" colspan="2">
+					<label>
+						<h3><?php esc_html_e( 'Currency Settings', 'tour-operator' ); ?></h3>
+					</label>
+				</th>
+			</tr>
+			<?php do_action( 'lsx_to_framework_dashboard_tab_content', 'currency' ); ?>
 
-		<?php if ( class_exists( '\lsx\currencies\classes\Currencies' ) ) { ?>
-			<li><a href="#ui-currencies"><?php esc_html_e( 'Currencies', 'tour-operator' ); ?></a></li>
-		<?php } ?>
-	</ul>
+			<tr class="form-field">
+				<th scope="row" colspan="2">
+					<label>
+						<h3><?php esc_html_e( 'Map Settings', 'tour-operator' ); ?></h3>
+					</label>
+				</th>
+			</tr>
+			<?php do_action( 'lsx_to_framework_dashboard_tab_content', 'maps' ); ?>
 
-	<div id="ui-general" class="ui-tab active">
-		<table class="form-table">
-			<tbody>
-				<?php do_action( 'lsx_to_framework_dashboard_tab_content', 'general' ); ?>
-			</tbody>
-		</table>
-	</div>
+			<tr class="form-field">
+				<th scope="row" colspan="2">
+					<label>
+						<h3><?php esc_html_e( 'Fusion Table Settings', 'tour-operator' ); ?></h3>
+					</label>
+				</th>
+			</tr>
+			<?php do_action( 'lsx_to_framework_dashboard_tab_content', 'fusion' ); ?>
 
-	<?php if ( class_exists( '\lsx\currencies\classes\Currencies' ) ) { ?>
-		<div id="ui-currencies" class="ui-tab">
-			<table class="form-table">
-				<tbody>
-					<?php do_action( 'lsx_to_framework_dashboard_tab_content', 'currency_switcher' ); ?>
-				</tbody>
-			</table>
-		</div>
-	<?php } ?>
+			<tr class="form-field">
+				<th scope="row" colspan="2">
+					<label>
+						<h3><?php esc_html_e( 'Placeholder Settings', 'tour-operator' ); ?></h3>
+					</label>
+				</th>
+			</tr>
+			<?php do_action( 'lsx_to_framework_dashboard_tab_content', 'placeholders' ); ?>
 
-	<?php if ( class_exists( 'LSX_TO_Search' ) ) { ?>
-		<div id="ui-search" class="ui-tab">
-			<table class="form-table">
-				<tbody>
-					<?php do_action( 'lsx_to_framework_dashboard_tab_content', 'search' ); ?>
-				</tbody>
-			</table>
-		</div>
-	<?php $class = ''; } ?>
-
-	<?php do_action( 'lsx_to_framework_dashboard_tab_bottom', 'general' ); ?>
+			<tr class="form-field">
+				<th scope="row" colspan="2">
+					<label>
+						<h3><?php esc_html_e( 'APIs', 'tour-operator' ); ?></h3>
+					</label>
+				</th>
+			</tr>
+			<?php do_action( 'lsx_to_framework_dashboard_tab_content', 'api' ); ?>
+		</tbody>
+	</table>
 </div>
+
+
+
