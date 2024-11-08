@@ -2,7 +2,7 @@
 return array(
 	'title'         => __( 'Itinerary (list)', 'tour-operator' ),
 	'description'   => __( '', 'tour-operator' ),
-	'categories'    => array( $this->pattern_category ),
+	'categories'    => array( $this->category ),
 	'templateTypes' => array( 'single' ),
 	'content'     => '
 		<!-- wp:columns {"metadata":{"categories":["lsx-tour-operator"],"patternName":"lsx-tour-operator/itinerary-card","name":"Itinerary (list)"},"align":"wide"} -->
