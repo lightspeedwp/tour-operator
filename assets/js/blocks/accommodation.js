@@ -946,7 +946,7 @@ wp.domReady(() => {
 			metadata: {
 				name: 'Special Interests',
 			},
-			className: 'lsx-special-interests-wrapper',
+			className: 'lsx-special-interest-wrapper',
 			style: {
 				spacing: {
 					blockGap: '5px'
