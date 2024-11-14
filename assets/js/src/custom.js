@@ -48,6 +48,9 @@ if ( window.location.hash ) {
 	 */
 	lsx_to.set_read_more = function() {
 		$( '.single-tour-operator .wp-block-read-more' ).each( function() {
+			lsx_to.readMoreText = $(this).contents().filter(function() {
+				return this.nodeType === Node.TEXT_NODE;
+			}).text();
 			lsx_to.readMoreSet( $(this) );
 		} );
 
@@ -83,6 +86,7 @@ if ( window.location.hash ) {
 				button.hide();
 			}
 			button.removeClass('less-link');
+			button.text( lsx_to.readMoreText );
 		}
 	}
 
@@ -93,6 +97,7 @@ if ( window.location.hash ) {
 				$(this).show();
 			});
 			button.addClass( 'less-link' );
+			button.text( 'Read Less' );
 			button.show();
 		}
 	}
