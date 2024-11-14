@@ -109,7 +109,10 @@ class Templates {
 			if ( isset( $labels['post_types'] ) ) {
 				$args['post_types'] = $labels['post_types'];
 			}
-			register_block_template( 'lsx-tour-operator//' . $key, $args );
+
+			if ( function_exists( 'register_block_template' ) ) {
+				register_block_template( 'lsx-tour-operator//' . $key, $args );
+			}
 		}
 	}
 
