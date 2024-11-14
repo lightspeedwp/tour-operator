@@ -424,41 +424,34 @@ class Frontend extends Tour_Operator {
 				'url'  => get_post_type_archive_link( 'accommodation' ),
 			),
 		);
-		$current_destinations = get_post_meta( get_the_ID(), 'destination_to_accommodation', true );
+		
+		// Get the primary travel style
+		$primary      = get_post_meta( get_the_ID(), '_yoast_wpseo_primary_accommodation-type', true );
+		$primary_term = get_term( $primary, 'accommodation-type' );
 
-		$all_destinations = array();
-		if ( false !== $current_destinations && ! empty( $current_destinations ) ) {
-
-			$country = false;
-			$regions = array();
-
-			foreach ( $current_destinations as $current_destination ) {
-				$all_destinations[] = get_post( $current_destination );
-			}
-
-			//Find the country
-			foreach ( $all_destinations as $destination_index => $destination ) {
-				if ( ( 0 === $destination->post_parent || '0' === $destination->post_parent ) && 'publish' === $destination->post_status ) {
-					$new_crumbs[] = array(
-						'text' => $destination->post_title,
-						'url'  => get_permalink( $destination->ID ),
-					);
-					unset( $all_destinations[ $destination_index ] );
-				}
-			}
-
-			//Find the region
-			if ( ! empty( $all_destinations ) ) {
-				foreach ( $all_destinations as $destination_index => $destination ) {
-					if ( 'publish' === $destination->post_status ) {
-						$new_crumbs[] = array(
-							'text' => $destination->post_title,
-							'url'  => get_permalink( $destination->ID ),
-						);
+		if ( ! is_wp_error( $primary_term ) && null !== $primary_term ) {
+			$new_crumbs[] = array(
+				'text' => $primary_term->name,
+				'url'  => get_term_link( $primary_term, 'accommodation-type' ),
+			);
+		} else {
+			$counter = 0;
+			$terms = wp_get_object_terms( get_the_ID(), 'accommodation-type' );
+			if ( ! is_wp_error( $terms ) && ! empty( $terms ) ) {
+				foreach ( $terms as $term ) {
+					if ( 0 < $counter ) {
+						continue;
 					}
+
+					$new_crumbs[] = array(
+						'text' => $term->name,
+						'url'  => get_term_link( $term ),
+					);
+					$counter++;
 				}
 			}
 		}
+		
 		$new_crumbs[] = array(
 			'text' => get_the_title(),
 			'url'  => get_permalink(),
@@ -480,29 +473,44 @@ class Frontend extends Tour_Operator {
 				'url'  => home_url(),
 			),
 			array(
-				'text' => esc_attr__( 'Tour', 'tour-operator' ),
+				'text' => esc_attr__( 'Tours', 'tour-operator' ),
 				'url'  => get_post_type_archive_link( 'tour' ),
 			),
 		);
-		$region = get_post_meta( get_the_ID(), 'departs_from', true );
-		if ( false !== $region && isset( $region[0] ) ) {
-			$country = wp_get_post_parent_id( $region[0] );
-			if ( false !== $country && '' !== $country ) {
-				$new_crumbs[] = array(
-					'text' => get_the_title( $country ),
-					'url'  => get_permalink( $country ),
-				);
-			}
+
+		// Get the primary travel style
+		$primary      = get_post_meta( get_the_ID(), '_yoast_wpseo_primary_travel-style', true );
+		$primary_term = get_term( $primary, 'travel-style' );
+
+		if ( ! is_wp_error( $primary_term ) && null !== $primary_term ) {
 			$new_crumbs[] = array(
-				'text' => get_the_title( $region[0] ),
-				'url'  => get_permalink( $region[0] ),
+				'text' => $primary_term->name,
+				'url'  => get_term_link( $primary_term, 'travel-style' ),
 			);
+		} else {
+			$counter = 0;
+			$terms = wp_get_object_terms( get_the_ID(), 'travel-style' );
+			if ( ! is_wp_error( $terms ) && ! empty( $terms ) ) {
+				foreach ( $terms as $term ) {
+					if ( 0 < $counter ) {
+						continue;
+					}
+
+					$new_crumbs[] = array(
+						'text' => $term->name,
+						'url'  => get_term_link( $term ),
+					);
+					$counter++;
+				}
+			}
 		}
+		
 		$new_crumbs[] = array(
 			'text' => get_the_title(),
 			'url'  => get_permalink(),
 		);
 		$crumbs = $new_crumbs;
+
 		return $crumbs;
 	}
 }
