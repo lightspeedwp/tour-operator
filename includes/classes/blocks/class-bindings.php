@@ -307,9 +307,10 @@ class Bindings {
 					$value   = lsx_to_itinerary_description( false );
 					$pattern = '/<p\s+[^>]*\bclass="[^"]*\bitinerary-description\b[^"]*"[^>]*>.*?<\/p>/is';
 					
-					if ( ! empty( $value ) ) {
-						$value = '<div class="' . $classes . '"/>' . $value . '</div>';
+					if ( empty( $value ) ) {
+						$value = '';
 					}
+					$value = '<div class="' . $classes . '"/>' . $value . '</div>';
 				}
 			break;
 
