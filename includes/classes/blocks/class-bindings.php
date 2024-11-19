@@ -175,6 +175,12 @@ class Bindings {
 									continue;
 								}
 							}
+
+							
+
+							if ( 0 === $this->post_id_exists( $pid ) ) {
+								continue;
+							}
 			
 							$values[] = '<a href="' . get_permalink( $pid ) . '">' . get_the_title( $pid ) . '</a>';
 						}
@@ -218,7 +224,7 @@ class Bindings {
 					'booking_validity_start',
 					'booking_validity_end',
 				];
-				if (  in_array( $source_args['key'], $date_transforms )  ) {
+				if ( in_array( $source_args['key'], $date_transforms ) ) {
 					$value = wp_date( 'j M Y', $value );
 				}
 	
@@ -585,6 +591,10 @@ class Bindings {
 			return $block_content;
 		}
 
+		if ( ! is_array( $gallery ) ) {
+			$gallery = [ $gallery ];
+		}
+
 		$classes = $this->find_gallery_classes( $block_content );
 		$images  = array();
 
@@ -771,7 +781,7 @@ class Bindings {
 
 				default:
 
-					do_action( 'dm/debug', $parsed_block );
+					do_action( 'qm/debug', $query_key );
 
 				break;
 			}
@@ -823,5 +833,38 @@ class Bindings {
 			$item_links[] = '<a href="' . get_permalink( $item->ID ) . '" title="' . get_the_title( $item->ID ) . '">' . get_the_title( $item->ID ) . '</a>';
 		}
 		return implode( ', ', $item_links );
+	}
+
+	/**
+	* Determines if a post exists based on the ID.
+	*
+	*
+	* @global wpdb $wpdb WordPress database abstraction object.
+	*
+	* @param string $title   Post title.
+	* @param string $content Optional. Post content.
+	* @param string $date    Optional. Post date.
+	* @param string $type    Optional. Post type.
+	* @param string $status  Optional. Post status.
+	* @return int Post ID if post exists, 0 otherwise.
+	*/
+	protected function post_id_exists( $id ) {
+		global $wpdb;
+
+		$post_id = wp_unslash( sanitize_post_field( 'id', $id, 0, 'db' ) );
+
+		$query = "SELECT ID FROM $wpdb->posts WHERE 1=1";
+		$args  = array();
+
+		if ( ! empty( $date ) ) {
+			$query .= ' AND ID = %d';
+			$args[] = $post_id;
+		}
+
+		if ( ! empty( $args ) ) {
+			return (int) $wpdb->get_var( $wpdb->prepare( $query, $args ) );
+		}
+
+		return 0;
 	}
 }
