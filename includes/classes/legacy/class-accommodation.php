@@ -118,7 +118,11 @@ class Accommodation {
 	 * Adds in additional info for the price custom field
 	 */
 	public function price_filter( $html = '', $meta_key = false, $value = false, $before = '', $after = '' ) {
-		if ( get_post_type() === 'accommodation' && 'price' === $meta_key ) {
+		$currency_fields = [
+			'price'
+		];
+
+		if ( get_post_type() === 'accommodation' && in_array( $meta_key, $currency_fields ) ) {
 			$price_type    = get_post_meta( get_the_ID(), 'price_type', true );
 			$value         = preg_replace( '/[^0-9,.]/', '', $value );
 			$value         = ltrim( $value, '.' );
