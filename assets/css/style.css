@@ -2,74 +2,105 @@
 /*
  * LSX Tour Operators
  */
-.lsx-price-wrapper .amount .currency-icon:after {
+.lsx-price-wrapper .amount .currency-icon:after,
+.lsx-single-supplement-wrapper .amount .currency-icon:after {
   margin-left: 3px;
   margin-right: 3px;
 }
-.lsx-price-wrapper .amount .currency-icon.usd:after, .lsx-price-wrapper .amount .currency-icon.nad:after, .lsx-price-wrapper .amount .currency-icon.cad:after, .lsx-price-wrapper .amount .currency-icon.hkd:after, .lsx-price-wrapper .amount .currency-icon.sgd:after, .lsx-price-wrapper .amount .currency-icon.nzd:after, .lsx-price-wrapper .amount .currency-icon.aud:after {
+.lsx-price-wrapper .amount .currency-icon.usd:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.usd:after, .lsx-price-wrapper .amount .currency-icon.nad:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.nad:after, .lsx-price-wrapper .amount .currency-icon.cad:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.cad:after, .lsx-price-wrapper .amount .currency-icon.hkd:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.hkd:after, .lsx-price-wrapper .amount .currency-icon.sgd:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.sgd:after, .lsx-price-wrapper .amount .currency-icon.nzd:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.nzd:after, .lsx-price-wrapper .amount .currency-icon.aud:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.aud:after {
   content: "$";
 }
-.lsx-price-wrapper .amount .currency-icon.eur:after {
+.lsx-price-wrapper .amount .currency-icon.eur:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.eur:after {
   content: "€";
 }
-.lsx-price-wrapper .amount .currency-icon.gbp:after {
+.lsx-price-wrapper .amount .currency-icon.gbp:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.gbp:after {
   content: "£";
 }
-.lsx-price-wrapper .amount .currency-icon.zar:after {
+.lsx-price-wrapper .amount .currency-icon.zar:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.zar:after {
   content: "R";
 }
-.lsx-price-wrapper .amount .currency-icon.brl:after {
+.lsx-price-wrapper .amount .currency-icon.brl:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.brl:after {
   content: "R$";
 }
-.lsx-price-wrapper .amount .currency-icon.bwp:after {
+.lsx-price-wrapper .amount .currency-icon.bwp:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.bwp:after {
   content: "P";
 }
-.lsx-price-wrapper .amount .currency-icon.cny:after, .lsx-price-wrapper .amount .currency-icon.jpy:after {
+.lsx-price-wrapper .amount .currency-icon.cny:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.cny:after, .lsx-price-wrapper .amount .currency-icon.jpy:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.jpy:after {
   content: "¥";
 }
-.lsx-price-wrapper .amount .currency-icon.inr:after {
+.lsx-price-wrapper .amount .currency-icon.inr:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.inr:after {
   content: "₹";
 }
-.lsx-price-wrapper .amount .currency-icon.idr:after {
+.lsx-price-wrapper .amount .currency-icon.idr:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.idr:after {
   content: "₹";
 }
-.lsx-price-wrapper .amount .currency-icon.ils:after {
+.lsx-price-wrapper .amount .currency-icon.ils:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.ils:after {
   content: "₪";
 }
-.lsx-price-wrapper .amount .currency-icon.kes:after {
+.lsx-price-wrapper .amount .currency-icon.kes:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.kes:after {
   content: "K";
 }
-.lsx-price-wrapper .amount .currency-icon.lak:after {
+.lsx-price-wrapper .amount .currency-icon.lak:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.lak:after {
   content: "₭";
 }
-.lsx-price-wrapper .amount .currency-icon.mwk:after {
+.lsx-price-wrapper .amount .currency-icon.mwk:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.mwk:after {
   content: "MK";
 }
-.lsx-price-wrapper .amount .currency-icon.myr:after {
+.lsx-price-wrapper .amount .currency-icon.myr:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.myr:after {
   content: "RM";
 }
-.lsx-price-wrapper .amount .currency-icon.mzn:after {
+.lsx-price-wrapper .amount .currency-icon.mzn:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.mzn:after {
   content: "MT";
 }
-.lsx-price-wrapper .amount .currency-icon.nok:after, .lsx-price-wrapper .amount .currency-icon.sek:after {
+.lsx-price-wrapper .amount .currency-icon.nok:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.nok:after, .lsx-price-wrapper .amount .currency-icon.sek:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.sek:after {
   content: "kr";
 }
-.lsx-price-wrapper .amount .currency-icon.rub:after {
+.lsx-price-wrapper .amount .currency-icon.rub:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.rub:after {
   content: "руб";
 }
-.lsx-price-wrapper .amount .currency-icon.chf:after {
+.lsx-price-wrapper .amount .currency-icon.chf:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.chf:after {
   content: "CHF";
 }
-.lsx-price-wrapper .amount .currency-icon.tzs:after {
+.lsx-price-wrapper .amount .currency-icon.tzs:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.tzs:after {
   content: "TSh";
 }
-.lsx-price-wrapper .amount .currency-icon.aed:after {
+.lsx-price-wrapper .amount .currency-icon.aed:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.aed:after {
   content: "د.إ";
 }
-.lsx-price-wrapper .amount .currency-icon.zmw:after {
+.lsx-price-wrapper .amount .currency-icon.zmw:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.zmw:after {
   content: "Zk";
 }
-.lsx-price-wrapper .amount .currency-icon.zwl:after {
+.lsx-price-wrapper .amount .currency-icon.zwl:after,
+.lsx-single-supplement-wrapper .amount .currency-icon.zwl:after {
   content: "Z$";
 }
 
@@ -84,12 +115,14 @@
 		background-position: center top;
 	}
 }*/
-.lsx-price-wrapper {
+.lsx-price-wrapper,
+.lsx-single-supplement-wrapper {
   /*&:before {
   	background-image: url( ../img/icons/price-icon.png );
   }*/
 }
-.lsx-price-wrapper .amount .currency-icon:after {
+.lsx-price-wrapper .amount .currency-icon:after,
+.lsx-single-supplement-wrapper .amount .currency-icon:after {
   margin-right: 0px;
 }
 

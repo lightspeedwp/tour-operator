@@ -721,7 +721,7 @@ wp.domReady(() => {
 								}
 							}
 						},
-						className: 'has-primary-color has-text-color has-link-color',
+						className: 'amount has-primary-color has-text-color has-link-color',
 						style: {
 							elements: {
 								link: {
