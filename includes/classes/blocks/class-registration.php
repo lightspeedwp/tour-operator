@@ -198,8 +198,10 @@ class Registration {
 					if ( ! is_array( $found_items ) ) {
 						$found_items = [ $found_items ];
 					}
-					
 					$query['post__in'] = $found_items;
+				} else {
+					$query['no_relation'] = true;
+					$query['post__in']    = [ get_the_ID() ];
 				}
 
 			break;

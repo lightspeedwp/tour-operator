@@ -133,6 +133,8 @@ class Bindings {
 				return '';
 			}
 
+			$value = '';
+
 			switch ( $source_args['key'] ) {
 
 				case 'post_children':
@@ -211,15 +213,18 @@ class Bindings {
 			}
 			$value = lsx_to_custom_field_query( $source_args['key'], '', '', false, get_the_ID(), $single );
 
-			$date_transforms = [
-				'booking_validity_start',
-				'booking_validity_end',
-			];
-			if (  in_array( $source_args['key'], $date_transforms )  ) {
-				$value = wp_date( 'j M Y', $value );
+			if ( null !== $value ) {
+				$date_transforms = [
+					'booking_validity_start',
+					'booking_validity_end',
+				];
+				if (  in_array( $source_args['key'], $date_transforms )  ) {
+					$value = wp_date( 'j M Y', $value );
+				}
+	
+				$value = preg_replace( '/^<p>(.*?)<\/p>$/', '$1', $value );
 			}
-
-			$value = preg_replace( '/^<p>(.*?)<\/p>$/', '$1', $value );
+			
 		}
 		return $value;
 	}
@@ -765,6 +770,9 @@ class Bindings {
 				break;
 
 				default:
+
+					do_action( 'dm/debug', $parsed_block );
+
 				break;
 			}
 		} else if ( taxonomy_exists( $key ) ) {
