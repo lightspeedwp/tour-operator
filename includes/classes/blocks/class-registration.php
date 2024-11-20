@@ -8,6 +8,11 @@ namespace lsx\blocks;
  * @author  LightSpeed
  */
 class Registration {
+
+	protected $disabled = [];
+
+	protected $featured = [];
+
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
 	 *
@@ -19,6 +24,8 @@ class Registration {
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_variations_script' ), 10 );
 		add_filter( 'query_loop_block_query_vars', array( $this, 'query_args_filter' ), 10, 2 );
 		add_filter( 'render_block', array( $this, 'maybe_hide_varitaion' ), 10, 3 );
+
+		add_filter( 'posts_pre_query', array( $this, 'posts_pre_query' ), 10, 2 );
 	}
 
 	/**
@@ -117,6 +124,7 @@ class Registration {
 			case 'featured-accommodation':
 			case 'featured-tours':
 			case 'featured-destinations':
+
 				$query['meta_query'] = array(
 					'relation' => 'OR',
 					array(
@@ -125,6 +133,14 @@ class Registration {
 						'compare' => '=',
 					),
 				);
+
+				$featured_items = $this->find_featured_items( $query );
+				if ( ! empty( $featured_items ) ) {
+					$query['lsx_to_featured'] = $key;
+					$this->featured[ $key ]   = $featured_items;
+				} else {
+					$this->disabled[ $key ] = true;
+				}
 
 			break;
 	
@@ -178,7 +194,9 @@ class Registration {
 					}
 				}
 
-
+				if ( ! isset( $query['post__in'] ) ) {
+					$this->disabled[ $key ] = true;
+				}
 
 				$query['post__not_in'] = $excluded_items;
 
@@ -206,8 +224,8 @@ class Registration {
 					}
 					$query['post__in'] = $found_items;
 				} else {
-					$query['no_relation'] = true;
-					$query['post__in']    = [ get_the_ID() ];
+					$this->disabled[ $key ] = true;
+					$query['post__in']      = [ get_the_ID() ];
 				}
 
 			break;
@@ -304,8 +322,9 @@ class Registration {
 				break;
 
 				default:
-
-					do_action( 'qm/debug', $query_key );
+					if ( isset( $this->disabled[ $query_key ] ) ) {
+						return '';
+					}
 
 				break;
 			}
@@ -377,5 +396,35 @@ class Registration {
 				  AND post_status IN ('draft', 'publish')";
 
 		return (int) $wpdb->get_var( $wpdb->prepare( $query, $ids ) );
+	}
+
+	/**
+	 * This function will grab our Featured query so we dont have to redo that.
+	 *
+	 * @param null $posts
+	 * @param WP_Query $query
+	 * @return null|array
+	 */
+	public function posts_pre_query( $posts, $query ) {
+		if ( isset( $query->query['lsx_to_featured'] ) && isset( $this->featured[ $query->query['lsx_to_featured'] ] ) ) {
+			do_action( 'qm/debug', $this->featured[ $query->query['lsx_to_featured'] ] );
+			$posts = $this->featured[ $query->query['lsx_to_featured'] ];
+		}
+		return $posts;
+	}
+
+	/**
+	 * Find the featured items for the current query
+	 *
+	 * @param array $query
+	 * @return array
+	 */
+	public function find_featured_items( $query ) {
+		$items = [];
+		$item_query = new \WP_Query( $query );
+		if ( $item_query->have_posts() ) {
+			$items = $item_query->posts;
+		}
+		return $items;
 	}
 }
