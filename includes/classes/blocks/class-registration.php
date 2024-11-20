@@ -38,9 +38,9 @@ class Registration {
 		$scripts = [
 			'general'       => '',
 			'tour'          => '',
-			'accommodation' => '',
-			'destination'   => '',
-			'query-loops'   => '',
+			//'accommodation' => '',
+			//'destination'   => '',
+			//'query-loops'   => '',
 		];
 
 		// Make sure the script is only enqueued in the block editor.
