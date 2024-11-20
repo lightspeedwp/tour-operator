@@ -119,7 +119,8 @@ class Accommodation {
 	 */
 	public function price_filter( $html = '', $meta_key = false, $value = false, $before = '', $after = '' ) {
 		$currency_fields = [
-			'price'
+			'price',
+			'single_supplement'
 		];
 
 		if ( get_post_type() === 'accommodation' && in_array( $meta_key, $currency_fields ) ) {
@@ -131,11 +132,9 @@ class Accommodation {
 			$tour_operator = tour_operator();
 			$currency      = '';
 
-			if ( is_object( $tour_operator ) && isset( $tour_operator->options['general'] ) && is_array( $tour_operator->options['general'] ) ) {
-				if ( isset( $tour_operator->options['general']['currency'] ) && ! empty( $tour_operator->options['general']['currency'] ) ) {
-					$currency = $tour_operator->options['general']['currency'];
-					$currency = '<span class="currency-icon ' . mb_strtolower( $currency ) . '">' . $currency . '</span>';
-				}
+			if ( is_object( $tour_operator ) && isset( $tour_operator->options['currency'] ) && ! empty( $tour_operator->options['currency'] ) ) {
+				$currency = $tour_operator->options['currency'];
+				$currency = '<span class="currency-icon ' . mb_strtolower( $currency ) . '">' . $currency . '</span>';
 			}
 
 			$value = apply_filters( 'lsx_to_accommodation_price', $value, $price_type, $currency );
