@@ -176,12 +176,6 @@ class Bindings {
 								}
 							}
 
-							
-
-							if ( 0 === $this->post_id_exists( $pid ) ) {
-								continue;
-							}
-			
 							$values[] = '<a href="' . get_permalink( $pid ) . '">' . get_the_title( $pid ) . '</a>';
 						}
 						$value = implode( ', ', $values );
@@ -781,7 +775,6 @@ class Bindings {
 
 				default:
 
-					do_action( 'qm/debug', $query_key );
 
 				break;
 			}
@@ -805,6 +798,12 @@ class Bindings {
 
 			foreach ( $key_array as $meta_key ) {
 				$value = lsx_to_custom_field_query( $meta_key, '', '', false );
+				
+				// we need to see if the posts exist before we can use them
+				if ( stripos( $meta_key, '_to_' ) && 0 === $this->post_ids_exist( $value ) ) {
+					continue;
+				}
+
 				if ( ! empty( $value ) && '' !== $value ) {
 					$has_values = true;
 				}
@@ -848,23 +847,21 @@ class Bindings {
 	* @param string $status  Optional. Post status.
 	* @return int Post ID if post exists, 0 otherwise.
 	*/
-	protected function post_id_exists( $id ) {
+	protected function post_ids_exist( $ids ) {
 		global $wpdb;
 
-		$post_id = wp_unslash( sanitize_post_field( 'id', $id, 0, 'db' ) );
-
-		$query = "SELECT ID FROM $wpdb->posts WHERE 1=1";
-		$args  = array();
-
-		if ( ! empty( $date ) ) {
-			$query .= ' AND ID = %d';
-			$args[] = $post_id;
+		if ( is_array( $ids ) ) {
+			$ids = implode( ',', $ids );
 		}
 
-		if ( ! empty( $args ) ) {
-			return (int) $wpdb->get_var( $wpdb->prepare( $query, $args ) );
-		}
+		$ids = wp_unslash( sanitize_post_field( 'id', $ids, 0, 'db' ) );
 
-		return 0;
+		$query = "SELECT COUNT(ID)
+				  FROM $wpdb->posts
+				  WHERE 1=1
+				  AND ID IN (%s)
+				  AND post_status IN ('draft', 'publish')";
+
+		return (int) $wpdb->get_var( $wpdb->prepare( $query, $ids ) );
 	}
 }
