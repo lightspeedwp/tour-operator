@@ -32,9 +32,6 @@ if ( defined( 'WPINC' ) ) {
 	require_once( LSX_TO_PATH . 'includes/template-tags/maps.php' );
 	require_once( LSX_TO_PATH . 'includes/template-tags/videos.php' );
 
-	// General Includes.
-	require_once( LSX_TO_PATH . 'includes/layout.php' );
-
 	// include context helper & autoloader.
 	require_once( LSX_TO_PATH . 'includes/tour-operator.php' );
 	// Include functions.
