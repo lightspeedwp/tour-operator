@@ -159,136 +159,108 @@ wp.domReady(() => {
 		allowedPostTypes: ['tour']
 	});
 
-	// Price Included + Excluded
-	wp.registerBlockVariation( 'core/group', {
-		name: 'price-include-exclude',
-		title: 'Price Include & Exclude',
-		category: 'layout',
+	// Single Supplement
+	wp.blocks.registerBlockVariation('core/group', {
+		name: 'lsx-tour-operator/single-supplement-wrapper',
+		title: 'Single Supplement',
+		category: 'lsx-tour-operator',
 		attributes: {
-			align: 'wide',
-			className: 'lsx-include-exclude-wrapper',
+			metadata: {
+				name: 'Single Supplement',
+			},
+			className: 'lsx-single-supplement-wrapper',
 			style: {
 				spacing: {
-					padding: {
-						top: 'var:preset|spacing|x-small',
-						bottom: 'var:preset|spacing|x-small',
-						left: 'var:preset|spacing|x-small',
-						right: 'var:preset|spacing|x-small'
-					}
-				},
-				border: {
-					radius: '8px',
-					width: '1px'
+					blockGap: '5px'
 				}
 			},
-			backgroundColor: 'base',
-			borderColor: 'primary',
 			layout: {
-				type: 'constrained'
+				type: 'flex',
+				flexWrap: 'nowrap'
 			}
 		},
 		innerBlocks: [
-			[
-			'core/columns', {
-				align: 'wide',
-				style: {
-				spacing: {
-					blockGap: {
-					top: 'var:preset|spacing|medium',
-					left: 'var:preset|spacing|medium'
-					}
-				}
-				}
-			},
-			[
-				[
-				'core/column', {
-					width: '50%',
-					id: 'lsx-included-wrapper',
+			['core/group', {
 					style: {
-					spacing: {
-						blockGap: '0'
-					}
+						spacing: {
+							blockGap: '5px'
+						}
+					},
+						layout: {
+							type: 'flex',
+							flexWrap: 'nowrap',
+							verticalAlignment: 'top'
+						}
+				},
+				[
+					['core/image', {
+						id: 122733,
+						width: '20px',
+						sizeSlug: 'large',
+						linkDestination: 'none',
+						url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/11/single-supplement-icon-black-52px-1.svg',
+						alt: ''
+					}],
+					['core/paragraph', {
+						style: {
+							spacing: {
+								padding: {
+									top: '2px',
+									bottom: '2px'
+								}
+							}
+						},
+						fontSize: 'x-small',
+						content: '<strong>Single supplement:</strong>'
+					}]
+				]
+			],
+			['core/group', {
+					style: {
+						spacing: {
+							blockGap: '5px'
+						},
+						layout: {
+							type: 'flex',
+							flexWrap: 'nowrap'
+						}
 					}
 				},
 				[
-					[
-					'core/paragraph', {
+					['core/paragraph', {
+						metadata: {
+							bindings: {
+								content: {
+									source: 'lsx/post-meta',
+									args: {
+										key: 'single_supplement'
+									}
+								}
+							}
+						},
+						className: 'amount has-primary-color has-text-color has-link-color',
 						style: {
-						elements: {
-							link: {
-							color: {
-								text: 'var:preset|color|primary-700'
+							elements: {
+								link: {
+									color: {
+										text: 'var:preset|color|primary-700'
+									}
+								}
+							},
+							spacing: {
+								padding: {
+									top: '2px',
+									bottom: '2px'
+								}
 							}
-							}
-						}
 						},
 						textColor: 'primary-700',
-						fontSize: 'medium'
-					},
-					[ 'Price Includes:' ]
-					],
-					[
-					'core/paragraph', {
-						metadata: {
-						bindings: {
-							content: {
-							source: 'lsx/post-meta',
-							args: { key: 'included' }
-							}
-						}
-						}
-					},
-					[]
-					]
+						content: ''
+					}]
 				]
-				],
-				[
-				'core/column', {
-					width: '50%',
-					className: 'lsx-not-included-wrapper',
-					style: {
-					spacing: {
-						blockGap: '0'
-					}
-					}
-				},
-				[
-					[
-					'core/paragraph', {
-						style: {
-						elements: {
-							link: {
-							color: {
-								text: 'var:preset|color|primary-700'
-							}
-							}
-						}
-						},
-						textColor: 'primary-700',
-						fontSize: 'medium'
-					},
-					[ 'Price Excludes:' ]
-					],
-					[
-					'core/paragraph', {
-						metadata: {
-						bindings: {
-							content: {
-							source: 'lsx/post-meta',
-							args: { key: 'not_included' }
-							}
-						}
-						}
-					},
-					[]
-					]
-				]
-				]
-			]
 			]
 		]
-	} );
+	});
 
 	// Destination to Tour
 	wp.blocks.registerBlockVariation("core/group", {
@@ -326,7 +298,7 @@ wp.domReady(() => {
 					[
 						'core/image',
 						{
-							width: 20,
+							width: '20px',
 							sizeSlug: 'large',
 							url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/09/Typelocation-icon.png',
 							alt: ''
@@ -619,109 +591,6 @@ wp.domReady(() => {
 								}
 							}
 						},
-						style: {
-							elements: {
-								link: {
-									color: {
-										text: 'var:preset|color|primary-700'
-									}
-								}
-							},
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
-						textColor: 'primary-700',
-						content: ''
-					}]
-				]
-			]
-		]
-	});
-
-	// Single Supplement
-	wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-tour-operator/single-supplement-wrapper',
-		title: 'Single Supplement',
-		category: 'lsx-tour-operator',
-		attributes: {
-			metadata: {
-				name: 'Single Supplement',
-			},
-			className: 'lsx-single-supplement-wrapper',
-			style: {
-				spacing: {
-					blockGap: '5px'
-				}
-			},
-			layout: {
-				type: 'flex',
-				flexWrap: 'nowrap'
-			}
-		},
-		innerBlocks: [
-			['core/group', {
-					style: {
-						spacing: {
-							blockGap: '5px'
-						}
-					},
-						layout: {
-							type: 'flex',
-							flexWrap: 'nowrap',
-							verticalAlignment: 'top'
-						}
-				},
-				[
-					['core/image', {
-						id: 122733,
-						width: 20,
-						sizeSlug: 'large',
-						linkDestination: 'none',
-						url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/11/single-supplement-icon-black-52px-1.svg',
-						alt: ''
-					}],
-					['core/paragraph', {
-						style: {
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
-						fontSize: 'x-small',
-						content: '<strong>Single supplement:</strong>'
-					}]
-				]
-			],
-			['core/group', {
-					style: {
-						spacing: {
-							blockGap: '5px'
-						},
-						layout: {
-							type: 'flex',
-							flexWrap: 'nowrap'
-						}
-					}
-				},
-				[
-					['core/paragraph', {
-						metadata: {
-							bindings: {
-								content: {
-									source: 'lsx/post-meta',
-									args: {
-										key: 'single_supplement'
-									}
-								}
-							}
-						},
-						className: 'has-primary-color has-text-color has-link-color',
 						style: {
 							elements: {
 								link: {
@@ -1086,4 +955,125 @@ wp.domReady(() => {
 			]
 		]
 	});
+
+	// Price Included + Excluded
+	wp.blocks.registerBlockVariation( 'core/group', {
+		name: 'lsx-tour-operator/price-include-exclude',
+		title: 'Price Include & Exclude',
+		category: 'lsx-tour-operator',
+		attributes: {
+			align: 'wide',
+			metadata: {
+				name: 'Price Include & Exclude',
+			},
+			className: 'lsx-include-exclude-wrapper',
+			style: {
+				spacing: {
+					padding: {
+						top: 'var:preset|spacing|x-small',
+						bottom: 'var:preset|spacing|x-small',
+						left: 'var:preset|spacing|x-small',
+						right: 'var:preset|spacing|x-small'
+					}
+				},
+				border: {
+					radius: '8px',
+					width: '1px'
+				}
+			},
+			backgroundColor: 'base',
+			borderColor: 'primary',
+			layout: {
+				type: 'constrained'
+			}
+		},
+		innerBlocks: [
+			[ 'core/columns', {
+					align: 'wide',
+					style: {
+						spacing: {
+							blockGap: {
+								top: 'var:preset|spacing|medium',
+								left: 'var:preset|spacing|medium'
+							}
+						}
+					}
+				},
+				[
+					['core/column', {
+							width: '50%',
+							id: 'lsx-included-wrapper',
+							style: {
+								spacing: {
+									blockGap: '0'
+								}
+							}
+						},
+						[
+							[ 'core/paragraph', {
+								style: {
+									elements: {
+										link: {
+											color: {
+												text: 'var:preset|color|primary-700'
+											}
+										}
+									}
+								},
+								textColor: 'primary-700',
+								fontSize: 'medium',
+								content: '<strong>Price Includes:</strong>'
+							} ],
+							[ 'core/paragraph', {
+								metadata: {
+									bindings: {
+										content: {
+											source: 'lsx/post-meta',
+											args: { key: 'included' }
+										}
+									}
+								}
+							}]
+						]
+					],
+					[ 'core/column', {
+							width: '50%',
+							className: 'lsx-not-included-wrapper',
+							style: {
+								spacing: {
+									blockGap: '0'
+								}
+							}
+						},
+						[
+							[ 'core/paragraph', {
+								style: {
+								elements: {
+									link: {
+									color: {
+										text: 'var:preset|color|primary-700'
+									}
+									}
+								}
+								},
+								textColor: 'primary-700',
+								fontSize: 'medium',
+								content: '<strong>Price Excludes:</strong>'
+							}],
+							[ 'core/paragraph', {
+								metadata: {
+									bindings: {
+										content: {
+											source: 'lsx/post-meta',
+											args: { key: 'not_included' }
+										}
+									}
+								}
+							}]
+						]
+					]
+				]
+			]
+		]
+	} );
 });

@@ -44,6 +44,7 @@ wp.domReady(() => {
 	wp.blocks.registerBlockVariation("core/group", {
 		name: "lsx-tour-operator/price",
 		title: "Price",
+		category: 'lsx-tour-operator',
 		icon: "bank",
 		attributes: {
 			metadata: {

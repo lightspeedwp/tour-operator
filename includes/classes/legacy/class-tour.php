@@ -176,7 +176,12 @@ class Tour {
 	 * Adds in additional info for the price custom field
 	 */
 	public function price_filter( $html = '', $meta_key = false, $value = false, $before = '', $after = '' ) {
-		if ( get_post_type() === 'tour' && 'price' === $meta_key ) {
+		$currency_fields = [
+			'price',
+			'single_supplement'
+		];
+
+		if ( get_post_type() === 'tour' && in_array( $meta_key, $currency_fields ) ) {
 			$value         = preg_replace( '/[^0-9,.]/', '', $value );
 			$value         = ltrim( $value, '.' );
 			$value         = str_replace( ',', '', $value );

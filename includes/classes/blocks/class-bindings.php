@@ -68,7 +68,6 @@ class Bindings {
 		add_filter( 'render_block', array( $this, 'render_units_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'render_gallery_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'render_map_block' ), 10, 3 );
-		add_filter( 'render_block', array( $this, 'maybe_hide_varitaion' ), 10, 3 );
 	}
 
 	public function register_block_bindings() {
@@ -133,6 +132,8 @@ class Bindings {
 				return '';
 			}
 
+			$value = '';
+
 			switch ( $source_args['key'] ) {
 
 				case 'post_children':
@@ -173,7 +174,7 @@ class Bindings {
 									continue;
 								}
 							}
-			
+
 							$values[] = '<a href="' . get_permalink( $pid ) . '">' . get_the_title( $pid ) . '</a>';
 						}
 						$value = implode( ', ', $values );
@@ -211,15 +212,18 @@ class Bindings {
 			}
 			$value = lsx_to_custom_field_query( $source_args['key'], '', '', false, get_the_ID(), $single );
 
-			$date_transforms = [
-				'booking_validity_start',
-				'booking_validity_end',
-			];
-			if (  in_array( $source_args['key'], $date_transforms )  ) {
-				$value = wp_date( 'j M Y', $value );
+			if ( null !== $value ) {
+				$date_transforms = [
+					'booking_validity_start',
+					'booking_validity_end',
+				];
+				if ( in_array( $source_args['key'], $date_transforms ) ) {
+					$value = wp_date( 'j M Y', $value );
+				}
+	
+				$value = preg_replace( '/^<p>(.*?)<\/p>$/', '$1', $value );
 			}
-
-			$value = preg_replace( '/^<p>(.*?)<\/p>$/', '$1', $value );
+			
 		}
 		return $value;
 	}
@@ -307,9 +311,10 @@ class Bindings {
 					$value   = lsx_to_itinerary_description( false );
 					$pattern = '/<p\s+[^>]*\bclass="[^"]*\bitinerary-description\b[^"]*"[^>]*>.*?<\/p>/is';
 					
-					if ( ! empty( $value ) ) {
-						$value = '<div class="' . $classes . '"/>' . $value . '</div>';
+					if ( empty( $value ) ) {
+						$value = '';
 					}
+					$value = '<div class="' . $classes . '"/>' . $value . '</div>';
 				}
 			break;
 
@@ -579,6 +584,10 @@ class Bindings {
 			return $block_content;
 		}
 
+		if ( ! is_array( $gallery ) ) {
+			$gallery = [ $gallery ];
+		}
+
 		$classes = $this->find_gallery_classes( $block_content );
 		$images  = array();
 
@@ -675,126 +684,6 @@ class Bindings {
 
 		$pattern       = '/<figure\b[^>]*>(.*?)<\/figure>/s';
 		$block_content = preg_replace( $pattern, $map, $block_content );
-
-		return $block_content;
-	}
-
-	/**
-	 * A function to detect variation, and alter the query args.
-	 * 
-	 * Following the https://developer.wordpress.org/news/2022/12/building-a-book-review-grid-with-a-query-loop-block-variation/
-	 *
-	 * @param string|null   $pre_render   The pre-rendered content. Default null.
-	 * @param array         $parsed_block The block being rendered.
-	 * @param WP_Block|null $parent_block If this is a nested block, a reference to the parent block.
-	 */
-	public function maybe_hide_varitaion( $block_content, $parsed_block, $block_obj ) {
-		// Determine if this is the custom block variation.
-		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
-			return $block_content;
-		}
-		$allowed_blocks = array(
-			'core/group',
-		);
-
-		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
-			return $block_content; 
-		}
-		if ( ! isset( $parsed_block['attrs']['className'] ) || '' === $parsed_block['attrs']['className'] || false === $parsed_block['attrs']['className'] ) {
-			return $block_content;
-		}
-
-		$pattern = "/(lsx|facts)-(.*?)-wrapper/";
-		preg_match( $pattern, $parsed_block['attrs']['className'], $matches );
-
-		if ( empty( $matches ) ) {
-			return $block_content;
-		}
-
-		if ( ! empty( $matches ) && isset( $matches[0] ) ) {
-			// Save the first match to a variable
-			$key = str_replace( [ 'facts-', 'lsx-', '-wrapper' ], '', $matches[0] );
-		} else {
-			return $block_content;
-		}
-
-		/*
-		 * 1 - Check if it is an itinerary or a units query
-		 * 2 - See if it is a post query
-		 * 3 - See if it is a taxonomy query
-		 * 4 - Lastly default to the custom fields
-		 */
-
-		if ( 0 < stripos( $key, '-query' ) ) {
-			
-			$query_key      = str_replace( [ '-query' ], '', $key );
-			$current_parent = get_post_parent( get_the_ID() );
-
-			switch ( $query_key ) {
-				case 'regions':
-					// If the current item is not a country
-					if ( null !== $current_parent ) {
-						return '';
-					}
-
-					if ( false === lsx_to_item_has_children( get_the_ID(), 'destination' ) ) {
-						return '';
-					}
-
-				break;
-
-				case 'related-regions':
-					// If the current item is a country, then there wont be any other child regions.
-					if ( null === $current_parent ) {
-						return '';
-					}
-
-					if ( false === lsx_to_item_has_children( $current_parent, 'destination' ) ) {
-						return '';
-					}
-				
-				break;
-
-				case 'country':
-					// If the current item is not a country
-					if ( null === $current_parent ) {
-						return '';
-					}
-
-				break;
-
-				default:
-				break;
-			}
-		} else if ( taxonomy_exists( $key ) ) {
-			// Check to see if this is a taxonomy or a custom field.
-			$tax_args = array(
-				'fields' => 'ids'
-			);
-			if ( empty( wp_get_post_terms( get_the_ID(), $key, $tax_args ) ) ) {
-				$block_content = '';
-			}
-		} else {
-			$key        = str_replace( '-', '_', $key );
-			$key_array  = [ $key ];
-			$has_values = false;
-
-			// If this is a wrapper that houses many fields, then we need to review them all.
-			if ( 'include_exclude' === $key ) {
-				$key_array = [ 'included', 'not_included' ];
-			}
-
-			foreach ( $key_array as $meta_key ) {
-				$value = lsx_to_custom_field_query( $meta_key, '', '', false );
-				if ( ! empty( $value ) && '' !== $value ) {
-					$has_values = true;
-				}
-			}
-			
-			if ( false === $has_values ) {
-				$block_content = '';
-			}
-		}
 
 		return $block_content;
 	}

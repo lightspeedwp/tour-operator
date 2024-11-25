@@ -8,6 +8,11 @@ namespace lsx\blocks;
  * @author  LightSpeed
  */
 class Registration {
+
+	protected $disabled = [];
+
+	protected $featured = [];
+
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
 	 *
@@ -18,6 +23,9 @@ class Registration {
 	public function __construct() {
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_variations_script' ), 10 );
 		add_filter( 'query_loop_block_query_vars', array( $this, 'query_args_filter' ), 10, 2 );
+		add_filter( 'render_block', array( $this, 'maybe_hide_varitaion' ), 10, 3 );
+
+		add_filter( 'posts_pre_query', array( $this, 'posts_pre_query' ), 10, 2 );
 	}
 
 	/**
@@ -94,6 +102,8 @@ class Registration {
 			return $query;
 		}
 
+		do_action( 'qm/debug', [ $key ] );
+
 		switch ( $key ) {
 			case 'regions':
 				// We only restric this on the destination post type, in case the block is used on a landing page.
@@ -114,6 +124,7 @@ class Registration {
 			case 'featured-accommodation':
 			case 'featured-tours':
 			case 'featured-destinations':
+
 				$query['meta_query'] = array(
 					'relation' => 'OR',
 					array(
@@ -122,6 +133,14 @@ class Registration {
 						'compare' => '=',
 					),
 				);
+
+				$featured_items = $this->find_featured_items( $query );
+				if ( ! empty( $featured_items ) ) {
+					$query['lsx_to_featured'] = $key;
+					$this->featured[ $key ]   = $featured_items;
+				} else {
+					$this->disabled[ $key ] = true;
+				}
 
 			break;
 	
@@ -174,6 +193,11 @@ class Registration {
 						$query['post__in'] = $items;
 					}
 				}
+
+				if ( ! isset( $query['post__in'] ) ) {
+					$this->disabled[ $key ] = true;
+				}
+
 				$query['post__not_in'] = $excluded_items;
 
 			break;
@@ -198,8 +222,10 @@ class Registration {
 					if ( ! is_array( $found_items ) ) {
 						$found_items = [ $found_items ];
 					}
-					
 					$query['post__in'] = $found_items;
+				} else {
+					$this->disabled[ $key ] = true;
+					$query['post__in']      = [ get_the_ID() ];
 				}
 
 			break;
@@ -209,5 +235,196 @@ class Registration {
 		}
 
 		return $query;
+	}
+
+	/**
+	 * A function to detect variation, and alter the query args.
+	 * 
+	 * Following the https://developer.wordpress.org/news/2022/12/building-a-book-review-grid-with-a-query-loop-block-variation/
+	 *
+	 * @param string|null   $pre_render   The pre-rendered content. Default null.
+	 * @param array         $parsed_block The block being rendered.
+	 * @param WP_Block|null $parent_block If this is a nested block, a reference to the parent block.
+	 */
+	public function maybe_hide_varitaion( $block_content, $parsed_block, $block_obj ) {
+		// Determine if this is the custom block variation.
+		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
+			return $block_content;
+		}
+		$allowed_blocks = array(
+			'core/group',
+		);
+
+		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
+			return $block_content; 
+		}
+		if ( ! isset( $parsed_block['attrs']['className'] ) || '' === $parsed_block['attrs']['className'] || false === $parsed_block['attrs']['className'] ) {
+			return $block_content;
+		}
+
+		$pattern = "/(lsx|facts)-(.*?)-wrapper/";
+		preg_match( $pattern, $parsed_block['attrs']['className'], $matches );
+
+		if ( empty( $matches ) ) {
+			return $block_content;
+		}
+
+		if ( ! empty( $matches ) && isset( $matches[0] ) ) {
+			// Save the first match to a variable
+			$key = str_replace( [ 'facts-', 'lsx-', '-wrapper' ], '', $matches[0] );
+		} else {
+			return $block_content;
+		}
+
+		/*
+		 * 1 - Check if it is an itinerary or a units query
+		 * 2 - See if it is a post query
+		 * 3 - See if it is a taxonomy query
+		 * 4 - Lastly default to the custom fields
+		 */
+
+		if ( 0 < stripos( $key, '-query' ) ) {
+			
+			$query_key      = str_replace( [ '-query' ], '', $key );
+			$current_parent = get_post_parent( get_the_ID() );
+
+			switch ( $query_key ) {
+				case 'regions':
+					// If the current item is not a country
+					if ( null !== $current_parent ) {
+						return '';
+					}
+
+					if ( false === lsx_to_item_has_children( get_the_ID(), 'destination' ) ) {
+						return '';
+					}
+
+				break;
+
+				case 'related-regions':
+					// If the current item is a country, then there wont be any other child regions.
+					if ( null === $current_parent ) {
+						return '';
+					}
+
+					if ( false === lsx_to_item_has_children( $current_parent, 'destination' ) ) {
+						return '';
+					}
+				
+				break;
+
+				case 'country':
+					// If the current item is not a country
+					if ( null === $current_parent ) {
+						return '';
+					}
+
+				break;
+
+				default:
+					if ( isset( $this->disabled[ $query_key ] ) ) {
+						return '';
+					}
+
+				break;
+			}
+		} else if ( taxonomy_exists( $key ) ) {
+			// Check to see if this is a taxonomy or a custom field.
+			$tax_args = array(
+				'fields' => 'ids'
+			);
+			if ( empty( wp_get_post_terms( get_the_ID(), $key, $tax_args ) ) ) {
+				$block_content = '';
+			}
+		} else {
+			$key        = str_replace( '-', '_', $key );
+			$key_array  = [ $key ];
+			$has_values = false;
+
+			// If this is a wrapper that houses many fields, then we need to review them all.
+			if ( 'include_exclude' === $key ) {
+				$key_array = [ 'included', 'not_included' ];
+			}
+
+			foreach ( $key_array as $meta_key ) {
+				$value = lsx_to_custom_field_query( $meta_key, '', '', false );
+				
+				// we need to see if the posts exist before we can use them
+				if ( stripos( $meta_key, '_to_' ) && 0 === $this->post_ids_exist( $value ) ) {
+					continue;
+				}
+
+				if ( ! empty( $value ) && '' !== $value ) {
+					$has_values = true;
+				}
+			}
+			
+			if ( false === $has_values ) {
+				$block_content = '';
+			}
+		}
+
+		return $block_content;
+	}
+
+	/**
+	* Determines if a post exists based on the ID.
+	*
+	*
+	* @global wpdb $wpdb WordPress database abstraction object.
+	*
+	* @param string $title   Post title.
+	* @param string $content Optional. Post content.
+	* @param string $date    Optional. Post date.
+	* @param string $type    Optional. Post type.
+	* @param string $status  Optional. Post status.
+	* @return int Post ID if post exists, 0 otherwise.
+	*/
+	protected function post_ids_exist( $ids ) {
+		global $wpdb;
+
+		if ( is_array( $ids ) ) {
+			$ids = implode( ',', $ids );
+		}
+
+		$ids = wp_unslash( sanitize_post_field( 'id', $ids, 0, 'db' ) );
+
+		$query = "SELECT COUNT(ID)
+				  FROM $wpdb->posts
+				  WHERE 1=1
+				  AND ID IN (%s)
+				  AND post_status IN ('draft', 'publish')";
+
+		return (int) $wpdb->get_var( $wpdb->prepare( $query, $ids ) );
+	}
+
+	/**
+	 * This function will grab our Featured query so we dont have to redo that.
+	 *
+	 * @param null $posts
+	 * @param WP_Query $query
+	 * @return null|array
+	 */
+	public function posts_pre_query( $posts, $query ) {
+		if ( isset( $query->query['lsx_to_featured'] ) && isset( $this->featured[ $query->query['lsx_to_featured'] ] ) ) {
+			do_action( 'qm/debug', $this->featured[ $query->query['lsx_to_featured'] ] );
+			$posts = $this->featured[ $query->query['lsx_to_featured'] ];
+		}
+		return $posts;
+	}
+
+	/**
+	 * Find the featured items for the current query
+	 *
+	 * @param array $query
+	 * @return array
+	 */
+	public function find_featured_items( $query ) {
+		$items = [];
+		$item_query = new \WP_Query( $query );
+		if ( $item_query->have_posts() ) {
+			$items = $item_query->posts;
+		}
+		return $items;
 	}
 }
