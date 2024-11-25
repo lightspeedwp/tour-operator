@@ -164,17 +164,7 @@ class Tour_Operator {
 	 */
 	private function __construct() {
 		add_action( 'init', array( $this, 'disable_deprecated' ), 0 );
-		add_action( 'admin_init', array( $this, 'compatible_version_check' ) );
 		add_action( 'plugins_loaded', array( $this, 'trigger_schema' ), 10 );
-
-		// Theme compatibility check.
-		add_action( 'admin_notices', array( $this, 'compatible_theme_check' ) );
-		add_action( 'wp_ajax_lsx_to_theme_notice_dismiss', array( $this, 'theme_notice_dismiss' ) );
-
-		// Don't run anything else in the plugin, if we're on an incompatible PHP version.
-		if ( ! self::compatible_version() ) {
-			return;
-		}
 
 		// Start sort engine.
 		new SCPO_Engine();
@@ -365,6 +355,8 @@ class Tour_Operator {
 	public function set_map_vars() {
 		$this->map_post_types = array( 'accommodation', 'activity', 'destination' );
 		$this->markers        = new \stdClass();
+
+		do_action( 'qm/debug', $this->options['googlemaps_key'] );
 
 		if ( ( false !== $this->options && isset( $this->options['googlemaps_key'] ) ) || defined( 'GOOGLEMAPS_API_KEY' ) ) {
 			if ( ! defined( 'GOOGLEMAPS_API_KEY' ) ) {
@@ -897,126 +889,4 @@ class Tour_Operator {
 			}
 		}
 	}
-
-	/**
-	 * Check if the PHP version is compatible.
-	 *
-	 * @since 1.0.2
-	 */
-	public static function compatible_version() {
-		if ( version_compare( PHP_VERSION, '7.0', '<' ) ) {
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * The backup sanity check, in case the plugin is activated in a weird way,
-	 * or the versions change after activation.
-	 *
-	 * @since 1.0.2
-	 */
-	public function compatible_version_check() {
-		if ( ! self::compatible_version() ) {
-			if ( is_plugin_active( plugin_basename( LSX_TO_CORE ) ) ) {
-				deactivate_plugins( plugin_basename( LSX_TO_CORE ) );
-				add_action( 'admin_notices', array( $this, 'compatible_version_notice' ) );
-
-				if ( isset( $_GET['activate'] ) ) {
-					unset( $_GET['activate'] );
-				}
-			}
-		}
-	}
-
-	/**
-	 * Display the notice related with the older version from PHP.
-	 *
-	 * @since 1.0.2
-	 */
-	public function compatible_version_notice() {
-		$class   = 'notice notice-error';
-		$message = esc_html__( 'LSX Tour Operator Plugin requires PHP 7.0 or higher.', 'tour-operator' );
-		printf( '<div class="%1$s"><p>%2$s</p></div>', esc_html( $class ), esc_html( $message ) );
-	}
-
-	/**
-	 * The primary sanity check, automatically disable the plugin on activation
-	 * if it doesn't meet minimum requirements.
-	 *
-	 * @since 1.0.2
-	 */
-	public static function compatible_version_check_on_activation() {
-		if ( ! self::compatible_version() ) {
-			deactivate_plugins( plugin_basename( LSX_TO_CORE ) );
-			wp_die( esc_html__( 'LSX Tour Operator Plugin requires PHP 7.0 or higher.', 'tour-operator' ) );
-		}
-	}
-
-	/**
-	 * Check if the theme is compatible.
-	 *
-	 * @since 1.1.0
-	 */
-	public static function compatible_theme() {
-		$current_theme = wp_get_theme();
-		$current_template = $current_theme->get_template();
-		$theme_name = $current_theme->get( 'Name' );
-
-		if ( 'lsx' !== $current_template && 'LSX' !== $theme_name ) {
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * Adds an admin notice (requires LSX).
-	 *
-	 * @since 1.1.0
-	 */
-	public function compatible_theme_check() {
-		if ( ! self::compatible_theme() ) {
-			if ( is_plugin_active( plugin_basename( LSX_TO_CORE ) ) ) {
-				if ( empty( get_option( 'lsx-to-theme-notice-dismissed' ) ) ) {
-					//add_action( 'admin_notices', array( $this, 'compatible_theme_notice' ), 199 );
-				}
-			}
-		}
-	}
-
-	/**
-	 * Display an admin notice (requires LSX).
-	 *
-	 * @since 1.1.0
-	 */
-	public function compatible_theme_notice() {
-		?>
-			<div class="lsx-to-theme-notice notice notice-error is-dismissible">
-				<p>
-					<?php
-						printf(
-							/* Translators: 1: HTML open tag link, 2: HTML close tag link */
-							esc_html__( 'The LSX Tour Operator Plugin requires the free LSX Theme be installed and active. Please download LSX Theme from %1$sWordPress.org%2$s to get started with your LSX Tour Operator Plugin.', 'tour-operator' ),
-							'<a href="https://wordpress.org/themes/lsx/" target="_blank">',
-							'</a>'
-						);
-					?>
-				</p>
-				<p><a href="https://wordpress.org/themes/lsx/" class="button" style="text-decoration: none;"><?php esc_attr_e( 'Download LSX Theme', 'tour-operator' ); ?></a></p>
-			</div>
-		<?php
-	}
-
-	/**
-	 * Dismiss the admin notice (requires LSX).
-	 *
-	 * @since 1.1.0
-	 */
-	public function theme_notice_dismiss() {
-		update_option( 'lsx-to-theme-notice-dismissed', '1' );
-		wp_die();
-	}
-
 }
