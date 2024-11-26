@@ -173,22 +173,20 @@ class Accommodation {
 			$html          = '';
 			if ( 0 !== (int) $value ) {
 				while ( $counter > 0 ) {
+					$ratings_array[] = '<figure class="wp-block-image size-large is-resized">';
+					$ratings_array[] = '<img src="';
 					if ( (int) $value > 0 ) {
-						$ratings_array[] = '<i class="fa fa-star"></i>';
+						$ratings_array[] = LSX_TO_URL . 'assets/img/rating-star-full.png';
 					} else {
-						$ratings_array[] = '<i class="fa fa-star-o"></i>';
+						$ratings_array[] = LSX_TO_URL . 'assets/img/rating-star-empty.png';
 					}
+					$ratings_array[] = '" alt="" style="width:20px;vertical-align:sub;">';
+					$ratings_array[] = '</figure>';
 
 					$counter --;
 					$value --;
 				}
-				$rating_type        = get_post_meta( get_the_ID(), 'rating_type', true );
-				$rating_description = '';
-
-				if ( false !== $rating_type && '' !== $rating_type && esc_html__( 'Unspecified', 'tour-operator' ) !== $rating_type ) {
-					$rating_description = ' <small>(' . $rating_type . ')</small>';
-				}
-				$html = $before . implode( '', $ratings_array ) . $rating_description . $after;
+				$html = $before . implode( '', $ratings_array ) . $after;
 			}
 		}
 		return $html;

@@ -219,9 +219,9 @@ function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square', $meta_key =
 	if ( $tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary ) {
 		$thumbnail_src = false;
 
-		if ( ! empty( $tour_itinerary->itinerary['featured_image'] ) ) {
-			$tour_itinerary->save_used_image( $tour_itinerary->itinerary['featured_image'] );
-			$thumbnail = wp_get_attachment_image_src( $tour_itinerary->itinerary['featured_image'], $size );
+		if ( ! empty( $tour_itinerary->itinerary['featured_image_id'] ) ) {
+			$tour_itinerary->save_used_image( $tour_itinerary->itinerary['featured_image_id'] );
+			$thumbnail = wp_get_attachment_image_src( $tour_itinerary->itinerary['featured_image_id'], $size );
 
 			if ( is_array( $thumbnail ) ) {
 				$thumbnail_src = $thumbnail[0];
@@ -493,17 +493,13 @@ function lsx_to_itinerary_count( $echo = true ) {
  */
 function lsx_to_accommodation_has_rooms() {
 	global $rooms;
-
 	$have_rooms = false;
-
 	if ( null === $rooms ) {
 		$rooms = new \lsx\legacy\Unit_Query();
 	}
-
 	if ( is_object( $rooms ) ) {
 		$have_rooms = $rooms->have_query();
 	}
-
 	return $have_rooms;
 }
 
@@ -518,7 +514,6 @@ function lsx_to_accommodation_has_rooms() {
  */
 function lsx_to_accommodation_room_loop() {
 	global $rooms;
-
 	if ( is_object( $rooms ) ) {
 		return $rooms->while_query();
 	} else {
@@ -537,7 +532,6 @@ function lsx_to_accommodation_room_loop() {
  */
 function lsx_to_accommodation_room_loop_item( $type = false ) {
 	global $rooms;
-
 	if ( is_object( $rooms ) ) {
 		return $rooms->current_queried_item( $type );
 	} else {
@@ -558,7 +552,6 @@ function lsx_to_accommodation_room_loop_item( $type = false ) {
  */
 function lsx_to_accommodation_room_title( $before = '', $after = '', $echo = true ) {
 	global $rooms;
-
 	if ( is_object( $rooms ) ) {
 		$rooms->item_title( $before, $after, $echo );
 	}
@@ -577,7 +570,6 @@ function lsx_to_accommodation_room_title( $before = '', $after = '', $echo = tru
  */
 function lsx_to_accommodation_room_description( $before = '', $after = '', $echo = true ) {
 	global $rooms;
-
 	if ( is_object( $rooms ) ) {
 		$rooms->item_description( $before, $after, $echo );
 	}
@@ -592,7 +584,6 @@ function lsx_to_accommodation_room_description( $before = '', $after = '', $echo
  */
 function lsx_to_accommodation_room_has_thumbnail() {
 	global $rooms;
-
 	if ( $rooms && $rooms->have_query ) {
 		return true;
 	}
@@ -607,7 +598,6 @@ function lsx_to_accommodation_room_has_thumbnail() {
  */
 function lsx_to_accommodation_check_type( $type = false ) {
 	global $rooms;
-
 	return $rooms->check_type( $type );
 }
 
@@ -620,58 +610,5 @@ function lsx_to_accommodation_check_type( $type = false ) {
  */
 function lsx_to_accommodation_reset_units_loop() {
 	global $rooms;
-
 	return $rooms->reset_loop();
 }
-
-/**
- * SCP Order Uninstall hook
- */
-register_uninstall_hook( __FILE__, 'lsx_to_scporder_uninstall' );
-
-function lsx_to_scporder_uninstall() {
-	global $wpdb;
-
-	if ( function_exists( 'is_multisite' ) && is_multisite() ) {
-		$curr_blog = $wpdb->blogid;
-		$blogids   = $wpdb->get_col( "SELECT blog_id FROM $wpdb->blogs" );
-
-		foreach ( $blogids as $blog_id ) {
-			switch_to_blog( $blog_id );
-			lsx_to_scporder_uninstall_db();
-		}
-
-		switch_to_blog( $curr_blog );
-	} else {
-		lsx_to_scporder_uninstall_db();
-	}
-}
-
-function lsx_to_scporder_uninstall_db() {
-	global $wpdb;
-
-	$result = $wpdb->query( "DESCRIBE $wpdb->terms `lsx_to_term_order`" );
-
-	if ( $result ) {
-		$result = $wpdb->query( "ALTER TABLE $wpdb->terms DROP `lsx_to_term_order`" );
-	}
-
-	delete_option( 'lsx_to_scporder_install' );
-}
-
-/**
- * Removes unnecesary menu items from the TO menu.
- *
- * @return void
- */
-function lsx_to_remove_menu_pages() {
-	remove_submenu_page( 'tour-operator', 'post-new.php?post_type=destination' );
-	remove_submenu_page( 'tour-operator', 'post-new.php?post_type=tour' );
-	remove_submenu_page( 'tour-operator', 'post-new.php?post_type=accommodation' );
-	remove_submenu_page( 'tour-operator', 'post-new.php?post_type=activity' );
-	remove_submenu_page( 'tour-operator', 'post-new.php?post_type=review' );
-	remove_submenu_page( 'tour-operator', 'post-new.php?post_type=special' );
-	remove_submenu_page( 'tour-operator', 'edit-tags.php?taxonomy=special-type' );
-	remove_submenu_page( 'tour-operator', 'post-new.php?post_type=team' );
-}
-add_action( 'admin_init', 'lsx_to_remove_menu_pages' );

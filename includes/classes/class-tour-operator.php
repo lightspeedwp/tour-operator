@@ -219,7 +219,7 @@ class Tour_Operator {
 		$this->taxonomies = Taxonomies::init();
 		$this->admin      = new Admin();
 		$this->settings   = Settings::init();
-		$this->setup      = Setup::init();
+		$this->setup      = new Setup();
 		$this->bindings   = new Bindings();
 		$this->registration = new Registration();
 		$this->patterns   = new Patterns();

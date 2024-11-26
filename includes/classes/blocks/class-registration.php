@@ -174,12 +174,15 @@ class Registration {
 
 				// Get the current destinations attached 
 				$destinations = get_post_meta( get_the_ID(), 'destination_to_' . $from, true );
+
+				do_action( 'qm/debug', $destinations );
+				
 				if ( ! empty( $destinations ) ) {
 					$items = [];
 
 					foreach ( $destinations as $destination ) {
 						$found_items = get_post_meta( $destination, $to . '_to_destination', true );
-
+						do_action( 'qm/debug', [ $to . '_to_destination', $found_items ] );
 						if ( ! empty( $found_items ) ) {
 							if ( ! is_array( $found_items ) ) {
 								$found_items = [ $found_items ];
@@ -187,12 +190,15 @@ class Registration {
 							$items = array_merge( $items, $found_items );
 						}
 					}
+					
 					if ( ! empty( $items ) ) {
 						$items = array_unique( $items );
 						$items = array_diff( $items, $excluded_items );
 						$query['post__in'] = $items;
 					}
 				}
+
+				do_action( 'qm/debug', $query['post__in'] );
 
 				if ( ! isset( $query['post__in'] ) ) {
 					$this->disabled[ $key ] = true;
@@ -218,6 +224,9 @@ class Registration {
 				$from       = $directions[1];
 
 				$found_items = get_post_meta( get_the_ID(), $to . '_to_' . $from, true );
+
+				do_action( 'qm/debug', [ get_the_ID(), $to . '_to_' . $from, $found_items ] );
+
 				if ( false !== $found_items && ! empty( $found_items ) ) {
 					if ( ! is_array( $found_items ) ) {
 						$found_items = [ $found_items ];

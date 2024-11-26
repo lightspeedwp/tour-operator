@@ -52,9 +52,6 @@ class Frontend extends Tour_Operator {
 		$this->options = get_option( '_lsx-to_settings', false );
 		$this->set_vars();
 
-		add_filter( 'post_class', array( $this, 'replace_class' ), 10, 1 );
-		add_filter( 'body_class', array( $this, 'replace_class' ), 10, 1 );
-
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ), 1 );
 		add_action( 'wp_head', array( $this, 'wp_head' ), 10 );
 		add_filter( 'body_class', array( $this, 'body_class' ), 15, 1 );
@@ -80,20 +77,6 @@ class Frontend extends Tour_Operator {
 	}
 
 	/**
-	 * A filter to replace anything with '-TO_POST_TYPE' by
-	 * '-lsx-to-TO_POST_TYPE'
-	 */
-	public function replace_class( $classes ) {
-		foreach ( $this->active_post_types as $key1 => $value1 ) {
-			foreach ( $classes as $key2 => $value2 ) {
-				$classes[ $key2 ] = str_replace( "-{$value1}", "-lsx-to-{$value1}", $value2 );
-			}
-		}
-
-		return $classes;
-	}
-
-	/**
 	 * Initate some boolean flags
 	 */
 	public function wp_head() {
@@ -103,27 +86,6 @@ class Frontend extends Tour_Operator {
 			 && 'on' === $this->options['display']['enable_modals']
 		) {
 			$this->enable_modals = true;
-		}
-
-		if ( ( is_post_type_archive( $this->active_post_types ) ) || ( is_tax( array_keys( $this->taxonomies ) ) ) ) {
-			add_filter( 'use_default_gallery_style', '__return_false' );
-
-			add_action( 'lsx_content_wrap_before', 'lsx_to_archive_description', 100 );
-			add_filter( 'lsx_to_archive_description', array( $this, 'get_post_type_archive_description' ), 1, 3 );
-
-			add_action( 'lsx_content_top', array( $this, 'archive_taxonomy_content_part' ), 100 );
-
-			// LSX default pagination
-			add_action( 'lsx_content_bottom', array( 'lsx\legacy\Frontend', 'lsx_default_pagination' ) );
-		}
-	}
-
-	/**
-	 * Taxonomy Archive content part.
-	 */
-	public function archive_taxonomy_content_part() {
-		if ( is_tax( array_keys( $this->taxonomies ) ) && have_posts() ) {
-			lsx_to_content( 'content', get_queried_object()->taxonomy );
 		}
 	}
 
@@ -328,13 +290,6 @@ class Frontend extends Tour_Operator {
 		}
 
 		return $title;
-	}
-
-	/**
-	 * Outputs LSX default pagination.
-	 */
-	public static function lsx_default_pagination() {
-		lsx_paging_nav();
 	}
 
 	/**

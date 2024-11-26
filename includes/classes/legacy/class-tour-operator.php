@@ -164,17 +164,7 @@ class Tour_Operator {
 	 */
 	private function __construct() {
 		add_action( 'init', array( $this, 'disable_deprecated' ), 0 );
-		add_action( 'admin_init', array( $this, 'compatible_version_check' ) );
 		add_action( 'plugins_loaded', array( $this, 'trigger_schema' ), 10 );
-
-		// Theme compatibility check.
-		add_action( 'admin_notices', array( $this, 'compatible_theme_check' ) );
-		add_action( 'wp_ajax_lsx_to_theme_notice_dismiss', array( $this, 'theme_notice_dismiss' ) );
-
-		// Don't run anything else in the plugin, if we're on an incompatible PHP version.
-		if ( ! self::compatible_version() ) {
-			return;
-		}
 
 		// Start sort engine.
 		new SCPO_Engine();
@@ -187,29 +177,7 @@ class Tour_Operator {
 		add_action( 'activated_plugin', array( $this, 'activated_plugin' ) );
 
 		// Add our action to init to set up our vars first.
-		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 		add_action( 'init', array( $this, 'require_post_type_classes' ), 1 );
-
-		// Allow extra tags and attributes to wp_kses_post().
-		add_filter(
-			'wp_kses_allowed_html',
-			array(
-				$this,
-				'wp_kses_allowed_html',
-			),
-			10,
-			2
-		);
-		// Allow extra protocols to wp_kses_post().
-		add_filter(
-			'kses_allowed_protocols',
-			array(
-				$this,
-				'kses_allowed_protocols',
-			)
-		);
-		// Allow extra style attributes to wp_kses_post().
-		add_filter( 'safe_style_css', array( $this, 'safe_style_css' ) );
 
 		// init admin object.
 		$this->admin = new Admin();
@@ -302,14 +270,7 @@ class Tour_Operator {
 		}
 	}
 
-	/**
-	 * Load the plugin text domain for translation.
-	 *
-	 * @since 0.0.1
-	 */
-	public function load_plugin_textdomain() {
-		load_plugin_textdomain( 'tour-operator', false, basename( LSX_TO_PATH ) . '/languages' );
-	}
+
 
 	/**
 	 * Sets the variables for the class
@@ -365,6 +326,8 @@ class Tour_Operator {
 	public function set_map_vars() {
 		$this->map_post_types = array( 'accommodation', 'activity', 'destination' );
 		$this->markers        = new \stdClass();
+
+		do_action( 'qm/debug', $this->options['googlemaps_key'] );
 
 		if ( ( false !== $this->options && isset( $this->options['googlemaps_key'] ) ) || defined( 'GOOGLEMAPS_API_KEY' ) ) {
 			if ( ! defined( 'GOOGLEMAPS_API_KEY' ) ) {
@@ -555,219 +518,6 @@ class Tour_Operator {
 	}
 
 	/**
-	 * A filter that outputs the description for the post_type archives.
-	 */
-	public function get_post_type_archive_description( $description = false, $before = '', $after = '' ) {
-		if ( is_post_type_archive( $this->active_post_types ) && isset( $this->options[ get_post_type() ] ) && isset( $this->options[ get_post_type() ]['description'] ) && '' !== $this->options[ get_post_type() ]['description'] ) {
-			$description = $this->options[ get_post_type() ]['description'];
-			//$description = $this->apply_filters_the_content( $description );
-			$description = $before . $description . $after;
-		}
-
-		return $description;
-	}
-
-	/**
-	 * Return any content with "read more" button and filtered by the_content
-	 */
-	public function apply_filters_the_content( $content = '', $more_link_text = 'Read More', $link = '' ) {
-		$output = '';
-
-		if ( preg_match( '/<!--more(.*?)?-->/', $content, $matches ) ) {
-			$content = explode( $matches[0], $content, 2 );
-
-			if ( ! empty( $matches[1] ) && ! empty( $more_link_text ) ) {
-				$more_link_text = strip_tags( wp_kses_no_null( trim( $matches[1] ) ) );
-			}
-		} else {
-			$content = array( $content );
-		}
-
-		$output .= $content[0];
-
-		if ( count( $content ) > 1 ) {
-			if ( empty( $link ) ) {
-				$output .= "<a class=\"btn btn-default more-link\" data-collapsed=\"true\" href=\"#more-000\">{$more_link_text}</a>" . $content[1];
-			} else {
-				$output .= "<a class=\"btn btn-default more-link\" href=\"{$link}\">{$more_link_text}</a>";
-			}
-		}
-
-		$output = apply_filters( 'the_content', $output );
-
-		return $output;
-	}
-
-	/**
-	 * Allow extra tags and attributes to wp_kses_post()
-	 */
-	public function wp_kses_allowed_html( $allowedtags, $context ) {
-		if ( ! isset( $allowedtags['i'] ) ) {
-			$allowedtags['i'] = array();
-		}
-		$allowedtags['i']['aria-hidden']    = true;
-
-		if ( ! isset( $allowedtags['span'] ) ) {
-			$allowedtags['span'] = array();
-		}
-
-		$allowedtags['span']['aria-hidden'] = true;
-
-		if ( ! isset( $allowedtags['button'] ) ) {
-			$allowedtags['button'] = array();
-		}
-
-		$allowedtags['button']['aria-label']   = true;
-		$allowedtags['button']['data-dismiss'] = true;
-
-		if ( ! isset( $allowedtags['li'] ) ) {
-			$allowedtags['li'] = array();
-		}
-
-		$allowedtags['li']['data-target']   = true;
-		$allowedtags['li']['data-slide-to'] = true;
-
-		if ( ! isset( $allowedtags['a'] ) ) {
-			$allowedtags['a'] = array();
-		}
-
-		$allowedtags['a']['data-toggle']             = true;
-		$allowedtags['a']['data-target']             = true;
-		$allowedtags['a']['data-slide']              = true;
-		$allowedtags['a']['data-collapsed']          = true;
-		$allowedtags['a']['data-envira-caption']     = true;
-		$allowedtags['a']['data-envira-retina']      = true;
-		$allowedtags['a']['data-thumbnail']          = true;
-		$allowedtags['a']['data-mobile-thumbnail']   = true;
-		$allowedtags['a']['data-envirabox-type']     = true;
-		$allowedtags['a']['data-video-width']        = true;
-		$allowedtags['a']['data-video-height']       = true;
-		$allowedtags['a']['data-video-aspect-ratio'] = true;
-
-		if ( ! isset( $allowedtags['h2'] ) ) {
-			$allowedtags['h2'] = array();
-		}
-
-		$allowedtags['h2']['data-target'] = true;
-		$allowedtags['h2']['data-toggle'] = true;
-
-		if ( ! isset( $allowedtags['div'] ) ) {
-			$allowedtags['div'] = array();
-		}
-
-		$allowedtags['div']['aria-labelledby']                      = true;
-		$allowedtags['div']['data-interval']                        = true;
-		$allowedtags['div']['data-icon']                            = true;
-		$allowedtags['div']['data-id']                              = true;
-		$allowedtags['div']['data-class']                           = true;
-		$allowedtags['div']['data-long']                            = true;
-		$allowedtags['div']['data-lat']                             = true;
-		$allowedtags['div']['data-zoom']                            = true;
-		$allowedtags['div']['data-link']                            = true;
-		$allowedtags['div']['data-thumbnail']                       = true;
-		$allowedtags['div']['data-title']                           = true;
-		$allowedtags['div']['data-type']                            = true;
-		$allowedtags['div']['data-cluster-small']                   = true;
-		$allowedtags['div']['data-cluster-medium']                  = true;
-		$allowedtags['div']['data-cluster-large']                   = true;
-		$allowedtags['div']['data-fusion-tables']                   = true;
-		$allowedtags['div']['data-fusion-tables-colour-border']     = true;
-		$allowedtags['div']['data-fusion-tables-width-border']      = true;
-		$allowedtags['div']['data-fusion-tables-colour-background'] = true;
-		$allowedtags['div']['itemscope']                            = true;
-		$allowedtags['div']['itemtype']                             = true;
-		$allowedtags['div']['data-row-height']                      = true;
-		$allowedtags['div']['data-justified-margins']               = true;
-		$allowedtags['div']['data-slick']                           = true;
-
-		//Envirta Gallery tags
-		//
-		$allowedtags['div']['data-envira-id']                       = true;
-		$allowedtags['div']['data-gallery-config']                  = true;
-		$allowedtags['div']['data-gallery-images']                  = true;
-		$allowedtags['div']['data-gallery-theme']                   = true;
-		$allowedtags['div']['data-envira-columns']                  = true;
-
-		if ( ! isset( $allowedtags['img'] ) ) {
-			$allowedtags['img'] = array();
-		}
-
-		$allowedtags['img']['data-envira-index']      = true;
-		$allowedtags['img']['data-envira-caption']    = true;
-		$allowedtags['img']['data-envira-gallery-id'] = true;
-		$allowedtags['img']['data-envira-item-id']    = true;
-		$allowedtags['img']['data-envira-src']        = true;
-		$allowedtags['img']['data-envira-srcset']     = true;
-
-		if ( ! isset( $allowedtags['input'] ) ) {
-			$allowedtags['input'] = array();
-		}
-
-		$allowedtags['input']['type']    = true;
-		$allowedtags['input']['id']      = true;
-		$allowedtags['input']['name']    = true;
-		$allowedtags['input']['value']   = true;
-		$allowedtags['input']['size']    = true;
-		$allowedtags['input']['checked'] = true;
-		$allowedtags['input']['onclick'] = true;
-		$allowedtags['input']['class'] = true;
-		$allowedtags['input']['placeholder'] = true;
-		$allowedtags['input']['autocomplete'] = true;
-
-		if ( ! isset( $allowedtags['select'] ) ) {
-			$allowedtags['select'] = array();
-		}
-
-		$allowedtags['select']['name']     = true;
-		$allowedtags['select']['id']       = true;
-		$allowedtags['select']['disabled'] = true;
-		$allowedtags['select']['onchange'] = true;
-
-		if ( ! isset( $allowedtags['option'] ) ) {
-			$allowedtags['option'] = array();
-		}
-
-		$allowedtags['option']['value']    = true;
-		$allowedtags['option']['selected'] = true;
-
-		if ( ! isset( $allowedtags['iframe'] ) ) {
-			$allowedtags['iframe'] = array();
-		}
-
-		$allowedtags['iframe']['src']             = true;
-		$allowedtags['iframe']['width']           = true;
-		$allowedtags['iframe']['height']          = true;
-		$allowedtags['iframe']['frameborder']     = true;
-		$allowedtags['iframe']['allowfullscreen'] = true;
-		$allowedtags['iframe']['style']           = true;
-
-		if ( ! isset( $allowedtags['noscript'] ) ) {
-			$allowedtags['noscript'] = array();
-		}
-
-		return $allowedtags;
-	}
-
-	/**
-	 * Allow extra protocols to wp_kses_post()
-	 */
-	public function kses_allowed_protocols( $allowedprotocols ) {
-		$allowedprotocols[] = 'tel';
-
-		return $allowedprotocols;
-	}
-
-	/**
-	 * Allow extra style attributes to wp_kses_post()
-	 */
-	public function safe_style_css( $allowedstyles ) {
-		$allowedstyles[] = 'display';
-		$allowedstyles[] = 'background-image';
-
-		return $allowedstyles;
-	}
-
-	/**
 	 * checks which plugin is active, and grabs those forms.
 	 */
 	public function show_default_form() {
@@ -897,126 +647,4 @@ class Tour_Operator {
 			}
 		}
 	}
-
-	/**
-	 * Check if the PHP version is compatible.
-	 *
-	 * @since 1.0.2
-	 */
-	public static function compatible_version() {
-		if ( version_compare( PHP_VERSION, '7.0', '<' ) ) {
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * The backup sanity check, in case the plugin is activated in a weird way,
-	 * or the versions change after activation.
-	 *
-	 * @since 1.0.2
-	 */
-	public function compatible_version_check() {
-		if ( ! self::compatible_version() ) {
-			if ( is_plugin_active( plugin_basename( LSX_TO_CORE ) ) ) {
-				deactivate_plugins( plugin_basename( LSX_TO_CORE ) );
-				add_action( 'admin_notices', array( $this, 'compatible_version_notice' ) );
-
-				if ( isset( $_GET['activate'] ) ) {
-					unset( $_GET['activate'] );
-				}
-			}
-		}
-	}
-
-	/**
-	 * Display the notice related with the older version from PHP.
-	 *
-	 * @since 1.0.2
-	 */
-	public function compatible_version_notice() {
-		$class   = 'notice notice-error';
-		$message = esc_html__( 'LSX Tour Operator Plugin requires PHP 7.0 or higher.', 'tour-operator' );
-		printf( '<div class="%1$s"><p>%2$s</p></div>', esc_html( $class ), esc_html( $message ) );
-	}
-
-	/**
-	 * The primary sanity check, automatically disable the plugin on activation
-	 * if it doesn't meet minimum requirements.
-	 *
-	 * @since 1.0.2
-	 */
-	public static function compatible_version_check_on_activation() {
-		if ( ! self::compatible_version() ) {
-			deactivate_plugins( plugin_basename( LSX_TO_CORE ) );
-			wp_die( esc_html__( 'LSX Tour Operator Plugin requires PHP 7.0 or higher.', 'tour-operator' ) );
-		}
-	}
-
-	/**
-	 * Check if the theme is compatible.
-	 *
-	 * @since 1.1.0
-	 */
-	public static function compatible_theme() {
-		$current_theme = wp_get_theme();
-		$current_template = $current_theme->get_template();
-		$theme_name = $current_theme->get( 'Name' );
-
-		if ( 'lsx' !== $current_template && 'LSX' !== $theme_name ) {
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
-	 * Adds an admin notice (requires LSX).
-	 *
-	 * @since 1.1.0
-	 */
-	public function compatible_theme_check() {
-		if ( ! self::compatible_theme() ) {
-			if ( is_plugin_active( plugin_basename( LSX_TO_CORE ) ) ) {
-				if ( empty( get_option( 'lsx-to-theme-notice-dismissed' ) ) ) {
-					//add_action( 'admin_notices', array( $this, 'compatible_theme_notice' ), 199 );
-				}
-			}
-		}
-	}
-
-	/**
-	 * Display an admin notice (requires LSX).
-	 *
-	 * @since 1.1.0
-	 */
-	public function compatible_theme_notice() {
-		?>
-			<div class="lsx-to-theme-notice notice notice-error is-dismissible">
-				<p>
-					<?php
-						printf(
-							/* Translators: 1: HTML open tag link, 2: HTML close tag link */
-							esc_html__( 'The LSX Tour Operator Plugin requires the free LSX Theme be installed and active. Please download LSX Theme from %1$sWordPress.org%2$s to get started with your LSX Tour Operator Plugin.', 'tour-operator' ),
-							'<a href="https://wordpress.org/themes/lsx/" target="_blank">',
-							'</a>'
-						);
-					?>
-				</p>
-				<p><a href="https://wordpress.org/themes/lsx/" class="button" style="text-decoration: none;"><?php esc_attr_e( 'Download LSX Theme', 'tour-operator' ); ?></a></p>
-			</div>
-		<?php
-	}
-
-	/**
-	 * Dismiss the admin notice (requires LSX).
-	 *
-	 * @since 1.1.0
-	 */
-	public function theme_notice_dismiss() {
-		update_option( 'lsx-to-theme-notice-dismissed', '1' );
-		wp_die();
-	}
-
 }
