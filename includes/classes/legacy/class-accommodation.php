@@ -180,7 +180,7 @@ class Accommodation {
 					} else {
 						$ratings_array[] = LSX_TO_URL . 'assets/img/rating-star-empty.png';
 					}
-					$ratings_array[] = '" alt="" style="width:20px;vertical-align: middle;">';
+					$ratings_array[] = '" alt="" style="width:20px;vertical-align:sub;">';
 					$ratings_array[] = '</figure>';
 
 					$counter --;
