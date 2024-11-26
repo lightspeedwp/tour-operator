@@ -599,7 +599,7 @@ class Bindings {
 		}
 
 		$target = '';
-		if ( isset( $parsed_block['attrs']['linkTarget'] ) && 'media' === $parsed_block['attrs']['linkTarget'] ) {
+		if ( isset( $parsed_block['attrs']['linkTarget'] ) ) {
 			$target = 'target="' . $parsed_block['attrs']['linkTarget'] . '"';
 		}
 

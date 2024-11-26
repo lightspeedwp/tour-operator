@@ -209,6 +209,8 @@ class Setup {
 			$allowedtags['a'] = array();
 		}
 
+		
+		$allowedtags['a']['target']             = true;
 		$allowedtags['a']['data-toggle']             = true;
 		$allowedtags['a']['data-target']             = true;
 		$allowedtags['a']['data-slide']              = true;
