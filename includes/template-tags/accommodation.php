@@ -114,10 +114,11 @@ function lsx_to_has_facilities() {
  * @category    accommodation
  */
 function lsx_to_accommodation_facilities( $before = '', $after = '', $echo = true ) {
-	$facilities = wp_get_object_terms( get_the_ID(), 'facility' );
-	$main_facilities = array();
-	$child_facilities = array();
-	$return = '';
+	$args             = [];
+	$facilities       = wp_get_object_terms( get_the_ID(), 'facility' );
+	$main_facilities  = [];
+	$child_facilities = [];
+	$return           = '';
 
 	if ( ! empty( $facilities ) && ! is_wp_error( $facilities ) ) {
 		foreach ( $facilities as $facility ) {
@@ -130,19 +131,21 @@ function lsx_to_accommodation_facilities( $before = '', $after = '', $echo = tru
 
 		//Output in the order we want
 		if ( count( $main_facilities ) > 0 && count( $child_facilities ) > 0 ) {
+			$return .= '<div class="' . $heading->slug . ' wp-block-columns is-layout-flex wp-block-columns-is-layout-flex">';
 			foreach ( $main_facilities as $heading ) {
 				if ( isset( $child_facilities[ $heading->term_id ] ) ) {
-					$return .= '<div class="' . $heading->slug . ' col-xs-12 col-sm-6"><div class="facilities-content"><h5 class="facilities-title"><a href="' . esc_url( get_term_link( $heading->slug, 'facility' ) ) . '">' . esc_html( $heading->name ) . '</a></h5>';
-					$return .= '<ul class="facilities-list">';
+					$return .= '<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow"><h5 class="facilities-title wp-block-heading"><a href="' . esc_url( get_term_link( $heading->slug, 'facility' ) ) . '">' . esc_html( $heading->name ) . '</a></h5>';
+					$return .= '<ul class="facilities-list wp-block-list">';
 
 					foreach ( $child_facilities[ $heading->term_id ] as $child_facility ) {
 						$return .= '<li class="facility-item"><a href="' . esc_url( get_term_link( $child_facility->slug, 'facility' ) ) . '">' . esc_html( $child_facility->name ) . '</a></li>';
 					}
 
 					$return .= '</ul>';
-					$return .= '</div></div>';
+					$return .= '</div>';
 				}
 			}
+			$return .= '</div>';
 
 			if ( ! empty( $return ) ) {
 				$return = $before . $return . $after;

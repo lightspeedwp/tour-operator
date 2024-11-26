@@ -149,6 +149,10 @@ class Bindings {
 					$value    = $this->prep_links( [ $args ] );
 				break;
 
+				case 'facilities':
+					$value = lsx_to_accommodation_facilities( '', '', false );
+				break;
+
 				default:
 					// For custom fields.	
 
