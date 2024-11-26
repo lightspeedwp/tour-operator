@@ -187,8 +187,6 @@ class Accommodation {
 					$value --;
 				}
 				$html = $before . implode( '', $ratings_array ) . $after;
-
-				do_action( 'qm/debug', [ $html ] );
 			}
 		}
 		return $html;

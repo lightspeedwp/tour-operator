@@ -134,7 +134,8 @@ function lsx_to_accommodation_facilities( $before = '', $after = '', $echo = tru
 			$return .= '<div class="' . $heading->slug . ' wp-block-columns is-layout-flex wp-block-columns-is-layout-flex">';
 			foreach ( $main_facilities as $heading ) {
 				if ( isset( $child_facilities[ $heading->term_id ] ) ) {
-					$return .= '<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow"><h5 class="facilities-title wp-block-heading"><a href="' . esc_url( get_term_link( $heading->slug, 'facility' ) ) . '">' . esc_html( $heading->name ) . '</a></h5>';
+					$return .= '<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
+					<p class="has-medium-font-size facilities-title wp-block-heading"><a href="' . esc_url( get_term_link( $heading->slug, 'facility' ) ) . '">' . esc_html( $heading->name ) . '</a></h5>';
 					$return .= '<ul class="facilities-list wp-block-list">';
 
 					foreach ( $child_facilities[ $heading->term_id ] as $child_facility ) {
