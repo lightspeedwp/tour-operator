@@ -380,7 +380,7 @@ class Bindings {
 				} else {
 					$img_src = $rooms->item_thumbnail();
 				}
-				
+				$tags->set_attribute( 'rel', sanitize_key( $classname ) );
 				$tags->set_attribute( 'src', $img_src );
 				$build = $tags->get_updated_html();
 			}
@@ -598,11 +598,16 @@ class Bindings {
 			$link = true;
 		}
 
+		$target = '';
+		if ( isset( $parsed_block['attrs']['linkTarget'] ) && 'media' === $parsed_block['attrs']['linkTarget'] ) {
+			$target = 'target="' . $parsed_block['attrs']['linkTarget'] . '"';
+		}
+
 		$count = 1;
 		foreach ( $gallery as $gid => $gurl ) {
 
 			if ( $link ) {
-				$link_prefix = '<a rel="gallery" href="' . $gurl . '">';
+				$link_prefix = '<a ' . $target . ' rel="gallery" href="' . $gurl . '">';
 				$link_suffix = '</a>';
 			}
 

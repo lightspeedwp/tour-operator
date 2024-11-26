@@ -332,17 +332,28 @@ if ( window.location.hash ) {
 	 * @subpackage scripts
 	 */
 	lsx_to.build_slider_lightbox = function() {
-		$( '.single-tour-operator .gallery' ).slickLightbox( {
-			caption: function( element, info ) {
-				return $( element ).find( 'img' ).attr( 'alt' );
-			}
-		} );
+		if ( 0 <  $( '.wp-block-gallery.has-nested-images' ).length ) {
+			$( '.wp-block-gallery.has-nested-images' ).slickLightbox( {
+				caption: function( element, info ) {
+					return $( element ).find( 'img' ).attr( 'alt' );
+				}
+			} );
+		}
+		
+		if ( 0 <  $( '.lsx-units-wrapper .unit-image a' ).length ) {
+			let roomImages = $('.lsx-units-wrapper .unit-image a img').map(function() {
+				return $(this).attr('src');
+			}).get();
+			console.log(roomImages);
 
-		$( '.single-tour-operator .rooms-content' ).slickLightbox( {
-			caption: function( element, info ) {
-				return $( element ).find( 'img' ).attr( 'alt' );
-			}
-		} );
+			$( '.lsx-units-wrapper' ).slickLightbox( {
+				//images : roomImages,
+				itemSelector: '.unit-image a',
+				caption: function( element, info ) {
+					return $( element ).find( 'img' ).attr( 'alt' );
+				}
+			} );
+		}
 	};
 
 	/**
