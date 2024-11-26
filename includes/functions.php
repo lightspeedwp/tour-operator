@@ -219,9 +219,9 @@ function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square', $meta_key =
 	if ( $tour_itinerary && $tour_itinerary->has_itinerary && false !== $tour_itinerary->itinerary ) {
 		$thumbnail_src = false;
 
-		if ( ! empty( $tour_itinerary->itinerary['featured_image'] ) ) {
-			$tour_itinerary->save_used_image( $tour_itinerary->itinerary['featured_image'] );
-			$thumbnail = wp_get_attachment_image_src( $tour_itinerary->itinerary['featured_image'], $size );
+		if ( ! empty( $tour_itinerary->itinerary['featured_image_id'] ) ) {
+			$tour_itinerary->save_used_image( $tour_itinerary->itinerary['featured_image_id'] );
+			$thumbnail = wp_get_attachment_image_src( $tour_itinerary->itinerary['featured_image_id'], $size );
 
 			if ( is_array( $thumbnail ) ) {
 				$thumbnail_src = $thumbnail[0];
