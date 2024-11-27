@@ -277,6 +277,9 @@ class Bindings {
 			while ( lsx_to_itinerary_loop() ) {
 				lsx_to_itinerary_loop_item();
 				$build   = $pattern;
+
+				global $tour_itinerary;
+
 				foreach ( $this->itinerary_fields as $field ) {
 					$build   = $this->build_itinerary_field( $build, $field, $itinerary_count );
 				}
