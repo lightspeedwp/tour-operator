@@ -156,6 +156,8 @@ class Bindings {
 				default:
 					// For custom fields.	
 
+					do_action( 'qm/debug', $source_args['key'] );
+
 					$single = true;
 					if ( isset( $source_args['single'] ) ) {
 						$single = (bool) $source_args['single'];
@@ -170,6 +172,7 @@ class Bindings {
 					$value = get_post_meta( get_the_ID(), $source_args['key'], $single );
 			
 					if ( is_array( $value ) && ! empty( $value ) ) {
+						$value  = array_filter( $value );
 						$values = array();
 						foreach( $value as $pid ) {
 							if ( true === $only_parents ) {
@@ -277,8 +280,6 @@ class Bindings {
 			while ( lsx_to_itinerary_loop() ) {
 				lsx_to_itinerary_loop_item();
 				$build   = $pattern;
-
-				global $tour_itinerary;
 
 				foreach ( $this->itinerary_fields as $field ) {
 					$build   = $this->build_itinerary_field( $build, $field, $itinerary_count );
