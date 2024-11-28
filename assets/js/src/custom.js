@@ -94,7 +94,9 @@ if ( window.location.hash ) {
 		let contentWrapper = button.closest( '.wp-block-group' ).find('.wp-block-post-content');
 		if ( 0 < contentWrapper.children().length ) {
 			contentWrapper.children().each( function() {
-				$(this).show();
+				if ( ! $(this).hasClass('wp-block-read-more') ) {
+					$(this).show();	
+				}
 			});
 			button.addClass( 'less-link' );
 			button.text( 'Read Less' );
