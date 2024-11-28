@@ -71,12 +71,12 @@ if ( window.location.hash ) {
 	lsx_to.readMoreSet = function( button ) {
 		let contentWrapper = button.closest( '.wp-block-group' ).find('.wp-block-post-content');
 		if ( 0 < contentWrapper.length ) {
-			if ( 1 < contentWrapper.find('p').length ) {
+			if ( 1 < contentWrapper.children().length ) {
 
 				var limit = 1;
 				let counter = 0;
 
-				contentWrapper.find('p').each( function() {
+				contentWrapper.children().each( function() {
 					if ( limit <= counter ) {
 						$(this).hide();
 					}
@@ -91,9 +91,9 @@ if ( window.location.hash ) {
 	}
 
 	lsx_to.readMoreOpen = function( button ) {
-		let contentWrapper = button.closest( '.wp-block-group' ).find('.wp-block-post-content p');
-		if ( 0 < contentWrapper.length ) {
-			contentWrapper.each( function() {
+		let contentWrapper = button.closest( '.wp-block-group' ).find('.wp-block-post-content');
+		if ( 0 < contentWrapper.children().length ) {
+			contentWrapper.children().each( function() {
 				$(this).show();
 			});
 			button.addClass( 'less-link' );
@@ -134,10 +134,10 @@ if ( window.location.hash ) {
 	lsx_to.readMoreSetTI = function( button ) {
 		let contentWrapper = button.closest( '.additional-info' ).find('.content');
 		if ( 0 < contentWrapper.length ) {
-			if ( 1 < contentWrapper.find('p').length ) {
+			if ( 1 < contentWrapper.children().length ) {
 
 				//first remove empty p tags.
-				contentWrapper.find('p').each( function() {
+				contentWrapper.children().each( function() {
 					if ( '' === $(this).html() ) {
 						$(this).remove();
 					}
@@ -146,7 +146,7 @@ if ( window.location.hash ) {
 				var limit = 1;
 				let counter = 0;
 
-				contentWrapper.find('p').each( function() {
+				contentWrapper.children().each( function() {
 					if ( limit <= counter ) {
 						$(this).hide();
 					}
@@ -161,8 +161,8 @@ if ( window.location.hash ) {
 	}
 
 	lsx_to.readMoreOpenTI = function( button ) {
-		let contentWrapper = button.closest( '.additional-info' ).find('.content p');
-		if ( 0 < contentWrapper.length ) {
+		let contentWrapper = button.closest( '.additional-info' ).find('.content');
+		if ( 0 < contentWrapper.children().length ) {
 			contentWrapper.each( function() {
 				$(this).show();
 			});
