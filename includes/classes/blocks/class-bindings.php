@@ -468,8 +468,9 @@ class Bindings {
 	 */
 	public function build_unit_field( $build = '', $field = '', $count = 1 ) {
 		global $rooms;
-		$pattern = '';
-		$value   = '';
+		$pattern       = '';
+		$value         = '';
+		$tour_operator = tour_operator();
 
 		switch ( $field ) {
 			case 'title':
@@ -499,6 +500,14 @@ class Bindings {
 
 			case 'price':
 				$value   = $rooms->item_price( '', '', false );
+
+				if ( is_object( $tour_operator ) && isset( $tour_operator->options['currency'] ) && ! empty( $tour_operator->options['currency'] ) ) {
+					$currency = $tour_operator->options['currency'];
+					$currency = '<span class="currency-icon ' . mb_strtolower( $currency ) . '">' . $currency . '</span>';
+				}
+
+				$value = $currency . $value;
+
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bunit-price\b[^"]*"[^>]*>).*?(<\/p>)/is';
 			break;
 
