@@ -156,8 +156,6 @@ class Bindings {
 				default:
 					// For custom fields.	
 
-					do_action( 'qm/debug', $source_args['key'] );
-
 					$single = true;
 					if ( isset( $source_args['single'] ) ) {
 						$single = (bool) $source_args['single'];

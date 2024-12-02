@@ -33,7 +33,42 @@ class Setup {
 	 * @since   1.1.0
 	 * @var     array
 	 */
-	public $post_types;
+	public $post_types = [
+		'tour',
+		'accommodation',
+		'destination',
+	];
+
+	public $image_sizes = [
+		'lsx-to-card-list' => [
+			'title'  => 'TO Card (list)',
+			'ratio'  => '1:1',
+			'width'  => 300,
+			'height' => 300,
+			'crop'   => true
+		],
+		'lsx-to-card-grid' => [
+			'title'  => 'TO Card (grid)',
+			'ratio'  => '3:2',
+			'width'  => 400,
+			'height' => 250,
+			'crop'   => true
+		],
+		'lsx-to-gallery' => [
+			'title'  => 'TO Gallery',
+			'ratio'  => '3:2',
+			'width'  => 900,
+			'height' => 600,
+			'crop'   => true
+		],
+		'lsx-to-banner' => [
+			'title'  => 'TO Banner',
+			'ratio'  => '5:2',
+			'width'  => 1440,
+			'height' => 600,
+			'crop'   => true
+		]
+	];
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -43,13 +78,10 @@ class Setup {
 	 * @access private
 	 */
 	public function __construct() {
-		$this->post_types = array(
-			'tour',
-			'accommodation',
-			'destination',
-		);
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 		add_action( 'init', array( $this, 'register_meta_with_rest' ) );
+		add_action( 'init', array( $this, 'register_image_sizes' ) );
+		add_filter( 'image_size_names_choose', array( $this, 'editor_image_sizes' ), 10, 1 );
 		add_action( 'cmb2_admin_init', array( $this, 'register_cmb2_fields' ) );
 
 		// Allow extra tags and attributes to wp_kses_post().
@@ -345,5 +377,30 @@ class Setup {
 		$allowedstyles[] = 'background-image';
 
 		return $allowedstyles;
+	}
+
+	/**
+	 * Register the image sizes with WordPress
+	 *
+	 * @return void
+	 */
+	public function register_image_sizes() {
+		foreach ( $this->image_sizes as $key => $params ) {
+			add_image_size( $key, $params['width'], $params['height'], $params['crop'] );
+		}
+	}
+
+	/**
+	 * The array of image sizes from WordPress
+	 *
+	 * @param array $sizes
+	 * @return array
+	 */
+	public function editor_image_sizes( $sizes ) {
+		$new_sizes = [];
+		foreach ( $this->image_sizes as $key => $params ) {
+			$new_sizes[ $key ] = $params['title'];
+		}
+		return array_merge( $sizes, $new_sizes );
 	}
 }
