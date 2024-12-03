@@ -86,6 +86,8 @@ if ( window.location.hash ) {
 			}
 			button.removeClass('less-link');
 			button.text( lsx_to.readMoreText );
+		} else {
+			button.hide();
 		}
 	}
 
