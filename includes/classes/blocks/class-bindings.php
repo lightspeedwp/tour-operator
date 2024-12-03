@@ -170,6 +170,7 @@ class Bindings {
 					$value = get_post_meta( get_the_ID(), $source_args['key'], $single );
 			
 					if ( is_array( $value ) && ! empty( $value ) ) {
+						$value  = array_filter( $value );
 						$values = array();
 						foreach( $value as $pid ) {
 							if ( true === $only_parents ) {
@@ -277,6 +278,7 @@ class Bindings {
 			while ( lsx_to_itinerary_loop() ) {
 				lsx_to_itinerary_loop_item();
 				$build   = $pattern;
+
 				foreach ( $this->itinerary_fields as $field ) {
 					$build   = $this->build_itinerary_field( $build, $field, $itinerary_count );
 				}
@@ -377,17 +379,30 @@ class Bindings {
 		$tags = new \WP_HTML_Tag_Processor( $build );
 
 		if ( $tags->next_tag( array( 'class_name' => $classname ) ) ) {
+
+			$size = 'medium';
+			$classes = $tags->get_attribute( 'class' );
+			$classes = explode( ' ', $classes );
+			foreach ( $classes as $class ) {
+				if ( 0 <= stripos( $class, 'size-' ) ) {
+					$size = str_replace( 'size-', '', $class );
+				}
+			}
+
 			if ( $tags->next_tag( array( 'tag_name' => 'img' ) ) ) {
 
 				if ( 'itinerary-image' === $classname ) {
-					$img_src = lsx_to_itinerary_thumbnail();
+					$img_src = lsx_to_itinerary_thumbnail( $size );
 				} else {
-					$img_src = $rooms->item_thumbnail();
+					$img_src = $rooms->item_thumbnail( $size );
 				}
 				$tags->set_attribute( 'rel', sanitize_key( $classname ) );
 				$tags->set_attribute( 'src', $img_src );
 				$build = $tags->get_updated_html();
 			}
+			
+
+			
 		}
 		
 		return $build;
@@ -453,12 +468,13 @@ class Bindings {
 	 */
 	public function build_unit_field( $build = '', $field = '', $count = 1 ) {
 		global $rooms;
-		$pattern = '';
-		$value   = '';
+		$pattern       = '';
+		$value         = '';
+		$tour_operator = tour_operator();
 
 		switch ( $field ) {
 			case 'title':
-				$value   = $rooms->item_title( '', '', false );
+				$value   = strip_tags( $rooms->item_title( '', '', false ) );
 				$pattern = '/(<h[1-6]\s+[^>]*\bclass="[^"]*\bunit-title\b[^"]*"[^>]*>).*?(<\/h[1-6]>)/is';
 			break;
 
@@ -484,6 +500,14 @@ class Bindings {
 
 			case 'price':
 				$value   = $rooms->item_price( '', '', false );
+
+				if ( is_object( $tour_operator ) && isset( $tour_operator->options['currency'] ) && ! empty( $tour_operator->options['currency'] ) ) {
+					$currency = $tour_operator->options['currency'];
+					$currency = '<span class="currency-icon ' . mb_strtolower( $currency ) . '">' . $currency . '</span>';
+				}
+
+				$value = $currency . $value;
+
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bunit-price\b[^"]*"[^>]*>).*?(<\/p>)/is';
 			break;
 
@@ -495,8 +519,9 @@ class Bindings {
 		if ( '' === $value ) {
 			$pattern = '/\bunit-' . $field . '-wrapper\b/';
 			$value   = 'hidden unit-' . $field . '-wrapper';
-		}
-		$replacement = '$1' . $value . '$2';
+		}	
+
+		$replacement = '$1 ' . $value . ' $2';
 		$build       = preg_replace($pattern, $replacement, $build);
 		return $build;
 	}

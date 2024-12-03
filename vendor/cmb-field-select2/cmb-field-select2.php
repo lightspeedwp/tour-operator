@@ -122,6 +122,10 @@ class PW_CMB2_Field_Select2 {
 			}
 		}
 
+		if ( empty( $selected_items ) ) {
+			$selected_items = '<option value="" selected="selected">Select</option>';
+		}
+
 		return $selected_items . $other_items;
 	}
 
