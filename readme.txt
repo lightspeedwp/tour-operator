@@ -1,11 +1,11 @@
 === LSX Tour Operator ===
-Contributors: feedmymedia, lightspeedwp, eleshar, krugazul, jacquesvdh, ignusvermaak
+Contributors: feedmymedia, lightspeedwp, eleshar, krugazul
 Donate link: https://lsdev.biz/lsx/donate/
 Tags: lsx, tour operator, tours, travel, travel-agency
 Requires at least: 6.1
-Tested up to: 6.1.1
+Tested up to: 6.7
 Requires PHP: 7.2
-Stable tag: 2.0.0
+Stable tag: 2.0-beta-2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 

@@ -118,7 +118,14 @@ class Accommodation {
 	 * Adds in additional info for the price custom field
 	 */
 	public function price_filter( $html = '', $meta_key = false, $value = false, $before = '', $after = '' ) {
-		if ( get_post_type() === 'accommodation' && 'price' === $meta_key ) {
+		$currency_fields = [
+			'price',
+			'single_supplement'
+		];
+
+		do_action( 'qm/debug', [ get_post_type(), $meta_key ] );
+
+		if ( get_post_type() === 'accommodation' && in_array( $meta_key, $currency_fields ) ) {
 			$price_type    = get_post_meta( get_the_ID(), 'price_type', true );
 			$value         = preg_replace( '/[^0-9,.]/', '', $value );
 			$value         = ltrim( $value, '.' );
@@ -127,11 +134,9 @@ class Accommodation {
 			$tour_operator = tour_operator();
 			$currency      = '';
 
-			if ( is_object( $tour_operator ) && isset( $tour_operator->options['general'] ) && is_array( $tour_operator->options['general'] ) ) {
-				if ( isset( $tour_operator->options['general']['currency'] ) && ! empty( $tour_operator->options['general']['currency'] ) ) {
-					$currency = $tour_operator->options['general']['currency'];
-					$currency = '<span class="currency-icon ' . mb_strtolower( $currency ) . '">' . $currency . '</span>';
-				}
+			if ( is_object( $tour_operator ) && isset( $tour_operator->options['currency'] ) && ! empty( $tour_operator->options['currency'] ) ) {
+				$currency = $tour_operator->options['currency'];
+				$currency = '<span class="currency-icon ' . mb_strtolower( $currency ) . '">' . $currency . '</span>';
 			}
 
 			$value = apply_filters( 'lsx_to_accommodation_price', $value, $price_type, $currency );
@@ -170,22 +175,20 @@ class Accommodation {
 			$html          = '';
 			if ( 0 !== (int) $value ) {
 				while ( $counter > 0 ) {
+					$ratings_array[] = '<figure class="wp-block-image size-large is-resized">';
+					$ratings_array[] = '<img src="';
 					if ( (int) $value > 0 ) {
-						$ratings_array[] = '<i class="fa fa-star"></i>';
+						$ratings_array[] = LSX_TO_URL . 'assets/img/rating-star-full.png';
 					} else {
-						$ratings_array[] = '<i class="fa fa-star-o"></i>';
+						$ratings_array[] = LSX_TO_URL . 'assets/img/rating-star-empty.png';
 					}
+					$ratings_array[] = '" alt="" style="width:20px;vertical-align:sub;">';
+					$ratings_array[] = '</figure>';
 
 					$counter --;
 					$value --;
 				}
-				$rating_type        = get_post_meta( get_the_ID(), 'rating_type', true );
-				$rating_description = '';
-
-				if ( false !== $rating_type && '' !== $rating_type && esc_html__( 'Unspecified', 'tour-operator' ) !== $rating_type ) {
-					$rating_description = ' <small>(' . $rating_type . ')</small>';
-				}
-				$html = $before . implode( '', $ratings_array ) . $rating_description . $after;
+				$html = $before . implode( '', $ratings_array ) . $after;
 			}
 		}
 		return $html;

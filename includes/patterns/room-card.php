@@ -35,8 +35,8 @@ return array(
 		<h4 class="wp-block-heading"><strong>Information</strong></h4>
 		<!-- /wp:heading -->
 
-		<!-- wp:group {"className":"itin-type-wrapper","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-		<div class="wp-block-group itin-type-wrapper" style="margin-top:0;margin-bottom:0"><!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
+		<!-- wp:group {"className":"unit-type-wrapper","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+		<div class="wp-block-group unit-type-wrapper" style="margin-top:0;margin-bottom:0"><!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
 		<div class="wp-block-group"><!-- wp:image {"width":"20px","sizeSlug":"large"} -->
 		<figure class="wp-block-image size-large is-resized"><img src="https://tour-operator.lsx.design/wp-content/uploads/2024/09/accommodation-type-TO-icon-black-20px-2.png" alt="" style="width:20px"/></figure>
 		<!-- /wp:image -->
@@ -51,8 +51,8 @@ return array(
 		<!-- /wp:paragraph --></div>
 		<!-- /wp:group -->
 
-		<!-- wp:group {"className":"itin-type-wrapper","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-		<div class="wp-block-group itin-type-wrapper" style="margin-top:0;margin-bottom:0"><!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
+		<!-- wp:group {"className":"unit-price-wrapper","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+		<div class="wp-block-group unit-price-wrapper" style="margin-top:0;margin-bottom:0"><!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
 		<div class="wp-block-group"><!-- wp:image {"width":"20px","sizeSlug":"large","metadata":{"bindings":{"__default":{"source":"core/pattern-overrides"}},"name":"From Price Icon"}} -->
 		<figure class="wp-block-image size-large is-resized"><img src="https://tour-operator.lsx.design/wp-content/uploads/2024/09/from-price-TO-icon-black-20px-1.png" alt="" style="width:20px"/></figure>
 		<!-- /wp:image -->
@@ -63,7 +63,7 @@ return array(
 		<!-- /wp:group -->
 
 		<!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-		<div class="wp-block-group"><!-- wp:paragraph {"className":"unit-price","style":{"elements":{"link":{"color":{"text":"var:preset|color|primary-700"}}},"spacing":{"padding":{"top":"2px","bottom":"2px"}}},"textColor":"primary-700"} -->
+		<div class="wp-block-group"><!-- wp:paragraph {"className":"unit-price amount","style":{"elements":{"link":{"color":{"text":"var:preset|color|primary-700"}}},"spacing":{"padding":{"top":"2px","bottom":"2px"}}},"textColor":"primary-700"} -->
 		<p class="unit-price has-primary-700-color has-text-color has-link-color" style="padding-top:2px;padding-bottom:2px"></p>
 		<!-- /wp:paragraph --></div>
 		<!-- /wp:group --></div>

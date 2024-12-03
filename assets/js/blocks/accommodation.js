@@ -946,7 +946,7 @@ wp.domReady(() => {
 			metadata: {
 				name: 'Special Interests',
 			},
-			className: 'lsx-special-interests-wrapper',
+			className: 'lsx-special-interest-wrapper',
 			style: {
 				spacing: {
 					blockGap: '5px'
@@ -1044,7 +1044,7 @@ wp.domReady(() => {
 			metadata: {
 				name: 'Facilities',
 			},
-			className: 'lsx-facilities-wrapper',
+			className: 'lsx-facility-wrapper',
 			style: {
 				spacing: {
 					padding: {
@@ -1118,9 +1118,27 @@ wp.domReady(() => {
 					}
 				},
 				[
-					['core/post-terms', {
-						term: 'facility',
-						fontSize: 'x-small'
+					['core/paragraph', {
+						metadata: {
+							bindings: {
+								content: {
+									source: 'lsx/post-connection',
+									args: {
+										key: 'facilities'
+									}
+								}
+							}
+						},
+						className: 'has-septenary-color has-text-color has-link-color has-primary-color has-primary-700-color',
+						style: {
+							spacing: {
+								padding: {
+									top: '2px',
+									bottom: '2px'
+								}
+							}
+						},
+						textColor: 'primary-700'
 					}]
 				]
 			]

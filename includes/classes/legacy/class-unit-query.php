@@ -208,13 +208,13 @@ class Unit_Query {
 	/**
 	 * Outputs the current items "gallery" field
 	 */
-	public function item_thumbnail() {
+	public function item_thumbnail( $size = 'large' ) {
 		$thumbnail_src = false;
 		$thumbnail_src = apply_filters( 'lsx_to_accommodation_room_thumbnail', $thumbnail_src );
 		if ( $this->have_query && false !== $this->query_item && ! empty( $this->query_item ) ) {
-			if ( false !== $this->query_item['gallery'] ) {
+			if ( isset( $this->query_item['gallery'] ) && ! empty( $this->query_item['gallery'] ) ) {
 				$images = array_keys( $this->query_item['gallery'] );
-				$thumbnail = wp_get_attachment_image_src( $images[0], 'medium' );
+				$thumbnail = wp_get_attachment_image_src( $images[0], $size );
 				if ( is_array( $thumbnail ) ) {
 					$thumbnail_src = $thumbnail[0];
 				}
@@ -234,7 +234,7 @@ class Unit_Query {
 		if ( $this->have_query && false !== $this->query_item ) {
 			$images_return = array();
 
-			if ( isset( $this->query_item['gallery'] ) && false !== $this->query_item['gallery'] ) {
+			if ( isset( $this->query_item['gallery'] ) && ! empty( $this->query_item['gallery'] ) ) {
 				$images = array_keys( $this->query_item['gallery'] );
 
 				foreach ( $images as $key => $value ) {

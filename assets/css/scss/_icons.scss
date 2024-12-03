@@ -116,7 +116,9 @@
 	}
 }*/
 
-.lsx-price-wrapper {
+.lsx-price-wrapper,
+.lsx-single-supplement-wrapper,
+.unit-price-wrapper {
 	/*&:before {
 		background-image: url( ../img/icons/price-icon.png );
 	}*/
@@ -129,6 +131,3 @@
 		}
 	}
 }
-
-// Add the icon ULR here.
-//.lsx-destination-to-tour-wrapper::before { background-image: url( ../img/icons/destinations-icon.webp ); }

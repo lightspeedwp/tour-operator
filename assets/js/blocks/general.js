@@ -1,9 +1,9 @@
 wp.domReady(() => {
-	// Gallery Wrapper
+	// Gallery Block
 	wp.blocks.registerBlockVariation("core/gallery", {
 		name: "lsx-tour-operator/gallery",
 		title: "TO Gallery",
-		icon: "admin-multisite",
+		icon: "gallery",
 		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
@@ -40,10 +40,11 @@ wp.domReady(() => {
 		isDefault: false
 	});
 
-	// Price Wrapper
+	// Price Block
 	wp.blocks.registerBlockVariation("core/group", {
 		name: "lsx-tour-operator/price",
 		title: "Price",
+		category: 'lsx-tour-operator',
 		icon: "bank",
 		attributes: {
 			metadata: {
@@ -404,10 +405,12 @@ wp.domReady(() => {
 		]
 	});
 
+	// View More Button Block
 	wp.blocks.registerBlockVariation('core/button', {
         name: 'lsx-tour-operator/more-link',
         title: 'More Button',
 		name: 'core/button',
+		category: "lsx-tour-operator",
 		attributes: {
 			className: 'lsx-to-more-link more-link',
 			metadata: {

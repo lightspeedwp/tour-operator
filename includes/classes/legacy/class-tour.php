@@ -44,20 +44,6 @@ class Tour {
 	public $search_fields = false;
 
 	/**
-	 * Holds the meal plan options
-	 *
-	 * @var array
-	 */
-	public $room_basis = array();
-
-	/**
-	 * Holds the meal plan options
-	 *
-	 * @var array
-	 */
-	public $drinks_basis = array();
-
-	/**
 	 * Initialize the plugin by setting localization, filters, and
 	 * administration functions.
 	 *
@@ -72,36 +58,6 @@ class Tour {
 		} else {
 			$this->options = false;
 		}
-
-		$this->room_basis = array(
-			'None'                                 => esc_html__( 'None', 'tour-operator' ),
-			'BedAndBreakfast'                      => esc_html__( 'B&amp;B: Bed and Breakfast', 'tour-operator' ),
-			'RoomOnly'                             => esc_html__( 'Room Only', 'tour-operator' ),
-			'SelfCatering'                         => esc_html__( 'Self Catering', 'tour-operator' ),
-			'Lunch'                                => esc_html__( 'Lunch', 'tour-operator' ),
-			'Dinner'                               => esc_html__( 'Dinner', 'tour-operator' ),
-			'LunchAndDinner'                       => esc_html__( 'Lunch and Dinner', 'tour-operator' ),
-			'BedBreakfastAndLunch'                 => esc_html__( 'Bed, Breakfast and Lunch', 'tour-operator' ),
-			'DinnerBedAndBreakfast'                => esc_html__( 'Dinner, Bed and Breakfast', 'tour-operator' ),
-			'HalfBoard'                            => esc_html__( 'Half Board - Dinner, Bed and Breakfast', 'tour-operator' ),
-			'DinnerBedBreakfastAndActivities'      => esc_html__( 'Half Board Plus - Dinner, Bed, Breakfast and Activities', 'tour-operator' ),
-			'DinnerBedBreakfastAndLunch'           => esc_html__( 'Full Board - Dinner, Bed, Breakfast and Lunch', 'tour-operator' ),
-			'DinnerBedBreakfastLunchAndActivities' => esc_html__( 'Full Board Plus -  Dinner, Bed, Breakfast, Lunch and Activities', 'tour-operator' ),
-			'AllInclusiveBedAndAllMeals'           => esc_html__( 'All Inclusive - Bed and All Meals', 'tour-operator' ),
-			'FullyInclusive'                       => esc_html__( 'Fully Inclusive - Bed, All Meals, Fees and Activities', 'tour-operator' ),
-			'ExclusiveClubPremierBenefits'         => esc_html__( 'Premier - Executive Club / Premier Benefits', 'tour-operator' ),
-		);
-
-		$this->drinks_basis = array(
-			'None'                => esc_html__( 'None', 'tour-operator' ),
-			'TeaCoffee'           => esc_html__( 'Tea and Coffee Only', 'tour-operator' ),
-			'DrinksSoft'          => esc_html__( 'Tea, Coffee and Soft Drinks Only', 'tour-operator' ),
-			'DrinksLocalBrands'   => esc_html__( 'All Local Brands (Spirits, Wine and Beers)', 'tour-operator' ),
-			'DrinksExclSpirits'   => esc_html__( 'All Local Brands (excl Spirits)', 'tour-operator' ),
-			'DrinksExclChampagne' => esc_html__( 'All Drinks (excl Champagne)', 'tour-operator' ),
-			'DrinksExclPremium'   => esc_html__( 'All Drinks (excl Premium Brands)', 'tour-operator' ),
-			'AllDrinks'           => esc_html__( 'All Drinks', 'tour-operator' ),
-		);
 
 		// activate property post type.
 		add_action( 'init', array( $this, 'set_vars' ) );
@@ -176,7 +132,12 @@ class Tour {
 	 * Adds in additional info for the price custom field
 	 */
 	public function price_filter( $html = '', $meta_key = false, $value = false, $before = '', $after = '' ) {
-		if ( get_post_type() === 'tour' && 'price' === $meta_key ) {
+		$currency_fields = [
+			'price',
+			'single_supplement'
+		];
+
+		if ( get_post_type() === 'tour' && in_array( $meta_key, $currency_fields ) ) {
 			$value         = preg_replace( '/[^0-9,.]/', '', $value );
 			$value         = ltrim( $value, '.' );
 			$value         = str_replace( ',', '', $value );

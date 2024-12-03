@@ -326,6 +326,4 @@ class Admin extends Tour_Operator {
 		</tr>
 		<?php
 	}
-
-
 }
