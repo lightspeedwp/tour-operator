@@ -69,6 +69,8 @@ if ( window.location.hash ) {
 	};
 
 	lsx_to.readMoreSet = function( button, contentWrapper ) {
+		console.log(contentWrapper);
+		console.log(contentWrapper.length);
 		if ( 0 < contentWrapper.length ) {
 			if ( 1 < contentWrapper.children().length ) {
 
@@ -144,8 +146,9 @@ if ( window.location.hash ) {
 
 	lsx_to.set_read_more_itinerary = function() {
 		$( '.single-tour-operator .lsx-itinerary-wrapper .wp-block-read-more' ).each( function() {
+			$(this).show();
 			lsx_to.readMoreItinText = $(this).find('a').text();
-			lsx_to.readMoreSet( $(this), $(this).closest( 'div' ).find('.itinerary-description') );
+			lsx_to.readMoreSet( $(this), $(this).parent( 'div' ).find('.itinerary-description') );
 		} );
 
 		$( '.single-tour-operator .lsx-itinerary-wrapper .wp-block-read-more' ).on( 'click', function( event ) {
@@ -153,9 +156,9 @@ if ( window.location.hash ) {
 			$( this ).hide();
 
 			if ( $( this ).hasClass( 'less-link' ) ) {
-				lsx_to.readMoreSet( $(this), $(this).closest( 'div' ).find('.itinerary-description') );
+				lsx_to.readMoreSet( $(this), $(this).parent( 'div' ).find('.itinerary-description') );
 			} else {
-				lsx_to.readMoreOpen( $(this), $(this).closest( 'div' ).find('.itinerary-description') );
+				lsx_to.readMoreOpen( $(this), $(this).parent( 'div' ).find('.itinerary-description') );
 			}
 
 			$( this ).show();
