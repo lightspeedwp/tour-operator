@@ -74,6 +74,8 @@ class Tour {
 		add_filter( 'lsx_to_custom_field_query', array( $this, 'rating' ), 10, 5 );
 
 		add_action( 'lsx_to_modal_meta', array( $this, 'content_meta' ) );
+
+		add_filter( 'body_class', array( $this, 'tour_classes' ), 10, 1 );
 	}
 
 	/**
@@ -209,5 +211,23 @@ class Tour {
 			?>
 		<?php 
         }
+	}
+
+	/**
+	 * Adds in the onsale classes.
+	 *
+	 * @param array $classes
+	 * @return array
+	 */
+	public function tour_classes( $classes ) {
+		if ( ! is_singular( 'tour' ) ) {
+			return $classes;
+		}
+
+		$sale_price = get_post_meta( get_the_ID(), 'sale_price', true );
+		if ( false !== $sale_price && ! empty( $sale_price ) && 0 !== intval( $sale_price ) ) {
+			$classes[] = 'on-sale';
+		}
+		return $classes;
 	}
 }
