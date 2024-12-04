@@ -156,12 +156,18 @@ class Tour {
 
 			$value = $currency . $value;
 
+			// Get the Sale Price
 			$sale_price = get_post_meta( get_the_ID(), 'sale_price', true );
 			if ( false !== $sale_price && ! empty( $sale_price ) && 0 !== intval( $sale_price ) ) {
 				$value = '<span class="strike">' . $value . '</span>' . ' ' . $currency . number_format( intval( $sale_price ) , 2 );
 			}
 
-			$html  = $before . $letter_code . $value . $after;
+			// Get the currency settings
+			if ( is_object( $tour_operator ) &&  ( isset( $tour_operator->options['country_code_disabled'] ) && 0 === intval( $tour_operator->options['country_code_disabled'] ) ) || ! isset( $tour_operator->options['country_code_disabled'] ) ) {
+				$value = $letter_code . $value;
+			}
+
+			$html  = $before . $value . $after;
 		}
 		return $html;
 	}
