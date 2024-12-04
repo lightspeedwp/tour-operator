@@ -153,6 +153,11 @@
   	background-image: url( ../img/icons/price-icon.png );
   }*/
 }
+.lsx-price-wrapper .amount .strike,
+.lsx-single-supplement-wrapper .amount .strike,
+.unit-price-wrapper .amount .strike {
+  text-decoration: line-through;
+}
 .lsx-price-wrapper .amount .currency-icon:after,
 .lsx-single-supplement-wrapper .amount .currency-icon:after,
 .unit-price-wrapper .amount .currency-icon:after {

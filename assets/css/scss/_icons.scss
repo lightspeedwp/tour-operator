@@ -126,6 +126,10 @@
 	& .amount {
 		@extend %currency-icons;
 
+		.strike {
+			text-decoration: line-through;
+		}
+
 		.currency-icon {
 			&:after { margin-right: 0px; }
 		}

@@ -143,17 +143,25 @@ class Tour {
 			$value         = preg_replace( '/[^0-9,.]/', '', $value );
 			$value         = ltrim( $value, '.' );
 			$value         = str_replace( ',', '', $value );
-			$value         = number_format( (int) $value, 2 );
 			$tour_operator = tour_operator();
 			$currency      = '';
+			$letter_code   = '';
+			$value         = number_format( (int) $value, 2 );
 
+			// Get the currency settings
 			if ( is_object( $tour_operator ) && isset( $tour_operator->options['currency'] ) && ! empty( $tour_operator->options['currency'] ) ) {
-				$currency = $tour_operator->options['currency'];
-				$currency = '<span class="currency-icon ' . strtolower( $currency ) . '">' . $currency . '</span>';
+				$letter_code = $tour_operator->options['currency'];
+				$currency    = '<span class="currency-icon ' . strtolower( $letter_code ) . '"></span>';
 			}
 
 			$value = $currency . $value;
-			$html  = $before . $value . $after;
+
+			$sale_price = get_post_meta( get_the_ID(), 'sale_price', true );
+			if ( false !== $sale_price && ! empty( $sale_price ) && 0 !== intval( $sale_price ) ) {
+				$value = '<span class="strike">' . $value . '</span>' . ' ' . $currency . number_format( intval( $sale_price ) , 2 );
+			}
+
+			$html  = $before . $letter_code . $value . $after;
 		}
 		return $html;
 	}
