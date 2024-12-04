@@ -142,6 +142,14 @@ class Accommodation {
 
 			$value = apply_filters( 'lsx_to_accommodation_price', $value, $price_type, $currency );
 
+			// Get the Sale Price
+			if ( 'price' === $meta_key ) {
+				$sale_price = get_post_meta( get_the_ID(), 'sale_price', true );
+				if ( false !== $sale_price && ! empty( $sale_price ) && 0 !== intval( $sale_price ) ) {
+					$value = number_format( intval( $sale_price ) , 2 );
+				}
+			}
+
 			switch ( $price_type ) {
 				case 'per_person_per_night':
 				case 'per_person_sharing':
