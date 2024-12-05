@@ -36,17 +36,16 @@ class Registration {
 	public function enqueue_block_variations_script() {
 
 		$scripts = [
-			'general'       => '',
-			'tour'          => '',
-			'accommodation' => '',
-			'destination'   => '',
-			'query-loops'   => '',
+			'general'       => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
+			'tour'          => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
+			'accommodation' => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
+			'destination'   => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
+			'query-loops'   => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
 		];
 
 		$additional_scripts = [
 			'linked-cover' => array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-data', 'wp-hooks' ),
 			'slider-query' => array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-compose' ),
-			'onsale-query' => array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-compose' ),
 		];
 
 		// Make sure the script is only enqueued in the block editor.
@@ -60,6 +59,14 @@ class Registration {
 					filemtime( LSX_TO_PATH . 'assets/js/blocks/' . $slug . '.js' ), // Versioning with file modification time.
 					true  // Enqueue in the footer.
 				);
+				if ( 'general' === $slug ) {
+					$param_array = array(
+						'homeUrl'   => trailingslashit( home_url() ),
+						'assetsUrl' => LSX_TO_URL . 'assets/img/'
+					);
+					$param_array = apply_filters( 'lsx_to_editor_params', $param_array );
+					wp_localize_script( 'lsx-to-block-' . $slug . '-variations', 'lsxToEditor', $param_array );
+				}
 			}
 
 			foreach ( $additional_scripts as $slug => $dependancies ) {
@@ -367,17 +374,17 @@ class Registration {
 	}
 
 	/**
-	* Determines if a post exists based on the ID.
-	*
-	*
-	* @global wpdb $wpdb WordPress database abstraction object.
-	*
-	* @param string $title   Post title.
-	* @param string $content Optional. Post content.
-	* @param string $date    Optional. Post date.
-	* @param string $type    Optional. Post type.
-	* @param string $status  Optional. Post status.
-	* @return int Post ID if post exists, 0 otherwise.
+	 * Determines if a post exists based on the ID.
+	 *
+	 *
+	 * @global wpdb $wpdb WordPress database abstraction object.
+	 *
+	 * @param string $title   Post title.
+	 * @param string $content Optional. Post content.
+	 * @param string $date    Optional. Post date.
+	 * @param string $type    Optional. Post type.
+	 * @param string $status  Optional. Post status.
+	 * @return int Post ID if post exists, 0 otherwise.
 	*/
 	protected function post_ids_exist( $ids ) {
 		global $wpdb;
