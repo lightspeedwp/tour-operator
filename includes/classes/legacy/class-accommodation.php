@@ -123,8 +123,6 @@ class Accommodation {
 			'single_supplement'
 		];
 
-		do_action( 'qm/debug', [ get_post_type(), $meta_key ] );
-
 		if ( get_post_type() === 'accommodation' && in_array( $meta_key, $currency_fields ) ) {
 			$price_type    = get_post_meta( get_the_ID(), 'price_type', true );
 			$value         = preg_replace( '/[^0-9,.]/', '', $value );
@@ -133,13 +131,22 @@ class Accommodation {
 			$value         = number_format( (int) $value, 2 );
 			$tour_operator = tour_operator();
 			$currency      = '';
+			$letter_code   = '';
 
 			if ( is_object( $tour_operator ) && isset( $tour_operator->options['currency'] ) && ! empty( $tour_operator->options['currency'] ) ) {
-				$currency = $tour_operator->options['currency'];
-				$currency = '<span class="currency-icon ' . mb_strtolower( $currency ) . '">' . $currency . '</span>';
+				$letter_code = $tour_operator->options['currency'];
+				$currency = '<span class="currency-icon ' . mb_strtolower( $letter_code ) . '"></span>';
 			}
 
 			$value = apply_filters( 'lsx_to_accommodation_price', $value, $price_type, $currency );
+
+			// Get the Sale Price
+			if ( 'price' === $meta_key ) {
+				$sale_price = get_post_meta( get_the_ID(), 'sale_price', true );
+				if ( false !== $sale_price && ! empty( $sale_price ) && 0 !== intval( $sale_price ) ) {
+					$value = number_format( intval( $sale_price ) , 2 );
+				}
+			}
 
 			switch ( $price_type ) {
 				case 'per_person_per_night':
@@ -157,6 +164,11 @@ class Accommodation {
 				default:
 					$value = $currency . $value;
 					break;
+			}
+
+			// Get the currency settings
+			if ( is_object( $tour_operator ) &&  ( isset( $tour_operator->options['country_code_disabled'] ) && 0 === intval( $tour_operator->options['country_code_disabled'] ) || ! isset( $tour_operator->options['country_code_disabled'] ) ) ) {
+				$value = $letter_code . $value;
 			}
 
 			$html = $before . $value . $after;

@@ -11,7 +11,19 @@ class Registration {
 
 	protected $disabled = [];
 
+	/**
+	 * Holds the array of featured queries.
+	 *
+	 * @var array
+	 */
 	protected $featured = [];
+
+	/**
+	 * True if the current query outputting needs to be onsale.
+	 *
+	 * @var boolean
+	 */
+	protected $onsale = false;
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -22,10 +34,12 @@ class Registration {
 	 */
 	public function __construct() {
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_variations_script' ), 10 );
-		add_filter( 'query_loop_block_query_vars', array( $this, 'query_args_filter' ), 10, 2 );
+		add_filter( 'query_loop_block_query_vars', array( $this, 'query_args_filter' ), 1, 2 );
 		add_filter( 'render_block', array( $this, 'maybe_hide_varitaion' ), 10, 3 );
 
 		add_filter( 'posts_pre_query', array( $this, 'posts_pre_query' ), 10, 2 );
+
+		add_filter( 'render_block_data', array( $this, 'save_onsale_queries' ), 10, 1 );
 	}
 
 	/**
@@ -36,11 +50,16 @@ class Registration {
 	public function enqueue_block_variations_script() {
 
 		$scripts = [
-			'general'       => '',
-			'tour'          => '',
-			'accommodation' => '',
-			'destination'   => '',
-			'query-loops'   => '',
+			'general'       => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
+			'tour'          => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
+			'accommodation' => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
+			'destination'   => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
+			'query-loops'   => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
+		];
+
+		$additional_scripts = [
+			'linked-cover' => array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-data', 'wp-hooks' ),
+			'slider-query' => array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-compose' ),
 		];
 
 		// Make sure the script is only enqueued in the block editor.
@@ -54,23 +73,24 @@ class Registration {
 					filemtime( LSX_TO_PATH . 'assets/js/blocks/' . $slug . '.js' ), // Versioning with file modification time.
 					true  // Enqueue in the footer.
 				);
+				if ( 'general' === $slug ) {
+					$param_array = array(
+						'homeUrl'   => trailingslashit( home_url() ),
+						'assetsUrl' => LSX_TO_URL . 'assets/img/'
+					);
+					$param_array = apply_filters( 'lsx_to_editor_params', $param_array );
+					wp_localize_script( 'lsx-to-block-' . $slug . '-variations', 'lsxToEditor', $param_array );
+				}
 			}
 
-			// Enqueue linked-cover.js
-			wp_enqueue_script(
-				'lsx-to-linked-cover',
-				LSX_TO_URL . 'assets/js/blocks/linked-cover.js',
-				array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-data', 'wp-hooks' ),
-				filemtime( LSX_TO_PATH . 'assets/js/blocks/linked-cover.js' )
-			);
-
-			// Enqueue linked-cover.js
-			wp_enqueue_script(
-				'lsx-to-slider-query',
-				LSX_TO_URL . 'assets/js/blocks/slider-query.js',
-				array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components' ),
-				filemtime( LSX_TO_PATH . 'assets/js/blocks/slider-query.js' )
-			);
+			foreach ( $additional_scripts as $slug => $dependancies ) {
+				wp_enqueue_script(
+					'lsx-to-' . $slug,
+					LSX_TO_URL . 'assets/js/blocks/' . $slug . '.js',
+					$dependancies,
+					filemtime( LSX_TO_PATH . 'assets/js/blocks/' . $slug . '.js' )
+				);
+			}
 
 			if ( array_key_exists( get_post_type(), tour_operator()->get_post_types() ) ) {
 				wp_enqueue_script(
@@ -107,6 +127,7 @@ class Registration {
 				// We only restric this on the destination post type, in case the block is used on a landing page.
 				if ( 'destination' === get_post_type() ) {
 					$query['post_parent__in'] = [ get_the_ID() ];
+					$query['post__not_in'] = [ get_the_ID() ];
 				}
 			break;
 
@@ -233,6 +254,22 @@ class Registration {
 			default:
 			break;
 		}
+
+		// Look for the "on sale" CSS class.
+		if ( true === $this->onsale ) {
+			if ( isset( $query['meta_query']['relation'] ) ) {
+				$query['meta_query']['relation'] = 'AND';
+			}
+			$query['meta_query'][] = array(
+				'key' => 'sale_price',
+				'compare' => 'EXISTS',
+			);
+
+			// reset this to false for the next query.
+			$this->onsale = false;
+		}
+
+		do_action( 'qm/debug', $query );
 
 		return $query;
 	}
@@ -368,17 +405,17 @@ class Registration {
 	}
 
 	/**
-	* Determines if a post exists based on the ID.
-	*
-	*
-	* @global wpdb $wpdb WordPress database abstraction object.
-	*
-	* @param string $title   Post title.
-	* @param string $content Optional. Post content.
-	* @param string $date    Optional. Post date.
-	* @param string $type    Optional. Post type.
-	* @param string $status  Optional. Post status.
-	* @return int Post ID if post exists, 0 otherwise.
+	 * Determines if a post exists based on the ID.
+	 *
+	 *
+	 * @global wpdb $wpdb WordPress database abstraction object.
+	 *
+	 * @param string $title   Post title.
+	 * @param string $content Optional. Post content.
+	 * @param string $date    Optional. Post date.
+	 * @param string $type    Optional. Post type.
+	 * @param string $status  Optional. Post status.
+	 * @return int Post ID if post exists, 0 otherwise.
 	*/
 	protected function post_ids_exist( $ids ) {
 		global $wpdb;
@@ -425,5 +462,34 @@ class Registration {
 			$items = $item_query->posts;
 		}
 		return $items;
+	}
+
+	/**
+	 * This function looks at the query blocks CSS classes to determine if it is onsale.
+	 *
+	 * @param array $parsed_block
+	 * @return array
+	 */
+	public function save_onsale_queries( $parsed_block ) {
+		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
+			return $parsed_block;
+		}
+		$allowed_blocks = array(
+			'core/query',
+		);
+
+		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
+			return $parsed_block; 
+		}
+		if ( ! isset( $parsed_block['attrs']['className'] ) || '' === $parsed_block['attrs']['className'] || false === $parsed_block['attrs']['className'] ) {
+			return $parsed_block;
+		}
+
+		$this->onsale = false;
+
+		if ( false !== stripos( $parsed_block['attrs']['className'], 'on-sale' ) ) {
+			$this->onsale = true;
+		}
+		return $parsed_block;
 	}
 }

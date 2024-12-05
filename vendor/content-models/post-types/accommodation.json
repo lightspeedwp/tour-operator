@@ -26,13 +26,13 @@
 			"description": "Set the minimum price of the accommodation.",
 			"visible": true
 		},
-        {
-            "slug": "single_supplement",
-            "type": "string",
-            "label": "Single Supplement",
-            "description": "Set the additional cost for a single person booking the accommodation.",
+		{
+			"slug": "sale_price",
+			"type": "string",
+			"label": "Sale Price",
+			"description": "Set the sale price of the accommodation.",
 			"visible": true
-        },
+		},
 		{
 			"slug": "price_type",
 			"type": "select",
@@ -62,6 +62,13 @@
 				}
 			]
 		},
+        {
+            "slug": "single_supplement",
+            "type": "string",
+            "label": "Single Supplement",
+            "description": "Set the additional cost for a single person booking the accommodation.",
+			"visible": true
+        },
 		{
 			"slug": "rating",
 			"type": "select",

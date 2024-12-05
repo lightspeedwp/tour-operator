@@ -18,6 +18,12 @@ $settings_fields = array(
 				'AUD' => esc_html__( 'AUD (australian dollar)', 'tour-operator' ),
 			),
 		),
+		'country_code_disabled' => array(
+			'label'   => esc_html__( 'Disable Country Code', 'tour-operator' ),
+			'desc'    => esc_html__( 'This will disable the 3 letter code which outputs before the price.', 'tour-operator' ),
+			'type'    => 'checkbox',
+			'default' => 0,
+		),
 	),
 	'maps' => array(
 		'maps_disabled' => array(

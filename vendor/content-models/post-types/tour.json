@@ -25,6 +25,13 @@
             "description": "Set the price of the tour.",
 			"visible": true
         },
+		{
+            "slug": "sale_price",
+            "type": "string",
+            "label": "Sale Price",
+            "description": "Set the sale price of the tour.",
+			"visible": true
+        },
         {
             "slug": "duration",
             "type": "string",

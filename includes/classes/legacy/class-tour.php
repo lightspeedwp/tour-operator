@@ -74,6 +74,8 @@ class Tour {
 		add_filter( 'lsx_to_custom_field_query', array( $this, 'rating' ), 10, 5 );
 
 		add_action( 'lsx_to_modal_meta', array( $this, 'content_meta' ) );
+
+		add_filter( 'body_class', array( $this, 'tour_classes' ), 10, 1 );
 	}
 
 	/**
@@ -141,16 +143,32 @@ class Tour {
 			$value         = preg_replace( '/[^0-9,.]/', '', $value );
 			$value         = ltrim( $value, '.' );
 			$value         = str_replace( ',', '', $value );
-			$value         = number_format( (int) $value, 2 );
 			$tour_operator = tour_operator();
 			$currency      = '';
+			$letter_code   = '';
+			$value         = number_format( (int) $value, 2 );
 
+			// Get the currency settings
 			if ( is_object( $tour_operator ) && isset( $tour_operator->options['currency'] ) && ! empty( $tour_operator->options['currency'] ) ) {
-				$currency = $tour_operator->options['currency'];
-				$currency = '<span class="currency-icon ' . strtolower( $currency ) . '">' . $currency . '</span>';
+				$letter_code = $tour_operator->options['currency'];
+				$currency    = '<span class="currency-icon ' . strtolower( $letter_code ) . '"></span>';
 			}
 
 			$value = $currency . $value;
+
+			// Get the Sale Price
+			if ( 'price' === $meta_key ) {
+				$sale_price = get_post_meta( get_the_ID(), 'sale_price', true );
+				if ( false !== $sale_price && ! empty( $sale_price ) && 0 !== intval( $sale_price ) ) {
+					$value = '<span class="strike">' . $value . '</span>' . ' ' . $currency . number_format( intval( $sale_price ) , 2 );
+				}
+			}
+
+			// Get the currency settings
+			if ( is_object( $tour_operator ) &&  ( isset( $tour_operator->options['country_code_disabled'] ) && 0 === intval( $tour_operator->options['country_code_disabled'] ) || ! isset( $tour_operator->options['country_code_disabled'] ) ) ) {
+				$value = $letter_code . $value;
+			}
+
 			$html  = $before . $value . $after;
 		}
 		return $html;
@@ -209,5 +227,23 @@ class Tour {
 			?>
 		<?php 
         }
+	}
+
+	/**
+	 * Adds in the onsale classes.
+	 *
+	 * @param array $classes
+	 * @return array
+	 */
+	public function tour_classes( $classes ) {
+		if ( ! is_singular( 'tour' ) ) {
+			return $classes;
+		}
+
+		$sale_price = get_post_meta( get_the_ID(), 'sale_price', true );
+		if ( false !== $sale_price && ! empty( $sale_price ) && 0 !== intval( $sale_price ) ) {
+			$classes[] = 'on-sale';
+		}
+		return $classes;
 	}
 }

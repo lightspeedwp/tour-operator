@@ -1,3 +1,5 @@
+// metadata.bindings not handle correctly
+
 wp.domReady(() => {
 	// Gallery Block
 	wp.blocks.registerBlockVariation("core/gallery", {
@@ -139,9 +141,9 @@ wp.domReady(() => {
 				},
 				[
 					['core/image', {
-						width: 20,
+						width: '20px',
 						sizeSlug: 'large',
-						url: 'http://localhost:8883/wp-content/themes/lsx-tour-operator/assets/images/Typetype-icon.png',
+						url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/06/image-1.png',
 						alt: ''
 					}],
 					['core/paragraph', {
@@ -244,9 +246,9 @@ wp.domReady(() => {
 				},
 				[
 					['core/image', {
-						width: 20,
+						width: '20px',
 						sizeSlug: 'large',
-						url: 'http://localhost:8883/wp-content/themes/lsx-tour-operator/assets/images/best-months-to-travel-TO-icon-black-20px-1-1.png',
+						url: lsxToEditor.homeUrl + 'wp-content/uploads/2024/11/booking-validity-icon-black-52px-1.svg',
 						alt: ''
 					}],
 					['core/paragraph', {
