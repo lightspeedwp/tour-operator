@@ -123,8 +123,6 @@ class Accommodation {
 			'single_supplement'
 		];
 
-		do_action( 'qm/debug', [ get_post_type(), $meta_key ] );
-
 		if ( get_post_type() === 'accommodation' && in_array( $meta_key, $currency_fields ) ) {
 			$price_type    = get_post_meta( get_the_ID(), 'price_type', true );
 			$value         = preg_replace( '/[^0-9,.]/', '', $value );

@@ -11,7 +11,19 @@ class Registration {
 
 	protected $disabled = [];
 
+	/**
+	 * Holds the array of featured queries.
+	 *
+	 * @var array
+	 */
 	protected $featured = [];
+
+	/**
+	 * True if the current query outputting needs to be onsale.
+	 *
+	 * @var boolean
+	 */
+	protected $onsale = false;
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
@@ -22,10 +34,12 @@ class Registration {
 	 */
 	public function __construct() {
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_variations_script' ), 10 );
-		add_filter( 'query_loop_block_query_vars', array( $this, 'query_args_filter' ), 10, 2 );
+		add_filter( 'query_loop_block_query_vars', array( $this, 'query_args_filter' ), 1, 2 );
 		add_filter( 'render_block', array( $this, 'maybe_hide_varitaion' ), 10, 3 );
 
 		add_filter( 'posts_pre_query', array( $this, 'posts_pre_query' ), 10, 2 );
+
+		add_filter( 'render_block_data', array( $this, 'save_onsale_queries' ), 10, 1 );
 	}
 
 	/**
@@ -113,6 +127,7 @@ class Registration {
 				// We only restric this on the destination post type, in case the block is used on a landing page.
 				if ( 'destination' === get_post_type() ) {
 					$query['post_parent__in'] = [ get_the_ID() ];
+					$query['post__not_in'] = [ get_the_ID() ];
 				}
 			break;
 
@@ -239,6 +254,22 @@ class Registration {
 			default:
 			break;
 		}
+
+		// Look for the "on sale" CSS class.
+		if ( true === $this->onsale ) {
+			if ( isset( $query['meta_query']['relation'] ) ) {
+				$query['meta_query']['relation'] = 'AND';
+			}
+			$query['meta_query'][] = array(
+				'key' => 'sale_price',
+				'compare' => 'EXISTS',
+			);
+
+			// reset this to false for the next query.
+			$this->onsale = false;
+		}
+
+		do_action( 'qm/debug', $query );
 
 		return $query;
 	}
@@ -431,5 +462,34 @@ class Registration {
 			$items = $item_query->posts;
 		}
 		return $items;
+	}
+
+	/**
+	 * This function looks at the query blocks CSS classes to determine if it is onsale.
+	 *
+	 * @param array $parsed_block
+	 * @return array
+	 */
+	public function save_onsale_queries( $parsed_block ) {
+		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
+			return $parsed_block;
+		}
+		$allowed_blocks = array(
+			'core/query',
+		);
+
+		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
+			return $parsed_block; 
+		}
+		if ( ! isset( $parsed_block['attrs']['className'] ) || '' === $parsed_block['attrs']['className'] || false === $parsed_block['attrs']['className'] ) {
+			return $parsed_block;
+		}
+
+		$this->onsale = false;
+
+		if ( false !== stripos( $parsed_block['attrs']['className'], 'on-sale' ) ) {
+			$this->onsale = true;
+		}
+		return $parsed_block;
 	}
 }
