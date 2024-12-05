@@ -1,3 +1,5 @@
+// metadata.bindings not handle correctly
+
 wp.domReady(() => {
 	// Gallery Block
 	wp.blocks.registerBlockVariation("core/gallery", {
