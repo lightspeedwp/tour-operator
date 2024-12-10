@@ -42,12 +42,11 @@ wp.domReady(() => {
 		isDefault: false
 	});
 
-	// Price Block
 	wp.blocks.registerBlockVariation("core/group", {
 		name: "lsx-tour-operator/price",
 		title: "Price",
 		category: 'lsx-tour-operator',
-		icon: "bank",
+		icon: 'bank',
 		attributes: {
 			metadata: {
 				name: "Price",
@@ -105,6 +104,9 @@ wp.domReady(() => {
 			],
 		],
 		isDefault: false,
+		supports: {
+			renaming: false
+		}
 	});
 	
 	// Travel Styles Wrapper
