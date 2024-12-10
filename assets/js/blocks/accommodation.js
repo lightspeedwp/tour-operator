@@ -81,7 +81,9 @@ wp.domReady(() => {
 				},
 			]
 		],
-		isDefault: false,
+		supports: {
+			renaming: false
+		}
 	});
 
 	wp.blocks.registerBlockVariation("core/group", {
@@ -109,9 +111,10 @@ wp.domReady(() => {
 				slug: 'lsx-tour-operator/room-card'
 			}]
 		],
-		isDefault: false,
-		scope: ["inserter"],
 		parent: ["lsx-tour-operator/units"], // Restricts to "lsx-tour-operator/units" block
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Rating Wrapper
@@ -298,7 +301,10 @@ wp.domReady(() => {
 					]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Number of Units Wrapper
@@ -384,7 +390,10 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Check In Time Wrapper
@@ -474,7 +483,10 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Check Out Time Wrapper
@@ -564,7 +576,10 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Minimum Child Age Wrapper
@@ -654,7 +669,10 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Spoken Languages Wrapper
@@ -751,7 +769,10 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Accommodation Type Wrapper
@@ -838,7 +859,10 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Suggested Visitor Types (Friendly) Wrapper
@@ -934,7 +958,10 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Special Interests Wrapper
@@ -1032,7 +1059,10 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Facilities Wrapper
@@ -1142,7 +1172,10 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Location Wrapper (Destination to Accommodation)
@@ -1250,6 +1283,9 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 });

@@ -66,7 +66,9 @@ wp.domReady(() => {
 				},
 			]
 		],
-		isDefault: false,
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Itinerary Day by Day
@@ -94,8 +96,9 @@ wp.domReady(() => {
 				slug: 'lsx-tour-operator/itinerary-list'
 			}]
 		],
-		isDefault: false,
-		scope: ["inserter"],
+		supports: {
+			renaming: false
+		},
 		parent: ["lsx-tour-operator/itinerary"], // Restricts to "lsx/itinerary" block
 	});
 
@@ -156,7 +159,10 @@ wp.domReady(() => {
 			]
 		],
 		isDefault: false,
-		allowedPostTypes: ['tour']
+		allowedPostTypes: ['tour'],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Single Supplement
@@ -259,7 +265,10 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Destination to Tour
@@ -372,7 +381,10 @@ wp.domReady(() => {
 					],
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 	
 	// Duration
@@ -510,6 +522,9 @@ wp.domReady(() => {
 				],
 			],
 		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Group Size
@@ -611,7 +626,10 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Booking Validity 
@@ -747,7 +765,10 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Departs From
@@ -850,7 +871,10 @@ wp.domReady(() => {
 					}],
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Ends In
@@ -953,7 +977,10 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Price Included + Excluded
@@ -1074,6 +1101,9 @@ wp.domReady(() => {
 					]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	} );
 });

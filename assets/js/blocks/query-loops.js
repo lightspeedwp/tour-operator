@@ -72,7 +72,10 @@ wp.domReady( function() {
 				   ]
 				]
 			]]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// DESTINATION - REGION - RELATED REGIONS
@@ -224,7 +227,10 @@ wp.domReady( function() {
 				   ]
 				]
 			]]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Featured Tours
@@ -300,7 +306,10 @@ wp.domReady( function() {
 				   ]
 				]
 			]]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Featured Destinations
@@ -376,7 +385,10 @@ wp.domReady( function() {
 				   ]
 				]
 			]]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	/**
@@ -457,7 +469,10 @@ wp.domReady( function() {
 				   ]
 				]
 			]]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Related Tours - Tour
@@ -535,7 +550,10 @@ wp.domReady( function() {
 				   ]
 				]
 			]]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});	
 
 
@@ -617,7 +635,10 @@ wp.domReady( function() {
 				   ]
 				]
 			]]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Related Accommodation - Accommodation
@@ -695,7 +716,10 @@ wp.domReady( function() {
 				   ]
 				]
 			]]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	/**
@@ -777,7 +801,10 @@ wp.domReady( function() {
 				   ]
 				]
 			]]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Related Tours - Destination
@@ -854,7 +881,10 @@ wp.domReady( function() {
 				   ]
 				]
 			]]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	/**
@@ -935,7 +965,10 @@ wp.domReady( function() {
 				   ]
 				]
 			]]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Related Reviews - Tours
@@ -1012,7 +1045,10 @@ wp.domReady( function() {
 				   ]
 				]
 			]]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Related Reviews - Accommodation
@@ -1089,6 +1125,9 @@ wp.domReady( function() {
 				   ]
 				]
 			]]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 });

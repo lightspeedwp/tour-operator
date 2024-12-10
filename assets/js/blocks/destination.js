@@ -143,7 +143,10 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Travel Information - Electricity Wrapper
@@ -289,7 +292,10 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Travel Information - Banking Wrapper
@@ -453,7 +459,10 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Travel Information - Cuisine Wrapper
@@ -599,7 +608,10 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Travel Information - Climate Wrapper
@@ -745,7 +757,10 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Travel Information - Transport Wrapper
@@ -891,7 +906,10 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Travel Information - Dress Wrapper
@@ -1037,7 +1055,10 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Travel Information - Health Wrapper
@@ -1183,7 +1204,10 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Travel Information - Safety Wrapper
@@ -1339,6 +1363,9 @@ wp.domReady(() => {
 					],
 				],
 			],
+			supports: {
+				renaming: false
+			}
 		}
 	);
 
@@ -1495,6 +1522,9 @@ wp.domReady(() => {
 					],
 				],
 			],
+			supports: {
+				renaming: false
+			}
 		}
 	);
 
@@ -1502,6 +1532,7 @@ wp.domReady(() => {
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/facts-regions-wrapper',
 		title: 'Regions List',
+		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
 				name: 'Regions List'
@@ -1611,13 +1642,17 @@ wp.domReady(() => {
 					]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Destination - Country List
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/facts-country-wrapper',
 		title: 'Country',
+		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
 				name: 'Country'
@@ -1727,6 +1762,9 @@ wp.domReady(() => {
 					]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 });

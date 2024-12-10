@@ -211,7 +211,10 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Best Months to Visit Wrapper
@@ -312,7 +315,10 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Included Wrapper
@@ -359,7 +365,10 @@ wp.domReady(() => {
 					}
 				}
 			}]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Not Included Wrapper
@@ -406,7 +415,10 @@ wp.domReady(() => {
 					}
 				}
 			}]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// View More Button Block
@@ -433,6 +445,9 @@ wp.domReady(() => {
 			backgroundColor: 'primary',
 			width: 100,
 			text: 'View More',
+		},
+		supports: {
+			renaming: false
 		}
     });
 });
