@@ -368,4 +368,52 @@ if ( window.location.hash ) {
 		lsx_to.build_slider_lightbox();
 	} );
 
+	document.addEventListener('DOMContentLoaded', function () {
+		// Select all sections within `.single-tour-operator`
+		const sections = document.querySelectorAll('.single-tour-operator section.wp-block-group');
+	
+		sections.forEach(section => {
+			// Locate the first <h2> within the section
+			const heading = section.querySelector('h2');
+			// Locate the second div with the class wp-block-group
+			const toggleTarget = section.querySelectorAll('.wp-block-group')[1];
+	
+			console.log('Processing Section:', section); // Debug
+			console.log('Found Heading:', heading); // Debug
+			console.log('Toggle Target:', toggleTarget); // Debug
+	
+			if (heading && toggleTarget) {
+				// Create a toggle button
+				const toggleButton = document.createElement('button');
+				toggleButton.classList.add('toggle-button');
+				toggleButton.innerHTML = `
+					<svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+						<path class="icon-down" d="M1 5l7 7 7-7H1z"></path>
+						<path class="icon-up" d="M1 11l7-7 7 7H1z" style="display: none;"></path>
+					</svg>
+				`;
+	
+				// Insert the button after the heading
+				heading.insertAdjacentElement('afterend', toggleButton);
+	
+				// Add click event listener to toggle visibility of the second wp-block-group
+				toggleButton.addEventListener('click', function () {
+					toggleTarget.classList.toggle('collapsed'); // Add or remove the collapsed class
+	
+					// Toggle the display of the up/down icons
+					const iconDown = toggleButton.querySelector('.icon-down');
+					const iconUp = toggleButton.querySelector('.icon-up');
+	
+					if (toggleTarget.classList.contains('collapsed')) {
+						iconDown.style.display = 'none';
+						iconUp.style.display = 'inline';
+					} else {
+						iconDown.style.display = 'inline';
+						iconUp.style.display = 'none';
+					}
+				});
+			}
+		});
+	});
+	
 } )( jQuery, window, document );
