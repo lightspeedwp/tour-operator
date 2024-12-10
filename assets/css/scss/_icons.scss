@@ -119,9 +119,6 @@
 .lsx-price-wrapper,
 .lsx-single-supplement-wrapper,
 .unit-price-wrapper {
-	/*&:before {
-		background-image: url( ../img/icons/price-icon.png );
-	}*/
 
 	& .amount {
 		@extend %currency-icons;

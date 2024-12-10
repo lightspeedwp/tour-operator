@@ -23,25 +23,29 @@ wp.domReady(() => {
 			[
 				"core/image",
 				{
-					href: "https://tour-operator.lsx.design/wp-content/plugins/tour-operator/assets/img/placeholders/placeholder-general-350x350.jpg",
+					sizeSlug: 'large',
+					url: lsxToEditor.assetsUrl + "placeholders/placeholder-general-350x350.jpg",
 				}
 			],
 			[
 				"core/image",
 				{
-					href: "https://tour-operator.lsx.design/wp-content/plugins/tour-operator/assets/img/placeholders/placeholder-general-350x350.jpg",
+					sizeSlug: 'large',
+					url: lsxToEditor.assetsUrl + "placeholders/placeholder-general-350x350.jpg",
 				}
 			],
 			[
 				"core/image",
 				{
-					href: "https://tour-operator.lsx.design/wp-content/plugins/tour-operator/assets/img/placeholders/placeholder-general-350x350.jpg",
+					sizeSlug: 'large',
+					url: lsxToEditor.assetsUrl + "placeholders/placeholder-general-350x350.jpg",
 				}
 			]
 		],
 		isDefault: false
 	});
 
+	// Price Block
 	wp.blocks.registerBlockVariation("core/group", {
 		name: "lsx-tour-operator/price",
 		title: "Price",
@@ -145,7 +149,7 @@ wp.domReady(() => {
 					['core/image', {
 						width: '20px',
 						sizeSlug: 'large',
-						url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/06/image-1.png',
+						url: lsxToEditor.assetsUrl + 'blocks/travel-styles.png',
 						alt: ''
 					}],
 					['core/paragraph', {

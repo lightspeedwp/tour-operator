@@ -146,13 +146,6 @@
 		background-position: center top;
 	}
 }*/
-.lsx-price-wrapper,
-.lsx-single-supplement-wrapper,
-.unit-price-wrapper {
-  /*&:before {
-  	background-image: url( ../img/icons/price-icon.png );
-  }*/
-}
 .lsx-price-wrapper .amount .strike,
 .lsx-single-supplement-wrapper .amount .strike,
 .unit-price-wrapper .amount .strike {
