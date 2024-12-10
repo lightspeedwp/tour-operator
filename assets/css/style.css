@@ -165,15 +165,19 @@
 }
 
 .slick-lightbox-close {
-  right: 32px;
-  top: 32px;
+  right: 52px;
+  top: 35px;
 }
+.slick-lightbox-close:before{font-size:40px;}
 
 .lsx-to-slider .slick-arrow,
 .slick-lightbox-inner .slick-arrow {
   background: transparent;
   border-radius: 50%;
+  position:absolute;
+  top:50%;
   border-style: solid;
+  border-color: #fff;
   border-width: 2px;
   font: 0/0 a;
   height: 4rem;
@@ -184,11 +188,15 @@
   transition: border 300ms ease;
   width: 4rem;
   z-index: 3;
+  color: white;
 }
+.slick-prev svg, .slick-next svg{color: white;}
+
 .lsx-to-slider .slick-arrow:before,
 .slick-lightbox-inner .slick-arrow:before {
   display: block;
-  font-family: "FontAwesome";
+  font-family: "slick";
+  color: white;
   font-size: 3rem;
   line-height: 1;
   position: absolute;
@@ -205,13 +213,21 @@
 }
 .lsx-to-slider .slick-arrow.slick-prev:before,
 .slick-lightbox-inner .slick-arrow.slick-prev:before {
-  content: "\f104";
-  left: 1.1rem;
+  content: ''; /* Remove font icon */
+    background: url('../img/left-arrow-new.svg') no-repeat center center;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    left: 10px;
 }
 .lsx-to-slider .slick-arrow.slick-next:before,
 .slick-lightbox-inner .slick-arrow.slick-next:before {
-  content: "\f105";
-  left: 1.5rem;
+  content: ''; /* Remove font icon */
+    background: url('../img/right-arrow.svg') no-repeat center center;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    left: 12px;
 }
 
 .lsx-to-slider .slick-dots:not(.dropdown-menu) {
@@ -269,3 +285,4 @@
   display: none;
 }
 /*# sourceMappingURL=style.css.map */
+
