@@ -63,7 +63,6 @@ class Frontend extends Tour_Operator {
 
 		add_filter( 'lsx_to_connected_list_item', array( $this, 'add_modal_attributes' ), 10, 3 );
 		add_action( 'wp_footer', array( $this, 'output_modals' ), 10 );
-		add_filter( 'lsx_to_tagline', array( $this, 'get_tagline' ), 1, 3 );
 
 		// add_filter( 'the_terms', array( $this, 'links_new_window' ), 10, 2 );
 		$this->maps = Maps::get_instance();
