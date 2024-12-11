@@ -8,93 +8,86 @@
  * @license         GPL3
  */
 
-/* ==================   LAYOUT  ================== */
+/**
+ * Used Functions
+ */ 
 
 /**
- * Returns the CSS class for the archive panels
+ * Outputs The current Itinerary connected destinations, can only be used in
+ * the itinerary loop.
  *
- * @package     tour-operator
- * @subpackage  template-tags
- * @category    class
+ * @package       tour-operator
+ * @subpackage    template-tags
+ * @category      itinerary
  */
-function lsx_to_archive_class( $classes = array() ) {
-	$layout = tour_operator()->archive_layout;
-
-	if ( ! is_array( $classes ) ) {
-		$classes = explode( ' ', $classes );
-	}
-
-	$new_classes = $classes;
-
-	if ( 'grid' === $layout ) {
-		$new_classes[] = 'col-xs-12 col-sm-6 col-md-4';
-	} else {
-		$new_classes[] = 'col-xs-12';
-	}
-
-	$new_classes = apply_filters( 'lsx_to_archive_class', $new_classes, $classes, $layout );
-
-	return implode( ' ', $new_classes );
-}
-
-/**
- * Outputs the CSS class for the widget panels
- *
- * @package     tour-operator
- * @subpackage  template-tags
- * @category    class
- */
-function lsx_to_widget_class( $type = '', $return = false ) {
-	global $columns;
-
-	$cols = 'col-xs-12 col-sm-';
-	$cols .= '5' == $columns ? '15' : 12 / $columns;
-
-	$class = 'lsx-to-widget-item-wrap lsx-' . $type . ' ' . $cols;
-
-	if ( false === $return ) {
-		echo 'class="' . esc_attr( $class ) . '"';
-	} else {
-		return 'class="' . $class . '"';
-	}
-}
-
-/**
- * Outputs the 'content' class.
- *
- * @param   $classes string or array
- */
-function lsx_to_entry_class( $classes = false ) {
-	global $post;
-
-	if ( false !== $classes ) {
-		if ( ! is_array( $classes ) ) {
-			$classes = explode( ' ', $classes );
+function lsx_to_itinerary_room_basis( $before = '', $after = '', $echo = true ) {
+	global $tour_itinerary;
+	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
+		if ( ! empty( $tour_itinerary->itinerary['room_basis'] ) && 'None' !== $tour_itinerary->itinerary['room_basis'] ) {
+			$label = lsx_to_room_basis_label( $tour_itinerary->itinerary['room_basis'] );
+			if ( $echo ) {
+				echo wp_kses_post( $before . $label . $after );
+			} else {
+				return $before . $label . $after;
+			}
 		}
-
-		$classes = apply_filters( 'lsx_to_entry_class', $classes, $post->ID );
 	}
-
-	echo wp_kses_post( 'class="' . implode( ' ', $classes ) . '"' );
+	return '';
 }
 
 /**
- * Outputs the 'content' class.
+ * Return the Room basis Label.
  *
- * @param   $classes string or array
+ * @param string $index
+ * @return string
  */
-function lsx_to_column_class( $classes = false ) {
-	global $post;
-
-	if ( false !== $classes ) {
-		if ( ! is_array( $classes ) ) {
-			$classes = explode( ' ', $classes );
-		}
-		$classes = apply_filters( 'lsx_to_column_class', $classes, $post->ID );
+function lsx_to_room_basis_label( $index = '' ) {
+	$label = $index;
+	if ( isset( tour_operator()->legacy->tour->room_basis[ $index ] ) ) {
+		$label = tour_operator()->legacy->tour->room_basis[ $index ];
 	}
-
-	echo wp_kses_post( 'class="' . implode( ' ', $classes ) . '"' );
+	return $label;
 }
+
+/**
+ * Return the Drinks basis Label.
+ *
+ * @param string $index
+ * @return string
+ */
+function lsx_to_drinks_basis_label( $index = '' ) {
+	$label = $index;
+	if ( isset( tour_operator()->legacy->tour->drinks_basis[ $index ] ) ) {
+		$label = tour_operator()->legacy->tour->drinks_basis[ $index ];
+	}
+	return $label;
+}
+
+/**
+ * Outputs The current Itinerary connected destinations, can only be used in
+ * the itinerary loop.
+ *
+ * @package       tour-operator
+ * @subpackage    template-tags
+ * @category      itinerary
+ */
+function lsx_to_itinerary_drinks_basis( $before = '', $after = '', $echo = true ) {
+	global $tour_itinerary;
+	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
+		if ( ! empty( $tour_itinerary->itinerary['drinks_basis'] ) && 'None' !== $tour_itinerary->itinerary['drinks_basis'] ) {
+			$label = lsx_to_drinks_basis_label( $tour_itinerary->itinerary['drinks_basis'] );
+			if ( $echo ) {
+				echo wp_kses_post( $before . $label . $after );
+			} else {
+				return $before . $label . $after;
+			}
+		}
+	}
+	return '';
+}
+
+
+// ============ OLD Functions ============
 
 /**
  * Returns the collapsible class if it is active.

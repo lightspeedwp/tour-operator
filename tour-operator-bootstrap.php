@@ -27,7 +27,6 @@ if ( defined( 'WPINC' ) ) {
 	require_once( LSX_TO_PATH . 'includes/template-tags/helpers.php' );
 	require_once( LSX_TO_PATH . 'includes/template-tags/addons.php' );
 	require_once( LSX_TO_PATH . 'includes/template-tags/accommodation.php' );
-	require_once( LSX_TO_PATH . 'includes/template-tags/destination.php' );
 	require_once( LSX_TO_PATH . 'includes/template-tags/tour.php' );
 	require_once( LSX_TO_PATH . 'includes/template-tags/maps.php' );
 	require_once( LSX_TO_PATH . 'includes/template-tags/videos.php' );
