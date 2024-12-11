@@ -763,7 +763,7 @@ function to_continent_region_label( $country_code = '' ) {
  * @return string
  */
 function lsx_to_get_price_type_label( $label_index = '' ) {
-	$label = '';
+	$label = ''; 
 	switch ( $label_index ) {
 		case '':
 			$label = '';
