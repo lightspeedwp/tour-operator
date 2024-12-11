@@ -73,16 +73,11 @@ class Accommodation {
 			'villa'  => esc_html__( 'Villa', 'tour-operator' ),
 		);
 
-		add_filter( 'lsx_to_entry_class', array( $this, 'entry_class' ) );
-
 		add_filter( 'lsx_to_custom_field_query', array( $this, 'price_filter' ), 5, 10 );
 
 		add_filter( 'lsx_to_custom_field_query', array( $this, 'rating' ), 5, 10 );
 
 		include( 'class-unit-query.php' );
-
-		add_action( 'lsx_to_map_meta', 'lsx_to_accommodation_meta' );
-		add_action( 'lsx_to_modal_meta', 'lsx_to_accommodation_meta' );
 	}
 
 	/**
@@ -99,19 +94,6 @@ class Accommodation {
 		}
 
 		return self::$instance;
-	}
-
-	/**
-	 * A filter to set the content area to a small column on single
-	 */
-	function entry_class( $classes ) {
-		global $post;
-
-		if ( is_main_query() && is_singular( $this->slug ) ) {
-			$classes[] = 'col-xs-12 col-sm-12 col-md-7';
-		}
-
-		return $classes;
 	}
 
 	/**

@@ -230,7 +230,7 @@ class Maps {
 				$tooltip   = $args['search'];
 
 				if ( 'excerpt' === $args['content'] ) {
-					$tooltip = strip_tags( get_the_excerpt( $post_id ) );
+					$tooltip = wp_strip_all_tags( get_the_excerpt( $post_id ) );
 				}
 
 				$icon = $this->set_icon( $post_id );
@@ -257,7 +257,7 @@ class Maps {
 							$tooltip = $location['address'];
 
 							if ( 'excerpt' === $args['content'] ) {
-								$tooltip = strip_tags( get_the_excerpt( $connection ) );
+								$tooltip = wp_strip_all_tags( get_the_excerpt( $connection ) );
 							}
 
 							$icon = $this->set_icon( $connection );

@@ -1,7 +1,7 @@
 <?php
 return array(
 	'title'         => __( 'Room Card', 'tour-operator' ),
-	'description'   => __( '', 'tour-operator' ),
+	'description'   => __( 'A list display for the accommodation units.', 'tour-operator' ),
 	'categories'    => array( $this->category ),
 	'templateTypes' => array( 'single' ),
 	'content'     => '<!-- wp:group {"metadata":{"name":"Room Card"},"align":"wide","style":{"border":{"radius":"8px"}},"backgroundColor":"base","layout":{"type":"constrained"}} -->

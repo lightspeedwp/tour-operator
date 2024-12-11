@@ -2,7 +2,7 @@
 
 return array(
 	'title'         => __( 'TO Gallery', 'tour-operator' ),
-	'description'   => __( '', 'tour-operator' ),
+	'description'   => __( 'Display the attached images, with a lightbox gallery.', 'tour-operator' ),
 	'categories'    => array( $this->category ),
 	'templateTypes' => array( 'single' ),
 	'content'     => '

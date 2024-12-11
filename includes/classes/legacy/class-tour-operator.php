@@ -166,9 +166,6 @@ class Tour_Operator {
 		add_action( 'init', array( $this, 'disable_deprecated' ), 0 );
 		add_action( 'plugins_loaded', array( $this, 'trigger_schema' ), 10 );
 
-		// Start sort engine.
-		new SCPO_Engine();
-
 		// Set the options.
 		$this->options = get_option( 'lsx_to_settings', array() );
 		$this->set_vars();
@@ -468,51 +465,6 @@ class Tour_Operator {
 		}
 
 		return $taxonomies;
-	}
-
-	/**
-	 * A filter that outputs the tagline for the current page.
-	 *
-	 * @param string|bool $tagline Tagline to use or false to use internal.
-	 * @param string      $before  Before code.
-	 * @param string      $after   After code.
-	 *
-	 * @return string HTML tagline string.
-	 */
-	public function get_tagline( $tagline = false, $before = '', $after = '' ) {
-		$post_id = get_the_ID();
-
-		if ( ! empty( $post_id ) ) {
-			$post_id = get_the_ID();
-			$tagline_value = get_post_meta( $post_id, 'banner_subtitle', true );
-
-			if ( false !== $tagline_value ) {
-				$tagline = $tagline_value;
-			} else {
-				$tagline_value = get_post_meta( $post_id, 'tagline', true );
-
-				if ( false !== $tagline_value ) {
-					$tagline = $tagline_value;
-				}
-			}
-		} else {
-			$post_type = get_query_var( 'post_type' );
-
-			if ( is_post_type_archive( $this->active_post_types ) && isset( $this->options[ $post_type ] ) && isset( $this->options[ $post_type ]['tagline'] ) ) {
-				$tagline = $this->options[ $post_type ]['tagline'];
-			} elseif ( is_tax( array_keys( $this->taxonomies ) ) ) {
-				$taxonomy_tagline = get_term_meta( get_queried_object_id(), 'tagline', true );
-				if ( false !== $taxonomy_tagline && '' !== $taxonomy_tagline ) {
-					$tagline = $taxonomy_tagline;
-				}
-			}
-		}
-
-		if ( false !== $tagline && '' !== $tagline ) {
-			$tagline = $before . $tagline . $after;
-		}
-
-		return $tagline;
 	}
 
 	/**

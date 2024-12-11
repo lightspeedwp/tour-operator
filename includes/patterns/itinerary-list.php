@@ -1,7 +1,7 @@
 <?php
 return array(
 	'title'         => __( 'Itinerary (list)', 'tour-operator' ),
-	'description'   => __( '', 'tour-operator' ),
+	'description'   => __( 'A list display for the tour itineraries.', 'tour-operator' ),
 	'categories'    => array( $this->category ),
 	'templateTypes' => array( 'single' ),
 	'blockTypes'    => [ 'Day by day' ],

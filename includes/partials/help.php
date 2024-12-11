@@ -20,7 +20,11 @@
 				<div class="col-md-12">
 					<div class="box support">
 						<div class="image">
-							<img width="200px" src="<?php echo esc_url( LSX_TO_URL . 'assets/img/support-cog.svg' ); ?>" />
+							<img width="200px" src="
+							<?php
+								// @phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions 
+								echo esc_url( LSX_TO_URL . 'assets/img/support-cog.svg' ); 
+							?>" />
 						</div>
 						<div class="content">
 							<h2><?php esc_html_e( 'Getting Support', 'tour-operator' ); ?></h2>

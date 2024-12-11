@@ -2,7 +2,7 @@
 
 return array(
 	'title'         => __( 'Tour Card', 'tour-operator' ),
-	'description'   => __( 'Display the tours', 'tour-operator' ),
+	'description'   => __( 'A grid display for tours.', 'tour-operator' ),
 	'categories'    => array( $this->category ),
 	'content'       => '<!-- wp:group {"metadata":{"name":"Tour Card"},"className":"is-style-shadow-sm","style":{"spacing":{"blockGap":"0px","padding":{"top":"0px","bottom":"0px","left":"0px","right":"0px"}},"border":{"radius":"8px"}},"backgroundColor":"base","layout":{"type":"constrained"}} -->
 <div class="wp-block-group is-style-shadow-sm has-base-background-color has-background" style="border-radius:8px;padding-top:0px;padding-right:0px;padding-bottom:0px;padding-left:0px"><!-- wp:post-featured-image {"isLink":true,"aspectRatio":"3/2","linkTarget":"_blank","style":{"spacing":{"padding":{"top":"0","bottom":"0"},"margin":{"top":"0","bottom":"0"}},"border":{"radius":{"topLeft":"8px","topRight":"8px"}}}} /-->

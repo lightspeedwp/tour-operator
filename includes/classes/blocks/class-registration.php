@@ -432,6 +432,7 @@ class Registration {
 				  AND ID IN (%s)
 				  AND post_status IN ('draft', 'publish')";
 
+		// @phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		return (int) $wpdb->get_var( $wpdb->prepare( $query, $ids ) );
 	}
 
