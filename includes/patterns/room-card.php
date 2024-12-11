@@ -4,12 +4,11 @@ return array(
 	'description'   => __( '', 'tour-operator' ),
 	'categories'    => array( $this->category ),
 	'templateTypes' => array( 'single' ),
-	'content'     => '
-		<!-- wp:group {"metadata":{"name":"Room Card"},"align":"wide","style":{"border":{"radius":"8px"}},"backgroundColor":"base","layout":{"type":"constrained"}} -->
+	'content'     => '<!-- wp:group {"metadata":{"name":"Room Card"},"align":"wide","style":{"border":{"radius":"8px"}},"backgroundColor":"base","layout":{"type":"constrained"}} -->
 		<div class="wp-block-group alignwide has-base-background-color has-background" style="border-radius:8px"><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"10px"}}}} -->
 		<div class="wp-block-columns alignwide"><!-- wp:column {"width":"30%"} -->
-		<div class="wp-block-column" style="flex-basis:30%"><!-- wp:image {"aspectRatio":"1","scale":"cover","className":"unit-image is-style-default","style":{"border":{"radius":{"topLeft":"8px","bottomLeft":"8px"}}}} -->
-		<figure class="wp-block-image has-custom-border unit-image is-style-default"><img alt="" style="border-top-left-radius:8px;border-bottom-left-radius:8px;aspect-ratio:1;object-fit:cover"/></figure>
+		<div class="wp-block-column" style="flex-basis:30%"><!-- wp:image {"id":43376,"aspectRatio":"4/3","scale":"cover","sizeSlug":"large","linkDestination":"none","className":"unit-image is-style-default","style":{"border":{"radius":{"topLeft":"8px","bottomLeft":"8px"}}}} -->
+		<figure class="wp-block-image size-large has-custom-border unit-image is-style-default"><img src="' . LSX_TO_URL . 'assets/img/blocks/placeholder.png" alt="" class="wp-image-43376" style="border-top-left-radius:8px;border-bottom-left-radius:8px;aspect-ratio:4/3;object-fit:cover"/></figure>
 		<!-- /wp:image --></div>
 		<!-- /wp:column -->
 
@@ -38,7 +37,7 @@ return array(
 		<!-- wp:group {"className":"unit-type-wrapper","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 		<div class="wp-block-group unit-type-wrapper" style="margin-top:0;margin-bottom:0"><!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
 		<div class="wp-block-group"><!-- wp:image {"width":"20px","sizeSlug":"large"} -->
-		<figure class="wp-block-image size-large is-resized"><img src="https://tour-operator.lsx.design/wp-content/uploads/2024/09/accommodation-type-TO-icon-black-20px-2.png" alt="" style="width:20px"/></figure>
+		<figure class="wp-block-image size-large is-resized"><img src="' . LSX_TO_URL . 'assets/img/blocks/unit-type.png" alt="" style="width:20px"/></figure>
 		<!-- /wp:image -->
 
 		<!-- wp:paragraph {"style":{"spacing":{"padding":{"top":"2px","bottom":"2px"}}}} -->
@@ -54,7 +53,7 @@ return array(
 		<!-- wp:group {"className":"unit-price-wrapper","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 		<div class="wp-block-group unit-price-wrapper" style="margin-top:0;margin-bottom:0"><!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
 		<div class="wp-block-group"><!-- wp:image {"width":"20px","sizeSlug":"large","metadata":{"bindings":{"__default":{"source":"core/pattern-overrides"}},"name":"From Price Icon"}} -->
-		<figure class="wp-block-image size-large is-resized"><img src="https://tour-operator.lsx.design/wp-content/uploads/2024/09/from-price-TO-icon-black-20px-1.png" alt="" style="width:20px"/></figure>
+		<figure class="wp-block-image size-large is-resized"><img src="' . LSX_TO_URL . 'assets/img/blocks/unit-price.png" alt="" style="width:20px"/></figure>
 		<!-- /wp:image -->
 
 		<!-- wp:paragraph {"style":{"spacing":{"padding":{"top":"2px","bottom":"2px"}}}} -->
@@ -64,7 +63,7 @@ return array(
 
 		<!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 		<div class="wp-block-group"><!-- wp:paragraph {"className":"unit-price amount","style":{"elements":{"link":{"color":{"text":"var:preset|color|primary-700"}}},"spacing":{"padding":{"top":"2px","bottom":"2px"}}},"textColor":"primary-700"} -->
-		<p class="unit-price has-primary-700-color has-text-color has-link-color" style="padding-top:2px;padding-bottom:2px"></p>
+		<p class="unit-price amount has-primary-700-color has-text-color has-link-color" style="padding-top:2px;padding-bottom:2px"></p>
 		<!-- /wp:paragraph --></div>
 		<!-- /wp:group --></div>
 		<!-- /wp:group --></div>
