@@ -166,9 +166,6 @@ class Tour_Operator {
 		add_action( 'init', array( $this, 'disable_deprecated' ), 0 );
 		add_action( 'plugins_loaded', array( $this, 'trigger_schema' ), 10 );
 
-		// Start sort engine.
-		new SCPO_Engine();
-
 		// Set the options.
 		$this->options = get_option( 'lsx_to_settings', array() );
 		$this->set_vars();

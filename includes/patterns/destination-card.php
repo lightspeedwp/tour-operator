@@ -1,7 +1,7 @@
 <?php
 return array(
 	'title'         => __( 'Destination Card', 'tour-operator' ),
-	'description'   => __( '', 'tour-operator' ),
+	'description'   => __( 'A grid display for destinations.', 'tour-operator' ),
 	'categories'    => array( $this->category ),
 	'templateTypes' => array( 'single' ),
 	'content'     => '
