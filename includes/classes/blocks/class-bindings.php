@@ -77,7 +77,7 @@ class Bindings {
 		register_block_bindings_source(
 			'lsx/post-connection',
 			array(
-				'label' => __( 'Post Connection', 'lsx-wetu-importer' ),
+				'label' => __( 'Post Connection', 'tour-operator' ),
 				'get_value_callback' => array( $this, 'post_connections_callback' )
 			)
 		);
@@ -85,7 +85,7 @@ class Bindings {
 		register_block_bindings_source(
 			'lsx/post-meta',
 			array(
-				'label' => __( 'Post Meta', 'lsx-wetu-importer' ),
+				'label' => __( 'Post Meta', 'tour-operator' ),
 				'get_value_callback' => array( $this, 'post_meta_callback' )
 			)
 		);
@@ -93,7 +93,7 @@ class Bindings {
 		register_block_bindings_source(
 			'lsx/tour-itinerary',
 			array(
-				'label' => __( 'Itinerary', 'lsx-wetu-importer' ),
+				'label' => __( 'Itinerary', 'tour-operator' ),
 				'get_value_callback' => array( $this, 'empty_callback' )
 			)
 		);
@@ -101,7 +101,7 @@ class Bindings {
 		register_block_bindings_source(
 			'lsx/accommodation-units',
 			array(
-				'label' => __( 'Units', 'lsx-wetu-importer' ),
+				'label' => __( 'Units', 'tour-operator' ),
 				'get_value_callback' => array( $this, 'empty_callback' )
 			)
 		);
@@ -109,7 +109,7 @@ class Bindings {
 		register_block_bindings_source(
 			'lsx/gallery',
 			array(
-				'label' => __( 'Gallery', 'lsx-wetu-importer' ),
+				'label' => __( 'Gallery', 'tour-operator' ),
 				'get_value_callback' => array( $this, 'empty_callback' )
 			)
 		);
@@ -117,7 +117,7 @@ class Bindings {
 		register_block_bindings_source(
 			'lsx/map',
 			array(
-				'label' => __( 'Map', 'lsx-wetu-importer' ),
+				'label' => __( 'Map', 'tour-operator' ),
 				'get_value_callback' => array( $this, 'empty_callback' )
 			)
 		);
@@ -474,7 +474,7 @@ class Bindings {
 
 		switch ( $field ) {
 			case 'title':
-				$value   = strip_tags( $rooms->item_title( '', '', false ) );
+				$value   = wp_strip_all_tags( $rooms->item_title( '', '', false ) );
 				$pattern = '/(<h[1-6]\s+[^>]*\bclass="[^"]*\bunit-title\b[^"]*"[^>]*>).*?(<\/h[1-6]>)/is';
 			break;
 
