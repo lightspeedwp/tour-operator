@@ -198,106 +198,48 @@ if ( window.location.hash ) {
 	 */
 	lsx_to.build_slider = function( window_width ) {
 		$( '.lsx-to-slider .wp-block-post-template:not(.slider-disabled)' ).each( function() {
-			var $this = $( this ),
-				interval = $this.data( 'interval' ),
-				currentSettings = $this.data( 'slick' ),
-				autoplay = false,
-				autoplay_speed = 0;
+			var $this = $( this );
 
 			lsx_to.pre_build_slider( $this );
 
-			if ( 'undefined' !== typeof interval && 'boolean' !== typeof interval ) {
-				interval = parseInt( interval );
-
-				if ( ! isNaN( interval ) ) {
-					autoplay = true;
-					autoplay_speed = interval;
-				}
-			}
-
-
-			let tabletSlidesToShow   = lsx_to_params.slickSlider.tablet.slidesToShow;
-			let tabletSlidesToScroll = lsx_to_params.slickSlider.tablet.slidesToScroll;
-
-			if ( 'undefined' !== typeof currentSettings && 'boolean' !== typeof currentSettings ) {
-
-				// Tablet Settings.
-				if ( 'undefined' !== typeof currentSettings.tablet ) {
-					if ( 'undefined' !== typeof currentSettings.tablet.slidesToShow ) {
-						tabletSlidesToShow = currentSettings.tablet.slidesToShow;
-					}
-					if ( 'undefined' !== typeof currentSettings.tablet.slidesToShow ) {
-						tabletSlidesToScroll = currentSettings.tablet.slidesToScroll;
-					}
-				}
-			}
-
 			if ( 1 < $this.children.length ) {
-				console.log($this);
 
 				$this.slick( {
-					draggable: lsx_to_params.slickSlider.desktop.draggable,
-					infinite: lsx_to_params.slickSlider.desktop.infinite,
-					swipe: lsx_to_params.slickSlider.desktop.swipe,
-					cssEase: lsx_to_params.slickSlider.desktop.cssEase,
-					dots: lsx_to_params.slickSlider.desktop.dots,
-					slidesToShow: lsx_to_params.slickSlider.desktop.slidesToShow,
-					slidesToScroll: lsx_to_params.slickSlider.desktop.slidesToScroll,
-					autoplay: autoplay,
-					autoplaySpeed: autoplay_speed,
-					appendArrows: $this.parent(),
-					appendDots: $this.parent(),
+					draggable: false,
+					infinite: true,
+					swipe: false,
+					dots: true,
+					slidesToShow: 3,
+					slidesToScroll: 1,
+					autoplay: false,
+					autoplaySpeed: 0,
+					//appendArrows: $this.parent(),
+					//appendDots: $this.parent(),
 					responsive: [
 						{
-							breakpoint: lsx_to_params.slickSlider.tablet.breakpoint,
+							breakpoint: 1279,
 							settings: {
-								slidesToShow:   tabletSlidesToShow,
-								slidesToScroll: tabletSlidesToScroll,
-								draggable: lsx_to_params.slickSlider.tablet.draggable,
-								arrows: lsx_to_params.slickSlider.tablet.arrows,
-								swipe: lsx_to_params.slickSlider.tablet.swipe,
+								slidesToShow:   2,
+								slidesToScroll: 1,
+								draggable: false,
+								arrows: true,
+								swipe: false,
 							}
 						},
 						{
 							breakpoint: lsx_to_params.slickSlider.mobile.breakpoint,
 							settings: {
-								slidesToShow:   lsx_to_params.slickSlider.mobile.slidesToShow,
-								slidesToScroll: lsx_to_params.slickSlider.mobile.slidesToScroll,
-								draggable:      lsx_to_params.slickSlider.mobile.draggable,
-								arrows:         lsx_to_params.slickSlider.mobile.arrows,
-								swipe:          lsx_to_params.slickSlider.mobile.swipe
+								slidesToShow:   1,
+								slidesToScroll: 1,
+								draggable: true,
+								arrows: false,
+								swipe: true,
 							}
 						}
 					]
 				} );
 			}
 		} );
-
-		if ( window_width < 768 ) {
-			$( '.gallery' ).not('.slick-initialized').slick( {
-				slide: 'dl',
-				arrows: false,
-				draggable: true,
-				infinite: true,
-				swipe: true,
-				cssEase: 'ease-out',
-				dots: true,
-				autoplay: false,
-				responsive: [
-					{
-						breakpoint: 99999,
-						settings: 'unslick'
-					},
-					{
-						breakpoint: 768,
-						setting: {
-							slidesToShow: 1,
-							slidesToScroll: 1
-						}
-					}
-				]
-			} );
-		}
 	};
 
 	/**
