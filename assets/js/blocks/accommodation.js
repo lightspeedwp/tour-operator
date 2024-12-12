@@ -29,7 +29,8 @@ wp.domReady(() => {
 						bottom: 0
 					}
 				}
-			}
+			},
+			tagName: "section"
 		},
 		innerBlocks: [
 			['core/group',
@@ -73,12 +74,26 @@ wp.domReady(() => {
 					]
 				]
 			],
-			[
-				"core/paragraph",
+			['core/group',
 				{
-					placeholder: "Replace this with the Rooms block, and select a pattern.",
-					align: "center",
+					align: 'wide',
+					style: {
+						spacing: {
+							blockGap: 'var:preset|spacing|small'
+						}
+					},
+					layout: {
+						type: 'constrained',
+					}
 				},
+				[
+					["core/paragraph",
+						{
+							placeholder: "Replace this with the Rooms block, and select a pattern.",
+							align: "center",
+						}
+					]
+				]
 			]
 		],
 		supports: {
@@ -1091,7 +1106,8 @@ wp.domReady(() => {
 			},
 			layout: {
 				type: 'constrained'
-			}
+			},
+			tagName: "section"
 		},
 		innerBlocks: [
 			['core/group', {
