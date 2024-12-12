@@ -208,7 +208,7 @@ if ( window.location.hash ) {
 					draggable: false,
 					infinite: true,
 					swipe: false,
-					dots: true,
+					dots: false,
 					slidesToShow: 3,
 					slidesToScroll: 1,
 					autoplay: false,
@@ -217,23 +217,25 @@ if ( window.location.hash ) {
 					//appendDots: $this.parent(),
 					responsive: [
 						{
-							breakpoint: 1279,
+							breakpoint: 1028,
 							settings: {
 								slidesToShow:   2,
 								slidesToScroll: 1,
-								draggable: false,
-								arrows: true,
-								swipe: false,
+								draggable: true,
+								arrows: false,
+								swipe: true,
+								dots: true,
 							}
 						},
 						{
-							breakpoint: lsx_to_params.slickSlider.mobile.breakpoint,
+							breakpoint: 782,
 							settings: {
 								slidesToShow:   1,
 								slidesToScroll: 1,
 								draggable: true,
 								arrows: false,
 								swipe: true,
+								dots: true,
 							}
 						}
 					]
