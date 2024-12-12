@@ -208,7 +208,7 @@ if ( window.location.hash ) {
 					draggable: false,
 					infinite: true,
 					swipe: false,
-					dots: true,
+					dots: false,
 					slidesToShow: 3,
 					slidesToScroll: 1,
 					autoplay: false,
@@ -217,23 +217,25 @@ if ( window.location.hash ) {
 					//appendDots: $this.parent(),
 					responsive: [
 						{
-							breakpoint: 1279,
+							breakpoint: 1028,
 							settings: {
 								slidesToShow:   2,
 								slidesToScroll: 1,
-								draggable: false,
-								arrows: true,
-								swipe: false,
+								draggable: true,
+								arrows: false,
+								swipe: true,
+								dots: true,
 							}
 						},
 						{
-							breakpoint: lsx_to_params.slickSlider.mobile.breakpoint,
+							breakpoint: 782,
 							settings: {
 								slidesToShow:   1,
 								slidesToScroll: 1,
 								draggable: true,
 								arrows: false,
 								swipe: true,
+								dots: true,
 							}
 						}
 					]
@@ -309,5 +311,46 @@ if ( window.location.hash ) {
 	$window.on('load', function() {
 		lsx_to.build_slider_lightbox();
 	} );
+
+	document.addEventListener('DOMContentLoaded', function () {
+		const paragraphs = document.querySelectorAll('.additional-info .wp-block-group.content p');
+	
+		paragraphs.forEach(function (p) {
+			const text = p.innerText.trim();
+	
+			if (text.split(' ').length > 30) {  // Check if paragraph exceeds 30 words
+				const fullText = p.innerText.trim();
+				const truncatedText = fullText.split(' ').slice(0, 30).join(' ') + '...';
+				p.innerHTML = `<span class="truncated-text">${truncatedText}</span><span class="full-text" style="display: none;">${fullText}</span>`;
+	
+				// Create Read More button
+				const readMoreBtn = document.createElement('span');
+				readMoreBtn.textContent = ' Read More';
+				readMoreBtn.classList.add('read-more-btn');
+				p.appendChild(readMoreBtn);
+	
+				// Create Read Less button
+				const readLessBtn = document.createElement('span');
+				readLessBtn.textContent = ' Read Less';
+				readLessBtn.classList.add('read-less-btn');
+				p.appendChild(readLessBtn);
+	
+				// Add functionality to toggle text
+				readMoreBtn.addEventListener('click', function () {
+					p.querySelector('.truncated-text').style.display = 'none';
+					p.querySelector('.full-text').style.display = 'inline';
+					readMoreBtn.style.display = 'none';
+					readLessBtn.style.display = 'inline';
+				});
+	
+				readLessBtn.addEventListener('click', function () {
+					p.querySelector('.truncated-text').style.display = 'inline';
+					p.querySelector('.full-text').style.display = 'none';
+					readMoreBtn.style.display = 'inline';
+					readLessBtn.style.display = 'none';
+				});
+			}
+		});
+	});	
 
 } )( jQuery, window, document );
