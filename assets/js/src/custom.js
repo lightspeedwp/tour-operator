@@ -310,4 +310,45 @@ if ( window.location.hash ) {
 		lsx_to.build_slider_lightbox();
 	} );
 
+	document.addEventListener('DOMContentLoaded', function () {
+		const paragraphs = document.querySelectorAll('.additional-info .wp-block-group.content p');
+	
+		paragraphs.forEach(function (p) {
+			const text = p.innerText.trim();
+	
+			if (text.split(' ').length > 30) {  // Check if paragraph exceeds 30 words
+				const fullText = p.innerText.trim();
+				const truncatedText = fullText.split(' ').slice(0, 30).join(' ') + '...';
+				p.innerHTML = `<span class="truncated-text">${truncatedText}</span><span class="full-text" style="display: none;">${fullText}</span>`;
+	
+				// Create Read More button
+				const readMoreBtn = document.createElement('span');
+				readMoreBtn.textContent = ' Read More';
+				readMoreBtn.classList.add('read-more-btn');
+				p.appendChild(readMoreBtn);
+	
+				// Create Read Less button
+				const readLessBtn = document.createElement('span');
+				readLessBtn.textContent = ' Read Less';
+				readLessBtn.classList.add('read-less-btn');
+				p.appendChild(readLessBtn);
+	
+				// Add functionality to toggle text
+				readMoreBtn.addEventListener('click', function () {
+					p.querySelector('.truncated-text').style.display = 'none';
+					p.querySelector('.full-text').style.display = 'inline';
+					readMoreBtn.style.display = 'none';
+					readLessBtn.style.display = 'inline';
+				});
+	
+				readLessBtn.addEventListener('click', function () {
+					p.querySelector('.truncated-text').style.display = 'inline';
+					p.querySelector('.full-text').style.display = 'none';
+					readMoreBtn.style.display = 'inline';
+					readLessBtn.style.display = 'none';
+				});
+			}
+		});
+	});	
+
 } )( jQuery, window, document );
