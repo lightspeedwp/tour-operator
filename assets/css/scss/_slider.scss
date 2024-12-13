@@ -1,3 +1,17 @@
+.wp-block-query.lsx-to-slider {
+	&.travel-information {
+	  .slick-list {
+		max-width: 100% !important;
+		width: 100% !important;
+	  }
+  
+	  .slick-slide {
+		padding: 0 !important;
+		margin: 0 10px !important;
+	  }
+	}
+  }
+
 .wp-block-query {
 	&.lsx-to-slider {
 		gap: var(--wp--preset--spacing--small) var(--wp--preset--spacing--small);

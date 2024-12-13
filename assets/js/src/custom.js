@@ -197,32 +197,32 @@ if ( window.location.hash ) {
 	 * @subpackage scripts
 	 */
 	lsx_to.build_slider = function( window_width ) {
+		// First slider: .lsx-to-slider
 		$( '.lsx-to-slider .wp-block-post-template:not(.slider-disabled)' ).each( function() {
 			var $this = $( this );
-
+	
 			lsx_to.pre_build_slider( $this );
-
-			if ( 1 < $this.children.length ) {
-
+	
+			if ( 1 < $this.children().length ) {
 				$this.slick( {
 					draggable: false,
 					infinite: true,
 					swipe: false,
 					dots: false,
-					slidesToShow: 3,
-					slidesToScroll: 1,
+					slidesToShow: 3,  // Show 3 items at a time
+					slidesToScroll: 1, // Scroll 1 item at a time
 					autoplay: false,
 					autoplaySpeed: 0,
-					//appendArrows: $this.parent(),
-					//appendDots: $this.parent(),
+					appendArrows: $this.parent(),  // Ensure arrows are appended correctly
+					appendDots: $this.parent(),    // Append dots in the right container
 					responsive: [
 						{
 							breakpoint: 1028,
 							settings: {
-								slidesToShow:   2,
+								slidesToShow: 2,
 								slidesToScroll: 1,
 								draggable: true,
-								arrows: false,
+								arrows: true,
 								swipe: true,
 								dots: true,
 							}
@@ -230,10 +230,57 @@ if ( window.location.hash ) {
 						{
 							breakpoint: 782,
 							settings: {
-								slidesToShow:   1,
+								slidesToShow: 1,
 								slidesToScroll: 1,
 								draggable: true,
-								arrows: false,
+								arrows: true,
+								swipe: true,
+								dots: true,
+							}
+						}
+					]
+				} );
+			}
+		} );
+	
+		// Second slider: .lsx-to-slider.travel-information
+		$( '.lsx-to-slider .travel-information:not(.slider-disabled)' ).each( function() {
+			var $this = $( this );
+	
+			lsx_to.pre_build_slider( $this );
+	
+			// Ensure the second slider has 4 slides showing
+			if ( 1 < $this.children().length ) {
+				$this.slick( {
+					draggable: false,
+					infinite: true,
+					swipe: false,
+					dots: false,
+					slidesToShow: 4,  // Show 4 items at a time
+					slidesToScroll: 1, // Scroll 1 item at a time
+					autoplay: false,
+					autoplaySpeed: 0,
+					appendArrows: $this.parent(),  // Ensure arrows are appended correctly for this slider
+					appendDots: $this.parent(),    // Append dots in the correct place
+					responsive: [
+						{
+							breakpoint: 1028,
+							settings: {
+								slidesToShow: 3,
+								slidesToScroll: 1,
+								draggable: true,
+								arrows: true,
+								swipe: true,
+								dots: true,
+							}
+						},
+						{
+							breakpoint: 782,
+							settings: {
+								slidesToShow: 1,
+								slidesToScroll: 1,
+								draggable: true,
+								arrows: true,
 								swipe: true,
 								dots: true,
 							}
@@ -243,7 +290,7 @@ if ( window.location.hash ) {
 			}
 		} );
 	};
-
+	
 	/**
 	 * Slider Lightbox.
 	 *
