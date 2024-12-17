@@ -4,7 +4,7 @@ wp.domReady(() => {
 	wp.blocks.registerBlockVariation("core/group", {
 		name: "lsx-tour-operator/units",
 		title: "Units",
-		icon: "admin-multisite",
+		icon: "admin-home",
 		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
