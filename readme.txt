@@ -1,65 +1,67 @@
 === LSX Tour Operator ===
 Contributors: feedmymedia, lightspeedwp, eleshar, krugazul
-Donate link: https://lsdev.biz/lsx/donate/
-Tags: lsx, tour operator, tours, travel, travel-agency
-Requires at least: 6.1
+Tags: lsx, tour operator, wetu, importer, tours, travel, travel-agency
+Requires at least: 6.7
 Tested up to: 6.7
-Requires PHP: 7.2
-Stable tag: 2.0-beta-2
+Requires PHP: 8.0
+Stable tag: 2.0.0
 License: GPLv3 or later
-License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-The LSX Tour Operator is plugin specially designed & developed for the tourism and travel industry. Build to showcase your tours and accommodation.
+Integrate with the Wetu Tour Operator system to import destination, accommodation, and tour content into the LSX Tour Operator plugin format.
 
 == Description ==
 
-LightSpeed’s LSX Tour Operator plugin is here to help you take your Tour Operator business online.
+The LSX Importer for Wetu plugin provides a seamless integration with the Wetu Tour Operator system, allowing you to easily import and synchronize destinations, accommodations, and tour content directly into your LSX Tour Operator setup. This ensures that your travel listings remain accurate, up-to-date, and consistent across your WordPress site.
 
-The plugin features digital itineraries which include interactive galleries, day-by-day information, integrated maps that show a tour’s progression, information per destination, accommodation, activities and other features that will bring your tour offerings to life online.
+**Key Features:**
+* Direct integration with the Wetu API
+* Automated or manual importing of destinations, accommodations, and tours
+* Compatible with and enhances the LSX Tour Operator plugin
+* Flexible data mapping and scheduling options
+* Streamlined content management for travel operators
 
-A tour operator needs the destinations they offer to look amazing so your customer cannot say no. The LSX Tour Operator plugin makes this a reality. featured images capture attention, excerpts provide a glimpse into the magical world awaiting you. Click through and find out about the finer details. The LSX Tour Operator extension provide powerful destination content management features allowing you to featuring destinations super simple, and attractive to boot. We’ve also built a “Travel Style” feature so you can categorize tours by the type of experience they offer.
+**Ideal For:**
+* Tour operators and agencies already using Wetu
+* Businesses aiming to simplify travel content updates
+* Developers looking to integrate Wetu data into LSX Tour Operator
 
-One of the essential ingredients in any tour is the accommodations that are stayed at along the way. Attach image galleries to each accommodation, Google Maps markers, assign a team member as an expert for each Accommodation, Choose an accommodation style, and much more. Detailed accommodation listings show off room facilities, image galleries, video material, reviews, interactive digital tours, special offers and team members.
+== Installation ==
 
-= Works with the free LSX Theme =
-The LSX Tour Operator plugin is designed for [LSX Theme](https://lsdev.biz/lsx/).
+1. Upload the `lsx-wetu-importer` directory to `/wp-content/plugins/`, or install via the Plugins screen.
+2. Activate the plugin through the 'Plugins' screen in WordPress.
+3. Go to the LSX Importer for Wetu settings page to configure your Wetu API credentials.
+4. Initiate your first import to pull Wetu content into the LSX Tour Operator format.
 
-= It's free, and always will be. =
-We’re firm believers in open source - that’s why we’re releasing the Tour Operators plugin for free, forever. We offer free support on the [LSX Tour Operator support forums](https://wordpress.org/support/plugin/tour-operator/).
+== Frequently Asked Questions ==
 
-= Developed =
-The LSX Tour Operator plugin is actively developed with new features and exciting enhancements all the time. Keep track on the [LSX Tour Operator GitHub repository](https://github.com/lightspeeddevelopment/tour-operator/).
-Report any bugs via github issues.
+= Do I need the LSX Tour Operator plugin? =
+Yes, LSX Importer for Wetu works alongside the LSX Tour Operator plugin to properly map and display the imported data.
 
-= Extensions =
+= Can I schedule automatic imports? =
+Yes, you can set up automatic schedules or run manual imports at your convenience.
 
-Do you require functionality that the plugin alone does not provide? We've tried to forsee your requirements and provide you with a free solution! Check out [our extensions](https://lsdev.biz/lsx/extensions/tour-operator/), and enhance the power of your Tour Operator website!
+= Is this plugin translation-ready? =
+Yes, the plugin is translation-ready, and you can translate it into your desired language using standard WordPress translation methods.
 
-= Documentation =
-
-* [Getting Started](https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/getting-started/)
-* [General Settings](https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/general-settings/)
-* [Custom Categories](https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/custom-categories/)
-* [Widgets](https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/widgets/)
-* [3rd-Party Plugins](https://www.lsdev.biz/lsx/documentation/lsx-theme/third-party-plugins/)
-* [Accommodations](https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/accommodation/)
-* [Destinations](https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/destinations/)
-* [Tours](hhttps://www.lsdev.biz/lsx/documentation/lsx-tour-operator/tours/)
-
-= Support =
-
-Take a look at all our [Frequently Asked Questions](https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/faqs/), we are sure you'll find what you're looking for.
-
-If you are experiencing issues with the LSX Tour Operator Plugin, please log any bug issues you are having on the [LSX Tour Operator Github Issues](https://github.com/lightspeeddevelopment/tour-operator/issues/) page.
-
-= Contributing =
-
-If you're a developer who's spotted a bug issue and have a fix, or simply have functionality you think would extend our plugin, we are always happy to accept your contribution! Visit the [Tour Operator Plugin on Github](https://github.com/lightspeeddevelopment/tour-operator/) and submit a Pull Request with your updates.
+= Will this work with my existing theme and setup? =
+It’s designed to integrate smoothly, but if you encounter any issues, consult the documentation or contact support.
 
 == Screenshots ==
 
-1. The slick LSX Tour Operator plugin settings panel.
-2. Tour itinerary admin panel.
-3. Accommodation panel.
-4. A tour itinerary archive.
-5. A single tour itinerary page.
+1. **Settings Screen** – Configure your Wetu API credentials and import preferences.
+2. **Imported Tours & Destinations** – View imported content within the LSX Tour Operator listings.
+3. **Scheduling Options** – Set automated import intervals to keep your content fresh.
+
+== Changelog ==
+
+= 2.0.0 =
+* Initial release of the LSX Importer for Wetu
+* Integration with Wetu’s API for importing destinations, accommodations, and tours
+* Compatibility with LSX Tour Operator plugin for seamless data display
+* Added options for manual and scheduled imports
+
+== Upgrade Notice ==
+
+= 2.0.0 =
+This is the first stable release of the LSX Importer for Wetu. Ensure you have the LSX Tour Operator plugin installed, configure your Wetu API credentials, and run your first import to populate your site with travel content.
