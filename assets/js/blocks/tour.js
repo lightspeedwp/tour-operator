@@ -4,7 +4,7 @@ wp.domReady(() => {
 	wp.blocks.registerBlockVariation("core/group", {
 		name: "lsx-tour-operator/itinerary",
 		title: "Itinerary",
-		icon: "list-view",
+		icon: "clipboard",
 		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
@@ -75,7 +75,7 @@ wp.domReady(() => {
 	wp.blocks.registerBlockVariation("core/group", {
 		name: "lsx-tour-operator/day-by-day",
 		title: "Day by day",
-		icon: "list-view",
+		icon: "clipboard",
 		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
@@ -106,7 +106,7 @@ wp.domReady(() => {
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/wetu-map',
 		title: 'WETU Map',
-		icon: 'admin-site',
+		icon: 'admin-site-alt',
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -169,6 +169,7 @@ wp.domReady(() => {
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/single-supplement-wrapper',
 		title: 'Single Supplement',
+		icon: 'money-alt',
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -275,6 +276,7 @@ wp.domReady(() => {
 	wp.blocks.registerBlockVariation("core/group", {
 		name: "lsx-destination-to-tour",
 		title: "Destination to Tour",
+		icon: 'location-alt',
 		category: "lsx-tour-operator",
 		attributes: {
 			name: "Destination to Tour",
@@ -391,6 +393,7 @@ wp.domReady(() => {
 	wp.blocks.registerBlockVariation("core/group", {
 		name: "lsx-tour-operator/duration",
 		title: "Duration",
+		icon: 'clock',
 		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
@@ -531,6 +534,7 @@ wp.domReady(() => {
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/group-size',
 		title: 'Group Size',
+		icon: 'groups',
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -636,6 +640,7 @@ wp.domReady(() => {
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/booking-validity-start',
 		title: 'Booking Validity',
+		icon: 'calendar',
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -775,6 +780,7 @@ wp.domReady(() => {
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/departs-from',
 		title: 'Departs From',
+		icon: 'airplane',
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -881,6 +887,7 @@ wp.domReady(() => {
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/ends-in',
 		title: 'Ends In',
+		icon: 'airplane',
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -987,6 +994,7 @@ wp.domReady(() => {
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/price-include-exclude',
 		title: 'Price Include & Exclude',
+		icon: 'money-alt',
 		category: 'lsx-tour-operator',
 		attributes: {
 			align: 'wide',
