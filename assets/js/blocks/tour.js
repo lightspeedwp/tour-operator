@@ -151,7 +151,7 @@ wp.domReady(() => {
 						{
 							align: "full",
 							sizeSlug: "large",
-							url: "https://tour-operator.lsx.design/wp-content/uploads/2024/09/wetu-map-figme-prototype-image.png",
+							url: lsxToEditor.assetsUrl + "blocks/wetu-map-figme-prototype-image.png",
 							alt: "",
 						}
 					]
@@ -205,7 +205,7 @@ wp.domReady(() => {
 						width: '20px',
 						sizeSlug: 'large',
 						linkDestination: 'none',
-						url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/11/single-supplement-icon-black-52px-1.svg',
+						url: lsxToEditor.assetsUrl + 'blocks/single-supplement-icon.svg',
 						alt: ''
 					}],
 					['core/paragraph', {
@@ -311,7 +311,7 @@ wp.domReady(() => {
 						{
 							width: '20px',
 							sizeSlug: 'large',
-							url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/09/Typelocation-icon.png',
+							url: lsxToEditor.assetsUrl + 'blocks/Typelocation-icon.png',
 							alt: ''
 						}
 					],
@@ -431,7 +431,7 @@ wp.domReady(() => {
 						{
 							width: '20px',
 							sizeSlug: "large",
-							url: "https://tour-operator.lsx.design/wp-content/uploads/2024/09/duration-TO-black-20px-icon.png",
+							url: lsxToEditor.assetsUrl + 'blocks/duration.png',
 							alt: "",
 						},
 					],
@@ -570,7 +570,7 @@ wp.domReady(() => {
 						width: '20px',
 						sizeSlug: 'large',
 						linkDestination: 'none',
-						url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/11/group-size-icon-black-52px-1.svg',
+						url: lsxToEditor.assetsUrl + 'blocks/group-size.svg',
 						alt: ''
 					}],
 					['core/paragraph', {
@@ -676,7 +676,7 @@ wp.domReady(() => {
 						width: '20px',
 						sizeSlug: 'large',
 						linkDestination: 'none',
-						url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/11/booking-validity-icon-black-52px-1.svg',
+						url: lsxToEditor.assetsUrl + 'blocks/booking-validity.svg',
 						alt: ''
 					}],
 					['core/paragraph', {
@@ -813,7 +813,7 @@ wp.domReady(() => {
 					['core/image', {
 						width: '20px',
 						sizeSlug: 'large',
-						url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/09/map-TO-black-20px-icon.png',
+						url: lsxToEditor.assetsUrl + 'blocks/map-TO-icon.png',
 						alt: ''
 					}],
 					['core/paragraph', {
@@ -920,7 +920,7 @@ wp.domReady(() => {
 					['core/image', {
 						width: '20px',
 						sizeSlug: 'large',
-						url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/09/map-TO-black-20px-icon.png',
+						url: lsxToEditor.assetsUrl + 'blocks/map-TO-icon.png',
 						alt: ''
 					}],
 					['core/paragraph', {
