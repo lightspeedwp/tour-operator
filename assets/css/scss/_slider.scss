@@ -1,4 +1,19 @@
-.wp-block-query {
+.lsx-to-slider {
+	&.lsx-travel-information-wrapper {
+	  .slick-list {
+		max-width: 100% !important;
+		width: 100% !important;
+	  }
+  
+	  .slick-slide {
+		padding: 0 !important;
+		margin: 0 10px !important;
+	  }
+	}
+  }
+
+.wp-block-query,
+.lsx-travel-information-wrapper {
 	&.lsx-to-slider {
 		gap: var(--wp--preset--spacing--small) var(--wp--preset--spacing--small);
 		position: relative;
@@ -29,7 +44,11 @@
 				height: 20px;
 			}
 		}
+	}
+}
 
+.wp-block-query {
+	&.lsx-to-slider {
 		.slick-slide {
 			padding: 15px !important;
 		}

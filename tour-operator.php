@@ -1,16 +1,20 @@
 <?php
 /*
- * Plugin Name: LSX Tour Operator
- * Plugin URI: https://www.lsdev.biz/product/tour-operator-plugin/
- * Description: The LSX Tour Operator plugin core contains the Accommodation, Destination and Tour post types. Use these core post types to build day-by-day tour itineraries that map out of the progress of each tour through the various accommodations and destinations that are stayed at along the way.
- * Tags: tour operator, tour operators, tour, tours, tour itinerary, tour itineraries, accommodation, accommodation listings, destinations, regions, tourism, lsx
- * Author: LightSpeed
- * Version: 2.0 Beta 3
- * Author URI: https://www.lsdev.biz/
- * License:     GPL3
- * License URI: https://www.gnu.org/licenses/gpl-3.0.html
- * Text Domain: tour-operator
- * Domain Path: /languages/
+ * Plugin Name:       LSX Tour Operator
+ * Plugin URI:        https://touroperator.solutions/
+ * Description:       Showcase tours, destinations, and accommodations with digital itineraries, galleries, and integrated maps.
+ * Author:            LightSpeed
+ * Version:           2.0.0
+ * Requires at least: 6.7
+ * Tested up to:      6.7
+ * Requires PHP:      8.0
+ * Author URI:        https://lightspeedwp.agency/
+ * License:           GPLv3 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-3.0.html
+ * Text Domain:       tour-operator
+ * Domain Path:       /languages/
+ * Update URI:        https://lsx.design/products/tour-operator/
+ * Tags:              lsx, tour operator, travel, tourism, itinerary
  */
 
 // If this file is called directly, abort.
