@@ -1,4 +1,4 @@
-.wp-block-query.lsx-to-slider {
+.lsx-to-slider {
 	&.travel-information {
 	  .slick-list {
 		max-width: 100% !important;
@@ -12,7 +12,8 @@
 	}
   }
 
-.wp-block-query {
+.wp-block-query,
+.lsx-travel-information-wrapper {
 	&.lsx-to-slider {
 		gap: var(--wp--preset--spacing--small) var(--wp--preset--spacing--small);
 		position: relative;
