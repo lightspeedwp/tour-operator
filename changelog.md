@@ -1,8 +1,6 @@
 # Changelog
 
-## [[2.0.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.0) - IN DEVELOPMENT
-
-## [2.0.0] - 2024-XX-XX
+## [[2.0.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.0) - IN DEVELOPMENT - 2024-XX-XX
 
 ### Major Changes
 - **Overhauled Booking Engine:**  
