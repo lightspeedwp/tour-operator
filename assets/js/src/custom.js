@@ -51,7 +51,11 @@ if ( window.location.hash ) {
 			lsx_to.readMoreText = $(this).contents().filter(function() {
 				return this.nodeType === Node.TEXT_NODE;
 			}).text();
-			lsx_to.readMoreSet( $(this), $(this).closest( '.wp-block-group' ).find('.wp-block-post-content') );
+
+			console.log($(this));
+			console.log($(this).parent( '.wp-block-group' ).find('.wp-block-post-content'));
+
+			lsx_to.readMoreSet( $(this), $(this).parent( '.wp-block-group' ).find('.wp-block-post-content') );
 		} );
 
 		$( '.single-tour-operator .wp-block-read-more' ).on( 'click', function( event ) {
@@ -59,9 +63,9 @@ if ( window.location.hash ) {
 			$( this ).hide();
 
 			if ( $( this ).hasClass( 'less-link' ) ) {
-				lsx_to.readMoreSet( $(this), $(this).closest( '.wp-block-group' ).find('.wp-block-post-content') );
+				lsx_to.readMoreSet( $(this), $(this).parent( '.wp-block-group' ).find('.wp-block-post-content') );
 			} else {
-				lsx_to.readMoreOpen( $(this), $(this).closest( '.wp-block-group' ).find('.wp-block-post-content') );
+				lsx_to.readMoreOpen( $(this), $(this).parent( '.wp-block-group' ).find('.wp-block-post-content') );
 			}
 
 			$( this ).show();
@@ -69,8 +73,6 @@ if ( window.location.hash ) {
 	};
 
 	lsx_to.readMoreSet = function( button, contentWrapper ) {
-		console.log(contentWrapper);
-		console.log(contentWrapper.length);
 		if ( 0 < contentWrapper.length ) {
 			if ( 1 < contentWrapper.children().length ) {
 
@@ -118,17 +120,17 @@ if ( window.location.hash ) {
 
 		$( '.single-tour-operator .additional-info .lsx-to-more-link' ).each( function() {
 			lsx_to.readMoreTIText = $(this).find('a').text();
-			lsx_to.readMoreSet( $(this), $(this).closest( '.additional-info' ).find('.content') );
+			lsx_to.readMoreSet( $(this).find('a'), $(this).closest( '.additional-info' ).find('.content') );
 		} );
 
 		$( '.single-tour-operator .additional-info .lsx-to-more-link' ).on( 'click', function( event ) {
 			event.preventDefault();
 			$( this ).hide();
 
-			if ( $( this ).hasClass( 'less-link' ) ) {
-				lsx_to.readMoreSet( $(this), $(this).closest( '.additional-info' ).find('.content') );
+			if ( $( this ).find('a').hasClass( 'less-link' ) ) {
+				lsx_to.readMoreSet( $(this).find('a'), $(this).closest( '.additional-info' ).find('.content') );
 			} else {
-				lsx_to.readMoreOpenTI( $(this), $(this).closest( '.additional-info' ).find('.content') );
+				lsx_to.readMoreOpen( $(this).find('a'), $(this).closest( '.additional-info' ).find('.content') );
 			}
 
 			$( this ).show();
@@ -344,7 +346,7 @@ if ( window.location.hash ) {
 	$document.ready( function() {
 		lsx_to.set_read_more();
 		lsx_to.set_read_more_travel_info();
-		lsx_to.set_read_more_itinerary();
+		//lsx_to.set_read_more_itinerary();
 		lsx_to.build_slider( window_width );
 	} );
 
@@ -359,7 +361,7 @@ if ( window.location.hash ) {
 		lsx_to.build_slider_lightbox();
 	} );
 
-	document.addEventListener('DOMContentLoaded', function () {
+	/*document.addEventListener('DOMContentLoaded', function () {
 		const paragraphs = document.querySelectorAll('.additional-info .wp-block-group.content p');
 	
 		paragraphs.forEach(function (p) {
@@ -398,7 +400,7 @@ if ( window.location.hash ) {
 				});
 			}
 		});
-	});	
+	});
 
 	document.addEventListener('DOMContentLoaded', function () {
 		// Select all sections within `.single-tour-operator`
@@ -446,6 +448,6 @@ if ( window.location.hash ) {
 				});
 			}
 		});
-	});
+	});*/
 
 } )( jQuery, window, document );
