@@ -36,9 +36,6 @@
 - **Backups & Settings Review:**  
   Before upgrading, back up your site. After update, review and re-save your booking and pricing settings to ensure that seasonal rules and availability data are correctly applied.
 
-For more details, see the full [changelog](https://github.com/lightspeedwp/tour-operator/blob/master/changelog.md).
-
-
 ### Removed
 - UIX vendor library handling the TO Settings and refactored the settings code - (PR #332)[https://github.com/lightspeedwp/tour-operator/pull/332]
 - Various settings which are now handled by Block and Site Editor options. - (PR #332)[https://github.com/lightspeedwp/tour-operator/pull/332]
