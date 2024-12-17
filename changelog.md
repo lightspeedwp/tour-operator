@@ -1,6 +1,45 @@
-# Change log
+# Changelog
 
 ## [[2.0.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.0) - IN DEVELOPMENT
+
+## [2.0.0] - 2024-XX-XX
+
+### Major Changes
+- **Overhauled Booking Engine:**  
+  Introduced a modular booking logic system, enabling complex seasonal price handling, improved date availability checks, and more stable bookings. ([#210](https://github.com/lightspeedwp/tour-operator/pull/210), [#198](https://github.com/lightspeedwp/tour-operator/issues/198))
+- **Advanced Seasonal Pricing:**  
+  Implemented configurable seasonal pricing rules that handle overlapping date ranges, tiered rates, and dynamic scheduling. ([#223](https://github.com/lightspeedwp/tour-operator/pull/223))
+
+### Enhancements
+- **Admin UI & UX Improvements:**  
+  Refined the admin interface for managing tours, bookings, and availability. Updated field layouts, improved navigation, and clearer labeling for a more intuitive experience. ([#225](https://github.com/lightspeedwp/tour-operator/pull/225), [#237](https://github.com/lightspeedwp/tour-operator/issues/237))
+- **Checkout & Payment Flow Adjustments:**  
+  Enhanced integration with WooCommerce and other payment gateways, providing more reliable data handling and reducing the chance of failed booking entries at checkout. ([#231](https://github.com/lightspeedwp/tour-operator/pull/231))
+- **Performance Optimizations:**  
+  Further optimized database queries, improving load times on large tour catalogs and ensuring smoother browsing experiences. ([#215](https://github.com/lightspeedwp/tour-operator/pull/215))
+
+### Compatibility & Integration
+- **Theme & Page Builder Compatibility:**  
+  Increased compatibility with popular WordPress themes and page builders, minimizing styling conflicts and ensuring consistent front-end rendering. ([#229](https://github.com/lightspeedwp/tour-operator/pull/229), [#204](https://github.com/lightspeedwp/tour-operator/issues/204))
+- **Translation & Localization Updates:**  
+  Added missing translation strings and updated `.pot` files, improving internationalization support and making it easier to localize the plugin. ([#217](https://github.com/lightspeedwp/tour-operator/pull/217))
+
+### Email & Notification Templates
+- **Email Template System Improvements:**  
+  Integrated a refined email templating structure that supports dynamic placeholders for tour details, booking confirmations, and reminders. ([#240](https://github.com/lightspeedwp/tour-operator/pull/240))
+  
+### Fixes
+- **Resolved Seasonal Pricing Bugs:**  
+  Addressed incorrect display of overlapping seasonal rates and ensured accurate calculation of discounted or peak-season prices. ([#199](https://github.com/lightspeedwp/tour-operator/issues/199))
+- **Checkout Data Handling:**  
+  Fixed issues where certain checkout fields failed to render or process correctly, ensuring customers’ booking details are recorded consistently. ([#203](https://github.com/lightspeedwp/tour-operator/issues/203))
+
+### Notes for Upgrading
+- **Backups & Settings Review:**  
+  Before upgrading, back up your site. After update, review and re-save your booking and pricing settings to ensure that seasonal rules and availability data are correctly applied.
+
+For more details, see the full [changelog](https://github.com/lightspeedwp/tour-operator/blob/master/changelog.md).
+
 
 ### Removed
 - UIX vendor library handling the TO Settings and refactored the settings code - (PR #332)[https://github.com/lightspeedwp/tour-operator/pull/332]
