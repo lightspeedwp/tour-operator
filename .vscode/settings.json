@@ -1,8 +1,0 @@
-{
-    "compile-hero.disable-compile-files-on-did-save-code": false,
-    "circleci.filters.branchFilter": "allBranches",
-    "circleci.persistedProjectSelection": [
-        "circleci/66XvZMC4HzRcCq7CxLNf8m/GBt1UCMQQXCJ48RTDDKGwt",
-        "circleci/66XvZMC4HzRcCq7CxLNf8m/3vcwHMosg1gEQhVVhNS7qR"
-    ]
-}
