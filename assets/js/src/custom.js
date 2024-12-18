@@ -69,11 +69,9 @@ if ( window.location.hash ) {
 		} );
 	};
 
-	lsx_to.readMoreSet = function( button, contentWrapper ) {
+	lsx_to.readMoreSet = function( button, contentWrapper, limit = 1 ) {
 		if ( 0 < contentWrapper.length ) {
 			if ( 1 < contentWrapper.children().length ) {
-
-				var limit = 1;
 				let counter = 0;
 
 				contentWrapper.children().each( function() {
@@ -117,7 +115,7 @@ if ( window.location.hash ) {
 
 		$( '.single-tour-operator .additional-info .lsx-to-more-link' ).each( function() {
 			lsx_to.readMoreTIText = $(this).find('a').text();
-			lsx_to.readMoreSet( $(this).find('a'), $(this).closest( '.additional-info' ).find('.content') );
+			lsx_to.readMoreSet( $(this).find('a'), $(this).closest( '.additional-info' ).find('.content'), 2 );
 		} );
 
 		$( '.single-tour-operator .additional-info .lsx-to-more-link' ).on( 'click', function( event ) {
@@ -125,7 +123,7 @@ if ( window.location.hash ) {
 			$( this ).hide();
 
 			if ( $( this ).find('a').hasClass( 'less-link' ) ) {
-				lsx_to.readMoreSet( $(this).find('a'), $(this).closest( '.additional-info' ).find('.content') );
+				lsx_to.readMoreSet( $(this).find('a'), $(this).closest( '.additional-info' ).find('.content'), 2 );
 			} else {
 				lsx_to.readMoreOpen( $(this).find('a'), $(this).closest( '.additional-info' ).find('.content') );
 			}
