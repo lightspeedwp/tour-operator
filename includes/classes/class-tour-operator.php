@@ -10,6 +10,7 @@ use lsx\blocks\Bindings;
 use lsx\blocks\Patterns;
 use lsx\blocks\Registration;
 use lsx\blocks\Templates;
+use lsx\integrations\facetwp\Post_Connections;
 
 /**
  * LSX Tour Operator Main Class
@@ -214,7 +215,6 @@ class Tour_Operator {
 	 * @uses  "init" action
 	 */
 	public function setup() {
-		load_plugin_textdomain( 'tour-operator', false, LSX_TO_CORE . '/languages' );
 		$this->pages      = Pages::init();
 		$this->taxonomies = Taxonomies::init();
 		$this->admin      = new Admin();
@@ -224,5 +224,10 @@ class Tour_Operator {
 		$this->registration = new Registration();
 		$this->patterns   = new Patterns();
 		$this->templates   = new Templates();
+
+
+		// Files that wont load with the badly written spl_autoregister function.
+		require_once LSX_TO_PATH . 'includes/classes/class-post-connections.php';
+		$this->post_connections = new Post_Connections();
 	}
 }

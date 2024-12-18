@@ -37,7 +37,7 @@ return array(
 
 <!-- wp:buttons {"align":"full"} -->
 <div class="wp-block-buttons alignfull"><!-- wp:button {"backgroundColor":"primary","width":100,"className":"lsx-to-more-link","style":{"border":{"radius":{"bottomLeft":"8px","bottomRight":"8px"}}}} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100 lsx-to-more-link"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" style="border-bottom-left-radius:8px;border-bottom-right-radius:8px">View More</a></div>
+<div class="wp-block-button has-custom-width wp-block-button__width-100 lsx-to-more-link"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" style="border-bottom-left-radius:8px;border-bottom-right-radius:8px">Read more</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->
@@ -59,7 +59,7 @@ return array(
 
 <!-- wp:buttons {"align":"full"} -->
 <div class="wp-block-buttons alignfull"><!-- wp:button {"backgroundColor":"primary","width":100,"metadata":{"name":"More Button"},"className":"lsx-to-more-link","style":{"border":{"radius":{"topLeft":"0px 8px 8px 0px","topRight":"0px 8px 8px 0px","bottomLeft":"8px","bottomRight":"8px"}}}} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100 lsx-to-more-link"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" style="border-top-left-radius:0px 8px 8px 0px;border-top-right-radius:0px 8px 8px 0px;border-bottom-left-radius:8px;border-bottom-right-radius:8px">View More</a></div>
+<div class="wp-block-button has-custom-width wp-block-button__width-100 lsx-to-more-link"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" style="border-top-left-radius:0px 8px 8px 0px;border-top-right-radius:0px 8px 8px 0px;border-bottom-left-radius:8px;border-bottom-right-radius:8px">Read more</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->
@@ -81,7 +81,7 @@ return array(
 
 <!-- wp:buttons {"align":"full"} -->
 <div class="wp-block-buttons alignfull"><!-- wp:button {"backgroundColor":"primary","width":100,"metadata":{"name":"More Button"},"className":"lsx-to-more-link","style":{"border":{"radius":{"bottomLeft":"8px","bottomRight":"8px"}}}} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100 lsx-to-more-link"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" style="border-bottom-left-radius:8px;border-bottom-right-radius:8px">View More</a></div>
+<div class="wp-block-button has-custom-width wp-block-button__width-100 lsx-to-more-link"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" style="border-bottom-left-radius:8px;border-bottom-right-radius:8px">Read more</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->
@@ -103,7 +103,7 @@ return array(
 
 <!-- wp:buttons {"align":"full"} -->
 <div class="wp-block-buttons alignfull"><!-- wp:button {"backgroundColor":"primary","width":100,"className":"lsx-to-more-link","style":{"border":{"radius":{"bottomLeft":"8px","bottomRight":"8px"}}}} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100 lsx-to-more-link"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" style="border-bottom-left-radius:8px;border-bottom-right-radius:8px">View More</a></div>
+<div class="wp-block-button has-custom-width wp-block-button__width-100 lsx-to-more-link"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" style="border-bottom-left-radius:8px;border-bottom-right-radius:8px">Read more</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->
@@ -125,7 +125,7 @@ return array(
 
 <!-- wp:buttons -->
 <div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"primary","width":100,"className":"lsx-to-more-link","style":{"border":{"radius":{"bottomLeft":"8px","bottomRight":"8px"}}}} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100 lsx-to-more-link"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" style="border-bottom-left-radius:8px;border-bottom-right-radius:8px">View More</a></div>
+<div class="wp-block-button has-custom-width wp-block-button__width-100 lsx-to-more-link"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" style="border-bottom-left-radius:8px;border-bottom-right-radius:8px">Read more</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->
@@ -147,7 +147,7 @@ return array(
 
 <!-- wp:buttons -->
 <div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"primary","width":100,"className":"lsx-to-more-link","style":{"border":{"radius":{"bottomLeft":"8px","bottomRight":"8px"}}}} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100 lsx-to-more-link"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" style="border-bottom-left-radius:8px;border-bottom-right-radius:8px">View More</a></div>
+<div class="wp-block-button has-custom-width wp-block-button__width-100 lsx-to-more-link"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" style="border-bottom-left-radius:8px;border-bottom-right-radius:8px">Read more</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->
@@ -169,7 +169,7 @@ return array(
 
 <!-- wp:buttons -->
 <div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"primary","width":100,"className":"lsx-to-more-link","style":{"border":{"radius":{"bottomLeft":"8px","bottomRight":"8px"}}}} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100 lsx-to-more-link"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" style="border-bottom-left-radius:8px;border-bottom-right-radius:8px">View More</a></div>
+<div class="wp-block-button has-custom-width wp-block-button__width-100 lsx-to-more-link"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" style="border-bottom-left-radius:8px;border-bottom-right-radius:8px">Read more</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->
@@ -191,7 +191,7 @@ return array(
 
 <!-- wp:buttons -->
 <div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"primary","width":100,"className":"lsx-to-more-link","style":{"border":{"radius":{"bottomLeft":"8px","bottomRight":"8px"}}}} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100 lsx-to-more-link"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" style="border-bottom-left-radius:8px;border-bottom-right-radius:8px">View More</a></div>
+<div class="wp-block-button has-custom-width wp-block-button__width-100 lsx-to-more-link"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" style="border-bottom-left-radius:8px;border-bottom-right-radius:8px">Read more</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->
@@ -213,7 +213,7 @@ return array(
 
 <!-- wp:buttons -->
 <div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"primary","width":100,"className":"lsx-to-more-link","style":{"border":{"radius":{"bottomLeft":"8px","bottomRight":"8px"}}}} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100 lsx-to-more-link"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" style="border-bottom-left-radius:8px;border-bottom-right-radius:8px">View More</a></div>
+<div class="wp-block-button has-custom-width wp-block-button__width-100 lsx-to-more-link"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" style="border-bottom-left-radius:8px;border-bottom-right-radius:8px">Read more</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->
@@ -235,7 +235,7 @@ return array(
 
 <!-- wp:buttons -->
 <div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"primary","width":100,"className":"lsx-to-more-link","style":{"border":{"radius":{"bottomLeft":"8px","bottomRight":"8px"}}}} -->
-<div class="wp-block-button has-custom-width wp-block-button__width-100 lsx-to-more-link"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" style="border-bottom-left-radius:8px;border-bottom-right-radius:8px">View More</a></div>
+<div class="wp-block-button has-custom-width wp-block-button__width-100 lsx-to-more-link"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" style="border-bottom-left-radius:8px;border-bottom-right-radius:8px">Read more</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group --></div>

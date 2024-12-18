@@ -52,9 +52,6 @@ if ( window.location.hash ) {
 				return this.nodeType === Node.TEXT_NODE;
 			}).text();
 
-			console.log($(this));
-			console.log($(this).parent( '.wp-block-group' ).find('.wp-block-post-content'));
-
 			lsx_to.readMoreSet( $(this), $(this).parent( '.wp-block-group' ).find('.wp-block-post-content') );
 		} );
 
@@ -344,9 +341,10 @@ if ( window.location.hash ) {
 	 * @subpackage scripts
 	 */
 	$document.ready( function() {
+		lsx_to.readMoreText = 'Read more';
 		lsx_to.set_read_more();
 		lsx_to.set_read_more_travel_info();
-		//lsx_to.set_read_more_itinerary();
+		lsx_to.set_read_more_itinerary();
 		lsx_to.build_slider( window_width );
 	} );
 
