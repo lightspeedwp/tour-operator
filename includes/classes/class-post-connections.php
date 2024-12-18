@@ -78,28 +78,76 @@ class Post_Connections {
 			case 'cf/destination_to_accommodation':
 				$countries = array();
 
+				$new_rows     = [];
+				// First lets process our new rows, depending of if its a serialized array or not.
 				foreach ( $rows as $r_index => $row ) {
-					$parent                        = wp_get_post_parent_id( $row['facet_value'] );
-					$rows[ $r_index ]['parent_id'] = $parent;
 
-					if ( 0 === $parent || '0' === $parent ) {
-						if ( ! isset( $countries[ $r_index ] ) ) {
-							$countries[ $r_index ] = $row['facet_value'];
+					// first lets check if we have an array as the values.
+					if ( is_array( $row['facet_value'] ) ) {
+						foreach ( $row['facet_value'] as $r_index => $pid ) {
+
+							$title = get_the_title( $pid );
+							if ( '' === $title ) {
+								continue;
+							}
+
+							$template_row                        = $row;
+							$template_row['facet_value']         = $pid;
+							$template_row['facet_display_value'] = $title;
+							$parent                              = wp_get_post_parent_id( $template_row['facet_value'] );
+							$template_row['parent_id']           = $parent;
+
+
+							if ( 0 === $parent || '0' === $parent ) {
+								if ( ! isset( $countries[ $r_index ] ) ) {
+									$countries[ $r_index ] = $row['facet_value'];
+								}
+
+								if ( ! empty( $this->options['display']['engine_search_continent_filter'] ) ) {
+									$template_row['depth'] = 1;
+								} else {
+									$template_row['depth'] = 0;
+								}
+							} else {
+								if ( ! empty( $this->options['display']['engine_search_continent_filter'] ) ) {
+									$template_row['depth'] = 2;
+								} else {
+									$template_row['depth'] = 1;
+								}
+							}
+
+							$new_rows[ $r_index ] = $template_row;
 						}
 
-						if ( ! empty( $this->options['display']['engine_search_continent_filter'] ) ) {
-							$rows[ $r_index ]['depth'] = 1;
-						} else {
-							$rows[ $r_index ]['depth'] = 0;
-						}
 					} else {
-						if ( ! empty( $this->options['display']['engine_search_continent_filter'] ) ) {
-							$rows[ $r_index ]['depth'] = 2;
+						$parent                        = wp_get_post_parent_id(  );
+						$rows[ $r_index ]['parent_id'] = $parent;
+	
+						if ( 0 === $parent || '0' === $parent ) {
+							if ( ! isset( $countries[ $r_index ] ) ) {
+								$countries[ $r_index ] = $row['facet_value'];
+							}
+	
+							if ( ! empty( $this->options['display']['engine_search_continent_filter'] ) ) {
+								$rows[ $r_index ]['depth'] = 1;
+							} else {
+								$rows[ $r_index ]['depth'] = 0;
+							}
 						} else {
-							$rows[ $r_index ]['depth'] = 1;
+							if ( ! empty( $this->options['display']['engine_search_continent_filter'] ) ) {
+								$rows[ $r_index ]['depth'] = 2;
+							} else {
+								$rows[ $r_index ]['depth'] = 1;
+							}
 						}
 					}
 				}
+
+				// Replace the old rows with the new once used.
+				if ( ! empty( $new_rows ) ) {
+					$rows = $new_rows;
+				}
+
 				if ( ! empty( $this->options['display']['enable_search_continent_filter'] ) ) {
 					if ( ! empty( $countries ) ) {
 						foreach ( $countries as $row_index => $country ) {
@@ -146,9 +194,11 @@ class Post_Connections {
 
 		if ( ! empty( $custom_field ) && ! empty( $meta_key ) ) {
 
-			if ( ( 'cf/destination_to_accommodation' === $class->facet['source'] || 'cf/destination_to_tour' === $class->facet['source'] ) && ! empty( $this->options['display']['engine_search_continent_filter'] ) && ( '0' === (string) $params['depth'] ) ) {
-				$title = '';
-			} else {
+			$values = (array) $params['facet_value'];
+			foreach ( $values as $val ) {
+				$params['facet_value'] = $val;
+				$params['facet_display_value'] = $val;
+				
 				$title = get_the_title( $params['facet_value'] );
 				if ( '' !== $title ) {
 					$params['facet_display_value'] = $title;
@@ -156,7 +206,11 @@ class Post_Connections {
 				if ( '' === $title && ! empty( $meta_key ) ) {
 					$params['facet_value'] = '';
 				}
+				// Insert into the DB
+				$class->insert( $params );
 			}
+
+			return false; // skip default indexing
 		}
 
 		// If its a price, save the value as a standard number.
@@ -327,6 +381,8 @@ class Post_Connections {
 		if ( ! empty( $options ) ) {
 			$output = implode( '', $options );
 		}
+
+		$output = '' . $output . '';
 
 		return $output;
 	}
