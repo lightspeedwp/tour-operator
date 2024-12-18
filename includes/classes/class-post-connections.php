@@ -250,7 +250,7 @@ class Post_Connections {
 			'cf/destination_to_review',
 			'cf/destination_to_vehicle',
 		);
-		if ( in_array( $params['facet']['source'], $possible_keys ) ) {
+		if ( in_array( $params['facet']['source'], $possible_keys ) && 'checkboxes' === $params['facet']['type'] ) {
 			$output = $this->destination_facet_render( $params );
 		}
 		return $output;
@@ -261,6 +261,10 @@ class Post_Connections {
 	 */
 	public function destination_facet_render( $params ) {
 		$facet = $params['facet'];
+
+		if ( 'checkboxes' !== $params['facet']['type'] ) {
+			return;
+		}
 
 		$output = '';
 		$values = (array) $params['values'];
@@ -374,7 +378,12 @@ class Post_Connections {
 			}
 
 			if ( $facet['depth'] <= $current_depth ) {
-				$options[] = $this->format_single_facet( $key, $facet, $selected_values, $depth_type );
+				if ( 'checkboxes' === $params['facet']['type'] ) {
+					$options[] = $this->format_checkbox_facet( $key, $facet, $selected_values, $depth_type );
+				} else if ( 'fselect' === $params['facet']['type'] ) {
+					$options[] = $this->format_fselect_facet( $key, $facet, $selected_values, $depth_type );
+				}
+				
 			}
 		}
 
@@ -422,7 +431,7 @@ class Post_Connections {
 		return $children;
 	}
 
-	public function format_single_facet( $key, $result, $selected_values, $region = '' ) {
+	public function format_checkbox_facet( $key, $result, $selected_values, $region = '' ) {
 		$temp_html = '';
 
 		$selected = in_array( $result['facet_value'], $selected_values ) ? ' checked' : '';
@@ -432,6 +441,21 @@ class Post_Connections {
 		$temp_html .= '<div class="facetwp-checkbox' . $selected . '" data-value="' . $result['facet_value'] . '">';
 		$temp_html .= $result['facet_display_value'] . ' <span class="facetwp-counter">(' . $result['counter'] . ')</span>';
 		$temp_html .= '</div>';
+
+		return $temp_html;
+	}
+
+	public function format_fselect_facet( $key, $result, $selected_values, $region = '' ) {
+		$temp_html = '';
+
+		$selected = in_array( $result['facet_value'], $selected_values ) ? ' checked' : '';
+		$selected .= ( 0 == $result['counter'] && '' == $selected ) ? ' disabled' : '';
+		$selected .= ' ' . $region;
+
+		$temp_html .= '<div class="fs-option g0 d0" data-value="' . $result['facet_value'] . '" data-idx="' . $key . '" tabindex="-1">
+							<span class="fs-checkbox' . $selected . '"><i></i></span>
+							<div class="fs-option-label">' . $result['facet_display_value'] . ' (' . $result['counter'] . ')</div>
+						</div>';
 
 		return $temp_html;
 	}
