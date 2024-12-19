@@ -95,8 +95,8 @@ function lsx_to_item_has_children( $post_id = false, $post_type = false ) {
 		$post_type = 'page';
 	}
 
-	// phpcs:ignore WordPress.DB.DirectDatabaseQuery
-	$children = $wpdb->get_results( // @phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+	// phpcs:disable WordPress.DB -- Start ignoring
+	$children = $wpdb->get_results(
 		$wpdb->prepare(
 			"SELECT ID
 			FROM {$wpdb->posts}
@@ -104,9 +104,11 @@ function lsx_to_item_has_children( $post_id = false, $post_type = false ) {
 			AND post_parent = %d
 			ORDER BY post_title ASC
 			LIMIT 100",
-			$post_type,$post_id
+			$post_type,
+			$post_id
 		)
 	);
+	// phpcs:enable -- Stop ignoring
 
 	if ( count( $children ) > 0 ) {
 		return $children;
