@@ -95,7 +95,8 @@ function lsx_to_item_has_children( $post_id = false, $post_type = false ) {
 		$post_type = 'page';
 	}
 
-	$children = $wpdb->get_results(
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery
+	$children = $wpdb->get_results( // @phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
 		$wpdb->prepare(
 			"SELECT ID
 			FROM {$wpdb->posts}
