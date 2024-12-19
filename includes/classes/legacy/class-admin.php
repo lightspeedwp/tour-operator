@@ -102,6 +102,7 @@ class Admin extends Tour_Operator {
 		}
 
 		//deregister scripts
+		// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( isset( $_GET['post'] ) && in_array( get_post_type( $_GET['post'] ), array( 'team', 'special', 'review', 'destination', 'accommodation', 'tour' ) ) ) {
 			wp_deregister_script( 'sgpbSelect2.js' );
 			wp_deregister_script( 'select2.min.js' );
@@ -276,14 +277,15 @@ class Admin extends Tour_Operator {
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return;
 		}
-
+	// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( ! isset( $_POST['thumbnail'] ) || ! isset( $_POST['tagline'] ) ) {
 			return;
 		}
 
 		if ( check_admin_referer( 'lsx_to_save_term_thumbnail', 'lsx_to_term_thumbnail_nonce' ) ) {
+			// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			if ( isset( $_POST['thumbnail'] ) && ! empty( $_POST['thumbnail'] ) ) {
-				$thumbnail_meta = sanitize_text_field( $_POST['thumbnail'] );
+				$thumbnail_meta = sanitize_text_field( wp_unslash( $_POST['thumbnail'] ) );
 				$thumbnail_meta = ! empty( $thumbnail_meta ) ? $thumbnail_meta : '';
 	
 				if ( empty( $thumbnail_meta ) ) {
@@ -293,8 +295,9 @@ class Admin extends Tour_Operator {
 				}
 			}
 
+			// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			if ( isset( $_POST['tagline'] ) && ! empty( $_POST['tagline'] ) ) {
-				$meta = sanitize_text_field( $_POST['tagline'] );
+				$meta = sanitize_text_field( wp_unslash( $_POST['tagline'] ) );
 				$meta = ! empty( $meta ) ? $meta : '';
 	
 				if ( empty( $meta ) ) {

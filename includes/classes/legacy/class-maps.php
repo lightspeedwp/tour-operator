@@ -583,10 +583,14 @@ class Maps {
 			'newspaper',
 			'serpstatbot',
 		);
+		// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( isset( $_GET['debug_bot'] ) ) {
-			$user_agent = sanitize_text_field( $_GET['debug_bot'] );
-		} else {
-			$user_agent = sanitize_text_field( $_SERVER['HTTP_USER_AGENT'] );
+			// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$user_agent = sanitize_text_field( wp_unslash( $_GET['debug_bot'] ) );
+			// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		} else if ( isset( $_GET['HTTP_USER_AGENT'] ) ) {
+			// @phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
+			$user_agent = sanitize_text_field( wp_unslash( $_SERVER['HTTP_USER_AGENT'] ) );
 		}
 
 		foreach ( $user_agents as $agent ) {

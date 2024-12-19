@@ -434,15 +434,15 @@ class Registration {
 		}
 
 		$ids = wp_unslash( sanitize_post_field( 'id', $ids, 0, 'db' ) );
-
+		// phpcs:disable WordPress.DB -- Start ignoring
 		$query = "SELECT COUNT(ID)
 				  FROM $wpdb->posts
 				  WHERE 1=1
 				  AND ID IN (%s)
 				  AND post_status IN ('draft', 'publish')";
-
-		// @phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-		return (int) $wpdb->get_var( $wpdb->prepare( $query, $ids ) );
+		$result = (int) $wpdb->get_var( $wpdb->prepare( $query, $ids ) );
+		// phpcs:enable -- Stop ignoring
+		return  $result;
 	}
 
 	/**

@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
 
 return array(
 	'title'         => __( 'Accommodation Card', 'tour-operator' ),

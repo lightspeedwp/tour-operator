@@ -396,7 +396,7 @@ if ( window.location.hash ) {
 				});
 			}
 		});
-	});
+	});*/
 
 	document.addEventListener('DOMContentLoaded', function () {
 		// Select all sections within `.single-tour-operator`
@@ -444,6 +444,6 @@ if ( window.location.hash ) {
 				});
 			}
 		});
-	});*/
+	});
 
 } )( jQuery, window, document );

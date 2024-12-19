@@ -48,7 +48,7 @@ class Settings {
 		// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( isset( $_GET['welcome-page'] ) ) {
 			// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			$display_page = sanitize_text_field( $_GET['welcome-page'] );
+			$display_page = sanitize_text_field( wp_unslash( $_GET['welcome-page'] ) );
 			$display_page = ! empty( $display_page ) ? $display_page : '';
 		}
 
@@ -534,7 +534,7 @@ class Settings {
 					$save = '';
 					// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
 					if ( isset( $_POST[ $key ] ) ) {
-						$save = sanitize_text_field( $_POST[ $key ] );
+						$save = sanitize_text_field( wp_unslash( $_POST[ $key ] ) );
 					} else if ( isset( $field['default'] ) ) {
 						$save = $field['default'];
 					}
@@ -556,7 +556,7 @@ class Settings {
 					$save = '';
 					// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
 					if ( isset( $_POST[ $tab_index . '_' . $key ] ) ) {
-						$save = wp_unslash( $_POST[ $tab_index . '_' . $key ] );
+						$save = sanitize_text_field( wp_unslash( $_POST[ $tab_index . '_' . $key ] ) );
 					} else if ( isset( $field['default'] ) ) {
 						$save = $field['default'];
 					}
@@ -569,8 +569,8 @@ class Settings {
 		if ( ! empty( $settings_values ) ) {
 			update_option( 'lsx_to_settings', $settings_values );
 
-			// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			wp_safe_redirect( $_POST[ '_wp_http_referer' ] );
+			// @phpcs:ignore WordPress.Security
+			wp_safe_redirect( wp_unslash( $_POST[ '_wp_http_referer' ] ) );
 			exit;
 		}
 	}

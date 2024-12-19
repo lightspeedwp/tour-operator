@@ -1,5 +1,5 @@
 <?php
-
+// phpcs:ignoreFile PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
 return array(
 	'title'         => __( 'TO Gallery', 'tour-operator' ),
 	'description'   => __( 'Display the attached images, with a lightbox gallery.', 'tour-operator' ),

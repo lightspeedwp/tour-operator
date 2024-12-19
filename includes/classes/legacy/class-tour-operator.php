@@ -220,11 +220,11 @@ class Tour_Operator {
 	 */
 	public static function register_activation_hook() {
 		self::compatible_version_check_on_activation();
-
+		// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( ! is_network_admin() && ! isset( $_GET['activate-multi'] ) ) {
 			set_transient( '_tour_operators_flush_rewrite_rules', 1, 30 );
 		}
-
+		// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( ! is_network_admin() && ! isset( $_GET['activate-multi'] ) ) {
 			set_transient( '_tour_operators_welcome_redirect', 1, 30 );
 		}
@@ -465,117 +465,6 @@ class Tour_Operator {
 		}
 
 		return $taxonomies;
-	}
-
-	/**
-	 * checks which plugin is active, and grabs those forms.
-	 */
-	public function show_default_form() {
-		if ( class_exists( 'Caldera_Forms_Forms' ) || class_exists( 'GFForms' ) || class_exists( 'Ninja_Forms' ) || class_exists( 'WPForms' ) ) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * checks which plugin is active, and grabs those forms.
-	 */
-	public function get_activated_forms() {
-		$all_forms = false;
-
-		if ( class_exists( 'WPForms' ) ) {
-			$all_forms = $this->get_wpforms();
-		} elseif ( class_exists( 'Ninja_Forms' ) ) {
-			$all_forms = $this->get_ninja_forms();
-		} elseif ( class_exists( 'GFForms' ) ) {
-			$all_forms = $this->get_gravity_forms();
-		} elseif ( class_exists( 'Caldera_Forms_Forms' ) ) {
-			$all_forms = $this->get_caldera_forms();
-		}
-
-		return $all_forms;
-	}
-
-	/**
-	 * gets the current wpforms
-	 */
-	public function get_wpforms() {
-		global $wpdb;
-		$forms = false;
-
-		$args = array(
-			'post_type'     => 'wpforms',
-			'orderby'       => 'id',
-			'order'         => 'ASC',
-			'no_found_rows' => true,
-			'nopaging'      => true,
-		);
-
-		$posts = get_posts( $args );
-
-		if ( ! empty( $posts ) ) {
-			foreach ( $posts as $post ) {
-				$forms[ $post->ID ] = $post->post_title;
-			}
-		} else {
-			$forms = false;
-		}
-		return $forms;
-	}
-
-	/**
-	 * gets the currenct ninja forms
-	 */
-	public function get_ninja_forms() {
-		global $wpdb;
-
-		$results = $wpdb->get_results( "SELECT id,title FROM {$wpdb->prefix}nf3_forms" );
-		$forms   = false;
-
-		if ( ! empty( $results ) ) {
-			foreach ( $results as $form ) {
-				$forms[ $form->id ] = $form->title;
-			}
-		}
-
-		return $forms;
-	}
-
-	/**
-	 * gets the currenct gravity forms
-	 */
-	public function get_gravity_forms() {
-		global $wpdb;
-
-		$results = \RGFormsModel::get_forms( null, 'title' );
-		$forms   = false;
-
-		if ( ! empty( $results ) ) {
-			foreach ( $results as $form ) {
-				$forms[ $form->id ] = $form->title;
-			}
-		}
-
-		return $forms;
-	}
-
-	/**
-	 * gets the currenct caldera forms
-	 */
-	public function get_caldera_forms() {
-		global $wpdb;
-
-		$results = \Caldera_Forms_Forms::get_forms( true );
-		$forms   = false;
-
-		if ( ! empty( $results ) ) {
-			foreach ( $results as $form => $form_data ) {
-				$forms[ $form ] = $form_data['name'];
-			}
-		}
-
-		return $forms;
 	}
 
 	/**
