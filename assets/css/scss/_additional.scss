@@ -1,94 +1,261 @@
 /* Additional information specific styles */
-
 /* Fast Facts Wrapper */
 .fast-facts-wrapper > .wp-block-group .wp-block-group:first-child {
-    display: flex;
-    align-items: flex-start; /* Align content in this group to the top */
-    gap: 5px; /* Space between icon and text */
-    flex-shrink: 0; /* Prevent group from shrinking */
-  }
-  
-  /* Style the image icon */
-  .fast-facts-wrapper > .wp-block-group .wp-block-image img {
-    width: 20px; /* Fixed width */
-    height: 20px; /* Fixed height */
-    display: inline-block;
-    object-fit: contain; /* Ensure image doesn't stretch or distort */
-  }
-  
-  /* Styling for the label (e.g., "Special Interests:") */
-  .fast-facts-wrapper > .wp-block-group .wp-block-group:first-child p {
-    margin: 0;
-    white-space: nowrap; /* Prevent wrapping for label */
-    vertical-align: middle; /* Align text with the middle of the icon */
-    line-height: 1.2; /* Improve readability */
-    display: inline-block; /* Keep text inline */
-  }
-  
-  /* Styling for the flowing text */
-  .fast-facts-wrapper > .wp-block-group .wp-block-group:last-child {
-    display: flex;
-    flex-wrap: nowrap; /* Keep the text flowing inline */
-    white-space: normal; /* Allow wrapping for text if it overflows */
-    overflow-wrap: break-word; /* Ensure long words wrap correctly */
-    word-break: break-word; /* Break long words when needed */
-    flex: 1; /* Allow the container to use available space */
-    align-items: flex-start; /* Ensure text starts at the top */
-  }
-  
-  /* Specific styling for the text content */
-  .fast-facts-wrapper > .wp-block-group .wp-block-group:last-child p {
-    white-space: normal; /* Allow wrapping for long text */
-    overflow-wrap: break-word; /* Break words when needed */
-    word-break: break-word; /* Break words on legacy browsers */
-    line-height: 1.4; /* Improve readability */
-    text-transform: capitalize; /* Capitalize text */
-    padding: 0; /* Ensure no unnecessary padding */
-    margin: 0; /* Remove extra margins */
-    display: inline; /* Ensure the text flows inline with the label */
-  }
-  
-  /* Facilities List */
-  .facilities-list li::marker {
-    display: none;
-  }
-  
-  .facilities-list {
-    padding-left: 0 !important;
-  }
-  
-  .facilities-list li {
-    margin-left: 10px;
-    list-style: none; /* Remove default list marker */
-    position: relative; /* Position for pseudo-element */
-  }
-  
-  .facilities-list li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%); /* Center the icon vertically */
-    width: 20px; /* Adjust the size of the tick icon */
-    height: 20px;
-    background-image: url('../../img/tick.svg'); /* Replace with the path to your tick.svg */
-    background-size: contain;
-    background-repeat: no-repeat;
-    left: -28px;
-  }
-  
-  /* Additional Info */
-  .additional-info .wp-block-group.content .read-more-btn,
-  .additional-info .wp-block-group.content .read-less-btn {
-    color: #0073aa;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .additional-info .wp-block-group.content .read-more-btn:hover {
-    text-decoration: underline;
-  }
-  
-  .additional-info .wp-block-group.content .read-less-btn {
-    display: none;
-  }  
+	display: flex;
+	align-items: flex-start;
+	/* Align content in this group to the top */
+	gap: 5px;
+	/* Space between icon and text */
+	flex-shrink: 0;
+	/* Prevent group from shrinking */
+}
+/* Style the image icon */
+.fast-facts-wrapper > .wp-block-group .wp-block-image img {
+	width: 20px;
+	/* Fixed width */
+	height: 20px;
+	/* Fixed height */
+	display: inline-block;
+	object-fit: contain;
+	/* Ensure image doesn't stretch or distort */
+}
+/* Styling for the label (e.g., "Special Interests:") */
+.fast-facts-wrapper > .wp-block-group .wp-block-group:first-child p {
+	margin: 0;
+	white-space: nowrap;
+	/* Prevent wrapping for label */
+	vertical-align: middle;
+	/* Align text with the middle of the icon */
+	line-height: 1.2;
+	/* Improve readability */
+	display: inline-block;
+	/* Keep text inline */
+}
+/* Styling for the flowing text */
+.fast-facts-wrapper > .wp-block-group .wp-block-group:last-child {
+	display: flex;
+	flex-wrap: nowrap;
+	/* Keep the text flowing inline */
+	white-space: normal;
+	/* Allow wrapping for text if it overflows */
+	overflow-wrap: break-word;
+	/* Ensure long words wrap correctly */
+	word-break: break-word;
+	/* Break long words when needed */
+	flex: 1;
+	/* Allow the container to use available space */
+	align-items: flex-start;
+	/* Ensure text starts at the top */
+}
+/* Specific styling for the text content */
+.fast-facts-wrapper > .wp-block-group .wp-block-group:last-child p {
+	white-space: normal;
+	/* Allow wrapping for long text */
+	overflow-wrap: break-word;
+	/* Break words when needed */
+	word-break: break-word;
+	/* Break words on legacy browsers */
+	line-height: 1.4;
+	/* Improve readability */
+	text-transform: capitalize;
+	/* Capitalize text */
+	padding: 0;
+	/* Ensure no unnecessary padding */
+	margin: 0;
+	/* Remove extra margins */
+	display: inline;
+	/* Ensure the text flows inline with the label */
+}
+/* Facilities List */
+.facilities-list li::marker {
+	display: none;
+}
+.facilities-list {
+	padding-left: 0 !important;
+}
+.facilities-list li {
+	margin-left: 10px;
+	list-style: none;
+	/* Remove default list marker */
+	position: relative;
+	/* Position for pseudo-element */
+}
+.facilities-list li::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	/* Center the icon vertically */
+	width: 20px;
+	/* Adjust the size of the tick icon */
+	height: 20px;
+	background-image: url('../../img/tick.svg');
+	/* Replace with the path to your tick.svg */
+	background-size: contain;
+	background-repeat: no-repeat;
+	left: -28px;
+}
+/* Additional Info */
+.additional-info .wp-block-group.content .read-more-btn,.additional-info .wp-block-group.content .read-less-btn {
+	color: #0073aa;
+	cursor: pointer;
+	font-weight: bold;
+}
+.additional-info .wp-block-group.content .read-more-btn:hover {
+	text-decoration: underline;
+}
+.additional-info .wp-block-group.content .read-less-btn {
+	display: none;
+}
+/* FacetWP --------------------------------------------- */
+.facetwp-facet input.facetwp-search{
+	border: 1px solid #757575;
+	padding: 8px 14px 10px;
+	font-size: 18px;
+	min-width: 85%;
+}
+.facetwp-icon{
+	background:#a29f9f;
+	padding:0 4px;
+}
+.facetwp-icon:hover{
+	background-color: #4F4F4F;
+}
+.facetwp-facet select{
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	background: transparent;
+	background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+	background-repeat: no-repeat;
+	background-position-x: 100%;
+	background-position-y: 5px;
+	border-radius: 4px;
+	color: var(--wp--preset--color--contrast);
+	font-family: var(--wp--preset--font-family--primary);
+	font-size: var(--wp--preset--font-size--x-small);
+	font-weight: var(--wp--custom--font-weight--regular);
+	padding: 12px 22px 12px 12px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	position: relative;
+	background-color: #fff;
+	border: 1px solid #757575!important;
+	cursor: default;
+}
+body .fs-label-wrap .fs-label{
+	padding: 12px 22px 12px 12px!important;
+}
+body .fs-arrow{
+	right:12px!important;
+}
+.archive .fs-label-wrap{
+	border: 1px solid #757575!important;
+	border-radius: 4px;
+}
+.fs-wrap .fs-search input::placeholder {
+	font-size: var(--wp--preset--font-size--x-small);
+}
+.facetwp-selections{
+	max-width:27%;
+}
+.facet-row .wp-block-group{
+	width:100%;
+}
+button.facetwp-reset{
+	background-color: var(--wp--preset--color--primary);
+	border-width: 0;
+	color: var(--wp--preset--color--base);
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--x-small);
+	font-weight: 500;
+	line-height: inherit;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	padding-top: 9px;
+	padding-right: 8px;
+	padding-bottom: 10px;
+	padding-left: 8px;
+	text-decoration: none;
+	width:150px;
+	border-radius: 4px;
+}
+@media only screen and (min-width:1240px){
+	body .facetwp-facet .facetwp-dropdown,body .facetwp-facet .facetwp-checkboxes,body .facetwp-facet .facetwp-range,body .facetwp-facet .facetwp-radio {
+		min-width: 220px;
+		/* Adjust this value as needed */
+	}
+	.archive .facetwp-facet{
+		margin-top:4px!important;
+	}
+	.archive .facetwp-type-reset{
+		margin-top:-2px!important;
+	}
+	.archive .fs-wrap {
+		width: 292px;
+	}
+}
+@media only screen and (min-width:768px) and (max-width:1199px){
+	.archive .fs-wrap {
+		width: auto!important;
+	}
+	body .facetwp-facet .facetwp-dropdown,body .facetwp-facet .facetwp-checkboxes,body .facetwp-facet .facetwp-range,body .facetwp-facet .facetwp-radio {
+		min-width: 220px;
+		/* Adjust this value as needed */
+	}
+}
+@media only screen and (max-width:480px){
+	.facet-row .wp-block-group{
+		flex-wrap: wrap!important;
+	}
+	.facet-row .wp-block-group p{
+		width:100%!important;
+	}
+	.facet-row .wp-block-group .facetwp-facet{
+		width:100%!important;
+	}
+	body .facetwp-facet .facetwp-dropdown,body .facetwp-facet .facetwp-checkboxes,body .facetwp-facet .facetwp-range,body .facetwp-facet .facetwp-radio {
+		min-width: 100%!important;
+		/* Adjust this value as needed */
+	}
+	.facet-row{
+		flex-wrap: wrap!important;
+		margin-left: -20px !important;
+		margin-right: -20px !important;
+	}
+	.facetwp-selections{
+		max-width:100%!important;
+	}
+	.facetwp-input-wrap,.fs-wrap{
+		width:100%!important;
+	}
+	.facetwp-facet input.facetwp-search{
+		min-width: 88%!important;
+	}
+	.facetwp-selections ul li{
+		margin-left:0!important;
+	}
+	button.facetwp-reset{
+		background-color: var(--wp--preset--color--primary);
+		border-width: 0;
+		color: var(--wp--preset--color--base);
+		font-family: inherit;
+		font-size: var(--wp--preset--font-size--x-small);
+		font-weight: 500;
+		line-height: inherit;
+		margin-top: 0px;
+		margin-right: 0px;
+		margin-bottom: 0px;
+		margin-left: 0px;
+		padding-top: 7px;
+		padding-right: 8px;
+		padding-bottom: 7px;
+		padding-left: 8px;
+		text-decoration: none;
+		width:100%;
+		border-radius: 4px;
+	}
+}
