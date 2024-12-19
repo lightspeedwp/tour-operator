@@ -14,7 +14,8 @@ wp.domReady(() => {
 			layout: {
 				type: "constrained",
 			},
-			className: "lsx-itinerary-wrapper"
+			className: "lsx-itinerary-wrapper",
+			tagName: "section"
 		},
 		innerBlocks: [
 			['core/group',
