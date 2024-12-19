@@ -13,7 +13,6 @@
  * License URI:       https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain:       tour-operator
  * Domain Path:       /languages/
- * Update URI:        https://lsx.design/products/tour-operator/
  * Tags:              lsx, tour operator, travel, tourism, itinerary
  */
 

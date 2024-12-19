@@ -68,8 +68,14 @@ class Bindings {
 		add_filter( 'render_block', array( $this, 'render_units_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'render_gallery_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'render_map_block' ), 10, 3 );
+		add_filter( 'render_block', array( $this, 'render_permalink_block' ), 10, 3 );
 	}
 
+	/**
+	 * Registers the custom block bindings.
+	 *
+	 * @return void
+	 */
 	public function register_block_bindings() {
 		if ( ! function_exists( 'register_block_bindings_source' ) ) {
 			return;
@@ -123,6 +129,13 @@ class Bindings {
 		);
 	}
 
+	/**
+	 * Registers the post connections callback.
+	 *
+	 * @param array $source_args
+	 * @param object $block_instance
+	 * @return string|int|array
+	 */
 	public function post_connections_callback( $source_args, $block_instance ) {
 		if ( 'core/image' === $block_instance->parsed_block['blockName'] ) {
 			return 'test_image';
@@ -199,6 +212,13 @@ class Bindings {
 		}
 	}
 
+	/**
+	 * Register our post meta callback.
+	 *
+	 * @param array $source_args
+	 * @param object $block_instance
+	 * @return string|int|array
+	 */
 	public function post_meta_callback( $source_args, $block_instance ) {
 		if ( 'core/image' === $block_instance->parsed_block['blockName'] ) {
 			return 'test_image';
@@ -408,6 +428,19 @@ class Bindings {
 		return $build;
 	}
 
+	/**
+	 * Renders the units block with custom content.
+	 *
+	 * This function processes the block content by checking if it belongs to a specific
+	 * custom block variation and then iteratively builds the units content based on
+	 * predefined fields and templates. It returns the final rendered block content.
+	 *
+	 * @param string $block_content The original content of the block.
+	 * @param array  $parsed_block  Parsed data for the block, including type and attributes.
+	 * @param object $block_obj     Block object instance for the current block being processed.
+	 * 
+	 * @return string Returns the modified block content after processing units data.
+	 */
 	public function render_units_block( $block_content, $parsed_block, $block_obj ) {
 		// Determine if this is the custom block variation.
 		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
@@ -588,6 +621,19 @@ class Bindings {
 		}
 	}
 
+	/**
+	 * Renders the gallery block with custom content.
+	 *
+	 * This function processes the block content by checking if it belongs to a specific
+	 * custom block variation and then iteratively builds the gallery content based on
+	 * predefined fields and templates. It returns the final rendered block content.
+	 *
+	 * @param string $block_content The original content of the block.
+	 * @param array  $parsed_block  Parsed data for the block, including type and attributes.
+	 * @param object $block_obj     Block object instance for the current block being processed.
+	 * 
+	 * @return string Returns the modified block content after processing gallery data.
+	 */
 	public function render_gallery_block( $block_content, $parsed_block, $block_obj ) {
 		// Determine if this is the custom block variation.
 		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
@@ -680,6 +726,19 @@ class Bindings {
 		return $classes;
 	}
 
+	/**
+	 * Renders the map block with custom content.
+	 *
+	 * This function processes the block content by checking if it belongs to a specific
+	 * custom block variation and then iteratively builds the map content based on
+	 * predefined fields and templates. It returns the final rendered block content.
+	 *
+	 * @param string $block_content The original content of the block.
+	 * @param array  $parsed_block  Parsed data for the block, including type and attributes.
+	 * @param object $block_obj     Block object instance for the current block being processed.
+	 * 
+	 * @return string Returns the modified block content after processing map data.
+	 */
 	public function render_map_block( $block_content, $parsed_block, $block_obj ) {
 		// Determine if this is the custom block variation.
 		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
@@ -743,5 +802,42 @@ class Bindings {
 			$item_links[] = '<a href="' . get_permalink( $item->ID ) . '" title="' . get_the_title( $item->ID ) . '">' . get_the_title( $item->ID ) . '</a>';
 		}
 		return implode( ', ', $item_links );
+	}
+
+	/**
+	 * Renders the p block with custom content.
+	 *
+	 * @param string $block_content The original content of the block.
+	 * @param array  $parsed_block  Parsed data for the block, including type and attributes.
+	 * @param object $block_obj     Block object instance for the current block being processed.
+	 * 
+	 * @return string Returns block with the permalink added.
+	 */
+	public function render_permalink_block( $block_content, $parsed_block, $block_obj ) {
+		// Determine if this is the custom block variation.
+		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
+			return $block_content;
+		}
+		$allowed_blocks = array(
+			'core/button'
+		);
+
+		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
+			return $block_content; 
+		}
+
+		if ( ! isset( $parsed_block['attrs']['metadata']['name'] ) ) {
+			return $block_content;
+		}
+
+		if ( 'Permalink' !== $parsed_block['attrs']['metadata']['name'] ) {
+			return $block_content;
+		}
+
+		$url           = get_permalink();
+		$pattern       = '/#permalink/s';
+		$block_content = preg_replace( $pattern, $url, $block_content );
+
+		return $block_content;
 	}
 }
