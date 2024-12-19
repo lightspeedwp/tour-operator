@@ -400,17 +400,13 @@ if ( window.location.hash ) {
 
 	document.addEventListener('DOMContentLoaded', function () {
 		// Select all sections within `.single-tour-operator`
-		const sections = document.querySelectorAll('.single-tour-operator section.wp-block-group');
+		const sections = document.querySelectorAll('.single-tour-operator section.wp-block-group, .single-tour-operator section.wp-block-cover');
 
 		sections.forEach(section => {
 			// Locate the first <h2> within the section
 			const heading = section.querySelector('h2');
 			// Locate the second div with the class wp-block-group
 			const toggleTarget = section.querySelectorAll('.wp-block-group')[1];
-	
-			console.log('Processing Section:', section); // Debug
-			console.log('Found Heading:', heading); // Debug
-			console.log('Toggle Target:', toggleTarget); // Debug
 	
 			if (heading && toggleTarget) {
 				// Create a toggle button

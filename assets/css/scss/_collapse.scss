@@ -27,9 +27,12 @@
 		}
 
 		/* Collapsed state for the second wp-block-group */
-		section.wp-block-group {
-			.wp-block-group.collapsed {
-				display: none; /* Hide the content */
+		section {
+			&.wp-block-group,
+			&.wp-block-cover {
+				.wp-block-group.collapsed {
+					display: none; /* Hide the content */
+				}
 			}
 		}
 	}
