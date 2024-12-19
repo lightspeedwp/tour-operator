@@ -899,8 +899,7 @@ wp.domReady( function() {
 			tagName: "section"
 		},
 		innerBlocks: [
-			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } }, [
-				[ 'core/group', {
+			[ 'core/group', {
 					align: 'wide',
 					style: {
 						spacing: {
@@ -910,39 +909,45 @@ wp.domReady( function() {
 						}
 					},
 					layout: { type: 'flex', flexWrap: 'nowrap' }
-				}, [
+				},
+				[
 					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ],
 					[ 'core/heading', { textAlign: 'center', content: 'Related Tours' } ],
 					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ]
-				] ],
-				[ 'core/query', {
-					metadata: {
-						name: 'Related Tours Query'
-					},
-					query: {
-						perPage: 8,
-						postType: 'tour',
-						order: 'asc',
-						orderBy: 'date'
-					},
-					align: 'wide'
-				}, [
-					[ 
-						'core/post-template', 
-						{
-							className: "lsx-tour-related-destination-query",
-							layout: {
-								type: 'grid',
-								columnCount: 3
-							}
+				]
+			],
+			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } },
+				[
+					[ 'core/query', {
+							metadata: {
+								name: 'Related Tours Query'
+							},
+							query: {
+								perPage: 8,
+								postType: 'tour',
+								order: 'asc',
+								orderBy: 'date'
+							},
+							align: 'wide'
 						},
 						[
-							[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
+							[ 
+								'core/post-template', 
+								{
+									className: "lsx-tour-related-destination-query",
+									layout: {
+										type: 'grid',
+										columnCount: 3
+									}
+								},
+								[
+									[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
+								]
+							]
 						]
 					]
-				   ]
 				]
-			]]
+			]
 		],
 		supports: {
 			renaming: false
@@ -984,8 +989,7 @@ wp.domReady( function() {
 			tagName: "section"
 		},
 		innerBlocks: [
-			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } }, [
-				[ 'core/group', {
+			[ 'core/group', {
 					align: 'wide',
 					style: {
 						spacing: {
@@ -995,39 +999,45 @@ wp.domReady( function() {
 						}
 					},
 					layout: { type: 'flex', flexWrap: 'nowrap' }
-				}, [
+				},
+				[
 					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ],
 					[ 'core/heading', { textAlign: 'center', content: 'Reviews' } ],
 					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ]
-				] ],
-				[ 'core/query', {
-					metadata: {
-						name: 'Related Review Query - Destination'
-					},
-					query: {
-						perPage: 8,
-						postType: 'review',
-						order: 'asc',
-						orderBy: 'date'
-					},
-					align: 'wide'
-				}, [
-					[ 
-						'core/post-template', 
-						{
-							className: "lsx-review-related-destination-query",
-							layout: {
-								type: 'grid',
-								columnCount: 2
-							}
+				]
+			],
+			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } },
+				[
+					[ 'core/query', {
+						metadata: {
+							name: 'Related Review Query - Destination'
 						},
-						[
-							[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
+						query: {
+							perPage: 8,
+							postType: 'review',
+							order: 'asc',
+							orderBy: 'date'
+						},
+						align: 'wide'
+					},
+					[
+						[ 
+							'core/post-template', 
+							{
+								className: "lsx-review-related-destination-query",
+								layout: {
+									type: 'grid',
+									columnCount: 2
+								}
+							},
+							[
+								[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
+							]
 						]
 					]
-				   ]
+					]
 				]
-			]]
+			]
 		],
 		supports: {
 			renaming: false
@@ -1065,8 +1075,7 @@ wp.domReady( function() {
 			tagName: "section"
 		},
 		innerBlocks: [
-			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } }, [
-				[ 'core/group', {
+			[ 'core/group', {
 					align: 'wide',
 					style: {
 						spacing: {
@@ -1076,39 +1085,45 @@ wp.domReady( function() {
 						}
 					},
 					layout: { type: 'flex', flexWrap: 'nowrap' }
-				}, [
+				},
+				[
 					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ],
 					[ 'core/heading', { textAlign: 'center', content: 'Reviews' } ],
 					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ]
-				] ],
-				[ 'core/query', {
-					metadata: {
-						name: 'Related Reviews Query - Tour'
-					},
-					query: {
-						perPage: 8,
-						postType: 'review',
-						order: 'asc',
-						orderBy: 'date'
-					},
-					align: 'wide'
-				}, [
-					[ 
-						'core/post-template', 
-						{
-							className: "lsx-review-related-tour-query",
-							layout: {
-								type: 'grid',
-								columnCount: 2
-							}
+				]
+			],
+			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } },
+				[
+					[ 'core/query', {
+							metadata: {
+								name: 'Related Reviews Query - Tour'
+							},
+							query: {
+								perPage: 8,
+								postType: 'review',
+								order: 'asc',
+								orderBy: 'date'
+							},
+							align: 'wide'
 						},
 						[
-							[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
+							[ 
+								'core/post-template', 
+								{
+									className: "lsx-review-related-tour-query",
+									layout: {
+										type: 'grid',
+										columnCount: 2
+									}
+								},
+								[
+									[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
+								]
+							]
 						]
 					]
-				   ]
 				]
-			]]
+			]
 		],
 		supports: {
 			renaming: false
@@ -1146,8 +1161,7 @@ wp.domReady( function() {
 			tagName: "section"
 		},
 		innerBlocks: [
-			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } }, [
-				[ 'core/group', {
+			[ 'core/group', {
 					align: 'wide',
 					style: {
 						spacing: {
@@ -1157,39 +1171,45 @@ wp.domReady( function() {
 						}
 					},
 					layout: { type: 'flex', flexWrap: 'nowrap' }
-				}, [
+				},
+				[
 					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ],
 					[ 'core/heading', { textAlign: 'center', content: 'Reviews' } ],
 					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ]
-				] ],
-				[ 'core/query', {
-					metadata: {
-						name: 'Related Review Query - Accommodation'
-					},
-					query: {
-						perPage: 8,
-						postType: 'review',
-						order: 'asc',
-						orderBy: 'date'
-					},
-					align: 'wide'
-				}, [
-					[ 
-						'core/post-template', 
-						{
-							className: "lsx-review-related-accommodation-query",
-							layout: {
-								type: 'grid',
-								columnCount: 2
-							}
+				]
+			],
+			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } },
+				[
+					[ 'core/query', {
+							metadata: {
+								name: 'Related Review Query - Accommodation'
+							},
+							query: {
+								perPage: 8,
+								postType: 'review',
+								order: 'asc',
+								orderBy: 'date'
+							},
+							align: 'wide'
 						},
 						[
-							[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
+							[ 
+								'core/post-template', 
+								{
+									className: "lsx-review-related-accommodation-query",
+									layout: {
+										type: 'grid',
+										columnCount: 2
+									}
+								},
+								[
+									[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
+								]
+							]
 						]
 					]
-				   ]
 				]
-			]]
+			]
 		],
 		supports: {
 			renaming: false
