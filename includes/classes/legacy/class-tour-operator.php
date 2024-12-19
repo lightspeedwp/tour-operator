@@ -324,10 +324,9 @@ class Tour_Operator {
 	 * @return void
 	 */
 	public function set_map_vars() {
+		return;
 		$this->map_post_types = array( 'accommodation', 'activity', 'destination' );
 		$this->markers        = new \stdClass();
-
-		do_action( 'qm/debug', $this->options['googlemaps_key'] );
 
 		if ( ( false !== $this->options && isset( $this->options['googlemaps_key'] ) ) || defined( 'GOOGLEMAPS_API_KEY' ) ) {
 			if ( ! defined( 'GOOGLEMAPS_API_KEY' ) ) {
