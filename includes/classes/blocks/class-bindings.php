@@ -68,6 +68,7 @@ class Bindings {
 		add_filter( 'render_block', array( $this, 'render_units_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'render_gallery_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'render_map_block' ), 10, 3 );
+		add_filter( 'render_block', array( $this, 'render_permalink_block' ), 10, 3 );
 	}
 
 	/**
@@ -801,5 +802,42 @@ class Bindings {
 			$item_links[] = '<a href="' . get_permalink( $item->ID ) . '" title="' . get_the_title( $item->ID ) . '">' . get_the_title( $item->ID ) . '</a>';
 		}
 		return implode( ', ', $item_links );
+	}
+
+	/**
+	 * Renders the p block with custom content.
+	 *
+	 * @param string $block_content The original content of the block.
+	 * @param array  $parsed_block  Parsed data for the block, including type and attributes.
+	 * @param object $block_obj     Block object instance for the current block being processed.
+	 * 
+	 * @return string Returns block with the permalink added.
+	 */
+	public function render_permalink_block( $block_content, $parsed_block, $block_obj ) {
+		// Determine if this is the custom block variation.
+		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
+			return $block_content;
+		}
+		$allowed_blocks = array(
+			'core/button'
+		);
+
+		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
+			return $block_content; 
+		}
+
+		if ( ! isset( $parsed_block['attrs']['metadata']['name'] ) ) {
+			return $block_content;
+		}
+
+		if ( 'Permalink' !== $parsed_block['attrs']['metadata']['name'] ) {
+			return $block_content;
+		}
+
+		$url           = get_permalink();
+		$pattern       = '/#permalink/s';
+		$block_content = preg_replace( $pattern, $url, $block_content );
+
+		return $block_content;
 	}
 }
