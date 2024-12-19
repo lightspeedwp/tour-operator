@@ -536,5 +536,35 @@ wp.domReady(() => {
 			renaming: false
 		}
     });
+
+	// View More Button Block
+	wp.blocks.registerBlockVariation('core/button', {
+        name: 'lsx-tour-operator/permalink-button',
+        title: 'Permalink',
+		name: 'core/button',
+		category: "lsx-tour-operator",
+		attributes: {
+			className: 'lsx-to-link',
+			metadata: {
+				name: 'Permalink'
+			},
+			style: {
+				border: {
+					radius: {
+						topLeft: '0px 8px 8px 0px',
+						topRight: '0px 8px 8px 0px',
+						bottomLeft: '8px',
+						bottomRight: '8px'
+					}
+				}
+			},
+			backgroundColor: 'primary',
+			width: 100,
+			text: 'View More',
+		},
+		supports: {
+			renaming: false
+		}
+    });
 });
 
