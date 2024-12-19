@@ -3,6 +3,7 @@ wp.domReady( function() {
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/regions',
 		title: 'Regions',
+		icon: 'admin-site-alt3',
 		description: 'Display any regions attached to this destination.',
 		category: 'lsx-tour-operator',
 		attributes: {
@@ -82,6 +83,7 @@ wp.domReady( function() {
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/related-regions',
 		title: 'Related Regions',
+		icon: 'admin-site-alt3',
 		description: 'Display any regions from the parent country.',
 		category: 'lsx-tour-operator',
 		attributes: {
@@ -158,6 +160,7 @@ wp.domReady( function() {
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/featured-accommodation',
 		title: 'Featured Accommodation',
+		icon: 'admin-home',
 		description: 'Displays Accommodation with the Featured tag.',
 		category: 'lsx-tour-operator',
 		attributes: {
@@ -237,6 +240,7 @@ wp.domReady( function() {
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/featured-tours',
 		title: 'Featured Tours',
+		icon: 'palmtree',
 		description: 'Displays Tours with the Featured tag.',
 		category: 'lsx-tour-operator',
 		attributes: {
@@ -316,6 +320,7 @@ wp.domReady( function() {
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/featured-destinations',
 		title: 'Featured Destinations',
+		icon: 'admin-site',
 		description: 'Displays Destinations with Featured tag.',
 		category: 'lsx-tour-operator',
 		attributes: {
@@ -400,6 +405,7 @@ wp.domReady( function() {
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/accommodation-related-tour',
 		title: 'Related Accommodation - Tour',
+		icon: 'palmtree',
 		description: 'Displays Accommodation related to this Tour via the destinations.',
 		category: 'lsx-tour-operator',
 		attributes: {
@@ -481,6 +487,7 @@ wp.domReady( function() {
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/tour-related-tour',
 		title: 'Related Tours - Tour',
+		icon: 'palmtree',
 		description: 'Displays tours related to this Tour via the destinations.',
 		category: 'lsx-tour-operator',
 		attributes: {
@@ -566,6 +573,7 @@ wp.domReady( function() {
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/tour-related-accommodation',
 		title: 'Related Tours - Accommodation',
+		icon: 'admin-home',
 		description: 'Displays Tours related to an Accommodation via the destination.',
 		category: 'lsx-tour-operator',
 		attributes: {
@@ -647,6 +655,7 @@ wp.domReady( function() {
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/accommodation-related-accommodation',
 		title: 'Related Accommodation - Accommodation',
+		icon: 'admin-home',
 		description: 'Displays other accommodation in the area.',
 		category: 'lsx-tour-operator',
 		attributes: {
@@ -732,6 +741,7 @@ wp.domReady( function() {
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/accommodation-related-destination',
 		title: 'Related Accommodation - Destination',
+		icon: 'admin-site',
 		description: 'Displays Accommodation related to a Destination.',
 		category: 'lsx-tour-operator',
 		attributes: {
@@ -812,6 +822,7 @@ wp.domReady( function() {
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/tour-related-destination',
 		title: 'Related Tours - Destinations',
+		icon: 'admin-site',
 		description: 'Displays Tours related to a Destination.',
 		category: 'lsx-tour-operator',
 		attributes: {
@@ -896,6 +907,7 @@ wp.domReady( function() {
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/review-related-destination',
 		title: 'Related Reviews - Destinations',
+		icon: 'admin-site',
 		description: 'Displays Reviews related to an Destination.',
 		category: 'lsx-tour-operator',
 		attributes: {
@@ -976,6 +988,7 @@ wp.domReady( function() {
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/review-related-tour',
 		title: 'Related Reviews - Tour',
+		icon: 'palmtree',
 		description: 'Displays Reviews related to a Tour.',
 		category: 'lsx-tour-operator',
 		attributes: {
@@ -1056,6 +1069,7 @@ wp.domReady( function() {
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/review-related-accommodation',
 		title: 'Related Reviews - Accommodation',
+		icon: 'admin-home',
 		description: 'Displays Reviews related to an Accommodation.',
 		category: 'lsx-tour-operator',
 		attributes: {

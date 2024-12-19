@@ -132,7 +132,7 @@ wp.domReady(() => {
 		name: "lsx-tour-operator/price",
 		title: "Price",
 		category: 'lsx-tour-operator',
-		icon: 'bank',
+		icon: 'money-alt',
 		attributes: {
 			metadata: {
 				name: "Price",
@@ -199,6 +199,7 @@ wp.domReady(() => {
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/travel-styles',
 		title: 'Travel Styles',
+		icon: 'airplane',
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -307,6 +308,7 @@ wp.domReady(() => {
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/best-time-to-visit',
 		title: 'Best Time to Visit',
+		icon: 'calendar-alt',
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -411,6 +413,7 @@ wp.domReady(() => {
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/included',
 		title: 'Included Items',
+		icon: 'plus-alt',
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -461,6 +464,7 @@ wp.domReady(() => {
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/not-included',
 		title: 'Excluded Items',
+		icon: 'dismiss',
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -511,6 +515,7 @@ wp.domReady(() => {
 	wp.blocks.registerBlockVariation('core/button', {
         name: 'lsx-tour-operator/more-link',
         title: 'More Button',
+		icon: 'insert-after',
 		name: 'core/button',
 		category: "lsx-tour-operator",
 		attributes: {
