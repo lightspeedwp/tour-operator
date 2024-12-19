@@ -25,11 +25,11 @@ wp.domReady( function() {
 			backgroundColor: 'primary-200',
 			layout: {
 				type: 'constrained'
-			}
+			},
+			tagName: "section"
 		},
 		innerBlocks: [
-			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } }, [
-				[ 'core/group', {
+			[ 'core/group', {
 					align: 'wide',
 					style: {
 						spacing: {
@@ -39,39 +39,44 @@ wp.domReady( function() {
 						}
 					},
 					layout: { type: 'flex', flexWrap: 'nowrap' }
-				}, [
+				},
+				[
 					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ],
 					[ 'core/heading', { textAlign: 'center', content: 'Regions' } ],
 					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ]
-				] ],
-				[ 'core/query', {
-					metadata: {
-						name: 'Regions Query'
-					},
-					query: {
-						perPage: 8,
-						postType: 'destination',
-						order: 'asc',
-						orderBy: 'date'
-					},
-					align: 'wide'
-				}, [
-					[ 
-						'core/post-template', 
-						{
-							className: "lsx-regions-query",
-							layout: {
-								type: 'grid',
-								columnCount: 4
-							}
+				]
+			],
+			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } },
+				[
+					[ 'core/query', {
+						metadata: {
+							name: 'Regions Query'
 						},
-						[
-							[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
+						query: {
+							perPage: 8,
+							postType: 'destination',
+							order: 'asc',
+							orderBy: 'date'
+						},
+						align: 'wide'
+					}, [
+						[ 
+							'core/post-template', 
+							{
+								className: "lsx-regions-query",
+								layout: {
+									type: 'grid',
+									columnCount: 4
+								}
+							},
+							[
+								[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
+							]
 						]
 					]
-				   ]
+					]
 				]
-			]]
+			]
 		],
 		supports: {
 			renaming: false
@@ -104,11 +109,11 @@ wp.domReady( function() {
 			backgroundColor: 'primary-200',
 			layout: {
 				type: 'constrained'
-			}
+			},
+			tagName: "section"
 		},
 		innerBlocks: [
-			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } }, [
-				[ 'core/group', {
+			[ 'core/group', {
 					align: 'wide',
 					style: {
 						spacing: {
@@ -118,39 +123,46 @@ wp.domReady( function() {
 						}
 					},
 					layout: { type: 'flex', flexWrap: 'nowrap' }
-				}, [
+				},
+				[
 					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ],
 					[ 'core/heading', { textAlign: 'center', content: 'Related Regions' } ],
 					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ]
-				] ],
-				[ 'core/query', {
-					metadata: {
-						name: 'Related Regions Query'
-					},
-					query: {
-						perPage: 8,
-						postType: 'destination',
-						order: 'asc',
-						orderBy: 'date'
-					},
-					align: 'wide'
-				}, [
-					[ 
-						'core/post-template', 
+				]
+			],
+			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } },
+				[
+					[ 'core/query',
 						{
-							className: "lsx-related-regions-query",
-							layout: {
-								type: 'grid',
-								columnCount: 4
-							}
+							metadata: {
+								name: 'Related Regions Query'
+							},
+							query: {
+								perPage: 8,
+								postType: 'destination',
+								order: 'asc',
+								orderBy: 'date'
+							},
+							align: 'wide'
 						},
 						[
-							[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
+							[ 
+								'core/post-template', 
+								{
+									className: "lsx-related-regions-query",
+									layout: {
+										type: 'grid',
+										columnCount: 4
+									}
+								},
+								[
+									[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
+								]
+							]
 						]
 					]
-				   ]
 				]
-			]]
+			]
 		]
 	});
 
@@ -180,11 +192,12 @@ wp.domReady( function() {
 			backgroundColor: 'primary-200',
 			layout: {
 				type: 'constrained'
-			}
+			},
+			tagName: "section"
 		},
 		innerBlocks: [
-			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } }, [
-				[ 'core/group', {
+			[ 'core/group',
+				{
 					align: 'wide',
 					style: {
 						spacing: {
@@ -194,39 +207,45 @@ wp.domReady( function() {
 						}
 					},
 					layout: { type: 'flex', flexWrap: 'nowrap' }
-				}, [
+				},
+				[
 					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ],
 					[ 'core/heading', { textAlign: 'center', content: 'Featured Accommodation' } ],
 					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ]
-				] ],
-				[ 'core/query', {
-					metadata: {
-						name: 'Featured Accommodation Query'
-					},
-					query: {
-						perPage: 8,
-						postType: 'accommodation',
-						order: 'asc',
-						orderBy: 'date'
-					},
-					align: 'wide'
-				}, [
-					[ 
-						'core/post-template', 
-						{
-							className: "lsx-featured-accommodation-query",
-							layout: {
-								type: 'grid',
-								columnCount: 3
-							}
+				]
+			],
+			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } },
+				[
+					[ 'core/query', {
+							metadata: {
+								name: 'Featured Accommodation Query'
+							},
+							query: {
+								perPage: 8,
+								postType: 'accommodation',
+								order: 'asc',
+								orderBy: 'date'
+							},
+							align: 'wide'
 						},
 						[
-							[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
+							[ 
+								'core/post-template', 
+								{
+									className: "lsx-featured-accommodation-query",
+									layout: {
+										type: 'grid',
+										columnCount: 3
+									}
+								},
+								[
+									[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
+								]
+							]
 						]
 					]
-				   ]
 				]
-			]]
+			]
 		],
 		supports: {
 			renaming: false
@@ -259,11 +278,11 @@ wp.domReady( function() {
 			backgroundColor: 'primary-200',
 			layout: {
 				type: 'constrained'
-			}
+			},
+			tagName: "section"
 		},
 		innerBlocks: [
-			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } }, [
-				[ 'core/group', {
+			[ 'core/group', {
 					align: 'wide',
 					style: {
 						spacing: {
@@ -273,39 +292,45 @@ wp.domReady( function() {
 						}
 					},
 					layout: { type: 'flex', flexWrap: 'nowrap' }
-				}, [
+				},
+				[
 					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ],
 					[ 'core/heading', { textAlign: 'center', content: 'Featured Tours' } ],
 					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ]
-				] ],
-				[ 'core/query', {
-					metadata: {
-						name: 'Featured Tours Query'
-					},
-					query: {
-						perPage: 8,
-						postType: 'tour',
-						order: 'asc',
-						orderBy: 'date'
-					},
-					align: 'wide'
-				}, [
-					[ 
-						'core/post-template', 
-						{
-							className: "lsx-featured-tours-query",
-							layout: {
-								type: 'grid',
-								columnCount: 3
-							}
+				]
+			],
+			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } },
+				[			
+					[ 'core/query', {
+							metadata: {
+								name: 'Featured Tours Query'
+							},
+							query: {
+								perPage: 8,
+								postType: 'tour',
+								order: 'asc',
+								orderBy: 'date'
+							},
+							align: 'wide'
 						},
 						[
-							[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
+							[ 
+								'core/post-template', 
+								{
+									className: "lsx-featured-tours-query",
+									layout: {
+										type: 'grid',
+										columnCount: 3
+									}
+								},
+								[
+									[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
+								]
+							]
 						]
 					]
-				   ]
 				]
-			]]
+			]
 		],
 		supports: {
 			renaming: false
@@ -338,11 +363,11 @@ wp.domReady( function() {
 			backgroundColor: 'primary-200',
 			layout: {
 				type: 'constrained'
-			}
+			},
+			tagName: "section"
 		},
 		innerBlocks: [
-			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } }, [
-				[ 'core/group', {
+			[ 'core/group', {
 					align: 'wide',
 					style: {
 						spacing: {
@@ -352,39 +377,45 @@ wp.domReady( function() {
 						}
 					},
 					layout: { type: 'flex', flexWrap: 'nowrap' }
-				}, [
+				},
+				[
 					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ],
 					[ 'core/heading', { textAlign: 'center', content: 'Featured Destinations' } ],
 					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' } ]
-				] ],
-				[ 'core/query', {
-					metadata: {
-						name: 'Featured Destination Query'
-					},
-					query: {
-						perPage: 8,
-						postType: 'destination',
-						order: 'asc',
-						orderBy: 'date'
-					},
-					align: 'wide'
-				}, [
-					[ 
-						'core/post-template', 
-						{
-							className: "lsx-featured-destinations-query",
-							layout: {
-								type: 'grid',
-								columnCount: 3
-							}
+				]
+			],
+			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } },
+				[
+					[ 'core/query', {
+							metadata: {
+								name: 'Featured Destination Query'
+							},
+							query: {
+								perPage: 8,
+								postType: 'destination',
+								order: 'asc',
+								orderBy: 'date'
+							},
+							align: 'wide'
 						},
 						[
-							[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
+							[ 
+								'core/post-template', 
+								{
+									className: "lsx-featured-destinations-query",
+									layout: {
+										type: 'grid',
+										columnCount: 3
+									}
+								},
+								[
+									[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
+								]
+							]
 						]
 					]
-				   ]
 				]
-			]]
+			]
 		],
 		supports: {
 			renaming: false
@@ -422,7 +453,8 @@ wp.domReady( function() {
 			backgroundColor: 'primary-200',
 			layout: {
 				type: 'constrained'
-			}
+			},
+			tagName: "section"
 		},
 		innerBlocks: [
 			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } }, [
@@ -503,7 +535,8 @@ wp.domReady( function() {
 			backgroundColor: 'primary-200',
 			layout: {
 				type: 'constrained'
-			}
+			},
+			tagName: "section"
 		},
 		innerBlocks: [
 			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } }, [
@@ -588,7 +621,8 @@ wp.domReady( function() {
 			backgroundColor: 'primary-200',
 			layout: {
 				type: 'constrained'
-			}
+			},
+			tagName: "section"
 		},
 		innerBlocks: [
 			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } }, [
@@ -669,7 +703,8 @@ wp.domReady( function() {
 			backgroundColor: 'primary-200',
 			layout: {
 				type: 'constrained'
-			}
+			},
+			tagName: "section"
 		},
 		innerBlocks: [
 			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } }, [
@@ -754,7 +789,8 @@ wp.domReady( function() {
 			backgroundColor: 'primary-200',
 			layout: {
 				type: 'constrained'
-			}
+			},
+			tagName: "section"
 		},
 		innerBlocks: [
 			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } }, [
@@ -834,7 +870,8 @@ wp.domReady( function() {
 			backgroundColor: 'primary-200',
 			layout: {
 				type: 'constrained'
-			}
+			},
+			tagName: "section"
 		},
 		innerBlocks: [
 			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } }, [
@@ -918,7 +955,8 @@ wp.domReady( function() {
 			backgroundColor: 'primary-200',
 			layout: {
 				type: 'constrained'
-			}
+			},
+			tagName: "section"
 		},
 		innerBlocks: [
 			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } }, [
@@ -998,7 +1036,8 @@ wp.domReady( function() {
 			backgroundColor: 'primary-200',
 			layout: {
 				type: 'constrained'
-			}
+			},
+			tagName: "section"
 		},
 		innerBlocks: [
 			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } }, [
@@ -1078,7 +1117,8 @@ wp.domReady( function() {
 			backgroundColor: 'primary-200',
 			layout: {
 				type: 'constrained'
-			}
+			},
+			tagName: "section"
 		},
 		innerBlocks: [
 			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } }, [
