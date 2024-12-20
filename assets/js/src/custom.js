@@ -214,12 +214,23 @@ if ( window.location.hash ) {
 					appendDots: $this.parent(),    // Append dots in the right container
 					responsive: [
 						{
+							breakpoint: 1228,
+							settings: {
+								slidesToShow: 3,
+								slidesToScroll: 1,
+								draggable: true,
+								arrows: false,
+								swipe: true,
+								dots: true,
+							}
+						},
+						{
 							breakpoint: 1028,
 							settings: {
 								slidesToShow: 2,
 								slidesToScroll: 1,
 								draggable: true,
-								arrows: true,
+								arrows: false,
 								swipe: true,
 								dots: true,
 							}
@@ -230,7 +241,7 @@ if ( window.location.hash ) {
 								slidesToShow: 1,
 								slidesToScroll: 1,
 								draggable: true,
-								arrows: true,
+								arrows: false,
 								swipe: true,
 								dots: true,
 							}
