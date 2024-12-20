@@ -152,6 +152,7 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 						);
 
 						if ( isset( get_queried_object()->term_id ) ) {
+							// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 							$country_args['tax_query'] = array(
 								array(
 									'taxonomy' => 'continent',

@@ -170,6 +170,7 @@ class Accommodation {
 			if ( 0 !== (int) $value ) {
 				while ( $counter > 0 ) {
 					$ratings_array[] = '<figure class="wp-block-image size-large is-resized">';
+					// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
 					$ratings_array[] = '<img src="';
 					if ( (int) $value > 0 ) {
 						$ratings_array[] = LSX_TO_URL . 'assets/img/rating-star-full.png';

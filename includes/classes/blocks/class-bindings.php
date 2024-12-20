@@ -693,6 +693,7 @@ class Bindings {
 			}
 
 			$build = '<figure class="wp-block-image">';
+			// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
 			$build .= $link_prefix . '<img src="' . $gurl . '" alt="" class="wp-image-' . $gid . '"/>' . $link_suffix;
 			$build .= '</figure>';
 			$images[] = $build;
