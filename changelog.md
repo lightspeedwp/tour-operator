@@ -35,7 +35,7 @@
 - Various settings which are now handled by Block and Site Editor options. - (PR #332)[https://github.com/lightspeedwp/tour-operator/pull/332]
 
 ### Security
-- General testing to ensure compatibility with latest WordPress version (6.6.1).
+- General testing to ensure compatibility with latest WordPress version (6.7).
 
 ## [[1.4.10]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.10) - 2024-
 
