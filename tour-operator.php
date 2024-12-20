@@ -3,12 +3,12 @@
  * Plugin Name:       LSX Tour Operator
  * Plugin URI:        https://touroperator.solutions/
  * Description:       Showcase tours, destinations, and accommodations with digital itineraries, galleries, and integrated maps.
- * Author:            LightSpeed
+ * Author:            lightspeedwp
+ * Author URI:        https://lightspeedwp.agency/
  * Version:           2.0.0
  * Requires at least: 6.7
  * Tested up to:      6.7
  * Requires PHP:      8.0
- * Author URI:        https://lightspeedwp.agency/
  * License:           GPLv3 or later
  * License URI:       https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain:       tour-operator

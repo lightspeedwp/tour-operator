@@ -1,5 +1,5 @@
 === LSX Tour Operator ===
-Contributors: LightSpeed
+Contributors: lightspeedwp, wetudev
 Donate link: https://lsdev.biz/lsx/donate/
 Tags: lsx, tour operator, travel, tourism, itinerary
 Requires at least: 6.7
