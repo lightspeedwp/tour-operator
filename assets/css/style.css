@@ -176,7 +176,7 @@
   /* Fixed width */
   height: 20px;
   /* Fixed height */
-  display: inline-block;
+  display: flex;
   -o-object-fit: contain;
      object-fit: contain;
   /* Ensure image doesn't stretch or distort */
@@ -259,7 +259,7 @@
   width: 20px;
   /* Adjust the size of the tick icon */
   height: 20px;
-  background-image: url("../../img/tick.svg");
+  background-image: url("../img/tick.svg");
   /* Replace with the path to your tick.svg */
   background-size: contain;
   background-repeat: no-repeat;
@@ -584,21 +584,23 @@ button.facetwp-reset {
   height: auto;
   justify-content: center;
   list-style: none;
-  margin: 2rem 0 0;
+  margin: 1rem 0 0;
   padding: 0;
 }
 .lsx-to-slider .slick-dots:not(.dropdown-menu) > li {
   line-height: 1;
   padding: 5px;
+  margin-left:15px;
 }
 .lsx-to-slider .slick-dots:not(.dropdown-menu) > li > button {
-  background: transparent;
-  border-style: solid;
-  border-width: 1px;
-  font: 0/0 a;
-  height: 12px;
-  transition: all 300ms ease-in-out;
-  width: 4rem;
+  background: #000;
+		  border-style: solid;
+		  border-width: 1px;
+		  font: 0/0 a;
+		  height: 12px;
+		  border-radius:50%;
+		  transition: all 300ms ease-in-out;
+		  width: 12px;
 }
 .lsx-to-slider .slick-arrow.slick-prev {
   left: -4rem;

@@ -133,7 +133,7 @@
         width: 40px;
         height: 40px;
         display: inline-block;
-        left: 10px;
+        left: 8px;
       }
     }
 
@@ -157,21 +157,23 @@
 	  height: auto;
 	  justify-content: center;
 	  list-style: none;
-	  margin: 2rem 0 0;
+	  margin: 1rem 0 0;
 	  padding: 0;
   
 	  > li {
 		line-height: 1;
 		padding: 5px;
+		margin-left:15px;
   
 		> button {
-		  background: transparent;
+		  background: #000;
 		  border-style: solid;
 		  border-width: 1px;
 		  font: 0/0 a;
 		  height: 12px;
+		  border-radius:50%;
 		  transition: all 300ms ease-in-out;
-		  width: 4rem;
+		  width: 12px;
 		}
 	  }
 	}

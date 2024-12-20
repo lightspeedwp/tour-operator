@@ -15,7 +15,7 @@
 	/* Fixed width */
 	height: 20px;
 	/* Fixed height */
-	display: inline-block;
+	display: flex;
 	object-fit: contain;
 	/* Ensure image doesn't stretch or distort */
 }
@@ -90,7 +90,7 @@
 	width: 20px;
 	/* Adjust the size of the tick icon */
 	height: 20px;
-	background-image: url('../../img/tick.svg');
+	background-image: url('../img/tick.svg');
 	/* Replace with the path to your tick.svg */
 	background-size: contain;
 	background-repeat: no-repeat;
