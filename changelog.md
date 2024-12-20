@@ -1,12 +1,6 @@
 # Changelog
 
-## [[2.0.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.0) - IN DEVELOPMENT - 2024-XX-XX
-
-### Major Changes
-- **Overhauled Booking Engine:**  
-  Introduced a modular booking logic system, enabling complex seasonal price handling, improved date availability checks, and more stable bookings. ([#210](https://github.com/lightspeedwp/tour-operator/pull/210), [#198](https://github.com/lightspeedwp/tour-operator/issues/198))
-- **Advanced Seasonal Pricing:**  
-  Implemented configurable seasonal pricing rules that handle overlapping date ranges, tiered rates, and dynamic scheduling. ([#223](https://github.com/lightspeedwp/tour-operator/pull/223))
+## [[2.0.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.0) - 20-12-2024
 
 ### Enhancements
 - **Admin UI & UX Improvements:**  
