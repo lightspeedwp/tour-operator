@@ -20,6 +20,7 @@
 				<div class="col-md-12">
 					<div class="box support">
 						<div class="image">
+							<?php // phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage ?>
 							<img width="200px" src="
 							<?php
 								// @phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions 

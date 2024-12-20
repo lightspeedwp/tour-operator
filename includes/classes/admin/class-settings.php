@@ -481,6 +481,7 @@ class Settings {
 		$field[] = '<input class="input_image" type="hidden" value="' . $image_id . '" name="' . $field_id . '" />';
 
 		// Image Previews
+		// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
 		$field[] = '<div class="thumbnail-preview" style="' . $prev_css . '"><img src="' . $image[0] . '" width="' . $params['preview_w'] . '" style="color:black;" /></div>';
 
 		// Action Buttons

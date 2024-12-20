@@ -71,7 +71,7 @@ class Registration {
 					LSX_TO_URL . 'assets/js/blocks/' . $slug . '.js', // Path to your JavaScript file.
 					array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),  // Dependencies.
 					filemtime( LSX_TO_PATH . 'assets/js/blocks/' . $slug . '.js' ), // Versioning with file modification time.
-					true  // Enqueue in the footer.
+					[ 'in_footer' => true ]
 				);
 				if ( 'general' === $slug ) {
 					$param_array = array(
@@ -88,7 +88,8 @@ class Registration {
 					'lsx-to-' . $slug,
 					LSX_TO_URL . 'assets/js/blocks/' . $slug . '.js',
 					$dependancies,
-					filemtime( LSX_TO_PATH . 'assets/js/blocks/' . $slug . '.js' )
+					filemtime( LSX_TO_PATH . 'assets/js/blocks/' . $slug . '.js' ),
+					[ 'in_footer' => true ]
 				);
 			}
 
@@ -98,7 +99,7 @@ class Registration {
 					LSX_TO_URL . 'assets/js/blocks/slotfills.js', // Path to your JavaScript file.
 					array( 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-components', 'wp-data' ),  // Dependencies.
 					filemtime( LSX_TO_PATH . 'assets/js/blocks/slotfills.js' ), // Versioning with file modification time.
-					true  // Enqueue in the footer.
+					[ 'in_footer' => true ]
 				);
 			}
 		}
@@ -127,6 +128,7 @@ class Registration {
 				// We only restric this on the destination post type, in case the block is used on a landing page.
 				if ( 'destination' === get_post_type() ) {
 					$query['post_parent__in'] = [ get_the_ID() ];
+					// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
 					$query['post__not_in'] = [ get_the_ID() ];
 				}
 			break;
@@ -136,6 +138,7 @@ class Registration {
 				$parent = wp_get_post_parent_id();
 				if ( 'destination' === get_post_type() ) {
 					$query['post_parent'] = $parent;
+					// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
 					$query['post__not_in'] = [ get_the_ID() ];
 				}
 			break;
@@ -143,7 +146,7 @@ class Registration {
 			case 'featured-accommodation':
 			case 'featured-tours':
 			case 'featured-destinations':
-
+				// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 				$query['meta_query'] = array(
 					'relation' => 'OR',
 					array(
@@ -217,7 +220,7 @@ class Registration {
 				if ( ! isset( $query['post__in'] ) ) {
 					$this->disabled[ $key ] = true;
 				}
-
+				// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
 				$query['post__not_in'] = $excluded_items;
 
 			break;

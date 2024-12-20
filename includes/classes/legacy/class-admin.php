@@ -108,8 +108,8 @@ class Admin extends Tour_Operator {
 			wp_deregister_script( 'select2.min.js' );
 			if ( defined( 'CMB_URL' ) ) {
 				wp_deregister_script( 'select2' );
-				wp_enqueue_script( 'select2', trailingslashit( CMB_URL ) . 'js/vendor/select2/select2.js', array( 'jquery' ) );
-				wp_enqueue_style( 'select2', trailingslashit( CMB_URL ) . 'js/vendor/select2/select2.css' );
+				wp_enqueue_script( 'select2', trailingslashit( CMB_URL ) . 'js/vendor/select2/select2.js', array( 'jquery' ), LSX_TO_VER, [ 'in_footer' => true ] );
+				wp_enqueue_style( 'select2', trailingslashit( CMB_URL ) . 'js/vendor/select2/select2.css', [], LSX_TO_VER );
 			}
 		}
 
@@ -243,6 +243,7 @@ class Admin extends Tour_Operator {
 			$image_preview = wp_get_attachment_image_src( $value, 'thumbnail' );
 
 			if ( is_array( $image_preview ) ) {
+				// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
 				$image_preview = '<img src="' . esc_url( $image_preview[0] ) . '" width="' . $image_preview[1] . '" height="' . $image_preview[2] . '" class="alignnone size-thumbnail d wp-image-' . $value . '" />';
 			}
 		} else {
