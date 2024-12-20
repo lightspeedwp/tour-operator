@@ -1,17 +1,19 @@
 <?php
+// phpcs:ignoreFile PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
 return array(
 	'title'         => __( 'Itinerary (list)', 'tour-operator' ),
-	'description'   => __( '', 'tour-operator' ),
+	'description'   => __( 'A list display for the tour itineraries.', 'tour-operator' ),
 	'categories'    => array( $this->category ),
 	'templateTypes' => array( 'single' ),
-	'content'     => '
-		<!-- wp:columns {"metadata":{"categories":["lsx-tour-operator"],"patternName":"lsx-tour-operator/itinerary-card","name":"Itinerary (list)"},"align":"wide"} -->
+	'blockTypes'    => [ 'Day by day' ],
+	'content'       => '
+		<!-- wp:columns {"metadata":{"categories":[null],"patternName":"lsx-tour-operator/itinerary-list","name":"Itinerary (list)"},"align":"wide"} -->
 		<div class="wp-block-columns alignwide"><!-- wp:column {"width":"100%"} -->
 		<div class="wp-block-column" style="flex-basis:100%"><!-- wp:group {"layout":{"type":"constrained"}} -->
 		<div class="wp-block-group"><!-- wp:columns {"align":"wide"} -->
 		<div class="wp-block-columns alignwide"><!-- wp:column {"width":"25%"} -->
-		<div class="wp-block-column" style="flex-basis:25%"><!-- wp:image {"id":2981,"sizeSlug":"full","linkDestination":"none","className":"itinerary-image","style":{"border":{"radius":"8px"}}} -->
-		<figure class="wp-block-image size-full has-custom-border itinerary-image"><img src="https://beta.local/wp-content/uploads/2024/09/R0I3460.jpg" alt="" class="wp-image-2981" style="border-radius:8px" title=""/></figure>
+		<div class="wp-block-column" style="flex-basis:25%"><!-- wp:image {"id":43376,"sizeSlug":"full","linkDestination":"none","className":"itinerary-image","style":{"border":{"radius":"8px"}}} -->
+		<figure class="wp-block-image size-full has-custom-border itinerary-image"><img src="' . LSX_TO_URL . 'assets/img/blocks/placeholder.png" alt="" class="wp-image-43376" style="border-radius:8px" title=""/></figure>
 		<!-- /wp:image --></div>
 		<!-- /wp:column -->
 
@@ -26,7 +28,9 @@ return array(
 		<div class="wp-block-columns alignwide" style="margin-top:0px;margin-bottom:0px;padding-top:10px;padding-bottom:10px"><!-- wp:column {"width":"60%"} -->
 		<div class="wp-block-column" style="flex-basis:60%"><!-- wp:paragraph {"className":"itinerary-description","style":{"elements":{"link":{"color":{"text":"var:preset|color|primary-700"}}}},"textColor":"primary-700"} -->
 		<p class="itinerary-description has-primary-700-color has-text-color has-link-color"><strong>Itinerary Description</strong></p>
-		<!-- /wp:paragraph --></div>
+		<!-- /wp:paragraph -->
+
+		<!-- wp:read-more /--></div>
 		<!-- /wp:column -->
 
 		<!-- wp:column {"width":"40%","style":{"spacing":{"padding":{"top":"0","bottom":"0"}}}} -->
@@ -39,7 +43,7 @@ return array(
 		<!-- wp:group {"className":"itin-location-wrapper","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 		<div class="wp-block-group itin-location-wrapper" style="margin-top:0;margin-bottom:0"><!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
 		<div class="wp-block-group"><!-- wp:image {"id":60633,"width":"20px","sizeSlug":"full","linkDestination":"none"} -->
-		<figure class="wp-block-image size-full is-resized"><img src="https://tour-operator.lsx.design/wp-content/uploads/2024/09/Typelocation-icon.png" alt="" class="wp-image-60633" style="width:20px"/></figure>
+		<figure class="wp-block-image size-full is-resized"><img src="' . LSX_TO_URL . 'assets/img/blocks/location.png" alt="" class="wp-image-60633" style="width:20px"/></figure>
 		<!-- /wp:image -->
 
 		<!-- wp:paragraph {"style":{"spacing":{"padding":{"top":"2px","bottom":"2px"}}}} -->
@@ -55,7 +59,7 @@ return array(
 		<!-- wp:group {"className":"itin-accommodation-wrapper","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 		<div class="wp-block-group itin-accommodation-wrapper" style="margin-top:0;margin-bottom:0"><!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
 		<div class="wp-block-group"><!-- wp:image {"id":60630,"width":"20px","sizeSlug":"full","linkDestination":"none"} -->
-		<figure class="wp-block-image size-full is-resized"><img src="https://tour-operator.lsx.design/wp-content/uploads/2024/09/Typeaccommodation-icon.png" alt="" class="wp-image-60630" style="width:20px"/></figure>
+		<figure class="wp-block-image size-full is-resized"><img src="' . LSX_TO_URL . 'assets/img/blocks/itinerary-accommodation.png" alt="" class="wp-image-60630" style="width:20px"/></figure>
 		<!-- /wp:image -->
 
 		<!-- wp:paragraph {"style":{"spacing":{"padding":{"top":"2px","bottom":"2px"}}}} -->
@@ -71,7 +75,7 @@ return array(
 		<!-- wp:group {"className":"itin-type-wrapper","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
 		<div class="wp-block-group itin-type-wrapper" style="margin-top:0;margin-bottom:0"><!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
 		<div class="wp-block-group"><!-- wp:image {"id":60627,"width":"20px","sizeSlug":"full","linkDestination":"none"} -->
-		<figure class="wp-block-image size-full is-resized"><img src="https://tour-operator.lsx.design/wp-content/uploads/2024/09/accommodation-type-TO-icon-black-20px-2.png" alt="" class="wp-image-60627" style="width:20px"/></figure>
+		<figure class="wp-block-image size-full is-resized"><img src="' . LSX_TO_URL . 'assets/img/blocks/unit-type.png" alt="" class="wp-image-60627" style="width:20px"/></figure>
 		<!-- /wp:image -->
 
 		<!-- wp:paragraph {"style":{"spacing":{"padding":{"top":"2px","bottom":"2px"}}}} -->
@@ -87,7 +91,7 @@ return array(
 		<!-- wp:group {"className":"itin-drinks-wrapper","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 		<div class="wp-block-group itin-drinks-wrapper" style="margin-top:0;margin-bottom:0"><!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
 		<div class="wp-block-group"><!-- wp:image {"id":60618,"width":"20px","height":"auto","scale":"cover","sizeSlug":"full","linkDestination":"none"} -->
-		<figure class="wp-block-image size-full is-resized"><img src="https://tour-operator.lsx.design/wp-content/uploads/2024/09/drinks-icon-TO-black-20px-2-1.png" alt="" class="wp-image-60618" style="object-fit:cover;width:20px;height:auto"/></figure>
+		<figure class="wp-block-image size-full is-resized"><img src="' . LSX_TO_URL . 'assets/img/blocks/drinks.png" alt="" class="wp-image-60618" style="object-fit:cover;width:20px;height:auto"/></figure>
 		<!-- /wp:image -->
 
 		<!-- wp:paragraph {"style":{"spacing":{"padding":{"top":"2px","bottom":"2px"}}}} -->
@@ -103,7 +107,7 @@ return array(
 		<!-- wp:group {"className":"itin-room-wrapper","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 		<div class="wp-block-group itin-room-wrapper" style="margin-top:0;margin-bottom:0"><!-- wp:group {"style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
 		<div class="wp-block-group"><!-- wp:image {"id":60617,"width":"20px","sizeSlug":"full","linkDestination":"none"} -->
-		<figure class="wp-block-image size-full is-resized"><img src="https://tour-operator.lsx.design/wp-content/uploads/2024/09/room-basis-TO-black-20px-2-1.png" alt="" class="wp-image-60617" style="width:20px"/></figure>
+		<figure class="wp-block-image size-full is-resized"><img src="' . LSX_TO_URL . 'assets/img/blocks/rooms.png" alt="" class="wp-image-60617" style="width:20px"/></figure>
 		<!-- /wp:image -->
 
 		<!-- wp:paragraph {"style":{"spacing":{"padding":{"top":"2px","bottom":"2px"}}}} -->

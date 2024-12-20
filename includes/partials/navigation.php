@@ -4,8 +4,10 @@ $settings_pages = tour_operator()->legacy->get_post_types();
 <h2 class="nav-tab-wrapper">
 	<?php
 	$current_tab = 'general';
+	// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	if ( isset( $_GET['tab'] ) ) {
-		$current_tab = sanitize_key( $_GET['tab'] );	
+		// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$current_tab = sanitize_key( wp_unslash( $_GET['tab'] ) );	
 	}
 
 	echo wp_kses_post( '<a class="nav-tab nav-tab-active" href="#ui-general">' . esc_html__( 'General', 'tour-operator' ) . '</a>' );

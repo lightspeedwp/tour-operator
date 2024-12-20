@@ -3,8 +3,9 @@
  */
 
 @import 'scss/icons';
+@import 'scss/additional';
 @import 'scss/slider';
-
+@import 'scss/collapse';
 
 .lsx-itinerary-wrapper,
 .lsx-units-wrapper {
@@ -12,4 +13,3 @@
 		display: none;
 	}
 }
- 

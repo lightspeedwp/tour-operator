@@ -73,16 +73,11 @@ class Accommodation {
 			'villa'  => esc_html__( 'Villa', 'tour-operator' ),
 		);
 
-		add_filter( 'lsx_to_entry_class', array( $this, 'entry_class' ) );
-
 		add_filter( 'lsx_to_custom_field_query', array( $this, 'price_filter' ), 5, 10 );
 
 		add_filter( 'lsx_to_custom_field_query', array( $this, 'rating' ), 5, 10 );
 
 		include( 'class-unit-query.php' );
-
-		add_action( 'lsx_to_map_meta', 'lsx_to_accommodation_meta' );
-		add_action( 'lsx_to_modal_meta', 'lsx_to_accommodation_meta' );
 	}
 
 	/**
@@ -102,19 +97,6 @@ class Accommodation {
 	}
 
 	/**
-	 * A filter to set the content area to a small column on single
-	 */
-	function entry_class( $classes ) {
-		global $post;
-
-		if ( is_main_query() && is_singular( $this->slug ) ) {
-			$classes[] = 'col-xs-12 col-sm-12 col-md-7';
-		}
-
-		return $classes;
-	}
-
-	/**
 	 * Adds in additional info for the price custom field
 	 */
 	public function price_filter( $html = '', $meta_key = false, $value = false, $before = '', $after = '' ) {
@@ -131,13 +113,22 @@ class Accommodation {
 			$value         = number_format( (int) $value, 2 );
 			$tour_operator = tour_operator();
 			$currency      = '';
+			$letter_code   = '';
 
 			if ( is_object( $tour_operator ) && isset( $tour_operator->options['currency'] ) && ! empty( $tour_operator->options['currency'] ) ) {
-				$currency = $tour_operator->options['currency'];
-				$currency = '<span class="currency-icon ' . mb_strtolower( $currency ) . '">' . $currency . '</span>';
+				$letter_code = $tour_operator->options['currency'];
+				$currency = '<span class="currency-icon ' . mb_strtolower( $letter_code ) . '"></span>';
 			}
 
 			$value = apply_filters( 'lsx_to_accommodation_price', $value, $price_type, $currency );
+
+			// Get the Sale Price
+			if ( 'price' === $meta_key ) {
+				$sale_price = get_post_meta( get_the_ID(), 'sale_price', true );
+				if ( false !== $sale_price && ! empty( $sale_price ) && 0 !== intval( $sale_price ) ) {
+					$value = number_format( intval( $sale_price ) , 2 );
+				}
+			}
 
 			switch ( $price_type ) {
 				case 'per_person_per_night':
@@ -157,6 +148,11 @@ class Accommodation {
 					break;
 			}
 
+			// Get the currency settings
+			if ( is_object( $tour_operator ) &&  ( isset( $tour_operator->options['country_code_disabled'] ) && 0 === intval( $tour_operator->options['country_code_disabled'] ) || ! isset( $tour_operator->options['country_code_disabled'] ) ) ) {
+				$value = $letter_code . $value;
+			}
+
 			$html = $before . $value . $after;
 		}
 
@@ -174,6 +170,7 @@ class Accommodation {
 			if ( 0 !== (int) $value ) {
 				while ( $counter > 0 ) {
 					$ratings_array[] = '<figure class="wp-block-image size-large is-resized">';
+					// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
 					$ratings_array[] = '<img src="';
 					if ( (int) $value > 0 ) {
 						$ratings_array[] = LSX_TO_URL . 'assets/img/rating-star-full.png';

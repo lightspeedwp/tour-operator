@@ -35,7 +35,7 @@ class Patterns {
 	public function register_block_category( $categories ) {
 		$categories[] = array(
 			'slug'  => $this->category,
-			'title' => __( 'LSX Tour Operator', 'lsx-tour-operator' )
+			'title' => __( 'Tour Operator', 'tour-operator' )
 		);
 		return $categories;
 	}
@@ -48,7 +48,7 @@ class Patterns {
 	public function register_block_pattern_category() {
 		register_block_pattern_category(
 			$this->category,
-			array( 'label' => __( 'LSX Tour Operator', 'lsx-tour-operator' ) )
+			array( 'label' => __( 'Tour Operator', 'tour-operator' ) )
 		);
 	}  
 

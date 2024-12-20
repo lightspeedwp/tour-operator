@@ -29,7 +29,8 @@ wp.domReady(() => {
 						bottom: 0
 					}
 				}
-			}
+			},
+			tagName: "section"
 		},
 		innerBlocks: [
 			['core/group',
@@ -73,21 +74,37 @@ wp.domReady(() => {
 					]
 				]
 			],
-			[
-				"core/paragraph",
+			['core/group',
 				{
-					placeholder: "Replace this with the Rooms block, and select a pattern.",
-					align: "center",
+					align: 'wide',
+					style: {
+						spacing: {
+							blockGap: 'var:preset|spacing|small'
+						}
+					},
+					layout: {
+						type: 'constrained',
+					}
 				},
+				[
+					["core/paragraph",
+						{
+							placeholder: "Replace this with the Rooms block, and select a pattern.",
+							align: "center",
+						}
+					]
+				]
 			]
 		],
-		isDefault: false,
+		supports: {
+			renaming: false
+		}
 	});
 
 	wp.blocks.registerBlockVariation("core/group", {
 		name: "lsx-tour-operator/unit-rooms",
 		title: "Rooms",
-		icon: "admin-multisite",
+		icon: "admin-home",
 		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
@@ -109,15 +126,17 @@ wp.domReady(() => {
 				slug: 'lsx-tour-operator/room-card'
 			}]
 		],
-		isDefault: false,
-		scope: ["inserter"],
 		parent: ["lsx-tour-operator/units"], // Restricts to "lsx-tour-operator/units" block
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Rating Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/rating',
 		title: 'Rating',
+		icon: "star-empty",
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -155,7 +174,7 @@ wp.domReady(() => {
 					['core/image', {
 						width: '20px',
 						sizeSlug: 'large',
-						url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/09/rating-icon-TO-black-20px-1.png',
+						url: lsxToEditor.assetsUrl + 'blocks/rating-icon-TO.png',
 						alt: ''
 					}],
 					['core/paragraph', {
@@ -298,13 +317,17 @@ wp.domReady(() => {
 					]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Number of Units Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/number-of-rooms',
 		title: 'Number of Rooms',
+		icon: "admin-multisite",
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -338,7 +361,7 @@ wp.domReady(() => {
 					['core/image', {
 						width: '20px',
 						sizeSlug: 'large',
-						url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/09/TO-accommodation-rooms-icon-black-52px.png',
+						url: lsxToEditor.assetsUrl + 'blocks/accommodation-rooms-icon.png',
 						alt: ''
 					}],
 					['core/paragraph', {
@@ -384,13 +407,17 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Check In Time Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/checkin-time',
 		title: 'Check In Time',
+		icon: "clock",
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -426,7 +453,7 @@ wp.domReady(() => {
 						width: '20px',
 						sizeSlug: 'large',
 						linkDestination: 'none',
-						url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/11/check-in-check-out-time-icon-black-52px-1.svg',
+						url: lsxToEditor.assetsUrl + 'blocks/check-in-check-out-time.svg',
 						alt: '',
 						className: 'wp-image-122720'
 					}],
@@ -474,13 +501,17 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Check Out Time Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/checkout-time',
 		title: 'Check Out Time',
+		icon: "clock",
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -516,7 +547,7 @@ wp.domReady(() => {
 						width: '20px',
 						sizeSlug: 'large',
 						linkDestination: 'none',
-						url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/11/check-in-check-out-time-icon-black-52px-1.svg',
+						url: lsxToEditor.assetsUrl + 'blocks/check-in-check-out-time.svg',
 						alt: '',
 						className: 'wp-image-122720'
 					}],
@@ -564,13 +595,17 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Minimum Child Age Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/minimum-child-age',
 		title: 'Minimum Child Age',
+		icon: "id",
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -606,7 +641,7 @@ wp.domReady(() => {
 						width: '20px',
 						sizeSlug: 'large',
 						linkDestination: 'none',
-						url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/11/minimum-child-age-icon-black-52px-1.svg',
+						url: lsxToEditor.assetsUrl + 'blocks/minimum-child-age.svg',
 						alt: '',
 						className: 'wp-image-122719'
 					}],
@@ -654,13 +689,17 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Spoken Languages Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/spoken-languages',
 		title: 'Spoken Languages',
+		icon: "translation",
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -693,7 +732,7 @@ wp.domReady(() => {
 					['core/image', {
 						width: '20px',
 						sizeSlug: 'large',
-						url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/09/spoken-languages-TO-icon-black-20px-1.png',
+						url: lsxToEditor.assetsUrl + 'blocks/spoken-languages.png',
 						alt: ''
 					}],
 					['core/paragraph', {
@@ -751,13 +790,17 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Accommodation Type Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/accommodation-type',
 		title: 'Accommodation Type',
+		icon: "admin-multisite",
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -790,7 +833,7 @@ wp.domReady(() => {
 					['core/image', {
 						width: '20px',
 						sizeSlug: 'large',
-						url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/09/accommodation-type-TO-icon-black-20px-2.png',
+						url: lsxToEditor.assetsUrl + 'blocks/accommodation-type.png',
 						alt: ''
 					}],
 					['core/paragraph', {
@@ -838,13 +881,17 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Suggested Visitor Types (Friendly) Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'llsx-tour-operator/suggested-visitor-types',
 		title: 'Suggested Visitor Types',
+		icon: "yes-alt",
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -877,7 +924,7 @@ wp.domReady(() => {
 					['core/image', {
 						width: '20px',
 						sizeSlug: 'large',
-						url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/09/friendly-TO-icon-black-20px-1.png',
+						url: lsxToEditor.assetsUrl + 'blocks/friendly-TO-icon.png',
 						alt: ''
 					}],
 					['core/paragraph', {
@@ -934,13 +981,17 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Special Interests Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/special-interests',
 		title: 'Special Interests',
+		icon: "camera",
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -974,7 +1025,7 @@ wp.domReady(() => {
 						id: 122726,
 						width: '20px',
 						sizeSlug: 'large',
-						url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/11/special-interests-icon-black-52px-1.svg',
+						url: lsxToEditor.assetsUrl + 'blocks/special-interests-icon.svg',
 						alt: '',
 						linkDestination: 'none'
 					}],
@@ -1032,13 +1083,17 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Facilities Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/facilities',
 		title: 'Facilities',
+		icon: "food",
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -1061,7 +1116,8 @@ wp.domReady(() => {
 			},
 			layout: {
 				type: 'constrained'
-			}
+			},
+			tagName: "section"
 		},
 		innerBlocks: [
 			['core/group', {
@@ -1142,13 +1198,17 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Location Wrapper (Destination to Accommodation)
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/destination-to-accommodation',
 		title: 'Destination to Accommodation',
+		icon: "admin-site-alt3",
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -1185,7 +1245,7 @@ wp.domReady(() => {
 					['core/image', {
 						width: '20px',
 						sizeSlug: 'large',
-						url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/09/Typelocation-icon.png',
+						url: lsxToEditor.assetsUrl + 'blocks/Typelocation-icon.png',
 						alt: ''
 					}],
 					['core/paragraph', {
@@ -1250,6 +1310,9 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 });

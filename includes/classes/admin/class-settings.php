@@ -45,8 +45,10 @@ class Settings {
 	public function __construct() {
 		$this->options = tour_operator()->options;
 		
+		// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( isset( $_GET['welcome-page'] ) ) {
-			$display_page = sanitize_text_field( $_GET['welcome-page'] );
+			// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$display_page = sanitize_text_field( wp_unslash( $_GET['welcome-page'] ) );
 			$display_page = ! empty( $display_page ) ? $display_page : '';
 		}
 
@@ -479,6 +481,7 @@ class Settings {
 		$field[] = '<input class="input_image" type="hidden" value="' . $image_id . '" name="' . $field_id . '" />';
 
 		// Image Previews
+		// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
 		$field[] = '<div class="thumbnail-preview" style="' . $prev_css . '"><img src="' . $image[0] . '" width="' . $params['preview_w'] . '" style="color:black;" /></div>';
 
 		// Action Buttons
@@ -530,8 +533,9 @@ class Settings {
 			if ( 'post_types' !== $section ) {
 				foreach ( $fields as $key => $field ) {
 					$save = '';
+					// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
 					if ( isset( $_POST[ $key ] ) ) {
-						$save = $_POST[ $key ];
+						$save = sanitize_text_field( wp_unslash( $_POST[ $key ] ) );
 					} else if ( isset( $field['default'] ) ) {
 						$save = $field['default'];
 					}
@@ -551,8 +555,9 @@ class Settings {
 				//Loop through each of the fields in the section.
 				foreach ( $fields as $key => $field ) {
 					$save = '';
+					// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
 					if ( isset( $_POST[ $tab_index . '_' . $key ] ) ) {
-						$save = $_POST[ $tab_index . '_' . $key ];
+						$save = sanitize_text_field( wp_unslash( $_POST[ $tab_index . '_' . $key ] ) );
 					} else if ( isset( $field['default'] ) ) {
 						$save = $field['default'];
 					}
@@ -565,7 +570,8 @@ class Settings {
 		if ( ! empty( $settings_values ) ) {
 			update_option( 'lsx_to_settings', $settings_values );
 
-			wp_safe_redirect( $_POST[ '_wp_http_referer' ] );
+			// @phpcs:ignore WordPress.Security
+			wp_safe_redirect( wp_unslash( $_POST[ '_wp_http_referer' ] ) );
 			exit;
 		}
 	}

@@ -119,15 +119,16 @@
 .lsx-price-wrapper,
 .lsx-single-supplement-wrapper,
 .unit-price-wrapper {
-	/*&:before {
-		background-image: url( ../img/icons/price-icon.png );
-	}*/
 
 	& .amount {
 		@extend %currency-icons;
 
+		.strike {
+			text-decoration: line-through;
+		}
+
 		.currency-icon {
-			&:after { margin-right: 0px; }
+			&:after { margin-right: 0px;margin-left: 0px; }
 		}
 	}
 }

@@ -68,8 +68,14 @@ class Bindings {
 		add_filter( 'render_block', array( $this, 'render_units_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'render_gallery_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'render_map_block' ), 10, 3 );
+		add_filter( 'render_block', array( $this, 'render_permalink_block' ), 10, 3 );
 	}
 
+	/**
+	 * Registers the custom block bindings.
+	 *
+	 * @return void
+	 */
 	public function register_block_bindings() {
 		if ( ! function_exists( 'register_block_bindings_source' ) ) {
 			return;
@@ -77,7 +83,7 @@ class Bindings {
 		register_block_bindings_source(
 			'lsx/post-connection',
 			array(
-				'label' => __( 'Post Connection', 'lsx-wetu-importer' ),
+				'label' => __( 'Post Connection', 'tour-operator' ),
 				'get_value_callback' => array( $this, 'post_connections_callback' )
 			)
 		);
@@ -85,7 +91,7 @@ class Bindings {
 		register_block_bindings_source(
 			'lsx/post-meta',
 			array(
-				'label' => __( 'Post Meta', 'lsx-wetu-importer' ),
+				'label' => __( 'Post Meta', 'tour-operator' ),
 				'get_value_callback' => array( $this, 'post_meta_callback' )
 			)
 		);
@@ -93,7 +99,7 @@ class Bindings {
 		register_block_bindings_source(
 			'lsx/tour-itinerary',
 			array(
-				'label' => __( 'Itinerary', 'lsx-wetu-importer' ),
+				'label' => __( 'Itinerary', 'tour-operator' ),
 				'get_value_callback' => array( $this, 'empty_callback' )
 			)
 		);
@@ -101,7 +107,7 @@ class Bindings {
 		register_block_bindings_source(
 			'lsx/accommodation-units',
 			array(
-				'label' => __( 'Units', 'lsx-wetu-importer' ),
+				'label' => __( 'Units', 'tour-operator' ),
 				'get_value_callback' => array( $this, 'empty_callback' )
 			)
 		);
@@ -109,7 +115,7 @@ class Bindings {
 		register_block_bindings_source(
 			'lsx/gallery',
 			array(
-				'label' => __( 'Gallery', 'lsx-wetu-importer' ),
+				'label' => __( 'Gallery', 'tour-operator' ),
 				'get_value_callback' => array( $this, 'empty_callback' )
 			)
 		);
@@ -117,12 +123,19 @@ class Bindings {
 		register_block_bindings_source(
 			'lsx/map',
 			array(
-				'label' => __( 'Map', 'lsx-wetu-importer' ),
+				'label' => __( 'Map', 'tour-operator' ),
 				'get_value_callback' => array( $this, 'empty_callback' )
 			)
 		);
 	}
 
+	/**
+	 * Registers the post connections callback.
+	 *
+	 * @param array $source_args
+	 * @param object $block_instance
+	 * @return string|int|array
+	 */
 	public function post_connections_callback( $source_args, $block_instance ) {
 		if ( 'core/image' === $block_instance->parsed_block['blockName'] ) {
 			return 'test_image';
@@ -199,6 +212,13 @@ class Bindings {
 		}
 	}
 
+	/**
+	 * Register our post meta callback.
+	 *
+	 * @param array $source_args
+	 * @param object $block_instance
+	 * @return string|int|array
+	 */
 	public function post_meta_callback( $source_args, $block_instance ) {
 		if ( 'core/image' === $block_instance->parsed_block['blockName'] ) {
 			return 'test_image';
@@ -408,6 +428,19 @@ class Bindings {
 		return $build;
 	}
 
+	/**
+	 * Renders the units block with custom content.
+	 *
+	 * This function processes the block content by checking if it belongs to a specific
+	 * custom block variation and then iteratively builds the units content based on
+	 * predefined fields and templates. It returns the final rendered block content.
+	 *
+	 * @param string $block_content The original content of the block.
+	 * @param array  $parsed_block  Parsed data for the block, including type and attributes.
+	 * @param object $block_obj     Block object instance for the current block being processed.
+	 * 
+	 * @return string Returns the modified block content after processing units data.
+	 */
 	public function render_units_block( $block_content, $parsed_block, $block_obj ) {
 		// Determine if this is the custom block variation.
 		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
@@ -474,7 +507,7 @@ class Bindings {
 
 		switch ( $field ) {
 			case 'title':
-				$value   = strip_tags( $rooms->item_title( '', '', false ) );
+				$value   = wp_strip_all_tags( $rooms->item_title( '', '', false ) );
 				$pattern = '/(<h[1-6]\s+[^>]*\bclass="[^"]*\bunit-title\b[^"]*"[^>]*>).*?(<\/h[1-6]>)/is';
 			break;
 
@@ -499,14 +532,20 @@ class Bindings {
 			break;
 
 			case 'price':
-				$value   = $rooms->item_price( '', '', false );
+				$value       = $rooms->item_price( '', '', false );
+				$letter_code = '';
 
 				if ( is_object( $tour_operator ) && isset( $tour_operator->options['currency'] ) && ! empty( $tour_operator->options['currency'] ) ) {
-					$currency = $tour_operator->options['currency'];
-					$currency = '<span class="currency-icon ' . mb_strtolower( $currency ) . '">' . $currency . '</span>';
+					$letter_code = $tour_operator->options['currency'];
+					$currency = '<span class="currency-icon ' . mb_strtolower( $letter_code ) . '"></span>';
 				}
 
 				$value = $currency . $value;
+
+				// Get the currency settings
+				if ( is_object( $tour_operator ) &&  ( isset( $tour_operator->options['country_code_disabled'] ) && 0 === intval( $tour_operator->options['country_code_disabled'] ) || ! isset( $tour_operator->options['country_code_disabled'] ) ) ) {
+					$value = $letter_code . $value;
+				}
 
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bunit-price\b[^"]*"[^>]*>).*?(<\/p>)/is';
 			break;
@@ -582,6 +621,19 @@ class Bindings {
 		}
 	}
 
+	/**
+	 * Renders the gallery block with custom content.
+	 *
+	 * This function processes the block content by checking if it belongs to a specific
+	 * custom block variation and then iteratively builds the gallery content based on
+	 * predefined fields and templates. It returns the final rendered block content.
+	 *
+	 * @param string $block_content The original content of the block.
+	 * @param array  $parsed_block  Parsed data for the block, including type and attributes.
+	 * @param object $block_obj     Block object instance for the current block being processed.
+	 * 
+	 * @return string Returns the modified block content after processing gallery data.
+	 */
 	public function render_gallery_block( $block_content, $parsed_block, $block_obj ) {
 		// Determine if this is the custom block variation.
 		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
@@ -641,6 +693,7 @@ class Bindings {
 			}
 
 			$build = '<figure class="wp-block-image">';
+			// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
 			$build .= $link_prefix . '<img src="' . $gurl . '" alt="" class="wp-image-' . $gid . '"/>' . $link_suffix;
 			$build .= '</figure>';
 			$images[] = $build;
@@ -674,6 +727,19 @@ class Bindings {
 		return $classes;
 	}
 
+	/**
+	 * Renders the map block with custom content.
+	 *
+	 * This function processes the block content by checking if it belongs to a specific
+	 * custom block variation and then iteratively builds the map content based on
+	 * predefined fields and templates. It returns the final rendered block content.
+	 *
+	 * @param string $block_content The original content of the block.
+	 * @param array  $parsed_block  Parsed data for the block, including type and attributes.
+	 * @param object $block_obj     Block object instance for the current block being processed.
+	 * 
+	 * @return string Returns the modified block content after processing map data.
+	 */
 	public function render_map_block( $block_content, $parsed_block, $block_obj ) {
 		// Determine if this is the custom block variation.
 		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
@@ -737,5 +803,42 @@ class Bindings {
 			$item_links[] = '<a href="' . get_permalink( $item->ID ) . '" title="' . get_the_title( $item->ID ) . '">' . get_the_title( $item->ID ) . '</a>';
 		}
 		return implode( ', ', $item_links );
+	}
+
+	/**
+	 * Renders the p block with custom content.
+	 *
+	 * @param string $block_content The original content of the block.
+	 * @param array  $parsed_block  Parsed data for the block, including type and attributes.
+	 * @param object $block_obj     Block object instance for the current block being processed.
+	 * 
+	 * @return string Returns block with the permalink added.
+	 */
+	public function render_permalink_block( $block_content, $parsed_block, $block_obj ) {
+		// Determine if this is the custom block variation.
+		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
+			return $block_content;
+		}
+		$allowed_blocks = array(
+			'core/button'
+		);
+
+		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
+			return $block_content; 
+		}
+
+		if ( ! isset( $parsed_block['attrs']['metadata']['name'] ) ) {
+			return $block_content;
+		}
+
+		if ( 'Permalink' !== $parsed_block['attrs']['metadata']['name'] ) {
+			return $block_content;
+		}
+
+		$url           = get_permalink();
+		$pattern       = '/#permalink/s';
+		$block_content = preg_replace( $pattern, $url, $block_content );
+
+		return $block_content;
 	}
 }

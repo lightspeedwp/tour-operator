@@ -1,6 +1,7 @@
-=== Tour Operator ===
-Contributors: feedmymedia, lightspeedwp, eleshar, krugazul
-Tags: lsx, tour operator, wetu, importer, tours, travel, travel-agency
+=== LSX Tour Operator ===
+Contributors: lightspeedwp, wetudev
+Donate link: https://lsdev.biz/lsx/donate/
+Tags: lsx, tour operator, travel, tourism, itinerary
 Requires at least: 6.7
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -8,7 +9,8 @@ Stable tag: 2.0.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Tour Operator makes it easy to manage and sell tours, handle seasonal pricing, and streamline bookings—all within WordPress.
+
+The LSX Tour Operator is plugin specially designed & developed for the tourism and travel industry. Build to showcase your tours and accommodation.
 
 == Description ==
 

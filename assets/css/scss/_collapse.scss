@@ -1,0 +1,48 @@
+@media (min-width: 800px) {
+	.single-tour-operator .toggle-button {display:none;}
+}
+	
+/* Optional: Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+	
+	.single-tour-operator {
+		/* Styling for the toggle button */
+		.toggle-button {
+			display: inline-flex;
+			align-items: center;
+			padding: 5px;
+			background: none;
+			border: none;
+			cursor: pointer;
+			font-size: 14px;
+			color: var(--wp--preset--color--contrast);
+		}
+
+		/* Styling for the SVG icons */
+		.toggle-icon {
+			width: 16px;
+			height: 16px;
+			fill: var(--wp--preset--color--contrast);
+			margin-left: 5px;
+		}
+
+		/* Collapsed state for the second wp-block-group */
+		section {
+			&.wp-block-group,
+			&.wp-block-cover {
+				.wp-block-group.collapsed {
+					display: none; /* Hide the content */
+				}
+			}
+		}
+	}
+
+	.fast-facts-wrapper > .wp-block-group {
+		flex-wrap: wrap; /* Allow wrapping for better readability */
+		gap: 5px;
+	}
+
+	.fast-facts-wrapper > .wp-block-group .wp-block-group.is-layout-flex:last-child {
+		flex-wrap: wrap; /* Allow text to wrap on smaller screens */
+	}
+}

@@ -42,6 +42,7 @@ class Admin {
 	 * feature images
 	 */
 	public function change_attachment_field_button( $html ) {
+		// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( isset( $_GET['feature_image_text_button'] ) ) {
 			$html = str_replace( 'value="Insert into Post"', sprintf( 'value="%s"', esc_html__( 'Select featured image', 'tour-operator' ) ), $html );
 		}

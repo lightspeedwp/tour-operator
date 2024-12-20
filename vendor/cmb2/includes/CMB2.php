@@ -382,7 +382,7 @@ class CMB2 extends CMB2_Base {
 		foreach ( array_filter( $classes ) as $class ) {
 			foreach ( explode( ' ', $class ) as $_class ) {
 				// Clean up & sanitize.
-				$split[] = sanitize_html_class( strip_tags( $_class ) );
+				$split[] = sanitize_html_class( wp_strip_all_tags( $_class ) );
 			}
 		}
 		$classes = $split;

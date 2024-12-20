@@ -73,7 +73,7 @@ class Tour {
 
 		add_filter( 'lsx_to_custom_field_query', array( $this, 'rating' ), 10, 5 );
 
-		add_action( 'lsx_to_modal_meta', array( $this, 'content_meta' ) );
+		add_filter( 'body_class', array( $this, 'tour_classes' ), 10, 1 );
 	}
 
 	/**
@@ -141,16 +141,32 @@ class Tour {
 			$value         = preg_replace( '/[^0-9,.]/', '', $value );
 			$value         = ltrim( $value, '.' );
 			$value         = str_replace( ',', '', $value );
-			$value         = number_format( (int) $value, 2 );
 			$tour_operator = tour_operator();
 			$currency      = '';
+			$letter_code   = '';
+			$value         = number_format( (int) $value, 2 );
 
+			// Get the currency settings
 			if ( is_object( $tour_operator ) && isset( $tour_operator->options['currency'] ) && ! empty( $tour_operator->options['currency'] ) ) {
-				$currency = $tour_operator->options['currency'];
-				$currency = '<span class="currency-icon ' . strtolower( $currency ) . '">' . $currency . '</span>';
+				$letter_code = $tour_operator->options['currency'];
+				$currency    = '<span class="currency-icon ' . strtolower( $letter_code ) . '"></span>';
 			}
 
 			$value = $currency . $value;
+
+			// Get the Sale Price
+			if ( 'price' === $meta_key ) {
+				$sale_price = get_post_meta( get_the_ID(), 'sale_price', true );
+				if ( false !== $sale_price && ! empty( $sale_price ) && 0 !== intval( $sale_price ) ) {
+					$value = '<span class="strike">' . $value . '</span>' . ' ' . $currency . number_format( intval( $sale_price ) , 2 );
+				}
+			}
+
+			// Get the currency settings
+			if ( is_object( $tour_operator ) &&  ( isset( $tour_operator->options['country_code_disabled'] ) && 0 === intval( $tour_operator->options['country_code_disabled'] ) || ! isset( $tour_operator->options['country_code_disabled'] ) ) ) {
+				$value = $letter_code . $value;
+			}
+
 			$html  = $before . $value . $after;
 		}
 		return $html;
@@ -190,24 +206,20 @@ class Tour {
 	}
 
 	/**
-	 * Outputs the tour meta on the modal
+	 * Adds in the onsale classes.
+	 *
+	 * @param array $classes
+	 * @return array
 	 */
-	public function content_meta() {
-		if ( 'tour' === get_post_type() ) { 
-        ?>
-			<?php
-				$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
+	public function tour_classes( $classes ) {
+		if ( ! is_singular( 'tour' ) ) {
+			return $classes;
+		}
 
-				lsx_to_price( '<span class="' . $meta_class . 'price"><span class="lsx-to-meta-data-key">' . esc_html__( 'From price', 'tour-operator' ) . ':</span> ', '</span>' );
-				lsx_to_duration( '<span class="' . $meta_class . 'duration"><span class="lsx-to-meta-data-key">' . esc_html__( 'Duration', 'tour-operator' ) . ':</span> ', '</span>' );
-				the_terms( get_the_ID(), 'travel-style', '<span class="' . $meta_class . 'style"><span class="lsx-to-meta-data-key">' . esc_html__( 'Travel Style', 'tour-operator' ) . ':</span> ', ', ', '</span>' );
-				lsx_to_connected_countries( '<span class="' . $meta_class . 'destinations"><span class="lsx-to-meta-data-key">' . esc_html__( 'Destinations', 'tour-operator' ) . ':</span> ', '</span>', true );
-
-				if ( function_exists( 'lsx_to_connected_activities' ) ) {
-					lsx_to_connected_activities( '<span class="' . $meta_class . 'activities"><span class="lsx-to-meta-data-key">' . esc_html__( 'Activities', 'tour-operator' ) . ':</span> ', '</span>' );
-				}
-			?>
-		<?php 
-        }
+		$sale_price = get_post_meta( get_the_ID(), 'sale_price', true );
+		if ( false !== $sale_price && ! empty( $sale_price ) && 0 !== intval( $sale_price ) ) {
+			$classes[] = 'on-sale';
+		}
+		return $classes;
 	}
 }

@@ -51,7 +51,8 @@ if ( window.location.hash ) {
 			lsx_to.readMoreText = $(this).contents().filter(function() {
 				return this.nodeType === Node.TEXT_NODE;
 			}).text();
-			lsx_to.readMoreSet( $(this), $(this).closest( '.wp-block-group' ).find('.wp-block-post-content') );
+
+			lsx_to.readMoreSet( $(this), $(this).parent( '.wp-block-group' ).find('.wp-block-post-content') );
 		} );
 
 		$( '.single-tour-operator .wp-block-read-more' ).on( 'click', function( event ) {
@@ -59,22 +60,18 @@ if ( window.location.hash ) {
 			$( this ).hide();
 
 			if ( $( this ).hasClass( 'less-link' ) ) {
-				lsx_to.readMoreSet( $(this), $(this).closest( '.wp-block-group' ).find('.wp-block-post-content') );
+				lsx_to.readMoreSet( $(this), $(this).parent( '.wp-block-group' ).find('.wp-block-post-content') );
 			} else {
-				lsx_to.readMoreOpen( $(this), $(this).closest( '.wp-block-group' ).find('.wp-block-post-content') );
+				lsx_to.readMoreOpen( $(this), $(this).parent( '.wp-block-group' ).find('.wp-block-post-content') );
 			}
 
 			$( this ).show();
 		} );
 	};
 
-	lsx_to.readMoreSet = function( button, contentWrapper ) {
-		console.log(contentWrapper);
-		console.log(contentWrapper.length);
+	lsx_to.readMoreSet = function( button, contentWrapper, limit = 1 ) {
 		if ( 0 < contentWrapper.length ) {
 			if ( 1 < contentWrapper.children().length ) {
-
-				var limit = 1;
 				let counter = 0;
 
 				contentWrapper.children().each( function() {
@@ -118,17 +115,17 @@ if ( window.location.hash ) {
 
 		$( '.single-tour-operator .additional-info .lsx-to-more-link' ).each( function() {
 			lsx_to.readMoreTIText = $(this).find('a').text();
-			lsx_to.readMoreSet( $(this), $(this).closest( '.additional-info' ).find('.content') );
+			lsx_to.readMoreSet( $(this).find('a'), $(this).closest( '.additional-info' ).find('.content'), 2 );
 		} );
 
 		$( '.single-tour-operator .additional-info .lsx-to-more-link' ).on( 'click', function( event ) {
 			event.preventDefault();
 			$( this ).hide();
 
-			if ( $( this ).hasClass( 'less-link' ) ) {
-				lsx_to.readMoreSet( $(this), $(this).closest( '.additional-info' ).find('.content') );
+			if ( $( this ).find('a').hasClass( 'less-link' ) ) {
+				lsx_to.readMoreSet( $(this).find('a'), $(this).closest( '.additional-info' ).find('.content'), 2 );
 			} else {
-				lsx_to.readMoreOpenTI( $(this), $(this).closest( '.additional-info' ).find('.content') );
+				lsx_to.readMoreOpen( $(this).find('a'), $(this).closest( '.additional-info' ).find('.content') );
 			}
 
 			$( this ).show();
@@ -197,109 +194,111 @@ if ( window.location.hash ) {
 	 * @subpackage scripts
 	 */
 	lsx_to.build_slider = function( window_width ) {
+		// First slider: .lsx-to-slider
 		$( '.lsx-to-slider .wp-block-post-template:not(.slider-disabled)' ).each( function() {
-			var $this = $( this ),
-				interval = $this.data( 'interval' ),
-				currentSettings = $this.data( 'slick' ),
-				autoplay = false,
-				autoplay_speed = 0;
-
+			var $this = $( this );
+	
 			lsx_to.pre_build_slider( $this );
-
-			if ( 'undefined' !== typeof interval && 'boolean' !== typeof interval ) {
-				interval = parseInt( interval );
-
-				if ( ! isNaN( interval ) ) {
-					autoplay = true;
-					autoplay_speed = interval;
-				}
-			}
-
-
-			let tabletSlidesToShow   = lsx_to_params.slickSlider.tablet.slidesToShow;
-			let tabletSlidesToScroll = lsx_to_params.slickSlider.tablet.slidesToScroll;
-
-			if ( 'undefined' !== typeof currentSettings && 'boolean' !== typeof currentSettings ) {
-
-				// Tablet Settings.
-				if ( 'undefined' !== typeof currentSettings.tablet ) {
-					if ( 'undefined' !== typeof currentSettings.tablet.slidesToShow ) {
-						tabletSlidesToShow = currentSettings.tablet.slidesToShow;
-					}
-					if ( 'undefined' !== typeof currentSettings.tablet.slidesToShow ) {
-						tabletSlidesToScroll = currentSettings.tablet.slidesToScroll;
-					}
-				}
-			}
-
-			if ( 1 < $this.children.length ) {
-				console.log($this);
-
+	
+			if ( 1 < $this.children().length ) {
 				$this.slick( {
-					draggable: lsx_to_params.slickSlider.desktop.draggable,
-					infinite: lsx_to_params.slickSlider.desktop.infinite,
-					swipe: lsx_to_params.slickSlider.desktop.swipe,
-					cssEase: lsx_to_params.slickSlider.desktop.cssEase,
-					dots: lsx_to_params.slickSlider.desktop.dots,
-					slidesToShow: lsx_to_params.slickSlider.desktop.slidesToShow,
-					slidesToScroll: lsx_to_params.slickSlider.desktop.slidesToScroll,
-					autoplay: autoplay,
-					autoplaySpeed: autoplay_speed,
-					appendArrows: $this.parent(),
-					appendDots: $this.parent(),
+					draggable: false,
+					infinite: true,
+					swipe: false,
+					dots: false,
+					slidesToShow: 3,  // Show 3 items at a time
+					slidesToScroll: 1, // Scroll 1 item at a time
+					autoplay: false,
+					autoplaySpeed: 0,
+					appendArrows: $this.parent(),  // Ensure arrows are appended correctly
+					appendDots: $this.parent(),    // Append dots in the right container
 					responsive: [
 						{
-							breakpoint: lsx_to_params.slickSlider.tablet.breakpoint,
+							breakpoint: 1228,
 							settings: {
-								slidesToShow:   tabletSlidesToShow,
-								slidesToScroll: tabletSlidesToScroll,
-								draggable: lsx_to_params.slickSlider.tablet.draggable,
-								arrows: lsx_to_params.slickSlider.tablet.arrows,
-								swipe: lsx_to_params.slickSlider.tablet.swipe,
+								slidesToShow: 3,
+								slidesToScroll: 1,
+								draggable: true,
+								arrows: false,
+								swipe: true,
+								dots: true,
 							}
 						},
 						{
-							breakpoint: lsx_to_params.slickSlider.mobile.breakpoint,
+							breakpoint: 1028,
 							settings: {
-								slidesToShow:   lsx_to_params.slickSlider.mobile.slidesToShow,
-								slidesToScroll: lsx_to_params.slickSlider.mobile.slidesToScroll,
-								draggable:      lsx_to_params.slickSlider.mobile.draggable,
-								arrows:         lsx_to_params.slickSlider.mobile.arrows,
-								swipe:          lsx_to_params.slickSlider.mobile.swipe
+								slidesToShow: 2,
+								slidesToScroll: 1,
+								draggable: true,
+								arrows: false,
+								swipe: true,
+								dots: true,
+							}
+						},
+						{
+							breakpoint: 782,
+							settings: {
+								slidesToShow: 1,
+								slidesToScroll: 1,
+								draggable: true,
+								arrows: false,
+								swipe: true,
+								dots: true,
 							}
 						}
 					]
 				} );
 			}
 		} );
-
-		if ( window_width < 768 ) {
-			$( '.gallery' ).not('.slick-initialized').slick( {
-				slide: 'dl',
-				arrows: false,
-				draggable: true,
-				infinite: true,
-				swipe: true,
-				cssEase: 'ease-out',
-				dots: true,
-				autoplay: false,
-				responsive: [
-					{
-						breakpoint: 99999,
-						settings: 'unslick'
-					},
-					{
-						breakpoint: 768,
-						setting: {
-							slidesToShow: 1,
-							slidesToScroll: 1
+	
+		// Second slider: .lsx-to-slider.travel-information
+		$( '.lsx-travel-information-wrapper.lsx-to-slider .travel-information:not(.slider-disabled)' ).each( function() {
+			var $this = $( this );
+	
+			lsx_to.pre_build_slider( $this );
+	
+			// Ensure the second slider has 4 slides showing
+			if ( 1 < $this.children().length ) {
+				$this.slick( {
+					draggable: false,
+					infinite: true,
+					swipe: false,
+					dots: false,
+					slidesToShow: 4,  // Show 4 items at a time
+					slidesToScroll: 1, // Scroll 1 item at a time
+					autoplay: false,
+					autoplaySpeed: 0,
+					appendArrows: $this.parent(),  // Ensure arrows are appended correctly for this slider
+					appendDots: $this.parent(),    // Append dots in the correct place
+					responsive: [
+						{
+							breakpoint: 1028,
+							settings: {
+								slidesToShow: 3,
+								slidesToScroll: 1,
+								draggable: true,
+								arrows: true,
+								swipe: true,
+								dots: true,
+							}
+						},
+						{
+							breakpoint: 782,
+							settings: {
+								slidesToShow: 1,
+								slidesToScroll: 1,
+								draggable: true,
+								arrows: true,
+								swipe: true,
+								dots: true,
+							}
 						}
-					}
-				]
-			} );
-		}
+					]
+				} );
+			}
+		} );
 	};
-
+	
 	/**
 	 * Slider Lightbox.
 	 *
@@ -351,6 +350,7 @@ if ( window.location.hash ) {
 	 * @subpackage scripts
 	 */
 	$document.ready( function() {
+		lsx_to.readMoreText = 'Read more';
 		lsx_to.set_read_more();
 		lsx_to.set_read_more_travel_info();
 		lsx_to.set_read_more_itinerary();
@@ -367,5 +367,90 @@ if ( window.location.hash ) {
 	$window.on('load', function() {
 		lsx_to.build_slider_lightbox();
 	} );
+
+	/*document.addEventListener('DOMContentLoaded', function () {
+		const paragraphs = document.querySelectorAll('.additional-info .wp-block-group.content p');
+	
+		paragraphs.forEach(function (p) {
+			const text = p.innerText.trim();
+	
+			if (text.split(' ').length > 30) {  // Check if paragraph exceeds 30 words
+				const fullText = p.innerText.trim();
+				const truncatedText = fullText.split(' ').slice(0, 30).join(' ') + '...';
+				p.innerHTML = `<span class="truncated-text">${truncatedText}</span><span class="full-text" style="display: none;">${fullText}</span>`;
+	
+				// Create Read More button
+				const readMoreBtn = document.createElement('span');
+				readMoreBtn.textContent = ' Read More';
+				readMoreBtn.classList.add('read-more-btn');
+				p.appendChild(readMoreBtn);
+	
+				// Create Read Less button
+				const readLessBtn = document.createElement('span');
+				readLessBtn.textContent = ' Read Less';
+				readLessBtn.classList.add('read-less-btn');
+				p.appendChild(readLessBtn);
+	
+				// Add functionality to toggle text
+				readMoreBtn.addEventListener('click', function () {
+					p.querySelector('.truncated-text').style.display = 'none';
+					p.querySelector('.full-text').style.display = 'inline';
+					readMoreBtn.style.display = 'none';
+					readLessBtn.style.display = 'inline';
+				});
+	
+				readLessBtn.addEventListener('click', function () {
+					p.querySelector('.truncated-text').style.display = 'inline';
+					p.querySelector('.full-text').style.display = 'none';
+					readMoreBtn.style.display = 'inline';
+					readLessBtn.style.display = 'none';
+				});
+			}
+		});
+	});*/
+
+	document.addEventListener('DOMContentLoaded', function () {
+		// Select all sections within `.single-tour-operator`
+		const sections = document.querySelectorAll('.single-tour-operator section.wp-block-group, .single-tour-operator section.wp-block-cover');
+
+		sections.forEach(section => {
+			// Locate the first <h2> within the section
+			const heading = section.querySelector('h2');
+			// Locate the second div with the class wp-block-group
+			const toggleTarget = section.querySelectorAll('.wp-block-group')[1];
+	
+			if (heading && toggleTarget) {
+				// Create a toggle button
+				const toggleButton = document.createElement('button');
+				toggleButton.classList.add('toggle-button');
+				toggleButton.innerHTML = `
+					<svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+						<path class="icon-down" d="M1 5l7 7 7-7H1z"></path>
+						<path class="icon-up" d="M1 11l7-7 7 7H1z" style="display: none;"></path>
+					</svg>
+				`;
+	
+				// Insert the button after the heading
+				heading.insertAdjacentElement('afterend', toggleButton);
+	
+				// Add click event listener to toggle visibility of the second wp-block-group
+				toggleButton.addEventListener('click', function () {
+					toggleTarget.classList.toggle('collapsed'); // Add or remove the collapsed class
+	
+					// Toggle the display of the up/down icons
+					const iconDown = toggleButton.querySelector('.icon-down');
+					const iconUp = toggleButton.querySelector('.icon-up');
+	
+					if (toggleTarget.classList.contains('collapsed')) {
+						iconDown.style.display = 'none';
+						iconUp.style.display = 'inline';
+					} else {
+						iconDown.style.display = 'inline';
+						iconUp.style.display = 'none';
+					}
+				});
+			}
+		});
+	});
 
 } )( jQuery, window, document );

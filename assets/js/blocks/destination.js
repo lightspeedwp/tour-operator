@@ -3,6 +3,7 @@ wp.domReady(() => {
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/additional-info',
 		title: 'Additional Information',
+		icon: "info-outline",
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -143,13 +144,17 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Travel Information - Electricity Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/electricity',
 		title: 'Electricity',
+		icon: "admin-plugins",
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -289,13 +294,17 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Travel Information - Banking Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/banking',
 		title: 'Banking',
+		icon: "bank",
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -453,13 +462,17 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Travel Information - Cuisine Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/cuisine',
 		title: 'Cuisine',
+		icon: "food",
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -599,13 +612,17 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Travel Information - Climate Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/climate',
 		title: 'Climate',
+		icon: "cloud",
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -745,13 +762,17 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Travel Information - Transport Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/transport',
 		title: 'Transport',
+		icon: "car",
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -891,13 +912,17 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Travel Information - Dress Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/dress',
 		title: 'Dress',
+		icon: "admin-users",
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -1037,13 +1062,17 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Travel Information - Health Wrapper
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/health',
 		title: 'Health',
+		icon: "insert",
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
@@ -1183,7 +1212,10 @@ wp.domReady(() => {
 					}]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Travel Information - Safety Wrapper
@@ -1191,6 +1223,7 @@ wp.domReady(() => {
 		'core/group', {
 			name: 'lsx-tour-operator/safety',
 			title: 'Safety',
+			icon: "shield",
 			category: 'lsx-tour-operator',
 			attributes: {
 				metadata: {
@@ -1339,6 +1372,9 @@ wp.domReady(() => {
 					],
 				],
 			],
+			supports: {
+				renaming: false
+			}
 		}
 	);
 
@@ -1347,6 +1383,7 @@ wp.domReady(() => {
 		'core/group', {
 			name: 'lsx-tour-operator/visa',
 			title: 'Visa',
+			icon: "id-alt",
 			category: 'lsx-tour-operator',
 			attributes: {
 				metadata: {
@@ -1495,6 +1532,9 @@ wp.domReady(() => {
 					],
 				],
 			],
+			supports: {
+				renaming: false
+			}
 		}
 	);
 
@@ -1502,6 +1542,8 @@ wp.domReady(() => {
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/facts-regions-wrapper',
 		title: 'Regions List',
+		icon: "clipboard",
+		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
 				name: 'Regions List'
@@ -1611,13 +1653,18 @@ wp.domReady(() => {
 					]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 
 	// Destination - Country List
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/facts-country-wrapper',
 		title: 'Country',
+		icon: "admin-site-alt",
+		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
 				name: 'Country'
@@ -1727,6 +1774,9 @@ wp.domReady(() => {
 					]
 				]
 			]
-		]
+		],
+		supports: {
+			renaming: false
+		}
 	});
 });
