@@ -135,9 +135,7 @@ class Destination {
 		if ( get_post_type() === 'destination' && in_array( $meta_key, $ti_keys )  ) {
 			$this->modals[ $meta_key ] = $html;
 
-			$value = str_replace( '</p><p>', ' ', $html );
-			$value = str_replace( array( '</p>', '<p>' ), '', $value );
-			$value = str_replace( '<br>', ' ', $value );
+			$value = strip_tags( '</p><p>', ' ', $html );
 		
 			if ( strlen( $value ) > $limit_chars ) {
 				$position = strpos( $value, ' ', $limit_chars );
