@@ -112,25 +112,23 @@ if ( window.location.hash ) {
 	lsx_to.readMoreTIText = '';
 
 	lsx_to.set_read_more_travel_info = function() {
-
-		$( '.single-tour-operator .additional-info .lsx-to-more-link' ).each( function() {
-			lsx_to.readMoreTIText = $(this).find('a').text();
-			//lsx_to.removeEmptyParagraphs($(this).closest( '.additional-info' ).find('.content'));
-			lsx_to.readMoreSet( $(this).find('a'), $(this).closest( '.additional-info' ).find('.content'), 1 );
-		} );
-
 		$( '.single-tour-operator .additional-info .lsx-to-more-link' ).on( 'click', function( event ) {
 			event.preventDefault();
-			$( this ).hide();
 
-			if ( $( this ).find('a').hasClass( 'less-link' ) ) {
-				lsx_to.readMoreSet( $(this).find('a'), $(this).closest( '.additional-info' ).find('.content'), 1 );
-			} else {
-				lsx_to.readMoreOpen( $(this).find('a'), $(this).closest( '.additional-info' ).find('.content') );
+			let classes = $(this).closest( '.additional-info' ).attr('class');
+
+			const regex = /lsx-(.*?)-wrapper/;
+			const match = classes.match(regex);
+			const result = match ? match[1] : null;
+
+			if ( null !== result ) {
+				$('.modal-' + result).toggleClass('open');
 			}
-
-			$( this ).show();
 		} );
+
+		$( '.lsx-modal .close' ).on( 'click', function( event ) {
+			$(this).parents('.lsx-modal').removeClass('open');
+		});
 	};
 
 	lsx_to.removeEmptyParagraphs = function( contentWrapper ) {

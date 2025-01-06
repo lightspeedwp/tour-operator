@@ -43,6 +43,8 @@ class Destination {
 	 */
 	protected $plugin_screen_hook_suffix = null;
 
+	public $modals = [];
+
 	/**
 	 * Initialize the plugin by setting localization, filters, and
 	 * administration functions.
@@ -56,6 +58,10 @@ class Destination {
 		add_action( 'lsx_to_map_meta', array( $this, 'content_meta' ) );
 		add_action( 'lsx_to_modal_meta', array( $this, 'content_meta' ) );
 		add_filter( 'lsx_to_parents_only', array( $this, 'filter_countries' ) );
+
+		add_filter( 'lsx_to_custom_field_query', array( $this, 'travel_information_excerpt' ), 5, 10 );
+
+		add_action( 'wp_footer', array( $this, 'output_modals' ) );
 	}
 
 	/**
@@ -106,5 +112,53 @@ class Destination {
 			$countries = array_reverse( $new_items );
 		}
 		return $countries;
+	}
+
+	/**
+	 * Filter the travel information and return a shortened version.
+	 */
+	public function travel_information_excerpt( $html = '', $meta_key = false, $value = false, $before = '', $after = '' ) {
+		$limit_chars = 150;
+		$ti_keys     = [
+			'electricity',
+			'banking',
+			'cuisine',
+			'climate',
+			'transport',
+			'dress',
+			'health',
+			'safety',
+			'visa',
+			'additional_info',
+		];
+
+		if ( get_post_type() === 'destination' && in_array( $meta_key, $ti_keys )  ) {
+			$this->modals[ $meta_key ] = $html;
+
+			$value = str_replace( '</p><p>', ' ', $html );
+			$value = str_replace( array( '</p>', '<p>' ), '', $value );
+			$value = str_replace( '<br>', ' ', $value );
+		
+			if ( strlen( $value ) > $limit_chars ) {
+				$position = strpos( $value, ' ', $limit_chars );
+				$value_output = substr( $value, 0, $position );
+		
+				$value = trim( force_balance_tags( $value_output . '...' ) );
+			}
+		
+			$value = trim( force_balance_tags( $value ) );
+			$html  = apply_filters( 'the_content', $value );
+		}
+		return $html;
+	}
+
+	public function output_modals() {
+		if ( ! empty( $this->modals ) ) {
+			foreach ( $this->modals as $key => $content ) {
+				$heading = '<p class="has-small-font-size" style="padding-top:0;"><strong>' . ucwords( $key ) . '</strong></p>';
+				$modal   = '<div class="lsx-modal modal-' . $key . '"><div class="modal-content"><span class="close">&times;</span>' . $heading . $content . '</div></div>';
+				echo wp_kses_post( $modal );
+			}
+		}
 	}
 }
