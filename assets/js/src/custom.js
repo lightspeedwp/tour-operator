@@ -115,7 +115,8 @@ if ( window.location.hash ) {
 
 		$( '.single-tour-operator .additional-info .lsx-to-more-link' ).each( function() {
 			lsx_to.readMoreTIText = $(this).find('a').text();
-			lsx_to.readMoreSet( $(this).find('a'), $(this).closest( '.additional-info' ).find('.content'), 2 );
+			//lsx_to.removeEmptyParagraphs($(this).closest( '.additional-info' ).find('.content'));
+			lsx_to.readMoreSet( $(this).find('a'), $(this).closest( '.additional-info' ).find('.content'), 1 );
 		} );
 
 		$( '.single-tour-operator .additional-info .lsx-to-more-link' ).on( 'click', function( event ) {
@@ -123,7 +124,7 @@ if ( window.location.hash ) {
 			$( this ).hide();
 
 			if ( $( this ).find('a').hasClass( 'less-link' ) ) {
-				lsx_to.readMoreSet( $(this).find('a'), $(this).closest( '.additional-info' ).find('.content'), 2 );
+				lsx_to.readMoreSet( $(this).find('a'), $(this).closest( '.additional-info' ).find('.content'), 1 );
 			} else {
 				lsx_to.readMoreOpen( $(this).find('a'), $(this).closest( '.additional-info' ).find('.content') );
 			}
@@ -131,6 +132,16 @@ if ( window.location.hash ) {
 			$( this ).show();
 		} );
 	};
+
+	lsx_to.removeEmptyParagraphs = function( contentWrapper ) {
+		if ( 0 < contentWrapper.length ) {
+			contentWrapper.children().each( function() {
+				if ( $(this).is('p') && $(this).html().trim() === '' ) {
+					$(this).remove();
+				}
+			});
+		}
+	}
 
 	/**
 	 * Read more (itinerary) effect.
@@ -367,47 +378,6 @@ if ( window.location.hash ) {
 	$window.on('load', function() {
 		lsx_to.build_slider_lightbox();
 	} );
-
-	/*document.addEventListener('DOMContentLoaded', function () {
-		const paragraphs = document.querySelectorAll('.additional-info .wp-block-group.content p');
-	
-		paragraphs.forEach(function (p) {
-			const text = p.innerText.trim();
-	
-			if (text.split(' ').length > 30) {  // Check if paragraph exceeds 30 words
-				const fullText = p.innerText.trim();
-				const truncatedText = fullText.split(' ').slice(0, 30).join(' ') + '...';
-				p.innerHTML = `<span class="truncated-text">${truncatedText}</span><span class="full-text" style="display: none;">${fullText}</span>`;
-	
-				// Create Read More button
-				const readMoreBtn = document.createElement('span');
-				readMoreBtn.textContent = ' Read More';
-				readMoreBtn.classList.add('read-more-btn');
-				p.appendChild(readMoreBtn);
-	
-				// Create Read Less button
-				const readLessBtn = document.createElement('span');
-				readLessBtn.textContent = ' Read Less';
-				readLessBtn.classList.add('read-less-btn');
-				p.appendChild(readLessBtn);
-	
-				// Add functionality to toggle text
-				readMoreBtn.addEventListener('click', function () {
-					p.querySelector('.truncated-text').style.display = 'none';
-					p.querySelector('.full-text').style.display = 'inline';
-					readMoreBtn.style.display = 'none';
-					readLessBtn.style.display = 'inline';
-				});
-	
-				readLessBtn.addEventListener('click', function () {
-					p.querySelector('.truncated-text').style.display = 'inline';
-					p.querySelector('.full-text').style.display = 'none';
-					readMoreBtn.style.display = 'inline';
-					readLessBtn.style.display = 'none';
-				});
-			}
-		});
-	});*/
 
 	document.addEventListener('DOMContentLoaded', function () {
 		// Select all sections within `.single-tour-operator`

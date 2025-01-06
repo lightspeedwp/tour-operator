@@ -158,8 +158,7 @@ class Settings {
 			//Post type pages
 			add_action( 'lsx_to_framework_post_type_tab_content', array( $this, 'post_type_map_settings' ), 10, 2 );
 			
-
-			if ( ! empty( tour_operator()->legacy->post_types ) ) {
+			/*if ( ! empty( tour_operator()->legacy->post_types ) ) {
 				foreach ( tour_operator()->legacy->post_types as $post_type => $label ) {
 					if ( isset( tour_operator()->legacy->options[ $post_type ]['googlemaps_marker'] ) && '' !== tour_operator()->legacy->options[ $post_type ]['googlemaps_marker'] ) {
 						tour_operator()->legacy->markers->post_types[ $post_type ] = tour_operator()->legacy->options[ $post_type ]['googlemaps_marker'];
@@ -168,7 +167,7 @@ class Settings {
 					}
 					add_action( 'lsx_to_framework_' . $post_type . '_tab_content', array( $this, 'post_type_map_settings' ), 10, 2 );
 				}
-			}
+			}*/
 		}
 	}
 
