@@ -113,9 +113,9 @@ if ( window.location.hash ) {
 
 	lsx_to.set_read_more_travel_info = function() {
 
-		$( '.single-tour-operator .additional-info .lsx-to-more-link' ).each( function() {
+		/*$( '.single-tour-operator .additional-info .lsx-to-more-link' ).each( function() {
 			lsx_to.readMoreTIText = $(this).find('a').text();
-			//lsx_to.removeEmptyParagraphs($(this).closest( '.additional-info' ).find('.content'));
+			lsx_to.removeEmptyParagraphs($(this).closest( '.additional-info' ).find('.content'));
 			lsx_to.readMoreSet( $(this).find('a'), $(this).closest( '.additional-info' ).find('.content'), 1 );
 		} );
 
@@ -130,7 +130,7 @@ if ( window.location.hash ) {
 			}
 
 			$( this ).show();
-		} );
+		} );*/
 	};
 
 	lsx_to.removeEmptyParagraphs = function( contentWrapper ) {
