@@ -135,17 +135,21 @@ class Destination {
 		if ( get_post_type() === 'destination' && in_array( $meta_key, $ti_keys )  ) {
 			$this->modals[ $meta_key ] = $html;
 
-			$value = strip_tags( $html );
+			$value = wp_trim_excerpt( wp_strip_all_tags( $html ) );
+			$value = str_replace( '<br>', ' ', $value );
+			$value = str_replace( '<br />', ' ', $value );
 		
 			if ( strlen( $value ) > $limit_chars ) {
 				$position = strpos( $value, ' ', $limit_chars );
-				$value_output = substr( $value, 0, $position );
-		
+				if ( false !== $position ) {
+					$value_output = substr( $value, 0, $position );
+				} else {
+					$value_output = $value;
+				}
 				$value = trim( force_balance_tags( $value_output . '...' ) );
 			}
-		
-			$value = trim( force_balance_tags( $value ) );
-			$html  = apply_filters( 'the_content', $value );
+	
+			$html = trim( force_balance_tags( $value ) );
 		}
 		return $html;
 	}
