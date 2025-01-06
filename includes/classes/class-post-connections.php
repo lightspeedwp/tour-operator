@@ -76,6 +76,8 @@ class Post_Connections {
 		switch ( $params['facet']['source'] ) {
 			case 'cf/destination_to_tour':
 			case 'cf/destination_to_accommodation':
+			case 'cf/destination_to_special':
+			case 'cf/destination_to_review':
 				$countries = array();
 
 				$new_rows     = [];
