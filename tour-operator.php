@@ -5,7 +5,7 @@
  * Description:       Showcase tours, destinations, and accommodations with digital itineraries, galleries, and integrated maps.
  * Author:            lightspeedwp
  * Author URI:        https://lightspeedwp.agency/
- * Version:           2.0.0
+ * Version:           2.0.1
  * Requires at least: 6.7
  * Tested up to:      6.7
  * Requires PHP:      8.0
@@ -24,7 +24,7 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'LSX_TO_PATH', plugin_dir_path( __FILE__ ) );
 define( 'LSX_TO_CORE', __FILE__ );
 define( 'LSX_TO_URL', plugin_dir_url( __FILE__ ) );
-define( 'LSX_TO_VER', '2.0.0' );
+define( 'LSX_TO_VER', '2.0.1' );
 
 // Post Expirator.
 define( 'LSX_TO_POSTEXPIRATOR_DATEFORMAT', esc_html__( 'l F jS, Y', 'tour-operator' ) );
@@ -32,9 +32,3 @@ define( 'LSX_TO_POSTEXPIRATOR_TIMEFORMAT', esc_html__( 'g:ia', 'tour-operator' )
 
 // Include bootstrapper and start plugin.
 require_once LSX_TO_PATH . 'tour-operator-bootstrap.php';
-
-// Register activation hook.
-/*register_activation_hook( LSX_TO_CORE, array(
-	'Tour_Operator',
-	'register_activation_hook',
-) );*/
