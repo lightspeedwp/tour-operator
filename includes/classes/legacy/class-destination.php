@@ -62,6 +62,7 @@ class Destination {
 		add_filter( 'lsx_to_custom_field_query', array( $this, 'travel_information_excerpt' ), 5, 10 );
 
 		add_action( 'wp_footer', array( $this, 'output_modals' ) );
+		
 	}
 
 	/**
@@ -113,6 +114,7 @@ class Destination {
 		}
 		return $countries;
 	}
+	
 
 	/**
 	 * Filter the travel information and return a shortened version.

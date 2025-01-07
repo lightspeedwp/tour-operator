@@ -26,6 +26,13 @@ class Registration {
 	protected $onsale = false;
 
 	/**
+	 * True if the current query outputting needs only the parent outputs.
+	 *
+	 * @var boolean
+	 */
+	protected $parents_only = false;
+
+	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
 	 *
 	 * @since 1.0.0
@@ -37,9 +44,8 @@ class Registration {
 		add_filter( 'query_loop_block_query_vars', array( $this, 'query_args_filter' ), 1, 2 );
 		add_filter( 'render_block', array( $this, 'maybe_hide_varitaion' ), 10, 3 );
 
+		add_filter( 'render_block_data', array( $this, 'save_checkbox_queries' ), 10, 1 );
 		add_filter( 'posts_pre_query', array( $this, 'posts_pre_query' ), 10, 2 );
-
-		add_filter( 'render_block_data', array( $this, 'save_onsale_queries' ), 10, 1 );
 	}
 
 	/**
@@ -108,11 +114,31 @@ class Registration {
 	public function query_args_filter( $query, $block ) {
 		$block = $block->parsed_block;
 
+		// These are for all query blocks.
+		if ( true === $this->onsale ) {
+			if ( isset( $query['meta_query']['relation'] ) ) {
+				$query['meta_query']['relation'] = 'AND';
+			}
+			$query['meta_query'][] = array(
+				'key' => 'sale_price',
+				'compare' => 'EXISTS',
+			);
+
+			// reset this to false for the next query.
+			$this->onsale = false;
+		}
+		
+		
+		if ( true === $this->parents_only ) {
+			$query['post_parent'] = 0;
+		}
+
 		// Determine if this is the custom block variation.
 		if ( ! isset( $block['attrs']['className'] )  ) {
 			return $query;
 		}
-		
+
+		// Add our specific query args to the query for our variations.
 		$pattern = "/(lsx|facts)-(.*?)-query/";
 		preg_match( $pattern, $block['attrs']['className'], $matches );
 
@@ -256,20 +282,6 @@ class Registration {
 
 			default:
 			break;
-		}
-
-		// Look for the "on sale" CSS class.
-		if ( true === $this->onsale ) {
-			if ( isset( $query['meta_query']['relation'] ) ) {
-				$query['meta_query']['relation'] = 'AND';
-			}
-			$query['meta_query'][] = array(
-				'key' => 'sale_price',
-				'compare' => 'EXISTS',
-			);
-
-			// reset this to false for the next query.
-			$this->onsale = false;
 		}
 
 		return $query;
@@ -477,7 +489,7 @@ class Registration {
 	 * @param array $parsed_block
 	 * @return array
 	 */
-	public function save_onsale_queries( $parsed_block ) {
+	public function save_checkbox_queries( $parsed_block ) {
 		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
 			return $parsed_block;
 		}
@@ -488,15 +500,22 @@ class Registration {
 		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
 			return $parsed_block; 
 		}
+
 		if ( ! isset( $parsed_block['attrs']['className'] ) || '' === $parsed_block['attrs']['className'] || false === $parsed_block['attrs']['className'] ) {
 			return $parsed_block;
 		}
 
 		$this->onsale = false;
-
 		if ( false !== stripos( $parsed_block['attrs']['className'], 'on-sale' ) ) {
 			$this->onsale = true;
 		}
+		
+		$this->parents_only = false;
+		if ( false !== stripos( $parsed_block['attrs']['className'], 'parents-only' ) ) {
+			$this->parents_only = true;
+		}
+		do_action( 'qm/debug', $this->parents_only );
+
 		return $parsed_block;
 	}
 }
