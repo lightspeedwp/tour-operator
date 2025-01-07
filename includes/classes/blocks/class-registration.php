@@ -128,10 +128,10 @@ class Registration {
 			$this->onsale = false;
 		}
 		
-		
 		if ( true === $this->parents_only ) {
 			$query['post_parent'] = 0;
 		}
+		
 
 		// Determine if this is the custom block variation.
 		if ( ! isset( $block['attrs']['className'] )  ) {
