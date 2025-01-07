@@ -157,17 +157,6 @@ class Settings {
 
 			//Post type pages
 			add_action( 'lsx_to_framework_post_type_tab_content', array( $this, 'post_type_map_settings' ), 10, 2 );
-			
-			/*if ( ! empty( tour_operator()->legacy->post_types ) ) {
-				foreach ( tour_operator()->legacy->post_types as $post_type => $label ) {
-					if ( isset( tour_operator()->legacy->options[ $post_type ]['googlemaps_marker'] ) && '' !== tour_operator()->legacy->options[ $post_type ]['googlemaps_marker'] ) {
-						tour_operator()->legacy->markers->post_types[ $post_type ] = tour_operator()->legacy->options[ $post_type ]['googlemaps_marker'];
-					} else {
-						tour_operator()->legacy->markers->post_types[ $post_type ] = LSX_TO_URL . 'assets/img/markers/' . $post_type . '-marker.png';
-					}
-					add_action( 'lsx_to_framework_' . $post_type . '_tab_content', array( $this, 'post_type_map_settings' ), 10, 2 );
-				}
-			}*/
 		}
 	}
 
@@ -251,6 +240,7 @@ class Settings {
 	public function map_placeholder_settings( $tab = 'general' ) {
 		if ( 'placeholders' === $tab ) {
 			$settings = $this->get_settings_fields();
+
 			echo wp_kses_post( $this->output_fields( $settings['placeholder'] ) );
 		}
 	}
@@ -277,6 +267,10 @@ class Settings {
 	public function post_type_map_settings( $tab, $post_type ) {
 		$settings = $this->get_settings_fields();
 		if ( 'placeholder' === $tab ) {
+			if ( ! in_array( $post_type, [ 'accommodation', 'destination', 'tour' ] ) ) {
+				unset( $settings['post_types']['placeholder']['map_placeholder_enabled'] );
+				unset( $settings['post_types']['placeholder']['map_placeholder'] );
+			}
 			echo wp_kses_post( $this->output_fields( $settings['post_types'][ $tab ], $post_type ) );
 		}
 		if ( 'template' === $tab ) {

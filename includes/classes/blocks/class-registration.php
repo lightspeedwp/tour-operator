@@ -272,8 +272,6 @@ class Registration {
 			$this->onsale = false;
 		}
 
-		do_action( 'qm/debug', $query );
-
 		return $query;
 	}
 
@@ -309,8 +307,6 @@ class Registration {
 		if ( empty( $matches ) ) {
 			return $block_content;
 		}
-
-		do_action( 'qm/debug', $matches );
 
 		if ( in_array( 'travel-information', $matches ) ) {
 			return $block_content;
@@ -395,8 +391,6 @@ class Registration {
 
 			foreach ( $key_array as $meta_key ) {
 				$value = lsx_to_custom_field_query( $meta_key, '', '', false );
-
-				do_action( 'qm/debug', $value );
 				
 				// we need to see if the posts exist before we can use them
 				if ( stripos( $meta_key, '_to_' ) && 0 === $this->post_ids_exist( $value ) ) {
