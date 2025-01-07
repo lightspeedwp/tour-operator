@@ -1,5 +1,10 @@
 # Changelog
 
+## [[2.0.1]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.1) - 
+
+### Added
+- A "Parents Only" checkbox to the TO query block settings, allowing you to select only the parent destinations.
+
 ## [[2.0.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.0) - 20-12-2024
 
 ### Enhancements
