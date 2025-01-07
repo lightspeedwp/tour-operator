@@ -21,8 +21,9 @@
 	.modal-content {
 		background-color: #fefefe;
 		margin: 15% auto; /* 15% from the top and centered */
-		padding: 20px;
-		border: 1px solid #888;
+        padding: 10px 20px;
+        border: 3px solid var(--wp--preset--color--primary);
+        border-radius: 6px;
 		width: var(--wp--style--global--content-size); /* Could be more or less, depending on screen size */
 	}
 
@@ -30,11 +31,12 @@
 	.close {
 		color: #aaa;
 		float: right;
-		font-size: 28px;
+		font-size: 32px;
 		font-weight: bold;
 		line-height: 0;
 		height: auto;
-		padding-top: 5px;
+        padding-top: 10px;
+        margin-right: -8px;
 
 		&:hover,
 		&:focus {
