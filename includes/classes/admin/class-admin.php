@@ -22,19 +22,8 @@ class Admin {
 	 * LSX Tour Operator Admin constructor.
 	 */
 	public function __construct() {
-		add_filter( 'upload_mimes', array( $this, 'allow_svgimg_types' ) );
 		add_filter( 'type_url_form_media', array( $this, 'change_attachment_field_button' ), 20, 1 );
 		add_filter( 'plugin_action_links_' . plugin_basename( LSX_TO_CORE ), array( $this, 'add_action_links' ) );
-	}
-
-	/**
-	 * Allow SVG files for upload
-	 */
-	public function allow_svgimg_types( $mimes ) {
-		$mimes['svg'] = 'image/svg+xml';
-		$mimes['kml'] = 'image/kml+xml';
-
-		return $mimes;
 	}
 
 	/**
