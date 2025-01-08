@@ -142,7 +142,7 @@ class Destination {
 	 * @return array
 	 */
 	public function facet_wp_filter( $args, $facet ) {
-		if ( is_post_type_archive( 'destination' ) ) {
+		if ( ! is_admin() && is_post_type_archive( 'destination' ) ) {
 			$args['post_parent']   = 0;
 			$args['orderby']       = 'title';
 			$args['order']         = 'ASC';
