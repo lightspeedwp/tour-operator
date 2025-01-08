@@ -60,8 +60,11 @@ class Destination {
 		add_filter( 'lsx_to_parents_only', array( $this, 'filter_countries' ) );
 
 		add_filter( 'lsx_to_custom_field_query', array( $this, 'travel_information_excerpt' ), 5, 10 );
+		add_filter( 'facetwp_query_args', [ $this, 'facet_wp_filter' ] , 10, 2 );
+		add_action( 'pre_get_posts', [ $this, 'only_parent_destinations' ] );
 
 		add_action( 'wp_footer', array( $this, 'output_modals' ) );
+		
 	}
 
 	/**
@@ -112,6 +115,40 @@ class Destination {
 			$countries = array_reverse( $new_items );
 		}
 		return $countries;
+	}
+
+	public function only_parent_destinations( $query ) {
+		// Only run on the front end and for the main query
+		if ( ! is_admin() && $query->is_main_query() && $query->is_post_type_archive( 'destination' ) ) {
+			// Show only top-level
+			$query->set( 'post_parent', 0 );
+
+			// Alphabetical by title
+			$query->set( 'orderby', 'title' );
+			$query->set( 'order', 'ASC' );
+
+			// Make sure pagination is not disabled
+			$query->set( 'posts_per_page', 12 ); // or your desired number
+			$query->set( 'paged', get_query_var( 'paged' ) ); 
+			$query->set( 'nopaging', false );
+		}
+	}
+	
+	/**
+	 * Sets the destination archive to only show top-level destinations
+	 *
+	 * @param array $args
+	 * @param array $facet
+	 * @return array
+	 */
+	public function facet_wp_filter( $args, $facet ) {
+		if ( is_post_type_archive( 'destination' ) ) {
+			$args['post_parent']   = 0;
+			$args['orderby']       = 'title';
+			$args['order']         = 'ASC';
+			$args['posts_per_page'] = 12;
+		}
+		return $args;
 	}
 
 	/**

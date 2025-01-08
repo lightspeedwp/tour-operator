@@ -81,23 +81,7 @@ class Templates {
 			'search-results' => [
 				'title'       => __( 'Search Results', 'tour-operator' ),
 				'description' => __( 'Displays when a visitor performs a search on your website.', 'tour-operator' ),
-			],
-			'index' => [
-				'title'       => __( 'Index', 'tour-operator' ),
-				'description' => __( 'Used as a fallback template for all pages when a more specific template is not defined.', 'tour-operator' ),
-			],
-			'no-title' => [
-				'title'       => __( 'No Title', 'tour-operator' ),
-				'description' => __( 'A generic page template with no page title displayed', 'tour-operator' ),
-			],
-			'pages' => [
-				'title'       => __( 'Pages', 'tour-operator' ),
-				'description' => __( 'A generic page template with a page title displayed', 'tour-operator' ),
-			],
-			'archive' => [
-				'title'       => __( 'All Archives', 'tour-operator' ),
-				'description' => __( 'Displays any archive, including posts by a single author, category, tag, taxonomy, custom post type, and date. This template will serve as a fallback when more specific templates (e.g., Category or Tag) cannot be found.', 'tour-operator' ),
-			],
+			]
 		];
 
 		foreach ( $post_types as $key => $labels ) {

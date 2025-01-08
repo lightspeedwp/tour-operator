@@ -28,6 +28,15 @@
 				filterByOnsale = props.attributes.filterByOnsale;
 			}
 
+			var parentsOnly = props.attributes.parentsOnly || false;
+			if ( undefined === props.attributes.parentsOnly ) {
+				if ( props.attributes.className && props.attributes.className.includes( 'parents-only' ) ) {
+					parentsOnly = true;
+				}
+			} else {
+				parentsOnly = props.attributes.parentsOnly;
+			}
+
 			return el(
 				element.Fragment,
 				{},
@@ -50,6 +59,15 @@
 							onChange: function (value) {
 								props.setAttributes({
 									filterByOnsale: value
+								});
+							}
+						}),
+						el(CheckboxControl, {
+							label: 'Parents Only',
+							checked: parentsOnly,
+							onChange: function (value) {
+								props.setAttributes({
+									parentsOnly: value
 								});
 							}
 						})
@@ -85,6 +103,12 @@
 					extraProps.className = (extraProps.className || '') + ' on-sale';
 				} else if ( false === attributes.filterByOnsale && extraProps.className ) {
 					extraProps.className = extraProps.className.replace(/\bon-sale\b\s*/g, '').trim();
+				}
+
+				if ( true === attributes.parentsOnly ) {
+					extraProps.className = (extraProps.className || '') + ' parents-only';
+				} else if ( false === attributes.parentsOnly && extraProps.className ) {
+					extraProps.className = extraProps.className.replace(/\bparents-only\b\s*/g, '').trim();
 				}
 
 			}
