@@ -119,29 +119,18 @@ class Destination {
 
 	public function only_parent_destinations( $query ) {
 		// Only run on the front end and for the main query
-		if ( ! is_admin() && $query->is_main_query() ) {
-	
-			// If the query is for the 'destination' post type
-			$queried_post_type = $query->get( 'post_type' );
-	
-			// Sometimes it's an array, so normalize
-			if ( is_array( $queried_post_type ) ) {
-				$queried_post_type = reset( $queried_post_type );
-			}
-	
-			if ( 'destination' === $queried_post_type ) {
-				// Show only top-level
-				$query->set( 'post_parent', 0 );
-	
-				// Alphabetical by title
-				$query->set( 'orderby', 'title' );
-				$query->set( 'order', 'ASC' );
-	
-				// Make sure pagination is not disabled
-				$query->set( 'posts_per_page', 12 ); // or your desired number
-				$query->set( 'paged', get_query_var( 'paged' ) ); 
-				$query->set( 'nopaging', false );
-			}
+		if ( ! is_admin() && $query->is_main_query() && $query->is_post_type_archive( 'destination' ) ) {
+			// Show only top-level
+			$query->set( 'post_parent', 0 );
+
+			// Alphabetical by title
+			$query->set( 'orderby', 'title' );
+			$query->set( 'order', 'ASC' );
+
+			// Make sure pagination is not disabled
+			$query->set( 'posts_per_page', 12 ); // or your desired number
+			$query->set( 'paged', get_query_var( 'paged' ) ); 
+			$query->set( 'nopaging', false );
 		}
 	}
 	
@@ -161,7 +150,6 @@ class Destination {
 		}
 		return $args;
 	}
-	
 
 	/**
 	 * Filter the travel information and return a shortened version.
