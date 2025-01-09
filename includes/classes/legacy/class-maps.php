@@ -20,13 +20,6 @@ namespace lsx\legacy;
 class Maps {
 
 	/**
-	 * Holds instances of the class
-	 *
-	 * @var object \lsx\legacy\Maps()
-	 */
-	protected static $instance;
-
-	/**
 	 * If the maps are enabled.
 	 *
 	 * @var bool
@@ -74,21 +67,6 @@ class Maps {
 	}
 
 	/**
-	 * Return an instance of this class.
-	 *
-	 * @since 1.0.0
-	 * @return    object    A single instance of this class.
-	 */
-	public static function get_instance() {
-		// If the single instance hasn't been set, set it now.
-		if ( is_null( self::$instance ) ) {
-			self::$instance = new self();
-		}
-
-		return self::$instance;
-	}
-
-	/**
 	 * Enques the assets
 	 */
 	public function assets() {
@@ -105,21 +83,18 @@ class Maps {
 			$api_key = $settings['googlemaps_key'];
 		}
 
-		if ( isset( $settings['display'] ) && isset( $settings['display']['map_placeholder_enabled'] ) && 'on' === $settings['display']['map_placeholder_enabled'] ) {
-			if ( ( is_post_type_archive( 'destination' ) || is_singular( 'destination' ) ) && true === $this->enable_banner_map ) {
-				$this->placeholder_enabled = false;
-			} elseif ( '' !== $preview_src ) {
-				$this->placeholder_enabled = true;
-			}
+		if ( isset( $settings['map_placeholder_enabled'] ) && 1 === (int) $settings['map_placeholder_enabled'] && '' !== $preview_src ) {
+			$this->placeholder_enabled = true;
 		}
 		$this->placeholder_enabled = apply_filters( 'lsx_to_map_placeholder_enabled', $this->placeholder_enabled );
-		if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
+
+		//if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
 			$prefix = 'src/';
 			$suffix = '';
-		} else {
+		/*} else {
 			$prefix = '';
 			$suffix = '.min';
-		}
+		}*/
 
 		$dependacies = array( 'jquery', 'googlemaps_api', 'googlemaps_api_markercluster' );
 		$google_url  = 'https://maps.googleapis.com/maps/api/js?key=' . $api_key . '&libraries=places';
