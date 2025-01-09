@@ -73,6 +73,11 @@ class Post_Connections {
 	 *	Alter the rows and include extra facets rows for the continents
 	 */
 	public function facetwp_index_row_data( $rows, $params ) {
+
+		if ( ! isset( $params['facet']['source'] ) ) {
+			return $rows;
+		}
+
 		switch ( $params['facet']['source'] ) {
 			case 'cf/destination_to_tour':
 			case 'cf/destination_to_accommodation':

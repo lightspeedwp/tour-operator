@@ -62,7 +62,8 @@ class Admin extends Tour_Operator {
 
 		add_action( 'init', array( $this, 'init' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_stylescripts' ), 999 );
-		add_action( 'cmb_save_custom', array( $this, 'post_relations' ), 3, 20 );
+
+		//add_action( 'cmb2_pre_save_field', array( $this, 'cpt_relations' ), 2, 20 );
 	}
 
 	/**
@@ -72,6 +73,8 @@ class Admin extends Tour_Operator {
 	 */
 	public function init() {
 		if ( is_admin() ) {
+			add_action( 'cmb2_pre_save_field', array( $this, 'cpt_relations' ), 2, 20 );
+
 			$this->connections   = $this->create_post_connections();
 			$this->single_fields = apply_filters( 'lsx_to_search_fields', array() );
 			$this->taxonomies = apply_filters( 'lsx_to_taxonomies', $this->taxonomies );
@@ -132,6 +135,106 @@ class Admin extends Tour_Operator {
 		wp_enqueue_style( 'tour-operator-admin-style', LSX_TO_URL . 'assets/css/admin.css', array(), LSX_TO_VER );
 		wp_style_add_data( 'tour-operator-admin-style', 'rtl', 'replace' );
 
+	}
+
+	/**
+	 * Fixes the CMB2 field relations
+	 *
+	 * @param string $field_id
+	 * @param bool $status
+	 * @param string $action
+	 * @param object $field
+	 * @return void
+	 */
+	public function cpt_relations( $field_id, $field ) {
+		
+		if ( in_array( $field_id, $this->connections ) ) {
+			var_dump($field_id);
+			$connected_id    = get_the_ID();
+			$previous_values = get_post_meta( $connected_id, $field_id, true );
+			$remote_key      = $this->reverse_key( $field_id );
+
+			if ( isset( $field->data_to_save[ $field_id ] ) ) {
+				$new_values = $field->data_to_save[ $field_id ];
+			} else {
+				$new_values = array();
+			}
+
+			//if the new values are empty, then we need to remove the previous values.
+			if ( empty( $new_values ) ) {
+				if ( ! empty( $previous_values ) ) {
+					foreach ( $previous_values as $remote_id ) {
+						$this->remove_connected_id( $remote_id, $connected_id, $remote_key );
+					}
+				}
+			} else {
+
+				if ( ! is_array( $previous_values ) ) {
+					$previous_values = [ $previous_values ];
+				}
+
+				// Now determine if we added or removed any values.
+				$is_removing = array_diff( $previous_values, $new_values );
+				$is_adding   = array_diff( $new_values, $previous_values );
+
+				if ( ! empty( $is_removing ) ) {
+					foreach ( $is_removing as $remote_id ) {
+						$this->remove_connected_id( $remote_id, $connected_id, $remote_key );
+					}
+				}
+
+				if ( ! empty( $is_adding ) ) {
+					foreach ( $is_adding as $remote_id ) {
+						$this->add_connected_id( $remote_id, $connected_id, $remote_key );
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Reverses the key for the remote_key slug.
+	 *
+	 * @param [type] $meta_key
+	 * @return void
+	 */
+	public function reverse_key( $meta_key ) {
+		$ids = explode( '_to_', $meta_key );
+		return $ids[1] . '_to_' . $ids[0];
+	}
+
+	/**
+	 * Remove the connected ID from the serialized array.
+	 *
+	 * @param int $remote_id
+	 * @param int $connected_id
+	 * @param string $meta_key
+	 * @return void
+	 */
+	public function remove_connected_id( $remote_id, $connected_id, $meta_key ) {
+		$prev = get_post_meta( $remote_id, $meta_key, true );
+		if ( ! empty( $prev ) ) {
+			$diff = array_diff( $prev, array( $connected_id ) );
+			update_post_meta( $remote_id, $meta_key, $diff, $prev );
+		}
+	}
+
+	public function add_connected_id( $remote_id, $connected_id, $meta_key ) {
+		$prev = get_post_meta( $remote_id, $meta_key, true );
+		// No Previous items detected.
+		if ( false === $prev || empty( $prev ) ) {
+			delete_post_meta( $remote_id, $meta_key );
+			$test = add_post_meta( $remote_id, $meta_key, array( $connected_id ), true );
+		} else {
+			if ( ! is_array( $prev ) ) {
+				$new = array( $prev );
+			} else {
+				$new = $prev;
+			}
+			$new[] = $connected_id;
+			$new   = array_unique( $new );
+			$updated = update_post_meta( $remote_id, $meta_key, $new, $prev );
+		}
 	}
 
 	/**
@@ -196,9 +299,7 @@ class Admin extends Tour_Operator {
 				}
 			}
 		} else {
-			if ( in_array( $field['id'], $this->connections ) ) {
-				$this->save_related_post( $post_id, $field, $value );
-			}
+
 		}
 	}
 
@@ -211,22 +312,20 @@ class Admin extends Tour_Operator {
 		$ids = explode( '_to_', $field['id'] );
 		$relation = $ids[1] . '_to_' . $ids[0];
 
-		if ( in_array( $relation, $this->connections ) ) {
-			if ( false === $previous_values ) {
-				$previous_values = get_post_meta( $post_id, $field['id'], false );
-			}
+		if ( false === $previous_values ) {
+			$previous_values = get_post_meta( $post_id, $field['id'], false );
+		}
 
-			if ( false !== $previous_values && ! empty( $previous_values ) ) {
-				foreach ( $previous_values as $tr ) {
-					delete_post_meta( $tr, $relation, $post_id );
-				}
+		if ( false !== $previous_values && ! empty( $previous_values ) ) {
+			foreach ( $previous_values as $tr ) {
+				delete_post_meta( $tr, $relation, $post_id );
 			}
+		}
 
-			if ( is_array( $value ) ) {
-				foreach ( $value as $v ) {
-					if ( '' !== $v && null !== $v && false !== $v ) {
-						add_post_meta( $v, $relation, $post_id );
-					}
+		if ( is_array( $value ) ) {
+			foreach ( $value as $v ) {
+				if ( '' !== $v && null !== $v && false !== $v ) {
+					add_post_meta( $v, $relation, $post_id );
 				}
 			}
 		}
