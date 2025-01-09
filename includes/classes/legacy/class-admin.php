@@ -62,8 +62,6 @@ class Admin extends Tour_Operator {
 
 		add_action( 'init', array( $this, 'init' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_stylescripts' ), 999 );
-
-		//add_action( 'cmb2_pre_save_field', array( $this, 'cpt_relations' ), 2, 20 );
 	}
 
 	/**
