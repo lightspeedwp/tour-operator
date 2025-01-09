@@ -514,7 +514,6 @@ class Registration {
 		if ( false !== stripos( $parsed_block['attrs']['className'], 'parents-only' ) ) {
 			$this->parents_only = true;
 		}
-		do_action( 'qm/debug', $this->parents_only );
 
 		return $parsed_block;
 	}

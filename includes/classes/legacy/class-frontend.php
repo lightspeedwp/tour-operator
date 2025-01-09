@@ -61,7 +61,7 @@ class Frontend extends Tour_Operator {
 		}
 
 		// add_filter( 'the_terms', array( $this, 'links_new_window' ), 10, 2 );
-		//$this->maps = Maps::get_instance();
+		$this->maps = Maps::get_instance();
 
 		add_filter( 'get_the_archive_title', array( $this, 'get_the_archive_title' ), 100 );
 

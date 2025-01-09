@@ -110,10 +110,6 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 							}
 						}
 
-						if ( lsx_to_has_destination_banner_map() ) {
-							$args['selector'] = '#lsx-banner .page-banner';
-						}
-
 						$args['content'] = 'excerpt';
 
 						if ( false !== $connections && '' !== $connections && ! empty( $connections ) ) {
@@ -173,10 +169,6 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 
 						if ( isset( $countries->posts ) && ! empty( $countries->posts ) ) {
 							$connections = $countries->posts;
-						}
-
-						if ( lsx_to_has_destination_banner_map() ) {
-							$args['selector'] = '#lsx-banner .page-banner';
 						}
 
 						$args['content'] = 'excerpt';
@@ -264,28 +256,6 @@ if ( ! function_exists( 'lsx_to_fustion_tables_attr' ) ) {
 				return $default;
 			}
 		}
-	}
-}
-
-if ( ! function_exists( 'lsx_to_has_destination_banner_map' ) ) {
-	/**
-	 * Checks to see if the destination banner map is enabled.
-	 *
-	 * @package to-maps
-	 * @subpackage template-tags
-	 * @category destination
-	 *
-	 * @return boolean
-	 */
-	function lsx_to_has_destination_banner_map() {
-		$temp   = tour_operator()->legacy->options;
-		$return = false;
-		if ( false !== $temp && isset( $temp['destination'] ) && ! empty( $temp['destination'] ) ) {
-			if ( isset( $temp['destination']['enable_banner_map'] ) ) {
-				$return = true;
-			}
-		}
-		return apply_filters( 'lsx_to_has_destination_banner_map', $return );
 	}
 }
 
