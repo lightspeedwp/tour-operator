@@ -105,7 +105,6 @@ class Frontend extends Tour_Operator {
 
 		wp_enqueue_style( 'tour-operator-style', LSX_TO_URL . 'assets/css/style.css', array(), LSX_TO_VER );
 		wp_style_add_data( 'tour-operator-style', 'rtl', 'replace' );
-
 	}
 
 	/**

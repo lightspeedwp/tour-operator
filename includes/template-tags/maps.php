@@ -17,7 +17,7 @@
 function lsx_to_is_map_enabled() {
 	$options = tour_operator()->legacy->options;
 	$return = true;
-	if ( false !== $options && isset( $options['display']['maps_disabled'] ) && 'on' === $options['display']['maps_disabled'] ) {
+	if ( false !== $options && isset( $options['maps_disabled'] ) && 'on' === $options['maps_disabled'] ) {
 		$return = false;
 	}
 	return $return;
@@ -116,7 +116,7 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 							$args['connections'] = $connections;
 							$args['type'] = 'cluster';
 
-							if ( '0' === $parent_id && ! lsx_to_has_destination_banner_cluster() ) {
+							if ( '0' === $parent_id ) {
 								$args['disable_cluster_js'] = true;
 							}
 						} else {
@@ -176,7 +176,7 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 						if ( false !== $connections && '' !== $connections ) {
 							$args['connections'] = $connections;
 							$args['type'] = 'cluster';
-							if ( '0' === $parent_id && ! lsx_to_has_destination_banner_cluster() ) {
+							if ( '0' === $parent_id ) {
 								$args['disable_cluster_js'] = true;
 							}
 						}
@@ -249,37 +249,13 @@ if ( ! function_exists( 'lsx_to_fustion_tables_attr' ) ) {
 	function lsx_to_fustion_tables_attr( $attribute, $default ) {
 		$temp = get_option( '_lsx-to_settings', false );
 
-		if ( false !== $temp && isset( $temp['display'] ) && ! empty( $temp['display'] ) ) {
-			if ( isset( $temp['display'][ 'fusion_tables_' . $attribute ] ) && ! empty( $temp['display'][ 'fusion_tables_' . $attribute ] ) ) {
-				return $temp['display'][ 'fusion_tables_' . $attribute ];
+		if ( false !== $temp && isset( $temp ) ) {
+			if ( isset( $temp[ 'fusion_tables_' . $attribute ] ) && ! empty( $temp[ 'fusion_tables_' . $attribute ] ) ) {
+				return $temp[ 'fusion_tables_' . $attribute ];
 			} else {
 				return $default;
 			}
 		}
-	}
-}
-
-if ( ! function_exists( 'lsx_to_has_destination_banner_cluster' ) ) {
-	/**
-	 * Checks to see if the destination banner map cluster is disabled.
-	 *
-	 * @package to-maps
-	 * @subpackage template-tags
-	 * @category destination
-	 *
-	 * @return boolean
-	 */
-	function lsx_to_has_destination_banner_cluster() {
-		$temp = get_option( '_lsx-to_settings', false );
-
-		if ( false !== $temp && isset( $temp['destination'] ) && ! empty( $temp['destination'] ) ) {
-			if ( isset( $temp['destination']['disable_banner_map_cluster'] ) ) {
-				return false;
-			} else {
-				return true;
-			}
-		}
-		return true;
 	}
 }
 
@@ -293,7 +269,7 @@ if ( ! function_exists( 'lsx_to_maps_has_api_key' ) ) {
 	 */
 	function lsx_to_maps_has_api_key() {
 		$options = tour_operator()->options;
-		if ( false !== $options && isset( $options['api']['googlemaps_key'] ) ) {
+		if ( false !== $options && isset( $options['googlemaps_key'] ) ) {
 			$return = true;
 		} else {
 			$return = $options;
