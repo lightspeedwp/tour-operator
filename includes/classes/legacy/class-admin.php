@@ -149,7 +149,6 @@ class Admin extends Tour_Operator {
 	public function cpt_relations( $field_id, $field ) {
 		
 		if ( in_array( $field_id, $this->connections ) ) {
-			var_dump($field_id);
 			$connected_id    = get_the_ID();
 			$previous_values = get_post_meta( $connected_id, $field_id, true );
 			$remote_key      = $this->reverse_key( $field_id );
@@ -234,100 +233,6 @@ class Admin extends Tour_Operator {
 			$new[] = $connected_id;
 			$new   = array_unique( $new );
 			$updated = update_post_meta( $remote_id, $meta_key, $new, $prev );
-		}
-	}
-
-	/**
-	 * Sets up the "post relations"
-	 *
-	 * @return    object
-	 */
-	public function post_relations( $post_id, $field, $value ) {
-		if ( 'group' === $field['type'] && isset( $this->single_fields ) && array_key_exists( $field['id'], $this->single_fields ) ) {
-			$delete_counter = array();
-
-			foreach ( $this->single_fields[ $field['id'] ] as $fields_to_save ) {
-				$delete_counter[ $fields_to_save ] = 0;
-			}
-
-			//Loop through each group in case of repeatable fields
-			$relations          = false;
-			$previous_relations = false;
-
-			foreach ( $value as $group ) {
-				//loop through each of the fields in the group that need to be saved and grab their values.
-				foreach ( $this->single_fields[ $field['id'] ] as $fields_to_save ) {
-					//Check if its an empty group
-					if ( isset( $group[ $fields_to_save ] ) && ! empty( $group[ $fields_to_save ] ) ) {
-						if ( $delete_counter[ $fields_to_save ] < 1 ) {
-							//If this is a relation field, then we need to save the previous relations to remove any items if need be.
-							if ( in_array( $fields_to_save, $this->connections ) ) {
-								$previous_relations[ $fields_to_save ] = get_post_meta( $post_id, $fields_to_save, false );
-							}
-
-							delete_post_meta( $post_id, $fields_to_save );
-							$delete_counter[ $fields_to_save ] ++;
-						}
-
-						//Run through each group
-						foreach ( $group[ $fields_to_save ] as $field_value ) {
-							if ( null !== $field_value ) {
-								if ( 1 === $field_value ) {
-									$field_value = true;
-								}
-
-								add_post_meta( $post_id, $fields_to_save, $field_value );
-
-								//If its a related connection the save that
-								if ( in_array( $fields_to_save, $this->connections ) ) {
-									$relations[ $fields_to_save ][ $field_value ] = $field_value;
-								}
-							}
-						}
-					}
-				}
-			}//end of the repeatable group foreach
-
-			//If we have relations, loop through them and save the meta
-			if ( false !== $relations ) {
-				foreach ( $relations as $relation_key => $relation_values ) {
-					$temp_field = array(
-						'id' => $relation_key,
-					);
-
-					$this->save_related_post( $post_id, $temp_field, $relation_values, $previous_relations[ $relation_key ] );
-				}
-			}
-		} else {
-
-		}
-	}
-
-	/**
-	 * Save the reverse post relation.
-	 *
-	 * @return    null
-	 */
-	public function save_related_post( $post_id, $field, $value, $previous_values = false ) {
-		$ids = explode( '_to_', $field['id'] );
-		$relation = $ids[1] . '_to_' . $ids[0];
-
-		if ( false === $previous_values ) {
-			$previous_values = get_post_meta( $post_id, $field['id'], false );
-		}
-
-		if ( false !== $previous_values && ! empty( $previous_values ) ) {
-			foreach ( $previous_values as $tr ) {
-				delete_post_meta( $tr, $relation, $post_id );
-			}
-		}
-
-		if ( is_array( $value ) ) {
-			foreach ( $value as $v ) {
-				if ( '' !== $v && null !== $v && false !== $v ) {
-					add_post_meta( $v, $relation, $post_id );
-				}
-			}
 		}
 	}
 

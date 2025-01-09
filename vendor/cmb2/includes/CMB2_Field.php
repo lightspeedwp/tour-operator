@@ -545,8 +545,6 @@ class CMB2_Field extends CMB2_Base {
 		$new_value = $this->sanitization_cb( $meta_value );
 
 		$field_id = $this->id( true );
-
-		var_dump($field_id);
 		do_action( 'cmb2_pre_save_field', $field_id, $this );
 
 		if ( ! $this->args( 'save_field' ) ) {
