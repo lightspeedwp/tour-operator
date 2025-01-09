@@ -5,6 +5,9 @@
 ### Added
 - A "Parents Only" checkbox to the TO query block settings, allowing you to select only the parent destinations.
 
+### Fixed
+- Fixes to the post relation fields and when they save, detected via the TO Reviews plugin.
+
 ## [[2.0.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.0) - 20-12-2024
 
 ### Enhancements
