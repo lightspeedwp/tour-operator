@@ -1,7 +1,5 @@
 # Changelog
 
-# Changelog
-
 ## [[2.0.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.0) - 2025-01-10
 
 ### New Features
