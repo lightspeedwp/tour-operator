@@ -1,5 +1,54 @@
 # Changelog
 
+# Changelog
+
+## [[2.0.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.0) - 2025-01-10
+
+### New Features
+
+#### Backend/Block Editor
+- **Revamped Settings Page**: Updated the settings interface to align with WordPress standards, reduced unused settings, and streamlined functionality. [#331](https://github.com/lightspeedwp/tour-operator/issues/331)
+- **CMB2 Custom Fields Migration**: Upgraded to CMB2 for custom fields, ensuring REST API integration and streamlined field usage. [#333](https://github.com/lightspeedwp/tour-operator/issues/333)
+- **Custom Fields Meta Panel**: Grouped custom fields into dedicated panels for Tours, Destinations, and Accommodation, enhancing admin usability. [#350](https://github.com/lightspeedwp/tour-operator/issues/350)
+- **Block Options Sidebar**: Added a sidebar meta panel for essential fields like price, duration, and custom taxonomies to enhance user experience. [#349](https://github.com/lightspeedwp/tour-operator/issues/349)
+- **Sticky Post Renaming**: Renamed "Sticky Post" functionality to "Featured" for clarity and consistent use across post types. [#399](https://github.com/lightspeedwp/tour-operator/issues/399)
+- **Custom Block Inserter Category**: Grouped all Tour Operator blocks under a custom category for better discoverability in the Block Editor. [#403](https://github.com/lightspeedwp/tour-operator/issues/403)
+
+#### Frontend
+- **Fast Facts Blocks**: Added Fast Facts block variations for Tours, Accommodation, and Destinations, dynamically displaying key information with conditional field checks. [#385](https://github.com/lightspeedwp/tour-operator/issues/385), [#387](https://github.com/lightspeedwp/tour-operator/issues/387), [#388](https://github.com/lightspeedwp/tour-operator/issues/388)
+- **Clickable Cover Block**: Introduced a custom Cover block variation, making the entire block clickable for better UX. [#422](https://github.com/lightspeedwp/tour-operator/issues/422)
+- **Travel Information Section**: Designed and implemented a responsive travel information carousel for Single Country templates, dynamically populated from custom fields. [#383](https://github.com/lightspeedwp/tour-operator/issues/383)
+- **Regions Section**: Created a carousel to display child regions in the Single Country template. Hidden if no regions are associated. [#384](https://github.com/lightspeedwp/tour-operator/issues/384)
+
+#### Plugin Code
+- **New Templates**: Updated Single Post templates for Tours, Accommodation, Destinations, and more to match the LSX Tour Operator Design System. [#334](https://github.com/lightspeedwp/tour-operator/issues/334)
+- **Custom Query Loops**: Introduced variations for dynamically displaying related content (e.g., related tours, accommodation) based on specific criteria. [#431](https://github.com/lightspeedwp/tour-operator/issues/431)
+- **Custom Block Dashicons**: Added a custom compass icon for branding consistency. [#401](https://github.com/lightspeedwp/tour-operator/issues/401)
+
+#### Wetu Integration
+- **Wetu Map Embed Block**: Created a block to display Wetu maps in the Single Tour template. [#365](https://github.com/lightspeedwp/tour-operator/issues/365)
+- **Simplified Wetu Importer Settings**: Reduced complexity in the Wetu Importer settings, added image controls, and improved UI based on Figma designs. [#173](https://github.com/lightspeedwp/wetu-importer/issues/173)
+
+---
+
+### Enhancements
+- Defined consistent image sizes across single posts, featured images, and archive pages, with custom aspect ratios. [#392](https://github.com/lightspeedwp/tour-operator/issues/392)
+- Updated plugin requirements to PHP 8.0 and WordPress 6.7 for improved compatibility and performance. [#406](https://github.com/lightspeedwp/tour-operator/issues/406)
+- Registered custom fields for post types using JSON for better data handling and display. [#407](https://github.com/lightspeedwp/tour-operator/issues/407)
+
+---
+
+### Bug Fixes
+- Fixed issues with setting featured images for custom taxonomies, ensuring proper saving and display. [#419](https://github.com/lightspeedwp/tour-operator/issues/419)
+- Resolved syncing issues in the Wetu Importer, addressing a PHP fatal error and spinner loading problem. [#444](https://github.com/lightspeedwp/tour-operator/issues/444)
+- Ensured blocks are hidden when related custom fields are empty, preventing display of incomplete content. [#372](https://github.com/lightspeedwp/tour-operator/issues/372)
+
+---
+
+### Deprecations
+- Removed unused settings and legacy PHP code from the plugin to align with new block-based functionality. [#331](https://github.com/lightspeedwp/tour-operator/issues/331)
+
+
 ## [[2.0.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.0) - 20-12-2024
 
 ### Enhancements
