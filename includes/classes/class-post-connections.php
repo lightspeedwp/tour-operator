@@ -23,6 +23,15 @@ class Post_Connections {
 	 */
 	public $options = array();
 
+	public $sources = array(
+		'cf/destination_to_accommodation',
+		'cf/destination_to_tour',
+		'cf/destination_to_special',
+		'cf/destination_to_activity',
+		'cf/destination_to_review',
+		'cf/destination_to_vehicle',
+	);
+
 	/**
 	 * Constructor
 	 */
@@ -31,6 +40,7 @@ class Post_Connections {
 		add_filter( 'facetwp_indexer_row_data', array( $this, 'facetwp_index_row_data' ), 10, 2 );
 		add_filter( 'facetwp_index_row', array( $this, 'facetwp_index_row' ), 10, 2 );
 		add_filter( 'facetwp_facet_html', array( $this, 'destination_facet_html' ), 10, 2 );
+		add_filter( 'facetwp_facet_dropdown_show_counts', [ $this, 'disable_facet_count' ] , 10, 2 );
 	}
 
 	/**
@@ -247,15 +257,8 @@ class Post_Connections {
 	 * @return string
 	 */
 	public function destination_facet_html( $output, $params ) {
-		$possible_keys = array(
-			'cf/destination_to_accommodation',
-			'cf/destination_to_tour',
-			'cf/destination_to_special',
-			'cf/destination_to_activity',
-			'cf/destination_to_review',
-			'cf/destination_to_vehicle',
-		);
-		if ( in_array( $params['facet']['source'], $possible_keys ) ) {
+
+		if ( in_array( $params['facet']['source'], $this->sources ) ) {
 			$output = $this->destination_facet_render( $params );
 		}
 		return $output;
@@ -464,9 +467,22 @@ class Post_Connections {
 
 		$selected = in_array( $result['facet_value'], $selected_values ) ? ' selected' : '';
 		$selected .= ' ' . $region;
-
-		$temp_html .= '<option value="' . $result['facet_value'] . '" data-counter="' . $key . '" class="d' . $result['depth'] . '" ' . $selected . '>' . $result['facet_display_value'] . '</option>';
+		$temp_html .= '<option value="' . $result['facet_value'] . '" data-counter="' . $result['counter'] . '" class="d' . $result['depth'] . '" ' . $selected . '>' . $result['facet_display_value'] . '</option>';
 
 		return $temp_html;
+	}
+
+	/**
+	 * Disables the facet coun on the fselect facet.
+	 *
+	 * @param boolean $return
+	 * @param array $params
+	 * @return boolean
+	 */
+	public function disable_facet_count( $return, $params ) {
+		if ( in_array( $params['facet']['source'], $this->sources ) && 'fselect' === $params['facet']['type'] ) {
+			return false;
+		}
+		return $return;
 	}
 }
