@@ -255,7 +255,7 @@ class Post_Connections {
 			'cf/destination_to_review',
 			'cf/destination_to_vehicle',
 		);
-		if ( in_array( $params['facet']['source'], $possible_keys ) && 'checkboxes' === $params['facet']['type'] ) {
+		if ( in_array( $params['facet']['source'], $possible_keys ) ) {
 			$output = $this->destination_facet_render( $params );
 		}
 		return $output;
@@ -267,15 +267,13 @@ class Post_Connections {
 	public function destination_facet_render( $params ) {
 		$facet = $params['facet'];
 
-		if ( 'checkboxes' !== $params['facet']['type'] ) {
+		if ( 'checkboxes' !== $params['facet']['type'] && 'fselect' !== $params['facet']['type'] ) {
 			return;
 		}
 
 		$output = '';
 		$values = (array) $params['values'];
 		$selected_values = (array) $params['selected_values'];
-		$soft_limit = empty( $facet['soft_limit'] ) ? 0 : (int) $facet['soft_limit'];
-		$countries = array();
 		$continents = array();
 
 		$continent_terms = get_terms(
@@ -349,6 +347,9 @@ class Post_Connections {
 		$continent_class = '';
 		$country_class = '';
 
+		// A variable to keep track if the current parent is checked, if so we will want to display those sub items.
+		$is_parent_selected = false;
+
 		// Run through each value and output the values.
 		foreach ( $values as $key => $facet ) {
 			$depth_type = '';
@@ -382,18 +383,26 @@ class Post_Connections {
 				}
 			}
 
-			if ( $facet['depth'] <= $current_depth ) {
+			// Check if this is a parent.
+			if ( 0 === (int) $facet['depth'] ) {
+				$is_parent_selected = in_array( $facet['facet_value'], $selected_values );
+			}
+
+			if ( ( $facet['depth'] <= $current_depth && $is_parent_selected ) || 0 === (int) $facet['depth'] ) {
 				if ( 'checkboxes' === $params['facet']['type'] ) {
 					$options[] = $this->format_checkbox_facet( $key, $facet, $selected_values, $depth_type );
 				} else if ( 'fselect' === $params['facet']['type'] ) {
 					$options[] = $this->format_fselect_facet( $key, $facet, $selected_values, $depth_type );
 				}
-				
 			}
 		}
 
 		if ( ! empty( $options ) ) {
 			$output = implode( '', $options );
+		}
+
+		if ( 'fselect' === $params['facet']['type'] ) {
+			$output = '<select class="facetwp-dropdown" multiple="multiple"><option value="">Any</option>' . $output . '</select>';
 		}
 
 		$output = '' . $output . '';
@@ -453,14 +462,10 @@ class Post_Connections {
 	public function format_fselect_facet( $key, $result, $selected_values, $region = '' ) {
 		$temp_html = '';
 
-		$selected = in_array( $result['facet_value'], $selected_values ) ? ' checked' : '';
-		$selected .= ( 0 == $result['counter'] && '' == $selected ) ? ' disabled' : '';
+		$selected = in_array( $result['facet_value'], $selected_values ) ? ' selected' : '';
 		$selected .= ' ' . $region;
 
-		$temp_html .= '<div class="fs-option g0 d0" data-value="' . $result['facet_value'] . '" data-idx="' . $key . '" tabindex="-1">
-							<span class="fs-checkbox' . $selected . '"><i></i></span>
-							<div class="fs-option-label">' . $result['facet_display_value'] . ' (' . $result['counter'] . ')</div>
-						</div>';
+		$temp_html .= '<option value="' . $result['facet_value'] . '" data-counter="' . $key . '" class="d' . $result['depth'] . '" ' . $selected . '>' . $result['facet_display_value'] . '</option>';
 
 		return $temp_html;
 	}
