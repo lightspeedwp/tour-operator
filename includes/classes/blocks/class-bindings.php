@@ -772,18 +772,29 @@ class Bindings {
 		$map = '';
 		switch ( $type ) {
 			case 'wetu':
+				$pattern = '/<figure\b[^>]*>(.*?)<\/figure>/s';
 				$wetu_id = get_post_meta( get_the_ID(), 'lsx_wetu_id', true );
 				if ( ! empty( $wetu_id ) ) {
 					$map = '<iframe width="100%" height="500" frameborder="0" allowfullscreen="" class="wetu-map" class="block perfmatters-lazy entered pmloaded" data-src="https://wetu.com/Itinerary/VI/' . $wetu_id . '?m=bdep" data-ll-status="loaded" src="https://wetu.com/Itinerary/VI/' . $wetu_id . '?m=bdep"></iframe>';
+				}
+				$block_content = preg_replace( $pattern, $map, $block_content );
+			break;
+
+			case 'google':
+				preg_match('/class="([^"]*)"/', $block_content, $matches);
+				$class_string = $matches[1];
+
+				do_action( 'qm/debug', $block_content );
+				if ( lsx_to_has_map() ) {
+					$map = lsx_to_map( '', '', false );
+					$map = str_replace( 'lsx-map', 'lsx-map ' . $class_string, $map );
+					$block_content = $map;
 				}
 			break;
 
 			default:
 			break;
 		}
-
-		$pattern       = '/<figure\b[^>]*>(.*?)<\/figure>/s';
-		$block_content = preg_replace( $pattern, $map, $block_content );
 
 		return $block_content;
 	}
