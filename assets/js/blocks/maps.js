@@ -69,7 +69,7 @@ wp.domReady(() => {
 					[
 						'core/cover',
 						{
-							url: lsxToEditor.assetsUrl + 'placeholders/placeholder-map-1920x656.jpg',
+							url: lsxToEditor.assetsUrl + 'blocks/placeholder-map-1920x656.jpg',
 							dimRatio: 50,
 							customOverlayColor: '#e2f0f7',
 							isUserOverlayColor: false,

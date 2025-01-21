@@ -232,13 +232,10 @@ if ( ! function_exists( 'lsx_to_display_fustion_tables' ) ) {
 	 */
 	function lsx_to_display_fustion_tables() {
 		$temp = get_option( '_lsx-to_settings', false );
-
-		if ( false !== $temp && isset( $temp['display'] ) && ! empty( $temp['display'] ) ) {
-			if ( isset( $temp['display']['fusion_tables_enabled'] ) ) {
-				return true;
-			} else {
-				return false;
-			}
+		if ( isset( $temp['fusion_tables_enabled'] ) ) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 }
