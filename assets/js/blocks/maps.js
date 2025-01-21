@@ -10,12 +10,6 @@ wp.domReady(() => {
 		attributes: {
 			metadata: {
 				name: "Google Map",
-				bindings: {
-					content: {
-						source: 'lsx/map',
-						type: 'google'
-					}
-				}
 			},
 			className: "lsx-location-wrapper",
 			style: {
@@ -42,7 +36,6 @@ wp.domReady(() => {
 			[
 				'core/group',
 				{
-					name: "Title",
 					align: 'wide',
 					style: {
 						spacing: {
@@ -50,6 +43,9 @@ wp.domReady(() => {
 							padding: { top: '0', bottom: 'var(--wp--preset--spacing--small)', left: '0', right: '0' },
 							blockGap: 'var(--wp--preset--spacing--small)'
 						}
+					},
+					metadata: {
+						name: "Title"
 					},
 					layout: { type: 'flex', flexWrap: 'nowrap' }
 				},
@@ -64,10 +60,9 @@ wp.domReady(() => {
 				{
 					align: 'wide',
 					layout: { type: 'default' },
-					className: "lsx-map-preview",
-					name: "Map",
+					name: "Map Container",
 					metadata: {
-						name: "Map",
+						name: "Map Container",
 					}
 				},
 				[
@@ -79,7 +74,26 @@ wp.domReady(() => {
 							customOverlayColor: '#e2f0f7',
 							isUserOverlayColor: false,
 							isDark: false,
-							layout: { type: 'constrained' }
+							layout: { type: 'constrained' },
+							className: "lsx-map-preview",
+							name: "Preview",
+						},
+						[]
+					],
+					[
+						'core/group',
+						{
+							align: 'wide',
+							layout: { type: 'default' },
+							metadata: {
+								name: "Map Details",
+								bindings: {
+									content: {
+										source: 'lsx/map',
+										type: 'google'
+									}
+								}
+							}
 						},
 						[]
 					]

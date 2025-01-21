@@ -75,16 +75,10 @@ class Maps {
 		}
 		$settings    = tour_operator()->options;
 		$api_key     = '';
-		$preview_src = $this->get_map_preview_src();
 
 		if ( isset( $settings['googlemaps_key'] ) ) {
 			$api_key = $settings['googlemaps_key'];
 		}
-
-		if ( isset( $settings['map_placeholder_enabled'] ) && 1 === (int) $settings['map_placeholder_enabled'] && '' !== $preview_src ) {
-			$this->placeholder_enabled = true;
-		}
-		$this->placeholder_enabled = apply_filters( 'lsx_to_map_placeholder_enabled', $this->placeholder_enabled );
 
 		//if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
 			$prefix = 'src/';
@@ -94,16 +88,9 @@ class Maps {
 			$suffix = '.min';
 		}*/
 
-		$dependacies = array( 'jquery', 'googlemaps_api', 'googlemaps_api_markercluster' );
+		$dependacies = array( 'jquery' );
 		$google_url  = 'https://maps.googleapis.com/maps/api/js?key=' . $api_key . '&libraries=places';
 		$google_marker_cluster = LSX_TO_URL . 'assets/js/vendor/google-markerCluster.js';
-
-		if ( true === $this->placeholder_enabled ) {
-			$dependacies = array( 'jquery' );
-		} else {
-			wp_enqueue_script( 'googlemaps_api', $google_url, array( 'jquery' ), LSX_TO_VER, true );
-			wp_enqueue_script( 'googlemaps_api_markercluster', $google_marker_cluster, array( 'googlemaps_api' ), LSX_TO_VER, true );
-		}
 
 		wp_enqueue_script(
 			'lsx_to_maps',
@@ -119,8 +106,8 @@ class Maps {
 				'apiKey'              => $api_key,
 				'start_marker'        => tour_operator()->markers->start,
 				'end_marker'          => tour_operator()->markers->end,
-				'placeholder_enabled' => $this->placeholder_enabled,
-				'enable_banner_map'   => $this->enable_banner_map,
+				'placeholder_enabled' => true,
+				'enable_banner_map'   => false,
 				'google_url'          => $google_url,
 				'google_cluster_url'  => $google_marker_cluster,
 			)
@@ -158,10 +145,12 @@ class Maps {
 			'fusion_tables_colour_background' => '#000000',
 			'disable_cluster_js' => false,
 			'disable_auto_zoom' => false,
+			'classes' => array(),
 		);
 
 		$args        = wp_parse_args( $args, $defaults );
-		$map_classes = array( 'lsx-map' );
+		$map_classes = array_merge( [ 'lsx-map' ], $args['classes'] );
+		
 		if ( true === $args['disable_auto_zoom'] ) {
 			$map_classes[] = 'disable-auto-zoom';
 		}

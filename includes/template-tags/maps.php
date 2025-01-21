@@ -30,11 +30,11 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 	 * @param string  $before
 	 * @param string  $after
 	 * @param boolean $echo
-	 * @return void
+	 * @return string
 	 */
 	function lsx_to_map( $before = '', $after = '', $echo = true ) {
-		global $wp_query, $post;
 		$location = get_transient( get_the_ID() . '_location' );
+
 		if ( false !== $location ) {
 			$map = '';
 			$map_override = apply_filters( 'lsx_to_map_override', false );
@@ -200,8 +200,12 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 				$map = $map_override;
 			}
 
-			// @codingStandardsIgnoreLine
-			echo $map;
+			if ( true === $echo ) {
+				// @codingStandardsIgnoreLine
+				echo $before . $map . $after;
+			} else {
+				return $before . $map . $after;
+			}
 		}
 	}
 }
