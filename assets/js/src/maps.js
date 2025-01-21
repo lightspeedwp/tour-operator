@@ -9,7 +9,6 @@ var LSX_TO_Maps = {
 
 	initThis: function() {
 		var $map = jQuery('.lsx-map:eq(0)');
-		// console.log($map);
 
 		var lat = Number($map.attr('data-lat'));
 		var lng = Number($map.attr('data-long'));
@@ -62,6 +61,8 @@ var LSX_TO_Maps = {
 
 		this.bounds = [];
 
+		console.log(banner_class);
+
 		var $footerMap = jQuery(banner_class+':eq(0)');
 		if ('.lsx-map-preview' != banner_class) {
 			height = $footerMap.css('height');
@@ -72,8 +73,6 @@ var LSX_TO_Maps = {
 		} else {
 			$footerMap.css('height',height);
 		}
-
-		console.log($map.attr('data-kml'));
 
 		var $container = null;
 		var $breadcrumbs = null;
@@ -134,7 +133,6 @@ var LSX_TO_Maps = {
 		//Do we fit to the screen or center the view.
 		if ( !$map.hasClass('disable-auto-zoom') && ( 'cluster' == type || ('route' == type && (false == kml || undefined == kml))) ) {
 			
-			
 			if ( 1 < this.bounds.length ) {
 				this.setBounds();
 			} else {
@@ -149,10 +147,6 @@ var LSX_TO_Maps = {
 		}
 
 		this.resizeThis();
-
-		// if('cluster' === type){
-		// 	$footerMap.append(container_html);
-		// }
 
 		if ($container !== null) {
 			jQuery(banner_class).append($container);
@@ -460,7 +454,8 @@ var LSX_TO_Maps = {
 	},
 
 	watchMapTriggers: function() {
-		jQuery(document).on( 'click', '.lsx-map-placeholder, .placeholder-text', function( event ) {
+		jQuery('.lsx-map-preview a').on( 'click', function( event ) {
+			event.preventDefault();
 			jQuery.getScript(lsx_to_maps_params.google_url,function() {
 				jQuery.getScript(lsx_to_maps_params.google_cluster_url);
 				LSX_TO_Maps.initThis();
@@ -470,12 +465,12 @@ var LSX_TO_Maps = {
 };
 
 jQuery(document).ready(function($) {
-	//console.log( lsx_to_maps_params );
 	if ( jQuery('.lsx-map').length > 0 ) {
-		if ( '' === lsx_to_maps_params.placeholder_enabled ) {
-			LSX_TO_Maps.initThis();
-		} else {
+		// If there is a placeholder image, then load the placeholder code.
+		if ( jQuery('.lsx-map').parents('.lsx-location-wrapper').find('.lsx-map-preview').length > 0 ) {
 			LSX_TO_Maps.watchMapTriggers();
+		} else {
+			LSX_TO_Maps.initThis();
 		}
 	}
 });

@@ -784,10 +784,9 @@ class Bindings {
 				preg_match('/class="([^"]*)"/', $block_content, $matches);
 				$class_string = $matches[1];
 
-				do_action( 'qm/debug', $block_content );
 				if ( lsx_to_has_map() ) {
 					$map = lsx_to_map( '', '', false );
-					$map = str_replace( 'lsx-map', 'lsx-map ' . $class_string, $map );
+					$map = str_replace( 'class="lsx-map"', 'class="lsx-map ' . $class_string . '"', $map );
 					$block_content = $map;
 				}
 			break;

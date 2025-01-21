@@ -78,13 +78,24 @@ wp.domReady(() => {
 							className: "lsx-map-preview",
 							name: "Preview",
 						},
-						[]
+						[
+							[
+								'core/paragraph',
+								{
+									align: 'center',
+									fontSize: 'large',
+									content: '<a href="#">Click here to display the map</a>',
+									className: 'has-text-align-center has-large-font-size'
+								}
+							]
+						]
 					],
 					[
 						'core/group',
 						{
 							align: 'wide',
 							layout: { type: 'default' },
+							className: "hidden",
 							metadata: {
 								name: "Map Details",
 								bindings: {
