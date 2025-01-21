@@ -1,6 +1,6 @@
 wp.domReady(() => {
 
-	// Price Block
+	// Map Block
 	wp.blocks.registerBlockVariation("core/group", {
 		name: "lsx-tour-operator/google-map",
 		title: "Google Map",
@@ -10,6 +10,12 @@ wp.domReady(() => {
 		attributes: {
 			metadata: {
 				name: "Google Map",
+				bindings: {
+					content: {
+						source: 'lsx/map',
+						type: 'google'
+					}
+				}
 			},
 			className: "lsx-location-wrapper",
 			style: {
@@ -36,6 +42,7 @@ wp.domReady(() => {
 			[
 				'core/group',
 				{
+					name: "Title",
 					align: 'wide',
 					style: {
 						spacing: {
@@ -56,7 +63,12 @@ wp.domReady(() => {
 				'core/group',
 				{
 					align: 'wide',
-					layout: { type: 'default' }
+					layout: { type: 'default' },
+					className: "lsx-map-preview",
+					name: "Map",
+					metadata: {
+						name: "Map",
+					}
 				},
 				[
 					[
@@ -69,25 +81,14 @@ wp.domReady(() => {
 							isDark: false,
 							layout: { type: 'constrained' }
 						},
-						[
-							[
-								'core/paragraph',
-								{
-									align: 'center',
-									metadata: { bindings: { content: { source: 'lsx/post-meta', args: { key: 'location' } } } },
-									className: 'has-septenary-color has-text-color has-link-color has-primary-color has-primary-700-color',
-									style: { spacing: { padding: { top: '2px', bottom: '2px' } } },
-									textColor: 'primary-700'
-								}
-							]
-						]
+						[]
 					]
 				]
 			]
 		],
 		isDefault: false,
-		supports: {
+		/*supports: {
 			renaming: false
-		}
+		}*/
 	});
 });
