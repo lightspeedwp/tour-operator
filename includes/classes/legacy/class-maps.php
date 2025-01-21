@@ -77,8 +77,6 @@ class Maps {
 		$api_key     = '';
 		$preview_src = $this->get_map_preview_src();
 
-		do_action( 'qm/debug', $settings );
-
 		if ( isset( $settings['googlemaps_key'] ) ) {
 			$api_key = $settings['googlemaps_key'];
 		}
@@ -191,12 +189,6 @@ class Maps {
 
 			$map .= '>';
 
-			$map .= '<div class="lsx-map-preview" style="width:' . $args['width'] . ';height:' . $args['height'] . ';background-color: #d5e0e6;text-align:center">';
-			if ( true === $this->placeholder_enabled ) {
-				$map .= $this->get_map_preview_html( $args['width'], $args['height'] );
-			}
-			$map .= '</div>';
-
 			$map .= '<div class="lsx-map-markers" style="display:none;">';
 
 			if ( 'single' === $args['type'] ) {
@@ -284,84 +276,6 @@ class Maps {
 		return $icon;
 	}
 
-	/**
-	 * Gets the Map Preview image src.
-	 */
-	public function get_map_preview_src( $mobile = false, $laptop = false ) {
-		$settings = tour_operator()->options;
-		$prefix = '';
-		$default_size = '1920x656';
-		if ( false !== $mobile ) {
-			$prefix = '_mobile';
-			$default_size = '400x400';
-		}
-		if ( false !== $laptop ) {
-			$default_size = '1170x400';
-		}
-
-		$queried_post_type = get_query_var( 'post_type' );
-		if ( is_array( $queried_post_type ) ) {
-			$queried_post_type = $queried_post_type[0];
-		}
-
-		$image = LSX_TO_URL . 'assets/img/placeholders/placeholder-map-' . $default_size . '.jpg';
-
-		if ( isset( $settings['display'] ) && isset( $settings['display'][ 'map' . $prefix . '_placeholder' ] ) && '' !== $settings['display'][ 'map' . $prefix . '_placeholder' ] ) {
-			$image = $settings['display'][ 'map' . $prefix . '_placeholder' ];
-		}
-
-		if ( isset( $settings[ $queried_post_type ] ) && isset( $settings[ $queried_post_type ][ 'map' . $prefix . '_placeholder' ] ) && '' !== $settings[ $queried_post_type ][ 'map' . $prefix . '_placeholder' ] ) {
-			$image = $settings[ $queried_post_type ][ 'map' . $prefix . '_placeholder' ];
-		}
-
-		if ( is_post_type_archive( $this->post_types ) ) {
-			if ( isset( $settings[ get_post_type() ] ) && isset( $settings[ get_post_type() ][ 'map' . $prefix . '_placeholder' ] ) && '' !== $settings[ get_post_type() ][ 'map' . $prefix . '_placeholder' ] ) {
-				$image = $settings[ get_post_type() ][ 'map' . $prefix . '_placeholder' ];
-			}
-		}
-		if ( is_singular( $this->post_types ) ) {
-			$potential_placeholder = get_post_meta( get_the_ID(), 'map' . $prefix . '_placeholder', true );
-			if ( '' !== $potential_placeholder ) {
-				$size = 'full';
-				if ( false !== $mobile ) {
-					$size = 'medium';
-				}
-				$potential_placeholder = wp_get_attachment_image_src( $potential_placeholder, 'full' );
-				if ( is_array( $potential_placeholder ) && ! empty( $potential_placeholder ) ) {
-					$image = $potential_placeholder[0];
-				}
-			}
-		}
-		$image = apply_filters( 'lsx_to_map' . $prefix . '_placeholder_src', $image );
-		return $image;
-	}
-
-	/**
-	 * Creates the map thumbnail HTML
-	 *
-	 * @param string $width
-	 * @param string $height
-	 * @return string
-	 */
-	public function get_map_preview_html( $width = '', $height = '' ) {
-		$preview_src = $this->get_map_preview_src();
-		$preview_html = '';
-		if ( '' !== $preview_src ) {
-			$preview_src_mobile = $this->get_map_preview_src( true );
-			if ( '' === $preview_src_mobile ) {
-				$preview_src_mobile = $preview_src;
-			}
-			$preview_src_laptop = $this->get_map_preview_src( false, true );
-			if ( '' === $preview_src_laptop ) {
-				$preview_src_laptop = $preview_src;
-			}
-			$srcset = $preview_src_mobile . ' 600w,' . $preview_src_laptop . ' 1280w,' . $preview_src . ' 1920w';
-			$sizes = 'sizes="(max-width: 600) 10vw, (max-width: 1280px) 50vw, 100vw"';
-			$preview_html = '<img class="lsx-map-placeholder" ' . $sizes . ' src="' . $preview_src . '" srcset="' . $srcset . '" style="cursor:pointer;height:100%" />';
-			$preview_html .= '<div class="placeholder-text"><h2 class="lsx-to-section-title lsx-to-collapse-title lsx-title" style="margin-top:-' . ( ( (int) $height / 2 ) + 31 ) . 'px">' . esc_html__( 'Click to display the map', 'tour-operator' ) . '</h2></div>';
-		}
-		return $preview_html;
-	}
 	/**
 	 * Checking for bots on the maps.
 	 *
