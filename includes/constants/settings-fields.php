@@ -64,18 +64,6 @@ $settings_fields = array(
 			'default'   => 0,
 			'preview_w' => 300,
 		),
-		'map_placeholder_enabled' => array(
-			'label'   => esc_html__( 'Enable Map Placeholder', 'tour-operator' ),
-			'desc'    => esc_html__( 'Enable a placeholder users will click to load the map.', 'tour-operator' ),
-			'type'    => 'checkbox',
-			'default' => 0,
-		),
-		'map_placeholder' => array(
-			'label'     => esc_html__( 'Upload a map placeholder', 'tour-operator' ),
-			'type'      => 'image',
-			'default'   => 0,
-			'preview_w' => 300,
-		),
 	),
 	'fusion' => array(
 		'fusion_tables_enabled' => array(
@@ -115,19 +103,7 @@ $settings_fields = array(
 				'type'      => 'image',
 				'default'   => 0,
 				'preview_w' => 300,
-			),
-			'map_placeholder_enabled' => array(
-				'label'   => esc_html__( 'Enable Map Placeholder', 'tour-operator' ),
-				'desc'    => esc_html__( 'Enable a placeholder users will click to load the map.', 'tour-operator' ),
-				'type'    => 'checkbox',
-				'default' => 0,
-			),
-			'map_placeholder' => array(
-				'label'     => esc_html__( 'Upload a map placeholder', 'tour-operator' ),
-				'type'      => 'image',
-				'default'   => 0,
-				'preview_w' => 300,
-			),
+			)
 		),
 		'template' => array(
 			'disable_archives' => array(

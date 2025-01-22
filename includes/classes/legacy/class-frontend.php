@@ -57,11 +57,9 @@ class Frontend extends Tour_Operator {
 
 		if ( ! is_admin() ) {
 			add_filter( 'pre_get_posts', array( $this, 'travel_style_post_types' ), 10, 1 );
-			add_filter( 'posts_orderby', array( $this, 'enable_continent_taxonomy_order' ), 10, 2 );
 		}
 
-		// add_filter( 'the_terms', array( $this, 'links_new_window' ), 10, 2 );
-		//$this->maps = Maps::get_instance();
+		$this->maps = new Maps();
 
 		add_filter( 'get_the_archive_title', array( $this, 'get_the_archive_title' ), 100 );
 
@@ -97,39 +95,6 @@ class Frontend extends Tour_Operator {
 
 		wp_enqueue_script( 'tour-operator-script', LSX_TO_URL . 'assets/js/' . $prefix . 'custom' . $suffix . '.js', array( 'jquery', 'slick', 'slick-lightbox'/*, 'fixto'*/ ), LSX_TO_VER, true );
 
-		$param_array = array(
-			'slickSlider' => array(
-				'desktop' => array(
-					'draggable'      => false,
-					'infinite'       => true,
-					'swipe'          => false,
-					'cssEase'        => 'ease-out',
-					'dots'           => true,
-					'slidesToShow'   => 3,
-					'slidesToScroll' => 3,
-				),
-				'tablet'  => array(
-					'slidesToShow'   => 3,
-					'slidesToScroll' => 3,
-					'draggable'  => true,
-					'arrows'     => false,
-					'swipe'      => true,
-					'breakpoint' => 992,
-				),
-				'mobile'  => array(
-					'slidesToShow'   => 1,
-					'slidesToScroll' => 1,
-					'draggable'      => true,
-					'arrows'         => false,
-					'swipe'          => true,
-					'breakpoint'     => 768,
-				),
-			),
-		);
-		$param_array = apply_filters( 'lsx_to_js_params', $param_array );
-		wp_localize_script( 'tour-operator-script', 'lsx_to_params', $param_array );
-
-
 		if ( ! $has_slick ) {
 			wp_enqueue_style( 'slick', LSX_TO_URL . 'assets/css/vendor/slick.css', array(), LSX_TO_VER );
 		}
@@ -140,7 +105,6 @@ class Frontend extends Tour_Operator {
 
 		wp_enqueue_style( 'tour-operator-style', LSX_TO_URL . 'assets/css/style.css', array(), LSX_TO_VER );
 		wp_style_add_data( 'tour-operator-style', 'rtl', 'replace' );
-
 	}
 
 	/**
@@ -152,32 +116,6 @@ class Frontend extends Tour_Operator {
 		}
 
 		return $query;
-	}
-
-	/**
-	 * Enable continent taxonomy order.
-	 */
-	public function enable_continent_taxonomy_order( $orderby, $query ) {
-		global $wpdb;
-
-		if ( $query->is_main_query() && $query->is_post_type_archive( 'destination' ) ) {
-			if ( isset( $this->options['destination'] ) && isset( $this->options['destination']['group_items_by_continent'] ) ) {
-				$new_orderby = "(
-					SELECT GROUP_CONCAT(lsx_to_term_order ORDER BY lsx_to_term_order ASC)
-					FROM $wpdb->term_relationships
-					INNER JOIN $wpdb->term_taxonomy USING (term_taxonomy_id)
-					INNER JOIN $wpdb->terms USING (term_id)
-					WHERE $wpdb->posts.ID = object_id
-					AND taxonomy = 'continent'
-					GROUP BY object_id
-				) ";
-
-				$new_orderby .= ( 'ASC' == strtoupper( $query->get( 'order' ) ) ) ? 'ASC' : 'DESC';
-				$orderby = $new_orderby . ', ' . $orderby;
-			}
-		}
-
-		return $orderby;
 	}
 
 	/**

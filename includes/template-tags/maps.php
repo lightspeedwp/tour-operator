@@ -17,7 +17,7 @@
 function lsx_to_is_map_enabled() {
 	$options = tour_operator()->legacy->options;
 	$return = true;
-	if ( false !== $options && isset( $options['display']['maps_disabled'] ) && 'on' === $options['display']['maps_disabled'] ) {
+	if ( false !== $options && isset( $options['maps_disabled'] ) && 'on' === $options['maps_disabled'] ) {
 		$return = false;
 	}
 	return $return;
@@ -30,11 +30,11 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 	 * @param string  $before
 	 * @param string  $after
 	 * @param boolean $echo
-	 * @return void
+	 * @return string
 	 */
 	function lsx_to_map( $before = '', $after = '', $echo = true ) {
-		global $wp_query, $post;
 		$location = get_transient( get_the_ID() . '_location' );
+
 		if ( false !== $location ) {
 			$map = '';
 			$map_override = apply_filters( 'lsx_to_map_override', false );
@@ -110,17 +110,13 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 							}
 						}
 
-						if ( lsx_to_has_destination_banner_map() ) {
-							$args['selector'] = '#lsx-banner .page-banner';
-						}
-
 						$args['content'] = 'excerpt';
 
 						if ( false !== $connections && '' !== $connections && ! empty( $connections ) ) {
 							$args['connections'] = $connections;
 							$args['type'] = 'cluster';
 
-							if ( '0' === $parent_id && ! lsx_to_has_destination_banner_cluster() ) {
+							if ( '0' === $parent_id ) {
 								$args['disable_cluster_js'] = true;
 							}
 						} else {
@@ -175,16 +171,12 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 							$connections = $countries->posts;
 						}
 
-						if ( lsx_to_has_destination_banner_map() ) {
-							$args['selector'] = '#lsx-banner .page-banner';
-						}
-
 						$args['content'] = 'excerpt';
 
 						if ( false !== $connections && '' !== $connections ) {
 							$args['connections'] = $connections;
 							$args['type'] = 'cluster';
-							if ( '0' === $parent_id && ! lsx_to_has_destination_banner_cluster() ) {
+							if ( '0' === $parent_id ) {
 								$args['disable_cluster_js'] = true;
 							}
 						}
@@ -208,22 +200,13 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 				$map = $map_override;
 			}
 
-			// @codingStandardsIgnoreLine
-			echo $map;
+			if ( true === $echo ) {
+				// @codingStandardsIgnoreLine
+				echo $before . $map . $after;
+			} else {
+				return $before . $map . $after;
+			}
 		}
-	}
-}
-
-if ( ! function_exists( 'lsx_to_map_meta' ) ) {
-	/**
-	 * Outputs the map meta
-	 *
-	 * @package to-maps
-	 * @subpackage template-tags
-	 * @category meta
-	 */
-	function lsx_to_map_meta() {
-		do_action( 'lsx_to_map_meta' );
 	}
 }
 
@@ -236,13 +219,10 @@ if ( ! function_exists( 'lsx_to_display_fustion_tables' ) ) {
 	 */
 	function lsx_to_display_fustion_tables() {
 		$temp = get_option( '_lsx-to_settings', false );
-
-		if ( false !== $temp && isset( $temp['display'] ) && ! empty( $temp['display'] ) ) {
-			if ( isset( $temp['display']['fusion_tables_enabled'] ) ) {
-				return true;
-			} else {
-				return false;
-			}
+		if ( isset( $temp['fusion_tables_enabled'] ) ) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 }
@@ -257,59 +237,13 @@ if ( ! function_exists( 'lsx_to_fustion_tables_attr' ) ) {
 	function lsx_to_fustion_tables_attr( $attribute, $default ) {
 		$temp = get_option( '_lsx-to_settings', false );
 
-		if ( false !== $temp && isset( $temp['display'] ) && ! empty( $temp['display'] ) ) {
-			if ( isset( $temp['display'][ 'fusion_tables_' . $attribute ] ) && ! empty( $temp['display'][ 'fusion_tables_' . $attribute ] ) ) {
-				return $temp['display'][ 'fusion_tables_' . $attribute ];
+		if ( false !== $temp && isset( $temp ) ) {
+			if ( isset( $temp[ 'fusion_tables_' . $attribute ] ) && ! empty( $temp[ 'fusion_tables_' . $attribute ] ) ) {
+				return $temp[ 'fusion_tables_' . $attribute ];
 			} else {
 				return $default;
 			}
 		}
-	}
-}
-
-if ( ! function_exists( 'lsx_to_has_destination_banner_map' ) ) {
-	/**
-	 * Checks to see if the destination banner map is enabled.
-	 *
-	 * @package to-maps
-	 * @subpackage template-tags
-	 * @category destination
-	 *
-	 * @return boolean
-	 */
-	function lsx_to_has_destination_banner_map() {
-		$temp   = tour_operator()->legacy->options;
-		$return = false;
-		if ( false !== $temp && isset( $temp['destination'] ) && ! empty( $temp['destination'] ) ) {
-			if ( isset( $temp['destination']['enable_banner_map'] ) ) {
-				$return = true;
-			}
-		}
-		return apply_filters( 'lsx_to_has_destination_banner_map', $return );
-	}
-}
-
-if ( ! function_exists( 'lsx_to_has_destination_banner_cluster' ) ) {
-	/**
-	 * Checks to see if the destination banner map cluster is disabled.
-	 *
-	 * @package to-maps
-	 * @subpackage template-tags
-	 * @category destination
-	 *
-	 * @return boolean
-	 */
-	function lsx_to_has_destination_banner_cluster() {
-		$temp = get_option( '_lsx-to_settings', false );
-
-		if ( false !== $temp && isset( $temp['destination'] ) && ! empty( $temp['destination'] ) ) {
-			if ( isset( $temp['destination']['disable_banner_map_cluster'] ) ) {
-				return false;
-			} else {
-				return true;
-			}
-		}
-		return true;
 	}
 }
 
@@ -323,7 +257,7 @@ if ( ! function_exists( 'lsx_to_maps_has_api_key' ) ) {
 	 */
 	function lsx_to_maps_has_api_key() {
 		$options = tour_operator()->options;
-		if ( false !== $options && isset( $options['api']['googlemaps_key'] ) ) {
+		if ( false !== $options && isset( $options['googlemaps_key'] ) ) {
 			$return = true;
 		} else {
 			$return = $options;
@@ -401,4 +335,42 @@ if ( ! function_exists( 'lsx_to_has_map' ) ) {
 			return false;
 		}
 	}
+}
+
+/**
+ * Retrieves the accommodation ids from the itinerary, mostly for use in the map.
+ * the itinerary loop.
+ *
+ * @package       tour-operator
+ * @subpackage    template-tags
+ * @category      itinerary
+ *
+ * @param string $meta_key
+ * @param string $supress_filters
+ * @return array
+ */
+function lsx_to_get_tour_itinerary_ids( $meta_key = 'accommodation_to_tour', $supress_filters = false ) {
+	$tour_itinerary = new \lsx\legacy\Itinerary_Query();
+	$itinerary_ids  = array();
+
+	if ( false === $supress_filters ) {
+		$meta_key = apply_filters( 'lsx_to_get_itinerary_ids_meta_key', $meta_key );
+	}
+	
+	if ( $tour_itinerary->has_itinerary() ) {
+		$itinerary_count = 1;
+		while ( $tour_itinerary->while_itinerary() ) {
+			$tour_itinerary->current_itinerary_item();
+
+			if ( ! empty( $tour_itinerary->itinerary[ $meta_key ] ) && '' !== $tour_itinerary->itinerary[ $meta_key] ) {
+				if ( ! is_array( $tour_itinerary->itinerary[ $meta_key ] ) ) {
+					$d_ids = array( $tour_itinerary->itinerary[ $meta_key ] );
+				} else {
+					$d_ids = $tour_itinerary->itinerary[ $meta_key ];
+				}
+				$itinerary_ids = array_merge( $itinerary_ids, array_values( $d_ids ) );
+			}
+		}
+	}
+	return $itinerary_ids;
 }

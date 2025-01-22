@@ -4,9 +4,13 @@
 
 ### Added
 - A "Parents Only" checkbox to the TO query block settings, allowing you to select only the parent destinations.
+- The Google Map, map block for Tour Operator, bringing back the various maps shows on the pages.
 
 ### Fixed
 - Fixes to the post relation fields and when they save, detected via the TO Reviews plugin.
+
+### Removed
+- Unused icons and placeholders from previous versions.
 
 ## [[2.0.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.0) - 20-12-2024
 

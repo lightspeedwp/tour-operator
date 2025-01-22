@@ -61,6 +61,7 @@ class Registration {
 			'accommodation' => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
 			'destination'   => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
 			'query-loops'   => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
+			'maps'          => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
 		];
 
 		$additional_scripts = [
@@ -391,6 +392,10 @@ class Registration {
 			if ( empty( wp_get_post_terms( get_the_ID(), $key, $tax_args ) ) ) {
 				$block_content = '';
 			}
+		} else if ( 'location' === $key ) {
+			if ( ! lsx_to_has_map() ) {
+				$block_content = '';
+			}
 		} else {
 			$key        = str_replace( '-', '_', $key );
 			$key_array  = [ $key ];
@@ -514,7 +519,6 @@ class Registration {
 		if ( false !== stripos( $parsed_block['attrs']['className'], 'parents-only' ) ) {
 			$this->parents_only = true;
 		}
-		do_action( 'qm/debug', $this->parents_only );
 
 		return $parsed_block;
 	}
