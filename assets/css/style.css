@@ -734,6 +734,7 @@ button.facetwp-reset {
 }
 .lsx-to-map-marker .lsx-to-map-marker-content {
   flex-grow: 1;
+  color: var(--wp--preset--color--contrast);
 }
 .lsx-to-map-marker .lsx-to-map-marker-content.content-area {
   margin: 0;

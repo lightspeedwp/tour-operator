@@ -26,6 +26,7 @@
 		-webkit-box-flex: 1;
 		-ms-flex-positive: 1;
 		flex-grow: 1;
+		color: var(--wp--preset--color--contrast);
 
 		&.content-area {
 			margin: 0;
@@ -33,7 +34,7 @@
 
 		.entry-content {
 			margin-top: 10px;
-			
+
 			p {
 				margin-bottom: 0;
 				margin-top: 1.2rem;
