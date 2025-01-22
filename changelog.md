@@ -8,6 +8,7 @@
 
 ### Fixed
 - Fixes to the post relation fields and when they save, detected via the TO Reviews plugin.
+- Fixed the Slider not detecting the amount of columns set on the block.
 
 ### Removed
 - Unused icons and placeholders from previous versions. [#477](https://github.com/lightspeedwp/tour-operator/pull/477)

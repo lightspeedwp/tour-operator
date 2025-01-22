@@ -269,8 +269,17 @@ if (window.location.hash) {
     $(".lsx-to-slider .wp-block-post-template:not(.slider-disabled)").each(
       function () {
         var $this = $(this);
+		let slidesToShow = 3;
 
         lsx_to.pre_build_slider($this);
+
+		const str = $this.attr('class');
+		const classRegex = /columns-\S*/g;
+		const matches = str.match(classRegex);
+		if ( 0 < matches.length ) {
+			const column = matches[0].split('-')[1];
+			slidesToShow = column;
+		}
 
         if (1 < $this.children().length) {
           $this.slick({
@@ -278,7 +287,7 @@ if (window.location.hash) {
             infinite: true,
             swipe: false,
             dots: false,
-            slidesToShow: 3, // Show 3 items at a time
+            slidesToShow: slidesToShow, // Show 3 items at a time
             slidesToScroll: 1, // Scroll 1 item at a time
             autoplay: false,
             autoplaySpeed: 0,
