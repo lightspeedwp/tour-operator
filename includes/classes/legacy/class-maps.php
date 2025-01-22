@@ -238,6 +238,8 @@ class Maps {
 			$map .= '</div>';
 			$map .= '</div>';
 
+			$this->assets();
+
 			return $map;
 		}
 	}

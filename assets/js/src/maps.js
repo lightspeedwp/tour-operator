@@ -367,6 +367,8 @@ var LSX_TO_Maps = {
 	},
 
 	createMarker: function(position,icon) {
+		console.log(position);
+		console.log(jQuery(position.title).text());
 		var marker = new google.maps.Marker({
 			position: position.marker,
 			map: this.mapObj,
@@ -382,6 +384,8 @@ var LSX_TO_Maps = {
 			// position.content = (position.content).replace('<p>', '<p style="margin-bottom:0;margin-top:10px;">');
 
 			infowindow = new google.maps.InfoWindow({
+				title: jQuery(position.title).text(),
+				label: jQuery(position.title).text(),
 				content:	'<div class="lsx-to-map-marker">' +
 								'<img class="lsx-to-map-marker-img" src="' + position.thumbnail + '">' +
 								'<div class="lsx-to-map-marker-content content-area">' +

@@ -756,6 +756,7 @@ button.facetwp-reset {
 }
 .lsx-to-map-marker .lsx-to-map-marker-title {
   margin-bottom: 1.2rem;
+  margin-top: 0;
 }
 
 .lsx-itinerary-wrapper .hidden,
