@@ -210,19 +210,6 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 	}
 }
 
-if ( ! function_exists( 'lsx_to_map_meta' ) ) {
-	/**
-	 * Outputs the map meta
-	 *
-	 * @package to-maps
-	 * @subpackage template-tags
-	 * @category meta
-	 */
-	function lsx_to_map_meta() {
-		do_action( 'lsx_to_map_meta' );
-	}
-}
-
 if ( ! function_exists( 'lsx_to_display_fustion_tables' ) ) {
 	/**
 	 * Return if the fusion tables are enabled or not

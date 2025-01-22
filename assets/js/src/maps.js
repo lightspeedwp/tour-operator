@@ -64,31 +64,11 @@ var LSX_TO_Maps = {
 		console.log(banner_class);
 
 		var $footerMap = jQuery(banner_class+':eq(0)');
-		if ('.lsx-map-preview' != banner_class) {
-			height = $footerMap.css('height');
-			// container_html = $footerMap.find('.container').html();
-			$footerMap.find('.container').hide();
-		} else if ('route' === type && 'undefined' !== $map.attr('data-kml')) {
+		$footerMap.css('height',height);
+		if ('route' === type && 'undefined' !== $map.attr('data-kml')) {
 			kml = $map.attr('data-kml');
-		} else {
-			$footerMap.css('height',height);
 		}
 
-		var $container = null;
-		var $breadcrumbs = null;
-		if ('.lsx-map-preview' != banner_class) {
-			jQuery(banner_class).addClass('gmap-banner');
-
-			$map.closest('section').hide();
-			$map.closest('section').appendTo('footer.content-info');
-
-			if (jQuery(banner_class).children('.container').length == 1) {
-				$container = jQuery(banner_class).children('.container').clone(true, true);
-			}
-			if (jQuery(banner_class).children('.breadcrumbs-container').length == 1) {
-				$breadcrumbs = jQuery(banner_class).children('.breadcrumbs-container').clone(true, true);
-			}
-		}
 		var snazzyMapsStyle = null,
 			styledMap = null;
 
@@ -147,14 +127,6 @@ var LSX_TO_Maps = {
 		}
 
 		this.resizeThis();
-
-		if ($container !== null) {
-			jQuery(banner_class).append($container);
-		}
-		if ($breadcrumbs !== null) {
-			$breadcrumbs.find('.container').show();
-			jQuery(banner_class).after($breadcrumbs);
-		}
 
 		$gmap = this.mapObj;
 	},
