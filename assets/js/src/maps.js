@@ -126,8 +126,6 @@ var LSX_TO_Maps = {
 
 		this.resizeThis();
 
-		$map.removeClass('hidden');
-
 		$gmap = this.mapObj;
 	},
 
