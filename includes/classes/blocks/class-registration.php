@@ -268,12 +268,25 @@ class Registration {
 				$from       = $directions[1];
 
 				$found_items = get_post_meta( get_the_ID(), $to . '_to_' . $from, true );
+				do_action('qm/debug',$key);
+				do_action('qm/debug',$found_items);
 
 				if ( false !== $found_items && ! empty( $found_items ) ) {
 					if ( ! is_array( $found_items ) ) {
 						$found_items = [ $found_items ];
 					}
-					$query['post__in'] = $found_items;
+
+					$found_items = $this->filter_existing_ids( $found_items );
+
+					do_action('qm/debug',$found_items);
+
+					if ( ! empty( $found_items ) ) {
+						$query['post__in'] = $found_items;
+					} else {
+						$this->disabled[ $key ] = true;
+						$query['post__in']      = [ get_the_ID() ];
+					}
+					
 				} else {
 					$this->disabled[ $key ] = true;
 					$query['post__in']      = [ get_the_ID() ];
@@ -396,6 +409,11 @@ class Registration {
 			if ( ! lsx_to_has_map() ) {
 				$block_content = '';
 			}
+		} else if ( 'gallery' === $key ) {
+			$value = get_post_meta( get_the_ID(), $key, true );
+			if ( ! is_array( $value ) ) {
+				$block_content = '';
+			}
 		} else {
 			$key        = str_replace( '-', '_', $key );
 			$key_array  = [ $key ];
@@ -457,6 +475,21 @@ class Registration {
 		$result = (int) $wpdb->get_var( $wpdb->prepare( $query, $ids ) );
 		// phpcs:enable -- Stop ignoring
 		return  $result;
+	}
+
+	protected function filter_existing_ids( $ids ) {
+		$ids     = array_unique( $ids );
+		$new_ids = [];
+		foreach ( $ids as $key => $id ) {
+			if ( empty( $id ) ) {
+				continue;
+			}
+			if ( 0 === $this->post_ids_exist( $id ) ) {
+				continue;
+			}
+			$new_ids[] = $id;
+		}
+		return $new_ids;
 	}
 
 	/**

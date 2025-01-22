@@ -486,6 +486,7 @@ class Maps
         ?>
         <article <?php post_class(); ?>>
         <?php
+			
 			$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
 			if ( 'accommodation' === get_post_type() ) {
 				the_terms( get_the_ID(), 'travel-style', '<span class="' . $meta_class . 'style"><span class="lsx-to-meta-data-key">' . esc_html__( 'Style', 'tour-operator' ) . ':</span> ', ', ', '</span>' );
