@@ -64,6 +64,7 @@ class Maps
 			'accommodation',
 			'tour',
         );
+		add_filter( 'lsx_to_maps_tour_connections', [ $this, 'map_start_end_points' ], 40, 1 );
     }
 
     /**
@@ -271,8 +272,7 @@ class Maps
      *
      * @package ctt-lsx-child
      */
-    public function is_a_bot()
-    {
+    public function is_a_bot() {
         $is_bot = false;
         $user_agents = array(
         'Googlebot',
@@ -482,28 +482,53 @@ class Maps
         return $is_bot;
     }
 
-    public function map_marker_html( $connection )
-    {
+    public function map_marker_html( $connection ) {
         ?>
         <article <?php post_class(); ?>>
-        <?php //do_action('lsx_to_map_meta'); ?>
-
-            <div class="entry-content">
         <?php
-        if (empty($connection) || '' === $connection || 'undefined' === $connection ) {
-            $connection = '';
-        }
-        $excerpt = get_the_excerpt($connection);
-        if (empty($excerpt) || '' === $excerpt ) {
-            $tooltip = apply_filters('get_the_excerpt', get_the_content());
-            $tooltip = strip_tags($tooltip);
-            echo wp_kses_post(wpautop($tooltip));
-        } else {
-            echo wp_kses_post($excerpt);
-        }
-        ?>
+			$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
+			if ( 'accommodation' === get_post_type() ) {
+				the_terms( get_the_ID(), 'travel-style', '<span class="' . $meta_class . 'style"><span class="lsx-to-meta-data-key">' . esc_html__( 'Style', 'tour-operator' ) . ':</span> ', ', ', '</span>' );
+				the_terms( get_the_ID(), 'accommodation-type', '<span class="' . $meta_class . 'type"><span class="lsx-to-meta-data-key">' . esc_html__( 'Type', 'tour-operator' ) . ':</span> ', ', ', '</span>' );
+			}
+		?>
+
+        	<div class="entry-content">
+			<?php
+			if ( empty( $connection ) || '' === $connection || 'undefined' === $connection ) {
+				$connection = '';
+			}
+			$excerpt = get_the_excerpt($connection);
+			if ( empty( $excerpt ) || '' === $excerpt ) {
+				$tooltip = apply_filters( 'get_the_excerpt', get_the_content() );
+				$tooltip = strip_tags( $tooltip );
+				echo wp_kses_post( wpautop( $tooltip ) );
+			} else {
+				echo wp_kses_post( $excerpt );
+			}
+			?>
             </div>
         </article>
         <?php
     }
+
+	/**
+	 * Add in the departure and the ends in destinations.
+	 *
+	 * @param array $connections
+	 * @return array
+	 */
+	function map_start_end_points( $connections = array() ) {
+		if ( ! empty( $connections ) ) {
+			$departs_from = get_post_meta( get_the_ID(), 'departs_from', true );
+			if ( false !== $departs_from && '' !== $departs_from ) {
+				$connections = array_merge( array( $departs_from ), $connections );
+			}
+			$ends_in = get_post_meta( get_the_ID(), 'ends_in', true );
+			if ( false !== $ends_in && '' !== $ends_in ) {
+				$connections[] = $ends_in;
+			}
+		}
+		return $connections;
+	}
 }

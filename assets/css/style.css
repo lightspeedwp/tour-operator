@@ -738,6 +738,9 @@ button.facetwp-reset {
 .lsx-to-map-marker .lsx-to-map-marker-content.content-area {
   margin: 0;
 }
+.lsx-to-map-marker .lsx-to-map-marker-content .entry-content {
+  margin-top: 10px;
+}
 .lsx-to-map-marker .lsx-to-map-marker-content .entry-content p {
   margin-bottom: 0;
   margin-top: 1.2rem;
@@ -759,7 +762,7 @@ button.facetwp-reset {
   flex-shrink: 0;
 }
 .lsx-to-map-marker .lsx-to-map-marker-title {
-  margin-bottom: 1.2rem;
+  margin-bottom: 10px;
   margin-top: 0;
 }
 
