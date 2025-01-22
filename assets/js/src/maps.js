@@ -61,8 +61,6 @@ var LSX_TO_Maps = {
 
 		this.bounds = [];
 
-		console.log(banner_class);
-
 		var $footerMap = jQuery(banner_class+':eq(0)');
 		$footerMap.css('height',height);
 		if ('route' === type && 'undefined' !== $map.attr('data-kml')) {
@@ -311,10 +309,13 @@ var LSX_TO_Maps = {
 					gmap_markers.push({marker:tempMarker,title:'<a target="_blank" rel="noopener noreferrer" href="'+jQuery(this).attr('data-link')+'">'+jQuery(this).attr('data-title')+'</a>',thumbnail:jQuery(this).attr('data-thumbnail'),content:jQuery(this).html()});
 
 					var icon_url = jQuery(this).attr('data-icon');
-					// console.log(icon_url);
 
-					if ('route' == $this.type && (0==counter || marker_length == counter)) {
-						if (0==counter) {
+					console.log(icon_url);
+					console.log(counter);
+					console.log(marker_length);
+
+					if ('route' == $this.type && ( 0 == counter || marker_length == counter ) ) {
+						if ( 0 == counter ) {
 							icon_url = lsx_to_maps_params.start_marker;
 						} else {
 							icon_url = lsx_to_maps_params.end_marker;

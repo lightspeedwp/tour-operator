@@ -392,6 +392,10 @@ class Registration {
 			if ( empty( wp_get_post_terms( get_the_ID(), $key, $tax_args ) ) ) {
 				$block_content = '';
 			}
+		} else if ( 'location' === $key ) {
+			if ( ! lsx_to_has_map() ) {
+				$block_content = '';
+			}
 		} else {
 			$key        = str_replace( '-', '_', $key );
 			$key_array  = [ $key ];
