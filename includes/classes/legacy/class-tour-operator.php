@@ -334,8 +334,10 @@ class Tour_Operator {
 			$this->google_api_key = false;
 		}
 
-		if ( isset( $this->options['googlemaps_marker'] ) && '' !== $this->options['googlemaps_marker'] ) {
-			$this->markers->default_marker = $this->options['googlemaps_marker'];
+		do_action('qm/debug',$this->options);
+
+		if ( isset( $this->options['googlemaps_marker_id'] ) && ! empty( $this->options['googlemaps_marker_id'] ) ) {
+			$this->markers->default_marker = wp_get_attachment_image_src( $this->options['googlemaps_marker_id'], 'full' )[0];
 		} else {
 			$this->markers->default_marker = LSX_TO_URL . 'assets/img/markers/gmaps-mark.svg';
 		}
@@ -358,14 +360,14 @@ class Tour_Operator {
 			$this->markers->cluster_large = LSX_TO_URL . 'assets/img/markers/m3.png';
 		}
 
-		if ( isset( $this->options['gmap_marker_start'] ) && '' !== $this->options['gmap_marker_start'] ) {
-			$this->markers->start = $this->options['gmap_marker_start'];
+		if ( isset( $this->options['gmap_marker_start_id'] ) && ! empty( $this->options['gmap_marker_start_id'] ) ) {
+			$this->markers->start = wp_get_attachment_image_src( $this->options['gmap_marker_start_id'], 'full' )[0];
 		} else {
 			$this->markers->start = LSX_TO_URL . 'assets/img/markers/start-marker.png';
 		}
 
-		if ( isset( $this->options['gmap_marker_end'] ) && '' !== $this->options['gmap_marker_end'] ) {
-			$this->markers->end = $this->options['gmap_marker_end'];
+		if ( isset( $this->options['gmap_marker_end_id'] ) && ! empty( $this->options['gmap_marker_end_id'] ) ) {
+			$this->markers->end = wp_get_attachment_image_src( $this->options['gmap_marker_end_id'], 'full' )[0];
 		} else {
 			$this->markers->end = LSX_TO_URL . 'assets/img/markers/end-marker.png';
 		}
