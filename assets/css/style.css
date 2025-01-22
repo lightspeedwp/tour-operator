@@ -719,6 +719,10 @@ button.facetwp-reset {
   cursor: pointer;
 }
 
+.lsx-map.wp-block-group.hidden {
+  display: none;
+}
+
 .lsx-to-map-marker {
   align-items: flex-start;
   display: flex;

@@ -1,3 +1,9 @@
+.lsx-map {
+	&.wp-block-group.hidden {
+		display: none;
+	}
+}
+
 .lsx-to-map-marker {
 	-webkit-box-align: start;
 	-ms-flex-align: start;
