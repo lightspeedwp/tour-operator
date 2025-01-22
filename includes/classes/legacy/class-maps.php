@@ -486,7 +486,7 @@ class Maps
     {
         ?>
         <article <?php post_class(); ?>>
-        <?php do_action('lsx_to_map_meta'); ?>
+        <?php //do_action('lsx_to_map_meta'); ?>
 
             <div class="entry-content">
         <?php
