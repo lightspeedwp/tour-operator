@@ -206,18 +206,27 @@ class Registration {
 				$directions = explode( '-related-', $key );
 				$to         = $directions[0];
 				$from       = $directions[1];
+				$items      = [];
+
+				do_action('qm/debug',$key);
 
 				// Get the current item IDS to exclude
 				if ( $to === $from ) {
 					$excluded_items = [ get_the_ID() ];
-				} else {
-					$excluded_items = get_post_meta( get_the_ID(), $to . '_to_' . $from, true );
-					if ( ! empty( $excluded_items ) ) {
-						if ( ! is_array( $excluded_items ) ) {
-							$excluded_items = [ $excluded_items ];
-						}
-					} else {
-						$excluded_items = [];
+				} 
+				
+				
+				$found_items = get_post_meta( get_the_ID(), $to . '_to_' . $from, true );
+
+				if ( false !== $found_items && ! empty( $found_items ) ) {
+					if ( ! is_array( $found_items ) ) {
+						$found_items = [ $found_items ];
+					}
+
+					$found_items = $this->filter_existing_ids( $found_items );
+
+					if ( ! empty( $found_items ) ) {
+						$items = array_merge( $items, $found_items );
 					}
 				}
 
@@ -225,30 +234,35 @@ class Registration {
 				$destinations = get_post_meta( get_the_ID(), 'destination_to_' . $from, true );
 				
 				if ( ! empty( $destinations ) ) {
-					$items = [];
 
 					foreach ( $destinations as $destination ) {
+						if ( '' === $destination ) {
+							continue;
+						}
+
 						$found_items = get_post_meta( $destination, $to . '_to_destination', true );
 						if ( ! empty( $found_items ) ) {
 							if ( ! is_array( $found_items ) ) {
 								$found_items = [ $found_items ];
 							}
+							$found_items = $this->filter_existing_ids( $found_items );
 							$items = array_merge( $items, $found_items );
 						}
 					}
-					
-					if ( ! empty( $items ) ) {
-						$items = array_unique( $items );
-						$items = array_diff( $items, $excluded_items );
-						$query['post__in'] = $items;
-					}
 				}
 
+				if ( ! empty( $items ) ) {
+					$items = array_unique( $items );
+					$query['post__in'] = $items;
+				}
 				if ( ! isset( $query['post__in'] ) ) {
 					$this->disabled[ $key ] = true;
 				}
-				// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
-				$query['post__not_in'] = $excluded_items;
+				if ( ! empty( $excluded_items ) ) {
+					// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
+					$query['post__not_in'] = $excluded_items;
+
+				}
 
 			break;
 
