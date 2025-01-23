@@ -268,8 +268,6 @@ class Registration {
 				$from       = $directions[1];
 
 				$found_items = get_post_meta( get_the_ID(), $to . '_to_' . $from, true );
-				do_action('qm/debug',$key);
-				do_action('qm/debug',$found_items);
 
 				if ( false !== $found_items && ! empty( $found_items ) ) {
 					if ( ! is_array( $found_items ) ) {
@@ -277,8 +275,6 @@ class Registration {
 					}
 
 					$found_items = $this->filter_existing_ids( $found_items );
-
-					do_action('qm/debug',$found_items);
 
 					if ( ! empty( $found_items ) ) {
 						$query['post__in'] = $found_items;

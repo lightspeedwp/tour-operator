@@ -104,7 +104,7 @@ if ( ! function_exists( 'lsx_to_map' ) ) {
 								$connections = $regions->posts;
 							}
 						} else {
-							$accommodation = get_post_meta( $parent_id, 'accommodation_to_destination', false );
+							$accommodation = get_post_meta( $parent_id, 'accommodation_to_destination', true );
 							if ( false !== $accommodation && ! empty( $accommodation ) ) {
 								$connections = $accommodation;
 							}
