@@ -321,7 +321,6 @@ class Tour_Operator {
 	 * @return void
 	 */
 	public function set_map_vars() {
-		return;
 		$this->map_post_types = array( 'accommodation', 'activity', 'destination' );
 		$this->markers        = new \stdClass();
 
@@ -335,38 +334,40 @@ class Tour_Operator {
 			$this->google_api_key = false;
 		}
 
-		if ( isset( $this->options['display']['googlemaps_marker'] ) && '' !== $this->options['display']['googlemaps_marker'] ) {
-			$this->markers->default_marker = $this->options['display']['googlemaps_marker'];
+		do_action('qm/debug',$this->options);
+
+		if ( isset( $this->options['googlemaps_marker_id'] ) && ! empty( $this->options['googlemaps_marker_id'] ) ) {
+			$this->markers->default_marker = wp_get_attachment_image_src( $this->options['googlemaps_marker_id'], 'full' )[0];
 		} else {
 			$this->markers->default_marker = LSX_TO_URL . 'assets/img/markers/gmaps-mark.svg';
 		}
 
-		if ( isset( $this->options['display']['gmap_cluster_small'] ) && '' !== $this->options['display']['gmap_cluster_small'] ) {
-			$this->markers->cluster_small = $this->options['display']['gmap_cluster_small'];
+		if ( isset( $this->options['gmap_cluster_small'] ) && '' !== $this->options['gmap_cluster_small'] ) {
+			$this->markers->cluster_small = $this->options['gmap_cluster_small'];
 		} else {
 			$this->markers->cluster_small = LSX_TO_URL . 'assets/img/markers/m1.png';
 		}
 
-		if ( isset( $this->options['display']['gmap_cluster_medium'] ) && '' !== $this->options['display']['gmap_cluster_medium'] ) {
-			$this->markers->cluster_medium = $this->options['display']['gmap_cluster_medium'];
+		if ( isset( $this->options['gmap_cluster_medium'] ) && '' !== $this->options['gmap_cluster_medium'] ) {
+			$this->markers->cluster_medium = $this->options['gmap_cluster_medium'];
 		} else {
 			$this->markers->cluster_medium = LSX_TO_URL . 'assets/img/markers/m2.png';
 		}
 
-		if ( isset( $this->options['display']['gmap_cluster_large'] ) && '' !== $this->options['display']['gmap_cluster_large'] ) {
-			$this->markers->cluster_large = $this->options['display']['gmap_cluster_large'];
+		if ( isset( $this->options['gmap_cluster_large'] ) && '' !== $this->options['gmap_cluster_large'] ) {
+			$this->markers->cluster_large = $this->options['gmap_cluster_large'];
 		} else {
 			$this->markers->cluster_large = LSX_TO_URL . 'assets/img/markers/m3.png';
 		}
 
-		if ( isset( $this->options['display']['gmap_marker_start'] ) && '' !== $this->options['display']['gmap_marker_start'] ) {
-			$this->markers->start = $this->options['display']['gmap_marker_start'];
+		if ( isset( $this->options['gmap_marker_start_id'] ) && ! empty( $this->options['gmap_marker_start_id'] ) ) {
+			$this->markers->start = wp_get_attachment_image_src( $this->options['gmap_marker_start_id'], 'full' )[0];
 		} else {
 			$this->markers->start = LSX_TO_URL . 'assets/img/markers/start-marker.png';
 		}
 
-		if ( isset( $this->options['display']['gmap_marker_end'] ) && '' !== $this->options['display']['gmap_marker_end'] ) {
-			$this->markers->end = $this->options['display']['gmap_marker_end'];
+		if ( isset( $this->options['gmap_marker_end_id'] ) && ! empty( $this->options['gmap_marker_end_id'] ) ) {
+			$this->markers->end = wp_get_attachment_image_src( $this->options['gmap_marker_end_id'], 'full' )[0];
 		} else {
 			$this->markers->end = LSX_TO_URL . 'assets/img/markers/end-marker.png';
 		}

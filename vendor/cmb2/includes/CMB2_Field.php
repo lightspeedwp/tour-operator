@@ -544,6 +544,9 @@ class CMB2_Field extends CMB2_Base {
 		$action    = '';
 		$new_value = $this->sanitization_cb( $meta_value );
 
+		$field_id = $this->id( true );
+		do_action( 'cmb2_pre_save_field', $field_id, $this );
+
 		if ( ! $this->args( 'save_field' ) ) {
 
 			// Nothing to see here.
@@ -577,8 +580,6 @@ class CMB2_Field extends CMB2_Base {
 			$this->value = $this->get_data();
 			$this->escaped_value = null;
 		}
-
-		$field_id = $this->id( true );
 
 		/**
 		 * Hooks after save field action.

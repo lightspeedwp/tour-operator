@@ -88,47 +88,6 @@ function lsx_to_itinerary_drinks_basis( $before = '', $after = '', $echo = true 
 	return '';
 }
 
-
-// =============== Tours ===================
-
-/**
- * Retrieves the accommodation ids from the itinerary, mostly for use in the map.
- * the itinerary loop.
- *
- * @package       tour-operator
- * @subpackage    template-tags
- * @category      itinerary
- *
- * @param string $meta_key
- * @param string $supress_filters
- * @return array
- */
-function lsx_to_get_tour_itinerary_ids( $meta_key = 'accommodation_to_tour', $supress_filters = false ) {
-	$tour_itinerary = new \lsx\legacy\Itinerary_Query();
-	$itinerary_ids  = array();
-
-	if ( false === $supress_filters ) {
-		$meta_key = apply_filters( 'lsx_to_get_itinerary_ids_meta_key', $meta_key );
-	}
-	
-	if ( $tour_itinerary->has_itinerary() ) {
-		$itinerary_count = 1;
-		while ( $tour_itinerary->while_itinerary() ) {
-			$tour_itinerary->current_itinerary_item();
-
-			if ( ! empty( $tour_itinerary->itinerary[ $meta_key ] ) && '' !== $tour_itinerary->itinerary[ $meta_key] ) {
-				if ( ! is_array( $tour_itinerary->itinerary[ $meta_key ] ) ) {
-					$d_ids = array( $tour_itinerary->itinerary[ $meta_key ] );
-				} else {
-					$d_ids = $tour_itinerary->itinerary[ $meta_key ];
-				}
-				$itinerary_ids = array_merge( $itinerary_ids, array_values( $d_ids ) );
-			}
-		}
-	}
-	return $itinerary_ids;
-}
-
 // ==============  Accommodation ================
 /**
  * Outputs the accommodations facilities

@@ -26,6 +26,13 @@ class Registration {
 	protected $onsale = false;
 
 	/**
+	 * True if the current query outputting needs only the parent outputs.
+	 *
+	 * @var boolean
+	 */
+	protected $parents_only = false;
+
+	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
 	 *
 	 * @since 1.0.0
@@ -37,9 +44,8 @@ class Registration {
 		add_filter( 'query_loop_block_query_vars', array( $this, 'query_args_filter' ), 1, 2 );
 		add_filter( 'render_block', array( $this, 'maybe_hide_varitaion' ), 10, 3 );
 
+		add_filter( 'render_block_data', array( $this, 'save_checkbox_queries' ), 10, 1 );
 		add_filter( 'posts_pre_query', array( $this, 'posts_pre_query' ), 10, 2 );
-
-		add_filter( 'render_block_data', array( $this, 'save_onsale_queries' ), 10, 1 );
 	}
 
 	/**
@@ -55,6 +61,7 @@ class Registration {
 			'accommodation' => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
 			'destination'   => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
 			'query-loops'   => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
+			'maps'          => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
 		];
 
 		$additional_scripts = [
@@ -108,11 +115,31 @@ class Registration {
 	public function query_args_filter( $query, $block ) {
 		$block = $block->parsed_block;
 
+		// These are for all query blocks.
+		if ( true === $this->onsale ) {
+			if ( isset( $query['meta_query']['relation'] ) ) {
+				$query['meta_query']['relation'] = 'AND';
+			}
+			$query['meta_query'][] = array(
+				'key' => 'sale_price',
+				'compare' => 'EXISTS',
+			);
+
+			// reset this to false for the next query.
+			$this->onsale = false;
+		}
+		
+		if ( true === $this->parents_only ) {
+			$query['post_parent'] = 0;
+		}
+		
+
 		// Determine if this is the custom block variation.
 		if ( ! isset( $block['attrs']['className'] )  ) {
 			return $query;
 		}
-		
+
+		// Add our specific query args to the query for our variations.
 		$pattern = "/(lsx|facts)-(.*?)-query/";
 		preg_match( $pattern, $block['attrs']['className'], $matches );
 
@@ -179,18 +206,27 @@ class Registration {
 				$directions = explode( '-related-', $key );
 				$to         = $directions[0];
 				$from       = $directions[1];
+				$items      = [];
+
+				do_action('qm/debug',$key);
 
 				// Get the current item IDS to exclude
 				if ( $to === $from ) {
 					$excluded_items = [ get_the_ID() ];
-				} else {
-					$excluded_items = get_post_meta( get_the_ID(), $to . '_to_' . $from, true );
-					if ( ! empty( $excluded_items ) ) {
-						if ( ! is_array( $excluded_items ) ) {
-							$excluded_items = [ $excluded_items ];
-						}
-					} else {
-						$excluded_items = [];
+				} 
+				
+				
+				$found_items = get_post_meta( get_the_ID(), $to . '_to_' . $from, true );
+
+				if ( false !== $found_items && ! empty( $found_items ) ) {
+					if ( ! is_array( $found_items ) ) {
+						$found_items = [ $found_items ];
+					}
+
+					$found_items = $this->filter_existing_ids( $found_items );
+
+					if ( ! empty( $found_items ) ) {
+						$items = array_merge( $items, $found_items );
 					}
 				}
 
@@ -198,30 +234,35 @@ class Registration {
 				$destinations = get_post_meta( get_the_ID(), 'destination_to_' . $from, true );
 				
 				if ( ! empty( $destinations ) ) {
-					$items = [];
 
 					foreach ( $destinations as $destination ) {
+						if ( '' === $destination ) {
+							continue;
+						}
+
 						$found_items = get_post_meta( $destination, $to . '_to_destination', true );
 						if ( ! empty( $found_items ) ) {
 							if ( ! is_array( $found_items ) ) {
 								$found_items = [ $found_items ];
 							}
+							$found_items = $this->filter_existing_ids( $found_items );
 							$items = array_merge( $items, $found_items );
 						}
 					}
-					
-					if ( ! empty( $items ) ) {
-						$items = array_unique( $items );
-						$items = array_diff( $items, $excluded_items );
-						$query['post__in'] = $items;
-					}
 				}
 
+				if ( ! empty( $items ) ) {
+					$items = array_unique( $items );
+					$query['post__in'] = $items;
+				}
 				if ( ! isset( $query['post__in'] ) ) {
 					$this->disabled[ $key ] = true;
 				}
-				// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
-				$query['post__not_in'] = $excluded_items;
+				if ( ! empty( $excluded_items ) ) {
+					// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
+					$query['post__not_in'] = $excluded_items;
+
+				}
 
 			break;
 
@@ -246,7 +287,16 @@ class Registration {
 					if ( ! is_array( $found_items ) ) {
 						$found_items = [ $found_items ];
 					}
-					$query['post__in'] = $found_items;
+
+					$found_items = $this->filter_existing_ids( $found_items );
+
+					if ( ! empty( $found_items ) ) {
+						$query['post__in'] = $found_items;
+					} else {
+						$this->disabled[ $key ] = true;
+						$query['post__in']      = [ get_the_ID() ];
+					}
+					
 				} else {
 					$this->disabled[ $key ] = true;
 					$query['post__in']      = [ get_the_ID() ];
@@ -257,22 +307,6 @@ class Registration {
 			default:
 			break;
 		}
-
-		// Look for the "on sale" CSS class.
-		if ( true === $this->onsale ) {
-			if ( isset( $query['meta_query']['relation'] ) ) {
-				$query['meta_query']['relation'] = 'AND';
-			}
-			$query['meta_query'][] = array(
-				'key' => 'sale_price',
-				'compare' => 'EXISTS',
-			);
-
-			// reset this to false for the next query.
-			$this->onsale = false;
-		}
-
-		do_action( 'qm/debug', $query );
 
 		return $query;
 	}
@@ -309,8 +343,6 @@ class Registration {
 		if ( empty( $matches ) ) {
 			return $block_content;
 		}
-
-		do_action( 'qm/debug', $matches );
 
 		if ( in_array( 'travel-information', $matches ) ) {
 			return $block_content;
@@ -383,6 +415,15 @@ class Registration {
 			if ( empty( wp_get_post_terms( get_the_ID(), $key, $tax_args ) ) ) {
 				$block_content = '';
 			}
+		} else if ( 'location' === $key ) {
+			if ( ! lsx_to_has_map() ) {
+				$block_content = '';
+			}
+		} else if ( 'gallery' === $key ) {
+			$value = get_post_meta( get_the_ID(), $key, true );
+			if ( ! is_array( $value ) ) {
+				$block_content = '';
+			}
 		} else {
 			$key        = str_replace( '-', '_', $key );
 			$key_array  = [ $key ];
@@ -395,8 +436,6 @@ class Registration {
 
 			foreach ( $key_array as $meta_key ) {
 				$value = lsx_to_custom_field_query( $meta_key, '', '', false );
-
-				do_action( 'qm/debug', $value );
 				
 				// we need to see if the posts exist before we can use them
 				if ( stripos( $meta_key, '_to_' ) && 0 === $this->post_ids_exist( $value ) ) {
@@ -448,6 +487,21 @@ class Registration {
 		return  $result;
 	}
 
+	protected function filter_existing_ids( $ids ) {
+		$ids     = array_unique( $ids );
+		$new_ids = [];
+		foreach ( $ids as $key => $id ) {
+			if ( empty( $id ) ) {
+				continue;
+			}
+			if ( 0 === $this->post_ids_exist( $id ) ) {
+				continue;
+			}
+			$new_ids[] = $id;
+		}
+		return $new_ids;
+	}
+
 	/**
 	 * This function will grab our Featured query so we dont have to redo that.
 	 *
@@ -483,7 +537,7 @@ class Registration {
 	 * @param array $parsed_block
 	 * @return array
 	 */
-	public function save_onsale_queries( $parsed_block ) {
+	public function save_checkbox_queries( $parsed_block ) {
 		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
 			return $parsed_block;
 		}
@@ -494,15 +548,21 @@ class Registration {
 		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
 			return $parsed_block; 
 		}
+
 		if ( ! isset( $parsed_block['attrs']['className'] ) || '' === $parsed_block['attrs']['className'] || false === $parsed_block['attrs']['className'] ) {
 			return $parsed_block;
 		}
 
 		$this->onsale = false;
-
 		if ( false !== stripos( $parsed_block['attrs']['className'], 'on-sale' ) ) {
 			$this->onsale = true;
 		}
+		
+		$this->parents_only = false;
+		if ( false !== stripos( $parsed_block['attrs']['className'], 'parents-only' ) ) {
+			$this->parents_only = true;
+		}
+
 		return $parsed_block;
 	}
 }

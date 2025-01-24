@@ -1,5 +1,23 @@
 # Changelog
 
+## [[2.0.1]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.1) - 2025-01-24
+
+### Added
+- A "Parents Only" checkbox to the TO query block settings, allowing you to select only the parent items for a query. (the WordPress parent field does not accept a 0 value).
+- The Google Map, map block for Tour Operator, bringing back the various maps shows on the pages. [#477](https://github.com/lightspeedwp/tour-operator/pull/477)
+
+### Fixed
+- Fixes to the post relation fields and when they save, detected via the TO Reviews plugin.
+- Fixed the Slider not detecting the amount of columns set on the block. [a6e0ea](https://github.com/lightspeedwp/tour-operator/commit/a6e0eafb508532dc7c137aedc30a17c5856a0309)
+- Fixed the Related Content dection, we check to see if the posts exist before trying to display them [b20f879](https://github.com/lightspeedwp/tour-operator/commit/b20f879da7e9abfced7623f7e5348737af064db3)
+
+### Removed
+- Unused icons and placeholders from previous versions. [#477](https://github.com/lightspeedwp/tour-operator/pull/477)
+- Removed the SVG Uploader Code causing a security issue. [c972c84](https://github.com/lightspeedwp/tour-operator/commit/c972c84224e2b51564fddc04d547ea6d204a356d)
+
+### Integrations
+- Fixed the Destinations Facet dropdowns using the Fselect field. [8e4cfc](https://github.com/lightspeedwp/tour-operator/commit/8e4cfcb08333c342e9d41fd9fad3fe4f9c31e4c8)
+
 ## [[2.0.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.0) - 2025-01-10
 
 ### New Features
@@ -27,36 +45,6 @@
 - **Wetu Map Embed Block**: Created a block to display Wetu maps in the Single Tour template. [#365](https://github.com/lightspeedwp/tour-operator/issues/365)
 - **Simplified Wetu Importer Settings**: Reduced complexity in the Wetu Importer settings, added image controls, and improved UI based on Figma designs. [#173](https://github.com/lightspeedwp/wetu-importer/issues/173)
 
----
-
-### Enhancements
-- Defined consistent image sizes across single posts, featured images, and archive pages, with custom aspect ratios. [#392](https://github.com/lightspeedwp/tour-operator/issues/392)
-- Updated plugin requirements to PHP 8.0 and WordPress 6.7 for improved compatibility and performance. [#406](https://github.com/lightspeedwp/tour-operator/issues/406)
-- Registered custom fields for post types using JSON for better data handling and display. [#407](https://github.com/lightspeedwp/tour-operator/issues/407)
-
----
-
-### Bug Fixes
-- Fixed issues with setting featured images for custom taxonomies, ensuring proper saving and display. [#419](https://github.com/lightspeedwp/tour-operator/issues/419)
-- Resolved syncing issues in the Wetu Importer, addressing a PHP fatal error and spinner loading problem. [#444](https://github.com/lightspeedwp/tour-operator/issues/444)
-- Ensured blocks are hidden when related custom fields are empty, preventing display of incomplete content. [#372](https://github.com/lightspeedwp/tour-operator/issues/372)
-
----
-
-### Deprecations
-- Removed unused settings and legacy PHP code from the plugin to align with new block-based functionality. [#331](https://github.com/lightspeedwp/tour-operator/issues/331)
-
-
-## [[2.0.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.0) - 20-12-2024
-
-### Enhancements
-- **Admin UI & UX Improvements:**  
-  Refined the admin interface for managing tours, bookings, and availability. Updated field layouts, improved navigation, and clearer labeling for a more intuitive experience. ([#225](https://github.com/lightspeedwp/tour-operator/pull/225), [#237](https://github.com/lightspeedwp/tour-operator/issues/237))
-- **Checkout & Payment Flow Adjustments:**  
-  Enhanced integration with WooCommerce and other payment gateways, providing more reliable data handling and reducing the chance of failed booking entries at checkout. ([#231](https://github.com/lightspeedwp/tour-operator/pull/231))
-- **Performance Optimizations:**  
-  Further optimized database queries, improving load times on large tour catalogs and ensuring smoother browsing experiences. ([#215](https://github.com/lightspeedwp/tour-operator/pull/215))
-
 ### Compatibility & Integration
 - **Theme & Page Builder Compatibility:**  
   Increased compatibility with popular WordPress themes and page builders, minimizing styling conflicts and ensuring consistent front-end rendering. ([#229](https://github.com/lightspeedwp/tour-operator/pull/229), [#204](https://github.com/lightspeedwp/tour-operator/issues/204))
@@ -66,20 +54,36 @@
 ### Email & Notification Templates
 - **Email Template System Improvements:**  
   Integrated a refined email templating structure that supports dynamic placeholders for tour details, booking confirmations, and reminders. ([#240](https://github.com/lightspeedwp/tour-operator/pull/240))
+
+### Updates
+- Defined consistent image sizes across single posts, featured images, and archive pages, with custom aspect ratios. [#392](https://github.com/lightspeedwp/tour-operator/issues/392)
+- Updated plugin requirements to PHP 8.0 and WordPress 6.7 for improved compatibility and performance. [#406](https://github.com/lightspeedwp/tour-operator/issues/406)
+- Registered custom fields for post types using JSON for better data handling and display. [#407](https://github.com/lightspeedwp/tour-operator/issues/407)
+- **Admin UI & UX Improvements:**  
+  Refined the admin interface for managing tours, bookings, and availability. Updated field layouts, improved navigation, and clearer labeling for a more intuitive experience. ([#225](https://github.com/lightspeedwp/tour-operator/pull/225), [#237](https://github.com/lightspeedwp/tour-operator/issues/237))
+- **Checkout & Payment Flow Adjustments:**  
+  Enhanced integration with WooCommerce and other payment gateways, providing more reliable data handling and reducing the chance of failed booking entries at checkout. ([#231](https://github.com/lightspeedwp/tour-operator/pull/231))
+- **Performance Optimizations:**  
+  Further optimized database queries, improving load times on large tour catalogs and ensuring smoother browsing experiences. ([#215](https://github.com/lightspeedwp/tour-operator/pull/215))
+---
   
 ### Fixes
 - **Resolved Seasonal Pricing Bugs:**  
   Addressed incorrect display of overlapping seasonal rates and ensured accurate calculation of discounted or peak-season prices. ([#199](https://github.com/lightspeedwp/tour-operator/issues/199))
 - **Checkout Data Handling:**  
   Fixed issues where certain checkout fields failed to render or process correctly, ensuring customers’ booking details are recorded consistently. ([#203](https://github.com/lightspeedwp/tour-operator/issues/203))
-
-### Notes for Upgrading
-- **Backups & Settings Review:**  
-  Before upgrading, back up your site. After update, review and re-save your booking and pricing settings to ensure that seasonal rules and availability data are correctly applied.
+- Fixed issues with setting featured images for custom taxonomies, ensuring proper saving and display. [#419](https://github.com/lightspeedwp/tour-operator/issues/419)
+- Resolved syncing issues in the Wetu Importer, addressing a PHP fatal error and spinner loading problem. [#444](https://github.com/lightspeedwp/tour-operator/issues/444)
+- Ensured blocks are hidden when related custom fields are empty, preventing display of incomplete content. [#372](https://github.com/lightspeedwp/tour-operator/issues/372)
 
 ### Removed
 - UIX vendor library handling the TO Settings and refactored the settings code - (PR #332)[https://github.com/lightspeedwp/tour-operator/pull/332]
 - Various settings which are now handled by Block and Site Editor options. - (PR #332)[https://github.com/lightspeedwp/tour-operator/pull/332]
+- Removed unused settings and legacy PHP code from the plugin to align with new block-based functionality. [#331](https://github.com/lightspeedwp/tour-operator/issues/331)
+
+### Notes for Upgrading
+- **Backups & Settings Review:**  
+  Before upgrading, back up your site. After update, review and re-save your booking and pricing settings to ensure that seasonal rules and availability data are correctly applied.
 
 ### Security
 - General testing to ensure compatibility with latest WordPress version (6.7).

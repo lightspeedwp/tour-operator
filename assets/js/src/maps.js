@@ -9,7 +9,6 @@ var LSX_TO_Maps = {
 
 	initThis: function() {
 		var $map = jQuery('.lsx-map:eq(0)');
-		// console.log($map);
 
 		var lat = Number($map.attr('data-lat'));
 		var lng = Number($map.attr('data-long'));
@@ -63,33 +62,11 @@ var LSX_TO_Maps = {
 		this.bounds = [];
 
 		var $footerMap = jQuery(banner_class+':eq(0)');
-		if ('.lsx-map-preview' != banner_class) {
-			height = $footerMap.css('height');
-			// container_html = $footerMap.find('.container').html();
-			$footerMap.find('.container').hide();
-		} else if ('route' === type && 'undefined' !== $map.attr('data-kml')) {
+		$footerMap.css('height',height);
+		if ('route' === type && 'undefined' !== $map.attr('data-kml')) {
 			kml = $map.attr('data-kml');
-		} else {
-			$footerMap.css('height',height);
 		}
 
-		console.log($map.attr('data-kml'));
-
-		var $container = null;
-		var $breadcrumbs = null;
-		if ('.lsx-map-preview' != banner_class) {
-			jQuery(banner_class).addClass('gmap-banner');
-
-			$map.closest('section').hide();
-			$map.closest('section').appendTo('footer.content-info');
-
-			if (jQuery(banner_class).children('.container').length == 1) {
-				$container = jQuery(banner_class).children('.container').clone(true, true);
-			}
-			if (jQuery(banner_class).children('.breadcrumbs-container').length == 1) {
-				$breadcrumbs = jQuery(banner_class).children('.breadcrumbs-container').clone(true, true);
-			}
-		}
 		var snazzyMapsStyle = null,
 			styledMap = null;
 
@@ -134,7 +111,6 @@ var LSX_TO_Maps = {
 		//Do we fit to the screen or center the view.
 		if ( !$map.hasClass('disable-auto-zoom') && ( 'cluster' == type || ('route' == type && (false == kml || undefined == kml))) ) {
 			
-			
 			if ( 1 < this.bounds.length ) {
 				this.setBounds();
 			} else {
@@ -149,18 +125,6 @@ var LSX_TO_Maps = {
 		}
 
 		this.resizeThis();
-
-		// if('cluster' === type){
-		// 	$footerMap.append(container_html);
-		// }
-
-		if ($container !== null) {
-			jQuery(banner_class).append($container);
-		}
-		if ($breadcrumbs !== null) {
-			$breadcrumbs.find('.container').show();
-			jQuery(banner_class).after($breadcrumbs);
-		}
 
 		$gmap = this.mapObj;
 	},
@@ -345,10 +309,13 @@ var LSX_TO_Maps = {
 					gmap_markers.push({marker:tempMarker,title:'<a target="_blank" rel="noopener noreferrer" href="'+jQuery(this).attr('data-link')+'">'+jQuery(this).attr('data-title')+'</a>',thumbnail:jQuery(this).attr('data-thumbnail'),content:jQuery(this).html()});
 
 					var icon_url = jQuery(this).attr('data-icon');
-					// console.log(icon_url);
 
-					if ('route' == $this.type && (0==counter || marker_length == counter)) {
-						if (0==counter) {
+					console.log(icon_url);
+					console.log(counter);
+					console.log(marker_length);
+
+					if ('route' == $this.type && ( 0 == counter || marker_length == counter ) ) {
+						if ( 0 == counter ) {
 							icon_url = lsx_to_maps_params.start_marker;
 						} else {
 							icon_url = lsx_to_maps_params.end_marker;
@@ -401,6 +368,8 @@ var LSX_TO_Maps = {
 	},
 
 	createMarker: function(position,icon) {
+		console.log(position);
+		console.log(jQuery(position.title).text());
 		var marker = new google.maps.Marker({
 			position: position.marker,
 			map: this.mapObj,
@@ -416,6 +385,8 @@ var LSX_TO_Maps = {
 			// position.content = (position.content).replace('<p>', '<p style="margin-bottom:0;margin-top:10px;">');
 
 			infowindow = new google.maps.InfoWindow({
+				title: jQuery(position.title).text(),
+				label: jQuery(position.title).text(),
 				content:	'<div class="lsx-to-map-marker">' +
 								'<img class="lsx-to-map-marker-img" src="' + position.thumbnail + '">' +
 								'<div class="lsx-to-map-marker-content content-area">' +
@@ -460,7 +431,8 @@ var LSX_TO_Maps = {
 	},
 
 	watchMapTriggers: function() {
-		jQuery(document).on( 'click', '.lsx-map-placeholder, .placeholder-text', function( event ) {
+		jQuery('.lsx-map-preview a').on( 'click', function( event ) {
+			event.preventDefault();
 			jQuery.getScript(lsx_to_maps_params.google_url,function() {
 				jQuery.getScript(lsx_to_maps_params.google_cluster_url);
 				LSX_TO_Maps.initThis();
@@ -470,12 +442,12 @@ var LSX_TO_Maps = {
 };
 
 jQuery(document).ready(function($) {
-	//console.log( lsx_to_maps_params );
 	if ( jQuery('.lsx-map').length > 0 ) {
-		if ( '' === lsx_to_maps_params.placeholder_enabled ) {
-			LSX_TO_Maps.initThis();
-		} else {
+		// If there is a placeholder image, then load the placeholder code.
+		if ( jQuery('.lsx-map').parents('.lsx-location-wrapper').find('.lsx-map-preview').length > 0 ) {
 			LSX_TO_Maps.watchMapTriggers();
+		} else {
+			LSX_TO_Maps.initThis();
 		}
 	}
 });

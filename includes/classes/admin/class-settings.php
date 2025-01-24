@@ -240,6 +240,7 @@ class Settings {
 	public function map_placeholder_settings( $tab = 'general' ) {
 		if ( 'placeholders' === $tab ) {
 			$settings = $this->get_settings_fields();
+
 			echo wp_kses_post( $this->output_fields( $settings['placeholder'] ) );
 		}
 	}
@@ -266,6 +267,10 @@ class Settings {
 	public function post_type_map_settings( $tab, $post_type ) {
 		$settings = $this->get_settings_fields();
 		if ( 'placeholder' === $tab ) {
+			if ( ! in_array( $post_type, [ 'accommodation', 'destination', 'tour' ] ) ) {
+				unset( $settings['post_types']['placeholder']['map_placeholder_enabled'] );
+				unset( $settings['post_types']['placeholder']['map_placeholder'] );
+			}
 			echo wp_kses_post( $this->output_fields( $settings['post_types'][ $tab ], $post_type ) );
 		}
 		if ( 'template' === $tab ) {

@@ -248,13 +248,33 @@
 <!-- /wp:columns --></main>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","metadata":{"name":"WETU Map","bindings":{"content":{"source":"lsx/map","type":"wetu"}}},"style":{"spacing":{"margin":{"top":"0px","bottom":"0px"},"padding":{"top":"0","bottom":"0","left":0,"right":0},"blockGap":"0"}},"layout":{"type":"constrained"}} -->
-<section class="wp-block-group" style="margin-top:0px;margin-bottom:0px;padding-top:0;padding-bottom:0"><!-- wp:group {"align":"full","layout":{"type":"default"}} -->
-<div class="wp-block-group alignfull"><!-- wp:image {"sizeSlug":"large","align":"full"} -->
-<figure class="wp-block-image alignfull size-large"><img src="/wp-content/plugins/tour-operator/assets/img/wetu-map-figme-prototype-image.png" alt=""/></figure>
-<!-- /wp:image --></div>
-<!-- /wp:group --></section>
-<!-- /wp:group -->
+<!-- wp:group {"tagName":"section","metadata":{"name":"Google Map"},"align":"full","className":"lsx-location-wrapper","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"0","left":"var:preset|spacing|x-small","right":"var:preset|spacing|x-small"},"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"}} -->
+<section class="wp-block-group alignfull lsx-location-wrapper" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--medium);padding-right:var(--wp--preset--spacing--x-small);padding-bottom:0;padding-left:var(--wp--preset--spacing--x-small)"><!-- wp:group {"metadata":{"name":"Title"},"align":"wide","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"0","bottom":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dspacing\u002d\u002dsmall)","left":"0","right":"0"},"blockGap":"var(\u002d\u002dwp\u002d\u002dpreset\u002d\u002dspacing\u002d\u002dsmall)"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+    <div class="wp-block-group alignwide" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:var(--wp--preset--spacing--small);padding-left:0"><!-- wp:separator {"style":{"layout":{"selfStretch":"fill","flexSize":null}},"backgroundColor":"primary"} -->
+    <hr class="wp-block-separator has-text-color has-primary-color has-alpha-channel-opacity has-primary-background-color has-background"/>
+    <!-- /wp:separator -->
+    
+    <!-- wp:heading {"textAlign":"center","style":{"typography":{"fontStyle":"normal","fontWeight":"400"}},"fontFamily":"montserrat"} -->
+    <h2 class="wp-block-heading has-text-align-center has-montserrat-font-family" style="font-style:normal;font-weight:400">Tour Map</h2>
+    <!-- /wp:heading -->
+    
+    <!-- wp:separator {"style":{"layout":{"selfStretch":"fill","flexSize":null}},"backgroundColor":"primary"} -->
+    <hr class="wp-block-separator has-text-color has-primary-color has-alpha-channel-opacity has-primary-background-color has-background"/>
+    <!-- /wp:separator --></div>
+    <!-- /wp:group -->
+    
+    <!-- wp:group {"metadata":{"name":"Map Container"},"align":"full","layout":{"type":"default"}} -->
+    <div class="wp-block-group alignfull"><!-- wp:cover {"url":"/wp-content/plugins/tour-operator/assets/img/blocks/placeholder-map-1920x656.jpg","dimRatio":50,"customOverlayColor":"#e2f0f7","isUserOverlayColor":false,"minHeight":500,"isDark":false,"className":"lsx-map-preview","layout":{"type":"constrained"}} -->
+    <div class="wp-block-cover is-light lsx-map-preview" style="min-height:500px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim" style="background-color:#e2f0f7"></span><img class="wp-block-cover__image-background" alt="" src="/wp-content/plugins/tour-operator/assets/img/blocks/placeholder-map-1920x656.jpg" data-object-fit="cover"/><div class="wp-block-cover__inner-container"><!-- wp:paragraph {"align":"center","className":"has-text-align-center has-large-font-size","fontSize":"large"} -->
+    <p class="has-text-align-center has-large-font-size"><a href="#">Click here to display the map</a></p>
+    <!-- /wp:paragraph --></div></div>
+    <!-- /wp:cover -->
+    
+    <!-- wp:group {"metadata":{"name":"Map Details","bindings":{"content":{"source":"lsx/map","type":"google"}}},"align":"wide","className":"hidden","layout":{"type":"default"}} -->
+    <div class="wp-block-group alignwide hidden"></div>
+    <!-- /wp:group --></div>
+    <!-- /wp:group --></section>
+    <!-- /wp:group -->
 
 <!-- wp:group {"tagName":"section","metadata":{"name":"Itinerary"},"align":"wide","className":"lsx-itinerary-wrapper","style":{"spacing":{"padding":{"top":"var:preset|spacing|medium","bottom":"var:preset|spacing|medium"},"margin":{"top":"0","bottom":"0"}}},"backgroundColor":"primary-200","layout":{"type":"constrained"}} -->
 <section class="wp-block-group alignwide lsx-itinerary-wrapper has-primary-200-background-color has-background" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--medium);padding-bottom:var(--wp--preset--spacing--medium)"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
