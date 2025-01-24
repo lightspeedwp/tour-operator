@@ -3,15 +3,20 @@
 ## [[2.0.1]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.1) - 
 
 ### Added
-- A "Parents Only" checkbox to the TO query block settings, allowing you to select only the parent destinations.
+- A "Parents Only" checkbox to the TO query block settings, allowing you to select only the parent items for a query. (the WordPress parent field does not accept a 0 value).
 - The Google Map, map block for Tour Operator, bringing back the various maps shows on the pages. [#477](https://github.com/lightspeedwp/tour-operator/pull/477)
 
 ### Fixed
 - Fixes to the post relation fields and when they save, detected via the TO Reviews plugin.
-- Fixed the Slider not detecting the amount of columns set on the block.
+- Fixed the Slider not detecting the amount of columns set on the block. [a6e0ea](https://github.com/lightspeedwp/tour-operator/commit/a6e0eafb508532dc7c137aedc30a17c5856a0309)
+- Fixed the Related Content dection, we check to see if the posts exist before trying to display them [b20f879](https://github.com/lightspeedwp/tour-operator/commit/b20f879da7e9abfced7623f7e5348737af064db3)
 
 ### Removed
 - Unused icons and placeholders from previous versions. [#477](https://github.com/lightspeedwp/tour-operator/pull/477)
+- Removed the SVG Uploader Code causing a security issue. [c972c84](https://github.com/lightspeedwp/tour-operator/commit/c972c84224e2b51564fddc04d547ea6d204a356d)
+
+### Integrations
+- Fixed the Destinations Facet dropdowns using the Fselect field. [8e4cfc](https://github.com/lightspeedwp/tour-operator/commit/8e4cfcb08333c342e9d41fd9fad3fe4f9c31e4c8)
 
 ## [[2.0.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.0) - 20-12-2024
 
