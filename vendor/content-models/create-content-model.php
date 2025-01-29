@@ -16,6 +16,7 @@ if ( defined( 'CONTENT_MODEL_PLUGIN_FILE' ) ) {
 define( 'CONTENT_MODEL_PLUGIN_FILE', __FILE__ );
 define( 'CONTENT_MODEL_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'CONTENT_MODEL_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'CONTENT_MODEL_PLUGIN_VER', '1.0.0' );
 
 if ( ! function_exists( 'content_model_require_if_exists' ) ) {
 	/**
@@ -32,5 +33,3 @@ if ( ! function_exists( 'content_model_require_if_exists' ) ) {
 
 content_model_require_if_exists( __DIR__ . '/includes/json-initializer/0-load.php' );
 content_model_require_if_exists( __DIR__ . '/includes/runtime/0-load.php' );
-content_model_require_if_exists( __DIR__ . '/includes/manager/0-load.php' );
-content_model_require_if_exists( __DIR__ . '/includes/exporter/0-load.php' );

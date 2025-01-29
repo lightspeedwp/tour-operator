@@ -20,7 +20,6 @@ if ( defined( 'WPINC' ) ) {
 	require_once( LSX_TO_PATH . 'vendor/cmb2/init.php' );
 	require_once( LSX_TO_PATH . 'vendor/cmb2-field-map/cmb-field-map.php' );
 	require_once( LSX_TO_PATH . 'vendor/cmb-field-select2/cmb-field-select2.php' );
-	require_once( LSX_TO_PATH . 'vendor/content-models/create-content-model.php' );
 
 	// Template Tags.
 	require_once( LSX_TO_PATH . 'includes/template-tags/general.php' );
