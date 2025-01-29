@@ -101,7 +101,7 @@ class Tour_Operator {
 		// init legacy.
 		$this->legacy = legacy\Tour_Operator::get_instance();
 		// Setup plugin.
-		add_action( 'init', array( $this, 'setup' ), 9 );
+		add_action( 'init', array( $this, 'setup' ), 10 );
 	}
 
 	/**
@@ -215,6 +215,8 @@ class Tour_Operator {
 	 * @uses  "init" action
 	 */
 	public function setup() {
+		require_once( LSX_TO_PATH . 'vendor/content-models/create-content-model.php' );
+
 		$this->pages      = Pages::init();
 		$this->taxonomies = Taxonomies::init();
 		$this->admin      = new Admin();

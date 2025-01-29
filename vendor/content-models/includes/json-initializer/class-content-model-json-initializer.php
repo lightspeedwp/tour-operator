@@ -33,7 +33,8 @@ class Content_Model_Json_Initializer {
 		/**
 		 * TODO: Make sure this uses the plugin version.
 		 */
-		if ( ! isset( $plugin_data['Version'] ) || empty( $plugin_data['Version'] ) ) {
+		if ( ! isset( $plugin_data['Version'] ) || empty( $plugin_data['Version'] ) && defined( 'CONTENT_MODEL_PLUGIN_VER' ) ) {
+			//CONTENT_MODEL_PLUGIN_VER
 			$plugin_data['Version'] = time();
 		}
 
@@ -41,7 +42,7 @@ class Content_Model_Json_Initializer {
 			return;
 		}
 
-		$post_types = glob( CONTENT_MODEL_PLUGIN_PATH . '/post-types/*.json' );
+		$post_types = glob( CONTENT_MODEL_JSON_PATH . '/post-types/*.json' );
 		$post_types = array_map(
 			fn( $file ) => json_decode( file_get_contents( $file ), true ),
 			$post_types
