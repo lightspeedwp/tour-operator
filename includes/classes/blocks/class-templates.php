@@ -3,10 +3,11 @@ namespace lsx\blocks;
 
 /**
  * Registers our Block Templates
- *
- * @package lsx
- * @author  LightSpeed
+ * 
+ * @link https://github.com/lightspeedwp/lsx-starter-plugin/blob/master/classes/class-templates.php
+ * @version 1.0.0
  */
+
 class Templates {
 
 	/**
