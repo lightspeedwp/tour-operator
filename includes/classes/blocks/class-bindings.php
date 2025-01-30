@@ -48,6 +48,8 @@ class Bindings {
 			'type',
 			'drinks',
 			'room',
+			'included',
+			'excluded',
 		);
 		$this->unit_fields = array(
 			'type',
