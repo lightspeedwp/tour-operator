@@ -101,7 +101,7 @@ class Tour_Operator {
 		// init legacy.
 		$this->legacy = legacy\Tour_Operator::get_instance();
 		// Setup plugin.
-		add_action( 'init', array( $this, 'setup' ), 10 );
+		add_action( 'init', array( $this, 'setup' ), 9 );
 	}
 
 	/**
@@ -227,6 +227,7 @@ class Tour_Operator {
 		$this->patterns   = new Patterns();
 		$this->templates   = new Templates();
 
+		do_action( 'qm/debug', $this->templates );
 
 		// Files that wont load with the badly written spl_autoregister function.
 		require_once LSX_TO_PATH . 'includes/classes/class-post-connections.php';

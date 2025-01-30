@@ -42,11 +42,21 @@ class Content_Model_Json_Initializer {
 			return;
 		}
 
-		$post_types = glob( CONTENT_MODEL_JSON_PATH . '/post-types/*.json' );
-		$post_types = array_map(
-			fn( $file ) => json_decode( file_get_contents( $file ), true ),
-			$post_types
-		);
+		global $CONTENT_MODEL_JSON_PATH;
+		if ( ! isset( $CONTENT_MODEL_JSON_PATH ) ) {
+			return;
+		}
+
+		$post_types = [];
+		
+		foreach ( $CONTENT_MODEL_JSON_PATH as $json_path ) {
+			$types = glob( $json_path . '/post-types/*.json' );
+			$types = array_map(
+				fn( $file ) => json_decode( file_get_contents( $file ), true ),
+				$types
+			);
+			$post_types = array_merge( $post_types, $types );
+		}
 
 		self::register_content_models_from_json( $post_types );
 		self::delete_dangling_content_models( $post_types );
