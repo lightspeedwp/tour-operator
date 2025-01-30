@@ -371,6 +371,18 @@ class Bindings {
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-room\b[^"]*"[^>]*>).*?(<\/p>)/is';
 			break;
 
+			case 'included':
+				$value = lsx_to_itinerary_includes( '', '', false );
+				$value = strip_tags( $value, [ 'a', 'ul', 'li', 'ol', 'strong', 'i' ] );
+				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-included\b[^"]*"[^>]*>).*?(<\/p>)/is';
+			break;
+
+			case 'excluded':
+				$value = lsx_to_itinerary_excludes( '', '', false );
+				$value = strip_tags( $value, [ 'a', 'ul', 'li', 'ol', 'strong', 'i' ] );
+				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-excluded\b[^"]*"[^>]*>).*?(<\/p>)/is';
+			break;
+
 			default:
 			break;
 		}
