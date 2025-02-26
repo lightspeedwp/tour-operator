@@ -208,8 +208,6 @@ class Registration {
 				$from       = $directions[1];
 				$items      = [];
 
-				do_action('qm/debug',$key);
-
 				// Get the current item IDS to exclude
 				if ( $to === $from ) {
 					$excluded_items = [ get_the_ID() ];

@@ -790,6 +790,7 @@ class Bindings {
 			'p'
 		];
 		$url_params = apply_filters( 'lsx_to_wetu_map_url_params', $url_params );
+
 		if ( ! empty( $url_params ) ) {
 			$url_params = '?m=' . implode( '', $url_params );
 		} else {
@@ -802,7 +803,7 @@ class Bindings {
 				$pattern = '/<figure\b[^>]*>(.*?)<\/figure>/s';
 				$wetu_id = get_post_meta( get_the_ID(), 'lsx_wetu_id', true );
 				if ( ! empty( $wetu_id ) ) {
-					$map = '<iframe width="100%" height="500" frameborder="0" allowfullscreen="" class="wetu-map" class="block perfmatters-lazy entered pmloaded" data-src="https://wetu.com/Itinerary/VI/' . $wetu_id . $url_params . '" data-ll-status="loaded" src="https://wetu.com/Itinerary/VI/' . $wetu_id . '?m=bdep"></iframe>';
+					$map = '<iframe width="100%" height="500" frameborder="0" allowfullscreen="" class="wetu-map" class="block perfmatters-lazy entered pmloaded" data-src="https://wetu.com/Itinerary/VI/' . $wetu_id . $url_params . '" data-ll-status="loaded" src="https://wetu.com/Itinerary/VI/' . $wetu_id . $url_params . '"></iframe>';
 				}
 				$block_content = preg_replace( $pattern, $map, $block_content );
 			break;
