@@ -337,7 +337,6 @@ class Registration {
 		}
 
 		$pattern = "/(lsx|facts)-(.*?)-wrapper/";
-		//$pattern = "/(lsx|facts)-((?:\w+-?)+)-wrapper/";
 		preg_match( $pattern, $parsed_block['attrs']['className'], $matches );
 
 		if ( empty( $matches ) ) {
