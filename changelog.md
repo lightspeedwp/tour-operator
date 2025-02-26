@@ -3,7 +3,8 @@
 ## [[2.0.2]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.2) - In Development
 
 ### Added
-- The Itinerary Included and Excluded field handling.
+- The Itinerary Included and Excluded field handling and block output.
+- `lsx_to_wetu_map_url_params` filter to allow 3rd party pplugins to change the WETU map attributes and what shows.
 
 ### Fixed
 - The itinerary Drinks Basis and Meal Basis labels.

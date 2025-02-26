@@ -37,6 +37,8 @@ function lsx_to_get_room_basis_options() {
 		'AllInclusiveBedAndAllMeals'           => esc_html__( 'All Inclusive - Bed and All Meals', 'tour-operator' ),
 		'FullyInclusive'                       => esc_html__( 'Fully Inclusive - Bed, All Meals, Fees and Activities', 'tour-operator' ),
 		'ExclusiveClubPremierBenefits'         => esc_html__( 'Premier - Executive Club / Premier Benefits', 'tour-operator' ),
+		'Camping'                              => esc_html__( 'Camping', 'tour-operator' ),
+		'CateredCamping'                       => esc_html__( 'Catered Camping', 'tour-operator' ),
 	];
 }
 
