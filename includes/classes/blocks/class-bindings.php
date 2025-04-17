@@ -222,9 +222,12 @@ class Bindings {
 	 * @return string|int|array
 	 */
 	public function post_meta_callback( $source_args, $block_instance ) {
+
 		if ( 'core/image' === $block_instance->parsed_block['blockName'] ) {
 			return 'test_image';
 		} elseif ( 'core/paragraph' === $block_instance->parsed_block['blockName'] ) {
+
+			$key = str_replace( '-', '_', $source_args['key'] );
 	
 			$multiples = [
 				'best_time_to_visit',
@@ -234,23 +237,24 @@ class Bindings {
 			];
 
 			$single = true;
-			if (  in_array( $source_args['key'], $multiples )  ) {
+			if (  in_array( $key, $multiples )  ) {
 				$single = false;
 			}
-			$value = lsx_to_custom_field_query( $source_args['key'], '', '', false, get_the_ID(), $single );
+			$saved = lsx_to_custom_field_query( $key, '', '', false, get_the_ID(), $single );
 
-			if ( null !== $value ) {
+			if ( null !== $saved ) {
 				$date_transforms = [
 					'booking_validity_start',
 					'booking_validity_end',
 				];
-				if ( in_array( $source_args['key'], $date_transforms ) ) {
-					$value = wp_date( 'j M Y', $value );
+				if ( in_array( $key, $date_transforms ) ) {
+					$saved = wp_date( 'j M Y', $saved );
 				}
 	
-				$value = preg_replace( '/^<p>(.*?)<\/p>$/', '$1', $value );
+				//$value = preg_replace( '/^<p>(.*?)<\/p>$/', '$1', $saved );
+				$value = $saved;
+				
 			}
-			
 		}
 		return $value;
 	}
