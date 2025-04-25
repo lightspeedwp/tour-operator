@@ -216,6 +216,8 @@ class Registration {
 				
 				$found_items = get_post_meta( get_the_ID(), $to . '_to_' . $from, true );
 
+				do_action( 'qm/debug', [ 'found-items', $to . '_to_' . $from, $found_items ] );
+
 				if ( false !== $found_items && ! empty( $found_items ) ) {
 					if ( ! is_array( $found_items ) ) {
 						$found_items = [ $found_items ];
@@ -228,8 +230,12 @@ class Registration {
 					}
 				}
 
+				do_action( 'qm/debug', [ 'found-items-filtered', $found_items ] );
+
 				// Get the current destinations attached 
 				$destinations = get_post_meta( get_the_ID(), 'destination_to_' . $from, true );
+
+				do_action( 'qm/debug', [ 'destinations', $destinations ] );
 				
 				if ( ! empty( $destinations ) ) {
 
@@ -239,6 +245,9 @@ class Registration {
 						}
 
 						$found_items = get_post_meta( $destination, $to . '_to_destination', true );
+
+						do_action( 'qm/debug', [ 'found-destinations', $to . '_to_destination', $found_items ] );
+
 						if ( ! empty( $found_items ) ) {
 							if ( ! is_array( $found_items ) ) {
 								$found_items = [ $found_items ];
@@ -305,6 +314,8 @@ class Registration {
 			default:
 			break;
 		}
+
+		do_action( 'qm/debug', [ $key, $query ] );
 
 		return $query;
 	}
