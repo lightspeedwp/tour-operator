@@ -6,6 +6,7 @@ use lsx\admin\Admin;
 use lsx\admin\Pages;
 use lsx\admin\Settings;
 use lsx\admin\Setup;
+use lsx\admin\Permalinks;
 use lsx\blocks\Bindings;
 use lsx\blocks\Patterns;
 use lsx\blocks\Registration;
@@ -70,6 +71,14 @@ class Tour_Operator {
 	 * @var     \lsx\admin\Pages
 	 */
 	public $pages;
+
+	/**
+	 * Holds the Permalinks instance.
+	 *
+	 * @since   1.1.0
+	 * @var     \lsx\admin\Permalinks
+	 */
+	public $permalinks;
 
 	/**
 	 * Holds the Taxonomies instance.
@@ -217,6 +226,7 @@ class Tour_Operator {
 	public function setup() {
 		require_once( LSX_TO_PATH . 'vendor/content-models/create-content-model.php' );
 
+		$this->permalinks = new Permalinks();
 		$this->pages      = Pages::init();
 		$this->taxonomies = Taxonomies::init();
 		$this->admin      = new Admin();

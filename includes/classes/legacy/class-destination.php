@@ -53,7 +53,7 @@ class Destination {
 	 * @access private
 	 */
 	private function __construct() {
-		$this->options = get_option( '_lsx-to_settings', false );
+		$this->options = get_option( 'lsx_to_settings', false );
 
 		add_action( 'lsx_to_map_meta', array( $this, 'content_meta' ) );
 		add_action( 'lsx_to_modal_meta', array( $this, 'content_meta' ) );

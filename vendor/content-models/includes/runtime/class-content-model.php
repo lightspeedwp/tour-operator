@@ -190,6 +190,8 @@ final class Content_Model {
 			$post_type_args['hierarchical'] = true;
 			$post_type_args['supports'][]   = 'page-attributes';
 		}
+
+		$post_type_args = apply_filters( 'content_model_post_type_args', $post_type_args, $this->slug );
  
 		register_post_type(
 			$this->slug,
