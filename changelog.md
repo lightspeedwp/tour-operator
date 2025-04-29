@@ -4,7 +4,8 @@
 
 ### Added
 - The Itinerary Included and Excluded field handling and block output.
-- `lsx_to_wetu_map_url_params` filter to allow 3rd party pplugins to change the WETU map attributes and what shows.
+- `lsx_to_wetu_map_url_params` filter to allow 3rd party plugins to change the WETU map attributes and what shows.
+- Permalink Settings fields, to allow the URL change for Travel Styles, Accommodation Type, and Brands.
 
 ### Fixed
 - Fixed the output of the Special Interests -  - [BH-77](https://www.bugherd.com/projects/430995/tasks/77)
