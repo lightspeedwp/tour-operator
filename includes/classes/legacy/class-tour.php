@@ -51,7 +51,7 @@ class Tour {
 	 * @access private
 	 */
 	private function __construct() {
-		$this->options = get_option( '_lsx-to_settings', false );
+		$this->options = get_option( 'lsx_to_settings', false );
 
 		if ( false !== $this->options && isset( $this->options[ $this->slug ] ) && ! empty( $this->options[ $this->slug ] ) ) {
 			$this->options = $this->options[ $this->slug ];

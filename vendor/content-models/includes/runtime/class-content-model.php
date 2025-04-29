@@ -190,6 +190,14 @@ final class Content_Model {
 			$post_type_args['hierarchical'] = true;
 			$post_type_args['supports'][]   = 'page-attributes';
 		}
+
+		$post_type_args = apply_filters( 'content_model_post_type_args', $post_type_args );
+
+		$options = get_option( 'lsx_to_settings', [] );
+		print_r('<pre>');
+		print_r($options);
+		print_r('</pre>');
+		die();
  
 		register_post_type(
 			$this->slug,

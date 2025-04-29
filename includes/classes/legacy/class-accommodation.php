@@ -62,7 +62,7 @@ class Accommodation {
 	private function __construct() {
 		$this->is_wetu_active          = false;
 
-		$this->options = get_option( '_lsx-to_settings', false );
+		$this->options = get_option( 'lsx_to_settings', false );
 
 		$this->unit_types = array(
 			''       => esc_html__( 'None', 'tour-operator' ),

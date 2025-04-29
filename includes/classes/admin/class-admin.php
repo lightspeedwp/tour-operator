@@ -24,6 +24,7 @@ class Admin {
 	public function __construct() {
 		add_filter( 'type_url_form_media', array( $this, 'change_attachment_field_button' ), 20, 1 );
 		add_filter( 'plugin_action_links_' . plugin_basename( LSX_TO_CORE ), array( $this, 'add_action_links' ) );
+		add_filter( 'content_model_post_type_args', [ $this, 'disable_archives_singles' ], 10, 1 );
 	}
 
 	/**
@@ -50,5 +51,20 @@ class Admin {
 		);
 
 		return array_merge( $links, $mylinks );
+	}
+
+	/**
+	 * Undocumented function
+	 *
+	 * @return void
+	 */
+	public function disable_archives_singles( $post_type_args ) {
+
+		$options = get_option( 'lsx_to_settings', [] );
+		if ( isset( $options['s'] ) ) {
+
+		}
+
+		return $post_type_args;
 	}
 }
