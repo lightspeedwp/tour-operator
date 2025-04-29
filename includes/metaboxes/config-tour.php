@@ -257,40 +257,14 @@ $itinerary_fields[] = array(
 	'name'    => esc_html__( 'Drinks Basis', 'tour-operator' ),
 	'desc'    => esc_html__( 'Select the drinks basis for the itinerary (e.g., tea & coffee, all local drinks).', 'tour-operator' ),
 	'type'    => 'select',
-	'options' => array(
-		'None'                => esc_html__( 'None', 'tour-operator' ),
-		'TeaCoffee'           => esc_html__( 'Tea and Coffee Only', 'tour-operator' ),
-		'DrinksSoft'          => esc_html__( 'Tea, Coffee and Soft Drinks Only', 'tour-operator' ),
-		'DrinksLocalBrands'   => esc_html__( 'All Local Brands (Spirits, Wine and Beers)', 'tour-operator' ),
-		'DrinksExclSpirits'   => esc_html__( 'All Local Brands (excl Spirits)', 'tour-operator' ),
-		'DrinksExclChampagne' => esc_html__( 'All Drinks (excl Champagne)', 'tour-operator' ),
-		'DrinksExclPremium'   => esc_html__( 'All Drinks (excl Premium Brands)', 'tour-operator' ),
-		'AllDrinks'           => esc_html__( 'All Drinks', 'tour-operator' ),
-	),
+	'options' => lsx_to_get_drink_basis_options(),
 );
 $itinerary_fields[] = array(
 	'id'      => 'room_basis',
 	'name'    => esc_html__( 'Room Basis', 'tour-operator' ),
 	'desc'    => esc_html__( 'Choose the room basis for the itinerary (e.g., breakfast only, full board).', 'tour-operator' ),
 	'type'    => 'select',
-	'options' => array(
-		'None'                                 => esc_html__( 'None', 'tour-operator' ),
-		'BedAndBreakfast'                      => esc_html__( 'B&amp;B: Bed and Breakfast', 'tour-operator' ),
-		'RoomOnly'                             => esc_html__( 'Room Only', 'tour-operator' ),
-		'SelfCatering'                         => esc_html__( 'Self Catering', 'tour-operator' ),
-		'Lunch'                                => esc_html__( 'Lunch', 'tour-operator' ),
-		'Dinner'                               => esc_html__( 'Dinner', 'tour-operator' ),
-		'LunchAndDinner'                       => esc_html__( 'Lunch and Dinner', 'tour-operator' ),
-		'BedBreakfastAndLunch'                 => esc_html__( 'Bed, Breakfast and Lunch', 'tour-operator' ),
-		'DinnerBedAndBreakfast'                => esc_html__( 'Dinner, Bed and Breakfast', 'tour-operator' ),
-		'HalfBoard'                            => esc_html__( 'Half Board - Dinner, Bed and Breakfast', 'tour-operator' ),
-		'DinnerBedBreakfastAndActivities'      => esc_html__( 'Half Board Plus - Dinner, Bed, Breakfast and Activities', 'tour-operator' ),
-		'DinnerBedBreakfastAndLunch'           => esc_html__( 'Full Board - Dinner, Bed, Breakfast and Lunch', 'tour-operator' ),
-		'DinnerBedBreakfastLunchAndActivities' => esc_html__( 'Full Board Plus -  Dinner, Bed, Breakfast, Lunch and Activities', 'tour-operator' ),
-		'AllInclusiveBedAndAllMeals'           => esc_html__( 'All Inclusive - Bed and All Meals', 'tour-operator' ),
-		'FullyInclusive'                       => esc_html__( 'Fully Inclusive - Bed, All Meals, Fees and Activities', 'tour-operator' ),
-		'ExclusiveClubPremierBenefits'         => esc_html__( 'Premier - Executive Club / Premier Benefits', 'tour-operator' ),
-	),
+	'options' => lsx_to_get_room_basis_options(),
 );
 
 $metabox['fields'][] = array(

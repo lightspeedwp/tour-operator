@@ -1,5 +1,28 @@
 # Changelog
 
+## [[2.0.2]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.2) - In Development
+
+### Added
+- The Itinerary Included and Excluded field handling and block output.
+- `lsx_to_wetu_map_url_params` filter to allow 3rd party pplugins to change the WETU map attributes and what shows.
+
+### Fixed
+- Fixed the output of the Special Interests -  - [BH-77](https://www.bugherd.com/projects/430995/tasks/77)
+- Drinks Basis labels outputting "Drinks Basis" - [BH-80](https://www.bugherd.com/projects/430995/tasks/80)
+
+### Enhancements Added
+- `lsx_to_wetu_map_url_params` filter to allow 3rd party plugins to change the WETU map attributes. [7364e48
+](https://github.com/lightspeedwp/tour-operator/commit/7364e48dbbe8ac9130a6de1afc3eb4a63e1937f4)
+- Adding in a "none" option for the "Special Interests" and the "Friendly" custom field selections. [edd55f3
+](https://github.com/lightspeedwp/tour-operator/commit/edd55f3ccb06e285146db23d3e21df25cc66920b)
+
+### Additional
+- Removed commented out code.
+- Removed unused template tags.
+
+### Security
+- Tested with WordPress 6.8
+
 ## [[2.0.1]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.1) - 2025-01-24
 
 ### Added

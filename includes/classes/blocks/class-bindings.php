@@ -222,9 +222,12 @@ class Bindings {
 	 * @return string|int|array
 	 */
 	public function post_meta_callback( $source_args, $block_instance ) {
+
 		if ( 'core/image' === $block_instance->parsed_block['blockName'] ) {
 			return 'test_image';
 		} elseif ( 'core/paragraph' === $block_instance->parsed_block['blockName'] ) {
+
+			$key = str_replace( '-', '_', $source_args['key'] );
 	
 			$multiples = [
 				'best_time_to_visit',
@@ -234,23 +237,26 @@ class Bindings {
 			];
 
 			$single = true;
-			if (  in_array( $source_args['key'], $multiples )  ) {
+			if (  in_array( $key, $multiples )  ) {
 				$single = false;
 			}
-			$value = lsx_to_custom_field_query( $source_args['key'], '', '', false, get_the_ID(), $single );
+			$saved = lsx_to_custom_field_query( $key, '', '', false, get_the_ID(), $single );
 
-			if ( null !== $value ) {
+			do_action( 'qm/debug', [ $key, $saved ] );
+
+			if ( null !== $saved ) {
 				$date_transforms = [
 					'booking_validity_start',
 					'booking_validity_end',
 				];
-				if ( in_array( $source_args['key'], $date_transforms ) ) {
-					$value = wp_date( 'j M Y', $value );
+				if ( in_array( $key, $date_transforms ) ) {
+					$saved = wp_date( 'j M Y', $saved );
 				}
 	
-				$value = preg_replace( '/^<p>(.*?)<\/p>$/', '$1', $value );
+				//$value = preg_replace( '/^<p>(.*?)<\/p>$/', '$1', $saved );
+				$value = $saved;
+				
 			}
-			
 		}
 		return $value;
 	}
@@ -369,6 +375,18 @@ class Bindings {
 			case 'room':
 				$value = lsx_to_itinerary_room_basis( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-room\b[^"]*"[^>]*>).*?(<\/p>)/is';
+			break;
+
+			case 'included':
+				$value = lsx_to_itinerary_includes( '', '', false );
+				$value = strip_tags( $value, [ 'a', 'ul', 'li', 'ol', 'strong', 'i' ] );
+				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-included\b[^"]*"[^>]*>).*?(<\/p>)/is';
+			break;
+
+			case 'excluded':
+				$value = lsx_to_itinerary_excludes( '', '', false );
+				$value = strip_tags( $value, [ 'a', 'ul', 'li', 'ol', 'strong', 'i' ] );
+				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-excluded\b[^"]*"[^>]*>).*?(<\/p>)/is';
 			break;
 
 			default:
@@ -771,13 +789,27 @@ class Bindings {
 			$type = $parsed_block['attrs']['metadata']['bindings']['content']['type'];
 		}
 
+		$url_params = [
+			'b',
+			'd',
+			'e',
+			'p'
+		];
+		$url_params = apply_filters( 'lsx_to_wetu_map_url_params', $url_params );
+
+		if ( ! empty( $url_params ) ) {
+			$url_params = '?m=' . implode( '', $url_params );
+		} else {
+			$url_params = '';
+		}
+
 		$map = '';
 		switch ( $type ) {
 			case 'wetu':
 				$pattern = '/<figure\b[^>]*>(.*?)<\/figure>/s';
 				$wetu_id = get_post_meta( get_the_ID(), 'lsx_wetu_id', true );
 				if ( ! empty( $wetu_id ) ) {
-					$map = '<iframe width="100%" height="500" frameborder="0" allowfullscreen="" class="wetu-map" class="block perfmatters-lazy entered pmloaded" data-src="https://wetu.com/Itinerary/VI/' . $wetu_id . '?m=bdep" data-ll-status="loaded" src="https://wetu.com/Itinerary/VI/' . $wetu_id . '?m=bdep"></iframe>';
+					$map = '<iframe width="100%" height="500" frameborder="0" allowfullscreen="" class="wetu-map" class="block perfmatters-lazy entered pmloaded" data-src="https://wetu.com/Itinerary/VI/' . $wetu_id . $url_params . '" data-ll-status="loaded" src="https://wetu.com/Itinerary/VI/' . $wetu_id . $url_params . '"></iframe>';
 				}
 				$block_content = preg_replace( $pattern, $map, $block_content );
 			break;

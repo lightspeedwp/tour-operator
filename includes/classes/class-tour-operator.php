@@ -227,8 +227,6 @@ class Tour_Operator {
 		$this->patterns   = new Patterns();
 		$this->templates   = new Templates();
 
-		do_action( 'qm/debug', $this->templates );
-
 		// Files that wont load with the badly written spl_autoregister function.
 		require_once LSX_TO_PATH . 'includes/classes/class-post-connections.php';
 		$this->post_connections = new Post_Connections();

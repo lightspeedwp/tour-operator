@@ -9,7 +9,6 @@ Stable tag: 2.0.2
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-
 The LSX Tour Operator is plugin specially designed & developed for the tourism and travel industry. Build to showcase your tours and accommodation.
 
 == Description ==
