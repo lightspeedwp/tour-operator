@@ -61,11 +61,11 @@ class Admin {
 	public function disable_archives_singles( $post_type_args, $slug ) {
 
 		$options = get_option( 'lsx_to_settings', [] );
-		if ( isset( $options[ $slug . '_disable_archives' ] ) && '' !== $options[ $slug . '_disable_archives' ] ) {
+		if ( isset( $options[ $slug . '_disable_archives' ] ) && 0 !== $options[ $slug . '_disable_archives' ] ) {
 			$post_type_args['has_archive'] = false;
 		}
 
-		if ( isset( $options[ $slug . '_disable_single' ] ) && '' !== $options[ $slug . '_disable_single' ] ) {
+		if ( isset( $options[ $slug . '_disable_single' ] ) && 0 !== $options[ $slug . '_disable_single' ] ) {
 			$post_type_args['publicly_queryable'] = false;
 		}
 
