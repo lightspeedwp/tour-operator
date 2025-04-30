@@ -143,7 +143,7 @@ class Permalinks {
 
 		foreach ( $slug_options as $key => $option ) {
 
-			if ( 'lsx_to_' . $taxonomy !== $key ) {
+			if ( 'lsx_to_' . $taxonomy !== $key || '' === $option ) {
 				continue;
 			}
 
