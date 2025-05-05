@@ -10,7 +10,12 @@
 	<div class="row">
 		<div class="col-md-12 top-header">
 			<h1 class="small"><?php esc_html_e( 'Welcome to the Tour Operator Plugin', 'tour-operator' ); ?></h1>
-			<p><?php esc_html_e( 'You are running version 1.0 - Thanks for Keeping up to date!', 'tour-operator' ); ?></p>
+			<p>
+				<?php
+				/* translators: %s: Plugin version number */
+				echo wp_kses_post( sprintf( esc_html__( 'You are running version %s - Thanks for Keeping up to date!', 'tour-operator' ), LSX_TO_VER ) );
+				?>
+			</p>
 		</div>
 	</div>
 
