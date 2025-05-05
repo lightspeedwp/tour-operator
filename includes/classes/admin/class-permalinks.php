@@ -94,7 +94,7 @@ class Permalinks {
 		?>
 		<h2><?php esc_html_e( 'Tour Operator', 'tour-operator' ); ?></h2>
 		<table class="form-table">
-			<p>Use the following fields to alter the base slug for the Tour Operator taxonomies like <code><?php echo home_url();?>/travel-style/honeymoon/</code></p>
+			<p>Use the following fields to alter the base slug for the Tour Operator taxonomies like <code><?php echo esc_html( home_url() );?>/travel-style/honeymoon/</code></p>
 			<?php
 				foreach ( $fields as $key => $field ) {
 					?>
@@ -124,7 +124,7 @@ class Permalinks {
 		) {
 			check_admin_referer( 'update-permalink' ); // default nonce for permalink page
 
-			$input     = $_POST['lsx_to_slugs'];
+			$input     = sanitize_text_field( $_POST['lsx_to_slugs'] );
 			$sanitized = $this->sanitize_permalink_fields( $input );
 
 			update_option( 'lsx_to_slugs', $sanitized );
