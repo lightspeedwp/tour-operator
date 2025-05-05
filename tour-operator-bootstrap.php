@@ -1,6 +1,6 @@
 <?php
 /**
- * LSX Tour Operator Bootstrapper
+ * Tour Operator Bootstrapper
  *
  * @package   tour_operator
  * @author    LightSpeed

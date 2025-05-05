@@ -1,6 +1,6 @@
 <?php
 /**
- * LSX Tour Operator - Pages Class
+ * Tour Operator - Pages Class
  *
  * @package   lsx
  * @author    LightSpeed
@@ -36,7 +36,7 @@ class Pages extends \lsx\Frame {
 	private $pages;
 
 	/**
-	 * LSX Tour Operator constructor.
+	 * Tour Operator constructor.
 	 */
 	public function __construct() {
 		// Setup objects.

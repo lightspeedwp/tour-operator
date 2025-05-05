@@ -22,9 +22,10 @@
 ### Additional
 - Removed commented out code.
 - Removed unused template tags.
+- Changed the label "LSX Tour Operator" to "Tour Operator" in all files.
 
 ### Security
-- Tested with WordPress 6.8
+- Tested with WordPress 6.8.1
 
 ## [[2.0.1]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.1) - 2025-01-24
 
@@ -63,7 +64,7 @@
 - **Regions Section**: Created a carousel to display child regions in the Single Country template. Hidden if no regions are associated. [#384](https://github.com/lightspeedwp/tour-operator/issues/384)
 
 #### Plugin Code
-- **New Templates**: Updated Single Post templates for Tours, Accommodation, Destinations, and more to match the LSX Tour Operator Design System. [#334](https://github.com/lightspeedwp/tour-operator/issues/334)
+- **New Templates**: Updated Single Post templates for Tours, Accommodation, Destinations, and more to match the Tour Operator Design System. [#334](https://github.com/lightspeedwp/tour-operator/issues/334)
 - **Custom Query Loops**: Introduced variations for dynamically displaying related content (e.g., related tours, accommodation) based on specific criteria. [#431](https://github.com/lightspeedwp/tour-operator/issues/431)
 - **Custom Block Dashicons**: Added a custom compass icon for branding consistency. [#401](https://github.com/lightspeedwp/tour-operator/issues/401)
 

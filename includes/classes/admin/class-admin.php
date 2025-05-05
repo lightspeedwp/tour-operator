@@ -1,6 +1,6 @@
 <?php
 /**
- * LSX Tour Operator - Admin Main Class
+ * Tour Operator - Admin Main Class
  *
  * @package   lsx
  * @author    LightSpeed
@@ -19,7 +19,7 @@ namespace lsx\admin;
 class Admin {
 
 	/**
-	 * LSX Tour Operator Admin constructor.
+	 * Tour Operator Admin constructor.
 	 */
 	public function __construct() {
 		add_filter( 'type_url_form_media', array( $this, 'change_attachment_field_button' ), 20, 1 );

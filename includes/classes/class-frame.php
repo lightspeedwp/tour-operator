@@ -1,6 +1,6 @@
 <?php
 /**
- * LSX Tour Operator - Objects Class
+ * Tour Operator - Objects Class
  *
  * @package   lsx
  * @author    LightSpeed

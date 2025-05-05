@@ -2,7 +2,7 @@
 /**
  * Schema Class
  *
- * @package   LSX Tour Operator
+ * @package   Tour Operator
  * @author    LightSpeed
  * @license   GPL3
  * @link

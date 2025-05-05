@@ -1,6 +1,6 @@
 <?php
 /**
- * LSX Tour Operator - Accommodation-type taxonomy config
+ * Tour Operator - Accommodation-type taxonomy config
  *
  * @package   tour_operator
  * @author    LightSpeed

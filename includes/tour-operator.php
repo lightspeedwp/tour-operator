@@ -1,6 +1,6 @@
 <?php
 /**
- * LSX Tour Operator helper functions
+ * Tour Operator helper functions
  *
  * @package   Tour_Operator
  * @author    LightSpeed
@@ -10,7 +10,7 @@
  **/
 
 /**
- * LSX Tour Operator class autoloader.
+ * Tour Operator class autoloader.
  * It locates and finds class via classes folder structure.
  *
  * @since 1.0.7
@@ -53,7 +53,7 @@ function tour_operator_autoload_class( $class ) {
 }
 
 /**
- * LSX Tour Operator wrapper to load and manipulate the overall instances.
+ * Tour Operator wrapper to load and manipulate the overall instances.
  *
  * @since 1.0.7
  * @return  \lsx\Tour_Operator  A single instance

@@ -9,8 +9,8 @@
 <div class="wrap about-wrap">
 	<div class="row">
 		<div class="col-md-12 top-header">
-			<h1 class="small"><?php esc_html_e( 'LSX Tour Operator Extensions', 'tour-operator' ); ?></h1>
-			<p><?php esc_html_e( 'Extend the functionality of the LSX Tour Operator plugin with one of our many extensions!', 'tour-operator' ); ?></p>
+			<h1 class="small"><?php esc_html_e( 'Tour Operator Extensions', 'tour-operator' ); ?></h1>
+			<p><?php esc_html_e( 'Extend the functionality of the Tour Operator plugin with one of our many extensions!', 'tour-operator' ); ?></p>
 		</div>
 	</div>
 
@@ -46,7 +46,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="box info">
-						<h2><?php esc_html_e( 'LSX Tour Operator', 'tour-operator' ); ?></h2>
+						<h2><?php esc_html_e( 'Tour Operator', 'tour-operator' ); ?></h2>
 
 						<ul>
 							<li><strong><?php esc_html_e( 'Latest Version:', 'tour-operator' ); ?></strong> <?php echo esc_attr( $version ); ?></li>

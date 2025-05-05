@@ -1,6 +1,6 @@
 <?php
 /**
- * LSX Tour Operator - Accommodation Metabox config
+ * Tour Operator - Accommodation Metabox config
  *
  * @package   tour_operator
  * @author    LightSpeed

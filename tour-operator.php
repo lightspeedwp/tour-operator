@@ -1,6 +1,6 @@
 <?php
 /*
- * Plugin Name:       LSX Tour Operator
+ * Plugin Name:       Tour Operator
  * Plugin URI:        https://touroperator.solutions/
  * Description:       Showcase tours, destinations, and accommodations with digital itineraries, galleries, and integrated maps.
  * Author:            lightspeedwp

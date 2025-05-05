@@ -1,6 +1,6 @@
 <?php
 /**
- * LSX Tour Operator - Permalinks Main Class
+ * Tour Operator - Permalinks Main Class
  *
  * @package   lsx
  * @author    LightSpeed
@@ -92,9 +92,9 @@ class Permalinks {
 		];
 
 		?>
-		<h2><?php esc_html_e( 'LSX Tour Operator', 'tour-operator' ); ?></h2>
+		<h2><?php esc_html_e( 'Tour Operator', 'tour-operator' ); ?></h2>
 		<table class="form-table">
-			<p>Use the following fields to alter the base slug for the LSX Tour Operator taxonomies like <code><?php echo home_url();?>/travel-style/honeymoon/</code></p>
+			<p>Use the following fields to alter the base slug for the Tour Operator taxonomies like <code><?php echo home_url();?>/travel-style/honeymoon/</code></p>
 			<?php
 				foreach ( $fields as $key => $field ) {
 					?>

@@ -14,7 +14,7 @@ use lsx\blocks\Templates;
 use lsx\integrations\facetwp\Post_Connections;
 
 /**
- * LSX Tour Operator Main Class
+ * Tour Operator Main Class
  *
  * @package   tour_operator
  * @author    LightSpeed
@@ -104,7 +104,7 @@ class Tour_Operator {
 	public $legacy;
 
 	/**
-	 * LSX Tour Operator constructor.
+	 * Tour Operator constructor.
 	 */
 	public function __construct() {
 		// init legacy.

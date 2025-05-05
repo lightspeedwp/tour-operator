@@ -1,6 +1,6 @@
 <?php
 /**
- * Backend actions for the LSX Tour Operator Plugin
+ * Backend actions for the Tour Operator Plugin
  *
  * @package   \lsx\legacy\Admin
  * @author    LightSpeed

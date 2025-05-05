@@ -2,7 +2,7 @@
 # This file is distributed under the GPL3.
 msgid ""
 msgstr ""
-"Project-Id-Version: LSX Tour Operator 1.4.3\n"
+"Project-Id-Version: Tour Operator 1.4.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/tour-operator\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 #. Plugin Name of the plugin
 #: includes/customizer.php:17
 #: includes/partials/help.php:44
-msgid "LSX Tour Operator"
+msgid "Tour Operator"
 msgstr ""
 
 #. Plugin URI of the plugin
@@ -25,7 +25,7 @@ msgid "https://www.lsdev.biz/product/tour-operator-plugin/"
 msgstr ""
 
 #. Description of the plugin
-msgid "The LSX Tour Operator plugin core contains the Accommodation, Destination and Tour post types. Use these core post types to build day-by-day tour itineraries that map out of the progress of each tour through the various accommodations and destinations that are stayed at along the way."
+msgid "The Tour Operator plugin core contains the Accommodation, Destination and Tour post types. Use these core post types to build day-by-day tour itineraries that map out of the progress of each tour through the various accommodations and destinations that are stayed at along the way."
 msgstr ""
 
 #. Author of the plugin
@@ -74,7 +74,7 @@ msgstr ""
 
 #: includes/classes/admin/class-settings.php:218
 #: includes/pages/config-settings.php:15
-msgid "LSX Tour Operator Settings"
+msgid "Tour Operator Settings"
 msgstr ""
 
 #: includes/classes/admin/class-settings.php:223
@@ -962,12 +962,12 @@ msgstr ""
 
 #: includes/classes/legacy/class-tour-operator.php:1037
 #: includes/classes/legacy/class-tour-operator.php:1050
-msgid "LSX Tour Operator Plugin requires PHP 7.0 or higher."
+msgid "Tour Operatorgin requires PHP 7.0 or higher."
 msgstr ""
 
 #. Translators: 1: HTML open tag link, 2: HTML close tag link
 #: includes/classes/legacy/class-tour-operator.php:1098
-msgid "The LSX Tour Operator Plugin requires the free LSX Theme be installed and active. Please download LSX Theme from %1$sWordPress.org%2$s to get started with your LSX Tour Operator Plugin."
+msgid "The Tour Operatorgin requires the free LSX Theme be installed and active. Please download LSX Theme from %1$sWordPress.org%2$s to get started with your Tour Operator
 msgstr ""
 
 #: includes/classes/legacy/class-tour-operator.php:1104
@@ -1308,7 +1308,7 @@ msgstr ""
 #: includes/metaboxes/config-accommodation.php:13
 #: includes/metaboxes/config-destination.php:13
 #: includes/metaboxes/config-tour.php:13
-msgid "LSX Tour Operator Plugin"
+msgid "Tour Operator Plugin"
 msgstr ""
 
 #: includes/metaboxes/config-accommodation.php:20
@@ -1809,11 +1809,11 @@ msgid "Team"
 msgstr ""
 
 #: includes/partials/add-ons.php:69
-msgid "Real peoples' faces go a long way to building trust with your valued clients. The LSX Tour Operator: Team extension allows your company's staff to be added as Team Members with their own profile which can be associated with specific destinations and tours."
+msgid "Real peoples' faces go a long way to building trust with your valued clients. The Tour Operator: Team extension allows your company's staff to be added as Team Members with their own profile which can be associated with specific destinations and tours."
 msgstr ""
 
 #: includes/partials/add-ons.php:91
-msgid "The Search extension for the Tour Operators plugin adds robust search functionality to your WordPress LSX Tour Operator site. It requires that you also have the FacetWP plugin installed, as that allows for much of the filtering functionality that the plugin provides."
+msgid "The Search extension for the Tour Operators plugin adds robust search functionality to your WordPress Tour Operator site. It requires that you also have the FacetWP plugin installed, as that allows for much of the filtering functionality that the plugin provides."
 msgstr ""
 
 #: includes/partials/add-ons.php:110
@@ -1877,11 +1877,11 @@ msgid "Currencies"
 msgstr ""
 
 #: includes/partials/help.php:12
-msgid "LSX Tour Operator Extensions"
+msgid "Tour Operator Extensions"
 msgstr ""
 
 #: includes/partials/help.php:13
-msgid "Extend the functionality of the LSX Tour Operator plugin with one of our many extensions!"
+msgid "Extend the functionality of the Tour Operator plugin with one of our many extensions!"
 msgstr ""
 
 #: includes/partials/help.php:26
@@ -1934,7 +1934,7 @@ msgid "Edit this on the page you have set as the \"blog\""
 msgstr ""
 
 #: includes/partials/welcome.php:12
-msgid "Welcome to the LSX Tour Operator Plugin"
+msgid "Welcome to the Tour Operator Plugin"
 msgstr ""
 
 #: includes/partials/welcome.php:13
@@ -1954,7 +1954,7 @@ msgid "Release notes"
 msgstr ""
 
 #: includes/partials/welcome.php:35
-msgid "Get the latest on updates to the LSX Tour Operator plugin"
+msgid "Get the latest on updates to the Tour Operator plugin"
 msgstr ""
 
 #: includes/partials/welcome.php:43
@@ -1974,11 +1974,11 @@ msgid "Check out our blog posts geared towards helping Tour Operators succeed on
 msgstr ""
 
 #: includes/partials/welcome.php:60
-msgid "Help us keep the LSX Tour Operator core FREE"
+msgid "Help us keep the Tour Operator core FREE"
 msgstr ""
 
 #: includes/partials/welcome.php:61
-msgid "5-star ratings help us to bring the LSX Tour Operator plugin to more users. The more users we have the more we get requests to add features to make the plugin even better for you. We couldn’t do it without your support."
+msgid "5-star ratings help us to bring the Tour Operator plugin to more users. The more users we have the more we get requests to add features to make the plugin even better for you. We couldn’t do it without your support."
 msgstr ""
 
 #: includes/partials/welcome.php:64

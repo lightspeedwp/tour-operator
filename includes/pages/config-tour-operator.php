@@ -1,6 +1,6 @@
 <?php
 /**
- * LSX Tour Operator - Dashboad holder page config
+ * Tour Operator - Dashboad holder page config
  *
  * @package   tour_operator
  * @author    LightSpeed
