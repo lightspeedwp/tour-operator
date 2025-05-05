@@ -46,8 +46,8 @@ class Admin {
 	public function add_action_links( $links ) {
 		$mylinks = array(
 			'<a href="' . admin_url( 'admin.php?page=lsx-to-settings' ) . '">' . esc_html__( 'Settings', 'tour-operator' ) . '</a>',
-			'<a href="https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/" target="_blank">' . esc_html__( 'Documentation', 'tour-operator' ) . '</a>',
-			'<a href="https://www.lsdev.biz/lsx/support/" target="_blank">' . esc_html__( 'Support', 'tour-operator' ) . '</a>',
+			'<a href="https://touroperator.solutions/docs/" target="_blank">' . esc_html__( 'Documentation', 'tour-operator' ) . '</a>',
+			'<a href="https://lightspeedwp.agency/support/" target="_blank">' . esc_html__( 'Support', 'tour-operator' ) . '</a>',
 		);
 
 		return array_merge( $links, $mylinks );

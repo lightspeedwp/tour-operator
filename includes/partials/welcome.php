@@ -1,9 +1,9 @@
 <?php
-	$lsx_to_documentation = esc_url( 'https://www.lsdev.biz/documentation/tour-operator-plugin/' );
-	$extensions_link = esc_url( 'https://ww.lsdev.biz/product-category/tour-operator-extensions/' );
+	$lsx_to_documentation = esc_url( 'https://touroperator.solutions/docs/' );
+	$extensions_link = esc_url( 'https://lightspeedwp.agency/solutions/tour-operators/' );
 	$tour_operator_link = esc_url( 'https://lightspeedwp.agency/solutions/tour-operators/' );
-	$release_notes_link = esc_url( 'https://www.lsdev.biz/lsx/' );
-	$lsx_to_news_link = esc_url( 'https://www.lsdev.biz/tour-operators/' );
+	$release_notes_link = esc_url( 'https://lightspeedwp.agency/solutions/lsx/' );
+	$lsx_to_news_link = esc_url( 'https://lightspeedwp.agency/solutions/tour-operators/' );
 ?>
 
 <div class="wrap about-wrap">
