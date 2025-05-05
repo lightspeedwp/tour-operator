@@ -9,9 +9,10 @@
 - The user can now alter the taxonomy slugs using the "Permalink" settings in WordPress.
 
 ### Fixed
-- Fixed the output of the Special Interests -  - [BH-77](https://www.bugherd.com/projects/430995/tasks/77)
+- Fixed the output of the Special Interests - [BH-77](https://www.bugherd.com/projects/430995/tasks/77)
 - Drinks Basis labels outputting "Drinks Basis" - [BH-80](https://www.bugherd.com/projects/430995/tasks/80)
-- The Archive redirects and single redirects now use the correct post type arg parameters to disable the relevant option.
+- The Archive redirects and single redirects now use the correct post type arg parameters to disable the relevant option. #367
+- The version number display on the welcome page. - #482
 
 ### Enhancements Added
 - `lsx_to_wetu_map_url_params` filter to allow 3rd party plugins to change the WETU map attributes. [7364e48
