@@ -3,7 +3,7 @@
  * Placeholders.
  *
  * @package   Placeholders
- * @author    LightSpeed https://lsdev.biz
+ * @author    LightSpeed https://lightspeedwp.agency/
  * @license   GPL3
  * @link
  */

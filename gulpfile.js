@@ -186,7 +186,7 @@ gulp.task('wordpress-pot', function(done) {
 			domain: 'tour-operator',
 			package: 'tour-operator',
 			bugReport: 'https://github.com/lightspeeddevelopment/tour-operator/issues',
-			team: 'LightSpeed <webmaster@lsdev.biz>'
+			team: 'LightSpeed <webmaster@lightspeedwp.agency>'
 		}))
 		.on('error', errorreporter)
 		.pipe(gulp.dest('languages/tour-operator.pot')),
@@ -200,7 +200,7 @@ gulp.task('wordpress-po', function(done) {
 			domain: 'tour-operator',
 			package: 'tour-operator',
 			bugReport: 'https://github.com/lightspeeddevelopment/tour-operator/issues',
-			team: 'LightSpeed <webmaster@lsdev.biz>'
+			team: 'LightSpeed <webmaster@lightspeedwp.agency>'
 		}))
 		.on('error', errorreporter)
 		.pipe(gulp.dest('languages/tour-operator-en_EN.po')),

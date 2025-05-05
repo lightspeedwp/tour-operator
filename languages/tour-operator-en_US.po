@@ -21,7 +21,7 @@ msgid "Tour Operator"
 msgstr ""
 
 #. Plugin URI of the plugin
-msgid "https://www.lsdev.biz/product/tour-operator-plugin/"
+msgid "https://lightspeedwp.agency/solutions/tour-operators/"
 msgstr ""
 
 #. Description of the plugin
@@ -33,7 +33,7 @@ msgid "LightSpeed"
 msgstr ""
 
 #. Author URI of the plugin
-msgid "https://www.lsdev.biz/"
+msgid "https://lightspeedwp.agency/"
 msgstr ""
 
 #: includes/classes/admin/class-settings.php:120

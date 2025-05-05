@@ -30,7 +30,7 @@ Take a look at all our [Frequently Asked Questions](https://www.lsdev.biz/lsx/do
 
 If you are experiencing issues with the Tour Operator Plugin, please log any bug issues you are having on the [Tour Operator Github Issues](https://github.com/lightspeeddevelopment/tour-operator/issues) page.
 
-You can also send an email to our Support Team at [support@lsdev.biz](mailto:support@lsdev.biz) if you have a request for the [LightSpeed team](https://www.lsdev.biz/team/).
+You can also send an email to our Support Team at [support@lightspeedwp.agency](mailto:support@lightspeedwp.agency) if you have a request for the [LightSpeed team](https://www.lsdev.biz/team/).
 
 ## Contributing to the Plugin
 
@@ -41,10 +41,10 @@ If you're a developer who's spotted a bug issue and have a fix, or simply have f
 
 ---
 <p align="center">
-  <a href="https://www.lsdev.biz/contact/"><img src="https://www.lsdev.biz/wp-content/uploads/2020/02/work-with-lightspeed.png" width="850" alt="Work with us at LightSpeed"></a>
+  <a href="https://lightspeedwp.agency/contact/"><img src="https://lightspeedwp.agency/wp-content/uploads/2020/02/work-with-lightspeed.png" width="850" alt="Work with us at LightSpeed"></a>
 </p>
 <p align="center">
-  <a href="https://www.lsdev.biz">LightSpeed's Company Website</a> &nbsp;&middot;&nbsp;
+  <a href="https://lightspeedwp.agency/">LightSpeed's Company Website</a> &nbsp;&middot;&nbsp;
   <a href="https://www.lsdev.biz/lsx/">LSX Product Website</a>
 </p>
 <p align="center">
