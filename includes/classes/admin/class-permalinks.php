@@ -124,7 +124,7 @@ class Permalinks {
 		) {
 			check_admin_referer( 'update-permalink' ); // default nonce for permalink page
 
-			$input     = sanitize_text_field( $_POST['lsx_to_slugs'] );
+			$input     = sanitize_text_field( wp_unslash( $_POST['lsx_to_slugs'] ) );
 			$sanitized = $this->sanitize_permalink_fields( $input );
 
 			update_option( 'lsx_to_slugs', $sanitized );
