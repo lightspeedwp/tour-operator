@@ -4,7 +4,6 @@
 	const { ToggleControl } = wp.components;
 	const { useSelect, useDispatch } = wp.data;
 	const { createElement, useState } = wp.element;
-	const { HStack } = wp.components;
 	const i18n = window.wp.i18n;
 
 	// Custom Sticky Post Toggle Component

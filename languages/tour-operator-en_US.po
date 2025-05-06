@@ -1,1191 +1,426 @@
-# Copyright (C) 2021 LightSpeed
-# This file is distributed under the GPL3.
+# Copyright (C) 2025 lightspeedwp
+# This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: LSX Tour Operator 1.4.3\n"
+"Project-Id-Version: Tour Operator 2.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/tour-operator\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-07-13T10:59:03+00:00\n"
+"POT-Creation-Date: 2025-05-05T16:04:13+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.5.0\n"
+"X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: tour-operator\n"
 
 #. Plugin Name of the plugin
-#: includes/customizer.php:17
-#: includes/partials/help.php:44
-msgid "LSX Tour Operator"
+#: includes/classes/admin/class-permalinks.php:95
+#: includes/classes/admin/class-settings.php:146
+#: includes/classes/blocks/class-patterns.php:38
+#: includes/classes/blocks/class-patterns.php:51
+#: includes/pages/config-tour-operator.php:14
+#: includes/partials/help.php:49
+msgid "Tour Operator"
 msgstr ""
 
 #. Plugin URI of the plugin
-msgid "https://www.lsdev.biz/product/tour-operator-plugin/"
+msgid "https://touroperator.solutions/"
 msgstr ""
 
 #. Description of the plugin
-msgid "The LSX Tour Operator plugin core contains the Accommodation, Destination and Tour post types. Use these core post types to build day-by-day tour itineraries that map out of the progress of each tour through the various accommodations and destinations that are stayed at along the way."
+msgid "Showcase tours, destinations, and accommodations with digital itineraries, galleries, and integrated maps."
 msgstr ""
 
 #. Author of the plugin
-msgid "LightSpeed"
+msgid "lightspeedwp"
 msgstr ""
 
 #. Author URI of the plugin
-msgid "https://www.lsdev.biz/"
+msgid "https://lightspeedwp.agency/"
 msgstr ""
 
-#: includes/classes/admin/class-settings.php:120
-#: includes/classes/admin/class-settings.php:219
-#: includes/classes/legacy/class-admin.php:254
-#: includes/pages/config-settings.php:16
-msgid "Settings"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:173
-#: includes/metaboxes/config-destination.php:156
-#: includes/partials/accommodation.php:3
-#: includes/partials/destination.php:3
-#: includes/partials/general.php:3
-#: includes/partials/tour.php:3
-#: includes/template-tags/destination.php:273
-msgid "General"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:182
-msgid "Display"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:191
-msgid "API"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:201
-#: includes/classes/admin/class-settings.php:203
-#: includes/classes/legacy/class-accommodation.php:487
-#: includes/classes/legacy/class-destination.php:510
-#: includes/classes/legacy/class-tour.php:650
-#: includes/metaboxes/config-accommodation.php:355
-#: includes/metaboxes/config-destination.php:258
-#: includes/metaboxes/config-tour.php:292
-msgid "Posts"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:218
-#: includes/pages/config-settings.php:15
-msgid "LSX Tour Operator Settings"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:223
-msgid "Save Changes"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:238
-msgid "Display galleries in the banner"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:242
-msgid "Move the gallery on a page into the banner."
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:254
-msgid "Disable CSS"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:258
-msgid "Disable the CSS if you want to include your own."
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:263
-msgid "Disable Javascript"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:267
-msgid "Only disable the JS if you are debugging an error."
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:287
-msgid "Currency"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:291
-msgid "USD (united states dollar)"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:292
-msgid "GBP (british pound)"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:293
-msgid "ZAR (south african rand)"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:294
-msgid "NAD (namibian dollar)"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:295
-msgid "CAD (canadian dollar)"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:296
-msgid "EUR (euro)"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:297
-msgid "HKD (hong kong dollar)"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:298
-msgid "SGD (singapore dollar)"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:299
-msgid "NZD (new zealand dollar)"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:300
-msgid "AUD (australian dollar)"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:307
-#: includes/classes/admin/class-settings.php:423
-msgid "General Enquiry"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:323
-#: includes/classes/admin/class-settings.php:439
-msgid "Select a form"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:337
-#: includes/classes/admin/class-settings.php:453
-msgid "You have no form available"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:351
-#: includes/classes/admin/class-settings.php:467
-msgid "Disable Enquire Modal"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:355
-#: includes/classes/admin/class-settings.php:471
-msgid "This disables the enquire modal, and instead redirects to the link you provide below."
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:360
-#: includes/classes/admin/class-settings.php:476
-msgid "Enquire Link"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:368
-msgid "Enquire Contact Name"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:376
-msgid "Enquire Contact Email"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:384
-msgid "Enquire Contact Phone"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:392
-msgid "Enquire Contact Image"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:400
-#: includes/classes/admin/class-settings.php:869
-#: includes/classes/admin/class-settings.php:883
-#: includes/classes/admin/class-settings.php:905
-#: includes/classes/admin/class-settings.php:927
-#: includes/classes/admin/class-settings.php:949
-#: includes/classes/admin/class-settings.php:963
-#: includes/classes/legacy/class-admin.php:316
-#: includes/classes/legacy/class-placeholders.php:438
-#: includes/classes/legacy/class-placeholders.php:455
-#: includes/classes/legacy/class-placeholders.php:471
-#: includes/classes/legacy/class-placeholders.php:513
-#: includes/classes/legacy/class-placeholders.php:530
-#: includes/partials/post.php:14
-msgid "Choose Image"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:401
-#: includes/classes/admin/class-settings.php:870
-#: includes/classes/admin/class-settings.php:884
-#: includes/classes/admin/class-settings.php:906
-#: includes/classes/admin/class-settings.php:928
-#: includes/classes/admin/class-settings.php:950
-#: includes/classes/admin/class-settings.php:964
-#: includes/classes/legacy/class-placeholders.php:439
-#: includes/classes/legacy/class-placeholders.php:456
-#: includes/classes/legacy/class-placeholders.php:472
-#: includes/classes/legacy/class-placeholders.php:514
-#: includes/classes/legacy/class-placeholders.php:531
-#: includes/classes/legacy/class-tour.php:188
-#: includes/partials/post.php:15
-msgid "Delete"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:500
-msgid "Disable Archives"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:504
-msgid "This disables the \"post type archive\", if you create your own custom loop it will still work."
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:512
-msgid "Display continents instead"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:516
-msgid "Enable this to display replace the countries with continets on the destination archive."
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:522
-msgid "Group by Continent"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:526
-msgid "This groups archive items by continent taxonomy and display the continent title."
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:532
-msgid "Sticky Destinations"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:536
-#: includes/classes/admin/class-settings.php:663
-msgid "Disable"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:537
-msgid "Sticky items only"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:538
-msgid "Sticky items first"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:539
-msgid "Sticky items last"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:548
-msgid "Disable Pagination"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:552
-msgid "This disables the pagination on post type archive."
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:557
-msgid "Disable Excerpt"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:561
-msgid "This disables the excerpt from entries on post type archive."
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:566
-msgid "Disable Metadata"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:570
-msgid "This disables the metadata from entries on post type archive."
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:575
-msgid "Grid/list layout"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:579
-msgid "List"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:580
-msgid "Grid"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:586
-msgid "List layout images"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:590
-msgid "Full-height"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:591
-msgid "Max-height"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:598
-#: includes/classes/legacy/class-tour.php:239
-#: includes/classes/legacy/class-video.php:78
-#: includes/metaboxes/config-accommodation.php:327
-#: includes/partials/post.php:28
-msgid "Title"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:606
-#: includes/classes/legacy/class-admin.php:389
-#: includes/classes/legacy/class-tour.php:246
-#: includes/metaboxes/config-accommodation.php:33
-#: includes/metaboxes/config-destination.php:62
-#: includes/metaboxes/config-tour.php:33
-#: includes/partials/post.php:20
-msgid "Tagline"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:614
-#: includes/classes/legacy/class-tour.php:253
-#: includes/metaboxes/config-accommodation.php:332
-#: includes/partials/post.php:37
-msgid "Description"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:638
-msgid "Disable Singles"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:642
-msgid "When disabled you will be redirected to the homepage when trying to access a single page."
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:647
-msgid "Disable Collapsible Sections"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:651
-msgid "When disabled you will no longer be able to click to close and open the sections."
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:659
-msgid "Sticky Countries"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:664
-msgid "Sticky regions only"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:665
-msgid "Sticky regions first"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:666
-msgid "Sticky regions last"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:677
-msgid "Default Section Title"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:686
-msgid "\"Related Tours\" Section Title"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:696
-msgid "\"Accommodation Brands\" Section Title"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:704
-msgid "\"Rooms\" Section Title"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:712
-msgid "\"Similar Accommodations\" Section Title"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:722
-msgid "\"Countries\" Section Title"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:730
-msgid "\"Regions\" Section Title"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:738
-msgid "\"Travel Styles\" Section Title"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:758
-msgid "Enable Connected Modals"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:762
-msgid "Any connected item showing on a single will display a preview in a modal."
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:811
-msgid "Disable Maps"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:815
-msgid "This will disable maps on all post types."
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:829
-msgid "Placeholder Settings"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:844
-msgid "Enable Map Placeholder"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:848
-msgid "Enable a placeholder users will click to load the map."
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:861
-msgid "Upload a map placeholder"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:875
-msgid "Upload a mobile map placeholder"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:897
-msgid "Choose a default marker"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:919
-msgid "Choose a cluster marker"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:941
-msgid "Choose a start marker"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:955
-msgid "Choose a end marker"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:978
-msgid "Fusion Tables Settings"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:984
-msgid "Enable Fusion Tables"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:992
-msgid "Border Width"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:1002
-msgid "Border Colour"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:1012
-msgid "Background Colour"
-msgstr ""
-
-#: includes/classes/legacy/class-accommodation.php:78
-#: includes/functions.php:570
-msgid "Chalet"
-msgstr ""
-
-#: includes/classes/legacy/class-accommodation.php:79
-#: includes/functions.php:571
-msgid "Room"
-msgstr ""
-
-#: includes/classes/legacy/class-accommodation.php:80
-#: includes/functions.php:572
-msgid "Spa"
-msgstr ""
-
-#: includes/classes/legacy/class-accommodation.php:81
-#: includes/functions.php:573
-msgid "Tent"
-msgstr ""
-
-#: includes/classes/legacy/class-accommodation.php:82
-#: includes/functions.php:574
-msgid "Villa"
-msgstr ""
-
-#: includes/classes/legacy/class-accommodation.php:126
-msgid "Disable \"Contact Details\" panel"
-msgstr ""
-
-#: includes/classes/legacy/class-accommodation.php:142
-msgid "Display Connected Tours"
-msgstr ""
-
-#: includes/classes/legacy/class-accommodation.php:146
-msgid "This will replace the related accommodation with the connected tours instead."
-msgstr ""
-
-#: includes/classes/legacy/class-accommodation.php:202
-msgid "Off"
-msgstr ""
-
-#: includes/classes/legacy/class-accommodation.php:203
-#: includes/classes/legacy/class-tour.php:457
-#: includes/layout.php:668
-#: includes/layout.php:702
-#: includes/template-tags/accommodation.php:315
-#: templates/content-accommodation.php:28
-#: templates/content-tour.php:28
-#: templates/content-widget-accommodation.php:66
-#: templates/content-widget-tour.php:65
-msgid "From price"
-msgstr ""
-
-#: includes/classes/legacy/class-accommodation.php:240
-#: includes/classes/legacy/class-tour.php:437
-#: includes/metaboxes/config-accommodation.php:135
-msgid "Unspecified"
-msgstr ""
-
-#: includes/classes/legacy/class-accommodation.php:301
-#: includes/classes/legacy/class-tour-operator.php:367
-#: includes/layout.php:306
-#: includes/taxonomies/config-facility.php:18
-#: includes/taxonomies/config-facility.php:21
-#: includes/taxonomies/config-facility.php:28
-msgid "Facilities"
-msgstr ""
-
-#: includes/classes/legacy/class-accommodation.php:310
-#: includes/classes/legacy/class-destination.php:290
-#: includes/classes/legacy/class-tour.php:536
-#: includes/layout.php:293
-#: includes/layout.php:401
-#: includes/layout.php:528
-#: includes/layout.php:554
-msgid "Map"
-msgstr ""
-
-#: includes/classes/legacy/class-accommodation.php:324
-#: includes/classes/legacy/class-accommodation.php:329
-#: includes/classes/legacy/class-accommodation.php:333
-#: includes/classes/legacy/class-destination.php:305
-#: includes/classes/legacy/class-destination.php:310
-#: includes/classes/legacy/class-destination.php:314
-#: includes/classes/legacy/class-tour.php:550
-#: includes/classes/legacy/class-tour.php:555
-#: includes/classes/legacy/class-tour.php:559
-#: includes/layout.php:310
-#: includes/layout.php:416
-#: includes/layout.php:629
-#: includes/metaboxes/config-accommodation.php:251
-#: includes/metaboxes/config-accommodation.php:345
-#: includes/metaboxes/config-destination.php:165
-#: includes/metaboxes/config-tour.php:219
-msgid "Gallery"
-msgstr ""
-
-#: includes/classes/legacy/class-accommodation.php:355
-#: includes/classes/legacy/class-destination.php:336
-#: includes/classes/legacy/class-tour.php:581
-#: includes/classes/legacy/class-video.php:65
-#: includes/layout.php:313
-#: includes/layout.php:315
-#: includes/layout.php:419
-#: includes/layout.php:421
-#: includes/layout.php:632
-#: includes/layout.php:634
-#: includes/partials/display.php:26
-msgid "Videos"
-msgstr ""
-
-#: includes/classes/legacy/class-accommodation.php:378
-#: includes/classes/legacy/class-destination.php:431
-#: includes/classes/legacy/class-tour.php:602
-#: includes/partials/add-ons.php:30
-msgid "Specials"
-msgstr ""
-
-#: includes/classes/legacy/class-accommodation.php:402
-#: includes/classes/legacy/class-destination.php:455
-#: includes/classes/legacy/class-tour.php:626
-#: includes/partials/add-ons.php:49
-msgid "Reviews"
-msgstr ""
-
-#: includes/classes/legacy/class-accommodation.php:440
-#: includes/classes/legacy/class-destination.php:383
-#: includes/classes/legacy/class-frontend.php:742
-#: includes/classes/legacy/class-tour-operator.php:339
-#: includes/classes/legacy/class-tour-operator.php:345
-#: includes/layout.php:605
-#: includes/metaboxes/config-destination.php:280
-#: includes/metaboxes/config-tour.php:314
-#: includes/post-types/config-accommodation.php:16
-#: includes/post-types/config-accommodation.php:17
-#: includes/post-types/config-accommodation.php:21
-#: includes/post-types/config-accommodation.php:27
-msgid "Accommodation"
-msgstr ""
-
-#: includes/classes/legacy/class-accommodation.php:463
-#: includes/classes/legacy/class-destination.php:359
-#: includes/classes/legacy/class-tour-operator.php:340
-#: includes/classes/legacy/class-tour.php:688
-#: includes/metaboxes/config-accommodation.php:399
-#: includes/metaboxes/config-destination.php:302
-#: includes/post-types/config-tour.php:16
-#: includes/post-types/config-tour.php:22
-#: includes/post-types/config-tour.php:28
-msgid "Tours"
-msgstr ""
-
-#: includes/classes/legacy/class-admin.php:124
-#: includes/pages/config-tour-operator.php:13
-msgid "Dashboard"
-msgstr ""
-
-#: includes/classes/legacy/class-admin.php:255
-#: includes/partials/add-ons.php:38
-#: includes/partials/add-ons.php:57
-#: includes/partials/add-ons.php:76
-#: includes/partials/add-ons.php:99
-#: includes/partials/add-ons.php:118
-#: includes/partials/add-ons.php:137
-#: includes/partials/add-ons.php:158
-msgid "Documentation"
-msgstr ""
-
-#: includes/classes/legacy/class-admin.php:256
-msgid "Support"
-msgstr ""
-
-#: includes/classes/legacy/class-admin.php:306
-#: includes/classes/legacy/class-tour.php:262
-msgid "Featured Image"
-msgstr ""
-
-#: includes/classes/legacy/class-admin.php:321
-msgid "Remove Image"
-msgstr ""
-
-#: includes/classes/legacy/class-admin.php:404
+#: includes/classes/admin/class-admin.php:37
 msgid "Select featured image"
 msgstr ""
 
-#: includes/classes/legacy/class-destination.php:192
-#: includes/classes/legacy/class-tour-operator.php:355
-#: includes/classes/legacy/class-tour.php:459
-#: includes/layout.php:214
-#: includes/layout.php:259
-#: includes/layout.php:463
-#: includes/layout.php:494
-#: includes/layout.php:670
-#: includes/layout.php:704
+#: includes/classes/admin/class-admin.php:48
+#: includes/classes/admin/class-settings.php:132
+#: includes/classes/admin/class-settings.php:146
+msgid "Settings"
+msgstr ""
+
+#: includes/classes/admin/class-admin.php:49
+#: includes/partials/add-ons.php:39
+#: includes/partials/add-ons.php:58
+#: includes/partials/add-ons.php:77
+#: includes/partials/add-ons.php:100
+#: includes/partials/add-ons.php:119
+#: includes/partials/add-ons.php:138
+#: includes/partials/add-ons.php:159
+msgid "Documentation"
+msgstr ""
+
+#: includes/classes/admin/class-admin.php:50
+msgid "Support"
+msgstr ""
+
+#: includes/classes/admin/class-permalinks.php:84
+#: includes/classes/legacy/class-destination.php:93
+#: includes/classes/legacy/class-tour-operator.php:294
 #: includes/taxonomies/config-travel-style.php:26
-#: templates/content-widget-tour.php:67
 msgid "Travel Style"
 msgstr ""
 
-#: includes/classes/legacy/class-destination.php:195
-#: includes/classes/legacy/class-destination.php:407
-#: includes/classes/legacy/class-tour.php:463
-#: includes/layout.php:182
-#: includes/layout.php:216
-#: includes/layout.php:262
-#: includes/layout.php:466
-#: includes/layout.php:497
-#: includes/layout.php:606
-#: includes/layout.php:674
-#: includes/layout.php:708
-#: includes/partials/add-ons.php:129
-#: templates/content-widget-tour.php:71
-msgid "Activities"
-msgstr ""
-
-#: includes/classes/legacy/class-destination.php:249
-msgid "Information"
-msgstr ""
-
-#: includes/classes/legacy/class-destination.php:258
-#: includes/classes/legacy/class-tour-operator.php:369
-#: includes/template-tags/destination.php:406
-msgid "Regions"
-msgstr ""
-
-#: includes/classes/legacy/class-destination.php:528
-msgid "Display the map in the banner"
-msgstr ""
-
-#: includes/classes/legacy/class-destination.php:536
-msgid "Disable Banner Map Cluster"
-msgstr ""
-
-#: includes/classes/legacy/class-frontend.php:476
-#: includes/classes/legacy/class-frontend.php:561
-#: includes/functions.php:367
-msgid "Read More"
-msgstr ""
-
-#: includes/classes/legacy/class-frontend.php:690
-#: includes/classes/legacy/class-tour-operator.php:338
-#: includes/classes/legacy/class-tour.php:460
-#: includes/layout.php:258
-#: includes/layout.php:671
-#: includes/layout.php:705
-#: includes/metaboxes/config-accommodation.php:377
-#: includes/metaboxes/config-tour.php:336
-#: includes/post-types/config-destination.php:16
-#: includes/post-types/config-destination.php:22
-#: includes/post-types/config-destination.php:28
-#: templates/content-widget-tour.php:68
-msgid "Destinations"
-msgstr ""
-
-#: includes/classes/legacy/class-frontend.php:738
-#: includes/classes/legacy/class-frontend.php:798
-msgid "Home"
-msgstr ""
-
-#: includes/classes/legacy/class-frontend.php:802
-#: includes/classes/legacy/class-tour-operator.php:346
-#: includes/post-types/config-tour.php:17
-msgid "Tour"
-msgstr ""
-
-#: includes/classes/legacy/class-maps.php:384
-msgid "Click to display the map"
-msgstr ""
-
-#: includes/classes/legacy/class-placeholders.php:429
-msgid "Banner Placeholder"
-msgstr ""
-
-#: includes/classes/legacy/class-placeholders.php:445
-#: includes/classes/legacy/class-placeholders.php:521
-msgid "Archive Placeholder"
-msgstr ""
-
-#: includes/classes/legacy/class-placeholders.php:462
-msgid "Blog Placeholder"
-msgstr ""
-
-#: includes/classes/legacy/class-placeholders.php:478
-msgid "Disable Placeholder on Blog Posts"
-msgstr ""
-
-#: includes/classes/legacy/class-placeholders.php:482
-msgid "This disables the placeholder on blog posts."
-msgstr ""
-
-#: includes/classes/legacy/class-placeholders.php:504
-#: includes/partials/post.php:6
-msgid "Banner"
-msgstr ""
-
-#: includes/classes/legacy/class-post-expirator.php:88
-msgid "Never"
-msgstr ""
-
-#: includes/classes/legacy/class-post-expirator.php:99
-msgid "Expires"
-msgstr ""
-
-#: includes/classes/legacy/class-taxonomy-widget.php:271
-#: includes/classes/legacy/class-widget.php:303
-msgid "Title:"
-msgstr ""
-
-#: includes/classes/legacy/class-taxonomy-widget.php:277
-#: includes/classes/legacy/class-widget.php:309
-msgid "Title Link:"
-msgstr ""
-
-#: includes/classes/legacy/class-taxonomy-widget.php:283
-#: includes/classes/legacy/class-widget.php:315
-msgid ""
-"Link the widget title to\n"
-"\t\t\t\ta URL"
-msgstr ""
-
-#: includes/classes/legacy/class-taxonomy-widget.php:288
-msgid "Query"
-msgstr ""
-
-#: includes/classes/legacy/class-taxonomy-widget.php:290
-msgid "Taxonomy:"
-msgstr ""
-
-#: includes/classes/legacy/class-taxonomy-widget.php:296
-#: includes/classes/legacy/class-tour.php:86
-#: includes/classes/legacy/class-tour.php:105
-msgid "None"
-msgstr ""
-
-#: includes/classes/legacy/class-taxonomy-widget.php:309
-#: includes/classes/legacy/class-widget.php:338
-msgid "Order By:"
-msgstr ""
-
-#: includes/classes/legacy/class-taxonomy-widget.php:330
-#: includes/classes/legacy/class-widget.php:361
-msgid "Order:"
-msgstr ""
-
-#: includes/classes/legacy/class-taxonomy-widget.php:348
-#: includes/classes/legacy/class-widget.php:379
-msgid "Maximum amount:"
-msgstr ""
-
-#: includes/classes/legacy/class-taxonomy-widget.php:351
-#: includes/classes/legacy/class-widget.php:382
-msgid "Leave empty to display all"
-msgstr ""
-
-#: includes/classes/legacy/class-taxonomy-widget.php:354
-#: includes/classes/legacy/class-widget.php:386
-msgid "Specify by ID:"
-msgstr ""
-
-#: includes/classes/legacy/class-taxonomy-widget.php:358
-#: includes/classes/legacy/class-widget.php:390
-msgid "Comma separated list, overrides limit setting"
-msgstr ""
-
-#: includes/classes/legacy/class-taxonomy-widget.php:360
-msgid "Layout"
-msgstr ""
-
-#: includes/classes/legacy/class-taxonomy-widget.php:362
-#: includes/classes/legacy/class-widget.php:321
-msgid "Columns:"
-msgstr ""
-
-#: includes/classes/legacy/class-taxonomy-widget.php:379
-#: includes/classes/legacy/class-widget.php:466
-msgid "Class:"
-msgstr ""
-
-#: includes/classes/legacy/class-taxonomy-widget.php:389
-#: includes/classes/legacy/class-widget.php:410
-msgid "Disable Featured Image"
-msgstr ""
-
-#: includes/classes/legacy/class-taxonomy-widget.php:395
-#: includes/classes/legacy/class-widget.php:416
-msgid "Disable Excerpt and Tagline"
-msgstr ""
-
-#: includes/classes/legacy/class-taxonomy-widget.php:401
-msgid "Disable Single Link"
-msgstr ""
-
-#: includes/classes/legacy/class-taxonomy-widget.php:407
-#: includes/classes/legacy/class-widget.php:429
-msgid "Display Button"
-msgstr ""
-
-#: includes/classes/legacy/class-taxonomy-widget.php:410
-#: includes/classes/legacy/class-widget.php:432
-msgid "Button Text:"
-msgstr ""
-
-#: includes/classes/legacy/class-taxonomy-widget.php:415
-msgid "Slider"
-msgstr ""
-
-#: includes/classes/legacy/class-taxonomy-widget.php:420
-#: includes/classes/legacy/class-widget.php:441
-msgid "Enable Carousel"
-msgstr ""
-
-#: includes/classes/legacy/class-taxonomy-widget.php:423
-#: includes/classes/legacy/class-widget.php:444
-msgid "Slide Interval:"
-msgstr ""
-
-#: includes/classes/legacy/class-tour-operator.php:344
-#: includes/layout.php:604
-#: includes/post-types/config-destination.php:17
-msgid "Destination"
-msgstr ""
-
-#: includes/classes/legacy/class-tour-operator.php:356
-#: includes/taxonomies/config-accommodation-brand.php:19
-#: includes/template-tags/accommodation.php:319
-#: templates/content-widget-accommodation.php:68
-msgid "Brand"
-msgstr ""
-
-#: includes/classes/legacy/class-tour-operator.php:357
+#: includes/classes/admin/class-permalinks.php:87
+#: includes/classes/legacy/class-tour-operator.php:296
 #: includes/taxonomies/config-accommodation-type.php:19
 msgid "Accommodation Type"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:358
+#: includes/classes/admin/class-permalinks.php:90
+#: includes/classes/legacy/class-tour-operator.php:295
+#: includes/taxonomies/config-accommodation-brand.php:19
+msgid "Brand"
+msgstr ""
+
+#: includes/classes/admin/class-settings.php:99
+#: includes/metaboxes/config-destination.php:110
+#: includes/partials/navigation.php:13
+msgid "General"
+msgstr ""
+
+#: includes/classes/admin/class-settings.php:104
+#: includes/classes/legacy/class-frontend.php:186
+#: includes/classes/legacy/class-tour-operator.php:277
+msgid "Destinations"
+msgstr ""
+
+#: includes/classes/admin/class-settings.php:109
+#: includes/classes/legacy/class-frontend.php:291
+#: includes/classes/legacy/class-tour-operator.php:279
+msgid "Tours"
+msgstr ""
+
+#: includes/classes/admin/class-settings.php:114
+#: includes/classes/legacy/class-frontend.php:238
+#: includes/classes/legacy/class-tour-operator.php:278
+#: includes/classes/legacy/class-tour-operator.php:284
+msgid "Accommodation"
+msgstr ""
+
+#: includes/classes/admin/class-settings.php:131
+#: includes/partials/settings.php:6
+msgid "Tour Operator Settings"
+msgstr ""
+
+#: includes/classes/admin/class-settings.php:136
+msgid "Save Changes"
+msgstr ""
+
+#: includes/classes/admin/class-settings.php:167
+msgid "Welcome"
+msgstr ""
+
+#: includes/classes/admin/class-settings.php:449
+#: includes/classes/legacy/class-admin.php:263
+msgid "Choose Image"
+msgstr ""
+
+#: includes/classes/admin/class-settings.php:450
+msgid "Delete"
+msgstr ""
+
+#: includes/classes/blocks/class-bindings.php:62
+#: includes/classes/legacy/class-accommodation.php:69
+msgid "Chalet"
+msgstr ""
+
+#: includes/classes/blocks/class-bindings.php:63
+#: includes/classes/legacy/class-accommodation.php:70
+msgid "Room"
+msgstr ""
+
+#: includes/classes/blocks/class-bindings.php:64
+#: includes/classes/legacy/class-accommodation.php:71
+msgid "Spa"
+msgstr ""
+
+#: includes/classes/blocks/class-bindings.php:65
+#: includes/classes/legacy/class-accommodation.php:72
+msgid "Tent"
+msgstr ""
+
+#: includes/classes/blocks/class-bindings.php:66
+#: includes/classes/legacy/class-accommodation.php:73
+msgid "Villa"
+msgstr ""
+
+#: includes/classes/blocks/class-bindings.php:88
+msgid "Post Connection"
+msgstr ""
+
+#: includes/classes/blocks/class-bindings.php:96
+msgid "Post Meta"
+msgstr ""
+
+#: includes/classes/blocks/class-bindings.php:104
+#: includes/metaboxes/config-tour.php:158
+msgid "Itinerary"
+msgstr ""
+
+#: includes/classes/blocks/class-bindings.php:112
+msgid "Units"
+msgstr ""
+
+#: includes/classes/blocks/class-bindings.php:120
+#: includes/metaboxes/config-accommodation.php:98
+#: includes/metaboxes/config-destination.php:125
+#: includes/metaboxes/config-tour.php:145
+msgid "Gallery"
+msgstr ""
+
+#: includes/classes/blocks/class-bindings.php:128
+msgid "Map"
+msgstr ""
+
+#: includes/classes/blocks/class-templates.php:43
+msgid "Single Accommodations"
+msgstr ""
+
+#: includes/classes/blocks/class-templates.php:44
+msgid "Displays a single accommodation"
+msgstr ""
+
+#: includes/classes/blocks/class-templates.php:48
+msgid "Accommodation Archive"
+msgstr ""
+
+#: includes/classes/blocks/class-templates.php:49
+msgid "Displays all the accommodation."
+msgstr ""
+
+#: includes/classes/blocks/class-templates.php:53
+msgid "Single Destination"
+msgstr ""
+
+#: includes/classes/blocks/class-templates.php:54
+msgid "Displays a single destination"
+msgstr ""
+
+#: includes/classes/blocks/class-templates.php:58
+msgid "Destination Archive"
+msgstr ""
+
+#: includes/classes/blocks/class-templates.php:59
+msgid "Displays all the destinations."
+msgstr ""
+
+#: includes/classes/blocks/class-templates.php:63
+msgid "Single Tour"
+msgstr ""
+
+#: includes/classes/blocks/class-templates.php:64
+msgid "Displays a single tour"
+msgstr ""
+
+#: includes/classes/blocks/class-templates.php:68
+msgid "Tour Archive"
+msgstr ""
+
+#: includes/classes/blocks/class-templates.php:69
+msgid "Displays all the tours."
+msgstr ""
+
+#: includes/classes/blocks/class-templates.php:73
+msgid "Single Region"
+msgstr ""
+
+#: includes/classes/blocks/class-templates.php:74
+msgid "Used to display a region of a country in the Destination post-type"
+msgstr ""
+
+#: includes/classes/blocks/class-templates.php:78
+msgid "Single Country"
+msgstr ""
+
+#: includes/classes/blocks/class-templates.php:79
+msgid "Used to display a country in the Destination post-type"
+msgstr ""
+
+#: includes/classes/blocks/class-templates.php:83
+msgid "Search Results"
+msgstr ""
+
+#: includes/classes/blocks/class-templates.php:84
+msgid "Displays when a visitor performs a search on your website."
+msgstr ""
+
+#: includes/classes/legacy/class-accommodation.php:68
+#: includes/template-tags/general.php:24
+#: includes/template-tags/general.php:122
+msgid "None"
+msgstr ""
+
+#: includes/classes/legacy/class-accommodation.php:141
+msgid "Off"
+msgstr ""
+
+#: includes/classes/legacy/class-accommodation.php:142
+msgid "From price"
+msgstr ""
+
+#: includes/classes/legacy/class-admin.php:257
+#: includes/metaboxes/config-tour.php:188
+msgid "Featured Image"
+msgstr ""
+
+#: includes/classes/legacy/class-admin.php:264
+msgid "Remove Image"
+msgstr ""
+
+#: includes/classes/legacy/class-admin.php:328
+msgid "Tagline"
+msgstr ""
+
+#: includes/classes/legacy/class-destination.php:96
+#: includes/partials/add-ons.php:130
+msgid "Activities"
+msgstr ""
+
+#: includes/classes/legacy/class-frontend.php:234
+#: includes/classes/legacy/class-frontend.php:287
+msgid "Home"
+msgstr ""
+
+#: includes/classes/legacy/class-maps.php:492
+msgid "Style"
+msgstr ""
+
+#: includes/classes/legacy/class-maps.php:493
+msgid "Type"
+msgstr ""
+
+#: includes/classes/legacy/class-tour-operator.php:283
+msgid "Destination"
+msgstr ""
+
+#: includes/classes/legacy/class-tour-operator.php:285
+msgid "Tour"
+msgstr ""
+
+#: includes/classes/legacy/class-tour-operator.php:297
 #: includes/taxonomies/config-facility.php:19
 msgid "Facility"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:359
+#: includes/classes/legacy/class-tour-operator.php:298
 #: includes/taxonomies/config-continent.php:19
 msgid "Continent"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:360
+#: includes/classes/legacy/class-tour-operator.php:299
 msgid "Region"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:364
+#: includes/classes/legacy/class-tour-operator.php:303
 #: includes/taxonomies/config-travel-style.php:25
 #: includes/taxonomies/config-travel-style.php:28
 #: includes/taxonomies/config-travel-style.php:35
 msgid "Travel Styles"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:365
-#: includes/layout.php:179
+#: includes/classes/legacy/class-tour-operator.php:304
 #: includes/taxonomies/config-accommodation-brand.php:18
 #: includes/taxonomies/config-accommodation-brand.php:21
 #: includes/taxonomies/config-accommodation-brand.php:28
 msgid "Brands"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:366
+#: includes/classes/legacy/class-tour-operator.php:305
 #: includes/taxonomies/config-accommodation-type.php:18
 #: includes/taxonomies/config-accommodation-type.php:21
 #: includes/taxonomies/config-accommodation-type.php:28
 msgid "Accommodation Types"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:368
+#: includes/classes/legacy/class-tour-operator.php:306
+#: includes/taxonomies/config-facility.php:18
+#: includes/taxonomies/config-facility.php:21
+#: includes/taxonomies/config-facility.php:28
+msgid "Facilities"
+msgstr ""
+
+#: includes/classes/legacy/class-tour-operator.php:307
 #: includes/taxonomies/config-continent.php:18
 #: includes/taxonomies/config-continent.php:21
 #: includes/taxonomies/config-continent.php:28
 msgid "Continents"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:1037
-#: includes/classes/legacy/class-tour-operator.php:1050
-msgid "LSX Tour Operator Plugin requires PHP 7.0 or higher."
+#: includes/classes/legacy/class-tour-operator.php:308
+msgid "Regions"
 msgstr ""
 
-#. Translators: 1: HTML open tag link, 2: HTML close tag link
-#: includes/classes/legacy/class-tour-operator.php:1098
-msgid "The LSX Tour Operator Plugin requires the free LSX Theme be installed and active. Please download LSX Theme from %1$sWordPress.org%2$s to get started with your LSX Tour Operator Plugin."
+#: includes/classes/legacy/class-tour.php:197
+msgid "Unspecified"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:1104
-msgid "Download LSX Theme"
+#: includes/classes/legacy/class-video.php:65
+msgid "Video Gallery"
 msgstr ""
 
-#: includes/classes/legacy/class-tour.php:87
-msgid "B&amp;B: Bed and Breakfast"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:88
-msgid "Room Only"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:89
-msgid "Self Catering"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:90
-msgid "Lunch"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:91
-msgid "Dinner"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:92
-msgid "Lunch and Dinner"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:93
-msgid "Bed, Breakfast and Lunch"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:94
-msgid "Dinner, Bed and Breakfast"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:95
-msgid "Half Board - Dinner, Bed and Breakfast"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:96
-msgid "Half Board Plus - Dinner, Bed, Breakfast and Activities"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:97
-msgid "Full Board - Dinner, Bed, Breakfast and Lunch"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:98
-msgid "Full Board Plus -  Dinner, Bed, Breakfast, Lunch and Activities"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:99
-msgid "All Inclusive - Bed and All Meals"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:100
-msgid "Fully Inclusive - Bed, All Meals, Fees and Activities"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:101
-msgid "Premier - Executive Club / Premier Benefits"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:106
-msgid "Tea and Coffee Only"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:107
-msgid "Tea, Coffee and Soft Drinks Only"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:108
-msgid "All Local Brands (Spirits, Wine and Beers)"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:109
-msgid "All Local Brands (excl Spirits)"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:110
-msgid "All Drinks (excl Champagne)"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:111
-msgid "All Drinks (excl Premium Brands)"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:112
-msgid "All Drinks"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:173
-msgid "Compress Itineraries"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:178
-msgid "If you have many Itinerary entries on your tours, then you may want to shorten the length of the page with a \"read more\" button."
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:183
-msgid "Expiration Status"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:187
-msgid "Draft"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:189
-msgid "Private"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:272
-msgid "Accommodation related with this itinerary"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:292
-msgid "Activities related with this itinerary"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:312
-msgid "Destinations related with this itinerary"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:332
-#: includes/layout.php:607
-#: includes/metaboxes/config-accommodation.php:57
-#: includes/metaboxes/config-tour.php:154
-#: includes/template-tags/tour.php:174
-msgid "Included"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:341
-#: includes/layout.php:608
-#: includes/template-tags/tour.php:184
-msgid "Excluded"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:350
-msgid "Drinks Basis"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:356
-msgid "Room Basis"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:458
-#: includes/layout.php:255
-#: includes/layout.php:669
-#: includes/layout.php:703
-#: includes/metaboxes/config-tour.php:40
-#: templates/content-widget-tour.php:66
-msgid "Duration"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:506
-#: includes/layout.php:565
-msgid "When to Go"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:515
-#: includes/metaboxes/config-tour.php:275
-msgid "Itinerary"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:527
-msgid "Included / Excluded"
+#: includes/classes/legacy/class-video.php:66
+msgid "Link to videos about this item, including a title, URL, caption, and alt text."
 msgstr ""
 
 #: includes/classes/legacy/class-video.php:71
-msgid "Video"
+msgid "Video {#}"
 msgstr ""
 
-#: includes/classes/legacy/class-video.php:83
+#: includes/classes/legacy/class-video.php:72
+msgid "Add Video"
+msgstr ""
+
+#: includes/classes/legacy/class-video.php:73
+msgid "Remove Video"
+msgstr ""
+
+#: includes/classes/legacy/class-video.php:79
+#: includes/metaboxes/config-tour.php:164
+msgid "Title"
+msgstr ""
+
+#: includes/classes/legacy/class-video.php:80
+msgid "The title of the video."
+msgstr ""
+
+#: includes/classes/legacy/class-video.php:85
 msgid "Url"
 msgstr ""
 
-#: includes/classes/legacy/class-video.php:88
+#: includes/classes/legacy/class-video.php:86
+msgid "The URL link to the video."
+msgstr ""
+
+#: includes/classes/legacy/class-video.php:91
 msgid "Caption"
 msgstr ""
 
-#: includes/classes/legacy/class-video.php:93
+#: includes/classes/legacy/class-video.php:92
+msgid "The caption displayed with the video on the frontend."
+msgstr ""
+
+#: includes/classes/legacy/class-video.php:97
 msgid "Alt Text"
 msgstr ""
 
-#: includes/classes/legacy/class-widget.php:40
-msgid "TO"
-msgstr ""
-
-#: includes/classes/legacy/class-widget.php:225
-msgid "That post type does not exist."
-msgstr ""
-
-#: includes/classes/legacy/class-widget.php:397
-msgid "Parents Only (post_parent =  0)"
-msgstr ""
-
-#: includes/classes/legacy/class-widget.php:404
-msgid "Featured Items"
-msgstr ""
-
-#: includes/classes/legacy/class-widget.php:423
-msgid "Disable View More Button"
-msgstr ""
-
-#: includes/classes/legacy/class-widget.php:451
-msgid "Post Type:"
-msgstr ""
-
-#: includes/classes/legacy/class-widget.php:470
-msgid "Add your own class to the opening element of the widget"
+#: includes/classes/legacy/class-video.php:98
+msgid "Alternative text for accessibility, describing the video for screen readers."
 msgstr ""
 
 #: includes/classes/legacy/schema/class-lsx-to-schema-graph-piece.php:174
-#: includes/metaboxes/config-accommodation.php:48
-#: includes/template-tags/helpers.php:782
+#: includes/template-tags/helpers.php:499
 msgid "Per Person Per Night"
 msgstr ""
 
@@ -1197,555 +432,563 @@ msgstr ""
 msgid "Standard"
 msgstr ""
 
-#: includes/functions.php:306
-#: includes/layout.php:171
-#: includes/metaboxes/config-accommodation.php:143
-#: includes/template-tags/accommodation.php:317
-#: templates/content-widget-accommodation.php:72
-msgid "Rating"
+#: includes/constants/settings-fields.php:5
+msgid "Currency"
 msgstr ""
 
-#: includes/functions.php:307
-#: includes/layout.php:174
-#: includes/metaboxes/config-accommodation.php:321
-#: includes/template-tags/accommodation.php:320
-#: templates/content-widget-accommodation.php:69
-msgid "Type"
+#: includes/constants/settings-fields.php:9
+msgid "USD (united states dollar)"
 msgstr ""
 
-#: includes/functions.php:308
-#: includes/layout.php:178
-#: includes/metaboxes/config-accommodation.php:218
-#: includes/template-tags/accommodation.php:323
-msgid "Special Interests"
+#: includes/constants/settings-fields.php:10
+msgid "GBP (british pound)"
 msgstr ""
 
-#: includes/layout.php:97
-#: templates/content-destination-continent.php:38
-#: templates/content.php:30
-msgid "Read more"
+#: includes/constants/settings-fields.php:11
+msgid "ZAR (south african rand)"
 msgstr ""
 
-#: includes/layout.php:172
-msgid "Locations"
+#: includes/constants/settings-fields.php:12
+msgid "NAD (namibian dollar)"
 msgstr ""
 
-#: includes/layout.php:173
-#: includes/template-tags/accommodation.php:318
-#: templates/content-widget-accommodation.php:67
-msgid "Style"
+#: includes/constants/settings-fields.php:13
+msgid "CAD (canadian dollar)"
 msgstr ""
 
-#: includes/layout.php:175
-#: includes/template-tags/accommodation.php:316
-#: templates/content-widget-accommodation.php:71
-msgid "Rooms"
+#: includes/constants/settings-fields.php:14
+msgid "EUR (euro)"
 msgstr ""
 
-#: includes/layout.php:176
-#: includes/metaboxes/config-accommodation.php:175
-#: includes/template-tags/accommodation.php:321
-msgid "Spoken Languages"
+#: includes/constants/settings-fields.php:15
+msgid "HKD (hong kong dollar)"
 msgstr ""
 
-#: includes/layout.php:177
-#: includes/metaboxes/config-accommodation.php:200
-#: includes/template-tags/accommodation.php:322
-msgid "Friendly"
+#: includes/constants/settings-fields.php:16
+msgid "SGD (singapore dollar)"
 msgstr ""
 
-#: includes/layout.php:190
-msgid "Accommodation Summary"
+#: includes/constants/settings-fields.php:17
+msgid "NZD (new zealand dollar)"
 msgstr ""
 
-#: includes/layout.php:223
-#: includes/metaboxes/config-accommodation.php:126
-msgid "Fast Facts"
+#: includes/constants/settings-fields.php:18
+msgid "AUD (australian dollar)"
 msgstr ""
 
-#: includes/layout.php:248
-msgid "Tour Summary"
+#: includes/constants/settings-fields.php:22
+msgid "Disable Country Code"
 msgstr ""
 
-#: includes/layout.php:256
-msgid "Departs from"
+#: includes/constants/settings-fields.php:23
+msgid "This will disable the 3 letter code which outputs before the price."
 msgstr ""
 
-#: includes/layout.php:257
-msgid "Ends in"
+#: includes/constants/settings-fields.php:30
+msgid "Disable Maps"
 msgstr ""
 
-#: includes/layout.php:271
-#: includes/metaboxes/config-tour.php:127
-msgid "Highlights"
+#: includes/constants/settings-fields.php:31
+msgid "This will disable maps on all post types."
 msgstr ""
 
-#: includes/layout.php:331
-#: includes/layout.php:645
-msgid "Related Tours"
+#: includes/constants/settings-fields.php:36
+msgid "Choose a default marker"
 msgstr ""
 
-#: includes/layout.php:383
-#: includes/layout.php:507
-#: includes/layout.php:718
-#: templates/content-destination-continent.php:46
-#: templates/content-widget-accommodation-brand.php:74
-#: templates/content-widget-accommodation-type.php:74
-#: templates/content-widget-accommodation.php:87
-#: templates/content-widget-continent.php:74
-#: templates/content-widget-destination.php:63
-#: templates/content-widget-tour.php:87
-#: templates/content-widget-travel-style.php:74
-#: templates/content-widget.php:38
-#: templates/content.php:49
-msgid "View more"
+#: includes/constants/settings-fields.php:42
+msgid "Choose a cluster marker"
 msgstr ""
 
-#: includes/layout.php:571
-msgid "Full Day by Day Itinerary"
+#: includes/constants/settings-fields.php:48
+msgid "Choose a start marker"
+msgstr ""
+
+#: includes/constants/settings-fields.php:54
+msgid "Choose a end marker"
+msgstr ""
+
+#: includes/constants/settings-fields.php:62
+#: includes/constants/settings-fields.php:102
+msgid "Upload a placeholder"
+msgstr ""
+
+#: includes/constants/settings-fields.php:70
+msgid "Enable Fusion Tables"
+msgstr ""
+
+#: includes/constants/settings-fields.php:75
+msgid "Border Width"
+msgstr ""
+
+#: includes/constants/settings-fields.php:76
+msgid "Default value: 2"
+msgstr ""
+
+#: includes/constants/settings-fields.php:81
+msgid "Border Colour"
+msgstr ""
+
+#: includes/constants/settings-fields.php:82
+#: includes/constants/settings-fields.php:88
+msgid "Default value: #000000"
+msgstr ""
+
+#: includes/constants/settings-fields.php:87
+msgid "Background Colour"
+msgstr ""
+
+#: includes/constants/settings-fields.php:95
+msgid "Google Maps API"
+msgstr ""
+
+#: includes/constants/settings-fields.php:110
+msgid "Disable Archives"
+msgstr ""
+
+#: includes/constants/settings-fields.php:111
+msgid "This disables the \"post type archive\", if you create your own custom loop it will still work."
+msgstr ""
+
+#: includes/constants/settings-fields.php:116
+msgid "Disable Singles"
+msgstr ""
+
+#: includes/constants/settings-fields.php:117
+msgid "When disabled you will be redirected to the homepage when trying to access a single page."
+msgstr ""
+
+#: includes/functions.php:416
+msgid "Read More"
 msgstr ""
 
 #: includes/metaboxes/config-accommodation.php:13
-#: includes/metaboxes/config-destination.php:13
 #: includes/metaboxes/config-tour.php:13
-msgid "LSX Tour Operator Plugin"
+msgid "Details"
 msgstr ""
 
 #: includes/metaboxes/config-accommodation.php:20
-#: includes/metaboxes/config-destination.php:20
-#: includes/metaboxes/config-tour.php:20
-msgid "Featured"
+#: includes/metaboxes/config-tour.php:68
+#: includes/metaboxes/config-tour.php:237
+msgid "Included"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:26
-#: includes/metaboxes/config-destination.php:26
-#: includes/metaboxes/config-tour.php:26
-msgid "Disable Single"
+#: includes/metaboxes/config-accommodation.php:21
+msgid "Items or services provided with the accommodation."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:44
-msgid "Price Type"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:49
-#: includes/template-tags/helpers.php:786
-msgid "Per Person Sharing"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:50
-#: includes/template-tags/helpers.php:790
-msgid "Per Person Sharing Per Night"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:51
-#: includes/template-tags/helpers.php:794
-msgid "Percentage Off Your Price."
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:66
-#: includes/metaboxes/config-tour.php:163
+#: includes/metaboxes/config-accommodation.php:30
+#: includes/metaboxes/config-tour.php:78
 msgid "Not Included"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:76
+#: includes/metaboxes/config-accommodation.php:31
+msgid "Items or services not provided with the accommodation."
+msgstr ""
+
+#: includes/metaboxes/config-accommodation.php:41
 msgid "Accommodation Expert"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:93
-#: includes/metaboxes/config-destination.php:222
-#: includes/metaboxes/config-tour.php:191
-#: includes/template-tags/accommodation.php:324
-#: templates/content-widget-accommodation.php:70
+#: includes/metaboxes/config-accommodation.php:56
+#: includes/metaboxes/config-destination.php:139
+#: includes/metaboxes/config-tour.php:110
 msgid "Location"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:102
-#: includes/metaboxes/config-destination.php:236
+#: includes/metaboxes/config-accommodation.php:65
+#: includes/metaboxes/config-destination.php:153
 msgid "Address"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:108
-#: includes/metaboxes/config-destination.php:242
-#: includes/metaboxes/config-tour.php:196
+#: includes/metaboxes/config-accommodation.php:66
+msgid "The address of the accommodation for map display."
+msgstr ""
+
+#: includes/metaboxes/config-accommodation.php:72
+#: includes/metaboxes/config-destination.php:159
+#: includes/metaboxes/config-tour.php:115
 msgid "Map Placeholder"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:115
-#: includes/metaboxes/config-destination.php:249
-#: includes/metaboxes/config-tour.php:203
-msgid "Mobile Placeholder"
+#: includes/metaboxes/config-accommodation.php:73
+#: includes/metaboxes/config-tour.php:116
+msgid "A placeholder image for the map if no address or GPS data is available."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:132
-msgid "Rating Type"
+#: includes/metaboxes/config-accommodation.php:93
+#: includes/metaboxes/config-destination.php:120
+#: includes/metaboxes/config-tour.php:140
+msgid "Media"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:136
-msgid "TGCSA"
+#: includes/metaboxes/config-accommodation.php:99
+msgid "Add images related to the accommodation to be displayed in the Accommodation's gallery."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:137
-msgid "Hotelstars Union"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:151
-msgid "Number of Rooms"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:157
-msgid "Check-in Time"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:163
-msgid "Check-out Time"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:169
-msgid "Minimum Child Age"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:179
-msgid "Afrikaans"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:180
-msgid "Chinese"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:181
-msgid "Dutch"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:182
-msgid "English"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:183
-msgid "Flemish"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:184
-msgid "French"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:185
-msgid "German"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:186
-msgid "Indian"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:187
-msgid "Italian"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:188
-msgid "Japanese"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:189
-msgid "Portuguese"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:190
-msgid "Russian"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:191
-msgid "Spanish"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:192
-msgid "Swahili"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:193
-msgid "Xhosa"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:194
-msgid "Zulu"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:204
-msgid "Business"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:205
-msgid "Children"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:206
-msgid "Disability"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:207
-#: includes/metaboxes/config-accommodation.php:235
-msgid "Leisure"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:208
-msgid "Luxury"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:209
-msgid "Pet"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:210
-msgid "Romance"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:211
-msgid "Vegetarian"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:212
-msgid "Weddings"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:222
-msgid "Adventure"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:223
-msgid "Battlefields"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:224
-msgid "Beach / Coastal"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:225
-msgid "Big 5"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:226
-msgid "Birding"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:227
-msgid "Cycling"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:228
-msgid "Fishing"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:229
-msgid "Flora"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:230
-msgid "Golf"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:231
-msgid "Gourmet"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:232
-msgid "Hiking"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:233
-msgid "History & Culture"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:234
-msgid "Indigenous Culture / Art"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:236
-msgid "Nature Relaxation"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:237
-msgid "Shopping"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:238
-msgid "Sports"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:239
-msgid "Star Gazing"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:240
-msgid "Watersports"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:241
-msgid "Wildlife"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:242
-msgid "Wine"
-msgstr ""
-
-#: includes/metaboxes/config-accommodation.php:262
-#: includes/metaboxes/config-destination.php:176
-#: includes/metaboxes/config-tour.php:230
+#: includes/metaboxes/config-accommodation.php:105
+#: includes/metaboxes/config-accommodation.php:164
+#: includes/metaboxes/config-destination.php:132
+#: includes/metaboxes/config-tour.php:152
 msgid "Add new image"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:268
-#: includes/metaboxes/config-accommodation.php:274
-#: includes/metaboxes/config-destination.php:182
-#: includes/metaboxes/config-destination.php:188
-#: includes/metaboxes/config-tour.php:236
-msgid "Envira Gallery"
+#: includes/metaboxes/config-accommodation.php:111
+msgid "Rooms / Units"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:290
-#: includes/metaboxes/config-destination.php:204
-msgid "Envira Video Gallery"
+#: includes/metaboxes/config-accommodation.php:122
+msgid "Unit {#}"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:307
-msgid "Units"
+#: includes/metaboxes/config-accommodation.php:123
+#: includes/metaboxes/config-tour.php:280
+msgid "Add Another"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:340
-#: includes/metaboxes/config-tour.php:136
-#: includes/metaboxes/config-tour.php:142
-msgid "Price"
+#: includes/metaboxes/config-accommodation.php:124
+#: includes/metaboxes/config-tour.php:281
+msgid "Remove"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:361
-msgid "Posts related with this accommodation"
+#: includes/metaboxes/config-accommodation.php:130
+msgid "Unit Type"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:383
-msgid "Destinations related with this accommodation"
+#: includes/metaboxes/config-accommodation.php:131
+msgid "Select the type of unit (e.g., room, suite) from the dropdown."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:405
-msgid "Tours related with this accommodation"
+#: includes/metaboxes/config-accommodation.php:137
+msgid "Unit Title"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:32
-msgid "Sticky weight"
+#: includes/metaboxes/config-accommodation.php:138
+msgid "Enter the name or title of the unit (e.g., Deluxe Room, Family Suite)."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:40
-#: includes/metaboxes/config-tour.php:80
-msgid "Best months to visit"
+#: includes/metaboxes/config-accommodation.php:143
+msgid "Unit Description"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:69
+#: includes/metaboxes/config-accommodation.php:144
+msgid "Provide a brief description of the unit’s features and amenities."
+msgstr ""
+
+#: includes/metaboxes/config-accommodation.php:152
+msgid "Unit Price"
+msgstr ""
+
+#: includes/metaboxes/config-accommodation.php:153
+msgid "Enter the price of the unit."
+msgstr ""
+
+#: includes/metaboxes/config-accommodation.php:157
+msgid "Unit Images"
+msgstr ""
+
+#: includes/metaboxes/config-accommodation.php:158
+msgid "Showcase the unit by adding images."
+msgstr ""
+
+#: includes/metaboxes/config-accommodation.php:172
+#: includes/metaboxes/config-destination.php:175
+#: includes/metaboxes/config-tour.php:288
+msgid "Related"
+msgstr ""
+
+#: includes/metaboxes/config-accommodation.php:177
+#: includes/metaboxes/config-destination.php:181
+#: includes/metaboxes/config-tour.php:294
+msgid "Related Posts"
+msgstr ""
+
+#: includes/metaboxes/config-accommodation.php:178
+msgid "Select blog posts about this Accommodation."
+msgstr ""
+
+#: includes/metaboxes/config-accommodation.php:190
+#: includes/metaboxes/config-tour.php:320
+msgid "Related Destinations"
+msgstr ""
+
+#: includes/metaboxes/config-accommodation.php:191
+msgid "The Destination (country or region) where this Accommodation is found."
+msgstr ""
+
+#: includes/metaboxes/config-accommodation.php:203
+#: includes/metaboxes/config-destination.php:207
+msgid "Related Tours"
+msgstr ""
+
+#: includes/metaboxes/config-accommodation.php:204
+msgid "Choose tours that are linked to the accommodation."
+msgstr ""
+
+#: includes/metaboxes/config-destination.php:13
 msgid "Travel Info"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:75
-#: includes/template-tags/destination.php:264
+#: includes/metaboxes/config-destination.php:20
 msgid "Electricity"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:84
-#: includes/template-tags/destination.php:265
+#: includes/metaboxes/config-destination.php:22
+msgid "Enter details about the country's electrical system (e.g., voltage, plug types)."
+msgstr ""
+
+#: includes/metaboxes/config-destination.php:30
 msgid "Banking"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:93
-#: includes/template-tags/destination.php:266
+#: includes/metaboxes/config-destination.php:32
+msgid "Provide information about banking services and currency in the country."
+msgstr ""
+
+#: includes/metaboxes/config-destination.php:40
 msgid "Cuisine"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:102
-#: includes/template-tags/destination.php:267
+#: includes/metaboxes/config-destination.php:42
+msgid "Describe the typical cuisine or food experiences in the country."
+msgstr ""
+
+#: includes/metaboxes/config-destination.php:50
 msgid "Climate"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:111
-#: includes/template-tags/destination.php:268
+#: includes/metaboxes/config-destination.php:52
+msgid "Give an overview of the country's climate and weather patterns."
+msgstr ""
+
+#: includes/metaboxes/config-destination.php:60
 msgid "Transport"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:120
-#: includes/template-tags/destination.php:269
+#: includes/metaboxes/config-destination.php:62
+msgid "Provide information on transportation options available in the country."
+msgstr ""
+
+#: includes/metaboxes/config-destination.php:70
 msgid "Dress"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:129
-#: includes/template-tags/destination.php:270
+#: includes/metaboxes/config-destination.php:72
+msgid "Describe any local dress customs or recommended clothing for visitors."
+msgstr ""
+
+#: includes/metaboxes/config-destination.php:80
 msgid "Health"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:138
-#: includes/template-tags/destination.php:271
+#: includes/metaboxes/config-destination.php:82
+msgid "Provide important health-related information for travellers (e.g., vaccinations, health services)."
+msgstr ""
+
+#: includes/metaboxes/config-destination.php:90
 msgid "Safety"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:147
-#: includes/template-tags/destination.php:272
+#: includes/metaboxes/config-destination.php:92
+msgid "Enter safety tips or advice for staying secure in the country."
+msgstr ""
+
+#: includes/metaboxes/config-destination.php:100
 msgid "Visa"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:227
+#: includes/metaboxes/config-destination.php:102
+msgid "Provide details on visa requirements for entering the country."
+msgstr ""
+
+#: includes/metaboxes/config-destination.php:112
+msgid "Add any other relevant general travel information about the country."
+msgstr ""
+
+#: includes/metaboxes/config-destination.php:128
+msgid "Add images related to the country to be displayed in the Destination’s gallery."
+msgstr ""
+
+#: includes/metaboxes/config-destination.php:144
 msgid "Disable Auto Zoom"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:264
-msgid "Posts related with this destination"
+#: includes/metaboxes/config-destination.php:183
+msgid "Select related posts by typing the post name and choosing from the dropdown."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:286
-msgid "Accommodation related with this destination"
+#: includes/metaboxes/config-destination.php:194
+#: includes/metaboxes/config-tour.php:206
+#: includes/metaboxes/config-tour.php:307
+msgid "Related Accommodation"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:308
-msgid "Tours related with this destination"
+#: includes/metaboxes/config-destination.php:195
+msgid "Attach related accommodations by selecting the relevant accommodation from the dropdown."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:46
+#: includes/metaboxes/config-destination.php:208
+msgid "Choose related tours by typing the tour name and selecting from the dropdown."
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:20
 msgid "Departs From"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:63
+#: includes/metaboxes/config-tour.php:21
+msgid "Select the destination where the tour starts."
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:34
 msgid "Ends In"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:102
-msgid "Tour Expert"
+#: includes/metaboxes/config-tour.php:35
+msgid "Select the destination where the tour ends."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:118
+#: includes/metaboxes/config-tour.php:48
 msgid "Group Size"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:148
-msgid "Single Supplement"
+#: includes/metaboxes/config-tour.php:49
+msgid "The range of group sizes for the tour (e.g., 2 - 20 people)."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:172
+#: includes/metaboxes/config-tour.php:58
+msgid "Highlights"
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:59
+msgid "Key experiences or features of the tour."
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:69
+msgid "List the items and services included with the tour (typically a paragraph or list)."
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:79
+msgid "List the items and services not included with the tour (typically a paragraph or list)."
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:88
 msgid "Booking Validity (start)"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:178
+#: includes/metaboxes/config-tour.php:89
+msgid "The start date for when the tour can be booked."
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:95
 msgid "Booking Validity (end)"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:184
+#: includes/metaboxes/config-tour.php:96
+msgid "The end date for when the tour can be booked."
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:102
 msgid "Expire this tour automatically"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:210
+#: includes/metaboxes/config-tour.php:103
+msgid "This tour will expire automatically when the Booking Validity ends."
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:130
 msgid "Itinerary KML File"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:298
-msgid "Posts related with this tour"
+#: includes/metaboxes/config-tour.php:131
+msgid "A file containing GPS points for the tour route."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:320
-msgid "Accommodation related with this tour"
+#: includes/metaboxes/config-tour.php:146
+msgid "Add images related to the tour to be displayed in the Tour gallery."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:342
-msgid "Destinations related with this tour"
+#: includes/metaboxes/config-tour.php:165
+msgid "Enter the title for the time frame (e.g., Day 1, Day 1-3)."
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:171
+msgid "Tagline (Optional)"
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:172
+msgid "Add an optional tagline for the itinerary entry (if left blank, it won’t display)."
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:178
+msgid "Description"
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:179
+msgid "Provide a description of what happens during this time frame."
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:189
+msgid "Upload or select a featured image for the itinerary entry."
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:207
+msgid "Select the accommodation associated with this Itinerary entry."
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:222
+msgid "Related Destination"
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:223
+msgid "Choose the destination (region or country) associated with this Itinerary entry."
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:238
+msgid "Items or services provided during that part of the tour itinerary."
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:247
+msgid "Excluded"
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:248
+msgid "Items or services not provided during that part of the tour itinerary."
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:257
+msgid "Drinks Basis"
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:258
+msgid "Select the drinks basis for the itinerary (e.g., tea & coffee, all local drinks)."
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:264
+msgid "Room Basis"
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:265
+msgid "Choose the room basis for the itinerary (e.g., breakfast only, full board)."
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:273
+msgid "Day(s)"
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:279
+msgid "Itinerary {#}"
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:295
+msgid "Select blog posts about this tour."
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:308
+msgid "Attach other accommodations similar to this tour."
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:321
+msgid "The Destinations (countries or regions) where this Tour takes place."
 msgstr ""
 
 #: includes/pages/config-help.php:13
@@ -1753,192 +996,155 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#: includes/pages/config-tour-operator.php:14
-msgid "Tour Operator"
-msgstr ""
-
-#: includes/partials/accommodation.php:6
-#: includes/partials/add-ons.php:90
-#: includes/partials/destination.php:6
-#: includes/partials/display.php:33
-#: includes/partials/general.php:6
-#: includes/partials/tour.php:5
-msgid "Search"
-msgstr ""
-
-#: includes/partials/accommodation.php:9
-#: includes/partials/destination.php:9
-#: includes/partials/display.php:6
-#: includes/partials/tour.php:7
-msgid "Placeholders"
-msgstr ""
-
-#: includes/partials/accommodation.php:10
-#: includes/partials/destination.php:10
-#: includes/partials/tour.php:8
-msgid "Archives"
-msgstr ""
-
-#: includes/partials/accommodation.php:11
-#: includes/partials/destination.php:11
-#: includes/partials/tour.php:9
-msgid "Single"
+#: includes/pages/config-tour-operator.php:13
+msgid "Dashboard"
 msgstr ""
 
 #: includes/partials/add-ons.php:31
+msgid "Specials"
+msgstr ""
+
+#: includes/partials/add-ons.php:32
 msgid "With the Special Offers extension you’re able to set up time-sensitive prices that you can use to price your accommodations, activities and tours. Set up booking validity dates, specials per person sharing/per person sharing/per person sharing per night, team members per special and more."
 msgstr ""
 
-#: includes/partials/add-ons.php:35
-#: includes/partials/add-ons.php:54
-#: includes/partials/add-ons.php:73
-#: includes/partials/add-ons.php:96
-#: includes/partials/add-ons.php:115
-#: includes/partials/add-ons.php:134
-#: includes/partials/add-ons.php:155
+#: includes/partials/add-ons.php:36
+#: includes/partials/add-ons.php:55
+#: includes/partials/add-ons.php:74
+#: includes/partials/add-ons.php:97
+#: includes/partials/add-ons.php:116
+#: includes/partials/add-ons.php:135
+#: includes/partials/add-ons.php:156
 msgid "Get this extension"
 msgstr ""
 
 #: includes/partials/add-ons.php:50
+msgid "Reviews"
+msgstr ""
+
+#: includes/partials/add-ons.php:51
 msgid "People want to be sure that they’re making the right choice with the the right company. Your “trustability” will set you apart from the herd. The Tour Operators Reviews extension allows you to add reviews written by your previous guests and display them across your site."
 msgstr ""
 
-#: includes/partials/add-ons.php:68
-#: includes/partials/display.php:10
+#: includes/partials/add-ons.php:69
 msgid "Team"
 msgstr ""
 
-#: includes/partials/add-ons.php:69
-msgid "Real peoples' faces go a long way to building trust with your valued clients. The LSX Tour Operator: Team extension allows your company's staff to be added as Team Members with their own profile which can be associated with specific destinations and tours."
+#: includes/partials/add-ons.php:70
+msgid "Real peoples' faces go a long way to building trust with your valued clients. The Tour Operator: Team extension allows your company's staff to be added as Team Members with their own profile which can be associated with specific destinations and tours."
 msgstr ""
 
 #: includes/partials/add-ons.php:91
-msgid "The Search extension for the Tour Operators plugin adds robust search functionality to your WordPress LSX Tour Operator site. It requires that you also have the FacetWP plugin installed, as that allows for much of the filtering functionality that the plugin provides."
+msgid "Search"
 msgstr ""
 
-#: includes/partials/add-ons.php:110
-msgid "Vehicles"
+#: includes/partials/add-ons.php:92
+msgid "The Search extension for the Tour Operators plugin adds robust search functionality to your WordPress Tour Operator site. It requires that you also have the FacetWP plugin installed, as that allows for much of the filtering functionality that the plugin provides."
 msgstr ""
 
 #: includes/partials/add-ons.php:111
+msgid "Vehicles"
+msgstr ""
+
+#: includes/partials/add-ons.php:112
 msgid "To help convince travellers of their comfort and safety when traveling with you, we’ve created the Vehicles extension. Fill in your fleets’ specs and display your vehicles on connected tours and destinations. With a range of available options such as; type and number of gears, engine type (petrol/diesel), number of seats, vehicle code, and of course images and copy."
 msgstr ""
 
-#: includes/partials/add-ons.php:130
+#: includes/partials/add-ons.php:131
 msgid "Get your visitors excited about what they’ll be doing when they travel with you, whether it’s river rafting, whale watching or sandboarding – use the Activities post type with beautiful imagery and well-crafted copy and then set the activities as connected to particular tours, destinations and accommodations."
 msgstr ""
 
-#: includes/partials/add-ons.php:150
+#: includes/partials/add-ons.php:151
 msgid "Wetu Importer"
 msgstr ""
 
-#: includes/partials/add-ons.php:151
+#: includes/partials/add-ons.php:152
 msgid "Quickly and easily import accommodation data as well as entire tour itineraries and associated images from the WETU database to use in your day-by-day tour listings."
 msgstr ""
 
-#: includes/partials/api.php:3
-msgid "Please enter your user details (email address, API key, username, etc) below as required for the extensions that you have installed."
+#: includes/partials/general.php:9
+msgid "Currency Settings"
 msgstr ""
 
-#: includes/partials/api.php:10
-msgid "Google Maps API"
+#: includes/partials/general.php:18
+msgid "Map Settings"
 msgstr ""
 
-#: includes/partials/api.php:15
-msgid "Key"
+#: includes/partials/general.php:27
+msgid "Fusion Table Settings"
 msgstr ""
 
-#: includes/partials/display.php:14
-msgid "Testimonials"
+#: includes/partials/general.php:36
+#: includes/partials/post-type.php:7
+msgid "Placeholder Settings"
 msgstr ""
 
-#: includes/partials/display.php:18
-msgid "Projects"
-msgstr ""
-
-#: includes/partials/display.php:22
-msgid "Services"
-msgstr ""
-
-#: includes/partials/display.php:29
-msgid "Maps"
-msgstr ""
-
-#: includes/partials/display.php:36
-msgid "Basic"
-msgstr ""
-
-#: includes/partials/display.php:37
-msgid "Advanced"
-msgstr ""
-
-#: includes/partials/general.php:10
-msgid "Currencies"
+#: includes/partials/general.php:45
+msgid "APIs"
 msgstr ""
 
 #: includes/partials/help.php:12
-msgid "LSX Tour Operator Extensions"
+msgid "Tour Operator Extensions"
 msgstr ""
 
 #: includes/partials/help.php:13
-msgid "Extend the functionality of the LSX Tour Operator plugin with one of our many extensions!"
+msgid "Extend the functionality of the Tour Operator plugin with one of our many extensions!"
 msgstr ""
 
-#: includes/partials/help.php:26
+#: includes/partials/help.php:31
 msgid "Getting Support"
 msgstr ""
 
-#: includes/partials/help.php:27
+#: includes/partials/help.php:32
 msgid "Our website's"
 msgstr ""
 
-#: includes/partials/help.php:27
+#: includes/partials/help.php:32
 msgid "documentation"
 msgstr ""
 
-#: includes/partials/help.php:27
+#: includes/partials/help.php:32
 msgid "page is a great place to start to learn how to configure and customize our plugin and its extensions."
 msgstr ""
 
-#: includes/partials/help.php:30
+#: includes/partials/help.php:35
 msgid "Get support today"
 msgstr ""
 
-#: includes/partials/help.php:47
+#: includes/partials/help.php:52
 msgid "Latest Version:"
 msgstr ""
 
-#: includes/partials/help.php:48
+#: includes/partials/help.php:53
 msgid "Requires:"
 msgstr ""
 
-#: includes/partials/help.php:48
+#: includes/partials/help.php:53
 msgid "WordPress 5.0+"
 msgstr ""
 
-#: includes/partials/help.php:49
+#: includes/partials/help.php:54
 msgid "Tested up to:"
 msgstr ""
 
-#: includes/partials/help.php:49
+#: includes/partials/help.php:54
 msgid "WordPress 5.0"
 msgstr ""
 
-#: includes/partials/help.php:54
+#: includes/partials/help.php:59
 msgid "Visit on WordPress"
 msgstr ""
 
-#: includes/partials/post.php:31
-#: includes/partials/post.php:40
-msgid "Edit this on the page you have set as the \"blog\""
+#: includes/partials/post-type.php:17
+msgid "Template Settings"
 msgstr ""
 
 #: includes/partials/welcome.php:12
-msgid "Welcome to the LSX Tour Operator Plugin"
+msgid "Welcome to the Tour Operator Plugin"
 msgstr ""
 
 #: includes/partials/welcome.php:13
-msgid "You are running version 1.0 - Thanks for Keeping up to date!"
+msgid "You are running version %s - Thanks for Keeping up to date!"
 msgstr ""
 
 #: includes/partials/welcome.php:27
@@ -1954,7 +1160,7 @@ msgid "Release notes"
 msgstr ""
 
 #: includes/partials/welcome.php:35
-msgid "Get the latest on updates to the LSX Tour Operator plugin"
+msgid "Get the latest on updates to the Tour Operator plugin"
 msgstr ""
 
 #: includes/partials/welcome.php:43
@@ -1974,11 +1180,11 @@ msgid "Check out our blog posts geared towards helping Tour Operators succeed on
 msgstr ""
 
 #: includes/partials/welcome.php:60
-msgid "Help us keep the LSX Tour Operator core FREE"
+msgid "Help us keep the Tour Operator core FREE"
 msgstr ""
 
 #: includes/partials/welcome.php:61
-msgid "5-star ratings help us to bring the LSX Tour Operator plugin to more users. The more users we have the more we get requests to add features to make the plugin even better for you. We couldn’t do it without your support."
+msgid "5-star ratings help us to bring the Tour Operator plugin to more users. The more users we have the more we get requests to add features to make the plugin even better for you. We couldn’t do it without your support."
 msgstr ""
 
 #: includes/partials/welcome.php:64
@@ -1993,90 +1199,60 @@ msgstr ""
 msgid "Please consider signing up to our Tourism Industry newsletter"
 msgstr ""
 
-#: includes/post-types/config-accommodation.php:18
-#: includes/post-types/config-destination.php:18
-#: includes/post-types/config-tour.php:18
-msgid "Add New"
+#: includes/patterns/accommodation-card.php:5
+msgid "Accommodation Card"
 msgstr ""
 
-#: includes/post-types/config-accommodation.php:19
-msgid "Add Accommodation"
+#: includes/patterns/accommodation-card.php:6
+msgid "A grid display for accommodation."
 msgstr ""
 
-#: includes/post-types/config-accommodation.php:20
-msgid "Edit Accommodation"
+#: includes/patterns/destination-card.php:4
+msgid "Destination Card"
 msgstr ""
 
-#: includes/post-types/config-accommodation.php:22
-msgid "View Accommodation"
+#: includes/patterns/destination-card.php:5
+msgid "A grid display for destinations."
 msgstr ""
 
-#: includes/post-types/config-accommodation.php:23
-msgid "Search Accommodation"
+#: includes/patterns/gallery.php:4
+msgid "TO Gallery"
 msgstr ""
 
-#: includes/post-types/config-accommodation.php:24
-msgid "No accommodation defined"
+#: includes/patterns/gallery.php:5
+msgid "Display the attached images, with a lightbox gallery."
 msgstr ""
 
-#: includes/post-types/config-accommodation.php:25
-msgid "No accommodation in trash"
+#: includes/patterns/itinerary-list.php:4
+msgid "Itinerary (list)"
 msgstr ""
 
-#: includes/post-types/config-destination.php:19
-msgid "Add Destination"
+#: includes/patterns/itinerary-list.php:5
+msgid "A list display for the tour itineraries."
 msgstr ""
 
-#: includes/post-types/config-destination.php:20
-msgid "Edit Destination"
+#: includes/patterns/room-card.php:4
+msgid "Room Card"
 msgstr ""
 
-#: includes/post-types/config-destination.php:21
-msgid "New Destination"
+#: includes/patterns/room-card.php:5
+msgid "A list display for the accommodation units."
 msgstr ""
 
-#: includes/post-types/config-destination.php:23
-msgid "View Destination"
+#: includes/patterns/tour-card.php:4
+msgid "Tour Card"
 msgstr ""
 
-#: includes/post-types/config-destination.php:24
-msgid "Search Destinations"
+#: includes/patterns/tour-card.php:5
+msgid "A grid display for tours."
 msgstr ""
 
-#: includes/post-types/config-destination.php:25
-msgid "No destinations found"
+#: includes/patterns/travel-information.php:4
+msgid "Travel Information"
 msgstr ""
 
-#: includes/post-types/config-destination.php:26
-msgid "No destinations found in Trash"
-msgstr ""
-
-#: includes/post-types/config-tour.php:19
-msgid "Add Tour"
-msgstr ""
-
-#: includes/post-types/config-tour.php:20
-msgid "Edit Tour"
-msgstr ""
-
-#: includes/post-types/config-tour.php:21
-msgid "New Tour"
-msgstr ""
-
-#: includes/post-types/config-tour.php:23
-msgid "View Tour"
-msgstr ""
-
-#: includes/post-types/config-tour.php:24
-msgid "Search Tours"
-msgstr ""
-
-#: includes/post-types/config-tour.php:25
-msgid "No tours found"
-msgstr ""
-
-#: includes/post-types/config-tour.php:26
-msgid "No tours found in Trash"
+#: includes/patterns/travel-information.php:5
+msgid "Display the travel information like banking and cusine."
 msgstr ""
 
 #: includes/taxonomies/config-accommodation-brand.php:20
@@ -2107,6 +1283,10 @@ msgstr ""
 msgid "New Brand"
 msgstr ""
 
+#: includes/taxonomies/config-accommodation-brand.php:29
+msgid "Select the brand the Accommodation belongs to."
+msgstr ""
+
 #: includes/taxonomies/config-accommodation-type.php:20
 msgid "Search Accommodation Types"
 msgstr ""
@@ -2133,6 +1313,10 @@ msgstr ""
 
 #: includes/taxonomies/config-accommodation-type.php:27
 msgid "New Accommodation Type"
+msgstr ""
+
+#: includes/taxonomies/config-accommodation-type.php:29
+msgid "Select the type(s) of accommodation (e.g., hotel, resort)."
 msgstr ""
 
 #: includes/taxonomies/config-continent.php:20
@@ -2165,6 +1349,10 @@ msgstr ""
 msgid "New Continent"
 msgstr ""
 
+#: includes/taxonomies/config-continent.php:29
+msgid "Select the continent that the country belongs to."
+msgstr ""
+
 #: includes/taxonomies/config-facility.php:20
 msgid "Search Facilities"
 msgstr ""
@@ -2183,6 +1371,10 @@ msgstr ""
 
 #: includes/taxonomies/config-facility.php:27
 msgid "New Facility"
+msgstr ""
+
+#: includes/taxonomies/config-facility.php:29
+msgid "Choose the facilities offered by the accommodation (e.g., pool, gym)."
 msgstr ""
 
 #: includes/taxonomies/config-travel-style.php:27
@@ -2213,127 +1405,150 @@ msgstr ""
 msgid "New Travel Style"
 msgstr ""
 
-#: includes/template-tags/accommodation.php:25
-#: includes/template-tags/destination.php:25
-#: includes/template-tags/tour.php:25
-msgid "Featured Posts"
+#: includes/taxonomies/config-travel-style.php:36
+msgid "Select the relevant travel styles that apply to this item."
 msgstr ""
 
-#: includes/template-tags/destination.php:47
-msgid "Featured Accommodation"
+#: includes/template-tags/general.php:25
+msgid "B&amp;B: Bed and Breakfast"
 msgstr ""
 
-#: includes/template-tags/destination.php:207
-msgid "Featured Tours"
+#: includes/template-tags/general.php:26
+msgid "Room Only"
 msgstr ""
 
-#: includes/template-tags/destination.php:231
-msgid "Featured Activities"
+#: includes/template-tags/general.php:27
+msgid "Self Catering"
 msgstr ""
 
-#: includes/template-tags/destination.php:277
-msgid "Travel Information"
+#: includes/template-tags/general.php:28
+msgid "Lunch"
 msgstr ""
 
-#: includes/template-tags/destination.php:416
-msgid "Country"
+#: includes/template-tags/general.php:29
+msgid "Dinner"
 msgstr ""
 
-#: includes/template-tags/destination.php:446
-msgid "Best Time"
+#: includes/template-tags/general.php:30
+msgid "Lunch and Dinner"
 msgstr ""
 
-#: includes/template-tags/general.php:227
-#: templates/single-accommodation.php:27
-#: templates/single-destination.php:27
-#: templates/single-tour.php:27
-msgid "Summary"
+#: includes/template-tags/general.php:31
+msgid "Bed, Breakfast and Lunch"
 msgstr ""
 
-#: includes/template-tags/general.php:520
-msgid "Enquire"
+#: includes/template-tags/general.php:32
+msgid "Dinner, Bed and Breakfast"
 msgstr ""
 
-#: includes/template-tags/helpers.php:734
+#: includes/template-tags/general.php:33
+msgid "Half Board - Dinner, Bed and Breakfast"
+msgstr ""
+
+#: includes/template-tags/general.php:34
+msgid "Half Board Plus - Dinner, Bed, Breakfast and Activities"
+msgstr ""
+
+#: includes/template-tags/general.php:35
+msgid "Full Board - Dinner, Bed, Breakfast and Lunch"
+msgstr ""
+
+#: includes/template-tags/general.php:36
+msgid "Full Board Plus -  Dinner, Bed, Breakfast, Lunch and Activities"
+msgstr ""
+
+#: includes/template-tags/general.php:37
+msgid "All Inclusive - Bed and All Meals"
+msgstr ""
+
+#: includes/template-tags/general.php:38
+msgid "Fully Inclusive - Bed, All Meals, Fees and Activities"
+msgstr ""
+
+#: includes/template-tags/general.php:39
+msgid "Premier - Executive Club / Premier Benefits"
+msgstr ""
+
+#: includes/template-tags/general.php:40
+msgid "Camping"
+msgstr ""
+
+#: includes/template-tags/general.php:41
+msgid "Catered Camping"
+msgstr ""
+
+#: includes/template-tags/general.php:123
+msgid "Tea and Coffee Only"
+msgstr ""
+
+#: includes/template-tags/general.php:124
+msgid "Tea, Coffee and Soft Drinks Only"
+msgstr ""
+
+#: includes/template-tags/general.php:125
+msgid "All Local Brands (Spirits, Wine and Beers)"
+msgstr ""
+
+#: includes/template-tags/general.php:126
+msgid "All Local Brands (excl Spirits)"
+msgstr ""
+
+#: includes/template-tags/general.php:127
+msgid "All Drinks (excl Champagne)"
+msgstr ""
+
+#: includes/template-tags/general.php:128
+msgid "All Drinks (excl Premium Brands)"
+msgstr ""
+
+#: includes/template-tags/general.php:129
+msgid "All Drinks"
+msgstr ""
+
+#: includes/template-tags/helpers.php:451
 msgid "Africa"
 msgstr ""
 
-#: includes/template-tags/helpers.php:735
+#: includes/template-tags/helpers.php:452
 msgid "Asia"
 msgstr ""
 
-#: includes/template-tags/helpers.php:736
+#: includes/template-tags/helpers.php:453
 msgid "Europe"
 msgstr ""
 
-#: includes/template-tags/helpers.php:737
+#: includes/template-tags/helpers.php:454
 msgid "Oceania"
 msgstr ""
 
-#: includes/template-tags/helpers.php:738
+#: includes/template-tags/helpers.php:455
 msgid "North America"
 msgstr ""
 
-#: includes/template-tags/helpers.php:739
+#: includes/template-tags/helpers.php:456
 msgid "South America"
 msgstr ""
 
-#: includes/template-tags/helpers.php:740
+#: includes/template-tags/helpers.php:457
 msgid "Antarctica"
 msgstr ""
 
-#: includes/template-tags/tour.php:167
-msgid "Included / Not Included"
+#: includes/template-tags/helpers.php:503
+msgid "Per Person Sharing"
 msgstr ""
 
-#: includes/template-tags/tour.php:241
-msgid "January"
+#: includes/template-tags/helpers.php:507
+msgid "Per Person Sharing Per Night"
 msgstr ""
 
-#: includes/template-tags/tour.php:242
-msgid "February"
+#: includes/template-tags/helpers.php:511
+msgid "Percentage Off Your Price."
 msgstr ""
 
-#: includes/template-tags/tour.php:243
-msgid "March"
-msgstr ""
-
-#: includes/template-tags/tour.php:244
-msgid "April"
-msgstr ""
-
-#: includes/template-tags/tour.php:245
-msgid "May"
-msgstr ""
-
-#: includes/template-tags/tour.php:246
-msgid "June"
-msgstr ""
-
-#: includes/template-tags/tour.php:247
-msgid "July"
-msgstr ""
-
-#: includes/template-tags/tour.php:248
-msgid "August"
-msgstr ""
-
-#: includes/template-tags/tour.php:249
-msgid "September"
-msgstr ""
-
-#: includes/template-tags/tour.php:250
-msgid "October"
-msgstr ""
-
-#: includes/template-tags/tour.php:251
-msgid "November"
-msgstr ""
-
-#: tour-operator.php:27
+#: tour-operator.php:33
 msgid "l F jS, Y"
 msgstr ""
 
-#: tour-operator.php:28
+#: tour-operator.php:34
 msgid "g:ia"
 msgstr ""

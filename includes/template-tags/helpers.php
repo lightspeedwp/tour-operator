@@ -288,7 +288,20 @@ function lsx_to_custom_field_query( $meta_key = false, $before = '', $after = ''
 			$value = get_post_meta( $post_id, $meta_key, $single );
 
 			if ( is_array( $value ) ) {
-				$value = array_filter($value);
+				$value = array_unique( $value );
+
+				//Try to exclude any old data
+				$old_data_keys = [
+					'special_interests'
+				];
+				if ( in_array( $meta_key, $old_data_keys ) ) {
+					foreach ( $value as $vkey => $vv ) {
+						if ( is_array( $vv ) ) {
+							unset( $value[ $vkey ] );
+						}
+					}
+				}
+
 				$value = implode( ', ', $value );
 			}
 		}

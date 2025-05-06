@@ -1,24 +1,24 @@
 <?php
 	// phpcs:ignoreFile PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
-	$to_essentials_bundle_link = esc_url( 'https://www.lsdev.biz/product/tour-operator-essentials-bundle/' );
-	$to_complete_bundle_link = esc_url( 'https://www.lsdev.biz/product/tour-operator-complete-bundle/' );
-	$tour_operator_link = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/' );
-	$team_link          = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/team/' );
-	$activities_link    = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/activities/' );
-	$reviews_link       = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/reviews/' );
-	$specials_link      = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/specials/' );
-	$search_link        = esc_url( 'https://www.lsdev.biz/lsx/extensions/search/' );
-	$vehicles_link      = esc_url( 'https://www.lsdev.biz/lsx/extensions/tour-operator/vehicles/' );
-	$wetu_importer_link = esc_url( 'https://www.lsdev.biz/lsx/extensions/wetu-importer/' );
+	$to_essentials_bundle_link = esc_url( 'https://lightspeedwp.agency/solutions/tour-operators/' );
+	$to_complete_bundle_link = esc_url( 'https://lightspeedwp.agency/solutions/tour-operators/' );
+	$tour_operator_link = esc_url( 'https://lightspeedwp.agency/solutions/tour-operators/' );
+	$team_link          = esc_url( 'https://lightspeedwp.agency/solutions/tour-operators/' );
+	$activities_link    = esc_url( 'https://lightspeedwp.agency/solutions/tour-operators/' );
+	$reviews_link       = esc_url( 'https://lightspeedwp.agency/solutions/tour-operators/' );
+	$specials_link      = esc_url( 'https://lightspeedwp.agency/solutions/tour-operators/' );
+	$search_link        = esc_url( 'https://lightspeedwp.agency/solutions/tour-operators/' );
+	$vehicles_link      = esc_url( 'https://lightspeedwp.agency/solutions/tour-operators/' );
+	$wetu_importer_link = esc_url( 'https://touroperator.solutions/plugins/wetu-content-importer/' );
 
 	// Documentation.
-	$team_link_doc          = esc_url( 'https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/team/' );
-	$activities_link_doc    = esc_url( 'https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/activities/' );
-	$reviews_link_doc       = esc_url( 'https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/reviews/' );
-	$specials_link_doc      = esc_url( 'https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/specials/' );
-	$search_link_doc        = esc_url( 'https://tour-operator.lsdev.biz/documentation/extension/search/' );
-	$vehicles_link_doc      = esc_url( 'https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/vehicles' );
-	$wetu_importer_link_doc = esc_url( 'https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/wetu-content-importer/' );
+	$team_link_doc          = esc_url( 'https://touroperator.solutions/docs/team/' );
+	$activities_link_doc    = esc_url( 'https://touroperator.solutions/docs/' );
+	$reviews_link_doc       = esc_url( 'https://touroperator.solutions/docs/reviews/' );
+	$specials_link_doc      = esc_url( 'https://touroperator.solutions/docs/specials/' );
+	$search_link_doc        = esc_url( 'https://touroperator.solutions/docs/' );
+	$vehicles_link_doc      = esc_url( 'https://touroperator.solutions/docs/' );
+	$wetu_importer_link_doc = esc_url( 'https://touroperator.solutions/docs-category/wetu-content-importer/' );
 ?>
 
 <div class="wrap about-wrap">
@@ -67,7 +67,7 @@
 
 			<div class="box box-top-image team">
 				<h3><?php esc_html_e( 'Team', 'tour-operator' ); ?></h3>
-				<p><?php esc_html_e( 'Real peoples\' faces go a long way to building trust with your valued clients. The LSX Tour Operator: Team extension allows your company\'s staff to be added as Team Members with their own profile which can be associated with specific destinations and tours.', 'tour-operator' ); ?></p>
+				<p><?php esc_html_e( 'Real peoples\' faces go a long way to building trust with your valued clients. The Tour Operator: Team extension allows your company\'s staff to be added as Team Members with their own profile which can be associated with specific destinations and tours.', 'tour-operator' ); ?></p>
 				<br>
 				<div class="more-button">
 					<a href="<?php echo wp_kses_post( $team_link ); ?>" target="_blank" class="button button-primary">
@@ -89,7 +89,7 @@
 
 			<div class="box box-top-image search">
 				<h3><?php esc_html_e( 'Search', 'tour-operator' ); ?></h3>
-				<p><?php esc_html_e( 'The Search extension for the Tour Operators plugin adds robust search functionality to your WordPress LSX Tour Operator site. It requires that you also have the FacetWP plugin installed, as that allows for much of the filtering functionality that the plugin provides.', 'tour-operator' ); ?></p>
+				<p><?php esc_html_e( 'The Search extension for the Tour Operators plugin adds robust search functionality to your WordPress Tour Operator site. It requires that you also have the FacetWP plugin installed, as that allows for much of the filtering functionality that the plugin provides.', 'tour-operator' ); ?></p>
 				<br>
 				<br>
 				<div class="more-button">

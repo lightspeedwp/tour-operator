@@ -3,7 +3,7 @@
  * Placeholders.
  *
  * @package   Placeholders
- * @author    LightSpeed https://lsdev.biz
+ * @author    LightSpeed https://lightspeedwp.agency/
  * @license   GPL3
  * @link
  */
@@ -97,7 +97,7 @@ class Placeholders {
 			$size = 'lsx-thumbnail-wide';
 		}
 
-		$options      = get_option( '_lsx-to_settings', false );
+		$options      = get_option( 'lsx_to_settings', false );
 		$holdit_width = '';
 
 		if ( is_array( $size ) && 2 === count( $size ) ) {
@@ -165,7 +165,7 @@ class Placeholders {
 	 * The post default placeholder call.
 	 */
 	public function default_post_thumbnail( $meta, $post_id, $meta_key ) {
-		$options = get_option( '_lsx-to_settings', false );
+		$options = get_option( 'lsx_to_settings', false );
 
 		//This ensures our "super" placeholder will always show.
 		$placeholder = 'lsx-placeholder';
@@ -215,7 +215,7 @@ class Placeholders {
 	public function default_term_thumbnail( $meta, $post_id, $meta_key ) {
 
 		if ( 'thumbnail' === $meta_key ) {
-			$options     = get_option( '_lsx-to_settings', false );
+			$options     = get_option( 'lsx_to_settings', false );
 			$placeholder = 'lsx-placeholder';
 
 			//First Check for a default, then check if there is one set by post type.

@@ -502,7 +502,7 @@ class Maps
 			$excerpt = get_the_excerpt($connection);
 			if ( empty( $excerpt ) || '' === $excerpt ) {
 				$tooltip = apply_filters( 'get_the_excerpt', get_the_content() );
-				$tooltip = strip_tags( $tooltip );
+				$tooltip = wp_strip_all_tags( $tooltip );
 				echo wp_kses_post( wpautop( $tooltip ) );
 			} else {
 				echo wp_kses_post( $excerpt );

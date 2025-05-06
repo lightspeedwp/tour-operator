@@ -334,8 +334,6 @@ class Tour_Operator {
 			$this->google_api_key = false;
 		}
 
-		do_action('qm/debug',$this->options);
-
 		if ( isset( $this->options['googlemaps_marker_id'] ) && ! empty( $this->options['googlemaps_marker_id'] ) ) {
 			$this->markers->default_marker = wp_get_attachment_image_src( $this->options['googlemaps_marker_id'], 'full' )[0];
 		} else {

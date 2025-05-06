@@ -1,6 +1,6 @@
 <?php
 /**
- * Backend actions for the LSX Tour Operator Plugin
+ * Backend actions for the Tour Operator Plugin
  *
  * @package   \lsx\legacy\Admin
  * @author    LightSpeed
@@ -55,7 +55,7 @@ class Admin extends Tour_Operator {
 	 * @access private
 	 */
 	public function __construct() {
-		$this->options = get_option( '_lsx-to_settings', false );
+		$this->options = get_option( 'lsx_to_settings', false );
 		$this->set_vars();
 
 		$this->videos = Video::get_instance();

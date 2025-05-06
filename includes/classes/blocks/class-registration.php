@@ -208,8 +208,6 @@ class Registration {
 				$from       = $directions[1];
 				$items      = [];
 
-				do_action('qm/debug',$key);
-
 				// Get the current item IDS to exclude
 				if ( $to === $from ) {
 					$excluded_items = [ get_the_ID() ];
@@ -217,6 +215,8 @@ class Registration {
 				
 				
 				$found_items = get_post_meta( get_the_ID(), $to . '_to_' . $from, true );
+
+				do_action( 'qm/debug', [ 'found-items', $to . '_to_' . $from, $found_items ] );
 
 				if ( false !== $found_items && ! empty( $found_items ) ) {
 					if ( ! is_array( $found_items ) ) {
@@ -230,8 +230,12 @@ class Registration {
 					}
 				}
 
+				do_action( 'qm/debug', [ 'found-items-filtered', $found_items ] );
+
 				// Get the current destinations attached 
 				$destinations = get_post_meta( get_the_ID(), 'destination_to_' . $from, true );
+
+				do_action( 'qm/debug', [ 'destinations', $destinations ] );
 				
 				if ( ! empty( $destinations ) ) {
 
@@ -241,6 +245,9 @@ class Registration {
 						}
 
 						$found_items = get_post_meta( $destination, $to . '_to_destination', true );
+
+						do_action( 'qm/debug', [ 'found-destinations', $to . '_to_destination', $found_items ] );
+
 						if ( ! empty( $found_items ) ) {
 							if ( ! is_array( $found_items ) ) {
 								$found_items = [ $found_items ];
@@ -308,6 +315,8 @@ class Registration {
 			break;
 		}
 
+		do_action( 'qm/debug', [ $key, $query ] );
+
 		return $query;
 	}
 
@@ -337,7 +346,6 @@ class Registration {
 		}
 
 		$pattern = "/(lsx|facts)-(.*?)-wrapper/";
-		//$pattern = "/(lsx|facts)-((?:\w+-?)+)-wrapper/";
 		preg_match( $pattern, $parsed_block['attrs']['className'], $matches );
 
 		if ( empty( $matches ) ) {

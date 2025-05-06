@@ -1,6 +1,6 @@
 <?php
 /**
- * LSX Tour Operator - Admin Main Class
+ * Tour Operator - Admin Main Class
  *
  * @package   lsx
  * @author    LightSpeed
@@ -19,11 +19,12 @@ namespace lsx\admin;
 class Admin {
 
 	/**
-	 * LSX Tour Operator Admin constructor.
+	 * Tour Operator Admin constructor.
 	 */
 	public function __construct() {
 		add_filter( 'type_url_form_media', array( $this, 'change_attachment_field_button' ), 20, 1 );
 		add_filter( 'plugin_action_links_' . plugin_basename( LSX_TO_CORE ), array( $this, 'add_action_links' ) );
+		add_filter( 'content_model_post_type_args', [ $this, 'disable_archives_singles' ], 10, 2 );
 	}
 
 	/**
@@ -45,10 +46,29 @@ class Admin {
 	public function add_action_links( $links ) {
 		$mylinks = array(
 			'<a href="' . admin_url( 'admin.php?page=lsx-to-settings' ) . '">' . esc_html__( 'Settings', 'tour-operator' ) . '</a>',
-			'<a href="https://www.lsdev.biz/lsx/documentation/lsx-tour-operator/" target="_blank">' . esc_html__( 'Documentation', 'tour-operator' ) . '</a>',
-			'<a href="https://www.lsdev.biz/lsx/support/" target="_blank">' . esc_html__( 'Support', 'tour-operator' ) . '</a>',
+			'<a href="https://touroperator.solutions/docs/" target="_blank">' . esc_html__( 'Documentation', 'tour-operator' ) . '</a>',
+			'<a href="https://lightspeedwp.agency/support/" target="_blank">' . esc_html__( 'Support', 'tour-operator' ) . '</a>',
 		);
 
 		return array_merge( $links, $mylinks );
+	}
+
+	/**
+	 * Undocumented function
+	 *
+	 * @return void
+	 */
+	public function disable_archives_singles( $post_type_args, $slug ) {
+
+		$options = get_option( 'lsx_to_settings', [] );
+		if ( isset( $options[ $slug . '_disable_archives' ] ) && 0 !== $options[ $slug . '_disable_archives' ] ) {
+			$post_type_args['has_archive'] = false;
+		}
+
+		if ( isset( $options[ $slug . '_disable_single' ] ) && 0 !== $options[ $slug . '_disable_single' ] ) {
+			$post_type_args['publicly_queryable'] = false;
+		}
+
+		return $post_type_args;
 	}
 }

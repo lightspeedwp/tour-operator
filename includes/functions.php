@@ -1,6 +1,6 @@
 <?php
 /**
- * LSX Tour Operator Helper Functions
+ * Tour Operator Helper Functions
  *
  * @package   tour_operator
  * @author    LightSpeed
@@ -437,13 +437,18 @@ function lsx_to_itinerary_needs_read_more() {
  * @subpackage    template-tags
  * @category      itinerary
  */
-function lsx_to_itinerary_includes( $before = '', $after = '' ) {
+function lsx_to_itinerary_includes( $before = '', $after = '', $echo = true ) {
 	global $tour_itinerary;
-
+	$html = '';
 	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
 		if ( ! empty( $tour_itinerary->itinerary['included'] ) ) {
-			echo wp_kses_post( $before . $tour_itinerary->itinerary['included'] . $after );
+			$html = $before . $tour_itinerary->itinerary['included'] . $after;
 		}
+	}
+	if ( true === $echo ) {
+		echo wp_kses_post( $html );
+	} else {
+		return $html;
 	}
 }
 
@@ -454,13 +459,18 @@ function lsx_to_itinerary_includes( $before = '', $after = '' ) {
  * @subpackage    template-tags
  * @category      itinerary
  */
-function lsx_to_itinerary_excludes( $before = '', $after = '' ) {
+function lsx_to_itinerary_excludes( $before = '', $after = '', $echo = true ) {
 	global $tour_itinerary;
-
+	$html = '';
 	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
 		if ( ! empty( $tour_itinerary->itinerary['excluded'] ) ) {
-			echo wp_kses_post( $before . $tour_itinerary->itinerary['excluded'] . $after );
+			$html = $before . $tour_itinerary->itinerary['excluded'] . $after;
 		}
+	}
+	if ( true === $echo ) {
+		echo wp_kses_post( $html );
+	} else {
+		return $html;
 	}
 }
 

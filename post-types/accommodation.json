@@ -262,6 +262,10 @@
 			"visible": true,
 			"options": [
 				{
+					"label": "None",
+					"value": ""
+				},
+				{
 				"label": "Business",
 				"value": "business"
 				},
@@ -306,6 +310,10 @@
 			"description": "Special interests that the accommodation caters to, such as wildlife or adventure.",
 			"visible": true,
 			"options": [
+				{
+					"label": "None",
+					"value": ""
+				},
 				{
 				"label": "Adventure",
 				"value": "adventure"

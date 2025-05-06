@@ -218,7 +218,7 @@ if ( ! function_exists( 'lsx_to_display_fustion_tables' ) ) {
 	 * @subpackage template-tags
 	 */
 	function lsx_to_display_fustion_tables() {
-		$temp = get_option( '_lsx-to_settings', false );
+		$temp = get_option( 'lsx_to_settings', false );
 		if ( isset( $temp['fusion_tables_enabled'] ) ) {
 			return true;
 		} else {
@@ -235,7 +235,7 @@ if ( ! function_exists( 'lsx_to_fustion_tables_attr' ) ) {
 	 * @subpackage template-tags
 	 */
 	function lsx_to_fustion_tables_attr( $attribute, $default ) {
-		$temp = get_option( '_lsx-to_settings', false );
+		$temp = get_option( 'lsx_to_settings', false );
 
 		if ( false !== $temp && isset( $temp ) ) {
 			if ( isset( $temp[ 'fusion_tables_' . $attribute ] ) && ! empty( $temp[ 'fusion_tables_' . $attribute ] ) ) {

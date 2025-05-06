@@ -128,7 +128,7 @@ class Settings {
 
 		return array(
 			'settings'  => array(                                                         // this is the settings array. The key is the page slug
-				'page_title'  => esc_html__( 'LSX Tour Operator Settings', 'tour-operator' ),                                                  // title of the page
+				'page_title'  => esc_html__( 'Tour Operator Settings', 'tour-operator' ),                                                  // title of the page
 				'menu_title'  => esc_html__( 'Settings', 'tour-operator' ),                                                  // title seen on the menu link
 				'capability'  => 'manage_options',                                              // required capability to access page
 				'icon'        => 'dashicons-book-alt',                                      // Icon or image to be used on admin menu

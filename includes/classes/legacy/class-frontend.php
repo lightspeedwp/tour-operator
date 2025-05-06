@@ -49,7 +49,7 @@ class Frontend extends Tour_Operator {
 	 * @access private
 	 */
 	public function __construct() {
-		$this->options = get_option( '_lsx-to_settings', false );
+		$this->options = get_option( 'lsx_to_settings', false );
 		$this->set_vars();
 
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ), 1 );
