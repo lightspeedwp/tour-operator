@@ -1,6 +1,6 @@
 # Changelog
 
-## [[2.0.2]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.2) - 2025-05-05
+## [[2.0.2]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.2) - 2025-05-06
 
 ### Added
 - The Itinerary Included and Excluded field handling and block output.
