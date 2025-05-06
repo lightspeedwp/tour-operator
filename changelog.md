@@ -1,5 +1,9 @@
 # Changelog
 
+## [[2.1.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.1.0) - In Dev
+
+
+
 ## [[2.0.2]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.2) - 2025-05-06
 
 ### Added
