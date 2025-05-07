@@ -41,11 +41,31 @@ class Registration {
 	 */
 	public function __construct() {
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_variations_script' ), 10 );
+		add_action( 'init', array( $this, 'register_block_json_files' ) );
 		add_filter( 'query_loop_block_query_vars', array( $this, 'query_args_filter' ), 1, 2 );
 		add_filter( 'render_block', array( $this, 'maybe_hide_varitaion' ), 10, 3 );
 
 		add_filter( 'render_block_data', array( $this, 'save_checkbox_queries' ), 10, 1 );
 		add_filter( 'posts_pre_query', array( $this, 'posts_pre_query' ), 10, 2 );
+	}
+
+	/**
+	 * Register the block json files.
+	 *
+	 * @return void
+	 */
+	public function register_block_json_files() {
+
+		wp_register_script(
+			'lsx-to-block-units',  // Handle for the script.
+			LSX_TO_URL . 'includes/blocks/units/index.js', // Path to your JavaScript file.
+			array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),  // Dependencies.
+			filemtime( LSX_TO_PATH . 'includes/blocks/units/index.js' ), // Versioning with file modification time.
+			[ 'in_footer' => true ]
+		);
+
+		// Registers block using the metadata loaded from block.json.
+		register_block_type( LSX_TO_PATH . '/includes/blocks/units' );
 	}
 
 	/**
