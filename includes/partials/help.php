@@ -1,7 +1,7 @@
 <?php
 	$lsx_to_documentation = esc_url( 'https://touroperator.solutions/docs/' );
-	$tour_operator_link      = esc_url( 'https://wordpress.org/plugins/tour-operator/' );
-	$extensions_link      = esc_url( 'https://lightspeedwp.agency/solutions/tour-operators/' );
+	$tour_operator_link   = esc_url( 'https://touroperator.solutions/' );
+	$extensions_link      = esc_url( 'https://touroperator.solutions/' );
 	$version              = esc_html( LSX_TO_VER );
 	$support_link         = esc_url( 'https://github.com/lightspeeddevelopment/tour-operator/issues' );
 ?>
@@ -50,8 +50,8 @@
 
 						<ul>
 							<li><strong><?php esc_html_e( 'Latest Version:', 'tour-operator' ); ?></strong> <?php echo esc_attr( $version ); ?></li>
-							<li><strong><?php esc_html_e( 'Requires:', 'tour-operator' ); ?></strong> <?php esc_html_e( 'WordPress 5.0+', 'tour-operator' ); ?></li>
-							<li><strong><?php esc_html_e( 'Tested up to:', 'tour-operator' ); ?></strong> <?php esc_html_e( 'WordPress 5.0', 'tour-operator' ); ?></li>
+							<li><strong><?php esc_html_e( 'Requires:', 'tour-operator' ); ?></strong> <?php esc_html_e( 'WordPress 6.7+', 'tour-operator' ); ?></li>
+							<li><strong><?php esc_html_e( 'Tested up to:', 'tour-operator' ); ?></strong> <?php esc_html_e( 'WordPress 6.8', 'tour-operator' ); ?></li>
 						</ul>
 
 						<div class="more-button">

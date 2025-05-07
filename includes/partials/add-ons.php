@@ -1,14 +1,14 @@
 <?php
 	// phpcs:ignoreFile PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
-	$to_essentials_bundle_link = esc_url( 'https://lightspeedwp.agency/solutions/tour-operators/' );
-	$to_complete_bundle_link = esc_url( 'https://lightspeedwp.agency/solutions/tour-operators/' );
-	$tour_operator_link = esc_url( 'https://lightspeedwp.agency/solutions/tour-operators/' );
-	$team_link          = esc_url( 'https://lightspeedwp.agency/solutions/tour-operators/' );
-	$activities_link    = esc_url( 'https://lightspeedwp.agency/solutions/tour-operators/' );
-	$reviews_link       = esc_url( 'https://lightspeedwp.agency/solutions/tour-operators/' );
-	$specials_link      = esc_url( 'https://lightspeedwp.agency/solutions/tour-operators/' );
-	$search_link        = esc_url( 'https://lightspeedwp.agency/solutions/tour-operators/' );
-	$vehicles_link      = esc_url( 'https://lightspeedwp.agency/solutions/tour-operators/' );
+	$to_essentials_bundle_link = esc_url( 'https://touroperator.solutions/websites/essentials/' );
+	$to_complete_bundle_link = esc_url( 'https://touroperator.solutions/websites/enhanced/' );
+	$tour_operator_link = esc_url( 'https://touroperator.solutions/features/' );
+	$team_link          = esc_url( 'https://touroperator.solutions/' );
+	$activities_link    = esc_url( 'https://touroperator.solutions/' );
+	$reviews_link       = esc_url( 'https://touroperator.solutions/plugins/reviews/' );
+	$specials_link      = esc_url( 'https://touroperator.solutions/plugins/specials/' );
+	$search_link        = esc_url( 'https://touroperator.solutions/' );
+	$vehicles_link      = esc_url( 'https://touroperator.solutions/' );
 	$wetu_importer_link = esc_url( 'https://touroperator.solutions/plugins/wetu-content-importer/' );
 
 	// Documentation.
