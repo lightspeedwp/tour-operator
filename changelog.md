@@ -2,6 +2,9 @@
 
 ## [[2.1.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.1.0) - In Dev
 
+### Added
+- A filter to allow the disabling of destinations when searching for related content. `lsx_to_' . $key . '_include_destinations`. - [BH-74](https://www.bugherd.com/projects/430995/tasks/74)
+
 
 
 ## [[2.0.2]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.2) - 2025-05-06

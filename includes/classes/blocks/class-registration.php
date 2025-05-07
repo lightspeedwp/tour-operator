@@ -212,10 +212,7 @@ class Registration {
 					$excluded_items = [ get_the_ID() ];
 				} 
 				
-				
 				$found_items = get_post_meta( get_the_ID(), $to . '_to_' . $from, true );
-
-				do_action( 'qm/debug', [ 'found-items', $to . '_to_' . $from, $found_items ] );
 
 				if ( false !== $found_items && ! empty( $found_items ) ) {
 					if ( ! is_array( $found_items ) ) {
@@ -229,30 +226,25 @@ class Registration {
 					}
 				}
 
-				do_action( 'qm/debug', [ 'found-items-filtered', $found_items ] );
-
-				// Get the current destinations attached 
-				$destinations = get_post_meta( get_the_ID(), 'destination_to_' . $from, true );
-
-				do_action( 'qm/debug', [ 'destinations', $destinations ] );
-				
-				if ( ! empty( $destinations ) ) {
-
-					foreach ( $destinations as $destination ) {
-						if ( '' === $destination ) {
-							continue;
-						}
-
-						$found_items = get_post_meta( $destination, $to . '_to_destination', true );
-
-						do_action( 'qm/debug', [ 'found-destinations', $to . '_to_destination', $found_items ] );
-
-						if ( ! empty( $found_items ) ) {
-							if ( ! is_array( $found_items ) ) {
-								$found_items = [ $found_items ];
+				// Get the current destinations attached if the filters returns true.
+				if ( true === apply_filters( true, 'lsx_to_' . $key . '_include_destinations' ) ) {
+					$destinations = get_post_meta( get_the_ID(), 'destination_to_' . $from, true );
+					if ( ! empty( $destinations ) ) {
+	
+						foreach ( $destinations as $destination ) {
+							if ( '' === $destination ) {
+								continue;
 							}
-							$found_items = $this->filter_existing_ids( $found_items );
-							$items = array_merge( $items, $found_items );
+	
+							$found_items = get_post_meta( $destination, $to . '_to_destination', true );
+	
+							if ( ! empty( $found_items ) ) {
+								if ( ! is_array( $found_items ) ) {
+									$found_items = [ $found_items ];
+								}
+								$found_items = $this->filter_existing_ids( $found_items );
+								$items = array_merge( $items, $found_items );
+							}
 						}
 					}
 				}
