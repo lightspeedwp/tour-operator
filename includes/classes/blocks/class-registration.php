@@ -44,7 +44,7 @@ class Registration {
 		add_filter( 'query_loop_block_query_vars', array( $this, 'query_args_filter' ), 1, 2 );
 		add_filter( 'render_block', array( $this, 'maybe_hide_varitaion' ), 10, 3 );
 
-		add_filter( 'render_block_data', array( $this, 'save_checkbox_queries' ), 10, 1 );
+		add_filter( 'render_block_data', array( $this, 'save_checkbox_queries' ), 300, 1 );
 		add_filter( 'posts_pre_query', array( $this, 'posts_pre_query' ), 10, 2 );
 	}
 
@@ -132,7 +132,6 @@ class Registration {
 		if ( true === $this->parents_only ) {
 			$query['post_parent'] = 0;
 		}
-		
 
 		// Determine if this is the custom block variation.
 		if ( ! isset( $block['attrs']['className'] )  ) {
@@ -314,8 +313,6 @@ class Registration {
 			default:
 			break;
 		}
-
-		do_action( 'qm/debug', [ $key, $query ] );
 
 		return $query;
 	}
