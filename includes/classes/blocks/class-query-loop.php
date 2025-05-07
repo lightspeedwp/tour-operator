@@ -340,7 +340,12 @@ class Query_Loop {
 					$items = array_unique( $items );
 					$query['post__in'] = $items;
 				}
-				if ( ! isset( $query['post__in'] ) ) {
+
+				
+
+				$query = $this->related_taxonomy_query( $query, $key );
+
+				if ( ! isset( $query['post__in'] ) && ! isset( $query['tax_query'] ) ) {
 					$this->disabled[ $key ] = true;
 				}
 
@@ -366,6 +371,7 @@ class Query_Loop {
 				$items = $this->related_connection_query( $items, $to, $from );
 
 				if ( ! empty( $items ) ) {
+					$items = array_unique( $items );
 					$query['post__in'] = $items;
 				} else {
 					$this->disabled[ $key ] = true;
@@ -377,6 +383,8 @@ class Query_Loop {
 			default:
 			break;
 		}
+
+		do_action( 'qm/debug', [ $key, $query ] );
 
 		return $query;
 	}
@@ -486,11 +494,14 @@ class Query_Loop {
 	 * @return array
 	 */
 	public function related_connection_query( $items, $to, $from ) {
-		if ( true !== apply_filters( true, 'lsx_to_' . $to . '-related-' . $from . '_include_connections' ) ) {
+
+		if ( true !== apply_filters( 'lsx_to_' . $to . '-related-' . $from . '_include_connections', true ) ) {
 			return $items;
 		}
 
 		$found_items = get_post_meta( get_the_ID(), $to . '_to_' . $from, true );
+
+		do_action( 'qm/debug', [ 'found', $found_items ] );
 
 		if ( false !== $found_items && ! empty( $found_items ) ) {
 			if ( ! is_array( $found_items ) ) {
@@ -517,7 +528,7 @@ class Query_Loop {
 	public function related_destination_query( $items, $to, $from ) {
 
 		// Get the current destinations attached if the filters returns true.
-		if ( true !== apply_filters( true, 'lsx_to_' . $to . '-related-' . $from . '_include_destinations' ) ) {
+		if ( true !== apply_filters( 'lsx_to_' . $to . '-related-' . $from . '_include_destinations', true ) ) {
 			return $items;
 		}
 
@@ -542,5 +553,47 @@ class Query_Loop {
 		}
 
 		return $items;
+	}
+
+	/**
+	 * Adds in the Featured Query Parameters
+	 *
+	 * @param array $query
+	 * @param string $key
+	 * @return array
+	 */
+	public function related_taxonomy_query( $query, $key ) {
+
+		// Disabled by default.
+		if ( true !== apply_filters( 'lsx_to_' . $key . '_include_taxonomy', false ) ) {
+			return $query;
+		}
+
+		do_action( 'qm/debug', [ 'lsx_to_' . $key . '_include_taxonomy' ] );
+
+		$taxonomy  = 'travel-style';
+		$post_type = get_post_type( get_the_ID() );
+		if ( 'accommodation' === $post_type ) {
+			$taxonomy  = 'accommodation-type';
+		}
+		
+		$group     = array();
+		$terms     = get_the_terms( get_the_ID(), $taxonomy );
+
+		if ( is_array( $terms ) && ! empty( $terms ) ) {
+			foreach( $terms as $term ) {
+				$group[] = $term->term_id;
+			}
+		}
+		$query['tax_query'] = array(
+			array(
+				'taxonomy' => $taxonomy,
+				'field'    => 'term_id',
+				'terms'     => $group,
+			)
+		);
+		$query['post__not_in'] = array( get_the_ID() );
+
+		return $query;
 	}
 }

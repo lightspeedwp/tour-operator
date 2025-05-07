@@ -242,8 +242,6 @@ class Bindings {
 			}
 			$saved = lsx_to_custom_field_query( $key, '', '', false, get_the_ID(), $single );
 
-			do_action( 'qm/debug', [ $key, $saved ] );
-
 			if ( null !== $saved ) {
 				$date_transforms = [
 					'booking_validity_start',

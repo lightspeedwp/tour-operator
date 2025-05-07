@@ -161,10 +161,10 @@ function lsx_to_accommodation_facilities( $before = '', $after = '', $echo = tru
 
 		//Output in the order we want
 		if ( count( $main_facilities ) > 0 && count( $child_facilities ) > 0 ) {
-			$return .= '<div class="' . $heading->slug . ' wp-block-columns is-layout-flex wp-block-columns-is-layout-flex">';
+			$return .= '<div class="wp-block-columns is-layout-flex wp-block-columns-is-layout-flex">';
 			foreach ( $main_facilities as $heading ) {
 				if ( isset( $child_facilities[ $heading->term_id ] ) ) {
-					$return .= '<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
+					$return .= '<div class="' . $heading->slug . ' wp-block-column is-layout-flow wp-block-column-is-layout-flow">
 					<p class="has-medium-font-size facilities-title wp-block-heading"><a href="' . esc_url( get_term_link( $heading->slug, 'facility' ) ) . '">' . esc_html( $heading->name ) . '</a></h5>';
 					$return .= '<ul class="facilities-list wp-block-list">';
 

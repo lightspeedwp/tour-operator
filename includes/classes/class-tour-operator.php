@@ -9,6 +9,7 @@ use lsx\admin\Setup;
 use lsx\admin\Permalinks;
 use lsx\blocks\Bindings;
 use lsx\blocks\Patterns;
+use lsx\blocks\Query_Loop;
 use lsx\blocks\Registration;
 use lsx\blocks\Templates;
 use lsx\integrations\facetwp\Post_Connections;
@@ -27,7 +28,6 @@ class Tour_Operator {
 	/**
 	 * Holds instance of the class
 	 *
-	 * @since   1.1.0
 	 * @var     \lsx\Tour_Operator
 	 */
 	private static $instance;
@@ -35,73 +35,30 @@ class Tour_Operator {
 	/**
 	 * Holds request data
 	 *
-	 * @since   1.1.0
 	 * @var     array
 	 */
 	public $request_data;
 
 	/**
-	 * Holds the main admin page suffix
-	 *
-	 * @since   1.1.0
-	 * @var     \lsx\admin\Admin
-	 */
-	public $admin;
-
-	/**
-	 * Holds the main settings object
-	 *
-	 * @since   1.1.0
-	 * @var     \lsx\admin\Settings
-	 */
-	public $settings;
-
-	/**
-	 * Holds the main setup object
-	 *
-	 * @since   1.1.0
-	 * @var     \lsx\admin\Setup
-	 */
-	public $setup;
-
-	/**
-	 * Holds the Pages instance.
-	 *
-	 * @since   1.1.0
-	 * @var     \lsx\admin\Pages
-	 */
-	public $pages;
-
-	/**
-	 * Holds the Permalinks instance.
-	 *
-	 * @since   1.1.0
-	 * @var     \lsx\admin\Permalinks
-	 */
-	public $permalinks;
-
-	/**
-	 * Holds the Taxonomies instance.
-	 *
-	 * @since   1.1.0
-	 * @var     \lsx\Taxonomies
-	 */
-	public $taxonomies;
-
-	/**
 	 * Holds an array of current assets.
 	 *
-	 * @since   1.1.0
 	 * @var     array
 	 */
 	public $assets;
+
 	/**
 	 * Holds the legacy object.
 	 *
-	 * @since   1.1.0
 	 * @var     \lsx\legacy\Tour_Operator
 	 */
 	public $legacy;
+
+	/**
+	 * Holds an array of current classes.
+	 *
+	 * @var     array
+	 */
+	public $classes;
 
 	/**
 	 * Tour Operator constructor.
@@ -226,19 +183,20 @@ class Tour_Operator {
 	public function setup() {
 		require_once( LSX_TO_PATH . 'vendor/content-models/create-content-model.php' );
 
-		$this->permalinks = new Permalinks();
-		$this->pages      = Pages::init();
-		$this->taxonomies = Taxonomies::init();
-		$this->admin      = new Admin();
-		$this->settings   = Settings::init();
-		$this->setup      = new Setup();
-		$this->bindings   = new Bindings();
-		$this->registration = new Registration();
-		$this->patterns   = new Patterns();
-		$this->templates   = new Templates();
+		$this->classes['permalinks']  = new Permalinks();
+		$this->classes['pages']        = Pages::init();
+		$this->classes['taxonomies']   = Taxonomies::init();
+		$this->classes['admin']        = new Admin();
+		$this->classes['settings']     = Settings::init();
+		$this->classes['setup']        = new Setup();
+		$this->classes['bindings']     = new Bindings();
+		$this->classes['registration'] = new Registration();
+		$this->classes['patterns']     = new Patterns();
+		$this->classes['templates']    = new Templates();
+		$this->classes['query_loop']   = new Query_Loop();
 
 		// Files that wont load with the badly written spl_autoregister function.
 		require_once LSX_TO_PATH . 'includes/classes/class-post-connections.php';
-		$this->post_connections = new Post_Connections();
+		$this->classes['post_connections'] = new Post_Connections();
 	}
 }
