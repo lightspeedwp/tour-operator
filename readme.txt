@@ -50,10 +50,16 @@ Yes, the plugin is translation-ready. You can use standard translation tools to 
 
 == Screenshots ==
 
-1. **Manage Tours and Bookings:** Clearly organized admin interface for adding tours, prices, and availability.
-2. **Booking Calendar:** Display a front-end calendar for customers to check available dates.
-3. **Seasonal Pricing Overview:** Set and view various price tiers for different seasons.
-4. **Integration with WooCommerce:** Seamless checkout flow using popular payment gateways.
+1. **Destinations Landing:** A sleek, modern landing page showcasing curated travel destinations.
+2. **Accommodation Page:** A clean, grid-style layout presenting featured accommodations with thumbnail images, pricing, and booking options.
+3. **Tours Page:** A visually engaging catalog of tour packages with filter options, descriptive thumbnails, and pricing details.
+4. **Featured Tours:** Display your selected featured tours through the query loop block.
+5. **Destinations Page:** A dynamic listing of global destinations, combining eye-catching imagery with brief travel summaries and navigation links.
+6. **Featured Destinations:** Display your selected featured countries or regions, or both.
+7. **Top Rated Tours:** Highlight a list of your top tours, rated by your customers.
+8. **Destinations by country:** Display the top level destinations on your site.
+9. **Gallery:** Display beautifully curated images of your tour, accommodation or destination.
+10.**Travel Styles:** Showcase your tours grouped by the type of tour.
 
 == Changelog ==
 
