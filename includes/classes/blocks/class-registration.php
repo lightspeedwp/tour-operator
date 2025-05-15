@@ -216,8 +216,6 @@ class Registration {
 				
 				$found_items = get_post_meta( get_the_ID(), $to . '_to_' . $from, true );
 
-				do_action( 'qm/debug', [ 'found-items', $to . '_to_' . $from, $found_items ] );
-
 				if ( false !== $found_items && ! empty( $found_items ) ) {
 					if ( ! is_array( $found_items ) ) {
 						$found_items = [ $found_items ];
@@ -230,12 +228,8 @@ class Registration {
 					}
 				}
 
-				do_action( 'qm/debug', [ 'found-items-filtered', $found_items ] );
-
 				// Get the current destinations attached 
 				$destinations = get_post_meta( get_the_ID(), 'destination_to_' . $from, true );
-
-				do_action( 'qm/debug', [ 'destinations', $destinations ] );
 				
 				if ( ! empty( $destinations ) ) {
 
@@ -245,8 +239,6 @@ class Registration {
 						}
 
 						$found_items = get_post_meta( $destination, $to . '_to_destination', true );
-
-						do_action( 'qm/debug', [ 'found-destinations', $to . '_to_destination', $found_items ] );
 
 						if ( ! empty( $found_items ) ) {
 							if ( ! is_array( $found_items ) ) {
@@ -314,8 +306,6 @@ class Registration {
 			default:
 			break;
 		}
-
-		do_action( 'qm/debug', [ $key, $query ] );
 
 		return $query;
 	}
@@ -469,11 +459,7 @@ class Registration {
 	 *
 	 * @global wpdb $wpdb WordPress database abstraction object.
 	 *
-	 * @param string $title   Post title.
-	 * @param string $content Optional. Post content.
-	 * @param string $date    Optional. Post date.
-	 * @param string $type    Optional. Post type.
-	 * @param string $status  Optional. Post status.
+	 * @param array|string $ids Post title.
 	 * @return int Post ID if post exists, 0 otherwise.
 	*/
 	protected function post_ids_exist( $ids ) {
@@ -482,6 +468,8 @@ class Registration {
 		if ( is_array( $ids ) ) {
 			$ids = implode( ',', $ids );
 		}
+
+		$ids = ltrim( $ids, ', ' );
 
 		$ids = wp_unslash( sanitize_post_field( 'id', $ids, 0, 'db' ) );
 		// phpcs:disable WordPress.DB -- Start ignoring
