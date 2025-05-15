@@ -384,8 +384,6 @@ class Query_Loop {
 			break;
 		}
 
-		do_action( 'qm/debug', [ $key, $query ] );
-
 		return $query;
 	}
 
@@ -408,6 +406,8 @@ class Query_Loop {
 		if ( is_array( $ids ) ) {
 			$ids = implode( ',', $ids );
 		}
+
+		$ids = ltrim( $ids, ', ' );
 
 		$ids = wp_unslash( sanitize_post_field( 'id', $ids, 0, 'db' ) );
 		// phpcs:disable WordPress.DB -- Start ignoring
@@ -501,8 +501,6 @@ class Query_Loop {
 
 		$found_items = get_post_meta( get_the_ID(), $to . '_to_' . $from, true );
 
-		do_action( 'qm/debug', [ 'found', $found_items ] );
-
 		if ( false !== $found_items && ! empty( $found_items ) ) {
 			if ( ! is_array( $found_items ) ) {
 				$found_items = [ $found_items ];
@@ -568,8 +566,6 @@ class Query_Loop {
 		if ( true !== apply_filters( 'lsx_to_' . $key . '_include_taxonomy', false ) ) {
 			return $query;
 		}
-
-		do_action( 'qm/debug', [ 'lsx_to_' . $key . '_include_taxonomy' ] );
 
 		$taxonomy  = 'travel-style';
 		$post_type = get_post_type( get_the_ID() );
