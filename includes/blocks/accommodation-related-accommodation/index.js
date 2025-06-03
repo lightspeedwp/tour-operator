@@ -82,6 +82,13 @@ wp.blocks.registerBlockVariation( 'core/group', {
 		],
 		supports: {
 			renaming: false
+		},
+		isActive: ( blockAttributes, variationAttributes ) => {
+			console.log('test this one');
+			return (
+				blockAttributes.className === "lsx-accommodation-related-accommodation-query-wrapper" ||
+				(blockAttributes.className && blockAttributes.className.includes("lsx-accommodation-related-accommodation-query-wrapper"))
+			);
 		}
 	});
 

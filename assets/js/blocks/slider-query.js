@@ -89,8 +89,6 @@
 		function (extraProps, blockType, attributes) {
 			if ( blockType.name === 'core/query' ) {
 
-				console.log(attributes.hasCustomClass);
-
 				if (  true === attributes.hasCustomClass ) {
 					extraProps.className = (extraProps.className || '') + ' lsx-to-slider';
 					console.log('adding');

@@ -1,10 +1,12 @@
 wp.domReady(() => {	
+	console.log('test');
 	// Accommodation Units Wrapper
 	wp.blocks.registerBlockVariation("core/group", {
 		name: "lsx-tour-operator/units",
 		title: "Units",
 		icon: "admin-multisite",
 		category: "lsx-tour-operator",
+		description: "A Units layout block to display your rooms and camps.",
 		attributes: {
 			metadata: {
 				name: "Units",
@@ -97,6 +99,12 @@ wp.domReady(() => {
 		],
 		supports: {
 			renaming: false
+		},
+		isActive: ( blockAttributes, variationAttributes ) => {
+			return (
+				blockAttributes.className === "lsx-units-wrapper" ||
+				(blockAttributes.className && blockAttributes.className.includes("lsx-units-wrapper"))
+			);
 		}
 	});
 });
