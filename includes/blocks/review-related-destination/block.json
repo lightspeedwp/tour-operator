@@ -2,7 +2,7 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "name": "lsx-tour-operator/review-related-destination",
-  "title": "Review Related Destination",
+  "title": "Related Reviews - Destinations",
   "category": "lsx-tour-operator",
   "editorScript": "lsx-to-block-review-related-destination"
 }
