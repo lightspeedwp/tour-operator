@@ -85,7 +85,6 @@ class Registration {
 		$scripts = [
 			'general'       => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
 			'tour'          => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
-			//'destination'   => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
 			'query-loops'   => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
 			'maps'          => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
 		];

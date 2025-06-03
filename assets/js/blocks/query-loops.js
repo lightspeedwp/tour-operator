@@ -1,4 +1,4 @@
-wp.domReady( function() {
+wp.domReady( function() { // 14
 	// DESTINATION - COUNTRY - REGION
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/regions',

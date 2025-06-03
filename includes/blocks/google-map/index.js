@@ -1,7 +1,6 @@
 wp.domReady(() => {
 
-	// Map Block
-	wp.blocks.registerBlockVariation("core/group", {
+wp.blocks.registerBlockVariation("core/group", {
 		name: "lsx-tour-operator/google-map",
 		title: "Google Map",
 		description: "Display a Google Map based on the current Tour Operator page.",
@@ -116,4 +115,5 @@ wp.domReady(() => {
 			renaming: false
 		}*/
 	});
+
 });
