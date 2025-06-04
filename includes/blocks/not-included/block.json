@@ -1,0 +1,8 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "lsx-tour-operator/not-included",
+  "title": "Not Included",
+  "category": "lsx-tour-operator",
+  "editorScript": "lsx-to-block-not-included"
+}
