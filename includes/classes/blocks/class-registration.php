@@ -21,19 +21,39 @@ class Registration {
 	}
 
 	/**
+	 * Register the block json files.
+	 *
+	 * @return void
+	 */
+	public function register_block_json_files() {
+
+		$directory = LSX_TO_PATH . 'includes/blocks/';
+
+		foreach ( glob( $directory . '*', GLOB_ONLYDIR ) as $key ) {
+
+			$key  = basename( $key );
+
+			wp_register_script(
+				'lsx-to-block-' . $key,  // Handle for the script.
+				LSX_TO_URL . 'includes/blocks/' . $key . '/index.js', // Path to your JavaScript file.
+				array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),  // Dependencies.
+				filemtime( LSX_TO_PATH . 'includes/blocks/' . $key . '/index.js' ), // Versioning with file modification time.
+				[ 'in_footer' => true ]
+			);
+
+			// Registers block using the metadata loaded from block.json.
+			register_block_type( LSX_TO_PATH . '/includes/blocks/' . $key );
+		}
+	}
+
+	/**
 	 * Registers our variations block assets
 	 *
 	 * @return void
 	 */
 	public function enqueue_block_variations_script() {
-
 		$scripts = [
 			'general'       => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
-			'tour'          => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
-			'accommodation' => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
-			'destination'   => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
-			'query-loops'   => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
-			'maps'          => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
 		];
 
 		$additional_scripts = [

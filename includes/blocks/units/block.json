@@ -1,0 +1,63 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "lsx-tour-operator/units",
+  "title": "Units",
+  "category": "lsx-tour-operator",
+  "parent": [
+    "core/group"
+  ],
+  "icon": "admin-multisite",
+  "description": "A Units layout block to display your rooms and camps.",
+  "attributes": {
+    "metadata": {
+      "type": "object",
+      "default": {
+        "name": "Units"
+      }
+    },
+    "align": {
+      "type": "string",
+      "default": "wide"
+    },
+    "layout": {
+      "type": "object",
+      "default": {
+        "type": "constrained"
+      }
+    },
+    "className": {
+      "type": "string",
+      "default": "lsx-units-wrapper"
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": "primary-bg"
+    },
+    "style": {
+      "type": "object",
+      "default": {
+        "spacing": {
+          "padding": {
+            "top": "var:preset|spacing|medium",
+            "bottom": "var:preset|spacing|medium",
+            "left": "var:preset|spacing|x-small",
+            "right": "var:preset|spacing|x-small"
+          },
+          "margin": {
+            "top": 0,
+            "bottom": 0
+          }
+        }
+      }
+    },
+    "tagName": {
+      "type": "string",
+      "default": "section"
+    }
+  },
+  "supports": {
+    "renaming": false
+  },
+  "editorScript": "lsx-to-block-units"
+}

@@ -1,0 +1,8 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "lsx-tour-operator/accommodation-related-destination",
+  "title": "Related Accommodation - Destination",
+  "category": "lsx-tour-operator",
+  "editorScript": "lsx-to-block-accommodation-related-destination"
+}

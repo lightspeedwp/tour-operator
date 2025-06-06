@@ -1,0 +1,8 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "lsx-tour-operator/additional-info",
+  "title": "Additional Information",
+  "category": "lsx-tour-operator",
+  "editorScript": "lsx-to-block-additional-info"
+}
