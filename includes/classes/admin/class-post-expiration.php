@@ -34,19 +34,19 @@ class Post_Expiration {
 			return;
 		}
 
-		$expire_post = get_post_meta( 'expire_post', true );
-		$action_id   = get_post_meta( 'to_expiration_id', true );
+		$expire_post = get_post_meta( $post_id, 'expire_post', true );
+		$action_id   = get_post_meta( $post_id, 'to_expiration_id', true );
 		
 		// Nothing to do
-		if ( false === $expire_post && false === $action_id ) {
+		if ( 'on' !== $expire_post && false === $action_id ) {
 			return;
 		}
 
 		// delete the scheduled action.
-		if ( false === $expire_post && false !== $action_id ) {
-			
+		if ( 'on' !== $expire_post && ( false !== $action_id && '' !== $action_id ) ) {
 			try {
 				\ActionScheduler::store()->cancel_action( $action_id );
+				delete_post_meta( $post_id, 'to_expiration_id' );
 			} catch ( \Exception $exception ) {
 				\ActionScheduler::logger()->log(
 					$action_id,
@@ -65,7 +65,7 @@ class Post_Expiration {
 		}
 		
 		// Schedule the action and save the meta.
-		$expire_date = get_post_meta( 'to_expiration_id', true );
+		$expire_date = get_post_meta( $post_id, 'booking_validity_end', true );
 		if ( false === $expire_date ) {
 			return;
 		}
@@ -79,16 +79,18 @@ class Post_Expiration {
 			),
 			'tour-operator'
 		);
-
-		// Save the 
+		update_post_meta( $post_id, 'to_expiration_id', $action_id );
 	}
 
 	public function expire_tour( $post_id ) {
 		$args = [
-			'id' => $post_id,
+			'ID'          => $post_id,
 			'post_status' => 'draft',
 		];
 		$updated = wp_update_post( $args );
+
+		delete_post_meta( $post_id, 'to_expiration_id' );
+		delete_post_meta( $post_id, 'expire_post' );
 		return $updated;
 	}
 }
