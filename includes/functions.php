@@ -292,63 +292,28 @@ function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square', $meta_key =
  * @subpackage    template-tags
  * @category      itinerary
  */
+
 function lsx_to_itinerary_destinations( $before = '', $after = '', $echo = true ) {
 	global $tour_itinerary;
-
-	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) && ! empty( $tour_itinerary->itinerary['destination_to_tour'] ) ) {
-		$itinerary_destinations = $tour_itinerary->itinerary['destination_to_tour'];
-		if ( ! is_array( $itinerary_destinations ) ) {
-			$itinerary_destinations = array( $itinerary_destinations );
-		}
-		$itinerary_destinations = $before . lsx_to_connected_list( $itinerary_destinations, 'destination', true, ', ' ) . $after;
-
-		if ( true === $echo ) {
-			echo wp_kses_post( $itinerary_destinations );
-		} else {
-			return $itinerary_destinations;
-		}	
-	}
-}
-
-/**
- * Outputs The current Itinerary connected accommodation, can only be used in
- * the itinerary loop.
- *
- * @package       tour-operator
- * @subpackage    template-tags
- * @category      itinerary
- */
-function lsx_to_itinerary_accommodation( $before = '', $after = '', $echo = true ) {
-	global $tour_itinerary;
-	$return = '';
-
 	if ( ! $tour_itinerary || empty( $tour_itinerary->has_itinerary ) ) {
-		return $return;
+		return '';
 	}
 
-	// If its the last day
-
+	// Get the correct accommodation array
 	if ( $tour_itinerary->count === $tour_itinerary->index ) {
-
-		if ( ! empty( $tour_itinerary->itineraries[ $tour_itinerary->index-2 ]['accommodation_to_tour'] ) ) {
-			$itinerary_accommodation = $tour_itinerary->itineraries[ $tour_itinerary->index-2 ]['accommodation_to_tour'];
-		} else {
-			return $return;
-		}
-
+		$itinerary_accommodation = $tour_itinerary->itineraries[ $tour_itinerary->index - 2 ]['destination_to_tour'] ?? '';
 	} else {
-		if ( ! empty( $tour_itinerary->itinerary['accommodation_to_tour'] ) ) {
-			$itinerary_accommodation = $tour_itinerary->itinerary['accommodation_to_tour'];
-		} else {
-			return $return;
-		}
+		$itinerary_accommodation = $tour_itinerary->itinerary['destination_to_tour'] ?? '';
 	}
-	
-	if ( ! is_array( $itinerary_accommodation ) ) {
-		$itinerary_accommodation = array( $itinerary_accommodation );
+
+	if ( empty( $itinerary_accommodation ) ) {
+		return '';
 	}
-	$return = $before . lsx_to_connected_list( $itinerary_accommodation, 'accommodation', true, ', ' ) . $after;
-	if ( true === $echo ) {
+
+	$itinerary_accommodation = (array) $itinerary_accommodation;
+	$return = $before . lsx_to_connected_list( $itinerary_accommodation, 'destination', true, ', ' ) . $after;
+
+	if ( $echo ) {
 		echo wp_kses_post( $return );
 	}
 	return $return;
@@ -362,19 +327,63 @@ function lsx_to_itinerary_accommodation( $before = '', $after = '', $echo = true
  * @subpackage    template-tags
  * @category      itinerary
  */
+function lsx_to_itinerary_accommodation( $before = '', $after = '', $echo = true ) {
+	global $tour_itinerary;
+	if ( ! $tour_itinerary || empty( $tour_itinerary->has_itinerary ) ) {
+		return '';
+	}
+
+	// Get the correct accommodation array
+	if ( $tour_itinerary->count === $tour_itinerary->index ) {
+		$itinerary_accommodation = $tour_itinerary->itineraries[ $tour_itinerary->index - 2 ]['accommodation_to_tour'] ?? '';
+	} else {
+		$itinerary_accommodation = $tour_itinerary->itinerary['accommodation_to_tour'] ?? '';
+	}
+
+	if ( empty( $itinerary_accommodation ) ) {
+		return '';
+	}
+
+	$itinerary_accommodation = (array) $itinerary_accommodation;
+	$return = $before . lsx_to_connected_list( $itinerary_accommodation, 'accommodation', true, ', ' ) . $after;
+
+	if ( $echo ) {
+		echo wp_kses_post( $return );
+	}
+	return $return;
+}
+
+/**
+ * Outputs The current Itinerary connected accommodation, can only be used in
+ * the itinerary loop.
+ *
+ * @package       tour-operator
+ * @subpackage    template-tags
+ * @category      itinerary
+ */
+
 function lsx_to_itinerary_accommodation_type( $before = '', $after = '', $echo = true ) {
 	global $tour_itinerary;
-	$return = '';
+	if ( ! $tour_itinerary || empty( $tour_itinerary->has_itinerary ) ) {
+		return '';
+	}
 
-	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) && ! empty( $tour_itinerary->itinerary['accommodation_to_tour'] ) ) {
-		$itinerary_accommodation = $tour_itinerary->itinerary['accommodation_to_tour'];
-		if ( ! is_array( $itinerary_accommodation ) ) {
-			$itinerary_accommodation = array( $itinerary_accommodation );
-		}
-		$return = get_the_term_list( $itinerary_accommodation[0], 'accommodation-type', $before, ', ', $after );
-		if ( true === $echo ) {
-			echo wp_kses_post( $return );
-		}
+	// Get the correct accommodation array
+	if ( $tour_itinerary->count === $tour_itinerary->index ) {
+		$itinerary_accommodation = $tour_itinerary->itineraries[ $tour_itinerary->index - 2 ]['accommodation_to_tour'] ?? '';
+	} else {
+		$itinerary_accommodation = $tour_itinerary->itinerary['accommodation_to_tour'] ?? '';
+	}
+
+	if ( empty( $itinerary_accommodation ) ) {
+		return '';
+	}
+
+	$itinerary_accommodation = (array) $itinerary_accommodation;
+	$return = get_the_term_list( $itinerary_accommodation[0], 'accommodation-type', $before, ', ', $after );
+
+	if ( $echo ) {
+		echo wp_kses_post( $return );
 	}
 	return $return;
 }
