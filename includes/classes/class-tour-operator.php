@@ -7,6 +7,7 @@ use lsx\admin\Pages;
 use lsx\admin\Settings;
 use lsx\admin\Setup;
 use lsx\admin\Permalinks;
+use lsx\admin\Post_Expiration;
 use lsx\blocks\Bindings;
 use lsx\blocks\Patterns;
 use lsx\blocks\Query_Loop;
@@ -183,17 +184,18 @@ class Tour_Operator {
 	public function setup() {
 		require_once( LSX_TO_PATH . 'vendor/content-models/create-content-model.php' );
 
-		$this->classes['permalinks']  = new Permalinks();
-		$this->classes['pages']        = Pages::init();
-		$this->classes['taxonomies']   = Taxonomies::init();
-		$this->classes['admin']        = new Admin();
-		$this->classes['settings']     = Settings::init();
-		$this->classes['setup']        = new Setup();
-		$this->classes['bindings']     = new Bindings();
-		$this->classes['registration'] = new Registration();
-		$this->classes['patterns']     = new Patterns();
-		$this->classes['templates']    = new Templates();
-		$this->classes['query_loop']   = new Query_Loop();
+		$this->classes['permalinks']      = new Permalinks();
+		$this->classes['pages']           = Pages::init();
+		$this->classes['taxonomies']      = Taxonomies::init();
+		$this->classes['admin']           = new Admin();
+		$this->classes['settings']        = Settings::init();
+		$this->classes['setup']           = new Setup();
+		$this->classes['bindings']        = new Bindings();
+		$this->classes['registration']    = new Registration();
+		$this->classes['patterns']        = new Patterns();
+		$this->classes['templates']       = new Templates();
+		$this->classes['query_loop']      = new Query_Loop();
+		$this->classes['post_expiration'] = new Post_Expiration();
 
 		// Files that wont load with the badly written spl_autoregister function.
 		require_once LSX_TO_PATH . 'includes/classes/class-post-connections.php';
