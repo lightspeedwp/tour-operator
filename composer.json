@@ -3,7 +3,7 @@
     "description": "The Tour Operators Plugin provides 3 post types (Accommodations, Destinations and Tours) that are the core of any Tour Operator. Use them to build day-by-day itineraries for tours.",
     "type": "wordpress-plugin",
     "require": {
-        "php": ">=7.2",
+        "php": ">=8.0",
         "composer/installers": "^2.0.0"
     },
     "require-dev": {
