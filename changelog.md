@@ -6,7 +6,7 @@
 - A filter to allow the disabling of destinations when searching for related content. `lsx_to_' . $key . '_include_destinations`. - [BH-74](https://www.bugherd.com/projects/430995/tasks/74)
 
 ### Integrations
-- Added in integration with the Action Scheduler to allow Tours to expire and be set to draft. Work with any plugin using the Action Scheduler as a vendor [Woocommerce](https://woocommerce.com/),[PublishPress](https://publishpress.com/),[Action Scheduler](https://wordpress.org/plugins/action-scheduler/).
+- Added integration with the Action Scheduler to allow Tours to expire and be set to draft [#490](https://github.com/lightspeedwp/tour-operator/pull/490). Work with any plugin using the Action Scheduler as a vendor [WooCommerce](https://woocommerce.com/), [PublishPress](https://publishpress.com/), [Action Scheduler](https://wordpress.org/plugins/action-scheduler/).
 
 ## [[2.0.2]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.2) - 2025-05-06
 
