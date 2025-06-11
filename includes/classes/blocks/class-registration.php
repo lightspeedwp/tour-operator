@@ -18,6 +18,7 @@ class Registration {
 	 */
 	public function __construct() {
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_variations_script' ), 10 );
+		add_action( 'init', [ $this, 'register_block_json_files' ] );
 	}
 
 	/**
