@@ -20,22 +20,6 @@ namespace lsx\legacy;
 class Frontend extends Tour_Operator {
 
 	/**
-	 * Enable Modals
-	 *
-	 * @since 1.0.0
-	 * @var      boolean|Frontend
-	 */
-	public $enable_modals = false;
-
-	/**
-	 * Holds the modal ids for output in the footer
-	 *
-	 * @since 1.0.0
-	 * @var      array|Frontend
-	 */
-	public $modal_ids = array();
-
-	/**
 	 * Holds the maps class
 	 * @var      object
 	 */
