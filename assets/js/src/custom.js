@@ -387,7 +387,6 @@ if (window.location.hash) {
   $document.ready(function () {
     lsx_to.readMoreText = "Read more";
     lsx_to.set_read_more();
-    lsx_to.set_read_more_travel_info();
     lsx_to.set_read_more_itinerary();
     lsx_to.build_slider(window_width);
   });
