@@ -679,46 +679,71 @@ button.facetwp-reset {
 }
 /* The Modal (background) */
 .lsx-modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
+  top: 100%;
+  opacity: 0;
+  transition: opacity 150ms linear, top 0s linear 150ms, overlay 150ms linear allow-discrete, display 150ms linear allow-discrete;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  z-index: 200;
+  box-sizing: border-box;
+  max-width: var(--wp--style--global--content-size, 680px);
+  width: 95vw;
+  height: 95vh;
+  border: 0;
+  background: none;
+}
+.lsx-modal[open] {
+  transition: opacity 150ms linear;
+  display: flex;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-  /* Modal Content/Box */
-  /* The Close Button */
+  opacity: 1;
 }
-.lsx-modal.open {
-  display: block;
-}
-.lsx-modal .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 10px 20px;
-  border: 3px solid var(--wp--preset--color--primary);
-  border-radius: 6px;
-  width: var(--wp--style--global--content-size); /* Could be more or less, depending on screen size */
-}
-.lsx-modal .close {
-  color: #aaa;
-  float: right;
-  font-size: 32px;
-  font-weight: bold;
-  line-height: 0;
-  height: auto;
-  padding-top: 10px;
-  margin-right: -8px;
-}
-.lsx-modal .close:hover, .lsx-modal .close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+.lsx-modal > * {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
 }
 
+/* Before-open state */
+/* Needs to be after the previous dialog[open] rule to take effect,
+    as the specificity is the same */
+@starting-style {
+  .modal-content[open] {
+    opacity: 0;
+    top: 100%;
+  }
+}
+/* Transition the :backdrop when the dialog modal is promoted to the top layer */
+.modal-content::-webkit-backdrop {
+  background-color: rgba(0, 0, 0, 0);
+  -webkit-transition: display 150ms allow-discrete, overlay 150ms allow-discrete, background-color 150ms;
+  transition: display 150ms allow-discrete, overlay 150ms allow-discrete, background-color 150ms;
+}
+.modal-content::backdrop {
+  background-color: rgba(0, 0, 0, 0);
+  transition: display 150ms allow-discrete, overlay 150ms allow-discrete, background-color 150ms;
+}
+
+.modal-content[open]::-webkit-backdrop {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modal-content[open]::backdrop {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+/* This starting-style rule cannot be nested inside the above selector
+  because the nesting selector cannot represent pseudo-elements. */
+@starting-style {
+  .modal-content[open]::-webkit-backdrop {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  .modal-content[open]::backdrop {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
 .lsx-map.wp-block-group.hidden {
   display: none;
 }
