@@ -120,13 +120,9 @@ class Modals {
 		$modal_query = new \WP_Query( $modal_args );
 		$modal_html  = [];
 
-		do_action( 'qm/debug', $modal_query );
-
 		if ( $modal_query->have_posts() ) {
 			while ( $modal_query->have_posts() ) {
 				$modal_query->the_post();
-
-				do_action( 'qm/debug', $modal_query->post );
 
 				$modal_id  = get_the_ID();
 				$temp_html = '<dialog id="to-modal-' . $modal_id . '" class="wp-block-hm-popup" data-trigger="click" data-expiry="7" data-backdrop-opacity="0.75">';
