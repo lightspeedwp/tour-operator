@@ -40,6 +40,9 @@ class Modals {
 		add_filter( 'lsx_to_connected_list_item', array( $this, 'add_modal_attributes' ), 10, 3 );
 
 		add_action( 'wp_footer', array( $this, 'output_modals2' ), 10 );
+
+		//Register our mega menu template part area.
+		add_filter( 'default_wp_template_part_areas', [ $this, 'register_template_part_category' ], 10, 1 );
 	}
 
 	/**
@@ -160,5 +163,25 @@ class Modals {
 		}
 
 		echo $content;
+	}
+
+	/**
+	 * Registers the Modals template part.
+	 *
+	 * @param array $parts
+	 * @return array
+	 */
+	public function register_template_part_category( $parts ) {
+		$parts[] = array(
+			'area'        => 'lsx_to_modals',
+			'label'       => _x( 'Modals', 'template part area', 'tour-operator' ),
+			'description' => __(
+				'Design an advanced popup modals for your site.',
+				'tour-operator'
+			),
+			'icon'        => 'welcome-widgets-menus',
+			'area_tag'    => 'lsx_to_modals',
+		);
+		return $parts;
 	}
 }
