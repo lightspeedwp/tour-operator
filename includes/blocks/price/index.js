@@ -49,7 +49,7 @@ wp.blocks.registerBlockVariation("core/group", {
 							},
 						},
 					},
-					className: 'amount'
+					className: 'amount',
 					padding: {
 						top: "2px",
 						bottom: "2px",
