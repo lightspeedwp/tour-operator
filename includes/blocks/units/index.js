@@ -15,22 +15,8 @@ wp.domReady(() => {
 			layout: {
 				type: "constrained",
 			},
-			className: "lsx-units-wrapper",
-			backgroundColor: 'primary-bg',
-			style: {
-				spacing: {
-					padding: {
-						top: "var:preset|spacing|medium",
-						bottom: "var:preset|spacing|medium",
-						left: "var:preset|spacing|x-small",
-						right: "var:preset|spacing|x-small",
-					},
-					margin: {
-						top: 0,
-						bottom: 0
-					}
-				}
-			},
+			className: 'lsx-units-wrapper',
+			
 			tagName: "section"
 		},
 		innerBlocks: [
@@ -78,11 +64,7 @@ wp.domReady(() => {
 			['core/group',
 				{
 					align: 'wide',
-					style: {
-						spacing: {
-							blockGap: 'var:preset|spacing|small'
-						}
-					},
+					
 					layout: {
 						type: 'constrained',
 					}

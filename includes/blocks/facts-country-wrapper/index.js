@@ -10,11 +10,7 @@ wp.blocks.registerBlockVariation('core/group', {
 				name: 'Country'
 			},
 			className: 'facts-country-query-wrapper',
-			style: {
-				spacing: {
-					blockGap: '5px'
-				}
-			},
+			
 			layout: {
 				type: 'flex',
 				flexWrap: 'nowrap'
@@ -24,11 +20,7 @@ wp.blocks.registerBlockVariation('core/group', {
 			[
 				'core/group',
 				{
-					style: {
-						spacing: {
-							blockGap: '5px'
-						}
-					},
+					
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap',
@@ -48,14 +40,7 @@ wp.blocks.registerBlockVariation('core/group', {
 					[
 						'core/paragraph',
 						{
-							style: {
-								spacing: {
-									padding: {
-										top: '0',
-										bottom: '0'
-									}
-								}
-							},
+							
 							fontSize: 'x-small',
 							content: '<strong>Country:</strong>'
 						}
@@ -65,15 +50,6 @@ wp.blocks.registerBlockVariation('core/group', {
 			[
 				'core/group',
 				{
-					style: {
-						spacing: {
-							blockGap: '5px',
-							padding: {
-								top: '0',
-								bottom: '0'
-							}
-						}
-					},
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap'
@@ -108,7 +84,6 @@ wp.blocks.registerBlockVariation('core/group', {
 									}
 								}
 							},
-							textColor: 'primary-700',
 							content: ''
 						}
 					]

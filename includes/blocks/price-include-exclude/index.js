@@ -47,11 +47,7 @@ wp.blocks.registerBlockVariation( 'core/group', {
 					['core/column', {
 							width: '50%',
 							id: 'lsx-included-wrapper',
-							style: {
-								spacing: {
-									blockGap: '0'
-								}
-							}
+							
 						},
 						[
 							[ 'core/paragraph', {
@@ -64,7 +60,6 @@ wp.blocks.registerBlockVariation( 'core/group', {
 										}
 									}
 								},
-								textColor: 'primary-700',
 								fontSize: 'medium',
 								content: '<strong>Price Includes:</strong>'
 							} ],
@@ -82,12 +77,8 @@ wp.blocks.registerBlockVariation( 'core/group', {
 					],
 					[ 'core/column', {
 							width: '50%',
-							className: 'lsx-not-included-wrapper',
-							style: {
-								spacing: {
-									blockGap: '0'
-								}
-							}
+							className: 'lsx-not-included-wrapper'
+							
 						},
 						[
 							[ 'core/paragraph', {
@@ -100,7 +91,6 @@ wp.blocks.registerBlockVariation( 'core/group', {
 									}
 								}
 								},
-								textColor: 'primary-700',
 								fontSize: 'medium',
 								content: '<strong>Price Excludes:</strong>'
 							}],

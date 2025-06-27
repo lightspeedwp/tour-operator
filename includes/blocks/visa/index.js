@@ -139,7 +139,7 @@ wp.blocks.registerBlockVariation(
 									'core/paragraph',
 									{
 										content: 'View More',
-										className: 'has-primary-background-color has-background wp-element-button',
+										className: 'has-background wp-element-button',
 										style: {
 											border: {
 												bottomLeftRadius: '8px',

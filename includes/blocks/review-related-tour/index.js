@@ -10,19 +10,9 @@ wp.blocks.registerBlockVariation( 'core/group', {
 			metadata: {
 				name: 'Related Reviews - Tour'
 			},
-			className: "lsx-review-related-tour-query-wrapper",
+			className: 'lsx-review-related-tour-query-wrapper',
 			align: 'full',
-			style: {
-				spacing: {
-					padding: {
-						top: 'var:preset|spacing|medium',
-						bottom: 'var:preset|spacing|medium',
-						left: 'var:preset|spacing|x-small',
-						right: 'var:preset|spacing|x-small'
-					},
-					blockGap: 'var:preset|spacing|small'
-				}
-			},
+			
 			backgroundColor: 'primary-200',
 			layout: {
 				type: 'constrained'
@@ -65,7 +55,7 @@ wp.blocks.registerBlockVariation( 'core/group', {
 							[ 
 								'core/post-template', 
 								{
-									className: "lsx-review-related-tour-query",
+									className: 'lsx-review-related-tour-query',
 									layout: {
 										type: 'grid',
 										columnCount: 2

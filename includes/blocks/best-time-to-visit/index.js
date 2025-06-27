@@ -10,22 +10,11 @@ wp.blocks.registerBlockVariation('core/group', {
 				name: 'Best Time to Visit',
 			},
 			className: 'lsx-best-time-to-visit-wrapper',
-			style: {
-				spacing: {
-					blockGap: '5px'
-				},
-				layout: {
-					type: 'constrained'
-				}
-			}
+			
 		},
 		innerBlocks: [
 			['core/group', {
-					style: {
-						spacing: {
-							blockGap: '5px'
-						}
-					},
+					
 						layout: {
 							type: 'flex',
 							flexWrap: 'nowrap',
@@ -40,14 +29,7 @@ wp.blocks.registerBlockVariation('core/group', {
 						alt: ''
 					}],
 					['core/paragraph', {
-						style: {
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
+						
 						fontSize: 'x-small',
 						content: '<strong>Best Months to Visit</strong>'
 					}]
@@ -56,13 +38,7 @@ wp.blocks.registerBlockVariation('core/group', {
 			[
 				'core/group',
 				{
-					style: {
-						spacing: {
-							padding: {
-								left: '25px'
-							}
-						}
-					},
+					
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap'
@@ -80,7 +56,7 @@ wp.blocks.registerBlockVariation('core/group', {
 								}
 							}
 						},
-						className: 'has-text-color has-link-color has-primary-700-color',
+						
 						style: {
 							elements: {
 								link: {
@@ -93,7 +69,6 @@ wp.blocks.registerBlockVariation('core/group', {
 								textTransform: 'capitalize'
 							}
 						},
-						textColor: 'primary-700',
 						content: 'Best Months to Visit'
 					}]
 				]

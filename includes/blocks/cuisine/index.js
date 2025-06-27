@@ -72,45 +72,21 @@ wp.blocks.registerBlockVariation('core/group', {
 						[
 							['core/paragraph', {
 								align: 'center',
-								style: {
-									spacing: {
-										padding: {
-											top: '0',
-											bottom: '0'
-										}
-									}
-								},
+								
 								fontSize: 'small',
 								content: '<strong>Cuisine</strong>'
 							}]
 						]
 					],
 					['core/group', {
-							style: {
-								spacing: {
-									padding: {
-										right: '10px',
-										left: '10px',
-										top: '0px',
-										bottom: '0px'
-									},
-									blockGap: '0'
-								}
-							},
+							
 							layout: {
 								type: 'constrained'
 							}
 						},
 						[
 							['core/paragraph', {
-								style: {
-									spacing: {
-										padding: {
-											top: '2px',
-											bottom: '2px'
-										}
-									}
-								},
+								
 								metadata: {
 									bindings: {
 										content: {

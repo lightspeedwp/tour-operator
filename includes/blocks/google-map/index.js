@@ -10,21 +10,7 @@ wp.blocks.registerBlockVariation("core/group", {
 			metadata: {
 				name: "Google Map",
 			},
-			className: "lsx-location-wrapper",
-			style: {
-				spacing: {
-					padding: {
-						top: 'var(--wp--preset--spacing--medium)',
-						bottom: 'var(--wp--preset--spacing--medium)',
-						left: 'var(--wp--preset--spacing--x-small)',
-						right: 'var(--wp--preset--spacing--x-small)'
-					},
-					margin: {
-						top: '0',
-						bottom: '0'
-					}
-				}
-			},
+			className: 'lsx-location-wrapper',
 			align: 'full',
 			layout: {
 				type: 'constrained'
@@ -74,7 +60,7 @@ wp.blocks.registerBlockVariation("core/group", {
 							isUserOverlayColor: false,
 							isDark: false,
 							layout: { type: 'constrained' },
-							className: "lsx-map-preview",
+							className: 'lsx-map-preview',
 							name: "Preview",
 						},
 						[
@@ -94,7 +80,7 @@ wp.blocks.registerBlockVariation("core/group", {
 						{
 							align: 'wide',
 							layout: { type: 'default' },
-							className: "hidden",
+							className: 'hidden',
 							metadata: {
 								name: "Map Details",
 								bindings: {

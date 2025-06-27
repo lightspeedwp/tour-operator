@@ -14,7 +14,7 @@ wp.blocks.registerBlockVariation("core/group", {
 				type: "flex",
 				flexWrap: "nowrap",
 			},
-			className: "lsx-price-wrapper",
+			className: 'lsx-price-wrapper',
 			style: {
 				spacing: {
 					blockGap: "5px",
@@ -33,7 +33,7 @@ wp.blocks.registerBlockVariation("core/group", {
 						fontSize: "x-small",
 					},
 					content: "<strong>From:</strong>",
-					className: "has-x-small-font-size",
+					className: 'has-x-small-font-size'
 				},
 			],
 			[
@@ -49,7 +49,7 @@ wp.blocks.registerBlockVariation("core/group", {
 							},
 						},
 					},
-					className: "amount has-primary-color has-text-color has-link-color",
+					className: 'amount'
 					padding: {
 						top: "2px",
 						bottom: "2px",

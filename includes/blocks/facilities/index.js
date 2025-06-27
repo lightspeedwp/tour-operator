@@ -10,20 +10,6 @@ wp.blocks.registerBlockVariation('core/group', {
 				name: 'Facilities',
 			},
 			className: 'lsx-facility-wrapper',
-			style: {
-				spacing: {
-					padding: {
-						top: 'var(--wp--preset--spacing--medium)',
-						bottom: 'var(--wp--preset--spacing--medium)',
-						left: 'var(--wp--preset--spacing--x-small)',
-						right: 'var(--wp--preset--spacing--x-small)'
-					},
-					margin: {
-						top: '0',
-						bottom: '0'
-					}
-				}
-			},
 			layout: {
 				type: 'constrained'
 			},
@@ -95,17 +81,9 @@ wp.blocks.registerBlockVariation('core/group', {
 								}
 							}
 						},
-						className: 'has-septenary-color has-text-color has-link-color has-primary-color has-primary-700-color',
-						style: {
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
-						textColor: 'primary-700'
-					}]
+						
+						
+						}]
 				]
 			]
 		],

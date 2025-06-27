@@ -9,7 +9,7 @@ wp.blocks.registerBlockVariation("core/group", {
 			metadata: {
 				name: "Duration"
 			},
-			className: "lsx-duration-wrapper",
+			className: 'lsx-duration-wrapper',
 			style: {
 				spacing: {
 					blockGap: "5px",
@@ -89,7 +89,7 @@ wp.blocks.registerBlockVariation("core/group", {
 									},
 								},
 							},
-							className: "has-primary-color has-text-color has-link-color",
+							
 							style: {
 								elements: {
 									link: {
@@ -105,14 +105,13 @@ wp.blocks.registerBlockVariation("core/group", {
 									},
 								},
 							},
-							textColor: "primary-700",
 							content: "",
 						},
 					],
 					[
 						"core/paragraph",
 						{
-							className: "has-primary-color has-text-color has-link-color",
+							
 							style: {
 								elements: {
 									link: {
@@ -128,7 +127,6 @@ wp.blocks.registerBlockVariation("core/group", {
 									},
 								},
 							},
-							textColor: "primary-700",
 							content: "Days",
 						},
 					],

@@ -10,19 +10,9 @@ wp.blocks.registerBlockVariation( 'core/group', {
 			metadata: {
 				name: 'Regions'
 			},
-			className: "lsx-regions-query-wrapper",
+			className: 'lsx-regions-query-wrapper',
 			align: 'full',
-			style: {
-				spacing: {
-					padding: {
-						top: 'var:preset|spacing|medium',
-						bottom: 'var:preset|spacing|medium',
-						left: 'var:preset|spacing|x-small',
-						right: 'var:preset|spacing|x-small'
-					},
-					blockGap: 'var:preset|spacing|small'
-				}
-			},
+			
 			backgroundColor: 'primary-200',
 			layout: {
 				type: 'constrained'
@@ -64,7 +54,7 @@ wp.blocks.registerBlockVariation( 'core/group', {
 						[ 
 							'core/post-template', 
 							{
-								className: "lsx-regions-query",
+								className: 'lsx-regions-query',
 								layout: {
 									type: 'grid',
 									columnCount: 4

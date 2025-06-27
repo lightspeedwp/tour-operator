@@ -10,15 +10,7 @@ wp.blocks.registerBlockVariation('core/group', {
 				name: 'Rating',
 			},
 			className: 'lsx-rating-wrapper',
-			style: {
-				spacing: {
-					padding: {
-						top: '0',
-						bottom: '0'
-					},
-					blockGap: '5px'
-				}
-			},
+			
 			layout: {
 				type: 'flex',
 				flexWrap: 'nowrap'
@@ -26,11 +18,7 @@ wp.blocks.registerBlockVariation('core/group', {
 		},
 		innerBlocks: [
 			['core/group', {
-					style: {
-						spacing: {
-							blockGap: '5px'
-						}
-					},
+					
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap',
@@ -45,24 +33,13 @@ wp.blocks.registerBlockVariation('core/group', {
 						alt: ''
 					}],
 					['core/paragraph', {
-						style: {
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
+						
 						content: '<strong>Rating</strong>:'
 					}]
 				]
 			],
 			['core/group', {
-					style: {
-						spacing: {
-							blockGap: '5px'
-						}
-					},
+					
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap',
@@ -81,7 +58,7 @@ wp.blocks.registerBlockVariation('core/group', {
 								}
 							}
 						},
-						className: 'has-text-color has-link-color has-primary-700-color',
+						
 						style: {
 							elements: {
 								link: {
@@ -97,14 +74,9 @@ wp.blocks.registerBlockVariation('core/group', {
 								}
 							}
 						},
-						textColor: 'primary-700'
-					}],
+						}],
 					['core/group', {
-							style: {
-								spacing: {
-									blockGap: '0'
-								}
-							},
+							
 							layout: {
 								type: 'flex',
 								flexWrap: 'nowrap'
@@ -127,7 +99,6 @@ wp.blocks.registerBlockVariation('core/group', {
 										}
 									}
 								},
-								textColor: 'primary-700',
 								fontSize: 'tiny',
 								content: '('
 							}],
@@ -157,7 +128,6 @@ wp.blocks.registerBlockVariation('core/group', {
 										}
 									}
 								},
-								textColor: 'primary-700',
 								fontSize: 'tiny'
 							}],
 							['core/paragraph', {
@@ -176,7 +146,6 @@ wp.blocks.registerBlockVariation('core/group', {
 										}
 									}
 								},
-								textColor: 'primary-700',
 								fontSize: 'tiny',
 								content: ')'
 							}]

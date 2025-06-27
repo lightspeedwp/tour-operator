@@ -10,11 +10,7 @@ wp.blocks.registerBlockVariation('core/group', {
 				name: 'Group Size',
 			},
 			className: 'lsx-group-size-wrapper',
-			style: {
-				spacing: {
-					blockGap: '5px'
-				}
-			},
+			
 			layout: {
 				type: 'flex',
 				flexWrap: 'nowrap'
@@ -22,11 +18,7 @@ wp.blocks.registerBlockVariation('core/group', {
 		},
 		innerBlocks: [
 			['core/group', {
-					style: {
-						spacing: {
-							blockGap: '5px'
-						}
-					},
+					
 						layout: {
 							type: 'flex',
 							flexWrap: 'nowrap',
@@ -43,29 +35,14 @@ wp.blocks.registerBlockVariation('core/group', {
 						alt: ''
 					}],
 					['core/paragraph', {
-						style: {
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
+						
 						fontSize: 'x-small',
 						content: '<strong>Group size:</strong>'
 					}]
 				]
 			],
 			['core/group', {
-					style: {
-						spacing: {
-							blockGap: '5px'
-						},
-						layout: {
-							type: 'flex',
-							flexWrap: 'nowrap'
-						}
-					}
+					
 				},
 				[
 					['core/paragraph', {
@@ -94,7 +71,6 @@ wp.blocks.registerBlockVariation('core/group', {
 								}
 							}
 						},
-						textColor: 'primary-700',
 						content: ''
 					}]
 				]

@@ -10,11 +10,7 @@ wp.blocks.registerBlockVariation('core/group', {
 				name: 'Number if Rooms',
 			},
 			className: 'lsx-number-of-rooms-wrapper',
-			style: {
-				spacing: {
-					blockGap: '5px'
-				}
-			},
+			
 			layout: {
 				type: 'flex',
 				flexWrap: 'nowrap'
@@ -22,11 +18,7 @@ wp.blocks.registerBlockVariation('core/group', {
 		},
 		innerBlocks: [
 			['core/group', {
-					style: {
-						spacing: {
-							blockGap: '5px'
-						}
-					},
+					
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap',
@@ -41,14 +33,7 @@ wp.blocks.registerBlockVariation('core/group', {
 						alt: ''
 					}],
 					['core/paragraph', {
-						style: {
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
+						
 						content: '<strong>Number of units</strong>:'
 					}]
 				]
@@ -70,17 +55,9 @@ wp.blocks.registerBlockVariation('core/group', {
 									}
 								}
 							}
-						},
-						style: {
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
-						textColor: 'primary-700'
-					}]
+						}
+						
+						}]
 				]
 			]
 		],
