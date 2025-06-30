@@ -10,62 +10,18 @@ wp.blocks.registerBlockVariation('core/group', {
 				name: 'Additional Info',
 			},
 			className: 'lsx-additional-info-wrapper',
-			style: {
-				border: {
-					radius: '8px'
-				},
-				spacing: {
-					padding: {
-						top: '0px',
-						bottom: '0px',
-						left: '0px',
-						right: '0px'
-					},
-					blockGap: '0px'
-				}
-			},
-			backgroundColor: 'base',
 			layout: {
 				type: 'constrained'
 			}
 		},
 		innerBlocks: [
 			['core/group', {
-					style: {
-						spacing: {
-							margin: {
-								top: '0',
-								bottom: '0'
-							},
-							padding: {
-								top: '10px',
-								bottom: '10px',
-								left: '10px',
-								right: '10px'
-							}
-						},
-						dimensions: {
-							minHeight: ''
-						}
-					},
 					layout: {
 						type: 'constrained'
 					}
 				},
 				[
 					['core/group', {
-							style: {
-								dimensions: {
-									minHeight: ''
-								},
-								spacing: {
-									padding: {
-										top: '0',
-										bottom: '0'
-									},
-									blockGap: '0'
-								}
-							},
 							layout: {
 								type: 'constrained'
 							}
@@ -73,8 +29,6 @@ wp.blocks.registerBlockVariation('core/group', {
 						[
 							['core/paragraph', {
 								align: 'center',
-								
-								fontSize: 'small',
 								content: '<strong>General</strong>'
 							}]
 						]
@@ -106,16 +60,7 @@ wp.blocks.registerBlockVariation('core/group', {
 			['core/buttons', {},
 				[
 					['core/button', {
-						backgroundColor: 'primary',
 						width: 100,
-						style: {
-							border: {
-								radius: {
-									bottomLeft: '8px',
-									bottomRight: '8px'
-								}
-							}
-						},
 						content: 'View More'
 					}]
 				]

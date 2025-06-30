@@ -29,8 +29,6 @@ wp.blocks.registerBlockVariation('core/group', {
 						alt: ''
 					}],
 					['core/paragraph', {
-						
-						fontSize: 'x-small',
 						content: '<strong>Best Months to Visit</strong>'
 					}]
 				]
@@ -54,19 +52,6 @@ wp.blocks.registerBlockVariation('core/group', {
 										key: 'best_time_to_visit'
 									}
 								}
-							}
-						},
-						
-						style: {
-							elements: {
-								link: {
-									color: {
-										text: 'var:preset|color|primary-700'
-									}
-								}
-							},
-							typography: {
-								textTransform: 'capitalize'
 							}
 						},
 						content: 'Best Months to Visit'

@@ -10,25 +10,6 @@ wp.blocks.registerBlockVariation('core/group', {
 				name: 'Banking',
 			},
 			className: 'lsx-banking-wrapper',
-			style: {
-				border: {
-					radius: '8px'
-				},
-				spacing: {
-					padding: {
-						top: '0px',
-						bottom: '0px',
-						left: '0px',
-						right: '0px'
-					},
-					blockGap: '0px'
-				},
-				layout: {
-					selfStretch: 'fixed',
-					flexSize: '25%'
-				}
-			},
-			backgroundColor: 'base',
 			layout: {
 				type: 'constrained'
 			}
@@ -38,23 +19,6 @@ wp.blocks.registerBlockVariation('core/group', {
 					metadata: {
 						name: 'Content'
 					},
-					style: {
-						spacing: {
-							margin: {
-								top: '0',
-								bottom: '0'
-							},
-							padding: {
-								top: '10px',
-								bottom: '10px',
-								left: '10px',
-								right: '10px'
-							}
-						},
-						dimensions: {
-							minHeight: ''
-						}
-					},
 					layout: {
 						type: 'constrained'
 					}
@@ -63,17 +27,6 @@ wp.blocks.registerBlockVariation('core/group', {
 					['core/group', {
 							metadata: {
 								name: 'Title'
-							},
-							style: {
-								dimensions: {
-									minHeight: ''
-								},
-								spacing: {
-									padding: {
-										top: '0',
-										bottom: '0'
-									}
-								}
 							},
 							layout: {
 								type: 'constrained'
@@ -123,16 +76,7 @@ wp.blocks.registerBlockVariation('core/group', {
 							name: 'More Button'
 						},
 						className: 'lsx-to-more-link more-link',
-						backgroundColor: 'primary',
 						width: 100,
-						style: {
-							border: {
-								radius: {
-									bottomLeft: '8px',
-									bottomRight: '8px'
-								}
-							}
-						},
 						text: 'View More'
 					}]
 				]
