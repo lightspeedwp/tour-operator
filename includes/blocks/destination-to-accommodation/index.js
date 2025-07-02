@@ -10,26 +10,14 @@ wp.blocks.registerBlockVariation('core/group', {
 				name: 'Destination to Accommodation',
 			},
 			className: 'lsx-destination-to-accommodation-wrapper',
-			style: {
-				spacing: {
-					padding: {
-						top: '0',
-						bottom: '0'
-					},
-					blockGap: '5px'
-				}
-			},
+			
 			layout: {
 				type: 'constrained'
 			}
 		},
 		innerBlocks: [
 			['core/group', {
-					style: {
-						spacing: {
-							blockGap: '5px'
-						}
-					},
+					
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap',
@@ -44,25 +32,12 @@ wp.blocks.registerBlockVariation('core/group', {
 						alt: ''
 					}],
 					['core/paragraph', {
-						style: {
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
+						
 						content: '<strong>Location</strong>:'
 					}]
 				]
 			],
 			['core/group', {
-					style: {
-						spacing: {
-							blockGap: '5px',
-							padding: {left: '25px'}
-						}
-					},
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap'
@@ -79,29 +54,7 @@ wp.blocks.registerBlockVariation('core/group', {
 									}
 								}
 							}
-						},
-						className: 'has-septenary-color has-text-color has-link-color',
-						style: {
-							elements: {
-								link: {
-									color: {
-										text: 'var:preset|color|primary-700',
-										':hover': {
-											color: {
-												text: 'var:preset|color|primary-900'
-											}
-										}
-									}
-								}
-							},
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
-						textColor: 'primary-700'
+						}
 					}]
 				]
 			]

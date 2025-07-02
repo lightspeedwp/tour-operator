@@ -11,17 +11,6 @@ wp.blocks.registerBlockVariation('core/button', {
 			metadata: {
 				name: 'More Button'
 			},
-			style: {
-				border: {
-					radius: {
-						topLeft: '0px 8px 8px 0px',
-						topRight: '0px 8px 8px 0px',
-						bottomLeft: '8px',
-						bottomRight: '8px'
-					}
-				}
-			},
-			backgroundColor: 'primary',
 			width: 100,
 			text: 'View More',
 		},

@@ -10,22 +10,14 @@ wp.blocks.registerBlockVariation('core/group', {
 				name: 'Departs From',
 			},
 			className: 'lsx-departs-from-wrapper',
-			style: {
-				spacing: {
-					blockGap: '5px'
-				}
-			},
+			
 			layout: {
 				type: 'constrained'
 			}
 		},
 		innerBlocks: [
 			['core/group', {
-				style: {
-					spacing: {
-						blockGap: '5px'
-					}
-				},
+				
 				layout: {
 					type: 'flex',
 					flexWrap: 'nowrap',
@@ -40,15 +32,6 @@ wp.blocks.registerBlockVariation('core/group', {
 						alt: ''
 					}],
 					['core/paragraph', {
-						style: {
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
-						fontSize: 'x-small',
 						content: '<strong>Departs From:</strong>'
 					}]
 				]
@@ -56,13 +39,7 @@ wp.blocks.registerBlockVariation('core/group', {
 			[
 				'core/group',
 				{
-					style: {
-						spacing: {
-							padding: {
-								left: '25px'
-							}
-						}
-					},
+					
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap'
@@ -80,22 +57,6 @@ wp.blocks.registerBlockVariation('core/group', {
 								}
 							}
 						},
-						style: {
-							elements: {
-								link: {
-									color: {
-										text: 'var:preset|color|primary-700'
-									}
-								}
-							},
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
-						textColor: 'primary-700',
 						content: ''
 					}],
 				]

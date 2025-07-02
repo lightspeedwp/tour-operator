@@ -10,22 +10,12 @@ wp.blocks.registerBlockVariation('core/group', {
 				name: 'Accommodation Type',
 			},
 			className: 'lsx-accommodation-type-wrapper',
-			style: {
-				spacing: {
-					blockGap: '5px'
-				}
-			},
 			layout: {
 				type: 'constrained'
 			}
 		},
 		innerBlocks: [
 			['core/group', {
-					style: {
-						spacing: {
-							blockGap: '5px'
-						}
-					},
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap',
@@ -40,27 +30,11 @@ wp.blocks.registerBlockVariation('core/group', {
 						alt: ''
 					}],
 					['core/paragraph', {
-						style: {
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
 						content: '<strong>Accommodation Type</strong>:'
 					}]
 				]
 			],
 			['core/group', {
-					style: {
-						spacing: {
-							blockGap: '5px',
-							padding: {
-								left: '25px',
-							}
-						}
-					},
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap'
@@ -68,19 +42,7 @@ wp.blocks.registerBlockVariation('core/group', {
 				},
 				[
 					['core/post-terms', {
-						term: 'accommodation-type',
-						style: {
-							elements: {
-								link: {
-									color: {
-										text: 'var:preset|color|primary-700'
-									}
-								}
-							}
-						},
-						textColor: 'primary-700',
-						fontSize: 'x-small',
-						fontFamily: 'secondary'
+						term: 'accommodation-type'
 					}]
 				]
 			]

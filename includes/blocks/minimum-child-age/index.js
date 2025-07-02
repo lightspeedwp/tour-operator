@@ -10,11 +10,6 @@ wp.blocks.registerBlockVariation('core/group', {
 				name: 'Minimum Child Age',
 			},
 			className: 'lsx-minimum-child-age-wrapper',
-			style: {
-				spacing: {
-					blockGap: '5px'
-				}
-			},
 			layout: {
 				type: 'flex',
 				flexWrap: 'nowrap'
@@ -22,11 +17,7 @@ wp.blocks.registerBlockVariation('core/group', {
 		},
 		innerBlocks: [
 			['core/group', {
-					style: {
-						spacing: {
-							blockGap: '5px'
-						}
-					},
+					
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap',
@@ -44,14 +35,6 @@ wp.blocks.registerBlockVariation('core/group', {
 						className: 'wp-image-122719'
 					}],
 					['core/paragraph', {
-						style: {
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
 						content: '<strong>Minimum child age:</strong>'
 					}]
 				]
@@ -73,17 +56,7 @@ wp.blocks.registerBlockVariation('core/group', {
 									}
 								}
 							}
-						},
-						className: 'has-septenary-color has-text-color has-link-color has-primary-color has-primary-700-color',
-						style: {
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
-						textColor: 'primary-700'
+						}
 					}]
 				]
 			]

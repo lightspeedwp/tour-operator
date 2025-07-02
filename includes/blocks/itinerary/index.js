@@ -13,7 +13,7 @@ wp.blocks.registerBlockVariation("core/group", {
 			layout: {
 				type: "constrained",
 			},
-			className: "lsx-itinerary-wrapper",
+			className: 'lsx-itinerary-wrapper',
 			tagName: "section"
 		},
 		innerBlocks: [
@@ -33,8 +33,7 @@ wp.blocks.registerBlockVariation("core/group", {
 									selfStretch: 'fill',
 									flexSize: null,
 								},
-							},
-							backgroundColor: 'primary',
+							}
 						}
 					],
 					[
@@ -52,8 +51,7 @@ wp.blocks.registerBlockVariation("core/group", {
 									selfStretch: 'fill',
 									flexSize: null,
 								},
-							},
-							backgroundColor: 'primary',
+							}
 						}
 					]
 				]

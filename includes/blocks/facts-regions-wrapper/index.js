@@ -10,11 +10,6 @@ wp.blocks.registerBlockVariation('core/group', {
 				name: 'Regions List'
 			},
 			className: 'facts-regions-query-wrapper',
-			style: {
-				spacing: {
-					blockGap: '5px'
-				}
-			},
 			layout: {
 				type: 'flex',
 				flexWrap: 'nowrap'
@@ -23,12 +18,7 @@ wp.blocks.registerBlockVariation('core/group', {
 		innerBlocks: [
 			[
 				'core/group',
-				{
-					style: {
-						spacing: {
-							blockGap: '5px'
-						}
-					},
+				{	
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap',
@@ -48,15 +38,6 @@ wp.blocks.registerBlockVariation('core/group', {
 					[
 						'core/paragraph',
 						{
-							style: {
-								spacing: {
-									padding: {
-										top: '0',
-										bottom: '0'
-									}
-								}
-							},
-							fontSize: 'x-small',
 							content: '<strong>Regions:</strong>'
 						}
 					]
@@ -65,15 +46,7 @@ wp.blocks.registerBlockVariation('core/group', {
 			[
 				'core/group',
 				{
-					style: {
-						spacing: {
-							blockGap: '5px',
-							padding: {
-								top: '0',
-								bottom: '0'
-							}
-						}
-					},
+					
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap'
@@ -93,22 +66,6 @@ wp.blocks.registerBlockVariation('core/group', {
 									},
 								},
 							},
-							style: {
-								elements: {
-									link: {
-										color: {
-											text: 'var:preset|color|primary-700'
-										}
-									}
-								},
-								spacing: {
-									padding: {
-										top: '2px',
-										bottom: '2px'
-									}
-								}
-							},
-							textColor: 'primary-700',
 							content: ''
 						}
 					]

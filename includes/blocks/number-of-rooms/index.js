@@ -7,14 +7,9 @@ wp.blocks.registerBlockVariation('core/group', {
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
-				name: 'Number if Rooms',
+				name: 'Number of Rooms',
 			},
 			className: 'lsx-number-of-rooms-wrapper',
-			style: {
-				spacing: {
-					blockGap: '5px'
-				}
-			},
 			layout: {
 				type: 'flex',
 				flexWrap: 'nowrap'
@@ -22,11 +17,7 @@ wp.blocks.registerBlockVariation('core/group', {
 		},
 		innerBlocks: [
 			['core/group', {
-					style: {
-						spacing: {
-							blockGap: '5px'
-						}
-					},
+					
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap',
@@ -41,15 +32,7 @@ wp.blocks.registerBlockVariation('core/group', {
 						alt: ''
 					}],
 					['core/paragraph', {
-						style: {
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
-						content: '<strong>Number of units</strong>:'
+						content: '<strong>Number of Units</strong>:'
 					}]
 				]
 			],
@@ -70,16 +53,8 @@ wp.blocks.registerBlockVariation('core/group', {
 									}
 								}
 							}
-						},
-						style: {
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
-						textColor: 'primary-700'
+						}
+						
 					}]
 				]
 			]

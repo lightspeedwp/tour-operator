@@ -10,22 +10,13 @@ wp.blocks.registerBlockVariation('core/group', {
 				name: 'Spoken Languages',
 			},
 			className: 'lsx-spoken-languages-wrapper',
-			style: {
-				spacing: {
-					blockGap: '5px'
-				}
-			},
 			layout: {
 				type: 'constrained'
 			}
 		},
 		innerBlocks: [
 			['core/group', {
-					style: {
-						spacing: {
-							blockGap: '5px'
-						}
-					},
+					
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap',
@@ -39,28 +30,12 @@ wp.blocks.registerBlockVariation('core/group', {
 						url: lsxToEditor.assetsUrl + 'blocks/spoken-languages.png',
 						alt: ''
 					}],
-					['core/paragraph', {
-						style: {
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
+					['core/paragraph', {	
 						content: '<strong>Spoken</strong> <strong>Languages:</strong>'
 					}]
 				]
 			],
 			['core/group', {
-					style: {
-						spacing: {
-							blockGap: '5px',
-							padding: {
-								left: '25px',
-							}
-						}
-					},
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap'
@@ -78,19 +53,6 @@ wp.blocks.registerBlockVariation('core/group', {
 								}
 							}
 						},
-						style: {
-							elements: {
-								link: {
-									color: {
-										text: 'var:preset|color|primary-700'
-									}
-								}
-							},
-							typography: {
-								textTransform: 'capitalize'
-							}
-						},
-						textColor: 'primary-700'
 					}]
 				]
 			]

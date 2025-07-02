@@ -10,20 +10,6 @@ wp.blocks.registerBlockVariation('core/group', {
 				name: 'Facilities',
 			},
 			className: 'lsx-facility-wrapper',
-			style: {
-				spacing: {
-					padding: {
-						top: 'var(--wp--preset--spacing--medium)',
-						bottom: 'var(--wp--preset--spacing--medium)',
-						left: 'var(--wp--preset--spacing--x-small)',
-						right: 'var(--wp--preset--spacing--x-small)'
-					},
-					margin: {
-						top: '0',
-						bottom: '0'
-					}
-				}
-			},
 			layout: {
 				type: 'constrained'
 			},
@@ -32,21 +18,6 @@ wp.blocks.registerBlockVariation('core/group', {
 		innerBlocks: [
 			['core/group', {
 					align: 'wide',
-					style: {
-						spacing: {
-							margin: {
-								top: '0',
-								bottom: '0'
-							},
-							padding: {
-								top: '0',
-								bottom: 'var(--wp--preset--spacing--small)',
-								left: '0',
-								right: '0'
-							},
-							blockGap: 'var(--wp--preset--spacing--small)'
-						}
-					},
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap'
@@ -60,7 +31,6 @@ wp.blocks.registerBlockVariation('core/group', {
 								flexSize: null
 							}
 						},
-						backgroundColor: 'primary'
 					}],
 					['core/heading', {
 						textAlign: 'center',
@@ -73,7 +43,6 @@ wp.blocks.registerBlockVariation('core/group', {
 								flexSize: null
 							}
 						},
-						backgroundColor: 'primary'
 					}]
 				]
 			],
@@ -95,16 +64,6 @@ wp.blocks.registerBlockVariation('core/group', {
 								}
 							}
 						},
-						className: 'has-septenary-color has-text-color has-link-color has-primary-color has-primary-700-color',
-						style: {
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
-						textColor: 'primary-700'
 					}]
 				]
 			]

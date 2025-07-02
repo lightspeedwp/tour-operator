@@ -10,21 +10,7 @@ wp.blocks.registerBlockVariation("core/group", {
 			metadata: {
 				name: "Google Map",
 			},
-			className: "lsx-location-wrapper",
-			style: {
-				spacing: {
-					padding: {
-						top: 'var(--wp--preset--spacing--medium)',
-						bottom: 'var(--wp--preset--spacing--medium)',
-						left: 'var(--wp--preset--spacing--x-small)',
-						right: 'var(--wp--preset--spacing--x-small)'
-					},
-					margin: {
-						top: '0',
-						bottom: '0'
-					}
-				}
-			},
+			className: 'lsx-location-wrapper',
 			align: 'full',
 			layout: {
 				type: 'constrained'
@@ -36,22 +22,15 @@ wp.blocks.registerBlockVariation("core/group", {
 				'core/group',
 				{
 					align: 'wide',
-					style: {
-						spacing: {
-							margin: { top: '0', bottom: '0' },
-							padding: { top: '0', bottom: 'var(--wp--preset--spacing--small)', left: '0', right: '0' },
-							blockGap: 'var(--wp--preset--spacing--small)'
-						}
-					},
 					metadata: {
 						name: "Title"
 					},
 					layout: { type: 'flex', flexWrap: 'nowrap' }
 				},
 				[
-					['core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' }],
+					['core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } } }],
 					['core/heading', { textAlign: 'center', content: 'Location' }],
-					['core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' }]
+					['core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } } }]
 				]
 			],
 			[
@@ -74,7 +53,7 @@ wp.blocks.registerBlockVariation("core/group", {
 							isUserOverlayColor: false,
 							isDark: false,
 							layout: { type: 'constrained' },
-							className: "lsx-map-preview",
+							className: 'lsx-map-preview',
 							name: "Preview",
 						},
 						[
@@ -94,7 +73,7 @@ wp.blocks.registerBlockVariation("core/group", {
 						{
 							align: 'wide',
 							layout: { type: 'default' },
-							className: "hidden",
+							className: 'hidden',
 							metadata: {
 								name: "Map Details",
 								bindings: {
