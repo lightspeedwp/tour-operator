@@ -10,7 +10,6 @@ wp.blocks.registerBlockVariation('core/group', {
 				name: 'Country'
 			},
 			className: 'facts-country-query-wrapper',
-			
 			layout: {
 				type: 'flex',
 				flexWrap: 'nowrap'
@@ -20,7 +19,6 @@ wp.blocks.registerBlockVariation('core/group', {
 			[
 				'core/group',
 				{
-					
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap',
@@ -40,8 +38,6 @@ wp.blocks.registerBlockVariation('core/group', {
 					[
 						'core/paragraph',
 						{
-							
-							fontSize: 'x-small',
 							content: '<strong>Country:</strong>'
 						}
 					]
@@ -68,21 +64,6 @@ wp.blocks.registerBlockVariation('core/group', {
 										},
 									},
 								},
-							},
-							style: {
-								elements: {
-									link: {
-										color: {
-											text: 'var:preset|color|primary-700'
-										}
-									}
-								},
-								spacing: {
-									padding: {
-										top: '2px',
-										bottom: '2px'
-									}
-								}
 							},
 							content: ''
 						}

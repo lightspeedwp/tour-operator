@@ -10,7 +10,6 @@ wp.blocks.registerBlockVariation('core/group', {
 				name: 'Regions List'
 			},
 			className: 'facts-regions-query-wrapper',
-			
 			layout: {
 				type: 'flex',
 				flexWrap: 'nowrap'
@@ -19,8 +18,7 @@ wp.blocks.registerBlockVariation('core/group', {
 		innerBlocks: [
 			[
 				'core/group',
-				{
-					
+				{	
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap',
@@ -40,8 +38,6 @@ wp.blocks.registerBlockVariation('core/group', {
 					[
 						'core/paragraph',
 						{
-							
-							fontSize: 'x-small',
 							content: '<strong>Regions:</strong>'
 						}
 					]
@@ -69,21 +65,6 @@ wp.blocks.registerBlockVariation('core/group', {
 										},
 									},
 								},
-							},
-							style: {
-								elements: {
-									link: {
-										color: {
-											text: 'var:preset|color|primary-700'
-										}
-									}
-								},
-								spacing: {
-									padding: {
-										top: '2px',
-										bottom: '2px'
-									}
-								}
 							},
 							content: ''
 						}

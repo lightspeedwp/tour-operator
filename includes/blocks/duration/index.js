@@ -10,11 +10,6 @@ wp.blocks.registerBlockVariation("core/group", {
 				name: "Duration"
 			},
 			className: 'lsx-duration-wrapper',
-			style: {
-				spacing: {
-					blockGap: "5px",
-				},
-			},
 			layout: {
 				type: "flex",
 				flexWrap: "nowrap",
@@ -24,11 +19,6 @@ wp.blocks.registerBlockVariation("core/group", {
 			[
 				"core/group",
 				{
-					style: {
-						spacing: {
-							blockGap: "5px",
-						},
-					},
 					layout: {
 						type: "flex",
 						flexWrap: "nowrap",
@@ -48,15 +38,6 @@ wp.blocks.registerBlockVariation("core/group", {
 					[
 						"core/paragraph",
 						{
-							style: {
-								spacing: {
-									padding: {
-										top: "2px",
-										bottom: "2px",
-									},
-								},
-							},
-							fontSize: "x-small",
 							content: "<strong>Duration:</strong>",
 						},
 					],
@@ -65,11 +46,6 @@ wp.blocks.registerBlockVariation("core/group", {
 			[
 				"core/group",
 				{
-					style: {
-						spacing: {
-							blockGap: "5px",
-						},
-					},
 					layout: {
 						type: "flex",
 						flexWrap: "nowrap",
@@ -89,44 +65,12 @@ wp.blocks.registerBlockVariation("core/group", {
 									},
 								},
 							},
-							
-							style: {
-								elements: {
-									link: {
-										color: {
-											text: "var:preset|color|primary-700",
-										},
-									},
-								},
-								spacing: {
-									padding: {
-										top: "2px",
-										bottom: "2px",
-									},
-								},
-							},
 							content: "",
 						},
 					],
 					[
 						"core/paragraph",
 						{
-							
-							style: {
-								elements: {
-									link: {
-										color: {
-											text: "var:preset|color|primary-700",
-										},
-									},
-								},
-								spacing: {
-									padding: {
-										top: "2px",
-										bottom: "2px",
-									},
-								},
-							},
 							content: "Days",
 						},
 					],

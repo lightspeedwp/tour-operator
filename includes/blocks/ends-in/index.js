@@ -32,8 +32,6 @@ wp.blocks.registerBlockVariation('core/group', {
 						alt: ''
 					}],
 					['core/paragraph', {
-						
-						fontSize: 'x-small',
 						content: '<strong>Ends In:</strong>'
 					}]
 				]
@@ -56,21 +54,6 @@ wp.blocks.registerBlockVariation('core/group', {
 									args: {
 										key: 'ends_in'
 									}
-								}
-							}
-						},
-						style: {
-							elements: {
-								link: {
-									color: {
-										text: 'var:preset|color|primary-700'
-									}
-								}
-							},
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
 								}
 							}
 						},

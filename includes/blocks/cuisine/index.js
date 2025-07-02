@@ -29,8 +29,6 @@ wp.blocks.registerBlockVariation('core/group', {
 						[
 							['core/paragraph', {
 								align: 'center',
-								
-								fontSize: 'small',
 								content: '<strong>Cuisine</strong>'
 							}]
 						]
