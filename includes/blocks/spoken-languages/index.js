@@ -10,7 +10,6 @@ wp.blocks.registerBlockVariation('core/group', {
 				name: 'Spoken Languages',
 			},
 			className: 'lsx-spoken-languages-wrapper',
-			
 			layout: {
 				type: 'constrained'
 			}
@@ -31,8 +30,7 @@ wp.blocks.registerBlockVariation('core/group', {
 						url: lsxToEditor.assetsUrl + 'blocks/spoken-languages.png',
 						alt: ''
 					}],
-					['core/paragraph', {
-						
+					['core/paragraph', {	
 						content: '<strong>Spoken</strong> <strong>Languages:</strong>'
 					}]
 				]
@@ -55,19 +53,7 @@ wp.blocks.registerBlockVariation('core/group', {
 								}
 							}
 						},
-						style: {
-							elements: {
-								link: {
-									color: {
-										text: 'var:preset|color|primary-700'
-									}
-								}
-							},
-							typography: {
-								textTransform: 'capitalize'
-							}
-						},
-						}]
+					}]
 				]
 			]
 		],

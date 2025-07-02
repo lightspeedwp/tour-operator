@@ -10,7 +10,6 @@ wp.blocks.registerBlockVariation('core/group', {
 				name: 'Suggested Visitor Types',
 			},
 			className: 'lsx-suggested-visitor-types-wrapper',
-			
 			layout: {
 				type: 'constrained'
 			}
@@ -32,7 +31,6 @@ wp.blocks.registerBlockVariation('core/group', {
 						alt: ''
 					}],
 					['core/paragraph', {
-						
 						content: '<strong>Friendly</strong>:'
 					}]
 				]
@@ -56,19 +54,7 @@ wp.blocks.registerBlockVariation('core/group', {
 								}
 							}
 						},
-						style: {
-							elements: {
-								link: {
-									color: {
-										text: 'var:preset|color|primary-700'
-									}
-								}
-							},
-							typography: {
-								textTransform: 'capitalize'
-							}
-						},
-						}]
+					}]
 				]
 			]
 		],

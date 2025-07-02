@@ -16,7 +16,6 @@ wp.domReady(() => {
 				type: "constrained",
 			},
 			className: 'lsx-units-wrapper',
-			
 			tagName: "section"
 		},
 		innerBlocks: [
@@ -36,8 +35,7 @@ wp.domReady(() => {
 									selfStretch: 'fill',
 									flexSize: null,
 								},
-							},
-							backgroundColor: 'primary',
+							}
 						}
 					],
 					[
@@ -55,8 +53,7 @@ wp.domReady(() => {
 									selfStretch: 'fill',
 									flexSize: null,
 								},
-							},
-							backgroundColor: 'primary',
+							}
 						}
 					]
 				]

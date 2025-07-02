@@ -35,8 +35,6 @@ wp.blocks.registerBlockVariation('core/group', {
 						alt: ''
 					}],
 					['core/paragraph', {
-						
-						fontSize: 'x-small',
 						content: '<strong>Single supplement:</strong>'
 					}]
 				]
@@ -57,21 +55,6 @@ wp.blocks.registerBlockVariation('core/group', {
 							}
 						},
 						className: 'amount',
-						style: {
-							elements: {
-								link: {
-									color: {
-										text: 'var:preset|color|primary-700'
-									}
-								}
-							},
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
 						content: ''
 					}]
 				]

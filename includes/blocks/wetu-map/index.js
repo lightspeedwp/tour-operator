@@ -15,20 +15,6 @@ wp.blocks.registerBlockVariation('core/group', {
 					}
 				}
 			},
-			style: {
-				spacing: {
-					margin: {
-						top: 0,
-						bottom: 0
-					},
-					padding: {
-						top: "var:preset|spacing|medium",
-						bottom: "var:preset|spacing|medium",
-						left: 0,
-						right: 0
-					}
-				}
-			},
 			layout: {
 				type: "constrained"
 			}

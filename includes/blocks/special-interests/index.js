@@ -10,7 +10,6 @@ wp.blocks.registerBlockVariation('core/group', {
 				name: 'Special Interests',
 			},
 			className: 'lsx-special-interest-wrapper',
-			
 			layout: {
 				type: 'constrained'
 			}
@@ -34,7 +33,6 @@ wp.blocks.registerBlockVariation('core/group', {
 						linkDestination: 'none'
 					}],
 					['core/paragraph', {
-						
 						content: '<strong>Special interests</strong>:'
 					}]
 				]
@@ -58,19 +56,7 @@ wp.blocks.registerBlockVariation('core/group', {
 								}
 							}
 						},
-						style: {
-							elements: {
-								link: {
-									color: {
-										text: 'var:preset|color|primary-700'
-									}
-								}
-							},
-							typography: {
-								textTransform: 'capitalize'
-							}
-						},
-						}]
+					}]
 				]
 			]
 		],

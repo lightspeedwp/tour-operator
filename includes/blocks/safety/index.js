@@ -13,57 +13,56 @@ wp.blocks.registerBlockVariation(
 				className: 'lsx-safety-wrapper',
 			},
 			innerBlocks: [
-				[
-					'core/group',
-					{},
+				['core/group', {
+						layout: {
+							type: 'constrained'
+						}
+					},
 					[
-						[
-							'core/group',
-							{},
-							[
-								[
-									'core/paragraph',
-									{
-										content: '<strong>Safety</strong>',
-										align: 'center',
-									},
-								],
-							],
-						],
-						[
-							'core/group',
-							{},
-							[
-								[
-									'core/paragraph',
-									{
-									},
-								],
-							],
-						],
-					],
-				],
-				[
-					'core/buttons',
-					{},
-					[
-						[
-							'core/button',
-							{
-								width: 100,
+						['core/group', {
+								layout: {
+									type: 'constrained'
+								}
 							},
 							[
-								[
-									'core/paragraph',
-									{
-										content: 'View More',
-										className: 'has-background wp-element-button',
-									},
-								],
-							],
+								['core/paragraph', {
+									align: 'center',
+									content: '<strong>Safety</strong>'
+								}]
+							]
 						],
-					],
+						['core/group', {
+								
+								layout: {
+									type: 'constrained'
+								}
+							},
+							[
+								['core/paragraph', {
+									
+									metadata: {
+										bindings: {
+											content: {
+												source: 'lsx/post-meta',
+												args: {
+													key: 'safety'
+												}
+											}
+										}
+									}
+								}]
+							]
+						]
+					]
 				],
+				['core/buttons', {},
+					[
+						['core/button', {
+							width: 100,
+							content: 'View More'
+						}]
+					]
+				]
 			],
 			supports: {
 				renaming: false

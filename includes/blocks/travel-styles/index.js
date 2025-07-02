@@ -10,16 +10,14 @@ wp.blocks.registerBlockVariation('core/group', {
 				name: 'Travel Styles',
 			},
 			className: 'lsx-travel-style-wrapper',
-			
 		},
 		innerBlocks: [
 			['core/group', {
-					
-						layout: {
-							type: 'flex',
-							flexWrap: 'nowrap',
-							verticalAlignment: 'top'
-						}
+					layout: {
+						type: 'flex',
+						flexWrap: 'nowrap',
+						verticalAlignment: 'top'
+					}
 				},
 				[
 					['core/image', {
@@ -29,23 +27,11 @@ wp.blocks.registerBlockVariation('core/group', {
 						alt: ''
 					}],
 					['core/paragraph', {
-						
-						fontSize: 'x-small',
 						content: '<strong>Travel Styles:</strong>'
 					}]
 				]
 			],
 			['core/group', {
-					style: {
-						layout: {
-							selfStretch: 'fill',
-							flexSize: null
-						},
-						spacing: {
-							blockGap: '5px',
-							padding: {'left': '25px'}
-						}
-					},
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap'
