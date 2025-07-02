@@ -32,8 +32,6 @@ wp.blocks.registerBlockVariation('core/group', {
 						alt: ''
 					}],
 					['core/paragraph', {
-						
-						fontSize: 'x-small',
 						content: '<strong>Departs From:</strong>'
 					}]
 				]
@@ -56,21 +54,6 @@ wp.blocks.registerBlockVariation('core/group', {
 									args: {
 										key: 'departs_from'
 									}
-								}
-							}
-						},
-						style: {
-							elements: {
-								link: {
-									color: {
-										text: 'var:preset|color|primary-700'
-									}
-								}
-							},
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
 								}
 							}
 						},

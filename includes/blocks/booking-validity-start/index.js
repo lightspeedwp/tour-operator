@@ -60,22 +60,6 @@ wp.blocks.registerBlockVariation('core/group', {
 								}
 							}
 						},
-						
-						style: {
-							elements: {
-								link: {
-									color: {
-										text: 'var:preset|color|primary-700'
-									}
-								}
-							},
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
 						content: ''
 					}],
 					['core/paragraph', {

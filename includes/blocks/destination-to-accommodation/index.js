@@ -54,29 +54,8 @@ wp.blocks.registerBlockVariation('core/group', {
 									}
 								}
 							}
-						},
-						
-						style: {
-							elements: {
-								link: {
-									color: {
-										text: 'var:preset|color|primary-700',
-										':hover': {
-											color: {
-												text: 'var:preset|color|primary-900'
-											}
-										}
-									}
-								}
-							},
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
 						}
-						}]
+					}]
 				]
 			]
 		],
