@@ -33,8 +33,7 @@ wp.blocks.registerBlockVariation("core/group", {
 									selfStretch: 'fill',
 									flexSize: null,
 								},
-							},
-							backgroundColor: 'primary',
+							}
 						}
 					],
 					[
@@ -52,8 +51,7 @@ wp.blocks.registerBlockVariation("core/group", {
 									selfStretch: 'fill',
 									flexSize: null,
 								},
-							},
-							backgroundColor: 'primary',
+							}
 						}
 					]
 				]

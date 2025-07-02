@@ -9,27 +9,10 @@ wp.blocks.registerBlockVariation('core/group', {
 			metadata: {
 				name: 'Not Included',
 			},
-			style: {
-				spacing: {
-					blockGap: '0'
-				},
-				width: '50%'
-			},
 			className: 'lsx-not-included-wrapper'
 		},
 		innerBlocks: [
 			['core/paragraph', {
-				style: {
-					elements: {
-						link: {
-							color: {
-								text: 'var:preset|color|primary-700'
-							}
-						}
-					}
-				},
-				textColor: 'primary-700',
-				fontSize: 'medium',
 				content: '<strong>Price Excludes:</strong>'
 			}],
 			['core/paragraph', {

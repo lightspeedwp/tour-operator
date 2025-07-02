@@ -10,7 +10,6 @@ wp.blocks.registerBlockVariation('core/group', {
 				name: 'Minimum Child Age',
 			},
 			className: 'lsx-minimum-child-age-wrapper',
-			
 			layout: {
 				type: 'flex',
 				flexWrap: 'nowrap'
@@ -36,7 +35,6 @@ wp.blocks.registerBlockVariation('core/group', {
 						className: 'wp-image-122719'
 					}],
 					['core/paragraph', {
-						
 						content: '<strong>Minimum child age:</strong>'
 					}]
 				]
@@ -59,9 +57,7 @@ wp.blocks.registerBlockVariation('core/group', {
 								}
 							}
 						}
-						
-						
-						}]
+					}]
 				]
 			]
 		],

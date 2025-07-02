@@ -8,11 +8,6 @@ wp.blocks.registerBlockVariation("core/group", {
 		attributes: {
 			name: "Destination to Tour",
 			className: "lsx-destination-to-tour-wrapper",
-			style: {
-				spacing: {
-					blockGap: "5px",
-				},
-			},
 			layout: {
 				type: "constrained",
 			},
@@ -21,11 +16,6 @@ wp.blocks.registerBlockVariation("core/group", {
 			[
 				'core/group',
 				{
-					style: {
-						spacing: {
-							blockGap: '5px'
-						}
-					},
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap',
@@ -45,16 +35,7 @@ wp.blocks.registerBlockVariation("core/group", {
 					[
 						'core/paragraph',
 						{
-							content: '<strong>Destinations:</strong>',
-							style: {
-								spacing: {
-									padding: {
-										top: '2px',
-										bottom: '2px'
-									}
-								}
-							},
-							fontSize: 'x-small'
+							content: '<strong>Destinations:</strong>'
 						}
 					]
 				]
@@ -62,13 +43,6 @@ wp.blocks.registerBlockVariation("core/group", {
 			[
 				'core/group',
 				{
-					style: {
-						spacing: {
-							padding: {
-								left: '25px'
-							}
-						}
-					},
 					layout: {
 						type: 'flex',
 						flexWrap: 'nowrap'
@@ -88,23 +62,6 @@ wp.blocks.registerBlockVariation("core/group", {
 									},
 								},
 							},
-							className: "has-primary-color has-text-color has-link-color",
-							style: {
-								elements: {
-									link: {
-										color: {
-											text: "var:preset|color|primary-700",
-										},
-									},
-								},
-								spacing: {
-									padding: {
-										top: "2px",
-										bottom: "2px",
-									},
-								},
-							},
-							textColor: "primary-700",
 							content: "",
 						},
 					],

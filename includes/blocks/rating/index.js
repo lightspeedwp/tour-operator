@@ -10,7 +10,6 @@ wp.blocks.registerBlockVariation('core/group', {
 				name: 'Rating',
 			},
 			className: 'lsx-rating-wrapper',
-			
 			layout: {
 				type: 'flex',
 				flexWrap: 'nowrap'
@@ -57,26 +56,9 @@ wp.blocks.registerBlockVariation('core/group', {
 									}
 								}
 							}
-						},
-						
-						style: {
-							elements: {
-								link: {
-									color: {
-										text: 'var:preset|color|primary-700'
-									}
-								}
-							},
-							spacing: {
-								padding: {
-									top: '2px',
-									bottom: '2px'
-								}
-							}
-						},
-						}],
+						}
+					}],
 					['core/group', {
-							
 							layout: {
 								type: 'flex',
 								flexWrap: 'nowrap'
@@ -84,22 +66,6 @@ wp.blocks.registerBlockVariation('core/group', {
 						},
 						[
 							['core/paragraph', {
-								style: {
-									elements: {
-										link: {
-											color: {
-												text: 'var:preset|color|primary-700'
-											}
-										}
-									},
-									spacing: {
-										padding: {
-											top: '2px',
-											bottom: '2px'
-										}
-									}
-								},
-								fontSize: 'tiny',
 								content: '('
 							}],
 							['core/paragraph', {
@@ -112,41 +78,9 @@ wp.blocks.registerBlockVariation('core/group', {
 											}
 										}
 									}
-								},
-								style: {
-									elements: {
-										link: {
-											color: {
-												text: 'var:preset|color|primary-700'
-											}
-										}
-									},
-									spacing: {
-										padding: {
-											top: '2px',
-											bottom: '2px'
-										}
-									}
-								},
-								fontSize: 'tiny'
+								}
 							}],
 							['core/paragraph', {
-								style: {
-									elements: {
-										link: {
-											color: {
-												text: 'var:preset|color|primary-700'
-											}
-										}
-									},
-									spacing: {
-										padding: {
-											top: '2px',
-											bottom: '2px'
-										}
-									}
-								},
-								fontSize: 'tiny',
 								content: ')'
 							}]
 						]

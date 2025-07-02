@@ -7,10 +7,9 @@ wp.blocks.registerBlockVariation('core/group', {
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
-				name: 'Number if Rooms',
+				name: 'Number of Rooms',
 			},
 			className: 'lsx-number-of-rooms-wrapper',
-			
 			layout: {
 				type: 'flex',
 				flexWrap: 'nowrap'
@@ -33,8 +32,7 @@ wp.blocks.registerBlockVariation('core/group', {
 						alt: ''
 					}],
 					['core/paragraph', {
-						
-						content: '<strong>Number of units</strong>:'
+						content: '<strong>Number of Units</strong>:'
 					}]
 				]
 			],

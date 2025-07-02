@@ -14,26 +14,13 @@ wp.blocks.registerBlockVariation("core/group", {
 				type: "flex",
 				flexWrap: "nowrap",
 			},
-			className: 'lsx-price-wrapper',
-			style: {
-				spacing: {
-					blockGap: "5px",
-				},
-			},
+			className: 'lsx-price-wrapper'
 		},
 		innerBlocks: [
 			[
 				"core/paragraph",
 				{
-					padding: {
-						top: "2px",
-						bottom: "2px",
-					},
-					typography: {
-						fontSize: "x-small",
-					},
 					content: "<strong>From:</strong>",
-					className: 'has-x-small-font-size'
 				},
 			],
 			[
@@ -49,15 +36,7 @@ wp.blocks.registerBlockVariation("core/group", {
 							},
 						},
 					},
-					className: 'amount',
-					padding: {
-						top: "2px",
-						bottom: "2px",
-					},
-					color: {
-						link: "primary-700",
-						text: "primary-700",
-					},
+					className: 'amount'
 				},
 			],
 		],

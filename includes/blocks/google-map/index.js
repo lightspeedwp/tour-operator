@@ -22,22 +22,15 @@ wp.blocks.registerBlockVariation("core/group", {
 				'core/group',
 				{
 					align: 'wide',
-					style: {
-						spacing: {
-							margin: { top: '0', bottom: '0' },
-							padding: { top: '0', bottom: 'var(--wp--preset--spacing--small)', left: '0', right: '0' },
-							blockGap: 'var(--wp--preset--spacing--small)'
-						}
-					},
 					metadata: {
 						name: "Title"
 					},
 					layout: { type: 'flex', flexWrap: 'nowrap' }
 				},
 				[
-					['core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' }],
+					['core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } } }],
 					['core/heading', { textAlign: 'center', content: 'Location' }],
-					['core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } }, backgroundColor: 'primary' }]
+					['core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } } }]
 				]
 			],
 			[
