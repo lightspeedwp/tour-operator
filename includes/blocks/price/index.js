@@ -43,6 +43,11 @@ wp.blocks.registerBlockVariation("core/group", {
 		isDefault: false,
 		supports: {
 			renaming: false
+		},
+		example: {
+			innerBlocks: [
+				['core/paragraph', { content: 'Preview of a highlight box.' }],
+			],
 		}
 	});
 

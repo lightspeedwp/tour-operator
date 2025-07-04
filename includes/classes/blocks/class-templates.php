@@ -47,7 +47,7 @@ class Templates {
 			'archive-accommodation' => [
 				'title'       => __( 'Accommodation Archive', 'tour-operator' ),
 				'description' => __( 'Displays all the accommodation.', 'tour-operator' ),
-				'post_types'  => ['accommodations'],
+				'post_types'  => ['accommodation'],
 			],
 			'single-destination'  => [
 				'title'       => __( 'Single Destination', 'tour-operator' ),
@@ -57,7 +57,7 @@ class Templates {
 			'archive-destination' => [
 				'title'       => __( 'Destination Archive', 'tour-operator' ),
 				'description' => __( 'Displays all the destinations.', 'tour-operator' ),
-				'post_types'  => ['destinations'],
+				'post_types'  => ['destination'],
 			],
 			'single-tour'  => [
 				'title'       => __( 'Single Tour', 'tour-operator' ),
@@ -67,7 +67,7 @@ class Templates {
 			'archive-tour' => [
 				'title'       => __( 'Tour Archive', 'tour-operator' ),
 				'description' => __( 'Displays all the tours.', 'tour-operator' ),
-				'post_types'  => ['tours'],
+				'post_types'  => ['tour'],
 			],
 			'single-region' => [
 				'title'       => __( 'Single Region', 'tour-operator' ),

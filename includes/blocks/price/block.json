@@ -1,8 +1,13 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/price",
-  "title": "Price",
-  "category": "lsx-tour-operator",
-  "editorScript": "lsx-to-block-price"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "lsx-tour-operator/price",
+	"title": "Price",
+	"category": "lsx-tour-operator",
+	"editorScript": "lsx-to-block-price",
+	"example": {
+		"attributes": {
+			"content": "Preview of my block"
+		}
+	}
 }
