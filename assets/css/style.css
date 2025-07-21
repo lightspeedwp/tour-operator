@@ -159,25 +159,17 @@
 }
 
 /* Additional information specific styles */
-/* Fast Facts Wrapper */
-.fast-facts-wrapper > .wp-block-group .wp-block-group:first-child {
-  /* Prevent group from shrinking */
-}
-
-/* Style the image icon */
-/* Styling for the label (e.g., "Special Interests:") */
 /* Styling for the flowing text */
 .fast-facts-wrapper > .wp-block-group .wp-block-group:last-child {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
-  /* Allow the container to use available space */
+  /* Break long words when needed */
+  flex: 1;
 }
 
-/* Specific styling for the text content */
-/* Facilities List */
+.facilities-list {
+  padding-left: 0;
+}
+
 .facilities-list li {
-  margin-left: 10px;
   list-style: none;
   /* Remove default list marker */
   position: relative;
@@ -188,8 +180,7 @@
   content: "";
   position: absolute;
   top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
   /* Center the icon vertically */
   width: 20px;
   /* Adjust the size of the tick icon */
@@ -345,8 +336,7 @@ button.facetwp-reset {
 }
 @media only screen and (max-width: 480px) {
   .facet-row .wp-block-group {
-    -ms-flex-wrap: wrap !important;
-        flex-wrap: wrap !important;
+    flex-wrap: wrap !important;
   }
   .facet-row .wp-block-group p {
     width: 100% !important;
@@ -359,8 +349,7 @@ button.facetwp-reset {
     /* Adjust this value as needed */
   }
   .facet-row {
-    -ms-flex-wrap: wrap !important;
-        flex-wrap: wrap !important;
+    flex-wrap: wrap !important;
     margin-left: -20px !important;
     margin-right: -20px !important;
   }
@@ -466,9 +455,7 @@ button.facetwp-reset {
   margin-top: calc((2.25rem - 17px) / 2);
   padding: 0;
   text-shadow: none;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  -webkit-transition: border 300ms ease;
+  transform: translateY(-50%);
   transition: border 300ms ease;
   width: 4rem;
   z-index: 3;
@@ -484,9 +471,7 @@ button.facetwp-reset {
   position: absolute;
   text-rendering: auto;
   top: 47%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  -webkit-transition: color 300ms ease;
+  transform: translateY(-50%);
   transition: color 300ms ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -533,20 +518,11 @@ button.facetwp-reset {
 }
 
 .lsx-to-slider .slick-dots:not(.dropdown-menu) {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  align-items: center;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
+  flex-flow: row wrap;
   height: auto;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
   list-style: none;
   margin: 1rem 0 0;
   padding: 0;
@@ -566,7 +542,6 @@ button.facetwp-reset {
   font: 0/0 a;
   height: 12px;
   border-radius: 50%;
-  -webkit-transition: all 300ms ease-in-out;
   transition: all 300ms ease-in-out;
   width: 12px;
 }
@@ -616,12 +591,8 @@ button.facetwp-reset {
     /* Collapsed state for the second wp-block-group */
   }
   .single-tour-operator .toggle-button {
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
     display: inline-flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    align-items: center;
     padding: 5px;
     background: none;
     border: none;
@@ -639,13 +610,11 @@ button.facetwp-reset {
     display: none; /* Hide the content */
   }
   .fast-facts-wrapper > .wp-block-group {
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap; /* Allow wrapping for better readability */
+    flex-wrap: wrap; /* Allow wrapping for better readability */
     gap: 5px;
   }
   .fast-facts-wrapper > .wp-block-group .wp-block-group.is-layout-flex:last-child {
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap; /* Allow text to wrap on smaller screens */
+    flex-wrap: wrap; /* Allow text to wrap on smaller screens */
   }
 }
 /* The Modal (background) */
@@ -754,4 +723,5 @@ button.facetwp-reset {
 .lsx-units-wrapper .hidden {
   display: none;
 }
-/*# sourceMappingURL=maps/style.css.map */
+
+/*# sourceMappingURL=style.css.map */
