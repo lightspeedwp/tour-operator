@@ -29,6 +29,8 @@
   },
   "homepage": "https://github.com/lightspeeddevelopment/tour-operator#readme",
   "devDependencies": {
+    "@babel/preset-react": "^7.27.1",
+    "@wordpress/scripts": "^30.19.0",
     "gulp": "^5.0.0",
     "gulp-autoprefixer": "^9.0.0",
     "gulp-gettext": "^0.3.0",
@@ -45,8 +47,8 @@
     "jshint": "^2.12.0"
   },
   "dependencies": {
+    "@wordpress/blocks": "^14.15.0",
     "acorn": "^8.0.1",
-    "cgb-scripts": "^1.23.1",
     "classnames": "^2.2.6",
     "clean-css": ">=4.2.3",
     "extend": "^3.0.2",
