@@ -27,23 +27,35 @@ class Registration {
 	 * @return void
 	 */
 	public function register_block_json_files() {
-
 		$directory = LSX_TO_PATH . 'includes/blocks/';
 
 		foreach ( glob( $directory . '*', GLOB_ONLYDIR ) as $key ) {
-
 			$key  = basename( $key );
+			$block_folder = $directory . $key;
+			$build_folder = $block_folder . '/build';
 
-			wp_register_script(
-				'lsx-to-block-' . $key,  // Handle for the script.
-				LSX_TO_URL . 'includes/blocks/' . $key . '/index.js', // Path to your JavaScript file.
-				array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),  // Dependencies.
-				filemtime( LSX_TO_PATH . 'includes/blocks/' . $key . '/index.js' ), // Versioning with file modification time.
-				[ 'in_footer' => true ]
-			);
+			if ( is_dir( $build_folder ) ) {
+				$js_file = $build_folder . '/index.js';
+				$block_json_path = $build_folder;
+				$js_url = LSX_TO_URL . 'includes/blocks/' . $key . '/build/index.js';
+			} else {
+				$js_file = $block_folder . '/index.js';
+				$block_json_path = $block_folder;
+				$js_url = LSX_TO_URL . 'includes/blocks/' . $key . '/index.js';
+			}
+
+			if ( file_exists( $js_file ) ) {
+				wp_register_script(
+					'lsx-to-block-' . $key,
+					$js_url,
+					array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lsx-to-block-general-variations' ),
+					filemtime( $js_file ),
+					[ 'in_footer' => true ]
+				);
+			}
 
 			// Registers block using the metadata loaded from block.json.
-			register_block_type( LSX_TO_PATH . '/includes/blocks/' . $key );
+			register_block_type( $block_json_path );
 		}
 	}
 
@@ -64,7 +76,7 @@ class Registration {
 
 		// Make sure the script is only enqueued in the block editor.
 		if ( is_admin() && function_exists( 'register_block_type' ) ) {
-			
+
 			foreach ( $scripts as $slug => $restrictions ) {
 				wp_enqueue_script(
 					'lsx-to-block-' . $slug . '-variations',  // Handle for the script.
