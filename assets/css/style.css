@@ -261,22 +261,6 @@ body .fs-arrow {
   border-radius: 4px;
 }
 
-.fs-wrap .fs-search input::-webkit-input-placeholder {
-  font-size: var(--wp--preset--font-size--x-small);
-}
-
-.fs-wrap .fs-search input::-moz-placeholder {
-  font-size: var(--wp--preset--font-size--x-small);
-}
-
-.fs-wrap .fs-search input:-ms-input-placeholder {
-  font-size: var(--wp--preset--font-size--x-small);
-}
-
-.fs-wrap .fs-search input::-ms-input-placeholder {
-  font-size: var(--wp--preset--font-size--x-small);
-}
-
 .fs-wrap .fs-search input::placeholder {
   font-size: var(--wp--preset--font-size--x-small);
 }
