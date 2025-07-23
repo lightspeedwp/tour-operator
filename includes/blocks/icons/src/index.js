@@ -109,14 +109,16 @@ registerBlockType('lsx-tour-operator/icons', {
                             <div
                                 className="block-icon-svg"
                             >
-                                {icons[localType][localName] && (
-                                    (() => {
-                                        const IconComponent = icons[localType][localName];
-                                        return (
-                                            <IconComponent/>
-                                        );
-                                    })()
-                                )}
+                                {(() => {
+                                    const IconComponent = icons[localType]?.[localName];
+                                    if (!IconComponent) return null;
+                                    try {
+                                        return <IconComponent />;
+                                    } catch (error) {
+                                        console.error(`Error rendering icon ${localType}/${localName}:`, error);
+                                        return <span>Icon rendering failed</span>;
+                                    }
+                                })()}
                             </div>
                             <button type="button" style={{ display: 'block', margin: '12px auto', padding: '6px 16px', background: '#8B5CF6', color: 'white', border: 'none', borderRadius: 4, cursor: 'pointer' }} onClick={handleInsert}>Insert</button>
                         </div>
