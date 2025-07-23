@@ -13,7 +13,12 @@ const IconsBlockIcon = () => (
     </svg>
 );
 
-const iconTypes = Object.keys(icons);
+// Validate icons object
+if (!icons || typeof icons !== 'object' || Object.keys(icons).length === 0) {
+    console.error('Icons not properly loaded. Please run generate-icons.js');
+}
+
+const iconTypes = icons ? Object.keys(icons) : [];
 
 registerBlockType('lsx-tour-operator/icons', {
     title: 'Icons',
