@@ -84,7 +84,9 @@ registerBlockType('lsx-tour-operator/icons', {
                             placeholder="Search icons..."
                             value={filter}
                             onChange={e => setFilter(e.target.value)}
-                            style={{ width: '100%', marginBottom: 8, padding: 8, fontSize: '1rem', boxSizing: 'border-box', border: '1px solid #eee' }}
+                            className="lsx-icons-search"
+                            aria-label="Search icons"
+                            autoComplete="off"
                         />
                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', maxHeight: 200, overflowY: 'auto', border: '1px solid #eee', padding: 8, fontSize: '1rem' }}>
                             {filteredIconList.map(name => {
@@ -106,7 +108,6 @@ registerBlockType('lsx-tour-operator/icons', {
                         <div style={{ padding: '16px 0', textAlign: 'center' }}>
                             <div
                                 className="heroicon-svg"
-                                style={{  display: 'inline-block' }}
                             >
                                 {icons[localType][localName] && (
                                     (() => {
