@@ -107,7 +107,7 @@ registerBlockType('lsx-tour-operator/icons', {
                         </div>
                         <div style={{ padding: '16px 0', textAlign: 'center' }}>
                             <div
-                                className="heroicon-svg"
+                                className="block-icon-svg"
                             >
                                 {icons[localType][localName] && (
                                     (() => {
@@ -124,7 +124,7 @@ registerBlockType('lsx-tour-operator/icons', {
                 ) : (
                     <div style={{ textAlign: 'center', cursor: isSelected ? 'pointer' : 'default' }} onClick={isSelected ? handleEdit : undefined}>
                         <div
-                            className="heroicon-svg"
+                            className="block-icon-svg"
                             style={{ fontSize: 'inherit', display: 'inline-block' }}
                         >
                             {localName && icons[localType][localName] && (
@@ -149,7 +149,7 @@ registerBlockType('lsx-tour-operator/icons', {
         return (
             <div {...useBlockProps.save()}>
                 <span
-                    className="heroicon-svg"
+                    className="block-icon-svg"
                     style={{ fontSize: 'inherit', display: 'inline-block' }}
                 >
                     {IconComponent && (
