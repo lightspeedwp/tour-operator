@@ -146,18 +146,16 @@ registerBlockType('lsx-tour-operator/icons', {
     save: (props) => {
         const { attributes } = props;
         const { iconType, iconName } = attributes;
-        if (!iconName) return null;
+        if (!iconName || !icons[iconType] || !icons[iconType][iconName]) return null;
         const IconComponent = icons[iconType][iconName];
         return (
             <div {...useBlockProps.save()}>
-                <span
-                    className="block-icon-svg"
-                    style={{ fontSize: 'inherit', display: 'inline-block' }}
-                >
-                    {IconComponent && (
-                        <IconComponent/>
-                    )}
-                </span>
+            <span
+                className="block-icon-svg"
+                style={{ fontSize: 'inherit', display: 'inline-block' }}
+            >
+                <IconComponent />
+            </span>
             </div>
         );
     }
