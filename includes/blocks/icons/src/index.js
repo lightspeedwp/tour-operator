@@ -1,6 +1,6 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { useState } from '@wordpress/element';
-import { PanelBody, __experimentalRadioGroup as RadioGroup, __experimentalRadio as Radio } from '@wordpress/components';
+import { PanelBody, RadioControl } from '@wordpress/components';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import icons from './icons.react.js';
 
@@ -58,18 +58,18 @@ registerBlockType('lsx-tour-operator/icons', {
             <div {...blockProps}>
                 <InspectorControls>
                     <PanelBody title="Icon Settings" initialOpen={true}>
-                        <RadioGroup
+                        <RadioControl
                             label="Type"
                             onChange={updateType}
-                            checked={localType}
+							selected={localType}
+							options={iconTypes.map(type => ({
+								label: type.charAt(0).toUpperCase() + type.slice(1),
+								value: type
+							}))}
                             disabled={
                                 !chooserOpen && !iconTypes.every(type => icons[type][localName])
                             }
-                        >
-                            {iconTypes.map(type => (
-                                <Radio key={type} value={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</Radio>
-                            ))}
-                        </RadioGroup>
+						/>
                     </PanelBody>
                 </InspectorControls>
                 {chooserOpen ? (
