@@ -11,7 +11,8 @@ reviews:
   auto_review:
     enabled: true
     drafts: false
-    base_branches: [ "*" ]
+    base_branches:
+      - '.*'
   path_instructions:
     - path: '**/*.{php,js,ts,jsx,tsx}'
       instructions: |
