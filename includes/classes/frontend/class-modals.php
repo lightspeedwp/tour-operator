@@ -22,7 +22,7 @@ class Modals {
 	 * @since 1.0.0
 	 * @var      boolean|Frontend
 	 */
-	public $enable_modals = false;
+	public $options = [];
 
 	/**
 	 * Holds the modal ids for output in the footer
@@ -36,7 +36,7 @@ class Modals {
 	 * Tour Operator Admin constructor.
 	 */
 	public function __construct() {
-		$this->enable_modals = false;
+		$this->options = get_option( 'lsx_to_settings', [] );
 
 		add_action( 'wp_loaded', [ $this, 'init' ], 10 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ), 1 );
@@ -51,10 +51,8 @@ class Modals {
 	 * @return void
 	 */
 	public function init() {
-		$this->enable_modals = true;
-
 		add_filter( 'lsx_to_connected_list_item', array( $this, 'add_modal_attributes' ), 10, 3 );
-		add_action( 'wp_footer', array( $this, 'output_modals2' ), 10 );
+		add_action( 'wp_footer', array( $this, 'output_modals' ), 10 );
 	}
 
 	/**
@@ -70,19 +68,16 @@ class Modals {
 			$prefix = '';
 			$suffix = '.min';
 		}*/
-
-		if ( $this->enable_modals ) {
-			wp_enqueue_script( 'lsx-to-modals', LSX_TO_URL . 'assets/js/' . $prefix . 'modals' . $suffix . '.js', array( 'jquery' ), LSX_TO_VER, true );
-		}
+		
+		wp_register_script( 'lsx-to-modals', LSX_TO_URL . 'assets/js/' . $prefix . 'modals' . $suffix . '.js', array( 'jquery' ), LSX_TO_VER, true );
 	}
 
 	/**
 	 * a filter to overwrite the links with modal tags.
 	 */
 	public function add_modal_attributes( $html, $post_id, $link ) {
-
-		do_action( 'qm/debug', [ $html, $post_id, $link ] );
-		if ( true === $this->enable_modals && true === $link ) {
+		$post_type = get_post_type( $post_id );
+		if ( isset( $this->options[ $post_type . '_enable_modals' ] ) && 1 === (int) $this->options[ $post_type . '_enable_modals' ] && true === $link ) {
 			$html = '<a class="" href="#to-modal-' . $post_id . '">' . get_the_title( $post_id ) . '</a>';
 
 			if ( ! in_array( $post_id, $this->modal_ids ) ) {
@@ -96,54 +91,13 @@ class Modals {
 	/**
 	 * a filter to overwrite the links with modal tags.
 	 */
-	public function output_modals( $content ) {
-		if ( false === $this->enable_modals || empty( $this->modal_ids ) ) {
-			return $content;
-		}
-
-		foreach ( $this->modal_ids as $post_id ) {
-			?>
-			<dialog id="to-modal-<?php echo esc_attr( $post_id ); ?>" class="wp-block-hm-popup" data-trigger="click" data-expiry="7" data-backdrop-opacity="0.75">
-				<?php
-					$post_type = get_post_type( $post_id );
-					switch ( $post_type ) {
-						case 'accommodation':
-							$template = '<!-- wp:pattern {"slug":"lsx-tour-operator/accommodation-card"} /-->';	
-						break;
-						
-						case 'destination':
-							$template = '<!-- wp:pattern {"slug":"lsx-tour-operator/destination-card"} /-->';	
-						break;
-
-						case 'tour':
-							$template = '<!-- wp:pattern {"slug":"lsx-tour-operator/tour-card"} /-->';	
-						break;
-
-						default:
-							$template = '<p>' . __( 'Please select a pattern or customize your layout with the Tour Operator blocks.', 'tour-operator' ) . '</p>';
-						break;
-					}
-					
-					echo do_blocks( $template );
-				?>
-			</dialog>
-			<?php
-		}
-
-		$temp = ob_get_clean();
-
-		 echo ( $temp );
-	}
-
-	/**
-	 * a filter to overwrite the links with modal tags.
-	 */
-	public function output_modals2( $content = '' ) {
-		if ( false === $this->enable_modals || empty( $this->modal_ids ) ) {
+	public function output_modals( $content = '' ) {
+		if ( empty( $this->modal_ids ) ) {
 			return;
 		}
 
-		do_action( 'qm/debug', $this->modal_ids );
+		wp_enqueue_script( 'lsx-to-modals' );
+
 
 		$modal_args  = [
 			'post__in' => $this->modal_ids,
