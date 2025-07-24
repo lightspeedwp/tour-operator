@@ -29,6 +29,8 @@ const bootstrap = () => {
 			}
 		} );
 
+		console.log(popup?.dataset.trigger);
+
 		// Handle click trigger.
 		if ( popup?.dataset.trigger === 'click' ) {
 			document

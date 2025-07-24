@@ -36,21 +36,54 @@ class Modals {
 	 * Tour Operator Admin constructor.
 	 */
 	public function __construct() {
-		$this->enable_modals = true;
-		add_filter( 'lsx_to_connected_list_item', array( $this, 'add_modal_attributes' ), 10, 3 );
+		$this->enable_modals = false;
 
-		add_action( 'wp_footer', array( $this, 'output_modals2' ), 10 );
+		add_action( 'wp_loaded', [ $this, 'init' ], 10 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ), 1 );
 
 		//Register our mega menu template part area.
 		add_filter( 'default_wp_template_part_areas', [ $this, 'register_template_part_category' ], 10, 1 );
 	}
 
 	/**
+	 * Runs after the WP query is setup.
+	 *
+	 * @return void
+	 */
+	public function init() {
+		$this->enable_modals = true;
+
+		add_filter( 'lsx_to_connected_list_item', array( $this, 'add_modal_attributes' ), 10, 3 );
+		add_action( 'wp_footer', array( $this, 'output_modals2' ), 10 );
+	}
+
+	/**
+	 * Register and enqueue admin-specific style sheet.
+	 *
+	 * @return    null
+	 */
+	public function enqueue_stylescripts() {
+		//if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
+			$prefix = 'src/';
+			$suffix = '';
+		/*} else {
+			$prefix = '';
+			$suffix = '.min';
+		}*/
+
+		if ( $this->enable_modals ) {
+			wp_enqueue_script( 'lsx-to-modals', LSX_TO_URL . 'assets/js/' . $prefix . 'modals' . $suffix . '.js', array( 'jquery' ), LSX_TO_VER, true );
+		}
+	}
+
+	/**
 	 * a filter to overwrite the links with modal tags.
 	 */
 	public function add_modal_attributes( $html, $post_id, $link ) {
+
+		do_action( 'qm/debug', [ $html, $post_id, $link ] );
 		if ( true === $this->enable_modals && true === $link ) {
-			$html = '<a href="#to-modal-' . $post_id . '">' . get_the_title( $post_id ) . '</a>';
+			$html = '<a class="" href="#to-modal-' . $post_id . '">' . get_the_title( $post_id ) . '</a>';
 
 			if ( ! in_array( $post_id, $this->modal_ids ) ) {
 				$this->modal_ids[] = $post_id;
