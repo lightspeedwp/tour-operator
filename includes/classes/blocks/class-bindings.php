@@ -183,29 +183,34 @@ class Bindings {
 					}
 					
 					$value = get_post_meta( get_the_ID(), $source_args['key'], $single );
-			
-					if ( is_array( $value ) && ! empty( $value ) ) {
-						$value  = array_filter( $value );
-						$values = array();
-						foreach( $value as $pid ) {
-							if ( true === $only_parents ) {
-								$pid_parent = get_post_parent( $pid );
-								if ( null !== $pid_parent ) {
-									continue;
-								}
-							}
 
-							$values[] = '<a href="' . get_permalink( $pid ) . '">' . get_the_title( $pid ) . '</a>';
-						}
-						$value = implode( ', ', $values );
-					} else if ( ! is_array( $value ) && '' !== $value ) {
-						
-						switch ( $source_args['key'] ) {
-							default:
-								$value = '<a href="' . get_permalink( $value ) . '">' . get_the_title( $value ) . '</a>';
-							break;	
-						}
+					if ( false === $value || empty( $value ) ) {
+						break;
 					}
+
+					if ( ! is_array( $value ) ) {
+						$value = [ $value ];
+					}
+			
+					$value  = array_filter( $value );
+					$values = array();
+					foreach( $value as $pid ) {
+						if ( true === $only_parents ) {
+							$pid_parent = get_post_parent( $pid );
+							if ( null !== $pid_parent ) {
+								continue;
+							}
+						}
+
+						$values[] = apply_filters( 'lsx_to_connected_list_item', '<a href="' . get_permalink( $pid ) . '">' . get_the_title( $pid ) . '</a>', $pid, true );
+					}
+
+					$seperator = '';
+					if ( 1 < count( $values ) ) {
+						$seperator = ', ';
+					}
+					$value = implode( $seperator, $values );
+					
 				break;
 
 			}
