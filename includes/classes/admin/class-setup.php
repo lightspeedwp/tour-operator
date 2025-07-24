@@ -357,6 +357,13 @@ class Setup {
 			$allowedtags['noscript'] = array();
 		}
 
+		// For the modals.
+		$allowedtags['dialog'] = [
+			'open' => [
+				'valueless' => 'y',
+			],
+		];
+
 		return $allowedtags;
 	}
 
