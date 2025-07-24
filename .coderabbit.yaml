@@ -11,5 +11,14 @@ reviews:
   auto_review:
     enabled: true
     drafts: false
+  path_instructions:
+    - path: '**/*.{php,js,ts,jsx,tsx}'
+      instructions: |
+        - Follow WordPress coding standards.
+        - Escape output and sanitize input.
+        - Follow plugin security best practices.
+        - Enforce prefixing for all functions, classes, and constants to avoid naming collisions.
+        - Check for accessibility best practices in UI code (labels, ARIA attributes, color contrast).
+        - Ensure inline documentation/comments for all custom functions and classes.
 chat:
   auto_reply: true
