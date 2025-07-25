@@ -115,10 +115,9 @@ class Admin extends Tour_Operator {
 		}
 
 
-		// TO Pages: Add-ons, Help, Settings and Welcome
+		// TO Pages: Settings
 		// WP Terms: create/edit term
 		$allowed_pages = array(
-			'tour-operator_page_to-help',
 			'settings_page_lsx-to-settings',
 			'term.php',
 		);
@@ -145,7 +144,7 @@ class Admin extends Tour_Operator {
 	 * @return void
 	 */
 	public function cpt_relations( $field_id, $field ) {
-		
+
 		if ( in_array( $field_id, $this->connections ) ) {
 			$connected_id    = get_the_ID();
 			$previous_values = get_post_meta( $connected_id, $field_id, true );
@@ -290,7 +289,7 @@ class Admin extends Tour_Operator {
 			if ( isset( $_POST['thumbnail'] ) && ! empty( $_POST['thumbnail'] ) ) {
 				$thumbnail_meta = sanitize_text_field( wp_unslash( $_POST['thumbnail'] ) );
 				$thumbnail_meta = ! empty( $thumbnail_meta ) ? $thumbnail_meta : '';
-	
+
 				if ( empty( $thumbnail_meta ) ) {
 					delete_term_meta( $term_id, 'thumbnail' );
 				} else {
@@ -302,7 +301,7 @@ class Admin extends Tour_Operator {
 			if ( isset( $_POST['tagline'] ) && ! empty( $_POST['tagline'] ) ) {
 				$meta = sanitize_text_field( wp_unslash( $_POST['tagline'] ) );
 				$meta = ! empty( $meta ) ? $meta : '';
-	
+
 				if ( empty( $meta ) ) {
 					delete_term_meta( $term_id, 'tagline' );
 				} else {

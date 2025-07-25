@@ -44,17 +44,6 @@ class Settings {
 	 */
 	public function __construct() {
 		$this->options = tour_operator()->options;
-		
-		// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		if ( isset( $_GET['welcome-page'] ) ) {
-			// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			$display_page = sanitize_text_field( wp_unslash( $_GET['welcome-page'] ) );
-			$display_page = ! empty( $display_page ) ? $display_page : '';
-		}
-
-		if ( ! empty( $display_page ) ) {
-			add_action( 'admin_menu', array( $this, 'create_welcome_page' ) );
-		}
 
 		add_action( 'admin_menu', array( $this, 'create_settings_page' ), 100 );
 		add_action( 'admin_init', array( $this, 'save_settings' ), 1 );
@@ -161,20 +150,6 @@ class Settings {
 	}
 
 	/**
-	 * Add the welcome page
-	 */
-	public function create_welcome_page() {
-		add_submenu_page( 'tour-operator', esc_html__( 'Welcome', 'tour-operator' ), esc_html__( 'Welcome', 'tour-operator' ), 'manage_options', 'lsx-to-settings', array( $this, 'welcome_page' ) );
-	}
-
-	/**
-	 * Display the welcome page
-	 */
-	public function welcome_page() {
-		include( LSX_TO_PATH . 'includes/partials/welcome.php' );
-	}
-
-	/**
 	 * Generate the settings page.
 	 *
 	 * @return void
@@ -226,7 +201,7 @@ class Settings {
 	 */
 	public function fusion_table_settings( $tab = 'general' ) {
 		if ( 'fusion' === $tab ) {
-			$settings = $this->get_settings_fields();		
+			$settings = $this->get_settings_fields();
 			echo wp_kses_post( $this->output_fields( $settings['fusion'] ) );
 		}
 	}
@@ -282,7 +257,7 @@ class Settings {
 		$fields = array();
 		if ( ! empty( $section ) ) {
 			foreach ( $section as $field_id => $field ) {
-				
+
 				$field_html = '<tr class="form-field ' . sanitize_key( $field_id ) . '">';
 				switch( $field['type'] ) {
 					case 'checkbox':
@@ -309,7 +284,7 @@ class Settings {
 				$fields[] = $field_html;
 			}
 		}
-		return implode( '', $fields ); 
+		return implode( '', $fields );
 	}
 
 	/**
@@ -353,7 +328,7 @@ class Settings {
 			$field[] = '<br /><small>' . $params['desc'] . '</small>';
 		}
 		$field[] = '</td>';
-		
+
 		return implode( '', $field );
 	}
 
@@ -393,7 +368,7 @@ class Settings {
 			$field[] = '<small>' . $params['desc'] . '</small>';
 		}
 		$field[] = '</td>';
-		
+
 		return implode( '', $field );
 	}
 
@@ -429,7 +404,7 @@ class Settings {
 			$field[] = '<br /><small>' . $params['desc'] . '</small>';
 		}
 		$field[] = '</td>';
-		
+
 		return implode( '', $field );
 	}
 
@@ -492,7 +467,7 @@ class Settings {
 			$field[] = '<br /><small>' . $params['desc'] . '</small>';
 		}
 		$field[] = '</td>';
-		
+
 		return implode( '', $field );
 	}
 
@@ -519,7 +494,7 @@ class Settings {
 		if ( false === wp_verify_nonce( $nonce, 'lsx_to_settings_save' ) ) {
 			return;
 		}
-		
+
 		$settings_fields = $this->get_settings_fields();
 		$settings_values = array();
 		foreach ( $settings_fields as $section => $fields ) {
@@ -532,7 +507,7 @@ class Settings {
 					} else if ( isset( $field['default'] ) ) {
 						$save = $field['default'];
 					}
-	
+
 					$settings_values[ $key ] = $save;
 				}
 			}
@@ -544,7 +519,7 @@ class Settings {
 
 			//Loop through each of the post type sections
 			foreach ( $settings_fields['post_types'] as $section => $fields ) {
-				
+
 				//Loop through each of the fields in the section.
 				foreach ( $fields as $key => $field ) {
 					$save = '';
@@ -554,7 +529,7 @@ class Settings {
 					} else if ( isset( $field['default'] ) ) {
 						$save = $field['default'];
 					}
-	
+
 					$settings_values[ $tab_index . '_' . $key ] = $save;
 				}
 			}
