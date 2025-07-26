@@ -3,7 +3,6 @@
 namespace lsx;
 
 use lsx\admin\Admin;
-use lsx\admin\Pages;
 use lsx\admin\Settings;
 use lsx\admin\Setup;
 use lsx\admin\Permalinks;
@@ -185,7 +184,6 @@ class Tour_Operator {
 		require_once( LSX_TO_PATH . 'vendor/content-models/create-content-model.php' );
 
 		$this->classes['permalinks']      = new Permalinks();
-		$this->classes['pages']           = Pages::init();
 		$this->classes['taxonomies']      = Taxonomies::init();
 		$this->classes['admin']           = new Admin();
 		$this->classes['settings']        = Settings::init();

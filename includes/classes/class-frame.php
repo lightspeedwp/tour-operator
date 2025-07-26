@@ -80,16 +80,6 @@ abstract class Frame {
 	}
 
 	/**
-	 * Gets all taxonomies as an array.
-	 *
-	 * @since 1.1.0
-	 * @return \WP_Taxonomy[] Array of all taxomonies.
-	 */
-	public function get_all() {
-		return $this->object;
-	}
-
-	/**
 	 * Return an instance of this class.
 	 *
 	 * @since 1.1.0
@@ -180,45 +170,6 @@ abstract class Frame {
 		 */
 		return apply_filters( "lsx_get_{$this->type}_configs", $objects );
 	}
-
-	/**
-	 * Gets a config array for a specific object.
-	 *
-	 * @since 1.1.0
-	 *
-	 * @param string $object The object to get config for.
-	 *
-	 * @return int The position of the object menu item.
-	 */
-	public function get_menu_position( $object ) {
-		$config   = $this->get_config( $object );
-		$position = 5;
-		if ( ! empty( $config['menu_position'] ) ) {
-			$position = $config['menu_position'];
-		}
-
-		$position = apply_filters( 'tour-operator-menu-position' , $position, $config );
-		return $position;
-	}
-
-	/**
-	 * Gets a config array for a specific object.
-	 *
-	 * @since 1.1.0
-	 *
-	 * @param string $object The object to get config for.
-	 *
-	 * @return array Taxonomy config array.
-	 */
-	public function get_config( $object ) {
-		$config = array();
-		if ( ! empty( $this->configs[ $object ] ) ) {
-			$config = $this->configs[ $object ];
-		}
-
-		return $config;
-	}
-
 
 	/**
 	 * Setup the taxonomies for the plugin.

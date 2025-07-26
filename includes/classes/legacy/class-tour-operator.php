@@ -224,10 +224,6 @@ class Tour_Operator {
 		if ( ! is_network_admin() && ! isset( $_GET['activate-multi'] ) ) {
 			set_transient( '_tour_operators_flush_rewrite_rules', 1, 30 );
 		}
-		// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		if ( ! is_network_admin() && ! isset( $_GET['activate-multi'] ) ) {
-			set_transient( '_tour_operators_welcome_redirect', 1, 30 );
-		}
 	}
 
 	/**
@@ -236,19 +232,13 @@ class Tour_Operator {
 	 * @since 1.0.0
 	 */
 	public function register_activation_hook_check() {
-		if ( ! get_transient( '_tour_operators_flush_rewrite_rules' ) && ! get_transient( '_tour_operators_welcome_redirect' ) ) {
+		if ( ! get_transient( '_tour_operators_flush_rewrite_rules' ) ) {
 			return;
 		}
 
 		if ( get_transient( '_tour_operators_flush_rewrite_rules' ) ) {
 			delete_transient( '_tour_operators_flush_rewrite_rules' );
 			flush_rewrite_rules();
-		}
-
-		if ( get_transient( '_tour_operators_welcome_redirect' ) ) {
-			delete_transient( '_tour_operators_welcome_redirect' );
-			wp_safe_redirect( 'admin.php?page=lsx-to-settings&welcome-page=1' );
-			exit();
 		}
 	}
 

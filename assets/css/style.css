@@ -177,8 +177,7 @@
   height: 20px;
   /* Fixed height */
   display: flex;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
   /* Ensure image doesn't stretch or distort */
 }
 
@@ -332,10 +331,6 @@ body .fs-arrow {
 .archive .fs-label-wrap {
   border: 1px solid #757575 !important;
   border-radius: 4px;
-}
-
-.fs-wrap .fs-search input::-moz-placeholder {
-  font-size: var(--wp--preset--font-size--x-small);
 }
 
 .fs-wrap .fs-search input::placeholder {
@@ -724,15 +719,26 @@ button.facetwp-reset {
 }
 
 .lsx-to-map-marker {
+  -webkit-box-align: start;
+  -ms-flex-align: start;
   align-items: flex-start;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: row nowrap;
   flex-flow: row nowrap;
   height: auto;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
   justify-content: flex-start;
   padding: 5px 0;
   width: 100%;
 }
 .lsx-to-map-marker .lsx-to-map-marker-content {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
   flex-grow: 1;
   color: var(--wp--preset--color--contrast);
 }
@@ -760,6 +766,7 @@ button.facetwp-reset {
 .lsx-to-map-marker .lsx-to-map-marker-img {
   margin-right: 15px;
   max-width: 100px;
+  -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 .lsx-to-map-marker .lsx-to-map-marker-title {
@@ -771,4 +778,5 @@ button.facetwp-reset {
 .lsx-units-wrapper .hidden {
   display: none;
 }
+
 /*# sourceMappingURL=style.css.map */
