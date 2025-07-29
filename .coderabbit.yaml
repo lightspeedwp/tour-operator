@@ -1,11 +1,15 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 language: "en-ZA"
 early_access: false
+commands:
+  enabled: true
+linked_issues:
+  enabled: true
 reviews:
   profile: "chill"
   request_changes_workflow: true
   high_level_summary: true
-  poem: true
+  poem: false
   review_status: true
   collapse_walkthrough: false
   auto_review:
@@ -22,5 +26,7 @@ reviews:
         - Enforce prefixing for all functions, classes, and constants to avoid naming collisions.
         - Check for accessibility best practices in UI code (labels, ARIA attributes, color contrast).
         - Ensure inline documentation/comments for all custom functions and classes.
+        - Ensure consistent formatting and schema validation.
+        - Keep documentation up to date and clear.
 chat:
   auto_reply: true
