@@ -4,8 +4,9 @@
 
 ### Added
 - A filter to allow the disabling of destinations when searching for related content. `lsx_to_' . $key . '_include_destinations`. - [BH-74](https://www.bugherd.com/projects/430995/tasks/74)
-- Integrate new icons block - PR (#547)
+- Integrate new icons block - PR (#547), Issue (#548)
 - Tour Expiration integration with Action Scheduler - PR (#490)
+- Added new Modal support to blocks - Issue (#488)
 
 ### Enhancements
 - Updated the departure day to reply on the previous days Location and Accommodation values. [#491](https://github.com/lightspeedwp/tour-operator/pull/491)
@@ -20,13 +21,15 @@
 - Update issue templates for enhancement and design/UX feedback - Issue (#568)
 - `.distignore` updated some of the ignore
 - Itinerary departure day - departure days accommodation and location values reply on the previous days values, to mimic the WETU layout - PR (#491)
-- 
+- Drop Support for Older PHP Versions & Fix Version Mismatches - Issue (#469)
+- Departure Day to use the previous day information for the "information" box - Issue (#481)
 
 ### Removed
 - `.scrutinizer.yml` removed the file as we no long use Scrutinizer - Issue (#564)
 - Remove outdated admin assets - Issue (#549), PR (#553)
 - Block settings removal - PR (#493)
-- 
+- Audit All CSS Files and clean out unused CSS in /assets/css - Issue (#533)
+- Remove outdated admin pages & assets, files removed: add-ons.php, help.php, welcome.php - Issue (#549), PR (#553)
 
 ### Fixed
 - 
