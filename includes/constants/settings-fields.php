@@ -118,14 +118,10 @@ $settings_fields = array(
 				'type'    => 'checkbox',
 				'default' => 0,
 			),
-			'enable_modals' => array(
-				'label'   => esc_html__( 'Enable Preview Modals', 'tour-operator' ),
-				'desc'    => esc_html__( 'Links to this item will trigger a popup preview modal allowing a quick look at it before clicking through. ', 'tour-operator' ),
-				'type'    => 'checkbox',
-				'default' => 0,
-			),
 		)
 	)
 );
+
+$settings_fields = apply_filters( 'lsx_to_settings_fields', $settings_fields );
 
 return $settings_fields;

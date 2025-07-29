@@ -37,7 +37,7 @@ class Modals {
 	 */
 	public function __construct() {
 		$this->options = get_option( 'lsx_to_settings', [] );
-
+		
 		add_action( 'wp_loaded', [ $this, 'init' ], 10 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ), 1 );
 
@@ -51,8 +51,31 @@ class Modals {
 	 * @return void
 	 */
 	public function init() {
+		add_filter( 'lsx_to_settings_fields', [ $this, 'settings_fields' ], 10, 1 );
 		add_filter( 'lsx_to_connected_list_item', array( $this, 'add_modal_attributes' ), 10, 3 );
 		add_action( 'wp_footer', array( $this, 'output_modals' ), 10 );
+	}
+
+	/**
+	 * Adds in our modal fields.
+	 *
+	 * @param array $fields
+	 * @return void
+	 */
+	public function settings_fields( $fields = [] ) {
+		$fields['post_types']['template']['enable_modals'] = array(
+			'label'   => esc_html__( 'Enable Preview Modals', 'tour-operator' ),
+			'desc'    => esc_html__( 'Links to this item will trigger a popup preview modal allowing a quick look at it before clicking through. ', 'tour-operator' ),
+			'type'    => 'checkbox',
+			'default' => 0,
+		);
+		$fields['post_types']['template']['modal_template'] = array(
+			'label'   => esc_html__( 'Modal Template', 'tour-operator' ),
+			'type'    => 'select',
+			'default' => 'default',
+			'options' => $this->get_template_part_options()
+		);
+		return $fields;
 	}
 
 	/**
@@ -95,9 +118,7 @@ class Modals {
 		if ( empty( $this->modal_ids ) ) {
 			return;
 		}
-
 		wp_enqueue_script( 'lsx-to-modals' );
-
 
 		$modal_args  = [
 			'post__in' => $this->modal_ids,
@@ -115,26 +136,12 @@ class Modals {
 				$modal_query->the_post();
 
 				$modal_id  = get_the_ID();
+				$temp_html = '';
+
+
 				$temp_html = '<dialog id="to-modal-' . $modal_id . '" class="wp-block-hm-popup" data-trigger="click" data-expiry="7" data-backdrop-opacity="0.75">';
 
-				$post_type = get_post_type();
-				switch ( $post_type ) {
-					case 'accommodation':
-						$template = '<!-- wp:pattern {"slug":"lsx-tour-operator/accommodation-card"} /-->';	
-					break;
-					
-					case 'destination':
-						$template = '<!-- wp:pattern {"slug":"lsx-tour-operator/destination-card"} /-->';	
-					break;
-
-					case 'tour':
-						$template = '<!-- wp:pattern {"slug":"lsx-tour-operator/tour-card"} /-->';	
-					break;
-
-					default:
-						$template = '<p>' . __( 'Please select a pattern or customize your layout with the Tour Operator blocks.', 'tour-operator' ) . '</p>';
-					break;
-				}
+				$template = $this->get_selected_template();
 
 				$temp_html .= do_blocks( $template );
 				$temp_html .= '</dialog>';
@@ -152,6 +159,36 @@ class Modals {
 		echo $content;
 	}
 
+	public function get_selected_template() {
+		$post_type = get_post_type();
+
+		$template  = '<div class="wp-block-template-part">';
+		switch ( $post_type ) {
+			case 'accommodation':
+				$template .= '<!-- wp:pattern {"slug":"lsx-tour-operator/accommodation-card"} /-->';	
+			break;
+			
+			case 'destination':
+				$template .= '<!-- wp:pattern {"slug":"lsx-tour-operator/destination-card"} /-->';	
+			break;
+
+			case 'tour':
+				$template .= '<!-- wp:pattern {"slug":"lsx-tour-operator/tour-card"} /-->';	
+			break;
+
+			default:
+				$template .= '<p>' . __( 'Please select a pattern or customize your layout with the Tour Operator blocks.', 'tour-operator' ) . '</p>';
+			break;
+		}
+		$template  .= '</div>';
+
+		if ( isset( $this->options[ $post_type . '_modal_template'] ) && 'default' !== $this->options[ $post_type . '_modal_template'] ) {
+			$template = '<!-- wp:template-part { "slug":"' . $this->options[ $post_type . '_modal_template'] . '","area":"lsx_to_modals"} /-->';
+		}
+
+		return $template;
+	}
+
 	/**
 	 * Registers the Modals template part.
 	 *
@@ -167,8 +204,34 @@ class Modals {
 				'tour-operator'
 			),
 			'icon'        => 'welcome-widgets-menus',
-			'area_tag'    => 'lsx_to_modals',
+			'area_tag'    => 'div',
 		);
 		return $parts;
+	}
+
+	/**
+	 * Get a list of all registered header template parts for the site editor.
+	 *
+	 * @return array List of header template part names and titles.
+	 */
+	function get_template_part_options() {
+		// Get all template parts of the 'header' area.
+		$templates = get_block_templates( array(
+			'post_type'   => 'wp_template_part',
+			'area'        => 'lsx_to_modals',
+		), 'wp_template_part' );
+
+		$options = array();
+		$options['default'] = __( 'Default', 'tour-operator' );
+
+		if ( ! empty( $templates ) ) {
+			foreach ( $templates as $template ) {
+				$options[ $template->slug ] = $template->title;
+			}
+		} else {
+			$options[ '' ] = __( 'No other templates found.', 'tour-operator' );
+		}
+
+		return $options;
 	}
 }
