@@ -28,5 +28,6 @@ reviews:
         - Ensure inline documentation/comments for all custom functions and classes.
         - Ensure consistent formatting and schema validation.
         - Keep documentation up to date and clear.
+        - On Pull Requests check for updates to the changelog file.
 chat:
   auto_reply: true
