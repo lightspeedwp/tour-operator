@@ -20,7 +20,6 @@ msgstr ""
 #: includes/classes/blocks/class-patterns.php:38
 #: includes/classes/blocks/class-patterns.php:51
 #: includes/pages/config-tour-operator.php:14
-#: includes/partials/help.php:49
 msgid "Tour Operator"
 msgstr ""
 
@@ -51,13 +50,6 @@ msgid "Settings"
 msgstr ""
 
 #: includes/classes/admin/class-admin.php:49
-#: includes/partials/add-ons.php:39
-#: includes/partials/add-ons.php:58
-#: includes/partials/add-ons.php:77
-#: includes/partials/add-ons.php:100
-#: includes/partials/add-ons.php:119
-#: includes/partials/add-ons.php:138
-#: includes/partials/add-ons.php:159
 msgid "Documentation"
 msgstr ""
 
@@ -284,7 +276,6 @@ msgid "Tagline"
 msgstr ""
 
 #: includes/classes/legacy/class-destination.php:96
-#: includes/partials/add-ons.php:130
 msgid "Activities"
 msgstr ""
 
@@ -1000,68 +991,6 @@ msgstr ""
 msgid "Dashboard"
 msgstr ""
 
-#: includes/partials/add-ons.php:31
-msgid "Specials"
-msgstr ""
-
-#: includes/partials/add-ons.php:32
-msgid "With the Special Offers extension you’re able to set up time-sensitive prices that you can use to price your accommodations, activities and tours. Set up booking validity dates, specials per person sharing/per person sharing/per person sharing per night, team members per special and more."
-msgstr ""
-
-#: includes/partials/add-ons.php:36
-#: includes/partials/add-ons.php:55
-#: includes/partials/add-ons.php:74
-#: includes/partials/add-ons.php:97
-#: includes/partials/add-ons.php:116
-#: includes/partials/add-ons.php:135
-#: includes/partials/add-ons.php:156
-msgid "Get this extension"
-msgstr ""
-
-#: includes/partials/add-ons.php:50
-msgid "Reviews"
-msgstr ""
-
-#: includes/partials/add-ons.php:51
-msgid "People want to be sure that they’re making the right choice with the the right company. Your “trustability” will set you apart from the herd. The Tour Operators Reviews extension allows you to add reviews written by your previous guests and display them across your site."
-msgstr ""
-
-#: includes/partials/add-ons.php:69
-msgid "Team"
-msgstr ""
-
-#: includes/partials/add-ons.php:70
-msgid "Real peoples' faces go a long way to building trust with your valued clients. The Tour Operator: Team extension allows your company's staff to be added as Team Members with their own profile which can be associated with specific destinations and tours."
-msgstr ""
-
-#: includes/partials/add-ons.php:91
-msgid "Search"
-msgstr ""
-
-#: includes/partials/add-ons.php:92
-msgid "The Search extension for the Tour Operators plugin adds robust search functionality to your WordPress Tour Operator site. It requires that you also have the FacetWP plugin installed, as that allows for much of the filtering functionality that the plugin provides."
-msgstr ""
-
-#: includes/partials/add-ons.php:111
-msgid "Vehicles"
-msgstr ""
-
-#: includes/partials/add-ons.php:112
-msgid "To help convince travellers of their comfort and safety when traveling with you, we’ve created the Vehicles extension. Fill in your fleets’ specs and display your vehicles on connected tours and destinations. With a range of available options such as; type and number of gears, engine type (petrol/diesel), number of seats, vehicle code, and of course images and copy."
-msgstr ""
-
-#: includes/partials/add-ons.php:131
-msgid "Get your visitors excited about what they’ll be doing when they travel with you, whether it’s river rafting, whale watching or sandboarding – use the Activities post type with beautiful imagery and well-crafted copy and then set the activities as connected to particular tours, destinations and accommodations."
-msgstr ""
-
-#: includes/partials/add-ons.php:151
-msgid "Wetu Importer"
-msgstr ""
-
-#: includes/partials/add-ons.php:152
-msgid "Quickly and easily import accommodation data as well as entire tour itineraries and associated images from the WETU database to use in your day-by-day tour listings."
-msgstr ""
-
 #: includes/partials/general.php:9
 msgid "Currency Settings"
 msgstr ""
@@ -1083,120 +1012,8 @@ msgstr ""
 msgid "APIs"
 msgstr ""
 
-#: includes/partials/help.php:12
-msgid "Tour Operator Extensions"
-msgstr ""
-
-#: includes/partials/help.php:13
-msgid "Extend the functionality of the Tour Operator plugin with one of our many extensions!"
-msgstr ""
-
-#: includes/partials/help.php:31
-msgid "Getting Support"
-msgstr ""
-
-#: includes/partials/help.php:32
-msgid "Our website's"
-msgstr ""
-
-#: includes/partials/help.php:32
-msgid "documentation"
-msgstr ""
-
-#: includes/partials/help.php:32
-msgid "page is a great place to start to learn how to configure and customize our plugin and its extensions."
-msgstr ""
-
-#: includes/partials/help.php:35
-msgid "Get support today"
-msgstr ""
-
-#: includes/partials/help.php:52
-msgid "Latest Version:"
-msgstr ""
-
-#: includes/partials/help.php:53
-msgid "Requires:"
-msgstr ""
-
-#: includes/partials/help.php:53
-msgid "WordPress 5.0+"
-msgstr ""
-
-#: includes/partials/help.php:54
-msgid "Tested up to:"
-msgstr ""
-
-#: includes/partials/help.php:54
-msgid "WordPress 5.0"
-msgstr ""
-
-#: includes/partials/help.php:59
-msgid "Visit on WordPress"
-msgstr ""
-
 #: includes/partials/post-type.php:17
 msgid "Template Settings"
-msgstr ""
-
-#: includes/partials/welcome.php:12
-msgid "Welcome to the Tour Operator Plugin"
-msgstr ""
-
-#: includes/partials/welcome.php:13
-msgid "You are running version %s - Thanks for Keeping up to date!"
-msgstr ""
-
-#: includes/partials/welcome.php:27
-msgid "Getting started"
-msgstr ""
-
-#: includes/partials/welcome.php:28
-msgid "Check out the documentation"
-msgstr ""
-
-#: includes/partials/welcome.php:34
-msgid "Release notes"
-msgstr ""
-
-#: includes/partials/welcome.php:35
-msgid "Get the latest on updates to the Tour Operator plugin"
-msgstr ""
-
-#: includes/partials/welcome.php:43
-msgid "Looking for more features?"
-msgstr ""
-
-#: includes/partials/welcome.php:44
-msgid "Check out our suite of add ons"
-msgstr ""
-
-#: includes/partials/welcome.php:50
-msgid "News for Tour Operators"
-msgstr ""
-
-#: includes/partials/welcome.php:51
-msgid "Check out our blog posts geared towards helping Tour Operators succeed online"
-msgstr ""
-
-#: includes/partials/welcome.php:60
-msgid "Help us keep the Tour Operator core FREE"
-msgstr ""
-
-#: includes/partials/welcome.php:61
-msgid "5-star ratings help us to bring the Tour Operator plugin to more users. The more users we have the more we get requests to add features to make the plugin even better for you. We couldn’t do it without your support."
-msgstr ""
-
-#: includes/partials/welcome.php:64
-msgid "Rate it 5 stars"
-msgstr ""
-
-#: includes/partials/welcome.php:74
-msgid "Rate It!"
-msgstr ""
-
-#: includes/partials/welcome.php:80
-msgid "Please consider signing up to our Tourism Industry newsletter"
 msgstr ""
 
 #: includes/patterns/accommodation-card.php:5
