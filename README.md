@@ -1,5 +1,4 @@
 <h1 align="center"><p align="center"><a target="_blank" href="https://lightspeedwp.agency/solutions/tour-operators/"><img src="https://ps.w.org/tour-operator/assets/banner-1544x500.png" alt="Tour Operator Plugin"></a></h1>
-</h1>
 
 Welcome to the Tour Operator repository on GitHub. Here you can browse the source, look at open issues and keep track of development. We recommend all developers to follow LightSpeed's [blog](https://lightspeedwp.agency/blog/) to stay up to date about everything happening with the LSX Theme & extensions.
 
