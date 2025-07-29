@@ -4,32 +4,32 @@
 
 ### Added
 - A filter to allow the disabling of destinations when searching for related content. `lsx_to_' . $key . '_include_destinations`. - [BH-74](https://www.bugherd.com/projects/430995/tasks/74)
-- Integrate new icons block - PR (#547), Issue (#548)
-- Tour Expiration integration with Action Scheduler - PR (#490)
-- Added new Modal support to blocks - Issue (#488)
+- Integrate new icons block - PR ([#547](https://github.com/lightspeedwp/tour-operator/pull/547), Issue [#548](https://github.com/lightspeedwp/tour-operator/issues/548)
+- Tour Expiration integration with Action Scheduler - PR [#490](https://github.com/lightspeedwp/tour-operator/pull/490)
+- Added new Modal support to blocks - Issue [#488](https://github.com/lightspeedwp/tour-operator/issues/488)
 
 ### Enhancements
 - Updated the departure day to reply on the previous days Location and Accommodation values. [#491](https://github.com/lightspeedwp/tour-operator/pull/491)
-- Block list updates - taken the blocks that were all listed in the assets folder and have broken them out into individual files along with block.json files - PR (#489)
+- Block list updates - taken the blocks that were all listed in the assets folder and have broken them out into individual files along with block.json files - PR [#489](https://github.com/lightspeedwp/tour-operator/pull/489)
 - Removing the debug statements, A filter to allow the disabling of destinations when searching for related content. Prepping the registration for the adjust block registration. Refactoring the query statments into seperate functions. Fixing the filters for the related connections - PR (#486)
 
 ### Integrations
 - Added integration with the Action Scheduler to allow Tours to expire and be set to draft [#490](https://github.com/lightspeedwp/tour-operator/pull/490). Work with any plugin using the Action Scheduler as a vendor [WooCommerce](https://woocommerce.com/), [PublishPress](https://publishpress.com/), [Action Scheduler](https://wordpress.org/plugins/action-scheduler/).
 
 ### Changed
-- Enhance CodeRabbit rules, by adding custom rules - PR (#551) Issue (#550)
+- Enhance CodeRabbit rules, by adding custom rules - PR [#551](https://github.com/lightspeedwp/tour-operator/pull/551), Issue [#550](https://github.com/lightspeedwp/tour-operator/issues/550)
 - Update issue templates for enhancement and design/UX feedback - Issue (#568)
 - `.distignore` updated some of the ignore
-- Itinerary departure day - departure days accommodation and location values reply on the previous days values, to mimic the WETU layout - PR (#491)
-- Drop Support for Older PHP Versions & Fix Version Mismatches - Issue (#469)
-- Departure Day to use the previous day information for the "information" box - Issue (#481)
+- Itinerary departure day - departure days accommodation and location values reply on the previous days values, to mimic the WETU layout - PR [#491](https://github.com/lightspeedwp/tour-operator/pull/491)
+- Drop Support for Older PHP Versions & Fix Version Mismatches - Issue [#469](https://github.com/lightspeedwp/tour-operator/issues/469)
+- Departure Day to use the previous day information for the "information" box - Issue [#481](https://github.com/lightspeedwp/tour-operator/issues/481)
 
 ### Removed
-- `.scrutinizer.yml` removed the file as we no long use Scrutinizer - Issue (#564)
+- `.scrutinizer.yml` removed the file as we no long use Scrutinizer - Issue [#564](https://github.com/lightspeedwp/tour-operator/issues/564)
 - Remove outdated admin assets - Issue (#549), PR (#553)
-- Block settings removal - PR (#493)
-- Audit All CSS Files and clean out unused CSS in /assets/css - Issue (#533)
-- Remove outdated admin pages & assets, files removed: add-ons.php, help.php, welcome.php - Issue (#549), PR (#553)
+- Block settings removal - PR [#493](https://github.com/lightspeedwp/tour-operator/pull/493)
+- Audit All CSS Files and clean out unused CSS in /assets/css - Issue [#533](https://github.com/lightspeedwp/tour-operator/issues/533)
+- Remove outdated admin pages & assets, files removed: add-ons.php, help.php, welcome.php - Issue [#549](https://github.com/lightspeedwp/tour-operator/issues/549), PR [#553](https://github.com/lightspeedwp/tour-operator/pull/553)
 
 ### Fixed
 - 
