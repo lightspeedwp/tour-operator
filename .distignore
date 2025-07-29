@@ -6,16 +6,11 @@
 .editorconfig
 .git
 .gitignore
-.gitlab-ci.yml
-.travis.yml
 .DS_Store
 Thumbs.db
-behat.yml
 bin
-circle.yml
 composer.json
 composer.lock
-Gruntfile.js
 package.json
 phpunit.xml
 phpunit.xml.dist
