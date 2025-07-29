@@ -2,26 +2,37 @@
 
 ## [[2.1.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.1.0) - In Dev
 
-### Enhancements
-- Updated the departure day to reply on the previous days Location and Accommodation values. [#491](https://github.com/lightspeedwp/tour-operator/pull/491)
-
 ### Added
 - A filter to allow the disabling of destinations when searching for related content. `lsx_to_' . $key . '_include_destinations`. - [BH-74](https://www.bugherd.com/projects/430995/tasks/74)
+- Integrate new icons block - PR (#547)
+- Tour Expiration integration with Action Scheduler - PR (#490)
+
+### Enhancements
+- Updated the departure day to reply on the previous days Location and Accommodation values. [#491](https://github.com/lightspeedwp/tour-operator/pull/491)
+- Block list updates - taken the blocks that were all listed in the assets folder and have broken them out into individual files along with block.json files - PR (#489)
+- Removing the debug statements, A filter to allow the disabling of destinations when searching for related content. Prepping the registration for the adjust block registration. Refactoring the query statments into seperate functions. Fixing the filters for the related connections - PR (#486)
 
 ### Integrations
 - Added integration with the Action Scheduler to allow Tours to expire and be set to draft [#490](https://github.com/lightspeedwp/tour-operator/pull/490). Work with any plugin using the Action Scheduler as a vendor [WooCommerce](https://woocommerce.com/), [PublishPress](https://publishpress.com/), [Action Scheduler](https://wordpress.org/plugins/action-scheduler/).
 
 ### Changed
+- Enhance CodeRabbit rules, by adding custom rules - PR (#551) Issue (#550)
+- Update issue templates for enhancement and design/UX feedback - Issue (#568)
+- `.distignore` updated some of the ignore
+- Itinerary departure day - departure days accommodation and location values reply on the previous days values, to mimic the WETU layout - PR (#491)
 - 
 
 ### Removed
+- `.scrutinizer.yml` removed the file as we no long use Scrutinizer - Issue (#564)
+- Remove outdated admin assets - Issue (#549), PR (#553)
+- Block settings removal - PR (#493)
 - 
 
 ### Fixed
 - 
 
 ### Security
-
+- 
 
 ## [[2.0.2]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.2) - 2025-05-06
 
