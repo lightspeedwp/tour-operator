@@ -697,6 +697,7 @@ button.facetwp-reset {
   display: flex;
   top: 0;
   opacity: 1;
+  padding: 0;
 }
 .wp-block-hm-popup > * {
   position: relative;
