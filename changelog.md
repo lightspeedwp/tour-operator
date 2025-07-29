@@ -11,6 +11,18 @@
 ### Integrations
 - Added integration with the Action Scheduler to allow Tours to expire and be set to draft [#490](https://github.com/lightspeedwp/tour-operator/pull/490). Work with any plugin using the Action Scheduler as a vendor [WooCommerce](https://woocommerce.com/), [PublishPress](https://publishpress.com/), [Action Scheduler](https://wordpress.org/plugins/action-scheduler/).
 
+### Changed
+- 
+
+### Removed
+- 
+
+### Fixed
+- 
+
+### Security
+
+
 ## [[2.0.2]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.2) - 2025-05-06
 
 ### Added
