@@ -1,29 +1,39 @@
+# Project description and metadata
+project_description: "A WordPress plugin for managing tours and travel-related products."
+project_type: wordpress-plugin
+version: 2.0
+development_status: active
+project_priority: core
+
+# Compliance and data sensitivity
 compliance:
   - GDPR
   - WCAG 2.1
-
 data_sensitivity: public
 
-project_type: wordpress-plugin
-
-development_status: active
-
+# Licensing and support
 license: gpl-3.0
+documentation_url: https://touroperator.solutions/docs/
+support_url: https://lightspeedwp.agency/contact/
+contact_email: support@lightspeedwp.agency
 
+# Audience and tech stack
 audience:
   - travel-agencies
   - tour-operators
   - developers
-
 tech_stack:
   - PHP
   - WordPress
   - WooCommerce
 
-version: 1.2.0
+# Contribution and issue guidelines
+contributing_url: https://github.com/lightspeedwp/tour-operator/blob/master/CONTRIBUTING.md
+issue_template_url: https://github.com/lightspeedwp/tour-operator/issues/new/choose
 
-documentation_url: https://lsx.design/docs/tour-operator
+# Supported languages
+languages:
+  - en
 
-support_url: https://lightspeedwp.agency/support
-
-project_priority: core
+# Schema version for maintainability
+schema_version: 1.0
