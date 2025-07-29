@@ -4,7 +4,7 @@
 
 ### Added
 - A filter to allow the disabling of destinations when searching for related content. `lsx_to_' . $key . '_include_destinations`. - [BH-74](https://www.bugherd.com/projects/430995/tasks/74)
-- Integrate new icons block - PR ([#547](https://github.com/lightspeedwp/tour-operator/pull/547), Issue [#548](https://github.com/lightspeedwp/tour-operator/issues/548)
+- Integrate new icons block - PR [#547](https://github.com/lightspeedwp/tour-operator/pull/547), Issue [#548](https://github.com/lightspeedwp/tour-operator/issues/548)
 - Tour Expiration integration with Action Scheduler - PR [#490](https://github.com/lightspeedwp/tour-operator/pull/490)
 - Added new Modal support to blocks - Issue [#488](https://github.com/lightspeedwp/tour-operator/issues/488)
 
