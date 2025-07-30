@@ -13,6 +13,12 @@
 - Block list updates - taken the blocks that were all listed in the assets folder and have broken them out into individual files along with block.json files - PR [#489](https://github.com/lightspeedwp/tour-operator/pull/489)
 - Removing the debug statements, A filter to allow the disabling of destinations when searching for related content. Prepping the registration for the adjust block registration. Refactoring the query statments into seperate functions. Fixing the filters for the related connections - PR (#486)
 
+### Fixed
+- Removed outdated testing icons
+Replaced them with correct icons from the design system
+Ensured consistent sizing of 20px
+Added "currentColor" to all icon colour styling [#575](https://github.com/lightspeedwp/tour-operator/pull/575)
+
 ### Integrations
 - Added integration with the Action Scheduler to allow Tours to expire and be set to draft [#490](https://github.com/lightspeedwp/tour-operator/pull/490). Work with any plugin using the Action Scheduler as a vendor [WooCommerce](https://woocommerce.com/), [PublishPress](https://publishpress.com/), [Action Scheduler](https://wordpress.org/plugins/action-scheduler/).
 
