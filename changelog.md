@@ -8,6 +8,12 @@
 ### Added
 - A filter to allow the disabling of destinations when searching for related content. `lsx_to_' . $key . '_include_destinations`. - [BH-74](https://www.bugherd.com/projects/430995/tasks/74)
 
+### Fixed
+- Removed outdated testing icons
+Replaced them with correct icons from the design system
+Ensured consistent sizing of 20px
+Added "currentColor" to all icon colour styling [#575](https://github.com/lightspeedwp/tour-operator/pull/575)
+
 ### Integrations
 - Added integration with the Action Scheduler to allow Tours to expire and be set to draft [#490](https://github.com/lightspeedwp/tour-operator/pull/490). Work with any plugin using the Action Scheduler as a vendor [WooCommerce](https://woocommerce.com/), [PublishPress](https://publishpress.com/), [Action Scheduler](https://wordpress.org/plugins/action-scheduler/).
 
