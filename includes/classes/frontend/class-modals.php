@@ -259,13 +259,10 @@ class Modals {
 		wp_enqueue_script( 'lsx-to-modals' );
 
 		foreach ( $this->modal_contents as $key => $content ) {
-
-
 			// If you want to allow any data-* attribute, use a regex filter after wp_kses_post
 			$modal  = '<dialog id="to-modal-' . $key . '" class="wp-block-hm-popup" data-trigger="click" data-expiry="7" data-backdrop-opacity="0.75">';
 			$modal .= '<div class="wp-block-template-part">';
-			$modal .= '<p class="has-small-font-size" style="padding-top:0;"><strong>' . ucwords( $key ) . '</strong></p>';
-			$modal .= $content;
+			$modal .= wpautop( $content );
 			$modal .= '</div>';
 			$modal .= '</dialog>';
 			

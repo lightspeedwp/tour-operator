@@ -279,9 +279,7 @@ if (window.location.hash) {
     );
 
     // Second slider: .lsx-to-slider.travel-information
-    $(
-      ".lsx-travel-information-wrapper.lsx-to-slider .travel-information:not(.slider-disabled)"
-    ).each(function () {
+    $( ".lsx-travel-information-wrapper.lsx-to-slider .travel-information:not(.slider-disabled)").each(function () {
       var $this = $(this);
 
       lsx_to.pre_build_slider($this);
@@ -324,6 +322,12 @@ if (window.location.hash) {
             },
           ],
         });
+
+		$this.on( 'init', function(event, slick){
+			if (typeof toModalBootstrap === "function") {
+				toModalBootstrap();
+			}
+		})
       }
     });
   };

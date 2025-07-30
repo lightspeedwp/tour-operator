@@ -12,7 +12,7 @@ const mouseEvent = ( e ) => {
 	}
 };
 
-const bootstrap = () => {
+const toModalBootstrap = () => {
 	let exitIntentSetup = false;
 	document.querySelectorAll( '.wp-block-hm-popup' ).forEach( ( popup ) => {
 		// On close remove HTML class.
@@ -83,7 +83,9 @@ const bootstrap = () => {
 
 // Handle async scripts.
 if ( document.readyState !== 'loading' ) {
-	bootstrap();
+	toModalBootstrap();
 } else {
-	document.addEventListener( 'DOMContentLoaded', bootstrap );
+	document.addEventListener( 'DOMContentLoaded', toModalBootstrap );
+
+	document.addEventListener( 'DOMContentLoaded', toModalBootstrap );
 }

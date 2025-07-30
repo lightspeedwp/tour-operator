@@ -43,7 +43,7 @@ class Destination {
 	 */
 	protected $plugin_screen_hook_suffix = null;
 
-	public $modals = [];
+	public $options = [];
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and
