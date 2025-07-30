@@ -227,7 +227,7 @@ class Bindings {
 	 * @return string|int|array
 	 */
 	public function post_meta_callback( $source_args, $block_instance ) {
-
+		$value = '';
 		if ( 'core/image' === $block_instance->parsed_block['blockName'] ) {
 			return 'test_image';
 		} elseif ( 'core/paragraph' === $block_instance->parsed_block['blockName'] ) {
@@ -256,7 +256,6 @@ class Bindings {
 					$saved = wp_date( 'j M Y', $saved );
 				}
 	
-				//$value = preg_replace( '/^<p>(.*?)<\/p>$/', '$1', $saved );
 				$value = $saved;
 				
 			}
