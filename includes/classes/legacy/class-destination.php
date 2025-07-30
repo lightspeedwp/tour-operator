@@ -59,12 +59,8 @@ class Destination {
 		add_action( 'lsx_to_modal_meta', array( $this, 'content_meta' ) );
 		add_filter( 'lsx_to_parents_only', array( $this, 'filter_countries' ) );
 
-		add_filter( 'lsx_to_custom_field_query', array( $this, 'travel_information_excerpt' ), 5, 10 );
 		add_filter( 'facetwp_query_args', [ $this, 'facet_wp_filter' ] , 10, 2 );
 		add_action( 'pre_get_posts', [ $this, 'only_parent_destinations' ] );
-
-		add_action( 'wp_footer', array( $this, 'output_modals' ) );
-		
 	}
 
 	/**
@@ -149,55 +145,5 @@ class Destination {
 			$args['posts_per_page'] = 12;
 		}
 		return $args;
-	}
-
-	/**
-	 * Filter the travel information and return a shortened version.
-	 */
-	public function travel_information_excerpt( $html = '', $meta_key = false, $value = false, $before = '', $after = '' ) {
-		$limit_chars = 150;
-		$ti_keys     = [
-			'electricity',
-			'banking',
-			'cuisine',
-			'climate',
-			'transport',
-			'dress',
-			'health',
-			'safety',
-			'visa',
-			'additional_info',
-		];
-
-		if ( get_post_type() === 'destination' && in_array( $meta_key, $ti_keys )  ) {
-			$this->modals[ $meta_key ] = $html;
-
-			$value = wp_trim_excerpt( wp_strip_all_tags( $html ) );
-			$value = str_replace( '<br>', ' ', $value );
-			$value = str_replace( '<br />', ' ', $value );
-		
-			if ( strlen( $value ) > $limit_chars ) {
-				$position = strpos( $value, ' ', $limit_chars );
-				if ( false !== $position ) {
-					$value_output = substr( $value, 0, $position );
-				} else {
-					$value_output = $value;
-				}
-				$value = trim( force_balance_tags( $value_output . '...' ) );
-			}
-	
-			$html = trim( force_balance_tags( $value ) );
-		}
-		return $html;
-	}
-
-	public function output_modals() {
-		if ( ! empty( $this->modals ) ) {
-			foreach ( $this->modals as $key => $content ) {
-				$heading = '<p class="has-small-font-size" style="padding-top:0;"><strong>' . ucwords( $key ) . '</strong></p>';
-				$modal   = '<div class="lsx-modal modal-' . $key . '"><div class="modal-content"><span class="close">&times;</span>' . $heading . $content . '</div></div>';
-				echo wp_kses_post( $modal );
-			}
-		}
 	}
 }
