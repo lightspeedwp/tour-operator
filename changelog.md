@@ -36,6 +36,7 @@ Added "currentColor" to all icon colour styling [#575](https://github.com/lights
 - Block settings removal - PR [#493](https://github.com/lightspeedwp/tour-operator/pull/493)
 - Audit All CSS Files and clean out unused CSS in /assets/css - Issue [#533](https://github.com/lightspeedwp/tour-operator/issues/533)
 - Remove outdated admin pages & assets, files removed: add-ons.php, help.php, welcome.php - Issue [#549](https://github.com/lightspeedwp/tour-operator/issues/549), PR [#553](https://github.com/lightspeedwp/tour-operator/pull/553)
+- Remove obsolete CSS classes, font CSS - Issue [#534](https://github.com/lightspeedwp/tour-operator/issues/534)
 
 ### Fixed
 - 

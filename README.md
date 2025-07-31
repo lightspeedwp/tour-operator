@@ -1,17 +1,16 @@
-<h1 align="center"><p align="center"><a target="_blank" href="https://ps.w.org/tour-operator/assets/banner-1544x500.png" alt="Tour Operator Plugin"></a></h1>
-</h1>
+<h1 align="center"><p align="center"><a target="_blank" href="https://lightspeedwp.agency/solutions/tour-operators/"><img src="https://ps.w.org/tour-operator/assets/banner-1544x500.png" alt="Tour Operator Plugin"></a></h1>
 
 Welcome to the Tour Operator repository on GitHub. Here you can browse the source, look at open issues and keep track of development. We recommend all developers to follow LightSpeed's [blog](https://lightspeedwp.agency/blog/) to stay up to date about everything happening with the LSX Theme & extensions.
 
 ## Tour Operator Plugin
 
-The [Tour Operator plugin](https://touroperator.solutions/) comes with three core features that are essential to any tour operator: Accommodation, Destinations and Tours. 
+The [Tour Operator plugin](https://lightspeedwp.agency/solutions/tour-operators/) comes with three core features that are essential to any tour operator: Accommodation, Destinations and Tours. 
 
-With these post types and their internal connectivity, you’ll be able to show day-by-day itineraries, interactive galleries, maps, information on each destination, accommodation property listings, connect blog posts to any kind of content and much more with our [Tour Operator extensions](https://touroperator.solutions/).
+With these post types and their internal connectivity, you’ll be able to show day-by-day itineraries, interactive galleries, maps, information on each destination, accommodation property listings, connect blog posts to any kind of content and much more with our [Tour Operator extensions](https://lightspeedwp.agency/solutions/tour-operators/).
 
 ## Tour Operator Extensions
 
-Check out [our free extensions](https://touroperator.solutions/), and enhance the power of your Tour Operator website! 
+Check out [our free extensions](https://lightspeedwp.agency/solutions/tour-operators/), and enhance the power of your Tour Operator website! 
 
 ## Documentation
 

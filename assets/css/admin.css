@@ -1,45 +1,6 @@
 /*
  * Tour Operators Administrator
  */
-#banners .CMB_Group_Field {
-  display: block;
-}
-
-.CMB_Group_Field.active {
-  display: block;
-}
-
-.CMB_Color_Picker .field-item {
-  float: none;
-}
-
-#lsx-tab-headings {
-  display: block;
-  float: left;
-  width: 10%;
-}
-
-#details .cmb_metabox {
-  display: block;
-  float: right;
-  width: 85%;
-}
-#details .cmb_metabox .cmb_metabox {
-  float: none;
-  width: 98%;
-}
-
-.cmb_metabox .cmb-cell-12 select {
-  padding-left: 30px;
-}
-
-#lsx-tab-headings .tab-heading {
-  display: block;
-  text-transform: capitalize;
-  padding: 10px 15px;
-  width: 100%;
-}
-
 /* The Tab Styling */
 .wrap.lsx-to-settings .spinner {
   background-color: #fff;
@@ -56,5 +17,4 @@
 .wrap.lsx-to-settings .ui-tab.active {
   display: block;
 }
-
 /*# sourceMappingURL=admin.css.map */
