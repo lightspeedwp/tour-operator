@@ -67,9 +67,9 @@ class Registration {
 			foreach ( $scripts as $slug => $restrictions ) {
 				wp_enqueue_script(
 					'lsx-to-block-' . $slug . '-variations',  // Handle for the script.
-					LSX_TO_URL . 'assets/js/blocks/' . $slug . '.js', // Path to your JavaScript file.
+					LSX_TO_URL . 'build/' . $slug . '.js', // Path to your JavaScript file.
 					array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),  // Dependencies.
-					filemtime( LSX_TO_PATH . 'assets/js/blocks/' . $slug . '.js' ), // Versioning with file modification time.
+					filemtime( LSX_TO_PATH . 'build/' . $slug . '.js' ), // Versioning with file modification time.
 					[ 'in_footer' => true ]
 				);
 				if ( 'general' === $slug ) {
@@ -85,9 +85,9 @@ class Registration {
 			foreach ( $additional_scripts as $slug => $dependancies ) {
 				wp_enqueue_script(
 					'lsx-to-' . $slug,
-					LSX_TO_URL . 'assets/js/blocks/' . $slug . '.js',
+					LSX_TO_URL . 'build/' . $slug . '.js',
 					$dependancies,
-					filemtime( LSX_TO_PATH . 'assets/js/blocks/' . $slug . '.js' ),
+					filemtime( LSX_TO_PATH . 'build/' . $slug . '.js' ),
 					[ 'in_footer' => true ]
 				);
 			}
@@ -95,9 +95,9 @@ class Registration {
 			if ( array_key_exists( get_post_type(), tour_operator()->get_post_types() ) ) {
 				wp_enqueue_script(
 					'lsx-to-slotfills',  // Handle for the script.
-					LSX_TO_URL . 'assets/js/blocks/slotfills.js', // Path to your JavaScript file.
+					LSX_TO_URL . 'build/slotfills.js', // Path to your JavaScript file.
 					array( 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-components', 'wp-data' ),  // Dependencies.
-					filemtime( LSX_TO_PATH . 'assets/js/blocks/slotfills.js' ), // Versioning with file modification time.
+					filemtime( LSX_TO_PATH . 'build/slotfills.js' ), // Versioning with file modification time.
 					[ 'in_footer' => true ]
 				);
 			}

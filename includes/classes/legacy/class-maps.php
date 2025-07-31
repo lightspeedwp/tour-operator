@@ -96,7 +96,7 @@ class Maps
 
         wp_enqueue_script(
             'lsx_to_maps',
-            LSX_TO_URL . 'assets/js/' . $prefix . 'maps' . $suffix . '.js',
+            LSX_TO_URL . 'build/' . $prefix . 'maps' . $suffix . '.js',
             $dependacies,
             LSX_TO_VER,
             true
@@ -153,7 +153,7 @@ class Maps
 
         $args        = wp_parse_args($args, $defaults);
         $map_classes = array_merge([ 'lsx-map' ], $args['classes']);
-        
+
         if (true === $args['disable_auto_zoom'] ) {
             $map_classes[] = 'disable-auto-zoom';
         }
@@ -486,7 +486,7 @@ class Maps
         ?>
         <article <?php post_class(); ?>>
         <?php
-			
+
 			$meta_class = 'lsx-to-meta-data lsx-to-meta-data-';
 			if ( 'accommodation' === get_post_type() ) {
 				the_terms( get_the_ID(), 'travel-style', '<span class="' . $meta_class . 'style"><span class="lsx-to-meta-data-key">' . esc_html__( 'Style', 'tour-operator' ) . ':</span> ', ', ', '</span>' );

@@ -103,7 +103,7 @@ class Frontend extends Tour_Operator {
 			wp_enqueue_style( 'slick-lightbox', LSX_TO_URL . 'assets/css/vendor/slick-lightbox.css', array( 'slick' ), LSX_TO_VER );
 		}
 
-		wp_enqueue_style( 'tour-operator-style', LSX_TO_URL . 'assets/css/style.css', array(), LSX_TO_VER );
+		wp_enqueue_style( 'tour-operator-style', LSX_TO_URL . 'build/style.css', array(), LSX_TO_VER );
 		wp_style_add_data( 'tour-operator-style', 'rtl', 'replace' );
 	}
 
@@ -239,7 +239,7 @@ class Frontend extends Tour_Operator {
 				'url'  => get_post_type_archive_link( 'accommodation' ),
 			),
 		);
-		
+
 		// Get the primary travel style
 		$primary      = get_post_meta( get_the_ID(), '_yoast_wpseo_primary_accommodation-type', true );
 		$primary_term = get_term( $primary, 'accommodation-type' );
@@ -266,7 +266,7 @@ class Frontend extends Tour_Operator {
 				}
 			}
 		}
-		
+
 		$new_crumbs[] = array(
 			'text' => get_the_title(),
 			'url'  => get_permalink(),
@@ -319,7 +319,7 @@ class Frontend extends Tour_Operator {
 				}
 			}
 		}
-		
+
 		$new_crumbs[] = array(
 			'text' => get_the_title(),
 			'url'  => get_permalink(),
