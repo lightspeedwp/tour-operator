@@ -35,7 +35,10 @@
 - Removed `cgb-scripts`, `gulp` and old `node-sass` dependencies from package.json - Issue [#559](https://github.com/lightspeedwp/tour-operator/issues/559)
 
 ### Fixed
-- 
+- Removed outdated testing icons
+- Replaced them with correct icons from the design system 
+- Ensured consistent sizing of 20px 
+- Added "currentColor" to all icon colour styling [#575](https://github.com/lightspeedwp/tour-operator/pull/575)
 
 ### Security
 - 
