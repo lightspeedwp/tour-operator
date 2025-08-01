@@ -38,10 +38,10 @@ If you're a developer who's spotted a bug issue and have a fix, or simply have f
 This project uses WordPress Scripts for building assets.
 
 **Available commands:**
-- `npm run start` - Start development mode with hot reloading
-- `npm run build` - Build production assets
-- `npm run lint:js` - Lint JavaScript files
-- `npm run lint:css` - Lint CSS/SCSS files
+*`npm run start` - Start development mode with hot reloading
+*`npm run build` - Build production assets
+*`npm run lint:js` - Lint JavaScript files
+*`npm run lint:css` - Lint CSS/SCSS files
 
 **Getting started:**
 1. Install dependencies: `npm install`
