@@ -1,0 +1,8 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "lsx-tour-operator/wetu-map",
+  "title": "WETU Map",
+  "category": "lsx-tour-operator",
+  "editorScript": "file:index.js"
+}
