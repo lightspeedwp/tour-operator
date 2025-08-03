@@ -7,7 +7,7 @@
 - Integrate new icons block - PR [#547](https://github.com/lightspeedwp/tour-operator/pull/547), Issue [#548](https://github.com/lightspeedwp/tour-operator/issues/548)
 - Tour Expiration integration with Action Scheduler - PR [#490](https://github.com/lightspeedwp/tour-operator/pull/490)
 - Added new Modal support to blocks - Issue [#488](https://github.com/lightspeedwp/tour-operator/issues/488)
-- New npm scripts: `start`, `build`, `lint:js`, `lint:css` - Issue [#559](https://github.com/lightspeedwp/tour-operator/issues/559)
+- Add npm scripts: `start`, `build`, `lint:js`, `lint:css` - Issue [#559](https://github.com/lightspeedwp/tour-operator/issues/559)
 
 ### Enhancements
 - Updated the departure day to reply on the previous days Location and Accommodation values. [#491](https://github.com/lightspeedwp/tour-operator/pull/491)
@@ -18,7 +18,7 @@
 - Added integration with the Action Scheduler to allow Tours to expire and be set to draft [#490](https://github.com/lightspeedwp/tour-operator/pull/490). Work with any plugin using the Action Scheduler as a vendor [WooCommerce](https://woocommerce.com/), [PublishPress](https://publishpress.com/), [Action Scheduler](https://wordpress.org/plugins/action-scheduler/).
 
 ### Changed
-- Migrated build system from `cgb-scripts` to `@wordpress/scripts` - Issue [#559](https://github.com/lightspeedwp/tour-operator/issues/559)
+- Migrate build system from `cgb-scripts` to `@wordpress/scripts` - Issue [#559](https://github.com/lightspeedwp/tour-operator/issues/559)
 - Enhance CodeRabbit rules, by adding custom rules - PR [#551](https://github.com/lightspeedwp/tour-operator/pull/551), Issue [#550](https://github.com/lightspeedwp/tour-operator/issues/550)
 - Update issue templates for enhancement and design/UX feedback - Issue (#568)
 - `.distignore` updated some of the ignore
@@ -32,13 +32,13 @@
 - Block settings removal - PR [#493](https://github.com/lightspeedwp/tour-operator/pull/493)
 - Audit All CSS Files and clean out unused CSS in /assets/css - Issue [#533](https://github.com/lightspeedwp/tour-operator/issues/533)
 - Remove outdated admin pages & assets, files removed: add-ons.php, help.php, welcome.php - Issue [#549](https://github.com/lightspeedwp/tour-operator/issues/549), PR [#553](https://github.com/lightspeedwp/tour-operator/pull/553)
-- Removed `cgb-scripts`, `gulp` and old `node-sass` dependencies from package.json - Issue [#559](https://github.com/lightspeedwp/tour-operator/issues/559)
+- Remove `cgb-scripts`, `gulp` and old `node-sass` dependencies from package.json - Issue [#559](https://github.com/lightspeedwp/tour-operator/issues/559)
 
 ### Fixed
-- Removed outdated testing icons
-- Replaced them with correct icons from the design system 
-- Ensured consistent sizing of 20px 
-- Added "currentColor" to all icon colour styling [#575](https://github.com/lightspeedwp/tour-operator/pull/575)
+- Remove outdated testing icons
+- Replace them with correct icons from the design system 
+- Ensure consistent sizing of 20px 
+- Add "currentColor" to all icon colour styling [#575](https://github.com/lightspeedwp/tour-operator/pull/575)
 
 ### Security
 - 
