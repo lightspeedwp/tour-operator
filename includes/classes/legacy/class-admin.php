@@ -129,9 +129,25 @@ class Admin extends Tour_Operator {
 		wp_enqueue_script( 'thickbox' );
 		wp_enqueue_style( 'thickbox' );
 
-		$admin_script_asset = include LSX_TO_PATH . 'build/admin-script.asset.php';
+
+
+		$asset_path = LSX_TO_PATH . 'build/admin-script.asset.php';
+		$admin_script_asset = file_exists( $asset_path )
+			? include $asset_path
+			: array(
+				'dependencies' => array( 'jquery' ),
+				'version'      => LSX_TO_VER,
+			);
+
 		wp_enqueue_script( 'tour-operator-admin-script', LSX_TO_URL . 'build/admin-script.js', $admin_script_asset['dependencies'], $admin_script_asset['version'], true );
-		wp_enqueue_style( 'tour-operator-admin-style', LSX_TO_URL . 'build/admin.css', array(), LSX_TO_VER );
+
+		wp_enqueue_style(
+			'tour-operator-admin-style',
+			LSX_TO_URL . 'build/admin.css',
+			array(),
+			file_exists( LSX_TO_PATH . 'build/admin.css' ) ? filemtime( LSX_TO_PATH . 'build/admin.css' ) : LSX_TO_VER
+		);
+
 		wp_style_add_data( 'tour-operator-admin-style', 'rtl', 'replace' );
 
 	}
