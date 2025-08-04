@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "editorScript": "file:index.js",
+  "name": "lsx-tour-operator/icons",
+  "title": "Icons",
+  "description": "A simple block that allows you to insert any SVG icons from a custom library.",
+  "category": "lsx-tour-operator",
+  "keywords": [
+    "icons",
+    "icon",
+    "svg"
+  ],
+  "supports": {
+    "html": false,
+    "color": {
+      "text": true,
+      "background": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    }
+  },
+  "style": "file:style-index.css",
+  "example": {
+    "attributes": {
+      "iconType": "outline",
+      "iconName": "academicCap"
+    }
+  }
+}

@@ -77,13 +77,14 @@ class Frontend extends Tour_Operator {
 	public function enqueue_stylescripts() {
 		$has_slick = wp_script_is( 'slick', 'queue' );
 		$has_slick_lightbox = wp_script_is( 'slick-lightbox', 'queue' );
-		//if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
-			$prefix = 'src/';
+		if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
+			$prefix = 'src/js/';
 			$suffix = '';
-		/*} else {
-			$prefix = '';
-			$suffix = '.min';
-		}*/
+		} else {
+			$prefix = 'build/';
+			$suffix = '';
+			//$suffix = '.min'; 
+		}
 
 		if ( ! $has_slick ) {
 			wp_enqueue_script( 'slick', LSX_TO_URL . 'assets/js/vendor/slick.min.js', array( 'jquery' ), LSX_TO_VER, true );
@@ -93,7 +94,7 @@ class Frontend extends Tour_Operator {
 			wp_enqueue_script( 'slick-lightbox', LSX_TO_URL . 'assets/js/vendor/slick-lightbox.min.js', array( 'jquery', 'slick' ), LSX_TO_VER, true );
 		}
 
-		wp_enqueue_script( 'tour-operator-script', LSX_TO_URL . 'assets/js/' . $prefix . 'custom' . $suffix . '.js', array( 'jquery', 'slick', 'slick-lightbox'/*, 'fixto'*/ ), LSX_TO_VER, true );
+		wp_enqueue_script( 'tour-operator-script', LSX_TO_URL . $prefix . 'custom' . $suffix . '.js', array( 'jquery', 'slick', 'slick-lightbox'/*, 'fixto'*/ ), LSX_TO_VER, true );
 
 		if ( ! $has_slick ) {
 			wp_enqueue_style( 'slick', LSX_TO_URL . 'assets/css/vendor/slick.css', array(), LSX_TO_VER );
@@ -103,7 +104,7 @@ class Frontend extends Tour_Operator {
 			wp_enqueue_style( 'slick-lightbox', LSX_TO_URL . 'assets/css/vendor/slick-lightbox.css', array( 'slick' ), LSX_TO_VER );
 		}
 
-		wp_enqueue_style( 'tour-operator-style', LSX_TO_URL . 'assets/css/style.css', array(), LSX_TO_VER );
+		wp_enqueue_style( 'tour-operator-style', LSX_TO_URL . 'build/style.css', array(), LSX_TO_VER );
 		wp_style_add_data( 'tour-operator-style', 'rtl', 'replace' );
 	}
 
@@ -239,7 +240,7 @@ class Frontend extends Tour_Operator {
 				'url'  => get_post_type_archive_link( 'accommodation' ),
 			),
 		);
-		
+
 		// Get the primary travel style
 		$primary      = get_post_meta( get_the_ID(), '_yoast_wpseo_primary_accommodation-type', true );
 		$primary_term = get_term( $primary, 'accommodation-type' );
@@ -266,7 +267,7 @@ class Frontend extends Tour_Operator {
 				}
 			}
 		}
-		
+
 		$new_crumbs[] = array(
 			'text' => get_the_title(),
 			'url'  => get_permalink(),
@@ -319,7 +320,7 @@ class Frontend extends Tour_Operator {
 				}
 			}
 		}
-		
+
 		$new_crumbs[] = array(
 			'text' => get_the_title(),
 			'url'  => get_permalink(),

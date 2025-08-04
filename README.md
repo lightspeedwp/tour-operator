@@ -32,7 +32,23 @@ You can also send an email to our Support Team at [support@lightspeedwp.agency](
 
 If you're a developer who's spotted a bug issue and have a fix, or simply have functionality you think would extend our plugin, we are always happy to accept your contribution! Visit the [Tour Operator Plugin on Github](https://github.com/lightspeeddevelopment/tour-operator) and submit a Pull Request with your updates.
 
+## Development
 
+### Build Process
+This project uses WordPress Scripts for building assets.
+
+**Available commands:**
+```bash
+npm run start    # Start development mode with hot reloading
+npm run build    # Build production assets
+npm run lint:js  # Lint JavaScript files
+npm run lint:css # Lint CSS/SCSS files
+```
+
+**Getting started:**
+1. Install dependencies: `npm install`
+2. Start development: `npm run start`
+3. Build for production: `npm run build`
 
 
 ---
