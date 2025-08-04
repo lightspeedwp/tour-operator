@@ -12,3 +12,4 @@ vendor/content-models/includes/.DS_Store
 vendor/.DS_Store
 .DS_Store
 build
+package-lock.json
