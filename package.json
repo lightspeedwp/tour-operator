@@ -10,7 +10,12 @@
     "build-mopo": "rm -R languages/tour-operator-en_EN.mo && cp languages/tour-operator.pot languages/tour-operator-en_EN.po && wp i18n make-mo languages",
     "translate-US": "cp languages/tour-operator-en_EN.po languages/tour-operator-en_US.po && cp languages/tour-operator-en_EN.mo languages/tour-operator-en_US.mo",
     "lint:js": "wp-scripts lint-js",
-    "lint:css": "wp-scripts lint-style"
+    "lint:css": "wp-scripts lint-style",
+    "lint:php": "composer phpcs",
+    "lint:php:fix": "composer phpcbf",
+    "lint:php:report": "composer phpcs:report",
+    "lint:all": "npm run lint:php && npm run lint:js && npm run lint:css",
+    "format": "npm run lint:php:fix && wp-scripts format"
   },
   "repository": {
     "type": "git",
