@@ -3,7 +3,11 @@ node_modules
 .idea
 *.sublime-workspace
 wp-content
-vendor/
+vendor/cmb-field-select2/.DS_Store
+vendor/cmb2-field-map/.DS_Store
+vendor/content-models/.DS_Store
+vendor/content-models/includes/.DS_Store
+vendor/.DS_Store
 assets/.DS_Store
 assets/img/.DS_Store
 .DS_Store
