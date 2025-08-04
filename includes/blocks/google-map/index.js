@@ -5,7 +5,7 @@ wp.blocks.registerBlockVariation("core/group", {
 		title: "Google Map",
 		description: "Display a Google Map based on the current Tour Operator page.",
 		category: 'lsx-tour-operator',
-		icon: 'location-alt',
+		icon: 'admin-site-alt3',
 		attributes: {
 			metadata: {
 				name: "Google Map",
