@@ -82,13 +82,14 @@ class Maps
             $api_key = $settings['googlemaps_key'];
         }
 
-        //if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
-        $prefix = 'src/';
-        $suffix = '';
-        /*} else {
-        $prefix = '';
-        $suffix = '.min';
-        }*/
+		if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
+			$prefix = 'src/js/';
+			$suffix = '';
+		} else {
+			$prefix = 'build/';
+			$suffix = '';
+			//$suffix = '.min'; 
+		}
 
         $dependacies = array( 'jquery' );
         $google_url  = 'https://maps.googleapis.com/maps/api/js?key=' . $api_key . '&libraries=places';
@@ -96,7 +97,7 @@ class Maps
 
         wp_enqueue_script(
             'lsx_to_maps',
-            LSX_TO_URL . 'build/' . $prefix . 'maps' . $suffix . '.js',
+            LSX_TO_URL . $prefix . 'maps' . $suffix . '.js',
             $dependacies,
             LSX_TO_VER,
             true
