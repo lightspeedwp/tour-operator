@@ -77,13 +77,14 @@ class Frontend extends Tour_Operator {
 	public function enqueue_stylescripts() {
 		$has_slick = wp_script_is( 'slick', 'queue' );
 		$has_slick_lightbox = wp_script_is( 'slick-lightbox', 'queue' );
-		//if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
-			$prefix = 'src/';
+		if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
+			$prefix = 'src/js/';
 			$suffix = '';
-		/*} else {
-			$prefix = '';
-			$suffix = '.min';
-		}*/
+		} else {
+			$prefix = 'build/';
+			$suffix = '';
+			//$suffix = '.min'; 
+		}
 
 		if ( ! $has_slick ) {
 			wp_enqueue_script( 'slick', LSX_TO_URL . 'assets/js/vendor/slick.min.js', array( 'jquery' ), LSX_TO_VER, true );
@@ -93,7 +94,7 @@ class Frontend extends Tour_Operator {
 			wp_enqueue_script( 'slick-lightbox', LSX_TO_URL . 'assets/js/vendor/slick-lightbox.min.js', array( 'jquery', 'slick' ), LSX_TO_VER, true );
 		}
 
-		wp_enqueue_script( 'tour-operator-script', LSX_TO_URL . 'assets/js/' . $prefix . 'custom' . $suffix . '.js', array( 'jquery', 'slick', 'slick-lightbox'/*, 'fixto'*/ ), LSX_TO_VER, true );
+		wp_enqueue_script( 'tour-operator-script', LSX_TO_URL . $prefix . 'custom' . $suffix . '.js', array( 'jquery', 'slick', 'slick-lightbox'/*, 'fixto'*/ ), LSX_TO_VER, true );
 
 		if ( ! $has_slick ) {
 			wp_enqueue_style( 'slick', LSX_TO_URL . 'assets/css/vendor/slick.css', array(), LSX_TO_VER );
