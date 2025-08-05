@@ -3,7 +3,7 @@ wp.domReady(() => {
 wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/facts-regions-wrapper',
 		title: 'Regions List',
-		icon: "clipboard",
+		icon: "admin-site-alt",
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {

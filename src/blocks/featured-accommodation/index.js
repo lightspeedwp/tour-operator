@@ -3,7 +3,7 @@ wp.domReady(() => {
 wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/featured-accommodation',
 		title: 'Featured Accommodation',
-		icon: 'admin-home',
+		icon: 'admin-multisite',
 		description: 'Displays Accommodation with the Featured tag.',
 		category: 'lsx-tour-operator',
 		attributes: {

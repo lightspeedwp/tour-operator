@@ -3,7 +3,7 @@ wp.domReady(() => {
 wp.blocks.registerBlockVariation("core/group", {
 		name: "lsx-tour-operator/lsx-destination-to-tour",
 		title: "Destination to Tour",
-		icon: 'location-alt',
+		icon: 'admin-site',
 		category: "lsx-tour-operator",
 		attributes: {
 			name: "Destination to Tour",

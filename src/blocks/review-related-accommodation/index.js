@@ -3,7 +3,7 @@ wp.domReady(() => {
 wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/review-related-accommodation',
 		title: 'Related Reviews - Accommodation',
-		icon: 'admin-home',
+		icon: 'admin-multisite',
 		description: 'Displays Reviews related to an Accommodation.',
 		category: 'lsx-tour-operator',
 		attributes: {

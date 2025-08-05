@@ -3,7 +3,7 @@ wp.domReady(() => {
 wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/suggested-visitor-types',
 		title: 'Suggested Visitor Types',
-		icon: "yes-alt",
+		icon: "groups",
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
