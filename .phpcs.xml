@@ -3,64 +3,90 @@
          namespace="WordPressCS\WordPress"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd">
-    <description>Coding standards</description>
-	
-	<!-- Pass some flags to PHPCS:
-		 p flag: Show progress of the run.
-		 s flag: Show sniff codes in all reports.
-	-->
-	<arg value="ps"/>
+    <description>WordPress Coding Standards for Tour Operator Plugin</description>
 
-	<!-- Check up to 8 files simultanously. -->
-	<arg name="parallel" value="8"/>
+    <!-- Pass some flags to PHPCS:
+         p flag: Show progress of the run.
+         s flag: Show sniff codes in all reports.
+         v flag: Print verbose output.
+    -->
+    <arg value="psv"/>
 
-	<!-- Check all files in this directory and the directories below it. -->
-	<file>.</file>
+    <!-- Show results with colors. -->
+    <arg name="colors"/>
 
-	<!-- Exclude directories. -->
-	<exclude-pattern>*/vendor/*</exclude-pattern>
-	<exclude-pattern>*/node_modules/*</exclude-pattern>
-	<exclude-pattern>*/tests/*</exclude-pattern>
-	<exclude-pattern>*/woocommerce/*</exclude-pattern>
-	<exclude-pattern>*/tribe-events/*</exclude-pattern>
-	<exclude-pattern>*/.github/*</exclude-pattern>
-	<exclude-pattern>gulpfile\.js</exclude-pattern>
-	<exclude-pattern>*/wp-content/*</exclude-pattern>
-	<exclude-pattern>*.css*</exclude-pattern>
-	<exclude-pattern>*.js*</exclude-pattern>
-	<exclude-pattern type="relative">^build/*</exclude-pattern>
-	
-	<!-- Check up to 8 files simultaneously. -->
-	<arg name="parallel" value="8" />
-		
-	<config name="minimum_supported_wp_version" value="5.3" />
-	<config name="testVersion" value="7.0-" />
+    <!-- Check up to 8 files simultaneously. -->
+    <arg name="parallel" value="8"/>
 
-	<rule ref="WordPress">
-		<exclude name="WordPress.WP.GlobalVariablesOverride.Prohibited" />
-		<exclude name="Generic.ControlStructures.InlineControlStructure.NotAllowed" />
-	</rule>
-		
-	<rule ref="WordPress-Extra" />
+    <!-- Check all files in this directory and the directories below it. -->
+    <file>.</file>
 
-	<!-- Not interested in whitespace issues in JS and CSS files at the moment -->
-	<rule ref="Squiz.WhiteSpace">
-		<exclude-pattern>*\.css</exclude-pattern>
-		<exclude-pattern>*\.js</exclude-pattern>
-	</rule>
-	<rule ref="WordPress.WhiteSpace">
-		<exclude-pattern>*\.css</exclude-pattern>
-		<exclude-pattern>*\.js</exclude-pattern>
-	</rule>	
+    <!-- Exclude directories and files -->
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+    <exclude-pattern>*/tests/*</exclude-pattern>
+    <exclude-pattern>*/woocommerce/*</exclude-pattern>
+    <exclude-pattern>*/tribe-events/*</exclude-pattern>
+    <exclude-pattern>*/.github/*</exclude-pattern>
+    <exclude-pattern>*/.git/*</exclude-pattern>
+    <exclude-pattern>*/build/*</exclude-pattern>
+    <exclude-pattern>*/dist/*</exclude-pattern>
+    <exclude-pattern>gulpfile\.js</exclude-pattern>
+    <exclude-pattern>*/wp-content/*</exclude-pattern>
+    <exclude-pattern>*.css</exclude-pattern>
+    <exclude-pattern>*.js</exclude-pattern>
+    <exclude-pattern>*.min.js</exclude-pattern>
+    <exclude-pattern>*.min.css</exclude-pattern>
+    <exclude-pattern>*.map</exclude-pattern>
 
-	<rule ref="Generic.Files.EndFileNewline">
-		<exclude-pattern>*\.css</exclude-pattern>
-		<exclude-pattern>*\.js</exclude-pattern>
-	</rule>
-	
+    <!-- Configuration options -->
+    <config name="minimum_supported_wp_version" value="5.3"/>
+    <config name="testVersion" value="7.2-"/>
+
+    <!-- Include WordPress Coding Standards -->
+    <rule ref="WordPress"/>
+    <rule ref="WordPress-Core"/>
+    <rule ref="WordPress-Extra"/>
+    <!-- <rule ref="WordPress-Docs"/> --> <!-- Optional: Uncomment to enforce inline documentation standards -->
+
+    <!-- Include PHP Compatibility checking -->
+    <rule ref="PHPCompatibilityWP"/>
+
+    <!-- WordPress Accessibility and Security Standards (WCAG AA support) -->
+    <rule ref="WordPress.Security.EscapeOutput"/>
+    <rule ref="WordPress.Security.NonceVerification"/>
+    <rule ref="WordPress.Security.ValidatedSanitizedInput"/>
+    <rule ref="WordPress.Security.SafeRedirect"/>
+    <rule ref="WordPress.WP.I18n"/>
+    <rule ref="WordPress.WP.EnqueuedResources"/>
+
+    <!-- Custom exclusions for this project -->
+    <rule ref="WordPress">
+        <exclude name="WordPress.WP.GlobalVariablesOverride.Prohibited"/>
+        <exclude name="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
+    </rule>
+
+    <!-- Not interested in whitespace issues in JS and CSS files -->
+    <rule ref="Squiz.WhiteSpace">
+        <exclude-pattern>*\.css</exclude-pattern>
+        <exclude-pattern>*\.js</exclude-pattern>
+    </rule>
+    <rule ref="WordPress.WhiteSpace">
+        <exclude-pattern>*\.css</exclude-pattern>
+        <exclude-pattern>*\.js</exclude-pattern>
+    </rule>
+
+    <rule ref="Generic.Files.EndFileNewline">
+        <exclude-pattern>*\.css</exclude-pattern>
+        <exclude-pattern>*\.js</exclude-pattern>
+    </rule>
+
+    <!-- Additional WordPress rules -->
     <rule ref="Generic.PHP.Syntax"/>
-	
     <rule ref="WordPress.WP.DeprecatedFunctions"/>
-	
-	<rule ref="PHPCompatibilityWP"/>
+    <rule ref="WordPress.WP.DiscouragedFunctions"/>
+
+    <!-- Report configuration -->
+    <arg name="report" value="full"/>
+    <arg name="report-width" value="120"/>
 </ruleset>

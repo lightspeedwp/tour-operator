@@ -1,21 +1,40 @@
-node_modules
-.sass-cache
-.idea
-*.sublime-workspace
-package-lock.json
-wp-content
+# Dependencies
+node_modules/
 vendor/cmb-field-select2/.DS_Store
 vendor/cmb2-field-map/.DS_Store
-assets/.DS_Store
-assets/img/.DS_Store
-vendor/content-models/.DS_Store
-vendor/content-models/includes/.DS_Store
-vendor/.DS_Store
+vendor/content-models/
+
+# Build output directories
+build/
+dist/
+
+# Cache and temporary files
+.sass-cache
+.idea
 .DS_Store
-vendor/.DS_Store
-.DS_Store
-.DS_Store
-vendor/.DS_Store
-vendor/.DS_Store
-vendor/.DS_Store
-vendor/.DS_Store
+
+# Package manager files
+package-lock.json
+*.sublime-workspace
+
+# WordPress development
+wp-content/
+
+# Linter and test output files
+phpcs-report.xml
+phpcs-report.txt
+phpcs-report.json
+phpcs.txt
+eslint-report.json
+eslint-report.txt
+junit.xml
+coverage.xml
+coverage/
+
+# Test artifacts
+__snapshots__/
+.phpunit.result.cache
+
+# IDE and editor files
+.vscode/
+*.log
