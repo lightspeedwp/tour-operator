@@ -15,9 +15,9 @@
         "phpcompatibility/phpcompatibility-wp": "^2.1.0"
     },
     "scripts": {
-      "phpcs": "phpcs",
-      "phpcbf": "phpcbf",
-      "phpcs:report": "phpcs --report=json --report-file=phpcs-report.json"
+      "phpcs": "vendor/bin/phpcs",
+      "phpcbf": "vendor/bin/phpcbf",
+      "phpcs:report": "vendor/bin/phpcs --report=json --report-file=phpcs-report.json"
     },
     "repositories":[{
         "type":"composer",
