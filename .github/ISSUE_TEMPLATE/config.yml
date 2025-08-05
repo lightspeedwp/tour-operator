@@ -1,0 +1,30 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Bug report
+    description: Report a bug or issue with the Tour Operator plugin
+    labels: [bug]
+    path: 01-bug-report.md
+  - name: Feature request
+    description: Suggest a new feature or enhancement for the plugin
+    labels: [enhancement]
+    path: 02-feature_request.md
+  - name: Documentation request
+    description: Request improvements or additions to documentation
+    labels: [documentation]
+    path: 03-docs-request.md
+  - name: General question
+    description: Ask a general question about the plugin usage
+    labels: [question]
+    path: 04-general-question.md
+  - name: Integration issue
+    description: Report problems with third-party integrations
+    labels: [integration]
+    path: 05-integration-issue.md
+  - name: Performance issue
+    description: Report performance-related problems or slowdowns
+    labels: [performance]
+    path: 06-performance-issue.md
+  - name: User experience feedback
+    description: Provide feedback on user experience and interface
+    labels: [ux, feedback]
+    path: 07-user-experience-feedback.md
