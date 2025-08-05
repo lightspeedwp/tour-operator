@@ -18,6 +18,9 @@
 - Added integration with the Action Scheduler to allow Tours to expire and be set to draft [#490](https://github.com/lightspeedwp/tour-operator/pull/490). Work with any plugin using the Action Scheduler as a vendor [WooCommerce](https://woocommerce.com/), [PublishPress](https://publishpress.com/), [Action Scheduler](https://wordpress.org/plugins/action-scheduler/).
 
 ### Changed
+- Updated PHPCS configuration for WPCS 3.x compatibility - Issue [#556](https://github.com/lightspeedwp/tour-operator/issues/556)
+- Added PHP linting scripts to composer.json for automated code quality checks  - Issue [#556](https://github.com/lightspeedwp/tour-operator/issues/556)
+- Updated composer dependencies to latest versions - Issue [#556](https://github.com/lightspeedwp/tour-operator/issues/556)
 - Migrate build system from `cgb-scripts` to `@wordpress/scripts` - Issue [#559](https://github.com/lightspeedwp/tour-operator/issues/559)
 - Enhance CodeRabbit rules, by adding custom rules - PR [#551](https://github.com/lightspeedwp/tour-operator/pull/551), Issue [#550](https://github.com/lightspeedwp/tour-operator/issues/550)
 - Update issue templates for enhancement and design/UX feedback - Issue (#568)

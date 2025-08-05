@@ -5,10 +5,12 @@ node_modules
 wp-content
 vendor/cmb-field-select2/.DS_Store
 vendor/cmb2-field-map/.DS_Store
-assets/.DS_Store
-assets/img/.DS_Store
 vendor/content-models/.DS_Store
 vendor/content-models/includes/.DS_Store
 vendor/.DS_Store
+assets/.DS_Store
+assets/img/.DS_Store
 .DS_Store
-package-lock.json
+phpcs-report.json
+phpcs-report.xml
+phpcs-report.txt
