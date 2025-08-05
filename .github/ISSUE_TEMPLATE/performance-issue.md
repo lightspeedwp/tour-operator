@@ -7,11 +7,6 @@ labels: performance
 assignees: ''
 ---
 
-<!-- 
-For one extension publisher: Add the label corresponding to the extension's slug name.
-For GitHub product team: Add the "github team" label.
--->
-
 **Describe the performance issue**
 A clear and concise description of the performance issue you are experiencing.
 

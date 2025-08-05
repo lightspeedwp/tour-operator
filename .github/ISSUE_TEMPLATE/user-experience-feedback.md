@@ -6,11 +6,6 @@ labels: UX
 assignees: ''
 ---
 
-<!-- 
-For one extension publisher: Add the label corresponding to the extension's slug name.
-For GitHub product team: Add the "github team" label.
--->
-
 **Describe your experience**
 A brief description of your experience using the extension, including what you liked and what could be improved.
 

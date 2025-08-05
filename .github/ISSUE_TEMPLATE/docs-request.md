@@ -6,11 +6,6 @@ labels: documentation
 assignees: ''
 ---
 
-<!-- 
-For one extension publisher: Add the label corresponding to the extension's slug name.
-For GitHub product team: Add the "github team" label.
--->
-
 **What documentation is needed?**
 Please describe the specific documentation you are requesting or the area that needs clarification.
 

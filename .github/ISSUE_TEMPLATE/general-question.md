@@ -7,11 +7,6 @@ labels: question
 assignees: ''
 ---
 
-<!-- 
-For one extension publisher: Add the label corresponding to the extension's slug name.
-For GitHub product team: Add the "github team" label.
--->
-
 **Question**
 Please describe your question in detail.
 

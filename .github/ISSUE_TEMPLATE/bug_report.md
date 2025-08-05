@@ -6,11 +6,6 @@ labels: bug
 assignees: ''
 ---
 
-<!-- 
-For one extension publisher: Add the label corresponding to the extension's slug name.
-For GitHub product team: Add the "github team" label.
--->
-
 **Describe the bug**
 A clear and concise description of what the bug is.
 
