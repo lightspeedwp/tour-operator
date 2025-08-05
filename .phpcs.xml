@@ -21,7 +21,7 @@
 	<exclude-pattern>*/tests/*</exclude-pattern>
 	<exclude-pattern>*/woocommerce/*</exclude-pattern>
 	<exclude-pattern>*/tribe-events/*</exclude-pattern>
-	<exclude-pattern>/build</exclude-pattern>
+	<exclude-pattern>*/build/*</exclude-pattern>
 	<exclude-pattern>*/.github/*</exclude-pattern>
 	<exclude-pattern>gulpfile\.js</exclude-pattern>
 	<exclude-pattern>*/wp-content/*</exclude-pattern>
@@ -49,13 +49,10 @@
 	<rule ref="PHPCompatibilityWP"/>
 
 	<!-- Accessibility and Security -->
-	<rule ref="WordPress.WP.I18n"/>
-	<rule ref="WordPress.Security.EscapeOutput"/>
-
-	<!-- Set text domain -->
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array" value="tour-operator"/>
 		</properties>
 	</rule>
+	<rule ref="WordPress.Security.EscapeOutput"/>
 </ruleset>
