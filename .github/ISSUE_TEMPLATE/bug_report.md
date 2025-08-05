@@ -41,3 +41,10 @@ If applicable, add screenshots to help explain your problem.
 
 **Additional context**
 Add any other context about the problem here.
+
+**Maintainer Checklist** *(for maintainers use)*
+- [ ] Bug confirmed and reproducible
+- [ ] Fix implemented
+- [ ] Changelog updated
+- [ ] Tests added/updated
+- [ ] Documentation updated (if applicable)
