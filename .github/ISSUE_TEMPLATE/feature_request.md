@@ -2,7 +2,7 @@
 name: Feature request
 about: Suggest an idea or propose a new feature for this extensions
 title: "[Feature request] "
-labels: enhancement
+labels: enhancement, needs-triage
 assignees: ''
 ---
 

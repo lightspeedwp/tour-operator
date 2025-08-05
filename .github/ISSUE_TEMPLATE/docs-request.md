@@ -2,7 +2,7 @@
 name: Docs request
 about: Request additional documentation or clarification on existing documentation
 title: "[Docs] "
-labels: documentation
+labels: documentation, needs-triage
 assignees: ''
 ---
 

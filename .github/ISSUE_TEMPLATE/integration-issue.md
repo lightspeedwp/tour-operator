@@ -2,7 +2,7 @@
 name: Integration Issue
 about: Report issues related to integrating the extension with other tools or platforms
 title: "[Integration] "
-labels: integration
+labels: integration, needs-triage
 assignees: ''
 ---
 
