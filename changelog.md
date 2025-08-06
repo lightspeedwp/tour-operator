@@ -10,6 +10,7 @@
 - Add npm scripts: `start`, `build`, `lint:js`, `lint:css` - Issue [#559](https://github.com/lightspeedwp/tour-operator/issues/559)
 
 ### Enhancements
+- Updated block icons for various block variations: Custom SVGs were added to: dress, facilities, health, ends-in, departs-from, climate, transport. [#579](https://github.com/lightspeedwp/tour-operator/pull/579)
 - Updated the departure day to reply on the previous days Location and Accommodation values. [#491](https://github.com/lightspeedwp/tour-operator/pull/491)
 - Block list updates - taken the blocks that were all listed in the assets folder and have broken them out into individual files along with block.json files - PR [#489](https://github.com/lightspeedwp/tour-operator/pull/489)
 - Removing the debug statements, A filter to allow the disabling of destinations when searching for related content. Prepping the registration for the adjust block registration. Refactoring the query statments into seperate functions. Fixing the filters for the related connections - PR (#486)

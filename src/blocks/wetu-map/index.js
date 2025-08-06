@@ -3,7 +3,7 @@ wp.domReady(() => {
 wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/wetu-map',
 		title: 'WETU Map',
-		icon: 'admin-site-alt',
+		icon: 'admin-site-alt3',
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
