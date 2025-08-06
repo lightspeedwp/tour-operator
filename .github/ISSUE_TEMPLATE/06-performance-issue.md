@@ -1,7 +1,6 @@
 ---
 name: Performance issue
-about: Report performance-related issues such as slow response times or high resource
-  usage
+about: Report performance-related issues such as slow response times or high resource usage
 title: "[Performance] "
 labels: performance, needs-triage
 assignees: ''

@@ -1,7 +1,6 @@
 ---
 name: General question
-about: Ask a question that doesn’t fit into other categories, helping to keep other
-  issue types focused
+about: Ask a question that doesn’t fit into other categories, helping to keep other issue types focused
 title: "[Question] "
 labels: question, needs-triage
 assignees: ''
