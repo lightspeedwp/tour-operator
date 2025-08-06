@@ -7,7 +7,7 @@ contact_links:
   - name: Feature request
     description: Suggest a new feature or enhancement for the plugin
     labels: [enhancement]
-    path: 02-feature_request.md
+    path: 02-feature-request.md
   - name: Documentation request
     description: Request improvements or additions to documentation
     labels: [documentation]
