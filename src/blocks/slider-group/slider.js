@@ -46,15 +46,28 @@ class SliderGroup {
 			this.element.querySelector('.wp-block-group__inner-container') ||
 			this.element;
 
-		// Get all slide elements (group blocks) - exclude any existing wrapper
-		this.slides = Array.from(this.slidesContainer.children).filter(child =>
-			(child.classList.contains('wp-block-group') ||
-				child.classList.contains('slider-slide') ||
-				child.getAttribute('data-type') === 'core/group' ||
-				child.querySelector('[data-type="core/group"]')) &&
-			!child.classList.contains('slider-slides-wrapper') && // Exclude existing wrapper
-			!child.classList.contains('slider-slide-appender') // Exclude appender
-		);
+		// Check if we have a post-template structure (ul with li elements)
+		const postTemplate = this.slidesContainer.querySelector('.wp-block-post-template');
+
+		if (postTemplate && postTemplate.tagName === 'UL') {
+			// Handle post-template structure: each <li> is a slide
+			this.slides = Array.from(postTemplate.children).filter(child =>
+				child.tagName === 'LI'
+			);
+			this.slidesWrapper = postTemplate;
+			this.isPostTemplate = true;
+		} else {
+			// Handle original group-based structure
+			this.slides = Array.from(this.slidesContainer.children).filter(child =>
+				(child.classList.contains('wp-block-group') ||
+					child.classList.contains('slider-slide') ||
+					child.getAttribute('data-type') === 'core/group' ||
+					child.querySelector('[data-type="core/group"]')) &&
+				!child.classList.contains('slider-slides-wrapper') && // Exclude existing wrapper
+				!child.classList.contains('slider-slide-appender') // Exclude appender
+			);
+			this.isPostTemplate = false;
+		}
 
 		// Add slider classes
 		this.element.classList.add('slider-group-active');
@@ -63,25 +76,33 @@ class SliderGroup {
 		if (this.options.isEditor) {
 			this.slidesWrapper = this.slidesContainer;
 		} else {
-			// Only create wrapper on frontend if we don't already have one and we have slides
-			const existingWrapper = this.slidesContainer.querySelector('.slider-slides-wrapper');
-			if (this.slides.length > 0 && !existingWrapper) {
-				const slidesWrapper = document.createElement('div');
-				slidesWrapper.className = 'slider-slides-wrapper';
-
-				// Move slides to wrapper (frontend only)
-				this.slides.forEach(slide => {
-					slidesWrapper.appendChild(slide);
-				});
-
-				this.slidesContainer.appendChild(slidesWrapper);
-				this.slidesWrapper = slidesWrapper;
+			// Handle post-template structure differently
+			if (this.isPostTemplate) {
+				// For post-template, the UL is already our wrapper
+				// Just ensure it has the right class and remove slider-slide from UL
+				this.slidesWrapper.classList.add('slider-slides-wrapper');
+				this.slidesWrapper.classList.remove('slider-slide'); // Remove from UL
 			} else {
-				this.slidesWrapper = existingWrapper || this.slidesContainer;
-				if (existingWrapper) {
-					this.slides = Array.from(this.slidesWrapper.children).filter(child =>
-						!child.classList.contains('slider-slide-appender')
-					);
+				// Only create wrapper on frontend if we don't already have one and we have slides
+				const existingWrapper = this.slidesContainer.querySelector('.slider-slides-wrapper');
+				if (this.slides.length > 0 && !existingWrapper) {
+					const slidesWrapper = document.createElement('div');
+					slidesWrapper.className = 'slider-slides-wrapper';
+
+					// Move slides to wrapper (frontend only)
+					this.slides.forEach(slide => {
+						slidesWrapper.appendChild(slide);
+					});
+
+					this.slidesContainer.appendChild(slidesWrapper);
+					this.slidesWrapper = slidesWrapper;
+				} else {
+					this.slidesWrapper = existingWrapper || this.slidesContainer;
+					if (existingWrapper) {
+						this.slides = Array.from(this.slidesWrapper.children).filter(child =>
+							!child.classList.contains('slider-slide-appender')
+						);
+					}
 				}
 			}
 		}
