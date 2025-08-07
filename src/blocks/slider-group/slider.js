@@ -35,9 +35,77 @@ class SliderGroup {
 
 	init() {
 		this.setupSlider();
+
+		// Check if slider should be initialized based on slide count vs visible slides
+		const isMobile = window.innerWidth < 768;
+		const visibleSlides = isMobile ? this.options.maxSlidesMobile : this.options.maxSlides;
+
+		// Only initialize if we have more slides than can be displayed
+		if (this.slides.length <= visibleSlides) {
+			this.preserveNaturalLayout();
+			this.shouldInitialize = false;
+			return;
+		}
+
+		this.shouldInitialize = true;
+		this.applySliderClasses();
 		this.createNavigation();
 		this.bindEvents();
 		this.updateSlider();
+	}
+
+	applySliderClasses() {
+		// Only apply slider classes if slider will be initialized
+		this.element.classList.add('slider-group-active');
+
+		// Mark slides and set up initial positioning
+		this.slides.forEach((slide, index) => {
+			slide.classList.add('slider-slide');
+			slide.setAttribute('data-slide-index', index);
+		});
+
+		// Apply wrapper classes for post-template structure
+		if (this.isPostTemplate && this.slidesWrapper) {
+			this.slidesWrapper.classList.add('slider-slides-wrapper');
+			this.slidesWrapper.classList.remove('slider-slide'); // Remove from UL
+		}
+	}
+
+	preserveNaturalLayout() {
+		// Ensure slides wrapper maintains its natural styling
+		if (this.slidesWrapper) {
+			// Reset any slider-specific styling
+			this.slidesWrapper.style.display = '';
+			this.slidesWrapper.style.transform = '';
+			this.slidesWrapper.style.transition = '';
+			this.slidesWrapper.style.width = '';
+			this.slidesWrapper.style.minWidth = '';
+			this.slidesWrapper.style.maxWidth = '';
+			this.slidesWrapper.style.margin = '';
+
+			// Don't add slider wrapper classes
+			this.slidesWrapper.classList.remove('slider-slides-wrapper');
+		}
+
+		// Reset slide styling to natural behavior and remove slider classes
+		this.slides.forEach(slide => {
+			slide.style.width = '';
+			slide.style.minWidth = '';
+			slide.style.maxWidth = '';
+			slide.style.flex = '';
+			slide.style.boxSizing = '';
+			slide.style.padding = '';
+			slide.style.opacity = '';
+			slide.style.pointerEvents = '';
+			slide.style.transition = '';
+
+			// Don't add slider-slide class or any slider-related classes
+			slide.classList.remove('slider-slide', 'active-slide');
+			slide.removeAttribute('data-slide-index');
+		});
+
+		// Don't add the main slider active class
+		this.element.classList.remove('slider-group-active');
 	}
 
 	setupSlider() {
@@ -327,9 +395,11 @@ class SliderGroup {
 		const isMobile = window.innerWidth < 768;
 		const visibleSlides = isMobile ? this.options.maxSlidesMobile : this.options.maxSlides;
 		const slidesToScroll = this.options.slidesToScroll || 1;
+
 		if (this.options.infinite) {
-			this.currentSlide = (this.currentSlide + slidesToScroll) % this.slides.length;
-			// Prevent showing empty space if not enough slides left
+			this.currentSlide = this.currentSlide + slidesToScroll;
+
+			// If we go beyond the last valid position, wrap to the beginning
 			if (this.currentSlide > this.slides.length - visibleSlides) {
 				this.currentSlide = 0;
 			}
@@ -343,10 +413,13 @@ class SliderGroup {
 		const isMobile = window.innerWidth < 768;
 		const visibleSlides = isMobile ? this.options.maxSlidesMobile : this.options.maxSlides;
 		const slidesToScroll = this.options.slidesToScroll || 1;
+
 		if (this.options.infinite) {
-			this.currentSlide = (this.currentSlide - slidesToScroll + this.slides.length) % this.slides.length;
+			this.currentSlide = this.currentSlide - slidesToScroll;
+
 			if (this.currentSlide < 0) {
-				this.currentSlide = this.slides.length - visibleSlides;
+				// Calculate the last valid starting position that shows the full set of visible slides
+				this.currentSlide = Math.max(0, this.slides.length - visibleSlides);
 			}
 		} else {
 			this.currentSlide = Math.max(this.currentSlide - slidesToScroll, 0);
@@ -368,15 +441,19 @@ class SliderGroup {
 		const visibleSlides = isMobile ? this.options.maxSlidesMobile : this.options.maxSlides;
 		const slideWidth = 100 / visibleSlides;
 
-		// Setup the slides wrapper (the actual container that moves)
+		// Set up the slides wrapper (the actual container that moves)
 		if (this.slidesWrapper) {
 			this.slidesWrapper.style.display = 'flex';
 			this.slidesWrapper.style.transition = 'transform 0.3s ease';
 			this.slidesWrapper.style.width = `${(this.slides.length) * 100}%`;
 
-			this.slidesWrapper.style.minWidth = `${this.options.itemMinWidth}px`;
-			this.slidesWrapper.style.maxWidth = `${this.options.itemMaxWidth}px`;
-			this.slidesWrapper.style.margin = '20px auto';
+			// Don't apply width constraints to post-template containers (UL)
+			// These should only be applied to the slider wrapper, not post containers
+			if (!this.isPostTemplate) {
+				this.slidesWrapper.style.minWidth = `${this.options.itemMinWidth}px`;
+				this.slidesWrapper.style.maxWidth = `${this.options.itemMaxWidth}px`;
+				this.slidesWrapper.style.margin = '20px auto';
+			}
 		}
 
 		// Update slide positions and visibility
@@ -408,19 +485,18 @@ class SliderGroup {
 			}
 		});
 
-		// Move wrapper to show current slide
-		const translateX = -(this.currentSlide * slideWidth);
+		// Account for gaps between slides when calculating translation
+		const gapSize = 16; // 16px total gap (8px padding on each side)
+		const gapOffset = this.currentSlide * (gapSize / this.slidesWrapper.offsetWidth * 100);
+		const translateX = -(this.currentSlide * slideWidth) - gapOffset;
+
 		if (this.slidesWrapper) {
 			this.slidesWrapper.style.transform = `translateX(${translateX}%)`;
 		}
 
-		// Update navigation states
 		this.updateNavigationStates();
-
-		// Update dots
 		this.updateDots();
 
-		// Trigger callback
 		if (this.options.onSlideChange) {
 			this.options.onSlideChange(this.currentSlide);
 		}
@@ -456,12 +532,10 @@ class SliderGroup {
 	}
 
 	destroy() {
-		// Remove event listeners
 		if (this.resizeHandler) {
 			window.removeEventListener('resize', this.resizeHandler);
 		}
 
-		// Remove navigation
 		const navElements = this.element.querySelectorAll('.slider-nav, .slider-dots');
 		navElements.forEach(nav => nav.remove());
 
@@ -486,7 +560,6 @@ class SliderGroup {
 			this.slidesContainer.style.transform = '';
 		}
 
-		// Remove slider classes
 		this.element.classList.remove('slider-group-active');
 		if (this.slidesContainer) {
 			this.slidesContainer.classList.remove('slider-container', 'slider-slides-wrapper');
@@ -506,9 +579,7 @@ class SliderGroup {
 	}
 }
 
-// Export functions for use in the block
 export function initializeSlider(element, options) {
-	console.log('Initializing slider with options:', options);
 	return new SliderGroup(element, options);
 }
 

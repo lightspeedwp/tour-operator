@@ -161,7 +161,6 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 	});
 
 	useEffect(() => {
-		// If the current slide index is beyond the available slides, reset it
 		if (currentSlide >= innerBlocks.length && innerBlocks.length > 0) {
 			setCurrentSlide(Math.max(0, innerBlocks.length - 1));
 		}
@@ -170,7 +169,6 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 		if (sliderRef.current && innerBlocks.length > 0) {
 			const slides = sliderRef.current.querySelectorAll('.wp-block-group.slider-slide');
 			slides.forEach((slide, index) => {
-				// Hide all slides except the current one
 				if (index === currentSlide) {
 					slide.style.display = 'block';
 					slide.style.opacity = '1';
@@ -350,12 +348,9 @@ registerBlockType('lsx-tour-operator/slider-group', {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-	console.log('Initializing slider functionality on frontend...');
 	const sliderElements = document.querySelectorAll('.wp-block-lsx-tour-operator-slider');
 	sliderElements.forEach(element => {
-		// Skip initialization if this is in editor context
 		if (element.dataset.isEditor === 'true') {
-			console.log('Skipping slider initialization in editor');
 			return;
 		}
 
