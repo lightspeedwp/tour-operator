@@ -1,0 +1,77 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "lsx-tour-operator/slider-group",
+	"version": "1.0.0",
+	"title": "Slider",
+	"category": "layout",
+	"description": "An interactive slider block that displays multiple slides with navigation controls.",
+	"keywords": ["slider", "carousel", "gallery", "slides"],
+	"textdomain": "tour-operator",
+	"attributes": {
+		"maxSlides": {
+			"type": "number",
+			"default": 1
+		},
+		"infinite": {
+			"type": "boolean",
+			"default": true
+		},
+		"itemMinWidth": {
+			"type": "number",
+			"default": 250
+		},
+		"itemMaxWidth": {
+			"type": "number",
+			"default": 1000
+		},
+		"maxSlidesMobile": {
+			"type": "number",
+			"default": 1
+		},
+		"showArrows": {
+			"type": "boolean",
+			"default": true
+		},
+		"showDots": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"supports": {
+		"align": ["wide", "full"],
+		"anchor": true,
+		"color": {
+			"gradients": true,
+			"link": true,
+			"__experimentalDefaultControls": {
+				"background": true,
+				"text": true
+			}
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true,
+			"__experimentalDefaultControls": {
+				"padding": true,
+				"margin": false
+			}
+		},
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true,
+			"__experimentalDefaultControls": {
+				"color": true,
+				"radius": true,
+				"style": true,
+				"width": true
+			}
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": "file:./style-index.css",
+  "editorStyle": "file:./index.css",
+  "script": "file:./index.js"
+}

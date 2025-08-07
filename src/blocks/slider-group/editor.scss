@@ -1,0 +1,305 @@
+/**
+ * Editor-specific styles for Slider Group Block
+ */
+
+.block-editor-block-list__layout .wp-block-group-slider-group {
+	/* Enhanced editor visibility */
+	border: 1px dashed #ccc;
+	border-radius: 4px;
+	position: relative;
+
+	&.is-selected {
+		border-color: #007cba;
+		border-style: solid;
+	}
+
+	/* Editor toolbar spacing */
+	.block-editor-block-toolbar {
+		margin-bottom: 8px;
+	}
+
+	/* Make inner blocks more accessible in editor */
+	.slider-slide {
+		transition: all 0.2s ease;
+		border: 1px solid transparent;
+		border-radius: 2px;
+
+		&:hover {
+			border-color: #007cba;
+			background: rgba(0, 123, 186, 0.05);
+		}
+
+		&.is-selected {
+			border-color: #007cba;
+			background: rgba(0, 123, 186, 0.1);
+		}
+
+		/* Ensure block controls are visible */
+		.block-editor-block-list__block-edit {
+			position: relative;
+		}
+
+		.block-editor-block-toolbar {
+			z-index: 10;
+		}
+	}
+
+	/* Editor-specific slider info styling */
+	.slider-info {
+		background: #007cba;
+		color: white;
+		font-weight: 500;
+		letter-spacing: 0.5px;
+	}
+
+	/* Navigation arrows in editor */
+	.slider-arrow {
+		background: #007cba;
+
+		&:hover {
+			background: #005a87;
+		}
+
+		&:disabled {
+			background: #ccc;
+		}
+	}
+
+	/* Navigation dots in editor */
+	.slider-dot {
+		border-color: #007cba;
+
+		&:hover {
+			border-color: #005a87;
+		}
+
+		&.active {
+			background: #007cba;
+			border-color: #007cba;
+		}
+	}
+
+	/* Block appender styling */
+	.slider-slide-appender {
+		background: #f8f9fa;
+		border: 2px dashed #007cba;
+		color: #007cba;
+		min-height: 120px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.2s ease;
+
+		&:hover {
+			background: rgba(0, 123, 186, 0.05);
+			border-style: solid;
+		}
+
+		.block-list-appender button {
+			color: #007cba;
+			font-weight: 500;
+		}
+	}
+
+	/* Inspector controls preview */
+	&::before {
+		content: "Slider Group";
+		position: absolute;
+		top: -24px;
+		left: 0;
+		font-size: 11px;
+		font-weight: 600;
+		color: #666;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+	}
+}
+.block-editor-block-list__layout.is-root-container > .wp-block-lsx-tour-operator-slider {
+	margin-bottom: 16px;
+}
+.wp-block-lsx-tour-operator-slider {
+	/* Enhanced editor visibility */
+	border: 1px dashed #ccc;
+	border-radius: 4px;
+	position: relative;
+
+	&.is-selected {
+		border-color: #007cba;
+		border-style: solid;
+	}
+
+	/* Inner Block Slider Controls - Human Made style */
+	.inner-block-slider-controls {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 12px;
+		margin-bottom: 16px;
+		padding: 8px;
+		background: #f0f0f0;
+		border-radius: 4px;
+	}
+
+	.inner-block-slider-control {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 32px;
+		height: 32px;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		background: white;
+		color: #1e1e1e;
+		cursor: pointer;
+		font-size: 16px;
+		font-weight: bold;
+		transition: all 0.2s ease;
+
+		&:hover {
+			border-color: #007cba;
+			color: #007cba;
+		}
+
+		&:disabled {
+			background: #f6f7f7;
+			color: #a7aaad;
+			cursor: not-allowed;
+			border-color: #ddd;
+		}
+
+		&--previous,
+		&--next {
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+		}
+	}
+
+	.inner-block-slider-control__label {
+		font-size: 13px;
+		color: #757575;
+		font-weight: 500;
+		min-width: 50px;
+		text-align: center;
+	}
+
+	/* Inner Block Slider Display */
+	.inner-block-slider {
+		position: relative;
+		overflow: hidden;
+		border: 1px solid #e0e0e0;
+		border-radius: 4px;
+		background: white;
+	}
+
+	.inner-block-slider__container {
+		display: flex;
+		transition: transform 0.3s ease;
+	}
+
+	.inner-block-slider__slide {
+		width: 100%;
+		flex-shrink: 0;
+		min-height: 100px;
+		position: relative;
+		cursor: pointer;
+		border-right: 1px solid #e0e0e0;
+
+		&:last-child {
+			border-right: none;
+		}
+
+		&.is-active {
+			background: rgba(0, 123, 186, 0.05);
+		}
+
+		&:hover {
+			background: rgba(0, 123, 186, 0.08);
+		}
+	}
+
+	/* Hide the actual InnerBlocks rendering */
+	.slider-wrapper {
+		position: relative;
+
+		// Hide all slides by default in editor
+		.wp-block-group {
+			//display: none;
+
+			// Only show slides with .visible class
+			&.visible {
+				//display: block;
+			}
+		}
+	}
+
+	/* Block appender styling */
+	.slider-slide-appender {
+		background: #f8f9fa;
+		border: 2px dashed #007cba;
+		color: #007cba;
+		min-height: 80px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: all 0.2s ease;
+		border-radius: 4px;
+		margin: 8px 0;
+
+		&:hover {
+			background: rgba(0, 123, 186, 0.05);
+			border-style: solid;
+		}
+
+		.block-list-appender button {
+			color: #007cba;
+			font-weight: 500;
+		}
+	}
+
+	/* Block variation picker styling */
+	&::before {
+		content: "Slider";
+		position: absolute;
+		top: -24px;
+		left: 0;
+		font-size: 11px;
+		font-weight: 600;
+		color: #666;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+	}
+
+	/* Responsive behavior in editor */
+	@media (max-width: 782px) {
+		.inner-block-slider-controls {
+			gap: 8px;
+			margin-bottom: 12px;
+		}
+
+		.inner-block-slider-control {
+			width: 28px;
+			height: 28px;
+			font-size: 14px;
+		}
+
+		.inner-block-slider-control__label {
+			font-size: 12px;
+			min-width: 40px;
+		}
+	}
+	.slider-nav, .slider-dots {
+		display: none
+	}
+	&.slider-group-active {
+		.slider-nav, .slider-dots {
+			display: none
+		}
+	}
+	.inner-block-slider-control--add {
+		position: absolute;
+		right: 10px;
+	}
+
+	.slider-slide.wp-block-group {
+		opacity: 1!important;
+	}
+}
