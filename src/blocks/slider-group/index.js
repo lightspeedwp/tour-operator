@@ -44,6 +44,45 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 
 	const sliderRef = useRef(null);
 	const [currentSlide, setCurrentSlide] = useState(0);
+	const [isPreviewMode, setIsPreviewMode] = useState(false);
+
+	// Helper for preview mode: calculate visible slide indices
+	const getVisibleSlideIndices = () => {
+		if (!isPreviewMode) return [currentSlide];
+		const start = currentSlide;
+		const end = Math.min(start + maxSlides, innerBlocks.length);
+		return Array.from({ length: end - start }, (_, i) => start + i);
+	};
+
+	// Navigation for preview mode: page by slidesToScroll
+	const goToPreviousPage = () => {
+		if (!isPreviewMode) return goToPreviousSlide();
+		if (innerBlocks.length === 0) return;
+		const maxStart = Math.max(innerBlocks.length - maxSlides, 0);
+		if (infinite) {
+			let prev = currentSlide - slidesToScroll;
+			if (prev < 0) {
+				prev = maxStart;
+			}
+			setCurrentSlide(prev);
+		} else {
+			setCurrentSlide(Math.max(currentSlide - slidesToScroll, 0));
+		}
+	};
+	const goToNextPage = () => {
+		if (!isPreviewMode) return goToNextSlide();
+		if (innerBlocks.length === 0) return;
+		const maxStart = Math.max(innerBlocks.length - maxSlides, 0);
+		if (infinite) {
+			let next = currentSlide + slidesToScroll;
+			if (next > maxStart) {
+				next = 0;
+			}
+			setCurrentSlide(next);
+		} else {
+			setCurrentSlide(Math.min(currentSlide + slidesToScroll, maxStart));
+		}
+	};
 
 	const { innerBlocks } = useSelect(
 		(select) => ({
@@ -134,7 +173,6 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 	const innerBlocksProps = useInnerBlocksProps({
 		className: 'slider-wrapper',
 		style: {
-			width: `${itemMaxWidth}px`,
 			maxWidth: `100%`,
 			margin: '20px auto'
 		}
@@ -186,21 +224,43 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 			}
 		}
 
-		// Apply editor-only slider effect with CSS transforms
-		if (sliderRef.current && innerBlocks.length > 0) {
-			const slides = sliderRef.current.querySelectorAll('.wp-block-group.slider-slide');
-			slides.forEach((slide, index) => {
-				if (index === currentSlide) {
-					slide.style.display = 'block';
-					slide.style.opacity = '1';
-					slide.style.transform = 'translateX(0)';
-				} else {
-					slide.style.display = 'none';
-					slide.style.opacity = '0';
-				}
-			});
+		const slides = sliderRef.current?.querySelectorAll('.wp-block-group.slider-slide') || [];
+		const sliderWrapper = sliderRef.current?.querySelector('.slider-wrapper');
+
+		if (innerBlocks.length > 0) {
+			if (!isPreviewMode) {
+				if (sliderWrapper) sliderWrapper.style.display = '';
+				slides.forEach((slide, index) => {
+					if (index === currentSlide) {
+						slide.style.display = 'block';
+						slide.style.opacity = '1';
+						slide.style.transform = 'translateX(0)';
+						slide.style.flex = '';
+					} else {
+						slide.style.display = 'none';
+						slide.style.opacity = '0';
+						slide.style.flex = '';
+					}
+				});
+			} else {
+				if (sliderWrapper) sliderWrapper.style.display = 'flex';
+				const visible = getVisibleSlideIndices();
+				slides.forEach((slide, index) => {
+					if (visible.includes(index)) {
+						slide.style.display = 'block';
+						slide.style.flex = '1 0 0';
+						slide.style.opacity = '';
+						slide.style.transform = '';
+					} else {
+						slide.style.display = 'none';
+						slide.style.flex = '';
+						slide.style.opacity = '';
+						slide.style.transform = '';
+					}
+				});
+			}
 		}
-	}, [innerBlocks.length, currentSlide]);
+	}, [innerBlocks.length, currentSlide, isPreviewMode, maxSlides]);
 
 	return (
 		<>
@@ -209,14 +269,14 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 					<ToolbarButton
 						icon={<ChevronLeft />}
 						label={__('Previous slide', 'tour-operator')}
-						onClick={goToPreviousSlide}
+						onClick={isPreviewMode ? goToPreviousPage : goToPreviousSlide}
 						disabled={!infinite && currentSlide === 0}
 					/>
 					<ToolbarButton
 						icon={<ChevronRight />}
 						label={__('Next slide', 'tour-operator')}
-						onClick={goToNextSlide}
-						disabled={!infinite && currentSlide === innerBlocks.length - 1}
+						onClick={isPreviewMode ? goToNextPage : goToNextSlide}
+						disabled={!infinite && (isPreviewMode ? (currentSlide + maxSlides >= innerBlocks.length) : (currentSlide === innerBlocks.length - 1))}
 					/>
 				</ToolbarGroup>
 			</BlockControls>
@@ -284,7 +344,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 						<div className="inner-block-slider-controls">
 							<button
 								className="inner-block-slider-control inner-block-slider-control--previous"
-								onClick={goToPreviousSlide}
+								onClick={isPreviewMode ? goToPreviousPage : goToPreviousSlide}
 								disabled={!infinite && currentSlide === 0}
 								type="button"
 								aria-label={__('Previous slide', 'tour-operator')}
@@ -293,13 +353,15 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 							</button>
 
 							<span className="inner-block-slider-control__label">
-								{currentSlide + 1} / {innerBlocks.length}
+								{isPreviewMode
+									? `${Math.min(currentSlide + 1, innerBlocks.length)}-${Math.min(currentSlide + maxSlides, innerBlocks.length)} / ${innerBlocks.length}`
+									: `${currentSlide + 1} / ${innerBlocks.length}`}
 							</span>
 
 							<button
 								className="inner-block-slider-control inner-block-slider-control--next"
-								onClick={goToNextSlide}
-								disabled={!infinite && currentSlide === innerBlocks.length - 1}
+								onClick={isPreviewMode ? goToNextPage : goToNextSlide}
+								disabled={!infinite && (isPreviewMode ? (currentSlide + maxSlides >= innerBlocks.length) : (currentSlide === innerBlocks.length - 1))}
 								type="button"
 								aria-label={__('Next slide', 'tour-operator')}
 							>
@@ -311,8 +373,19 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 								onClick={addNewSlide}
 								type="button"
 								aria-label={__('Add new slide', 'tour-operator')}
+								disabled={isPreviewMode}
 							>
 								+
+							</button>
+
+							<button
+								className={`inner-block-slider-control inner-block-slider-control--preview${isPreviewMode ? ' is-active' : ''}`}
+								onClick={() => setIsPreviewMode((prev) => !prev)}
+								style={{ width: 'auto' }}
+								type="button"
+								aria-label={isPreviewMode ? __('Exit preview mode', 'tour-operator') : __('Preview slider', 'tour-operator')}
+							>
+								{isPreviewMode ? __('Previewing', 'tour-operator') : __('Preview', 'tour-operator')}
 							</button>
 						</div>
 					)}
