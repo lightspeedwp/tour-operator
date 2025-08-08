@@ -15,7 +15,7 @@ class SliderGroup {
 			showDots: true,
 			onSlideChange: null,
 			isEditor: false,
-			slidesToScroll: 1, // NEW OPTION
+			slidesToScroll: 1,
 			...options
 		};
 
@@ -36,6 +36,9 @@ class SliderGroup {
 	init() {
 		this.setupSlider();
 
+		// Move WordPress layout classes from .slider-wrapper to .slider-slides-wrapper
+		this.moveLayoutClasses();
+
 		// Check if slider should be initialized based on slide count vs visible slides
 		const isMobile = window.innerWidth < 768;
 		const visibleSlides = isMobile ? this.options.maxSlidesMobile : this.options.maxSlides;
@@ -52,6 +55,25 @@ class SliderGroup {
 		this.createNavigation();
 		this.bindEvents();
 		this.updateSlider();
+	}
+
+	moveLayoutClasses() {
+		// Move WordPress layout container classes from .slider-wrapper to .slider-slides-wrapper
+		const sliderWrapper = this.element.querySelector('.slider-wrapper');
+		const slidesWrapper = this.element.querySelector('.slider-slides-wrapper');
+
+		if (sliderWrapper && slidesWrapper) {
+			// Find any WordPress layout container classes
+			const layoutClasses = Array.from(sliderWrapper.classList).filter(className =>
+				className.includes('wp-container-') && className.includes('-is-layout-')
+			);
+
+			// Move layout classes to the slides wrapper
+			layoutClasses.forEach(className => {
+				sliderWrapper.classList.remove(className);
+				slidesWrapper.classList.add(className);
+			});
+		}
 	}
 
 	applySliderClasses() {
@@ -109,7 +131,7 @@ class SliderGroup {
 	}
 
 	setupSlider() {
-		// Find or create slides container
+		// Find or create slide container
 		this.slidesContainer = this.element.querySelector('.slider-wrapper') ||
 			this.element.querySelector('.wp-block-group__inner-container') ||
 			this.element;
@@ -125,7 +147,7 @@ class SliderGroup {
 			this.slidesWrapper = postTemplate;
 			this.isPostTemplate = true;
 		} else {
-			// Handle original group-based structure
+			// Handle the original group-based structure
 			this.slides = Array.from(this.slidesContainer.children).filter(child =>
 				(child.classList.contains('wp-block-group') ||
 					child.classList.contains('slider-slide') ||
@@ -187,12 +209,10 @@ class SliderGroup {
 		const existingNav = this.element.querySelectorAll('.slider-nav, .slider-dots');
 		existingNav.forEach(nav => nav.remove());
 
-		// Create arrows (only on frontend, not in editor)
 		if (this.options.showArrows && this.slides.length > 1 && !this.options.isEditor) {
 			this.createArrows();
 		}
 
-		// Create dots (only on frontend, not in editor)
 		if (this.options.showDots && this.slides.length > 1 && !this.options.isEditor) {
 			this.createDots();
 		}
@@ -264,7 +284,6 @@ class SliderGroup {
 	}
 
 	bindEvents() {
-		// Arrow navigation
 		if (this.arrowLeft) {
 			this.arrowLeft.addEventListener('click', (e) => {
 				e.preventDefault();
@@ -322,7 +341,7 @@ class SliderGroup {
 			const diffX = this.startX - currentX;
 			const diffY = this.startY - currentY;
 
-			// If vertical scroll is more significant, don't interfere
+			// If a vertical scroll is more significant, don't slide
 			if (Math.abs(diffY) > Math.abs(diffX)) {
 				return;
 			}
@@ -417,7 +436,7 @@ class SliderGroup {
 		if (this.options.infinite) {
 			this.currentSlide = this.currentSlide - slidesToScroll;
 
-			if (this.currentSlide < 0) {
+			if(this.currentSlide < 0) {
 				// Calculate the last valid starting position that shows the full set of visible slides
 				this.currentSlide = Math.max(0, this.slides.length - visibleSlides);
 			}
@@ -446,14 +465,15 @@ class SliderGroup {
 			this.slidesWrapper.style.display = 'flex';
 			this.slidesWrapper.style.transition = 'transform 0.3s ease';
 			this.slidesWrapper.style.width = `${(this.slides.length) * 100}%`;
+			// Don't override the native gap - WordPress will apply it via CSS
 
-			// Don't apply width constraints to post-template containers (UL)
-			// These should only be applied to the slider wrapper, not post containers
-			if (!this.isPostTemplate) {
-				this.slidesWrapper.style.minWidth = `${this.options.itemMinWidth}px`;
-				this.slidesWrapper.style.maxWidth = `${this.options.itemMaxWidth}px`;
-				this.slidesWrapper.style.margin = '20px auto';
-			}
+			// // Don't apply width constraints to post-template containers (UL)
+			// // These should only be applied to the slider wrapper, not post containers
+			// if (!this.isPostTemplate) {
+			// 	this.slidesWrapper.style.minWidth = `${this.options.itemMinWidth}px`;
+			// 	this.slidesWrapper.style.maxWidth = `${this.options.itemMaxWidth}px`;
+			// 	this.slidesWrapper.style.margin = '20px auto';
+			// }
 		}
 
 		// Update slide positions and visibility
@@ -463,7 +483,8 @@ class SliderGroup {
 			slide.style.maxWidth = `${this.options.itemMaxWidth}px`;
 			slide.style.flex = '0 0 auto';
 			slide.style.boxSizing = 'border-box';
-			slide.style.padding = '0 8px';
+			// Remove hardcoded padding since we're using CSS gap on the wrapper
+			slide.style.padding = '0';
 
 			// Animate opacity
 			slide.style.transition = 'opacity 0.4s ease';
@@ -486,12 +507,15 @@ class SliderGroup {
 		});
 
 		// Account for gaps between slides when calculating translation
-		const gapSize = 16; // 16px total gap (8px padding on each side)
-		const gapOffset = this.currentSlide * (gapSize / this.slidesWrapper.offsetWidth * 100);
-		const translateX = -(this.currentSlide * slideWidth) - gapOffset;
+		const gapSize = this.getSlideGap();
+		const slideWidthPx = this.slides[0].offsetWidth;
+		// Calculate total translation needed in pixels
+		const slideOffset = this.currentSlide * slideWidthPx;
+		const gapOffset = this.currentSlide * gapSize;
+		const translateXPx = -(slideOffset + gapOffset);
 
 		if (this.slidesWrapper) {
-			this.slidesWrapper.style.transform = `translateX(${translateX}%)`;
+			this.slidesWrapper.style.transform = `translateX(${translateXPx}px)`;
 		}
 
 		this.updateNavigationStates();
@@ -576,6 +600,19 @@ class SliderGroup {
 			clearTimeout(timeout);
 			timeout = setTimeout(later, wait);
 		};
+	}
+
+	getSlideGap() {
+		// Read the gap from WordPress's native CSS gap property applied to the slides wrapper
+		if (!this.slidesWrapper) return 0;
+
+		// Force a reflow to ensure we get the current computed value for responsive gaps
+		this.slidesWrapper.offsetHeight;
+
+		const style = window.getComputedStyle(this.slidesWrapper);
+		const gap = parseFloat(style.gap) || parseFloat(style.columnGap) || 0;
+
+		return gap;
 	}
 }
 

@@ -5,8 +5,7 @@ import { useEffect, useRef, useState } from '@wordpress/element';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { __ } from '@wordpress/i18n';
 
-// Import the slider functionality
-import { initializeSlider, destroySlider } from './slider';
+import { initializeSlider } from './slider';
 
 // Import styles
 import './style.scss';
@@ -40,7 +39,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 		maxSlidesMobile = 1,
 		showArrows = true,
 		showDots = true,
-		slidesToScroll = 1 // <-- add default value
+		slidesToScroll = 1
 	} = attributes;
 
 	const sliderRef = useRef(null);
@@ -89,7 +88,6 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 
 		setCurrentSlide(prevIndex);
 
-		// Select the slide block but don't manipulate DOM in editor
 		if (innerBlocks[prevIndex]) {
 			try {
 				selectBlock(innerBlocks[prevIndex].clientId);
@@ -157,12 +155,35 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 				['core/paragraph', { placeholder: 'Add your content here for slide 2' }]
 			]],
 		],
-		templateLock: false
+		templateLock: false,
+		__experimentalLayout: {
+			type: 'flex',
+			orientation: 'horizontal'
+		}
 	});
 
 	useEffect(() => {
 		if (currentSlide >= innerBlocks.length && innerBlocks.length > 0) {
 			setCurrentSlide(Math.max(0, innerBlocks.length - 1));
+		}
+
+		// Move WordPress layout classes from .slider-wrapper to .slider-slides-wrapper
+		if (sliderRef.current) {
+			const sliderWrapper = sliderRef.current.querySelector('.slider-wrapper');
+			const slidesWrapper = sliderRef.current.querySelector('.slider-slides-wrapper');
+
+			if (sliderWrapper && slidesWrapper) {
+				// Find any WordPress layout container classes
+				const layoutClasses = Array.from(sliderWrapper.classList).filter(className =>
+					className.includes('wp-container-') && className.includes('-is-layout-')
+				);
+
+				// Move layout classes to the slides wrapper
+				layoutClasses.forEach(className => {
+					sliderWrapper.classList.remove(className);
+					slidesWrapper.classList.add(className);
+				});
+			}
 		}
 
 		// Apply editor-only slider effect with CSS transforms

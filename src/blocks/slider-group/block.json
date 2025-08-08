@@ -52,9 +52,19 @@
 		"spacing": {
 			"margin": true,
 			"padding": true,
+			"blockGap": true,
 			"__experimentalDefaultControls": {
 				"padding": true,
-				"margin": false
+				"margin": false,
+				"blockGap": true
+			}
+		},
+		"layout": {
+			"allowSwitching": false,
+			"allowInheriting": false,
+			"default": {
+				"type": "flex",
+				"orientation": "horizontal"
 			}
 		},
 		"__experimentalBorder": {
