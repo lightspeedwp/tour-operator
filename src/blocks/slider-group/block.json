@@ -43,21 +43,12 @@
 		"anchor": true,
 		"color": {
 			"gradients": true,
-			"link": true,
-			"__experimentalDefaultControls": {
-				"background": true,
-				"text": true
-			}
+			"link": true
 		},
 		"spacing": {
 			"margin": true,
 			"padding": true,
-			"blockGap": true,
-			"__experimentalDefaultControls": {
-				"padding": true,
-				"margin": false,
-				"blockGap": true
-			}
+			"blockGap": true
 		},
 		"layout": {
 			"allowSwitching": false,
@@ -67,17 +58,11 @@
 				"orientation": "horizontal"
 			}
 		},
-		"__experimentalBorder": {
+		"border": {
 			"color": true,
 			"radius": true,
 			"style": true,
-			"width": true,
-			"__experimentalDefaultControls": {
-				"color": true,
-				"radius": true,
-				"style": true,
-				"width": true
-			}
+			"width": true
 		}
 	},
 	"editorScript": "file:./index.js",
