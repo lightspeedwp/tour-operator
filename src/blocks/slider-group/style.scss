@@ -218,18 +218,11 @@
 
 		// Responsive behavior
 		@media (max-width: 768px) {
-			.slider-arrow {
-				width: 32px;
-				height: 32px;
-
-				svg {
-					width: 16px;
-					height: 16px;
-				}
-			}
-
-			.slider-slide {
-				padding: 0 4px;
+			&.wp-block-lsx-tour-operator-slider .slider-nav-outer {
+				left: 0;
+				right: 0;
+				width: 100%;
+				padding: 0;
 			}
 		}
 	}
@@ -370,4 +363,27 @@
 .slider-group-container {
 	position: relative;
 	z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .wp-block-lsx-tour-operator-slider[data-max-slides-mobile="1"] .slider-slides-wrapper {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    transition: none;
+    transform: none !important;
+  }
+  .wp-block-lsx-tour-operator-slider[data-max-slides-mobile="1"] .slider-slide {
+    max-width: 320px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    flex: 0 1 auto !important;
+    opacity: 1 !important;
+    display: none !important;
+  }
+  .wp-block-lsx-tour-operator-slider[data-max-slides-mobile="1"] .slider-slide.active-slide {
+    display: flex !important;
+  }
 }
