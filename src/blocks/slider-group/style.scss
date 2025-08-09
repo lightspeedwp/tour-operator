@@ -5,7 +5,7 @@
 
 .wp-block-lsx-tour-operator-slider {
 	position: relative;
-	overflow: hidden;
+	//overflow: hidden;
 
 	// Target WordPress layout container classes for gap support
 	[class*="wp-container-lsx-tour-operator-slider-group-is-layout-"] {
@@ -139,26 +139,32 @@
 			pointer-events: none;
 			z-index: 15;
 			padding: 0 10px;
+			&.slider-nav-outer {
+				transform: translateY(-50%);
+				left: -75px;
+				right: -75px;
+				align-items: center;
+				justify-content: space-between;
+			}
+
 		}
 
 		.slider-arrow {
-			background: rgba(0, 0, 0, 0.7);
+			background: transparent;
 			border: none;
-			border-radius: 50%;
-			width: 40px;
-			height: 40px;
+			width: 54px;
+			height: 54px;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			cursor: pointer;
 			pointer-events: auto;
 			transition: all 0.2s ease;
-			color: white;
 			z-index: 16;
 
 			&:hover {
-				background: rgba(0, 0, 0, 0.9);
-				transform: scale(1.1);
+				// get primary theme color from WordPress
+				color: var(--wp--preset--color--primary, #007cba);
 			}
 
 			&:disabled {
@@ -177,8 +183,8 @@
 			}
 
 			svg {
-				width: 20px;
-				height: 20px;
+				width: 54px;
+				height: 54px;
 			}
 		}
 
@@ -192,27 +198,21 @@
 		}
 
 		.slider-dot {
-			width: 12px;
-			height: 12px;
-			border-radius: 50%;
-			border: 2px solid #ccc;
+			width: 46px;
+			height: 46px;
+			border: none;
 			background: transparent;
 			cursor: pointer;
 			transition: all 0.2s ease;
 			padding: 0;
 
-			&:hover {
-				border-color: #666;
-			}
-
-			&.active {
-				background: #007cba;
-				border-color: #007cba;
-			}
-
 			&:focus {
 				outline: 2px solid #007cba;
 				outline-offset: 2px;
+			}
+
+			&:hover {
+				color: var(--wp--preset--color--primary, #007cba);
 			}
 		}
 
@@ -365,4 +365,9 @@
 			}
 		}
 	}
+}
+
+.slider-group-container {
+	position: relative;
+	z-index: 1;
 }

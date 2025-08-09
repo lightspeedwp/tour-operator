@@ -220,25 +220,25 @@ class SliderGroup {
 
 	createArrows() {
 		const navContainer = document.createElement('div');
-		navContainer.className = 'slider-nav';
+		navContainer.className = 'slider-nav slider-nav-outer';
 
 		this.arrowLeft = document.createElement('button');
 		this.arrowLeft.className = 'slider-arrow slider-arrow-left';
 		this.arrowLeft.innerHTML = `
-			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-				<polyline points="15,18 9,12 15,6"></polyline>
-			</svg>
-		`;
+			<svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M31.3471 18.8571C31.3471 19.0357 31.2578 19.2366 31.1239 19.3705L22.3516 28.1429L31.1239 36.9152C31.2578 37.0491 31.3471 37.25 31.3471 37.4286C31.3471 37.6071 31.2578 37.808 31.1239 37.942L30.0078 39.058C29.8739 39.192 29.673 39.2812 29.4944 39.2812C29.3158 39.2812 29.115 39.192 28.981 39.058L18.5792 28.6562C18.4453 28.5223 18.356 28.3214 18.356 28.1429C18.356 27.9643 18.4453 27.7634 18.5792 27.6295L28.981 17.2277C29.115 17.0938 29.3158 17.0045 29.4944 17.0045C29.673 17.0045 29.8739 17.0938 30.0078 17.2277L31.1239 18.3438C31.2578 18.4777 31.3471 18.6562 31.3471 18.8571Z" fill="currentColor"/>
+				<circle cx="27" cy="27" r="26" stroke="currentColor" stroke-width="2"/>
+			</svg>`;
 		this.arrowLeft.setAttribute('aria-label', 'Previous slide');
 		this.arrowLeft.type = 'button';
 
 		this.arrowRight = document.createElement('button');
 		this.arrowRight.className = 'slider-arrow slider-arrow-right';
 		this.arrowRight.innerHTML = `
-			<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-				<polyline points="9,18 15,12 9,6"></polyline>
-			</svg>
-		`;
+			<svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M22.7,35.1c0-.2,0-.4.2-.5l8.8-8.8-8.8-8.8c-.1-.1-.2-.3-.2-.5s0-.4.2-.5l1.1-1.1c.1-.1.3-.2.5-.2s.4,0,.5.2l10.4,10.4c.1.1.2.3.2.5s0,.4-.2.5l-10.4,10.4c-.1.1-.3.2-.5.2s-.4,0-.5-.2l-1.1-1.1c-.1-.1-.2-.3-.2-.5Z" fill="currentColor"/>
+  				<circle cx="27" cy="27" r="26" stroke="currentColor" stroke-width="2"/>
+			</svg>`;
 		this.arrowRight.setAttribute('aria-label', 'Next slide');
 		this.arrowRight.type = 'button';
 
@@ -254,6 +254,23 @@ class SliderGroup {
 		}
 	}
 
+	setActiveDot(dot) {
+		dot.innerHTML = `
+			<svg width="46" height="6" viewBox="0 0 46 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<rect x="0.5" y="0.5" width="45" height="5" fill="currentColor"/>
+			</svg>`;
+
+		const dots = this.dotsContainer.querySelectorAll('.slider-dot');
+		dots.forEach((d) => {
+			if (d !== dot) {
+				d.innerHTML = `
+					<svg width="46" height="6" viewBox="0 0 46 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect x="0.5" y="0.5" width="45" height="5" stroke="currentColor"/>
+					</svg>`;
+			}
+		});
+	}
+
 	createDots() {
 		this.dotsContainer = document.createElement('div');
 		this.dotsContainer.className = 'slider-dots';
@@ -266,6 +283,10 @@ class SliderGroup {
 		for (let i = 0; i < dotCount; i++) {
 			const dot = document.createElement('button');
 			dot.className = 'slider-dot';
+			dot.innerHTML = `
+				<svg width="46" height="6" viewBox="0 0 46 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<rect x="0.5" y="0.5" width="45" height="5" stroke="currentColor"/>
+				</svg>`;
 			dot.setAttribute('data-slide', i * slidesToScroll);
 			dot.setAttribute('aria-label', `Go to slide ${i * slidesToScroll + 1}`);
 			dot.type = 'button';
@@ -274,7 +295,10 @@ class SliderGroup {
 			const start = i * slidesToScroll;
 			const end = start + slidesToScroll;
 			if (this.currentSlide >= start && this.currentSlide < end) {
-				dot.classList.add('active');
+				dot.innerHTML = `
+				<svg width="46" height="6" viewBox="0 0 46 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<rect x="0.5" y="0.5" width="45" height="5" fill="currentColor"/>
+				</svg>`;
 			}
 
 			this.dotsContainer.appendChild(dot);
@@ -303,10 +327,11 @@ class SliderGroup {
 		// Dot navigation
 		if (this.dotsContainer) {
 			this.dotsContainer.addEventListener('click', (e) => {
-				if (e.target.classList.contains('slider-dot')) {
+				const dotButton = e.target.closest('.slider-dot');
+				if (dotButton) {
 					e.preventDefault();
 					e.stopPropagation();
-					const slideIndex = parseInt(e.target.getAttribute('data-slide'));
+					const slideIndex = parseInt(dotButton.getAttribute('data-slide'));
 					this.goToSlide(slideIndex);
 				}
 			});
@@ -539,19 +564,10 @@ class SliderGroup {
 
 	updateDots() {
 		if (this.dotsContainer) {
-			const isMobile = window.innerWidth < 768;
-			const visibleSlides = isMobile ? this.options.maxSlidesMobile : this.options.maxSlides;
 			const slidesToScroll = this.options.slidesToScroll || 1;
-			const dotCount = Math.max(1, Math.ceil((this.slides.length - visibleSlides) / slidesToScroll) + 1);
 			const currentDot = Math.floor(this.currentSlide / slidesToScroll);
 			const dots = this.dotsContainer.querySelectorAll('.slider-dot');
-			dots.forEach((dot, index) => {
-				if (index === currentDot) {
-					dot.classList.add('active');
-				} else {
-					dot.classList.remove('active');
-				}
-			});
+			this.setActiveDot(dots[currentDot]);
 		}
 	}
 
