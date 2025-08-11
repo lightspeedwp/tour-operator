@@ -6,14 +6,6 @@ labels: enhancement, needs-triage
 assignees: ''
 ---
 
-**Feature area**
-- [ ] Tour management
-- [ ] Booking system
-- [ ] Frontend display
-- [ ] Admin interface
-- [ ] Integrations
-- [ ] Other: ___
-
 ==Feature area==
 - [ ] Tour management
 - [ ] Booking system
