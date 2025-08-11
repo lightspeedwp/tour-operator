@@ -2,11 +2,11 @@
 name: Feature request
 about: Suggest an idea or propose a new feature for this extensions
 title: "[Feature request] "
-labels: enhancement, needs-triage
+labels: enhancement, needs-triage, etc
 assignees: ''
 ---
 
-==Feature area==
+### Feature area ###
 - [ ] Tour management
 - [ ] Booking system
 - [ ] Frontend display
@@ -14,22 +14,27 @@ assignees: ''
 - [ ] Integrations
 - [ ] Other: ___
 
-==Is your feature request related to a problem?==
+### Is your feature request related to a problem? ###
 Please describe a clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
 
-==Describe the feature==
+### Describe the feature ###
 A clear and concise description of what you would like to see implemented. Include any specific functionality or user interface elements you envision.
 
-==Use case==
+### Use case ###
 Describe how this would help tour operators or their customers.
 
-==Describe alternatives you've considered==
+### Describe alternatives you've considered ###
 A clear and concise description of any alternative solutions or features you've considered. 
 
-==Additional context==
+### Additional context ###
 Add any other context or screenshots about the feature request here.
 
-==Acceptance Criteria==
+### Code Snippets ###
+```
+Add code here
+```
+
+### Acceptance Criteria ###
 Define the conditions that must be met for the feature to be considered complete and working correctly. These should be testable and measurable.
 
 - [ ] The feature is fully implemented according to the description/spec.
@@ -43,5 +48,5 @@ Define the conditions that must be met for the feature to be considered complete
 - [ ] The changelog has been updated to include this new feature.
 - [ ] Code has been peer-reviewed and follows coding standards.
 
-==References==
+### References ###
 - Add bulleted list of references. 
