@@ -368,8 +368,6 @@ class Query_Loop {
 				$from       = $directions[1];
 				$items      = [];
 
-				do_action( 'qm/debug', [ $to, $from ] );
-
 				// Find the items stored in the relevant connection custom field.
 				$items = $this->related_connection_query( $items, $to, $from );
 
@@ -381,9 +379,6 @@ class Query_Loop {
 					$query['post__in']      = [ get_the_ID() ];
 				}
 
-			break;
-
-			
 			break;
 		}
 
