@@ -28,3 +28,7 @@ contact_links:
     description: Provide feedback on user experience and interface
     labels: [ux, feedback]
     path: 07-user-experience-feedback.md
+  - name: Code refactoring / review
+    description: Request or propose a code refactoring or review task
+    labels: [refactor, code quality, needs review]
+    path: 08-refactoring-code.md
