@@ -352,13 +352,14 @@ class Query_Loop {
 			break;
 
 			// Destination Query Loops
-			case 'tour-related-destination':
-			case 'accommodation-related-destination':
+			// 'tour-related-destination':
+			// 'accommodation-related-destination':
 
 			// CPTs Reviews Query Loops
-			case 'review-related-tour':
-			case 'review-related-accommodation':
-			case 'review-related-destination':
+			// 'review-related-tour':
+			// 'review-related-accommodation':
+			// 'review-related-destination':
+			default:
 				
 				$to         = '';
 				$from       = '';
@@ -366,6 +367,8 @@ class Query_Loop {
 				$to         = $directions[0];
 				$from       = $directions[1];
 				$items      = [];
+
+				do_action( 'qm/debug', [ $to, $from ] );
 
 				// Find the items stored in the relevant connection custom field.
 				$items = $this->related_connection_query( $items, $to, $from );
@@ -380,7 +383,7 @@ class Query_Loop {
 
 			break;
 
-			default:
+			
 			break;
 		}
 
