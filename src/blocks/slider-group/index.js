@@ -237,9 +237,9 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 						slide.style.transform = 'translateX(0)';
 						slide.style.flex = '';
 					} else {
-						slide.style.display = 'none';
-						slide.style.opacity = '0';
-						slide.style.flex = '';
+						// slide.style.display = 'none';
+						// slide.style.opacity = '0';
+						// slide.style.flex = '';
 					}
 				});
 			} else {
@@ -252,12 +252,38 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 						slide.style.opacity = '';
 						slide.style.transform = '';
 					} else {
-						slide.style.display = 'none';
-						slide.style.flex = '';
-						slide.style.opacity = '';
-						slide.style.transform = '';
+						// slide.style.display = 'none';
+						// slide.style.flex = '';
+						// slide.style.opacity = '';
+						// slide.style.transform = '';
 					}
 				});
+			}
+
+			// check if innerblocks.length == 1 and the innerblock is an ul with name: "core/post-template"
+			if (innerBlocks.length === 1 && innerBlocks[0].name === 'core/post-template') {
+				// Function to hide extra slides
+				const hideExtraSlides = () => {
+					let ulElement = sliderRef.current?.querySelector('ul.wp-block-post-template');
+
+					if (ulElement && ulElement.tagName === 'UL') {
+						const liChildren = ulElement.querySelectorAll(':scope > li');
+
+						liChildren.forEach((li, index) => {
+							if (index >= maxSlides) {
+								li.style.display = 'none';
+							} else {
+								li.style.display = 'block';
+							}
+						});
+					}
+				};
+
+				// Try immediately
+				hideExtraSlides();
+
+				// Also try with a longer delay as a fallback, for initial rendering issues
+				setTimeout(hideExtraSlides, 500);
 			}
 		}
 	}, [innerBlocks.length, currentSlide, isPreviewMode, maxSlides]);
