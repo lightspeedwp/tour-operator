@@ -10,7 +10,7 @@ class SliderGroup {
 			infinite: true,
 			itemMinWidth: 250,
 			itemMaxWidth: 1000,
-			maxSlidesMobile: 1,
+			maxSlidesTablet: 1,
 			showArrows: true,
 			showDots: true,
 			onSlideChange: null,
@@ -41,7 +41,16 @@ class SliderGroup {
 
 		// Check if slider should be initialized based on slide count vs visible slides
 		const isMobile = window.innerWidth < 768;
-		const visibleSlides = isMobile ? this.options.maxSlidesMobile : this.options.maxSlides;
+		const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+		let visibleSlides;
+
+		if (isMobile) {
+			visibleSlides = 1; // Always 1 slide on mobile
+		} else if (isTablet) {
+			visibleSlides = this.options.maxSlidesTablet;
+		} else {
+			visibleSlides = this.options.maxSlides;
+		}
 
 		// Only initialize if we have more slides than can be displayed
 		if (this.slides.length <= visibleSlides) {
@@ -275,8 +284,19 @@ class SliderGroup {
 		this.dotsContainer = document.createElement('div');
 		this.dotsContainer.className = 'slider-dots';
 
+		// Use proper three-breakpoint logic
 		const isMobile = window.innerWidth < 768;
-		const visibleSlides = isMobile ? this.options.maxSlidesMobile : this.options.maxSlides;
+		const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+		let visibleSlides;
+
+		if (isMobile) {
+			visibleSlides = 1; // Always 1 slide on mobile
+		} else if (isTablet) {
+			visibleSlides = this.options.maxSlidesTablet;
+		} else {
+			visibleSlides = this.options.maxSlides;
+		}
+
 		const slidesToScroll = this.options.slidesToScroll || 1;
 		const dotCount = Math.max(1, Math.ceil((this.slides.length - visibleSlides) / slidesToScroll) + 1);
 
@@ -436,8 +456,19 @@ class SliderGroup {
 	}
 
 	nextSlide() {
+		// Use proper three-breakpoint logic
 		const isMobile = window.innerWidth < 768;
-		const visibleSlides = isMobile ? this.options.maxSlidesMobile : this.options.maxSlides;
+		const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+		let visibleSlides;
+
+		if (isMobile) {
+			visibleSlides = 1; // Always 1 slide on mobile
+		} else if (isTablet) {
+			visibleSlides = this.options.maxSlidesTablet;
+		} else {
+			visibleSlides = this.options.maxSlides;
+		}
+
 		const slidesToScroll = this.options.slidesToScroll || 1;
 
 		if (this.options.infinite) {
@@ -454,8 +485,19 @@ class SliderGroup {
 	}
 
 	previousSlide() {
+		// Use proper three-breakpoint logic
 		const isMobile = window.innerWidth < 768;
-		const visibleSlides = isMobile ? this.options.maxSlidesMobile : this.options.maxSlides;
+		const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+		let visibleSlides;
+
+		if (isMobile) {
+			visibleSlides = 1; // Always 1 slide on mobile
+		} else if (isTablet) {
+			visibleSlides = this.options.maxSlidesTablet;
+		} else {
+			visibleSlides = this.options.maxSlides;
+		}
+
 		const slidesToScroll = this.options.slidesToScroll || 1;
 
 		if (this.options.infinite) {
@@ -481,8 +523,18 @@ class SliderGroup {
 	updateSlider() {
 		if (this.slides.length === 0) return;
 
+		// Use proper three-breakpoint logic
 		const isMobile = window.innerWidth < 768;
-		const visibleSlides = isMobile ? this.options.maxSlidesMobile : this.options.maxSlides;
+		const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+		let visibleSlides;
+
+		if (isMobile) {
+			visibleSlides = 1; // Always 1 slide on mobile
+		} else if (isTablet) {
+			visibleSlides = this.options.maxSlidesTablet;
+		} else {
+			visibleSlides = this.options.maxSlides;
+		}
 
 		const containerWidth = this.slidesWrapper ? this.slidesWrapper.parentElement.clientWidth : 0;
 		const gapSize = this.getSlideGap();

@@ -36,7 +36,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 		infinite = true,
 		itemMinWidth = 250,
 		itemMaxWidth = 580,
-		maxSlidesMobile = 1,
+		maxSlidesTablet = 1,
 		showArrows = true,
 		showDots = true,
 		slidesToScroll = 1
@@ -163,7 +163,7 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 		'data-infinite': infinite,
 		'data-item-min-width': itemMinWidth,
 		'data-item-max-width': itemMaxWidth,
-		'data-max-slides-mobile': maxSlidesMobile,
+		'data-max-slides-tablet': maxSlidesTablet,
 		'data-show-arrows': showArrows,
 		'data-show-dots': showDots,
 		'data-slides-to-scroll': slidesToScroll,
@@ -318,9 +318,9 @@ const Edit = ({ attributes, setAttributes, clientId }) => {
 						step={1}
 					/>
 					<RangeControl
-						label={__('Max Slides (Mobile)', 'tour-operator')}
-						value={maxSlidesMobile}
-						onChange={(value) => setAttributes({ maxSlidesMobile: value })}
+						label={__('Max Slides (Tablet)', 'tour-operator')}
+						value={maxSlidesTablet}
+						onChange={(value) => setAttributes({ maxSlidesTablet: value })}
 						min={1}
 						max={3}
 						step={1}
@@ -431,7 +431,7 @@ const Save = ({ attributes }) => {
 		infinite = true,
 		itemMinWidth = 250,
 		itemMaxWidth = 1000,
-		maxSlidesMobile = 1,
+		maxSlidesTablet = 1,
 		showArrows = true,
 		showDots = true
 	} = attributes || {};
@@ -442,7 +442,7 @@ const Save = ({ attributes }) => {
 		'data-infinite': infinite,
 		'data-item-min-width': itemMinWidth,
 		'data-item-max-width': itemMaxWidth,
-		'data-max-slides-mobile': maxSlidesMobile,
+		'data-max-slides-tablet': maxSlidesTablet,
 		'data-show-arrows': showArrows,
 		'data-show-dots': showDots
 	});
@@ -479,7 +479,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			infinite: element.dataset.infinite !== 'false',
 			itemMinWidth: parseInt(element.dataset.itemMinWidth) || 250,
 			itemMaxWidth: parseInt(element.dataset.itemMaxWidth) || 1000,
-			maxSlidesMobile: parseInt(element.dataset.maxSlidesMobile) || 1,
+			maxSlidesTablet: parseInt(element.dataset.maxSlidesTablet) || 1,
 			showArrows: element.dataset.showArrows !== 'false',
 			showDots: element.dataset.showDots !== 'false',
 			slidesToScroll: parseInt(element.dataset.slidesToScroll) || 1

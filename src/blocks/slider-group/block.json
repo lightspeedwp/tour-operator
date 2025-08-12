@@ -25,7 +25,7 @@
 			"type": "number",
 			"default": 1000
 		},
-		"maxSlidesMobile": {
+		"maxSlidesTablet": {
 			"type": "number",
 			"default": 1
 		},
