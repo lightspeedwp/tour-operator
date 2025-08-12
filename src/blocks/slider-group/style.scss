@@ -87,7 +87,6 @@
 		.slider-wrapper {
 			position: relative;
 			width: 100%;
-			overflow: hidden; // This ensures only visible slides are shown
 		}
 
 		.slider-container {
@@ -101,6 +100,7 @@
 			position: relative;
 			width: 100%;
 			transition: transform 0.3s ease-in-out;
+			flex-direction: row!important;
 			// This is the single wrapper that moves to show different slides
 			// Let WordPress handle the gap via CSS variables
 		}
@@ -114,6 +114,7 @@
 			padding: 0;
 			display: flex;
 			flex-direction: column;
+			opacity: 0;
 
 			&.active-slide {
 				z-index: 2;
@@ -219,10 +220,7 @@
 		// Responsive behavior
 		@media (max-width: 768px) {
 			&.wp-block-lsx-tour-operator-slider .slider-nav-outer {
-				left: 0;
-				right: 0;
-				width: 100%;
-				padding: 0;
+				display: none;
 			}
 		}
 	}
@@ -363,6 +361,11 @@
 .slider-group-container {
 	position: relative;
 	z-index: 1;
+	margin: auto;
+	max-width: 100vw;
+	@media (max-width: 767px) {
+		overflow: hidden;
+	}
 }
 
 @media (max-width: 768px) {

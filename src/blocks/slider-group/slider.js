@@ -536,7 +536,21 @@ class SliderGroup {
 			visibleSlides = this.options.maxSlides;
 		}
 
-		const containerWidth = this.slidesWrapper ? this.slidesWrapper.parentElement.clientWidth : 0;
+		console.log(window.innerWidth);
+
+		console.log('Updating slider with visible slides:', visibleSlides);
+		let containerWidth = this.slidesWrapper ? this.slidesWrapper.parentElement.clientWidth : 0;
+
+		if(window.innerWidth > 768 && window.innerWidth < containerWidth + 150) {
+			// slider-group-container is too narrow, adjust width
+			const sliderGroupContainer = this.element.querySelector('.slider-group-container');
+			if (sliderGroupContainer) {
+				sliderGroupContainer.style.width = `${containerWidth - 150}px`;
+				containerWidth = sliderGroupContainer.clientWidth; // Update to new width
+			}
+		}
+
+
 		const gapSize = this.getSlideGap();
 		const totalGapSpace = (visibleSlides - 1) * gapSize;
 		const availableWidthForSlides = containerWidth - totalGapSpace;
@@ -557,6 +571,7 @@ class SliderGroup {
 			slide.style.width = `${slideWidthPx}px`;
 			slide.style.minWidth = `${Math.max(slideWidthPx, this.options.itemMinWidth)}px`;
 			slide.style.maxWidth = `${Math.min(slideWidthPx, this.options.itemMaxWidth)}px`;
+			console.log('slideWidthPx', slideWidthPx, 'minWidth', this.options.itemMinWidth, 'maxWidth', this.options.itemMaxWidth);
 			slide.style.flex = '0 0 auto';
 			slide.style.boxSizing = 'border-box';
 			// Remove hardcoded padding since we're using CSS gap on the wrapper
