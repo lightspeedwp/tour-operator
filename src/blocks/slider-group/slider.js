@@ -483,29 +483,28 @@ class SliderGroup {
 
 		const isMobile = window.innerWidth < 768;
 		const visibleSlides = isMobile ? this.options.maxSlidesMobile : this.options.maxSlides;
-		const slideWidth = 100 / visibleSlides;
+
+		const containerWidth = this.slidesWrapper ? this.slidesWrapper.parentElement.clientWidth : 0;
+		const gapSize = this.getSlideGap();
+		const totalGapSpace = (visibleSlides - 1) * gapSize;
+		const availableWidthForSlides = containerWidth - totalGapSpace;
+		const slideWidthPx = Math.floor(availableWidthForSlides / visibleSlides);
 
 		// Set up the slides wrapper (the actual container that moves)
 		if (this.slidesWrapper) {
 			this.slidesWrapper.style.display = 'flex';
 			this.slidesWrapper.style.transition = 'transform 0.3s ease';
-			this.slidesWrapper.style.width = `${(this.slides.length) * 100}%`;
-			// Don't override the native gap - WordPress will apply it via CSS
-
-			// // Don't apply width constraints to post-template containers (UL)
-			// // These should only be applied to the slider wrapper, not post containers
-			// if (!this.isPostTemplate) {
-			// 	this.slidesWrapper.style.minWidth = `${this.options.itemMinWidth}px`;
-			// 	this.slidesWrapper.style.maxWidth = `${this.options.itemMaxWidth}px`;
-			// 	this.slidesWrapper.style.margin = '20px auto';
-			// }
+			// Set wrapper width to accommodate all slides plus gaps
+			const totalWidth = (this.slides.length * slideWidthPx) + ((this.slides.length - 1) * gapSize);
+			this.slidesWrapper.style.width = `${totalWidth}px`;
 		}
 
 		// Update slide positions and visibility
 		this.slides.forEach((slide, index) => {
-			slide.style.width = `${slideWidth}%`;
-			slide.style.minWidth = `${this.options.itemMinWidth}px`;
-			slide.style.maxWidth = `${this.options.itemMaxWidth}px`;
+			// Set fixed pixel width instead of percentage
+			slide.style.width = `${slideWidthPx}px`;
+			slide.style.minWidth = `${Math.max(slideWidthPx, this.options.itemMinWidth)}px`;
+			slide.style.maxWidth = `${Math.min(slideWidthPx, this.options.itemMaxWidth)}px`;
 			slide.style.flex = '0 0 auto';
 			slide.style.boxSizing = 'border-box';
 			// Remove hardcoded padding since we're using CSS gap on the wrapper
@@ -531,10 +530,7 @@ class SliderGroup {
 			}
 		});
 
-		// Account for gaps between slides when calculating translation
-		const gapSize = this.getSlideGap();
-		const slideWidthPx = this.slides[0].offsetWidth;
-		// Calculate total translation needed in pixels
+		// Calculate translation based on pixel widths and gaps
 		const slideOffset = this.currentSlide * slideWidthPx;
 		const gapOffset = this.currentSlide * gapSize;
 		const translateXPx = -(slideOffset + gapOffset);
