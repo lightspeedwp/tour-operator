@@ -352,13 +352,14 @@ class Query_Loop {
 			break;
 
 			// Destination Query Loops
-			case 'tour-related-destination':
-			case 'accommodation-related-destination':
+			// 'tour-related-destination':
+			// 'accommodation-related-destination':
 
 			// CPTs Reviews Query Loops
-			case 'review-related-tour':
-			case 'review-related-accommodation':
-			case 'review-related-destination':
+			// 'review-related-tour':
+			// 'review-related-accommodation':
+			// 'review-related-destination':
+			default:
 				
 				$to         = '';
 				$from       = '';
@@ -378,9 +379,6 @@ class Query_Loop {
 					$query['post__in']      = [ get_the_ID() ];
 				}
 
-			break;
-
-			default:
 			break;
 		}
 
