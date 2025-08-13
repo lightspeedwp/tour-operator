@@ -65,6 +65,34 @@ class Modals {
 		add_filter( 'lsx_to_custom_field_query', array( $this, 'travel_information_excerpt' ), 5, 10 );
 		add_action( 'wp_footer', array( $this, 'output_modal_ids' ), 10 );
 		add_action( 'wp_footer', array( $this, 'output_modal_contents' ), 11 );
+
+		$this->create_default_templates();
+	}
+
+	/**
+	 * Create default templates if they don't exist
+	 *
+	 * @return void
+	 */
+	public function create_default_templates() {
+		// Check if modal templates exist
+		$existing_templates = get_posts( [
+			'post_type' => 'wp_template_part',
+			'meta_query' => [
+				[
+					'key' => 'area',
+					'value' => 'lsx_to_modals',
+					'compare' => '='
+				]
+			],
+			'numberposts' => 1,
+			'post_status' => 'any'
+		] );
+
+		// If no modal templates exist, create the defaults
+		if ( empty( $existing_templates ) ) {
+			$this->create_default_modal_templates();
+		}
 	}
 
 	/**
@@ -333,5 +361,237 @@ class Modals {
 			$html = trim( force_balance_tags( $value ) );
 		}
 		return $html;
+	}
+
+	/**
+	 * Creates default modal template parts in the database
+	 *
+	 * @return void
+	 */
+	public function create_default_modal_templates() {
+		$current_theme = get_stylesheet();
+
+		$templates = [
+			'accommodation' => [
+				'title' => __( 'Accommodation Modal', 'tour-operator' ),
+				'content' => '<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:group {"metadata":{"name":"Accommodation Card"},"className":"is-style-default","backgroundColor":"base","layout":{"type":"constrained"}} -->
+<div class="wp-block-group is-style-default has-base-background-color has-background"><!-- wp:post-featured-image {"aspectRatio":"3/2"} /-->
+
+<!-- wp:group {"metadata":{"name":"Content"},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:group {"metadata":{"name":"Accommodation Title"},"className":"center-vertically","layout":{"type":"constrained"}} -->
+<div class="wp-block-group center-vertically"><!-- wp:post-title {"textAlign":"center","level":3,"fontSize":"small"} /--></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Accommodation Information"},"style":{"border":{"top":{"color":"var:preset|color|primary","width":"2px"},"bottom":{"color":"var:preset|color|primary","width":"2px"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group" style="border-top-color:var(--wp--preset--color--primary);border-top-width:2px;border-bottom-color:var(--wp--preset--color--primary);border-bottom-width:2px"><!-- wp:group {"className":"lsx-price-wrapper","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
+<div class="wp-block-group lsx-price-wrapper"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
+<div class="wp-block-group"><!-- wp:image {"id":60622,"width":"20px","height":"auto","scale":"cover","sizeSlug":"full","linkDestination":"none","metadata":{"bindings":{"__default":{"source":"core/pattern-overrides"}},"name":"From Price Icon"}} -->
+<figure class="wp-block-image size-full is-resized"><img src="http://localwp.local/wp-content/plugins/tour-operator/assets/img/blocks/unit-price.png" alt="" class="wp-image-60622" style="object-fit:cover;width:20px;height:auto"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>From:</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"lsx/post-meta","args":{"key":"price"}},"__default":{"source":"core/pattern-overrides"}},"name":"Price"},"className":"amount"} -->
+<p class="amount"><strong>price</strong></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"lsx-accommodation-type-wrapper","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
+<div class="wp-block-group lsx-accommodation-type-wrapper"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
+<div class="wp-block-group"><!-- wp:image {"id":60627,"width":"20px","height":"auto","scale":"cover","sizeSlug":"full","linkDestination":"none","metadata":{"bindings":{"__default":{"source":"core/pattern-overrides"}},"name":"Accommodation Type Icon"}} -->
+<figure class="wp-block-image size-full is-resized"><img src="http://localwp.local/wp-content/plugins/tour-operator/assets/img/blocks/unit-type.png" alt="" class="wp-image-60627" style="object-fit:cover;width:20px;height:auto"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>Type:</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+<div class="wp-block-group"><!-- wp:post-terms {"term":"accommodation-type","style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"},":hover":{"color":{"text":"var:preset|color|primary-700"}}}}},"textColor":"contrast","fontSize":"x-small","fontFamily":"secondary"} /--></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"lsx-rooms-wrapper","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
+<div class="wp-block-group lsx-rooms-wrapper"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
+<div class="wp-block-group"><!-- wp:image {"id":61041,"width":"20px","height":"auto","sizeSlug":"full","linkDestination":"none","metadata":{"bindings":{"__default":{"source":"core/pattern-overrides"}},"name":"Number of Rooms Icon"}} -->
+<figure class="wp-block-image size-full is-resized"><img src="http://localwp.local/wp-content/plugins/tour-operator/assets/img/blocks/rooms.png" alt="" class="wp-image-61041" style="width:20px;height:auto"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>Rooms:</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"lsx/post-meta","args":{"key":"number_of_rooms"}},"__default":{"source":"core/pattern-overrides"}},"name":"Number of Rooms"}} -->
+<p></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Accommodation Text Content"},"style":{"spacing":{"padding":{"right":"10px","left":"10px","top":"0px","bottom":"0px"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:post-excerpt {"moreText":"View More","excerptLength":40,"style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast"} /--></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->',
+				'description' => __( 'This modal displays the accommodation details including the featured image, title, excerpt, and additional information.', 'tour-operator' ),
+				'categories' => [ 'lsx_to_modals' ],
+			],
+			'destination' => [
+				'title' => __( 'Destination Modal', 'tour-operator' ),
+				'content' => '<!-- wp:group {"metadata":{"name":"Destination Modal"},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:post-featured-image {"aspectRatio":"3/2"} /-->
+
+<!-- wp:group {"metadata":{"name":"Content"},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:group {"metadata":{"name":"Destination Title"},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:post-title {"textAlign":"center","level":3} /--></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Destination Description"},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:post-excerpt {"moreText":"View More","excerptLength":40,"style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast"} /--></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+<!-- /wp:group -->',
+				'description' => __( 'This modal displays the destination details including the featured image, title, excerpt, and travel information.', 'tour-operator' ),
+				'categories' => [ 'lsx_to_modals' ],
+			],
+			'tour' => [
+				'title' => __( 'Tour Modal', 'tour-operator' ),
+				'content' => '<!-- wp:group {"metadata":{"name":"Tour Modal"},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:post-featured-image {"aspectRatio":"3/2"} /-->
+
+<!-- wp:group {"metadata":{"name":"Content"},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:group {"metadata":{"name":"Tour Title"},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:post-title {"textAlign":"center","level":3} /--></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Tour Information"},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:group {"className":"lsx-price-wrapper","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
+<div class="wp-block-group lsx-price-wrapper"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
+<div class="wp-block-group"><!-- wp:image {"width":"20px","height":"auto","sizeSlug":"large","metadata":{"name":"From Price Icon"}} -->
+<figure class="wp-block-image size-large is-resized"><img src="' . LSX_TO_URL . 'assets/img/blocks/unit-price.png" alt="" style="width:20px;height:auto"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p><strong>From:</strong></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"lsx/post-meta","args":{"key":"price"}}},"name":"From Price"},"className":"amount price"} -->
+<p class="amount price"><strong>price</strong></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"lsx-duration-wrapper","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
+<div class="wp-block-group lsx-duration-wrapper"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
+<div class="wp-block-group"><!-- wp:image {"width":"20px","sizeSlug":"large","metadata":{"name":"Duration Icon"}} -->
+<figure class="wp-block-image size-large is-resized"><img src="' . LSX_TO_URL . 'assets/img/blocks/duration.png" alt="" style="width:20px"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p><strong>Duration:</strong></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+<div class="wp-block-group"><!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"lsx/post-meta","args":{"key":"duration"}}},"name":"Duration"}} -->
+<p></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Days</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Tour Text Content"},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:post-excerpt {"moreText":"View More","excerptLength":40} /--></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->',
+				'description' => __( 'This modal displays the tour details including the featured image, title, excerpt, and tour information.', 'tour-operator' ),
+				'categories' => [ 'lsx_to_modals' ],
+			]
+		];
+
+		foreach ( $templates as $slug => $template ) {
+			$template_slug = 'modal-' . $slug;
+
+			// Check if the template already exists
+			$existing_template = get_posts( [
+				'post_type' => 'wp_template_part',
+				'name' => $template_slug,
+				'post_status' => 'any',
+				'numberposts' => 1
+			] );
+
+			// Create or update the template
+			$template_data = [
+				'post_title' => $template['title'],
+				'post_content' => $template['content'],
+				'post_status' => 'publish',
+				'post_type' => 'wp_template_part',
+				'post_name' => $template_slug,
+				'post_author' => get_current_user_id(),
+				'post_excerpt' => '', // Required for template parts
+				'meta_input' => [
+					'theme' => $current_theme,
+					'area' => 'lsx_to_modals',
+					'_wp_template_part_area' => 'lsx_to_modals',
+					'_wp_template_part_theme' => $current_theme,
+					'_wp_template_part_slug' => $template_slug,
+				]
+			];
+
+			if ( ! empty( $existing_template ) ) {
+				$template_data['ID'] = $existing_template[0]->ID;
+				$post_id = wp_update_post( $template_data );
+			} else {
+				$post_id = wp_insert_post( $template_data );
+			}
+
+			// Add taxonomy relationships that WordPress expects
+			if ( $post_id && ! is_wp_error( $post_id ) ) {
+				// Get or create the theme term
+				$theme_term = get_term_by( 'name', $current_theme, 'wp_theme' );
+				if ( ! $theme_term ) {
+					$theme_term_data = wp_insert_term( $current_theme, 'wp_theme' );
+					if ( ! is_wp_error( $theme_term_data ) ) {
+						$theme_term_id = $theme_term_data['term_id'];
+					} else {
+						continue; // Skip this template if we can't create the theme term
+					}
+				} else {
+					$theme_term_id = $theme_term->term_id;
+				}
+
+				$area_term = get_term_by( 'name', 'lsx_to_modals', 'wp_template_part_area' );
+				$area_term_id = $area_term->term_id;
+
+				// Set the taxonomy relationships
+				wp_set_object_terms( $post_id, [ $theme_term_id ], 'wp_theme', false );
+				wp_set_object_terms( $post_id, [ $area_term_id ], 'wp_template_part_area', false );
+
+				wp_update_post( [
+					'ID' => $post_id,
+					'post_name' => $template_slug
+				] );
+			}
+
+			wp_cache_delete( 'wp_template_part', 'themes' );
+			if ( function_exists( 'wp_clean_themes_cache' ) ) {
+				wp_clean_themes_cache();
+			}
+		}
 	}
 }
