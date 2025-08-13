@@ -5,9 +5,11 @@ const mouseEvent = ( e ) => {
 	if ( shouldShowExitIntent ) {
 		document.removeEventListener( 'mouseout', mouseEvent );
 		document.querySelector( 'html' ).classList.add( 'has-modal-open' );
-		document
-			.querySelector( '.wp-block-hm-popup[data-trigger="exit"]' )
-			.showModal();
+		const exitModal = document
+			.querySelector( '.wp-block-hm-popup[data-trigger="exit"]' );
+		exitModal.showModal();
+		// Focus the modal container instead of the close button
+		exitModal.focus();
 		window.localStorage.setItem( 'exitIntentShown', Date.now() );
 	}
 };
@@ -40,6 +42,8 @@ const toModalBootstrap = () => {
 							.querySelector( 'html' )
 							.classList.add( 'has-modal-open' );
 						popup.showModal();
+						// Focus the modal container instead of the close button
+						popup.focus();
 					} );
 				} );
 		}

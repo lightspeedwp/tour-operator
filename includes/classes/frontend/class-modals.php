@@ -149,12 +149,19 @@ class Modals {
 				$modal_id  = get_the_ID();
 				$temp_html = '';
 
+				// TODO: replace the inline svg with a block icon and remove the allowed_html['svg'] from the wp_kses_allowed_html
+				$close_button = '<button class="wp-block-hm-popup__close" aria-label="' . esc_attr__( 'Close', 'tour-operator' ) . '" data-close>';
+				$close_button .= '<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 24.5L24 8.5M8 8.5L24 24.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>';
+				$close_button .= '</button>';
 
-				$temp_html = '<dialog id="to-modal-' . $modal_id . '" class="wp-block-hm-popup" data-trigger="click" data-expiry="7" data-backdrop-opacity="0.75">';
+				$temp_html = '<dialog id="to-modal-' . $modal_id . '" class="wp-block-hm-popup" data-trigger="click" data-expiry="7" data-backdrop-opacity="0.75" tabindex="-1"><div style="position:relative;">';
 
 				$template   = $this->get_selected_template();
 				$temp_html .= do_blocks( $template );
 
+				$temp_html .= $close_button;
 				$temp_html .= '</dialog>';
 
 				$modal_html[] = $temp_html;
@@ -209,12 +216,6 @@ class Modals {
 			break;
 		}
 
-		// TODO: replace the inline svg with a block icon and remove the allowed_html['svg'] from the wp_kses_allowed_html
-		$template .= '<button class="wp-block-hm-popup__close" aria-label="' . esc_attr__( 'Close', 'tour-operator' ) . '" data-close>';
-		$template .= '<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8 24.5L24 8.5M8 8.5L24 24.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>';
-		$template .= '</button>';
 		$template  .= '</div>';
 
 		if ( isset( $this->options[ $post_type . '_modal_template'] ) && 'default' !== $this->options[ $post_type . '_modal_template'] ) {
