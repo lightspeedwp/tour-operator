@@ -228,15 +228,15 @@ class Modals {
 		$template  = '<div class="wp-block-template-part">';
 		switch ( $post_type ) {
 			case 'accommodation':
-				$template .= '<!-- wp:pattern {"slug":"lsx-tour-operator/accommodation-card"} /-->';
+				$template .= '<!-- wp:template-part {"slug":"modal-accommodation"} /-->';
 			break;
 
 			case 'destination':
-				$template .= '<!-- wp:pattern {"slug":"lsx-tour-operator/destination-card"} /-->';
+				$template .= '<!-- wp:template-part {"slug":"modal-destination"} /-->';
 			break;
 
 			case 'tour':
-				$template .= '<!-- wp:pattern {"slug":"lsx-tour-operator/tour-card"} /-->';
+				$template .= '<!-- wp:template-part {"slug":"modal-tour"} /-->';
 			break;
 
 			default:
