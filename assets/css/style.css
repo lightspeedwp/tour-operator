@@ -686,6 +686,7 @@ button.facetwp-reset {
   height: 95vh;
   border: 0;
   background: none;
+  padding: 0;
 }
 .wp-block-hm-popup[open] {
   transition: opacity 150ms linear;
@@ -699,6 +700,7 @@ button.facetwp-reset {
   z-index: 2;
   width: 100%;
   background-color: rgb(255, 255, 255);
+  padding: var(--wp--style--global--content-padding, 1.5rem);
 }
 
 /* Before-open state */
