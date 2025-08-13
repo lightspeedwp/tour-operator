@@ -177,8 +177,7 @@
   height: 20px;
   /* Fixed height */
   display: flex;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
   /* Ensure image doesn't stretch or distort */
 }
 
@@ -332,10 +331,6 @@ body .fs-arrow {
 .archive .fs-label-wrap {
   border: 1px solid #757575 !important;
   border-radius: 4px;
-}
-
-.fs-wrap .fs-search input::-moz-placeholder {
-  font-size: var(--wp--preset--font-size--x-small);
 }
 
 .fs-wrap .fs-search input::placeholder {
@@ -716,18 +711,9 @@ button.facetwp-reset {
   }
 }
 /* Transition the :backdrop when the dialog modal is promoted to the top layer */
-.wp-block-hm-popup::-webkit-backdrop {
-  background-color: rgba(0, 0, 0, 0);
-  -webkit-transition: display 150ms allow-discrete, overlay 150ms allow-discrete, background-color 150ms;
-  transition: display 150ms allow-discrete, overlay 150ms allow-discrete, background-color 150ms;
-}
 .wp-block-hm-popup::backdrop {
   background-color: rgba(0, 0, 0, 0);
   transition: display 150ms allow-discrete, overlay 150ms allow-discrete, background-color 150ms;
-}
-
-.wp-block-hm-popup[open]::-webkit-backdrop {
-  background-color: rgba(0, 0, 0, 0.75);
 }
 
 .wp-block-hm-popup[open]::backdrop {
@@ -737,27 +723,52 @@ button.facetwp-reset {
 /* This starting-style rule cannot be nested inside the above selector
   because the nesting selector cannot represent pseudo-elements. */
 @starting-style {
-  .wp-block-hm-popup[open]::-webkit-backdrop {
-    background-color: rgba(0, 0, 0, 0);
-  }
   .wp-block-hm-popup[open]::backdrop {
     background-color: rgba(0, 0, 0, 0);
   }
 }
+.wp-block-hm-popup__close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+.wp-block-hm-popup__close:hover, .wp-block-hm-popup__close:focus {
+  color: var(--wp--preset--color--primary);
+}
+
 .lsx-map.wp-block-group.hidden {
   display: none;
 }
 
 .lsx-to-map-marker {
+  -webkit-box-align: start;
+  -ms-flex-align: start;
   align-items: flex-start;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: row nowrap;
   flex-flow: row nowrap;
   height: auto;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
   justify-content: flex-start;
   padding: 5px 0;
   width: 100%;
 }
 .lsx-to-map-marker .lsx-to-map-marker-content {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
   flex-grow: 1;
   color: var(--wp--preset--color--contrast);
 }
@@ -785,6 +796,7 @@ button.facetwp-reset {
 .lsx-to-map-marker .lsx-to-map-marker-img {
   margin-right: 15px;
   max-width: 100px;
+  -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 .lsx-to-map-marker .lsx-to-map-marker-title {
@@ -796,4 +808,5 @@ button.facetwp-reset {
 .lsx-units-wrapper .hidden {
   display: none;
 }
+
 /*# sourceMappingURL=style.css.map */

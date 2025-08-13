@@ -46,7 +46,7 @@ class Modals {
 	 */
 	public function __construct() {
 		$this->options = get_option( 'lsx_to_settings', [] );
-		
+
 		add_action( 'wp_loaded', [ $this, 'init' ], 10 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ), 1 );
 
@@ -102,7 +102,7 @@ class Modals {
 			$prefix = '';
 			$suffix = '.min';
 		}*/
-		
+
 		wp_register_script( 'lsx-to-modals', LSX_TO_URL . 'assets/js/' . $prefix . 'modals' . $suffix . '.js', array( 'jquery' ), LSX_TO_VER, true );
 	}
 
@@ -167,7 +167,24 @@ class Modals {
 			$content .= implode( '', $modal_html );
 		}
 
-		echo wp_kses_post( $content );
+		// Allow SVG elements
+		$allowed_html = wp_kses_allowed_html( 'post' );
+		$allowed_html['svg'] = array(
+			'width' => true,
+			'height' => true,
+			'viewbox' => true,
+			'fill' => true,
+			'xmlns' => true,
+		);
+		$allowed_html['path'] = array(
+			'd' => true,
+			'stroke' => true,
+			'stroke-width' => true,
+			'stroke-linecap' => true,
+			'stroke-linejoin' => true,
+		);
+
+		echo wp_kses( $content, $allowed_html );
 	}
 
 	public function get_selected_template() {
@@ -176,21 +193,28 @@ class Modals {
 		$template  = '<div class="wp-block-template-part">';
 		switch ( $post_type ) {
 			case 'accommodation':
-				$template .= '<!-- wp:pattern {"slug":"lsx-tour-operator/accommodation-card"} /-->';	
+				$template .= '<!-- wp:pattern {"slug":"lsx-tour-operator/accommodation-card"} /-->';
 			break;
-			
+
 			case 'destination':
-				$template .= '<!-- wp:pattern {"slug":"lsx-tour-operator/destination-card"} /-->';	
+				$template .= '<!-- wp:pattern {"slug":"lsx-tour-operator/destination-card"} /-->';
 			break;
 
 			case 'tour':
-				$template .= '<!-- wp:pattern {"slug":"lsx-tour-operator/tour-card"} /-->';	
+				$template .= '<!-- wp:pattern {"slug":"lsx-tour-operator/tour-card"} /-->';
 			break;
 
 			default:
 				$template .= '<p>' . __( 'Please select a pattern or customize your layout with the Tour Operator blocks.', 'tour-operator' ) . '</p>';
 			break;
 		}
+
+		// TODO: replace the inline svg with a block icon and remove the allowed_html['svg'] from the wp_kses_allowed_html
+		$template .= '<button class="wp-block-hm-popup__close" aria-label="' . esc_attr__( 'Close', 'tour-operator' ) . '" data-close>';
+		$template .= '<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 24.5L24 8.5M8 8.5L24 24.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>';
+		$template .= '</button>';
 		$template  .= '</div>';
 
 		if ( isset( $this->options[ $post_type . '_modal_template'] ) && 'default' !== $this->options[ $post_type . '_modal_template'] ) {
@@ -265,7 +289,7 @@ class Modals {
 			$modal .= wpautop( $content );
 			$modal .= '</div>';
 			$modal .= '</dialog>';
-			
+
 			echo wp_kses_post( $modal );
 		}
 	}
@@ -294,7 +318,7 @@ class Modals {
 			$value = wp_trim_excerpt( wp_strip_all_tags( $html ) );
 			$value = str_replace( '<br>', ' ', $value );
 			$value = str_replace( '<br />', ' ', $value );
-		
+
 			if ( strlen( $value ) > $limit_chars ) {
 				$position = strpos( $value, ' ', $limit_chars );
 				if ( false !== $position ) {
@@ -304,7 +328,7 @@ class Modals {
 				}
 				$value = trim( force_balance_tags( $value_output . '...' ) );
 			}
-	
+
 			$html = trim( force_balance_tags( $value ) );
 		}
 		return $html;

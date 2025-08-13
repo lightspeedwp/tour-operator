@@ -63,3 +63,20 @@
 		background-color: rgba(0, 0, 0, 0%);
 	}
 }
+
+.wp-block-hm-popup__close {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 3;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 0.5rem;
+	&:hover, &:focus {
+		color: var(--wp--preset--color--primary);
+	}
+}
