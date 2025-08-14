@@ -701,6 +701,11 @@ button.facetwp-reset {
   width: 100%;
   background-color: rgb(255, 255, 255);
   padding: var(--wp--style--global--content-padding, 1.5rem);
+  max-height: 100%;
+  overflow-y: auto;
+}
+.wp-block-hm-popup h3 {
+  padding: 0 15px;
 }
 
 /* Before-open state */
@@ -737,13 +742,15 @@ button.facetwp-reset {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: transparent;
   border: none;
   cursor: pointer;
   padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 0 0 0 0.25rem;
 }
 .wp-block-hm-popup__close:hover, .wp-block-hm-popup__close:focus {
   color: var(--wp--preset--color--primary);
+  background: rgb(255, 255, 255);
 }
 
 .lsx-map.wp-block-group.hidden {
