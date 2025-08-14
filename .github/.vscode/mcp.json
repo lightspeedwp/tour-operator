@@ -1,0 +1,19 @@
+{
+  "inputs": [
+    {
+      "id": "input1",
+      "description": "Enter the required value",
+      "type": "promptString"
+    }
+  ],
+  "servers": {
+    "fetch": {
+      "command": "uvx",
+      "args": ["mcp-server-fetch"]
+    },
+    "github-remote": {
+      "command": "uvx",
+      "args": ["mcp-server-github-remote"]
+    }
+  }
+}
