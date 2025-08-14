@@ -36,7 +36,7 @@
   "devDependencies": {
     "@babel/preset-react": "^7.27.1",
     "@wordpress/eslint-plugin": "^22.13.0",
-    "@wordpress/scripts": "^30.19.0",
+    "@wordpress/scripts": "^30.21.0",
     "@wordpress/stylelint-config": "^23.19.0",
     "webpack-remove-empty-scripts": "^0.8.4"
   },
