@@ -1,10 +1,9 @@
 ---
 name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
+about: Report a bug
+title: "[Bug] "
+labels: bug, needs-triage
 assignees: ''
-
 ---
 
 **Describe the bug**
@@ -23,6 +22,12 @@ A clear and concise description of what you expected to happen.
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
+**WordPress Environment:**
+- WordPress Version: [e.g. 6.4]
+- PHP Version: [e.g. 8.1]
+- Active Theme: [e.g. theme name]
+- Other Active Plugins: [list relevant plugins]
+
 **Desktop (please complete the following information):**
  - OS: [e.g. iOS]
  - Browser [e.g. chrome, safari]
@@ -36,3 +41,10 @@ If applicable, add screenshots to help explain your problem.
 
 **Additional context**
 Add any other context about the problem here.
+
+**Maintainer Checklist** *(for maintainers use)*
+- [ ] Bug confirmed and reproducible
+- [ ] Fix implemented
+- [ ] Changelog updated
+- [ ] Tests added/updated
+- [ ] Documentation updated (if applicable)
