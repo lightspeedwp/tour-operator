@@ -1,63 +1,8 @@
 {
-    "mcpServers": {
+    "servers": {
         "github": {
-            "type": "remote",
-            "url": "https://github.com/github/github-mcp-server",
-            "auth": {
-                "type": "github"
-            },
-            "tools": [
-                "code_suggestions",
-                "automation",
-                "workflow_integration",
-                "testing",
-                "documentation_generation",
-                "security_analysis",
-                "dependency_management",
-                "linting",
-                "formatting"
-            ],
-            "capabilities": [
-                "code_suggestions",
-                "automation",
-                "workflow_integration",
-                "testing",
-                "documentation_generation",
-                "security_analysis",
-                "dependency_management",
-                "linting",
-                "formatting"
-            ],
-            "languages": [
-                "PHP",
-                "HTML",
-                "JavaScript",
-                "SCSS",
-                "CSS",
-                "TypeScript",
-                "Shell",
-                "Markdown",
-                "YAML",
-                "YML",
-                "JSON",
-                "XML"
-            ],
-            "models": [
-                "gpt-4.1",
-                "gpt-5-mini",
-                "gpt-5",
-                "o4-mini",
-                "claude-sonnet-3.5",
-                "claude-sonnet-3.7-thinking",
-                "claude-sonnet-4",
-                "gemini-2.5-pro",
-                "gemini-2.5-flash"
-            ],
-            "branchProtection": {
-                "requirePullRequests": true,
-                "requireApprovals": 1,
-                "requireStatusChecks": true
-            }
+            "type": "http",
+            "url": "https://api.githubcopilot.com/mcp/"
         }
     }
 }
