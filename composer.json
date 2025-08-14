@@ -10,7 +10,7 @@
         "phpunit/phpunit": "^8.5",
         "wp-coding-standards/wpcs": "^3.0",
         "dealerdirect/phpcodesniffer-composer-installer": "^1.0.0",
-        "wpackagist-plugin/wordpress-seo": "^21.0",
+        "wpackagist-plugin/wordpress-seo": "^25.7",
         "wpackagist-theme/lsx": "^3.0",
         "phpcompatibility/phpcompatibility-wp": "^2.1.0"
     },
