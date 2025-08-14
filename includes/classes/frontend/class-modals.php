@@ -49,6 +49,8 @@ class Modals {
 
 		add_action( 'wp_loaded', [ $this, 'init' ], 10 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ), 1 );
+		add_action( 'rest_api_init', array( $this, 'register_rest_routes' ) );
+		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_editor_scripts' ) );
 
 		//Register our mega menu template part area.
 		add_filter( 'default_wp_template_part_areas', [ $this, 'register_template_part_category' ], 10, 1 );
@@ -65,6 +67,7 @@ class Modals {
 		add_filter( 'lsx_to_custom_field_query', array( $this, 'travel_information_excerpt' ), 5, 10 );
 		add_action( 'wp_footer', array( $this, 'output_modal_ids' ), 10 );
 		add_action( 'wp_footer', array( $this, 'output_modal_contents' ), 11 );
+		add_action( 'wp_footer', array( $this, 'output_template_part_modals' ), 12 );
 
 		$this->create_default_templates();
 	}
@@ -168,58 +171,22 @@ class Modals {
 			'nopagin' => true,
 		];
 		$modal_query = new \WP_Query( $modal_args );
-		$modal_html  = [];
 
 		if ( $modal_query->have_posts() ) {
 			while ( $modal_query->have_posts() ) {
 				$modal_query->the_post();
 
-				$modal_id  = get_the_ID();
-				$temp_html = '';
+				$modal_id = get_the_ID();
+				$template = $this->get_selected_template();
+				$rendered_content = do_blocks( $template );
 
-				// TODO: replace the inline svg with a block icon and remove the allowed_html['svg'] from the wp_kses_allowed_html
-				$close_button = '<button class="wp-block-hm-popup__close" aria-label="' . esc_attr__( 'Close', 'tour-operator' ) . '" data-close>';
-				$close_button .= '<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8 24.5L24 8.5M8 8.5L24 24.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>';
-				$close_button .= '</button>';
-
-				$temp_html = '<dialog id="to-modal-' . $modal_id . '" class="wp-block-hm-popup" data-trigger="click" data-expiry="7" data-backdrop-opacity="0.75" tabindex="-1"><div style="position:relative;">';
-
-				$template   = $this->get_selected_template();
-				$temp_html .= do_blocks( $template );
-
-				$temp_html .= $close_button;
-				$temp_html .= '</dialog>';
-
-				$modal_html[] = $temp_html;
+				// Generate and output modal using reusable method
+				$modal_html = $this->generate_modal_html( $modal_id, $rendered_content );
+				$this->output_modal( $modal_html );
 			}
 
 			wp_reset_postdata();
 		}
-
-		if ( ! empty( $modal_html ) ) {
-			$content .= implode( '', $modal_html );
-		}
-
-		// Allow SVG elements
-		$allowed_html = wp_kses_allowed_html( 'post' );
-		$allowed_html['svg'] = array(
-			'width' => true,
-			'height' => true,
-			'viewbox' => true,
-			'fill' => true,
-			'xmlns' => true,
-		);
-		$allowed_html['path'] = array(
-			'd' => true,
-			'stroke' => true,
-			'stroke-width' => true,
-			'stroke-linecap' => true,
-			'stroke-linejoin' => true,
-		);
-
-		echo wp_kses( $content, $allowed_html );
 	}
 
 	public function get_selected_template() {
@@ -312,14 +279,8 @@ class Modals {
 		wp_enqueue_script( 'lsx-to-modals' );
 
 		foreach ( $this->modal_contents as $key => $content ) {
-			// If you want to allow any data-* attribute, use a regex filter after wp_kses_post
-			$modal  = '<dialog id="to-modal-' . $key . '" class="wp-block-hm-popup" data-trigger="click" data-expiry="7" data-backdrop-opacity="0.75">';
-			$modal .= '<div class="wp-block-template-part">';
-			$modal .= wpautop( $content );
-			$modal .= '</div>';
-			$modal .= '</dialog>';
-
-			echo wp_kses_post( $modal );
+			$modal_html = $this->generate_modal_html( $key, wpautop( $content ), true );
+			$this->output_modal( $modal_html );
 		}
 	}
 
@@ -459,7 +420,7 @@ class Modals {
 <!-- wp:group {"metadata":{"name":"Destination Description"},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:post-excerpt {"moreText":"View More","excerptLength":40,"style":{"elements":{"link":{"color":{"text":"var:preset|color|contrast"}}}},"textColor":"contrast"} /--></div>
 <!-- /wp:group --></div>
-<!-- /wp:group -->
+<!-- /wp:group --></div>
 <!-- /wp:group -->',
 				'description' => __( 'This modal displays the destination details including the featured image, title, excerpt, and travel information.', 'tour-operator' ),
 				'categories' => [ 'lsx_to_modals' ],
@@ -511,7 +472,6 @@ class Modals {
 <p>Days</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
-<!-- /wp:group --></div>
 <!-- /wp:group -->
 
 <!-- wp:group {"metadata":{"name":"Tour Text Content"},"layout":{"type":"constrained"}} -->
@@ -521,6 +481,16 @@ class Modals {
 <!-- /wp:group -->',
 				'description' => __( 'This modal displays the tour details including the featured image, title, excerpt, and tour information.', 'tour-operator' ),
 				'categories' => [ 'lsx_to_modals' ],
+			],
+			'enquiry' => [
+				'title' => __( 'Enquiry Form Modal', 'tour-operator' ),
+				'content' => '<!-- wp:group {"metadata":{"name":"Enquiry Form Modal"},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:paragraph -->
+<p>Insert your contact form here.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->',
+				'description' => __( 'This modal displays an enquiry form via shortcode or block insert.', 'tour-operator' ),
+				'categories' => [ 'lsx_to_modals' ]
 			]
 		];
 
@@ -593,5 +563,258 @@ class Modals {
 				wp_clean_themes_cache();
 			}
 		}
+	}
+
+	/**
+	 * Enqueue editor scripts and localize modal options
+	 */
+	public function enqueue_editor_scripts() {
+		// Only localize if we're in the admin/editor
+		if ( ! is_admin() ) {
+			return;
+		}
+
+		// Localize to the modal-button block's specific script handle
+		wp_localize_script(
+			'lsx-to-block-modal-button',
+			'lsxModalButtonOptions',
+			array(
+				'apiUrl' => rest_url( 'tour-operator/v1/modal-options' ),
+				'nonce'  => wp_create_nonce( 'wp_rest' ),
+			)
+		);
+	}
+
+	/**
+	 * Register REST API routes
+	 */
+	public function register_rest_routes() {
+		register_rest_route(
+			'tour-operator/v1',
+			'/modal-options',
+			array(
+				'methods'             => 'GET',
+				'callback'            => array( $this, 'get_modal_options_api' ),
+				'permission_callback' => array( $this, 'permissions_check' ),
+			)
+		);
+	}
+
+	/**
+	 * Permission callback for REST API
+	 */
+	public function permissions_check() {
+		return current_user_can( 'edit_posts' );
+	}
+
+	/**
+	 * Get modal options from database for REST API
+	 *
+	 * @return \WP_REST_Response
+	 */
+	public function get_modal_options_api() {
+		$modal_options = array(
+			array(
+				'label' => __( 'Select a modal...', 'tour-operator' ),
+				'value' => '',
+			),
+		);
+
+		// Use the existing get_template_part_options method but format for API
+		$template_options = $this->get_template_part_options();
+
+		foreach ( $template_options as $value => $label ) {
+			// Skip the default option since we already added "Select a modal..."
+			if ( $value !== 'default' && $value !== '' ) {
+				$modal_options[] = array(
+					'label' => $label,
+					'value' => $value,
+				);
+			}
+		}
+
+		// Register modal HTML for template parts to be output in footer
+		foreach ( $template_options as $slug => $title ) {
+			if ( $slug !== 'default' && $slug !== '' ) {
+				$this->register_modal_content( $slug );
+			}
+		}
+
+		return rest_ensure_response( $modal_options );
+	}
+
+	/**
+	 * Register modal content for template parts to be output in footer
+	 *
+	 * @param string $template_slug The template part slug
+	 */
+	public function register_modal_content( $template_slug ) {
+		// Check if modal is already registered to avoid duplicates
+		$modal_id = 'to-modal-' . $template_slug;
+
+		if ( ! isset( $this->modal_contents[ $modal_id ] ) ) {
+			// Get the template part content
+			$template_content = '<!-- wp:template-part {"slug":"' . $template_slug . '","area":"lsx_to_modals"} /-->';
+			$this->modal_contents[ $modal_id ] = do_blocks( $template_content );
+		}
+	}
+
+	/**
+	 * Output template part modals that are referenced by modal-button blocks
+	 *
+	 * @return void
+	 */
+	public function output_template_part_modals() {
+		global $post;
+
+		// Only run on pages that might have modal buttons
+		if ( ! $post || ! has_blocks( $post->post_content ) ) {
+			return;
+		}
+
+		// Parse blocks to find modal-button blocks
+		$blocks = parse_blocks( $post->post_content );
+		$modal_template_slugs = $this->find_modal_button_blocks( $blocks );
+
+		if ( empty( $modal_template_slugs ) ) {
+			return;
+		}
+
+		wp_enqueue_script( 'lsx-to-modals' );
+
+		// Output modal HTML for each referenced template
+		foreach ( $modal_template_slugs as $template_slug ) {
+			$modal_id = 'to-modal-' . $template_slug;
+
+			// Get the template part content
+			$template_content = '<!-- wp:template-part {"slug":"' . $template_slug . '","area":"lsx_to_modals"} /-->';
+			$rendered_content = do_blocks( $template_content );
+
+			// Generate and output modal using reusable method
+			$modal_html = $this->generate_modal_html( $modal_id, $rendered_content );
+			$this->output_modal( $modal_html );
+		}
+	}
+
+	/**
+	 * Recursively find modal-button blocks and extract their modalId values
+	 *
+	 * @param array $blocks Array of parsed blocks
+	 * @return array Array of modal template slugs
+	 */
+	private function find_modal_button_blocks( $blocks ) {
+		$modal_slugs = array();
+
+		foreach ( $blocks as $block ) {
+			// Check if this is a modal-button block
+			if ( 'lsx-tour-operator/modal-button' === $block['blockName'] &&
+				 isset( $block['attrs']['modalId'] ) &&
+				 ! empty( $block['attrs']['modalId'] ) ) {
+				$modal_slugs[] = $block['attrs']['modalId'];
+			}
+
+			// Recursively check inner blocks
+			if ( ! empty( $block['innerBlocks'] ) ) {
+				$inner_modal_slugs = $this->find_modal_button_blocks( $block['innerBlocks'] );
+				$modal_slugs = array_merge( $modal_slugs, $inner_modal_slugs );
+			}
+		}
+
+		return array_unique( $modal_slugs );
+	}
+
+	/**
+	 * Generate modal HTML with consistent structure
+	 *
+	 * @param string $modal_id The modal ID (without 'to-modal-' prefix)
+	 * @param string $content The modal content
+	 * @param bool $add_wrapper Whether to wrap content in template-part div
+	 * @return string The complete modal HTML
+	 */
+	private function generate_modal_html( $modal_id, $content, $add_wrapper = false ) {
+		// Ensure modal ID has proper prefix
+		$full_modal_id = strpos( $modal_id, 'to-modal-' ) === 0 ? $modal_id : 'to-modal-' . $modal_id;
+
+		// Create close button
+		$close_button = $this->get_modal_close_button();
+
+		// Wrap content if needed
+		if ( $add_wrapper ) {
+			$content = '<div class="wp-block-template-part">' . $content . '</div>';
+		}
+
+		// Create modal HTML
+		$modal_html = '<dialog id="' . esc_attr( $full_modal_id ) . '" class="wp-block-hm-popup" data-trigger="click" data-expiry="7" data-backdrop-opacity="0.75" tabindex="-1">';
+		$modal_html .= '<div style="position:relative;">';
+		$modal_html .= $content;
+		$modal_html .= $close_button;
+		$modal_html .= '</div>';
+		$modal_html .= '</dialog>';
+
+		return $modal_html;
+	}
+
+	/**
+	 * Get the standardized modal close button HTML
+	 *
+	 * @return string The close button HTML
+	 */
+	private function get_modal_close_button() {
+		$close_button = '<button class="wp-block-hm-popup__close" aria-label="' . esc_attr__( 'Close', 'tour-operator' ) . '" data-close>';
+		$close_button .= '<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">';
+		$close_button .= '<path d="M8 24.5L24 8.5M8 8.5L24 24.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>';
+		$close_button .= '</svg>';
+		$close_button .= '</button>';
+
+		return $close_button;
+	}
+
+	/**
+	 * Get allowed HTML tags for modal content
+	 *
+	 * @return array Allowed HTML tags and attributes
+	 */
+	private function get_modal_allowed_html() {
+		$allowed_html = wp_kses_allowed_html( 'post' );
+
+		// Add modal-specific elements
+		$allowed_html['dialog'] = array(
+			'id' => true,
+			'class' => true,
+			'data-trigger' => true,
+			'data-expiry' => true,
+			'data-backdrop-opacity' => true,
+			'tabindex' => true,
+		);
+		$allowed_html['svg'] = array(
+			'width' => true,
+			'height' => true,
+			'viewbox' => true,
+			'fill' => true,
+			'xmlns' => true,
+		);
+		$allowed_html['path'] = array(
+			'd' => true,
+			'stroke' => true,
+			'stroke-width' => true,
+			'stroke-linecap' => true,
+			'stroke-linejoin' => true,
+		);
+		$allowed_html['button'] = array(
+			'class' => true,
+			'aria-label' => true,
+			'data-close' => true,
+		);
+
+		return $allowed_html;
+	}
+
+	/**
+	 * Output a modal with proper sanitization
+	 *
+	 * @param string $modal_html The modal HTML to output
+	 */
+	private function output_modal( $modal_html ) {
+		echo wp_kses( $modal_html, $this->get_modal_allowed_html() );
 	}
 }
