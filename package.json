@@ -35,8 +35,8 @@
   "homepage": "https://github.com/lightspeeddevelopment/tour-operator#readme",
   "devDependencies": {
     "@babel/preset-react": "^7.27.1",
+    "@wordpress/scripts": "^30.21.0",
     "@wordpress/eslint-plugin": "^22.14.0",
-    "@wordpress/scripts": "^30.19.0",
     "@wordpress/stylelint-config": "^23.19.0",
     "webpack-remove-empty-scripts": "^0.8.4"
   },
