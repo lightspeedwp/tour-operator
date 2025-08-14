@@ -1,0 +1,64 @@
+# This file configures the 'actions/labeler' GitHub Action.
+# It maps labels to file paths. When a pull request modifies a file
+# matching a path, the corresponding label is automatically applied.
+#
+# For more information, see: https://github.com/actions/labeler
+
+# Add 'documentation' label to any PR that changes markdown files or docs.
+documentation:
+  - '**/*.md'
+  - 'docs/**/*'
+
+# Add 'github-actions' label to any PR that changes GitHub Actions workflows.
+github-actions:
+  - '.github/workflows/*'
+
+# Add 'dependencies' label to any PR that changes dependency management files.
+dependencies:
+  - 'composer.json'
+  - 'composer.lock'
+  - 'package.json'
+  - 'package-lock.json'
+
+# Add 'build' label for changes to the build process configuration.
+# Note: A change to package.json will get both 'dependencies' and 'build' labels.
+build:
+  - 'webpack.config.js'
+  - 'package.json'
+
+# Add 'javascript' label for JS source file changes.
+javascript:
+  - 'src/js/**/*.js'
+  - 'assets/js/**/*.js'
+  - 'src/blocks/**/*.js'
+
+# Add 'styles' label for CSS/SASS source file changes.
+styles:
+  - 'src/css/**/*.scss'
+  - 'src/css/**/*.css'
+  - 'assets/css/**/*.css'
+  - 'src/blocks/**/*.scss'
+
+# Add 'blocks' label for Gutenberg block changes.
+blocks:
+  - 'src/blocks/**/*'
+
+# Add 'integrations' label for integration-specific changes.
+integrations:
+  - 'includes/integrations/**/*.php'
+  - 'integrations/**/*.php'
+
+# Add 'php' label for general PHP file changes.
+php:
+  - '**/*.php'
+
+# Add 'tests' label for test file changes.
+tests:
+  - '**/*_test.php'
+  - '**/*Test.php'
+
+# Add 'tooling' label for changes to developer tooling and configuration.
+tooling:
+  - '.editorconfig'
+  - '.eslintrc.js'
+  - 'phpcs.xml'
