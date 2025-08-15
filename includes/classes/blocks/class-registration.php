@@ -10,15 +10,35 @@ namespace lsx\blocks;
 class Registration {
 
 	/**
+	 * Holds instance of the class
+	 *
+	 * @var Registration
+	 */
+	private static $instance;
+
+	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
 	 *
 	 * @since 1.0.0
 	 *
 	 * @access private
 	 */
-	public function __construct() {
+	private function __construct() {
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_variations_script' ), 10 );
 		add_action( 'init', array( $this, 'register_block_json_files' ), 10 );
+	}
+
+	/**
+	 * Return an instance of this class.
+	 *
+	 * @since 1.0.0
+	 * @return Registration A single instance of this class.
+	 */
+	public static function get_instance() {
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+		return self::$instance;
 	}
 
 	/**

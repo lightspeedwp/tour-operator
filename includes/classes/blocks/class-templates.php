@@ -11,6 +11,13 @@ namespace lsx\blocks;
 class Templates {
 
 	/**
+	 * Holds instance of the class
+	 *
+	 * @var Templates
+	 */
+	private static $instance;
+
+	/**
 	 * Holds array of out templates to be registered.
 	 *
 	 * @var array
@@ -24,8 +31,21 @@ class Templates {
 	 *
 	 * @access private
 	 */
-	public function __construct() {
+	private function __construct() {
 		add_action( 'init', [ $this, 'register_post_type_templates' ] );
+	}
+
+	/**
+	 * Return an instance of this class.
+	 *
+	 * @since 1.0.0
+	 * @return Templates A single instance of this class.
+	 */
+	public static function get_instance() {
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+		return self::$instance;
 	}
 
 	/**

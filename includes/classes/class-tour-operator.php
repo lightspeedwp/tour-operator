@@ -188,11 +188,11 @@ class Tour_Operator {
 		$this->classes['admin']           = new Admin();
 		$this->classes['settings']        = Settings::init();
 		$this->classes['setup']           = new Setup();
-		$this->classes['bindings']        = new Bindings();
-		$this->classes['registration']    = new Registration();
-		$this->classes['patterns']        = new Patterns();
-		$this->classes['templates']       = new Templates();
-		$this->classes['query_loop']      = new Query_Loop();
+		$this->classes['bindings']        = Bindings::get_instance();
+		$this->classes['registration']    = Registration::get_instance();
+		$this->classes['patterns']        = Patterns::get_instance();
+		$this->classes['templates']       = Templates::get_instance();
+		$this->classes['query_loop']      = Query_Loop::get_instance();
 		$this->classes['post_expiration'] = new Post_Expiration();
 
 		// Files that wont load with the badly written spl_autoregister function.

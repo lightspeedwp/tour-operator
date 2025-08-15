@@ -9,6 +9,13 @@ namespace lsx\blocks;
  */
 class Query_Loop {
 
+	/**
+	 * Holds instance of the class
+	 *
+	 * @var Query_Loop
+	 */
+	private static $instance;
+
 	protected $disabled = [];
 
 	/**
@@ -39,12 +46,25 @@ class Query_Loop {
 	 *
 	 * @access private
 	 */
-	public function __construct() {
+	private function __construct() {
 		add_filter( 'render_block_data', array( $this, 'save_checkbox_queries' ), 300, 1 );
 		add_filter( 'render_block', array( $this, 'maybe_hide_varitaion' ), 10, 3 );
 
 		add_filter( 'posts_pre_query', array( $this, 'posts_pre_query' ), 10, 2 );
 		add_filter( 'query_loop_block_query_vars', array( $this, 'query_args_filter' ), 1, 2 );
+	}
+
+	/**
+	 * Return an instance of this class.
+	 *
+	 * @since 1.0.0
+	 * @return Query_Loop A single instance of this class.
+	 */
+	public static function get_instance() {
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+		return self::$instance;
 	}
 
 	/**
