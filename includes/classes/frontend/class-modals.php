@@ -302,12 +302,15 @@ class Modals {
 			'additional_info',
 		];
 
-		if ( get_post_type() === 'destination' && in_array( $meta_key, $ti_keys )  ) {
-			$this->modal_contents[ $meta_key ] = $html;
+		if ( get_post_type() === 'destination' && in_array( $meta_key, $ti_keys ) ) {
+			// Store full content for modal with the meta-key
+			$modal_key = 'travel-info-' . $meta_key;
+			$this->modal_contents[ $modal_key ] = $html;
 
 			$value = wp_trim_excerpt( wp_strip_all_tags( $html ) );
 			$value = str_replace( '<br>', ' ', $value );
 			$value = str_replace( '<br />', ' ', $value );
+
 
 			if ( strlen( $value ) > $limit_chars ) {
 				$position = strpos( $value, ' ', $limit_chars );
@@ -316,11 +319,14 @@ class Modals {
 				} else {
 					$value_output = $value;
 				}
-				$value = trim( force_balance_tags( $value_output . '...' ) );
-			}
 
-			$html = trim( force_balance_tags( $value ) );
+				// Create truncated text and close the content wrapper early
+				$html = trim( force_balance_tags( $value_output . '...' ) );
+			} else {
+				$html = trim( force_balance_tags( $value ) );
+			}
 		}
+
 		return $html;
 	}
 
