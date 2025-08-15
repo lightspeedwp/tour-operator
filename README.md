@@ -32,6 +32,8 @@ You can also send an email to our Support Team at [support@lightspeedwp.agency](
 
 If you're a developer who's spotted a bug issue and have a fix, or simply have functionality you think would extend our plugin, we are always happy to accept your contribution! Visit the [Tour Operator Plugin on Github](https://github.com/lightspeeddevelopment/tour-operator) and submit a Pull Request with your updates.
 
+Please use the repository's [pull request template](.github/PULL_REQUEST_TEMPLATE.md) when submitting changes so the linked issue, changelog entry, build steps and tests are clearly documented.
+
 ## Development
 
 ### Build Process
