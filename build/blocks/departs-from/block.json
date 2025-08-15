@@ -4,5 +4,32 @@
   "name": "lsx-tour-operator/departs-from",
   "title": "Departs From",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "A simple block that allows you to insert any SVG icons from a custom library.",
+  "keywords": [
+    "icons",
+    "icon",
+    "svg"
+  ],
+  "supports": {
+    "html": false,
+    "color": {
+      "text": true,
+      "background": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    }
+  },
+  "example": {
+    "attributes": {
+      "iconType": "outline",
+      "iconName": "academicCap"
+    }
+  }
 }

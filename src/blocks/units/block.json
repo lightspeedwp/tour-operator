@@ -8,7 +8,7 @@
     "core/group"
   ],
   "icon": "admin-multisite",
-  "description": "A Units layout block to display your rooms and camps.",
+  "description": "A simple block that allows you to insert any SVG icons from a custom library.",
   "attributes": {
     "metadata": {
       "type": "object",
@@ -57,7 +57,30 @@
     }
   },
   "supports": {
-    "renaming": false
+    "html": false,
+    "color": {
+      "text": true,
+      "background": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    }
   },
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "keywords": [
+    "icons",
+    "icon",
+    "svg"
+  ],
+  "example": {
+    "attributes": {
+      "iconType": "outline",
+      "iconName": "academicCap"
+    }
+  }
 }

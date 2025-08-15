@@ -1,13 +1,35 @@
 {
-	"$schema": "https://schemas.wp.org/trunk/block.json",
-	"apiVersion": 3,
-	"name": "lsx-tour-operator/price",
-	"title": "Price",
-	"category": "lsx-tour-operator",
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "lsx-tour-operator/price",
+  "title": "Price",
+  "category": "lsx-tour-operator",
   "editorScript": "file:index.js",
-	"example": {
-		"attributes": {
-			"content": "Preview of my block"
-		}
-	}
+  "example": {
+    "attributes": {
+      "iconType": "outline",
+      "iconName": "academicCap"
+    }
+  },
+  "description": "A simple block that allows you to insert any SVG icons from a custom library.",
+  "keywords": [
+    "icons",
+    "icon",
+    "svg"
+  ],
+  "supports": {
+    "html": false,
+    "color": {
+      "text": true,
+      "background": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    }
+  }
 }
