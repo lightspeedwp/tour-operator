@@ -272,57 +272,114 @@ function lsx_to_has_custom_field_query( $meta_key = false, $id = false, $is_tax 
  * @category 	helper
  */
 function lsx_to_custom_field_query( $meta_key = false, $before = '', $after = '', $echo = false, $post_id = false, $single = true ) {
-	if ( false !== $meta_key ) {
-		//Check to see if we already have a transient set for this.
-		// TODO Need to move this to enclose the entire function and change to a !==,  that way you have to set up the custom field via the lsx_to_has_{custom_field} function
-		if ( false === $post_id ) {
-			$post_id = get_the_ID();
-		}
+	if ( false === $meta_key ) {
+		return;
+	}
 
-		$value = get_transient( $post_id . '_' . $meta_key );
-		if ( defined( 'WP_DEBUG' ) && ( true === WP_DEBUG || 'true' === WP_DEBUG ) ) {
-			$value = false;
-		}
+	$post_id = lsx_to_get_validated_post_id( $post_id );
+	$value = lsx_to_get_cached_meta_value( $post_id, $meta_key, $single );
 
-		if ( false === $value || '' === $value ) {
-			$value = get_post_meta( $post_id, $meta_key, $single );
+	if ( false === $value || '' === $value ) {
+		return;
+	}
 
-			if ( is_array( $value ) ) {
-				$value = array_unique( $value );
+	$return_html = $before . $value . $after;
+	$return = apply_filters( 'lsx_to_custom_field_query', $return_html, $meta_key, $value, $before, $after );
 
-				//Try to exclude any old data
-				$old_data_keys = [
-					'special_interests'
-				];
-				if ( in_array( $meta_key, $old_data_keys ) ) {
-					foreach ( $value as $vkey => $vv ) {
-						if ( is_array( $vv ) ) {
-							unset( $value[ $vkey ] );
-						}
-					}
-				}
+	if ( $echo ) {
+		// wp_kses_post is removing data-price-XX attribute.
+		// we tried to use 'wp_kses_allowed_html' on LSX Currencies without success
+		// echo wp_kses_post( $return );
+		// @codingStandardsIgnoreStart
+		echo $return;
+		// @codingStandardsIgnoreEnd
+	} else {
+		return $return;
+	}
+}
 
-				$value = implode( ', ', $value );
-			}
-		}
+/**
+ * Get validated post ID.
+ *
+ * @param mixed $post_id Post ID or false.
+ * @return int Post ID.
+ */
+function lsx_to_get_validated_post_id( $post_id ) {
+	if ( false === $post_id ) {
+		return get_the_ID();
+	}
+	return $post_id;
+}
 
-		if ( false !== $value && '' !== $value ) {
-			$return_html = $before . $value . $after;
+/**
+ * Get cached meta value with processing.
+ *
+ * @param int    $post_id  Post ID.
+ * @param string $meta_key Meta key.
+ * @param bool   $single   Whether to return single value.
+ * @return mixed Processed meta value.
+ */
+function lsx_to_get_cached_meta_value( $post_id, $meta_key, $single ) {
+	$value = lsx_to_get_transient_meta_value( $post_id, $meta_key );
 
-			$return = apply_filters( 'lsx_to_custom_field_query', $return_html, $meta_key, $value, $before, $after );
+	if ( false === $value || '' === $value ) {
+		$value = get_post_meta( $post_id, $meta_key, $single );
+		$value = lsx_to_process_meta_value( $value, $meta_key );
+	}
 
-			if ( $echo ) {
-				// wp_kses_post is removing data-price-XX attribute.
-				// we tried to use 'wp_kses_allowed_html' on LSX Currencies without success
-				// echo wp_kses_post( $return );
-				// @codingStandardsIgnoreStart
-				echo $return;
-				// @codingStandardsIgnoreEnd
-			} else {
-				return $return;
+	return $value;
+}
+
+/**
+ * Get transient meta value (disabled in debug mode).
+ *
+ * @param int    $post_id  Post ID.
+ * @param string $meta_key Meta key.
+ * @return mixed Transient value or false.
+ */
+function lsx_to_get_transient_meta_value( $post_id, $meta_key ) {
+	if ( defined( 'WP_DEBUG' ) && ( true === WP_DEBUG || 'true' === WP_DEBUG ) ) {
+		return false;
+	}
+	return get_transient( $post_id . '_' . $meta_key );
+}
+
+/**
+ * Process meta value for arrays and old data.
+ *
+ * @param mixed  $value    Meta value.
+ * @param string $meta_key Meta key.
+ * @return mixed Processed value.
+ */
+function lsx_to_process_meta_value( $value, $meta_key ) {
+	if ( ! is_array( $value ) ) {
+		return $value;
+	}
+
+	$value = array_unique( $value );
+	$value = lsx_to_clean_old_meta_data( $value, $meta_key );
+	return implode( ', ', $value );
+}
+
+/**
+ * Clean old data from meta value array.
+ *
+ * @param array  $value    Value array.
+ * @param string $meta_key Meta key.
+ * @return array Cleaned value array.
+ */
+function lsx_to_clean_old_meta_data( $value, $meta_key ) {
+	$old_data_keys = array( 'special_interests' );
+
+	if ( in_array( $meta_key, $old_data_keys, true ) ) {
+		foreach ( $value as $vkey => $vv ) {
+			if ( is_array( $vv ) ) {
+				unset( $value[ $vkey ] );
 			}
 		}
 	}
+
+	return $value;
 }
 
 /**
@@ -340,63 +397,125 @@ function lsx_to_custom_field_query( $meta_key = false, $before = '', $after = ''
 function lsx_to_connected_list( $connected_ids = false, $type = false, $link = true, $seperator = ', ', $parent = false ) {
 	if ( false === $connected_ids || false === $type ) {
 		return false;
-	} else {
-		if ( ! is_array( $connected_ids ) ) {
-			$connected_ids = explode( ',', $connected_ids );
-		}
+	}
 
-		$filters = array(
-			'post_type'   => $type,
-			'post_status' => 'publish',
-			'post__in'	  => $connected_ids,
-			'orderby'     => 'post__in',
-		);
+	$connected_ids = lsx_to_normalize_connected_ids( $connected_ids );
+	$query_args = lsx_to_build_connected_query_args( $connected_ids, $type, $parent );
+	$connected_query = get_posts( $query_args );
 
-		if ( false !== $parent ) {
-			$filters['post_parent'] = $parent;
-		}
+	if ( ! is_array( $connected_query ) ) {
+		return false;
+	}
 
-		$connected_query = get_posts( $filters );
+	$connected_list = lsx_to_process_connected_items( $connected_query, $type, $link );
+	return implode( $seperator, $connected_list );
+}
 
-		if ( is_array( $connected_query ) ) {
-			global $post;
+/**
+ * Normalize connected IDs to array format.
+ *
+ * @param mixed $connected_ids Connected post IDs.
+ * @return array Array of connected IDs.
+ */
+function lsx_to_normalize_connected_ids( $connected_ids ) {
+	if ( ! is_array( $connected_ids ) ) {
+		return explode( ',', $connected_ids );
+	}
+	return $connected_ids;
+}
 
-			$post_original = $post;
-			$connected_list = array();
+/**
+ * Build query arguments for connected posts.
+ *
+ * @param array  $connected_ids Array of connected post IDs.
+ * @param string $type         Post type.
+ * @param mixed  $parent       Parent post ID or false.
+ * @return array Query arguments.
+ */
+function lsx_to_build_connected_query_args( $connected_ids, $type, $parent ) {
+	$filters = array(
+		'post_type'   => $type,
+		'post_status' => 'publish',
+		'post__in'    => $connected_ids,
+		'orderby'     => 'post__in',
+	);
 
-			foreach ( $connected_query as $cp ) {
-				$post = $cp;
-				$html = '';
+	if ( false !== $parent ) {
+		$filters['post_parent'] = $parent;
+	}
 
-				if ( $link ) {
-					$has_single = ! lsx_to_is_single_disabled( $type, $cp->ID );
-					$permalink = '';
+	return $filters;
+}
 
-					if ( $has_single ) {
-						$permalink = get_the_permalink( $cp->ID );
-					} elseif ( is_search() || ! is_post_type_archive( $type ) ) {
-						$has_single = true;
-						$permalink = get_post_type_archive_link( $type ) . '#' . $type . '-' . $cp->post_name;
-					}
+/**
+ * Process connected items and generate HTML list.
+ *
+ * @param array  $connected_query Array of post objects.
+ * @param string $type           Post type.
+ * @param bool   $link           Whether to include links.
+ * @return array Array of HTML items.
+ */
+function lsx_to_process_connected_items( $connected_query, $type, $link ) {
+	global $post;
+	$post_original = $post;
+	$connected_list = array();
 
-					$html .= '<a href="' . $permalink . '">';
-				}
+	foreach ( $connected_query as $cp ) {
+		$post = $cp;
+		$html = lsx_to_build_connected_item_html( $cp, $type, $link );
+		$connected_list[] = $html;
+	}
 
-				$html .= get_the_title( $cp->ID );
+	$post = $post_original;
+	return $connected_list;
+}
 
-				if ( $link ) {
-					$html .= '</a>';
-				}
+/**
+ * Build HTML for a single connected item.
+ *
+ * @param WP_Post $cp   Post object.
+ * @param string  $type Post type.
+ * @param bool    $link Whether to include links.
+ * @return string HTML for the item.
+ */
+function lsx_to_build_connected_item_html( $cp, $type, $link ) {
+	$html = '';
 
-				$html = apply_filters( 'lsx_to_connected_list_item', $html, $cp->ID, $link );
-				$connected_list[] = $html;
-			}
-
-			$post = $post_original;
-
-			return implode( $seperator, $connected_list );
+	if ( $link ) {
+		$permalink = lsx_to_get_connected_item_permalink( $cp, $type );
+		if ( $permalink ) {
+			$html .= '<a href="' . $permalink . '">';
 		}
 	}
+
+	$html .= get_the_title( $cp->ID );
+
+	if ( $link && $permalink ) {
+		$html .= '</a>';
+	}
+
+	return apply_filters( 'lsx_to_connected_list_item', $html, $cp->ID, $link );
+}
+
+/**
+ * Get permalink for connected item.
+ *
+ * @param WP_Post $cp   Post object.
+ * @param string  $type Post type.
+ * @return string Permalink URL or empty string.
+ */
+function lsx_to_get_connected_item_permalink( $cp, $type ) {
+	$has_single = ! lsx_to_is_single_disabled( $type, $cp->ID );
+
+	if ( $has_single ) {
+		return get_the_permalink( $cp->ID );
+	}
+
+	if ( is_search() || ! is_post_type_archive( $type ) ) {
+		return get_post_type_archive_link( $type ) . '#' . $type . '-' . $cp->post_name;
+	}
+
+	return '';
 }
 
 /**

@@ -19,6 +19,7 @@ module.exports = {
 		'maps': path.resolve( process.cwd(), 'src/js/maps.js' ),
 		'scporder': path.resolve( process.cwd(), 'src/js/scporder.js' ),
 		'metabox-structure': path.resolve( process.cwd(), 'src/js/metabox-structure.js' ),
+		'anchored-navigation': path.resolve( process.cwd(), 'src/js/anchored-navigation.js' ),
 
 		// blocks
 		'general': path.resolve( process.cwd(), 'src/js/blocks/general.js' ),

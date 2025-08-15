@@ -12,6 +12,13 @@ use stdClass;
 class Bindings {
 
 	/**
+	 * Holds instance of the class
+	 *
+	 * @var Bindings
+	 */
+	private static $instance;
+
+	/**
 	 * Holds array of itinerary fields slugs
 	 *
 	 * @var array
@@ -39,7 +46,7 @@ class Bindings {
 	 *
 	 * @access private
 	 */
-	public function __construct() {
+	private function __construct() {
 		$this->itinerary_fields = array(
 			'title',
 			'description',
@@ -71,6 +78,19 @@ class Bindings {
 		add_filter( 'render_block', array( $this, 'render_gallery_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'render_map_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'render_permalink_block' ), 10, 3 );
+	}
+
+	/**
+	 * Return an instance of this class.
+	 *
+	 * @since 1.0.0
+	 * @return Bindings A single instance of this class.
+	 */
+	public static function get_instance() {
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+		return self::$instance;
 	}
 
 	/**

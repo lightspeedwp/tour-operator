@@ -5,6 +5,13 @@ namespace lsx\blocks;
 class Patterns {
 
 	/**
+	 * Holds instance of the class
+	 *
+	 * @var Patterns
+	 */
+	private static $instance;
+
+	/**
 	 * Holds the slug of the projects pattern category.
 	 *
 	 * @var string
@@ -18,13 +25,26 @@ class Patterns {
 	 *
 	 * @access private
 	 */
-	public function __construct() {
+	private function __construct() {
 		//Register our categories
 		add_filter( 'block_categories_all', array( $this, 'register_block_category' ), 10, 1 );
 		add_action( 'init', array( $this, 'register_block_pattern_category' ) );
 
 		// Register our block patterns
 		add_action( 'init', array( $this, 'register_block_patterns' ), 10 );
+	}
+
+	/**
+	 * Return an instance of this class.
+	 *
+	 * @since 1.0.0
+	 * @return Patterns A single instance of this class.
+	 */
+	public static function get_instance() {
+		if ( null === self::$instance ) {
+			self::$instance = new self();
+		}
+		return self::$instance;
 	}
 
 	/**

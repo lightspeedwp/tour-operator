@@ -22,6 +22,7 @@ wp-cli.local.yml
 tests
 .github
 node_modules
+docs
 *.sql
 *.tar.gz
 *.zip
