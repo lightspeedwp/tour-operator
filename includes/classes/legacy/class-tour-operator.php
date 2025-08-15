@@ -390,11 +390,13 @@ class Tour_Operator {
 	 * Generates the post_connections used in the metabox fields
 	 */
 	public function create_post_connections() {
-		$connections = array();
-		$post_types  = apply_filters( 'lsx_to_post_types', $this->post_types );
+		$connections        = [];
+		$post_types         = [];
+		$post_types         = apply_filters( 'lsx_to_post_types', $this->post_types );
+		$post_types['post'] = __( 'Posts', 'tour-operator' );
 
 		foreach ( $post_types as $key_a => $values_a ) {
-			foreach ( $this->post_types as $key_b => $values_b ) {
+			foreach ( $post_types as $key_b => $values_b ) {
 				// Make sure we dont try connect a post type to itself.
 				if ( $key_a !== $key_b ) {
 					$connections[] = $key_a . '_to_' . $key_b;
