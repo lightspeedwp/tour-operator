@@ -9,5 +9,24 @@
     "attributes": {
       "content": "Preview of my block"
     }
+  },
+  "description": "Price block.",
+  "keywords": [
+    "price"
+  ],
+  "supports": {
+    "html": false,
+    "color": {
+      "text": true,
+      "background": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    }
   }
 }

@@ -4,5 +4,29 @@
   "name": "lsx-tour-operator/suggested-visitor-types",
   "title": "Suggested Visitor Types",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Suggested Visitor Types block.",
+  "keywords": [
+    "suggested",
+    "visitor",
+    "types"
+  ],
+  "supports": {
+    "html": false,
+    "color": {
+      "text": true,
+      "background": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    }
+  },
+  "example": {
+    "attributes": {}
+  }
 }

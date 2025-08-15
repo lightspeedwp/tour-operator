@@ -4,5 +4,28 @@
   "name": "lsx-tour-operator/permalink-button",
   "title": "Permalink Button",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Permalink Button block.",
+  "keywords": [
+    "permalink",
+    "button"
+  ],
+  "supports": {
+    "html": false,
+    "color": {
+      "text": true,
+      "background": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    }
+  },
+  "example": {
+    "attributes": {}
+  }
 }

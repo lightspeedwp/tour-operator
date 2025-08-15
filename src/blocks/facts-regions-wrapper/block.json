@@ -4,5 +4,28 @@
   "name": "lsx-tour-operator/facts-regions-wrapper",
   "title": "Regions List",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Regions List block.",
+  "keywords": [
+    "regions",
+    "list"
+  ],
+  "supports": {
+    "html": false,
+    "color": {
+      "text": true,
+      "background": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    }
+  },
+  "example": {
+    "attributes": {}
+  }
 }

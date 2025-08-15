@@ -4,5 +4,30 @@
   "name": "lsx-tour-operator/accommodation-related-destination",
   "title": "Related Accommodation - Destination",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Related Accommodation - Destination block.",
+  "keywords": [
+    "related",
+    "accommodation",
+    "-",
+    "destination"
+  ],
+  "supports": {
+    "html": false,
+    "color": {
+      "text": true,
+      "background": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    }
+  },
+  "example": {
+    "attributes": {}
+  }
 }

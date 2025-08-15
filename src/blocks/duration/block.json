@@ -4,5 +4,27 @@
   "name": "lsx-tour-operator/duration",
   "title": "Duration",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Duration block.",
+  "keywords": [
+    "duration"
+  ],
+  "supports": {
+    "html": false,
+    "color": {
+      "text": true,
+      "background": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    }
+  },
+  "example": {
+    "attributes": {}
+  }
 }

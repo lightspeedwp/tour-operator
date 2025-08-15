@@ -4,5 +4,30 @@
   "name": "lsx-tour-operator/review-related-destination",
   "title": "Related Reviews - Destinations",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Related Reviews - Destinations block.",
+  "keywords": [
+    "related",
+    "reviews",
+    "-",
+    "destinations"
+  ],
+  "supports": {
+    "html": false,
+    "color": {
+      "text": true,
+      "background": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    }
+  },
+  "example": {
+    "attributes": {}
+  }
 }

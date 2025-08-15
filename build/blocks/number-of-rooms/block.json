@@ -4,5 +4,29 @@
   "name": "lsx-tour-operator/number-of-rooms",
   "title": "Number of Rooms",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Number of Rooms block.",
+  "keywords": [
+    "number",
+    "of",
+    "rooms"
+  ],
+  "supports": {
+    "html": false,
+    "color": {
+      "text": true,
+      "background": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    }
+  },
+  "example": {
+    "attributes": {}
+  }
 }

@@ -4,5 +4,30 @@
   "name": "lsx-tour-operator/tour-related-destination",
   "title": "Related Tours - Destinations",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Related Tours - Destinations block.",
+  "keywords": [
+    "related",
+    "tours",
+    "-",
+    "destinations"
+  ],
+  "supports": {
+    "html": false,
+    "color": {
+      "text": true,
+      "background": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    }
+  },
+  "example": {
+    "attributes": {}
+  }
 }
