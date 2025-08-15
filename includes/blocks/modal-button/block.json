@@ -23,6 +23,14 @@
       "type": "string",
       "default": ""
     },
+    "blockId": {
+      "type": "string",
+      "default": ""
+    },
+    "customContent": {
+      "type": "string",
+      "default": ""
+    },
     "buttonStyle": {
       "type": "string",
       "default": "primary"

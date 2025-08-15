@@ -619,12 +619,7 @@ class Modals {
 	 * @return \WP_REST_Response
 	 */
 	public function get_modal_options_api() {
-		$modal_options = array(
-			array(
-				'label' => __( 'Select a modal...', 'tour-operator' ),
-				'value' => '',
-			),
-		);
+		$modal_options = array();
 
 		// Use the existing get_template_part_options method but format for API
 		$template_options = $this->get_template_part_options();
@@ -680,16 +675,16 @@ class Modals {
 
 		// Parse blocks to find modal-button blocks
 		$blocks = parse_blocks( $post->post_content );
-		$modal_template_slugs = $this->find_modal_button_blocks( $blocks );
+		$modal_data = $this->find_modal_button_blocks( $blocks );
 
-		if ( empty( $modal_template_slugs ) ) {
+		if ( empty( $modal_data['template_slugs'] ) && empty( $modal_data['custom_content'] ) ) {
 			return;
 		}
 
 		wp_enqueue_script( 'lsx-to-modals' );
 
 		// Output modal HTML for each referenced template
-		foreach ( $modal_template_slugs as $template_slug ) {
+		foreach ( $modal_data['template_slugs'] as $template_slug ) {
 			$modal_id = 'to-modal-' . $template_slug;
 
 			// Get the template part content
@@ -700,33 +695,59 @@ class Modals {
 			$modal_html = $this->generate_modal_html( $modal_id, $rendered_content );
 			$this->output_modal( $modal_html );
 		}
+
+		// Output custom content modals
+		foreach ( $modal_data['custom_content'] as $modal_id => $custom_content ) {
+			$modal_html = $this->generate_modal_html( $modal_id, wpautop( $custom_content ), true );
+			$this->output_modal( $modal_html );
+		}
 	}
 
 	/**
 	 * Recursively find modal-button blocks and extract their modalId values
 	 *
 	 * @param array $blocks Array of parsed blocks
-	 * @return array Array of modal template slugs
+	 * @return array Array with template slugs and custom content blocks
 	 */
 	private function find_modal_button_blocks( $blocks ) {
-		$modal_slugs = array();
+		$modal_data = array(
+			'template_slugs' => array(),
+			'custom_content' => array()
+		);
 
 		foreach ( $blocks as $block ) {
 			// Check if this is a modal-button block
 			if ( 'lsx-tour-operator/modal-button' === $block['blockName'] &&
-				 isset( $block['attrs']['modalId'] ) &&
-				 ! empty( $block['attrs']['modalId'] ) ) {
-				$modal_slugs[] = $block['attrs']['modalId'];
+				isset( $block['attrs']['modalId'] ) &&
+				! empty( $block['attrs']['modalId'] ) ) {
+
+				$modal_id = $block['attrs']['modalId'];
+
+				// Handle custom content with shortened blockId as unique identifier
+				if ( $modal_id === 'custom' &&
+					isset( $block['attrs']['customContent'] ) &&
+					! empty( $block['attrs']['customContent'] ) &&
+					isset( $block['attrs']['blockId'] ) ) {
+
+					$short_block_id = substr( $block['attrs']['blockId'], 0, 8 );
+					$unique_modal_id = 'to-modal-custom-' . $short_block_id;
+					$modal_data['custom_content'][$unique_modal_id] = $block['attrs']['customContent'];
+				} elseif ( $modal_id !== 'custom' ) {
+					// Handle template slugs
+					$modal_data['template_slugs'][] = $modal_id;
+				}
 			}
 
 			// Recursively check inner blocks
 			if ( ! empty( $block['innerBlocks'] ) ) {
-				$inner_modal_slugs = $this->find_modal_button_blocks( $block['innerBlocks'] );
-				$modal_slugs = array_merge( $modal_slugs, $inner_modal_slugs );
+				$inner_modal_data = $this->find_modal_button_blocks( $block['innerBlocks'] );
+				$modal_data['template_slugs'] = array_merge( $modal_data['template_slugs'], $inner_modal_data['template_slugs'] );
+				$modal_data['custom_content'] = array_merge( $modal_data['custom_content'], $inner_modal_data['custom_content'] );
 			}
 		}
 
-		return array_unique( $modal_slugs );
+		$modal_data['template_slugs'] = array_unique( $modal_data['template_slugs'] );
+		return $modal_data;
 	}
 
 	/**

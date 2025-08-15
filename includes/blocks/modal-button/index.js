@@ -168,8 +168,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// Custom icon since @wordpress/icons might not be available
-
 const modalButtonIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("svg", {
   fill: "none",
   height: "15",
@@ -187,15 +185,26 @@ const modalButtonIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODU
   icon: modalButtonIcon,
   edit: ({
     attributes,
-    setAttributes
+    setAttributes,
+    clientId
   }) => {
     const {
       text,
       modalId,
-      align
+      align,
+      customContent
     } = attributes;
     const [modalOptions, setModalOptions] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)([]);
     const [isLoading, setIsLoading] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(true);
+
+    // Set block ID if not already set
+    (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
+      if (!attributes.blockId) {
+        setAttributes({
+          blockId: clientId
+        });
+      }
+    }, [clientId, attributes.blockId, setAttributes]);
     const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
       className: `wp-block-button has-text-align-${align}`
     });
@@ -208,12 +217,24 @@ const modalButtonIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODU
           const options = await _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5___default()({
             path: '/tour-operator/v1/modal-options'
           });
-          setModalOptions(options);
+
+          // Add custom text option at the beginning
+          const allOptions = [{
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Select a modal...', 'tour-operator'),
+            value: ''
+          }, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Custom Text', 'tour-operator'),
+            value: 'custom'
+          }, ...options];
+          setModalOptions(allOptions);
         } catch (error) {
           console.error('Failed to fetch modal options:', error);
           setModalOptions([{
             label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Select a modal...', 'tour-operator'),
             value: ''
+          }, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Custom Text', 'tour-operator'),
+            value: 'custom'
           }, {
             label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('No modals found', 'tour-operator'),
             value: '',
@@ -225,6 +246,7 @@ const modalButtonIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODU
       };
       fetchModalOptions();
     }, []);
+    const isCustomContent = modalId === 'custom';
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.BlockControls, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.AlignmentToolbar, {
@@ -245,14 +267,25 @@ const modalButtonIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODU
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Spinner, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
               children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Loading modal options...', 'tour-operator')
             })]
-          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Modal to Open', 'tour-operator'),
-            value: modalId,
-            options: modalOptions,
-            onChange: newModalId => setAttributes({
-              modalId: newModalId
-            }),
-            help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Select which modal template should open when this button is clicked. These are filtered from the lsx_to_modals template part area.', 'tour-operator')
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Modal to Open', 'tour-operator'),
+              value: modalId,
+              options: modalOptions,
+              onChange: newModalId => setAttributes({
+                modalId: newModalId
+              }),
+              help: isCustomContent ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Custom text mode selected. Use the textarea below to add your content.', 'tour-operator') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Select which modal template should open when this button is clicked. These are filtered from the lsx_to_modals template part area.', 'tour-operator')
+            }), isCustomContent && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextareaControl, {
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Custom Modal Content', 'tour-operator'),
+              value: customContent || '',
+              onChange: newContent => setAttributes({
+                customContent: newContent
+              }),
+              placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Enter your custom HTML content here...', 'tour-operator'),
+              help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('You can use HTML tags in this content. This will be displayed inside the modal.', 'tour-operator'),
+              rows: 10
+            })]
           })
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
@@ -271,6 +304,9 @@ const modalButtonIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODU
         }), !modalId && !isLoading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
           className: "block-editor-warning",
           children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Please select a modal in the block settings.', 'tour-operator')
+        }), isCustomContent && !customContent && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+          className: "block-editor-warning",
+          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Please add custom content in the block settings.', 'tour-operator')
         })]
       })]
     });
@@ -281,7 +317,8 @@ const modalButtonIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODU
     const {
       text,
       modalId,
-      align
+      align,
+      blockId
     } = attributes;
     const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
       className: `wp-block-button has-text-align-${align}`
@@ -289,11 +326,14 @@ const modalButtonIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODU
     if (!modalId) {
       return null;
     }
+    const isCustomContent = modalId === 'custom';
+    const shortBlockId = blockId ? blockId.substring(0, 8) : '';
+    const href = isCustomContent ? `#to-modal-custom-${shortBlockId}` : `#to-modal-${modalId}`;
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
       ...blockProps,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
         className: `wp-block-button__link`,
-        href: `#to-modal-${modalId}`,
+        href: href,
         type: "button",
         children: text
       })
