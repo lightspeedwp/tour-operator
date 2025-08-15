@@ -1,0 +1,175 @@
+/* Video Block Styles */
+.lsx-video-wrapper {
+	position: relative;
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: var(--wp--preset--spacing--medium);
+}
+
+.lsx-video-wrapper video {
+	width: 100%;
+	height: auto;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.lsx-video-wrapper .wp-block-video__overlay {
+	border-radius: 8px;
+}
+
+/* Video Gallery Styles */
+.lsx-video-gallery-wrapper {
+	margin-bottom: var(--wp--preset--spacing--large);
+}
+
+.lsx-video-gallery-wrapper h3 {
+	margin-bottom: var(--wp--preset--spacing--medium);
+	color: var(--wp--preset--color--primary-900);
+	border-bottom: 2px solid var(--wp--preset--color--primary-200);
+	padding-bottom: var(--wp--preset--spacing--x-small);
+}
+
+.lsx-video-gallery-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	gap: var(--wp--preset--spacing--medium);
+}
+
+.lsx-video-gallery-grid .lsx-video-item {
+	position: relative;
+	border-radius: 8px;
+	overflow: hidden;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lsx-video-gallery-grid .lsx-video-item:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.lsx-video-gallery-grid .lsx-video-item video {
+	margin-bottom: 0;
+	box-shadow: none;
+	border-radius: 0;
+}
+
+/* Video Caption Styles */
+.lsx-video-wrapper .wp-element-caption,
+.lsx-video-gallery-grid .wp-element-caption {
+	padding: var(--wp--preset--spacing--x-small);
+	background: rgba(0, 0, 0, 0.8);
+	color: white;
+	font-size: var(--wp--preset--font-size--small);
+	text-align: center;
+	margin-top: 0;
+}
+
+/* Video Controls Enhancement */
+.lsx-video-wrapper video::-webkit-media-controls-panel {
+	background: linear-gradient(
+		to bottom,
+		rgba(0, 0, 0, 0),
+		rgba(0, 0, 0, 0.8)
+	);
+}
+
+/* Lightbox-style Video Modal */
+.lsx-video-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.9);
+	z-index: 9999;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.lsx-video-modal.active {
+	opacity: 1;
+	visibility: visible;
+}
+
+.lsx-video-modal-content {
+	position: relative;
+	max-width: 90vw;
+	max-height: 90vh;
+	width: 800px;
+}
+
+.lsx-video-modal-content video {
+	width: 100%;
+	height: auto;
+	border-radius: 8px;
+}
+
+.lsx-video-modal-close {
+	position: absolute;
+	top: -40px;
+	right: 0;
+	background: none;
+	border: none;
+	color: white;
+	font-size: 24px;
+	cursor: pointer;
+	padding: 8px;
+	border-radius: 4px;
+	transition: background 0.3s ease;
+}
+
+.lsx-video-modal-close:hover {
+	background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+	.lsx-video-gallery-grid {
+		grid-template-columns: 1fr;
+		gap: var(--wp--preset--spacing--small);
+	}
+	
+	.lsx-video-modal-content {
+		max-width: 95vw;
+		max-height: 80vh;
+	}
+	
+	.lsx-video-modal-close {
+		top: -35px;
+		font-size: 20px;
+	}
+}
+
+/* Video Thumbnail Overlay */
+.lsx-video-thumbnail {
+	position: relative;
+	cursor: pointer;
+	display: inline-block;
+	width: 100%;
+}
+
+.lsx-video-thumbnail::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 60px;
+	height: 60px;
+	background: rgba(255, 255, 255, 0.9);
+	border-radius: 50%;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: 55% center;
+	background-size: 30px;
+	transition: all 0.3s ease;
+}
+
+.lsx-video-thumbnail:hover::after {
+	transform: translate(-50%, -50%) scale(1.1);
+	background-color: var(--wp--preset--color--primary-500);
+}

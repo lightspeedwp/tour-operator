@@ -1,0 +1,123 @@
+/* Anchored Navigation Styles */
+.lsx-anchored-navigation {
+	position: sticky;
+	top: 0;
+	z-index: 100;
+	background: var(--wp--preset--color--base);
+	box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+	padding: var(--wp--preset--spacing--x-small);
+}
+
+.lsx-anchored-navigation .wp-block-navigation__container {
+	justify-content: center;
+	gap: var(--wp--preset--spacing--small);
+}
+
+.lsx-anchored-navigation .wp-block-navigation-item a {
+	padding: var(--wp--preset--spacing--x-small);
+	border-radius: 4px;
+	transition: all 0.3s ease;
+	text-decoration: none;
+}
+
+.lsx-anchored-navigation .wp-block-navigation-item a:hover {
+	background: var(--wp--preset--color--primary-100);
+	color: var(--wp--preset--color--primary-900);
+}
+
+/* Active link styling */
+.lsx-anchored-navigation .wp-block-navigation-item a.active {
+	background: var(--wp--preset--color--primary-900);
+	color: var(--wp--preset--color--base);
+}
+
+/* Section styling for anchored content */
+.anchored-section {
+	scroll-margin-top: 80px; /* Account for sticky navigation */
+	padding-top: var(--wp--preset--spacing--medium);
+	margin-bottom: var(--wp--preset--spacing--large);
+}
+
+.anchored-section:first-of-type {
+	padding-top: 0;
+}
+
+/* Mobile responsive behavior */
+@media (max-width: 768px) {
+	.lsx-anchored-navigation {
+		position: relative;
+		background: var(--wp--preset--color--primary-50);
+	}
+	
+	.lsx-anchored-navigation .wp-block-navigation__container {
+		flex-direction: column;
+		gap: 0;
+	}
+	
+	.lsx-anchored-navigation .wp-block-navigation-item {
+		width: 100%;
+		border-bottom: 1px solid var(--wp--preset--color--primary-200);
+	}
+	
+	.lsx-anchored-navigation .wp-block-navigation-item:last-child {
+		border-bottom: none;
+	}
+	
+	.lsx-anchored-navigation .wp-block-navigation-item a {
+		display: block;
+		width: 100%;
+		padding: var(--wp--preset--spacing--small);
+		border-radius: 0;
+	}
+	
+	/* Collapsible sections for mobile */
+	.single-tour-operator .anchored-section,
+	.single-destination .anchored-section,
+	.single-accommodation .anchored-section {
+		border: 1px solid var(--wp--preset--color--primary-200);
+		border-radius: 8px;
+		margin-bottom: var(--wp--preset--spacing--medium);
+		overflow: hidden;
+	}
+	
+	.single-tour-operator .anchored-section .section-header,
+	.single-destination .anchored-section .section-header,
+	.single-accommodation .anchored-section .section-header {
+		background: var(--wp--preset--color--primary-100);
+		padding: var(--wp--preset--spacing--small);
+		cursor: pointer;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-weight: 600;
+		border-bottom: 1px solid var(--wp--preset--color--primary-200);
+	}
+	
+	.single-tour-operator .anchored-section .section-content,
+	.single-destination .anchored-section .section-content,
+	.single-accommodation .anchored-section .section-content {
+		padding: var(--wp--preset--spacing--medium);
+		display: block;
+	}
+	
+	.single-tour-operator .anchored-section.collapsed .section-content,
+	.single-destination .anchored-section.collapsed .section-content,
+	.single-accommodation .anchored-section.collapsed .section-content {
+		display: none;
+	}
+	
+	.single-tour-operator .anchored-section .toggle-icon,
+	.single-destination .anchored-section .toggle-icon,
+	.single-accommodation .anchored-section .toggle-icon {
+		width: 16px;
+		height: 16px;
+		fill: var(--wp--preset--color--primary-900);
+		transition: transform 0.3s ease;
+	}
+	
+	.single-tour-operator .anchored-section.collapsed .toggle-icon,
+	.single-destination .anchored-section.collapsed .toggle-icon,
+	.single-accommodation .anchored-section.collapsed .toggle-icon {
+		transform: rotate(180deg);
+	}
+}

@@ -8,6 +8,8 @@
 @use 'collapse';
 @use 'modals';
 @use 'maps';
+@use '../blocks/anchored-navigation/style' as anchored-nav;
+@use '../blocks/video/style' as video;
 
 .lsx-itinerary-wrapper,
 .lsx-units-wrapper {
