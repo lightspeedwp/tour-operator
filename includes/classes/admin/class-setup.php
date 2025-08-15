@@ -34,6 +34,7 @@ class Setup {
 	 * @var     array
 	 */
 	public $post_types = [
+		'post',
 		'tour',
 		'accommodation',
 		'destination',
