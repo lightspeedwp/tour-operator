@@ -376,7 +376,7 @@ function lsx_to_connected_list( $connected_ids = false, $type = false, $link = t
 						$permalink = get_the_permalink( $cp->ID );
 					} elseif ( is_search() || ! is_post_type_archive( $type ) ) {
 						$has_single = true;
-						$permalink = get_post_type_archive_link( $type ) . '#' . $type . '-' . $cp->post_name;
+						$permalink = get_post_type_archive_link( $type ) . '/' . $type . '/';
 					}
 
 					$html .= '<a href="' . $permalink . '">';
@@ -388,7 +388,7 @@ function lsx_to_connected_list( $connected_ids = false, $type = false, $link = t
 					$html .= '</a>';
 				}
 
-				$html = apply_filters( 'lsx_to_connected_list_item', $html, $cp->ID, $link );
+				$html = apply_filters( 'lsx_to_connected_list_item', $html, $cp->ID, $has_single );
 				$connected_list[] = $html;
 			}
 

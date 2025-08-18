@@ -122,4 +122,6 @@ $settings_fields = array(
 	)
 );
 
+$settings_fields = apply_filters( 'lsx_to_settings_fields', $settings_fields );
+
 return $settings_fields;

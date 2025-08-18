@@ -133,61 +133,6 @@ if (window.location.hash) {
   };
 
   /**
-   * Read more (travel info) effect.
-   *
-   * @package    tour-operator
-   * @subpackage scripts
-   */
-  lsx_to.readMoreTIText = "";
-
-  lsx_to.set_read_more_travel_info = function () {
-    $(".single-tour-operator .additional-info .lsx-to-more-link").on(
-      "click",
-      function (event) {
-        event.preventDefault();
-
-        let classes = $(this).closest(".additional-info").attr("class");
-
-        const regex = /lsx-(.*?)-wrapper/;
-        const match = classes.match(regex);
-        const result = match ? match[1] : null;
-
-        if (null !== result) {
-          $(".modal-" + result).toggleClass("open");
-        }
-      }
-    );
-
-    $(".lsx-modal .close").on("click", function (event) {
-      $(this).parents(".lsx-modal").removeClass("open");
-    });
-
-    // Close by clicking outside
-    $(document).on("click", function (event) {
-      if ($(event.target).is(".lsx-modal.open")) {
-        $(".lsx-modal.open").removeClass("open");
-      }
-    });
-
-    // Close by pressing Escape
-    $(document).on("keydown", function (event) {
-      if (event.key === "Escape") {
-        $(".lsx-modal.open").removeClass("open");
-      }
-    });
-  };
-
-  lsx_to.removeEmptyParagraphs = function (contentWrapper) {
-    if (0 < contentWrapper.length) {
-      contentWrapper.children().each(function () {
-        if ($(this).is("p") && $(this).html().trim() === "") {
-          $(this).remove();
-        }
-      });
-    }
-  };
-
-  /**
    * Read more (itinerary) effect.
    *
    * @package    tour-operator
@@ -334,9 +279,7 @@ if (window.location.hash) {
     );
 
     // Second slider: .lsx-to-slider.travel-information
-    $(
-      ".lsx-travel-information-wrapper.lsx-to-slider .travel-information:not(.slider-disabled)"
-    ).each(function () {
+    $( ".lsx-travel-information-wrapper.lsx-to-slider .travel-information:not(.slider-disabled)").each(function () {
       var $this = $(this);
 
       lsx_to.pre_build_slider($this);
@@ -379,6 +322,12 @@ if (window.location.hash) {
             },
           ],
         });
+
+		$this.on( 'init', function(event, slick){
+			if (typeof toModalBootstrap === "function") {
+				toModalBootstrap();
+			}
+		})
       }
     });
   };
@@ -442,7 +391,6 @@ if (window.location.hash) {
   $document.ready(function () {
     lsx_to.readMoreText = "Read more";
     lsx_to.set_read_more();
-    lsx_to.set_read_more_travel_info();
     lsx_to.set_read_more_itinerary();
     lsx_to.build_slider(window_width);
   });

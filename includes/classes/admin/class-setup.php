@@ -354,6 +354,13 @@ class Setup {
 		$allowedtags['iframe']['allowfullscreen'] = true;
 		$allowedtags['iframe']['style']           = true;
 
+		$allowedtags['dialog']['id']                    = true;
+		$allowedtags['dialog']['class']                 = true;
+		$allowedtags['dialog']['data-trigger']          = true;
+		$allowedtags['dialog']['data-expiry']           = true;
+		$allowedtags['dialog']['data-backdrop-opacity'] = true;
+		$allowedtags['dialog']['open']['valueless']     = 'y';
+
 		if ( ! isset( $allowedtags['noscript'] ) ) {
 			$allowedtags['noscript'] = array();
 		}

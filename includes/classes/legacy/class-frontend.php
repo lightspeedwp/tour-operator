@@ -20,22 +20,6 @@ namespace lsx\legacy;
 class Frontend extends Tour_Operator {
 
 	/**
-	 * Enable Modals
-	 *
-	 * @since 1.0.0
-	 * @var      boolean|Frontend
-	 */
-	public $enable_modals = false;
-
-	/**
-	 * Holds the modal ids for output in the footer
-	 *
-	 * @since 1.0.0
-	 * @var      array|Frontend
-	 */
-	public $modal_ids = array();
-
-	/**
 	 * Holds the maps class
 	 * @var      object
 	 */
@@ -60,8 +44,6 @@ class Frontend extends Tour_Operator {
 		}
 
 		$this->maps = new Maps();
-
-		add_filter( 'get_the_archive_title', array( $this, 'get_the_archive_title' ), 100 );
 
 		// Readmore
 		remove_filter( 'term_description', 'wpautop' );
@@ -132,25 +114,6 @@ class Frontend extends Tour_Operator {
 		}
 
 		return $classes;
-	}
-
-	/**
-	 * Remove the "Archives:" from the post type archives.
-	 *
-	 * @param    $title
-	 *
-	 * @return    $title
-	 */
-	public function get_the_archive_title( $title ) {
-		if ( is_post_type_archive( array_keys( $this->post_types ) ) ) {
-			$title = post_type_archive_title( '', false );
-		}
-
-		if ( is_tax( array_keys( $this->taxonomies ) ) ) {
-			$title = single_term_title( '', false );
-		}
-
-		return $title;
 	}
 
 	/**
