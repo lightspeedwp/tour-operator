@@ -158,9 +158,8 @@ registerBlockType('lsx-tour-operator/modal-button', {
 		return (
 			<div {...blockProps}>
 				<a
-					className={`wp-block-button__link`}
+					className={`wp-block-button__link wp-element-button`}
 					href={href}
-					type="button"
 				>
 					{text}
 				</a>

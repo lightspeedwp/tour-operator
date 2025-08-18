@@ -7,7 +7,7 @@
 	"category": "tour-operator",
 	"description": "A button that opens a modal dialog.",
 	"keywords": ["button", "modal", "popup", "enquiry", "contact"],
-	"textdomain": "lsx-tour-operator",
+	"textdomain": "tour-operator",
 	"attributes": {
 		"text": {
 			"type": "string",
@@ -24,15 +24,7 @@
     "customContent": {
       "type": "string",
       "default": ""
-    },
-		"buttonStyle": {
-			"type": "string",
-			"default": "primary"
-		},
-		"align": {
-			"type": "string",
-			"default": "left"
-		}
+    }
 	},
 	"supports": {
 		"html": false,
@@ -48,8 +40,9 @@
 		"typography": {
 			"fontSize": true,
 			"lineHeight": true
-		}
-	},
+		},
+    "align": [ "left", "center", "right", "wide", "full" ]
+  },
 	"editorScript": "file:./index.js"
 }
 

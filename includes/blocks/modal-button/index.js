@@ -332,9 +332,8 @@ const modalButtonIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODU
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
       ...blockProps,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
-        className: `wp-block-button__link`,
+        className: `wp-block-button__link wp-element-button`,
         href: href,
-        type: "button",
         children: text
       })
     });
