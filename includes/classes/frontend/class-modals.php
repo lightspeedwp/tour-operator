@@ -168,7 +168,7 @@ class Modals {
 			'post_type' => 'any',
 			'ignore_sticky_posts' => true,
 			'posts_per_page' => -1,
-			'nopagin' => true,
+			'nopaging' => true,
 		];
 		$modal_query = new \WP_Query( $modal_args );
 
@@ -354,7 +354,7 @@ class Modals {
 <div class="wp-block-group" style="border-top-color:var(--wp--preset--color--primary);border-top-width:2px;border-bottom-color:var(--wp--preset--color--primary);border-bottom-width:2px"><!-- wp:group {"className":"lsx-price-wrapper","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
 <div class="wp-block-group lsx-price-wrapper"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
 <div class="wp-block-group"><!-- wp:image {"id":60622,"width":"20px","height":"auto","scale":"cover","sizeSlug":"full","linkDestination":"none","metadata":{"bindings":{"__default":{"source":"core/pattern-overrides"}},"name":"From Price Icon"}} -->
-<figure class="wp-block-image size-full is-resized"><img src="http://localwp.local/wp-content/plugins/tour-operator/assets/img/blocks/unit-price.png" alt="" class="wp-image-60622" style="object-fit:cover;width:20px;height:auto"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="' . esc_url( LSX_TO_URL . 'assets/img/blocks/unit-price.png' ) . '" alt="" class="wp-image-60622" style="object-fit:cover;width:20px;height:auto"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph -->
@@ -370,7 +370,7 @@ class Modals {
 <!-- wp:group {"className":"lsx-accommodation-type-wrapper","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
 <div class="wp-block-group lsx-accommodation-type-wrapper"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
 <div class="wp-block-group"><!-- wp:image {"id":60627,"width":"20px","height":"auto","scale":"cover","sizeSlug":"full","linkDestination":"none","metadata":{"bindings":{"__default":{"source":"core/pattern-overrides"}},"name":"Accommodation Type Icon"}} -->
-<figure class="wp-block-image size-full is-resized"><img src="http://localwp.local/wp-content/plugins/tour-operator/assets/img/blocks/unit-type.png" alt="" class="wp-image-60627" style="object-fit:cover;width:20px;height:auto"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="' . esc_url( LSX_TO_URL . 'assets/img/blocks/unit-type.png' ) . '" alt="" class="wp-image-60627" style="object-fit:cover;width:20px;height:auto"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph -->
@@ -386,7 +386,7 @@ class Modals {
 <!-- wp:group {"className":"lsx-rooms-wrapper","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
 <div class="wp-block-group lsx-rooms-wrapper"><!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
 <div class="wp-block-group"><!-- wp:image {"id":61041,"width":"20px","height":"auto","sizeSlug":"full","linkDestination":"none","metadata":{"bindings":{"__default":{"source":"core/pattern-overrides"}},"name":"Number of Rooms Icon"}} -->
-<figure class="wp-block-image size-full is-resized"><img src="http://localwp.local/wp-content/plugins/tour-operator/assets/img/blocks/rooms.png" alt="" class="wp-image-61041" style="width:20px;height:auto"/></figure>
+<figure class="wp-block-image size-full is-resized"><img src="' . esc_url( LSX_TO_URL . 'assets/img/blocks/rooms.png' ) . '" alt="" class="wp-image-61041" style="width:20px;height:auto"/></figure>
 <!-- /wp:image -->
 
 <!-- wp:paragraph -->
