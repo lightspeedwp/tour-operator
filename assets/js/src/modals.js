@@ -90,6 +90,4 @@ if ( document.readyState !== 'loading' ) {
 	toModalBootstrap();
 } else {
 	document.addEventListener( 'DOMContentLoaded', toModalBootstrap );
-
-	document.addEventListener( 'DOMContentLoaded', toModalBootstrap );
 }
