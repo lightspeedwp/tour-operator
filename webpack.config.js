@@ -17,6 +17,7 @@ module.exports = {
 		'admin-script': path.resolve( process.cwd(), 'src/js/admin.js' ),
 		'custom': path.resolve( process.cwd(), 'src/js/custom.js' ),
 		'maps': path.resolve( process.cwd(), 'src/js/maps.js' ),
+		'modals': path.resolve( process.cwd(), 'src/js/modals.js' ),
 		'scporder': path.resolve( process.cwd(), 'src/js/scporder.js' ),
 		'metabox-structure': path.resolve( process.cwd(), 'src/js/metabox-structure.js' ),
 

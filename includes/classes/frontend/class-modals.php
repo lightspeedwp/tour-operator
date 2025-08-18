@@ -134,7 +134,7 @@ class Modals {
 			$suffix = '.min';
 		}*/
 
-		wp_register_script( 'lsx-to-modals', LSX_TO_URL . 'assets/js/' . $prefix . 'modals' . $suffix . '.js', array( 'jquery' ), LSX_TO_VER, true );
+		wp_register_script( 'lsx-to-modals', LSX_TO_URL . 'build/modals.js', array( 'jquery' ), LSX_TO_VER, true );
 	}
 
 	/**
