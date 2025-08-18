@@ -789,7 +789,7 @@ class Modals {
 		$allowed_html['svg'] = array(
 			'width' => true,
 			'height' => true,
-			'viewbox' => true,
+			'viewBox' => true,
 			'fill' => true,
 			'xmlns' => true,
 		);
