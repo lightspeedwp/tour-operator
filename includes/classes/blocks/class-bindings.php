@@ -680,11 +680,12 @@ class Bindings {
 			return $block_content;
 		}
 
-		//var_dump($parsed_block['attrs']);
-
 		$gallery = get_post_meta( get_the_ID(), 'gallery', true );
+
+		//do_action( 'qm/debug', $gallery );
+
 		if ( false === $gallery || empty($gallery ) ) {
-			return $block_content;
+			return '';
 		}
 
 		if ( ! is_array( $gallery ) ) {

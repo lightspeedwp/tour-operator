@@ -30,6 +30,7 @@
 - Itinerary departure day - departure days accommodation and location values reply on the previous days values, to mimic the WETU layout - PR [#491](https://github.com/lightspeedwp/tour-operator/pull/491)
 - Drop Support for Older PHP Versions & Fix Version Mismatches - Issue [#469](https://github.com/lightspeedwp/tour-operator/issues/469)
 - Departure Day to use the previous day information for the "information" box - Issue [#481](https://github.com/lightspeedwp/tour-operator/issues/481)
+- Updated the Gallery render block to return a blank string if the gallery field is empty.
 
 ### Removed
 - `.scrutinizer.yml` removed the file as we no long use Scrutinizer - Issue [#564](https://github.com/lightspeedwp/tour-operator/issues/564)
