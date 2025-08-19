@@ -682,8 +682,6 @@ class Bindings {
 
 		$gallery = get_post_meta( get_the_ID(), 'gallery', true );
 
-		//do_action( 'qm/debug', $gallery );
-
 		if ( false === $gallery || empty($gallery ) ) {
 			return '';
 		}
