@@ -4,5 +4,9 @@
   "name": "lsx-tour-operator/videos",
   "title": "Videos",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "supports": {
+    "imageCrop": false,
+    "randomOrder": false
+  }
 }

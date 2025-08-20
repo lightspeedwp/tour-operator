@@ -807,7 +807,7 @@ class Bindings {
 			$count++;
 		}
 
-		$block_content = '<figure class="' . $classes . '">' . implode( '', $images ) . '</figure>';
+		$block_content = '<figure class="lsx-block-videos ' . $classes . '">' . implode( '', $images ) . '</figure>';
 
 		// Ensure the core/embed block styles are loaded for video embeds
 		if ( ! wp_style_is( 'wp-block-embed', 'enqueued' ) ) {
