@@ -765,9 +765,6 @@ class Bindings {
 			return $block_content;
 		}
 
-		do_action( 'qm/debug', print_r( $block_content, true ) );
-		do_action( 'qm/debug', print_r( $parsed_block, true ) );
-
 		$videos = get_post_meta( get_the_ID(), 'videos', true );
 
 		if ( false === $videos || empty($videos ) ) {
@@ -794,15 +791,6 @@ class Bindings {
 		}
 
 		$count  = 1;
-		$aspect = 'wp-embed-aspect-16-9 wp-has-aspect-ratio';
-		if ( 1 < count( $videos ) ) {
-			$width  = 'auto';
-			$aspect = '';
-		}
-		
-		$video_args = [
-			'width' => $width
-		];
 
 		foreach ( $videos as $index => $vid_data ) {
 
@@ -811,8 +799,8 @@ class Bindings {
 				$link_suffix = '</a>';
 			}
 
-			$build = '<figure class="wp-block-image wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube ' . $aspect . '"><div class="wp-block-embed__wrapper">
-			' . wp_oembed_get( $vid_data['url'], $video_args ) . '
+			$build = '<figure class="wp-block-image wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+			' . wp_oembed_get( $vid_data['url'] ) . '
 			</div></figure>';
 
 			$images[] = $build;
@@ -820,6 +808,11 @@ class Bindings {
 		}
 
 		$block_content = '<figure class="' . $classes . '">' . implode( '', $images ) . '</figure>';
+
+		// Ensure the core/embed block styles are loaded for video embeds
+		if ( ! wp_style_is( 'wp-block-embed', 'enqueued' ) ) {
+			wp_enqueue_style( 'wp-block-embed' );
+		}
 		return $block_content;
 	}
 
