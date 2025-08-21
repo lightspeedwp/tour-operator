@@ -225,7 +225,7 @@ if (window.location.hash) {
       {
         breakpoint: 1028,
         settings: {
-          slidesToShow: (slidesToShow - 1) > 0 ? (slidesToShow - 1) : 2,
+          slidesToShow: slidesToShow <= 2 ? 1 : 2,
           slidesToScroll: 1,
           draggable: true,
           arrows: false,
