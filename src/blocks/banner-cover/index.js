@@ -9,7 +9,7 @@ wp.domReady(() => {
             metadata: {
                 name: 'Banner Cover',
                 bindings: {
-                    url: {
+                    content: {
                         source: 'lsx/post-meta',
                         args: {
                             key: 'banner_image'
@@ -20,7 +20,8 @@ wp.domReady(() => {
             dimRatio: 50,
             minHeight: 400,
             align: 'full',
-            className: 'lsx-banner-cover'
+            className: 'lsx-banner-cover',
+			useFeaturedImage: true
         },
         isActive: ['metadata', 'className'],
         supports: {

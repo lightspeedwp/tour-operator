@@ -232,6 +232,7 @@ class Bindings {
 	 */
 	public function post_meta_callback( $source_args, $block_instance ) {
 		$value = '';
+
 		if ( 'core/image' === $block_instance->parsed_block['blockName'] || 'core/cover' === $block_instance->parsed_block['blockName'] ) {
 
 			$key = str_replace( '-', '_', $source_args['key'] );
@@ -989,12 +990,86 @@ class Bindings {
 			return $block_content;
 		}
 
-		do_action( 'qm/debug', $parsed_block );
-
 		$url = get_post_meta( get_the_ID(), 'banner_image', true );
 
 		// Replace the URL in the block content
-		$block_content = str_replace( $parsed_block['attrs']['url'], $url, $block_content );
+		if ( '' === $url || false === $url ) {
+			// If no URL is set, we can return the original block content
+			return $block_content;
+		}
+
+		$block_content = $this->rebuild_cover_block_image( $url, $block_content );
+
+		return $block_content;
+	}
+
+	/**
+	 * Rebuilds the cover block content with the correct image data based on a URL.
+	 *
+	 * @param string $url The URL to find the image for
+	 * @param string $block_content The original block content
+	 * @return string The rebuilt block content
+	 */
+	public function rebuild_cover_block_image( $url, $block_content ) {
+		// Try to find the attachment ID first by URL
+		$attachment_id = attachment_url_to_postid( $url );
+		
+		// If not found by URL, try by filename
+		if ( ! $attachment_id ) {
+			$filename = basename( $url );
+			global $wpdb;
+			
+			$attachment_id = $wpdb->get_var( $wpdb->prepare( "
+				SELECT post_id 
+				FROM {$wpdb->postmeta} 
+				WHERE meta_key = '_wp_attached_file' 
+				AND meta_value LIKE %s",
+				'%' . $wpdb->esc_like( $filename )
+			) );
+		}
+
+		if ( ! $attachment_id ) {
+			return $block_content; // Return original if no attachment found
+		}
+
+		// Get all the image sizes and their URLs
+		$full_image = wp_get_attachment_image_src( $attachment_id, 'full' );
+		if ( ! $full_image ) {
+			return $block_content;
+		}
+
+		// Get image metadata
+		$metadata = wp_get_attachment_metadata( $attachment_id );
+		$sizes = isset( $metadata['sizes'] ) ? $metadata['sizes'] : array();
+
+		// Build srcset
+		$srcset = array();
+		foreach ( $sizes as $size => $size_data ) {
+			$size_url = wp_get_attachment_image_src( $attachment_id, $size );
+			if ( $size_url ) {
+				$srcset[] = $size_url[0] . ' ' . $size_data['width'] . 'w';
+			}
+		}
+		// Add full size to srcset
+		$srcset[] = $full_image[0] . ' ' . $full_image[1] . 'w';
+
+		// Build sizes attribute
+		$sizes_attr = '(max-width: ' . $full_image[1] . 'px) 100vw, ' . $full_image[1] . 'px';
+
+		// Create new img tag with all attributes
+		$new_img = sprintf(
+			'<img width="%d" height="%d" src="%s" class="wp-block-cover__image-background wp-post-image" alt="%s" data-object-fit="cover" decoding="async" fetchpriority="high" srcset="%s" sizes="%s"',
+			$full_image[1],
+			$full_image[2],
+			esc_url( $full_image[0] ),
+			esc_attr( get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) ),
+			esc_attr( implode( ', ', $srcset ) ),
+			esc_attr( $sizes_attr )
+		);
+
+		// Replace the img tag in block content
+		$pattern = '/<img[^>]+>/';
+		$block_content = preg_replace( $pattern, $new_img . ' />', $block_content );
 
 		return $block_content;
 	}

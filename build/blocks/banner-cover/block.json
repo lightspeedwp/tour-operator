@@ -22,7 +22,7 @@
       "default": {
         "name": "Banner Cover",
         "bindings": {
-          "url": {
+          "content": {
             "source": "lsx/post-meta",
             "args": {
               "key": "banner_image"
@@ -46,6 +46,10 @@
     "className": {
       "type": "string",
       "default": "lsx-banner-cover"
+    },
+    "useFeaturedImage": {
+      "type": "boolean",
+      "default": true
     }
   }
 }
