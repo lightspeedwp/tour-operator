@@ -404,15 +404,21 @@ if (window.location.hash) {
     // Create a MutationObserver to watch for YouTube iframes
     const observer = new MutationObserver(function(mutations) {
       let shouldInitSlider = false;
+      const isYouTube = (el) => {
+        if (!el) return false;
+        const src = el.src || '';
+        return /youtube\.com|youtube-nocookie\.com|youtu\.be/i.test(src);
+      };
+      let debounceTimer = null;
       
       mutations.forEach(function(mutation) {
         if (mutation.type === 'childList') {
           mutation.addedNodes.forEach(function(node) {
             if (node.nodeType === 1) { // Element node
               // Check if the added node is a YouTube iframe or contains one
-              if (node.tagName === 'IFRAME' && node.src && node.src.includes('youtube.com')) {
+              if (node.tagName === 'IFRAME' && isYouTube(node)) {
                 shouldInitSlider = true;
-              } else if (node.querySelector && node.querySelector('iframe[src*="youtube.com"]')) {
+              } else if (node.querySelector && node.querySelector('iframe[src*="youtube.com"],iframe[src*="youtube-nocookie.com"],iframe[src*="youtu.be"]')) {
                 shouldInitSlider = true;
               }
             }
@@ -421,10 +427,11 @@ if (window.location.hash) {
       });
       
       if (shouldInitSlider) {
-        // Small delay to ensure videos are fully loaded
-        setTimeout(function() {
+        // Small, debounced delay to ensure videos are fully loaded and avoid re-init storms
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function() {
           lsx_to.build_video_slider();
-        }, 100);
+        }, 200);
       }
     });
 
