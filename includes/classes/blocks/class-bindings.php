@@ -990,15 +990,15 @@ class Bindings {
 			return $block_content;
 		}
 
-		$url = get_post_meta( get_the_ID(), 'banner_image', true );
+		$image_id = get_post_meta( get_the_ID(), 'banner_image_id', true );
 
 		// Replace the URL in the block content
-		if ( '' === $url || false === $url ) {
+		if ( '' === $image_id || false === $image_id ) {
 			// If no URL is set, we can return the original block content
 			return $block_content;
 		}
 
-		$block_content = $this->rebuild_cover_block_image( $url, $block_content );
+		$block_content = $this->rebuild_cover_block_image( $image_id, $block_content );
 
 		return $block_content;
 	}
@@ -1006,28 +1006,11 @@ class Bindings {
 	/**
 	 * Rebuilds the cover block content with the correct image data based on a URL.
 	 *
-	 * @param string $url The URL to find the image for
+	 * @param string $attachment_id The attachment_id to find the image for
 	 * @param string $block_content The original block content
 	 * @return string The rebuilt block content
 	 */
-	public function rebuild_cover_block_image( $url, $block_content ) {
-		// Try to find the attachment ID first by URL
-		$attachment_id = attachment_url_to_postid( $url );
-		
-		// If not found by URL, try by filename
-		if ( ! $attachment_id ) {
-			$filename = basename( $url );
-			global $wpdb;
-			
-			$attachment_id = $wpdb->get_var( $wpdb->prepare( "
-				SELECT post_id 
-				FROM {$wpdb->postmeta} 
-				WHERE meta_key = '_wp_attached_file' 
-				AND meta_value LIKE %s",
-				'%' . $wpdb->esc_like( $filename )
-			) );
-		}
-
+	public function rebuild_cover_block_image( $attachment_id, $block_content ) {
 		if ( ! $attachment_id ) {
 			return $block_content; // Return original if no attachment found
 		}
