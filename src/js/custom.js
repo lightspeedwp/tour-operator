@@ -204,6 +204,50 @@ if (window.location.hash) {
   };
 
   /**
+   * Get responsive breakpoints for sliders
+   *
+   * @package    tour-operator
+   * @subpackage scripts
+   */
+  lsx_to.get_responsive_breakpoints = function(slidesToShow) {
+    return [
+      {
+        breakpoint: 1228,
+        settings: {
+          slidesToShow: slidesToShow,
+          slidesToScroll: 1,
+          draggable: true,
+          arrows: false,
+          swipe: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 1028,
+        settings: {
+          slidesToShow: slidesToShow <= 2 ? 1 : 2,
+          slidesToScroll: 1,
+          draggable: true,
+          arrows: false,
+          swipe: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 782,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          draggable: true,
+          arrows: false,
+          swipe: true,
+          dots: true,
+        },
+      },
+    ];
+  };
+
+  /**
    * Slider.
    *
    * @package    tour-operator
@@ -211,13 +255,13 @@ if (window.location.hash) {
    */
   lsx_to.build_slider = function (window_width) {
     // First slider: .lsx-to-slider
-    $(".lsx-to-slider .wp-block-post-template:not(.slider-disabled)").each(
+    $(".lsx-to-slider:not(.lsx-block-videos) .wp-block-post-template:not(.slider-disabled)").each(
       function () {
         var $this = $(this);
 		let slidesToShow = 3;
 
         lsx_to.pre_build_slider($this);
-
+		
 		const str = $this.attr('class');
 		const classRegex = /columns-\S*/g;
 		const matches = str.match(classRegex);
@@ -238,41 +282,7 @@ if (window.location.hash) {
             autoplaySpeed: 0,
             appendArrows: $this.parent(), // Ensure arrows are appended correctly
             appendDots: $this.parent(), // Append dots in the right container
-            responsive: [
-              {
-                breakpoint: 1228,
-                settings: {
-                  slidesToShow: 3,
-                  slidesToScroll: 1,
-                  draggable: true,
-                  arrows: false,
-                  swipe: true,
-                  dots: true,
-                },
-              },
-              {
-                breakpoint: 1028,
-                settings: {
-                  slidesToShow: 2,
-                  slidesToScroll: 1,
-                  draggable: true,
-                  arrows: false,
-                  swipe: true,
-                  dots: true,
-                },
-              },
-              {
-                breakpoint: 782,
-                settings: {
-                  slidesToShow: 1,
-                  slidesToScroll: 1,
-                  draggable: true,
-                  arrows: false,
-                  swipe: true,
-                  dots: true,
-                },
-              },
-            ],
+            responsive: lsx_to.get_responsive_breakpoints(slidesToShow),
           });
         }
       }
@@ -329,6 +339,108 @@ if (window.location.hash) {
 			}
 		})
       }
+    });
+
+	lsx_to.build_video_slider();
+  };
+
+  /**
+   * Video Slider.
+   *
+   * @package    tour-operator
+   * @subpackage scripts
+   */
+  lsx_to.build_video_slider = function () {
+    // Video Slider
+    $(".lsx-block-videos.lsx-to-slider:not(.slider-disabled):not(.slick-initialized)").each(
+      function () {
+        var $this = $(this);
+        let slidesToShow = 3;
+
+        lsx_to.pre_build_slider($this);
+
+        const str = $this.attr('class') || '';
+        const classRegex = /\bcolumns-(\d+)\b/;
+        const m = str.match(classRegex);
+        if (m && m[1]) {
+          slidesToShow = Number.parseInt(m[1], 10) || slidesToShow;
+        }
+
+        $this.removeClass('is-layout-flex wp-block-gallery-is-layout-flex is-layout-grid');
+
+        if (1 < $this.children().length) {
+          $this.slick({
+            draggable: false,
+            infinite: true,
+            swipe: false,
+            dots: false,
+            slidesToShow: slidesToShow, // Show 3 items at a time
+            slidesToScroll: 1, // Scroll 1 item at a time
+            autoplay: false,
+            autoplaySpeed: 0,
+            //appendArrows: $this.parent(), // Ensure arrows are appended correctly
+            //appendDots: $this.parent(), // Append dots in the right container
+            responsive: lsx_to.get_responsive_breakpoints(slidesToShow, $this.children().length),
+          });
+        }
+      }
+    );
+  };
+
+  /**
+   * Watch for YouTube videos to load and initialize video slider
+   *
+   * @package    tour-operator
+   * @subpackage scripts
+   */
+  lsx_to.watch_for_youtube_videos = function() {
+    // Only observe video containers to reduce performance impact
+    const videoContainers = document.querySelectorAll('.lsx-block-videos');
+    
+    if (videoContainers.length === 0) {
+      return; // No video containers found, exit early
+    }
+
+    // Create a MutationObserver to watch for YouTube iframes
+    const observer = new MutationObserver(function(mutations) {
+      let shouldInitSlider = false;
+      const isYouTube = (el) => {
+        if (!el) return false;
+        const src = el.src || '';
+        return /youtube\.com|youtube-nocookie\.com|youtu\.be/i.test(src);
+      };
+      let debounceTimer = null;
+      
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'childList') {
+          mutation.addedNodes.forEach(function(node) {
+            if (node.nodeType === 1) { // Element node
+              // Check if the added node is a YouTube iframe or contains one
+              if (node.tagName === 'IFRAME' && isYouTube(node)) {
+                shouldInitSlider = true;
+              } else if (node.querySelector && node.querySelector('iframe[src*="youtube.com"],iframe[src*="youtube-nocookie.com"],iframe[src*="youtu.be"]')) {
+                shouldInitSlider = true;
+              }
+            }
+          });
+        }
+      });
+      
+      if (shouldInitSlider) {
+        // Small, debounced delay to ensure videos are fully loaded and avoid re-init storms
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function() {
+          lsx_to.build_video_slider();
+        }, 200);
+      }
+    });
+
+    // Observe only video containers instead of entire document
+    videoContainers.forEach(function(container) {
+      observer.observe(container, {
+        childList: true,
+        subtree: true
+      });
     });
   };
 
@@ -393,6 +505,7 @@ if (window.location.hash) {
     lsx_to.set_read_more();
     lsx_to.set_read_more_itinerary();
     lsx_to.build_slider(window_width);
+    lsx_to.watch_for_youtube_videos(); // Start watching for YouTube videos
   });
 
   /**

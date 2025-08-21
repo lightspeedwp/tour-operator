@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "lsx-tour-operator/videos",
+  "title": "Videos",
+  "category": "lsx-tour-operator",
+  "editorScript": "file:index.js",
+  "supports": {
+    "imageCrop": false,
+    "randomOrder": false
+  }
+}

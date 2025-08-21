@@ -22,21 +22,21 @@ wp.blocks.registerBlockVariation("core/gallery", {
 				"core/image",
 				{
 					sizeSlug: 'large',
-					url: lsxToEditor.assetsUrl + "placeholders/placeholder-general-350x350.jpg",
+					url: lsxToEditor.assetsUrl + "blocks/placeholder.png",
 				}
 			],
 			[
 				"core/image",
 				{
 					sizeSlug: 'large',
-					url: lsxToEditor.assetsUrl + "placeholders/placeholder-general-350x350.jpg",
+					url: lsxToEditor.assetsUrl + "blocks/placeholder.png",
 				}
 			],
 			[
 				"core/image",
 				{
 					sizeSlug: 'large',
-					url: lsxToEditor.assetsUrl + "placeholders/placeholder-general-350x350.jpg",
+					url: lsxToEditor.assetsUrl + "blocks/placeholder.png",
 				}
 			]
 		],

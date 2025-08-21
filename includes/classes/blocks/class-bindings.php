@@ -69,6 +69,7 @@ class Bindings {
 		add_filter( 'render_block', array( $this, 'render_itinerary_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'render_units_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'render_gallery_block' ), 10, 3 );
+		add_filter( 'render_block', array( $this, 'render_videos_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'render_map_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'render_permalink_block' ), 10, 3 );
 	}
@@ -680,11 +681,13 @@ class Bindings {
 			return $block_content;
 		}
 
-		//var_dump($parsed_block['attrs']);
+		// Get the columns setting from block attributes
+		$columns = isset( $parsed_block['attrs']['columns'] ) ? $parsed_block['attrs']['columns'] : 3; // Default to 3 if not set
 
 		$gallery = get_post_meta( get_the_ID(), 'gallery', true );
+
 		if ( false === $gallery || empty($gallery ) ) {
-			return $block_content;
+			return '';
 		}
 
 		if ( ! is_array( $gallery ) ) {
@@ -722,6 +725,76 @@ class Bindings {
 			$count++;
 		}
 		$block_content = '<figure class="' . $classes . '">' . implode( '', $images ) . '</figure>';
+		return $block_content;
+	}
+
+	/**
+	 * Renders the videos block with custom content.
+	 *
+	 * This function processes the block content by checking if it belongs to a specific
+	 * custom block variation and then iteratively builds the videos content based on
+	 * predefined fields and templates. It returns the final rendered block content.
+	 *
+	 * @param string $block_content The original content of the block.
+	 * @param array  $parsed_block  Parsed data for the block, including type and attributes.
+	 * @param object $block_obj     Block object instance for the current block being processed.
+	 * 
+	 * @return string Returns the modified block content after processing gallery data.
+	 */
+	public function render_videos_block( $block_content, $parsed_block, $block_obj ) {
+		// Determine if this is the custom block variation.
+		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
+			return $block_content;
+		}
+		$allowed_blocks = array(
+			'core/gallery'
+		);
+		$allowed_sources = array(
+			'lsx/videos'
+		);
+
+		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
+			return $block_content; 
+		}
+
+		if ( ! isset( $parsed_block['attrs']['metadata']['bindings']['content']['source'] ) ) {
+			return $block_content;
+		}
+
+		if ( ! in_array( $parsed_block['attrs']['metadata']['bindings']['content']['source'], $allowed_sources ) ) {
+			return $block_content;
+		}
+
+		$videos = get_post_meta( get_the_ID(), 'videos', true );
+
+		if ( false === $videos || empty($videos ) ) {
+			return '';
+		}
+
+		if ( ! is_array( $videos ) || isset( $videos['url'] ) ) {
+			$videos = [ $videos ];
+		}
+
+		$classes = $this->find_gallery_classes( $block_content );
+		$images  = array();
+		$count   = 1;
+
+		foreach ( $videos as $index => $vid_data ) {
+
+			$build = '<figure class="wp-block-image wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+			' . wp_oembed_get( $vid_data['url'] ) . '
+			</div></figure>';
+
+			$images[] = $build;
+			$count++;
+		}
+
+		$block_content = '<figure class="lsx-block-videos ' . $classes . '">' . implode( '', $images ) . '</figure>';
+
+		// Ensure the core/embed block styles are loaded for video embeds
+		if ( ! wp_style_is( 'wp-block-embed', 'enqueued' ) ) {
+			wp_enqueue_style( 'wp-block-embed' );
+		}
 		return $block_content;
 	}
 
