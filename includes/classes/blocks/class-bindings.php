@@ -777,27 +777,9 @@ class Bindings {
 
 		$classes = $this->find_gallery_classes( $block_content );
 		$images  = array();
-
-		$link_prefix = '';
-		$link_suffix = '';
-		$link        = false;
-		if ( isset( $parsed_block['attrs']['linkTo'] ) && 'media' === $parsed_block['attrs']['linkTo'] ) {
-			$link = true;
-		}
-
-		$target = '';
-		if ( isset( $parsed_block['attrs']['linkTarget'] ) ) {
-			$target = 'target="' . $parsed_block['attrs']['linkTarget'] . '"';
-		}
-
-		$count  = 1;
+		$count   = 1;
 
 		foreach ( $videos as $index => $vid_data ) {
-
-			if ( $link ) {
-				$link_prefix = '<a ' . $target . ' rel="gallery" href="' . $vid_data['url'] . '">';
-				$link_suffix = '</a>';
-			}
 
 			$build = '<figure class="wp-block-image wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
 			' . wp_oembed_get( $vid_data['url'] ) . '
