@@ -352,22 +352,21 @@ if (window.location.hash) {
    */
   lsx_to.build_video_slider = function () {
     // Video Slider
-    $(".lsx-block-videos.lsx-to-slider:not(.slider-disabled)").each(
+    $(".lsx-block-videos.lsx-to-slider:not(.slider-disabled):not(.slick-initialized)").each(
       function () {
         var $this = $(this);
-		let slidesToShow = 3;
+        let slidesToShow = 3;
 
         lsx_to.pre_build_slider($this);
 
-		const str = $this.attr('class');
-		const classRegex = /columns-\S*/g;
-		const matches = str.match(classRegex);
-		if ( 0 < matches.length ) {
-			const column = matches[0].split('-')[1];
-			slidesToShow = column;
-		}
+        const str = $this.attr('class') || '';
+        const classRegex = /\bcolumns-(\d+)\b/;
+        const m = str.match(classRegex);
+        if (m && m[1]) {
+          slidesToShow = Number.parseInt(m[1], 10) || slidesToShow;
+        }
 
-		$this.removeClass('is-layout-flex wp-block-gallery-is-layout-flex');
+        $this.removeClass('is-layout-flex wp-block-gallery-is-layout-flex is-layout-grid');
 
         if (1 < $this.children().length) {
           $this.slick({
@@ -381,12 +380,12 @@ if (window.location.hash) {
             autoplaySpeed: 0,
             //appendArrows: $this.parent(), // Ensure arrows are appended correctly
             //appendDots: $this.parent(), // Append dots in the right container
-            responsive: lsx_to.get_responsive_breakpoints(slidesToShow),
+            responsive: lsx_to.get_responsive_breakpoints(slidesToShow, $this.children().length),
           });
         }
       }
     );
-  }
+  };
 
   /**
    * Watch for YouTube videos to load and initialize video slider
