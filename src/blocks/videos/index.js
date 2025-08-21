@@ -1,8 +1,10 @@
+const { __ } = wp.i18n;
+
 wp.domReady(() => {
 
 wp.blocks.registerBlockVariation("core/gallery", {
 	name: "lsx-tour-operator/videos",
-	title: "TO Videos",
+	title: __("TO Videos", "tour-operator"),
 	icon: "video-alt3",
 	category: "lsx-tour-operator",
 	attributes: {
@@ -23,7 +25,7 @@ wp.blocks.registerBlockVariation("core/gallery", {
 			{
 				sizeSlug: 'large',
 				url: lsxToEditor.assetsUrl + "blocks/placeholder.png",
-				alt: "Video placeholder"
+				alt: __("Video placeholder", "tour-operator")
 			}
 		],
 		[
@@ -31,7 +33,7 @@ wp.blocks.registerBlockVariation("core/gallery", {
 			{
 				sizeSlug: 'large',
 				url: lsxToEditor.assetsUrl + "blocks/placeholder.png",
-				alt: "Video placeholder"
+				alt: __("Video placeholder", "tour-operator")
 			}
 		],
 		[
@@ -39,7 +41,7 @@ wp.blocks.registerBlockVariation("core/gallery", {
 			{
 				sizeSlug: 'large',
 				url: lsxToEditor.assetsUrl + "blocks/placeholder.png",
-				alt: "Video placeholder"
+				alt: __("Video placeholder", "tour-operator")
 			}
 		]
 	],
@@ -76,9 +78,9 @@ wp.blocks.registerBlockVariation("core/gallery", {
 				{},
 				el(BlockEdit, props),
 				el(InspectorControls, {},
-					el(PanelBody, { title: 'Tour Operator', initialOpen: true },
+					el(PanelBody, { title: __('Tour Operator', 'tour-operator'), initialOpen: true },
 						el(CheckboxControl, {
-							label: 'Enable Slider',
+							label: __('Enable Slider', 'tour-operator'),
 							checked: hasSlider,
 							onChange: function (value) {
 								props.setAttributes({
@@ -116,6 +118,6 @@ wp.blocks.registerBlockVariation("core/gallery", {
 		}
 	);
 
-})(window.wp.blocks, window.wp.element, window.wp.blockEditor, window.wp.components);
+})(window.wp.blocks, window.wp.element, window.wp.blockEditor || window.wp.editor, window.wp.components);
 
 });
