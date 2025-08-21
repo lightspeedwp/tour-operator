@@ -23,6 +23,26 @@ wp.domReady(() => {
             className: 'lsx-banner-cover',
 			useFeaturedImage: true
         },
+		innerBlocks: [
+			['core/post-title', {
+				textAlign: 'center',
+			}],
+			['core/paragraph', {
+				align: 'center',
+				metadata: {
+					name: 'Tagline',
+					bindings: {
+						content: {
+							source: 'lsx/post-meta',
+							args: {
+								key: 'tagline'
+							}
+						}
+					}
+				},
+				className: 'lsx-tagline-wrapper'
+			}]
+		],
         isActive: ['metadata', 'className'],
         supports: {
             align: ['full', 'wide']
