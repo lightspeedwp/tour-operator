@@ -63,6 +63,7 @@ class Query_Loop {
 		}
 		$allowed_blocks = array(
 			'core/group',
+			'core/paragraph',
 		);
 
 		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
