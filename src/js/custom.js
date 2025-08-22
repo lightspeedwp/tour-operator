@@ -60,43 +60,49 @@ if (window.location.hash) {
    * @package    tour-operator
    * @subpackage scripts
    */
-  lsx_to.set_read_more = function () {
-    $(".single-tour-operator .wp-block-read-more").each(function () {
-      lsx_to.readMoreText = $(this)
-        .contents()
-        .filter(function () {
-          return this.nodeType === Node.TEXT_NODE;
-        })
-        .text();
+lsx_to.set_read_more = function () {
+	$(".single-tour-operator .wp-block-read-more").each(function () {
 
-      lsx_to.readMoreSet(
-        $(this),
-        $(this).parent(".wp-block-group").find(".wp-block-post-content")
-      );
-    });
+		if ( 0 < $(this).parent(".wp-block-group").find(".wp-block-post-content").length ) {
+			lsx_to.readMoreText = $(this)
+				.contents()
+				.filter(function () {
+				return this.nodeType === Node.TEXT_NODE;
+				})
+				.text();
 
-    $(".single-tour-operator .wp-block-read-more").on(
-      "click",
-      function (event) {
-        event.preventDefault();
-        $(this).hide();
+			lsx_to.readMoreSet(
+				$(this),
+				$(this).parent(".wp-block-group").find(".wp-block-post-content")
+			);
+		}
+	});
 
-        if ($(this).hasClass("less-link")) {
-          lsx_to.readMoreSet(
-            $(this),
-            $(this).parent(".wp-block-group").find(".wp-block-post-content")
-          );
-        } else {
-          lsx_to.readMoreOpen(
-            $(this),
-            $(this).parent(".wp-block-group").find(".wp-block-post-content")
-          );
-        }
+	$(".single-tour-operator .wp-block-read-more").on(
+		"click",
+		function (event) {
+			event.preventDefault();
 
-        $(this).show();
-      }
-    );
-  };
+			if ( 0 < $(this).parent(".wp-block-group").find(".wp-block-post-content").length ) {
+				$(this).hide();
+
+				if ($(this).hasClass("less-link")) {
+					lsx_to.readMoreSet(
+						$(this),
+						$(this).parent(".wp-block-group").find(".wp-block-post-content")
+					);
+				} else {
+					lsx_to.readMoreOpen(
+						$(this),
+						$(this).parent(".wp-block-group").find(".wp-block-post-content")
+					);
+				}
+
+				$(this).show();
+			}
+		}
+	);
+};
 
   lsx_to.readMoreSet = function (button, contentWrapper, limit = 1) {
     if (0 < contentWrapper.length) {
@@ -262,6 +268,8 @@ if (window.location.hash) {
 
         lsx_to.pre_build_slider($this);
 		
+		console.log($this);
+
 		const str = $this.attr('class');
 		const classRegex = /columns-\S*/g;
 		const matches = str.match(classRegex);
