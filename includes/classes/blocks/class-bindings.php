@@ -906,7 +906,7 @@ class Bindings {
 					default:
 						$location = get_post_meta( get_the_ID(), 'location', true );
 						if ( isset( $location['lat'] ) && isset( $location['lng'] ) ) {
-							$url = 'https://wetu.com/EmbedMap/?center=' . $location['lat'] . ',' . $location['lng'] . '&zoom=12';
+							$url = 'https://wetu.com/EmbedMap/?center=' . $location['lat'] . ',' . $location['lng'] . '&zoom=5';
 						} else {
 							$wetu_id = false;
 						}
