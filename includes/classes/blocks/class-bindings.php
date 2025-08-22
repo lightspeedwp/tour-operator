@@ -890,11 +890,34 @@ class Bindings {
 		switch ( $type ) {
 			case 'wetu':
 				$pattern = '/<figure\b[^>]*>(.*?)<\/figure>/s';
-				$wetu_id = get_post_meta( get_the_ID(), 'lsx_wetu_id', true );
-				if ( ! empty( $wetu_id ) ) {
-					$map = '<iframe width="100%" height="500" frameborder="0" allowfullscreen="" class="wetu-map" class="block perfmatters-lazy entered pmloaded" data-src="https://wetu.com/Itinerary/VI/' . $wetu_id . $url_params . '" data-ll-status="loaded" src="https://wetu.com/Itinerary/VI/' . $wetu_id . $url_params . '"></iframe>';
+
+				$post_type = get_post_type();
+				$wetu_id   = get_post_meta( get_the_ID(), 'lsx_wetu_id', true );
+
+				switch ( $post_type ) {
+					case 'tour':
+						$url = 'https://wetu.com/Itinerary/VI/' . $wetu_id . $url_params;
+					break;
+
+					case 'accommodation':
+						$url = 'https://wetu.com/EmbedMap/' . $url_params . '&ids=' . $wetu_id;
+					break;
+
+					default:
+						$location = get_post_meta( get_the_ID(), 'location', true );
+						if ( isset( $location['lat'] ) && isset( $location['lng'] ) ) {
+							$url = 'https://wetu.com/EmbedMap/?center=' . $location['lat'] . ',' . $location['lng'] . '&zoom=12';
+						} else {
+							$wetu_id = false;
+						}
+					break;
 				}
-				$block_content = preg_replace( $pattern, $map, $block_content );
+
+				if ( ! empty( $wetu_id ) ) {
+					$map = '<iframe width="100%" height="500" frameborder="0" allowfullscreen="" class="wetu-map" class="block perfmatters-lazy entered pmloaded" data-src="' . $url . '" data-ll-status="loaded" src="' . $url . '"></iframe>';
+					$block_content = preg_replace( $pattern, $map, $block_content );
+				}
+				
 			break;
 
 			case 'google':
