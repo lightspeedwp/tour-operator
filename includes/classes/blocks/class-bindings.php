@@ -40,6 +40,8 @@ class Bindings {
 	 * @access private
 	 */
 	public function __construct() {
+		
+
 		$this->itinerary_fields = array(
 			'title',
 			'description',
@@ -72,6 +74,7 @@ class Bindings {
 		add_filter( 'render_block', array( $this, 'render_videos_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'render_map_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'render_permalink_block' ), 10, 3 );
+		add_filter( 'render_block_core/cover', array( $this, 'render_banner_block' ), 10, 3 );
 	}
 
 	/**
@@ -229,8 +232,13 @@ class Bindings {
 	 */
 	public function post_meta_callback( $source_args, $block_instance ) {
 		$value = '';
-		if ( 'core/image' === $block_instance->parsed_block['blockName'] ) {
-			return 'test_image';
+
+		if ( 'core/image' === $block_instance->parsed_block['blockName'] || 'core/cover' === $block_instance->parsed_block['blockName'] ) {
+
+			$key = str_replace( '-', '_', $source_args['key'] );
+			$value = get_post_meta( get_the_ID(), $key, true );
+
+			return $value;
 		} elseif ( 'core/paragraph' === $block_instance->parsed_block['blockName'] ) {
 
 			$key = str_replace( '-', '_', $source_args['key'] );
@@ -957,6 +965,78 @@ class Bindings {
 		$url           = get_permalink();
 		$pattern       = '/#permalink/s';
 		$block_content = preg_replace( $pattern, $url, $block_content );
+
+		return $block_content;
+	}
+
+	/**
+	 * Filter the cover block content.
+	 *
+	 * @param string $block_content The block content about to be rendered.
+	 * @param array  $parsed_block  The full block, including name and attributes.
+	 * @param object $instance      The block instance.
+	 * @return string Modified block content.
+	 */
+	public function render_banner_block( $block_content, $parsed_block, $instance ) {
+		if ( 'core/cover' !== $parsed_block['blockName'] ) {
+			return $block_content;
+		}
+
+		if ( ! isset( $parsed_block['attrs']['metadata']['bindings']['content']['source'] ) ) {
+			return $block_content;
+		}
+
+		if ( ! in_array( $parsed_block['attrs']['metadata']['bindings']['content']['source'], array( 'lsx/post-meta' ), true ) ) {
+			return $block_content;
+		}
+
+		$image_id = get_post_meta( get_the_ID(), 'banner_image_id', true );
+
+		// If no valid image ID is set, return the original block content.
+		if ( empty( $image_id ) ) {
+			return $block_content;
+		}
+
+		$block_content = $this->rebuild_cover_block_image( $image_id, $block_content );
+
+		return $block_content;
+	}
+
+	/**
+	 * Rebuilds the cover block content with the correct image data based on an attachment ID.
+	 *
+	 * @param int    $attachment_id The attachment ID to find the image for.
+	 * @param string $block_content The original block content.
+	 * @return string The rebuilt block content.
+	 */
+	public function rebuild_cover_block_image( $attachment_id, $block_content ) {
+		if ( ! $attachment_id ) {
+			return $block_content;
+		}
+
+		// Get base image data.
+		$full_image = wp_get_attachment_image_src( $attachment_id, 'full' );
+		if ( ! $full_image ) {
+			return $block_content;
+		}
+
+		// Core-calculated responsive attributes (respects filters/CDN integrations).
+		$srcset     = wp_get_attachment_image_srcset( $attachment_id, 'full' );
+		$sizes_attr = wp_get_attachment_image_sizes( $attachment_id, 'full' );
+
+		// Create new img tag with all attributes.
+		$new_img = sprintf(
+			'<img width="%d" height="%d" src="%s" class="wp-block-cover__image-background wp-post-image" alt="" data-object-fit="cover" decoding="async" fetchpriority="high" %s %s',
+			(int) $full_image[1],
+			(int) $full_image[2],
+			esc_url( $full_image[0] ),
+			$srcset ? sprintf( 'srcset="%s"', esc_attr( $srcset ) ) : '',
+			$sizes_attr ? sprintf( 'sizes="%s"', esc_attr( $sizes_attr ) ) : ''
+		);
+
+		// Replace only the Cover's background image.
+		$pattern       = '/<img[^>]*class="[^"]*wp-block-cover__image-background[^"]*"[^>]*>/';
+		$block_content = preg_replace( $pattern, $new_img . ' />', $block_content, 1 );
 
 		return $block_content;
 	}

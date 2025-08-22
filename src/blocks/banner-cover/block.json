@@ -1,0 +1,52 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "lsx-tour-operator/banner-cover",
+    "version": "1.0.0",
+    "title": "Banner Cover",
+    "category": "lsx-tour-operator",
+    "icon": "cover-image",
+    "description": "Cover block using banner image from custom field",
+    "textdomain": "tour-operator",
+    "editorScript": "file:./index.js",
+    "supports": {
+        "align": ["full", "wide"],
+        "html": false
+    },
+    "attributes": {
+        "metadata": {
+            "type": "object",
+            "default": {
+                "name": "Banner Cover",
+                "bindings": {
+                    "content": {
+                        "source": "lsx/post-meta",
+                        "args": {
+                            "key": "banner_image"
+                        }
+                    }
+                }
+            }
+        },
+        "dimRatio": {
+            "type": "number",
+            "default": 50
+        },
+        "minHeight": {
+            "type": "number",
+            "default": 400
+        },
+        "align": {
+            "type": "string",
+            "default": "full"
+        },
+        "className": {
+            "type": "string",
+            "default": "lsx-banner-cover"
+        },
+        "useFeaturedImage": {
+            "type": "boolean",
+            "default": true
+        }
+    }
+}
