@@ -159,9 +159,14 @@ class Setup {
 			$fields = $this->get_custom_fields( $post_type );
 
 			$metabox_counter = 1;
+			$title           = '';
+			if ( ! empty( $fields['title'] ) ) {
+				$title = $fields['title'];
+			}
+
 			$cmb[ $metabox_counter ] = new_cmb2_box( array(
 				'id'            => 'lsx_to_metabox_' . $post_type . '_' . $metabox_counter,
-				'title'         => $fields['title'],
+				'title'         => $title,
 				'object_types'  => array( $post_type ), // Post type
 				'context'       => 'normal',
 				'priority'      => 'high',
