@@ -970,12 +970,12 @@ class Bindings {
 	}
 
 	/**
-	 * Filter the cover block content
+	 * Filter the cover block content.
 	 *
-	 * @param string $block_content The block content about to be rendered
-	 * @param array  $parsed_block         The full block, including name and attributes
-	 * @param object $instance      The block instance
-	 * @return string
+	 * @param string $block_content The block content about to be rendered.
+	 * @param array  $parsed_block  The full block, including name and attributes.
+	 * @param object $instance      The block instance.
+	 * @return string Modified block content.
 	 */
 	public function render_banner_block( $block_content, $parsed_block, $instance ) {
 		if ( 'core/cover' !== $parsed_block['blockName'] ) {
@@ -986,15 +986,14 @@ class Bindings {
 			return $block_content;
 		}
 
-		if ( ! in_array( $parsed_block['attrs']['metadata']['bindings']['content']['source'], [ 'lsx/post-meta' ] ) ) {
+		if ( ! in_array( $parsed_block['attrs']['metadata']['bindings']['content']['source'], array( 'lsx/post-meta' ), true ) ) {
 			return $block_content;
 		}
 
 		$image_id = get_post_meta( get_the_ID(), 'banner_image_id', true );
 
-		// Replace the URL in the block content
-		if ( '' === $image_id || false === $image_id ) {
-			// If no URL is set, we can return the original block content
+		// If no valid image ID is set, return the original block content.
+		if ( empty( $image_id ) ) {
 			return $block_content;
 		}
 
@@ -1004,55 +1003,40 @@ class Bindings {
 	}
 
 	/**
-	 * Rebuilds the cover block content with the correct image data based on a URL.
+	 * Rebuilds the cover block content with the correct image data based on an attachment ID.
 	 *
-	 * @param string $attachment_id The attachment_id to find the image for
-	 * @param string $block_content The original block content
-	 * @return string The rebuilt block content
+	 * @param int    $attachment_id The attachment ID to find the image for.
+	 * @param string $block_content The original block content.
+	 * @return string The rebuilt block content.
 	 */
 	public function rebuild_cover_block_image( $attachment_id, $block_content ) {
 		if ( ! $attachment_id ) {
-			return $block_content; // Return original if no attachment found
+			return $block_content;
 		}
 
-		// Get all the image sizes and their URLs
+		// Get base image data.
 		$full_image = wp_get_attachment_image_src( $attachment_id, 'full' );
 		if ( ! $full_image ) {
 			return $block_content;
 		}
 
-		// Get image metadata
-		$metadata = wp_get_attachment_metadata( $attachment_id );
-		$sizes = isset( $metadata['sizes'] ) ? $metadata['sizes'] : array();
+		// Core-calculated responsive attributes (respects filters/CDN integrations).
+		$srcset     = wp_get_attachment_image_srcset( $attachment_id, 'full' );
+		$sizes_attr = wp_get_attachment_image_sizes( $attachment_id, 'full' );
 
-		// Build srcset
-		$srcset = array();
-		foreach ( $sizes as $size => $size_data ) {
-			$size_url = wp_get_attachment_image_src( $attachment_id, $size );
-			if ( $size_url ) {
-				$srcset[] = $size_url[0] . ' ' . $size_data['width'] . 'w';
-			}
-		}
-		// Add full size to srcset
-		$srcset[] = $full_image[0] . ' ' . $full_image[1] . 'w';
-
-		// Build sizes attribute
-		$sizes_attr = '(max-width: ' . $full_image[1] . 'px) 100vw, ' . $full_image[1] . 'px';
-
-		// Create new img tag with all attributes
+		// Create new img tag with all attributes.
 		$new_img = sprintf(
-			'<img width="%d" height="%d" src="%s" class="wp-block-cover__image-background wp-post-image" alt="%s" data-object-fit="cover" decoding="async" fetchpriority="high" srcset="%s" sizes="%s"',
-			$full_image[1],
-			$full_image[2],
+			'<img width="%d" height="%d" src="%s" class="wp-block-cover__image-background wp-post-image" alt="" data-object-fit="cover" decoding="async" fetchpriority="high" %s %s',
+			(int) $full_image[1],
+			(int) $full_image[2],
 			esc_url( $full_image[0] ),
-			esc_attr( get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) ),
-			esc_attr( implode( ', ', $srcset ) ),
-			esc_attr( $sizes_attr )
+			$srcset ? sprintf( 'srcset="%s"', esc_attr( $srcset ) ) : '',
+			$sizes_attr ? sprintf( 'sizes="%s"', esc_attr( $sizes_attr ) ) : ''
 		);
 
-		// Replace the img tag in block content
-		$pattern = '/<img[^>]+>/';
-		$block_content = preg_replace( $pattern, $new_img . ' />', $block_content );
+		// Replace only the Cover's background image.
+		$pattern       = '/<img[^>]*class="[^"]*wp-block-cover__image-background[^"]*"[^>]*>/';
+		$block_content = preg_replace( $pattern, $new_img . ' />', $block_content, 1 );
 
 		return $block_content;
 	}
