@@ -4,5 +4,29 @@
   "name": "lsx-tour-operator/lsx-destination-to-tour",
   "title": "Destination to Tour",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Destination to Tour block.",
+  "keywords": [
+    "destination",
+    "to",
+    "tour"
+  ],
+  "supports": {
+    "html": false,
+    "color": {
+      "text": true,
+      "background": true
+    },
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    }
+  },
+  "example": {
+    "attributes": {}
+  }
 }
