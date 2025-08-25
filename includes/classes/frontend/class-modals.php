@@ -65,9 +65,10 @@ class Modals {
 		add_filter( 'lsx_to_settings_fields', [ $this, 'settings_fields' ], 10, 1 );
 		add_filter( 'lsx_to_connected_list_item', array( $this, 'add_modal_attributes' ), 10, 3 );
 		add_filter( 'lsx_to_custom_field_query', array( $this, 'travel_information_excerpt' ), 5, 10 );
+		add_filter( 'render_block_lsx-tour-operator/modal-button', array( $this, 'register_button_modal' ), 2, 10 );
+
 		add_action( 'wp_footer', array( $this, 'output_modal_ids' ), 10 );
 		add_action( 'wp_footer', array( $this, 'output_modal_contents' ), 11 );
-		add_action( 'wp_footer', array( $this, 'output_template_part_modals' ), 12 );
 
 		$this->create_default_templates();
 	}
@@ -644,6 +645,24 @@ class Modals {
 	}
 
 	/**
+	 * Registers the modals for the buttons.
+	 *
+	 * @param string $block_content
+	 * @param object $block
+	 * @return string
+	 */
+	public function register_button_modal( $block_content, $block ) {
+		if ( isset( $block['attrs']['modalId'] ) && ! empty( $block['attrs']['modalId'] ) ) {
+			$modal_id = $block['attrs']['modalId'];
+
+			// Register modal content for template parts to be output in footer
+			$this->register_modal_content( $modal_id );
+		}
+
+		return $block_content;
+	}
+
+	/**
 	 * Register modal content for template parts to be output in footer
 	 *
 	 * @param string $template_slug The template part slug
@@ -657,70 +676,6 @@ class Modals {
 			$template_content = '<!-- wp:template-part {"slug":"' . $template_slug . '","area":"lsx_to_modals"} /-->';
 			$this->modal_contents[ $modal_id ] = do_blocks( $template_content );
 		}
-	}
-
-	/**
-	 * Output template part modals that are referenced by modal-button blocks
-	 *
-	 * @return void
-	 */
-	public function output_template_part_modals() {
-		global $post;
-
-		// Only run on pages that might have modal buttons
-		if ( ! $post || ! has_blocks( $post->post_content ) ) {
-			return;
-		}
-
-		// Parse blocks to find modal-button blocks
-		$blocks = parse_blocks( $post->post_content );
-		$modal_template_slugs = $this->find_modal_button_blocks( $blocks );
-
-		if ( empty( $modal_template_slugs ) ) {
-			return;
-		}
-
-		wp_enqueue_script( 'lsx-to-modals' );
-
-		// Output modal HTML for each referenced template
-		foreach ( $modal_template_slugs as $template_slug ) {
-			$modal_id = 'to-modal-' . $template_slug;
-
-			// Get the template part content
-			$template_content = '<!-- wp:template-part {"slug":"' . $template_slug . '","area":"lsx_to_modals"} /-->';
-			$rendered_content = do_blocks( $template_content );
-
-			// Generate and output modal using reusable method
-			$modal_html = $this->generate_modal_html( $modal_id, $rendered_content );
-			$this->output_modal( $modal_html );
-		}
-	}
-
-	/**
-	 * Recursively find modal-button blocks and extract their modalId values
-	 *
-	 * @param array $blocks Array of parsed blocks
-	 * @return array Array of modal template slugs
-	 */
-	private function find_modal_button_blocks( $blocks ) {
-		$modal_slugs = array();
-
-		foreach ( $blocks as $block ) {
-			// Check if this is a modal-button block
-			if ( 'lsx-tour-operator/modal-button' === $block['blockName'] &&
-				 isset( $block['attrs']['modalId'] ) &&
-				 ! empty( $block['attrs']['modalId'] ) ) {
-				$modal_slugs[] = $block['attrs']['modalId'];
-			}
-
-			// Recursively check inner blocks
-			if ( ! empty( $block['innerBlocks'] ) ) {
-				$inner_modal_slugs = $this->find_modal_button_blocks( $block['innerBlocks'] );
-				$modal_slugs = array_merge( $modal_slugs, $inner_modal_slugs );
-			}
-		}
-
-		return array_unique( $modal_slugs );
 	}
 
 	/**
