@@ -21,7 +21,7 @@
  * @category 	class
  */
 function lsx_to_is_single_disabled( $post_type = false, $post_id = false ) {
-	return lsx_to_is_helper( $post_type, $post_id, 'disable_single' );
+return lsx_to_is_helper( $post_type, $post_id, 'disable_single' );
 }
 
 /**

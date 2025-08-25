@@ -618,3 +618,32 @@ function lsx_to_accommodation_reset_units_loop() {
 	global $rooms;
 	return $rooms->reset_loop();
 }
+
+/**
+ * Sanitizes a tour title for safe output and storage.
+ *
+ * @since 2.1.0
+ * @package       tour-operator
+ * @subpackage    template-tags
+ * @category      tour
+ *
+ * @param string $title The tour title to sanitize.
+ * @return string The sanitized tour title.
+ */
+function lsx_to_sanitize_tour_title( $title = '' ) {
+	if ( empty( $title ) || ! is_string( $title ) ) {
+		return '';
+	}
+
+	$sanitized_title = sanitize_text_field( $title );
+	
+	/**
+	 * Filters the sanitized tour title.
+	 *
+	 * @since 2.1.0
+	 *
+	 * @param string $sanitized_title The sanitized title.
+	 * @param string $title           The original title.
+	 */
+	return apply_filters( 'lsx_to_sanitize_tour_title', $sanitized_title, $title );
+}
