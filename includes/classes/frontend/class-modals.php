@@ -741,6 +741,22 @@ class Modals {
 			'data-backdrop-opacity' => true,
 			'tabindex' => true,
 		);
+		$allowed_html['style'] = array(
+			'type' => true,
+			'src' => true,
+			'async' => true,
+			'defer' => true,
+			'id' => true,
+			'class' => true,
+		);
+		$allowed_html['script'] = array(
+			'type' => true,
+			'src' => true,
+			'async' => true,
+			'defer' => true,
+			'id' => true,
+			'class' => true,
+		);
 		$allowed_html['svg'] = array(
 			'width' => true,
 			'height' => true,
