@@ -14,4 +14,3 @@ assets/img/.DS_Store
 phpcs-report.json
 phpcs-report.xml
 phpcs-report.txt
-vendor/
