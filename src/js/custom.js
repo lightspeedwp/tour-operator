@@ -283,7 +283,7 @@ lsx_to.set_read_more = function () {
             draggable: false,
             infinite: true,
             swipe: false,
-            dots: false,
+            dots: true,
             slidesToShow: slidesToShow, // Show 3 items at a time
             slidesToScroll: 1, // Scroll 1 item at a time
             autoplay: false,
@@ -308,7 +308,7 @@ lsx_to.set_read_more = function () {
           draggable: false,
           infinite: true,
           swipe: false,
-          dots: false,
+          dots: true,
           slidesToShow: 4, // Show 4 items at a time
           slidesToScroll: 1, // Scroll 1 item at a time
           autoplay: false,
@@ -381,7 +381,7 @@ lsx_to.set_read_more = function () {
             draggable: false,
             infinite: true,
             swipe: false,
-            dots: false,
+            dots: true,
             slidesToShow: slidesToShow, // Show 3 items at a time
             slidesToScroll: 1, // Scroll 1 item at a time
             autoplay: false,
