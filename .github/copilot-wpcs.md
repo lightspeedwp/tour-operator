@@ -28,7 +28,7 @@ This file provides instructions for GitHub Copilot in the context of developing 
 
 - All UI must meet WCAG 2.2 AA standards.
 - Use semantic HTML, proper ARIA, and manage focus.
-- Refer to [WordPress Accessibility Guide](https://developer.wordpress.org/block-editor/how-to-guides/accessibility/).
+- Refer to [WordPress Accessibility Guide](https://github.com/WordPress/wpcs-docs/blob/master/wordpress-coding-standards/accessibility.md).
 
 ---
 
@@ -50,7 +50,7 @@ This file provides instructions for GitHub Copilot in the context of developing 
   - File/class/function DocBlocks with `@since`, `@param`, `@return`.
   - No HTML or Markdown in summaries.
 - **References:**  
-  - [PHP Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/)
+  - [PHP Coding Standards](https://github.com/WordPress/wpcs-docs/blob/master/wordpress-coding-standards/php.md)
 
 ---
 
@@ -62,7 +62,7 @@ This file provides instructions for GitHub Copilot in the context of developing 
 - **Attributes:** Double quotes, one per line if multiline.
 - **Self-closing:** `<img />`, `<br />` (space before slash).
 - **References:**  
-  - [HTML Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/html/)
+  - [HTML Standards](https://github.com/WordPress/wpcs-docs/blob/master/wordpress-coding-standards/html.md)
 
 ---
 
@@ -82,7 +82,7 @@ This file provides instructions for GitHub Copilot in the context of developing 
   - JSDoc with `@since`, `@param`, `@return`.
   - File/class/function DocBlocks required.
 - **References:**  
-  - [JS Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/javascript/)
+  - [JS Coding Standards](https://github.com/WordPress/wpcs-docs/blob/master/wordpress-coding-standards/javascript.md)
 
 ---
 
@@ -98,7 +98,7 @@ This file provides instructions for GitHub Copilot in the context of developing 
   - Liberally used.  
   - Section headers and inline comments follow PHPDoc style.
 - **References:**  
-  - [CSS Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/css/)
+  - [CSS Coding Standards](https://github.com/WordPress/wpcs-docs/blob/master/wordpress-coding-standards/css.md)
 
 ---
 
@@ -116,21 +116,27 @@ This file provides instructions for GitHub Copilot in the context of developing 
 - Functions, classes, events, file headers must be documented.
 - Summaries use third-person singular ("Does something.")
 - Wrap DocBlock text at 80 characters.
+- [JS Inline Coding Standards](https://github.com/WordPress/wpcs-docs/blob/master/inline-documentation-standards/javascript.md)
 
 ---
 
-## 7. Markdown & JSON
+## 7. Markdown
 
 - **Markdown:**  
   - Use heading styles, fenced code blocks, and proper list formatting.
-  - Reference: [Markdown Style Guide](docs/coding-standards/styleguide.md)
-- **JSON:**  
-  - Use lowercase/hyphenated keys for block/theme metadata.
-  - Validate against [WordPress JSON schemas](https://developer.wordpress.org/block-editor/reference-guides/block-api/block-metadata/).
+  - Reference: [Markdown Style Guide](https://github.com/WordPress/wpcs-docs/blob/master/styleguide.md)
 
 ---
 
-## 8. Additional Guidelines
+
+## 8. JSON
+- **JSON:**
+  - Use lowercase/hyphenated keys for block/theme metadata.
+  - Validate against [WordPress JSON schemas](https://github.com/WordPress/gutenberg/tree/trunk/schemas/json).
+
+---
+
+## 9. Additional Guidelines
 
 - **Fluid Spacing/Typo:**  
   - Use theme.json for spacing/typography presets.
@@ -139,12 +145,11 @@ This file provides instructions for GitHub Copilot in the context of developing 
 - **Third-party Libraries:**  
   - Exempt from WPCS, but prefer compliance for custom code.
 - **References:**  
-  - [Accessibility](docs/coding-standards/wordpress-coding-standards/accessibility.md)
-  - [Idiomatic CSS](docs/coding-standards/idiomatic-css.md)
+  - [Accessibility](https://github.com/WordPress/wpcs-docs/blob/master/wordpress-coding-standards/accessibility.md)
 
 ---
 
-## 9. Resources
+## 10. Resources
 
 - [WPCS Docs](https://github.com/WordPress/wpcs-docs)
 - [WordPress Developer Handbook](https://developer.wordpress.org/)
@@ -155,7 +160,7 @@ This file provides instructions for GitHub Copilot in the context of developing 
 
 ---
 
-## 10. Enforcement
+## 11. Enforcement
 
 - Copilot should:
   - Reject code that does not conform to style and standards above.
