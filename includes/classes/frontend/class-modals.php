@@ -325,6 +325,8 @@ class Modals {
 				$value = trim( force_balance_tags( $value_output . '...' ) );
 			}
 
+			do_action( 'qm/debug', [ $value ] );
+
 			$html = trim( force_balance_tags( $value ) );
 		}
 		return $html;
