@@ -10,6 +10,7 @@
 - Add npm scripts: `start`, `build`, `lint:js`, `lint:css` - Issue [#559](https://github.com/lightspeedwp/tour-operator/issues/559)
 - Banner Cover block which pulls the image set in the Banner Image field. - [#604](https://github.com/lightspeedwp/tour-operator/pull/604)
 - Tagline block which pulls the text set in the Tagline field. - [#604](https://github.com/lightspeedwp/tour-operator/pull/604)
+- Added in a filter to allow the disabling of the facility block links - `lsx_to_accommodation_facilities_should_link`
 
 ### Enhancements
 - Updated block icons for various block variations: Custom SVGs were added to: dress, facilities, health, ends-in, departs-from, climate, transport. [#579](https://github.com/lightspeedwp/tour-operator/pull/579)
