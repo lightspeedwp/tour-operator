@@ -304,7 +304,12 @@ class Modals {
 		];
 
 		if ( get_post_type() === 'destination' && in_array( $meta_key, $ti_keys )  ) {
-			$this->modal_contents[ $meta_key ] = $html;
+
+			$title = $meta_key;
+			if ( 'additional_info' === $title ) {
+				$title = 'general';
+			}
+			$this->modal_contents[ $meta_key ] = '<h2 class="wp-block-heading" style="padding-right: 0px; padding-left: 0px;">' . ucwords( $title ) . '</h2>' . $html;
 
 			$value = wp_trim_excerpt( wp_strip_all_tags( $html ) );
 			$value = str_replace( '<br>', ' ', $value );
