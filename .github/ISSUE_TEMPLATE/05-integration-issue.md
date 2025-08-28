@@ -6,23 +6,23 @@ labels: integration, needs-triage
 assignees: ''
 ---
 
-**Describe the integration issue**
+## Describe the integration issue
 A clear and concise description of the issue you are experiencing while integrating the extension with another tool or platform.
 
-**Steps to reproduce the issue**
+## Steps to reproduce the issue
 Detailed steps to reproduce the integration issue:
 1. Go to '...'
 2. Perform '...'
 3. Notice the integration issue in '...'
 
-**Expected behavior**
+## Expected behavior
 A clear and concise description of what you expected the integration to do.
 
-**Affected tools/platforms**
+## Affected tools/platforms
 Please specify the tools or platforms you are trying to integrate with (e.g., Jira, Slack, etc.).
 
-**Screenshots or logs**
+## Screenshots or logs
 If applicable, please add screenshots, logs, or other relevant files that can help diagnose the integration issue.
 
-**Additional context**
+## Additional context
 Add any other relevant information or examples here.
