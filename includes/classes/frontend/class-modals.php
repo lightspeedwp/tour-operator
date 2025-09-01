@@ -309,7 +309,7 @@ class Modals {
 			if ( 'additional_info' === $title ) {
 				$title = 'general';
 			}
-			$this->modal_contents[ $meta_key ] = '<h2 class="wp-block-heading" style="padding-right: 0px; padding-left: 0px;">' . ucwords( $title ) . '</h2>' . $html;
+			$this->modal_contents[ $meta_key ] = '<h2 class="wp-block-heading" style="margin-top:0px;padding-right: 0px; padding-left: 0px;">' . ucwords( $title ) . '</h2>' . $html;
 
 			$value = wp_trim_excerpt( wp_strip_all_tags( $html ) );
 			$value = str_replace( '<br>', ' ', $value );
@@ -325,9 +325,10 @@ class Modals {
 				$value = trim( force_balance_tags( $value_output . '...' ) );
 			}
 
-			do_action( 'qm/debug', [ $value ] );
-
 			$html = trim( force_balance_tags( $value ) );
+
+			// Remove empty P lines
+			$html = str_replace( '<p></p>', '', $html );
 		}
 		return $html;
 	}
