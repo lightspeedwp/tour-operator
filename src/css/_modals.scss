@@ -39,6 +39,12 @@
 	h3 {
 		padding:0 15px;
 	}
+
+	.wp-block-template-part {
+		p:last-child {
+			margin-bottom: 0;
+		}
+	}
 }
 
 /* Before-open state */
