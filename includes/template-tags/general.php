@@ -175,7 +175,7 @@ function lsx_to_accommodation_facilities( $before = '', $after = '', $echo = tru
 					if ( $should_link ) {
 						$return .= '</a>';
 					}
-					$return .= '</h5>';
+					$return .= '</p>';
 
 					$return .= '<ul class="facilities-list wp-block-list">';
 
