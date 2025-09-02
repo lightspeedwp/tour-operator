@@ -49,6 +49,7 @@
 - Replace them with correct icons from the design system 
 - Ensure consistent sizing of 20px 
 - Add "currentColor" to all icon colour styling [#575](https://github.com/lightspeedwp/tour-operator/pull/575)
+- Query Block Pagination not Inherting the correct query vars. []()
 
 ### Security
 - 
