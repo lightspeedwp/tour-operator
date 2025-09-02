@@ -33,6 +33,14 @@ class Query_Loop {
 	protected $parents_only = false;
 
 	/**
+	 * Stores processed query args keyed by the core/query block queryId so we don't
+	 * recalculate alterations multiple times for the same block on a single request.
+	 *
+	 * @var array
+	 */
+	protected $saved_queries = [];
+
+	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
 	 *
 	 * @since 1.0.0
@@ -41,8 +49,8 @@ class Query_Loop {
 	 */
 	public function __construct() {
 		add_filter( 'render_block_data', array( $this, 'save_checkbox_queries' ), 300, 1 );
+		// Log pagination block parameters for debugging pagination issues.
 		add_filter( 'render_block', array( $this, 'maybe_hide_varitaion' ), 10, 3 );
-
 		add_filter( 'posts_pre_query', array( $this, 'posts_pre_query' ), 10, 2 );
 		add_filter( 'query_loop_block_query_vars', array( $this, 'query_args_filter' ), 1, 2 );
 	}
@@ -248,7 +256,15 @@ class Query_Loop {
 	 * @return array
 	 */
 	public function query_args_filter( $query, $block ) {
-		$block = $block->parsed_block;
+
+		// Grab the unique queryId assigned to each core/query block instance.
+		$query_id = isset( $block->context['queryId'] ) ? (int) $block->context['queryId'] : null;
+		$block    = $block->parsed_block;
+
+		// If we've already processed this query block during this request, just return the cached args.
+		if ( null !== $query_id && isset( $this->saved_queries[ $query_id ] ) ) {
+			return $this->saved_queries[ $query_id ];
+		}
 
 		// These are for all query blocks.
 		if ( true === $this->onsale ) {
@@ -381,6 +397,11 @@ class Query_Loop {
 				}
 
 			break;
+		}
+
+		// Store the processed query for this queryId (if available) and also keep legacy property.
+		if ( null !== $query_id ) {
+			$this->saved_queries[ $query_id ] = $query;
 		}
 
 		return $query;

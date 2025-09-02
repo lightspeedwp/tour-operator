@@ -10,9 +10,9 @@
  */
 
 $metabox = array(
-	'id'   => 'media_title',
-	'name' => esc_html__( 'Media', 'tour-operator' ),
-	'type' => 'title',
+	'title'  => esc_html__( 'Media', 'tour-operator' ),
+	'pages'  => 'post',
+	'fields' => array(),
 );
 
 $metabox['fields'][] = array(
@@ -41,7 +41,7 @@ $metabox['fields'][] = array(
     'name' => esc_html__( 'Gallery', 'tour-operator' ),
     'id'   => 'gallery',
     'type' => 'file_list',
-	'desc'    => esc_html__( 'Add images related to the country to be displayed in the Destination’s gallery.', 'tour-operator' ),
+	'desc'    => esc_html__( 'Add images for this post’s gallery.', 'tour-operator' ),
     'preview_size' => 'thumbnail', // Image size to use when previewing in the admin.
     'query_args' => array( 'type' => 'image' ), // Only images attachment
     'text' => array(

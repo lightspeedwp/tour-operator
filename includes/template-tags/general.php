@@ -149,6 +149,7 @@ function lsx_to_accommodation_facilities( $before = '', $after = '', $echo = tru
 	$main_facilities  = [];
 	$child_facilities = [];
 	$return           = '';
+	$should_link      = apply_filters( 'lsx_to_accommodation_facilities_should_link', true );
 
 	if ( ! empty( $facilities ) && ! is_wp_error( $facilities ) ) {
 		foreach ( $facilities as $facility ) {
@@ -165,11 +166,30 @@ function lsx_to_accommodation_facilities( $before = '', $after = '', $echo = tru
 			foreach ( $main_facilities as $heading ) {
 				if ( isset( $child_facilities[ $heading->term_id ] ) ) {
 					$return .= '<div class="' . $heading->slug . ' wp-block-column is-layout-flow wp-block-column-is-layout-flow">
-					<p class="has-medium-font-size facilities-title wp-block-heading"><a href="' . esc_url( get_term_link( $heading->slug, 'facility' ) ) . '">' . esc_html( $heading->name ) . '</a></h5>';
+					<p class="has-medium-font-size facilities-title wp-block-heading">';
+
+					if ( $should_link ) {
+						$return .= '<a href="' . esc_url( get_term_link( $heading->slug, 'facility' ) ) . '">';
+					}
+					$return .= esc_html( $heading->name );
+					if ( $should_link ) {
+						$return .= '</a>';
+					}
+					$return .= '</p>';
+
 					$return .= '<ul class="facilities-list wp-block-list">';
 
 					foreach ( $child_facilities[ $heading->term_id ] as $child_facility ) {
-						$return .= '<li class="facility-item"><a href="' . esc_url( get_term_link( $child_facility->slug, 'facility' ) ) . '">' . esc_html( $child_facility->name ) . '</a></li>';
+						$return .= '<li class="facility-item">';
+						if ( $should_link ) {
+							$return .= '<a href="' . esc_url( get_term_link( $child_facility->slug, 'facility' ) ) . '">';
+						}
+						$return .= esc_html( $child_facility->name );
+						if ( $should_link ) {
+							$return .= '</a>';
+						}
+						$return .= '</li>';
+
 					}
 
 					$return .= '</ul>';
