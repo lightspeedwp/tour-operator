@@ -10,7 +10,7 @@
 - Add npm scripts: `start`, `build`, `lint:js`, `lint:css` - Issue [#559](https://github.com/lightspeedwp/tour-operator/issues/559)
 - Banner Cover block which pulls the image set in the Banner Image field. - [#604](https://github.com/lightspeedwp/tour-operator/pull/604)
 - Tagline block which pulls the text set in the Tagline field. - [#604](https://github.com/lightspeedwp/tour-operator/pull/604)
-- Added in a filter to allow the disabling of the facility block links - `lsx_to_accommodation_facilities_should_link`
+- Added in a filter to allow the disabling of the facility block links - `lsx_to_accommodation_facilities_should_link` - [#608](https://github.com/lightspeedwp/tour-operator/pull/608)
 
 ### Enhancements
 - Updated block icons for various block variations: Custom SVGs were added to: dress, facilities, health, ends-in, departs-from, climate, transport. [#579](https://github.com/lightspeedwp/tour-operator/pull/579)
@@ -34,7 +34,7 @@
 - Itinerary departure day - departure days accommodation and location values reply on the previous days values, to mimic the WETU layout - PR [#491](https://github.com/lightspeedwp/tour-operator/pull/491)
 - Drop Support for Older PHP Versions & Fix Version Mismatches - Issue [#469](https://github.com/lightspeedwp/tour-operator/issues/469)
 - Departure Day to use the previous day information for the "information" box - Issue [#481](https://github.com/lightspeedwp/tour-operator/issues/481)
-- Updated the Gallery render block to return a blank string if the gallery field is empty.
+- Updated the Gallery render block to return a blank string if the gallery field is empty. - [#608](https://github.com/lightspeedwp/tour-operator/pull/608)
 
 ### Removed
 - `.scrutinizer.yml` removed the file as we no long use Scrutinizer - Issue [#564](https://github.com/lightspeedwp/tour-operator/issues/564)
@@ -49,7 +49,7 @@
 - Replace them with correct icons from the design system 
 - Ensure consistent sizing of 20px 
 - Add "currentColor" to all icon colour styling [#575](https://github.com/lightspeedwp/tour-operator/pull/575)
-- Query Block Pagination not Inherting the correct query vars. []()
+- Query Block Pagination not Inherting the correct query vars. [#608](https://github.com/lightspeedwp/tour-operator/pull/608)
 
 ### Security
 - 
