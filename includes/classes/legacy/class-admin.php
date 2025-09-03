@@ -170,8 +170,11 @@ class Admin extends Tour_Operator {
 
 			if ( isset( $field->data_to_save[ $field_id ] ) ) {
 				$new_values = $field->data_to_save[ $field_id ];
+				if ( ! is_array( $new_values ) ) {
+					$new_values = [ $new_values ];
+				}
 			} else {
-				$new_values = array();
+				$new_values = [];
 			}
 
 			//if the new values are empty, then we need to remove the previous values.

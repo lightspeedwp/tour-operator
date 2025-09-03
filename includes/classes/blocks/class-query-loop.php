@@ -386,8 +386,6 @@ class Query_Loop {
 				// Find the items stored in the relevant connection custom field.
 				$items = $this->related_connection_query( $items, $to, $from );
 
-				do_action( 'qm/debug', [ $key, $items ] );
-
 				if ( ! empty( $items ) ) {
 					$items = array_unique( $items );
 					$query['post__in'] = $items;
