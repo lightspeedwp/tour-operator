@@ -1,8 +1,44 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/best-time-to-visit",
-  "title": "Best Time To Visit",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/best-time-to-visit",
+	"title": "Best Time to Visit",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Show optimal travel seasons and weather conditions.",
+	"icon": "calendar-alt",
+	"keywords": [
+		"best-time",
+		"season",
+		"visit"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Best Time To Visit"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Best Time To Visit",
+							"level": 3
+						}
+					],
+					[
+						"core/paragraph",
+						{
+							"content": "May to September for ideal weather and wildlife viewing."
+						}
+					]
+				]
+			]
+		]
+	}
 }

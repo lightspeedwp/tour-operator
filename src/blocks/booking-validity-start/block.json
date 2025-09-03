@@ -1,8 +1,44 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/booking-validity-start",
-  "title": "Booking Validity",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/booking-validity-start",
+	"title": "Booking Validity",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Display booking validity dates and restrictions.",
+	"icon": "calendar",
+	"keywords": [
+		"booking",
+		"validity",
+		"dates"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Booking Validity"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Booking Validity",
+							"level": 3
+						}
+					],
+					[
+						"core/paragraph",
+						{
+							"content": "Valid for bookings made 30 days in advance."
+						}
+					]
+				]
+			]
+		]
+	}
 }

@@ -1,8 +1,44 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/cuisine",
-  "title": "Cuisine",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/cuisine",
+	"title": "Cuisine",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Display local cuisine and food culture information.",
+	"icon": "food",
+	"keywords": [
+		"cuisine",
+		"food",
+		"local"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Cuisine"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Cuisine",
+							"level": 3
+						}
+					],
+					[
+						"core/paragraph",
+						{
+							"content": "Experience authentic African cuisine with international influences."
+						}
+					]
+				]
+			]
+		]
+	}
 }

@@ -1,73 +1,108 @@
 wp.domReady(() => {
-
-wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-tour-operator/checkout-time',
-		title: 'Check Out Time',
+	wp.blocks.registerBlockVariation("core/group", {
+		name: "lsx-tour-operator/checkout-time",
+		title: "Check Out Time",
 		icon: "clock",
-		category: 'lsx-tour-operator',
+		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
-				name: 'Check Out Time',
+				name: "Check Out Time",
 			},
-			className: 'lsx-checkout-time-wrapper',
-			
+			className: "lsx-checkout-time-wrapper",
+
 			layout: {
-				type: 'flex',
-				flexWrap: 'nowrap'
-			}
+				type: "flex",
+				flexWrap: "nowrap",
+			},
 		},
 		innerBlocks: [
-			['core/group', {
-					
+			[
+				"core/group",
+				{
 					layout: {
-						type: 'flex',
-						flexWrap: 'nowrap',
-						verticalAlignment: 'top'
-					}
+						type: "flex",
+						flexWrap: "nowrap",
+						verticalAlignment: "top",
+					},
 				},
 				[
-					['core/image', {
-						id: 122720,
-						width: '20px',
-						sizeSlug: 'large',
-						linkDestination: 'none',
-						url: lsxToEditor.assetsUrl + 'blocks/check-in-check-out-time.svg',
-						alt: '',
-						className: 'wp-image-122720'
-					}],
-					['core/paragraph', {
-						
-						content: '<strong>Check out time:</strong>'
-					}]
-				]
-			],
-			['core/group', {
-					layout: {
-						type: 'flex',
-						flexWrap: 'nowrap'
-					}
-				},
-				[
-					['core/paragraph', {
-						metadata: {
-							bindings: {
-								content: {
-									source: 'lsx/post-meta',
-									args: {
-										key: 'checkout_time'
-									}
-								}
-							}
+					[
+						"core/image",
+						{
+							id: 122720,
+							width: "20px",
+							sizeSlug: "large",
+							linkDestination: "none",
+							url: lsxToEditor.assetsUrl + "blocks/check-in-check-out-time.svg",
+							alt: "",
+							className: "wp-image-122720",
 						},
-						
-						
-						}]
-				]
-			]
+					],
+					[
+						"core/paragraph",
+						{
+							content: "<strong>Check out time:</strong>",
+						},
+					],
+				],
+			],
+			[
+				"core/group",
+				{
+					layout: {
+						type: "flex",
+						flexWrap: "nowrap",
+					},
+				},
+				[
+					[
+						"core/paragraph",
+						{
+							metadata: {
+								bindings: {
+									content: {
+										source: "lsx/post-meta",
+										args: {
+											key: "checkout_time",
+										},
+									},
+								},
+							},
+						},
+					],
+				],
+			],
 		],
 		supports: {
-			renaming: false
-		}
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: "Check Out Time",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/group",
+					{},
+					[
+						[
+							"core/heading",
+							{
+								content: "Check Out Time",
+								level: 3,
+							},
+						],
+						[
+							"core/paragraph",
+							{
+								content: "11:00 AM",
+							},
+						],
+					],
+				],
+			],
+		},
 	});
-
 });

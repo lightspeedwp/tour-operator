@@ -1,6 +1,5 @@
-wp.domReady(() => {
-
-wp.blocks.registerBlockVariation( 'core/group', {
+wp.domReady( () => {
+	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/accommodation-related-destination',
 		title: 'Related Accommodation - Destination',
 		icon: 'admin-site',
@@ -8,62 +7,124 @@ wp.blocks.registerBlockVariation( 'core/group', {
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
-				name: 'Related Accommodation - Destination'
+				name: 'Related Accommodation - Destination',
 			},
 			className: 'lsx-accommodation-related-destination-query-wrapper',
 			align: 'full',
 			layout: {
-				type: 'constrained'
+				type: 'constrained',
 			},
-			tagName: "section"
+			tagName: 'section',
 		},
 		innerBlocks: [
-			[ 'core/group', {
+			[
+				'core/group',
+				{
 					align: 'wide',
-					layout: { type: 'flex', flexWrap: 'nowrap' }
+					layout: { type: 'flex', flexWrap: 'nowrap' },
 				},
 				[
-					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } } } ],
-					[ 'core/heading', { textAlign: 'center', content: 'Related Accommodation' } ],
-					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } } } ]
-				]
+					[
+						'core/separator',
+						{
+							style: {
+								layout: { selfStretch: 'fill', flexSize: null },
+							},
+						},
+					],
+					[
+						'core/heading',
+						{
+							textAlign: 'center',
+							content: 'Related Accommodation',
+						},
+					],
+					[
+						'core/separator',
+						{
+							style: {
+								layout: { selfStretch: 'fill', flexSize: null },
+							},
+						},
+					],
+				],
 			],
-			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } },
+			[
+				'core/group',
+				{ align: 'wide', layout: { type: 'constrained' } },
 				[
-					[ 'core/query', {
+					[
+						'core/query',
+						{
 							metadata: {
-								name: 'Related Accommodation Query'
+								name: 'Related Accommodation Query',
 							},
 							query: {
 								perPage: 8,
 								postType: 'accommodation',
 								order: 'asc',
-								orderBy: 'date'
+								orderBy: 'date',
 							},
-							align: 'wide'
+							align: 'wide',
 						},
 						[
-							[ 
-								'core/post-template', 
+							[
+								'core/post-template',
 								{
-									className: 'lsx-accommodation-related-destination-query',
+									className:
+										'lsx-accommodation-related-destination-query',
 									layout: {
 										type: 'grid',
-										columnCount: 3
-									}
+										columnCount: 3,
+									},
 								},
 								[
-									[ 'core/pattern', { slug: 'lsx-tour-operator/accommodation-card' } ]
-								]
-							]
-						]
-					]
-				]
-			]
+									[
+										'core/pattern',
+										{
+											slug: 'lsx-tour-operator/accommodation-card',
+										},
+									],
+								],
+							],
+						],
+					],
+				],
+			],
 		],
 		supports: {
-			renaming: false
-		}
-	});
-
-});
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: 'Related Destinations',
+				},
+			},
+			innerBlocks: [
+				[
+					'core/group',
+					{},
+					[
+						[
+							'core/heading',
+							{
+								content: 'Related Destinations',
+								textAlign: 'center',
+							},
+						],
+						[
+							'core/query',
+							{
+								query: {
+									postType: 'destination',
+									perPage: 3,
+								},
+							},
+						],
+					],
+				],
+			],
+		},
+	} );
+} );

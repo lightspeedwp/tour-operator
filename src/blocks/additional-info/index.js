@@ -1,74 +1,115 @@
 wp.domReady(() => {
-
-wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-tour-operator/additional-info',
-		title: 'Additional Information',
+	wp.blocks.registerBlockVariation("core/group", {
+		name: "lsx-tour-operator/additional-info",
+		title: "Additional Information",
 		icon: "info-outline",
-		category: 'lsx-tour-operator',
+		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
-				name: 'Additional Info',
+				name: "Additional Info",
 			},
-			className: 'lsx-additional-info-wrapper',
+			className: "lsx-additional-info-wrapper",
 			layout: {
-				type: 'constrained'
-			}
+				type: "constrained",
+			},
 		},
 		innerBlocks: [
-			['core/group', {
+			[
+				"core/group",
+				{
 					layout: {
-						type: 'constrained'
-					}
+						type: "constrained",
+					},
 				},
 				[
-					['core/group', {
+					[
+						"core/group",
+						{
 							layout: {
-								type: 'constrained'
-							}
+								type: "constrained",
+							},
 						},
 						[
-							['core/paragraph', {
-								align: 'center',
-								content: '<strong>General</strong>'
-							}]
-						]
+							[
+								"core/paragraph",
+								{
+									align: "center",
+									content: "<strong>General</strong>",
+								},
+							],
+						],
 					],
-					['core/group', {
-							
+					[
+						"core/group",
+						{
 							layout: {
-								type: 'constrained'
-							}
+								type: "constrained",
+							},
 						},
 						[
-							['core/paragraph', {
-								
-								metadata: {
-									bindings: {
-										content: {
-											source: 'lsx/post-meta',
-											args: {
-												key: 'additional_info'
-											}
-										}
-									}
-								}
-							}]
-						]
-					]
-				]
+							[
+								"core/paragraph",
+								{
+									metadata: {
+										bindings: {
+											content: {
+												source: "lsx/post-meta",
+												args: {
+													key: "additional_info",
+												},
+											},
+										},
+									},
+								},
+							],
+						],
+					],
+				],
 			],
-			['core/buttons', {},
+			[
+				"core/buttons",
+				{},
 				[
-					['core/button', {
-						width: 100,
-						content: 'View More'
-					}]
-				]
-			]
+					[
+						"core/button",
+						{
+							width: 100,
+							content: "View More",
+						},
+					],
+				],
+			],
 		],
 		supports: {
-			renaming: false
-		}
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: "Additional Information",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/group",
+					{},
+					[
+						[
+							"core/heading",
+							{
+								content: "Additional Information",
+								level: 3,
+							},
+						],
+						[
+							"core/paragraph",
+							{
+								content: "Important details and extra information for travelers.",
+							},
+						],
+					],
+				],
+			],
+		},
 	});
-
 });

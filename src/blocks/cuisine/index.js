@@ -1,75 +1,116 @@
 wp.domReady(() => {
-
-wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-tour-operator/cuisine',
-		title: 'Cuisine',
+	wp.blocks.registerBlockVariation("core/group", {
+		name: "lsx-tour-operator/cuisine",
+		title: "Cuisine",
 		icon: "food",
-		category: 'lsx-tour-operator',
+		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
-				name: 'Cuisine',
+				name: "Cuisine",
 			},
-			className: 'lsx-cuisine-wrapper',
+			className: "lsx-cuisine-wrapper",
 			layout: {
-				type: 'constrained'
-			}
+				type: "constrained",
+			},
 		},
 		innerBlocks: [
-			['core/group', {
+			[
+				"core/group",
+				{
 					layout: {
-						type: 'constrained'
-					}
+						type: "constrained",
+					},
 				},
 				[
-					['core/group', {
+					[
+						"core/group",
+						{
 							layout: {
-								type: 'constrained'
-							}
+								type: "constrained",
+							},
 						},
 						[
-							['core/paragraph', {
-								align: 'center',
-								content: '<strong>Cuisine</strong>'
-							}]
-						]
+							[
+								"core/paragraph",
+								{
+									align: "center",
+									content: "<strong>Cuisine</strong>",
+								},
+							],
+						],
 					],
-					['core/group', {
-							
+					[
+						"core/group",
+						{
 							layout: {
-								type: 'constrained'
-							}
+								type: "constrained",
+							},
 						},
 						[
-							['core/paragraph', {
-								
-								metadata: {
-									bindings: {
-										content: {
-											source: 'lsx/post-meta',
-											args: {
-												key: 'cuisine'
-											}
-										}
-									}
-								}
-							}]
-						]
-					]
-				]
+							[
+								"core/paragraph",
+								{
+									metadata: {
+										bindings: {
+											content: {
+												source: "lsx/post-meta",
+												args: {
+													key: "cuisine",
+												},
+											},
+										},
+									},
+								},
+							],
+						],
+					],
+				],
 			],
-			['core/buttons', {},
+			[
+				"core/buttons",
+				{},
 				[
-					['core/button', {
-						backgroundColor: 'primary',
-						width: 100,
-						content: 'View More'
-					}]
-				]
-			]
+					[
+						"core/button",
+						{
+							backgroundColor: "primary",
+							width: 100,
+							content: "View More",
+						},
+					],
+				],
+			],
 		],
 		supports: {
-			renaming: false
-		}
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: "Cuisine",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/group",
+					{},
+					[
+						[
+							"core/heading",
+							{
+								content: "Cuisine",
+								level: 3,
+							},
+						],
+						[
+							"core/paragraph",
+							{
+								content: "Experience authentic African cuisine with international influences.",
+							},
+						],
+					],
+				],
+			],
+		},
 	});
-
 });

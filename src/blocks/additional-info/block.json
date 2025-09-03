@@ -1,8 +1,44 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/additional-info",
-  "title": "Additional Information",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/additional-info",
+	"title": "Additional Information",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Display additional information and details.",
+	"icon": "info-outline",
+	"keywords": [
+		"additional",
+		"information",
+		"details"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Additional Information"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Additional Information",
+							"level": 3
+						}
+					],
+					[
+						"core/paragraph",
+						{
+							"content": "Important details and extra information for travelers."
+						}
+					]
+				]
+			]
+		]
+	}
 }

@@ -1,88 +1,130 @@
 wp.domReady(() => {
-
-wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-tour-operator/banking',
-		title: 'Banking',
+	wp.blocks.registerBlockVariation("core/group", {
+		name: "lsx-tour-operator/banking",
+		title: "Banking",
 		icon: "bank",
-		category: 'lsx-tour-operator',
+		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
-				name: 'Banking',
+				name: "Banking",
 			},
-			className: 'lsx-banking-wrapper',
+			className: "lsx-banking-wrapper",
 			layout: {
-				type: 'constrained'
-			}
+				type: "constrained",
+			},
 		},
 		innerBlocks: [
-			['core/group', {
+			[
+				"core/group",
+				{
 					metadata: {
-						name: 'Content'
+						name: "Content",
 					},
 					layout: {
-						type: 'constrained'
-					}
+						type: "constrained",
+					},
 				},
 				[
-					['core/group', {
+					[
+						"core/group",
+						{
 							metadata: {
-								name: 'Title'
+								name: "Title",
 							},
 							layout: {
-								type: 'constrained'
-							}
+								type: "constrained",
+							},
 						},
 						[
-							['core/paragraph', {
-								align: 'center',
-								content: '<strong>Banking</strong>'
-							}]
-						]
+							[
+								"core/paragraph",
+								{
+									align: "center",
+									content: "<strong>Banking</strong>",
+								},
+							],
+						],
 					],
-					['core/group', {
-							className: 'lsx-to-more-content',
+					[
+						"core/group",
+						{
+							className: "lsx-to-more-content",
 							metadata: {
-								name: 'Description'
+								name: "Description",
 							},
-							
+
 							layout: {
-								type: 'constrained'
-							}
+								type: "constrained",
+							},
 						},
 						[
-							['core/paragraph', {
-								
-								metadata: {
-									bindings: {
-										content: {
-											source: 'lsx/post-meta',
-											args: {
-												key: 'banking'
-											}
-										}
-									}
-								}
-							}]
-						]
-					]
-				]
+							[
+								"core/paragraph",
+								{
+									metadata: {
+										bindings: {
+											content: {
+												source: "lsx/post-meta",
+												args: {
+													key: "banking",
+												},
+											},
+										},
+									},
+								},
+							],
+						],
+					],
+				],
 			],
-			['core/buttons', {},
+			[
+				"core/buttons",
+				{},
 				[
-					['core/button', {
-						metadata: {
-							name: 'More Button'
+					[
+						"core/button",
+						{
+							metadata: {
+								name: "More Button",
+							},
+							className: "lsx-to-more-link more-link",
+							width: 100,
+							text: "View More",
 						},
-						className: 'lsx-to-more-link more-link',
-						width: 100,
-						text: 'View More'
-					}]
-				]
-			]
+					],
+				],
+			],
 		],
 		supports: {
-			renaming: false
-		}
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: "Banking",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/group",
+					{},
+					[
+						[
+							"core/heading",
+							{
+								content: "Banking",
+								level: 3,
+							},
+						],
+						[
+							"core/paragraph",
+							{
+								content: "South African Rand (ZAR). Credit cards widely accepted.",
+							},
+						],
+					],
+				],
+			],
+		},
 	});
-
 });

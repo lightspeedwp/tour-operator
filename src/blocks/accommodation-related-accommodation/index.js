@@ -1,6 +1,5 @@
-wp.domReady(() => {
-
-wp.blocks.registerBlockVariation( 'core/group', {
+wp.domReady( () => {
+	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/accommodation-related-accommodation',
 		title: 'Related Accommodation - Accommodation',
 		icon: 'admin-multisite',
@@ -8,39 +7,65 @@ wp.blocks.registerBlockVariation( 'core/group', {
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
-				name: 'Related Accommodation - Accommodation'
+				name: 'Related Accommodation - Accommodation',
 			},
 			className: 'lsx-accommodation-related-accommodation-query-wrapper',
 			align: 'full',
 			layout: {
-				type: 'constrained'
+				type: 'constrained',
 			},
-			tagName: "section"
+			tagName: 'section',
 		},
 		innerBlocks: [
-			[ 'core/group', {
+			[
+				'core/group',
+				{
 					align: 'wide',
-					layout: { type: 'flex', flexWrap: 'nowrap' }
+					layout: { type: 'flex', flexWrap: 'nowrap' },
 				},
 				[
-					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } } } ],
-					[ 'core/heading', { textAlign: 'center', content: 'Related Accommodation' } ],
-					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } } } ]
-				]
+					[
+						'core/separator',
+						{
+							style: {
+								layout: { selfStretch: 'fill', flexSize: null },
+							},
+						},
+					],
+					[
+						'core/heading',
+						{
+							textAlign: 'center',
+							content: 'Related Accommodation',
+						},
+					],
+					[
+						'core/separator',
+						{
+							style: {
+								layout: { selfStretch: 'fill', flexSize: null },
+							},
+						},
+					],
+				],
 			],
-			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } },
+			[
+				'core/group',
+				{ align: 'wide', layout: { type: 'constrained' } },
 				[
-					[ 'core/query', {
+					[
+						'core/query',
+						{
 							metadata: {
-								name: 'Related Accommodation Query'
+								name: 'Related Accommodation Query',
 							},
 							query: {
 								perPage: 8,
 								postType: 'accommodation',
 								order: 'asc',
-								orderBy: 'date'
+								orderBy: 'date',
 							},
-							align: 'wide'
+							align: 'wide',
 						},
 						[
 							[
@@ -49,27 +74,66 @@ wp.blocks.registerBlockVariation( 'core/group', {
 									className: 'lsx-accommodation-related-accommodation-query',
 									layout: {
 										type: 'grid',
-										columnCount: 3
-									}
+										columnCount: 3,
+									},
 								},
 								[
-									[ 'core/pattern', { slug: 'lsx-tour-operator/accommodation-card' } ]
-								]
-							]
-						]
-					]
-				]
-			]
+									[
+										'core/pattern',
+										{
+											slug: 'lsx-tour-operator/accommodation-card',
+										},
+									],
+								],
+							],
+						],
+					],
+				],
+			],
 		],
 		supports: {
-			renaming: false
+			renaming: false,
+		},
+
+		example: {
+			attributes: {
+				metadata: {
+					name: 'Related Accommodation',
+				},
+				className: 'lsx-accommodation-related-accommodation-query-wrapper',
+			},
+			innerBlocks: [
+				[
+					'core/group',
+					{},
+					[
+						[
+							'core/heading',
+							{
+								content: 'Related Accommodation',
+								textAlign: 'center',
+							},
+						],
+						[
+							'core/query',
+							{
+								query: {
+									postType: 'accommodation',
+									perPage: 3,
+								},
+							},
+							[ [ 'core/post-template', {}, [ [ 'core/post-title' ], [ 'core/post-excerpt' ] ] ] ],
+						],
+					],
+				],
+			],
 		},
 		isActive: ( blockAttributes, variationAttributes ) => {
 			return (
-				blockAttributes.className === "lsx-accommodation-related-accommodation-query-wrapper" ||
-				(blockAttributes.className && blockAttributes.className.includes("lsx-accommodation-related-accommodation-query-wrapper"))
+				blockAttributes.className === 'lsx-accommodation-related-accommodation-query-wrapper' ||
+				( blockAttributes.className &&
+					blockAttributes.className.includes( 'lsx-accommodation-related-accommodation-query-wrapper' ) )
 			);
-		}
-	});
-
-});
+		},
+	} );
+} );
