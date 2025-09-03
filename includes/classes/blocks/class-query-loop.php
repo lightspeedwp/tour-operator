@@ -358,8 +358,6 @@ class Query_Loop {
 					$query['post__in'] = $items;
 				}
 
-				
-
 				$query = $this->related_taxonomy_query( $query, $key );
 
 				if ( ! isset( $query['post__in'] ) && ! isset( $query['tax_query'] ) ) {
@@ -387,6 +385,8 @@ class Query_Loop {
 
 				// Find the items stored in the relevant connection custom field.
 				$items = $this->related_connection_query( $items, $to, $from );
+
+				do_action( 'qm/debug', [ $key, $items ] );
 
 				if ( ! empty( $items ) ) {
 					$items = array_unique( $items );
