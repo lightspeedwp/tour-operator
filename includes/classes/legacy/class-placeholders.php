@@ -66,6 +66,9 @@ class Placeholders {
 				'default_term_thumbnail',
 			), 11, 3 );
 
+			// Ensure a placeholder attachment ID is returned for core get_post_thumbnail_id() calls.
+			add_filter( 'post_thumbnail_id', array( $this, 'filter_post_thumbnail_id' ), 10, 2 );
+
 			add_filter( 'wp_get_attachment_image_src', array(
 				$this,
 				'super_placeholder_filter',
@@ -394,5 +397,53 @@ class Placeholders {
 		}
 
 		return $sources;
+	}
+
+	/**
+	 * Filter for 'post_thumbnail_id' to provide a placeholder attachment ID when missing.
+	 *
+	 * This runs after core has already cast the meta value to an int. If no thumbnail
+	 * is set (0) we attempt to fetch a configured placeholder attachment ID so that
+	 * template functions like get_the_post_thumbnail() will render a real image tag
+	 * instead of returning an empty string.
+	 *
+	 * @param int             $thumbnail_id Current (numeric) thumbnail ID, possibly 0.
+	 * @param int|\WP_Post    $post         Post object or ID passed by the filter.
+	 *
+	 * @return int Filtered thumbnail ID.
+	 */
+	public function filter_post_thumbnail_id( $thumbnail_id, $post ) {
+		// If a valid thumbnail already exists, leave it alone.
+		if ( ! empty( $thumbnail_id ) ) {
+			return $thumbnail_id;
+		}
+
+		$post_obj = is_object( $post ) ? $post : get_post( $post );
+		if ( ! $post_obj ) {
+			return $thumbnail_id; // Leave as-is if post can't be resolved.
+		}
+
+		$options   = get_option( 'lsx_to_settings', false );
+		$post_type = $post_obj->post_type;
+
+		if ( ! is_array( $options ) ) {
+			return $thumbnail_id; // Nothing we can do.
+		}
+
+		$placeholder_id = 0;
+
+		// New flat structure keys:
+		// Global default: featured_placeholder
+		// Per post type: {post_type}_featured_placeholder
+		if ( ! empty( $options['featured_placeholder'] ) ) {
+			$placeholder_id = (int) $options['featured_placeholder'];
+		}
+
+		$pt_key = $post_type . '_featured_placeholder';
+		if ( ! empty( $options[ $pt_key ] ) ) {
+			$placeholder_id = (int) $options[ $pt_key ];
+		}
+
+		return $placeholder_id > 0 ? $placeholder_id : $thumbnail_id;
 	}
 }
