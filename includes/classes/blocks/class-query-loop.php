@@ -612,7 +612,4 @@ class Query_Loop {
 
 		return $query;
 	}
-
-
-	
 }

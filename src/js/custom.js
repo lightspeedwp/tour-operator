@@ -268,7 +268,6 @@ lsx_to.set_read_more = function () {
 
         lsx_to.pre_build_slider($this);
 		
-		console.log($this);
 
 		const str = $this.attr('class');
 		const classRegex = /columns-\S*/g;
