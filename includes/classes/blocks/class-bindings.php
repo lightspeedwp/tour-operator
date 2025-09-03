@@ -784,6 +784,7 @@ class Bindings {
 		}
 
 		$classes = $this->find_gallery_classes( $block_content );
+		$styles  = $this->find_gallery_styles( $block_content );
 		$images  = array();
 		$count   = 1;
 
@@ -797,13 +798,34 @@ class Bindings {
 			$count++;
 		}
 
-		$block_content = '<figure class="lsx-block-videos ' . $classes . '">' . implode( '', $images ) . '</figure>';
+		$block_content = '<figure ' . $styles . ' class="lsx-block-videos ' . $classes . '">' . implode( '', $images ) . '</figure>';
 
 		// Ensure the core/embed block styles are loaded for video embeds
 		if ( ! wp_style_is( 'wp-block-embed', 'enqueued' ) ) {
 			wp_enqueue_style( 'wp-block-embed' );
 		}
 		return $block_content;
+	}
+
+	/**
+	 * Finds all style attribute of the current gallery.
+	 *
+	 * @param string $content The original HTML content.
+	 * @param string $prefix The css classname prefix before the -description.
+	 * @return string An string containing class names found with "{$prefix}-description".
+	 */
+	public function find_gallery_styles( $content ) {
+		$style_attr = '';
+		// Match a <figure> that has class including wp-block-gallery and capture its style attribute value (style may appear anywhere in the tag).
+		$pattern = '/<figure\b(?=[^>]*\bclass="[^"]*\bwp-block-gallery\b[^"]*")(?=[^>]*\bstyle=(["\"])((?:(?!\1).)*)\1)[^>]*>/is';
+		if ( preg_match( $pattern, $content, $matches ) ) {
+			// $matches[2] holds the style value without quotes due to nested groups.
+			$style_value = trim( $matches[2] );
+			if ( '' !== $style_value ) {
+				$style_attr = 'style="' . esc_attr( $style_value ) . '"';
+			}
+		}
+		return $style_attr;
 	}
 
 	/**
