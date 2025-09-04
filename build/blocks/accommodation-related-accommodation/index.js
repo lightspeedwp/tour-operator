@@ -140,7 +140,7 @@ wp.domReady(() => {
         content: 'Modern urban accommodation in the heart of the city with easy access to attractions and dining.'
       }]]]]]]]]
     },
-    isActive: (blockAttributes, variationAttributes) => {
+    isActive: blockAttributes => {
       return blockAttributes.className === 'lsx-accommodation-related-accommodation-query-wrapper' || blockAttributes.className && blockAttributes.className.includes('lsx-accommodation-related-accommodation-query-wrapper');
     }
   });
