@@ -74,18 +74,71 @@ wp.domReady(() => {
     example: {
       attributes: {
         metadata: {
-          name: 'Related Destinations'
+          name: 'Related Accommodation - Destination'
         }
       },
       innerBlocks: [['core/group', {}, [['core/heading', {
         content: 'Related Destinations',
         textAlign: 'center'
-      }], ['core/query', {
-        query: {
-          postType: 'destination',
-          perPage: 3
+      }], ['core/group', {
+        style: {
+          spacing: {
+            blockGap: '2rem'
+          }
+        },
+        layout: {
+          type: 'grid',
+          columnCount: 3
         }
-      }]]]]
+      }, [['core/group', {
+        style: {
+          border: {
+            width: '1px',
+            style: 'solid',
+            color: '#e0e0e0'
+          },
+          spacing: {
+            padding: '1rem'
+          }
+        }
+      }, [['core/heading', {
+        content: 'Kruger National Park',
+        level: 3
+      }], ['core/paragraph', {
+        content: 'Premier wildlife destination offering exceptional safari experiences and diverse ecosystems.'
+      }]]], ['core/group', {
+        style: {
+          border: {
+            width: '1px',
+            style: 'solid',
+            color: '#e0e0e0'
+          },
+          spacing: {
+            padding: '1rem'
+          }
+        }
+      }, [['core/heading', {
+        content: 'Garden Route',
+        level: 3
+      }], ['core/paragraph', {
+        content: 'Scenic coastal route with stunning landscapes, charming towns, and outdoor adventures.'
+      }]]], ['core/group', {
+        style: {
+          border: {
+            width: '1px',
+            style: 'solid',
+            color: '#e0e0e0'
+          },
+          spacing: {
+            padding: '1rem'
+          }
+        }
+      }, [['core/heading', {
+        content: 'Drakensberg Mountains',
+        level: 3
+      }], ['core/paragraph', {
+        content: 'Majestic mountain range perfect for hiking, culture, and breathtaking scenery.'
+      }]]]]]]]]
     }
   });
 });

@@ -86,19 +86,120 @@ wp.domReady(() => {
 							},
 						],
 						[
-							"core/query",
+							"core/group",
 							{
-								query: {
-									postType: "accommodation",
-									perPage: 4,
-									meta_query: [
-										{
-											key: "featured",
-											value: "1",
-										},
-									],
+								style: {
+									spacing: {
+										blockGap: "2rem",
+									},
+								},
+								layout: {
+									type: "grid",
+									columnCount: 2,
 								},
 							},
+							[
+								[
+									"core/group",
+									{
+										style: {
+											border: {
+												width: "1px",
+												style: "solid",
+												color: "#e0e0e0",
+											},
+											spacing: {
+												padding: "1rem",
+											},
+										},
+									},
+									[
+										["core/heading", { content: "Premium Ocean View Suite", level: 3 }],
+										[
+											"core/paragraph",
+											{
+												content:
+													"Luxury beachfront accommodation with panoramic ocean views, private balcony, and exclusive amenities.",
+											},
+										],
+									],
+								],
+								[
+									"core/group",
+									{
+										style: {
+											border: {
+												width: "1px",
+												style: "solid",
+												color: "#e0e0e0",
+											},
+											spacing: {
+												padding: "1rem",
+											},
+										},
+									},
+									[
+										["core/heading", { content: "Executive Mountain Lodge", level: 3 }],
+										[
+											"core/paragraph",
+											{
+												content:
+													"Featured mountain retreat with stunning alpine views and world-class spa facilities.",
+											},
+										],
+									],
+								],
+								[
+									"core/group",
+									{
+										style: {
+											border: {
+												width: "1px",
+												style: "solid",
+												color: "#e0e0e0",
+											},
+											spacing: {
+												padding: "1rem",
+											},
+										},
+									},
+									[
+										["core/heading", { content: "Boutique City Hotel", level: 3 }],
+										[
+											"core/paragraph",
+											{
+												content:
+													"Award-winning boutique hotel in the heart of downtown with personalized service and modern design.",
+											},
+										],
+									],
+								],
+								[
+									"core/group",
+									{
+										style: {
+											border: {
+												width: "1px",
+												style: "solid",
+												color: "#e0e0e0",
+											},
+											spacing: {
+												padding: "1rem",
+											},
+										},
+									},
+									[
+										["core/heading", { content: "Safari Camp Deluxe", level: 3 }],
+										[
+											"core/paragraph",
+											{
+												content:
+													"Exclusive safari camp offering luxury tented accommodation with wildlife viewing and gourmet dining.",
+											},
+										],
+									],
+								],
+							],
 						],
 					],
 				],

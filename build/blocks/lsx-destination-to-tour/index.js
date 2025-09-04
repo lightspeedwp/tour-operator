@@ -52,18 +52,71 @@ wp.domReady(() => {
     example: {
       attributes: {
         metadata: {
-          name: "Destination to Tour"
+          name: "Tours from this Destination"
         }
       },
       innerBlocks: [["core/group", {}, [["core/heading", {
         content: "Tours from this Destination",
         level: 3
-      }], ["core/query", {
-        query: {
-          postType: "tour",
-          perPage: 3
+      }], ["core/group", {
+        style: {
+          spacing: {
+            blockGap: "2rem"
+          }
+        },
+        layout: {
+          type: "grid",
+          columnCount: 3
         }
-      }]]]]
+      }, [["core/group", {
+        style: {
+          border: {
+            width: "1px",
+            style: "solid",
+            color: "#e0e0e0"
+          },
+          spacing: {
+            padding: "1rem"
+          }
+        }
+      }, [["core/heading", {
+        content: "Wildlife Photography Tour",
+        level: 3
+      }], ["core/paragraph", {
+        content: "Capture stunning wildlife moments with professional photography guides in this breathtaking destination."
+      }]]], ["core/group", {
+        style: {
+          border: {
+            width: "1px",
+            style: "solid",
+            color: "#e0e0e0"
+          },
+          spacing: {
+            padding: "1rem"
+          }
+        }
+      }, [["core/heading", {
+        content: "Adventure Hiking Expedition",
+        level: 3
+      }], ["core/paragraph", {
+        content: "Explore scenic trails and discover hidden gems with experienced local guides."
+      }]]], ["core/group", {
+        style: {
+          border: {
+            width: "1px",
+            style: "solid",
+            color: "#e0e0e0"
+          },
+          spacing: {
+            padding: "1rem"
+          }
+        }
+      }, [["core/heading", {
+        content: "Cultural Immersion Experience",
+        level: 3
+      }], ["core/paragraph", {
+        content: "Connect with local communities and learn about traditional customs and heritage."
+      }]]]]]]]]
     }
   });
 });

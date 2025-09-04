@@ -74,18 +74,67 @@ wp.domReady(() => {
     example: {
       attributes: {
         metadata: {
-          name: "Related Reviews - Tour"
+          name: "Tour Reviews"
         }
       },
       innerBlocks: [["core/group", {}, [["core/heading", {
         content: "Tour Reviews",
         level: 3
-      }], ["core/query", {
-        query: {
-          postType: "review",
-          perPage: 3
+      }], ["core/group", {
+        style: {
+          spacing: {
+            blockGap: "1.5rem"
+          }
         }
-      }]]]]
+      }, [["core/group", {
+        style: {
+          border: {
+            width: "1px",
+            style: "solid",
+            color: "#e0e0e0"
+          },
+          spacing: {
+            padding: "1rem"
+          }
+        }
+      }, [["core/heading", {
+        content: "Amazing Safari Experience",
+        level: 4
+      }], ["core/paragraph", {
+        content: '"The tour exceeded all our expectations! The guide was knowledgeable and the wildlife viewing was incredible. Highly recommended!" - Sarah M.'
+      }]]], ["core/group", {
+        style: {
+          border: {
+            width: "1px",
+            style: "solid",
+            color: "#e0e0e0"
+          },
+          spacing: {
+            padding: "1rem"
+          }
+        }
+      }, [["core/heading", {
+        content: "Unforgettable Journey",
+        level: 4
+      }], ["core/paragraph", {
+        content: '"Perfect organization from start to finish. The accommodations were excellent and the itinerary was well-planned." - David L.'
+      }]]], ["core/group", {
+        style: {
+          border: {
+            width: "1px",
+            style: "solid",
+            color: "#e0e0e0"
+          },
+          spacing: {
+            padding: "1rem"
+          }
+        }
+      }, [["core/heading", {
+        content: "Highly Professional",
+        level: 4
+      }], ["core/paragraph", {
+        content: '"Outstanding service and attention to detail. This tour company knows how to create memorable experiences." - Jennifer K.'
+      }]]]]]]]]
     }
   });
 });

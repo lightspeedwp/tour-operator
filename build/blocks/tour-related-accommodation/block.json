@@ -32,13 +32,110 @@
             }
           ],
           [
-            "core/query",
+            "core/group",
             {
-              "query": {
-                "postType": "accommodation",
-                "perPage": 3
+              "style": {
+                "spacing": {
+                  "blockGap": "2rem"
+                }
+              },
+              "layout": {
+                "type": "grid",
+                "columnCount": 3
               }
-            }
+            },
+            [
+              [
+                "core/group",
+                {
+                  "style": {
+                    "border": {
+                      "width": "1px",
+                      "style": "solid",
+                      "color": "#e0e0e0"
+                    },
+                    "spacing": {
+                      "padding": "1rem"
+                    }
+                  }
+                },
+                [
+                  [
+                    "core/heading",
+                    {
+                      "content": "Safari Lodge",
+                      "level": 3
+                    }
+                  ],
+                  [
+                    "core/paragraph",
+                    {
+                      "content": "Luxury safari lodge with panoramic views of the Serengeti and exceptional wildlife viewing opportunities."
+                    }
+                  ]
+                ]
+              ],
+              [
+                "core/group",
+                {
+                  "style": {
+                    "border": {
+                      "width": "1px",
+                      "style": "solid",
+                      "color": "#e0e0e0"
+                    },
+                    "spacing": {
+                      "padding": "1rem"
+                    }
+                  }
+                },
+                [
+                  [
+                    "core/heading",
+                    {
+                      "content": "Boutique Resort",
+                      "level": 3
+                    }
+                  ],
+                  [
+                    "core/paragraph",
+                    {
+                      "content": "Intimate boutique resort offering personalized service and unique cultural experiences."
+                    }
+                  ]
+                ]
+              ],
+              [
+                "core/group",
+                {
+                  "style": {
+                    "border": {
+                      "width": "1px",
+                      "style": "solid",
+                      "color": "#e0e0e0"
+                    },
+                    "spacing": {
+                      "padding": "1rem"
+                    }
+                  }
+                },
+                [
+                  [
+                    "core/heading",
+                    {
+                      "content": "Eco Camp",
+                      "level": 3
+                    }
+                  ],
+                  [
+                    "core/paragraph",
+                    {
+                      "content": "Sustainable eco-camp providing authentic wilderness experiences with minimal environmental impact."
+                    }
+                  ]
+                ]
+              ]
+            ]
           ]
         ]
       ]

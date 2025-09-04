@@ -75,18 +75,67 @@ wp.domReady(() => {
     example: {
       attributes: {
         metadata: {
-          name: "Related Reviews - Destinations"
+          name: "Destination Reviews"
         }
       },
       innerBlocks: [["core/group", {}, [["core/heading", {
         content: "Destination Reviews",
         level: 3
-      }], ["core/query", {
-        query: {
-          postType: "review",
-          perPage: 3
+      }], ["core/group", {
+        style: {
+          spacing: {
+            blockGap: "1.5rem"
+          }
         }
-      }]]]]
+      }, [["core/group", {
+        style: {
+          border: {
+            width: "1px",
+            style: "solid",
+            color: "#e0e0e0"
+          },
+          spacing: {
+            padding: "1rem"
+          }
+        }
+      }, [["core/heading", {
+        content: "Breathtaking Destination",
+        level: 4
+      }], ["core/paragraph", {
+        content: '"Absolutely stunning scenery and rich cultural experiences. This destination exceeded all expectations!" - Alexandra P.'
+      }]]], ["core/group", {
+        style: {
+          border: {
+            width: "1px",
+            style: "solid",
+            color: "#e0e0e0"
+          },
+          spacing: {
+            padding: "1rem"
+          }
+        }
+      }, [["core/heading", {
+        content: "Incredible Adventure",
+        level: 4
+      }], ["core/paragraph", {
+        content: '"Perfect blend of adventure and relaxation. The local guides were fantastic and very knowledgeable." - Michael B.'
+      }]]], ["core/group", {
+        style: {
+          border: {
+            width: "1px",
+            style: "solid",
+            color: "#e0e0e0"
+          },
+          spacing: {
+            padding: "1rem"
+          }
+        }
+      }, [["core/heading", {
+        content: "Must-Visit Location",
+        level: 4
+      }], ["core/paragraph", {
+        content: '"A truly magical place with so much to see and do. We can\'t wait to return to explore more!" - Lisa and James H.'
+      }]]]]]]]]
     }
   });
 });

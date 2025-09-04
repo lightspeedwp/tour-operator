@@ -32,13 +32,110 @@
             }
           ],
           [
-            "core/query",
+            "core/group",
             {
-              "query": {
-                "postType": "destination",
-                "perPage": 3
+              "style": {
+                "spacing": {
+                  "blockGap": "2rem"
+                }
+              },
+              "layout": {
+                "type": "grid",
+                "columnCount": 3
               }
-            }
+            },
+            [
+              [
+                "core/group",
+                {
+                  "style": {
+                    "border": {
+                      "width": "1px",
+                      "style": "solid",
+                      "color": "#e0e0e0"
+                    },
+                    "spacing": {
+                      "padding": "1rem"
+                    }
+                  }
+                },
+                [
+                  [
+                    "core/heading",
+                    {
+                      "content": "Cape Town, South Africa",
+                      "level": 3
+                    }
+                  ],
+                  [
+                    "core/paragraph",
+                    {
+                      "content": "Stunning coastal city with Table Mountain, beautiful beaches, and rich cultural heritage."
+                    }
+                  ]
+                ]
+              ],
+              [
+                "core/group",
+                {
+                  "style": {
+                    "border": {
+                      "width": "1px",
+                      "style": "solid",
+                      "color": "#e0e0e0"
+                    },
+                    "spacing": {
+                      "padding": "1rem"
+                    }
+                  }
+                },
+                [
+                  [
+                    "core/heading",
+                    {
+                      "content": "Serengeti National Park",
+                      "level": 3
+                    }
+                  ],
+                  [
+                    "core/paragraph",
+                    {
+                      "content": "World-renowned wildlife sanctuary famous for the Great Migration and Big Five game viewing."
+                    }
+                  ]
+                ]
+              ],
+              [
+                "core/group",
+                {
+                  "style": {
+                    "border": {
+                      "width": "1px",
+                      "style": "solid",
+                      "color": "#e0e0e0"
+                    },
+                    "spacing": {
+                      "padding": "1rem"
+                    }
+                  }
+                },
+                [
+                  [
+                    "core/heading",
+                    {
+                      "content": "Victoria Falls",
+                      "level": 3
+                    }
+                  ],
+                  [
+                    "core/paragraph",
+                    {
+                      "content": "One of the world's largest waterfalls offering breathtaking views and adventure activities."
+                    }
+                  ]
+                ]
+              ]
+            ]
           ]
         ]
       ]

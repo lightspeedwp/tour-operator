@@ -114,13 +114,77 @@ wp.domReady(() => {
 							},
 						],
 						[
-							'core/query',
+							'core/group',
 							{
-								query: {
-									postType: 'tour',
-									perPage: 3,
+								style: {
+									spacing: {
+										blockGap: '2rem',
+									},
+								},
+								layout: {
+									type: 'grid',
+									columnCount: 3,
 								},
 							},
+							[
+								[
+									'core/group',
+									{
+										style: {
+											border: {
+												width: '1px',
+												style: 'solid',
+												color: '#e0e0e0',
+											},
+											spacing: {
+												padding: '1rem',
+											},
+										},
+									},
+									[
+										['core/heading', { content: 'African Safari Adventure', level: 3 }],
+										['core/paragraph', { content: "Embark on an unforgettable 7-day safari experience through Kenya's most spectacular wildlife reserves." }],
+									],
+								],
+								[
+									'core/group',
+									{
+										style: {
+											border: {
+												width: '1px',
+												style: 'solid',
+												color: '#e0e0e0',
+											},
+											spacing: {
+												padding: '1rem',
+											},
+										},
+									},
+									[
+										['core/heading', { content: 'European Cultural Journey', level: 3 }],
+										['core/paragraph', { content: 'Discover the rich history and culture of Europe with visits to iconic cities and historic landmarks.' }],
+									],
+								],
+								[
+									'core/group',
+									{
+										style: {
+											border: {
+												width: '1px',
+												style: 'solid',
+												color: '#e0e0e0',
+											},
+											spacing: {
+												padding: '1rem',
+											},
+										},
+									},
+									[
+										['core/heading', { content: 'Tropical Island Escape', level: 3 }],
+										['core/paragraph', { content: 'Relax and unwind on pristine beaches with crystal clear waters and vibrant coral reefs.' }],
+									],
+								],
+							],
 						],
 					],
 				],

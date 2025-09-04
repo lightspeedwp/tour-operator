@@ -74,18 +74,67 @@ wp.domReady(() => {
     example: {
       attributes: {
         metadata: {
-          name: "Related Reviews - Accommodation"
+          name: "Accommodation Reviews"
         }
       },
       innerBlocks: [["core/group", {}, [["core/heading", {
         content: "Accommodation Reviews",
         level: 3
-      }], ["core/query", {
-        query: {
-          postType: "review",
-          perPage: 3
+      }], ["core/group", {
+        style: {
+          spacing: {
+            blockGap: "1.5rem"
+          }
         }
-      }]]]]
+      }, [["core/group", {
+        style: {
+          border: {
+            width: "1px",
+            style: "solid",
+            color: "#e0e0e0"
+          },
+          spacing: {
+            padding: "1rem"
+          }
+        }
+      }, [["core/heading", {
+        content: "Exceptional Service",
+        level: 4
+      }], ["core/paragraph", {
+        content: '"Beautiful rooms with stunning views. The staff went above and beyond to make our stay memorable." - Maria S.'
+      }]]], ["core/group", {
+        style: {
+          border: {
+            width: "1px",
+            style: "solid",
+            color: "#e0e0e0"
+          },
+          spacing: {
+            padding: "1rem"
+          }
+        }
+      }, [["core/heading", {
+        content: "Perfect Location",
+        level: 4
+      }], ["core/paragraph", {
+        content: '"Amazing location with easy access to attractions. Clean, comfortable, and excellent amenities." - Robert T.'
+      }]]], ["core/group", {
+        style: {
+          border: {
+            width: "1px",
+            style: "solid",
+            color: "#e0e0e0"
+          },
+          spacing: {
+            padding: "1rem"
+          }
+        }
+      }, [["core/heading", {
+        content: "Outstanding Experience",
+        level: 4
+      }], ["core/paragraph", {
+        content: '"From check-in to check-out, everything was perfect. Highly recommend this accommodation!" - Emily R.'
+      }]]]]]]]]
     }
   });
 });

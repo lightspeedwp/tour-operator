@@ -32,13 +32,110 @@
 						}
 					],
 					[
-						"core/query",
+						"core/group",
 						{
-							"query": {
-								"postType": "tour",
-								"perPage": 3
+							"style": {
+								"spacing": {
+									"blockGap": "2rem"
+								}
+							},
+							"layout": {
+								"type": "grid",
+								"columnCount": 3
 							}
-						}
+						},
+						[
+							[
+								"core/group",
+								{
+									"style": {
+										"border": {
+											"width": "1px",
+											"style": "solid",
+											"color": "#e0e0e0"
+										},
+										"spacing": {
+											"padding": "1rem"
+										}
+									}
+								},
+								[
+									[
+										"core/heading",
+										{
+											"content": "Ultimate Safari Adventure",
+											"level": 3
+										}
+									],
+									[
+										"core/paragraph",
+										{
+											"content": "Comprehensive wildlife tour featuring Kenya's most famous national parks and reserves."
+										}
+									]
+								]
+							],
+							[
+								"core/group",
+								{
+									"style": {
+										"border": {
+											"width": "1px",
+											"style": "solid",
+											"color": "#e0e0e0"
+										},
+										"spacing": {
+											"padding": "1rem"
+										}
+									}
+								},
+								[
+									[
+										"core/heading",
+										{
+											"content": "Cultural Heritage Journey",
+											"level": 3
+										}
+									],
+									[
+										"core/paragraph",
+										{
+											"content": "Immersive cultural experience exploring local traditions, communities, and historical sites."
+										}
+									]
+								]
+							],
+							[
+								"core/group",
+								{
+									"style": {
+										"border": {
+											"width": "1px",
+											"style": "solid",
+											"color": "#e0e0e0"
+										},
+										"spacing": {
+											"padding": "1rem"
+										}
+									}
+								},
+								[
+									[
+										"core/heading",
+										{
+											"content": "Mountain Trekking Expedition",
+											"level": 3
+										}
+									],
+									[
+										"core/paragraph",
+										{
+											"content": "Challenging mountain adventure with breathtaking views and professional guides."
+										}
+									]
+								]
+							]
+						]
 					]
 				]
 			]

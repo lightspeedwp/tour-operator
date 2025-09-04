@@ -75,18 +75,70 @@ wp.domReady(() => {
       attributes: {
         metadata: {
           name: 'Related Accommodation'
-        },
-        className: 'lsx-accommodation-related-accommodation-query-wrapper'
+        }
       },
       innerBlocks: [['core/group', {}, [['core/heading', {
         content: 'Related Accommodation',
         textAlign: 'center'
-      }], ['core/query', {
-        query: {
-          postType: 'accommodation',
-          perPage: 3
+      }], ['core/group', {
+        style: {
+          spacing: {
+            blockGap: '2rem'
+          }
+        },
+        layout: {
+          type: 'grid',
+          columnCount: 3
         }
-      }, [['core/post-template', {}, [['core/post-title'], ['core/post-excerpt']]]]]]]]
+      }, [['core/group', {
+        style: {
+          border: {
+            width: '1px',
+            style: 'solid',
+            color: '#e0e0e0'
+          },
+          spacing: {
+            padding: '1rem'
+          }
+        }
+      }, [['core/heading', {
+        content: 'Luxury Beach Resort',
+        level: 3
+      }], ['core/paragraph', {
+        content: 'Experience ultimate comfort at our beachfront resort with stunning ocean views and world-class amenities.'
+      }]]], ['core/group', {
+        style: {
+          border: {
+            width: '1px',
+            style: 'solid',
+            color: '#e0e0e0'
+          },
+          spacing: {
+            padding: '1rem'
+          }
+        }
+      }, [['core/heading', {
+        content: 'Mountain Lodge',
+        level: 3
+      }], ['core/paragraph', {
+        content: 'Cozy mountain retreat perfect for nature lovers seeking tranquility and adventure in the wilderness.'
+      }]]], ['core/group', {
+        style: {
+          border: {
+            width: '1px',
+            style: 'solid',
+            color: '#e0e0e0'
+          },
+          spacing: {
+            padding: '1rem'
+          }
+        }
+      }, [['core/heading', {
+        content: 'City Center Hotel',
+        level: 3
+      }], ['core/paragraph', {
+        content: 'Modern urban accommodation in the heart of the city with easy access to attractions and dining.'
+      }]]]]]]]]
     },
     isActive: (blockAttributes, variationAttributes) => {
       return blockAttributes.className === 'lsx-accommodation-related-accommodation-query-wrapper' || blockAttributes.className && blockAttributes.className.includes('lsx-accommodation-related-accommodation-query-wrapper');
