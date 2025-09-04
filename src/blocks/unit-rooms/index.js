@@ -1,6 +1,5 @@
 wp.domReady(() => {
-
-wp.blocks.registerBlockVariation("core/group", {
+	wp.blocks.registerBlockVariation("core/group", {
 		name: "lsx-tour-operator/unit-rooms",
 		title: "Rooms",
 		icon: "admin-home",
@@ -11,7 +10,7 @@ wp.blocks.registerBlockVariation("core/group", {
 				bindings: {
 					content: {
 						source: "lsx/accommodation-units",
-						type: "rooms"
+						type: "rooms",
 					},
 				},
 			},
@@ -21,14 +20,44 @@ wp.blocks.registerBlockVariation("core/group", {
 			},
 		},
 		innerBlocks: [
-			['core/pattern', {
-				slug: 'lsx-tour-operator/room-card'
-			}]
+			[
+				"core/pattern",
+				{
+					slug: "lsx-tour-operator/room-card",
+				},
+			],
 		],
 		parent: ["lsx-tour-operator/units"], // Restricts to "lsx-tour-operator/units" block
 		supports: {
-			renaming: false
-		}
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: "Rooms",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/group",
+					{},
+					[
+						[
+							"core/heading",
+							{
+								content: "Rooms",
+								level: 3,
+							},
+						],
+						[
+							"core/paragraph",
+							{
+								content: "Spacious rooms with safari views",
+							},
+						],
+					],
+				],
+			],
+		},
 	});
-
 });

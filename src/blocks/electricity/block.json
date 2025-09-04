@@ -1,8 +1,44 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/electricity",
-  "title": "Electricity",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/electricity",
+	"title": "Electricity",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Display electrical standards and power information.",
+	"icon": "admin-plugins",
+	"keywords": [
+		"electricity",
+		"power",
+		"utilities"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Electricity"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Electricity",
+							"level": 3
+						}
+					],
+					[
+						"core/paragraph",
+						{
+							"content": "230V, 50Hz. Type M plugs (3-pin)."
+						}
+					]
+				]
+			]
+		]
+	}
 }

@@ -1,1 +1,489 @@
-(()=>{var e=Object.create(null);window.location.hash&&((document.body||document.documentElement).scrollIntoView(),setTimeout(function(){(document.body||document.documentElement).scrollIntoView()},1)),function(t,o,i){"use strict";var n=t(i),s=t(o),r=(o.innerHeight||i.documentElement.clientHeight||i.body.clientHeight,o.innerWidth||i.documentElement.clientWidth||i.body.clientWidth);e.set_easing_scroll_on_page_load=function(){if(o.location.hash){var e=t(o.location.hash),i=parseInt(e.offset().top);i-=t("#wpadminbar").length>0?t("#wpadminbar").outerHeight(!0):0,i-=t(".top-menu-fixed #masthead").length>0?t(".top-menu-fixed #masthead").outerHeight(!0):0,i-=t(".lsx-to-navigation").length>0?t(".lsx-to-navigation").outerHeight(!0):0,t("html, body").animate({scrollTop:i},800)}},e.set_read_more=function(){t(".single-tour-operator .wp-block-read-more").each(function(){0<t(this).parent(".wp-block-group").find(".wp-block-post-content").length&&(e.readMoreText=t(this).contents().filter(function(){return this.nodeType===Node.TEXT_NODE}).text(),e.readMoreSet(t(this),t(this).parent(".wp-block-group").find(".wp-block-post-content")))}),t(".single-tour-operator .wp-block-read-more").on("click",function(o){o.preventDefault(),0<t(this).parent(".wp-block-group").find(".wp-block-post-content").length&&(t(this).hide(),t(this).hasClass("less-link")?e.readMoreSet(t(this),t(this).parent(".wp-block-group").find(".wp-block-post-content")):e.readMoreOpen(t(this),t(this).parent(".wp-block-group").find(".wp-block-post-content")),t(this).show())})},e.readMoreSet=function(o,i,n=1){if(0<i.length){if(1<i.children().length){let e=0;i.children().each(function(){n<=e&&t(this).hide(),e++})}else o.hide();o.removeClass("less-link"),o.text(e.readMoreText)}else o.hide()},e.readMoreOpen=function(e,o){0<o.children().length&&(o.children().each(function(){t(this).hasClass("wp-block-read-more")||t(this).show()}),e.addClass("less-link"),e.text("Read Less"),e.show())},e.readMoreItinText="",e.set_read_more_itinerary=function(){t(".single-tour-operator .lsx-itinerary-wrapper .wp-block-read-more").each(function(){t(this).show(),e.readMoreItinText=t(this).find("a").text(),e.readMoreSet(t(this),t(this).parent("div").find(".itinerary-description"))}),t(".single-tour-operator .lsx-itinerary-wrapper .wp-block-read-more").on("click",function(o){o.preventDefault(),t(this).hide(),t(this).hasClass("less-link")?e.readMoreSet(t(this),t(this).parent("div").find(".itinerary-description")):e.readMoreOpen(t(this),t(this).parent("div").find(".itinerary-description")),t(this).show()})},e.pre_build_slider=function(e){e.removeClass("is-layout-grid"),e.on("init",function(t,o){o.options.arrows&&o.slideCount>o.options.slidesToShow&&e.addClass("slick-has-arrows")}),e.on("setPosition",function(t,o){o.options.arrows?o.slideCount>o.options.slidesToShow&&e.addClass("slick-has-arrows"):e.removeClass("slick-has-arrows")})},e.get_responsive_breakpoints=function(e){return[{breakpoint:1228,settings:{slidesToShow:e,slidesToScroll:1,draggable:!0,arrows:!1,swipe:!0,dots:!0}},{breakpoint:1028,settings:{slidesToShow:e<=2?1:2,slidesToScroll:1,draggable:!0,arrows:!1,swipe:!0,dots:!0}},{breakpoint:782,settings:{slidesToShow:1,slidesToScroll:1,draggable:!0,arrows:!1,swipe:!0,dots:!0}}]},e.build_slider=function(o){t(".lsx-to-slider:not(.lsx-block-videos) .wp-block-post-template:not(.slider-disabled)").each(function(){var o=t(this);let i=3;e.pre_build_slider(o),console.log(o);const n=o.attr("class").match(/columns-\S*/g);0<n.length&&(i=n[0].split("-")[1]),1<o.children().length&&o.slick({draggable:!1,infinite:!0,swipe:!1,dots:!0,slidesToShow:i,slidesToScroll:1,autoplay:!1,autoplaySpeed:0,appendArrows:o.parent(),appendDots:o.parent(),responsive:e.get_responsive_breakpoints(i)})}),t(".lsx-travel-information-wrapper.lsx-to-slider .travel-information:not(.slider-disabled)").each(function(){var o=t(this);e.pre_build_slider(o),1<o.children().length&&(o.slick({draggable:!1,infinite:!0,swipe:!1,dots:!0,slidesToShow:4,slidesToScroll:1,autoplay:!1,autoplaySpeed:0,appendArrows:o.parent(),appendDots:o.parent(),responsive:[{breakpoint:1028,settings:{slidesToShow:3,slidesToScroll:1,draggable:!0,arrows:!0,swipe:!0,dots:!0}},{breakpoint:782,settings:{slidesToShow:1,slidesToScroll:1,draggable:!0,arrows:!0,swipe:!0,dots:!0}}]}),o.on("init",function(e,t){"function"==typeof toModalBootstrap&&toModalBootstrap()}))}),e.build_video_slider()},e.build_video_slider=function(){t(".lsx-block-videos.lsx-to-slider:not(.slider-disabled):not(.slick-initialized)").each(function(){var o=t(this);let i=3;e.pre_build_slider(o);const n=(o.attr("class")||"").match(/\bcolumns-(\d+)\b/);n&&n[1]&&(i=Number.parseInt(n[1],10)||i),o.removeClass("is-layout-flex wp-block-gallery-is-layout-flex is-layout-grid"),1<o.children().length&&o.slick({draggable:!1,infinite:!0,swipe:!1,dots:!0,slidesToShow:i,slidesToScroll:1,autoplay:!1,autoplaySpeed:0,responsive:e.get_responsive_breakpoints(i,o.children().length)})})},e.watch_for_youtube_videos=function(){const t=i.querySelectorAll(".lsx-block-videos");if(0===t.length)return;const o=new MutationObserver(function(t){let o=!1,i=null;t.forEach(function(e){"childList"===e.type&&e.addedNodes.forEach(function(e){1===e.nodeType&&("IFRAME"===e.tagName&&(e=>{if(!e)return!1;const t=e.src||"";return/youtube\.com|youtube-nocookie\.com|youtu\.be/i.test(t)})(e)||e.querySelector&&e.querySelector('iframe[src*="youtube.com"],iframe[src*="youtube-nocookie.com"],iframe[src*="youtu.be"]'))&&(o=!0)})}),o&&(clearTimeout(i),i=setTimeout(function(){e.build_video_slider()},200))});t.forEach(function(e){o.observe(e,{childList:!0,subtree:!0})})},e.build_slider_lightbox=function(){if(0<t(".wp-block-gallery.has-nested-images").length&&t(".wp-block-gallery.has-nested-images").slickLightbox({caption:function(e,o){return t(e).find("img").attr("alt")}}),0<t(".lsx-units-wrapper .unit-image a").length){let e=t(".lsx-units-wrapper .unit-image a img").map(function(){return t(this).attr("src")}).get();console.log(e),t(".lsx-units-wrapper").slickLightbox({itemSelector:".unit-image a",caption:function(e,o){return t(e).find("img").attr("alt")}})}},s.resize(function(){o.innerHeight||i.documentElement.clientHeight||i.body.clientHeight,r=o.innerWidth||i.documentElement.clientWidth||i.body.clientWidth}),n.ready(function(){e.readMoreText="Read more",e.set_read_more(),e.set_read_more_itinerary(),e.build_slider(r),e.watch_for_youtube_videos()}),s.on("load",function(){e.build_slider_lightbox()}),i.addEventListener("DOMContentLoaded",function(){i.querySelectorAll(".single-tour-operator section.wp-block-group, .single-tour-operator section.wp-block-cover").forEach(e=>{const t=e.querySelector("h2"),o=e.querySelectorAll(".wp-block-group")[1];if(t&&o){const e=i.createElement("button");e.classList.add("toggle-button"),e.innerHTML='\n\t\t\t\t\t<svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">\n\t\t\t\t\t\t<path class="icon-down" d="M1 5l7 7 7-7H1z"></path>\n\t\t\t\t\t\t<path class="icon-up" d="M1 11l7-7 7 7H1z" style="display: none;"></path>\n\t\t\t\t\t</svg>\n\t\t\t\t',t.insertAdjacentElement("afterend",e),e.addEventListener("click",function(){o.classList.toggle("collapsed");const t=e.querySelector(".icon-down"),i=e.querySelector(".icon-up");o.classList.contains("collapsed")?(t.style.display="none",i.style.display="inline"):(t.style.display="inline",i.style.display="none")})}})})}(jQuery,window,document)})();
+/******/ (() => { // webpackBootstrap
+/*!**************************!*\
+  !*** ./src/js/custom.js ***!
+  \**************************/
+/**
+ * Scripts
+ *
+ * @package    tour-operator
+ * @subpackage scripts
+ */
+
+var lsx_to = Object.create(null);
+if (window.location.hash) {
+  (document.body || document.documentElement).scrollIntoView();
+  setTimeout(function () {
+    (document.body || document.documentElement).scrollIntoView();
+  }, 1);
+}
+(function ($, window, document, undefined) {
+  "use strict";
+
+  var $document = $(document),
+    $window = $(window),
+    window_height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight,
+    window_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+  /**
+   * Easing browser scroll on page load (document URL with hash).
+   *
+   * @package    tour-operator
+   * @subpackage scripts
+   */
+  lsx_to.set_easing_scroll_on_page_load = function () {
+    if (window.location.hash) {
+      var $to = $(window.location.hash),
+        top = parseInt($to.offset().top);
+      top -= $("#wpadminbar").length > 0 ? $("#wpadminbar").outerHeight(true) : 0;
+      top -= $(".top-menu-fixed #masthead").length > 0 ? $(".top-menu-fixed #masthead").outerHeight(true) : 0;
+      top -= $(".lsx-to-navigation").length > 0 ? $(".lsx-to-navigation").outerHeight(true) : 0;
+      $("html, body").animate({
+        scrollTop: top
+      }, 800);
+    }
+  };
+
+  /**
+   * Read more effect.
+   *
+   * @package    tour-operator
+   * @subpackage scripts
+   */
+  lsx_to.set_read_more = function () {
+    $(".single-tour-operator .wp-block-read-more").each(function () {
+      if (0 < $(this).parent(".wp-block-group").find(".wp-block-post-content").length) {
+        lsx_to.readMoreText = $(this).contents().filter(function () {
+          return this.nodeType === Node.TEXT_NODE;
+        }).text();
+        lsx_to.readMoreSet($(this), $(this).parent(".wp-block-group").find(".wp-block-post-content"));
+      }
+    });
+    $(".single-tour-operator .wp-block-read-more").on("click", function (event) {
+      event.preventDefault();
+      if (0 < $(this).parent(".wp-block-group").find(".wp-block-post-content").length) {
+        $(this).hide();
+        if ($(this).hasClass("less-link")) {
+          lsx_to.readMoreSet($(this), $(this).parent(".wp-block-group").find(".wp-block-post-content"));
+        } else {
+          lsx_to.readMoreOpen($(this), $(this).parent(".wp-block-group").find(".wp-block-post-content"));
+        }
+        $(this).show();
+      }
+    });
+  };
+  lsx_to.readMoreSet = function (button, contentWrapper, limit = 1) {
+    if (0 < contentWrapper.length) {
+      if (1 < contentWrapper.children().length) {
+        let counter = 0;
+        contentWrapper.children().each(function () {
+          if (limit <= counter) {
+            $(this).hide();
+          }
+          counter++;
+        });
+      } else {
+        button.hide();
+      }
+      button.removeClass("less-link");
+      button.text(lsx_to.readMoreText);
+    } else {
+      button.hide();
+    }
+  };
+  lsx_to.readMoreOpen = function (button, contentWrapper) {
+    if (0 < contentWrapper.children().length) {
+      contentWrapper.children().each(function () {
+        if (!$(this).hasClass("wp-block-read-more")) {
+          $(this).show();
+        }
+      });
+      button.addClass("less-link");
+      button.text("Read Less");
+      button.show();
+    }
+  };
+
+  /**
+   * Read more (itinerary) effect.
+   *
+   * @package    tour-operator
+   * @subpackage scripts
+   */
+
+  lsx_to.readMoreItinText = "";
+  lsx_to.set_read_more_itinerary = function () {
+    $(".single-tour-operator .lsx-itinerary-wrapper .wp-block-read-more").each(function () {
+      $(this).show();
+      lsx_to.readMoreItinText = $(this).find("a").text();
+      lsx_to.readMoreSet($(this), $(this).parent("div").find(".itinerary-description"));
+    });
+    $(".single-tour-operator .lsx-itinerary-wrapper .wp-block-read-more").on("click", function (event) {
+      event.preventDefault();
+      $(this).hide();
+      if ($(this).hasClass("less-link")) {
+        lsx_to.readMoreSet($(this), $(this).parent("div").find(".itinerary-description"));
+      } else {
+        lsx_to.readMoreOpen($(this), $(this).parent("div").find(".itinerary-description"));
+      }
+      $(this).show();
+    });
+  };
+
+  /**
+   * Slider - Pre build.
+   *
+   * @package    tour-operator
+   * @subpackage scripts
+   */
+  lsx_to.pre_build_slider = function ($slider) {
+    $slider.removeClass("is-layout-grid");
+    $slider.on("init", function (event, slick) {
+      if (slick.options.arrows && slick.slideCount > slick.options.slidesToShow) {
+        $slider.addClass("slick-has-arrows");
+      }
+    });
+    $slider.on("setPosition", function (event, slick) {
+      if (!slick.options.arrows) {
+        $slider.removeClass("slick-has-arrows");
+      } else if (slick.slideCount > slick.options.slidesToShow) {
+        $slider.addClass("slick-has-arrows");
+      }
+    });
+  };
+
+  /**
+   * Get responsive breakpoints for sliders
+   *
+   * @package    tour-operator
+   * @subpackage scripts
+   */
+  lsx_to.get_responsive_breakpoints = function (slidesToShow) {
+    return [{
+      breakpoint: 1228,
+      settings: {
+        slidesToShow: slidesToShow,
+        slidesToScroll: 1,
+        draggable: true,
+        arrows: false,
+        swipe: true,
+        dots: true
+      }
+    }, {
+      breakpoint: 1028,
+      settings: {
+        slidesToShow: slidesToShow <= 2 ? 1 : 2,
+        slidesToScroll: 1,
+        draggable: true,
+        arrows: false,
+        swipe: true,
+        dots: true
+      }
+    }, {
+      breakpoint: 782,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        draggable: true,
+        arrows: false,
+        swipe: true,
+        dots: true
+      }
+    }];
+  };
+
+  /**
+   * Slider.
+   *
+   * @package    tour-operator
+   * @subpackage scripts
+   */
+  lsx_to.build_slider = function (window_width) {
+    // First slider: .lsx-to-slider
+    $(".lsx-to-slider:not(.lsx-block-videos) .wp-block-post-template:not(.slider-disabled)").each(function () {
+      var $this = $(this);
+      let slidesToShow = 3;
+      lsx_to.pre_build_slider($this);
+      const str = $this.attr('class');
+      const classRegex = /columns-\S*/g;
+      const matches = str.match(classRegex);
+      if (0 < matches.length) {
+        const column = matches[0].split('-')[1];
+        slidesToShow = column;
+      }
+      if (1 < $this.children().length) {
+        $this.slick({
+          draggable: false,
+          infinite: true,
+          swipe: false,
+          dots: true,
+          slidesToShow: slidesToShow,
+          // Show 3 items at a time
+          slidesToScroll: 1,
+          // Scroll 1 item at a time
+          autoplay: false,
+          autoplaySpeed: 0,
+          appendArrows: $this.parent(),
+          // Ensure arrows are appended correctly
+          appendDots: $this.parent(),
+          // Append dots in the right container
+          responsive: lsx_to.get_responsive_breakpoints(slidesToShow)
+        });
+      }
+    });
+
+    // Second slider: .lsx-to-slider.travel-information
+    $(".lsx-travel-information-wrapper.lsx-to-slider .travel-information:not(.slider-disabled)").each(function () {
+      var $this = $(this);
+      lsx_to.pre_build_slider($this);
+
+      // Ensure the second slider has 4 slides showing
+      if (1 < $this.children().length) {
+        $this.slick({
+          draggable: false,
+          infinite: true,
+          swipe: false,
+          dots: true,
+          slidesToShow: 4,
+          // Show 4 items at a time
+          slidesToScroll: 1,
+          // Scroll 1 item at a time
+          autoplay: false,
+          autoplaySpeed: 0,
+          appendArrows: $this.parent(),
+          // Ensure arrows are appended correctly for this slider
+          appendDots: $this.parent(),
+          // Append dots in the correct place
+          responsive: [{
+            breakpoint: 1028,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 1,
+              draggable: true,
+              arrows: true,
+              swipe: true,
+              dots: true
+            }
+          }, {
+            breakpoint: 782,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              draggable: true,
+              arrows: true,
+              swipe: true,
+              dots: true
+            }
+          }]
+        });
+        $this.on('init', function (event, slick) {
+          if (typeof toModalBootstrap === "function") {
+            toModalBootstrap();
+          }
+        });
+      }
+    });
+    lsx_to.build_video_slider();
+  };
+
+  /**
+   * Video Slider.
+   *
+   * @package    tour-operator
+   * @subpackage scripts
+   */
+  lsx_to.build_video_slider = function () {
+    // Video Slider
+    $(".lsx-block-videos.lsx-to-slider:not(.slider-disabled):not(.slick-initialized)").each(function () {
+      var $this = $(this);
+      let slidesToShow = 3;
+      lsx_to.pre_build_slider($this);
+      const str = $this.attr('class') || '';
+      const classRegex = /\bcolumns-(\d+)\b/;
+      const m = str.match(classRegex);
+      if (m && m[1]) {
+        slidesToShow = Number.parseInt(m[1], 10) || slidesToShow;
+      }
+      $this.removeClass('is-layout-flex wp-block-gallery-is-layout-flex is-layout-grid');
+      if (1 < $this.children().length) {
+        $this.slick({
+          draggable: false,
+          infinite: true,
+          swipe: false,
+          dots: true,
+          slidesToShow: slidesToShow,
+          // Show 3 items at a time
+          slidesToScroll: 1,
+          // Scroll 1 item at a time
+          autoplay: false,
+          autoplaySpeed: 0,
+          //appendArrows: $this.parent(), // Ensure arrows are appended correctly
+          //appendDots: $this.parent(), // Append dots in the right container
+          responsive: lsx_to.get_responsive_breakpoints(slidesToShow, $this.children().length)
+        });
+      }
+    });
+  };
+
+  /**
+   * Watch for YouTube videos to load and initialize video slider
+   *
+   * @package    tour-operator
+   * @subpackage scripts
+   */
+  lsx_to.watch_for_youtube_videos = function () {
+    // Only observe video containers to reduce performance impact
+    const videoContainers = document.querySelectorAll('.lsx-block-videos');
+    if (videoContainers.length === 0) {
+      return; // No video containers found, exit early
+    }
+
+    // Create a MutationObserver to watch for YouTube iframes
+    const observer = new MutationObserver(function (mutations) {
+      let shouldInitSlider = false;
+      const isYouTube = el => {
+        if (!el) return false;
+        const src = el.src || '';
+        return /youtube\.com|youtube-nocookie\.com|youtu\.be/i.test(src);
+      };
+      let debounceTimer = null;
+      mutations.forEach(function (mutation) {
+        if (mutation.type === 'childList') {
+          mutation.addedNodes.forEach(function (node) {
+            if (node.nodeType === 1) {
+              // Element node
+              // Check if the added node is a YouTube iframe or contains one
+              if (node.tagName === 'IFRAME' && isYouTube(node)) {
+                shouldInitSlider = true;
+              } else if (node.querySelector && node.querySelector('iframe[src*="youtube.com"],iframe[src*="youtube-nocookie.com"],iframe[src*="youtu.be"]')) {
+                shouldInitSlider = true;
+              }
+            }
+          });
+        }
+      });
+      if (shouldInitSlider) {
+        // Small, debounced delay to ensure videos are fully loaded and avoid re-init storms
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function () {
+          lsx_to.build_video_slider();
+        }, 200);
+      }
+    });
+
+    // Observe only video containers instead of entire document
+    videoContainers.forEach(function (container) {
+      observer.observe(container, {
+        childList: true,
+        subtree: true
+      });
+    });
+  };
+
+  /**
+   * Slider Lightbox.
+   *
+   * @package    tour-operator
+   * @subpackage scripts
+   */
+  lsx_to.build_slider_lightbox = function () {
+    if (0 < $(".wp-block-gallery.has-nested-images").length) {
+      $(".wp-block-gallery.has-nested-images").slickLightbox({
+        caption: function (element, info) {
+          return $(element).find("img").attr("alt");
+        }
+      });
+    }
+    if (0 < $(".lsx-units-wrapper .unit-image a").length) {
+      let roomImages = $(".lsx-units-wrapper .unit-image a img").map(function () {
+        return $(this).attr("src");
+      }).get();
+      console.log(roomImages);
+      $(".lsx-units-wrapper").slickLightbox({
+        //images : roomImages,
+        itemSelector: ".unit-image a",
+        caption: function (element, info) {
+          return $(element).find("img").attr("alt");
+        }
+      });
+    }
+  };
+
+  /**
+   * On window resize.
+   *
+   * @package    lsx
+   * @subpackage scripts
+   */
+  $window.resize(function () {
+    window_height = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    window_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  });
+
+  /**
+   * On document ready.
+   *
+   * @package    lsx
+   * @subpackage scripts
+   */
+  $document.ready(function () {
+    lsx_to.readMoreText = "Read more";
+    lsx_to.set_read_more();
+    lsx_to.set_read_more_itinerary();
+    lsx_to.build_slider(window_width);
+    lsx_to.watch_for_youtube_videos(); // Start watching for YouTube videos
+  });
+
+  /**
+   * On window load.
+   *
+   * @package    lsx
+   * @subpackage scripts
+   */
+
+  $window.on("load", function () {
+    lsx_to.build_slider_lightbox();
+  });
+  document.addEventListener("DOMContentLoaded", function () {
+    // Select all sections within `.single-tour-operator`
+    const sections = document.querySelectorAll(".single-tour-operator section.wp-block-group, .single-tour-operator section.wp-block-cover");
+    sections.forEach(section => {
+      // Locate the first <h2> within the section
+      const heading = section.querySelector("h2");
+      // Locate the second div with the class wp-block-group
+      const toggleTarget = section.querySelectorAll(".wp-block-group")[1];
+      if (heading && toggleTarget) {
+        // Create a toggle button
+        const toggleButton = document.createElement("button");
+        toggleButton.classList.add("toggle-button");
+        toggleButton.innerHTML = `
+					<svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+						<path class="icon-down" d="M1 5l7 7 7-7H1z"></path>
+						<path class="icon-up" d="M1 11l7-7 7 7H1z" style="display: none;"></path>
+					</svg>
+				`;
+
+        // Insert the button after the heading
+        heading.insertAdjacentElement("afterend", toggleButton);
+
+        // Add click event listener to toggle visibility of the second wp-block-group
+        toggleButton.addEventListener("click", function () {
+          toggleTarget.classList.toggle("collapsed"); // Add or remove the collapsed class
+
+          // Toggle the display of the up/down icons
+          const iconDown = toggleButton.querySelector(".icon-down");
+          const iconUp = toggleButton.querySelector(".icon-up");
+          if (toggleTarget.classList.contains("collapsed")) {
+            iconDown.style.display = "none";
+            iconUp.style.display = "inline";
+          } else {
+            iconDown.style.display = "inline";
+            iconUp.style.display = "none";
+          }
+        });
+      }
+    });
+  });
+})(jQuery, window, document);
+/******/ })()
+;
+//# sourceMappingURL=custom.js.map

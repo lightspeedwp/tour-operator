@@ -1,8 +1,44 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/safety",
   "title": "Safety",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Show safety tips and security information.",
+  "icon": "shield",
+  "keywords": [
+    "safety",
+    "security",
+    "travel"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Safety"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Safety",
+              "level": 3
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "Safe destination with professional guides and secure accommodation."
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

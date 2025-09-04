@@ -1,8 +1,44 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/not-included",
-  "title": "Not Included",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/not-included",
+	"title": "Excluded Items",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "List what is not included in the tour package.",
+	"icon": "dismiss",
+	"keywords": [
+		"excluded",
+		"not-included",
+		"tour"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Not Included"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Not Included",
+							"level": 3
+						}
+					],
+					[
+						"core/list",
+						{
+							"values": "<li>International flights</li><li>Personal expenses</li><li>Travel insurance</li>"
+						}
+					]
+				]
+			]
+		]
+	}
 }

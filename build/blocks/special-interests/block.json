@@ -1,8 +1,44 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/special-interests",
   "title": "Special Interests",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Display special interest categories and activities.",
+  "icon": "camera",
+  "keywords": [
+    "interests",
+    "special",
+    "activities"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Special Interests"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Special Interests",
+              "level": 3
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "Photography, Birdwatching, Cultural immersion"
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

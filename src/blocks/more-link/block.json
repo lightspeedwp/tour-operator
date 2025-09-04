@@ -1,8 +1,38 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/more-link",
-  "title": "More Link",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/more-link",
+	"title": "More Button",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Add \"read more\" or navigation links.",
+	"icon": "insert-after",
+	"keywords": [
+		"link",
+		"more",
+		"navigation"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "More Link"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/buttons",
+				{},
+				[
+					[
+						"core/button",
+						{
+							"text": "Read More",
+							"url": "#"
+						}
+					]
+				]
+			]
+		]
+	}
 }

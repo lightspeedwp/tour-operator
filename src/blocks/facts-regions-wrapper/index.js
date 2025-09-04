@@ -1,80 +1,105 @@
 wp.domReady(() => {
-
-wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-tour-operator/facts-regions-wrapper',
-		title: 'Regions List',
+	wp.blocks.registerBlockVariation("core/group", {
+		name: "lsx-tour-operator/facts-regions-wrapper",
+		title: "Regions List",
 		icon: "admin-site-alt",
-		category: 'lsx-tour-operator',
+		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
-				name: 'Regions List'
+				name: "Regions List",
 			},
-			className: 'facts-regions-query-wrapper',
+			className: "facts-regions-query-wrapper",
 			layout: {
-				type: 'flex',
-				flexWrap: 'nowrap'
-			}
+				type: "flex",
+				flexWrap: "nowrap",
+			},
 		},
 		innerBlocks: [
 			[
-				'core/group',
-				{	
+				"core/group",
+				{
 					layout: {
-						type: 'flex',
-						flexWrap: 'nowrap',
-						verticalAlignment: 'top'
-					}
+						type: "flex",
+						flexWrap: "nowrap",
+						verticalAlignment: "top",
+					},
 				},
 				[
 					[
-						'core/image',
+						"core/image",
 						{
-							width: '20px',
-							sizeSlug: 'large',
-							url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/09/destinations-icon-black-20px.png',
-							alt: ''
-						}
+							width: "20px",
+							sizeSlug: "large",
+							url: "https://tour-operator.lsx.design/wp-content/uploads/2024/09/destinations-icon-black-20px.png",
+							alt: "",
+						},
 					],
 					[
-						'core/paragraph',
+						"core/paragraph",
 						{
-							content: '<strong>Regions:</strong>'
-						}
-					]
-				]
+							content: "<strong>Regions:</strong>",
+						},
+					],
+				],
 			],
 			[
-				'core/group',
+				"core/group",
 				{
-					
 					layout: {
-						type: 'flex',
-						flexWrap: 'nowrap'
-					}
+						type: "flex",
+						flexWrap: "nowrap",
+					},
 				},
 				[
 					[
-						'core/paragraph',
+						"core/paragraph",
 						{
 							metadata: {
 								bindings: {
 									content: {
 										source: "lsx/post-connection",
 										args: {
-											key: "post_children"
+											key: "post_children",
 										},
 									},
 								},
 							},
-							content: ''
-						}
-					]
-				]
-			]
+							content: "",
+						},
+					],
+				],
+			],
 		],
 		supports: {
-			renaming: false
-		}
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: "Regions List",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/group",
+					{},
+					[
+						[
+							"core/heading",
+							{
+								content: "Regions List",
+								level: 3,
+							},
+						],
+						[
+							"core/list",
+							{
+								values: "<li>Garden Route</li><li>Winelands</li><li>Kruger National Park</li>",
+							},
+						],
+					],
+				],
+			],
+		},
 	});
-
 });

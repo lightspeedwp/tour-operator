@@ -1,8 +1,44 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/spoken-languages",
-  "title": "Spoken Languages",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/spoken-languages",
+	"title": "Spoken Languages",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "List languages spoken in the destination.",
+	"icon": "translation",
+	"keywords": [
+		"language",
+		"communication",
+		"local"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Spoken Languages"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Spoken Languages",
+							"level": 3
+						}
+					],
+					[
+						"core/paragraph",
+						{
+							"content": "English, Afrikaans, Zulu, Xhosa"
+						}
+					]
+				]
+			]
+		]
+	}
 }

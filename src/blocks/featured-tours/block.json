@@ -1,8 +1,53 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/featured-tours",
-  "title": "Featured Tours",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/featured-tours",
+	"title": "Featured Tours",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Displays Tours with the Featured tag.",
+	"icon": "palmtree",
+	"keywords": [
+		"featured",
+		"tours",
+		"highlight"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Featured Tours"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Featured Tours",
+							"textAlign": "center"
+						}
+					],
+					[
+						"core/query",
+						{
+							"query": {
+								"postType": "tour",
+								"perPage": 4,
+								"meta_query": [
+									{
+										"key": "featured",
+										"value": "1"
+									}
+								]
+							}
+						}
+					]
+				]
+			]
+		]
+	}
 }

@@ -1,8 +1,44 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/included",
-  "title": "Included",
+  "title": "Included Items",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "List what is included in the tour package.",
+  "icon": "plus-alt",
+  "keywords": [
+    "included",
+    "features",
+    "tour"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Included"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Included",
+              "level": 3
+            }
+          ],
+          [
+            "core/list",
+            {
+              "values": "<li>Accommodation</li><li>Meals</li><li>Transportation</li><li>Guide services</li>"
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

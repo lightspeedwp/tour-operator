@@ -1,75 +1,116 @@
 wp.domReady(() => {
-
-wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-tour-operator/health',
-		title: 'Health',
+	wp.blocks.registerBlockVariation("core/group", {
+		name: "lsx-tour-operator/health",
+		title: "Health",
 		icon: "insert",
-		category: 'lsx-tour-operator',
+		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
-				name: 'Health',
+				name: "Health",
 			},
-			className: 'lsx-health-wrapper',
+			className: "lsx-health-wrapper",
 			layout: {
-				type: 'constrained'
-			}
+				type: "constrained",
+			},
 		},
 		innerBlocks: [
-			['core/group', {
+			[
+				"core/group",
+				{
 					layout: {
-						type: 'constrained'
-					}
+						type: "constrained",
+					},
 				},
 				[
-					['core/group', {
+					[
+						"core/group",
+						{
 							layout: {
-								type: 'constrained'
-							}
+								type: "constrained",
+							},
 						},
 						[
-							['core/paragraph', {
-								align: 'center',
-								content: '<strong>Health</strong>'
-							}]
-						]
+							[
+								"core/paragraph",
+								{
+									align: "center",
+									content: "<strong>Health</strong>",
+								},
+							],
+						],
 					],
-					['core/group', {
-							
+					[
+						"core/group",
+						{
 							layout: {
-								type: 'constrained'
-							}
+								type: "constrained",
+							},
 						},
 						[
-							['core/paragraph', {
-								
-								metadata: {
-									bindings: {
-										content: {
-											source: 'lsx/post-meta',
-											args: {
-												key: 'health'
-											}
-										}
-									}
-								}
-							}]
-						]
-					]
-				]
+							[
+								"core/paragraph",
+								{
+									metadata: {
+										bindings: {
+											content: {
+												source: "lsx/post-meta",
+												args: {
+													key: "health",
+												},
+											},
+										},
+									},
+								},
+							],
+						],
+					],
+				],
 			],
-			['core/buttons', {},
+			[
+				"core/buttons",
+				{},
 				[
-					['core/button', {
-						backgroundColor: 'primary',
-						width: 100,
-						content: 'View More'
-					}]
-				]
-			]
+					[
+						"core/button",
+						{
+							backgroundColor: "primary",
+							width: 100,
+							content: "View More",
+						},
+					],
+				],
+			],
 		],
 		supports: {
-			renaming: false
-		}
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: "Health",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/group",
+					{},
+					[
+						[
+							"core/heading",
+							{
+								content: "Health",
+								level: 3,
+							},
+						],
+						[
+							"core/paragraph",
+							{
+								content: "No special vaccinations required. Malaria precautions recommended.",
+							},
+						],
+					],
+				],
+			],
+		},
 	});
-
 });

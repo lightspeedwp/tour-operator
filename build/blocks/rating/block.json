@@ -1,8 +1,44 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/rating",
   "title": "Rating",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Show star ratings and review scores.",
+  "icon": "star-empty",
+  "keywords": [
+    "rating",
+    "review",
+    "stars"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Rating"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Rating",
+              "level": 3
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "4.8/5 stars (127 reviews)"
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

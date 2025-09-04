@@ -1,8 +1,44 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/google-map",
-  "title": "Google Map",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/google-map",
+	"title": "Google Map",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Display a Google Map based on the current Tour Operator page.",
+	"icon": "admin-site-alt3",
+	"keywords": [
+		"map",
+		"location",
+		"google"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Google Map"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Location",
+							"level": 3
+						}
+					],
+					[
+						"core/paragraph",
+						{
+							"content": "Interactive map showing tour locations and points of interest."
+						}
+					]
+				]
+			]
+		]
+	}
 }

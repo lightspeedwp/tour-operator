@@ -1,8 +1,44 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/regions",
-  "title": "Regions",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/regions",
+	"title": "Regions",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Display any regions attached to this destination.",
+	"icon": "admin-site-alt3",
+	"keywords": [
+		"regions",
+		"geography",
+		"areas"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Regions"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Regions",
+							"level": 3
+						}
+					],
+					[
+						"core/paragraph",
+						{
+							"content": "Western Cape, Eastern Cape, KwaZulu-Natal"
+						}
+					]
+				]
+			]
+		]
+	}
 }

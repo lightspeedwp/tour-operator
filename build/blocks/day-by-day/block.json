@@ -1,8 +1,44 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/day-by-day",
   "title": "Day by day",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Display day-by-day tour schedule and activities.",
+  "icon": "clipboard",
+  "keywords": [
+    "daily",
+    "schedule",
+    "itinerary"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Day by Day"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Day by Day",
+              "level": 3
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "Detailed daily breakdown of your tour experience."
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

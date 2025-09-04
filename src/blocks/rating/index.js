@@ -1,96 +1,143 @@
 wp.domReady(() => {
-
-wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-tour-operator/rating',
-		title: 'Rating',
+	wp.blocks.registerBlockVariation("core/group", {
+		name: "lsx-tour-operator/rating",
+		title: "Rating",
 		icon: "star-empty",
-		category: 'lsx-tour-operator',
+		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
-				name: 'Rating',
+				name: "Rating",
 			},
-			className: 'lsx-rating-wrapper',
+			className: "lsx-rating-wrapper",
 			layout: {
-				type: 'flex',
-				flexWrap: 'nowrap'
-			}
+				type: "flex",
+				flexWrap: "nowrap",
+			},
 		},
 		innerBlocks: [
-			['core/group', {
-					
+			[
+				"core/group",
+				{
 					layout: {
-						type: 'flex',
-						flexWrap: 'nowrap',
-						verticalAlignment: 'top'
-					}
+						type: "flex",
+						flexWrap: "nowrap",
+						verticalAlignment: "top",
+					},
 				},
 				[
-					['core/image', {
-						width: '20px',
-						sizeSlug: 'large',
-						url: lsxToEditor.assetsUrl + 'blocks/rating-icon-TO.png',
-						alt: ''
-					}],
-					['core/paragraph', {
-						
-						content: '<strong>Rating</strong>:'
-					}]
-				]
+					[
+						"core/image",
+						{
+							width: "20px",
+							sizeSlug: "large",
+							url: lsxToEditor.assetsUrl + "blocks/rating-icon-TO.png",
+							alt: "",
+						},
+					],
+					[
+						"core/paragraph",
+						{
+							content: "<strong>Rating</strong>:",
+						},
+					],
+				],
 			],
-			['core/group', {
-					
+			[
+				"core/group",
+				{
 					layout: {
-						type: 'flex',
-						flexWrap: 'nowrap',
-						verticalAlignment: 'bottom'
-					}
+						type: "flex",
+						flexWrap: "nowrap",
+						verticalAlignment: "bottom",
+					},
 				},
 				[
-					['core/paragraph', {
-						metadata: {
-							bindings: {
-								content: {
-									source: 'lsx/post-meta',
-									args: {
-										key: 'rating'
-									}
-								}
-							}
-						}
-					}],
-					['core/group', {
+					[
+						"core/paragraph",
+						{
+							metadata: {
+								bindings: {
+									content: {
+										source: "lsx/post-meta",
+										args: {
+											key: "rating",
+										},
+									},
+								},
+							},
+						},
+					],
+					[
+						"core/group",
+						{
 							layout: {
-								type: 'flex',
-								flexWrap: 'nowrap'
-							}
+								type: "flex",
+								flexWrap: "nowrap",
+							},
 						},
 						[
-							['core/paragraph', {
-								content: '('
-							}],
-							['core/paragraph', {
-								metadata: {
-									bindings: {
-										content: {
-											source: 'lsx/post-meta',
-											args: {
-												key: 'rating_type'
-											}
-										}
-									}
-								}
-							}],
-							['core/paragraph', {
-								content: ')'
-							}]
-						]
-					]
-				]
-			]
+							[
+								"core/paragraph",
+								{
+									content: "(",
+								},
+							],
+							[
+								"core/paragraph",
+								{
+									metadata: {
+										bindings: {
+											content: {
+												source: "lsx/post-meta",
+												args: {
+													key: "rating_type",
+												},
+											},
+										},
+									},
+								},
+							],
+							[
+								"core/paragraph",
+								{
+									content: ")",
+								},
+							],
+						],
+					],
+				],
+			],
 		],
 		supports: {
-			renaming: false
-		}
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: "Rating",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/group",
+					{},
+					[
+						[
+							"core/heading",
+							{
+								content: "Rating",
+								level: 3,
+							},
+						],
+						[
+							"core/paragraph",
+							{
+								content: "4.8/5 stars (127 reviews)",
+							},
+						],
+					],
+				],
+			],
+		},
 	});
-
 });

@@ -1,8 +1,47 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/review-related-accommodation",
   "title": "Related Reviews - Accommodation",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Displays Reviews related to an Accommodation.",
+  "icon": "admin-multisite",
+  "keywords": [
+    "reviews",
+    "accommodation",
+    "ratings"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Related Reviews - Accommodation"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Accommodation Reviews",
+              "level": 3
+            }
+          ],
+          [
+            "core/query",
+            {
+              "query": {
+                "postType": "review",
+                "perPage": 3
+              }
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

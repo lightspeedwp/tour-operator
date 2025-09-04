@@ -1,15 +1,14 @@
 wp.domReady(() => {
-
-wp.blocks.registerBlockVariation("core/group", {
+	wp.blocks.registerBlockVariation("core/group", {
 		name: "lsx-tour-operator/duration",
 		title: "Duration",
-		icon: 'clock',
+		icon: "clock",
 		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
-				name: "Duration"
+				name: "Duration",
 			},
-			className: 'lsx-duration-wrapper',
+			className: "lsx-duration-wrapper",
 			layout: {
 				type: "flex",
 				flexWrap: "nowrap",
@@ -29,9 +28,9 @@ wp.blocks.registerBlockVariation("core/group", {
 					[
 						"core/image",
 						{
-							width: '20px',
+							width: "20px",
 							sizeSlug: "large",
-							url: lsxToEditor.assetsUrl + 'blocks/duration.png',
+							url: lsxToEditor.assetsUrl + "blocks/duration.png",
 							alt: "",
 						},
 					],
@@ -78,8 +77,35 @@ wp.blocks.registerBlockVariation("core/group", {
 			],
 		],
 		supports: {
-			renaming: false
-		}
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: "Duration",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/group",
+					{},
+					[
+						[
+							"core/heading",
+							{
+								content: "Duration",
+								level: 3,
+							},
+						],
+						[
+							"core/paragraph",
+							{
+								content: "7 days, 6 nights",
+							},
+						],
+					],
+				],
+			],
+		},
 	});
-
 });

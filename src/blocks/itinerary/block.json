@@ -1,8 +1,44 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/itinerary",
-  "title": "Itinerary",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/itinerary",
+	"title": "Itinerary",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Show detailed tour itinerary with daily activities.",
+	"icon": "clipboard",
+	"keywords": [
+		"itinerary",
+		"schedule",
+		"tour"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Itinerary"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Itinerary",
+							"level": 3
+						}
+					],
+					[
+						"core/list",
+						{
+							"values": "<li>Day 1: Arrival in Cape Town</li><li>Day 2: Safari Game Drive</li><li>Day 3: Wine Tasting</li>"
+						}
+					]
+				]
+			]
+		]
+	}
 }

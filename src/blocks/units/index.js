@@ -1,5 +1,5 @@
-wp.domReady(() => {	
-	console.log('test');
+wp.domReady(() => {
+	console.log("test");
 	// Accommodation Units Wrapper
 	wp.blocks.registerBlockVariation("core/group", {
 		name: "lsx-tour-operator/units",
@@ -15,75 +15,106 @@ wp.domReady(() => {
 			layout: {
 				type: "constrained",
 			},
-			className: 'lsx-units-wrapper',
-			tagName: "section"
+			className: "lsx-units-wrapper",
+			tagName: "section",
 		},
 		innerBlocks: [
-			['core/group',
+			[
+				"core/group",
 				{
 					layout: {
 						type: "flex",
 						flexWrap: "nowrap",
-					}
+					},
 				},
 				[
 					[
-						'core/separator',
+						"core/separator",
 						{
 							style: {
 								layout: {
-									selfStretch: 'fill',
+									selfStretch: "fill",
 									flexSize: null,
 								},
-							}
-						}
-					],
-					[
-						'core/heading',
-						{
-							textAlign: 'center',
-							content: 'Units',
+							},
 						},
 					],
 					[
-						'core/separator',
+						"core/heading",
+						{
+							textAlign: "center",
+							content: "Units",
+						},
+					],
+					[
+						"core/separator",
 						{
 							style: {
 								layout: {
-									selfStretch: 'fill',
+									selfStretch: "fill",
 									flexSize: null,
 								},
-							}
-						}
-					]
-				]
+							},
+						},
+					],
+				],
 			],
-			['core/group',
+			[
+				"core/group",
 				{
-					align: 'wide',
-					
+					align: "wide",
+
 					layout: {
-						type: 'constrained',
-					}
+						type: "constrained",
+					},
 				},
 				[
-					["core/paragraph",
+					[
+						"core/paragraph",
 						{
 							placeholder: "Replace this with the Rooms block, and select a pattern.",
 							align: "center",
-						}
-					]
-				]
-			]
+						},
+					],
+				],
+			],
 		],
 		supports: {
-			renaming: false
+			renaming: false,
 		},
-		isActive: ( blockAttributes, variationAttributes ) => {
+		example: {
+			attributes: {
+				metadata: {
+					name: "Units",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/group",
+					{},
+					[
+						[
+							"core/heading",
+							{
+								content: "Units",
+								level: 3,
+							},
+						],
+						[
+							"core/paragraph",
+							{
+								content: "Self-catering units with kitchen facilities.",
+							},
+						],
+					],
+				],
+			],
+		},
+		isActive: (blockAttributes, variationAttributes) => {
 			return (
 				blockAttributes.className === "lsx-units-wrapper" ||
 				(blockAttributes.className && blockAttributes.className.includes("lsx-units-wrapper"))
 			);
-		}
+		},
 	});
 });

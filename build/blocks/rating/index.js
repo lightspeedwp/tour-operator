@@ -1,1 +1,92 @@
-wp.domReady(()=>{wp.blocks.registerBlockVariation("core/group",{name:"lsx-tour-operator/rating",title:"Rating",icon:"star-empty",category:"lsx-tour-operator",attributes:{metadata:{name:"Rating"},className:"lsx-rating-wrapper",layout:{type:"flex",flexWrap:"nowrap"}},innerBlocks:[["core/group",{layout:{type:"flex",flexWrap:"nowrap",verticalAlignment:"top"}},[["core/image",{width:"20px",sizeSlug:"large",url:lsxToEditor.assetsUrl+"blocks/rating-icon-TO.png",alt:""}],["core/paragraph",{content:"<strong>Rating</strong>:"}]]],["core/group",{layout:{type:"flex",flexWrap:"nowrap",verticalAlignment:"bottom"}},[["core/paragraph",{metadata:{bindings:{content:{source:"lsx/post-meta",args:{key:"rating"}}}}}],["core/group",{layout:{type:"flex",flexWrap:"nowrap"}},[["core/paragraph",{content:"("}],["core/paragraph",{metadata:{bindings:{content:{source:"lsx/post-meta",args:{key:"rating_type"}}}}}],["core/paragraph",{content:")"}]]]]]],supports:{renaming:!1}})});
+/******/ (() => { // webpackBootstrap
+/*!************************************!*\
+  !*** ./src/blocks/rating/index.js ***!
+  \************************************/
+wp.domReady(() => {
+  wp.blocks.registerBlockVariation("core/group", {
+    name: "lsx-tour-operator/rating",
+    title: "Rating",
+    icon: "star-empty",
+    category: "lsx-tour-operator",
+    attributes: {
+      metadata: {
+        name: "Rating"
+      },
+      className: "lsx-rating-wrapper",
+      layout: {
+        type: "flex",
+        flexWrap: "nowrap"
+      }
+    },
+    innerBlocks: [["core/group", {
+      layout: {
+        type: "flex",
+        flexWrap: "nowrap",
+        verticalAlignment: "top"
+      }
+    }, [["core/image", {
+      width: "20px",
+      sizeSlug: "large",
+      url: lsxToEditor.assetsUrl + "blocks/rating-icon-TO.png",
+      alt: ""
+    }], ["core/paragraph", {
+      content: "<strong>Rating</strong>:"
+    }]]], ["core/group", {
+      layout: {
+        type: "flex",
+        flexWrap: "nowrap",
+        verticalAlignment: "bottom"
+      }
+    }, [["core/paragraph", {
+      metadata: {
+        bindings: {
+          content: {
+            source: "lsx/post-meta",
+            args: {
+              key: "rating"
+            }
+          }
+        }
+      }
+    }], ["core/group", {
+      layout: {
+        type: "flex",
+        flexWrap: "nowrap"
+      }
+    }, [["core/paragraph", {
+      content: "("
+    }], ["core/paragraph", {
+      metadata: {
+        bindings: {
+          content: {
+            source: "lsx/post-meta",
+            args: {
+              key: "rating_type"
+            }
+          }
+        }
+      }
+    }], ["core/paragraph", {
+      content: ")"
+    }]]]]]],
+    supports: {
+      renaming: false
+    },
+    example: {
+      attributes: {
+        metadata: {
+          name: "Rating"
+        }
+      },
+      innerBlocks: [["core/group", {}, [["core/heading", {
+        content: "Rating",
+        level: 3
+      }], ["core/paragraph", {
+        content: "4.8/5 stars (127 reviews)"
+      }]]]]
+    }
+  });
+});
+/******/ })()
+;
+//# sourceMappingURL=index.js.map

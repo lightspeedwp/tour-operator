@@ -1,8 +1,47 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/lsx-destination-to-tour",
-  "title": "Destination to Tour",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/lsx-destination-to-tour",
+	"title": "Destination to Tour",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Display tours available from this destination.",
+	"icon": "admin-site",
+	"keywords": [
+		"destination",
+		"tour",
+		"connection"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Destination to Tour"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Tours from this Destination",
+							"level": 3
+						}
+					],
+					[
+						"core/query",
+						{
+							"query": {
+								"postType": "tour",
+								"perPage": 3
+							}
+						}
+					]
+				]
+			]
+		]
+	}
 }

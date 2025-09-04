@@ -1,9 +1,8 @@
 wp.domReady(() => {
-
-wp.blocks.registerBlockVariation("core/group", {
+	wp.blocks.registerBlockVariation("core/group", {
 		name: "lsx-tour-operator/lsx-destination-to-tour",
 		title: "Destination to Tour",
-		icon: 'admin-site',
+		icon: "admin-site",
 		category: "lsx-tour-operator",
 		attributes: {
 			name: "Destination to Tour",
@@ -14,39 +13,39 @@ wp.blocks.registerBlockVariation("core/group", {
 		},
 		innerBlocks: [
 			[
-				'core/group',
+				"core/group",
 				{
 					layout: {
-						type: 'flex',
-						flexWrap: 'nowrap',
-						verticalAlignment: 'top'
-					}
+						type: "flex",
+						flexWrap: "nowrap",
+						verticalAlignment: "top",
+					},
 				},
 				[
 					[
-						'core/image',
+						"core/image",
 						{
-							width: '20px',
-							sizeSlug: 'large',
-							url: lsxToEditor.assetsUrl + 'blocks/Typelocation-icon.png',
-							alt: ''
-						}
+							width: "20px",
+							sizeSlug: "large",
+							url: lsxToEditor.assetsUrl + "blocks/Typelocation-icon.png",
+							alt: "",
+						},
 					],
 					[
-						'core/paragraph',
+						"core/paragraph",
 						{
-							content: '<strong>Destinations:</strong>'
-						}
-					]
-				]
+							content: "<strong>Destinations:</strong>",
+						},
+					],
+				],
 			],
 			[
-				'core/group',
+				"core/group",
 				{
 					layout: {
-						type: 'flex',
-						flexWrap: 'nowrap'
-					}
+						type: "flex",
+						flexWrap: "nowrap",
+					},
 				},
 				[
 					[
@@ -65,12 +64,42 @@ wp.blocks.registerBlockVariation("core/group", {
 							content: "",
 						},
 					],
-				]
-			]
+				],
+			],
 		],
 		supports: {
-			renaming: false
-		}
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: "Destination to Tour",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/group",
+					{},
+					[
+						[
+							"core/heading",
+							{
+								content: "Tours from this Destination",
+								level: 3,
+							},
+						],
+						[
+							"core/query",
+							{
+								query: {
+									postType: "tour",
+									perPage: 3,
+								},
+							},
+						],
+					],
+				],
+			],
+		},
 	});
-
 });

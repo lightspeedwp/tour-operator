@@ -1,8 +1,44 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/suggested-visitor-types",
-  "title": "Suggested Visitor Types",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/suggested-visitor-types",
+	"title": "Suggested Visitor Types",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Display recommended visitor types for the experience.",
+	"icon": "groups",
+	"keywords": [
+		"visitor",
+		"types",
+		"suggested"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Suggested Visitor Types"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Suggested Visitor Types",
+							"level": 3
+						}
+					],
+					[
+						"core/paragraph",
+						{
+							"content": "Families, Couples, Adventure seekers"
+						}
+					]
+				]
+			]
+		]
+	}
 }

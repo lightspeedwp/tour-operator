@@ -1,1 +1,61 @@
-wp.domReady(()=>{wp.blocks.registerBlockVariation("core/group",{name:"lsx-tour-operator/accommodation-type",title:"Accommodation Type",icon:"admin-multisite",category:"lsx-tour-operator",attributes:{metadata:{name:"Accommodation Type"},className:"lsx-accommodation-type-wrapper",layout:{type:"constrained"}},innerBlocks:[["core/group",{layout:{type:"flex",flexWrap:"nowrap",verticalAlignment:"top"}},[["core/image",{width:"20px",sizeSlug:"large",url:lsxToEditor.assetsUrl+"blocks/accommodation-type.png",alt:""}],["core/paragraph",{content:"<strong>Accommodation Type</strong>:"}]]],["core/group",{layout:{type:"flex",flexWrap:"nowrap"}},[["core/post-terms",{term:"accommodation-type"}]]]],supports:{renaming:!1}})});
+/******/ (() => { // webpackBootstrap
+/*!************************************************!*\
+  !*** ./src/blocks/accommodation-type/index.js ***!
+  \************************************************/
+wp.domReady(() => {
+  wp.blocks.registerBlockVariation("core/group", {
+    name: "lsx-tour-operator/accommodation-type",
+    title: "Accommodation Type",
+    icon: "admin-multisite",
+    category: "lsx-tour-operator",
+    attributes: {
+      metadata: {
+        name: "Accommodation Type"
+      },
+      className: "lsx-accommodation-type-wrapper",
+      layout: {
+        type: "constrained"
+      }
+    },
+    innerBlocks: [["core/group", {
+      layout: {
+        type: "flex",
+        flexWrap: "nowrap",
+        verticalAlignment: "top"
+      }
+    }, [["core/image", {
+      width: "20px",
+      sizeSlug: "large",
+      url: lsxToEditor.assetsUrl + "blocks/accommodation-type.png",
+      alt: ""
+    }], ["core/paragraph", {
+      content: "<strong>Accommodation Type</strong>:"
+    }]]], ["core/group", {
+      layout: {
+        type: "flex",
+        flexWrap: "nowrap"
+      }
+    }, [["core/post-terms", {
+      term: "accommodation-type"
+    }]]]],
+    supports: {
+      renaming: false
+    },
+    example: {
+      attributes: {
+        metadata: {
+          name: "Accommodation Type"
+        }
+      },
+      innerBlocks: [["core/group", {}, [["core/heading", {
+        content: "Accommodation Type",
+        level: 3
+      }], ["core/paragraph", {
+        content: "Luxury Safari Lodge"
+      }]]]]
+    }
+  });
+});
+/******/ })()
+;
+//# sourceMappingURL=index.js.map

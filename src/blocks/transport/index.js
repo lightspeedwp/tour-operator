@@ -1,74 +1,115 @@
 wp.domReady(() => {
-
-wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-tour-operator/transport',
-		title: 'Transport',
+	wp.blocks.registerBlockVariation("core/group", {
+		name: "lsx-tour-operator/transport",
+		title: "Transport",
 		icon: "car",
-		category: 'lsx-tour-operator',
+		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
-				name: 'Transport',
+				name: "Transport",
 			},
-			className: 'lsx-transport-wrapper',
+			className: "lsx-transport-wrapper",
 			layout: {
-				type: 'constrained'
-			}
+				type: "constrained",
+			},
 		},
 		innerBlocks: [
-			['core/group', {
+			[
+				"core/group",
+				{
 					layout: {
-						type: 'constrained'
-					}
+						type: "constrained",
+					},
 				},
 				[
-					['core/group', {
+					[
+						"core/group",
+						{
 							layout: {
-								type: 'constrained'
-							}
+								type: "constrained",
+							},
 						},
 						[
-							['core/paragraph', {
-								align: 'center',
-								content: '<strong>Transport</strong>'
-							}]
-						]
+							[
+								"core/paragraph",
+								{
+									align: "center",
+									content: "<strong>Transport</strong>",
+								},
+							],
+						],
 					],
-					['core/group', {
-							
+					[
+						"core/group",
+						{
 							layout: {
-								type: 'constrained'
-							}
+								type: "constrained",
+							},
 						},
 						[
-							['core/paragraph', {
-								
-								metadata: {
-									bindings: {
-										content: {
-											source: 'lsx/post-meta',
-											args: {
-												key: 'transport'
-											}
-										}
-									}
-								}
-							}]
-						]
-					]
-				]
+							[
+								"core/paragraph",
+								{
+									metadata: {
+										bindings: {
+											content: {
+												source: "lsx/post-meta",
+												args: {
+													key: "transport",
+												},
+											},
+										},
+									},
+								},
+							],
+						],
+					],
+				],
 			],
-			['core/buttons', {},
+			[
+				"core/buttons",
+				{},
 				[
-					['core/button', {
-						width: 100,
-						content: 'View More'
-					}]
-				]
-			]
+					[
+						"core/button",
+						{
+							width: 100,
+							content: "View More",
+						},
+					],
+				],
+			],
 		],
 		supports: {
-			renaming: false
-		}
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: "Transport",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/group",
+					{},
+					[
+						[
+							"core/heading",
+							{
+								content: "Transport",
+								level: 3,
+							},
+						],
+						[
+							"core/paragraph",
+							{
+								content: "Private transfers and safari vehicles included.",
+							},
+						],
+					],
+				],
+			],
+		},
 	});
-
 });

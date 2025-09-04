@@ -1,6 +1,5 @@
 wp.domReady(() => {
-
-wp.blocks.registerBlockVariation("core/group", {
+	wp.blocks.registerBlockVariation("core/group", {
 		name: "lsx-tour-operator/itinerary",
 		title: "Itinerary",
 		icon: "clipboard",
@@ -13,48 +12,49 @@ wp.blocks.registerBlockVariation("core/group", {
 			layout: {
 				type: "constrained",
 			},
-			className: 'lsx-itinerary-wrapper',
-			tagName: "section"
+			className: "lsx-itinerary-wrapper",
+			tagName: "section",
 		},
 		innerBlocks: [
-			['core/group',
+			[
+				"core/group",
 				{
 					layout: {
 						type: "flex",
 						flexWrap: "nowrap",
-					}
+					},
 				},
 				[
 					[
-						'core/separator',
+						"core/separator",
 						{
 							style: {
 								layout: {
-									selfStretch: 'fill',
+									selfStretch: "fill",
 									flexSize: null,
 								},
-							}
-						}
-					],
-					[
-						'core/heading',
-						{
-							textAlign: 'center',
-							content: 'Tour Itinerary',
+							},
 						},
 					],
 					[
-						'core/separator',
+						"core/heading",
+						{
+							textAlign: "center",
+							content: "Tour Itinerary",
+						},
+					],
+					[
+						"core/separator",
 						{
 							style: {
 								layout: {
-									selfStretch: 'fill',
+									selfStretch: "fill",
 									flexSize: null,
 								},
-							}
-						}
-					]
-				]
+							},
+						},
+					],
+				],
 			],
 			[
 				"core/paragraph",
@@ -62,11 +62,38 @@ wp.blocks.registerBlockVariation("core/group", {
 					placeholder: "Replace this with the Day by Day block, and select a pattern.",
 					align: "center",
 				},
-			]
+			],
 		],
 		supports: {
-			renaming: false
-		}
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: "Itinerary",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/group",
+					{},
+					[
+						[
+							"core/heading",
+							{
+								content: "Itinerary",
+								level: 3,
+							},
+						],
+						[
+							"core/list",
+							{
+								values: "<li>Day 1: Arrival in Cape Town</li><li>Day 2: Safari Game Drive</li><li>Day 3: Wine Tasting</li>",
+							},
+						],
+					],
+				],
+			],
+		},
 	});
-
 });

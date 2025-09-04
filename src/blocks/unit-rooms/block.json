@@ -1,8 +1,44 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/unit-rooms",
-  "title": "Rooms",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/unit-rooms",
+	"title": "Rooms",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Show room unit details and configurations.",
+	"icon": "admin-home",
+	"keywords": [
+		"rooms",
+		"units",
+		"accommodation"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Rooms"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Rooms",
+							"level": 3
+						}
+					],
+					[
+						"core/paragraph",
+						{
+							"content": "Spacious rooms with safari views"
+						}
+					]
+				]
+			]
+		]
+	}
 }

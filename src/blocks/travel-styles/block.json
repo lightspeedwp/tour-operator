@@ -1,8 +1,44 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/travel-styles",
-  "title": "Travel Styles",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/travel-styles",
+	"title": "Travel Styles",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Display available travel style options.",
+	"icon": "airplane",
+	"keywords": [
+		"style",
+		"travel",
+		"type"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Travel Styles"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Travel Styles",
+							"level": 3
+						}
+					],
+					[
+						"core/paragraph",
+						{
+							"content": "Adventure, Luxury, Cultural, Wildlife"
+						}
+					]
+				]
+			]
+		]
+	}
 }

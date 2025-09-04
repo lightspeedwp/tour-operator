@@ -1,8 +1,44 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/departs-from",
   "title": "Departs From",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Display tour departure location and details.",
+  "icon": "location-alt",
+  "keywords": [
+    "departure",
+    "location",
+    "start"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Departs From"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Departs From",
+              "level": 3
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "Cape Town, South Africa"
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

@@ -1,1 +1,70 @@
-wp.domReady(()=>{wp.blocks.registerBlockVariation("core/group",{name:"lsx-tour-operator/single-supplement-wrapper",title:"Single Supplement",icon:"money-alt",category:"lsx-tour-operator",attributes:{metadata:{name:"Single Supplement"},className:"lsx-single-supplement-wrapper",layout:{type:"flex",flexWrap:"nowrap"}},innerBlocks:[["core/group",{layout:{type:"flex",flexWrap:"nowrap",verticalAlignment:"top"}},[["core/image",{id:122733,width:"20px",sizeSlug:"large",linkDestination:"none",url:lsxToEditor.assetsUrl+"blocks/single-supplement-icon.svg",alt:""}],["core/paragraph",{content:"<strong>Single supplement:</strong>"}]]],["core/group",{},[["core/paragraph",{metadata:{bindings:{content:{source:"lsx/post-meta",args:{key:"single_supplement"}}}},className:"amount",content:""}]]]],supports:{renaming:!1}})});
+/******/ (() => { // webpackBootstrap
+/*!*******************************************************!*\
+  !*** ./src/blocks/single-supplement-wrapper/index.js ***!
+  \*******************************************************/
+wp.domReady(() => {
+  wp.blocks.registerBlockVariation("core/group", {
+    name: "lsx-tour-operator/single-supplement-wrapper",
+    title: "Single Supplement",
+    icon: "money-alt",
+    category: "lsx-tour-operator",
+    attributes: {
+      metadata: {
+        name: "Single Supplement"
+      },
+      className: "lsx-single-supplement-wrapper",
+      layout: {
+        type: "flex",
+        flexWrap: "nowrap"
+      }
+    },
+    innerBlocks: [["core/group", {
+      layout: {
+        type: "flex",
+        flexWrap: "nowrap",
+        verticalAlignment: "top"
+      }
+    }, [["core/image", {
+      id: 122733,
+      width: "20px",
+      sizeSlug: "large",
+      linkDestination: "none",
+      url: lsxToEditor.assetsUrl + "blocks/single-supplement-icon.svg",
+      alt: ""
+    }], ["core/paragraph", {
+      content: "<strong>Single supplement:</strong>"
+    }]]], ["core/group", {}, [["core/paragraph", {
+      metadata: {
+        bindings: {
+          content: {
+            source: "lsx/post-meta",
+            args: {
+              key: "single_supplement"
+            }
+          }
+        }
+      },
+      className: "amount",
+      content: ""
+    }]]]],
+    supports: {
+      renaming: false
+    },
+    example: {
+      attributes: {
+        metadata: {
+          name: "Single Supplement"
+        }
+      },
+      innerBlocks: [["core/group", {}, [["core/heading", {
+        content: "Single Supplement",
+        level: 3
+      }], ["core/paragraph", {
+        content: "25% supplement for single occupancy."
+      }]]]]
+    }
+  });
+});
+/******/ })()
+;
+//# sourceMappingURL=index.js.map

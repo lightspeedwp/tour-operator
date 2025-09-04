@@ -1,8 +1,44 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/health",
   "title": "Health",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Display health and medical information for travelers.",
+  "icon": "insert",
+  "keywords": [
+    "health",
+    "medical",
+    "safety"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Health"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Health",
+              "level": 3
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "No special vaccinations required. Malaria precautions recommended."
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

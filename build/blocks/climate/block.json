@@ -1,8 +1,44 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/climate",
   "title": "Climate",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Display destination climate and weather information.",
+  "icon": "cloud",
+  "keywords": [
+    "climate",
+    "weather",
+    "destination"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Climate"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Climate",
+              "level": 3
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "Warm subtropical climate with dry winters and hot summers."
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

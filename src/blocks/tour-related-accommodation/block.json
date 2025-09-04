@@ -1,8 +1,47 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/tour-related-accommodation",
-  "title": "Related Tours - Accommodation",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/tour-related-accommodation",
+	"title": "Related Tours - Accommodation",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Displays Tours related to an Accommodation via the destination.",
+	"icon": "admin-multisite",
+	"keywords": [
+		"related",
+		"accommodation",
+		"similar"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Related Accommodation"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Related Accommodation",
+							"textAlign": "center"
+						}
+					],
+					[
+						"core/query",
+						{
+							"query": {
+								"postType": "accommodation",
+								"perPage": 3
+							}
+						}
+					]
+				]
+			]
+		]
+	}
 }

@@ -1,52 +1,91 @@
 wp.domReady(() => {
-
-wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-tour-operator/travel-styles',
-		title: 'Travel Styles',
-		icon: 'airplane',
-		category: 'lsx-tour-operator',
+	wp.blocks.registerBlockVariation("core/group", {
+		name: "lsx-tour-operator/travel-styles",
+		title: "Travel Styles",
+		icon: "airplane",
+		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
-				name: 'Travel Styles',
+				name: "Travel Styles",
 			},
-			className: 'lsx-travel-style-wrapper',
+			className: "lsx-travel-style-wrapper",
 		},
 		innerBlocks: [
-			['core/group', {
+			[
+				"core/group",
+				{
 					layout: {
-						type: 'flex',
-						flexWrap: 'nowrap',
-						verticalAlignment: 'top'
-					}
+						type: "flex",
+						flexWrap: "nowrap",
+						verticalAlignment: "top",
+					},
 				},
 				[
-					['core/image', {
-						width: '20px',
-						sizeSlug: 'large',
-						url: lsxToEditor.assetsUrl + 'blocks/travel-styles.png',
-						alt: ''
-					}],
-					['core/paragraph', {
-						content: '<strong>Travel Styles:</strong>'
-					}]
-				]
+					[
+						"core/image",
+						{
+							width: "20px",
+							sizeSlug: "large",
+							url: lsxToEditor.assetsUrl + "blocks/travel-styles.png",
+							alt: "",
+						},
+					],
+					[
+						"core/paragraph",
+						{
+							content: "<strong>Travel Styles:</strong>",
+						},
+					],
+				],
 			],
-			['core/group', {
+			[
+				"core/group",
+				{
 					layout: {
-						type: 'flex',
-						flexWrap: 'nowrap'
-					}
+						type: "flex",
+						flexWrap: "nowrap",
+					},
 				},
 				[
-					['core/post-terms', {
-						term: 'travel-style'
-					}]
-				]
-			]
+					[
+						"core/post-terms",
+						{
+							term: "travel-style",
+						},
+					],
+				],
+			],
 		],
 		supports: {
-			renaming: false
-		}
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: "Travel Styles",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/group",
+					{},
+					[
+						[
+							"core/heading",
+							{
+								content: "Travel Styles",
+								level: 3,
+							},
+						],
+						[
+							"core/paragraph",
+							{
+								content: "Adventure, Luxury, Cultural, Wildlife",
+							},
+						],
+					],
+				],
+			],
+		},
 	});
-
 });

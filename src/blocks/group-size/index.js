@@ -1,66 +1,102 @@
 wp.domReady(() => {
-
-wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-tour-operator/group-size',
-		title: 'Group Size',
-		icon: 'groups',
-		category: 'lsx-tour-operator',
+	wp.blocks.registerBlockVariation("core/group", {
+		name: "lsx-tour-operator/group-size",
+		title: "Group Size",
+		icon: "groups",
+		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
-				name: 'Group Size',
+				name: "Group Size",
 			},
-			className: 'lsx-group-size-wrapper',
+			className: "lsx-group-size-wrapper",
 			layout: {
-				type: 'flex',
-				flexWrap: 'nowrap'
-			}
+				type: "flex",
+				flexWrap: "nowrap",
+			},
 		},
 		innerBlocks: [
-			['core/group', {
-					
-						layout: {
-							type: 'flex',
-							flexWrap: 'nowrap',
-							verticalAlignment: 'top'
-						}
+			[
+				"core/group",
+				{
+					layout: {
+						type: "flex",
+						flexWrap: "nowrap",
+						verticalAlignment: "top",
+					},
 				},
 				[
-					['core/image', {
-						id: 122731,
-						width: '20px',
-						sizeSlug: 'large',
-						linkDestination: 'none',
-						url: lsxToEditor.assetsUrl + 'blocks/group-size.svg',
-						alt: ''
-					}],
-					['core/paragraph', {
-						content: '<strong>Group size:</strong>'
-					}]
-				]
-			],
-			['core/group', {
-					
-				},
-				[
-					['core/paragraph', {
-						metadata: {
-							bindings: {
-								content: {
-									source: 'lsx/post-meta',
-									args: {
-										key: 'group_size'
-									}
-								}
-							}
+					[
+						"core/image",
+						{
+							id: 122731,
+							width: "20px",
+							sizeSlug: "large",
+							linkDestination: "none",
+							url: lsxToEditor.assetsUrl + "blocks/group-size.svg",
+							alt: "",
 						},
-						content: ''
-					}]
-				]
-			]
+					],
+					[
+						"core/paragraph",
+						{
+							content: "<strong>Group size:</strong>",
+						},
+					],
+				],
+			],
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/paragraph",
+						{
+							metadata: {
+								bindings: {
+									content: {
+										source: "lsx/post-meta",
+										args: {
+											key: "group_size",
+										},
+									},
+								},
+							},
+							content: "",
+						},
+					],
+				],
+			],
 		],
 		supports: {
-			renaming: false
-		}
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: "Group Size",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/group",
+					{},
+					[
+						[
+							"core/heading",
+							{
+								content: "Group Size",
+								level: 3,
+							},
+						],
+						[
+							"core/paragraph",
+							{
+								content: "2-12 people",
+							},
+						],
+					],
+				],
+			],
+		},
 	});
-
 });

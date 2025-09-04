@@ -1,15 +1,16 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "editorScript": "file:index.js",
   "name": "lsx-tour-operator/icons",
   "title": "Icons",
-  "description": "A simple block that allows you to insert any SVG icons from a custom library.",
+  "description": "Display custom SVG icons from the plugin library.",
   "category": "lsx-tour-operator",
   "keywords": [
     "icons",
-    "icon",
-    "svg"
+    "symbol",
+    "graphics"
   ],
   "supports": {
     "html": false,
@@ -29,8 +30,13 @@
   "style": "file:style-index.css",
   "example": {
     "attributes": {
+      "metadata": {
+        "name": "Icons"
+      },
       "iconType": "outline",
       "iconName": "academicCap"
-    }
-  }
+    },
+    "innerBlocks": []
+  },
+  "icon": "star-filled"
 }

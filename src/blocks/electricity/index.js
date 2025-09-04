@@ -1,75 +1,116 @@
 wp.domReady(() => {
-
-wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-tour-operator/electricity',
-		title: 'Electricity',
+	wp.blocks.registerBlockVariation("core/group", {
+		name: "lsx-tour-operator/electricity",
+		title: "Electricity",
 		icon: "admin-plugins",
-		category: 'lsx-tour-operator',
+		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
-				name: 'Electricity',
+				name: "Electricity",
 			},
-			className: 'lsx-electricity-wrapper',
+			className: "lsx-electricity-wrapper",
 			layout: {
-				type: 'constrained'
-			}
+				type: "constrained",
+			},
 		},
 		innerBlocks: [
-			['core/group', {
+			[
+				"core/group",
+				{
 					layout: {
-						type: 'constrained'
-					}
+						type: "constrained",
+					},
 				},
 				[
-					['core/group', {
+					[
+						"core/group",
+						{
 							layout: {
-								type: 'constrained'
-							}
+								type: "constrained",
+							},
 						},
 						[
-							['core/paragraph', {
-								align: 'center',
-								content: '<strong>Electricity</strong>'
-							}]
-						]
+							[
+								"core/paragraph",
+								{
+									align: "center",
+									content: "<strong>Electricity</strong>",
+								},
+							],
+						],
 					],
-					['core/group', {
-							
+					[
+						"core/group",
+						{
 							layout: {
-								type: 'constrained'
-							}
+								type: "constrained",
+							},
 						},
 						[
-							['core/paragraph', {
-								
-								metadata: {
-									bindings: {
-										content: {
-											source: 'lsx/post-meta',
-											args: {
-												key: 'electricity'
-											}
-										}
-									}
-								}
-							}]
-						]
-					]
-				]
+							[
+								"core/paragraph",
+								{
+									metadata: {
+										bindings: {
+											content: {
+												source: "lsx/post-meta",
+												args: {
+													key: "electricity",
+												},
+											},
+										},
+									},
+								},
+							],
+						],
+					],
+				],
 			],
-			['core/buttons', {},
+			[
+				"core/buttons",
+				{},
 				[
-					['core/button', {
-						backgroundColor: 'primary',
-						width: 100,
-						content: 'View More'
-					}]
-				]
-			]
+					[
+						"core/button",
+						{
+							backgroundColor: "primary",
+							width: 100,
+							content: "View More",
+						},
+					],
+				],
+			],
 		],
 		supports: {
-			renaming: false
-		}
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: "Electricity",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/group",
+					{},
+					[
+						[
+							"core/heading",
+							{
+								content: "Electricity",
+								level: 3,
+							},
+						],
+						[
+							"core/paragraph",
+							{
+								content: "230V, 50Hz. Type M plugs (3-pin).",
+							},
+						],
+					],
+				],
+			],
+		},
 	});
-
 });

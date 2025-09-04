@@ -27,7 +27,36 @@ wp.blocks.registerBlockVariation("core/group", {
 		supports: {
 			renaming: false
 		},
-		parent: ["lsx-tour-operator/itinerary"], // Restricts to "lsx/itinerary" block
+		
+		example: {
+		"attributes": {
+				"metadata": {
+						"name": "Day by Day"
+				}
+		},
+		"innerBlocks": [
+				[
+						"core/group",
+						{},
+						[
+								[
+										"core/heading",
+										{
+												"content": "Day by Day",
+												"level": 3
+										}
+								],
+								[
+										"core/paragraph",
+										{
+												"content": "Detailed daily breakdown of your tour experience."
+										}
+								]
+						]
+				]
+		]
+},
+parent: ["lsx-tour-operator/itinerary"], // Restricts to "lsx/itinerary" block
 	});
 
 });

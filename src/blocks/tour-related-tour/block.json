@@ -1,8 +1,47 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/tour-related-tour",
-  "title": "Related Tours - Tour",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/tour-related-tour",
+	"title": "Related Tours - Tour",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Displays tours related to this Tour via the destinations.",
+	"icon": "palmtree",
+	"keywords": [
+		"related",
+		"tours",
+		"similar"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Related Tours"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Related Tours",
+							"textAlign": "center"
+						}
+					],
+					[
+						"core/query",
+						{
+							"query": {
+								"postType": "tour",
+								"perPage": 3
+							}
+						}
+					]
+				]
+			]
+		]
+	}
 }

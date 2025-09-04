@@ -1,8 +1,47 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/review-related-destination",
   "title": "Related Reviews - Destinations",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Displays Reviews related to an Destination.",
+  "icon": "admin-site",
+  "keywords": [
+    "reviews",
+    "destinations",
+    "ratings"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Related Reviews - Destinations"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Destination Reviews",
+              "level": 3
+            }
+          ],
+          [
+            "core/query",
+            {
+              "query": {
+                "postType": "review",
+                "perPage": 3
+              }
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

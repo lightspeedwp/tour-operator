@@ -1,8 +1,44 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/minimum-child-age",
   "title": "Minimum Child Age",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Display minimum age requirements for children.",
+  "icon": "id",
+  "keywords": [
+    "child",
+    "age",
+    "minimum"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Minimum Child Age"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Minimum Child Age",
+              "level": 3
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "Children must be at least 6 years old."
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

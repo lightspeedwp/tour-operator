@@ -1,67 +1,96 @@
 wp.domReady(() => {
-
-wp.blocks.registerBlockVariation( 'core/group', {
-		name: 'lsx-tour-operator/related-regions',
-		title: 'Related Regions',
-		icon: 'admin-site-alt3',
-		description: 'Display any regions from the parent country.',
-		category: 'lsx-tour-operator',
+	wp.blocks.registerBlockVariation("core/group", {
+		name: "lsx-tour-operator/related-regions",
+		title: "Related Regions",
+		icon: "admin-site-alt3",
+		description: "Display any regions from the parent country.",
+		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
-				name: 'Related Regions'
+				name: "Related Regions",
 			},
-			className: 'lsx-related-regions-query-wrapper',
-			align: 'full',
+			className: "lsx-related-regions-query-wrapper",
+			align: "full",
 			layout: {
-				type: 'constrained'
+				type: "constrained",
 			},
-			tagName: "section"
+			tagName: "section",
 		},
 		innerBlocks: [
-			[ 'core/group', {
-					align: 'wide',
-					layout: { type: 'flex', flexWrap: 'nowrap' }
+			[
+				"core/group",
+				{
+					align: "wide",
+					layout: { type: "flex", flexWrap: "nowrap" },
 				},
 				[
-					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } } } ],
-					[ 'core/heading', { textAlign: 'center', content: 'Related Regions' } ],
-					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } } } ]
-				]
+					["core/separator", { style: { layout: { selfStretch: "fill", flexSize: null } } }],
+					["core/heading", { textAlign: "center", content: "Related Regions" }],
+					["core/separator", { style: { layout: { selfStretch: "fill", flexSize: null } } }],
+				],
 			],
-			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } },
+			[
+				"core/group",
+				{ align: "wide", layout: { type: "constrained" } },
 				[
-					[ 'core/query',
+					[
+						"core/query",
 						{
 							metadata: {
-								name: 'Related Regions Query'
+								name: "Related Regions Query",
 							},
 							query: {
 								perPage: 8,
-								postType: 'destination',
-								order: 'asc',
-								orderBy: 'date'
+								postType: "destination",
+								order: "asc",
+								orderBy: "date",
 							},
-							align: 'wide'
+							align: "wide",
 						},
 						[
-							[ 
-								'core/post-template', 
+							[
+								"core/post-template",
 								{
-									className: 'lsx-related-regions-query',
+									className: "lsx-related-regions-query",
 									layout: {
-										type: 'grid',
-										columnCount: 4
-									}
+										type: "grid",
+										columnCount: 4,
+									},
 								},
-								[
-									[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
-								]
-							]
-						]
-					]
-				]
-			]
-		]
+								[["core/pattern", { slug: "lsx-tour-operator/destination-card" }]],
+							],
+						],
+					],
+				],
+			],
+		],
+		example: {
+			attributes: {
+				metadata: {
+					name: "Related Regions",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/group",
+					{},
+					[
+						[
+							"core/heading",
+							{
+								content: "Related Regions",
+								level: 3,
+							},
+						],
+						[
+							"core/paragraph",
+							{
+								content: "Western Cape, Eastern Cape, KwaZulu-Natal",
+							},
+						],
+					],
+				],
+			],
+		},
 	});
-
 });

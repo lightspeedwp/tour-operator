@@ -1,8 +1,44 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/facts-country-wrapper",
   "title": "Country",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Display country facts and information.",
+  "icon": "admin-site",
+  "keywords": [
+    "country",
+    "facts",
+    "information"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Country Facts"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Country Facts",
+              "level": 3
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "Capital: Cape Town | Population: 59 million | Currency: ZAR"
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

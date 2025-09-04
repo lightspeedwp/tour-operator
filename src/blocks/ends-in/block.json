@@ -1,8 +1,44 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/ends-in",
-  "title": "Ends In",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/ends-in",
+	"title": "Ends In",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Display tour end location and arrival information.",
+	"icon": "location-alt",
+	"keywords": [
+		"arrival",
+		"location",
+		"end"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Ends In"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Ends In",
+							"level": 3
+						}
+					],
+					[
+						"core/paragraph",
+						{
+							"content": "Johannesburg, South Africa"
+						}
+					]
+				]
+			]
+		]
+	}
 }

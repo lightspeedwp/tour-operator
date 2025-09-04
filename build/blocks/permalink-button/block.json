@@ -1,8 +1,38 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/permalink-button",
-  "title": "Permalink Button",
+  "title": "Permalink",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Add a button with a link to the current item.",
+  "icon": "admin-links",
+  "keywords": [
+    "permalink",
+    "button",
+    "link"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Permalink Button"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/buttons",
+        {},
+        [
+          [
+            "core/button",
+            {
+              "text": "View Details",
+              "url": "#"
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

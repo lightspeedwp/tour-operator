@@ -1,13 +1,36 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
+	"textdomain": "tour-operator",
 	"name": "lsx-tour-operator/tagline",
 	"title": "Tagline",
 	"category": "lsx-tour-operator",
-  "editorScript": "file:index.js",
+	"editorScript": "file:index.js",
 	"example": {
 		"attributes": {
-			"content": "Tagline"
-		}
-	}
+			"metadata": {
+				"name": "Tagline"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/paragraph",
+				{
+					"content": "Discover the magic of Africa",
+					"style": {
+						"typography": {
+							"fontSize": "1.5rem"
+						}
+					}
+				}
+			]
+		]
+	},
+	"description": "Display catchy taglines or subtitles.",
+	"icon": "text-page",
+	"keywords": [
+		"tagline",
+		"subtitle",
+		"description"
+	]
 }

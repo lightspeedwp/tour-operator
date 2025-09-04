@@ -1,70 +1,108 @@
 wp.domReady(() => {
-
-wp.blocks.registerBlockVariation( 'core/group', {
-		name: 'lsx-tour-operator/featured-accommodation',
-		title: 'Featured Accommodation',
-		icon: 'admin-multisite',
-		description: 'Displays Accommodation with the Featured tag.',
-		category: 'lsx-tour-operator',
+	wp.blocks.registerBlockVariation("core/group", {
+		name: "lsx-tour-operator/featured-accommodation",
+		title: "Featured Accommodation",
+		icon: "admin-multisite",
+		description: "Displays Accommodation with the Featured tag.",
+		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
-				name: 'Featured Accommodation'
+				name: "Featured Accommodation",
 			},
-			className: 'lsx-featured-accommodation-query-wrapper',
-			align: 'full',
+			className: "lsx-featured-accommodation-query-wrapper",
+			align: "full",
 			layout: {
-				type: 'constrained'
+				type: "constrained",
 			},
-			tagName: "section"
+			tagName: "section",
 		},
 		innerBlocks: [
-			[ 'core/group',
+			[
+				"core/group",
 				{
-					align: 'wide',
-					layout: { type: 'flex', flexWrap: 'nowrap' }
+					align: "wide",
+					layout: { type: "flex", flexWrap: "nowrap" },
 				},
 				[
-					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } } } ],
-					[ 'core/heading', { textAlign: 'center', content: 'Featured Accommodation' } ],
-					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } } } ]
-				]
+					["core/separator", { style: { layout: { selfStretch: "fill", flexSize: null } } }],
+					["core/heading", { textAlign: "center", content: "Featured Accommodation" }],
+					["core/separator", { style: { layout: { selfStretch: "fill", flexSize: null } } }],
+				],
 			],
-			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } },
+			[
+				"core/group",
+				{ align: "wide", layout: { type: "constrained" } },
 				[
-					[ 'core/query', {
+					[
+						"core/query",
+						{
 							metadata: {
-								name: 'Featured Accommodation Query'
+								name: "Featured Accommodation Query",
 							},
 							query: {
 								perPage: 8,
-								postType: 'accommodation',
-								order: 'asc',
-								orderBy: 'date'
+								postType: "accommodation",
+								order: "asc",
+								orderBy: "date",
 							},
-							align: 'wide'
+							align: "wide",
 						},
 						[
-							[ 
-								'core/post-template', 
+							[
+								"core/post-template",
 								{
-									className: 'lsx-featured-accommodation-query',
+									className: "lsx-featured-accommodation-query",
 									layout: {
-										type: 'grid',
-										columnCount: 3
-									}
+										type: "grid",
+										columnCount: 3,
+									},
 								},
-								[
-									[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
-								]
-							]
-						]
-					]
-				]
-			]
+								[["core/pattern", { slug: "lsx-tour-operator/destination-card" }]],
+							],
+						],
+					],
+				],
+			],
 		],
 		supports: {
-			renaming: false
-		}
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: "Featured Accommodation",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/group",
+					{},
+					[
+						[
+							"core/heading",
+							{
+								content: "Featured Accommodation",
+								textAlign: "center",
+							},
+						],
+						[
+							"core/query",
+							{
+								query: {
+									postType: "accommodation",
+									perPage: 4,
+									meta_query: [
+										{
+											key: "featured",
+											value: "1",
+										},
+									],
+								},
+							},
+						],
+					],
+				],
+			],
+		},
 	});
-
 });

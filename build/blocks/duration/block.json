@@ -1,8 +1,44 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/duration",
   "title": "Duration",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Display tour duration information.",
+  "icon": "clock",
+  "keywords": [
+    "duration",
+    "time",
+    "tour"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Duration"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Duration",
+              "level": 3
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "7 days, 6 nights"
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

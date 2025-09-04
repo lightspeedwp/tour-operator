@@ -1,22 +1,42 @@
 wp.domReady(() => {
-
-wp.blocks.registerBlockVariation('core/button', {
-        name: 'lsx-tour-operator/more-link',
-        title: 'More Button',
-		icon: 'insert-after',
-		name: 'core/button',
+	wp.blocks.registerBlockVariation("core/button", {
+		// TODO: check if this works
+		name: "lsx-tour-operator/more-link",
+		title: "More Button",
+		icon: "insert-after",
 		category: "lsx-tour-operator",
 		attributes: {
-			className: 'lsx-to-more-link more-link',
+			className: "lsx-to-more-link more-link",
 			metadata: {
-				name: 'More Button'
+				name: "More Button",
 			},
 			width: 100,
-			text: 'View More',
+			text: "View More",
 		},
 		supports: {
-			renaming: false
-		}
-    });
-
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: "More Link",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/buttons",
+					{},
+					[
+						[
+							"core/button",
+							{
+								text: "Read More",
+								url: "#",
+							},
+						],
+					],
+				],
+			],
+		},
+	});
 });

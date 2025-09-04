@@ -1,8 +1,44 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/gallery",
-  "title": "Gallery",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/gallery",
+	"title": "TO Gallery",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Display image gallery with tour or destination photos.",
+	"icon": "format-gallery",
+	"keywords": [
+		"gallery",
+		"images",
+		"photos"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Gallery"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/gallery",
+				{
+					"images": [
+						{
+							"url": "",
+							"alt": "Safari landscape"
+						},
+						{
+							"url": "",
+							"alt": "Wildlife viewing"
+						},
+						{
+							"url": "",
+							"alt": "Accommodation view"
+						}
+					]
+				}
+			]
+		]
+	}
 }

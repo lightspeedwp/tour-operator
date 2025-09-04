@@ -1,69 +1,102 @@
 wp.domReady(() => {
-
-wp.blocks.registerBlockVariation( 'core/group', {
-		name: 'lsx-tour-operator/review-related-tour',
-		title: 'Related Reviews - Tour',
-		icon: 'palmtree',
-		description: 'Displays Reviews related to a Tour.',
-		category: 'lsx-tour-operator',
+	wp.blocks.registerBlockVariation("core/group", {
+		name: "lsx-tour-operator/review-related-tour",
+		title: "Related Reviews - Tour",
+		icon: "palmtree",
+		description: "Displays Reviews related to a Tour.",
+		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
-				name: 'Related Reviews - Tour'
+				name: "Related Reviews - Tour",
 			},
-			className: 'lsx-review-related-tour-query-wrapper',
-			align: 'full',
+			className: "lsx-review-related-tour-query-wrapper",
+			align: "full",
 			layout: {
-				type: 'constrained'
+				type: "constrained",
 			},
-			tagName: "section"
+			tagName: "section",
 		},
 		innerBlocks: [
-			[ 'core/group', {
-					align: 'wide',
-					layout: { type: 'flex', flexWrap: 'nowrap' }
+			[
+				"core/group",
+				{
+					align: "wide",
+					layout: { type: "flex", flexWrap: "nowrap" },
 				},
 				[
-					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } } } ],
-					[ 'core/heading', { textAlign: 'center', content: 'Reviews' } ],
-					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } } } ]
-				]
+					["core/separator", { style: { layout: { selfStretch: "fill", flexSize: null } } }],
+					["core/heading", { textAlign: "center", content: "Reviews" }],
+					["core/separator", { style: { layout: { selfStretch: "fill", flexSize: null } } }],
+				],
 			],
-			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } },
+			[
+				"core/group",
+				{ align: "wide", layout: { type: "constrained" } },
 				[
-					[ 'core/query', {
+					[
+						"core/query",
+						{
 							metadata: {
-								name: 'Related Reviews Query - Tour'
+								name: "Related Reviews Query - Tour",
 							},
 							query: {
 								perPage: 8,
-								postType: 'review',
-								order: 'asc',
-								orderBy: 'date'
+								postType: "review",
+								order: "asc",
+								orderBy: "date",
 							},
-							align: 'wide'
+							align: "wide",
 						},
 						[
-							[ 
-								'core/post-template', 
+							[
+								"core/post-template",
 								{
-									className: 'lsx-review-related-tour-query',
+									className: "lsx-review-related-tour-query",
 									layout: {
-										type: 'grid',
-										columnCount: 2
-									}
+										type: "grid",
+										columnCount: 2,
+									},
 								},
-								[
-									[ 'core/pattern', { slug: 'lsx-tour-operator/destination-card' } ]
-								]
-							]
-						]
-					]
-				]
-			]
+								[["core/pattern", { slug: "lsx-tour-operator/destination-card" }]],
+							],
+						],
+					],
+				],
+			],
 		],
 		supports: {
-			renaming: false
-		}
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: "Related Reviews - Tour",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/group",
+					{},
+					[
+						[
+							"core/heading",
+							{
+								content: "Tour Reviews",
+								level: 3,
+							},
+						],
+						[
+							"core/query",
+							{
+								query: {
+									postType: "review",
+									perPage: 3,
+								},
+							},
+						],
+					],
+				],
+			],
+		},
 	});
-
 });

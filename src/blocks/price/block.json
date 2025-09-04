@@ -1,13 +1,44 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
+	"textdomain": "tour-operator",
 	"name": "lsx-tour-operator/price",
 	"title": "Price",
 	"category": "lsx-tour-operator",
-  "editorScript": "file:index.js",
+	"editorScript": "file:index.js",
 	"example": {
 		"attributes": {
-			"content": "Preview of my block"
-		}
-	}
+			"metadata": {
+				"name": "Price"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Price",
+							"level": 3
+						}
+					],
+					[
+						"core/paragraph",
+						{
+							"content": "From $1,299 per person"
+						}
+					]
+				]
+			]
+		]
+	},
+	"description": "Display tour pricing information with currency support and formatting.",
+	"icon": "money-alt",
+	"keywords": [
+		"price",
+		"cost",
+		"tour"
+	]
 }

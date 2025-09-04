@@ -1,8 +1,44 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/single-supplement-wrapper",
-  "title": "Single Supplement",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/single-supplement-wrapper",
+	"title": "Single Supplement",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Display single traveler supplement pricing information.",
+	"icon": "money-alt",
+	"keywords": [
+		"supplement",
+		"single",
+		"pricing"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Single Supplement"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Single Supplement",
+							"level": 3
+						}
+					],
+					[
+						"core/paragraph",
+						{
+							"content": "25% supplement for single occupancy."
+						}
+					]
+				]
+			]
+		]
+	}
 }

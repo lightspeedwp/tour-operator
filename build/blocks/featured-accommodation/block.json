@@ -1,8 +1,53 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/featured-accommodation",
   "title": "Featured Accommodation",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Displays Accommodation with the Featured tag.",
+  "icon": "admin-multisite",
+  "keywords": [
+    "featured",
+    "accommodation",
+    "highlight"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Featured Accommodation"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Featured Accommodation",
+              "textAlign": "center"
+            }
+          ],
+          [
+            "core/query",
+            {
+              "query": {
+                "postType": "accommodation",
+                "perPage": 4,
+                "meta_query": [
+                  {
+                    "key": "featured",
+                    "value": "1"
+                  }
+                ]
+              }
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

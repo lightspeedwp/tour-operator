@@ -1,8 +1,82 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/price-include-exclude",
   "title": "Price Include & Exclude",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Display what is included and excluded in pricing.",
+  "icon": "money-alt",
+  "keywords": [
+    "price",
+    "include",
+    "exclude"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Price Include & Exclude"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "What's Included & Excluded",
+              "level": 3
+            }
+          ],
+          [
+            "core/columns",
+            {},
+            [
+              [
+                "core/column",
+                {},
+                [
+                  [
+                    "core/heading",
+                    {
+                      "content": "Included",
+                      "level": 4
+                    }
+                  ],
+                  [
+                    "core/list",
+                    {
+                      "values": "<li>Accommodation</li><li>Meals</li>"
+                    }
+                  ]
+                ]
+              ],
+              [
+                "core/column",
+                {},
+                [
+                  [
+                    "core/heading",
+                    {
+                      "content": "Excluded",
+                      "level": 4
+                    }
+                  ],
+                  [
+                    "core/list",
+                    {
+                      "values": "<li>Flights</li><li>Insurance</li>"
+                    }
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  }
 }

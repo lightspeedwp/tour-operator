@@ -1,8 +1,47 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/review-related-tour",
-  "title": "Related Reviews - Tour",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/review-related-tour",
+	"title": "Related Reviews - Tour",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Displays Reviews related to a Tour.",
+	"icon": "palmtree",
+	"keywords": [
+		"reviews",
+		"tour",
+		"ratings"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Related Reviews - Tour"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Tour Reviews",
+							"level": 3
+						}
+					],
+					[
+						"core/query",
+						{
+							"query": {
+								"postType": "review",
+								"perPage": 3
+							}
+						}
+					]
+				]
+			]
+		]
+	}
 }

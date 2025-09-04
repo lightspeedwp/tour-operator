@@ -1,8 +1,44 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/visa",
   "title": "Visa",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Display visa requirements and travel documentation.",
+  "icon": "id-alt",
+  "keywords": [
+    "visa",
+    "passport",
+    "travel"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Visa"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Visa",
+              "level": 3
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "Tourist visa required for stays over 90 days."
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

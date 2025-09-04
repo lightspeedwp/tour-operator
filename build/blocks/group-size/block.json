@@ -1,8 +1,44 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/group-size",
   "title": "Group Size",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Show maximum and minimum group sizes for tours.",
+  "icon": "groups",
+  "keywords": [
+    "group",
+    "size",
+    "people"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Group Size"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Group Size",
+              "level": 3
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "2-12 people"
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

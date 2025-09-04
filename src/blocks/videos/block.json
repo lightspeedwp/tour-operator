@@ -1,12 +1,48 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/videos",
-  "title": "Videos",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js",
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/videos",
+	"title": "Videos",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Embed and display tour or destination videos.",
+	"icon": "video-alt3",
   "supports": {
     "imageCrop": false,
     "randomOrder": false
-  }
+  },
+	"keywords": [
+		"videos",
+		"media",
+		"multimedia"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Videos"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Videos",
+							"level": 3
+						}
+					],
+					[
+						"core/paragraph",
+						{
+							"content": "Watch our destination highlight videos."
+						}
+					]
+				]
+			]
+		]
+	}
 }

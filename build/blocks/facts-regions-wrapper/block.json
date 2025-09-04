@@ -1,8 +1,44 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/facts-regions-wrapper",
   "title": "Regions List",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Display list of regions and areas.",
+  "icon": "admin-site-alt",
+  "keywords": [
+    "regions",
+    "list",
+    "areas"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Regions List"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Regions List",
+              "level": 3
+            }
+          ],
+          [
+            "core/list",
+            {
+              "values": "<li>Garden Route</li><li>Winelands</li><li>Kruger National Park</li>"
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

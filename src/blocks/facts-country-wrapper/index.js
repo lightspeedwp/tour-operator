@@ -1,79 +1,105 @@
 wp.domReady(() => {
-
-wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-tour-operator/facts-country-wrapper',
-		title: 'Country',
+	wp.blocks.registerBlockVariation("core/group", {
+		name: "lsx-tour-operator/facts-country-wrapper",
+		title: "Country",
 		icon: "admin-site",
-		category: 'lsx-tour-operator',
+		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
-				name: 'Country'
+				name: "Country",
 			},
-			className: 'facts-country-query-wrapper',
+			className: "facts-country-query-wrapper",
 			layout: {
-				type: 'flex',
-				flexWrap: 'nowrap'
-			}
+				type: "flex",
+				flexWrap: "nowrap",
+			},
 		},
 		innerBlocks: [
 			[
-				'core/group',
+				"core/group",
 				{
 					layout: {
-						type: 'flex',
-						flexWrap: 'nowrap',
-						verticalAlignment: 'top'
-					}
+						type: "flex",
+						flexWrap: "nowrap",
+						verticalAlignment: "top",
+					},
 				},
 				[
 					[
-						'core/image',
+						"core/image",
 						{
-							width: '20px',
-							sizeSlug: 'large',
-							url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/09/destinations-icon-black-20px.png',
-							alt: ''
-						}
+							width: "20px",
+							sizeSlug: "large",
+							url: "https://tour-operator.lsx.design/wp-content/uploads/2024/09/destinations-icon-black-20px.png",
+							alt: "",
+						},
 					],
 					[
-						'core/paragraph',
+						"core/paragraph",
 						{
-							content: '<strong>Country:</strong>'
-						}
-					]
-				]
+							content: "<strong>Country:</strong>",
+						},
+					],
+				],
 			],
 			[
-				'core/group',
+				"core/group",
 				{
 					layout: {
-						type: 'flex',
-						flexWrap: 'nowrap'
-					}
+						type: "flex",
+						flexWrap: "nowrap",
+					},
 				},
 				[
 					[
-						'core/paragraph',
+						"core/paragraph",
 						{
 							metadata: {
 								bindings: {
 									content: {
 										source: "lsx/post-connection",
 										args: {
-											key: "post_parent"
+											key: "post_parent",
 										},
 									},
 								},
 							},
-							content: ''
-						}
-					]
-				]
-			]
+							content: "",
+						},
+					],
+				],
+			],
 		],
 		supports: {
-			renaming: false
-		}
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: "Country Facts",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/group",
+					{},
+					[
+						[
+							"core/heading",
+							{
+								content: "Country Facts",
+								level: 3,
+							},
+						],
+						[
+							"core/paragraph",
+							{
+								content: "Capital: Cape Town | Population: 59 million | Currency: ZAR",
+							},
+						],
+					],
+				],
+			],
+		},
 	});
-
 });

@@ -1,8 +1,44 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/number-of-rooms",
-  "title": "Number of Rooms",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/number-of-rooms",
+	"title": "Number of Rooms",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Display number of available rooms.",
+	"icon": "admin-multisite",
+	"keywords": [
+		"rooms",
+		"accommodation",
+		"quantity"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Number of Rooms"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Number of Rooms",
+							"level": 3
+						}
+					],
+					[
+						"core/paragraph",
+						{
+							"content": "25 rooms available"
+						}
+					]
+				]
+			]
+		]
+	}
 }

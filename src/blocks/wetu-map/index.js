@@ -1,32 +1,31 @@
 wp.domReady(() => {
-
-wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-tour-operator/wetu-map',
-		title: 'WETU Map',
-		icon: 'admin-site-alt3',
-		category: 'lsx-tour-operator',
+	wp.blocks.registerBlockVariation("core/group", {
+		name: "lsx-tour-operator/wetu-map",
+		title: "WETU Map",
+		icon: "admin-site-alt3",
+		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
-				name: 'WETU Map',
+				name: "WETU Map",
 				bindings: {
 					content: {
-						source: 'lsx/map',
-						type: 'wetu'
-					}
-				}
+						source: "lsx/map",
+						type: "wetu",
+					},
+				},
 			},
 			layout: {
-				type: "constrained"
-			}
+				type: "constrained",
+			},
 		},
 		innerBlocks: [
 			[
 				"core/group",
 				{
 					align: "wide",
-					layout:{
-						type:"default"
-					}
+					layout: {
+						type: "default",
+					},
 				},
 				[
 					[
@@ -36,16 +35,43 @@ wp.blocks.registerBlockVariation('core/group', {
 							sizeSlug: "large",
 							url: lsxToEditor.assetsUrl + "blocks/wetu-map-figme-prototype-image.png",
 							alt: "",
-						}
-					]
-				]
-			]
+						},
+					],
+				],
+			],
 		],
 		isDefault: false,
-		allowedPostTypes: ['tour'],
+		allowedPostTypes: ["tour"],
 		supports: {
-			renaming: false
-		}
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: "WETU Map",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/group",
+					{},
+					[
+						[
+							"core/heading",
+							{
+								content: "Tour Map",
+								level: 3,
+							},
+						],
+						[
+							"core/paragraph",
+							{
+								content: "Detailed tour route and accommodation locations.",
+							},
+						],
+					],
+				],
+			],
+		},
 	});
-
 });

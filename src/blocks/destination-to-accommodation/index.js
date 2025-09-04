@@ -1,67 +1,98 @@
 wp.domReady(() => {
-
-wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-tour-operator/destination-to-accommodation',
-		title: 'Destination to Accommodation',
+	wp.blocks.registerBlockVariation("core/group", {
+		name: "lsx-tour-operator/destination-to-accommodation",
+		title: "Destination to Accommodation",
 		icon: "admin-site",
-		category: 'lsx-tour-operator',
+		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
-				name: 'Destination to Accommodation',
+				name: "Destination to Accommodation",
 			},
-			className: 'lsx-destination-to-accommodation-wrapper',
-			
+			className: "lsx-destination-to-accommodation-wrapper",
+
 			layout: {
-				type: 'constrained'
-			}
+				type: "constrained",
+			},
 		},
 		innerBlocks: [
-			['core/group', {
-					
+			[
+				"core/group",
+				{
 					layout: {
-						type: 'flex',
-						flexWrap: 'nowrap',
-						verticalAlignment: 'top'
-					}
+						type: "flex",
+						flexWrap: "nowrap",
+						verticalAlignment: "top",
+					},
 				},
 				[
-					['core/image', {
-						width: '20px',
-						sizeSlug: 'large',
-						url: lsxToEditor.assetsUrl + 'blocks/Typelocation-icon.png',
-						alt: ''
-					}],
-					['core/paragraph', {
-						
-						content: '<strong>Location</strong>:'
-					}]
-				]
+					[
+						"core/image",
+						{
+							width: "20px",
+							sizeSlug: "large",
+							url: lsxToEditor.assetsUrl + "blocks/Typelocation-icon.png",
+							alt: "",
+						},
+					],
+					[
+						"core/paragraph",
+						{
+							content: "<strong>Location</strong>:",
+						},
+					],
+				],
 			],
-			['core/group', {
+			[
+				"core/group",
+				{
 					layout: {
-						type: 'flex',
-						flexWrap: 'nowrap'
-					}
+						type: "flex",
+						flexWrap: "nowrap",
+					},
 				},
 				[
-					['core/paragraph', {
-						metadata: {
-							bindings: {
-								content: {
-									source: 'lsx/post-connection',
-									args: {
-										key: 'destination_to_accommodation'
-									}
-								}
-							}
-						}
-					}]
-				]
-			]
+					[
+						"core/paragraph",
+						{
+							metadata: {
+								bindings: {
+									content: {
+										source: "lsx/post-connection",
+										args: {
+											key: "destination_to_accommodation",
+										},
+									},
+								},
+							},
+						},
+					],
+				],
+			],
 		],
 		supports: {
-			renaming: false
-		}
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: "Destination to Accommodation",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/group",
+					{},
+					[
+						[
+							"core/heading",
+							{
+								content: "Accommodation in this Destination",
+								level: 3,
+							},
+						],
+					],
+				],
+			],
+		},
 	});
-
 });

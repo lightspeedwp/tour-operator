@@ -1,8 +1,44 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/wetu-map",
   "title": "WETU Map",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Display WETU integration maps for tour locations.",
+  "icon": "admin-site-alt3",
+  "keywords": [
+    "map",
+    "wetu",
+    "location"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "WETU Map"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Tour Map",
+              "level": 3
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "Detailed tour route and accommodation locations."
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

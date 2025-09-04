@@ -1,13 +1,13 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/banner-cover",
   "version": "1.0.0",
   "title": "Banner Cover",
   "category": "lsx-tour-operator",
   "icon": "cover-image",
   "description": "Cover block using banner image from custom field",
-  "textdomain": "tour-operator",
   "editorScript": "file:./index.js",
   "supports": {
     "align": [
@@ -51,5 +51,36 @@
       "type": "boolean",
       "default": true
     }
+  },
+  "keywords": [
+    "banner",
+    "cover",
+    "hero"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Banner Cover"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/cover",
+        {
+          "url": "",
+          "alt": "Destination banner"
+        },
+        [
+          [
+            "core/heading",
+            {
+              "content": "Discover Africa",
+              "level": 1,
+              "textAlign": "center"
+            }
+          ]
+        ]
+      ]
+    ]
   }
 }

@@ -1,8 +1,53 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/featured-destinations",
-  "title": "Featured Destinations",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/featured-destinations",
+	"title": "Featured Destinations",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Displays Destinations with Featured tag.",
+	"icon": "admin-site",
+	"keywords": [
+		"featured",
+		"destinations",
+		"highlight"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Featured Destinations"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Featured Destinations",
+							"textAlign": "center"
+						}
+					],
+					[
+						"core/query",
+						{
+							"query": {
+								"postType": "destination",
+								"perPage": 4,
+								"meta_query": [
+									{
+										"key": "featured",
+										"value": "1"
+									}
+								]
+							}
+						}
+					]
+				]
+			]
+		]
+	}
 }

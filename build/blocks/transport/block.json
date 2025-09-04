@@ -1,8 +1,44 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/transport",
   "title": "Transport",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Display local transportation options and information.",
+  "icon": "car",
+  "keywords": [
+    "transport",
+    "travel",
+    "getting-around"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Transport"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Transport",
+              "level": 3
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "Private transfers and safari vehicles included."
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

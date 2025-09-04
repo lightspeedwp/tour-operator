@@ -1,8 +1,44 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/dress",
   "title": "Dress",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Show dress code and cultural clothing guidelines.",
+  "icon": "admin-customizer",
+  "keywords": [
+    "dress",
+    "clothing",
+    "culture"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Dress"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Dress",
+              "level": 3
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "Casual safari clothing recommended. Neutral colors preferred."
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

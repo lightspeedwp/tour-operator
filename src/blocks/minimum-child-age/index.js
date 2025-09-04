@@ -1,69 +1,107 @@
 wp.domReady(() => {
-
-wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-tour-operator/minimum-child-age',
-		title: 'Minimum Child Age',
+	wp.blocks.registerBlockVariation("core/group", {
+		name: "lsx-tour-operator/minimum-child-age",
+		title: "Minimum Child Age",
 		icon: "id",
-		category: 'lsx-tour-operator',
+		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
-				name: 'Minimum Child Age',
+				name: "Minimum Child Age",
 			},
-			className: 'lsx-minimum-child-age-wrapper',
+			className: "lsx-minimum-child-age-wrapper",
 			layout: {
-				type: 'flex',
-				flexWrap: 'nowrap'
-			}
+				type: "flex",
+				flexWrap: "nowrap",
+			},
 		},
 		innerBlocks: [
-			['core/group', {
-					
+			[
+				"core/group",
+				{
 					layout: {
-						type: 'flex',
-						flexWrap: 'nowrap',
-						verticalAlignment: 'top'
-					}
+						type: "flex",
+						flexWrap: "nowrap",
+						verticalAlignment: "top",
+					},
 				},
 				[
-					['core/image', {
-						id: 122719,
-						width: '20px',
-						sizeSlug: 'large',
-						linkDestination: 'none',
-						url: lsxToEditor.assetsUrl + 'blocks/minimum-child-age.svg',
-						alt: '',
-						className: 'wp-image-122719'
-					}],
-					['core/paragraph', {
-						content: '<strong>Minimum child age:</strong>'
-					}]
-				]
+					[
+						"core/image",
+						{
+							id: 122719,
+							width: "20px",
+							sizeSlug: "large",
+							linkDestination: "none",
+							url: lsxToEditor.assetsUrl + "blocks/minimum-child-age.svg",
+							alt: "",
+							className: "wp-image-122719",
+						},
+					],
+					[
+						"core/paragraph",
+						{
+							content: "<strong>Minimum child age:</strong>",
+						},
+					],
+				],
 			],
-			['core/group', {
+			[
+				"core/group",
+				{
 					layout: {
-						type: 'flex',
-						flexWrap: 'nowrap'
-					}
+						type: "flex",
+						flexWrap: "nowrap",
+					},
 				},
 				[
-					['core/paragraph', {
-						metadata: {
-							bindings: {
-								content: {
-									source: 'lsx/post-meta',
-									args: {
-										key: 'minimum_child_age'
-									}
-								}
-							}
-						}
-					}]
-				]
-			]
+					[
+						"core/paragraph",
+						{
+							metadata: {
+								bindings: {
+									content: {
+										source: "lsx/post-meta",
+										args: {
+											key: "minimum_child_age",
+										},
+									},
+								},
+							},
+						},
+					],
+				],
+			],
 		],
 		supports: {
-			renaming: false
-		}
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: "Minimum Child Age",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/group",
+					{},
+					[
+						[
+							"core/heading",
+							{
+								content: "Minimum Child Age",
+								level: 3,
+							},
+						],
+						[
+							"core/paragraph",
+							{
+								content: "Children must be at least 6 years old.",
+							},
+						],
+					],
+				],
+			],
+		},
 	});
-
 });
