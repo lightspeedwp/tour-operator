@@ -190,7 +190,7 @@ wp.domReady( () => {
 				],
 			],
 		},
-		isActive: ( blockAttributes, variationAttributes ) => {
+		isActive: ( blockAttributes ) => {
 			return (
 				blockAttributes.className === 'lsx-accommodation-related-accommodation-query-wrapper' ||
 				( blockAttributes.className &&
