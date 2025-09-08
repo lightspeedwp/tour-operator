@@ -3,7 +3,7 @@
 	"apiVersion": 3,
 	"textdomain": "tour-operator",
 	"name": "lsx-tour-operator/best-time-to-visit",
-	"title": "Best Time to Visit",
+	"title": "Best Time To Visit",
 	"category": "lsx-tour-operator",
 	"editorScript": "file:index.js",
 	"description": "Show optimal travel seasons and weather conditions.",
