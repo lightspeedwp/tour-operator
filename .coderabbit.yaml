@@ -17,6 +17,8 @@ reviews:
     drafts: false
     base_branches:
       - '.*'
+  path_filters:
+    - "!build/**"
   path_instructions:
     - path: '**/*.{php,js,ts,jsx,tsx}'
       instructions: |
