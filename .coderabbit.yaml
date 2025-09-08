@@ -1,8 +1,6 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 language: "en-ZA"
 early_access: false
-path_filters:
-  - "!build/**"
 commands:
   enabled: true
 linked_issues:
@@ -19,6 +17,8 @@ reviews:
     drafts: false
     base_branches:
       - '.*'
+  path_filters:
+    - "!build/**"
   path_instructions:
     - path: '**/*.{php,js,ts,jsx,tsx}'
       instructions: |
