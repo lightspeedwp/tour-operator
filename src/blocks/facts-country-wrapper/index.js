@@ -76,7 +76,7 @@ wp.domReady(() => {
 		example: {
 			attributes: {
 				metadata: {
-					name: "Country Facts",
+					name: "Country",
 				},
 			},
 			innerBlocks: [
