@@ -50,6 +50,7 @@
 - Ensure consistent sizing of 20px 
 - Add "currentColor" to all icon colour styling [#575](https://github.com/lightspeedwp/tour-operator/pull/575)
 - Query Block Pagination not Inherting the correct query vars. [#608](https://github.com/lightspeedwp/tour-operator/pull/608)
+- Fixed – Excluded build/ directory from CodeRabbit reviews by updating .coderabbit.yaml. [#620](https://github.com/lightspeedwp/tour-operator/pull/620)
 
 ### Security
 - 
