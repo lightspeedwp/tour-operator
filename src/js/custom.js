@@ -374,7 +374,9 @@ lsx_to.set_read_more = function () {
         }
 
         $this.removeClass('is-layout-flex wp-block-gallery-is-layout-flex is-layout-grid');
-
+		// Remove any left/right padding explicitly set (inline or inherited) to allow full-width slider alignment.
+		$this.css({ 'padding-left': 0, 'padding-right': 0 });
+        
         if (1 < $this.children().length) {
           $this.slick({
             draggable: false,
@@ -526,7 +528,7 @@ lsx_to.set_read_more = function () {
     lsx_to.build_slider_lightbox();
   });
 
-  document.addEventListener("DOMContentLoaded", function () {
+  /*document.addEventListener("DOMContentLoaded", function () {
     // Select all sections within `.single-tour-operator`
     const sections = document.querySelectorAll(
       ".single-tour-operator section.wp-block-group, .single-tour-operator section.wp-block-cover"
@@ -570,5 +572,5 @@ lsx_to.set_read_more = function () {
         });
       }
     });
-  });
+  });*/
 })(jQuery, window, document);
