@@ -1,55 +1,94 @@
 wp.domReady(() => {
-
-wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-tour-operator/accommodation-type',
-		title: 'Accommodation Type',
+	wp.blocks.registerBlockVariation("core/group", {
+		name: "lsx-tour-operator/accommodation-type",
+		title: "Accommodation Type",
 		icon: "admin-multisite",
-		category: 'lsx-tour-operator',
+		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
-				name: 'Accommodation Type',
+				name: "Accommodation Type",
 			},
-			className: 'lsx-accommodation-type-wrapper',
+			className: "lsx-accommodation-type-wrapper",
 			layout: {
-				type: 'constrained'
-			}
+				type: "constrained",
+			},
 		},
 		innerBlocks: [
-			['core/group', {
+			[
+				"core/group",
+				{
 					layout: {
-						type: 'flex',
-						flexWrap: 'nowrap',
-						verticalAlignment: 'top'
-					}
+						type: "flex",
+						flexWrap: "nowrap",
+						verticalAlignment: "top",
+					},
 				},
 				[
-					['core/image', {
-						width: '20px',
-						sizeSlug: 'large',
-						url: lsxToEditor.assetsUrl + 'blocks/accommodation-type.png',
-						alt: ''
-					}],
-					['core/paragraph', {
-						content: '<strong>Accommodation Type</strong>:'
-					}]
-				]
+					[
+						"core/image",
+						{
+							width: "20px",
+							sizeSlug: "large",
+							url: lsxToEditor.assetsUrl + "blocks/accommodation-type.png",
+							alt: "",
+						},
+					],
+					[
+						"core/paragraph",
+						{
+							content: "<strong>Accommodation Type</strong>:",
+						},
+					],
+				],
 			],
-			['core/group', {
+			[
+				"core/group",
+				{
 					layout: {
-						type: 'flex',
-						flexWrap: 'nowrap'
-					}
+						type: "flex",
+						flexWrap: "nowrap",
+					},
 				},
 				[
-					['core/post-terms', {
-						term: 'accommodation-type'
-					}]
-				]
-			]
+					[
+						"core/post-terms",
+						{
+							term: "accommodation-type",
+						},
+					],
+				],
+			],
 		],
 		supports: {
-			renaming: false
-		}
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: "Accommodation Type",
+				},
+			},
+			innerBlocks: [
+				[
+					"core/group",
+					{},
+					[
+						[
+							"core/heading",
+							{
+								content: "Accommodation Type",
+								level: 3,
+							},
+						],
+						[
+							"core/paragraph",
+							{
+								content: "Luxury Safari Lodge",
+							},
+						],
+					],
+				],
+			],
+		},
 	});
-
 });

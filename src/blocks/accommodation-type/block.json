@@ -1,8 +1,44 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "lsx-tour-operator/accommodation-type",
-  "title": "Accommodation Type",
-  "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/accommodation-type",
+	"title": "Accommodation Type",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Display accommodation type and category information.",
+	"icon": "admin-multisite",
+	"keywords": [
+		"accommodation",
+		"type",
+		"lodging"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Accommodation Type"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/group",
+				{},
+				[
+					[
+						"core/heading",
+						{
+							"content": "Accommodation Type",
+							"level": 3
+						}
+					],
+					[
+						"core/paragraph",
+						{
+							"content": "Luxury Safari Lodge"
+						}
+					]
+				]
+			]
+		]
+	}
 }

@@ -1,6 +1,5 @@
-wp.domReady(() => {
-
-wp.blocks.registerBlockVariation( 'core/group', {
+wp.domReady( () => {
+	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/accommodation-related-destination',
 		title: 'Related Accommodation - Destination',
 		icon: 'admin-site',
@@ -8,62 +7,188 @@ wp.blocks.registerBlockVariation( 'core/group', {
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
-				name: 'Related Accommodation - Destination'
+				name: 'Related Accommodation - Destination',
 			},
 			className: 'lsx-accommodation-related-destination-query-wrapper',
 			align: 'full',
 			layout: {
-				type: 'constrained'
+				type: 'constrained',
 			},
-			tagName: "section"
+			tagName: 'section',
 		},
 		innerBlocks: [
-			[ 'core/group', {
+			[
+				'core/group',
+				{
 					align: 'wide',
-					layout: { type: 'flex', flexWrap: 'nowrap' }
+					layout: { type: 'flex', flexWrap: 'nowrap' },
 				},
 				[
-					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } } } ],
-					[ 'core/heading', { textAlign: 'center', content: 'Related Accommodation' } ],
-					[ 'core/separator', { style: { layout: { selfStretch: 'fill', flexSize: null } } } ]
-				]
+					[
+						'core/separator',
+						{
+							style: {
+								layout: { selfStretch: 'fill', flexSize: null },
+							},
+						},
+					],
+					[
+						'core/heading',
+						{
+							textAlign: 'center',
+							content: 'Related Accommodation',
+						},
+					],
+					[
+						'core/separator',
+						{
+							style: {
+								layout: { selfStretch: 'fill', flexSize: null },
+							},
+						},
+					],
+				],
 			],
-			[ 'core/group', { align: 'wide', layout: { type: 'constrained' } },
+			[
+				'core/group',
+				{ align: 'wide', layout: { type: 'constrained' } },
 				[
-					[ 'core/query', {
+					[
+						'core/query',
+						{
 							metadata: {
-								name: 'Related Accommodation Query'
+								name: 'Related Accommodation Query',
 							},
 							query: {
 								perPage: 8,
 								postType: 'accommodation',
 								order: 'asc',
-								orderBy: 'date'
+								orderBy: 'date',
 							},
-							align: 'wide'
+							align: 'wide',
 						},
 						[
-							[ 
-								'core/post-template', 
+							[
+								'core/post-template',
 								{
-									className: 'lsx-accommodation-related-destination-query',
+									className:
+										'lsx-accommodation-related-destination-query',
 									layout: {
 										type: 'grid',
-										columnCount: 3
-									}
+										columnCount: 3,
+									},
 								},
 								[
-									[ 'core/pattern', { slug: 'lsx-tour-operator/accommodation-card' } ]
-								]
-							]
-						]
-					]
-				]
-			]
+									[
+										'core/pattern',
+										{
+											slug: 'lsx-tour-operator/accommodation-card',
+										},
+									],
+								],
+							],
+						],
+					],
+				],
+			],
 		],
 		supports: {
-			renaming: false
-		}
-	});
-
-});
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: 'Related Accommodation - Destination',
+				},
+			},
+			innerBlocks: [
+				[
+					'core/group',
+					{},
+					[
+						[
+							'core/heading',
+							{
+								content: 'Related Destinations',
+								textAlign: 'center',
+							},
+						],
+						[
+							'core/group',
+							{
+								style: {
+									spacing: {
+										blockGap: '2rem'
+									}
+								},
+								layout: {
+									type: 'grid',
+									columnCount: 3
+								}
+							},
+							[
+								[
+									'core/group',
+									{
+										style: {
+											border: {
+												width: '1px',
+												style: 'solid',
+												color: '#e0e0e0'
+											},
+											spacing: {
+												padding: '1rem'
+											}
+										}
+									},
+									[
+										[ 'core/heading', { content: 'Kruger National Park', level: 3 } ],
+										[ 'core/paragraph', { content: 'Premier wildlife destination offering exceptional safari experiences and diverse ecosystems.' } ]
+									]
+								],
+								[
+									'core/group',
+									{
+										style: {
+											border: {
+												width: '1px',
+												style: 'solid',
+												color: '#e0e0e0'
+											},
+											spacing: {
+												padding: '1rem'
+											}
+										}
+									},
+									[
+										[ 'core/heading', { content: 'Garden Route', level: 3 } ],
+										[ 'core/paragraph', { content: 'Scenic coastal route with stunning landscapes, charming towns, and outdoor adventures.' } ]
+									]
+								],
+								[
+									'core/group',
+									{
+										style: {
+											border: {
+												width: '1px',
+												style: 'solid',
+												color: '#e0e0e0'
+											},
+											spacing: {
+												padding: '1rem'
+											}
+										}
+									},
+									[
+										[ 'core/heading', { content: 'Drakensberg Mountains', level: 3 } ],
+										[ 'core/paragraph', { content: 'Majestic mountain range perfect for hiking, culture, and breathtaking scenery.' } ]
+									]
+								]
+							]
+						],
+					],
+				],
+			],
+		},
+	} );
+} );
