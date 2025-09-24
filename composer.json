@@ -19,7 +19,7 @@
       "phpcs:report": "vendor/bin/phpcs --report=json --report-file=phpcs-report.json",
       "test": "vendor/bin/phpunit --no-configuration tests/php/TestSimpleFunctions.php",
       "test:simple": "vendor/bin/phpunit --no-configuration tests/php/TestSimpleFunctions.php",
-      "test:wp": "vendor/bin/phpunit -c phpunit.xml",
+      "test:wp": "./bin/run-wp-tests.sh",
       "test:coverage": "vendor/bin/phpunit --no-configuration --coverage-html tests/coverage tests/php/TestSimpleFunctions.php",
       "test:unit": "vendor/bin/phpunit -c phpunit.xml --testsuite='Tour Operator Plugin Test Suite'"
     },

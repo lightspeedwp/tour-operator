@@ -1,0 +1,77 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Build artifacts and compiled files
+build/
+assets/dist/
+*.min.js
+*.min.css
+*.map
+*.asset.php
+
+# Testing and development directories
+tests/
+test-results/
+playwright-report/
+coverage/
+bin/
+
+# WordPress development files
+wp-content/
+
+# Temporary files
+.tmp/
+.cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Archives and packages
+*.zip
+*.tar.gz
+*.sql
+
+# Language files (generated)
+languages/*.mo
+languages/*.pot
+
+# Configuration files that should not be formatted
+composer.json
+composer.lock
+package-lock.json
+.distignore
+.gitignore
+.gitattributes
+.editorconfig
+phpcs.xml
+phpcs.xml.dist
+phpunit.xml
+phpunit.xml.dist
+webpack.config.js
+playwright.config.js
+stylelint.config.js
+.eslintrc*
+
+# Documentation that may have specific formatting
+README.md
+CHANGELOG.md
+readme.txt
+
+# GitHub and CI files
+.github/
+.mergify.yml
+.coderabbit.yaml
+
+# WordPress specific files
+wpml-config.xml
+post-types/
+templates/
