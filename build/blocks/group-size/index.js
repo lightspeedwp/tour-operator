@@ -1,1 +1,56 @@
-wp.domReady(()=>{wp.blocks.registerBlockVariation("core/group",{name:"lsx-tour-operator/group-size",title:"Group Size",icon:"groups",category:"lsx-tour-operator",attributes:{metadata:{name:"Group Size"},className:"lsx-group-size-wrapper",layout:{type:"flex",flexWrap:"nowrap"}},innerBlocks:[["core/group",{layout:{type:"flex",flexWrap:"nowrap",verticalAlignment:"top"}},[["core/image",{id:122731,width:"20px",sizeSlug:"large",linkDestination:"none",url:lsxToEditor.assetsUrl+"blocks/group-size.svg",alt:""}],["core/paragraph",{content:"<strong>Group size:</strong>"}]]],["core/group",{},[["core/paragraph",{metadata:{bindings:{content:{source:"lsx/post-meta",args:{key:"group_size"}}}},content:""}]]]],supports:{renaming:!1}})});
+/******/ (function() { // webpackBootstrap
+/*!****************************************!*\
+  !*** ./src/blocks/group-size/index.js ***!
+  \****************************************/
+wp.domReady(() => {
+  wp.blocks.registerBlockVariation('core/group', {
+    name: 'lsx-tour-operator/group-size',
+    title: 'Group Size',
+    icon: 'groups',
+    category: 'lsx-tour-operator',
+    attributes: {
+      metadata: {
+        name: 'Group Size'
+      },
+      className: 'lsx-group-size-wrapper',
+      layout: {
+        type: 'flex',
+        flexWrap: 'nowrap'
+      }
+    },
+    innerBlocks: [['core/group', {
+      layout: {
+        type: 'flex',
+        flexWrap: 'nowrap',
+        verticalAlignment: 'top'
+      }
+    }, [['core/image', {
+      id: 122731,
+      width: '20px',
+      sizeSlug: 'large',
+      linkDestination: 'none',
+      url: lsxToEditor.assetsUrl + 'blocks/group-size.svg',
+      alt: ''
+    }], ['core/paragraph', {
+      content: '<strong>Group size:</strong>'
+    }]]], ['core/group', {}, [['core/paragraph', {
+      metadata: {
+        bindings: {
+          content: {
+            source: 'lsx/post-meta',
+            args: {
+              key: 'group_size'
+            }
+          }
+        }
+      },
+      content: ''
+    }]]]],
+    supports: {
+      renaming: false
+    }
+  });
+});
+/******/ })()
+;
+//# sourceMappingURL=index.js.map

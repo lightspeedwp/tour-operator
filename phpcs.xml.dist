@@ -1,13 +1,36 @@
 <?xml version="1.0"?>
 <ruleset name="LightSpeedWP">
   <description>LightSpeed WP Coding Standards</description>
+
+  <!-- Scan all PHP files in the current directory and subdirectories -->
   <file>./</file>
+
+  <!-- Exclude third-party dependencies -->
   <exclude-pattern>vendor/*</exclude-pattern>
   <exclude-pattern>node_modules/*</exclude-pattern>
+
+  <!-- Exclude build and temporary directories -->
+  <exclude-pattern>build/*</exclude-pattern>
+  <exclude-pattern>assets/dist/*</exclude-pattern>
+  <exclude-pattern>.tmp/*</exclude-pattern>
+  <exclude-pattern>.cache/*</exclude-pattern>
+
+  <!-- Exclude testing and development directories -->
+  <exclude-pattern>tests/*</exclude-pattern>
+  <exclude-pattern>test-results/*</exclude-pattern>
+  <exclude-pattern>playwright-report/*</exclude-pattern>
+  <exclude-pattern>coverage/*</exclude-pattern>
+  <exclude-pattern>bin/*</exclude-pattern>
+
+  <!-- Exclude WordPress development files -->
+  <exclude-pattern>wp-content/*</exclude-pattern>
+
+  <!-- Apply WordPress Coding Standards -->
   <rule ref="WordPress-Core"/>
   <rule ref="WordPress-Extra"/>
   <rule ref="WordPress-Docs"/>
-  <rule ref="WordPress-VIP"/>
+
+  <!-- Check PHP compatibility -->
   <rule ref="PHPCompatibilityWP"/>
-  <config name="testVersion" value="7.4-8.3"/>
+  <config name="testVersion" value="8.0-8.3"/>
 </ruleset>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+         bootstrap="tests/php/bootstrap.php"
+         colors="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         backupGlobals="false">
+
+    <testsuites>
+        <testsuite name="Tour Operator Plugin Test Suite">
+            <file>./tests/php/TestTourOperatorBasic.php</file>
+        </testsuite>
+    </testsuites>
+
+    <source>
+        <include>
+            <directory suffix=".php">./includes</directory>
+            <directory suffix=".php">./src</directory>
+        </include>
+        <exclude>
+            <directory>./vendor</directory>
+            <directory>./tests</directory>
+            <directory>./build</directory>
+            <directory>./assets</directory>
+            <file>./tour-operator.php</file>
+            <file>./tour-operator-bootstrap.php</file>
+        </exclude>
+    </source>
+
+    <coverage includeUncoveredFiles="true">
+        <report>
+            <html outputDirectory="tests/coverage/html"/>
+            <clover outputFile="tests/coverage/clover.xml"/>
+        </report>
+    </coverage>
+
+    <logging>
+        <junit outputFile="tests/results/junit.xml"/>
+    </logging>
+
+    <php>
+        <!-- WordPress test environment variables -->
+        <const name="WP_TESTS_DOMAIN" value="example.org"/>
+        <const name="WP_TESTS_EMAIL" value="admin@example.org"/>
+        <const name="WP_TESTS_TITLE" value="Test Blog"/>
+        <const name="WP_PHP_BINARY" value="php"/>
+        <const name="WP_TESTS_FORCE_KNOWN_BUGS" value="true"/>
+
+        <!-- Plugin specific constants -->
+        <const name="LSX_TO_TESTING" value="true"/>
+
+        <!-- Database settings for testing -->
+        <env name="WP_TESTS_DB_NAME" value="tour_operator_test"/>
+        <env name="WP_TESTS_DB_USER" value="root"/>
+        <env name="WP_TESTS_DB_PASSWORD" value=""/>
+        <env name="WP_TESTS_DB_HOST" value="localhost"/>
+        <env name="WP_TESTS_DB_CHARSET" value="utf8"/>
+        <env name="WP_TESTS_DB_COLLATE" value=""/>
+
+        <!-- WordPress test table prefix -->
+        <env name="WP_TESTS_TABLE_PREFIX" value="wptests_"/>
+
+        <!-- WordPress multisite testing -->
+        <env name="WP_TESTS_MULTISITE" value="0"/>
+
+        <!-- Skip certain tests -->
+        <env name="WP_TESTS_SKIP_INSTALL" value="0"/>
+    </php>
+</phpunit>

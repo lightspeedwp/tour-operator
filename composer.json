@@ -16,7 +16,12 @@
     "scripts": {
       "phpcs": "vendor/bin/phpcs",
       "phpcbf": "vendor/bin/phpcbf",
-      "phpcs:report": "vendor/bin/phpcs --report=json --report-file=phpcs-report.json"
+      "phpcs:report": "vendor/bin/phpcs --report=json --report-file=phpcs-report.json",
+      "test": "vendor/bin/phpunit --no-configuration tests/php/TestSimpleFunctions.php",
+      "test:simple": "vendor/bin/phpunit --no-configuration tests/php/TestSimpleFunctions.php",
+      "test:wp": "vendor/bin/phpunit -c phpunit.xml",
+      "test:coverage": "vendor/bin/phpunit --no-configuration --coverage-html tests/coverage tests/php/TestSimpleFunctions.php",
+      "test:unit": "vendor/bin/phpunit -c phpunit.xml --testsuite='Tour Operator Plugin Test Suite'"
     },
     "repositories":[{
         "type":"composer",
