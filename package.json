@@ -15,7 +15,12 @@
     "lint:php:fix": "composer phpcbf",
     "lint:php:report": "composer phpcs:report",
     "lint:all": "npm run lint:php && npm run lint:js && npm run lint:css",
-    "format": "npm run lint:php:fix && wp-scripts format"
+    "format": "npm run lint:php:fix && wp-scripts format",
+    "generate-readme": "node .github/scripts/update-readme.js",
+    "validate-collections": "node .github/scripts/validate-collections.js",
+    "create-collection": "node .github/scripts/create-collection.js create",
+    "list-collections": "node .github/scripts/create-collection.js list",
+    "validate": "node .github/scripts/validate-collections.js"
   },
   "repository": {
     "type": "git",
