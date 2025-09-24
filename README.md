@@ -36,6 +36,16 @@ This repository is configured with GitHub Copilot support including:
 - Agents in `.github/agents/`
 - Chat modes in `.github/chatmodes/`
 
+# Tour Operator Docs & .github Kit
+
+Curated documentation and GitHub configuration for **LSX Tour Operator** (blocks-first WordPress plugin).
+This kit standardises coding conventions, block authoring, CI, and collaboration.
+
+- **Docs** live in `/docs`.
+- **GitHub configs** live in `/.github` (issue/PR templates, workflows, Copilot prompts).
+- Based on WordPress Block API v3, block.json metadata, theme.json styling and Playwright E2E.
+- Uses [@wordpress/scripts](https://developer.wordpress.org/block-editor/packages/packages-scripts/) for build, linting, and testing.
+
 ### File Structure
 
 ```

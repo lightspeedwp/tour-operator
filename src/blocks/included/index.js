@@ -1,36 +1,40 @@
-wp.domReady(() => {
-
-wp.blocks.registerBlockVariation('core/group', {
-		name: 'lsx-tour-operator/included',
-		title: 'Included Items',
-		icon: 'plus-alt',
-		category: 'lsx-tour-operator',
-		attributes: {
-			metadata: {
-				name: 'Included',
-			},
-			className: 'lsx-included-wrapper'
-		},
-		innerBlocks: [
-			['core/paragraph', {
-				content: '<strong>Price Includes: </strong>'
-			}],
-			['core/paragraph', {
-				metadata: {
-					bindings: {
-						content: {
-							source: 'lsx/post-meta',
-							args: {
-								key: 'included'
-							}
-						}
-					}
-				}
-			}]
-		],
-		supports: {
-			renaming: false
-		}
-	});
-
-});
+wp.domReady( () => {
+    wp.blocks.registerBlockVariation( 'core/group', {
+        name: 'lsx-tour-operator/included',
+        title: 'Included Items',
+        icon: 'plus-alt',
+        category: 'lsx-tour-operator',
+        attributes: {
+            metadata: {
+                name: 'Included',
+            },
+            className: 'lsx-included-wrapper',
+        },
+        innerBlocks: [
+            [
+                'core/paragraph',
+                {
+                    content: '<strong>Price Includes: </strong>',
+                },
+            ],
+            [
+                'core/paragraph',
+                {
+                    metadata: {
+                        bindings: {
+                            content: {
+                                source: 'lsx/post-meta',
+                                args: {
+                                    key: 'included',
+                                },
+                            },
+                        },
+                    },
+                },
+            ],
+        ],
+        supports: {
+            renaming: false,
+        },
+    } );
+} );

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <ruleset name="WordPress-LSX"
          namespace="WordPressCS\WordPress">
-    <description>Coding standards</description>
+    <description>Tour Operator Plugin - WordPress Coding Standards</description>
 
 	<!-- Pass some flags to PHPCS:
 		 p flag: Show progress of the run.

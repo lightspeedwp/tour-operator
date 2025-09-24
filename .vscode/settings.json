@@ -64,5 +64,11 @@
 	"[json]": {
 		"editor.formatOnSave": true,
 		"editor.tabSize": 2
-	}
+	},
+	"terminal.integrated.logLevel": "trace",
+	"developer.reload": true,
+	"extensions.logLevel": "trace",
+	"npm.logLevel": "verbose",
+	"task.verboseLogging": true,
+	"output.smartScroll.enabled": true
 }

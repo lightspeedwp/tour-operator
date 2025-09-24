@@ -1,0 +1,24 @@
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@mcp/github"],
+      "autoStart": true
+    },
+    "playwright": {
+      "command": "npx", 
+      "args": ["-y", "@mcp/playwright"],
+      "autoStart": false
+    },
+    "figma": {
+      "command": "npx",
+      "args": ["-y", "@mcp/figma-dev-mode"], 
+      "autoStart": false
+    },
+    "markitdown": {
+      "command": "npx",
+      "args": ["-y", "@mcp/markitdown"],
+      "autoStart": false
+    }
+  }
+}

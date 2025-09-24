@@ -4,21 +4,50 @@
 # WordPress Coding Standards
 # https://make.wordpress.org/core/handbook/coding-standards/
 
+# Tour Operator Plugin - EditorConfig
+# Extends standardized configuration from .github/linting/.editorconfig
+
 root = true
 
+# All files (WordPress defaults)
 [*]
 charset = utf-8
 end_of_line = lf
-indent_size = 4
-tab_width = 4
-indent_style = tab
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[*.txt]
-trim_trailing_whitespace = false
+# PHP files (WordPress standard: tabs)
+[*.php]
+indent_style = tab
+indent_size = 4
 
-[{*.md,*.json,*.yml, .eslintrc}]
+# JavaScript/TypeScript files (WordPress wp-scripts standard: spaces)
+[*.{js,ts,jsx,tsx}]
+indent_style = space
+indent_size = 2
+
+# CSS/SCSS files (WordPress standard: spaces)
+[*.{css,scss,sass,less}]
+indent_style = space
+indent_size = 2
+
+# JSON files
+[*.json]
+indent_style = space
+indent_size = 2
+
+# YAML files
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# Markdown files (preserve trailing whitespace for line breaks)
+[*.md]
 trim_trailing_whitespace = false
+indent_style = space
+indent_size = 2
+
+# Config files
+[{.eslintrc,.prettierrc,.stylelintrc}]
 indent_style = space
 indent_size = 2

@@ -19,17 +19,80 @@ reviews:
       - '.*'
   path_filters:
     - "!build/**"
+    - "!node_modules/**"
+    - "!vendor/**"
+    - "!assets/dist/**"
   path_instructions:
-    - path: '**/*.{php,js,ts,jsx,tsx}'
+    - path: '**/*.php'
       instructions: |
-        - Follow WordPress coding standards.
-        - Escape output and sanitize input.
-        - Follow plugin security best practices.
-        - Enforce prefixing for all functions, classes, and constants to avoid naming collisions.
-        - Check for accessibility best practices in UI code (labels, ARIA attributes, color contrast).
-        - Ensure inline documentation/comments for all custom functions and classes.
-        - Ensure consistent formatting and schema validation.
-        - Keep documentation up to date and clear.
-        - On Pull Requests check for updates to the changelog file.
+        - Follow WordPress coding standards (WPCS) strictly
+        - Use proper sanitization and validation for all inputs
+        - Escape all outputs using esc_html, esc_attr, wp_kses_post
+        - Use WordPress functions instead of native PHP where available
+        - Add proper DocBlocks with @param, @return, @since tags
+        - Use meaningful variable and function names with tour_operator_ prefix
+        - Follow WordPress naming conventions (snake_case for functions/variables)
+    - path: 'includes/classes/*.php'
+      instructions: |
+        - Tour Operator specific: Focus on tour and destination management
+        - Validate tour pricing, dates, and availability
+        - Implement proper booking and reservation workflows
+        - Use WordPress custom post types and taxonomies effectively
+        - Ensure tour data security and validation
+        - Follow complex tour operator business logic patterns
+        - Ensure proper class naming with Tour_Operator_ prefix
+    - path: 'post-types/*.json'
+      instructions: |
+        - Validate JSON schema for custom post types
+        - Ensure proper field definitions for tours, destinations, accommodations
+        - Check for required fields and proper data types
+        - Maintain consistency across post type configurations
+        - Follow WordPress post type registration best practices
+    - path: 'includes/blocks/*.php'
+      instructions: |
+        - Follow WordPress Block Editor (Gutenberg) best practices
+        - Ensure proper block registration and attributes
+        - Validate block output and sanitization
+        - Use WordPress block APIs correctly
+        - Ensure accessibility in block implementations
+    - path: 'src/**/*.{js,ts,jsx,tsx}'
+      instructions: |
+        - Follow WordPress JavaScript coding standards
+        - Use WordPress script localization and dependencies
+        - Ensure React/JSX best practices for blocks
+        - Implement proper error handling and loading states
+        - Use WordPress components and design system
+        - Follow modern JavaScript/TypeScript patterns
+    - path: 'src/**/*.{css,scss}'
+      instructions: |
+        - Follow WordPress CSS coding standards
+        - Use semantic class naming with tour-operator- prefix
+        - Ensure responsive design for all tour displays
+        - Check for accessibility compliance (WCAG 2.1)
+        - Style complex tour layouts and booking forms
+        - Use CSS custom properties and modern CSS features
+    - path: 'templates/*.html'
+      instructions: |
+        - Follow WordPress block theme patterns
+        - Ensure proper template hierarchy usage
+        - Validate HTML semantics and accessibility
+        - Use WordPress template parts effectively
+        - Maintain consistency across template designs
+    - path: 'tests/**'
+      instructions: |
+        - Ensure comprehensive test coverage for tour operations
+        - Test booking workflows and pricing calculations
+        - Test complex tour search and filtering
+        - Follow WordPress testing best practices
+        - Use PHPUnit for PHP tests and Playwright for E2E tests
+        - Test multi-site and WPML compatibility
+    - path: '**/*.md'
+      instructions: |
+        - Keep documentation updated with code changes
+        - Use clear examples for tour operator integration
+        - Document complex booking and tour management features
+        - Include proper installation and configuration steps
+        - Follow markdown linting rules
+        - On Pull Requests check for updates to the changelog file
 chat:
   auto_reply: true

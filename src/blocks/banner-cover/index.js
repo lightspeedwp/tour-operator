@@ -1,5 +1,5 @@
-wp.domReady(() => {
-    wp.blocks.registerBlockVariation('core/cover', {
+wp.domReady( () => {
+    wp.blocks.registerBlockVariation( 'core/cover', {
         name: 'lsx-tour-operator/banner-cover',
         title: 'Banner Cover',
         description: 'Cover block using banner image from custom field',
@@ -12,40 +12,46 @@ wp.domReady(() => {
                     content: {
                         source: 'lsx/post-meta',
                         args: {
-                            key: 'banner_image'
-                        }
-                    }
-                }
+                            key: 'banner_image',
+                        },
+                    },
+                },
             },
             dimRatio: 50,
             minHeight: 400,
             align: 'full',
             className: 'lsx-banner-cover',
-			useFeaturedImage: true
+            useFeaturedImage: true,
         },
-		innerBlocks: [
-			['core/post-title', {
-				textAlign: 'center',
-			}],
-			['core/paragraph', {
-				align: 'center',
-				metadata: {
-					name: 'Tagline',
-					bindings: {
-						content: {
-							source: 'lsx/post-meta',
-							args: {
-								key: 'tagline'
-							}
-						}
-					}
-				},
-				className: 'lsx-tagline-wrapper'
-			}]
-		],
-        isActive: ['metadata', 'className'],
+        innerBlocks: [
+            [
+                'core/post-title',
+                {
+                    textAlign: 'center',
+                },
+            ],
+            [
+                'core/paragraph',
+                {
+                    align: 'center',
+                    metadata: {
+                        name: 'Tagline',
+                        bindings: {
+                            content: {
+                                source: 'lsx/post-meta',
+                                args: {
+                                    key: 'tagline',
+                                },
+                            },
+                        },
+                    },
+                    className: 'lsx-tagline-wrapper',
+                },
+            ],
+        ],
+        isActive: [ 'metadata', 'className' ],
         supports: {
-            align: ['full', 'wide']
-        }
-    });
-});
+            align: [ 'full', 'wide' ],
+        },
+    } );
+} );
