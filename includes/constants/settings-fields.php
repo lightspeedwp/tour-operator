@@ -1,7 +1,7 @@
 <?php
 $settings_fields = array(
-	'currency' => array(
-		'currency' => array(
+	'currency'    => array(
+		'currency'              => array(
 			'label'   => esc_html__( 'Currency', 'tour-operator' ),
 			'type'    => 'select',
 			'default' => 'ZAR',
@@ -25,14 +25,14 @@ $settings_fields = array(
 			'default' => 0,
 		),
 	),
-	'maps' => array(
-		'maps_disabled' => array(
+	'maps'        => array(
+		'maps_disabled'         => array(
 			'label'   => esc_html__( 'Disable Maps', 'tour-operator' ),
 			'desc'    => esc_html__( 'This will disable maps on all post types.', 'tour-operator' ),
 			'type'    => 'checkbox',
 			'default' => 0,
 		),
-		'googlemaps_marker_id' => array(
+		'googlemaps_marker_id'  => array(
 			'label'     => esc_html__( 'Choose a default marker', 'tour-operator' ),
 			'type'      => 'image',
 			'default'   => 0,
@@ -44,13 +44,13 @@ $settings_fields = array(
 			'default'   => 0,
 			'preview_w' => 48,
 		),
-		'gmap_marker_start_id' => array(
+		'gmap_marker_start_id'  => array(
 			'label'     => esc_html__( 'Choose a start marker', 'tour-operator' ),
 			'type'      => 'image',
 			'default'   => 0,
 			'preview_w' => 48,
 		),
-		'gmap_marker_end_id' => array(
+		'gmap_marker_end_id'    => array(
 			'label'     => esc_html__( 'Choose a end marker', 'tour-operator' ),
 			'type'      => 'image',
 			'default'   => 0,
@@ -65,19 +65,19 @@ $settings_fields = array(
 			'preview_w' => 300,
 		),
 	),
-	'fusion' => array(
-		'fusion_tables_enabled' => array(
+	'fusion'      => array(
+		'fusion_tables_enabled'           => array(
 			'label'   => esc_html__( 'Enable Fusion Tables', 'tour-operator' ),
 			'type'    => 'checkbox',
 			'default' => 0,
 		),
-		'fusion_tables_width_border' => array(
+		'fusion_tables_width_border'      => array(
 			'label'   => esc_html__( 'Border Width', 'tour-operator' ),
 			'desc'    => esc_html__( 'Default value: 2', 'tour-operator' ),
 			'type'    => 'number',
 			'default' => 2,
 		),
-		'fusion_tables_colour_border' => array(
+		'fusion_tables_colour_border'     => array(
 			'label'   => esc_html__( 'Border Colour', 'tour-operator' ),
 			'desc'    => esc_html__( 'Default value: #000000', 'tour-operator' ),
 			'type'    => 'text',
@@ -90,36 +90,36 @@ $settings_fields = array(
 			'default' => '#000000',
 		),
 	),
-	'api' => array(
+	'api'         => array(
 		'googlemaps_key' => array(
-			'label'   => esc_html__( 'Google Maps API', 'tour-operator' ),
-			'type'    => 'text',
-		)
+			'label' => esc_html__( 'Google Maps API', 'tour-operator' ),
+			'type'  => 'text',
+		),
 	),
-	'post_types' => array(
+	'post_types'  => array(
 		'placeholder' => array(
 			'featured_placeholder' => array(
 				'label'     => esc_html__( 'Upload a placeholder', 'tour-operator' ),
 				'type'      => 'image',
 				'default'   => 0,
 				'preview_w' => 300,
-			)
+			),
 		),
-		'template' => array(
+		'template'    => array(
 			'disable_archives' => array(
 				'label'   => esc_html__( 'Disable Archives', 'tour-operator' ),
 				'desc'    => esc_html__( 'This disables the "post type archive", if you create your own custom loop it will still work.', 'tour-operator' ),
 				'type'    => 'checkbox',
 				'default' => 0,
 			),
-			'disable_single' => array(
+			'disable_single'   => array(
 				'label'   => esc_html__( 'Disable Singles', 'tour-operator' ),
 				'desc'    => esc_html__( 'When disabled you will be redirected to the homepage when trying to access a single page.', 'tour-operator' ),
 				'type'    => 'checkbox',
 				'default' => 0,
 			),
-		)
-	)
+		),
+	),
 );
 
 $settings_fields = apply_filters( 'lsx_to_settings_fields', $settings_fields );

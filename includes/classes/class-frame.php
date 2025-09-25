@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Tour Operator - Objects Class
  *
@@ -6,7 +7,7 @@
  * @author    LightSpeed
  * @license   GPL-2.0+
  * @link
- * @copyright 2017 LightSpeedDevelopment
+ * @copyright 2017 lightspeedwp
  */
 
 namespace lsx;
@@ -18,7 +19,8 @@ namespace lsx;
  *
  * @package lsx
  */
-abstract class Frame {
+abstract class Frame
+{
 
 	/**
 	 * Holds instances of the class
@@ -55,7 +57,8 @@ abstract class Frame {
 	/**
 	 * Object constructor.
 	 */
-	protected function __construct() {
+	protected function __construct()
+	{
 		// Setup objects.
 		$this->setup_objects();
 	}
@@ -69,11 +72,12 @@ abstract class Frame {
 	 *
 	 * @return \WP_Taxonomy|null Taxonomy object if found, else null.
 	 */
-	public function __get( $tag ) {
+	public function __get($tag)
+	{
 
 		$object = null;
-		if ( isset( $this->object[ $tag ] ) ) {
-			$object = $this->object[ $tag ];
+		if (isset($this->object[$tag])) {
+			$object = $this->object[$tag];
 		}
 
 		return $object;
@@ -85,15 +89,16 @@ abstract class Frame {
 	 * @since 1.1.0
 	 * @return  self  A single instance
 	 */
-	public static function init() {
+	public static function init()
+	{
 
 		// If the single instance hasn't been set, set it now.
 		$class = get_called_class();
-		if ( ! isset( self::$instances[ $class ] ) ) {
-			self::$instances[ $class ] = new $class();
+		if (! isset(self::$instances[$class])) {
+			self::$instances[$class] = new $class();
 		}
 
-		return self::$instances[ $class ];
+		return self::$instances[$class];
 	}
 
 	/**
@@ -101,8 +106,9 @@ abstract class Frame {
 	 *
 	 * @since  1.1.0
 	 */
-	public function script_style() {
-		array_map( array( $this, 'enqueue_assets' ), $this->get_active() );
+	public function script_style()
+	{
+		array_map(array($this, 'enqueue_assets'), $this->get_active());
 	}
 
 	/**
@@ -112,13 +118,18 @@ abstract class Frame {
 	 *
 	 * @param string $slug The slug of the object to enqueue asses for.
 	 */
-	public function enqueue_assets( $slug ) {
-		$config = $this->configs[ $slug ];
-		if ( ! empty( $config['assets'] ) ) {
-			array_map( array(
-				tour_operator(),
-				'set_assets',
-			), array_keys( $config['assets'] ), $config['assets'] );
+	public function enqueue_assets($slug)
+	{
+		$config = $this->configs[$slug];
+		if (! empty($config['assets'])) {
+			array_map(
+				array(
+					tour_operator(),
+					'set_assets',
+				),
+				array_keys($config['assets']),
+				$config['assets']
+			);
 		}
 	}
 
@@ -129,19 +140,20 @@ abstract class Frame {
 	 * @access private
 	 * @return array List of folders
 	 */
-	private function get_config_files() {
+	private function get_config_files()
+	{
 
 		$items = array();
 		$path  = LSX_TO_PATH . 'includes/' . $this->type;
 		// @codingStandardsIgnoreStart
-		if ( $uid = opendir( $path ) ) {
-			while ( ( $item = readdir( $uid ) ) !== false ) {
-				if ( substr( $item, 0, 1 ) !== '.' ) {
-					$key           = str_replace( '.php', '', str_replace( 'config-', '', $item ) );
-					$items[ $key ] = include $path . '/' . $item;
+		if ($uid = opendir($path)) {
+			while (($item = readdir($uid)) !== false) {
+				if (substr($item, 0, 1) !== '.') {
+					$key           = str_replace('.php', '', str_replace('config-', '', $item));
+					$items[$key] = include $path . '/' . $item;
 				}
 			}
-			closedir( $uid );
+			closedir($uid);
 		}
 		// @codingStandardsIgnoreEnd
 
@@ -154,10 +166,11 @@ abstract class Frame {
 	 * @since 1.1.0
 	 * @return array Taxonomy config array.
 	 */
-	public function get_configs() {
+	public function get_configs()
+	{
 
 		$objects = array();
-		if ( file_exists( LSX_TO_PATH . 'includes/' . $this->type ) ) {
+		if (file_exists(LSX_TO_PATH . 'includes/' . $this->type)) {
 			$objects = $this->get_config_files();
 		}
 
@@ -168,7 +181,7 @@ abstract class Frame {
 		 *
 		 * @param array $objects Internal objects array.
 		 */
-		return apply_filters( "lsx_get_{$this->type}_configs", $objects );
+		return apply_filters("lsx_get_{$this->type}_configs", $objects);
 	}
 
 	/**
@@ -176,14 +189,18 @@ abstract class Frame {
 	 *
 	 * @since 1.1.0
 	 */
-	public function setup_objects() {
+	public function setup_objects()
+	{
 		$this->configs = $this->get_configs();
-		array_map( array(
-			$this,
-			'register_object',
-		), array_keys( $this->configs ), $this->configs );
-		add_action( 'admin_enqueue_scripts', array( $this, 'script_style' ) );
-
+		array_map(
+			array(
+				$this,
+				'register_object',
+			),
+			array_keys($this->configs),
+			$this->configs
+		);
+		add_action('admin_enqueue_scripts', array($this, 'script_style'));
 	}
 
 	/**
@@ -191,11 +208,12 @@ abstract class Frame {
 	 *
 	 * @since  1.1.0
 	 */
-	public function get_active() {
+	public function get_active()
+	{
 		$screen = get_current_screen();
 		$active = array();
-		if ( is_object( $screen ) ) {
-			$active = array_keys( $this->object, $screen->id, true );
+		if (is_object($screen)) {
+			$active = array_keys($this->object, $screen->id, true);
 		}
 
 		return $active;
@@ -209,6 +227,5 @@ abstract class Frame {
 	 * @param string $slug   The object slug.
 	 * @param array  $config The object config arguments.
 	 */
-	abstract protected function register_object( $slug, $config );
-
+	abstract protected function register_object($slug, $config);
 }

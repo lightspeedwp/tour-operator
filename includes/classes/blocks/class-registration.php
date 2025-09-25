@@ -31,7 +31,7 @@ class Registration {
 
 		foreach ( glob( $directory . '*', GLOB_ONLYDIR ) as $key ) {
 
-			$key  = basename( $key );
+			$key = basename( $key );
 
 			wp_register_script(
 				'lsx-to-block-' . $key,  // Handle for the script.
@@ -53,7 +53,7 @@ class Registration {
 	 */
 	public function enqueue_block_variations_script() {
 		$scripts = [
-			'general'       => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
+			'general' => array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' ),
 		];
 
 		$additional_scripts = [
@@ -75,7 +75,7 @@ class Registration {
 				if ( 'general' === $slug ) {
 					$param_array = array(
 						'homeUrl'   => trailingslashit( home_url() ),
-						'assetsUrl' => LSX_TO_URL . 'assets/img/'
+						'assetsUrl' => LSX_TO_URL . 'assets/img/',
 					);
 					$param_array = apply_filters( 'lsx_to_editor_params', $param_array );
 					wp_localize_script( 'lsx-to-block-' . $slug . '-variations', 'lsxToEditor', $param_array );

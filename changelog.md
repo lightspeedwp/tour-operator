@@ -1,6 +1,6 @@
 # Changelog
 
-## [[2.1.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.1.0) - In Dev
+## [[2.1.0]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.0) - In Dev
 
 ### Added
 - A filter to allow the disabling of destinations when searching for related content. `lsx_to_' . $key . '_include_destinations`. - [BH-74](https://www.bugherd.com/projects/430995/tasks/74)
@@ -55,7 +55,7 @@
 ### Security
 - 
 
-## [[2.0.2]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.2) - 2025-05-06
+## [[2.0.2]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.0.2) - 2025-05-06
 
 ### Added
 - The Itinerary Included and Excluded field handling and block output.
@@ -83,7 +83,7 @@
 ### Security
 - Tested with WordPress 6.8.1
 
-## [[2.0.1]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.1) - 2025-01-24
+## [[2.0.1]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.0.1) - 2025-01-24
 
 ### Added
 - A "Parents Only" checkbox to the TO query block settings, allowing you to select only the parent items for a query. (the WordPress parent field does not accept a 0 value).
@@ -101,7 +101,7 @@
 ### Integrations
 - Fixed the Destinations Facet dropdowns using the Fselect field. [8e4cfc](https://github.com/lightspeedwp/tour-operator/commit/8e4cfcb08333c342e9d41fd9fad3fe4f9c31e4c8)
 
-## [[2.0.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/2.0.0) - 2025-01-10
+## [[2.0.0]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.0.0) - 2025-01-10
 
 ### New Features
 
@@ -171,12 +171,12 @@
 ### Security
 - General testing to ensure compatibility with latest WordPress version (6.7).
 
-## [[1.4.10]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.10) - 2024-
+## [[1.4.10]](https://github.com/lightspeedwp/tour-operator/releases/tag/1.4.10) - 2024-
 
 ### Fixes
 - Fixed the multiple select2 box bloat, causing slow pageloads.
 
-## [[1.4.9]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.9) - 2023-08-09
+## [[1.4.9]](https://github.com/lightspeedwp/tour-operator/releases/tag/1.4.9) - 2023-08-09
 
 ### Fixes
 - Fixing the Single Specials "read more" spacing.
@@ -187,7 +187,7 @@
 ### Security
 - General testing to ensure compatibility with latest WordPress version (6.3).
 
-## [[1.4.8]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.8) - 2023-04-20
+## [[1.4.8]](https://github.com/lightspeedwp/tour-operator/releases/tag/1.4.8) - 2023-04-20
 
 ### Added
 - Adding in the - `lsx_to_disable_dynamic_gallery` filter
@@ -198,7 +198,7 @@
 ### Security
 - General testing to ensure compatibility with latest WordPress version (6.2).
 
-## [[1.4.7]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.7) - 2022-12-23
+## [[1.4.7]](https://github.com/lightspeedwp/tour-operator/releases/tag/1.4.7) - 2022-12-23
 
 ### Added
 - A parameter to the `to_banner_navigation` shortcode to allow changing the element selector.
@@ -215,12 +215,12 @@
 ### Security
 - General testing to ensure compatibility with latest WordPress version (6.1.1).
 
-## [[1.4.6]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.6) - 2022-09-22
+## [[1.4.6]](https://github.com/lightspeedwp/tour-operator/releases/tag/1.4.6) - 2022-09-22
 
 ### Fixed
 - An issue causing the LSX TO Widget slider pagination to break.
 
-## [[1.4.5]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.5) - 2022-09-21
+## [[1.4.5]](https://github.com/lightspeedwp/tour-operator/releases/tag/1.4.5) - 2022-09-21
 
 ### Added
 
@@ -246,7 +246,7 @@
 ### Security
 - General testing to ensure compatibility with latest WordPress version (6.0.2).
 
-## [[1.4.4]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.4) - 2022-05-25
+## [[1.4.4]](https://github.com/lightspeedwp/tour-operator/releases/tag/1.4.4) - 2022-05-25
 
 ### Security
 - General testing to ensure compatibility with latest WordPress version (6.0).
@@ -254,7 +254,7 @@
 ### Added
  - An `items` parameter to the `lsx_to_connected_panel_query` allowing you to specify tours to find.
 
-## [[1.4.3]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.3) - 2021-07-20
+## [[1.4.3]](https://github.com/lightspeedwp/tour-operator/releases/tag/1.4.3) - 2021-07-20
 
 ### Added
  - Missing string translations.
@@ -267,7 +267,7 @@
 ### Security
 - General testing to ensure compatibility with latest WordPress version (5.8).
 
-## [[1.4.2]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.2) - 2021-01-15
+## [[1.4.2]](https://github.com/lightspeedwp/tour-operator/releases/tag/1.4.2) - 2021-01-15
 
 ### Added
 
@@ -289,7 +289,7 @@
 ### Security
 - General testing to ensure compatibility with latest WordPress version (5.6).
 
-## [[1.4.1]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4.1) - 2020-03-30
+## [[1.4.1]](https://github.com/lightspeedwp/tour-operator/releases/tag/1.4.1) - 2020-03-30
 
 ### Added
 
@@ -317,7 +317,7 @@
 - General testing to ensure compatibility with latest WordPress version (5.4).
 - General testing to ensure compatibility with latest LSX Theme version (2.7).
 
-## [[1.4.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.4) - 2019-12-19
+## [[1.4.0]](https://github.com/lightspeedwp/tour-operator/releases/tag/1.4) - 2019-12-19
 
 ### Added
 
@@ -353,7 +353,7 @@
 - Fixed the undefined notice when using and array of post types with WP_Query
 - Moving the description text on main Archive pages above the filters.
 
-## [[1.3.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.3.0) - 2019-10-02
+## [[1.3.0]](https://github.com/lightspeedwp/tour-operator/releases/tag/1.3.0) - 2019-10-02
 
 ### Added
 
@@ -380,7 +380,7 @@
 - Fixing PHP issue 'Invalid argument supplied for foreach()'.
 - Changing the priority of the enqueued assets.
 
-## [[1.2.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.2.0) - 2019-08-06
+## [[1.2.0]](https://github.com/lightspeedwp/tour-operator/releases/tag/1.2.0) - 2019-08-06
 
 ### Added
 
@@ -400,14 +400,14 @@
 - Fixed the Room Section not collapsing on mobile.
 - Fixed the collapse section title colour on mobile.
 
-## [[1.1.5]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.1.5) - 2019-07-03
+## [[1.1.5]](https://github.com/lightspeedwp/tour-operator/releases/tag/1.1.5) - 2019-07-03
 
 ### Changed
 
 - Updated the help page.
 - Updated the Add-Ons page.
 
-## [[1.1.4]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/1.1.4) - 2019-06-14
+## [[1.1.4]](https://github.com/lightspeedwp/tour-operator/releases/tag/1.1.4) - 2019-06-14
 
 ### Added
 
@@ -448,7 +448,7 @@
 - Changing the "id" to avoid cached sites pulling through the same gallery for each destination.
 - Upgraded the `mb_strtolower` to `strtolower` for newer PHP versions.
 
-## [[1.1.1]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/v1.1.1) - 2017-11-07
+## [[1.1.1]](https://github.com/lightspeedwp/tour-operator/releases/tag/v1.1.1) - 2017-11-07
 
 ### Added
 
@@ -463,7 +463,7 @@
 - TO Maps undefined function removed.
 - Fixed PHP notice related to call is_singular() function.
 
-## [[1.1.0]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/v1.1.0) - 2017-10-07
+## [[1.1.0]](https://github.com/lightspeedwp/tour-operator/releases/tag/v1.1.0) - 2017-10-07
 
 ### Added
 
@@ -480,7 +480,7 @@
 - Fixed scripts/styles loading order
 - Fixed many small issues
 
-## [[1.0.8]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/v1.0.8) - 2017-06-14
+## [[1.0.8]](https://github.com/lightspeedwp/tour-operator/releases/tag/v1.0.8) - 2017-06-14
 
 ### Fixed
 
@@ -488,7 +488,7 @@
 - Fixed admin styles (help and add-on pages).
 - UIX framework saving all tabs.
 
-## [[1.0.7]](https://github.com/lightspeeddevelopment/tour-operator/releases/tag/v1.0.7) - 2017-06-08
+## [[1.0.7]](https://github.com/lightspeedwp/tour-operator/releases/tag/v1.0.7) - 2017-06-08
 
 ### Added
 

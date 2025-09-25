@@ -10,7 +10,7 @@
 
 /**
  * Used Functions
- */ 
+ */
 
 // =============== Itinerary ===================
 
@@ -160,7 +160,7 @@ function lsx_to_accommodation_facilities( $before = '', $after = '', $echo = tru
 			}
 		}
 
-		//Output in the order we want
+		// Output in the order we want
 		if ( count( $main_facilities ) > 0 && count( $child_facilities ) > 0 ) {
 			$return .= '<div class="wp-block-columns is-layout-flex wp-block-columns-is-layout-flex">';
 			foreach ( $main_facilities as $heading ) {
