@@ -25,9 +25,9 @@ reviews:
       - "feature/.*"
   path_filters:
     - "!build/**"
+    - "!assets/dist/**"
     - "!node_modules/**"
     - "!vendor/**"
-    - "!assets/dist/**"
     - "!languages/*.mo"
     - "!languages/*.pot"
   path_instructions:

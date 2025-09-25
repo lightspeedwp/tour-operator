@@ -41,7 +41,7 @@ jobs:
           if [ -f package.json ]; then npm ci --ignore-scripts; fi
 
       - name: Run PHPCS with 10up action
-        uses: 10up/wpcs-action@v2.0.0
+        uses: 10up/wpcs-action@v2
         with:
           enable_warnings: true
           phpcs_bin_path: vendor/bin/phpcs

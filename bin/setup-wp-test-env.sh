@@ -6,7 +6,7 @@ echo "Setting up WordPress test environment variables..."
 
 export WP_TESTS_DIR='/tmp/wordpress-tests-lib'
 export WP_CORE_DIR='/tmp/wordpress/'
-export WP_TESTS_DB_NAME='tour_operator_test'
+export WP_TESTS_DB_NAME='wp-test-db'
 export WP_TESTS_DB_USER='root'
 export WP_TESTS_DB_PASSWORD=''
 export WP_TESTS_DB_HOST='localhost'

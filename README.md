@@ -69,7 +69,7 @@ Override the PHP compatibility test version (example: PHP 7.2+):
 
 ### Continuous Integration
 
-PHPCS runs automatically on pushes to `2.1-trunk` and all pull requests via the GitHub Action workflow at `.github/workflows/phpcs.yml` using `10up/wpcs-action@v2.0.0`.
+PHPCS runs automatically on pushes to `2.1-trunk` and all pull requests via the GitHub Action workflow at `.github/workflows/phpcs.yml` using the version specified in that workflow file (currently `10up/wpcs-action@v2.0.0`—please keep this in sync with the workflow).
 
 The workflow:
 

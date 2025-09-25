@@ -41,7 +41,7 @@ module.exports = {
     'camelcase': 'warn',
     'object-shorthand': 'warn',
     'no-undef': 'error',
-    '@wordpress/no-unsafe-wp-apis': 'off',
+    '@wordpress/no-unsafe-wp-apis': 'error',
     '@wordpress/no-global-active-element': 'off',
     'no-unused-expressions': 'off'
   },

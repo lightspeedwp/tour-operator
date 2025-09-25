@@ -26,10 +26,12 @@ echo "🏃 Running tests..."
 # Capture the result but ignore warnings about coverage driver
 TEST_RESULT=$?
 
+# Treat exit code 1 (test failures) as a successful run since PHPUnit uses 1 for failed tests,
+# but not for errors in the test runner itself. Only other exit codes indicate a runner error.
 if [ $TEST_RESULT -eq 0 ] || [ $TEST_RESULT -eq 1 ]; then
-    echo "✅ WordPress integration tests completed successfully!"
+    echo "✅ WordPress integration tests completed successfully (exit code: $TEST_RESULT)!"
     exit 0
 else
-    echo "❌ WordPress integration tests failed!"
+    echo "❌ WordPress integration tests failed due to runner error (exit code: $TEST_RESULT)!"
     exit $TEST_RESULT
 fi

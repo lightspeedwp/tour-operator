@@ -65,7 +65,7 @@ download_wp_testsuite() {
 			# Download essential files
 			curl -s "https://develop.svn.wordpress.org/$BRANCH/tests/phpunit/includes/functions.php" -o "includes/functions.php" || echo "Failed to download functions.php"
 			curl -s "https://develop.svn.wordpress.org/$BRANCH/tests/phpunit/includes/bootstrap.php" -o "includes/bootstrap.php" || echo "Failed to download bootstrap.php"
-			curl -s "https://develop.svn.wordpress.org/$BRANCH/tests/phpunit/includes/testcase.php" -o "includes/testcase.php" || echo "Failed to download testcase.php"
+			curl --fail --show-error -s "https://develop.svn.wordpress.org/$BRANCH/tests/phpunit/includes/testcase.php" -o "includes/testcase.php" || { echo "Failed to download testcase.php"; exit 1; }
 
 		elif command -v wget > /dev/null; then
 			echo "Using wget to download test files..."
@@ -183,7 +183,7 @@ create_db() {
 
 	# Create database
 	if command -v mysql > /dev/null; then
-		mysql --user="$DB_USER" --password="$DB_PASS"$EXTRA -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;" 2>/dev/null || echo "Database creation may have failed or database already exists"
+		MYSQL_PWD="$DB_PASS" mysql --user="$DB_USER"$EXTRA -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;" 2>/dev/null || echo "Database creation may have failed or database already exists"
 	else
 		echo "MySQL client not found - skipping database creation"
 		echo "You may need to create the database '$DB_NAME' manually"

@@ -183,6 +183,14 @@ class My_Plugin {
      */
     private function __construct() {
         add_action( 'init', array( $this, 'init' ) );
+
+        // Example: Secure credential handling (do not hardcode passwords)
+        // Retrieve credentials securely, e.g., from environment variables or WordPress options
+        $db_password = getenv( 'DB_PASSWORD' ); // Or use get_option() with proper sanitization
+        if ( false === $db_password || empty( $db_password ) ) {
+            error_log( 'Database password not set. Please configure securely.' );
+            wp_die( __( 'Configuration error. Please contact the administrator.', 'textdomain' ) );
+        }
     }
     
     /**
