@@ -1,23 +1,29 @@
 {
-    "name": "lightspeeddevelopment/tour-operator",
+    "name": "lightspeedwp/tour-operator",
     "description": "The Tour Operators Plugin provides 3 post types (Accommodations, Destinations and Tours) that are the core of any Tour Operator. Use them to build day-by-day itineraries for tours.",
     "type": "wordpress-plugin",
     "require": {
         "php": ">=8.0",
-        "composer/installers": "^2.0.0"
+        "composer/installers": "^2.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.5",
-        "wp-coding-standards/wpcs": "^3.0",
-        "dealerdirect/phpcodesniffer-composer-installer": "^1.0.0",
-        "wpackagist-plugin/wordpress-seo": "^26.0",
-        "wpackagist-theme/lsx": "^3.0",
-        "phpcompatibility/phpcompatibility-wp": "^2.1.0"
+        "phpunit/phpunit": "^10.5",
+        "10up/phpcs-composer": "^3.0",
+        "wpackagist-plugin/wordpress-seo": "^26.0"
     },
     "scripts": {
-      "phpcs": "vendor/bin/phpcs",
-      "phpcbf": "vendor/bin/phpcbf",
-      "phpcs:report": "vendor/bin/phpcs --report=json --report-file=phpcs-report.json"
+    "phpcs": "vendor/bin/phpcs -d memory_limit=1G tour-operator.php tour-operator-bootstrap.php includes templates post-types src",
+    "phpcbf": "vendor/bin/phpcbf -d memory_limit=1G tour-operator.php tour-operator-bootstrap.php includes templates post-types src",
+    "phpcs:report": "vendor/bin/phpcs -d memory_limit=1G tour-operator.php tour-operator-bootstrap.php includes templates post-types src --report=json --report-file=phpcs-report.json",
+            "lint": [
+                "@phpcs"
+            ],
+    "phpcs:baseline": "vendor/bin/phpcs -d memory_limit=1G tour-operator.php tour-operator-bootstrap.php includes templates post-types src --report=checkstyle --report-file=phpcs-baseline.xml || true",
+      "test": "vendor/bin/phpunit --no-configuration tests/php/TestSimpleFunctions.php",
+      "test:simple": "vendor/bin/phpunit --no-configuration tests/php/TestSimpleFunctions.php",
+      "test:wp": "./bin/run-wp-tests.sh",
+      "test:coverage": "vendor/bin/phpunit --no-configuration --coverage-html tests/coverage tests/php/TestSimpleFunctions.php",
+      "test:unit": "vendor/bin/phpunit -c phpunit.xml --testsuite='Tour Operator Plugin Test Suite'"
     },
     "repositories":[{
         "type":"composer",
@@ -29,6 +35,7 @@
     "config": {
         "allow-plugins": {
             "composer/installers": true,
+            "10up/phpcs-composer": true,
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
     }

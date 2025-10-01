@@ -1,0 +1,65 @@
+{
+	"name": "Tour Operator Plugin Development",
+	"image": "mcr.microsoft.com/devcontainers/php:1-8.2-bullseye",
+	"features": {
+		"ghcr.io/devcontainers/features/node:1": {
+			"version": "18"
+		},
+		"ghcr.io/devcontainers/features/git:1": {},
+		"ghcr.io/devcontainers/features/github-cli:1": {},
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.vscode-json",
+				"github.copilot",
+				"github.copilot-chat",
+				"ms-playwright.playwright",
+				"esbenp.prettier-vscode",
+				"dbaeumer.vscode-eslint",
+				"stylelint.vscode-stylelint",
+				"junstyle.php-cs-fixer",
+				"xdebug.php-pack",
+				"coderabbit.coderabbit-vscode",
+				"anthropic.claude-code",
+				"editorconfig.editorconfig",
+				"redhat.vscode-yaml",
+				"streetsidesoftware.code-spell-checker"
+			],
+			"settings": {
+				"php.validate.executablePath": "/usr/local/bin/php",
+				"php.debug.executablePath": "/usr/local/bin/php",
+				"files.eol": "\n",
+				"files.insertFinalNewline": true,
+				"files.trimTrailingWhitespace": true,
+				"mcp.enableAllModels": true,
+				"mcp.autoSelectModel": true,
+				"mcp.modelPreference": "auto",
+				"[markdown]": {
+					"files.trimTrailingWhitespace": false
+				},
+				"[php]": {
+					"editor.formatOnSave": true,
+					"editor.tabSize": 4,
+					"editor.insertSpaces": false
+				},
+				"[javascript]": {
+					"editor.formatOnSave": true,
+					"editor.tabSize": 2
+				},
+				"[css]": {
+					"editor.formatOnSave": true,
+					"editor.tabSize": 2
+				}
+			}
+		}
+	},
+	"forwardPorts": [3000, 8000, 8080, 9000],
+	"postCreateCommand": "sudo apt-get update && sudo apt-get install -y wget unzip && composer install && npm install",
+	"remoteUser": "vscode",
+	"mounts": [
+		"source=${localWorkspaceFolder},target=/workspaces/tour-operator,type=bind,consistency=cached"
+	],
+	"workspaceFolder": "/workspaces/tour-operator"
+}

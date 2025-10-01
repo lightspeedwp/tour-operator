@@ -1,1 +1,58 @@
-wp.domReady(()=>{wp.blocks.registerBlockVariation("core/group",{name:"lsx-tour-operator/cuisine",title:"Cuisine",icon:"food",category:"lsx-tour-operator",attributes:{metadata:{name:"Cuisine"},className:"lsx-cuisine-wrapper",layout:{type:"constrained"}},innerBlocks:[["core/group",{layout:{type:"constrained"}},[["core/group",{layout:{type:"constrained"}},[["core/paragraph",{align:"center",content:"<strong>Cuisine</strong>"}]]],["core/group",{layout:{type:"constrained"}},[["core/paragraph",{metadata:{bindings:{content:{source:"lsx/post-meta",args:{key:"cuisine"}}}}}]]]]],["core/buttons",{},[["core/button",{backgroundColor:"primary",width:100,content:"View More"}]]]],supports:{renaming:!1}})});
+/******/ (function() { // webpackBootstrap
+/*!*************************************!*\
+  !*** ./src/blocks/cuisine/index.js ***!
+  \*************************************/
+wp.domReady(() => {
+  wp.blocks.registerBlockVariation('core/group', {
+    name: 'lsx-tour-operator/cuisine',
+    title: 'Cuisine',
+    icon: 'food',
+    category: 'lsx-tour-operator',
+    attributes: {
+      metadata: {
+        name: 'Cuisine'
+      },
+      className: 'lsx-cuisine-wrapper',
+      layout: {
+        type: 'constrained'
+      }
+    },
+    innerBlocks: [['core/group', {
+      layout: {
+        type: 'constrained'
+      }
+    }, [['core/group', {
+      layout: {
+        type: 'constrained'
+      }
+    }, [['core/paragraph', {
+      align: 'center',
+      content: '<strong>Cuisine</strong>'
+    }]]], ['core/group', {
+      layout: {
+        type: 'constrained'
+      }
+    }, [['core/paragraph', {
+      metadata: {
+        bindings: {
+          content: {
+            source: 'lsx/post-meta',
+            args: {
+              key: 'cuisine'
+            }
+          }
+        }
+      }
+    }]]]]], ['core/buttons', {}, [['core/button', {
+      backgroundColor: 'primary',
+      width: 100,
+      content: 'View More'
+    }]]]],
+    supports: {
+      renaming: false
+    }
+  });
+});
+/******/ })()
+;
+//# sourceMappingURL=index.js.map

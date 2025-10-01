@@ -1,0 +1,59 @@
+name: PHPCS Check with Annotations
+
+on:
+  pull_request:
+    branches: [ 2.1-trunk, main, master ]
+  push:
+    branches: [ 2.1-trunk ]
+  workflow_dispatch: {}
+
+jobs:
+  phpcs:
+    name: Run PHPCS
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      checks: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer
+          coverage: none
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --ansi
+
+      - name: Install Node dependencies (for automation tooling)
+        run: |
+          if [ -f package.json ]; then npm ci --ignore-scripts; fi
+
+      - name: Run PHPCS with 10up action
+        uses: 10up/wpcs-action@v2
+        with:
+          enable_warnings: true
+          phpcs_bin_path: vendor/bin/phpcs
+          standard: 10up-Default
+          paths: |
+            .
+          extra_args: -d memory_limit=512M --report=checkstyle
+
+      - name: Upload PHPCS report artifact (optional)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phpcs-report
+          path: phpcs-report.xml
+          if-no-files-found: ignore

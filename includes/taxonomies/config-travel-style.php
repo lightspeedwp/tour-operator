@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Tour Operator - Travel-style taxonomy config
  *
@@ -6,7 +7,7 @@
  * @author    LightSpeed
  * @license   GPL-2.0+
  * @link
- * @copyright 2017 LightSpeedDevelopment
+ * @copyright 2017 lightspeedwp
  */
 
 $taxonomy = array(
@@ -22,18 +23,18 @@ $taxonomy = array(
 	'args'          => array(
 		'hierarchical'        => true,
 		'labels'              => array(
-			'name'              => esc_html__( 'Travel Styles', 'tour-operator' ),
-			'singular_name'     => esc_html__( 'Travel Style', 'tour-operator' ),
-			'search_items'      => esc_html__( 'Search Travel Styles', 'tour-operator' ),
-			'all_items'         => esc_html__( 'Travel Styles', 'tour-operator' ),
-			'parent_item'       => esc_html__( 'Parent Travel Style', 'tour-operator' ),
-			'parent_item_colon' => esc_html__( 'Parent Travel Style:', 'tour-operator' ),
-			'edit_item'         => esc_html__( 'Edit Travel Style', 'tour-operator' ),
-			'update_item'       => esc_html__( 'Update Travel Style', 'tour-operator' ),
-			'add_new_item'      => esc_html__( 'Add New Travel Style', 'tour-operator' ),
-			'new_item_name'     => esc_html__( 'New Travel Style', 'tour-operator' ),
-			'menu_name'         => esc_html__( 'Travel Styles', 'tour-operator' ),
-			'description'       => esc_html__( 'Select the relevant travel styles that apply to this item.', 'tour-operator' ),
+			'name'              => esc_html__('Travel Styles', 'tour-operator'),
+			'singular_name'     => esc_html__('Travel Style', 'tour-operator'),
+			'search_items'      => esc_html__('Search Travel Styles', 'tour-operator'),
+			'all_items'         => esc_html__('Travel Styles', 'tour-operator'),
+			'parent_item'       => esc_html__('Parent Travel Style', 'tour-operator'),
+			'parent_item_colon' => esc_html__('Parent Travel Style:', 'tour-operator'),
+			'edit_item'         => esc_html__('Edit Travel Style', 'tour-operator'),
+			'update_item'       => esc_html__('Update Travel Style', 'tour-operator'),
+			'add_new_item'      => esc_html__('Add New Travel Style', 'tour-operator'),
+			'new_item_name'     => esc_html__('New Travel Style', 'tour-operator'),
+			'menu_name'         => esc_html__('Travel Styles', 'tour-operator'),
+			'description'       => esc_html__('Select the relevant travel styles that apply to this item.', 'tour-operator'),
 		),
 		'show_ui'             => true,
 		'public'              => true,

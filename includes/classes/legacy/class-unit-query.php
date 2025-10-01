@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Tours Unit Query
  *
@@ -6,7 +7,7 @@
  * @author    LightSpeed
  * @license   GPL3
  * @link
- * @copyright 2016 LightSpeedDevelopment
+ * @copyright 2016 lightspeedwp
  */
 
 namespace lsx\legacy;
@@ -17,7 +18,8 @@ namespace lsx\legacy;
  * @package Unit_Query
  * @author  LightSpeed
  */
-class Unit_Query {
+class Unit_Query
+{
 
 	/**
 	 * Holds class instance
@@ -82,16 +84,17 @@ class Unit_Query {
 	 * @since  1.0.0
 	 * @access private
 	 */
-	public function __construct( $type = false ) {
+	public function __construct($type = false)
+	{
 		$this->post_id       = get_the_ID();
-		$this->queried_items = get_post_meta( $this->post_id, 'units', true );
-		if ( is_array( $this->queried_items ) && ! empty( $this->queried_items ) ) {
+		$this->queried_items = get_post_meta($this->post_id, 'units', true);
+		if (is_array($this->queried_items) && ! empty($this->queried_items)) {
 			$this->have_query = true;
-			$this->count      = count( $this->queried_items );
+			$this->count      = count($this->queried_items);
 
-			foreach ( $this->queried_items as $item ) {
-				if ( isset( $item['type'] ) ) {
-					$this->titles[ $item['type'] ] = 1;
+			foreach ($this->queried_items as $item) {
+				if (isset($item['type'])) {
+					$this->titles[$item['type']] = 1;
 				}
 			}
 		}
@@ -100,15 +103,17 @@ class Unit_Query {
 	/**
 	 * A filter to set the content area to a small column on single
 	 */
-	public function have_query() {
+	public function have_query()
+	{
 		return $this->have_query;
 	}
 
 	/**
 	 * Used in the While loop to cycle through the field array
 	 */
-	public function while_query() {
-		if ( $this->index < $this->count ) {
+	public function while_query()
+	{
+		if ($this->index < $this->count) {
 			return true;
 		} else {
 			return false;
@@ -118,23 +123,26 @@ class Unit_Query {
 	/**
 	 * Sets the current itinerary item
 	 */
-	public function current_queried_item( $type = false ) {
-		$this->query_item = $this->queried_items[ $this->index ];
-		$this->index++;
+	public function current_queried_item($type = false)
+	{
+		$this->query_item = $this->queried_items[$this->index];
+		++$this->index;
 	}
 
 	/**
 	 * Sets the current itinerary item
 	 */
-	public function reset_loop() {
+	public function reset_loop()
+	{
 		$this->index = 0;
 	}
 
 	/**
 	 * Checks if the current type provided exists
 	 */
-	public function check_type( $type = false ) {
-		if ( false !== $type && false !== $this->titles && isset( $this->titles[ $type ] ) ) {
+	public function check_type($type = false)
+	{
+		if (false !== $type && false !== $this->titles && isset($this->titles[$type])) {
 			return true;
 		} else {
 			return false;
@@ -144,12 +152,13 @@ class Unit_Query {
 	/**
 	 * Outputs the current items "title" field
 	 */
-	public function item_title( $before = '', $after = '', $echo = false ) {
-		if ( $this->have_query && false !== $this->query_item ) {
-			if ( false !== $this->query_item['title'] ) {
-				$return = $before . apply_filters( 'the_title', $this->query_item['title'] ) . $after;
-				if ( $echo ) {
-					echo wp_kses_post( $return );
+	public function item_title($before = '', $after = '', $echo = false)
+	{
+		if ($this->have_query && false !== $this->query_item) {
+			if (false !== $this->query_item['title']) {
+				$return = $before . apply_filters('the_title', $this->query_item['title']) . $after;
+				if ($echo) {
+					echo wp_kses_post($return);
 				} else {
 					return $return;
 				}
@@ -160,12 +169,13 @@ class Unit_Query {
 	/**
 	 * Outputs the current items "description" field
 	 */
-	public function item_description( $before = '', $after = '', $echo = false ) {
-		if ( $this->have_query && false !== $this->query_item ) {
-			if ( false !== $this->query_item['description'] ) {
-				$return = $before . apply_filters( 'the_content', $this->query_item['description'] ) . $after;
-				if ( $echo ) {
-					echo wp_kses_post( $return );
+	public function item_description($before = '', $after = '', $echo = false)
+	{
+		if ($this->have_query && false !== $this->query_item) {
+			if (false !== $this->query_item['description']) {
+				$return = $before . apply_filters('the_content', $this->query_item['description']) . $after;
+				if ($echo) {
+					echo wp_kses_post($return);
 				} else {
 					return $return;
 				}
@@ -176,12 +186,13 @@ class Unit_Query {
 	/**
 	 * Outputs the current items "description" field
 	 */
-	public function item_price( $before = '', $after = '', $echo = false ) {
-		if ( $this->have_query && false !== $this->query_item ) {
-			if ( false !== $this->query_item['price'] ) {
+	public function item_price($before = '', $after = '', $echo = false)
+	{
+		if ($this->have_query && false !== $this->query_item) {
+			if (false !== $this->query_item['price']) {
 				$return = $before . $this->query_item['price'] . $after;
-				if ( $echo ) {
-					echo wp_kses_post( $return );
+				if ($echo) {
+					echo wp_kses_post($return);
 				} else {
 					return $return;
 				}
@@ -192,12 +203,13 @@ class Unit_Query {
 	/**
 	 * Outputs the current items "description" field
 	 */
-	public function item_type( $before = '', $after = '', $echo = false ) {
-		if ( $this->have_query && false !== $this->query_item ) {
-			if ( false !== $this->query_item['type'] ) {
+	public function item_type($before = '', $after = '', $echo = false)
+	{
+		if ($this->have_query && false !== $this->query_item) {
+			if (false !== $this->query_item['type']) {
 				$return = $before . $this->query_item['type'] . $after;
-				if ( $echo ) {
-					echo wp_kses_post( $return );
+				if ($echo) {
+					echo wp_kses_post($return);
 				} else {
 					return $return;
 				}
@@ -208,20 +220,21 @@ class Unit_Query {
 	/**
 	 * Outputs the current items "gallery" field
 	 */
-	public function item_thumbnail( $size = 'large' ) {
+	public function item_thumbnail($size = 'large')
+	{
 		$thumbnail_src = false;
-		$thumbnail_src = apply_filters( 'lsx_to_accommodation_room_thumbnail', $thumbnail_src );
-		if ( $this->have_query && false !== $this->query_item && ! empty( $this->query_item ) ) {
-			if ( isset( $this->query_item['gallery'] ) && ! empty( $this->query_item['gallery'] ) ) {
-				$images = array_keys( $this->query_item['gallery'] );
-				$thumbnail = wp_get_attachment_image_src( $images[0], $size );
-				if ( is_array( $thumbnail ) ) {
+		$thumbnail_src = apply_filters('lsx_to_accommodation_room_thumbnail', $thumbnail_src);
+		if ($this->have_query && false !== $this->query_item && ! empty($this->query_item)) {
+			if (isset($this->query_item['gallery']) && ! empty($this->query_item['gallery'])) {
+				$images    = array_keys($this->query_item['gallery']);
+				$thumbnail = wp_get_attachment_image_src($images[0], $size);
+				if (is_array($thumbnail)) {
 					$thumbnail_src = $thumbnail[0];
 				}
 			}
 		}
-		if ( false === $thumbnail_src || '' === $thumbnail_src ) {
-			$thumbnail_src = \lsx\legacy\Placeholders::placeholder_url( null, 'accommodation' );
+		if (false === $thumbnail_src || '' === $thumbnail_src) {
+			$thumbnail_src = \lsx\legacy\Placeholders::placeholder_url(null, 'accommodation');
 		}
 
 		return $thumbnail_src;
@@ -230,32 +243,33 @@ class Unit_Query {
 	/**
 	 * Outputs the current items "gallery" field
 	 */
-	public function item_thumbnails() {
-		if ( $this->have_query && false !== $this->query_item ) {
+	public function item_thumbnails()
+	{
+		if ($this->have_query && false !== $this->query_item) {
 			$images_return = array();
 
-			if ( isset( $this->query_item['gallery'] ) && ! empty( $this->query_item['gallery'] ) ) {
-				$images = array_keys( $this->query_item['gallery'] );
+			if (isset($this->query_item['gallery']) && ! empty($this->query_item['gallery'])) {
+				$images = array_keys($this->query_item['gallery']);
 
-				foreach ( $images as $key => $value ) {
+				foreach ($images as $key => $value) {
 					$thumbnail_src = false;
-					$thumbnail_src = apply_filters( 'lsx_to_accommodation_room_thumbnail', $thumbnail_src );
+					$thumbnail_src = apply_filters('lsx_to_accommodation_room_thumbnail', $thumbnail_src);
 
-					$thumbnail = wp_get_attachment_image_src( $value, 'lsx-thumbnail-wide' );
+					$thumbnail = wp_get_attachment_image_src($value, 'lsx-thumbnail-wide');
 
-					if ( is_array( $thumbnail ) ) {
+					if (is_array($thumbnail)) {
 						$thumbnail_src = $thumbnail[0];
 					}
 
-					if ( ! empty( $thumbnail_src ) ) {
-						$thumbnail_single = wp_get_attachment_image_src( $value, 'lsx-thumbnail-single' );
+					if (! empty($thumbnail_src)) {
+						$thumbnail_single = wp_get_attachment_image_src($value, 'lsx-thumbnail-single');
 
-						if ( is_array( $thumbnail_single ) ) {
+						if (is_array($thumbnail_single)) {
 							$thumbnail_single_src = $thumbnail_single[0];
 						}
 
-						if ( ! empty( $thumbnail_single_src ) ) {
-							$images_return[ $thumbnail_src ] = $thumbnail_single_src;
+						if (! empty($thumbnail_single_src)) {
+							$images_return[$thumbnail_src] = $thumbnail_single_src;
 						}
 					}
 				}

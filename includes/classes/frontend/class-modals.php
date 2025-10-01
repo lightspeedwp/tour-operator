@@ -52,7 +52,7 @@ class Modals {
 		add_action( 'rest_api_init', array( $this, 'register_rest_routes' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_editor_scripts' ) );
 
-		//Register our mega menu template part area.
+		// Register our mega menu template part area.
 		add_filter( 'default_wp_template_part_areas', [ $this, 'register_template_part_category' ], 10, 1 );
 	}
 
@@ -80,18 +80,20 @@ class Modals {
 	 */
 	public function create_default_templates() {
 		// Check if modal templates exist
-		$existing_templates = get_posts( [
-			'post_type' => 'wp_template_part',
-			'meta_query' => [
-				[
-					'key' => 'area',
-					'value' => 'lsx_to_modals',
-					'compare' => '='
-				]
-			],
-			'numberposts' => 1,
-			'post_status' => 'any'
-		] );
+		$existing_templates = get_posts(
+			[
+				'post_type'   => 'wp_template_part',
+				'meta_query'  => [
+					[
+						'key'     => 'area',
+						'value'   => 'lsx_to_modals',
+						'compare' => '=',
+					],
+				],
+				'numberposts' => 1,
+				'post_status' => 'any',
+			]
+		);
 
 		// If no modal templates exist, create the defaults
 		if ( empty( $existing_templates ) ) {
@@ -106,7 +108,7 @@ class Modals {
 	 * @return void
 	 */
 	public function settings_fields( $fields = [] ) {
-		$fields['post_types']['template']['enable_modals'] = array(
+		$fields['post_types']['template']['enable_modals']  = array(
 			'label'   => esc_html__( 'Enable Preview Modals', 'tour-operator' ),
 			'desc'    => esc_html__( 'Links to this item will trigger a popup preview modal allowing a quick look at it before clicking through. ', 'tour-operator' ),
 			'type'    => 'checkbox',
@@ -116,7 +118,7 @@ class Modals {
 			'label'   => esc_html__( 'Modal Template', 'tour-operator' ),
 			'type'    => 'select',
 			'default' => 'default',
-			'options' => $this->get_template_part_options()
+			'options' => $this->get_template_part_options(),
 		);
 		return $fields;
 	}
@@ -127,10 +129,11 @@ class Modals {
 	 * @return    null
 	 */
 	public function enqueue_stylescripts() {
-		//if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
+		// if ( defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ) {
 			$prefix = 'src/';
 			$suffix = '';
-		/*} else {
+		/*
+		} else {
 			$prefix = '';
 			$suffix = '.min';
 		}*/
@@ -164,12 +167,12 @@ class Modals {
 		wp_enqueue_script( 'lsx-to-modals' );
 
 		$modal_args  = [
-			'post__in' => $this->modal_ids,
-			'post_status' => 'publish',
-			'post_type' => 'any',
+			'post__in'            => $this->modal_ids,
+			'post_status'         => 'publish',
+			'post_type'           => 'any',
 			'ignore_sticky_posts' => true,
-			'posts_per_page' => -1,
-			'nopagin' => true,
+			'posts_per_page'      => -1,
+			'nopagin'             => true,
 		];
 		$modal_query = new \WP_Query( $modal_args );
 
@@ -177,8 +180,8 @@ class Modals {
 			while ( $modal_query->have_posts() ) {
 				$modal_query->the_post();
 
-				$modal_id = get_the_ID();
-				$template = $this->get_selected_template();
+				$modal_id         = get_the_ID();
+				$template         = $this->get_selected_template();
 				$rendered_content = do_blocks( $template );
 
 				// Generate and output modal using reusable method
@@ -193,29 +196,29 @@ class Modals {
 	public function get_selected_template() {
 		$post_type = get_post_type();
 
-		$template  = '<div class="wp-block-template-part">';
+		$template = '<div class="wp-block-template-part">';
 		switch ( $post_type ) {
 			case 'accommodation':
 				$template .= '<!-- wp:template-part {"slug":"modal-accommodation"} /-->';
-			break;
+				break;
 
 			case 'destination':
 				$template .= '<!-- wp:template-part {"slug":"modal-destination"} /-->';
-			break;
+				break;
 
 			case 'tour':
 				$template .= '<!-- wp:template-part {"slug":"modal-tour"} /-->';
-			break;
+				break;
 
 			default:
 				$template .= '<p>' . __( 'Please select a pattern or customize your layout with the Tour Operator blocks.', 'tour-operator' ) . '</p>';
-			break;
+				break;
 		}
 
-		$template  .= '</div>';
+		$template .= '</div>';
 
-		if ( isset( $this->options[ $post_type . '_modal_template'] ) && 'default' !== $this->options[ $post_type . '_modal_template'] ) {
-			$template = '<!-- wp:template-part { "slug":"' . $this->options[ $post_type . '_modal_template'] . '","area":"lsx_to_modals"} /-->';
+		if ( isset( $this->options[ $post_type . '_modal_template' ] ) && 'default' !== $this->options[ $post_type . '_modal_template' ] ) {
+			$template = '<!-- wp:template-part { "slug":"' . $this->options[ $post_type . '_modal_template' ] . '","area":"lsx_to_modals"} /-->';
 		}
 
 		return $template;
@@ -248,12 +251,15 @@ class Modals {
 	 */
 	public function get_template_part_options() {
 		// Get all template parts of the 'header' area.
-		$templates = get_block_templates( array(
-			'post_type'   => 'wp_template_part',
-			'area'        => 'lsx_to_modals',
-		), 'wp_template_part' );
+		$templates = get_block_templates(
+			array(
+				'post_type' => 'wp_template_part',
+				'area'      => 'lsx_to_modals',
+			),
+			'wp_template_part'
+		);
 
-		$options = array();
+		$options            = array();
 		$options['default'] = __( 'Default', 'tour-operator' );
 
 		if ( ! empty( $templates ) ) {
@@ -261,7 +267,7 @@ class Modals {
 				$options[ $template->slug ] = $template->title;
 			}
 		} else {
-			$options[ '' ] = __( 'No other templates found.', 'tour-operator' );
+			$options[''] = __( 'No other templates found.', 'tour-operator' );
 		}
 
 		return $options;
@@ -303,7 +309,7 @@ class Modals {
 			'additional_info',
 		];
 
-		if ( get_post_type() === 'destination' && in_array( $meta_key, $ti_keys )  ) {
+		if ( get_post_type() === 'destination' && in_array( $meta_key, $ti_keys ) ) {
 
 			$title = $meta_key;
 			if ( 'additional_info' === $title ) {
@@ -343,8 +349,8 @@ class Modals {
 
 		$templates = [
 			'accommodation' => [
-				'title' => __( 'Accommodation Modal', 'tour-operator' ),
-				'content' => '<!-- wp:group {"layout":{"type":"constrained"}} -->
+				'title'       => __( 'Accommodation Modal', 'tour-operator' ),
+				'content'     => '<!-- wp:group {"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:group {"metadata":{"name":"Accommodation Card"},"className":"is-style-default","backgroundColor":"base","layout":{"type":"constrained"}} -->
 <div class="wp-block-group is-style-default has-base-background-color has-background"><!-- wp:post-featured-image {"aspectRatio":"3/2"} /-->
 
@@ -414,11 +420,11 @@ class Modals {
 <!-- /wp:group --></div>
 <!-- /wp:group -->',
 				'description' => __( 'This modal displays the accommodation details including the featured image, title, excerpt, and additional information.', 'tour-operator' ),
-				'categories' => [ 'lsx_to_modals' ],
+				'categories'  => [ 'lsx_to_modals' ],
 			],
-			'destination' => [
-				'title' => __( 'Destination Modal', 'tour-operator' ),
-				'content' => '<!-- wp:group {"metadata":{"name":"Destination Modal"},"layout":{"type":"constrained"}} -->
+			'destination'   => [
+				'title'       => __( 'Destination Modal', 'tour-operator' ),
+				'content'     => '<!-- wp:group {"metadata":{"name":"Destination Modal"},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:post-featured-image {"aspectRatio":"3/2"} /-->
 
 <!-- wp:group {"metadata":{"name":"Content"},"layout":{"type":"constrained"}} -->
@@ -432,11 +438,11 @@ class Modals {
 <!-- /wp:group --></div>
 <!-- /wp:group -->',
 				'description' => __( 'This modal displays the destination details including the featured image, title, excerpt, and travel information.', 'tour-operator' ),
-				'categories' => [ 'lsx_to_modals' ],
+				'categories'  => [ 'lsx_to_modals' ],
 			],
-			'tour' => [
-				'title' => __( 'Tour Modal', 'tour-operator' ),
-				'content' => '<!-- wp:group {"metadata":{"name":"Tour Modal"},"layout":{"type":"constrained"}} -->
+			'tour'          => [
+				'title'       => __( 'Tour Modal', 'tour-operator' ),
+				'content'     => '<!-- wp:group {"metadata":{"name":"Tour Modal"},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:post-featured-image {"aspectRatio":"3/2"} /-->
 
 <!-- wp:group {"metadata":{"name":"Content"},"layout":{"type":"constrained"}} -->
@@ -489,52 +495,54 @@ class Modals {
 <!-- /wp:group --></div>
 <!-- /wp:group -->',
 				'description' => __( 'This modal displays the tour details including the featured image, title, excerpt, and tour information.', 'tour-operator' ),
-				'categories' => [ 'lsx_to_modals' ],
+				'categories'  => [ 'lsx_to_modals' ],
 			],
-			'enquiry' => [
-				'title' => __( 'Enquiry Form Modal', 'tour-operator' ),
-				'content' => '<!-- wp:group {"metadata":{"name":"Enquiry Form Modal"},"layout":{"type":"constrained"}} -->
+			'enquiry'       => [
+				'title'       => __( 'Enquiry Form Modal', 'tour-operator' ),
+				'content'     => '<!-- wp:group {"metadata":{"name":"Enquiry Form Modal"},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:paragraph -->
 <p>Insert your contact form here.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->',
 				'description' => __( 'This modal displays an enquiry form via shortcode or block insert.', 'tour-operator' ),
-				'categories' => [ 'lsx_to_modals' ]
-			]
+				'categories'  => [ 'lsx_to_modals' ],
+			],
 		];
 
 		foreach ( $templates as $slug => $template ) {
 			$template_slug = 'modal-' . $slug;
 
 			// Check if the template already exists
-			$existing_template = get_posts( [
-				'post_type' => 'wp_template_part',
-				'name' => $template_slug,
-				'post_status' => 'any',
-				'numberposts' => 1
-			] );
+			$existing_template = get_posts(
+				[
+					'post_type'   => 'wp_template_part',
+					'name'        => $template_slug,
+					'post_status' => 'any',
+					'numberposts' => 1,
+				]
+			);
 
 			// Create or update the template
 			$template_data = [
-				'post_title' => $template['title'],
+				'post_title'   => $template['title'],
 				'post_content' => $template['content'],
-				'post_status' => 'publish',
-				'post_type' => 'wp_template_part',
-				'post_name' => $template_slug,
-				'post_author' => get_current_user_id(),
+				'post_status'  => 'publish',
+				'post_type'    => 'wp_template_part',
+				'post_name'    => $template_slug,
+				'post_author'  => get_current_user_id(),
 				'post_excerpt' => '', // Required for template parts
-				'meta_input' => [
-					'theme' => $current_theme,
-					'area' => 'lsx_to_modals',
-					'_wp_template_part_area' => 'lsx_to_modals',
+				'meta_input'   => [
+					'theme'                   => $current_theme,
+					'area'                    => 'lsx_to_modals',
+					'_wp_template_part_area'  => 'lsx_to_modals',
 					'_wp_template_part_theme' => $current_theme,
-					'_wp_template_part_slug' => $template_slug,
-				]
+					'_wp_template_part_slug'  => $template_slug,
+				],
 			];
 
 			if ( ! empty( $existing_template ) ) {
 				$template_data['ID'] = $existing_template[0]->ID;
-				$post_id = wp_update_post( $template_data );
+				$post_id             = wp_update_post( $template_data );
 			} else {
 				$post_id = wp_insert_post( $template_data );
 			}
@@ -554,17 +562,19 @@ class Modals {
 					$theme_term_id = $theme_term->term_id;
 				}
 
-				$area_term = get_term_by( 'name', 'lsx_to_modals', 'wp_template_part_area' );
+				$area_term    = get_term_by( 'name', 'lsx_to_modals', 'wp_template_part_area' );
 				$area_term_id = $area_term->term_id;
 
 				// Set the taxonomy relationships
 				wp_set_object_terms( $post_id, [ $theme_term_id ], 'wp_theme', false );
 				wp_set_object_terms( $post_id, [ $area_term_id ], 'wp_template_part_area', false );
 
-				wp_update_post( [
-					'ID' => $post_id,
-					'post_name' => $template_slug
-				] );
+				wp_update_post(
+					[
+						'ID'        => $post_id,
+						'post_name' => $template_slug,
+					]
+				);
 			}
 
 			wp_cache_delete( 'wp_template_part', 'themes' );
@@ -681,7 +691,7 @@ class Modals {
 
 		if ( ! isset( $this->modal_contents[ $modal_id ] ) ) {
 			// Get the template part content
-			$template_content = '<!-- wp:template-part {"slug":"' . $template_slug . '","area":"lsx_to_modals"} /-->';
+			$template_content                  = '<!-- wp:template-part {"slug":"' . $template_slug . '","area":"lsx_to_modals"} /-->';
 			$this->modal_contents[ $modal_id ] = do_blocks( $template_content );
 		}
 	}
@@ -691,7 +701,7 @@ class Modals {
 	 *
 	 * @param string $modal_id The modal ID (without 'to-modal-' prefix)
 	 * @param string $content The modal content
-	 * @param bool $add_wrapper Whether to wrap content in template-part div
+	 * @param bool   $add_wrapper Whether to wrap content in template-part div
 	 * @return string The complete modal HTML
 	 */
 	private function generate_modal_html( $modal_id, $content, $add_wrapper = false ) {
@@ -707,7 +717,7 @@ class Modals {
 		}
 
 		// Create modal HTML
-		$modal_html = '<dialog id="' . esc_attr( $full_modal_id ) . '" class="wp-block-hm-popup" data-trigger="click" data-expiry="7" data-backdrop-opacity="0.75" tabindex="-1">';
+		$modal_html  = '<dialog id="' . esc_attr( $full_modal_id ) . '" class="wp-block-hm-popup" data-trigger="click" data-expiry="7" data-backdrop-opacity="0.75" tabindex="-1">';
 		$modal_html .= '<div style="position:relative;">';
 		$modal_html .= $content;
 		$modal_html .= $close_button;
@@ -723,7 +733,7 @@ class Modals {
 	 * @return string The close button HTML
 	 */
 	private function get_modal_close_button() {
-		$close_button = '<button class="wp-block-hm-popup__close" aria-label="' . esc_attr__( 'Close', 'tour-operator' ) . '" data-close>';
+		$close_button  = '<button class="wp-block-hm-popup__close" aria-label="' . esc_attr__( 'Close', 'tour-operator' ) . '" data-close>';
 		$close_button .= '<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">';
 		$close_button .= '<path d="M8 24.5L24 8.5M8 8.5L24 24.5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>';
 		$close_button .= '</svg>';
@@ -742,45 +752,45 @@ class Modals {
 
 		// Add modal-specific elements
 		$allowed_html['dialog'] = array(
-			'id' => true,
-			'class' => true,
-			'data-trigger' => true,
-			'data-expiry' => true,
+			'id'                    => true,
+			'class'                 => true,
+			'data-trigger'          => true,
+			'data-expiry'           => true,
 			'data-backdrop-opacity' => true,
-			'tabindex' => true,
+			'tabindex'              => true,
 		);
-		$allowed_html['style'] = array(
-			'type' => true,
-			'src' => true,
+		$allowed_html['style']  = array(
+			'type'  => true,
+			'src'   => true,
 			'async' => true,
 			'defer' => true,
-			'id' => true,
+			'id'    => true,
 			'class' => true,
 		);
 		$allowed_html['script'] = array(
-			'type' => true,
-			'src' => true,
+			'type'  => true,
+			'src'   => true,
 			'async' => true,
 			'defer' => true,
-			'id' => true,
+			'id'    => true,
 			'class' => true,
 		);
-		$allowed_html['svg'] = array(
-			'width' => true,
-			'height' => true,
+		$allowed_html['svg']    = array(
+			'width'   => true,
+			'height'  => true,
 			'viewBox' => true,
-			'fill' => true,
-			'xmlns' => true,
+			'fill'    => true,
+			'xmlns'   => true,
 		);
-		$allowed_html['path'] = array(
-			'd' => true,
-			'stroke' => true,
-			'stroke-width' => true,
-			'stroke-linecap' => true,
+		$allowed_html['path']   = array(
+			'd'               => true,
+			'stroke'          => true,
+			'stroke-width'    => true,
+			'stroke-linecap'  => true,
 			'stroke-linejoin' => true,
 		);
 		$allowed_html['button'] = array(
-			'class' => true,
+			'class'      => true,
 			'aria-label' => true,
 			'data-close' => true,
 		);

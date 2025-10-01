@@ -40,7 +40,7 @@ class Post_Connections {
 		add_filter( 'facetwp_indexer_row_data', array( $this, 'facetwp_index_row_data' ), 10, 2 );
 		add_filter( 'facetwp_index_row', array( $this, 'facetwp_index_row' ), 10, 2 );
 		add_filter( 'facetwp_facet_html', array( $this, 'destination_facet_html' ), 10, 2 );
-		add_filter( 'facetwp_facet_dropdown_show_counts', [ $this, 'disable_facet_count' ] , 10, 2 );
+		add_filter( 'facetwp_facet_dropdown_show_counts', [ $this, 'disable_facet_count' ], 10, 2 );
 	}
 
 	/**
@@ -80,7 +80,7 @@ class Post_Connections {
 	}
 
 	/**
-	 *	Alter the rows and include extra facets rows for the continents
+	 *  Alter the rows and include extra facets rows for the continents
 	 */
 	public function facetwp_index_row_data( $rows, $params ) {
 
@@ -93,7 +93,7 @@ class Post_Connections {
 			case 'cf/destination_to_accommodation':
 				$countries = array();
 
-				$new_rows     = [];
+				$new_rows = [];
 				// First lets process our new rows, depending of if its a serialized array or not.
 				foreach ( $rows as $r_index => $row ) {
 
@@ -112,7 +112,6 @@ class Post_Connections {
 							$parent                              = wp_get_post_parent_id( $template_row['facet_value'] );
 							$template_row['parent_id']           = $parent;
 
-
 							if ( 0 === $parent || '0' === $parent ) {
 								if ( ! isset( $countries[ $r_index ] ) ) {
 									$countries[ $r_index ] = $row['facet_value'];
@@ -123,37 +122,32 @@ class Post_Connections {
 								} else {
 									$template_row['depth'] = 0;
 								}
-							} else {
-								if ( ! empty( $this->options['display']['engine_search_continent_filter'] ) ) {
+							} elseif ( ! empty( $this->options['display']['engine_search_continent_filter'] ) ) {
 									$template_row['depth'] = 2;
-								} else {
-									$template_row['depth'] = 1;
-								}
+							} else {
+								$template_row['depth'] = 1;
 							}
 
 							$new_rows[ $r_index ] = $template_row;
 						}
-
 					} else {
-						$parent                        = wp_get_post_parent_id(  );
+						$parent                        = wp_get_post_parent_id();
 						$rows[ $r_index ]['parent_id'] = $parent;
-	
+
 						if ( 0 === $parent || '0' === $parent ) {
 							if ( ! isset( $countries[ $r_index ] ) ) {
 								$countries[ $r_index ] = $row['facet_value'];
 							}
-	
+
 							if ( ! empty( $this->options['display']['engine_search_continent_filter'] ) ) {
 								$rows[ $r_index ]['depth'] = 1;
 							} else {
 								$rows[ $r_index ]['depth'] = 0;
 							}
+						} elseif ( ! empty( $this->options['display']['engine_search_continent_filter'] ) ) {
+							$rows[ $r_index ]['depth'] = 2;
 						} else {
-							if ( ! empty( $this->options['display']['engine_search_continent_filter'] ) ) {
-								$rows[ $r_index ]['depth'] = 2;
-							} else {
-								$rows[ $r_index ]['depth'] = 1;
-							}
+							$rows[ $r_index ]['depth'] = 1;
 						}
 					}
 				}
@@ -176,12 +170,12 @@ class Post_Connections {
 								}
 
 								foreach ( $continents as $continent ) {
-									$new_row['facet_value'] = $continent->slug;
+									$new_row['facet_value']         = $continent->slug;
 									$new_row['facet_display_value'] = $continent->name;
-									$continent_id = $continent->term_id;
-									$new_row['depth'] = 0;
+									$continent_id                   = $continent->term_id;
+									$new_row['depth']               = 0;
 								}
-								$rows[] = $new_row;
+								$rows[]                          = $new_row;
 								$rows[ $row_index ]['parent_id'] = $continent_id;
 							}
 						}
@@ -202,7 +196,7 @@ class Post_Connections {
 	 */
 	public function facetwp_index_row( $params, $class ) {
 		$custom_field = false;
-		$meta_key = false;
+		$meta_key     = false;
 
 		preg_match( '/cf\//', $class->facet['source'], $custom_field );
 		preg_match( '/_to_/', $class->facet['source'], $meta_key );
@@ -211,9 +205,9 @@ class Post_Connections {
 
 			$values = (array) $params['facet_value'];
 			foreach ( $values as $val ) {
-				$params['facet_value'] = $val;
+				$params['facet_value']         = $val;
 				$params['facet_display_value'] = $val;
-				
+
 				$title = get_the_title( $params['facet_value'] );
 				if ( '' !== $title ) {
 					$params['facet_display_value'] = $title;
@@ -232,7 +226,7 @@ class Post_Connections {
 		if ( 'cf/price' === $class->facet['source'] ) {
 			$params['facet_value'] = preg_replace( '/[^0-9.]/', '', $params['facet_value'] );
 			$params['facet_value'] = ltrim( $params['facet_value'], '.' );
-			#$params['facet_value'] = number_format( (int) $params['facet_value'], 2 );
+			// $params['facet_value'] = number_format( (int) $params['facet_value'], 2 );
 			$params['facet_display_value'] = $params['facet_value'];
 		}
 
@@ -242,7 +236,7 @@ class Post_Connections {
 			$params['facet_value'] = trim( $params['facet_value'] );
 			$params['facet_value'] = explode( ' ', $params['facet_value'] );
 			$params['facet_value'] = $params['facet_value'][0];
-			#$params['facet_value'] = (int) $params['facet_value'];
+			// $params['facet_value'] = (int) $params['facet_value'];
 			$params['facet_display_value'] = $params['facet_value'];
 		}
 
@@ -252,8 +246,8 @@ class Post_Connections {
 	/**
 	 * Checks the facet source value and outputs the destination facet HTML if needed.
 	 *
-	 * @param  string  $output
-	 * @param  array   $params
+	 * @param  string $output
+	 * @param  array  $params
 	 * @return string
 	 */
 	public function destination_facet_html( $output, $params ) {
@@ -274,10 +268,10 @@ class Post_Connections {
 			return;
 		}
 
-		$output = '';
-		$values = (array) $params['values'];
+		$output          = '';
+		$values          = (array) $params['values'];
 		$selected_values = (array) $params['selected_values'];
-		$continents = array();
+		$continents      = array();
 
 		$continent_terms = get_terms(
 			array(
@@ -291,16 +285,16 @@ class Post_Connections {
 			}
 		}
 
-		//Create a relationship of the facet value and the their depths
-		$depths = array();
+		// Create a relationship of the facet value and the their depths
+		$depths  = array();
 		$parents = array();
 		foreach ( $values as $value ) {
 			$depths[ $value['facet_value'] ]  = (int) $value['depth'];
 			$parents[ $value['facet_value'] ] = (int) $value['parent_id'];
 		}
 
-		//Determine the current depth and check if the selected values parents are in the selected array.
-		$current_depth = 0;
+		// Determine the current depth and check if the selected values parents are in the selected array.
+		$current_depth     = 0;
 		$additional_values = array();
 		if ( ! empty( $selected_values ) ) {
 			foreach ( $selected_values as $selected ) {
@@ -308,7 +302,7 @@ class Post_Connections {
 					$current_depth = $depths[ $selected ];
 				}
 			}
-			$current_depth++;
+			++$current_depth;
 		}
 
 		if ( ! empty( $additional_values ) ) {
@@ -317,9 +311,9 @@ class Post_Connections {
 
 		// This is where the items are sorted by their depth
 		$sorted_values = array();
-		$stored = $values;
+		$stored        = $values;
 
-		//sort the options so
+		// sort the options so
 		foreach ( $values as $key => $result ) {
 			if ( ! empty( $this->options['display']['engine_search_continent_filter'] ) ) {
 				if ( in_array( $result['facet_value'], $continents ) ) {
@@ -332,15 +326,13 @@ class Post_Connections {
 						}
 					}
 				}
-			} else {
-				if ( '0' === $result['depth'] || 0 === $result['depth'] ) {
+			} elseif ( '0' === $result['depth'] || 0 === $result['depth'] ) {
 					$sorted_values[] = $result;
 					$destinations    = $this->get_regions( $stored, $result['facet_value'], '1' );
 
-					if ( ! empty( $destinations ) ) {
-						foreach ( $destinations as $destination ) {
-							$sorted_values[] = $destination;
-						}
+				if ( ! empty( $destinations ) ) {
+					foreach ( $destinations as $destination ) {
+						$sorted_values[] = $destination;
 					}
 				}
 			}
@@ -348,7 +340,7 @@ class Post_Connections {
 		$values = $sorted_values;
 
 		$continent_class = '';
-		$country_class = '';
+		$country_class   = '';
 
 		// A variable to keep track if the current parent is checked, if so we will want to display those sub items.
 		$is_parent_selected = false;
@@ -360,12 +352,12 @@ class Post_Connections {
 			if ( ! empty( $this->options['display']['engine_search_continent_filter'] ) ) {
 				switch ( $facet['depth'] ) {
 					case '0':
-						$depth_type = '';
+						$depth_type      = '';
 						$continent_class = in_array( $facet['facet_value'], $selected_values ) ? $depth_type .= ' continent-checked' : '';
 						break;
 
 					case '1':
-						$depth_type = 'country' . $continent_class;
+						$depth_type    = 'country' . $continent_class;
 						$country_class = in_array( $facet['facet_value'], $selected_values ) ? $depth_type .= ' country-checked' : '';
 						break;
 
@@ -376,7 +368,7 @@ class Post_Connections {
 			} else {
 				switch ( $facet['depth'] ) {
 					case '0':
-						$depth_type = 'country continent-checked';
+						$depth_type    = 'country continent-checked';
 						$country_class = in_array( $facet['facet_value'], $selected_values ) ? $depth_type .= ' country-checked' : '';
 						break;
 
@@ -394,7 +386,7 @@ class Post_Connections {
 			if ( ( $facet['depth'] <= $current_depth && $is_parent_selected ) || 0 === (int) $facet['depth'] ) {
 				if ( 'checkboxes' === $params['facet']['type'] ) {
 					$options[] = $this->format_checkbox_facet( $key, $facet, $selected_values, $depth_type );
-				} else if ( 'fselect' === $params['facet']['type'] ) {
+				} elseif ( 'fselect' === $params['facet']['type'] ) {
 					$options[] = $this->format_fselect_facet( $key, $facet, $selected_values, $depth_type );
 				}
 			}
@@ -418,7 +410,7 @@ class Post_Connections {
 	 */
 	public function get_countries( $values, $parent, $continents, $depth ) {
 		$children = array();
-		$stored = $values;
+		$stored   = $values;
 
 		foreach ( $values as $value ) {
 			if ( isset( $continents[ $value['parent_id'] ] ) && $continents[ $value['parent_id'] ] === $parent && $value['depth'] === $depth ) {
@@ -451,7 +443,7 @@ class Post_Connections {
 	public function format_checkbox_facet( $key, $result, $selected_values, $region = '' ) {
 		$temp_html = '';
 
-		$selected = in_array( $result['facet_value'], $selected_values ) ? ' checked' : '';
+		$selected  = in_array( $result['facet_value'], $selected_values ) ? ' checked' : '';
 		$selected .= ( 0 == $result['counter'] && '' == $selected ) ? ' disabled' : '';
 		$selected .= ' ' . $region;
 
@@ -465,8 +457,8 @@ class Post_Connections {
 	public function format_fselect_facet( $key, $result, $selected_values, $region = '' ) {
 		$temp_html = '';
 
-		$selected = in_array( $result['facet_value'], $selected_values ) ? ' selected' : '';
-		$selected .= ' ' . $region;
+		$selected   = in_array( $result['facet_value'], $selected_values ) ? ' selected' : '';
+		$selected  .= ' ' . $region;
 		$temp_html .= '<option value="' . $result['facet_value'] . '" data-counter="' . $result['counter'] . '" class="d' . $result['depth'] . '" ' . $selected . '>' . $result['facet_display_value'] . '</option>';
 
 		return $temp_html;
@@ -476,7 +468,7 @@ class Post_Connections {
 	 * Disables the facet coun on the fselect facet.
 	 *
 	 * @param boolean $return
-	 * @param array $params
+	 * @param array   $params
 	 * @return boolean
 	 */
 	public function disable_facet_count( $return, $params ) {

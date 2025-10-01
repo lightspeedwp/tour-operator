@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<ruleset name="Tour Operator Plugin">
+    <description>Coding standards for Tour Operator WordPress Plugin</description>
+
+    <!-- Optional baseline: regenerate with `composer phpcs:baseline` and commit phpcs-baseline.xml -->
+    <config name="ignore_warnings_on_exit" value="0"/>
+    <config name="ignore_errors_on_exit" value="0"/>
+    <!-- When a baseline file exists, PHPCS can be post-filtered in CI (manual logic) -->
+
+    <!-- Include the WordPress-Extra standard. -->
+    <rule ref="WordPress-Extra">
+        <!-- We are okay with files in WordPress being named with hyphens -->
+        <exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+        <!-- We don't need to prefix everything -->
+        <exclude name="WordPress.NamingConventions.PrefixAllGlobals"/>
+        <!-- Allow short array syntax -->
+        <exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
+        <exclude name="Universal.Arrays.DisallowShortArraySyntax"/>
+    </rule>
+
+    <!-- Include the WordPress-Docs standard for inline documentation. -->
+    <rule ref="WordPress-Docs"/>
+
+    <!-- Include sniffs for PHP cross-version compatibility. -->
+    <rule ref="PHPCompatibilityWP"/>
+
+    <!-- Limit scanning to first-party plugin directories to improve performance. -->
+    <file>tour-operator.php</file>
+    <file>tour-operator-bootstrap.php</file>
+    <file>includes</file>
+    <file>templates</file>
+    <file>post-types</file>
+    <file>src</file>
+    <arg name="extensions" value="php"/>
+
+    <!-- Show progress and sniff codes in all reports -->
+    <arg value="ps"/>
+
+    <!-- Exclude patterns -->
+    <exclude-pattern>vendor/</exclude-pattern>
+    <exclude-pattern>build/</exclude-pattern>
+    <exclude-pattern>node_modules/</exclude-pattern>
+    <exclude-pattern>assets/js/vendor/</exclude-pattern>
+    <exclude-pattern>languages/</exclude-pattern>
+    <exclude-pattern>tests/</exclude-pattern>
+    <!-- Exclude nested WordPress directories and bundled third-party plugins -->
+    <exclude-pattern>wp-content/</exclude-pattern>
+    <exclude-pattern>*wordpress-seo*</exclude-pattern>
+    <exclude-pattern>tmp/</exclude-pattern>
+
+    <!-- Minimum supported PHP version -->
+    <config name="minimum_supported_wp_version" value="6.0"/>
+    <config name="testVersion" value="8.0-"/>
+
+    <!-- Check for cross-version compatibility -->
+    <rule ref="PHPCompatibilityWP">
+        <config name="testVersion" value="8.0-"/>
+    </rule>
+
+    <!-- Text domain check -->
+    <rule ref="WordPress.WP.I18n">
+        <properties>
+            <property name="text_domain" type="array">
+                <element value="tour-operator"/>
+            </property>
+        </properties>
+    </rule>
+
+    <!-- Prefix check -->
+    <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+        <properties>
+            <property name="prefixes" type="array">
+                <element value="lsx_to"/>
+                <element value="LSX_TO"/>
+            </property>
+        </properties>
+    </rule>
+</ruleset>

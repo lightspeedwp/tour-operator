@@ -1,7 +1,6 @@
 <?php
 namespace lsx\blocks;
 
-
 class Patterns {
 
 	/**
@@ -19,7 +18,7 @@ class Patterns {
 	 * @access private
 	 */
 	public function __construct() {
-		//Register our categories
+		// Register our categories
 		add_filter( 'block_categories_all', array( $this, 'register_block_category' ), 10, 1 );
 		add_action( 'init', array( $this, 'register_block_pattern_category' ) );
 
@@ -35,7 +34,7 @@ class Patterns {
 	public function register_block_category( $categories ) {
 		$categories[] = array(
 			'slug'  => $this->category,
-			'title' => __( 'Tour Operator', 'tour-operator' )
+			'title' => __( 'Tour Operator', 'tour-operator' ),
 		);
 		return $categories;
 	}
@@ -50,23 +49,23 @@ class Patterns {
 			$this->category,
 			array( 'label' => __( 'Tour Operator', 'tour-operator' ) )
 		);
-	}  
+	}
 
 	/**
-	 * Registers our block patterns with the 
+	 * Registers our block patterns with the
 	 *
 	 * @return void
 	 */
 	public function register_block_patterns() {
 		$directory = LSX_TO_PATH . '/includes/patterns/';
-		
-		foreach ( glob( $directory . '*.php') as $file ) {
+
+		foreach ( glob( $directory . '*.php' ) as $file ) {
 			// Extract the filename without the directory path and extension
 			$filename = basename( $file, '.php' );
-			
+
 			// Use the filename to create the key
 			$key = 'lsx-tour-operator/' . $filename;
-		
+
 			// Require the file and add it to the patterns array
 			register_block_pattern( $key, require $file );
 		}

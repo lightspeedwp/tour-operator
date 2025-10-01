@@ -3,7 +3,11 @@
   "version": "2.1.0",
   "description": "Tour Operators for LSX",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run test:php && npm run test:e2e",
+    "test:php": "./vendor/bin/phpunit --no-configuration tests/php/TestSimpleFunctions.php",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:debug": "playwright test --debug",
     "start": "wp-scripts start",
     "build": "wp-scripts build",
     "build-pot": "wp i18n make-pot . languages/tour-operator.pot",
@@ -24,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lightspeeddevelopment/tour-operator"
+    "url": "git+https://github.com/lightspeedwp/tour-operator"
   },
   "keywords": [
     "lsx",
@@ -35,18 +39,20 @@
   "author": "LightSpeed",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lightspeeddevelopment/tour-operator/issues"
+    "url": "https://github.com/lightspeedwp/tour-operator/issues"
   },
-  "homepage": "https://github.com/lightspeeddevelopment/tour-operator#readme",
+  "homepage": "https://touroperator.solutions/",
+  "main": "package-lock.json",
   "devDependencies": {
     "@babel/preset-react": "^7.27.1",
+    "@wordpress/eslint-plugin": "22.17.0",
     "@wordpress/scripts": "^30.24.0",
-    "@wordpress/eslint-plugin": "^22.17.0",
     "@wordpress/stylelint-config": "^23.23.0",
+    "@wordpress/project-management-automation": "^1.6.0",
     "webpack-remove-empty-scripts": "^1.1.1"
   },
   "dependencies": {
-    "@wordpress/blocks": "^15.4.0",
-    "classnames": "^2.2.6"
+    "@wordpress/blocks": "13.9.0",
+    "classnames": "^2.5.1"
   }
 }

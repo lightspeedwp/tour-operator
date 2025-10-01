@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Backend actions for the LSX TO Plugin
  *
@@ -6,7 +7,7 @@
  * @author    LightSpeed
  * @license   GPL3
  * @link
- * @copyright 2019 LightSpeedDevelopment
+ * @copyright 2019 lightspeedwp
  */
 
 namespace lsx\admin;
@@ -17,7 +18,8 @@ namespace lsx\admin;
  * @package lsx
  * @author  LightSpeed
  */
-class Settings {
+class Settings
+{
 
 	/**
 	 * Holds instance of the class
@@ -42,11 +44,12 @@ class Settings {
 	 *
 	 * @access private
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 		$this->options = tour_operator()->options;
 
-		add_action( 'admin_menu', array( $this, 'create_settings_page' ), 100 );
-		add_action( 'admin_init', array( $this, 'save_settings' ), 1 );
+		add_action('admin_menu', array($this, 'create_settings_page'), 100);
+		add_action('admin_init', array($this, 'save_settings'), 1);
 	}
 
 	/**
@@ -55,10 +58,11 @@ class Settings {
 	 * @since 1.1.0
 	 * @return  Tour_Operator  A single instance
 	 */
-	public static function init() {
+	public static function init()
+	{
 
 		// If the single instance hasn't been set, set it now.
-		if ( ! isset( self::$instance ) ) {
+		if (! isset(self::$instance)) {
 			self::$instance = new self();
 		}
 
@@ -70,59 +74,61 @@ class Settings {
 	 *
 	 * @return array
 	 */
-	public function get_settings_fields() {
+	public function get_settings_fields()
+	{
 		$settings = array();
-		$settings = include( LSX_TO_PATH . 'includes/constants/settings-fields.php' );
+		$settings = include LSX_TO_PATH . 'includes/constants/settings-fields.php';
 		return $settings;
 	}
 
 	/**
 	 * Returns the array of settings to the UIX Class
 	 */
-	public function settings_page_array() {
+	public function settings_page_array()
+	{
 		// This array is for the Admin Pages. each element defines a page that is seen in the admin
 
 		$tabs = array( // tabs array are for setting the tab / section templates
 			// each array element is a tab with the key as the slug that will be the saved object property
 			'general'       => array(
-				'menu_title'        => esc_html__( 'General', 'tour-operator' ),
-				'template'          => LSX_TO_PATH . 'includes/partials/general.php',
-				'default'           => true,
+				'menu_title' => esc_html__('General', 'tour-operator'),
+				'template'   => LSX_TO_PATH . 'includes/partials/general.php',
+				'default'    => true,
 			),
-			'destination'       => array(
-				'menu_title'        => esc_html__( 'Destinations', 'tour-operator' ),
-				'template'          => 'post_type',
-				'default'           => false,
+			'destination'   => array(
+				'menu_title' => esc_html__('Destinations', 'tour-operator'),
+				'template'   => 'post_type',
+				'default'    => false,
 			),
-			'tour'       => array(
-				'menu_title'        => esc_html__( 'Tours', 'tour-operator' ),
-				'template'          => 'post_type',
-				'default'           => false,
+			'tour'          => array(
+				'menu_title' => esc_html__('Tours', 'tour-operator'),
+				'template'   => 'post_type',
+				'default'    => false,
 			),
-			'accommodation'       => array(
-				'menu_title'        => esc_html__( 'Accommodation', 'tour-operator' ),
-				'template'          => 'post_type',
-				'default'           => false,
+			'accommodation' => array(
+				'menu_title' => esc_html__('Accommodation', 'tour-operator'),
+				'template'   => 'post_type',
+				'default'    => false,
 			),
 		);
 
-		//tour_operator()->legacy->get_post_types();
+		// tour_operator()->legacy->get_post_types();
 
 		$additional_tabs = false;
-		$additional_tabs = apply_filters( 'lsx_to_framework_settings_tabs', $additional_tabs );
+		$additional_tabs = apply_filters('lsx_to_framework_settings_tabs', $additional_tabs);
 
-		if ( false !== $additional_tabs && is_array( $additional_tabs ) && ! empty( $additional_tabs ) ) {
-			$tabs = array_merge( $tabs, $additional_tabs );
+		if (false !== $additional_tabs && is_array($additional_tabs) && ! empty($additional_tabs)) {
+			$tabs = array_merge($tabs, $additional_tabs);
 		}
 
 		return array(
-			'settings'  => array(                                                         // this is the settings array. The key is the page slug
-				'page_title'  => esc_html__( 'Tour Operator Settings', 'tour-operator' ),                                                  // title of the page
-				'menu_title'  => esc_html__( 'Settings', 'tour-operator' ),                                                  // title seen on the menu link
+			'settings' => array(                                                         // this is the settings array. The key is the page slug
+				'page_title'  => esc_html__('Tour Operator Settings', 'tour-operator'),                                                  // title of the page
+				'menu_title'  => esc_html__('Settings', 'tour-operator'),                                                  // title seen on the menu link
 				'capability'  => 'manage_options',                                              // required capability to access page
 				'icon'        => 'dashicons-book-alt',                                      // Icon or image to be used on admin menu
 				'parent'      => 'tour-operator',                                         // Position priority on admin menu)
-				'save_button' => esc_html__( 'Save Changes', 'tour-operator' ),                                                // If the page required saving settings, Set the text here.
+				'save_button' => esc_html__('Save Changes', 'tour-operator'),                                                // If the page required saving settings, Set the text here.
 				'tabs'        => $tabs,
 			),
 		);
@@ -131,21 +137,22 @@ class Settings {
 	/**
 	 * Returns the array of settings to the UIX Class
 	 */
-	public function create_settings_page() {
-		add_options_page( esc_html__( 'Settings', 'tour-operator' ), esc_html__( 'Tour Operator', 'tour-operator' ), 'manage_options', 'lsx-to-settings', array( $this, 'settings_page' ) );
+	public function create_settings_page()
+	{
+		add_options_page(esc_html__('Settings', 'tour-operator'), esc_html__('Tour Operator', 'tour-operator'), 'manage_options', 'lsx-to-settings', array($this, 'settings_page'));
 
-		if ( is_admin() ) {
+		if (is_admin()) {
 
-			//Settings Page
-			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'hidden_settings' ), 10, 1 );
-			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'currency_settings' ), 11, 1 );
-			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'map_settings' ), 12, 1 );
-			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'fusion_table_settings' ), 13, 1 );
-			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'map_placeholder_settings' ), 14, 1 );
-			add_action( 'lsx_to_framework_dashboard_tab_content', array( $this, 'api_settings' ), 15, 1 );
+			// Settings Page
+			add_action('lsx_to_framework_dashboard_tab_content', array($this, 'hidden_settings'), 10, 1);
+			add_action('lsx_to_framework_dashboard_tab_content', array($this, 'currency_settings'), 11, 1);
+			add_action('lsx_to_framework_dashboard_tab_content', array($this, 'map_settings'), 12, 1);
+			add_action('lsx_to_framework_dashboard_tab_content', array($this, 'fusion_table_settings'), 13, 1);
+			add_action('lsx_to_framework_dashboard_tab_content', array($this, 'map_placeholder_settings'), 14, 1);
+			add_action('lsx_to_framework_dashboard_tab_content', array($this, 'api_settings'), 15, 1);
 
-			//Post type pages
-			add_action( 'lsx_to_framework_post_type_tab_content', array( $this, 'post_type_map_settings' ), 10, 2 );
+			// Post type pages
+			add_action('lsx_to_framework_post_type_tab_content', array($this, 'post_type_map_settings'), 10, 2);
 		}
 	}
 
@@ -154,8 +161,9 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function settings_page() {
-		include( LSX_TO_PATH . 'includes/partials/settings.php' );
+	public function settings_page()
+	{
+		include LSX_TO_PATH . 'includes/partials/settings.php';
 	}
 
 	/**
@@ -164,9 +172,10 @@ class Settings {
 	 * @param $tab string
 	 * @return null
 	 */
-	public function hidden_settings( $tab = 'hidden' ) {
-		if ( 'hidden' === $tab ) {
-			wp_nonce_field( 'lsx_to_settings_save', 'lsx_to_nonce' );
+	public function hidden_settings($tab = 'hidden')
+	{
+		if ('hidden' === $tab) {
+			wp_nonce_field('lsx_to_settings_save', 'lsx_to_nonce');
 		}
 	}
 
@@ -176,10 +185,11 @@ class Settings {
 	 * @param $tab string
 	 * @return null
 	 */
-	public function currency_settings( $tab = 'maps' ) {
-		if ( 'currency' === $tab ) {
+	public function currency_settings($tab = 'maps')
+	{
+		if ('currency' === $tab) {
 			$settings = $this->get_settings_fields();
-			echo wp_kses_post( $this->output_fields( $settings['currency'] ) );
+			echo wp_kses_post($this->output_fields($settings['currency']));
 		}
 	}
 
@@ -189,20 +199,22 @@ class Settings {
 	 * @param $tab string
 	 * @return null
 	 */
-	public function map_settings( $tab = 'maps' ) {
-		if ( 'maps' === $tab ) {
+	public function map_settings($tab = 'maps')
+	{
+		if ('maps' === $tab) {
 			$settings = $this->get_settings_fields();
-			echo wp_kses_post( $this->output_fields( $settings['maps'] ) );
+			echo wp_kses_post($this->output_fields($settings['maps']));
 		}
 	}
 
 	/**
 	 * Outputs the map marker upload field
 	 */
-	public function fusion_table_settings( $tab = 'general' ) {
-		if ( 'fusion' === $tab ) {
+	public function fusion_table_settings($tab = 'general')
+	{
+		if ('fusion' === $tab) {
 			$settings = $this->get_settings_fields();
-			echo wp_kses_post( $this->output_fields( $settings['fusion'] ) );
+			echo wp_kses_post($this->output_fields($settings['fusion']));
 		}
 	}
 
@@ -212,11 +224,12 @@ class Settings {
 	 * @param $tab string
 	 * @return null
 	 */
-	public function map_placeholder_settings( $tab = 'general' ) {
-		if ( 'placeholders' === $tab ) {
+	public function map_placeholder_settings($tab = 'general')
+	{
+		if ('placeholders' === $tab) {
 			$settings = $this->get_settings_fields();
 
-			echo wp_kses_post( $this->output_fields( $settings['placeholder'] ) );
+			echo wp_kses_post($this->output_fields($settings['placeholder']));
 		}
 	}
 
@@ -226,10 +239,11 @@ class Settings {
 	 * @param $tab string
 	 * @return null
 	 */
-	public function api_settings( $tab = 'general' ) {
-		if ( 'api' === $tab ) {
+	public function api_settings($tab = 'general')
+	{
+		if ('api' === $tab) {
 			$settings = $this->get_settings_fields();
-			echo wp_kses_post( $this->output_fields( $settings['api'] ) );
+			echo wp_kses_post($this->output_fields($settings['api']));
 		}
 	}
 
@@ -239,74 +253,77 @@ class Settings {
 	 * @param $tab string
 	 * @return null
 	 */
-	public function post_type_map_settings( $tab, $post_type ) {
+	public function post_type_map_settings($tab, $post_type)
+	{
 		$settings = $this->get_settings_fields();
-		if ( 'placeholder' === $tab ) {
-			if ( ! in_array( $post_type, [ 'accommodation', 'destination', 'tour' ] ) ) {
-				unset( $settings['post_types']['placeholder']['map_placeholder_enabled'] );
-				unset( $settings['post_types']['placeholder']['map_placeholder'] );
+		if ('placeholder' === $tab) {
+			if (! in_array($post_type, ['accommodation', 'destination', 'tour'])) {
+				unset($settings['post_types']['placeholder']['map_placeholder_enabled']);
+				unset($settings['post_types']['placeholder']['map_placeholder']);
 			}
-			echo wp_kses_post( $this->output_fields( $settings['post_types'][ $tab ], $post_type ) );
+			echo wp_kses_post($this->output_fields($settings['post_types'][$tab], $post_type));
 		}
-		if ( 'template' === $tab ) {
-			echo wp_kses_post( $this->output_fields( $settings['post_types'][ $tab ], $post_type ) );
+		if ('template' === $tab) {
+			echo wp_kses_post($this->output_fields($settings['post_types'][$tab], $post_type));
 		}
 	}
 
-	public function output_fields( $section = array(), $post_type = '' ) {
+	public function output_fields($section = array(), $post_type = '')
+	{
 		$fields = array();
-		if ( ! empty( $section ) ) {
-			foreach ( $section as $field_id => $field ) {
+		if (! empty($section)) {
+			foreach ($section as $field_id => $field) {
 
-				$field_html = '<tr class="form-field ' . sanitize_key( $field_id ) . '">';
-				switch( $field['type'] ) {
+				$field_html = '<tr class="form-field ' . sanitize_key($field_id) . '">';
+				switch ($field['type']) {
 					case 'checkbox':
-						$field_html .= $this->checkbox_field( $field_id, $field, $post_type );
-					break;
+						$field_html .= $this->checkbox_field($field_id, $field, $post_type);
+						break;
 
 					case 'image':
-						$field_html .= $this->image_field( $field_id, $field, $post_type );
-					break;
+						$field_html .= $this->image_field($field_id, $field, $post_type);
+						break;
 
 					case 'select':
-						$field_html .= $this->select_field( $field_id, $field, $post_type );
-					break;
+						$field_html .= $this->select_field($field_id, $field, $post_type);
+						break;
 
 					case 'text':
 					case 'number':
-						$field_html .= $this->text_field( $field_id, $field, $post_type );
-					break;
+						$field_html .= $this->text_field($field_id, $field, $post_type);
+						break;
 
-					default;
+					default:
 				}
 				$field_html .= '</tr>';
 
 				$fields[] = $field_html;
 			}
 		}
-		return implode( '', $fields );
+		return implode('', $fields);
 	}
 
 	/**
 	 * Outputs the settings page Select Field.
 	 *
 	 * @param string $field_id
-	 * @param array $args
+	 * @param array  $args
 	 * @return string
 	 */
-	public function select_field( $field_id, $args = array(), $post_type = '' ) {
+	public function select_field($field_id, $args = array(), $post_type = '')
+	{
 		$defaults = array(
 			'label'   => '',
 			'desc'    => '',
 			'default' => 0,
 			'options' => array(),
 		);
-		$params = wp_parse_args( $args, $defaults );
+		$params   = wp_parse_args($args, $defaults);
 
 		$field = array();
 
 		// If this is a generated type.
-		if ( '' !== $post_type ) {
+		if ('' !== $post_type) {
 			$field_id = $post_type . '_' . $field_id;
 		}
 
@@ -314,122 +331,125 @@ class Settings {
 		$field[] = '<td>';
 		$field[] = '<select type="' . $params['type'] . '" name="' . $field_id . '" />';
 
-		$selected = $this->get_value( $field_id, $params );
+		$selected = $this->get_value($field_id, $params);
 
-		foreach ( $params['options'] as $o_key => $o_val ) {
+		foreach ($params['options'] as $o_key => $o_val) {
 			$select_param = '';
-			if ( $o_key === $selected ) {
+			if ($o_key === $selected) {
 				$select_param = 'selected="selected"';
 			}
 			$field[] = '<option ' . $select_param . ' value="' . $o_key . '">' . $o_val . '</option>';
 		}
 		$field[] = '</select>';
-		if ( '' !== $params['desc'] ) {
+		if ('' !== $params['desc']) {
 			$field[] = '<br /><small>' . $params['desc'] . '</small>';
 		}
 		$field[] = '</td>';
 
-		return implode( '', $field );
+		return implode('', $field);
 	}
 
 	/**
 	 * Outputs the settings page Checkbox.
 	 *
 	 * @param string $field_id
-	 * @param array $args
+	 * @param array  $args
 	 * @return string
 	 */
-	public function checkbox_field( $field_id, $args = array(), $post_type = '' ) {
+	public function checkbox_field($field_id, $args = array(), $post_type = '')
+	{
 		$defaults = array(
 			'label'   => '',
 			'desc'    => '',
 			'default' => 0,
 		);
-		$params = wp_parse_args( $args, $defaults );
+		$params   = wp_parse_args($args, $defaults);
 
 		$field = array();
 
 		// If this is a generated type.
-		if ( '' !== $post_type ) {
+		if ('' !== $post_type) {
 			$field_id = $post_type . '_' . $field_id;
 		}
 
 		$field[] = '<th scope="row"><label for="' . $field_id . '">' . $params['label'] . '</label></th>';
 		$field[] = '<td>';
 
-		$checked       = $this->get_value( $field_id, $params );
+		$checked       = $this->get_value($field_id, $params);
 		$checked_param = '';
-		if ( 1 === (int) $checked ) {
+		if (1 === (int) $checked) {
 			$checked_param = 'checked="checked"';
 		}
 
 		$field[] = '<input ' . $checked_param . ' value="1" type="' . $params['type'] . '" name="' . $field_id . '" />';
-		if ( '' !== $params['desc'] ) {
+		if ('' !== $params['desc']) {
 			$field[] = '<small>' . $params['desc'] . '</small>';
 		}
 		$field[] = '</td>';
 
-		return implode( '', $field );
+		return implode('', $field);
 	}
 
 	/**
 	 * Outputs the settings page Checkbox.
 	 *
 	 * @param string $field_id
-	 * @param array $args
+	 * @param array  $args
 	 * @return string
 	 */
-	public function text_field( $field_id, $args = array(), $post_type = '' ) {
+	public function text_field($field_id, $args = array(), $post_type = '')
+	{
 		$defaults = array(
 			'label'   => '',
 			'desc'    => '',
 			'default' => 0,
 		);
-		$params = wp_parse_args( $args, $defaults );
+		$params   = wp_parse_args($args, $defaults);
 
 		$field = array();
 
 		// If this is a generated type.
-		if ( '' !== $post_type ) {
+		if ('' !== $post_type) {
 			$field_id = $post_type . '_' . $field_id;
 		}
 
 		$field[] = '<th scope="row"><label for="' . $field_id . '">' . $params['label'] . '</label></th>';
 		$field[] = '<td>';
 
-		$value = $this->get_value( $field_id, $params );
+		$value = $this->get_value($field_id, $params);
 
 		$field[] = '<input value="' . $value . '" type="' . $params['type'] . '" name="' . $field_id . '" />';
-		if ( '' !== $params['desc'] ) {
+		if ('' !== $params['desc']) {
 			$field[] = '<br /><small>' . $params['desc'] . '</small>';
 		}
 		$field[] = '</td>';
 
-		return implode( '', $field );
+		return implode('', $field);
 	}
 
 	/**
 	 * The image upload function.
 	 *
 	 * @param string $field_id
-	 * @param array $args
+	 * @param array  $args
 	 * @return string
 	 */
-	public function image_field( $field_id, $args = array(), $post_type = '' ) {
+	public function image_field($field_id, $args = array(), $post_type = '')
+	{
 		$defaults = array(
 			'label'      => '',
 			'desc'       => '',
 			'default'    => 0,
 			'preview_w'  => 48,
-			'add_button' => esc_html__( 'Choose Image', 'tour-operator' ),
-			'del_button' => esc_html__( 'Delete', 'tour-operator' ),
+			'add_button' => esc_html__('Choose Image', 'tour-operator'),
+			'del_button' => esc_html__('Delete', 'tour-operator'),
 		);
-		$params = wp_parse_args( $args, $defaults );
+		$params   = wp_parse_args($args, $defaults);
 
 		$field = array();
 
 		// If this is a generated type.
-		if ( '' !== $post_type ) {
+		if ('' !== $post_type) {
 			$field_id = $post_type . '_' . $field_id;
 		}
 
@@ -437,15 +457,15 @@ class Settings {
 		$field[] = '<td>';
 
 		// Get the stored image
-		$image_id = (int) $this->get_value( $field_id, $params );
-		$image    = array( '' );
+		$image_id = (int) $this->get_value($field_id, $params);
+		$image    = array('');
 		$prev_css = 'display:none;';
-		if ( 0 !== $image_id && '' !== $image_id ) {
-			$image = wp_get_attachment_image_src( $image_id, 'medium' );
+		if (0 !== $image_id && '' !== $image_id) {
+			$image    = wp_get_attachment_image_src($image_id, 'medium');
 			$prev_css = '';
 		}
 
-		//hidden fields for the ID
+		// hidden fields for the ID
 		$field[] = '<input class="input_image" type="hidden" value="' . $image_id . '" name="' . $field_id . '" />';
 
 		// Image Previews
@@ -455,7 +475,7 @@ class Settings {
 		// Action Buttons
 		$add_css = '';
 		$del_css = 'display:none;';
-		if ( 0 !== $image_id && '' !== $image_id ) {
+		if (0 !== $image_id && '' !== $image_id) {
 			$add_css = 'display:none;';
 			$del_css = '';
 		}
@@ -463,12 +483,12 @@ class Settings {
 		$field[] = '<a style="' . $add_css . '" class="button-secondary lsx-thumbnail-image-add">' . $params['add_button'] . '</a>';
 		$field[] = '<a style="' . $del_css . '" class="button-secondary lsx-thumbnail-image-delete">' . $params['del_button'] . '</a>';
 
-		if ( '' !== $params['desc'] ) {
+		if ('' !== $params['desc']) {
 			$field[] = '<br /><small>' . $params['desc'] . '</small>';
 		}
 		$field[] = '</td>';
 
-		return implode( '', $field );
+		return implode('', $field);
 	}
 
 	/**
@@ -476,70 +496,71 @@ class Settings {
 	 *
 	 * @return void
 	 */
-	public function save_settings() {
-		if ( ! isset( $_GET['page'] ) ) {
+	public function save_settings()
+	{
+		if (! isset($_GET['page'])) {
 			return;
 		}
 
-		$page = sanitize_key( $_GET['page'] );
-		if ( 'lsx-to-settings' !== $page ) {
+		$page = sanitize_key($_GET['page']);
+		if ('lsx-to-settings' !== $page) {
 			return;
 		}
 
-		if ( ! isset( $_POST['lsx_to_nonce'] ) ) {
+		if (! isset($_POST['lsx_to_nonce'])) {
 			return;
 		}
 
-		$nonce = sanitize_key( $_POST['lsx_to_nonce'] );
-		if ( false === wp_verify_nonce( $nonce, 'lsx_to_settings_save' ) ) {
+		$nonce = sanitize_key($_POST['lsx_to_nonce']);
+		if (false === wp_verify_nonce($nonce, 'lsx_to_settings_save')) {
 			return;
 		}
 
 		$settings_fields = $this->get_settings_fields();
 		$settings_values = array();
-		foreach ( $settings_fields as $section => $fields ) {
-			if ( 'post_types' !== $section ) {
-				foreach ( $fields as $key => $field ) {
+		foreach ($settings_fields as $section => $fields) {
+			if ('post_types' !== $section) {
+				foreach ($fields as $key => $field) {
 					$save = '';
 					// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
-					if ( isset( $_POST[ $key ] ) ) {
-						$save = sanitize_text_field( wp_unslash( $_POST[ $key ] ) );
-					} else if ( isset( $field['default'] ) ) {
+					if (isset($_POST[$key])) {
+						$save = sanitize_text_field(wp_unslash($_POST[$key]));
+					} elseif (isset($field['default'])) {
 						$save = $field['default'];
 					}
 
-					$settings_values[ $key ] = $save;
+					$settings_values[$key] = $save;
 				}
 			}
 		}
 
 		$settings_pages = tour_operator()->legacy->get_post_types();
-		//Run through each post type
-		foreach ( $settings_pages as $tab_index => $tab ) {
+		// Run through each post type
+		foreach ($settings_pages as $tab_index => $tab) {
 
-			//Loop through each of the post type sections
-			foreach ( $settings_fields['post_types'] as $section => $fields ) {
+			// Loop through each of the post type sections
+			foreach ($settings_fields['post_types'] as $section => $fields) {
 
-				//Loop through each of the fields in the section.
-				foreach ( $fields as $key => $field ) {
+				// Loop through each of the fields in the section.
+				foreach ($fields as $key => $field) {
 					$save = '';
 					// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
-					if ( isset( $_POST[ $tab_index . '_' . $key ] ) ) {
-						$save = sanitize_text_field( wp_unslash( $_POST[ $tab_index . '_' . $key ] ) );
-					} else if ( isset( $field['default'] ) ) {
+					if (isset($_POST[$tab_index . '_' . $key])) {
+						$save = sanitize_text_field(wp_unslash($_POST[$tab_index . '_' . $key]));
+					} elseif (isset($field['default'])) {
 						$save = $field['default'];
 					}
 
-					$settings_values[ $tab_index . '_' . $key ] = $save;
+					$settings_values[$tab_index . '_' . $key] = $save;
 				}
 			}
 		}
 
-		if ( ! empty( $settings_values ) ) {
-			update_option( 'lsx_to_settings', $settings_values );
+		if (! empty($settings_values)) {
+			update_option('lsx_to_settings', $settings_values);
 
 			// @phpcs:ignore WordPress.Security
-			wp_safe_redirect( wp_unslash( $_POST[ '_wp_http_referer' ] ) );
+			wp_safe_redirect(wp_unslash($_POST['_wp_http_referer']));
 			exit;
 		}
 	}
@@ -551,13 +572,14 @@ class Settings {
 	 * @param [type] $params
 	 * @return void
 	 */
-	public function get_value( $field_id, $params ) {
+	public function get_value($field_id, $params)
+	{
 		$value = '';
-		if ( isset( $params['default'] ) ) {
+		if (isset($params['default'])) {
 			$value = $params['default'];
 		}
-		if ( isset( $this->options[ $field_id ] ) ) {
-			$value = $this->options[ $field_id ];
+		if (isset($this->options[$field_id])) {
+			$value = $this->options[$field_id];
 		}
 		return $value;
 	}

@@ -248,7 +248,7 @@ class Tour_Operator {
 	 * @return void
 	 */
 	public function disable_deprecated() {
-		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		include_once ABSPATH . 'wp-admin/includes/plugin.php';
 		if ( defined( 'LSX_TO_MAPS_CORE' ) && is_plugin_active( plugin_basename( LSX_TO_MAPS_CORE ) ) ) {
 			deactivate_plugins( plugin_basename( LSX_TO_MAPS_CORE ) );
 		}
@@ -263,7 +263,7 @@ class Tour_Operator {
 	 * Sets the variables for the class
 	 */
 	public function set_vars() {
-		$this->post_types          = array(
+		$this->post_types = array(
 			'destination'   => esc_html__( 'Destinations', 'tour-operator' ),
 			'accommodation' => esc_html__( 'Accommodation', 'tour-operator' ),
 			'tour'          => esc_html__( 'Tours', 'tour-operator' ),
@@ -280,7 +280,7 @@ class Tour_Operator {
 		$this->post_types_singular = apply_filters( 'lsx_to_post_types_singular', $this->post_types_singular );
 		$this->active_post_types   = array_keys( $this->post_types );
 
-		$this->taxonomies        = array(
+		$this->taxonomies = array(
 			'travel-style'        => __( 'Travel Style', 'tour-operator' ),
 			'accommodation-brand' => __( 'Brand', 'tour-operator' ),
 			'accommodation-type'  => __( 'Accommodation Type', 'tour-operator' ),
