@@ -98,6 +98,18 @@ wp-config-dev.php
 *.rej
 *.swp
 
+# Security-related files (private keys, certs) - never commit these
+*.ppk
+*.pem
+*.key
+*.cer
+*.crt
+*.p12
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+
 # Archives
 *.7z
 *.jar
