@@ -63,3 +63,22 @@ Thumbs.db
 *.sql
 *.tar.gz
 *.zip
+
+# Security-related files (never distribute private keys/certs)
+*.ppk
+*.pem
+*.key
+*.cer
+*.crt
+*.p12
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+
+# Backup and swap files
+*.bak
+*.orig
+*.old
+*~
+*.backup
