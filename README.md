@@ -69,13 +69,14 @@ Override the PHP compatibility test version (example: PHP 7.2+):
 
 ### Continuous Integration
 
-PHPCS runs automatically on pushes to `2.1-trunk` and all pull requests via the GitHub Action workflow at `.github/workflows/phpcs.yml` using the version specified in that workflow file (currently `10up/wpcs-action@v2.0.0`—please keep this in sync with the workflow).
+WPCS runs automatically on pushes to `2.1-trunk` and all pull requests via the GitHub Action workflow at `.github/workflows/phpcs.yml` using `10up/wpcs-action@stable` with local configuration.
 
 The workflow:
 
 1. Installs Composer + Node dependencies.
-2. Runs PHPCS with annotations on the PR (errors & warnings surfaced inline).
-3. Uploads a report artifact when available.
+2. Runs WPCS with local config (`phpcs.xml.dist`) and annotations on the PR.
+3. Checks only changed files for efficiency and enables warnings.
+4. Uses the 10up-Default ruleset with project-specific customizations.
 
 ### Project Management Automation
 
@@ -132,6 +133,20 @@ Use the WordPress action directly in a workflow step:
 ```
 
 You can scope events (`pull_request`, `issues`) and extend with additional job steps (e.g. changelog validation, label enforcement).
+
+### EditorConfig & Code Style
+
+This plugin follows WordPress Coding Standards with consistent indentation enforced via `.editorconfig`:
+
+- **PHP files**: Tabs (WordPress standard)
+- **JavaScript/TypeScript**: 2 spaces
+- **CSS/SCSS**: 2 spaces  
+- **JSON/YAML**: 2 spaces
+- **Markdown**: 2 spaces (preserves trailing whitespace)
+
+Configuration references:
+- [WordPress PHP Coding Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/)
+- [WordPress Core .editorconfig](https://core.trac.wordpress.org/browser/trunk/.editorconfig)
 
 ### IDE Integration
 
