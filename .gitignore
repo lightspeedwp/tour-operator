@@ -1,29 +1,63 @@
 # Dependencies
 node_modules/
-vendor/
 
-# Build artifacts and compiled files
-/build/
+# Build artifacts and compiled files (but keep build/ for WordPress plugin distribution)
 /assets/dist/
-*.min.js
-*.min.css
 *.map
 
-# IDE/Editor files
-.idea/
-.vscode/
-*.sublime-workspace
-*.sublime-project
+# Temporary build files
+*.min.js.tmp
+*.min.css.tmp
 
 # OS files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+Thumbs.db:encryptable
+Desktop.ini
+
+# Editor and IDE files (excluding VSCode settings which may be shared)
+# Note: .vscode/ is intentionally NOT ignored to share team settings
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.swo
+*~
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
 
 # Logs and debug files
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# WordPress debug logs
+debug.log
+wp-content/debug.log
+error_log
 
 # Testing and coverage
 /test-results/
@@ -49,3 +83,25 @@ wp-content/
 # Environment files
 .env
 .env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# WordPress specific
+wp-config-local.php
+wp-config-dev.php
+
+# Backup files
+*.backup
+*.bak
+*.orig
+*.rej
+*.swp
+
+# Archives
+*.7z
+*.jar
+*.rar
+*.zip
+*.tar.gz
+*.tgz
