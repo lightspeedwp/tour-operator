@@ -1,3 +1,15 @@
+/**
+ * Check Out Time Block Variation
+ *
+ * Registers a block variation for accommodation check-out time display.
+ * Only available on accommodation post type edit screens.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
+import { __ } from '@wordpress/i18n';
+
 wp.domReady(() => {
     const { select } = wp.data;
 
@@ -45,7 +57,10 @@ wp.domReady(() => {
                             [
                                 "core/paragraph",
                                 {
-                                    content: "<strong>Check in time:</strong>",
+                                    content: __(
+                                        'Check in time:',
+                                        'tour-operator'
+                                    ),
                                 },
                             ],
                         ],
@@ -101,7 +116,7 @@ wp.domReady(() => {
                                 [
                                     "core/paragraph",
                                     {
-                                        content: "3:00 PM",
+                                        content: "11:00 AM",
                                     },
                                 ],
                             ],
