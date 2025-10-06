@@ -90,9 +90,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
 /**
- * Check Out Time Block Variation
+ * Check In Time Block Variation
  *
- * Registers a block variation for accommodation check-out time display.
+ * Registers a block variation for accommodation check-in time display.
  * Only available on accommodation post type edit screens.
  *
  * @since 2.1.0
@@ -119,7 +119,7 @@ wp.domReady(() => {
         category: "lsx-tour-operator",
         attributes: {
           metadata: {
-            name: "Check in Time"
+            name: "Check In Time"
           },
           className: "lsx-checkin-time-wrapper",
           layout: {

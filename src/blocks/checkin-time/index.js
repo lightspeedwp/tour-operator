@@ -1,7 +1,7 @@
 /**
- * Check Out Time Block Variation
+ * Check In Time Block Variation
  *
- * Registers a block variation for accommodation check-out time display.
+ * Registers a block variation for accommodation check-in time display.
  * Only available on accommodation post type edit screens.
  *
  * @since 2.1.0
