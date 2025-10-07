@@ -12,7 +12,7 @@ permissions:
   pull-requests: write
 
 concurrency:
-  group: labels-${{ github.event_name }}-${{ github.event.number || github.run_id }}
+  group: labels-${{ github.event_name }}-${{ github.run_id }}
   cancel-in-progress: false
 
 jobs:
