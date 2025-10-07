@@ -22,6 +22,7 @@ wp-config-sample.php text eol=crlf
 # WordPress specific
 *.pot text eol=lf
 *.po text eol=lf
+*.mo binary
 
 # Denote all files that are truly binary and should not be modified.
 *.png binary
@@ -35,6 +36,10 @@ wp-config-sample.php text eol=crlf
 *.ttf binary
 *.eot binary
 *.zip binary
+*.tar.gz binary
+*.tgz binary
+*.rar binary
+*.7z binary
 
 # Export ignore patterns (files not included in archives)
 .gitattributes export-ignore
