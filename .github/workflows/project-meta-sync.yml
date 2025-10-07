@@ -18,9 +18,8 @@ jobs:
   add-and-sync:
     runs-on: ubuntu-latest
     steps:
-      steps:
-        - name: Checkout repo
-          uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
         - name: Create GitHub App installation token
           id: app-token

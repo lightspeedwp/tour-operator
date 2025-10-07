@@ -20,7 +20,6 @@ jobs:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
-    steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
@@ -43,7 +42,7 @@ jobs:
         run: |
           set -euo pipefail
           labels=$(gh pr view ${{ github.event.pull_request.number }} --json labels --jq '.labels[].name')
-          count=$(echo "$labels" | grep -E '^status:' | wc -l | xargs)
+          count=$(printf "%s\n" "$labels" | grep -E -c '^status:' || true)
           if [ "$count" -eq 0 ]; then
             echo "::notice::No status:* found → adding status:needs-review"
             gh pr edit ${{ github.event.pull_request.number }} --add-label "status:needs-review"
@@ -78,7 +77,7 @@ jobs:
         run: |
           set -euo pipefail
           labels=$(gh issue view ${{ github.event.issue.number }} --json labels --jq '.labels[].name')
-          count=$(echo "$labels" | grep -E '^status:' | wc -l | xargs)
+          count=$(printf "%s\n" "$labels" | grep -E -c '^status:' || true)
           if [ "$count" -gt 1 ]; then
             echo "::error::Multiple status:* labels present. Keep exactly one."
             exit 1
