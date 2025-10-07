@@ -58,8 +58,11 @@ jobs:
         run: |
           labels=$(gh pr view ${{ github.event.pull_request.number }} --json labels --jq '.labels[].name')
           if ! echo "$labels" | grep -Eq '^(no-changelog|changelog:(added|changed|fixed|security|deprecated|removed))$'; then
-            echo "::warning::No changelog label found → adding meta:needs-changelog"
-            gh pr edit ${{ github.event.pull_request.number }} --add-label "meta:needs-changelog"
+            echo "::warning::No changelog label found. Please add appropriate changelog label or 'no-changelog'"
+            # Try to add the label, but don't fail if it doesn't exist
+            gh pr edit ${{ github.event.pull_request.number }} --add-label "meta:needs-changelog" || {
+              echo "::notice::Label 'meta:needs-changelog' doesn't exist in repository. Skipping label addition."
+            }
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
