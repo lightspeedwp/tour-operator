@@ -1,48 +1,35 @@
 # EditorConfig for Tour Operator Plugin
 # https://editorconfig.org
 
+# WordPress Coding Standards
+# https://make.wordpress.org/core/handbook/coding-standards/
+# Based on WordPress Core .editorconfig: https://core.trac.wordpress.org/browser/trunk/.editorconfig
+
 # Top-most EditorConfig file
 root = true
 
-# All files
+# All files (WordPress defaults: tabs, LF line endings)
 [*]
 charset = utf-8
 end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
-
-# PHP files
-[*.php]
 indent_style = tab
-indent_size = 4
 
-# JavaScript files
-[*.{js,ts,jsx,tsx}]
+# JavaScript/TypeScript files (WordPress wp-scripts standard: spaces)
+[*.{js,jsx,ts,tsx,json}]
 indent_style = space
 indent_size = 2
 
-# CSS/SCSS files
-[*.{css,scss,sass,less}]
-indent_style = space
-indent_size = 2
-
-# JSON files
-[*.json]
-indent_style = space
-indent_size = 2
-
-# YAML files
+# YAML files (standard: 2 spaces)
 [*.{yml,yaml}]
 indent_style = space
 indent_size = 2
 
-# Markdown files
+# Markdown files (preserve trailing whitespace for line breaks)
 [*.md]
 trim_trailing_whitespace = false
-indent_style = space
-indent_size = 2
 
-# Package files
-[{package.json,composer.json}]
-indent_style = space
-indent_size = 2
+# Special WordPress files (CRLF line endings as per Core)
+[{*.txt,wp-config-sample.php}]
+end_of_line = crlf

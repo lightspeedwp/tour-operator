@@ -1,5 +1,5 @@
 # Set the default behavior, in case people don't have core.autocrlf set.
-* text=auto
+* text=auto eol=lf
 
 # Declare files that will always have LF line endings on checkout.
 *.css text eol=lf
@@ -7,10 +7,13 @@
 *.json text eol=lf
 *.php text eol=lf
 *.md text eol=lf
-*.txt text eol=lf
 *.xml text eol=lf
 *.yml text eol=lf
 *.yaml text eol=lf
+
+# Exception: Some WordPress files should use CRLF (as per .editorconfig)
+*.txt text eol=crlf
+wp-config-sample.php text eol=crlf
 
 # Build files
 *.min.css text eol=lf

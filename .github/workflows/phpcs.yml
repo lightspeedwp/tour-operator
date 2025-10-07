@@ -1,4 +1,4 @@
-name: PHPCS Check with Annotations
+name: WPCS Check
 
 on:
   pull_request:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   phpcs:
-    name: Run PHPCS
+    name: Run WPCS
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -40,20 +40,9 @@ jobs:
         run: |
           if [ -f package.json ]; then npm ci --ignore-scripts; fi
 
-      - name: Run PHPCS with 10up action
-        uses: 10up/wpcs-action@v2
+      - name: WPCS check
+        uses: 10up/wpcs-action@stable
         with:
+          use_local_config: 'true'
           enable_warnings: true
-          phpcs_bin_path: vendor/bin/phpcs
-          standard: 10up-Default
-          paths: |
-            .
-          extra_args: -d memory_limit=512M --report=checkstyle
-
-      - name: Upload PHPCS report artifact (optional)
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: phpcs-report
-          path: phpcs-report.xml
-          if-no-files-found: ignore
+          only_changed_files: true
