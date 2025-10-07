@@ -9,13 +9,18 @@ permissions:
   pull-requests: write
   issues: write
 
+# Prevent overlapping automation runs on the same PR
+concurrency:
+  group: project-automation-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: false
+
 jobs:
   project-automation:
     name: Run WordPress Project Management Automation
     runs-on: ubuntu-latest
     steps:
       - name: Checkout (shallow)
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
@@ -23,8 +28,3 @@ jobs:
         uses: WordPress/gutenberg/packages/project-management-automation@trunk
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
-    # Prevent overlapping automation runs on the same PR
-    concurrency:
-      group: project-automation-${{ github.event.pull_request.number || github.run_id }}
-      cancel-in-progress: false

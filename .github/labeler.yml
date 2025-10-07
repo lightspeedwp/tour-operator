@@ -6,72 +6,47 @@
 
 # Documentation
 lang:md:
-  - '**/*.md'
-  - 'docs/**/*'
-  - 'docs/**/*.md'
+  - changed-files:
+    - any-glob-to-any-file: ['**/*.md', 'docs/**/*', 'docs/**/*.md']
 
 # Dependencies
 area:dependencies:
-  - 'composer.json'
-  - 'composer.lock'
-  - 'package.json'
-  - 'package-lock.json'
+  - changed-files:
+    - any-glob-to-any-file: ['composer.json', 'composer.lock', 'package.json', 'package-lock.json']
 
 # CI / Build configuration
 area:ci:
-  - 'webpack.config.js'
-  - 'package.json'
-  - '.github/workflows/*'
-  - 'tests/**/*'
-  - '**/*_test.php'
-  - '**/*Test.php'
-  - '.editorconfig'
-  - '.eslintrc.js'
-  - 'phpcs.xml'
   - changed-files:
-      any-glob-to-any-file:
-        - '.github/workflows/**'
+    - any-glob-to-any-file: ['webpack.config.js', 'package.json', '.github/workflows/*', 'tests/**/*', '**/*_test.php', '**/*Test.php', '.editorconfig', '.eslintrc.js', 'phpcs.xml', '.github/workflows/**']
 
 # JavaScript sources
 lang:javascript:
-  - 'src/js/**/*.js'
-  - 'assets/js/**/*.js'
-  - 'src/blocks/**/*.js'
   - changed-files:
-      any-glob-to-any-file:
-        - '**/*.{js,jsx,ts,tsx}'
+    - any-glob-to-any-file: ['src/js/**/*.js', 'assets/js/**/*.js', 'src/blocks/**/*.js', '**/*.{js,jsx,ts,tsx}']
 
 # CSS / SASS sources
 lang:css:
-  - 'src/css/**/*.scss'
-  - 'src/css/**/*.css'
-  - 'assets/css/**/*.css'
-  - 'src/blocks/**/*.scss'
   - changed-files:
-      any-glob-to-any-file:
-        - '**/*.{css,scss}'
+    - any-glob-to-any-file: ['src/css/**/*.scss', 'src/css/**/*.css', 'assets/css/**/*.css', 'src/blocks/**/*.scss', '**/*.{css,scss}']
 
 # PHP sources
 lang:php:
-  - '**/*.php'
   - changed-files:
-      any-glob-to-any-file:
-        - '**/*.php'
+    - any-glob-to-any-file: ['**/*.php']
 
 # Block editor / patterns
 area:block-editor:
-  - 'src/blocks/**/*'
   - changed-files:
-      - any-glob-to-any-file: ['**/block.json', '**/src/blocks/**']
+    - any-glob-to-any-file: ['src/blocks/**/*', '**/block.json', '**/src/blocks/**']
 
 area:theme:
   - changed-files:
-      - any-glob-to-any-file: ['**/theme.json', '**/templates/**', '**/patterns/**', '**/parts/**']
+    - any-glob-to-any-file: ['**/theme.json', '**/templates/**', '**/patterns/**', '**/parts/**']
 
 # Integration-specific changes
 area:integration:
-  - 'includes/integrations/**/*.php'
-  - 'integrations/**/*.php'
+  - changed-files:
+    - any-glob-to-any-file: ['includes/integrations/**/*.php', 'integrations/**/*.php']
 
 # Head branch → status hints (works on PRs)
 "status:needs-review":
