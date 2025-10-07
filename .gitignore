@@ -69,51 +69,7 @@ error_log
 phpcs-report.json
 phpcs-report.xml
 phpcs-report.txt
-
-# Legacy build files (remove after migration)
-.sass-cache/
-
-# WordPress development
-wp-content/
-
-# Temporary files
-.tmp/
-.cache/
-
-# Environment files
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# WordPress specific
-wp-config-local.php
-wp-config-dev.php
-
-# Backup files
-*.backup
-*.bak
-*.orig
-*.rej
-*.swp
-
-# Security-related files (private keys, certs) - never commit these
-*.ppk
-*.pem
-*.key
-*.cer
-*.crt
-*.p12
-id_rsa
-id_dsa
-id_ecdsa
-id_ed25519
-
-# Archives
-*.7z
-*.jar
-*.rar
-*.zip
-*.tar.gz
-*.tgz
+vendor/*
+test-results/*
+playwright-report/*
+build/*
