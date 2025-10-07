@@ -24,8 +24,7 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Project automation placeholder
-        run: |
-          echo "::notice::WordPress Gutenberg project automation action is not available"
-          echo "::notice::Consider using alternative project automation or manual project management"
-          echo "PR #${{ github.event.pull_request.number }} would be processed here"
+      - name: Run automation tasks
+        uses: WordPress/gutenberg/packages/project-management-automation@trunk
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
