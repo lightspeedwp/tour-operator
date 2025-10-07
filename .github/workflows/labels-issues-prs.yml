@@ -20,6 +20,10 @@ jobs:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
       - name: File & branch labeler (actions/labeler)
         uses: actions/labeler@v5
         with:
@@ -60,7 +64,6 @@ jobs:
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   issue-intake:
     if: github.event_name == 'issues'
     runs-on: ubuntu-latest
