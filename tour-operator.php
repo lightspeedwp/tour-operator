@@ -1,5 +1,6 @@
 <?php
-/*
+
+/**
  * Plugin Name:       Tour Operator
  * Plugin URI:        https://touroperator.solutions/
  * Description:       Showcase tours, destinations, and accommodations with digital itineraries, galleries, and integrated maps.
@@ -14,24 +15,30 @@
  * Text Domain:       tour-operator
  * Domain Path:       /languages/
  * Tags:              lsx, tour operator, travel, tourism, itinerary
+ *
+ * @package tour-operator
  */
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
+if (! defined('WPINC')) {
 	die;
 }
 
-define( 'LSX_TO_PATH', plugin_dir_path( __FILE__ ) );
-define( 'LSX_TO_CORE', __FILE__ );
-define( 'LSX_TO_URL', plugin_dir_url( __FILE__ ) );
-define( 'LSX_TO_VER', '2.1.0' );
+define('LSX_TO_PATH', plugin_dir_path(__FILE__));
+define('LSX_TO_CORE', __FILE__);
+define('LSX_TO_URL', plugin_dir_url(__FILE__));
+define('LSX_TO_VER', '2.1.0');
 
-global $CONTENT_MODEL_JSON_PATH;
-$CONTENT_MODEL_JSON_PATH[] = LSX_TO_PATH;
+// Maintain a list of content model JSON paths consumed by the plugin.
+global $lsx_to_content_model_json_path;
+if (! is_array($lsx_to_content_model_json_path)) {
+	$lsx_to_content_model_json_path = array();
+}
+$lsx_to_content_model_json_path[] = LSX_TO_PATH;
 
 // Post Expirator.
-define( 'LSX_TO_POSTEXPIRATOR_DATEFORMAT', esc_html__( 'l F jS, Y', 'tour-operator' ) );
-define( 'LSX_TO_POSTEXPIRATOR_TIMEFORMAT', esc_html__( 'g:ia', 'tour-operator' ) );
+define('LSX_TO_POSTEXPIRATOR_DATEFORMAT', esc_html__('l F jS, Y', 'tour-operator'));
+define('LSX_TO_POSTEXPIRATOR_TIMEFORMAT', esc_html__('g:ia', 'tour-operator'));
 
 // Include bootstrapper and start plugin.
 require_once LSX_TO_PATH . 'tour-operator-bootstrap.php';

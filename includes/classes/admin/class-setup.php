@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Tour Operator - Pages Class
  *
@@ -6,7 +7,7 @@
  * @author    LightSpeed
  * @license   GPL-2.0+
  * @link
- * @copyright 2017 LightSpeedDevelopment
+ * @copyright 2017 lightspeedwp
  */
 
 namespace lsx\admin;
@@ -17,7 +18,8 @@ namespace lsx\admin;
  * @package lsx
  * @author  LightSpeed
  */
-class Setup {
+class Setup
+{
 
 	/**
 	 * Holds the tour operators options
@@ -46,29 +48,29 @@ class Setup {
 			'ratio'  => '1:1',
 			'width'  => 300,
 			'height' => 300,
-			'crop'   => true
+			'crop'   => true,
 		],
 		'lsx-to-card-grid' => [
 			'title'  => 'TO Card (grid)',
 			'ratio'  => '3:2',
 			'width'  => 400,
 			'height' => 250,
-			'crop'   => true
+			'crop'   => true,
 		],
-		'lsx-to-gallery' => [
+		'lsx-to-gallery'   => [
 			'title'  => 'TO Gallery',
 			'ratio'  => '3:2',
 			'width'  => 900,
 			'height' => 600,
-			'crop'   => true
+			'crop'   => true,
 		],
-		'lsx-to-banner' => [
+		'lsx-to-banner'    => [
 			'title'  => 'TO Banner',
 			'ratio'  => '5:2',
 			'width'  => 1440,
 			'height' => 600,
-			'crop'   => true
-		]
+			'crop'   => true,
+		],
 	];
 
 	/**
@@ -78,12 +80,13 @@ class Setup {
 	 *
 	 * @access private
 	 */
-	public function __construct() {
-		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
-		add_action( 'init', array( $this, 'register_meta_with_rest' ) );
-		add_action( 'init', array( $this, 'register_image_sizes' ) );
-		add_filter( 'image_size_names_choose', array( $this, 'editor_image_sizes' ), 10, 1 );
-		add_action( 'cmb2_admin_init', array( $this, 'register_cmb2_fields' ) );
+	public function __construct()
+	{
+		add_action('init', array($this, 'load_plugin_textdomain'));
+		add_action('init', array($this, 'register_meta_with_rest'));
+		add_action('init', array($this, 'register_image_sizes'));
+		add_filter('image_size_names_choose', array($this, 'editor_image_sizes'), 10, 1);
+		add_action('cmb2_admin_init', array($this, 'register_cmb2_fields'));
 
 		// Allow extra tags and attributes to wp_kses_post().
 		add_filter(
@@ -104,7 +107,7 @@ class Setup {
 			)
 		);
 		// Allow extra style attributes to wp_kses_post().
-		add_filter( 'safe_style_css', array( $this, 'safe_style_css' ) );
+		add_filter('safe_style_css', array($this, 'safe_style_css'));
 	}
 
 	/**
@@ -112,8 +115,9 @@ class Setup {
 	 *
 	 * @since 0.0.1
 	 */
-	public function load_plugin_textdomain() {
-		load_plugin_textdomain( 'tour-operator', false, basename( LSX_TO_PATH ) . '/languages' );
+	public function load_plugin_textdomain()
+	{
+		load_plugin_textdomain('tour-operator', false, basename(LSX_TO_PATH) . '/languages');
 	}
 
 	/**
@@ -121,16 +125,17 @@ class Setup {
 	 *
 	 * @return void
 	 */
-	public function register_meta_with_rest() {
+	public function register_meta_with_rest()
+	{
 		add_filter('acf/settings/remove_wp_meta_box', '__return_false');
-		
+
 		register_meta(
 			'post',
 			'featured',
 			array(
 				'type'         => 'boolean',
 				'single'       => true,
-				'show_in_rest' => true
+				'show_in_rest' => true,
 			)
 		);
 
@@ -140,7 +145,7 @@ class Setup {
 			array(
 				'type'         => 'boolean',
 				'single'       => true,
-				'show_in_rest' => true
+				'show_in_rest' => true,
 			)
 		);
 	}
@@ -150,52 +155,57 @@ class Setup {
 	 *
 	 * @return void
 	 */
-	public function register_cmb2_fields() {
+	public function register_cmb2_fields()
+	{
 		/**
 		 * Initiate the metabox
 		 */
 		$cmb = [];
-		foreach ( $this->post_types as $post_type ) {
-			$fields = $this->get_custom_fields( $post_type );
+		foreach ($this->post_types as $post_type) {
+			$fields = $this->get_custom_fields($post_type);
 
 			$metabox_counter = 1;
 			$title           = '';
-			if ( ! empty( $fields['title'] ) ) {
+			if (! empty($fields['title'])) {
 				$title = $fields['title'];
 			}
 
-			$cmb[ $metabox_counter ] = new_cmb2_box( array(
-				'id'            => 'lsx_to_metabox_' . $post_type . '_' . $metabox_counter,
-				'title'         => $title,
-				'object_types'  => array( $post_type ), // Post type
-				'context'       => 'normal',
-				'priority'      => 'high',
-				'show_names'    => true,
-			) );
+			$cmb[$metabox_counter] = new_cmb2_box(
+				array(
+					'id'           => 'lsx_to_metabox_' . $post_type . '_' . $metabox_counter,
+					'title'        => $title,
+					'object_types' => array($post_type), // Post type
+					'context'      => 'normal',
+					'priority'     => 'high',
+					'show_names'   => true,
+				)
+			);
 
-			foreach ( $fields['fields'] as $field ) {
+			foreach ($fields['fields'] as $field) {
 
-				if ( 'title' === $field['type'] ) {
-					$metabox_counter++;
-					$cmb[ $metabox_counter ] = new_cmb2_box( array(
-						'id'            => 'lsx_to_metabox_' . $post_type . '_' . $metabox_counter,
-						'title'         => $field['name'],
-						'object_types'  => array( $post_type ), // Post type
-						'context'       => 'normal',
-						'priority'      => 'high',
-						'show_names'    => true,
-					) );
+				if ('title' === $field['type']) {
+					++$metabox_counter;
+					$cmb[$metabox_counter] = new_cmb2_box(
+						array(
+							'id'           => 'lsx_to_metabox_' . $post_type . '_' . $metabox_counter,
+							'title'        => $field['name'],
+							'object_types' => array($post_type), // Post type
+							'context'      => 'normal',
+							'priority'     => 'high',
+							'show_names'   => true,
+						)
+					);
 					continue;
 				}
 
 				/**
 				 * Fixes for the extensions
 				 */
-				if ( 'post_select' === $field['type'] || 'post_ajax_search' === $field['type'] ) {
+				if ('post_select' === $field['type'] || 'post_ajax_search' === $field['type']) {
 					$field['type'] = 'pw_multiselect';
 				}
 
-				$cmb[ $metabox_counter ]->add_field( $field );
+				$cmb[$metabox_counter]->add_field($field);
 			}
 		}
 	}
@@ -206,10 +216,11 @@ class Setup {
 	 * @param string $type
 	 * @return array
 	 */
-	public function get_custom_fields( $type = '' ) {
+	public function get_custom_fields($type = '')
+	{
 		$fields = array();
-		if ( '' !== $type ) {
-			$fields = include( LSX_TO_PATH . 'includes/metaboxes/config-' . $type . '.php' );
+		if ('' !== $type) {
+			$fields = include LSX_TO_PATH . 'includes/metaboxes/config-' . $type . '.php';
 		}
 		return $fields;
 	}
@@ -217,38 +228,38 @@ class Setup {
 	/**
 	 * Allow extra tags and attributes to wp_kses_post()
 	 */
-	public function wp_kses_allowed_html( $allowedtags, $context ) {
-		if ( ! isset( $allowedtags['i'] ) ) {
+	public function wp_kses_allowed_html($allowedtags, $context)
+	{
+		if (! isset($allowedtags['i'])) {
 			$allowedtags['i'] = array();
 		}
-		$allowedtags['i']['aria-hidden']    = true;
+		$allowedtags['i']['aria-hidden'] = true;
 
-		if ( ! isset( $allowedtags['span'] ) ) {
+		if (! isset($allowedtags['span'])) {
 			$allowedtags['span'] = array();
 		}
 
 		$allowedtags['span']['aria-hidden'] = true;
 
-		if ( ! isset( $allowedtags['button'] ) ) {
+		if (! isset($allowedtags['button'])) {
 			$allowedtags['button'] = array();
 		}
 
 		$allowedtags['button']['aria-label']   = true;
 		$allowedtags['button']['data-dismiss'] = true;
 
-		if ( ! isset( $allowedtags['li'] ) ) {
+		if (! isset($allowedtags['li'])) {
 			$allowedtags['li'] = array();
 		}
 
 		$allowedtags['li']['data-target']   = true;
 		$allowedtags['li']['data-slide-to'] = true;
 
-		if ( ! isset( $allowedtags['a'] ) ) {
+		if (! isset($allowedtags['a'])) {
 			$allowedtags['a'] = array();
 		}
 
-		
-		$allowedtags['a']['target']             = true;
+		$allowedtags['a']['target']                  = true;
 		$allowedtags['a']['data-toggle']             = true;
 		$allowedtags['a']['data-target']             = true;
 		$allowedtags['a']['data-slide']              = true;
@@ -262,14 +273,14 @@ class Setup {
 		$allowedtags['a']['data-video-height']       = true;
 		$allowedtags['a']['data-video-aspect-ratio'] = true;
 
-		if ( ! isset( $allowedtags['h2'] ) ) {
+		if (! isset($allowedtags['h2'])) {
 			$allowedtags['h2'] = array();
 		}
 
 		$allowedtags['h2']['data-target'] = true;
 		$allowedtags['h2']['data-toggle'] = true;
 
-		if ( ! isset( $allowedtags['div'] ) ) {
+		if (! isset($allowedtags['div'])) {
 			$allowedtags['div'] = array();
 		}
 
@@ -298,15 +309,15 @@ class Setup {
 		$allowedtags['div']['data-justified-margins']               = true;
 		$allowedtags['div']['data-slick']                           = true;
 
-		//Envirta Gallery tags
+		// Envirta Gallery tags
 		//
-		$allowedtags['div']['data-envira-id']                       = true;
-		$allowedtags['div']['data-gallery-config']                  = true;
-		$allowedtags['div']['data-gallery-images']                  = true;
-		$allowedtags['div']['data-gallery-theme']                   = true;
-		$allowedtags['div']['data-envira-columns']                  = true;
+		$allowedtags['div']['data-envira-id']      = true;
+		$allowedtags['div']['data-gallery-config'] = true;
+		$allowedtags['div']['data-gallery-images'] = true;
+		$allowedtags['div']['data-gallery-theme']  = true;
+		$allowedtags['div']['data-envira-columns'] = true;
 
-		if ( ! isset( $allowedtags['img'] ) ) {
+		if (! isset($allowedtags['img'])) {
 			$allowedtags['img'] = array();
 		}
 
@@ -317,22 +328,22 @@ class Setup {
 		$allowedtags['img']['data-envira-src']        = true;
 		$allowedtags['img']['data-envira-srcset']     = true;
 
-		if ( ! isset( $allowedtags['input'] ) ) {
+		if (! isset($allowedtags['input'])) {
 			$allowedtags['input'] = array();
 		}
 
-		$allowedtags['input']['type']    = true;
-		$allowedtags['input']['id']      = true;
-		$allowedtags['input']['name']    = true;
-		$allowedtags['input']['value']   = true;
-		$allowedtags['input']['size']    = true;
-		$allowedtags['input']['checked'] = true;
-		$allowedtags['input']['onclick'] = true;
-		$allowedtags['input']['class'] = true;
-		$allowedtags['input']['placeholder'] = true;
+		$allowedtags['input']['type']         = true;
+		$allowedtags['input']['id']           = true;
+		$allowedtags['input']['name']         = true;
+		$allowedtags['input']['value']        = true;
+		$allowedtags['input']['size']         = true;
+		$allowedtags['input']['checked']      = true;
+		$allowedtags['input']['onclick']      = true;
+		$allowedtags['input']['class']        = true;
+		$allowedtags['input']['placeholder']  = true;
 		$allowedtags['input']['autocomplete'] = true;
 
-		if ( ! isset( $allowedtags['select'] ) ) {
+		if (! isset($allowedtags['select'])) {
 			$allowedtags['select'] = array();
 		}
 
@@ -341,14 +352,14 @@ class Setup {
 		$allowedtags['select']['disabled'] = true;
 		$allowedtags['select']['onchange'] = true;
 
-		if ( ! isset( $allowedtags['option'] ) ) {
+		if (! isset($allowedtags['option'])) {
 			$allowedtags['option'] = array();
 		}
 
 		$allowedtags['option']['value']    = true;
 		$allowedtags['option']['selected'] = true;
 
-		if ( ! isset( $allowedtags['iframe'] ) ) {
+		if (! isset($allowedtags['iframe'])) {
 			$allowedtags['iframe'] = array();
 		}
 
@@ -366,7 +377,7 @@ class Setup {
 		$allowedtags['dialog']['data-backdrop-opacity'] = true;
 		$allowedtags['dialog']['open']['valueless']     = 'y';
 
-		if ( ! isset( $allowedtags['noscript'] ) ) {
+		if (! isset($allowedtags['noscript'])) {
 			$allowedtags['noscript'] = array();
 		}
 
@@ -376,7 +387,8 @@ class Setup {
 	/**
 	 * Allow extra protocols to wp_kses_post()
 	 */
-	public function kses_allowed_protocols( $allowedprotocols ) {
+	public function kses_allowed_protocols($allowedprotocols)
+	{
 		$allowedprotocols[] = 'tel';
 
 		return $allowedprotocols;
@@ -385,7 +397,8 @@ class Setup {
 	/**
 	 * Allow extra style attributes to wp_kses_post()
 	 */
-	public function safe_style_css( $allowedstyles ) {
+	public function safe_style_css($allowedstyles)
+	{
 		$allowedstyles[] = 'display';
 		$allowedstyles[] = 'background-image';
 
@@ -397,9 +410,10 @@ class Setup {
 	 *
 	 * @return void
 	 */
-	public function register_image_sizes() {
-		foreach ( $this->image_sizes as $key => $params ) {
-			add_image_size( $key, $params['width'], $params['height'], $params['crop'] );
+	public function register_image_sizes()
+	{
+		foreach ($this->image_sizes as $key => $params) {
+			add_image_size($key, $params['width'], $params['height'], $params['crop']);
 		}
 	}
 
@@ -409,11 +423,12 @@ class Setup {
 	 * @param array $sizes
 	 * @return array
 	 */
-	public function editor_image_sizes( $sizes ) {
+	public function editor_image_sizes($sizes)
+	{
 		$new_sizes = [];
-		foreach ( $this->image_sizes as $key => $params ) {
-			$new_sizes[ $key ] = $params['title'];
+		foreach ($this->image_sizes as $key => $params) {
+			$new_sizes[$key] = $params['title'];
 		}
-		return array_merge( $sizes, $new_sizes );
+		return array_merge($sizes, $new_sizes);
 	}
 }

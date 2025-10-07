@@ -1,534 +1,574 @@
 /**
  * Scripts
  *
- * @package    tour-operator
+ * @package
  * @subpackage scripts
  */
 
-var lsx_to = Object.create(null);
+const lsx_to = Object.create( null );
 
-if (window.location.hash) {
-  (document.body || document.documentElement).scrollIntoView();
-  setTimeout(function () {
-    (document.body || document.documentElement).scrollIntoView();
-  }, 1);
+if ( window.location.hash ) {
+    ( document.body || document.documentElement ).scrollIntoView();
+    setTimeout( function () {
+        ( document.body || document.documentElement ).scrollIntoView();
+    }, 1 );
 }
 
-(function ($, window, document, undefined) {
-  "use strict";
+( function ( $, window, document, undefined ) {
+    'use strict';
 
-  var $document = $(document),
-    $window = $(window),
-    window_height =
-      window.innerHeight ||
-      document.documentElement.clientHeight ||
-      document.body.clientHeight,
-    window_width =
-      window.innerWidth ||
-      document.documentElement.clientWidth ||
-      document.body.clientWidth;
+    let $document = $( document ),
+        $window = $( window ),
+        window_height =
+            window.innerHeight ||
+            document.documentElement.clientHeight ||
+            document.body.clientHeight,
+        window_width =
+            window.innerWidth ||
+            document.documentElement.clientWidth ||
+            document.body.clientWidth;
 
-  /**
-   * Easing browser scroll on page load (document URL with hash).
-   *
-   * @package    tour-operator
-   * @subpackage scripts
-   */
-  lsx_to.set_easing_scroll_on_page_load = function () {
-    if (window.location.hash) {
-      var $to = $(window.location.hash),
-        top = parseInt($to.offset().top);
+    /**
+     * Easing browser scroll on page load (document URL with hash).
+     *
+     * @package
+     * @subpackage scripts
+     */
+    lsx_to.set_easing_scroll_on_page_load = function () {
+        if ( window.location.hash ) {
+            let $to = $( window.location.hash ),
+                top = parseInt( $to.offset().top );
 
-      top -=
-        $("#wpadminbar").length > 0 ? $("#wpadminbar").outerHeight(true) : 0;
-      top -=
-        $(".top-menu-fixed #masthead").length > 0
-          ? $(".top-menu-fixed #masthead").outerHeight(true)
-          : 0;
-      top -=
-        $(".lsx-to-navigation").length > 0
-          ? $(".lsx-to-navigation").outerHeight(true)
-          : 0;
+            top -=
+                $( '#wpadminbar' ).length > 0
+                    ? $( '#wpadminbar' ).outerHeight( true )
+                    : 0;
+            top -=
+                $( '.top-menu-fixed #masthead' ).length > 0
+                    ? $( '.top-menu-fixed #masthead' ).outerHeight( true )
+                    : 0;
+            top -=
+                $( '.lsx-to-navigation' ).length > 0
+                    ? $( '.lsx-to-navigation' ).outerHeight( true )
+                    : 0;
 
-      $("html, body").animate({ scrollTop: top }, 800);
-    }
-  };
-
-  /**
-   * Read more effect.
-   *
-   * @package    tour-operator
-   * @subpackage scripts
-   */
-lsx_to.set_read_more = function () {
-	$(".single-tour-operator .wp-block-read-more").each(function () {
-
-		if ( 0 < $(this).parent(".wp-block-group").find(".wp-block-post-content").length ) {
-			lsx_to.readMoreText = $(this)
-				.contents()
-				.filter(function () {
-				return this.nodeType === Node.TEXT_NODE;
-				})
-				.text();
-
-			lsx_to.readMoreSet(
-				$(this),
-				$(this).parent(".wp-block-group").find(".wp-block-post-content")
-			);
-		}
-	});
-
-	$(".single-tour-operator .wp-block-read-more").on(
-		"click",
-		function (event) {
-			event.preventDefault();
-
-			if ( 0 < $(this).parent(".wp-block-group").find(".wp-block-post-content").length ) {
-				$(this).hide();
-
-				if ($(this).hasClass("less-link")) {
-					lsx_to.readMoreSet(
-						$(this),
-						$(this).parent(".wp-block-group").find(".wp-block-post-content")
-					);
-				} else {
-					lsx_to.readMoreOpen(
-						$(this),
-						$(this).parent(".wp-block-group").find(".wp-block-post-content")
-					);
-				}
-
-				$(this).show();
-			}
-		}
-	);
-};
-
-  lsx_to.readMoreSet = function (button, contentWrapper, limit = 1) {
-    if (0 < contentWrapper.length) {
-      if (1 < contentWrapper.children().length) {
-        let counter = 0;
-
-        contentWrapper.children().each(function () {
-          if (limit <= counter) {
-            $(this).hide();
-          }
-          counter++;
-        });
-      } else {
-        button.hide();
-      }
-      button.removeClass("less-link");
-      button.text(lsx_to.readMoreText);
-    } else {
-      button.hide();
-    }
-  };
-
-  lsx_to.readMoreOpen = function (button, contentWrapper) {
-    if (0 < contentWrapper.children().length) {
-      contentWrapper.children().each(function () {
-        if (!$(this).hasClass("wp-block-read-more")) {
-          $(this).show();
+            $( 'html, body' ).animate( { scrollTop: top }, 800 );
         }
-      });
-      button.addClass("less-link");
-      button.text("Read Less");
-      button.show();
-    }
-  };
+    };
 
-  /**
-   * Read more (itinerary) effect.
-   *
-   * @package    tour-operator
-   * @subpackage scripts
-   */
+    /**
+     * Read more effect.
+     *
+     * @package
+     * @subpackage scripts
+     */
+    lsx_to.set_read_more = function () {
+        $( '.single-tour-operator .wp-block-read-more' ).each( function () {
+            if (
+                0 <
+                $( this )
+                    .parent( '.wp-block-group' )
+                    .find( '.wp-block-post-content' ).length
+            ) {
+                lsx_to.readMoreText = $( this )
+                    .contents()
+                    .filter( function () {
+                        return this.nodeType === Node.TEXT_NODE;
+                    } )
+                    .text();
 
-  lsx_to.readMoreItinText = "";
-
-  lsx_to.set_read_more_itinerary = function () {
-    $(".single-tour-operator .lsx-itinerary-wrapper .wp-block-read-more").each(
-      function () {
-        $(this).show();
-        lsx_to.readMoreItinText = $(this).find("a").text();
-        lsx_to.readMoreSet(
-          $(this),
-          $(this).parent("div").find(".itinerary-description")
-        );
-      }
-    );
-
-    $(".single-tour-operator .lsx-itinerary-wrapper .wp-block-read-more").on(
-      "click",
-      function (event) {
-        event.preventDefault();
-        $(this).hide();
-
-        if ($(this).hasClass("less-link")) {
-          lsx_to.readMoreSet(
-            $(this),
-            $(this).parent("div").find(".itinerary-description")
-          );
-        } else {
-          lsx_to.readMoreOpen(
-            $(this),
-            $(this).parent("div").find(".itinerary-description")
-          );
-        }
-
-        $(this).show();
-      }
-    );
-  };
-
-  /**
-   * Slider - Pre build.
-   *
-   * @package    tour-operator
-   * @subpackage scripts
-   */
-  lsx_to.pre_build_slider = function ($slider) {
-    $slider.removeClass("is-layout-grid");
-
-    $slider.on("init", function (event, slick) {
-      if (
-        slick.options.arrows &&
-        slick.slideCount > slick.options.slidesToShow
-      ) {
-        $slider.addClass("slick-has-arrows");
-      }
-    });
-
-    $slider.on("setPosition", function (event, slick) {
-      if (!slick.options.arrows) {
-        $slider.removeClass("slick-has-arrows");
-      } else if (slick.slideCount > slick.options.slidesToShow) {
-        $slider.addClass("slick-has-arrows");
-      }
-    });
-  };
-
-  /**
-   * Get responsive breakpoints for sliders
-   *
-   * @package    tour-operator
-   * @subpackage scripts
-   */
-  lsx_to.get_responsive_breakpoints = function(slidesToShow) {
-    return [
-      {
-        breakpoint: 1228,
-        settings: {
-          slidesToShow: slidesToShow,
-          slidesToScroll: 1,
-          draggable: true,
-          arrows: false,
-          swipe: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 1028,
-        settings: {
-          slidesToShow: slidesToShow <= 2 ? 1 : 2,
-          slidesToScroll: 1,
-          draggable: true,
-          arrows: false,
-          swipe: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 782,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          draggable: true,
-          arrows: false,
-          swipe: true,
-          dots: true,
-        },
-      },
-    ];
-  };
-
-  /**
-   * Slider.
-   *
-   * @package    tour-operator
-   * @subpackage scripts
-   */
-  lsx_to.build_slider = function (window_width) {
-    // First slider: .lsx-to-slider
-    $(".lsx-to-slider:not(.lsx-block-videos) .wp-block-post-template:not(.slider-disabled)").each(
-      function () {
-        var $this = $(this);
-		let slidesToShow = 3;
-
-        lsx_to.pre_build_slider($this);
-		
-
-		const str = $this.attr('class');
-		const classRegex = /columns-\S*/g;
-		const matches = str.match(classRegex);
-		if ( 0 < matches.length ) {
-			const column = matches[0].split('-')[1];
-			slidesToShow = column;
-		}
-
-        if (1 < $this.children().length) {
-          $this.slick({
-            draggable: false,
-            infinite: true,
-            swipe: false,
-            dots: true,
-            slidesToShow: slidesToShow, // Show 3 items at a time
-            slidesToScroll: 1, // Scroll 1 item at a time
-            autoplay: false,
-            autoplaySpeed: 0,
-            appendArrows: $this.parent(), // Ensure arrows are appended correctly
-            appendDots: $this.parent(), // Append dots in the right container
-            responsive: lsx_to.get_responsive_breakpoints(slidesToShow),
-          });
-        }
-      }
-    );
-
-    // Second slider: .lsx-to-slider.travel-information
-    $( ".lsx-travel-information-wrapper.lsx-to-slider .travel-information:not(.slider-disabled)").each(function () {
-      var $this = $(this);
-
-      lsx_to.pre_build_slider($this);
-
-      // Ensure the second slider has 4 slides showing
-      if (1 < $this.children().length) {
-        $this.slick({
-          draggable: false,
-          infinite: true,
-          swipe: false,
-          dots: true,
-          slidesToShow: 4, // Show 4 items at a time
-          slidesToScroll: 1, // Scroll 1 item at a time
-          autoplay: false,
-          autoplaySpeed: 0,
-          appendArrows: $this.parent(), // Ensure arrows are appended correctly for this slider
-          appendDots: $this.parent(), // Append dots in the correct place
-          responsive: [
-            {
-              breakpoint: 1028,
-              settings: {
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                draggable: true,
-                arrows: true,
-                swipe: true,
-                dots: true,
-              },
-            },
-            {
-              breakpoint: 782,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                draggable: true,
-                arrows: true,
-                swipe: true,
-                dots: true,
-              },
-            },
-          ],
-        });
-
-		$this.on( 'init', function(event, slick){
-			if (typeof toModalBootstrap === "function") {
-				toModalBootstrap();
-			}
-		})
-      }
-    });
-
-	lsx_to.build_video_slider();
-  };
-
-  /**
-   * Video Slider.
-   *
-   * @package    tour-operator
-   * @subpackage scripts
-   */
-  lsx_to.build_video_slider = function () {
-    // Video Slider
-    $(".lsx-block-videos.lsx-to-slider:not(.slider-disabled):not(.slick-initialized)").each(
-      function () {
-        var $this = $(this);
-        let slidesToShow = 3;
-
-        lsx_to.pre_build_slider($this);
-
-        const str = $this.attr('class') || '';
-        const classRegex = /\bcolumns-(\d+)\b/;
-        const m = str.match(classRegex);
-        if (m && m[1]) {
-          slidesToShow = Number.parseInt(m[1], 10) || slidesToShow;
-        }
-
-        $this.removeClass('is-layout-flex wp-block-gallery-is-layout-flex is-layout-grid');
-		// Remove any left/right padding explicitly set (inline or inherited) to allow full-width slider alignment.
-		$this.css({ 'padding-left': 0, 'padding-right': 0 });
-        
-        if (1 < $this.children().length) {
-          $this.slick({
-            draggable: false,
-            infinite: true,
-            swipe: false,
-            dots: true,
-            slidesToShow: slidesToShow, // Show 3 items at a time
-            slidesToScroll: 1, // Scroll 1 item at a time
-            autoplay: false,
-            autoplaySpeed: 0,
-            //appendArrows: $this.parent(), // Ensure arrows are appended correctly
-            //appendDots: $this.parent(), // Append dots in the right container
-            responsive: lsx_to.get_responsive_breakpoints(slidesToShow, $this.children().length),
-          });
-        }
-      }
-    );
-  };
-
-  /**
-   * Watch for YouTube videos to load and initialize video slider
-   *
-   * @package    tour-operator
-   * @subpackage scripts
-   */
-  lsx_to.watch_for_youtube_videos = function() {
-    // Only observe video containers to reduce performance impact
-    const videoContainers = document.querySelectorAll('.lsx-block-videos');
-    
-    if (videoContainers.length === 0) {
-      return; // No video containers found, exit early
-    }
-
-    // Create a MutationObserver to watch for YouTube iframes
-    const observer = new MutationObserver(function(mutations) {
-      let shouldInitSlider = false;
-      const isYouTube = (el) => {
-        if (!el) return false;
-        const src = el.src || '';
-        return /youtube\.com|youtube-nocookie\.com|youtu\.be/i.test(src);
-      };
-      let debounceTimer = null;
-      
-      mutations.forEach(function(mutation) {
-        if (mutation.type === 'childList') {
-          mutation.addedNodes.forEach(function(node) {
-            if (node.nodeType === 1) { // Element node
-              // Check if the added node is a YouTube iframe or contains one
-              if (node.tagName === 'IFRAME' && isYouTube(node)) {
-                shouldInitSlider = true;
-              } else if (node.querySelector && node.querySelector('iframe[src*="youtube.com"],iframe[src*="youtube-nocookie.com"],iframe[src*="youtu.be"]')) {
-                shouldInitSlider = true;
-              }
+                lsx_to.readMoreSet(
+                    $( this ),
+                    $( this )
+                        .parent( '.wp-block-group' )
+                        .find( '.wp-block-post-content' )
+                );
             }
-          });
+        } );
+
+        $( '.single-tour-operator .wp-block-read-more' ).on(
+            'click',
+            function ( event ) {
+                event.preventDefault();
+
+                if (
+                    0 <
+                    $( this )
+                        .parent( '.wp-block-group' )
+                        .find( '.wp-block-post-content' ).length
+                ) {
+                    $( this ).hide();
+
+                    if ( $( this ).hasClass( 'less-link' ) ) {
+                        lsx_to.readMoreSet(
+                            $( this ),
+                            $( this )
+                                .parent( '.wp-block-group' )
+                                .find( '.wp-block-post-content' )
+                        );
+                    } else {
+                        lsx_to.readMoreOpen(
+                            $( this ),
+                            $( this )
+                                .parent( '.wp-block-group' )
+                                .find( '.wp-block-post-content' )
+                        );
+                    }
+
+                    $( this ).show();
+                }
+            }
+        );
+    };
+
+    lsx_to.readMoreSet = function ( button, contentWrapper, limit = 1 ) {
+        if ( 0 < contentWrapper.length ) {
+            if ( 1 < contentWrapper.children().length ) {
+                let counter = 0;
+
+                contentWrapper.children().each( function () {
+                    if ( limit <= counter ) {
+                        $( this ).hide();
+                    }
+                    counter++;
+                } );
+            } else {
+                button.hide();
+            }
+            button.removeClass( 'less-link' );
+            button.text( lsx_to.readMoreText );
+        } else {
+            button.hide();
         }
-      });
-      
-      if (shouldInitSlider) {
-        // Small, debounced delay to ensure videos are fully loaded and avoid re-init storms
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(function() {
-          lsx_to.build_video_slider();
-        }, 200);
-      }
-    });
+    };
 
-    // Observe only video containers instead of entire document
-    videoContainers.forEach(function(container) {
-      observer.observe(container, {
-        childList: true,
-        subtree: true
-      });
-    });
-  };
+    lsx_to.readMoreOpen = function ( button, contentWrapper ) {
+        if ( 0 < contentWrapper.children().length ) {
+            contentWrapper.children().each( function () {
+                if ( ! $( this ).hasClass( 'wp-block-read-more' ) ) {
+                    $( this ).show();
+                }
+            } );
+            button.addClass( 'less-link' );
+            button.text( 'Read Less' );
+            button.show();
+        }
+    };
 
-  /**
-   * Slider Lightbox.
-   *
-   * @package    tour-operator
-   * @subpackage scripts
-   */
-  lsx_to.build_slider_lightbox = function () {
-    if (0 < $(".wp-block-gallery.has-nested-images").length) {
-      $(".wp-block-gallery.has-nested-images").slickLightbox({
-        caption: function (element, info) {
-          return $(element).find("img").attr("alt");
-        },
-      });
-    }
+    /**
+     * Read more (itinerary) effect.
+     *
+     * @package
+     * @subpackage scripts
+     */
 
-    if (0 < $(".lsx-units-wrapper .unit-image a").length) {
-      let roomImages = $(".lsx-units-wrapper .unit-image a img")
-        .map(function () {
-          return $(this).attr("src");
-        })
-        .get();
-      console.log(roomImages);
+    lsx_to.readMoreItinText = '';
 
-      $(".lsx-units-wrapper").slickLightbox({
-        //images : roomImages,
-        itemSelector: ".unit-image a",
-        caption: function (element, info) {
-          return $(element).find("img").attr("alt");
-        },
-      });
-    }
-  };
+    lsx_to.set_read_more_itinerary = function () {
+        $(
+            '.single-tour-operator .lsx-itinerary-wrapper .wp-block-read-more'
+        ).each( function () {
+            $( this ).show();
+            lsx_to.readMoreItinText = $( this ).find( 'a' ).text();
+            lsx_to.readMoreSet(
+                $( this ),
+                $( this ).parent( 'div' ).find( '.itinerary-description' )
+            );
+        } );
 
-  /**
-   * On window resize.
-   *
-   * @package    lsx
-   * @subpackage scripts
-   */
-  $window.resize(function () {
-    window_height =
-      window.innerHeight ||
-      document.documentElement.clientHeight ||
-      document.body.clientHeight;
-    window_width =
-      window.innerWidth ||
-      document.documentElement.clientWidth ||
-      document.body.clientWidth;
-  });
+        $(
+            '.single-tour-operator .lsx-itinerary-wrapper .wp-block-read-more'
+        ).on( 'click', function ( event ) {
+            event.preventDefault();
+            $( this ).hide();
 
-  /**
-   * On document ready.
-   *
-   * @package    lsx
-   * @subpackage scripts
-   */
-  $document.ready(function () {
-    lsx_to.readMoreText = "Read more";
-    lsx_to.set_read_more();
-    lsx_to.set_read_more_itinerary();
-    lsx_to.build_slider(window_width);
-    lsx_to.watch_for_youtube_videos(); // Start watching for YouTube videos
-  });
+            if ( $( this ).hasClass( 'less-link' ) ) {
+                lsx_to.readMoreSet(
+                    $( this ),
+                    $( this ).parent( 'div' ).find( '.itinerary-description' )
+                );
+            } else {
+                lsx_to.readMoreOpen(
+                    $( this ),
+                    $( this ).parent( 'div' ).find( '.itinerary-description' )
+                );
+            }
 
-  /**
-   * On window load.
-   *
-   * @package    lsx
-   * @subpackage scripts
-   */
+            $( this ).show();
+        } );
+    };
 
-  $window.on("load", function () {
-    lsx_to.build_slider_lightbox();
-  });
+    /**
+     * Slider - Pre build.
+     *
+     * @param      $slider
+     * @package
+     * @subpackage scripts
+     */
+    lsx_to.pre_build_slider = function ( $slider ) {
+        $slider.removeClass( 'is-layout-grid' );
 
-  /*document.addEventListener("DOMContentLoaded", function () {
+        $slider.on( 'init', function ( event, slick ) {
+            if (
+                slick.options.arrows &&
+                slick.slideCount > slick.options.slidesToShow
+            ) {
+                $slider.addClass( 'slick-has-arrows' );
+            }
+        } );
+
+        $slider.on( 'setPosition', function ( event, slick ) {
+            if ( ! slick.options.arrows ) {
+                $slider.removeClass( 'slick-has-arrows' );
+            } else if ( slick.slideCount > slick.options.slidesToShow ) {
+                $slider.addClass( 'slick-has-arrows' );
+            }
+        } );
+    };
+
+    /**
+     * Get responsive breakpoints for sliders
+     *
+     * @param      slidesToShow
+     * @package
+     * @subpackage scripts
+     */
+    lsx_to.get_responsive_breakpoints = function ( slidesToShow ) {
+        return [
+            {
+                breakpoint: 1228,
+                settings: {
+                    slidesToShow,
+                    slidesToScroll: 1,
+                    draggable: true,
+                    arrows: false,
+                    swipe: true,
+                    dots: true,
+                },
+            },
+            {
+                breakpoint: 1028,
+                settings: {
+                    slidesToShow: slidesToShow <= 2 ? 1 : 2,
+                    slidesToScroll: 1,
+                    draggable: true,
+                    arrows: false,
+                    swipe: true,
+                    dots: true,
+                },
+            },
+            {
+                breakpoint: 782,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    draggable: true,
+                    arrows: false,
+                    swipe: true,
+                    dots: true,
+                },
+            },
+        ];
+    };
+
+    /**
+     * Slider.
+     *
+     * @param      window_width
+     * @package
+     * @subpackage scripts
+     */
+    lsx_to.build_slider = function ( window_width ) {
+        // First slider: .lsx-to-slider
+        $(
+            '.lsx-to-slider:not(.lsx-block-videos) .wp-block-post-template:not(.slider-disabled)'
+        ).each( function () {
+            const $this = $( this );
+            let slidesToShow = 3;
+
+            lsx_to.pre_build_slider( $this );
+
+            const str = $this.attr( 'class' );
+            const classRegex = /columns-\S*/g;
+            const matches = str.match( classRegex );
+            if ( 0 < matches.length ) {
+                const column = matches[ 0 ].split( '-' )[ 1 ];
+                slidesToShow = column;
+            }
+
+            if ( 1 < $this.children().length ) {
+                $this.slick( {
+                    draggable: false,
+                    infinite: true,
+                    swipe: false,
+                    dots: true,
+                    slidesToShow, // Show 3 items at a time
+                    slidesToScroll: 1, // Scroll 1 item at a time
+                    autoplay: false,
+                    autoplaySpeed: 0,
+                    appendArrows: $this.parent(), // Ensure arrows are appended correctly
+                    appendDots: $this.parent(), // Append dots in the right container
+                    responsive:
+                        lsx_to.get_responsive_breakpoints( slidesToShow ),
+                } );
+            }
+        } );
+
+        // Second slider: .lsx-to-slider.travel-information
+        $(
+            '.lsx-travel-information-wrapper.lsx-to-slider .travel-information:not(.slider-disabled)'
+        ).each( function () {
+            const $this = $( this );
+
+            lsx_to.pre_build_slider( $this );
+
+            // Ensure the second slider has 4 slides showing
+            if ( 1 < $this.children().length ) {
+                $this.slick( {
+                    draggable: false,
+                    infinite: true,
+                    swipe: false,
+                    dots: true,
+                    slidesToShow: 4, // Show 4 items at a time
+                    slidesToScroll: 1, // Scroll 1 item at a time
+                    autoplay: false,
+                    autoplaySpeed: 0,
+                    appendArrows: $this.parent(), // Ensure arrows are appended correctly for this slider
+                    appendDots: $this.parent(), // Append dots in the correct place
+                    responsive: [
+                        {
+                            breakpoint: 1028,
+                            settings: {
+                                slidesToShow: 3,
+                                slidesToScroll: 1,
+                                draggable: true,
+                                arrows: true,
+                                swipe: true,
+                                dots: true,
+                            },
+                        },
+                        {
+                            breakpoint: 782,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1,
+                                draggable: true,
+                                arrows: true,
+                                swipe: true,
+                                dots: true,
+                            },
+                        },
+                    ],
+                } );
+
+                $this.on( 'init', function ( event, slick ) {
+                    if ( typeof toModalBootstrap === 'function' ) {
+                        toModalBootstrap();
+                    }
+                } );
+            }
+        } );
+
+        lsx_to.build_video_slider();
+    };
+
+    /**
+     * Video Slider.
+     *
+     * @package
+     * @subpackage scripts
+     */
+    lsx_to.build_video_slider = function () {
+        // Video Slider
+        $(
+            '.lsx-block-videos.lsx-to-slider:not(.slider-disabled):not(.slick-initialized)'
+        ).each( function () {
+            const $this = $( this );
+            let slidesToShow = 3;
+
+            lsx_to.pre_build_slider( $this );
+
+            const str = $this.attr( 'class' ) || '';
+            const classRegex = /\bcolumns-(\d+)\b/;
+            const m = str.match( classRegex );
+            if ( m && m[ 1 ] ) {
+                slidesToShow = Number.parseInt( m[ 1 ], 10 ) || slidesToShow;
+            }
+
+            $this.removeClass(
+                'is-layout-flex wp-block-gallery-is-layout-flex is-layout-grid'
+            );
+            // Remove any left/right padding explicitly set (inline or inherited) to allow full-width slider alignment.
+            $this.css( { 'padding-left': 0, 'padding-right': 0 } );
+
+            if ( 1 < $this.children().length ) {
+                $this.slick( {
+                    draggable: false,
+                    infinite: true,
+                    swipe: false,
+                    dots: true,
+                    slidesToShow, // Show 3 items at a time
+                    slidesToScroll: 1, // Scroll 1 item at a time
+                    autoplay: false,
+                    autoplaySpeed: 0,
+                    //appendArrows: $this.parent(), // Ensure arrows are appended correctly
+                    //appendDots: $this.parent(), // Append dots in the right container
+                    responsive: lsx_to.get_responsive_breakpoints(
+                        slidesToShow,
+                        $this.children().length
+                    ),
+                } );
+            }
+        } );
+    };
+
+    /**
+     * Watch for YouTube videos to load and initialize video slider
+     *
+     * @package
+     * @subpackage scripts
+     */
+    lsx_to.watch_for_youtube_videos = function () {
+        // Only observe video containers to reduce performance impact
+        const videoContainers =
+            document.querySelectorAll( '.lsx-block-videos' );
+
+        if ( videoContainers.length === 0 ) {
+            return; // No video containers found, exit early
+        }
+
+        // Create a MutationObserver to watch for YouTube iframes
+        const observer = new MutationObserver( function ( mutations ) {
+            let shouldInitSlider = false;
+            const isYouTube = ( el ) => {
+                if ( ! el ) {
+                    return false;
+                }
+                const src = el.src || '';
+                return /youtube\.com|youtube-nocookie\.com|youtu\.be/i.test(
+                    src
+                );
+            };
+            let debounceTimer = null;
+
+            mutations.forEach( function ( mutation ) {
+                if ( mutation.type === 'childList' ) {
+                    mutation.addedNodes.forEach( function ( node ) {
+                        if ( node.nodeType === 1 ) {
+                            // Element node
+                            // Check if the added node is a YouTube iframe or contains one
+                            if (
+                                node.tagName === 'IFRAME' &&
+                                isYouTube( node )
+                            ) {
+                                shouldInitSlider = true;
+                            } else if (
+                                node.querySelector &&
+                                node.querySelector(
+                                    'iframe[src*="youtube.com"],iframe[src*="youtube-nocookie.com"],iframe[src*="youtu.be"]'
+                                )
+                            ) {
+                                shouldInitSlider = true;
+                            }
+                        }
+                    } );
+                }
+            } );
+
+            if ( shouldInitSlider ) {
+                // Small, debounced delay to ensure videos are fully loaded and avoid re-init storms
+                clearTimeout( debounceTimer );
+                debounceTimer = setTimeout( function () {
+                    lsx_to.build_video_slider();
+                }, 200 );
+            }
+        } );
+
+        // Observe only video containers instead of entire document
+        videoContainers.forEach( function ( container ) {
+            observer.observe( container, {
+                childList: true,
+                subtree: true,
+            } );
+        } );
+    };
+
+    /**
+     * Slider Lightbox.
+     *
+     * @package
+     * @subpackage scripts
+     */
+    lsx_to.build_slider_lightbox = function () {
+        if ( 0 < $( '.wp-block-gallery.has-nested-images' ).length ) {
+            $( '.wp-block-gallery.has-nested-images' ).slickLightbox( {
+                caption( element, info ) {
+                    return $( element ).find( 'img' ).attr( 'alt' );
+                },
+            } );
+        }
+
+        if ( 0 < $( '.lsx-units-wrapper .unit-image a' ).length ) {
+            const roomImages = $( '.lsx-units-wrapper .unit-image a img' )
+                .map( function () {
+                    return $( this ).attr( 'src' );
+                } )
+                .get();
+            console.log( roomImages );
+
+            $( '.lsx-units-wrapper' ).slickLightbox( {
+                //images : roomImages,
+                itemSelector: '.unit-image a',
+                caption( element, info ) {
+                    return $( element ).find( 'img' ).attr( 'alt' );
+                },
+            } );
+        }
+    };
+
+    /**
+     * On window resize.
+     *
+     * @package
+     * @subpackage scripts
+     */
+    $window.resize( function () {
+        window_height =
+            window.innerHeight ||
+            document.documentElement.clientHeight ||
+            document.body.clientHeight;
+        window_width =
+            window.innerWidth ||
+            document.documentElement.clientWidth ||
+            document.body.clientWidth;
+    } );
+
+    /**
+     * On document ready.
+     *
+     * @package
+     * @subpackage scripts
+     */
+    $document.ready( function () {
+        lsx_to.readMoreText = 'Read more';
+        lsx_to.set_read_more();
+        lsx_to.set_read_more_itinerary();
+        lsx_to.build_slider( window_width );
+        lsx_to.watch_for_youtube_videos(); // Start watching for YouTube videos
+    } );
+
+    /**
+     * On window load.
+     *
+     * @package
+     * @subpackage scripts
+     */
+
+    $window.on( 'load', function () {
+        lsx_to.build_slider_lightbox();
+    } );
+
+    /*document.addEventListener("DOMContentLoaded", function () {
     // Select all sections within `.single-tour-operator`
     const sections = document.querySelectorAll(
       ".single-tour-operator section.wp-block-group, .single-tour-operator section.wp-block-cover"
@@ -573,4 +613,4 @@ lsx_to.set_read_more = function () {
       }
     });
   });*/
-})(jQuery, window, document);
+} )( jQuery, window, document );

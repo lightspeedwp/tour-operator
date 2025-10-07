@@ -40,7 +40,6 @@ class Bindings {
 	 * @access private
 	 */
 	public function __construct() {
-		
 
 		$this->itinerary_fields = array(
 			'title',
@@ -53,14 +52,14 @@ class Bindings {
 			'included',
 			'excluded',
 		);
-		$this->unit_fields = array(
+		$this->unit_fields      = array(
 			'type',
 			'title',
 			'description',
 			'price',
 			'gallery',
 		);
-		$this->unit_types = array(
+		$this->unit_types       = array(
 			'chalet' => esc_html__( 'Chalet', 'tour-operator' ),
 			'room'   => esc_html__( 'Room', 'tour-operator' ),
 			'spa'    => esc_html__( 'Spa', 'tour-operator' ),
@@ -89,48 +88,48 @@ class Bindings {
 		register_block_bindings_source(
 			'lsx/post-connection',
 			array(
-				'label' => __( 'Post Connection', 'tour-operator' ),
-				'get_value_callback' => array( $this, 'post_connections_callback' )
+				'label'              => __( 'Post Connection', 'tour-operator' ),
+				'get_value_callback' => array( $this, 'post_connections_callback' ),
 			)
 		);
 
 		register_block_bindings_source(
 			'lsx/post-meta',
 			array(
-				'label' => __( 'Post Meta', 'tour-operator' ),
-				'get_value_callback' => array( $this, 'post_meta_callback' )
+				'label'              => __( 'Post Meta', 'tour-operator' ),
+				'get_value_callback' => array( $this, 'post_meta_callback' ),
 			)
 		);
-	
+
 		register_block_bindings_source(
 			'lsx/tour-itinerary',
 			array(
-				'label' => __( 'Itinerary', 'tour-operator' ),
-				'get_value_callback' => array( $this, 'empty_callback' )
+				'label'              => __( 'Itinerary', 'tour-operator' ),
+				'get_value_callback' => array( $this, 'empty_callback' ),
 			)
 		);
 
 		register_block_bindings_source(
 			'lsx/accommodation-units',
 			array(
-				'label' => __( 'Units', 'tour-operator' ),
-				'get_value_callback' => array( $this, 'empty_callback' )
+				'label'              => __( 'Units', 'tour-operator' ),
+				'get_value_callback' => array( $this, 'empty_callback' ),
 			)
 		);
 
 		register_block_bindings_source(
 			'lsx/gallery',
 			array(
-				'label' => __( 'Gallery', 'tour-operator' ),
-				'get_value_callback' => array( $this, 'empty_callback' )
+				'label'              => __( 'Gallery', 'tour-operator' ),
+				'get_value_callback' => array( $this, 'empty_callback' ),
 			)
 		);
 
 		register_block_bindings_source(
 			'lsx/map',
 			array(
-				'label' => __( 'Map', 'tour-operator' ),
-				'get_value_callback' => array( $this, 'empty_callback' )
+				'label'              => __( 'Map', 'tour-operator' ),
+				'get_value_callback' => array( $this, 'empty_callback' ),
 			)
 		);
 	}
@@ -138,7 +137,7 @@ class Bindings {
 	/**
 	 * Registers the post connections callback.
 	 *
-	 * @param array $source_args
+	 * @param array  $source_args
 	 * @param object $block_instance
 	 * @return string|int|array
 	 */
@@ -146,7 +145,7 @@ class Bindings {
 		if ( 'core/image' === $block_instance->parsed_block['blockName'] ) {
 			return 'test_image';
 		} elseif ( 'core/paragraph' === $block_instance->parsed_block['blockName'] ) {
-	
+
 			if ( ! isset( $source_args['key'] ) ) {
 				return '';
 			}
@@ -160,32 +159,32 @@ class Bindings {
 					if ( false !== $children && ! empty( $children ) ) {
 						$value = $this->prep_links( $children );
 					}
-				break;
+					break;
 
 				case 'post_parent':
-					$args     = new stdClass;
+					$args     = new stdClass();
 					$args->ID = wp_get_post_parent_id();
 					$value    = $this->prep_links( [ $args ] );
-				break;
+					break;
 
 				case 'facilities':
 					$value = lsx_to_accommodation_facilities( '', '', false );
-				break;
+					break;
 
 				default:
-					// For custom fields.	
+					// For custom fields.
 
 					$single = true;
 					if ( isset( $source_args['single'] ) ) {
 						$single = (bool) $source_args['single'];
 					}
-			
-					// Get the 
+
+					// Get the
 					$only_parents = false;
 					if ( isset( $source_args['parents'] ) ) {
 						$only_parents = (bool) $source_args['parents'];
 					}
-					
+
 					$value = get_post_meta( get_the_ID(), $source_args['key'], $single );
 
 					if ( false === $value || empty( $value ) ) {
@@ -195,10 +194,10 @@ class Bindings {
 					if ( ! is_array( $value ) ) {
 						$value = [ $value ];
 					}
-			
+
 					$value  = array_filter( $value );
 					$values = array();
-					foreach( $value as $pid ) {
+					foreach ( $value as $pid ) {
 						if ( true === $only_parents ) {
 							$pid_parent = get_post_parent( $pid );
 							if ( null !== $pid_parent ) {
@@ -214,8 +213,8 @@ class Bindings {
 						$seperator = ', ';
 					}
 					$value = implode( $seperator, $values );
-					
-				break;
+
+					break;
 
 			}
 
@@ -226,7 +225,7 @@ class Bindings {
 	/**
 	 * Register our post meta callback.
 	 *
-	 * @param array $source_args
+	 * @param array  $source_args
 	 * @param object $block_instance
 	 * @return string|int|array
 	 */
@@ -235,23 +234,23 @@ class Bindings {
 
 		if ( 'core/image' === $block_instance->parsed_block['blockName'] || 'core/cover' === $block_instance->parsed_block['blockName'] ) {
 
-			$key = str_replace( '-', '_', $source_args['key'] );
+			$key   = str_replace( '-', '_', $source_args['key'] );
 			$value = get_post_meta( get_the_ID(), $key, true );
 
 			return $value;
 		} elseif ( 'core/paragraph' === $block_instance->parsed_block['blockName'] ) {
 
 			$key = str_replace( '-', '_', $source_args['key'] );
-	
+
 			$multiples = [
 				'best_time_to_visit',
 				'spoken_languages',
 				'suggested_visitor_types',
-				'special_interests'
+				'special_interests',
 			];
 
 			$single = true;
-			if (  in_array( $key, $multiples )  ) {
+			if ( in_array( $key, $multiples ) ) {
 				$single = false;
 			}
 			$saved = lsx_to_custom_field_query( $key, '', '', false, get_the_ID(), $single );
@@ -264,9 +263,9 @@ class Bindings {
 				if ( in_array( $key, $date_transforms ) ) {
 					$saved = wp_date( 'j M Y', $saved );
 				}
-	
+
 				$value = $saved;
-				
+
 			}
 		}
 		return $value;
@@ -282,22 +281,22 @@ class Bindings {
 	 * @param string $block_content The original content of the block.
 	 * @param array  $parsed_block  Parsed data for the block, including type and attributes.
 	 * @param object $block_obj     Block object instance for the current block being processed.
-	 * 
+	 *
 	 * @return string Returns the modified block content after processing itinerary data.
 	 */
 	public function render_itinerary_block( $block_content, $parsed_block, $block_obj ) {
 		// Determine if this is the custom block variation.
-		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
+		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] ) ) {
 			return $block_content;
 		}
-		$allowed_blocks = array(
-			'core/group'
+		$allowed_blocks  = array(
+			'core/group',
 		);
 		$allowed_sources = array(
-			'lsx/tour-itinerary'
+			'lsx/tour-itinerary',
 		);
 		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
-			return $block_content; 
+			return $block_content;
 		}
 
 		if ( ! isset( $parsed_block['attrs']['metadata']['bindings']['content']['source'] ) ) {
@@ -316,15 +315,15 @@ class Bindings {
 			$itinerary_count = 1;
 			while ( lsx_to_itinerary_loop() ) {
 				lsx_to_itinerary_loop_item();
-				$build   = $pattern;
+				$build = $pattern;
 
 				foreach ( $this->itinerary_fields as $field ) {
-					$build   = $this->build_itinerary_field( $build, $field, $itinerary_count );
+					$build = $this->build_itinerary_field( $build, $field, $itinerary_count );
 				}
 				$build   = $this->build_image( $build, 'itinerary-image' );
 				$group[] = $build;
 
-				$itinerary_count++;
+				++$itinerary_count;
 			}
 		}
 
@@ -333,7 +332,7 @@ class Bindings {
 	}
 
 	/**
-	 * Modifies the HTML content by updating the innerHTML of any heading tag (h1-h6) 
+	 * Modifies the HTML content by updating the innerHTML of any heading tag (h1-h6)
 	 * that has the class "itinerary-title" with the result of the lsx_to_itinerary_title function.
 	 *
 	 * @param string $build The original HTML content to be modified. Default is an empty string.
@@ -341,67 +340,67 @@ class Bindings {
 	 * @return string The modified HTML content where the specified heading tags have updated innerHTML.
 	 */
 	public function build_itinerary_field( $build = '', $field = '', $count = 1 ) {
-		$pattern     = '';
-		$value       = '';
+		$pattern = '';
+		$value   = '';
 
 		switch ( $field ) {
 			case 'title':
 				$value   = lsx_to_itinerary_title( false );
 				$pattern = '/(<h[1-6]\s+[^>]*\bclass="[^"]*\bitinerary-title\b[^"]*"[^>]*>).*?(<\/h[1-6]>)/is';
-			break;
+				break;
 
 			case 'description':
 				$classes = $this->find_description_classes( $build, 'itinerary' );
 				if ( '' !== $classes ) {
 					$value   = lsx_to_itinerary_description( false );
 					$pattern = '/<p\s+[^>]*\bclass="[^"]*\bitinerary-description\b[^"]*"[^>]*>.*?<\/p>/is';
-					
+
 					if ( empty( $value ) ) {
 						$value = '';
 					}
 					$value = '<div class="' . $classes . '"/>' . $value . '</div>';
 				}
-			break;
+				break;
 
 			case 'location':
 				$value   = lsx_to_itinerary_destinations( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-location\b[^"]*"[^>]*>).*?(<\/p>)/is';
-			break;
+				break;
 
 			case 'accommodation':
 				$value   = lsx_to_itinerary_accommodation( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-accommodation\b[^"]*"[^>]*>).*?(<\/p>)/is';
-			break;
+				break;
 
 			case 'type':
 				$value   = lsx_to_itinerary_accommodation_type( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-type\b[^"]*"[^>]*>).*?(<\/p>)/is';
-			break;
+				break;
 
 			case 'drinks':
-				$value = lsx_to_itinerary_drinks_basis( '', '', false );
-				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-drinks\b[^"]*"[^>]*>).*?(<\/p>)/is';	
-			break;
+				$value   = lsx_to_itinerary_drinks_basis( '', '', false );
+				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-drinks\b[^"]*"[^>]*>).*?(<\/p>)/is';
+				break;
 
 			case 'room':
-				$value = lsx_to_itinerary_room_basis( '', '', false );
+				$value   = lsx_to_itinerary_room_basis( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-room\b[^"]*"[^>]*>).*?(<\/p>)/is';
-			break;
+				break;
 
 			case 'included':
-				$value = lsx_to_itinerary_includes( '', '', false );
-				$value = wp_strip_all_tags( $value, [ 'a', 'ul', 'li', 'ol', 'strong', 'i' ] );
+				$value   = lsx_to_itinerary_includes( '', '', false );
+				$value   = wp_strip_all_tags( $value, [ 'a', 'ul', 'li', 'ol', 'strong', 'i' ] );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-included\b[^"]*"[^>]*>).*?(<\/p>)/is';
-			break;
+				break;
 
 			case 'excluded':
-				$value = lsx_to_itinerary_excludes( '', '', false );
-				$value = wp_strip_all_tags( $value, [ 'a', 'ul', 'li', 'ol', 'strong', 'i' ] );
+				$value   = lsx_to_itinerary_excludes( '', '', false );
+				$value   = wp_strip_all_tags( $value, [ 'a', 'ul', 'li', 'ol', 'strong', 'i' ] );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-excluded\b[^"]*"[^>]*>).*?(<\/p>)/is';
-			break;
+				break;
 
 			default:
-			break;
+				break;
 		}
 
 		// if the value is emtpy than add a css class to hide the element.
@@ -411,13 +410,13 @@ class Bindings {
 		}
 
 		$replacement = '$1' . $value . '$2';
-		$build = preg_replace( $pattern, $replacement, $build);
-		
+		$build       = preg_replace( $pattern, $replacement, $build );
+
 		return $build;
 	}
 
 	/**
-	 * Modifies the HTML content by updating the innerHTML of any heading tag (h1-h6) 
+	 * Modifies the HTML content by updating the innerHTML of any heading tag (h1-h6)
 	 * that has the class "itinerary-title" with the result of the lsx_to_itinerary_title function.
 	 *
 	 * @param string $build The original HTML content to be modified. Default is an empty string.
@@ -426,12 +425,12 @@ class Bindings {
 	 */
 	public function build_image( $build = '', $classname = 'itinerary-image' ) {
 		global $rooms;
-		//Create our tag manager object so we can inject the itinerary content.
+		// Create our tag manager object so we can inject the itinerary content.
 		$tags = new \WP_HTML_Tag_Processor( $build );
 
 		if ( $tags->next_tag( array( 'class_name' => $classname ) ) ) {
 
-			$size = 'medium';
+			$size    = 'medium';
 			$classes = $tags->get_attribute( 'class' );
 			$classes = explode( ' ', $classes );
 			foreach ( $classes as $class ) {
@@ -451,11 +450,8 @@ class Bindings {
 				$tags->set_attribute( 'src', $img_src );
 				$build = $tags->get_updated_html();
 			}
-			
-
-			
 		}
-		
+
 		return $build;
 	}
 
@@ -469,23 +465,23 @@ class Bindings {
 	 * @param string $block_content The original content of the block.
 	 * @param array  $parsed_block  Parsed data for the block, including type and attributes.
 	 * @param object $block_obj     Block object instance for the current block being processed.
-	 * 
+	 *
 	 * @return string Returns the modified block content after processing units data.
 	 */
 	public function render_units_block( $block_content, $parsed_block, $block_obj ) {
 		// Determine if this is the custom block variation.
-		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
+		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] ) ) {
 			return $block_content;
 		}
-		$allowed_blocks = array(
-			'core/group'
+		$allowed_blocks  = array(
+			'core/group',
 		);
 		$allowed_sources = array(
-			'lsx/accommodation-units'
+			'lsx/accommodation-units',
 		);
 
 		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
-			return $block_content; 
+			return $block_content;
 		}
 
 		if ( ! isset( $parsed_block['attrs']['metadata']['bindings']['content']['source'] ) ) {
@@ -496,7 +492,6 @@ class Bindings {
 			return $block_content;
 		}
 
-		
 		$pattern = $block_content;
 		$group   = array();
 
@@ -508,15 +503,15 @@ class Bindings {
 			$count = 1;
 			while ( lsx_to_accommodation_room_loop() ) {
 				lsx_to_accommodation_room_loop_item();
-				
-				$build   = $pattern;
+
+				$build = $pattern;
 				foreach ( $this->unit_fields as $field ) {
-					$build   = $this->build_unit_field( $build, $field, $count );
+					$build = $this->build_unit_field( $build, $field, $count );
 				}
 				$build   = $this->build_image( $build, 'unit-image' );
 				$group[] = $build;
-				$count++;
-				
+				++$count;
+
 			}
 		}
 		$block_content = implode( '', $group );
@@ -540,7 +535,7 @@ class Bindings {
 			case 'title':
 				$value   = wp_strip_all_tags( $rooms->item_title( '', '', false ) );
 				$pattern = '/(<h[1-6]\s+[^>]*\bclass="[^"]*\bunit-title\b[^"]*"[^>]*>).*?(<\/h[1-6]>)/is';
-			break;
+				break;
 
 			case 'description':
 				// Maintain any formatting set of the parent tag.
@@ -549,18 +544,18 @@ class Bindings {
 				if ( '' !== $classes ) {
 					$value   = $rooms->item_description( false );
 					$pattern = '/<p\s+[^>]*\bclass="[^"]*\bunit-description\b[^"]*"[^>]*>.*?<\/p>/is';
-					
+
 					if ( ! empty( $value ) ) {
 						$value = '<div class="' . $classes . '"/>' . $value . '</div>';
 					}
 				}
 
-			break;
+				break;
 
 			case 'type':
 				$value   = $rooms->item_type( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bunit-type\b[^"]*"[^>]*>).*?(<\/p>)/is';
-			break;
+				break;
 
 			case 'price':
 				$value       = $rooms->item_price( '', '', false );
@@ -568,31 +563,31 @@ class Bindings {
 
 				if ( is_object( $tour_operator ) && isset( $tour_operator->options['currency'] ) && ! empty( $tour_operator->options['currency'] ) ) {
 					$letter_code = $tour_operator->options['currency'];
-					$currency = '<span class="currency-icon ' . mb_strtolower( $letter_code ) . '"></span>';
+					$currency    = '<span class="currency-icon ' . mb_strtolower( $letter_code ) . '"></span>';
 				}
 
 				$value = $currency . $value;
 
 				// Get the currency settings
-				if ( is_object( $tour_operator ) &&  ( isset( $tour_operator->options['country_code_disabled'] ) && 0 === intval( $tour_operator->options['country_code_disabled'] ) || ! isset( $tour_operator->options['country_code_disabled'] ) ) ) {
+				if ( is_object( $tour_operator ) && ( isset( $tour_operator->options['country_code_disabled'] ) && 0 === intval( $tour_operator->options['country_code_disabled'] ) || ! isset( $tour_operator->options['country_code_disabled'] ) ) ) {
 					$value = $letter_code . $value;
 				}
 
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bunit-price\b[^"]*"[^>]*>).*?(<\/p>)/is';
-			break;
+				break;
 
 			default:
-			break;
+				break;
 		}
 
 		// if the value is emtpy than add a css class to hide the element.
 		if ( '' === $value ) {
 			$pattern = '/\bunit-' . $field . '-wrapper\b/';
 			$value   = 'hidden unit-' . $field . '-wrapper';
-		}	
+		}
 
 		$replacement = '$1 ' . $value . ' $2';
-		$build       = preg_replace($pattern, $replacement, $build);
+		$build       = preg_replace( $pattern, $replacement, $build );
 		return $build;
 	}
 
@@ -630,7 +625,7 @@ class Bindings {
 		// Regular expression to match class attributes
 		$pattern = '/\s*class="[^"]*"/i';
 		// Replace matched class attributes with an empty string
-		$result = preg_replace($pattern, '', $content);
+		$result = preg_replace( $pattern, '', $content );
 		return $result;
 	}
 
@@ -641,9 +636,9 @@ class Bindings {
 	 * and returns an empty string if it is. It serves as a conditional handler
 	 * based on the block type.
 	 *
-	 * @param array $source_args Arguments provided by the source.
+	 * @param array  $source_args Arguments provided by the source.
 	 * @param object $block_instance Instance of the block currently being processed.
-	 * 
+	 *
 	 * @return string Returns an empty string if the block is of type 'core/group', otherwise no return value.
 	 */
 	public function empty_callback( $source_args, $block_instance ) {
@@ -662,23 +657,23 @@ class Bindings {
 	 * @param string $block_content The original content of the block.
 	 * @param array  $parsed_block  Parsed data for the block, including type and attributes.
 	 * @param object $block_obj     Block object instance for the current block being processed.
-	 * 
+	 *
 	 * @return string Returns the modified block content after processing gallery data.
 	 */
 	public function render_gallery_block( $block_content, $parsed_block, $block_obj ) {
 		// Determine if this is the custom block variation.
-		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
+		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] ) ) {
 			return $block_content;
 		}
-		$allowed_blocks = array(
-			'core/gallery'
+		$allowed_blocks  = array(
+			'core/gallery',
 		);
 		$allowed_sources = array(
-			'lsx/gallery'
+			'lsx/gallery',
 		);
 
 		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
-			return $block_content; 
+			return $block_content;
 		}
 
 		if ( ! isset( $parsed_block['attrs']['metadata']['bindings']['content']['source'] ) ) {
@@ -694,7 +689,7 @@ class Bindings {
 
 		$gallery = get_post_meta( get_the_ID(), 'gallery', true );
 
-		if ( false === $gallery || empty($gallery ) ) {
+		if ( false === $gallery || empty( $gallery ) ) {
 			return '';
 		}
 
@@ -727,10 +722,10 @@ class Bindings {
 
 			$build = '<figure class="wp-block-image">';
 			// phpcs:ignore PluginCheck.CodeAnalysis.ImageFunctions.NonEnqueuedImage
-			$build .= $link_prefix . '<img src="' . $gurl . '" alt="" class="wp-image-' . $gid . '"/>' . $link_suffix;
-			$build .= '</figure>';
+			$build   .= $link_prefix . '<img src="' . $gurl . '" alt="" class="wp-image-' . $gid . '"/>' . $link_suffix;
+			$build   .= '</figure>';
 			$images[] = $build;
-			$count++;
+			++$count;
 		}
 		$block_content = '<figure class="' . $classes . '">' . implode( '', $images ) . '</figure>';
 		return $block_content;
@@ -746,23 +741,23 @@ class Bindings {
 	 * @param string $block_content The original content of the block.
 	 * @param array  $parsed_block  Parsed data for the block, including type and attributes.
 	 * @param object $block_obj     Block object instance for the current block being processed.
-	 * 
+	 *
 	 * @return string Returns the modified block content after processing gallery data.
 	 */
 	public function render_videos_block( $block_content, $parsed_block, $block_obj ) {
 		// Determine if this is the custom block variation.
-		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
+		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] ) ) {
 			return $block_content;
 		}
-		$allowed_blocks = array(
-			'core/gallery'
+		$allowed_blocks  = array(
+			'core/gallery',
 		);
 		$allowed_sources = array(
-			'lsx/videos'
+			'lsx/videos',
 		);
 
 		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
-			return $block_content; 
+			return $block_content;
 		}
 
 		if ( ! isset( $parsed_block['attrs']['metadata']['bindings']['content']['source'] ) ) {
@@ -775,7 +770,7 @@ class Bindings {
 
 		$videos = get_post_meta( get_the_ID(), 'videos', true );
 
-		if ( false === $videos || empty($videos ) ) {
+		if ( false === $videos || empty( $videos ) ) {
 			return '';
 		}
 
@@ -795,7 +790,7 @@ class Bindings {
 			</div></figure>';
 
 			$images[] = $build;
-			$count++;
+			++$count;
 		}
 
 		$block_content = '<figure ' . $styles . ' class="lsx-block-videos ' . $classes . '">' . implode( '', $images ) . '</figure>';
@@ -862,23 +857,23 @@ class Bindings {
 	 * @param string $block_content The original content of the block.
 	 * @param array  $parsed_block  Parsed data for the block, including type and attributes.
 	 * @param object $block_obj     Block object instance for the current block being processed.
-	 * 
+	 *
 	 * @return string Returns the modified block content after processing map data.
 	 */
 	public function render_map_block( $block_content, $parsed_block, $block_obj ) {
 		// Determine if this is the custom block variation.
-		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
+		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] ) ) {
 			return $block_content;
 		}
-		$allowed_blocks = array(
-			'core/group'
+		$allowed_blocks  = array(
+			'core/group',
 		);
 		$allowed_sources = array(
-			'lsx/map'
+			'lsx/map',
 		);
 
 		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
-			return $block_content; 
+			return $block_content;
 		}
 
 		if ( ! isset( $parsed_block['attrs']['metadata']['bindings']['content']['source'] ) ) {
@@ -900,25 +895,25 @@ class Bindings {
 				$pattern = '/<figure\b[^>]*>(.*?)<\/figure>/s';
 				$url     = $this->get_wetu_map_link();
 				if ( ! empty( $url ) ) {
-					$map = '<iframe width="100%" height="500" frameborder="0" allowfullscreen="" class="wetu-map" class="block perfmatters-lazy entered pmloaded" data-src="' . $url . '" data-ll-status="loaded" src="' . $url . '"></iframe>';
+					$map           = '<iframe width="100%" height="500" frameborder="0" allowfullscreen="" class="wetu-map" class="block perfmatters-lazy entered pmloaded" data-src="' . $url . '" data-ll-status="loaded" src="' . $url . '"></iframe>';
 					$block_content = preg_replace( $pattern, $map, $block_content );
 				}
-				
-			break;
+
+				break;
 
 			case 'google':
-				preg_match('/class="([^"]*)"/', $block_content, $matches);
+				preg_match( '/class="([^"]*)"/', $block_content, $matches );
 				$class_string = $matches[1];
 
 				if ( lsx_to_has_map() ) {
-					$map = lsx_to_map( '', '', false );
-					$map = str_replace( 'class="lsx-map"', 'class="lsx-map ' . $class_string . '"', $map );
+					$map           = lsx_to_map( '', '', false );
+					$map           = str_replace( 'class="lsx-map"', 'class="lsx-map ' . $class_string . '"', $map );
 					$block_content = $map;
 				}
-			break;
+				break;
 
 			default:
-			break;
+				break;
 		}
 
 		return $block_content;
@@ -935,7 +930,7 @@ class Bindings {
 			'b',
 			'd',
 			'e',
-			'p'
+			'p',
 		];
 		$url_params = apply_filters( 'lsx_to_wetu_map_url_params', $url_params );
 
@@ -948,21 +943,21 @@ class Bindings {
 		$wetu_id   = '';
 		$post_type = get_post_type();
 
-		if ( is_post_type_archive() || is_tax() || is_singular( ['destination'] ) ) {
-			$map_type  = 'accommodation-cluster';
+		if ( is_post_type_archive() || is_tax() || is_singular( [ 'destination' ] ) ) {
+			$map_type = 'accommodation-cluster';
 		} else {
-			$map_type  = $post_type;
-			$wetu_id   = get_post_meta( get_the_ID(), 'lsx_wetu_id', true );
+			$map_type = $post_type;
+			$wetu_id  = get_post_meta( get_the_ID(), 'lsx_wetu_id', true );
 		}
 
 		switch ( $map_type ) {
 			case 'tour':
 				$url = 'https://wetu.com/Itinerary/VI/' . $wetu_id . $url_params;
-			break;
+				break;
 
 			case 'accommodation':
 				$url = 'https://wetu.com/EmbedMap/' . $url_params . '&ids=' . $wetu_id;
-			break;
+				break;
 
 			case 'accommodation-cluster':
 				$accommodation_ids = get_post_meta( get_the_ID(), 'accommodation_to_' . $post_type, true );
@@ -982,8 +977,8 @@ class Bindings {
 						$url = 'https://wetu.com/EmbedMap/' . $url_params . '&ids=' . implode( ',', $wetu_ids );
 					}
 				}
-				
-			break;
+
+				break;
 
 			default:
 				$location = get_post_meta( get_the_ID(), 'location', true );
@@ -992,7 +987,7 @@ class Bindings {
 				} else {
 					$wetu_id = false;
 				}
-			break;
+				break;
 		}
 
 		return $url;
@@ -1021,20 +1016,20 @@ class Bindings {
 	 * @param string $block_content The original content of the block.
 	 * @param array  $parsed_block  Parsed data for the block, including type and attributes.
 	 * @param object $block_obj     Block object instance for the current block being processed.
-	 * 
+	 *
 	 * @return string Returns block with the permalink added.
 	 */
 	public function render_permalink_block( $block_content, $parsed_block, $block_obj ) {
 		// Determine if this is the custom block variation.
-		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
+		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] ) ) {
 			return $block_content;
 		}
 		$allowed_blocks = array(
-			'core/button'
+			'core/button',
 		);
 
 		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
-			return $block_content; 
+			return $block_content;
 		}
 
 		if ( ! isset( $parsed_block['attrs']['metadata']['name'] ) ) {

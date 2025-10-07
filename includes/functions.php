@@ -209,7 +209,7 @@ function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square', $meta_key =
 	$accommodation_id = '';
 	$temp_id          = '';
 	$tour_operator    = tour_operator();
-	
+
 	if ( isset( $tour_operator->options['tour']['itinerary_use_destination_images'] ) && '' !== $tour_operator->options['tour']['itinerary_use_destination_images'] ) {
 		$meta_key = 'destination_to_tour';
 	}
@@ -267,7 +267,7 @@ function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square', $meta_key =
 			$temp_id = get_post_thumbnail_id();
 
 			if ( false !== $temp_id ) {
-				$temp_src_array   = wp_get_attachment_image_src( $temp_id, $size );
+				$temp_src_array = wp_get_attachment_image_src( $temp_id, $size );
 				if ( is_array( $temp_src_array ) ) {
 					$thumbnail_src = $temp_src_array[0];
 				}
@@ -636,7 +636,7 @@ function lsx_to_sanitize_tour_title( $title = '' ) {
 	}
 
 	$sanitized_title = sanitize_text_field( $title );
-	
+
 	/**
 	 * Filters the sanitized tour title.
 	 *

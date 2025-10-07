@@ -1,0 +1,30 @@
+name: Project Management Automation
+
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review, closed, synchronize]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  project-automation:
+    name: Run WordPress Project Management Automation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (shallow)
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+
+      - name: Run automation tasks
+        uses: WordPress/gutenberg/packages/project-management-automation@trunk
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+    # Prevent overlapping automation runs on the same PR
+    concurrency:
+      group: project-automation-${{ github.event.pull_request.number || github.run_id }}
+      cancel-in-progress: false

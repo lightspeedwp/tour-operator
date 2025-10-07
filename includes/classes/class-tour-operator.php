@@ -22,9 +22,10 @@ use lsx\integrations\facetwp\Post_Connections;
  * @author    LightSpeed
  * @license   GPL-2.0+
  * @link
- * @copyright 2017 LightSpeedDevelopment
+ * @copyright 2017 lightspeedwp
  */
-class Tour_Operator {
+class Tour_Operator
+{
 
 	/**
 	 * Holds instance of the class
@@ -64,11 +65,12 @@ class Tour_Operator {
 	/**
 	 * Tour Operator constructor.
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 		// init legacy.
 		$this->legacy = legacy\Tour_Operator::get_instance();
 		// Setup plugin.
-		add_action( 'init', array( $this, 'setup' ), 9 );
+		add_action('init', array($this, 'setup'), 9);
 	}
 
 	/**
@@ -79,9 +81,10 @@ class Tour_Operator {
 	 *
 	 * @return mixed Legacy callback return.
 	 */
-	public function __call( $tag, $args ) {
-		if ( is_callable( array( $this->legacy, $tag ) ) ) {
-			return call_user_func_array( array( $this->legacy, $tag ), $args );
+	public function __call($tag, $args)
+	{
+		if (is_callable(array($this->legacy, $tag))) {
+			return call_user_func_array(array($this->legacy, $tag), $args);
 		}
 
 		return null;
@@ -94,7 +97,8 @@ class Tour_Operator {
 	 *
 	 * @return mixed Legacy callback return.
 	 */
-	public function __get( $tag ) {
+	public function __get($tag)
+	{
 		return $this->legacy->{$tag};
 	}
 
@@ -104,10 +108,11 @@ class Tour_Operator {
 	 * @since 1.1.0
 	 * @return  Tour_Operator  A single instance
 	 */
-	public static function init() {
+	public static function init()
+	{
 
 		// If the single instance hasn't been set, set it now.
-		if ( ! isset( self::$instance ) ) {
+		if (! isset(self::$instance)) {
 			self::$instance = new self();
 		}
 
@@ -121,7 +126,8 @@ class Tour_Operator {
 	 *
 	 * @since 1.1.0
 	 */
-	public function set_request_data( $request_data ) {
+	public function set_request_data($request_data)
+	{
 		$this->request_data = $request_data;
 	}
 
@@ -133,18 +139,19 @@ class Tour_Operator {
 	 * @param string $type The type of asset.
 	 * @param array  $set  Array of assets to be enqueued.
 	 */
-	public function set_assets( $type, $set ) {
-		if ( 'callback' === $type ) {
-			call_user_func( $set );
+	public function set_assets($type, $set)
+	{
+		if ('callback' === $type) {
+			call_user_func($set);
 		} else {
 			$enqueue_type = 'wp_enqueue_' . $type;
-			foreach ( $set as $key => $item ) {
-				if ( is_int( $key ) ) {
-					$enqueue_type( $item );
+			foreach ($set as $key => $item) {
+				if (is_int($key)) {
+					$enqueue_type($item);
 					continue;
 				}
-				$args = $this->build_asset_args( $item );
-				$enqueue_type( $key, $args['src'], $args['deps'], $args['ver'], $args['in_footer'] );
+				$args = $this->build_asset_args($item);
+				$enqueue_type($key, $args['src'], $args['deps'], $args['ver'], $args['in_footer']);
 			}
 		}
 	}
@@ -159,7 +166,8 @@ class Tour_Operator {
 	 *
 	 * @return array Params for enqueuing the asset
 	 */
-	private function build_asset_args( $asset ) {
+	private function build_asset_args($asset)
+	{
 		// Setup default args for array type includes.
 		$args = array(
 			'src'       => $asset,
@@ -168,8 +176,8 @@ class Tour_Operator {
 			'in_footer' => false,
 			'media'     => false,
 		);
-		if ( is_array( $asset ) ) {
-			$args = array_merge( $args, $asset );
+		if (is_array($asset)) {
+			$args = array_merge($args, $asset);
 		}
 
 		return $args;
@@ -181,8 +189,9 @@ class Tour_Operator {
 	 * @since 1.1.0
 	 * @uses  "init" action
 	 */
-	public function setup() {
-		require_once( LSX_TO_PATH . 'vendor/content-models/create-content-model.php' );
+	public function setup()
+	{
+		require_once LSX_TO_PATH . 'vendor/content-models/create-content-model.php';
 
 		$this->classes['permalinks']      = new Permalinks();
 		$this->classes['taxonomies']      = Taxonomies::init();

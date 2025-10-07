@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Tour Operator - Continent taxonomy config
  *
@@ -6,7 +7,7 @@
  * @author    LightSpeed
  * @license   GPL-2.0+
  * @link
- * @copyright 2017 LightSpeedDevelopment
+ * @copyright 2017 lightspeedwp
  */
 
 $taxonomy = array(
@@ -15,18 +16,18 @@ $taxonomy = array(
 	'args'          => array(
 		'hierarchical'        => true,
 		'labels'              => array(
-			'name'              => esc_html__( 'Continents', 'tour-operator' ),
-			'singular_name'     => esc_html__( 'Continent', 'tour-operator' ),
-			'search_items'      => esc_html__( 'Search Continents', 'tour-operator' ),
-			'all_items'         => esc_html__( 'Continents', 'tour-operator' ),
-			'parent_item'       => esc_html__( 'Parent', 'tour-operator' ),
-			'parent_item_colon' => esc_html__( 'Parent:', 'tour-operator' ),
-			'edit_item'         => esc_html__( 'Edit Continent', 'tour-operator' ),
-			'update_item'       => esc_html__( 'Update Continent', 'tour-operator' ),
-			'add_new_item'      => esc_html__( 'Add New Continent', 'tour-operator' ),
-			'new_item_name'     => esc_html__( 'New Continent', 'tour-operator' ),
-			'menu_name'         => esc_html__( 'Continents', 'tour-operator' ),
-			'description'       => esc_html__( 'Select the continent that the country belongs to.', 'tour-operator' ),
+			'name'              => esc_html__('Continents', 'tour-operator'),
+			'singular_name'     => esc_html__('Continent', 'tour-operator'),
+			'search_items'      => esc_html__('Search Continents', 'tour-operator'),
+			'all_items'         => esc_html__('Continents', 'tour-operator'),
+			'parent_item'       => esc_html__('Parent', 'tour-operator'),
+			'parent_item_colon' => esc_html__('Parent:', 'tour-operator'),
+			'edit_item'         => esc_html__('Edit Continent', 'tour-operator'),
+			'update_item'       => esc_html__('Update Continent', 'tour-operator'),
+			'add_new_item'      => esc_html__('Add New Continent', 'tour-operator'),
+			'new_item_name'     => esc_html__('New Continent', 'tour-operator'),
+			'menu_name'         => esc_html__('Continents', 'tour-operator'),
+			'description'       => esc_html__('Select the continent that the country belongs to.', 'tour-operator'),
 		),
 		'show_ui'             => true,
 		'show_in_quick_edit'  => true,

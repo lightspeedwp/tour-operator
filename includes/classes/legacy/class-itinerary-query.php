@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Tours Itinerary Query
  *
@@ -6,7 +7,7 @@
  * @author    LightSpeed
  * @license   GPL3
  * @link
- * @copyright 2016 LightSpeedDevelopment
+ * @copyright 2016 lightspeedwp
  */
 
 namespace lsx\legacy;
@@ -17,7 +18,8 @@ namespace lsx\legacy;
  * @package Itinerary_Query
  * @author  LightSpeed
  */
-class Itinerary_Query {
+class Itinerary_Query
+{
 
 	/**
 	 * Holds class instance
@@ -98,28 +100,31 @@ class Itinerary_Query {
 	 *
 	 * @access private
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 		$this->post_id     = get_the_ID();
-		$this->itineraries = get_post_meta( $this->post_id, 'itinerary', true );
-		if ( is_array( $this->itineraries ) && ! empty( $this->itineraries ) ) {
+		$this->itineraries = get_post_meta($this->post_id, 'itinerary', true);
+		if (is_array($this->itineraries) && ! empty($this->itineraries)) {
 			$this->has_itinerary = true;
-			$this->count = count( $this->itineraries );
+			$this->count         = count($this->itineraries);
 		}
-		add_filter( 'lsx_to_itinerary_thumbnail_src', array( $this, 'departure_day_image' ), 10, 3 );
+		add_filter('lsx_to_itinerary_thumbnail_src', array($this, 'departure_day_image'), 10, 3);
 	}
 
 	/**
 	 * A filter to set the content area to a small column on single
 	 */
-	public function has_itinerary() {
+	public function has_itinerary()
+	{
 		return $this->has_itinerary;
 	}
 
 	/**
 	 * Used in the While loop to cycle through the field array
 	 */
-	public function while_itinerary() {
-		if ( $this->index < $this->count ) {
+	public function while_itinerary()
+	{
+		if ($this->index < $this->count) {
 			return true;
 		} else {
 			$this->itinerary = false;
@@ -130,9 +135,10 @@ class Itinerary_Query {
 	/**
 	 * Sets the current itinerary item
 	 */
-	public function current_itinerary_item() {
-		$this->itinerary = $this->itineraries[ $this->index ];
-		$this->index++;
+	public function current_itinerary_item()
+	{
+		$this->itinerary = $this->itineraries[$this->index];
+		++$this->index;
 	}
 
 	/**
@@ -140,24 +146,26 @@ class Itinerary_Query {
 	 *
 	 * @param   $accommodation_id   | string
 	 */
-	public function register_current_gallery( $accommodation_id = false, $meta_key = 'accommodation_to_tour' ) {
-		if ( false !== $accommodation_id && ! isset( $this->current_attachments[ $accommodation_id ] ) ) {
-			$gallery = get_post_meta( $accommodation_id, 'gallery', true );
-			if ( false !== $gallery && ! empty( $gallery ) ) {
-				
-				if ( ! is_array( $gallery ) ) {
-					$gallery = array( $gallery );
+	public function register_current_gallery($accommodation_id = false, $meta_key = 'accommodation_to_tour')
+	{
+		if (false !== $accommodation_id && ! isset($this->current_attachments[$accommodation_id])) {
+			$gallery = get_post_meta($accommodation_id, 'gallery', true);
+			if (false !== $gallery && ! empty($gallery)) {
+
+				if (! is_array($gallery)) {
+					$gallery = array($gallery);
 				} else {
-					$gallery = array_keys( $gallery );
+					$gallery = array_keys($gallery);
 				}
 
-				/*if ( 'accommodation_to_tour' === $meta_key ) {
+				/*
+				if ( 'accommodation_to_tour' === $meta_key ) {
 					$gallery = $this->append_room_images( $accommodation_id, $gallery );
 				} else if ( 'destination_to_tour' === $meta_key ) {
 					$gallery = $this->maybe_append_parent( $accommodation_id, $gallery );
 				}*/
 
-				$this->current_attachments[ $accommodation_id ] = $gallery;
+				$this->current_attachments[$accommodation_id] = $gallery;
 			}
 		}
 	}
@@ -168,24 +176,25 @@ class Itinerary_Query {
 	 * @param   $accommodation_id   | string
 	 * @param   $gallery    array
 	 */
-	public function append_room_images( $accommodation_id = false, $gallery = array() ) {
-		if ( false !== $accommodation_id ) {
-			$room_images = get_post_meta( $accommodation_id, 'units', true );
-			if ( false !== $room_images && ! empty( $room_images ) ) {
+	public function append_room_images($accommodation_id = false, $gallery = array())
+	{
+		if (false !== $accommodation_id) {
+			$room_images = get_post_meta($accommodation_id, 'units', true);
+			if (false !== $room_images && ! empty($room_images)) {
 
-				if ( ! is_array( $room_images ) ) {
-					$room_images = array( $room_images );
+				if (! is_array($room_images)) {
+					$room_images = array($room_images);
 				}
 
 				$append = array();
-				foreach ( $room_images as $room ) {
-					if ( isset( $room['gallery'] ) && is_array( $room['gallery'] ) && ! empty( $room['gallery'] ) ) {
-						foreach ( $room['gallery'] as $image ) {
+				foreach ($room_images as $room) {
+					if (isset($room['gallery']) && is_array($room['gallery']) && ! empty($room['gallery'])) {
+						foreach ($room['gallery'] as $image) {
 							$append[] = $image;
 						}
 					}
 				}
-				$gallery = array_merge( $gallery, $append );
+				$gallery = array_merge($gallery, $append);
 			}
 		}
 
@@ -197,8 +206,9 @@ class Itinerary_Query {
 	 *
 	 * @param   $image_id   | string
 	 */
-	public function save_used_image( $image_id = false ) {
-		if ( false !== $image_id ) {
+	public function save_used_image($image_id = false)
+	{
+		if (false !== $image_id) {
 			$this->images_used[] = $image_id;
 		}
 	}
@@ -209,8 +219,9 @@ class Itinerary_Query {
 	 * @param   $image_id   | string
 	 * @return  boolean
 	 */
-	public function is_image_used( $image_id = false ) {
-		if ( is_array( $this->images_used ) && in_array( $image_id, $this->images_used ) ) {
+	public function is_image_used($image_id = false)
+	{
+		if (is_array($this->images_used) && in_array($image_id, $this->images_used)) {
 			return true;
 		} else {
 			return false;
@@ -223,20 +234,21 @@ class Itinerary_Query {
 	 * @param   $accommodation_id   | string
 	 * @return  boolean | string
 	 */
-	public function find_next_image( $accommodation_id = false ) {
+	public function find_next_image($accommodation_id = false)
+	{
 		$return = false;
-		if ( false !== $accommodation_id && isset( $this->current_attachments[ $accommodation_id ] ) && ! empty( $this->current_attachments[ $accommodation_id ] ) && ! empty( $this->images_used ) ) {
+		if (false !== $accommodation_id && isset($this->current_attachments[$accommodation_id]) && ! empty($this->current_attachments[$accommodation_id]) && ! empty($this->images_used)) {
 			$this->last_item_id = $accommodation_id;
-			$images_left = array_diff( $this->current_attachments[ $accommodation_id ], $this->images_used );
-			if ( is_array( $images_left ) && ! empty( $images_left ) ) {
-				$images_left = array_values( $images_left );
-				shuffle( $images_left );
-				$return = array_shift( $images_left );
+			$images_left        = array_diff($this->current_attachments[$accommodation_id], $this->images_used);
+			if (is_array($images_left) && ! empty($images_left)) {
+				$images_left = array_values($images_left);
+				shuffle($images_left);
+				$return = array_shift($images_left);
 			} else {
-				$return = apply_filters( 'lsx_to_itinerary_empty_attachments', $accommodation_id, $this );
+				$return = apply_filters('lsx_to_itinerary_empty_attachments', $accommodation_id, $this);
 			}
 		} else {
-			$return = apply_filters( 'lsx_to_itinerary_empty_attachments', $accommodation_id, $this );
+			$return = apply_filters('lsx_to_itinerary_empty_attachments', $accommodation_id, $this);
 		}
 		return $return;
 	}
@@ -244,7 +256,8 @@ class Itinerary_Query {
 	/**
 	 * Sets the current itinerary item
 	 */
-	public function reset_loop() {
+	public function reset_loop()
+	{
 		$this->index = 0;
 	}
 
@@ -256,10 +269,10 @@ class Itinerary_Query {
 	 * @param $count string
 	 * @return string
 	 */
-
-	function departure_day_image( $thumbnail_src = false, $index = 1, $count = 0 ) {
-		if ( false !== stripos( $thumbnail_src, 'placeholder' ) && $count <= $index ) {
-			$thumbnail_src = get_the_post_thumbnail_url( get_the_ID() );
+	function departure_day_image($thumbnail_src = false, $index = 1, $count = 0)
+	{
+		if (false !== stripos($thumbnail_src, 'placeholder') && $count <= $index) {
+			$thumbnail_src = get_the_post_thumbnail_url(get_the_ID());
 		}
 		return $thumbnail_src;
 	}
@@ -267,17 +280,18 @@ class Itinerary_Query {
 	/**
 	 * Will add the parent countries images to the pool of regions.
 	 *
-	 * @param int $item_id
+	 * @param int   $item_id
 	 * @param array $gallery
 	 * @return void
 	 */
-	public function maybe_append_parent( $item_id, $gallery ) {
-		if ( false !== $item_id && true === apply_filters( 'lsx_to_itinerary_append_parent_destinations', false ) ) {
-			$parent = wp_get_post_parent_id( $item_id );
-			if ( null !== $parent && 0 !== $parent && '0' !== $parent && false !== $parent ) {
-				$parent_images = get_post_meta( $parent, 'gallery', true );
-				if ( false !== $parent_images && ! empty( $parent_images ) && is_array( $parent_images ) ) {
-					$gallery = array_merge( $gallery, $parent_images );
+	public function maybe_append_parent($item_id, $gallery)
+	{
+		if (false !== $item_id && true === apply_filters('lsx_to_itinerary_append_parent_destinations', false)) {
+			$parent = wp_get_post_parent_id($item_id);
+			if (null !== $parent && 0 !== $parent && '0' !== $parent && false !== $parent) {
+				$parent_images = get_post_meta($parent, 'gallery', true);
+				if (false !== $parent_images && ! empty($parent_images) && is_array($parent_images)) {
+					$gallery = array_merge($gallery, $parent_images);
 				}
 			}
 		}
