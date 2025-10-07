@@ -28,12 +28,18 @@ area:ci:
   - '.editorconfig'
   - '.eslintrc.js'
   - 'phpcs.xml'
+  - changed-files:
+      any-glob-to-any-file:
+        - '.github/workflows/**'
 
 # JavaScript sources
 lang:javascript:
   - 'src/js/**/*.js'
   - 'assets/js/**/*.js'
   - 'src/blocks/**/*.js'
+  - changed-files:
+      any-glob-to-any-file:
+        - '**/*.{js,jsx,ts,tsx}'
 
 # CSS / SASS sources
 lang:css:
@@ -41,10 +47,16 @@ lang:css:
   - 'src/css/**/*.css'
   - 'assets/css/**/*.css'
   - 'src/blocks/**/*.scss'
+  - changed-files:
+      any-glob-to-any-file:
+        - '**/*.{css,scss}'
 
 # PHP sources
 lang:php:
   - '**/*.php'
+  - changed-files:
+      any-glob-to-any-file:
+        - '**/*.php'
 
 # Block editor / patterns
 area:block-editor:
@@ -65,18 +77,4 @@ area:integration:
 "status:needs-review":
   - head-branch: ['^feat/.*', '^fix/.*', '^docs?/.*', '^(chore|build)/.*']
 
-# CI / Ops (glob-based mapping)
-"area:ci":
-  - changed-files:
-      - any-glob-to-any-file: ['.github/workflows/**']
-
-# Languages / formats (glob-based mapping)
-"lang:php":
-  - changed-files:
-      - any-glob-to-any-file: ['**/*.php']
-"lang:javascript":
-  - changed-files:
-      - any-glob-to-any-file: ['**/*.{js,jsx,ts,tsx}']
-"lang:css":
-  - changed-files:
-      - any-glob-to-any-file: ['**/*.{css,scss}']
+# (changed-files mappings folded into the original label mappings above)

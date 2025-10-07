@@ -76,12 +76,14 @@ jobs:
 
           # Type mapping (from branch for PRs; optional)
           TYPE=""
-          HEAD='${{ github.head_ref }}'
-          if [ -n "$HEAD" ]; then
-            [[ "$HEAD" =~ ^feat/  ]] && TYPE='Feature'
-            [[ "$HEAD" =~ ^fix/   ]] && TYPE='Bug'
-            [[ "$HEAD" =~ ^docs?/ ]] && TYPE='Documentation'
-            [[ "$HEAD" =~ ^(chore/|build/) ]] && TYPE='Task'
+          # read head ref from environment to avoid inlining untrusted content into the script
+          HEAD_ENV="${GH_HEAD:-}"
+          if [ -n "$HEAD_ENV" ]; then
+            # use the quoted variable to avoid shell evaluation of special characters
+            [[ "$HEAD_ENV" =~ ^feat/  ]] && TYPE='Feature'
+            [[ "$HEAD_ENV" =~ ^fix/   ]] && TYPE='Bug'
+            [[ "$HEAD_ENV" =~ ^docs?/ ]] && TYPE='Documentation'
+            [[ "$HEAD_ENV" =~ ^(chore/|build/) ]] && TYPE='Task'
           fi
 
           echo "status=$STATUS"   >> $GITHUB_OUTPUT
@@ -89,6 +91,8 @@ jobs:
           echo "type=$TYPE"       >> $GITHUB_OUTPUT
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # pass the PR head ref in a safe env var for use inside the script
+          GH_HEAD: ${{ github.head_ref }}
 
       - name: Update project fields
         if: steps.addp.outputs.itemId != ''
