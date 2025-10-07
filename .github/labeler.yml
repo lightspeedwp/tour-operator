@@ -4,61 +4,79 @@
 #
 # For more information, see: https://github.com/actions/labeler
 
-# Add 'documentation' label to any PR that changes markdown files or docs.
-documentation:
+# Documentation
+lang:md:
   - '**/*.md'
   - 'docs/**/*'
+  - 'docs/**/*.md'
 
-# Add 'github-actions' label to any PR that changes GitHub Actions workflows.
-github-actions:
-  - '.github/workflows/*'
-
-# Add 'dependencies' label to any PR that changes dependency management files.
-dependencies:
+# Dependencies
+area:dependencies:
   - 'composer.json'
   - 'composer.lock'
   - 'package.json'
   - 'package-lock.json'
 
-# Add 'build' label for changes to the build process configuration.
-# Note: A change to package.json will get both 'dependencies' and 'build' labels.
-build:
+# CI / Build configuration
+area:ci:
   - 'webpack.config.js'
   - 'package.json'
+  - '.github/workflows/*'
+  - 'tests/**/*'
+  - '**/*_test.php'
+  - '**/*Test.php'
+  - '.editorconfig'
+  - '.eslintrc.js'
+  - 'phpcs.xml'
 
-# Add 'javascript' label for JS source file changes.
-javascript:
+# JavaScript sources
+lang:javascript:
   - 'src/js/**/*.js'
   - 'assets/js/**/*.js'
   - 'src/blocks/**/*.js'
 
-# Add 'styles' label for CSS/SASS source file changes.
-styles:
+# CSS / SASS sources
+lang:css:
   - 'src/css/**/*.scss'
   - 'src/css/**/*.css'
   - 'assets/css/**/*.css'
   - 'src/blocks/**/*.scss'
 
-# Add 'blocks' label for Gutenberg block changes.
-blocks:
-  - 'src/blocks/**/*'
+# PHP sources
+lang:php:
+  - '**/*.php'
 
-# Add 'integrations' label for integration-specific changes.
-integrations:
+# Block editor / patterns
+area:block-editor:
+  - 'src/blocks/**/*'
+  - changed-files:
+      - any-glob-to-any-file: ['**/block.json', '**/src/blocks/**']
+
+area:theme:
+  - changed-files:
+      - any-glob-to-any-file: ['**/theme.json', '**/templates/**', '**/patterns/**', '**/parts/**']
+
+# Integration-specific changes
+area:integration:
   - 'includes/integrations/**/*.php'
   - 'integrations/**/*.php'
 
-# Add 'php' label for general PHP file changes.
-php:
-  - '**/*.php'
+# Head branch → status hints (works on PRs)
+"status:needs-review":
+  - head-branch: ['^feat/.*', '^fix/.*', '^docs?/.*', '^(chore|build)/.*']
 
-# Add 'tests' label for test file changes.
-tests:
-  - '**/*_test.php'
-  - '**/*Test.php'
+# CI / Ops (glob-based mapping)
+"area:ci":
+  - changed-files:
+      - any-glob-to-any-file: ['.github/workflows/**']
 
-# Add 'tooling' label for changes to developer tooling and configuration.
-tooling:
-  - '.editorconfig'
-  - '.eslintrc.js'
-  - 'phpcs.xml'
+# Languages / formats (glob-based mapping)
+"lang:php":
+  - changed-files:
+      - any-glob-to-any-file: ['**/*.php']
+"lang:javascript":
+  - changed-files:
+      - any-glob-to-any-file: ['**/*.{js,jsx,ts,tsx}']
+"lang:css":
+  - changed-files:
+      - any-glob-to-any-file: ['**/*.{css,scss}']
