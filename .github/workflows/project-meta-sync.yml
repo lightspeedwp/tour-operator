@@ -23,6 +23,7 @@ jobs:
 
       - name: Create GitHub App installation token
         id: app-token
+        if: vars.LS_APP_ID && secrets.LS_APP_PRIVATE_KEY
         uses: actions/create-github-app-token@v2
         with:
           app-id: ${{ vars.LS_APP_ID }}
@@ -37,7 +38,7 @@ jobs:
         uses: actions/add-to-project@v1.0.2
         with:
           project-url: ${{ env.PROJECT_URL }}
-          github-token: ${{ steps.app-token.outputs.token }}
+          github-token: ${{ steps.app-token.outputs.token || secrets.GITHUB_TOKEN }}
           # Optionally filter by labels:
       #  labeled: status:ready,status:in-progress
       #  label-operator: OR
@@ -98,7 +99,7 @@ jobs:
         uses: titoportas/update-project-fields@v0.1.0
         with:
           project-url: ${{ env.PROJECT_URL }}
-          github-token: ${{ steps.app-token.outputs.token }}
+          github-token: ${{ steps.app-token.outputs.token || secrets.GITHUB_TOKEN }}
           item-id: ${{ steps.addp.outputs.itemId }}
           field-keys: Status,Priority,Type
           field-values: ${{ steps.derive.outputs.status }},${{ steps.derive.outputs.priority }},${{ steps.derive.outputs.type }}
