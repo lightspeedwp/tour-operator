@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: File & branch labeler (actions/labeler)
         uses: actions/labeler@v5
@@ -67,6 +67,9 @@ jobs:
     if: github.event_name == 'issues'
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v5
+
       - name: Default issue status on open → status:needs-triage
         if: contains(fromJson('["opened","reopened","transferred"]'), github.event.action)
         run: gh issue edit ${{ github.event.issue.number }} --add-label "status:needs-triage"
