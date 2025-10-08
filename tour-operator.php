@@ -30,11 +30,8 @@ define('LSX_TO_URL', plugin_dir_url(__FILE__));
 define('LSX_TO_VER', '2.1.0');
 
 // Maintain a list of content model JSON paths consumed by the plugin.
-global $lsx_to_content_model_json_path;
-if (! is_array($lsx_to_content_model_json_path)) {
-	$lsx_to_content_model_json_path = array();
-}
-$lsx_to_content_model_json_path[] = LSX_TO_PATH;
+global $CONTENT_MODEL_JSON_PATH;
+$CONTENT_MODEL_JSON_PATH[] = LSX_TO_PATH;
 
 // Post Expirator.
 define('LSX_TO_POSTEXPIRATOR_DATEFORMAT', esc_html__('l F jS, Y', 'tour-operator'));
