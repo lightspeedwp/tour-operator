@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v5
 
       - name: File & branch labeler (actions/labeler)
-        uses: actions/labeler@v5
+        uses: actions/labeler@v6
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           configuration-path: .github/labeler.yml
