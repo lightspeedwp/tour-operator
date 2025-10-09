@@ -1,8 +1,44 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/checkin-time",
   "title": "Check In Time",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Show accommodation check-in time and procedures.",
+  "icon": "clock",
+  "keywords": [
+    "checkin",
+    "time",
+    "arrival"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Check In Time"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Check In Time",
+              "level": 3
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "11:00 AM"
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }
