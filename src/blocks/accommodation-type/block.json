@@ -3,7 +3,7 @@
 	"apiVersion": 3,
 	"textdomain": "tour-operator",
 	"name": "lsx-tour-operator/accommodation-type",
-	"title": "Accommodation Type",
+	"title": "Accommodation type",
 	"category": "lsx-tour-operator",
 	"editorScript": "file:index.js",
 	"description": "Display accommodation type and category information.",
@@ -16,7 +16,7 @@
 	"example": {
 		"attributes": {
 			"metadata": {
-				"name": "Accommodation Type"
+				"name": "Accommodation type"
 			}
 		},
 		"innerBlocks": [
@@ -27,7 +27,7 @@
 					[
 						"core/heading",
 						{
-							"content": "Accommodation Type",
+							"content": "Accommodation type",
 							"level": 3
 						}
 					],

@@ -1,13 +1,14 @@
 wp.domReady( () => {
+	const { __ } = wp.i18n;
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/accommodation-related-accommodation',
-		title: 'Related Accommodation - Accommodation',
+		title: __( 'Related accommodation - accommodation', 'tour-operator' ),
 		icon: 'admin-multisite',
-		description: 'Displays other accommodation in the area.',
+		description: __( 'Displays other accommodation in the area.', 'tour-operator' ),
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
-				name: 'Related Accommodation - Accommodation',
+				name: __( 'Related accommodation - accommodation', 'tour-operator' ),
 			},
 			className: 'lsx-accommodation-related-accommodation-query-wrapper',
 			align: 'full',
@@ -36,7 +37,7 @@ wp.domReady( () => {
 						'core/heading',
 						{
 							textAlign: 'center',
-							content: 'Related Accommodation',
+							content: __( 'Related Accommodation', 'tour-operator' ),
 						},
 					],
 					[
@@ -57,7 +58,7 @@ wp.domReady( () => {
 						'core/query',
 						{
 							metadata: {
-								name: 'Related Accommodation Query',
+								name: __( 'Related Accommodation Query', 'tour-operator' ),
 							},
 							query: {
 								perPage: 8,
@@ -98,7 +99,7 @@ wp.domReady( () => {
 		example: {
 			attributes: {
 				metadata: {
-					name: 'Related Accommodation',
+					name: __( 'Related Accommodation', 'tour-operator' ),
 				},
 			},
 			innerBlocks: [
@@ -109,7 +110,7 @@ wp.domReady( () => {
 						[
 							'core/heading',
 							{
-								content: 'Related Accommodation',
+								content: __( 'Related Accommodation', 'tour-operator' ),
 								textAlign: 'center',
 							},
 						],
@@ -142,8 +143,8 @@ wp.domReady( () => {
 										}
 									},
 									[
-										[ 'core/heading', { content: 'Luxury Beach Resort', level: 3 } ],
-										[ 'core/paragraph', { content: 'Experience ultimate comfort at our beachfront resort with stunning ocean views and world-class amenities.' } ]
+										[ 'core/heading', { content: __( 'Luxury Beach Resort', 'tour-operator' ), level: 3 } ],
+										[ 'core/paragraph', { content: __( 'Experience ultimate comfort at our beachfront resort with stunning ocean views and world-class amenities.', 'tour-operator' ) } ]
 									]
 								],
 								[
@@ -161,8 +162,8 @@ wp.domReady( () => {
 										}
 									},
 									[
-										[ 'core/heading', { content: 'Mountain Lodge', level: 3 } ],
-										[ 'core/paragraph', { content: 'Cozy mountain retreat perfect for nature lovers seeking tranquility and adventure in the wilderness.' } ]
+										[ 'core/heading', { content: __( 'Mountain Lodge', 'tour-operator' ), level: 3 } ],
+										[ 'core/paragraph', { content: __( 'Cozy mountain retreat perfect for nature lovers seeking tranquility and adventure in the wilderness.', 'tour-operator' ) } ]
 									]
 								],
 								[
@@ -180,8 +181,8 @@ wp.domReady( () => {
 										}
 									},
 									[
-										[ 'core/heading', { content: 'City Center Hotel', level: 3 } ],
-										[ 'core/paragraph', { content: 'Modern urban accommodation in the heart of the city with easy access to attractions and dining.' } ]
+										[ 'core/heading', { content: __( 'City Center Hotel', 'tour-operator' ), level: 3 } ],
+										[ 'core/paragraph', { content: __( 'Modern urban accommodation in the heart of the city with easy access to attractions and dining.', 'tour-operator' ) } ]
 									]
 								]
 							]

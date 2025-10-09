@@ -1,12 +1,13 @@
 wp.domReady(() => {
+	const { __ } = wp.i18n;
 	wp.blocks.registerBlockVariation("core/group", {
 		name: "lsx-tour-operator/accommodation-type",
-		title: "Accommodation Type",
+		title: __( "Accommodation type", "tour-operator" ),
 		icon: "admin-multisite",
 		category: "lsx-tour-operator",
 		attributes: {
 			metadata: {
-				name: "Accommodation Type",
+				name: __( "Accommodation type", "tour-operator" ),
 			},
 			className: "lsx-accommodation-type-wrapper",
 			layout: {
@@ -25,18 +26,16 @@ wp.domReady(() => {
 				},
 				[
 					[
-						"core/image",
+						"lsx-tour-operator/icons",
 						{
-							width: "20px",
-							sizeSlug: "large",
-							url: lsxToEditor.assetsUrl + "blocks/accommodation-type.png",
-							alt: "",
+							iconType: "solid",
+							iconName: "accommodationTypeIcon",
 						},
 					],
 					[
 						"core/paragraph",
 						{
-							content: "<strong>Accommodation Type</strong>:",
+							content: "<strong>" + __( "Accommodation Type", "tour-operator" ) + "</strong>:",
 						},
 					],
 				],
@@ -65,7 +64,7 @@ wp.domReady(() => {
 		example: {
 			attributes: {
 				metadata: {
-					name: "Accommodation Type",
+					name: __( "Accommodation Type", "tour-operator" ),
 				},
 			},
 			innerBlocks: [
@@ -76,14 +75,14 @@ wp.domReady(() => {
 						[
 							"core/heading",
 							{
-								content: "Accommodation Type",
+								content: __( "Accommodation Type", "tour-operator" ),
 								level: 3,
 							},
 						],
 						[
 							"core/paragraph",
 							{
-								content: "Luxury Safari Lodge",
+								content: __( "Luxury Safari Lodge", "tour-operator" ),
 							},
 						],
 					],

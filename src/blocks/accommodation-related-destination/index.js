@@ -1,13 +1,14 @@
 wp.domReady( () => {
+	const { __ } = wp.i18n;
 	wp.blocks.registerBlockVariation( 'core/group', {
 		name: 'lsx-tour-operator/accommodation-related-destination',
-		title: 'Related Accommodation - Destination',
+		title: __( 'Related accommodation - destination', 'tour-operator' ),
 		icon: 'admin-site',
-		description: 'Displays Accommodation related to a Destination.',
+		description: __( 'Displays accommodation related to a destination.', 'tour-operator' ),
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
-				name: 'Related Accommodation - Destination',
+				name: __( 'Related accommodation - destination', 'tour-operator' ),
 			},
 			className: 'lsx-accommodation-related-destination-query-wrapper',
 			align: 'full',
@@ -36,7 +37,7 @@ wp.domReady( () => {
 						'core/heading',
 						{
 							textAlign: 'center',
-							content: 'Related Accommodation',
+							content: __( 'Related accommodation', 'tour-operator' ),
 						},
 					],
 					[
@@ -57,7 +58,7 @@ wp.domReady( () => {
 						'core/query',
 						{
 							metadata: {
-								name: 'Related Accommodation Query',
+								name: __( 'Related accommodation query', 'tour-operator' ),
 							},
 							query: {
 								perPage: 8,
@@ -98,7 +99,7 @@ wp.domReady( () => {
 		example: {
 			attributes: {
 				metadata: {
-					name: 'Related Accommodation - Destination',
+					name: __( 'Related accommodation - destination', 'tour-operator' ),
 				},
 			},
 			innerBlocks: [
@@ -109,7 +110,7 @@ wp.domReady( () => {
 						[
 							'core/heading',
 							{
-								content: 'Related Destinations',
+								content: __( 'Related destinations', 'tour-operator' ),
 								textAlign: 'center',
 							},
 						],
@@ -142,8 +143,8 @@ wp.domReady( () => {
 										}
 									},
 									[
-										[ 'core/heading', { content: 'Kruger National Park', level: 3 } ],
-										[ 'core/paragraph', { content: 'Premier wildlife destination offering exceptional safari experiences and diverse ecosystems.' } ]
+										[ 'core/heading', { content: __( 'Kruger National Park', 'tour-operator' ), level: 3 } ],
+										[ 'core/paragraph', { content: __( 'Premier wildlife destination offering exceptional safari experiences and diverse ecosystems.', 'tour-operator' ) } ]
 									]
 								],
 								[
@@ -161,8 +162,8 @@ wp.domReady( () => {
 										}
 									},
 									[
-										[ 'core/heading', { content: 'Garden Route', level: 3 } ],
-										[ 'core/paragraph', { content: 'Scenic coastal route with stunning landscapes, charming towns, and outdoor adventures.' } ]
+										[ 'core/heading', { content: __( 'Garden Route', 'tour-operator' ), level: 3 } ],
+										[ 'core/paragraph', { content: __( 'Scenic coastal route with stunning landscapes, charming towns, and outdoor adventures.', 'tour-operator' ) } ]
 									]
 								],
 								[
@@ -180,8 +181,8 @@ wp.domReady( () => {
 										}
 									},
 									[
-										[ 'core/heading', { content: 'Drakensberg Mountains', level: 3 } ],
-										[ 'core/paragraph', { content: 'Majestic mountain range perfect for hiking, culture, and breathtaking scenery.' } ]
+										[ 'core/heading', { content: __( 'Drakensberg Mountains', 'tour-operator' ), level: 3 } ],
+										[ 'core/paragraph', { content: __( 'Majestic mountain range perfect for hiking, culture, and breathtaking scenery.', 'tour-operator' ) } ]
 									]
 								]
 							]

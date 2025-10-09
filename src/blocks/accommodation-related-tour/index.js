@@ -1,13 +1,14 @@
 wp.domReady(() => {
+	const { __ } = wp.i18n;
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/accommodation-related-tour',
-		title: 'Related Accommodation - Tour',
+		title: __( 'Related accommodation - tour', 'tour-operator' ),
 		icon: 'palmtree',
-		description: 'Displays Accommodation related to this Tour via the destinations.',
+		description: __( 'Displays accommodation related to this tour via the destinations.', 'tour-operator' ),
 		category: 'lsx-tour-operator',
 		attributes: {
 			metadata: {
-				name: 'Related Accommodation - Tour',
+				name: __( 'Related accommodation - tour', 'tour-operator' ),
 			},
 			className: 'lsx-accommodation-related-tour-query-wrapper',
 			align: 'full',
@@ -36,7 +37,7 @@ wp.domReady(() => {
 						'core/heading',
 						{
 							textAlign: 'center',
-							content: 'Related Accommodation',
+							content: __( 'Related accommodation', 'tour-operator' ),
 						},
 					],
 					[
@@ -57,7 +58,7 @@ wp.domReady(() => {
 						'core/query',
 						{
 							metadata: {
-								name: 'Related Accommodation Query',
+								name: __( 'Related accommodation query', 'tour-operator' ),
 							},
 							query: {
 								perPage: 8,
@@ -98,7 +99,7 @@ wp.domReady(() => {
 		example: {
 			attributes: {
 				metadata: {
-					name: 'Related Tours',
+					name: __( 'Related tours', 'tour-operator' ),
 				},
 			},
 			innerBlocks: [
@@ -109,7 +110,7 @@ wp.domReady(() => {
 						[
 							'core/heading',
 							{
-								content: 'Related Tours',
+								content: __( 'Related tours', 'tour-operator' ),
 								textAlign: 'center',
 							},
 						],
@@ -142,8 +143,8 @@ wp.domReady(() => {
 										},
 									},
 									[
-										['core/heading', { content: 'African Safari Adventure', level: 3 }],
-										['core/paragraph', { content: "Embark on an unforgettable 7-day safari experience through Kenya's most spectacular wildlife reserves." }],
+										['core/heading', { content: __( 'African Safari Adventure', 'tour-operator' ), level: 3 }],
+										['core/paragraph', { content: __( "Embark on an unforgettable 7-day safari experience through Kenya's most spectacular wildlife reserves.", 'tour-operator' ) }],
 									],
 								],
 								[
@@ -161,8 +162,8 @@ wp.domReady(() => {
 										},
 									},
 									[
-										['core/heading', { content: 'European Cultural Journey', level: 3 }],
-										['core/paragraph', { content: 'Discover the rich history and culture of Europe with visits to iconic cities and historic landmarks.' }],
+										['core/heading', { content: __( 'European Cultural Journey', 'tour-operator' ), level: 3 }],
+										['core/paragraph', { content: __( 'Discover the rich history and culture of Europe with visits to iconic cities and historic landmarks.', 'tour-operator' ) }],
 									],
 								],
 								[
@@ -180,8 +181,8 @@ wp.domReady(() => {
 										},
 									},
 									[
-										['core/heading', { content: 'Tropical Island Escape', level: 3 }],
-										['core/paragraph', { content: 'Relax and unwind on pristine beaches with crystal clear waters and vibrant coral reefs.' }],
+										['core/heading', { content: __( 'Tropical Island Escape', 'tour-operator' ), level: 3 }],
+										['core/paragraph', { content: __( 'Relax and unwind on pristine beaches with crystal clear waters and vibrant coral reefs.', 'tour-operator' ) }],
 									],
 								],
 							],
