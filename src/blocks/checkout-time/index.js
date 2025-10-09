@@ -10,123 +10,147 @@
 
 import { __ } from '@wordpress/i18n';
 
-wp.domReady(() => {
-    const { select } = wp.data;
-
-    // Define supported post types
-    const supportedPostTypes = ['accommodation'];
-
-    // Check if current post type is supported
-    const checkAndRegister = () => {
-        const postType = select('core/editor')?.getCurrentPostType();
-
-        if (postType && supportedPostTypes.includes(postType)) {
-            wp.blocks.registerBlockVariation("core/group", {
-                name: "lsx-tour-operator/checkout-time",
-                title: "Check Out Time",
-                icon: "clock",
-                category: "lsx-tour-operator",
+function registerCheckoutTimeVariation() {
+    try {
+        wp.blocks.registerBlockVariation("core/group", {
+            name: "lsx-tour-operator/checkout-time",
+            title: __("Check out time", "tour-operator"),
+            icon: "clock",
+            category: "lsx-tour-operator",
+            isActive: (blockAttributes, variationAttributes) => {
+                return blockAttributes.metadata?.name === variationAttributes.metadata?.name;
+            },
+            attributes: {
+                metadata: {
+                    name: "Check out time",
+                },
+                className: "lsx-checkout-time-wrapper",
+                layout: {
+                    type: "flex",
+                    flexWrap: "nowrap",
+                },
+            },
+            innerBlocks: [
+                [
+                    "core/group",
+                    {
+                        layout: {
+                            type: "flex",
+                            flexWrap: "nowrap",
+                            verticalAlignment: "middle",
+                        },
+                    },
+                    [
+                        [
+                            "lsx-tour-operator/icons",
+                            {
+                                iconType: "solid",
+                                iconName: "checkInAccommodationIcon",
+                            },
+                        ],
+                        [
+                            "core/paragraph",
+                            {
+                                content: __(
+                                    'Check out time:',
+                                    'tour-operator'
+                                ),
+                            },
+                        ],
+                    ],
+                ],
+                [
+                    "core/group",
+                    {
+                        layout: {
+                            type: "flex",
+                            flexWrap: "nowrap",
+                        },
+                    },
+                    [
+                        [
+                            "core/paragraph",
+                            {
+                                metadata: {
+                                    bindings: {
+                                        content: {
+                                            source: "lsx/post-meta",
+                                            args: {
+                                                key: "checkout_time",
+                                            },
+                                        },
+                                    },
+                                },
+                            },
+                        ],
+                    ],
+                ],
+            ],
+            supports: {
+                renaming: false,
+            },
+            example: {
                 attributes: {
                     metadata: {
                         name: "Check Out Time",
-                    },
-                    className: "lsx-checkout-time-wrapper",
-                    layout: {
-                        type: "flex",
-                        flexWrap: "nowrap",
                     },
                 },
                 innerBlocks: [
                     [
                         "core/group",
-                        {
-                            layout: {
-                                type: "flex",
-                                flexWrap: "nowrap",
-                                verticalAlignment: "middle",
-                            },
-                        },
+                        {},
                         [
                             [
-                                "lsx-tour-operator/icons",
+                                "core/heading",
                                 {
-                                    iconType: "solid",
-                                    iconName: "checkInAccommodationIcon",
+                                    content: "Check Out Time",
+                                    level: 3,
                                 },
                             ],
                             [
                                 "core/paragraph",
                                 {
-                                    content: __(
-                                        'Check out time:',
-                                        'tour-operator'
-                                    ),
-                                },
-                            ],
-                        ],
-                    ],
-                    [
-                        "core/group",
-                        {
-                            layout: {
-                                type: "flex",
-                                flexWrap: "nowrap",
-                            },
-                        },
-                        [
-                            [
-                                "core/paragraph",
-                                {
-                                    metadata: {
-                                        bindings: {
-                                            content: {
-                                                source: "lsx/post-meta",
-                                                args: {
-                                                    key: "checkout_time",
-                                                },
-                                            },
-                                        },
-                                    },
+                                    content: "3:00 PM",
                                 },
                             ],
                         ],
                     ],
                 ],
-                supports: {
-                    renaming: false,
-                },
-                example: {
-                    attributes: {
-                        metadata: {
-                            name: "Check Out Time",
-                        },
-                    },
-                    innerBlocks: [
-                        [
-                            "core/group",
-                            {},
-                            [
-                                [
-                                    "core/heading",
-                                    {
-                                        content: "Check Out Time",
-                                        level: 3,
-                                    },
-                                ],
-                                [
-                                    "core/paragraph",
-                                    {
-                                        content: "3:00 PM",
-                                    },
-                                ],
-                            ],
-                        ],
-                    ],
-                },
-            });
-            return true; // Registration successful
+            },
+        });
+        return true;
+    } catch (error) {
+        console.error('Failed to register checkout-time block:', error);
+        return false;
+    }
+}
+
+wp.domReady(() => {
+    const { select } = wp.data;
+
+    // Define supported post types
+    const supportedPostTypes = ['accommodation'];
+    let registered = false;
+
+    // Check if current post type is supported
+    const checkAndRegister = () => {
+        if (registered) {
+            return true;
         }
-        return false; // Post type not ready or not supported
+
+        const postType = select('core/editor')?.getCurrentPostType();
+        const postSlug = select('core/editor')?.getEditedPostSlug();
+
+        if (!postType || !postSlug) {
+            return false;
+        }
+
+        if (supportedPostTypes.includes(postType) || ((postType === 'wp_template' || postType === 'wp_template_part') && postSlug.includes('accommodation'))) {
+            registerCheckoutTimeVariation();
+            registered = true;
+        }
+
+        return registered;
     };
 
     // Try immediate registration

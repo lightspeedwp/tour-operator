@@ -100,6 +100,77 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
+function registerCheckinTimeVariation() {
+  try {
+    wp.blocks.registerBlockVariation('core/group', {
+      name: 'lsx-tour-operator/checkin-time',
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Check in time', 'tour-operator'),
+      icon: 'clock',
+      category: 'lsx-tour-operator',
+      isActive: (blockAttributes, variationAttributes) => {
+        return blockAttributes.metadata?.name === variationAttributes.metadata?.name;
+      },
+      attributes: {
+        metadata: {
+          name: 'Check in time'
+        },
+        className: 'lsx-checkin-time-wrapper',
+        layout: {
+          type: 'flex',
+          flexWrap: 'nowrap'
+        }
+      },
+      innerBlocks: [['core/group', {
+        layout: {
+          type: 'flex',
+          flexWrap: 'nowrap',
+          verticalAlignment: 'middle'
+        }
+      }, [['lsx-tour-operator/icons', {
+        iconType: 'solid',
+        iconName: 'checkInAccommodationIcon'
+      }], ['core/paragraph', {
+        content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Check in time:', 'tour-operator')
+      }]]], ['core/group', {
+        layout: {
+          type: 'flex',
+          flexWrap: 'nowrap'
+        }
+      }, [['core/paragraph', {
+        metadata: {
+          bindings: {
+            content: {
+              source: 'lsx/post-meta',
+              args: {
+                key: 'checkin_time'
+              }
+            }
+          }
+        }
+      }]]]],
+      supports: {
+        renaming: false
+      },
+      example: {
+        attributes: {
+          metadata: {
+            name: 'Check in time'
+          }
+        },
+        innerBlocks: [['core/group', {}, [['core/heading', {
+          content: 'Check in time',
+          level: 3
+        }], ['core/paragraph', {
+          content: '11:00 AM'
+        }]]]]
+      }
+    });
+    return true;
+  } catch (error) {
+    console.error('Failed to register checkin-time block:', error);
+    return false;
+  }
+}
 wp.domReady(() => {
   const {
     select
@@ -107,74 +178,23 @@ wp.domReady(() => {
 
   // Define supported post types
   const supportedPostTypes = ['accommodation'];
+  let registered = false;
 
   // Check if current post type is supported
   const checkAndRegister = () => {
-    const postType = select('core/editor')?.getCurrentPostType();
-    if (postType && supportedPostTypes.includes(postType)) {
-      wp.blocks.registerBlockVariation("core/group", {
-        name: "lsx-tour-operator/checkin-time",
-        title: "Check In Time",
-        icon: "clock",
-        category: "lsx-tour-operator",
-        attributes: {
-          metadata: {
-            name: "Check In Time"
-          },
-          className: "lsx-checkin-time-wrapper",
-          layout: {
-            type: "flex",
-            flexWrap: "nowrap"
-          }
-        },
-        innerBlocks: [["core/group", {
-          layout: {
-            type: "flex",
-            flexWrap: "nowrap",
-            verticalAlignment: "middle"
-          }
-        }, [["lsx-tour-operator/icons", {
-          iconType: "solid",
-          iconName: "checkInAccommodationIcon"
-        }], ["core/paragraph", {
-          content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Check in time:', 'tour-operator')
-        }]]], ["core/group", {
-          layout: {
-            type: "flex",
-            flexWrap: "nowrap"
-          }
-        }, [["core/paragraph", {
-          metadata: {
-            bindings: {
-              content: {
-                source: "lsx/post-meta",
-                args: {
-                  key: "checkin_time"
-                }
-              }
-            }
-          }
-        }]]]],
-        supports: {
-          renaming: false
-        },
-        example: {
-          attributes: {
-            metadata: {
-              name: "Check In Time"
-            }
-          },
-          innerBlocks: [["core/group", {}, [["core/heading", {
-            content: "Check In Time",
-            level: 3
-          }], ["core/paragraph", {
-            content: "11:00 AM"
-          }]]]]
-        }
-      });
-      return true; // Registration successful
+    if (registered) {
+      return true;
     }
-    return false; // Post type not ready or not supported
+    const postType = select('core/editor')?.getCurrentPostType();
+    const postSlug = select('core/editor')?.getEditedPostSlug();
+    if (!postType || !postSlug) {
+      return false;
+    }
+    if (supportedPostTypes.includes(postType) || (postType === 'wp_template' || postType === 'wp_template_part') && postSlug.includes('accommodation')) {
+      registerCheckinTimeVariation();
+      registered = true;
+    }
+    return registered;
   };
 
   // Try immediate registration
