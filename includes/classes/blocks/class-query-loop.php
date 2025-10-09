@@ -113,10 +113,6 @@ class Query_Loop {
 
 			switch ( $query_key ) {
 				case 'regions':
-					// If the current item is not a country
-					if ( null !== $current_parent ) {
-						return '';
-					}
 
 					if ( false === lsx_to_item_has_children( get_the_ID(), 'destination' ) ) {
 						return '';

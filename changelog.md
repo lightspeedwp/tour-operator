@@ -3,7 +3,7 @@
 ## [[2.1.0]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.0) - In Dev
 
 ### Changed
-- Updated changelog for new feature PR. (2025-10-09)
+
 
 ### Added
 - A filter to allow the disabling of destinations when searching for related content. `lsx_to_' . $key . '_include_destinations`. - [BH-74](https://www.bugherd.com/projects/430995/tasks/74)
@@ -14,6 +14,7 @@
 - Banner Cover block which pulls the image set in the Banner Image field. - [#604](https://github.com/lightspeedwp/tour-operator/pull/604)
 - Tagline block which pulls the text set in the Tagline field. - [#604](https://github.com/lightspeedwp/tour-operator/pull/604)
 - Added in a filter to allow the disabling of the facility block links - `lsx_to_accommodation_facilities_should_link` - [#608](https://github.com/lightspeedwp/tour-operator/pull/608)
+- Added in a filter to allow the ordering of the query blocks by post__in. - [#653](https://github.com/lightspeedwp/tour-operator/pull/653)
 
 ### Enhancements
 - Updated block icons for various block variations: Custom SVGs were added to: dress, facilities, health, ends-in, departs-from, climate, transport. [#579](https://github.com/lightspeedwp/tour-operator/pull/579)
@@ -47,6 +48,7 @@
 - Audit All CSS Files and clean out unused CSS in /assets/css - Issue [#533](https://github.com/lightspeedwp/tour-operator/issues/533)
 - Remove outdated admin pages & assets, files removed: add-ons.php, help.php, welcome.php - Issue [#549](https://github.com/lightspeedwp/tour-operator/issues/549), PR [#553](https://github.com/lightspeedwp/tour-operator/pull/553)
 - Remove `cgb-scripts`, `gulp` and old `node-sass` dependencies from package.json - Issue [#559](https://github.com/lightspeedwp/tour-operator/issues/559)
+- Removed the condition restriction the 3 tier destinations for regions. [#654](https://github.com/lightspeedwp/tour-operator/pull/654)
 
 ### Fixed
 - Remove outdated testing icons
