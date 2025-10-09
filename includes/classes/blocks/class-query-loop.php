@@ -394,6 +394,11 @@ class Query_Loop {
 				break;
 		}
 
+		// Allow 3rd Parties to alter the query order
+		if ( isset( $query['post__in'] ) && apply_filters( 'lsx_to_query_orderby_post__in', false, $query, $block ) ) {
+			$query['orderby'] = 'post__in';
+		}
+
 		// Store the processed query for this queryId (if available) and also keep legacy property.
 		if ( null !== $query_id ) {
 			$this->saved_queries[ $query_id ] = $query;
