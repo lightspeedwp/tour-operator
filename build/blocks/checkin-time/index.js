@@ -112,7 +112,7 @@ function registerCheckinTimeVariation() {
       },
       attributes: {
         metadata: {
-          name: 'Check in time'
+          name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Check in time', 'tour-operator')
         },
         className: 'lsx-checkin-time-wrapper',
         layout: {
@@ -154,11 +154,11 @@ function registerCheckinTimeVariation() {
       example: {
         attributes: {
           metadata: {
-            name: 'Check in time'
+            name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Check in time', 'tour-operator')
           }
         },
         innerBlocks: [['core/group', {}, [['core/heading', {
-          content: 'Check in time',
+          content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Check in time', 'tour-operator'),
           level: 3
         }], ['core/paragraph', {
           content: '11:00 AM'

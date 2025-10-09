@@ -22,7 +22,7 @@ function registerCheckoutTimeVariation() {
             },
             attributes: {
                 metadata: {
-                    name: "Check out time",
+                    name: __("Check out time", "tour-operator"),
                 },
                 className: "lsx-checkout-time-wrapper",
                 layout: {
@@ -92,7 +92,7 @@ function registerCheckoutTimeVariation() {
             example: {
                 attributes: {
                     metadata: {
-                        name: "Check Out Time",
+                        name: __("Check Out Time", "tour-operator"),
                     },
                 },
                 innerBlocks: [
@@ -103,7 +103,7 @@ function registerCheckoutTimeVariation() {
                             [
                                 "core/heading",
                                 {
-                                    content: "Check Out Time",
+                                    content: __("Check Out Time", "tour-operator"),
                                     level: 3,
                                 },
                             ],

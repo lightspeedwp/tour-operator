@@ -112,7 +112,7 @@ function registerCheckoutTimeVariation() {
       },
       attributes: {
         metadata: {
-          name: "Check out time"
+          name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Check out time", "tour-operator")
         },
         className: "lsx-checkout-time-wrapper",
         layout: {
@@ -154,11 +154,11 @@ function registerCheckoutTimeVariation() {
       example: {
         attributes: {
           metadata: {
-            name: "Check Out Time"
+            name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Check Out Time", "tour-operator")
           }
         },
         innerBlocks: [["core/group", {}, [["core/heading", {
-          content: "Check Out Time",
+          content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Check Out Time", "tour-operator"),
           level: 3
         }], ["core/paragraph", {
           content: "3:00 PM"

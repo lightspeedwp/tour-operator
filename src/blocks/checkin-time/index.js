@@ -22,7 +22,7 @@ function registerCheckinTimeVariation() {
             },
             attributes: {
                 metadata: {
-                    name: 'Check in time',
+                    name: __('Check in time', 'tour-operator'),
                 },
                 className: 'lsx-checkin-time-wrapper',
                 layout: {
@@ -92,7 +92,7 @@ function registerCheckinTimeVariation() {
             example: {
                 attributes: {
                     metadata: {
-                        name: 'Check in time',
+                        name: __('Check in time', 'tour-operator'),
                     },
                 },
                 innerBlocks: [
@@ -103,7 +103,7 @@ function registerCheckinTimeVariation() {
                             [
                                 'core/heading',
                                 {
-                                    content: 'Check in time',
+                                    content: __('Check in time', 'tour-operator'),
                                     level: 3,
                                 },
                             ],
