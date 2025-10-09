@@ -397,6 +397,7 @@ class Query_Loop {
 		// Allow 3rd Parties to alter the query order
 		if ( isset( $query['post__in'] ) && apply_filters( 'lsx_to_query_orderby_post__in', false, $query, $block ) ) {
 			$query['orderby'] = 'post__in';
+			$query['order'] = 'ASC';
 		}
 
 		// Store the processed query for this queryId (if available) and also keep legacy property.
