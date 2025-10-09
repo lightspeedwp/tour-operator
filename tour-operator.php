@@ -30,8 +30,10 @@ define('LSX_TO_URL', plugin_dir_url(__FILE__));
 define('LSX_TO_VER', '2.1.0');
 
 // Maintain a list of content model JSON paths consumed by the plugin.
+// phpcs:disable WordPress.WP.GlobalVariablesOverride.Prohibited
 global $CONTENT_MODEL_JSON_PATH;
 $CONTENT_MODEL_JSON_PATH[] = LSX_TO_PATH;
+// phpcs:enable WordPress.WP.GlobalVariablesOverride.Prohibited
 
 // Post Expirator.
 define('LSX_TO_POSTEXPIRATOR_DATEFORMAT', esc_html__('l F jS, Y', 'tour-operator'));
