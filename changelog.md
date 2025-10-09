@@ -3,7 +3,10 @@
 ## [[2.1.0]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.0) - In Dev
 
 ### Changed
-- Updated changelog for new feature PR. (2025-10-09)
+- Updated changelog for fix/asc-bh-330 (2025-10-09)
+
+### Changed
+Updated changelog for new feature PR. (2025-10-09)
 
 ### Added
 - A filter to allow the disabling of destinations when searching for related content. `lsx_to_' . $key . '_include_destinations`. - [BH-74](https://www.bugherd.com/projects/430995/tasks/74)
