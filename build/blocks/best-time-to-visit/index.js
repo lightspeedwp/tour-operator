@@ -181,10 +181,11 @@ wp.domReady(() => {
     }
     const postType = select('core/editor')?.getCurrentPostType();
     const postSlug = select('core/editor')?.getEditedPostSlug();
-    if (!postType || !postSlug) {
+    if (!postType) {
       return false;
     }
-    if (supportedPostTypes.includes(postType) || (postType === 'wp_template' || postType === 'wp_template_part') && (postSlug.includes('destination') || postSlug.includes('country') || postSlug.includes('region'))) {
+    const isTemplateContext = postType === 'wp_template' || postType === 'wp_template_part';
+    if (supportedPostTypes.includes(postType) || isTemplateContext && postSlug && (postSlug.includes('destination') || postSlug.includes('country') || postSlug.includes('region'))) {
       registerBestTimeToVisitVariation();
       registered = true;
     }
