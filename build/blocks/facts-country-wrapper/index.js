@@ -107,9 +107,7 @@ function registerFactsCountryWrapperVariation() {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Country', 'tour-operator'),
       icon: 'admin-site',
       category: 'lsx-tour-operator',
-      isActive: (blockAttributes, variationAttributes) => {
-        return blockAttributes.metadata?.name === variationAttributes.metadata?.name;
-      },
+      isActive: blockAttributes => blockAttributes?.className?.includes('facts-country-query-wrapper'),
       attributes: {
         metadata: {
           name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Country', 'tour-operator')
@@ -130,7 +128,7 @@ function registerFactsCountryWrapperVariation() {
         iconType: 'solid',
         iconName: 'destinationIcon'
       }], ['core/paragraph', {
-        content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('<strong>Country:</strong>', 'tour-operator')
+        content: `<strong>${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Country', 'tour-operator')}</strong>`
       }]]], ['core/group', {
         layout: {
           type: 'flex',

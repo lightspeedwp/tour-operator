@@ -17,9 +17,8 @@ function registerFactsRegionsWrapperVariation() {
             title: __('Regions list', 'tour-operator'),
             icon: 'admin-site-alt',
             category: 'lsx-tour-operator',
-            isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.metadata?.name === variationAttributes.metadata?.name;
-            },
+            isActive: (blockAttributes) =>
+                blockAttributes?.className?.includes('facts-regions-query-wrapper'),
             attributes: {
                 metadata: {
                     name: __('Regions list', 'tour-operator'),

@@ -17,9 +17,8 @@ function registerVisaVariation() {
             title: __('Visa', 'tour-operator'),
             icon: 'id-alt',
             category: 'lsx-tour-operator',
-            isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.metadata?.name === variationAttributes.metadata?.name;
-            },
+            isActive: (blockAttributes) =>
+                blockAttributes?.className?.includes('lsx-visa-wrapper'),
             attributes: {
                 metadata: {
                     name: __('Visa', 'tour-operator'),

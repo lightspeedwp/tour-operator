@@ -17,9 +17,8 @@ function registerBestTimeToVisitVariation() {
             title: __('Best time to visit', 'tour-operator'),
             icon: 'calendar-alt',
             category: 'lsx-tour-operator',
-            isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.metadata?.name === variationAttributes.metadata?.name;
-            },
+            isActive: (blockAttributes) =>
+                blockAttributes?.className?.includes('lsx-best-time-to-visit-wrapper'),
             attributes: {
                 metadata: {
                     name: __('Best time to visit', 'tour-operator'),

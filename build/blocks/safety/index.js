@@ -107,9 +107,7 @@ function registerSafetyVariation() {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Safety', 'tour-operator'),
       icon: 'shield',
       category: 'lsx-tour-operator',
-      isActive: (blockAttributes, variationAttributes) => {
-        return blockAttributes.metadata?.name === variationAttributes.metadata?.name;
-      },
+      isActive: blockAttributes => blockAttributes?.className?.includes('lsx-safety-wrapper'),
       attributes: {
         metadata: {
           name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Safety', 'tour-operator')

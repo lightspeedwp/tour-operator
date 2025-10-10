@@ -104,15 +104,13 @@ function registerBestTimeToVisitVariation() {
   try {
     wp.blocks.registerBlockVariation('core/group', {
       name: 'lsx-tour-operator/best-time-to-visit',
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Best Time to Visit', 'tour-operator'),
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Best time to visit', 'tour-operator'),
       icon: 'calendar-alt',
       category: 'lsx-tour-operator',
-      isActive: (blockAttributes, variationAttributes) => {
-        return blockAttributes.metadata?.name === variationAttributes.metadata?.name;
-      },
+      isActive: blockAttributes => blockAttributes?.className?.includes('lsx-best-time-to-visit-wrapper'),
       attributes: {
         metadata: {
-          name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Best Time to Visit', 'tour-operator')
+          name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Best time to visit', 'tour-operator')
         },
         className: 'lsx-best-time-to-visit-wrapper'
       },
@@ -123,10 +121,9 @@ function registerBestTimeToVisitVariation() {
           verticalAlignment: 'middle'
         }
       }, [['lsx-tour-operator/icons', {
-        iconType: 'solid',
-        iconName: 'bestTimeToVisitIcon'
+        iconName: 'bestMonthsToTravelIcon'
       }], ['core/paragraph', {
-        content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('<strong>Best Months to Visit</strong>', 'tour-operator')
+        content: `<strong>${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Best months to visit', 'tour-operator')}</strong>`
       }]]], ['core/group', {
         layout: {
           type: 'flex',
@@ -143,7 +140,7 @@ function registerBestTimeToVisitVariation() {
             }
           }
         },
-        content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Best Months to Visit', 'tour-operator')
+        content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Best months to visit', 'tour-operator')
       }]]]],
       supports: {
         renaming: false
@@ -151,11 +148,11 @@ function registerBestTimeToVisitVariation() {
       example: {
         attributes: {
           metadata: {
-            name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Best Time to Visit', 'tour-operator')
+            name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Best time to visit', 'tour-operator')
           }
         },
         innerBlocks: [['core/group', {}, [['core/heading', {
-          content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Best Months to Visit', 'tour-operator'),
+          content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Best months to visit', 'tour-operator'),
           level: 3
         }], ['core/paragraph', {
           content: 'January, February, March'

@@ -104,15 +104,13 @@ function registerFactsRegionsWrapperVariation() {
   try {
     wp.blocks.registerBlockVariation('core/group', {
       name: 'lsx-tour-operator/facts-regions-wrapper',
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Regions List', 'tour-operator'),
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Regions list', 'tour-operator'),
       icon: 'admin-site-alt',
       category: 'lsx-tour-operator',
-      isActive: (blockAttributes, variationAttributes) => {
-        return blockAttributes.metadata?.name === variationAttributes.metadata?.name;
-      },
+      isActive: blockAttributes => blockAttributes?.className?.includes('facts-regions-query-wrapper'),
       attributes: {
         metadata: {
-          name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Regions List', 'tour-operator')
+          name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Regions list', 'tour-operator')
         },
         className: 'facts-regions-query-wrapper',
         layout: {
@@ -130,7 +128,7 @@ function registerFactsRegionsWrapperVariation() {
         iconType: 'solid',
         iconName: 'destinationIcon'
       }], ['core/paragraph', {
-        content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('<strong>Regions:</strong>', 'tour-operator')
+        content: `<strong>${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Regions', 'tour-operator')}</strong>`
       }]]], ['core/group', {
         layout: {
           type: 'flex',
@@ -155,7 +153,7 @@ function registerFactsRegionsWrapperVariation() {
       example: {
         attributes: {
           metadata: {
-            name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Regions List', 'tour-operator')
+            name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Regions list', 'tour-operator')
           }
         },
         innerBlocks: [['core/group', {}, [['core/heading', {

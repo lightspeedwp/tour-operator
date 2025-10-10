@@ -17,9 +17,8 @@ function registerSafetyVariation() {
             title: __('Safety', 'tour-operator'),
             icon: 'shield',
             category: 'lsx-tour-operator',
-            isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.metadata?.name === variationAttributes.metadata?.name;
-            },
+            isActive: (blockAttributes) =>
+                blockAttributes?.className?.includes('lsx-safety-wrapper'),
             attributes: {
                 metadata: {
                     name: __('Safety', 'tour-operator'),

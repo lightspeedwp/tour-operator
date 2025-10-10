@@ -17,9 +17,8 @@ function registerFactsCountryWrapperVariation() {
             title: __('Country', 'tour-operator'),
             icon: 'admin-site',
             category: 'lsx-tour-operator',
-            isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.metadata?.name === variationAttributes.metadata?.name;
-            },
+            isActive: (blockAttributes) =>
+                blockAttributes?.className?.includes('facts-country-query-wrapper'),
             attributes: {
                 metadata: {
                     name: __('Country', 'tour-operator'),
