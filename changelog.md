@@ -2,9 +2,6 @@
 
 ## [[2.1.0]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.0) - In Dev
 
-### Changed
-
-
 ### Added
 - A filter to allow the disabling of destinations when searching for related content. `lsx_to_' . $key . '_include_destinations`. - [BH-74](https://www.bugherd.com/projects/430995/tasks/74)
 - Integrate new icons block - PR [#547](https://github.com/lightspeedwp/tour-operator/pull/547), Issue [#548](https://github.com/lightspeedwp/tour-operator/issues/548)
@@ -57,6 +54,7 @@
 - Add "currentColor" to all icon colour styling [#575](https://github.com/lightspeedwp/tour-operator/pull/575)
 - Query Block Pagination not Inherting the correct query vars. [#608](https://github.com/lightspeedwp/tour-operator/pull/608)
 - Fixed – Excluded build/ directory from CodeRabbit reviews by updating .coderabbit.yaml. [#620](https://github.com/lightspeedwp/tour-operator/pull/620)
+- Hide "location" custom field and exclude relevant JS when Google Maps API key is missing. Only the map field is shown. ([#657](https://github.com/lightspeedwp/tour-operator/issues/657))
 
 ### Security
 - 
