@@ -37,9 +37,9 @@ class Taxonomies extends Frame
 	 * @param string $slug   The taxonomy slug.
 	 * @param array  $config The taxonomy config arguments.
 	 */
-	protected function register_object($slug, $config)
-	{
-		$config['args'] = apply_filters('lsx_to_register_taxonomy_args', $config['args'], $slug);
+	protected function register_object($slug, $config) {
+		$config['args']         = apply_filters('lsx_to_register_taxonomy_args', $config['args'], $slug);
+		$config['object_types'] = apply_filters('lsx_to_register_taxonomy_object_types', $config['object_types'], $slug);
 		register_taxonomy($slug, $config['object_types'], $config['args']);
 		$this->object[$slug] = get_taxonomy($slug);
 	}
