@@ -86,7 +86,7 @@ if ( window.location.hash ) {
             }
         } );
 
-        $( '.tax-travel-style .wp-block-read-more' ).each( function () {
+        $( '.tax-travel-style .wp-block-read-more, .tax-accommodation-brand .wp-block-read-more, .tax-accommodation-type .wp-block-read-more' ).each( function () {
             if (
                 0 <
                 $( this )
@@ -162,7 +162,7 @@ if ( window.location.hash ) {
             }
         );
 
-        $( '.tax-travel-style .wp-block-read-more' ).on(
+        $( '.tax-travel-style .wp-block-read-more, .tax-accommodation-brand .wp-block-read-more, .tax-accommodation-type .wp-block-read-more' ).on(
             'click',
             function ( event ) {
                 event.preventDefault();
