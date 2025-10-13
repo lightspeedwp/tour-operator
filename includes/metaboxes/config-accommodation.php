@@ -61,17 +61,20 @@ if (! isset(tour_operator()->options['display']['maps_disable']) && empty(tour_o
 	if (isset(tour_operator()->options['googlemaps_key']) && ! empty(tour_operator()->options['googlemaps_key'])) {
 		$google_api_key = tour_operator()->options['googlemaps_key'];
 	}
-	$metabox['fields'][] = array(
-		'id'      => 'location',
-		'name'    => esc_html__('Address', 'tour-operator'),
-		'desc'    => esc_html__('The address of the accommodation for map display.', 'tour-operator'),
-		'type'    => 'pw_map',
-		'api_key' => $google_api_key,
-	);
+	if ( ! empty( $google_api_key ) ) {
+		$metabox['fields'][] = array(
+			'id'      => 'location',
+			'name'    => esc_html__('Address', 'tour-operator'),
+			'desc'    => esc_html__('The address of the accommodation for map display.', 'tour-operator'),
+			'type'    => 'pw_map',
+			'api_key' => $google_api_key,
+		);
+	}
+
 	$metabox['fields'][] = array(
 		'id'           => 'map_placeholder',
 		'name'         => esc_html__('Map Placeholder', 'tour-operator'),
-		'desc'         => esc_html__('A placeholder image for the map if no address or GPS data is available.', 'tour-operator'),
+		'desc'         => esc_html__('A placeholder image for the map, allowing lazy loading.', 'tour-operator'),
 		'type'         => 'file',
 		'repeatable'   => false,
 		'show_size'    => false,
