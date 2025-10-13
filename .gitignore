@@ -71,4 +71,3 @@ phpcs-report.xml
 phpcs-report.txt
 test-results/*
 playwright-report/*
-build/*
