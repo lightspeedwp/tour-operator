@@ -86,6 +86,48 @@ if ( window.location.hash ) {
             }
         } );
 
+        $( '.tax-travel-style .wp-block-read-more' ).each( function () {
+            if (
+                0 <
+                $( this )
+                    .parents( '.wp-block-post-content.term-description' ).length
+            ) {
+				console.log(this);
+                lsx_to.readMoreText = $( this )
+                    .contents()
+                    .filter( function () {
+                        return this.nodeType === Node.TEXT_NODE;
+                    } )
+                    .text();
+
+				// Determine which number P tag the read more is in.
+				let pIndex = 0;
+				$( this ).parents( '.wp-block-post-content.term-description' ).find( 'p' ).each( function ( index ) {
+					if ( $( this ).find( '.wp-block-read-more' ).length ) {
+						pIndex = index;
+					}
+				} );
+				$( this ).parents( '.wp-block-post-content.term-description' ).attr( 'data-readmore-index', pIndex );
+
+				// Now lets move the read more with its parent <p> to the end of the .wp-block-post-content.term-description block.
+				// First lets copy the read more block, append that to the end, then remove the original.
+				// This ensures the read more is always at the end of the description.
+				// This is important if the read more is in the middle of the description.
+				$( this ).parents( '.wp-block-post-content.term-description' ).append( $( this ).parents( 'p' ).clone() );
+				$( this ).parents( 'p' ).remove();
+
+				// Now we need to link the newly cloned item to $(this) so the read more works correctly.
+				// We can do this by re-selecting the last read more in the description block.
+				let newMore = $( '.wp-block-post-content.term-description' ).find( '.wp-block-read-more' ).last();
+
+                lsx_to.readMoreSet(
+                    newMore,
+                    newMore.parents( '.wp-block-post-content.term-description' ),
+					pIndex
+                );
+            }
+        } );
+
         $( '.single-tour-operator .wp-block-read-more' ).on(
             'click',
             function ( event ) {
@@ -119,6 +161,40 @@ if ( window.location.hash ) {
                 }
             }
         );
+
+        $( '.tax-travel-style .wp-block-read-more' ).on(
+            'click',
+            function ( event ) {
+                event.preventDefault();
+
+                if (
+                    0 <
+                    $( this )
+                        .parents( '.wp-block-post-content.term-description' ).length
+                ) {
+                    $( this ).hide();
+
+					let pIndex = $( this ).parents( '.wp-block-post-content.term-description' ).data( 'readmore-index' );
+                    if ( $( this ).hasClass( 'less-link' ) ) {
+                        lsx_to.readMoreSet(
+                            $( this ),
+                            $( this )
+                                .parents( '.wp-block-post-content.term-description' ),
+							pIndex
+                        );
+                    } else {
+                        lsx_to.readMoreOpen(
+                            $( this ),
+                            $( this )
+                                .parents( '.wp-block-post-content.term-description' ),
+                        );
+                    }
+
+					$( this ).show();
+					$( this ).parent('p').show();
+                }
+            }
+        );
     };
 
     lsx_to.readMoreSet = function ( button, contentWrapper, limit = 1 ) {
@@ -132,6 +208,7 @@ if ( window.location.hash ) {
                     }
                     counter++;
                 } );
+				button.parent('p').show();
             } else {
                 button.hide();
             }
