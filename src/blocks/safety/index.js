@@ -1,337 +1,186 @@
-wp.domReady( () => {
-    wp.blocks.registerBlockVariation( 'core/group', {
-        name: 'lsx-tour-operator/safety',
-        title: 'Safety',
-        icon: 'shield',
-        category: 'lsx-tour-operator',
-        attributes: {
-            metadata: {
-                name: 'Safety',
-            },
-            className: 'lsx-safety-wrapper',
-        },
-        innerBlocks: [
-            [
-                'core/group',
-                {
-                    layout: {
-                        type: 'constrained',
-                    },
+/**
+ * Safety Block Variation
+ *
+ * Registers block variations for destination safety display.
+ * Only available on destination post type edit screens.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
+import { __ } from '@wordpress/i18n';
+
+function registerSafetyVariation() {
+    try {
+        wp.blocks.registerBlockVariation('core/group', {
+            name: 'lsx-tour-operator/safety',
+            title: __('Safety', 'tour-operator'),
+            icon: 'shield',
+            category: 'lsx-tour-operator',
+            isActive: (blockAttributes) =>
+                blockAttributes?.className?.includes('lsx-safety-wrapper'),
+            attributes: {
+                metadata: {
+                    name: __('Safety', 'tour-operator'),
                 },
+                className: 'lsx-safety-wrapper',
+            },
+            innerBlocks: [
                 [
-                    [
-                        'core/group',
-                        {
-                            layout: {
-                                type: 'constrained',
-                            },
+                    'core/group',
+                    {
+                        layout: {
+                            type: 'constrained',
                         },
+                    },
+                    [
                         [
-                            [
-                                'core/paragraph',
-                                {
-                                    align: 'center',
-                                    content: '<strong>Safety</strong>',
+                            'core/group',
+                            {
+                                layout: {
+                                    type: 'constrained',
                                 },
+                            },
+                            [
+                                [
+                                    'core/paragraph',
+                                    {
+                                        align: 'center',
+                                        content: `<strong>${__('Safety', 'tour-operator')}</strong>`,
+                                    },
+                                ],
                             ],
                         ],
-                    ],
-                    [
-                        'core/group',
-                        {
-                            layout: {
-                                type: 'constrained',
-                            },
-                        },
                         [
+                            'core/group',
+                            {
+                                layout: {
+                                    type: 'constrained',
+                                },
+                            },
                             [
-                                'core/paragraph',
-                                {
-                                    metadata: {
-                                        bindings: {
-                                            content: {
-                                                source: 'lsx/post-meta',
-                                                args: {
-                                                    key: 'safety',
+                                [
+                                    'core/paragraph',
+                                    {
+                                        metadata: {
+                                            bindings: {
+                                                content: {
+                                                    source: 'lsx/post-meta',
+                                                    args: {
+                                                        key: 'safety',
+                                                    },
                                                 },
                                             },
                                         },
                                     },
-                                },
+                                ],
                             ],
                         ],
                     ],
                 ],
-            ],
-            [
-                'core/buttons',
-                {},
                 [
+                    'core/buttons',
+                    {},
                     [
-                        'core/button',
-                        {
-                            width: 100,
-                            content: 'View More',
-                        },
+                        [
+                            'core/button',
+                            {
+                                width: 100,
+                                content: __('View More', 'tour-operator'),
+                            },
+                        ],
                     ],
                 ],
             ],
-        ],
-        supports: {
-            renaming: false,
-        },
-    } );
-
-    // Travel Information - Visa Wrapper
-    wp.blocks.registerBlockVariation( 'core/group', {
-        name: 'lsx-tour-operator/visa',
-        title: 'Visa',
-        icon: 'id-alt',
-        category: 'lsx-tour-operator',
-        attributes: {
-            metadata: {
-                name: 'Visa',
+            supports: {
+                renaming: false,
             },
-            className: 'lsx-visa-wrapper',
-            style: {
-                border: {
-                    radius: '8px',
-                },
-                spacing: {
-                    padding: {
-                        top: '0px',
-                        right: '0px',
-                        bottom: '0px',
-                        left: '0px',
-                    },
-                    blockGap: '0px',
-                },
-            },
-        },
-        innerBlocks: [
-            [
-                'core/group',
-                {
-                    style: {
-                        spacing: {
-                            margin: {
-                                top: '0',
-                                bottom: '0',
-                            },
-                            padding: {
-                                top: '10px',
-                                right: '10px',
-                                bottom: '10px',
-                                left: '10px',
-                            },
-                        },
-                        dimensions: {
-                            minHeight: '',
-                        },
+            example: {
+                attributes: {
+                    metadata: {
+                        name: __('Safety', 'tour-operator'),
                     },
                 },
-                [
+                innerBlocks: [
                     [
                         'core/group',
-                        {
-                            style: {
-                                spacing: {
-                                    padding: {
-                                        top: '0',
-                                        bottom: '0',
-                                    },
-                                },
-                                dimensions: {
-                                    minHeight: '',
-                                },
-                            },
-                        },
+                        {},
                         [
                             [
-                                'core/paragraph',
+                                'core/heading',
                                 {
-                                    content: '<strong>Visa</strong>',
-                                    align: 'center',
-                                    fontSize: 'small',
-                                    style: {
-                                        spacing: {
-                                            padding: {
-                                                top: '0',
-                                                bottom: '0',
-                                            },
-                                        },
-                                    },
+                                    content: __('Safety', 'tour-operator'),
+                                    level: 3,
                                 },
                             ],
-                        ],
-                    ],
-                    [
-                        'core/group',
-                        {
-                            style: {
-                                spacing: {
-                                    padding: {
-                                        right: '10px',
-                                        left: '10px',
-                                        top: '0px',
-                                        bottom: '0px',
-                                    },
-                                    blockGap: '0',
-                                },
-                            },
-                        },
-                        [
                             [
                                 'core/paragraph',
                                 {
-                                    style: {
-                                        spacing: {
-                                            padding: {
-                                                top: '2px',
-                                                bottom: '2px',
-                                            },
-                                        },
-                                    },
+                                    content: __('General safety information for travelers.', 'tour-operator'),
                                 },
                             ],
                         ],
                     ],
                 ],
-            ],
-            [
-                'core/buttons',
-                {},
-                [
-                    [
-                        'core/button',
-                        {
-                            backgroundColor: 'primary',
-                            width: 100,
-                            style: {
-                                border: {
-                                    radius: {
-                                        bottomLeft: '8px',
-                                        bottomRight: '8px',
-                                    },
-                                },
-                            },
-                        },
-                        [
-                            [
-                                'core/paragraph',
-                                {
-                                    content: 'View More',
-                                    className:
-                                        'has-background wp-element-button',
-                                    style: {
-                                        border: {
-                                            bottomLeftRadius: '8px',
-                                            bottomRightRadius: '8px',
-                                        },
-                                    },
-                                },
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-        ],
-        supports: {
-            renaming: false,
-        },
-    } );
-
-    // Destination - Regions
-    wp.blocks.registerBlockVariation( 'core/group', {
-        name: 'lsx-tour-operator/facts-regions-wrapper',
-        title: 'Regions List',
-        icon: 'clipboard',
-        category: 'lsx-tour-operator',
-        attributes: {
-            metadata: {
-                name: 'Regions List',
             },
-            className: 'facts-regions-query-wrapper',
+        });
+        return true;
+    } catch (error) {
+        console.error('Failed to register safety block:', error);
+        return false;
+    }
+}
 
-            layout: {
-                type: 'flex',
-                flexWrap: 'nowrap',
-            },
-        },
-        innerBlocks: [
-            [
-                'core/group',
-                {
-                    layout: {
-                        type: 'flex',
-                        flexWrap: 'nowrap',
-                        verticalAlignment: 'top',
-                    },
-                },
-                [
-                    [
-                        'core/image',
-                        {
-                            width: '20px',
-                            sizeSlug: 'large',
-                            url: 'https://tour-operator.lsx.design/wp-content/uploads/2024/09/destinations-icon-black-20px.png',
-                            alt: '',
-                        },
-                    ],
-                    [
-                        'core/paragraph',
-                        {
-                            fontSize: 'x-small',
-                            content: '<strong>Regions:</strong>',
-                        },
-                    ],
-                ],
-            ],
-            [
-                'core/group',
-                {
-                    layout: {
-                        type: 'flex',
-                        flexWrap: 'nowrap',
-                    },
-                },
-                [
-                    [
-                        'core/paragraph',
-                        {
-                            metadata: {
-                                bindings: {
-                                    content: {
-                                        source: 'lsx/post-connection',
-                                        args: {
-                                            key: 'post_children',
-                                        },
-                                    },
-                                },
-                            },
-                            style: {
-                                elements: {
-                                    link: {
-                                        color: {
-                                            text: 'var:preset|color|primary-700',
-                                        },
-                                    },
-                                },
-                                spacing: {
-                                    padding: {
-                                        top: '2px',
-                                        bottom: '2px',
-                                    },
-                                },
-                            },
-                            content: '',
-                        },
-                    ],
-                ],
-            ],
-        ],
-        supports: {
-            renaming: false,
-        },
-    } );
-} );
+wp.domReady(() => {
+    const { select } = wp.data;
+
+    // Define supported post types
+    const supportedPostTypes = ['destination'];
+    let registeredSafety = false;
+
+    // Check if current post type is supported
+    const checkAndRegister = () => {
+        if (registeredSafety) {
+            return true;
+        }
+
+        const postType = select('core/editor')?.getCurrentPostType();
+        const postSlug = select('core/editor')?.getEditedPostSlug();
+
+        if (!postType) {
+            return false;
+        }
+
+        const isTemplateContext =
+            postType === 'wp_template' || postType === 'wp_template_part';
+
+        if (
+            supportedPostTypes.includes(postType) ||
+            (isTemplateContext &&
+                postSlug &&
+                (postSlug.includes('destination') ||
+                    postSlug.includes('country') ||
+                    postSlug.includes('region')))
+        ) {
+            if (!registeredSafety) {
+                registerSafetyVariation();
+                registeredSafety = true;
+            }
+        }
+
+        return registeredSafety;
+    };
+
+    // Try immediate registration
+    if (!checkAndRegister()) {
+        // If not ready, check periodically
+        const interval = setInterval(() => {
+            if (checkAndRegister()) {
+                clearInterval(interval);
+            }
+        }, 100);
+
+        // Clean up after 5 seconds to prevent infinite checking
+        setTimeout(() => clearInterval(interval), 5000);
+    }
+});

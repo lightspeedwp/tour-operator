@@ -1,1 +1,215 @@
-wp.domReady(()=>{wp.blocks.registerBlockVariation("core/group",{name:"lsx-tour-operator/safety",title:"Safety",icon:"shield",category:"lsx-tour-operator",attributes:{metadata:{name:"Safety"},className:"lsx-safety-wrapper"},innerBlocks:[["core/group",{layout:{type:"constrained"}},[["core/group",{layout:{type:"constrained"}},[["core/paragraph",{align:"center",content:"<strong>Safety</strong>"}]]],["core/group",{layout:{type:"constrained"}},[["core/paragraph",{metadata:{bindings:{content:{source:"lsx/post-meta",args:{key:"safety"}}}}}]]]]],["core/buttons",{},[["core/button",{width:100,content:"View More"}]]]],supports:{renaming:!1}}),wp.blocks.registerBlockVariation("core/group",{name:"lsx-tour-operator/visa",title:"Visa",icon:"id-alt",category:"lsx-tour-operator",attributes:{metadata:{name:"Visa"},className:"lsx-visa-wrapper",style:{border:{radius:"8px"},spacing:{padding:{top:"0px",right:"0px",bottom:"0px",left:"0px"},blockGap:"0px"}}},innerBlocks:[["core/group",{style:{spacing:{margin:{top:"0",bottom:"0"},padding:{top:"10px",right:"10px",bottom:"10px",left:"10px"}},dimensions:{minHeight:""}}},[["core/group",{style:{spacing:{padding:{top:"0",bottom:"0"}},dimensions:{minHeight:""}}},[["core/paragraph",{content:"<strong>Visa</strong>",align:"center",fontSize:"small",style:{spacing:{padding:{top:"0",bottom:"0"}}}}]]],["core/group",{style:{spacing:{padding:{right:"10px",left:"10px",top:"0px",bottom:"0px"},blockGap:"0"}}},[["core/paragraph",{style:{spacing:{padding:{top:"2px",bottom:"2px"}}}}]]]]],["core/buttons",{},[["core/button",{backgroundColor:"primary",width:100,style:{border:{radius:{bottomLeft:"8px",bottomRight:"8px"}}}},[["core/paragraph",{content:"View More",className:"has-background wp-element-button",style:{border:{bottomLeftRadius:"8px",bottomRightRadius:"8px"}}}]]]]]],supports:{renaming:!1}}),wp.blocks.registerBlockVariation("core/group",{name:"lsx-tour-operator/facts-regions-wrapper",title:"Regions List",icon:"clipboard",category:"lsx-tour-operator",attributes:{metadata:{name:"Regions List"},className:"facts-regions-query-wrapper",layout:{type:"flex",flexWrap:"nowrap"}},innerBlocks:[["core/group",{layout:{type:"flex",flexWrap:"nowrap",verticalAlignment:"top"}},[["core/image",{width:"20px",sizeSlug:"large",url:"https://tour-operator.lsx.design/wp-content/uploads/2024/09/destinations-icon-black-20px.png",alt:""}],["core/paragraph",{fontSize:"x-small",content:"<strong>Regions:</strong>"}]]],["core/group",{layout:{type:"flex",flexWrap:"nowrap"}},[["core/paragraph",{metadata:{bindings:{content:{source:"lsx/post-connection",args:{key:"post_children"}}}},style:{elements:{link:{color:{text:"var:preset|color|primary-700"}}},spacing:{padding:{top:"2px",bottom:"2px"}}},content:""}]]]],supports:{renaming:!1}})});
+/******/ (function() { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "@wordpress/i18n":
+/*!******************************!*\
+  !*** external ["wp","i18n"] ***!
+  \******************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["i18n"];
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	!function() {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = function(module) {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				function() { return module['default']; } :
+/******/ 				function() { return module; };
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	!function() {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = function(exports, definition) {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	!function() {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = function(exports) {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
+!function() {
+/*!************************************!*\
+  !*** ./src/blocks/safety/index.js ***!
+  \************************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/**
+ * Safety Block Variation
+ *
+ * Registers block variations for destination safety display.
+ * Only available on destination post type edit screens.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
+
+function registerSafetyVariation() {
+  try {
+    wp.blocks.registerBlockVariation('core/group', {
+      name: 'lsx-tour-operator/safety',
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Safety', 'tour-operator'),
+      icon: 'shield',
+      category: 'lsx-tour-operator',
+      isActive: blockAttributes => blockAttributes?.className?.includes('lsx-safety-wrapper'),
+      attributes: {
+        metadata: {
+          name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Safety', 'tour-operator')
+        },
+        className: 'lsx-safety-wrapper'
+      },
+      innerBlocks: [['core/group', {
+        layout: {
+          type: 'constrained'
+        }
+      }, [['core/group', {
+        layout: {
+          type: 'constrained'
+        }
+      }, [['core/paragraph', {
+        align: 'center',
+        content: `<strong>${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Safety', 'tour-operator')}</strong>`
+      }]]], ['core/group', {
+        layout: {
+          type: 'constrained'
+        }
+      }, [['core/paragraph', {
+        metadata: {
+          bindings: {
+            content: {
+              source: 'lsx/post-meta',
+              args: {
+                key: 'safety'
+              }
+            }
+          }
+        }
+      }]]]]], ['core/buttons', {}, [['core/button', {
+        width: 100,
+        content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('View More', 'tour-operator')
+      }]]]],
+      supports: {
+        renaming: false
+      },
+      example: {
+        attributes: {
+          metadata: {
+            name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Safety', 'tour-operator')
+          }
+        },
+        innerBlocks: [['core/group', {}, [['core/heading', {
+          content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Safety', 'tour-operator'),
+          level: 3
+        }], ['core/paragraph', {
+          content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('General safety information for travelers.', 'tour-operator')
+        }]]]]
+      }
+    });
+    return true;
+  } catch (error) {
+    console.error('Failed to register safety block:', error);
+    return false;
+  }
+}
+wp.domReady(() => {
+  const {
+    select
+  } = wp.data;
+
+  // Define supported post types
+  const supportedPostTypes = ['destination'];
+  let registeredSafety = false;
+
+  // Check if current post type is supported
+  const checkAndRegister = () => {
+    if (registeredSafety) {
+      return true;
+    }
+    const postType = select('core/editor')?.getCurrentPostType();
+    const postSlug = select('core/editor')?.getEditedPostSlug();
+    if (!postType) {
+      return false;
+    }
+    const isTemplateContext = postType === 'wp_template' || postType === 'wp_template_part';
+    if (supportedPostTypes.includes(postType) || isTemplateContext && postSlug && (postSlug.includes('destination') || postSlug.includes('country') || postSlug.includes('region'))) {
+      if (!registeredSafety) {
+        registerSafetyVariation();
+        registeredSafety = true;
+      }
+    }
+    return registeredSafety;
+  };
+
+  // Try immediate registration
+  if (!checkAndRegister()) {
+    // If not ready, check periodically
+    const interval = setInterval(() => {
+      if (checkAndRegister()) {
+        clearInterval(interval);
+      }
+    }, 100);
+
+    // Clean up after 5 seconds to prevent infinite checking
+    setTimeout(() => clearInterval(interval), 5000);
+  }
+});
+}();
+/******/ })()
+;
+//# sourceMappingURL=index.js.map
