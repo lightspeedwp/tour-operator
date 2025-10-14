@@ -295,6 +295,11 @@ class Modals {
 	 * Filter the travel information and return a shortened version.
 	 */
 	public function travel_information_excerpt( $html = '', $meta_key = false, $value = false, $before = '', $after = '' ) {
+
+		if ( false === apply_filters( 'lsx_travel_information_modal_enable', true ) ) {
+			return $html;
+		}
+
 		// Allow 3rd party to override the character limit.
 		$limit_chars = apply_filters( 'lsx_travel_information_excerpt_length', 150 );
 		$ti_keys     = [
