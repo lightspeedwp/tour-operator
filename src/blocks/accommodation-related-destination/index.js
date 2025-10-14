@@ -1,99 +1,195 @@
 wp.domReady( () => {
-    wp.blocks.registerBlockVariation( 'core/group', {
-        name: 'lsx-tour-operator/accommodation-related-destination',
-        title: 'Related Accommodation - Destination',
-        icon: 'admin-site',
-        description: 'Displays Accommodation related to a Destination.',
-        category: 'lsx-tour-operator',
-        attributes: {
-            metadata: {
-                name: 'Related Accommodation - Destination',
-            },
-            className: 'lsx-accommodation-related-destination-query-wrapper',
-            align: 'full',
-            layout: {
-                type: 'constrained',
-            },
-            tagName: 'section',
-        },
-        innerBlocks: [
-            [
-                'core/group',
-                {
-                    align: 'wide',
-                    layout: { type: 'flex', flexWrap: 'nowrap' },
-                },
-                [
-                    [
-                        'core/separator',
-                        {
-                            style: {
-                                layout: { selfStretch: 'fill', flexSize: null },
-                            },
-                        },
-                    ],
-                    [
-                        'core/heading',
-                        {
-                            textAlign: 'center',
-                            content: 'Related Accommodation',
-                        },
-                    ],
-                    [
-                        'core/separator',
-                        {
-                            style: {
-                                layout: { selfStretch: 'fill', flexSize: null },
-                            },
-                        },
-                    ],
-                ],
-            ],
-            [
-                'core/group',
-                { align: 'wide', layout: { type: 'constrained' } },
-                [
-                    [
-                        'core/query',
-                        {
-                            metadata: {
-                                name: 'Related Accommodation Query',
-                            },
-                            query: {
-                                perPage: 8,
-                                postType: 'accommodation',
-                                order: 'asc',
-                                orderBy: 'date',
-                            },
-                            align: 'wide',
-                        },
-                        [
-                            [
-                                'core/post-template',
-                                {
-                                    className:
-                                        'lsx-accommodation-related-destination-query',
-                                    layout: {
-                                        type: 'grid',
-                                        columnCount: 3,
-                                    },
-                                },
-                                [
-                                    [
-                                        'core/pattern',
-                                        {
-                                            slug: 'lsx-tour-operator/accommodation-card',
-                                        },
-                                    ],
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-        ],
-        supports: {
-            renaming: false,
-        },
-    } );
+	const { __ } = wp.i18n;
+	wp.blocks.registerBlockVariation( 'core/group', {
+		name: 'lsx-tour-operator/accommodation-related-destination',
+		title: __( 'Related accommodation - destination', 'tour-operator' ),
+		icon: 'admin-site',
+		description: __( 'Displays accommodation related to a destination.', 'tour-operator' ),
+		category: 'lsx-tour-operator',
+		attributes: {
+			metadata: {
+				name: __( 'Related accommodation - destination', 'tour-operator' ),
+			},
+			className: 'lsx-accommodation-related-destination-query-wrapper',
+			align: 'full',
+			layout: {
+				type: 'constrained',
+			},
+			tagName: 'section',
+		},
+		innerBlocks: [
+			[
+				'core/group',
+				{
+					align: 'wide',
+					layout: { type: 'flex', flexWrap: 'nowrap' },
+				},
+				[
+					[
+						'core/separator',
+						{
+							style: {
+								layout: { selfStretch: 'fill', flexSize: null },
+							},
+						},
+					],
+					[
+						'core/heading',
+						{
+							textAlign: 'center',
+							content: __( 'Related accommodation', 'tour-operator' ),
+						},
+					],
+					[
+						'core/separator',
+						{
+							style: {
+								layout: { selfStretch: 'fill', flexSize: null },
+							},
+						},
+					],
+				],
+			],
+			[
+				'core/group',
+				{ align: 'wide', layout: { type: 'constrained' } },
+				[
+					[
+						'core/query',
+						{
+							metadata: {
+								name: __( 'Related accommodation query', 'tour-operator' ),
+							},
+							query: {
+								perPage: 8,
+								postType: 'accommodation',
+								order: 'asc',
+								orderBy: 'date',
+							},
+							align: 'wide',
+						},
+						[
+							[
+								'core/post-template',
+								{
+									className:
+										'lsx-accommodation-related-destination-query',
+									layout: {
+										type: 'grid',
+										columnCount: 3,
+									},
+								},
+								[
+									[
+										'core/pattern',
+										{
+											slug: 'lsx-tour-operator/accommodation-card',
+										},
+									],
+								],
+							],
+						],
+					],
+				],
+			],
+		],
+		supports: {
+			renaming: false,
+		},
+		example: {
+			attributes: {
+				metadata: {
+					name: __( 'Related accommodation - destination', 'tour-operator' ),
+				},
+			},
+			innerBlocks: [
+				[
+					'core/group',
+					{},
+					[
+						[
+							'core/heading',
+							{
+								content: __( 'Related destinations', 'tour-operator' ),
+								textAlign: 'center',
+							},
+						],
+						[
+							'core/group',
+							{
+								style: {
+									spacing: {
+										blockGap: '2rem'
+									}
+								},
+								layout: {
+									type: 'grid',
+									columnCount: 3
+								}
+							},
+							[
+								[
+									'core/group',
+									{
+										style: {
+											border: {
+												width: '1px',
+												style: 'solid',
+												color: '#e0e0e0'
+											},
+											spacing: {
+												padding: '1rem'
+											}
+										}
+									},
+									[
+										[ 'core/heading', { content: __( 'Kruger National Park', 'tour-operator' ), level: 3 } ],
+										[ 'core/paragraph', { content: __( 'Premier wildlife destination offering exceptional safari experiences and diverse ecosystems.', 'tour-operator' ) } ]
+									]
+								],
+								[
+									'core/group',
+									{
+										style: {
+											border: {
+												width: '1px',
+												style: 'solid',
+												color: '#e0e0e0'
+											},
+											spacing: {
+												padding: '1rem'
+											}
+										}
+									},
+									[
+										[ 'core/heading', { content: __( 'Garden Route', 'tour-operator' ), level: 3 } ],
+										[ 'core/paragraph', { content: __( 'Scenic coastal route with stunning landscapes, charming towns, and outdoor adventures.', 'tour-operator' ) } ]
+									]
+								],
+								[
+									'core/group',
+									{
+										style: {
+											border: {
+												width: '1px',
+												style: 'solid',
+												color: '#e0e0e0'
+											},
+											spacing: {
+												padding: '1rem'
+											}
+										}
+									},
+									[
+										[ 'core/heading', { content: __( 'Drakensberg Mountains', 'tour-operator' ), level: 3 } ],
+										[ 'core/paragraph', { content: __( 'Majestic mountain range perfect for hiking, culture, and breathtaking scenery.', 'tour-operator' ) } ]
+									]
+								]
+							]
+						],
+					],
+				],
+			],
+		},
+	} );
 } );
