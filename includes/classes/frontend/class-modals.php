@@ -256,7 +256,6 @@ class Modals {
 				'post_type' => 'wp_template_part',
 				'area'      => 'lsx_to_modals',
 			),
-			'wp_template_part'
 		);
 
 		$options            = array();

@@ -28,143 +28,143 @@ const modalButtonIcon = (
     </svg>
 );
 
-registerBlockType( 'lsx-tour-operator/modal-button', {
+registerBlockType('lsx-tour-operator/modal-button', {
     icon: modalButtonIcon,
-    edit: ( { attributes, setAttributes } ) => {
+    edit: ({ attributes, setAttributes }) => {
         const { text, modalId, align } = attributes;
-        const [ modalOptions, setModalOptions ] = useState( [] );
-        const [ isLoading, setIsLoading ] = useState( true );
+        const [modalOptions, setModalOptions] = useState([]);
+        const [isLoading, setIsLoading] = useState(true);
 
-        const blockProps = useBlockProps( {
-            className: `wp-block-button has-text-align-${ align }`,
-        } );
+        const blockProps = useBlockProps({
+            className: `wp-block-button has-text-align-${align}`,
+        });
 
         // Fetch modal options from the REST API
-        useEffect( () => {
+        useEffect(() => {
             const fetchModalOptions = async () => {
                 try {
-                    setIsLoading( true );
-                    const options = await apiFetch( {
+                    setIsLoading(true);
+                    const options = await apiFetch({
                         path: '/tour-operator/v1/modal-options',
-                    } );
-                    setModalOptions( options );
-                } catch ( error ) {
-                    console.error( 'Failed to fetch modal options:', error );
-                    setModalOptions( [
+                    });
+                    setModalOptions(options);
+                } catch (error) {
+                    console.error('Failed to fetch modal options:', error);
+                    setModalOptions([
                         {
-                            label: __( 'Select a modal…', 'tour-operator' ),
+                            label: __('Select a modal…', 'tour-operator'),
                             value: '',
                         },
                         {
-                            label: __( 'No modals found', 'tour-operator' ),
+                            label: __('No modals found', 'tour-operator'),
                             value: '',
                             disabled: true,
                         },
-                    ] );
+                    ]);
                 } finally {
-                    setIsLoading( false );
+                    setIsLoading(false);
                 }
             };
 
             fetchModalOptions();
-        }, [] );
+        }, []);
 
         return (
             <>
                 <BlockControls>
                     <AlignmentToolbar
-                        value={ align }
-                        onChange={ ( newAlign ) =>
-                            setAttributes( { align: newAlign } )
+                        value={align}
+                        onChange={(newAlign) =>
+                            setAttributes({ align: newAlign })
                         }
                     />
                 </BlockControls>
 
                 <InspectorControls>
                     <PanelBody
-                        title={ __( 'Modal Settings', 'tour-operator' ) }
+                        title={__('Modal Settings', 'tour-operator')}
                     >
-                        { isLoading ? (
+                        {isLoading ? (
                             <div
-                                style={ {
+                                style={{
                                     display: 'flex',
                                     alignItems: 'center',
                                     gap: '8px',
-                                } }
+                                }}
                             >
                                 <Spinner />
                                 <span>
-                                    { __(
+                                    {__(
                                         'Loading modal options…',
                                         'tour-operator'
-                                    ) }
+                                    )}
                                 </span>
                             </div>
                         ) : (
                             <SelectControl
-                                label={ __( 'Modal to Open', 'tour-operator' ) }
-                                value={ modalId }
-                                options={ modalOptions }
-                                onChange={ ( newModalId ) =>
-                                    setAttributes( { modalId: newModalId } )
+                                label={__('Modal to Open', 'tour-operator')}
+                                value={modalId}
+                                options={modalOptions}
+                                onChange={(newModalId) =>
+                                    setAttributes({ modalId: newModalId })
                                 }
-                                help={ __(
+                                help={__(
                                     'Select which modal template should open when this button is clicked. These are filtered from the lsx_to_modals template part area.',
                                     'tour-operator'
-                                ) }
+                                )}
                             />
-                        ) }
+                        )}
                     </PanelBody>
                 </InspectorControls>
 
-                <div { ...blockProps }>
-                    <div className={ `wp-block-button__link` }>
+                <div {...blockProps}>
+                    <div className={`wp-block-button__link`}>
                         <RichText
                             tagName="span"
-                            value={ text }
-                            onChange={ ( newText ) =>
-                                setAttributes( { text: newText } )
+                            value={text}
+                            onChange={(newText) =>
+                                setAttributes({ text: newText })
                             }
-                            placeholder={ __(
+                            placeholder={__(
                                 'Add button text…',
                                 'tour-operator'
-                            ) }
-                            allowedFormats={ [] }
+                            )}
+                            allowedFormats={[]}
                         />
                     </div>
-                    { ! modalId && ! isLoading && (
+                    {!modalId && !isLoading && (
                         <div className="block-editor-warning">
-                            { __(
+                            {__(
                                 'Please select a modal in the block settings.',
                                 'tour-operator'
-                            ) }
+                            )}
                         </div>
-                    ) }
+                    )}
                 </div>
             </>
         );
     },
 
-    save: ( { attributes } ) => {
+    save: ({ attributes }) => {
         const { text, modalId, align } = attributes;
-        const blockProps = useBlockProps.save( {
-            className: `wp-block-button has-text-align-${ align }`,
-        } );
+        const blockProps = useBlockProps.save({
+            className: `wp-block-button has-text-align-${align}`,
+        });
 
-        if ( ! modalId ) {
+        if (!modalId) {
             return null;
         }
 
         return (
-            <div { ...blockProps }>
+            <div {...blockProps}>
                 <a
-                    className={ `wp-block-button__link` }
-                    href={ `#to-modal-${ modalId }` }
+                    className={`wp-block-button__link`}
+                    href={`#to-modal-${modalId}`}
                     type="button"
                 >
-                    { text }
+                    {text}
                 </a>
             </div>
         );
     },
-} );
+});

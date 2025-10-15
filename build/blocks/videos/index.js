@@ -1,1 +1,91 @@
-!function(){const{__:__}=wp.i18n;wp.domReady(()=>{wp.blocks.registerBlockVariation("core/gallery",{name:"lsx-tour-operator/videos",title:__("TO Videos","tour-operator"),icon:"video-alt3",category:"lsx-tour-operator",attributes:{metadata:{name:"TO Videos",bindings:{content:{source:"lsx/videos"}}},linkTo:"none",sizeSlug:"thumbnail"},innerBlocks:[["core/image",{sizeSlug:"large",url:lsxToEditor.assetsUrl+"blocks/placeholder.png",alt:__("Video placeholder","tour-operator")}],["core/image",{sizeSlug:"large",url:lsxToEditor.assetsUrl+"blocks/placeholder.png",alt:__("Video placeholder","tour-operator")}],["core/image",{sizeSlug:"large",url:lsxToEditor.assetsUrl+"blocks/placeholder.png",alt:__("Video placeholder","tour-operator")}]],isDefault:!1}),function(e,t,o,r){const a=t.createElement,l=o.InspectorControls,s=r.PanelBody,i=r.CheckboxControl,n=wp.compose.createHigherOrderComponent(function(e){return function(o){if("core/gallery"!==o.name||!o.attributes.metadata||"TO Videos"!==o.attributes.metadata.name)return a(e,o);let r=o.attributes.hasSlider||!1;return void 0===o.attributes.hasSlider?o.attributes.className&&o.attributes.className.includes("lsx-to-slider")&&(r=!0):r=o.attributes.hasSlider,a(t.Fragment,{},a(e,o),a(l,{},a(s,{title:__("Tour Operator","tour-operator"),initialOpen:!0},a(i,{label:__("Enable Slider","tour-operator"),checked:r,onChange(e){o.setAttributes({hasSlider:e})}}))))}},"withVideosInspectorControls");wp.hooks.addFilter("editor.BlockEdit","lsx-tour-operator/videos-settings-panel",n),wp.hooks.addFilter("blocks.getSaveContent.extraProps","lsx-tour-operator/videos-save-settings-panel",function(e,t,o){return"core/gallery"===t.name&&o.metadata&&"TO Videos"===o.metadata.name&&(!0===o.hasSlider?e.className=(e.className||"")+" lsx-to-slider":!1===o.hasSlider&&e.className&&(e.className=e.className.replace(/\blsx-to-slider\b\s*/g,"").trim())),e})}(window.wp.blocks,window.wp.element,window.wp.blockEditor||window.wp.editor,window.wp.components)})}();
+/******/ (function() { // webpackBootstrap
+/*!************************************!*\
+  !*** ./src/blocks/videos/index.js ***!
+  \************************************/
+const {
+  __
+} = wp.i18n;
+wp.domReady(() => {
+  wp.blocks.registerBlockVariation('core/gallery', {
+    name: 'lsx-tour-operator/videos',
+    title: __('TO Videos', 'tour-operator'),
+    icon: 'video-alt3',
+    category: 'lsx-tour-operator',
+    attributes: {
+      metadata: {
+        name: 'TO Videos',
+        bindings: {
+          content: {
+            source: 'lsx/videos'
+          }
+        }
+      },
+      linkTo: 'none',
+      sizeSlug: 'thumbnail'
+    },
+    innerBlocks: [['core/image', {
+      sizeSlug: 'large',
+      url: lsxToEditor.assetsUrl + 'blocks/placeholder.png',
+      alt: __('Video placeholder', 'tour-operator')
+    }], ['core/image', {
+      sizeSlug: 'large',
+      url: lsxToEditor.assetsUrl + 'blocks/placeholder.png',
+      alt: __('Video placeholder', 'tour-operator')
+    }], ['core/image', {
+      sizeSlug: 'large',
+      url: lsxToEditor.assetsUrl + 'blocks/placeholder.png',
+      alt: __('Video placeholder', 'tour-operator')
+    }]],
+    isDefault: false
+  });
+
+  // Add slider toggle functionality for videos block
+  (function (blocks, element, editor, components) {
+    const el = element.createElement;
+    const InspectorControls = editor.InspectorControls;
+    const PanelBody = components.PanelBody;
+    const CheckboxControl = components.CheckboxControl;
+    const withInspectorControls = wp.compose.createHigherOrderComponent(function (BlockEdit) {
+      return function (props) {
+        // Only apply to core/gallery blocks that are the videos variation
+        if (props.name !== 'core/gallery' || !props.attributes.metadata || props.attributes.metadata.name !== 'TO Videos') {
+          return el(BlockEdit, props);
+        }
+        let hasSlider = props.attributes.hasSlider || false;
+        if (undefined === props.attributes.hasSlider) {
+          if (props.attributes.className && props.attributes.className.includes('lsx-to-slider')) {
+            hasSlider = true;
+          }
+        } else {
+          hasSlider = props.attributes.hasSlider;
+        }
+        return el(element.Fragment, {}, el(BlockEdit, props), el(InspectorControls, {}, el(PanelBody, {
+          title: __('Tour Operator', 'tour-operator'),
+          initialOpen: true
+        }, el(CheckboxControl, {
+          label: __('Enable Slider', 'tour-operator'),
+          checked: hasSlider,
+          onChange(value) {
+            props.setAttributes({
+              hasSlider: value
+            });
+          }
+        }))));
+      };
+    }, 'withVideosInspectorControls');
+    wp.hooks.addFilter('editor.BlockEdit', 'lsx-tour-operator/videos-settings-panel', withInspectorControls);
+    wp.hooks.addFilter('blocks.getSaveContent.extraProps', 'lsx-tour-operator/videos-save-settings-panel', function (extraProps, blockType, attributes) {
+      if (blockType.name === 'core/gallery' && attributes.metadata && attributes.metadata.name === 'TO Videos') {
+        if (true === attributes.hasSlider) {
+          extraProps.className = (extraProps.className || '') + ' lsx-to-slider';
+        } else if (false === attributes.hasSlider && extraProps.className) {
+          extraProps.className = extraProps.className.replace(/\blsx-to-slider\b\s*/g, '').trim();
+        }
+      }
+      return extraProps;
+    });
+  })(window.wp.blocks, window.wp.element, window.wp.blockEditor || window.wp.editor, window.wp.components);
+});
+/******/ })()
+;
+//# sourceMappingURL=index.js.map

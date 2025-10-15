@@ -1,1 +1,39 @@
-.block-icon-svg svg{display:inline-block;height:1em;max-width:100%;width:auto}.has-small-font-size .block-icon-svg svg{height:.875em}.has-medium-font-size .block-icon-svg svg{height:1em}.has-large-font-size .block-icon-svg svg{height:1.25em}.has-x-large-font-size .block-icon-svg svg{height:1.5em}.has-xx-large-font-size .block-icon-svg svg{height:2em}.lsx-icons-search{border:1px solid #eee;box-sizing:border-box;font-size:1rem;margin-bottom:8px;padding:8px;width:100%}
+/*!****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/icons/style.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************/
+/* General styles for the icon block */
+.block-icon-svg svg {
+  height: 1em; /* Default height */
+  width: auto; /* Maintain aspect ratio */
+  max-width: 100%; /* Ensure it doesn't overflow its container */
+  display: inline-block; /* Align with text */
+}
+
+.has-small-font-size .block-icon-svg svg {
+  height: 0.875em; /* Small font size */
+}
+
+.has-medium-font-size .block-icon-svg svg {
+  height: 1em; /* Medium font size */
+}
+
+.has-large-font-size .block-icon-svg svg {
+  height: 1.25em; /* Large font size */
+}
+
+.has-x-large-font-size .block-icon-svg svg {
+  height: 1.5em; /* Extra large font size */
+}
+
+.has-xx-large-font-size .block-icon-svg svg {
+  height: 2em; /* Double extra large font size */
+}
+
+.lsx-icons-search {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  border: 1px solid #eee;
+}
