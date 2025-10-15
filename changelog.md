@@ -12,6 +12,8 @@
 - Tagline block which pulls the text set in the Tagline field. - [#604](https://github.com/lightspeedwp/tour-operator/pull/604)
 - Added in a filter to allow the disabling of the facility block links - `lsx_to_accommodation_facilities_should_link` - [#608](https://github.com/lightspeedwp/tour-operator/pull/608)
 - Added in a filter to allow the ordering of the query blocks by post__in. - [#653](https://github.com/lightspeedwp/tour-operator/pull/653)
+- Added filter `lsx_travel_information_excerpt_length` to control character length for travel information excerpts [#663](https://github.com/lightspeedwp/tour-operator/pull/663)
+- Added filter `lsx_travel_information_modal_enable` to optionally disable travel information modal functionality [#663](https://github.com/lightspeedwp/tour-operator/pull/663)
 
 ### Enhancements
 - Updated block icons for various block variations: Custom SVGs were added to: dress, facilities, health, ends-in, departs-from, climate, transport. [#579](https://github.com/lightspeedwp/tour-operator/pull/579)
@@ -38,6 +40,7 @@
 - Drop Support for Older PHP Versions & Fix Version Mismatches - Issue [#469](https://github.com/lightspeedwp/tour-operator/issues/469)
 - Departure Day to use the previous day information for the "information" box - Issue [#481](https://github.com/lightspeedwp/tour-operator/issues/481)
 - Updated the Gallery render block to return a blank string if the gallery field is empty. - [#608](https://github.com/lightspeedwp/tour-operator/pull/608)
+- Standardized accommodation block metadata with improved internationalization, descriptions, and schema compliance - PR [#625](https://github.com/lightspeedwp/tour-operator/pull/625), Issue [#624](https://github.com/lightspeedwp/tour-operator/issues/624)
 
 ### Removed
 - `.scrutinizer.yml` removed the file as we no long use Scrutinizer - Issue [#564](https://github.com/lightspeedwp/tour-operator/issues/564)

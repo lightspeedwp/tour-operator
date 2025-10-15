@@ -1,1 +1,61 @@
-wp.domReady(()=>{wp.blocks.registerBlockVariation("core/group",{name:"lsx-tour-operator/minimum-child-age",title:"Minimum Child Age",icon:"id",category:"lsx-tour-operator",attributes:{metadata:{name:"Minimum Child Age"},className:"lsx-minimum-child-age-wrapper",layout:{type:"flex",flexWrap:"nowrap"}},innerBlocks:[["core/group",{layout:{type:"flex",flexWrap:"nowrap",verticalAlignment:"top"}},[["core/image",{id:122719,width:"20px",sizeSlug:"large",linkDestination:"none",url:lsxToEditor.assetsUrl+"blocks/minimum-child-age.svg",alt:"",className:"wp-image-122719"}],["core/paragraph",{content:"<strong>Minimum child age:</strong>"}]]],["core/group",{layout:{type:"flex",flexWrap:"nowrap"}},[["core/paragraph",{metadata:{bindings:{content:{source:"lsx/post-meta",args:{key:"minimum_child_age"}}}}}]]]],supports:{renaming:!1}})});
+/******/ (function() { // webpackBootstrap
+/*!***********************************************!*\
+  !*** ./src/blocks/minimum-child-age/index.js ***!
+  \***********************************************/
+wp.domReady(() => {
+  wp.blocks.registerBlockVariation('core/group', {
+    name: 'lsx-tour-operator/minimum-child-age',
+    title: 'Minimum Child Age',
+    icon: 'id',
+    category: 'lsx-tour-operator',
+    attributes: {
+      metadata: {
+        name: 'Minimum Child Age'
+      },
+      className: 'lsx-minimum-child-age-wrapper',
+      layout: {
+        type: 'flex',
+        flexWrap: 'nowrap'
+      }
+    },
+    innerBlocks: [['core/group', {
+      layout: {
+        type: 'flex',
+        flexWrap: 'nowrap',
+        verticalAlignment: 'top'
+      }
+    }, [['core/image', {
+      id: 122719,
+      width: '20px',
+      sizeSlug: 'large',
+      linkDestination: 'none',
+      url: lsxToEditor.assetsUrl + 'blocks/minimum-child-age.svg',
+      alt: '',
+      className: 'wp-image-122719'
+    }], ['core/paragraph', {
+      content: '<strong>Minimum child age:</strong>'
+    }]]], ['core/group', {
+      layout: {
+        type: 'flex',
+        flexWrap: 'nowrap'
+      }
+    }, [['core/paragraph', {
+      metadata: {
+        bindings: {
+          content: {
+            source: 'lsx/post-meta',
+            args: {
+              key: 'minimum_child_age'
+            }
+          }
+        }
+      }
+    }]]]],
+    supports: {
+      renaming: false
+    }
+  });
+});
+/******/ })()
+;
+//# sourceMappingURL=index.js.map

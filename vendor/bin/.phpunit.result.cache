@@ -1,0 +1,1 @@
+{"version":2,"defects":[],"times":{"TestSimpleFunctions::test_php_version":0.012,"TestSimpleFunctions::test_basic_php_functions":0.005,"TestSimpleFunctions::test_string_functions":0.006,"TestSimpleFunctions::test_array_functions":0.002,"TestSimpleFunctions::test_json_functions":0.001,"TestSimpleFunctions::test_date_functions":0.001}}
