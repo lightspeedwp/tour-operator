@@ -83,9 +83,9 @@ module.exports = window["wp"]["i18n"];
 var __webpack_exports__ = {};
 // This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
 !function() {
-/*!**************************************!*\
-  !*** ./src/blocks/included/index.js ***!
-  \**************************************/
+/*!**********************************************!*\
+  !*** ./src/blocks/booking-validity/index.js ***!
+  \**********************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
@@ -96,43 +96,77 @@ wp.domReady(() => {
   } = wp.data;
 
   // Define supported post types
-  const supportedPostTypes = ['tour', 'accommodation'];
+  const supportedPostTypes = ['tour'];
   let registered = false;
   let checking = false;
 
   // Register variation function
-  const registerIncludedVariation = () => {
+  const registerBookingValidityVariation = () => {
     if (registered) {
       return;
     }
     wp.blocks.registerBlockVariation('core/group', {
-      name: 'lsx-tour-operator/included',
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Included items', 'tour-operator'),
-      icon: 'plus-alt',
+      name: 'lsx-tour-operator/booking-validity',
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Booking validity', 'tour-operator'),
+      icon: 'calendar',
       category: 'lsx-tour-operator',
       isActive: (blockAttributes, variationAttributes) => {
         return blockAttributes.metadata?.className === variationAttributes.metadata?.className;
       },
       attributes: {
         metadata: {
-          name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Included', 'tour-operator')
+          name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Booking validity', 'tour-operator')
         },
-        className: 'lsx-included-wrapper'
+        className: 'lsx-booking-validity-wrapper',
+        layout: {
+          type: 'flex',
+          flexWrap: 'nowrap'
+        }
       },
-      innerBlocks: [['core/paragraph', {
-        content: '<strong>' + (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Price includes:', 'tour-operator') + '</strong>'
+      innerBlocks: [['core/group', {
+        layout: {
+          type: 'flex',
+          flexWrap: 'nowrap',
+          verticalAlignment: 'middle'
+        }
+      }, [['lsx-tour-operator/icons', {
+        iconType: 'solid',
+        iconName: 'bookingValidityIcon'
+      }], ['core/paragraph', {
+        fontSize: 'x-small',
+        content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('<strong>Booking validity:</strong>', 'tour-operator')
+      }]]], ['core/group', {
+        layout: {
+          type: 'flex',
+          flexWrap: 'nowrap'
+        }
+      }, [['core/paragraph', {
+        metadata: {
+          bindings: {
+            content: {
+              source: 'lsx/post-meta',
+              args: {
+                key: 'booking_validity_start'
+              }
+            }
+          }
+        },
+        content: ''
+      }], ['core/paragraph', {
+        content: '-'
       }], ['core/paragraph', {
         metadata: {
           bindings: {
             content: {
               source: 'lsx/post-meta',
               args: {
-                key: 'included'
+                key: 'booking_validity_end'
               }
             }
           }
-        }
-      }]],
+        },
+        content: 'End'
+      }]]]],
       supports: {
         renaming: false
       }
@@ -152,8 +186,8 @@ wp.domReady(() => {
         checking = false;
         return false;
       }
-      if (supportedPostTypes.includes(postType) || (postType === 'wp_template' || postType === 'wp_template_part') && (postSlug.includes('tour') || postSlug.includes('accommodation'))) {
-        registerIncludedVariation();
+      if (supportedPostTypes.includes(postType) || (postType === 'wp_template' || postType === 'wp_template_part') && postSlug.includes('tour')) {
+        registerBookingValidityVariation();
         registered = true;
         checking = false;
         return true;

@@ -2,19 +2,19 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "textdomain": "tour-operator",
-  "name": "lsx-tour-operator/departs-from",
-  "title": "Departs from",
+  "name": "lsx-tour-operator/booking-validity",
+  "title": "Booking validity",
   "category": "lsx-tour-operator",
   "editorScript": "file:index.js",
-  "description": "Displays the departure location for tours.",
-  "icon": "airplane",
+  "description": "Displays the booking validity date range for tours.",
+  "icon": "calendar",
   "keywords": [
-    "departs",
-    "from",
-    "departure",
-    "location",
-    "starting",
-    "point"
+    "booking",
+    "validity",
+    "dates",
+    "calendar",
+    "period",
+    "availability"
   ],
   "supports": {
     "anchor": true,
@@ -44,7 +44,7 @@
   "example": {
     "attributes": {
       "metadata": {
-        "name": "Departs From"
+        "name": "Booking validity"
       }
     },
     "innerBlocks": [
@@ -61,15 +61,15 @@
           [
             "lsx-tour-operator/icons",
             {
-              "icon": "departs-from-ends-in",
-              "style": "outline",
+              "icon": "booking-validity",
+              "style": "solid",
               "size": "20"
             }
           ],
           [
             "core/paragraph",
             {
-              "content": "<strong>Departs From:</strong>"
+              "content": "<strong>Booking validity:</strong>"
             }
           ]
         ]
@@ -86,7 +86,19 @@
           [
             "core/paragraph",
             {
-              "content": "Cape Town, South Africa"
+              "content": "December 1, 2024"
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": " - "
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "March 31, 2025"
             }
           ]
         ]

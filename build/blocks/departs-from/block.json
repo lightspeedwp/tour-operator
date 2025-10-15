@@ -1,8 +1,96 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/departs-from",
-  "title": "Departs From",
+  "title": "Departs from",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Displays the departure location for tours.",
+  "icon": "airplane",
+  "keywords": [
+    "departs",
+    "from",
+    "departure",
+    "location",
+    "starting",
+    "point"
+  ],
+  "supports": {
+    "anchor": true,
+    "className": true,
+    "customClassName": true,
+    "html": false,
+    "lock": false,
+    "multiple": true,
+    "reusable": true,
+    "renaming": false,
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "blockGap": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "textAlign": true
+    },
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true
+    }
+  },
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Departs From"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {
+          "layout": {
+            "type": "flex",
+            "flexWrap": "nowrap",
+            "verticalAlignment": "top"
+          }
+        },
+        [
+          [
+            "lsx-tour-operator/icons",
+            {
+              "icon": "departs-from-ends-in",
+              "style": "outline",
+              "size": "20"
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "<strong>Departs From:</strong>"
+            }
+          ]
+        ]
+      ],
+      [
+        "core/group",
+        {
+          "layout": {
+            "type": "flex",
+            "flexWrap": "nowrap"
+          }
+        },
+        [
+          [
+            "core/paragraph",
+            {
+              "content": "Cape Town, South Africa"
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }
