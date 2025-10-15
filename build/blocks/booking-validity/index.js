@@ -134,7 +134,7 @@ wp.domReady(() => {
         iconName: 'bookingValidityIcon'
       }], ['core/paragraph', {
         fontSize: 'x-small',
-        content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('<strong>Booking validity:</strong>', 'tour-operator')
+        content: '<strong>' + (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Booking validity:', 'tour-operator') + '</strong>'
       }]]], ['core/group', {
         layout: {
           type: 'flex',

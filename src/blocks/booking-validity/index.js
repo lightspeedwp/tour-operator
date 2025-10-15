@@ -54,7 +54,7 @@ wp.domReady(() => {
                             'core/paragraph',
                             {
                                 fontSize: 'x-small',
-                                content: __('<strong>Booking validity:</strong>', 'tour-operator'),
+                                content: '<strong>' + __('Booking validity:', 'tour-operator') + '</strong>',
                             },
                         ],
                     ],

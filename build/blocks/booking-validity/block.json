@@ -54,16 +54,15 @@
           "layout": {
             "type": "flex",
             "flexWrap": "nowrap",
-            "verticalAlignment": "top"
+            "verticalAlignment": "middle"
           }
         },
         [
           [
             "lsx-tour-operator/icons",
             {
-              "icon": "booking-validity",
-              "style": "solid",
-              "size": "20"
+              "iconType": "solid",
+              "iconName": "bookingValidityIcon"
             }
           ],
           [
