@@ -36,7 +36,7 @@ registerBlockType('lsx-tour-operator/modal-button', {
         const [isLoading, setIsLoading] = useState(true);
 
         const blockProps = useBlockProps({
-            className: `wp-block-button has-text-align-${align}`,
+            className: `has-text-align-${align} wp-block-button__link`,
         });
 
         // Fetch modal options from the REST API
@@ -117,8 +117,8 @@ registerBlockType('lsx-tour-operator/modal-button', {
                     </PanelBody>
                 </InspectorControls>
 
-                <div {...blockProps}>
-                    <div className={`wp-block-button__link`}>
+                <div className={`wp-block-button is-layout-flex`}>
+                    <div {...blockProps}>
                         <RichText
                             tagName="span"
                             value={text}
@@ -132,15 +132,15 @@ registerBlockType('lsx-tour-operator/modal-button', {
                             allowedFormats={[]}
                         />
                     </div>
-                    {!modalId && !isLoading && (
-                        <div className="block-editor-warning">
-                            {__(
-                                'Please select a modal in the block settings.',
-                                'tour-operator'
-                            )}
-                        </div>
-                    )}
                 </div>
+                {!modalId && !isLoading && (
+                    <div className="block-editor-warning">
+                        {__(
+                            'Please select a modal in the block settings.',
+                            'tour-operator'
+                        )}
+                    </div>
+                )}
             </>
         );
     },
@@ -148,7 +148,7 @@ registerBlockType('lsx-tour-operator/modal-button', {
     save: ({ attributes }) => {
         const { text, modalId, align } = attributes;
         const blockProps = useBlockProps.save({
-            className: `wp-block-button has-text-align-${align}`,
+            className: `wp-block-button wp-block-button__link has-text-align-${align}`,
         });
 
         if (!modalId) {
@@ -156,9 +156,9 @@ registerBlockType('lsx-tour-operator/modal-button', {
         }
 
         return (
-            <div {...blockProps}>
+            <div className={`wp-block-button is-layout-flex`}>
                 <a
-                    className={`wp-block-button__link`}
+                    {...blockProps}
                     href={`#to-modal-${modalId}`}
                     type="button"
                 >

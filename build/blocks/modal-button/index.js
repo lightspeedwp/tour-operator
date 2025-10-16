@@ -195,7 +195,7 @@ const modalButtonIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODU
     const [modalOptions, setModalOptions] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)([]);
     const [isLoading, setIsLoading] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(true);
     const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
-      className: `wp-block-button has-text-align-${align}`
+      className: `has-text-align-${align} wp-block-button__link`
     });
 
     // Fetch modal options from the REST API
@@ -253,10 +253,10 @@ const modalButtonIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODU
             help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Select which modal template should open when this button is clicked. These are filtered from the lsx_to_modals template part area.', 'tour-operator')
           })
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-        ...blockProps,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-          className: `wp-block-button__link`,
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+        className: `wp-block-button is-layout-flex`,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+          ...blockProps,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
             tagName: "span",
             value: text,
@@ -266,10 +266,10 @@ const modalButtonIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODU
             placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Add button text…', 'tour-operator'),
             allowedFormats: []
           })
-        }), !modalId && !isLoading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-          className: "block-editor-warning",
-          children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Please select a modal in the block settings.', 'tour-operator')
-        })]
+        })
+      }), !modalId && !isLoading && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+        className: "block-editor-warning",
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Please select a modal in the block settings.', 'tour-operator')
       })]
     });
   },
@@ -282,15 +282,15 @@ const modalButtonIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODU
       align
     } = attributes;
     const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
-      className: `wp-block-button has-text-align-${align}`
+      className: `wp-block-button wp-block-button__link has-text-align-${align}`
     });
     if (!modalId) {
       return null;
     }
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-      ...blockProps,
+      className: `wp-block-button is-layout-flex`,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
-        className: `wp-block-button__link`,
+        ...blockProps,
         href: `#to-modal-${modalId}`,
         type: "button",
         children: text
