@@ -1,8 +1,95 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/group-size",
-  "title": "Group Size",
+  "title": "Group size",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Displays the maximum group size for tours.",
+  "icon": "groups",
+  "keywords": [
+    "group",
+    "size",
+    "people",
+    "maximum",
+    "capacity",
+    "travellers"
+  ],
+  "supports": {
+    "anchor": true,
+    "className": true,
+    "customClassName": true,
+    "html": false,
+    "lock": false,
+    "multiple": true,
+    "reusable": true,
+    "renaming": false,
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "blockGap": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "textAlign": true
+    },
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true
+    }
+  },
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Group Size"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {
+          "layout": {
+            "type": "flex",
+            "flexWrap": "nowrap",
+            "verticalAlignment": "middle"
+          }
+        },
+        [
+          [
+            "lsx-tour-operator/icons",
+            {
+              "iconType": "solid",
+              "iconName": "groupSizeIcon"
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "<strong>Group Size:</strong>"
+            }
+          ]
+        ]
+      ],
+      [
+        "core/group",
+        {
+          "layout": {
+            "type": "flex",
+            "flexWrap": "nowrap"
+          }
+        },
+        [
+          [
+            "core/paragraph",
+            {
+              "content": "Maximum 12 people"
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

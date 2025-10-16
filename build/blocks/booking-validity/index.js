@@ -83,9 +83,9 @@ module.exports = window["wp"]["i18n"];
 var __webpack_exports__ = {};
 // This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
 !function() {
-/*!****************************************!*\
-  !*** ./src/blocks/group-size/index.js ***!
-  \****************************************/
+/*!**********************************************!*\
+  !*** ./src/blocks/booking-validity/index.js ***!
+  \**********************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
@@ -101,23 +101,23 @@ wp.domReady(() => {
   let checking = false;
 
   // Register variation function
-  const registerGroupSizeVariation = () => {
+  const registerBookingValidityVariation = () => {
     if (registered) {
       return;
     }
     wp.blocks.registerBlockVariation('core/group', {
-      name: 'lsx-tour-operator/group-size',
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Group size', 'tour-operator'),
-      icon: 'groups',
+      name: 'lsx-tour-operator/booking-validity',
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Booking validity', 'tour-operator'),
+      icon: 'calendar',
       category: 'lsx-tour-operator',
       isActive: (blockAttributes, variationAttributes) => {
         return blockAttributes.metadata?.className === variationAttributes.metadata?.className;
       },
       attributes: {
         metadata: {
-          name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Group size', 'tour-operator')
+          name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Booking validity', 'tour-operator')
         },
-        className: 'lsx-group-size-wrapper',
+        className: 'lsx-booking-validity-wrapper',
         layout: {
           type: 'flex',
           flexWrap: 'nowrap'
@@ -131,21 +131,41 @@ wp.domReady(() => {
         }
       }, [['lsx-tour-operator/icons', {
         iconType: 'solid',
-        iconName: 'groupSizeIcon'
+        iconName: 'bookingValidityIcon'
       }], ['core/paragraph', {
-        content: '<strong>' + (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Group size:', 'tour-operator') + '</strong>'
-      }]]], ['core/group', {}, [['core/paragraph', {
+        fontSize: 'x-small',
+        content: '<strong>' + (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Booking validity:', 'tour-operator') + '</strong>'
+      }]]], ['core/group', {
+        layout: {
+          type: 'flex',
+          flexWrap: 'nowrap'
+        }
+      }, [['core/paragraph', {
         metadata: {
           bindings: {
             content: {
               source: 'lsx/post-meta',
               args: {
-                key: 'group_size'
+                key: 'booking_validity_start'
               }
             }
           }
         },
         content: ''
+      }], ['core/paragraph', {
+        content: '-'
+      }], ['core/paragraph', {
+        metadata: {
+          bindings: {
+            content: {
+              source: 'lsx/post-meta',
+              args: {
+                key: 'booking_validity_end'
+              }
+            }
+          }
+        },
+        content: 'End'
       }]]]],
       supports: {
         renaming: false
@@ -167,7 +187,7 @@ wp.domReady(() => {
         return false;
       }
       if (supportedPostTypes.includes(postType) || (postType === 'wp_template' || postType === 'wp_template_part') && postSlug.includes('tour')) {
-        registerGroupSizeVariation();
+        registerBookingValidityVariation();
         registered = true;
         checking = false;
         return true;
