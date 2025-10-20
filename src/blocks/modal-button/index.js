@@ -160,7 +160,6 @@ registerBlockType('lsx-tour-operator/modal-button', {
                 <a
                     {...blockProps}
                     href={`#to-modal-${modalId}`}
-                    type="button"
                 >
                     {text}
                 </a>
