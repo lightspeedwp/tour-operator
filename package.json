@@ -52,7 +52,7 @@
     "webpack-remove-empty-scripts": "^1.1.1"
   },
   "dependencies": {
-    "@wordpress/blocks": "15.5.0",
+    "@wordpress/blocks": "15.6.0",
     "classnames": "^2.5.1"
   }
 }
