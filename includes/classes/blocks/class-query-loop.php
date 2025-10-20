@@ -396,6 +396,9 @@ class Query_Loop {
 			$query['order'] = 'ASC';
 		}
 
+		// Allow 3rd Parties to alter the query args
+		$query = apply_filters( 'lsx_to_query_loop_query_args_' . $key, $query, $block );
+
 		// Store the processed query for this queryId (if available) and also keep legacy property.
 		if ( null !== $query_id ) {
 			$this->saved_queries[ $query_id ] = $query;
