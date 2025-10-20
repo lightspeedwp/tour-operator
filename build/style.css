@@ -578,8 +578,6 @@ button.facetwp-reset {
 @media (max-width: 768px) {
   .single-tour-operator {
     /* Styling for the toggle button */
-    /* Styling for the SVG icons */
-    /* Collapsed state for the second wp-block-group */
   }
   .single-tour-operator .toggle-button {
     display: inline-flex;
@@ -591,11 +589,17 @@ button.facetwp-reset {
     font-size: 14px;
     color: var(--wp--preset--color--contrast);
   }
+  .single-tour-operator {
+    /* Styling for the SVG icons */
+  }
   .single-tour-operator .toggle-icon {
     width: 16px;
     height: 16px;
     fill: var(--wp--preset--color--contrast);
     margin-left: 5px;
+  }
+  .single-tour-operator {
+    /* Collapsed state for the second wp-block-group */
   }
   .single-tour-operator section.wp-block-group .wp-block-group.collapsed, .single-tour-operator section.wp-block-cover .wp-block-group.collapsed {
     display: none; /* Hide the content */

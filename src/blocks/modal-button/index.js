@@ -118,7 +118,7 @@ registerBlockType('lsx-tour-operator/modal-button', {
                 </InspectorControls>
 
                 <div className={`wp-block-button is-layout-flex`}>
-                    <div {...blockProps}>
+                    <button {...blockProps} type="button">
                         <RichText
                             tagName="span"
                             value={text}
@@ -131,7 +131,7 @@ registerBlockType('lsx-tour-operator/modal-button', {
                             )}
                             allowedFormats={[]}
                         />
-                    </div>
+                    </button>
                 </div>
                 {!modalId && !isLoading && (
                     <div className="block-editor-warning">
