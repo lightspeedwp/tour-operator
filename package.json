@@ -48,7 +48,7 @@
     "@wordpress/eslint-plugin": "22.19.0",
     "@wordpress/scripts": "^30.26.0",
     "@wordpress/stylelint-config": "^23.25.0",
-    "@wordpress/project-management-automation": "^2.32.0",
+    "@wordpress/project-management-automation": "^2.33.0",
     "webpack-remove-empty-scripts": "^1.1.1"
   },
   "dependencies": {
