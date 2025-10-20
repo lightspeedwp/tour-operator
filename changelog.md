@@ -59,6 +59,7 @@
 - Query Block Pagination not Inherting the correct query vars. [#608](https://github.com/lightspeedwp/tour-operator/pull/608)
 - Fixed – Excluded build/ directory from CodeRabbit reviews by updating .coderabbit.yaml. [#620](https://github.com/lightspeedwp/tour-operator/pull/620)
 - Hide "location" custom field and exclude relevant JS when Google Maps API key is missing. Only the map field is shown. ([#657](https://github.com/lightspeedwp/tour-operator/issues/657))
+- Fixed Modal Button block styling supports applying to wrapper instead of button element, added border controls. [#674](https://github.com/lightspeedwp/tour-operator/pull/674)
 
 ### Security
 - 

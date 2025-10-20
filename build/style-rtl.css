@@ -2,6 +2,7 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/css/index.scss ***!
   \*******************************************************************************************************************************************************************************************************************************************/
 @charset "UTF-8";
+
 /*
  * Tour Operators
  */
@@ -11,127 +12,157 @@
   margin-right: 3px;
   margin-left: 3px;
 }
+
 .lsx-price-wrapper .amount .currency-icon.usd:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.usd:after,
-.unit-price-wrapper .amount .currency-icon.usd:after, .lsx-price-wrapper .amount .currency-icon.nad:after,
+.unit-price-wrapper .amount .currency-icon.usd:after,
+.lsx-price-wrapper .amount .currency-icon.nad:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.nad:after,
-.unit-price-wrapper .amount .currency-icon.nad:after, .lsx-price-wrapper .amount .currency-icon.cad:after,
+.unit-price-wrapper .amount .currency-icon.nad:after,
+.lsx-price-wrapper .amount .currency-icon.cad:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.cad:after,
-.unit-price-wrapper .amount .currency-icon.cad:after, .lsx-price-wrapper .amount .currency-icon.hkd:after,
+.unit-price-wrapper .amount .currency-icon.cad:after,
+.lsx-price-wrapper .amount .currency-icon.hkd:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.hkd:after,
-.unit-price-wrapper .amount .currency-icon.hkd:after, .lsx-price-wrapper .amount .currency-icon.sgd:after,
+.unit-price-wrapper .amount .currency-icon.hkd:after,
+.lsx-price-wrapper .amount .currency-icon.sgd:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.sgd:after,
-.unit-price-wrapper .amount .currency-icon.sgd:after, .lsx-price-wrapper .amount .currency-icon.nzd:after,
+.unit-price-wrapper .amount .currency-icon.sgd:after,
+.lsx-price-wrapper .amount .currency-icon.nzd:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.nzd:after,
-.unit-price-wrapper .amount .currency-icon.nzd:after, .lsx-price-wrapper .amount .currency-icon.aud:after,
+.unit-price-wrapper .amount .currency-icon.nzd:after,
+.lsx-price-wrapper .amount .currency-icon.aud:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.aud:after,
 .unit-price-wrapper .amount .currency-icon.aud:after {
   content: "$";
 }
+
 .lsx-price-wrapper .amount .currency-icon.eur:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.eur:after,
 .unit-price-wrapper .amount .currency-icon.eur:after {
   content: "€";
 }
+
 .lsx-price-wrapper .amount .currency-icon.gbp:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.gbp:after,
 .unit-price-wrapper .amount .currency-icon.gbp:after {
   content: "£";
 }
+
 .lsx-price-wrapper .amount .currency-icon.zar:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.zar:after,
 .unit-price-wrapper .amount .currency-icon.zar:after {
   content: "R";
 }
+
 .lsx-price-wrapper .amount .currency-icon.brl:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.brl:after,
 .unit-price-wrapper .amount .currency-icon.brl:after {
   content: "R$";
 }
+
 .lsx-price-wrapper .amount .currency-icon.bwp:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.bwp:after,
 .unit-price-wrapper .amount .currency-icon.bwp:after {
   content: "P";
 }
+
 .lsx-price-wrapper .amount .currency-icon.cny:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.cny:after,
-.unit-price-wrapper .amount .currency-icon.cny:after, .lsx-price-wrapper .amount .currency-icon.jpy:after,
+.unit-price-wrapper .amount .currency-icon.cny:after,
+.lsx-price-wrapper .amount .currency-icon.jpy:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.jpy:after,
 .unit-price-wrapper .amount .currency-icon.jpy:after {
   content: "¥";
 }
+
 .lsx-price-wrapper .amount .currency-icon.inr:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.inr:after,
 .unit-price-wrapper .amount .currency-icon.inr:after {
   content: "₹";
 }
+
 .lsx-price-wrapper .amount .currency-icon.idr:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.idr:after,
 .unit-price-wrapper .amount .currency-icon.idr:after {
   content: "₹";
 }
+
 .lsx-price-wrapper .amount .currency-icon.ils:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.ils:after,
 .unit-price-wrapper .amount .currency-icon.ils:after {
   content: "₪";
 }
+
 .lsx-price-wrapper .amount .currency-icon.kes:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.kes:after,
 .unit-price-wrapper .amount .currency-icon.kes:after {
   content: "K";
 }
+
 .lsx-price-wrapper .amount .currency-icon.lak:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.lak:after,
 .unit-price-wrapper .amount .currency-icon.lak:after {
   content: "₭";
 }
+
 .lsx-price-wrapper .amount .currency-icon.mwk:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.mwk:after,
 .unit-price-wrapper .amount .currency-icon.mwk:after {
   content: "MK";
 }
+
 .lsx-price-wrapper .amount .currency-icon.myr:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.myr:after,
 .unit-price-wrapper .amount .currency-icon.myr:after {
   content: "RM";
 }
+
 .lsx-price-wrapper .amount .currency-icon.mzn:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.mzn:after,
 .unit-price-wrapper .amount .currency-icon.mzn:after {
   content: "MT";
 }
+
 .lsx-price-wrapper .amount .currency-icon.nok:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.nok:after,
-.unit-price-wrapper .amount .currency-icon.nok:after, .lsx-price-wrapper .amount .currency-icon.sek:after,
+.unit-price-wrapper .amount .currency-icon.nok:after,
+.lsx-price-wrapper .amount .currency-icon.sek:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.sek:after,
 .unit-price-wrapper .amount .currency-icon.sek:after {
   content: "kr";
 }
+
 .lsx-price-wrapper .amount .currency-icon.rub:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.rub:after,
 .unit-price-wrapper .amount .currency-icon.rub:after {
   content: "руб";
 }
+
 .lsx-price-wrapper .amount .currency-icon.chf:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.chf:after,
 .unit-price-wrapper .amount .currency-icon.chf:after {
   content: "CHF";
 }
+
 .lsx-price-wrapper .amount .currency-icon.tzs:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.tzs:after,
 .unit-price-wrapper .amount .currency-icon.tzs:after {
   content: "TSh";
 }
+
 .lsx-price-wrapper .amount .currency-icon.aed:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.aed:after,
 .unit-price-wrapper .amount .currency-icon.aed:after {
   content: "د.إ";
 }
+
 .lsx-price-wrapper .amount .currency-icon.zmw:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.zmw:after,
 .unit-price-wrapper .amount .currency-icon.zmw:after {
   content: "Zk";
 }
+
 .lsx-price-wrapper .amount .currency-icon.zwl:after,
 .lsx-single-supplement-wrapper .amount .currency-icon.zwl:after,
 .unit-price-wrapper .amount .currency-icon.zwl:after {
@@ -154,6 +185,7 @@
 .unit-price-wrapper .amount .strike {
   text-decoration: line-through;
 }
+
 .lsx-price-wrapper .amount .currency-icon:after,
 .lsx-single-supplement-wrapper .amount .currency-icon:after,
 .unit-price-wrapper .amount .currency-icon:after {
@@ -162,7 +194,7 @@
 }
 
 /* Additional information specific styles */
-.fast-facts-wrapper > .wp-block-group .wp-block-group:last-child {
+.fast-facts-wrapper>.wp-block-group .wp-block-group:last-child {
   flex: 1;
 }
 
@@ -193,7 +225,8 @@
 }
 
 /* Additional Info */
-.additional-info .wp-block-group.content .read-more-btn, .additional-info .wp-block-group.content .read-less-btn {
+.additional-info .wp-block-group.content .read-more-btn,
+.additional-info .wp-block-group.content .read-less-btn {
   color: #0073aa;
   cursor: pointer;
   font-weight: bold;
@@ -298,60 +331,86 @@ button.facetwp-reset {
 }
 
 @media only screen and (min-width: 1240px) {
-  body .facetwp-facet .facetwp-dropdown, body .facetwp-facet .facetwp-checkboxes, body .facetwp-facet .facetwp-range, body .facetwp-facet .facetwp-radio {
+
+  body .facetwp-facet .facetwp-dropdown,
+  body .facetwp-facet .facetwp-checkboxes,
+  body .facetwp-facet .facetwp-range,
+  body .facetwp-facet .facetwp-radio {
     min-width: 220px;
     /* Adjust this value as needed */
   }
+
   .archive .facetwp-facet {
     margin-top: 4px !important;
   }
+
   .archive .facetwp-type-reset {
     margin-top: -2px !important;
   }
+
   .archive .fs-wrap {
     width: 292px;
   }
 }
+
 @media only screen and (min-width: 768px) and (max-width: 1199px) {
   .archive .fs-wrap {
     width: auto !important;
   }
-  body .facetwp-facet .facetwp-dropdown, body .facetwp-facet .facetwp-checkboxes, body .facetwp-facet .facetwp-range, body .facetwp-facet .facetwp-radio {
+
+  body .facetwp-facet .facetwp-dropdown,
+  body .facetwp-facet .facetwp-checkboxes,
+  body .facetwp-facet .facetwp-range,
+  body .facetwp-facet .facetwp-radio {
     min-width: 220px;
     /* Adjust this value as needed */
   }
 }
+
 @media only screen and (max-width: 480px) {
   .facet-row .wp-block-group {
     flex-wrap: wrap !important;
   }
+
   .facet-row .wp-block-group p {
     width: 100% !important;
   }
+
   .facet-row .wp-block-group .facetwp-facet {
     width: 100% !important;
   }
-  body .facetwp-facet .facetwp-dropdown, body .facetwp-facet .facetwp-checkboxes, body .facetwp-facet .facetwp-range, body .facetwp-facet .facetwp-radio {
+
+  body .facetwp-facet .facetwp-dropdown,
+  body .facetwp-facet .facetwp-checkboxes,
+  body .facetwp-facet .facetwp-range,
+  body .facetwp-facet .facetwp-radio {
     min-width: 100% !important;
     /* Adjust this value as needed */
   }
+
   .facet-row {
     flex-wrap: wrap !important;
     margin-right: -20px !important;
     margin-left: -20px !important;
   }
+
   .facetwp-selections {
     max-width: 100% !important;
   }
-  .facetwp-input-wrap, .fs-wrap {
+
+  .facetwp-input-wrap,
+  .fs-wrap {
     width: 100% !important;
   }
+
   .facetwp-facet input.facetwp-search {
     min-width: 88% !important;
   }
+
   .facetwp-selections ul li {
     margin-right: 0 !important;
   }
+
   button.facetwp-reset {
     background-color: var(--wp--preset--color--primary);
     border-width: 0;
@@ -373,10 +432,12 @@ button.facetwp-reset {
     border-radius: 4px;
   }
 }
+
 .lsx-to-slider.lsx-travel-information-wrapper .slick-list {
   max-width: 100% !important;
   width: 100% !important;
 }
+
 .lsx-to-slider.lsx-travel-information-wrapper .slick-slide {
   padding: 0 !important;
   margin: 0 10px !important;
@@ -388,6 +449,7 @@ button.facetwp-reset {
   gap: var(--wp--preset--spacing--small) var(--wp--preset--spacing--small);
   position: relative;
 }
+
 .wp-block-query.lsx-to-slider .slick-arrow,
 .lsx-block-videos.lsx-to-slider .slick-arrow,
 .lsx-travel-information-wrapper.lsx-to-slider .slick-arrow {
@@ -396,6 +458,7 @@ button.facetwp-reset {
   height: 30px;
   width: 30px;
 }
+
 .wp-block-query.lsx-to-slider .slick-arrow:before,
 .lsx-block-videos.lsx-to-slider .slick-arrow:before,
 .lsx-travel-information-wrapper.lsx-to-slider .slick-arrow:before {
@@ -403,6 +466,7 @@ button.facetwp-reset {
   height: 30px;
   width: 30px;
 }
+
 .wp-block-query.lsx-to-slider .slick-arrow.slick-prev:before,
 .lsx-block-videos.lsx-to-slider .slick-arrow.slick-prev:before,
 .lsx-travel-information-wrapper.lsx-to-slider .slick-arrow.slick-prev:before {
@@ -411,6 +475,7 @@ button.facetwp-reset {
   right: 3px;
   height: 20px;
 }
+
 .wp-block-query.lsx-to-slider .slick-arrow.slick-next:before,
 .lsx-block-videos.lsx-to-slider .slick-arrow.slick-next:before,
 .lsx-travel-information-wrapper.lsx-to-slider .slick-arrow.slick-next:before {
@@ -428,6 +493,7 @@ button.facetwp-reset {
   left: 52px;
   top: 35px;
 }
+
 .slick-lightbox-close:before {
   font-size: 40px;
 }
@@ -452,6 +518,7 @@ button.facetwp-reset {
   z-index: 3;
   color: white;
 }
+
 .lsx-to-slider .slick-arrow:before,
 .slick-lightbox-inner .slick-arrow:before {
   display: block;
@@ -467,6 +534,7 @@ button.facetwp-reset {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 .lsx-to-slider .slick-arrow.slick-prev:before,
 .slick-lightbox-inner .slick-arrow.slick-prev:before {
   background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CiAgICA8cG9seWxpbmUgcG9pbnRzPSIxNSAxOCA5IDEyIDE1IDYiPjwvcG9seWxpbmU+Cjwvc3ZnPgo=) no-repeat center center;
@@ -474,6 +542,7 @@ button.facetwp-reset {
   right: 3px;
   height: 20px;
 }
+
 .lsx-to-slider .slick-arrow.slick-next:before,
 .slick-lightbox-inner .slick-arrow.slick-next:before {
   background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+CiAgICA8cG9seWxpbmUgcG9pbnRzPSI5IDYgMTUgMTIgOSAxOCI+PC9wb2x5bGluZT4KPC9zdmc+Cg==) no-repeat center center;
@@ -491,17 +560,21 @@ button.facetwp-reset {
 .slick-lightbox-inner .slick-arrow.slick-disabled {
   cursor: not-allowed;
 }
+
 .lsx-to-slider .slick-arrow.slick-prev:before,
 .slick-lightbox-inner .slick-arrow.slick-prev:before {
-  content: ""; /* Remove font icon */
+  content: "";
+  /* Remove font icon */
   width: 40px;
   height: 40px;
   display: inline-block;
   right: 8px;
 }
+
 .lsx-to-slider .slick-arrow.slick-next:before,
 .slick-lightbox-inner .slick-arrow.slick-next:before {
-  content: ""; /* Remove font icon */
+  content: "";
+  /* Remove font icon */
   width: 40px;
   height: 40px;
   display: inline-block;
@@ -518,15 +591,18 @@ button.facetwp-reset {
   margin: 1rem 0 0;
   padding: 0;
 }
-.lsx-to-slider .slick-dots:not(.dropdown-menu) > li {
+
+.lsx-to-slider .slick-dots:not(.dropdown-menu)>li {
   line-height: 1;
   padding: 5px;
   margin-right: 15px;
 }
-.lsx-to-slider .slick-dots:not(.dropdown-menu) > li.slick-active > button {
+
+.lsx-to-slider .slick-dots:not(.dropdown-menu)>li.slick-active>button {
   background: #000;
 }
-.lsx-to-slider .slick-dots:not(.dropdown-menu) > li > button {
+
+.lsx-to-slider .slick-dots:not(.dropdown-menu)>li>button {
   background: transparent;
   border-style: solid;
   border-width: 1px;
@@ -536,15 +612,19 @@ button.facetwp-reset {
   transition: all 300ms ease-in-out;
   width: 12px;
 }
+
 .lsx-to-slider .slick-arrow.slick-prev {
   right: -4rem;
 }
+
 .lsx-to-slider .slick-arrow.slick-next {
   left: -4rem;
 }
+
 .lsx-to-slider.slider-disabled {
   overflow: hidden;
 }
+
 .lsx-to-slider .slick-slide .lazy-hidden {
   max-height: 154px;
 }
@@ -552,6 +632,7 @@ button.facetwp-reset {
 .slick-lightbox-inner .slick-arrow {
   opacity: 0.75;
 }
+
 .slick-lightbox-inner .slick-arrow:hover {
   opacity: 1;
 }
@@ -574,11 +655,9 @@ button.facetwp-reset {
     display: none;
   }
 }
+
 /* Optional: Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
-  .single-tour-operator {
-    /* Styling for the toggle button */
-  }
   .single-tour-operator .toggle-button {
     display: inline-flex;
     align-items: center;
@@ -589,29 +668,32 @@ button.facetwp-reset {
     font-size: 14px;
     color: var(--wp--preset--color--contrast);
   }
-  .single-tour-operator {
-    /* Styling for the SVG icons */
-  }
+
   .single-tour-operator .toggle-icon {
     width: 16px;
     height: 16px;
     fill: var(--wp--preset--color--contrast);
     margin-right: 5px;
   }
-  .single-tour-operator {
-    /* Collapsed state for the second wp-block-group */
+
+  .single-tour-operator section.wp-block-group .wp-block-group.collapsed,
+  .single-tour-operator section.wp-block-cover .wp-block-group.collapsed {
+    display: none;
+    /* Hide the content */
   }
-  .single-tour-operator section.wp-block-group .wp-block-group.collapsed, .single-tour-operator section.wp-block-cover .wp-block-group.collapsed {
-    display: none; /* Hide the content */
-  }
-  .fast-facts-wrapper > .wp-block-group {
-    flex-wrap: wrap; /* Allow wrapping for better readability */
+
+  .fast-facts-wrapper>.wp-block-group {
+    flex-wrap: wrap;
+    /* Allow wrapping for better readability */
     gap: 5px;
   }
-  .fast-facts-wrapper > .wp-block-group .wp-block-group.is-layout-flex:last-child {
-    flex-wrap: wrap; /* Allow text to wrap on smaller screens */
+
+  .fast-facts-wrapper>.wp-block-group .wp-block-group.is-layout-flex:last-child {
+    flex-wrap: wrap;
+    /* Allow text to wrap on smaller screens */
   }
 }
+
 .wp-block-hm-popup {
   top: 100%;
   opacity: 0;
@@ -628,6 +710,7 @@ button.facetwp-reset {
   background: none;
   padding: 0;
 }
+
 .wp-block-hm-popup[open] {
   transition: opacity 150ms linear;
   display: flex;
@@ -635,7 +718,8 @@ button.facetwp-reset {
   opacity: 1;
   padding: 0;
 }
-.wp-block-hm-popup > * {
+
+.wp-block-hm-popup>* {
   position: relative;
   z-index: 2;
   width: 100%;
@@ -644,9 +728,11 @@ button.facetwp-reset {
   max-height: 100%;
   overflow-y: auto;
 }
+
 .wp-block-hm-popup h3 {
   padding: 0 15px;
 }
+
 .wp-block-hm-popup .wp-block-template-part p:last-child {
   margin-bottom: 0;
 }
@@ -660,6 +746,7 @@ button.facetwp-reset {
     top: 100%;
   }
 }
+
 /* Transition the :backdrop when the dialog modal is promoted to the top layer */
 .wp-block-hm-popup::backdrop {
   background-color: rgba(0, 0, 0, 0);
@@ -677,6 +764,7 @@ button.facetwp-reset {
     background-color: rgba(0, 0, 0, 0);
   }
 }
+
 .wp-block-hm-popup__close {
   position: absolute;
   top: 0;
@@ -691,7 +779,9 @@ button.facetwp-reset {
   background: rgba(255, 255, 255, 0.9);
   border-radius: 0 0 0.25rem 0;
 }
-.wp-block-hm-popup__close:hover, .wp-block-hm-popup__close:focus {
+
+.wp-block-hm-popup__close:hover,
+.wp-block-hm-popup__close:focus {
   color: var(--wp--preset--color--primary);
   background: rgb(255, 255, 255);
 }
@@ -709,21 +799,26 @@ button.facetwp-reset {
   padding: 5px 0;
   width: 100%;
 }
+
 .lsx-to-map-marker .lsx-to-map-marker-content {
   flex-grow: 1;
   color: var(--wp--preset--color--contrast);
 }
+
 .lsx-to-map-marker .lsx-to-map-marker-content.content-area {
   margin: 0;
 }
+
 .lsx-to-map-marker .lsx-to-map-marker-content .entry-content {
   margin-top: 10px;
 }
+
 .lsx-to-map-marker .lsx-to-map-marker-content .entry-content p {
   margin-bottom: 0;
   margin-top: 1.2rem;
 }
-.lsx-to-map-marker .lsx-to-map-marker-content .entry-content p > a.moretag:after {
+
+.lsx-to-map-marker .lsx-to-map-marker-content .entry-content p>a.moretag:after {
   color: inherit;
   content: "\f178";
   display: inline-block;
@@ -734,11 +829,13 @@ button.facetwp-reset {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 .lsx-to-map-marker .lsx-to-map-marker-img {
   margin-left: 15px;
   max-width: 100px;
   flex-shrink: 0;
 }
+
 .lsx-to-map-marker .lsx-to-map-marker-title {
   margin-bottom: 10px;
   margin-top: 0;
