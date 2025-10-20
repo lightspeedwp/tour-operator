@@ -293,7 +293,8 @@ const modalButtonIcon = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODU
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
         ...blockProps,
         href: `#to-modal-${modalId}`,
-        type: "button",
+        "aria-haspopup": "dialog",
+        "aria-controls": `to-modal-${modalId}`,
         children: text
       })
     });

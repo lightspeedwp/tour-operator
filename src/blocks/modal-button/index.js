@@ -160,6 +160,8 @@ registerBlockType('lsx-tour-operator/modal-button', {
                 <a
                     {...blockProps}
                     href={`#to-modal-${modalId}`}
+                    aria-haspopup="dialog"
+                    aria-controls={`to-modal-${modalId}`}
                 >
                     {text}
                 </a>
