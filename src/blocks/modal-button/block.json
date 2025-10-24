@@ -6,7 +6,13 @@
 	"title": "Modal Button",
 	"category": "tour-operator",
 	"description": "A button that opens a modal dialog.",
-	"keywords": ["button", "modal", "popup", "enquiry", "contact"],
+	"keywords": [
+		"button",
+		"modal",
+		"popup",
+		"enquiry",
+		"contact"
+	],
 	"textdomain": "lsx-tour-operator",
 	"attributes": {
 		"text": {
@@ -40,8 +46,13 @@
 		"typography": {
 			"fontSize": true,
 			"lineHeight": true
+		},
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
 		}
 	},
 	"editorScript": "file:./index.js"
 }
-
