@@ -1,0 +1,214 @@
+/*!**********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/sticky-menu/style.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************/
+.lsx-sticky-menu {
+  /* Remove hardcoded styles - let theme.json and user styles handle it */
+  position: relative;
+  z-index: 100;
+  opacity: 0;
+}
+
+.block-editor-iframe__body .lsx-sticky-menu {
+  opacity: 1;
+}
+
+.lsx-sticky-menu.position-top {
+  position: sticky;
+  top: 0;
+}
+
+@media (max-width: 767px) {
+  .lsx-sticky-menu.position-top {
+    display: none;
+  }
+}
+
+.lsx-sticky-menu.position-bottom {
+  position: sticky;
+  bottom: 0;
+}
+
+.sticky-menu-nav {
+  width: 100%;
+}
+
+.sticky-menu-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+}
+
+.sticky-menu-item {
+  margin: 0;
+}
+
+.sticky-menu-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+.sticky-menu-button:hover {
+  opacity: 0.8;
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.sticky-menu-button.active {
+  opacity: 1;
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* Screen reader only text */
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Editor-specific styles */
+
+.sticky-menu-info {
+  font-size: 11px;
+  opacity: 0.7;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.sticky-menu-placeholder {
+  text-align: center;
+  padding: 2rem;
+  opacity: 0.7;
+}
+
+.sticky-menu-help {
+  font-size: 11px;
+  margin-top: 8px;
+}
+
+.sticky-menu-help ol {
+  margin-right: 16px;
+  line-height: 1.4;
+  text-align: right;
+}
+
+/* Mobile section toggle functionality */
+
+@media (max-width: 767px) {
+  .sticky-menu-section-wrapper {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0;
+  }
+  .sticky-menu-section-wrapper.collapsed .sticky-menu-section-content {
+    display: none;
+  }
+  .sticky-menu-section-wrapper:not(.collapsed) .section-header .caret {
+    transform: rotate(-180deg);
+  }
+  .sticky-menu-section-wrapper {
+    /* Ensure smooth transitions (respect motion preferences) */
+    transition: all 0.3s ease;
+  }
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  .sticky-menu-section-wrapper {
+    transition: none;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Legacy support for sections without wrapper */
+  .lsx-sticky-menu-section {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .lsx-sticky-menu-section.collapsed .wp-block-group__inner-container,
+  .lsx-sticky-menu-section.collapsed > .wp-block-group__inner-container,
+  .lsx-sticky-menu-section.collapsed > div:not(.section-header),
+  .lsx-sticky-menu-section.collapsed > *:not(.section-header) {
+    display: none;
+  }
+  .lsx-sticky-menu-section:not(.collapsed) .section-header .caret {
+    transform: rotate(-180deg);
+  }
+  .lsx-sticky-menu-section {
+    /* Ensure smooth transitions (respect motion preferences) */
+    transition: all 0.3s ease;
+  }
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  .lsx-sticky-menu-section {
+    transition: none;
+  }
+}
+
+button.section-header {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  padding: 1rem;
+  border-radius: 0;
+  width: 100%;
+  display: none; /* Hidden by default, shown on mobile */
+  align-items: center;
+  justify-content: space-between;
+  text-align: right;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+button.section-header:active {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+button.section-header .caret {
+  margin-right: auto;
+  border-top: 6px solid currentColor;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  height: 0;
+  width: 0;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button.section-header .caret {
+    transition: none;
+  }
+}
+
+button.section-header {
+  /* Show mobile headers only on mobile */
+}
+
+@media (max-width: 767px) {
+  button.section-header {
+    display: flex;
+  }
+}

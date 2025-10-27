@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "lsx-tour-operator/sticky-menu",
+  "version": "1.0.0",
+  "title": "Sticky Menu",
+  "category": "lsx-tour-operator",
+  "icon": "menu",
+  "description": "A sticky navigation menu that links to sections on the page",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "color": {
+      "background": true,
+      "gradients": true,
+      "link": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true
+    },
+    "typography": {
+      "fontSize": true,
+      "textAlign": true,
+      "lineHeight": true
+    }
+  },
+  "attributes": {
+    "position": {
+      "type": "string",
+      "default": "top"
+    },
+    "menuItems": {
+      "type": "array",
+      "default": []
+    }
+  },
+  "textdomain": "tour-operator",
+  "editorScript": [
+    "file:./index.js",
+    "file:./sticky-menu-editor-extension.js"
+  ],
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}
