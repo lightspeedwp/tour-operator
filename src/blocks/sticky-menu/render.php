@@ -30,11 +30,11 @@ function add_mobile_section_headers( $block_content, $block ) {
 
 	// Create the mobile header button
 	$mobile_header = sprintf(
-		'<button class="section-header" aria-expanded="false" id="%1$s-header" aria-controls="%1$s-content" aria-describedby="%1$s-desc">
+		'<button class="lsx-to-section-header" aria-expanded="false" id="%1$s-header" aria-controls="%1$s-content" aria-describedby="%1$s-desc">
 			<span>%2$s</span>
-			<span class="caret" aria-hidden="true"></span>
+			<span class="lsx-to-caret" aria-hidden="true"></span>
 		</button>
-		<div id="%1$s-desc" class="sr-only">Toggle section content visibility</div>',
+		<div id="%1$s-desc" class="lsx-to-sr-only">Toggle section content visibility</div>',
 		$section_id,
 		$section_title
 	);
@@ -42,7 +42,7 @@ function add_mobile_section_headers( $block_content, $block ) {
 	// Wrap the entire block content with the header button outside
 	// This ensures the button stays visible when content is collapsed
 	$wrapped_content = sprintf(
-		'<div class="sticky-menu-section-wrapper" role="region" aria-labelledby="%1$s-header">%2$s<div class="sticky-menu-section-content" id="%1$s-content">%3$s</div></div>',
+		'<div class="lsx-to-sticky-menu-section-wrapper" role="region" aria-labelledby="%1$s-header">%2$s<div class="lsx-to-sticky-menu-section-content" id="%1$s-content">%3$s</div></div>',
 		$section_id,
 		$mobile_header,
 		$block_content

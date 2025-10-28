@@ -7,6 +7,7 @@ import { createHigherOrderComponent } from '@wordpress/compose';
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, TextControl } from '@wordpress/components';
 import { Fragment, useState, useEffect } from '@wordpress/element';
+import { useSelect } from '@wordpress/data';
 
 /**
  * Add sticky menu attributes to core/group block
@@ -53,6 +54,28 @@ const withStickyMenuControls = createHigherOrderComponent((BlockEdit) => {
 			return <BlockEdit {...props} />;
 		}
 
+		// Check if there's a sticky-menu block in the editor
+		const hasStickyMenuBlock = useSelect((select) => {
+			const { getBlocks } = select('core/block-editor');
+
+			// Recursively check all blocks and their inner blocks
+			const checkBlocksForStickyMenu = (blocks) => {
+				return blocks.some(block => {
+					if (block.name === 'lsx-tour-operator/sticky-menu') {
+						return true;
+					}
+					// Check inner blocks recursively
+					if (block.innerBlocks && block.innerBlocks.length > 0) {
+						return checkBlocksForStickyMenu(block.innerBlocks);
+					}
+					return false;
+				});
+			};
+
+			const allBlocks = getBlocks();
+			return checkBlocksForStickyMenu(allBlocks);
+		}, []);
+
 		const { addToStickyMenu, stickyMenuId, stickyMenuTitle } = attributes;
 
 		// Local state for the CSS ID input to prevent focus loss
@@ -62,6 +85,22 @@ const withStickyMenuControls = createHigherOrderComponent((BlockEdit) => {
 		useEffect(() => {
 			setLocalStickyMenuId(stickyMenuId || '');
 		}, [stickyMenuId]);
+
+		// Clear sticky menu data when no sticky menu block is present
+		useEffect(() => {
+			if (!hasStickyMenuBlock && addToStickyMenu) {
+				setAttributes({
+					addToStickyMenu: false,
+					stickyMenuId: '',
+					stickyMenuTitle: '',
+				});
+			}
+		}, [hasStickyMenuBlock, addToStickyMenu, setAttributes]);
+
+		// Don't show controls if no sticky menu block is present
+		if (!hasStickyMenuBlock) {
+			return <BlockEdit {...props} />;
+		}
 
 		return (
 			<Fragment>
@@ -131,6 +170,8 @@ addFilter(
 
 /**
  * Add sticky menu attributes to save function
+ * Note: This runs during save and doesn't need to check for sticky menu block presence
+ * since the attributes will be cleared by the editor when no sticky menu block exists
  */
 function addStickyMenuSaveProps(extraProps, blockType, attributes) {
 	if (blockType.name !== 'core/group') {
@@ -150,7 +191,7 @@ function addStickyMenuSaveProps(extraProps, blockType, attributes) {
 
 		// Add custom CSS class for frontend styling/JavaScript targeting
 		const existingClass = extraProps.className || '';
-		extraProps.className = `${existingClass} lsx-sticky-menu-section`.trim();
+		extraProps.className = `${existingClass} lsx-to-lsx-sticky-menu-section`.trim();
 	}
 
 	return extraProps;
@@ -173,9 +214,31 @@ const withStickyMenuEditor = createHigherOrderComponent((BlockListBlock) => {
 			return <BlockListBlock {...props} />;
 		}
 
+		// Check if there's a sticky-menu block in the editor
+		const hasStickyMenuBlock = useSelect((select) => {
+			const { getBlocks } = select('core/block-editor');
+
+			// Recursively check all blocks and their inner blocks
+			const checkBlocksForStickyMenu = (blocks) => {
+				return blocks.some(block => {
+					if (block.name === 'lsx-tour-operator/sticky-menu') {
+						return true;
+					}
+					// Check inner blocks recursively
+					if (block.innerBlocks && block.innerBlocks.length > 0) {
+						return checkBlocksForStickyMenu(block.innerBlocks);
+					}
+					return false;
+				});
+			};
+
+			const allBlocks = getBlocks();
+			return checkBlocksForStickyMenu(allBlocks);
+		}, []);
+
 		const { addToStickyMenu, stickyMenuId, stickyMenuTitle } = attributes;
 
-		if (!addToStickyMenu || !stickyMenuId) {
+		if (!hasStickyMenuBlock || !addToStickyMenu || !stickyMenuId) {
 			return <BlockListBlock {...props} />;
 		}
 

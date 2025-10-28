@@ -1,15 +1,15 @@
-.lsx-sticky-menu {
+.lsx-to-lsx-sticky-menu {
 	/* Remove hardcoded styles - let theme.json and user styles handle it */
 	position: relative;
 	z-index: 100;
 	opacity: 0;
 }
 
-.block-editor-iframe__body .lsx-sticky-menu {
+.block-editor-iframe__body .lsx-to-lsx-sticky-menu {
 	opacity: 1;
 }
 
-.lsx-sticky-menu.position-top {
+.lsx-to-lsx-sticky-menu.lsx-to-position-top {
 	position: sticky;
 	top: 0;
 	@media (max-width: 767px) {
@@ -17,16 +17,16 @@
 	}
 }
 
-.lsx-sticky-menu.position-bottom {
+.lsx-to-lsx-sticky-menu.lsx-to-position-bottom {
 	position: sticky;
 	bottom: 0;
 }
 
-.sticky-menu-nav {
+.lsx-to-sticky-menu-nav {
 	width: 100%;
 }
 
-.sticky-menu-list {
+.lsx-to-sticky-menu-list {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 0.5rem;
@@ -36,11 +36,11 @@
 	justify-content: center;
 }
 
-.sticky-menu-item {
+.lsx-to-sticky-menu-item {
 	margin: 0;
 }
 
-.sticky-menu-button {
+.lsx-to-sticky-menu-button {
 	background: none;
 	border: none;
 	cursor: pointer;
@@ -53,20 +53,20 @@
 	border-radius: 4px;
 }
 
-.sticky-menu-button:hover {
+.lsx-to-sticky-menu-button:hover {
 	opacity: 0.8;
 	outline: 2px solid currentColor;
 	outline-offset: 2px;
 }
 
-.sticky-menu-button.active {
+.lsx-to-sticky-menu-button.active {
 	opacity: 1;
   outline: 2px solid currentColor;
 	outline-offset: 2px;
 }
 
 /* Screen reader only text */
-.sr-only {
+.lsx-to-sr-only {
 	position: absolute !important;
 	width: 1px !important;
 	height: 1px !important;
@@ -79,25 +79,25 @@
 }
 
 /* Editor-specific styles */
-.sticky-menu-info {
+.lsx-to-sticky-menu-info {
 	font-size: 11px;
 	opacity: 0.7;
 	margin-top: 8px;
 	text-align: center;
 }
 
-.sticky-menu-placeholder {
-	text-align: center;
+.lsx-to-sticky-menu-placeholder {
+	text-align: left;
 	padding: 2rem;
 	opacity: 0.7;
 }
 
-.sticky-menu-help {
+.lsx-to-sticky-menu-help {
 	font-size: 11px;
 	margin-top: 8px;
 }
 
-.sticky-menu-help ol {
+.lsx-to-sticky-menu-help ol {
 	margin-left: 16px;
 	line-height: 1.4;
 	text-align: left;
@@ -105,18 +105,18 @@
 
 /* Mobile section toggle functionality */
 @media (max-width: 767px) {
-	.sticky-menu-section-wrapper {
+	.lsx-to-sticky-menu-section-wrapper {
 		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     margin: 0;
 
 		&.collapsed {
-			.sticky-menu-section-content {
+			.lsx-to-sticky-menu-section-content {
 				display: none;
 			}
 		}
 
 		&:not(.collapsed) {
-			.section-header .caret {
+			.lsx-to-section-header .lsx-to-caret {
 				transform: rotate(180deg);
 			}
 		}
@@ -130,20 +130,20 @@
 	}
 
 	/* Legacy support for sections without wrapper */
-	.lsx-sticky-menu-section {
+	.lsx-to-lsx-sticky-menu-section {
 		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
 		&.collapsed {
 			.wp-block-group__inner-container,
 			> .wp-block-group__inner-container,
-			> div:not(.section-header),
-			> *:not(.section-header) {
+			> div:not(.lsx-to-section-header),
+			> *:not(.lsx-to-section-header) {
 				display: none;
 			}
 		}
 
 		&:not(.collapsed) {
-			.section-header .caret {
+			.lsx-to-section-header .lsx-to-caret {
 				transform: rotate(180deg);
 			}
 		}
@@ -157,7 +157,7 @@
 	}
 }
 
-button.section-header {
+button.lsx-to-section-header {
 	background: none;
 	border: none;
 	cursor: pointer;
@@ -180,7 +180,7 @@ button.section-header {
 		background: rgba(0, 0, 0, 0.1);
 	}
 
-	.caret {
+	.lsx-to-caret {
 		margin-left: auto;
 		border-top: 6px solid currentColor;
 		border-right: 6px solid transparent;

@@ -85,10 +85,10 @@ lsx_to.toggle_mobile_section = function (element) {
 
   // Find the wrapper (could be the element itself or its parent)
   let wrapper = element;
-  if (element.classList.contains('sticky-menu-section-wrapper')) {
+  if (element.classList.contains('lsx-to-sticky-menu-section-wrapper')) {
     wrapper = element;
-  } else if (element.closest('.sticky-menu-section-wrapper')) {
-    wrapper = element.closest('.sticky-menu-section-wrapper');
+  } else if (element.closest('.lsx-to-sticky-menu-section-wrapper')) {
+    wrapper = element.closest('.lsx-to-sticky-menu-section-wrapper');
   } else if (element.hasAttribute('data-sticky-menu-section')) {
     // Legacy support for sections without wrapper
     wrapper = element;
@@ -110,7 +110,7 @@ lsx_to.toggle_mobile_section = function (element) {
   }
 
   // Update header button state
-  const header_button = wrapper.querySelector('.section-header');
+  const header_button = wrapper.querySelector('.lsx-to-section-header');
   if (header_button) {
     header_button.setAttribute('aria-expanded', new_expanded_state.toString());
   }
@@ -126,14 +126,14 @@ lsx_to.toggle_mobile_section = function (element) {
  */
 lsx_to.add_mobile_header = function (section, context) {
   // Find the wrapper containing this section
-  let wrapper = section.closest('.sticky-menu-section-wrapper');
+  let wrapper = section.closest('.lsx-to-sticky-menu-section-wrapper');
   if (!wrapper) {
     // Legacy support: section itself might be the target
     wrapper = section;
   }
 
   // Check if header already exists (added by PHP)
-  const existing_header = wrapper.querySelector('.section-header');
+  const existing_header = wrapper.querySelector('.lsx-to-section-header');
   if (!existing_header) {
     return;
   }
@@ -198,14 +198,14 @@ lsx_to.add_mobile_header = function (section, context) {
  */
 lsx_to.update_active_menu_item = function (section_id) {
   // Remove active class and aria-current from all menu buttons
-  const menu_buttons = document.querySelectorAll('.wp-block-lsx-tour-operator-sticky-menu .sticky-menu-button');
+  const menu_buttons = document.querySelectorAll('.wp-block-lsx-tour-operator-sticky-menu .lsx-to-sticky-menu-button');
   menu_buttons.forEach(button => {
     button.classList.remove('active');
     button.setAttribute('aria-current', 'false');
   });
 
   // Add active class and aria-current to current menu button
-  const active_button = document.querySelector(`.wp-block-lsx-tour-operator-sticky-menu .sticky-menu-button[data-section-id="${section_id}"]`);
+  const active_button = document.querySelector(`.wp-block-lsx-tour-operator-sticky-menu .lsx-to-sticky-menu-button[data-section-id="${section_id}"]`);
   if (active_button) {
     active_button.classList.add('active');
     active_button.setAttribute('aria-current', 'location');
@@ -384,7 +384,7 @@ lsx_to.update_menu_items = function () {
  * @subpackage scripts
  */
 lsx_to.setup_menu_click_handlers = function () {
-  const menu_items = document.querySelectorAll('.wp-block-lsx-tour-operator-sticky-menu .menu-item');
+  const menu_items = document.querySelectorAll('.wp-block-lsx-tour-operator-sticky-menu .lsx-to-menu-item');
 
   // Check if menu items exist before setting up handlers
   if (menu_items.length === 0) {
@@ -392,7 +392,7 @@ lsx_to.setup_menu_click_handlers = function () {
   }
   menu_items.forEach(function (item) {
     // Enhance button accessibility
-    const button = item.querySelector('.sticky-menu-button');
+    const button = item.querySelector('.lsx-to-sticky-menu-button');
     if (button) {
       const section_id = item.getAttribute('data-section-id');
       const section_title = button.textContent.trim();
@@ -445,7 +445,7 @@ lsx_to.initialize_mobile_sections = function () {
     };
 
     // Find the wrapper (new structure) or use section (legacy)
-    let wrapper = section.closest('.sticky-menu-section-wrapper');
+    let wrapper = section.closest('.lsx-to-sticky-menu-section-wrapper');
     if (!wrapper) {
       wrapper = section; // Legacy support
     }
@@ -469,7 +469,7 @@ lsx_to.cleanup_mobile_sections = function () {
   const sections = document.querySelectorAll('[data-sticky-menu-section]');
   sections.forEach(function (section) {
     // Find the wrapper (new structure) or use section (legacy)
-    let wrapper = section.closest('.sticky-menu-section-wrapper');
+    let wrapper = section.closest('.lsx-to-sticky-menu-section-wrapper');
     if (!wrapper) {
       wrapper = section; // Legacy support
     }
@@ -479,7 +479,7 @@ lsx_to.cleanup_mobile_sections = function () {
     wrapper.removeAttribute('aria-expanded');
 
     // Reset header state but don't remove it (it's added by PHP)
-    const header = wrapper.querySelector('.section-header');
+    const header = wrapper.querySelector('.lsx-to-section-header');
     if (header) {
       header.setAttribute('aria-expanded', 'false');
     }
@@ -516,13 +516,13 @@ lsx_to.cleanup_sticky_menu = function () {
  */
 lsx_to.announce_section_change = function (section_id) {
   // Get or create aria-live region
-  let announcer = document.getElementById('sticky-menu-announcer');
+  let announcer = document.getElementById('lsx-to-sticky-menu-announcer');
   if (!announcer) {
     announcer = document.createElement('div');
-    announcer.id = 'sticky-menu-announcer';
+    announcer.id = 'lsx-to-sticky-menu-announcer';
     announcer.setAttribute('aria-live', 'polite');
     announcer.setAttribute('aria-atomic', 'true');
-    announcer.className = 'sr-only';
+    announcer.className = 'lsx-to-sr-only';
     document.body.appendChild(announcer);
   }
 
@@ -557,7 +557,7 @@ lsx_to.initialize_sticky_menu = function () {
   if (sections.length === 0) {
     return;
   } else {
-    for (const menuItem of sticky_menu_block.querySelectorAll('.menu-item')) {
+    for (const menuItem of sticky_menu_block.querySelectorAll('.lsx-to-menu-item')) {
       const sectionId = menuItem.getAttribute('data-section-id');
       const correspondingSection = document.getElementById(sectionId);
       if (correspondingSection) {

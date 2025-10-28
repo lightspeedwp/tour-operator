@@ -64,7 +64,7 @@ function Edit({
     menuItems = []
   } = attributes;
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
-    className: `lsx-sticky-menu position-${position}`,
+    className: `lsx-to-lsx-sticky-menu lsx-to-position-${position}`,
     style: {
       backgroundColor: backgroundColor || undefined,
       color: textColor || undefined
@@ -115,17 +115,17 @@ function Edit({
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
       ...blockProps,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("nav", {
-        className: "sticky-menu-nav",
+        className: "lsx-to-sticky-menu-nav",
         "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Page section navigation', 'tour-operator'),
         children: menuItems.length > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("ul", {
-            className: "sticky-menu-list",
+            className: "lsx-to-sticky-menu-list",
             role: "tablist",
             "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Page sections', 'tour-operator'),
             children: menuItems.map(item => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("li", {
-              className: "sticky-menu-item",
+              className: "lsx-to-sticky-menu-item",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
-                className: "sticky-menu-button",
+                className: "lsx-to-sticky-menu-button",
                 href: "javascript:void(0);",
                 role: "tab",
                 "aria-current": "false",
@@ -135,7 +135,7 @@ function Edit({
             }, item.id))
           })
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-          className: "sticky-menu-placeholder",
+          className: "lsx-to-sticky-menu-placeholder",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
             children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Add groups with "Add to Sticky Menu" enabled to populate this menu.', 'tour-operator')
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("details", {
@@ -183,7 +183,7 @@ function Save({
     menuItems = []
   } = attributes;
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
-    className: `lsx-sticky-menu position-${position}`,
+    className: `lsx-to-lsx-sticky-menu lsx-to-position-${position}`,
     style: {
       backgroundColor: backgroundColor || undefined,
       color: textColor || undefined
@@ -192,18 +192,18 @@ function Save({
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
     ...blockProps,
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("nav", {
-      className: "sticky-menu-nav",
-      "aria-label": "Page section navigation",
+      className: "lsx-to-sticky-menu-nav",
+      "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Page section navigation', 'tour-operator'),
       children: menuItems.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("ul", {
-        className: "sticky-menu-list",
+        className: "lsx-to-sticky-menu-list",
         role: "tablist",
-        "aria-label": "Page sections",
+        "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Page sections', 'tour-operator'),
         children: menuItems.map(item => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("li", {
-          className: "menu-item",
+          className: "lsx-to-menu-item",
           "data-section-id": item.id,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
-            className: "sticky-menu-button",
-            href: "javascript:void(0);",
+            className: "lsx-to-sticky-menu-button",
+            href: `#${item.id}`,
             "data-section-id": item.id,
             role: "tab",
             "aria-current": "false",

@@ -21,7 +21,7 @@ function Edit({ attributes, setAttributes }) {
   const { position, backgroundColor, textColor, menuItems = [] } = attributes;
 
   const blockProps = useBlockProps({
-    className: `lsx-sticky-menu position-${position}`,
+    className: `lsx-to-lsx-sticky-menu lsx-to-position-${position}`,
     style: {
       backgroundColor: backgroundColor || undefined,
       color: textColor || undefined,
@@ -78,14 +78,14 @@ function Edit({ attributes, setAttributes }) {
   return (
     <>
       <div {...blockProps}>
-        <nav className="sticky-menu-nav" aria-label={__('Page section navigation', 'tour-operator')}>
+        <nav className="lsx-to-sticky-menu-nav" aria-label={__('Page section navigation', 'tour-operator')}>
           {menuItems.length > 0 ? (
             <>
-              <ul className="sticky-menu-list" role="tablist" aria-label={__('Page sections', 'tour-operator')}>
+              <ul className="lsx-to-sticky-menu-list" role="tablist" aria-label={__('Page sections', 'tour-operator')}>
                 {menuItems.map((item) => (
-                  <li key={item.id} className="sticky-menu-item">
+                  <li key={item.id} className="lsx-to-sticky-menu-item">
                     <a
-                      className="sticky-menu-button"
+                      className="lsx-to-sticky-menu-button"
                       href="javascript:void(0);"
                       role="tab"
                       aria-current="false"
@@ -98,7 +98,7 @@ function Edit({ attributes, setAttributes }) {
               </ul>
             </>
           ) : (
-            <div className="sticky-menu-placeholder">
+            <div className="lsx-to-sticky-menu-placeholder">
               <p>
                 {__('Add groups with "Add to Sticky Menu" enabled to populate this menu.', 'tour-operator')}
               </p>
@@ -127,7 +127,7 @@ function Save({ attributes }) {
   const { position, backgroundColor, textColor, menuItems = [] } = attributes;
 
   const blockProps = useBlockProps.save({
-    className: `lsx-sticky-menu position-${position}`,
+    className: `lsx-to-lsx-sticky-menu lsx-to-position-${position}`,
     style: {
       backgroundColor: backgroundColor || undefined,
       color: textColor || undefined,
@@ -136,14 +136,14 @@ function Save({ attributes }) {
 
   return (
     <div {...blockProps}>
-      <nav className="sticky-menu-nav" aria-label="Page section navigation">
+      <nav className="lsx-to-sticky-menu-nav" aria-label={__('Page section navigation', 'tour-operator')}>
         {menuItems.length > 0 && (
-          <ul className="sticky-menu-list" role="tablist" aria-label="Page sections">
+          <ul className="lsx-to-sticky-menu-list" role="tablist" aria-label={__('Page sections', 'tour-operator')}>
             {menuItems.map((item) => (
-              <li key={item.id} className="menu-item" data-section-id={item.id}>
+              <li key={item.id} className="lsx-to-menu-item" data-section-id={item.id}>
                 <a
-                  className="sticky-menu-button"
-                  href="javascript:void(0);"
+                  className="lsx-to-sticky-menu-button"
+                  href={`#${item.id}`}
                   data-section-id={item.id}
                   role="tab"
                   aria-current="false"

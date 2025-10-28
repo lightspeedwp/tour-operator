@@ -32,6 +32,16 @@ module.exports = window["wp"]["compose"];
 
 /***/ }),
 
+/***/ "@wordpress/data":
+/*!******************************!*\
+  !*** external ["wp","data"] ***!
+  \******************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["data"];
+
+/***/ }),
+
 /***/ "@wordpress/element":
 /*!*********************************!*\
   !*** external ["wp","element"] ***!
@@ -159,11 +169,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
 /**
  * WordPress dependencies
  */
+
 
 
 
@@ -211,10 +224,33 @@ const withStickyMenuControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2_
       name
     } = props;
     if (name !== 'core/group') {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(BlockEdit, {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(BlockEdit, {
         ...props
       });
     }
+
+    // Check if there's a sticky-menu block in the editor
+    const hasStickyMenuBlock = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_6__.useSelect)(select => {
+      const {
+        getBlocks
+      } = select('core/block-editor');
+
+      // Recursively check all blocks and their inner blocks
+      const checkBlocksForStickyMenu = blocks => {
+        return blocks.some(block => {
+          if (block.name === 'lsx-tour-operator/sticky-menu') {
+            return true;
+          }
+          // Check inner blocks recursively
+          if (block.innerBlocks && block.innerBlocks.length > 0) {
+            return checkBlocksForStickyMenu(block.innerBlocks);
+          }
+          return false;
+        });
+      };
+      const allBlocks = getBlocks();
+      return checkBlocksForStickyMenu(allBlocks);
+    }, []);
     const {
       addToStickyMenu,
       stickyMenuId,
@@ -228,14 +264,32 @@ const withStickyMenuControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2_
     (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useEffect)(() => {
       setLocalStickyMenuId(stickyMenuId || '');
     }, [stickyMenuId]);
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(BlockEdit, {
+
+    // Clear sticky menu data when no sticky menu block is present
+    (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useEffect)(() => {
+      if (!hasStickyMenuBlock && addToStickyMenu) {
+        setAttributes({
+          addToStickyMenu: false,
+          stickyMenuId: '',
+          stickyMenuTitle: ''
+        });
+      }
+    }, [hasStickyMenuBlock, addToStickyMenu, setAttributes]);
+
+    // Don't show controls if no sticky menu block is present
+    if (!hasStickyMenuBlock) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(BlockEdit, {
         ...props
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
+      });
+    }
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(BlockEdit, {
+        ...props
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
           title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Sticky Menu Settings', 'tour-operator'),
           initialOpen: false,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToggleControl, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToggleControl, {
             label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Add to Sticky Menu', 'tour-operator'),
             help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Include this section in the sticky navigation menu', 'tour-operator'),
             checked: addToStickyMenu,
@@ -252,8 +306,8 @@ const withStickyMenuControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2_
                 });
               }
             }
-          }), addToStickyMenu && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
+          }), addToStickyMenu && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
               label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('CSS ID', 'tour-operator'),
               help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Required: Unique ID for this section (without #)', 'tour-operator'),
               value: localStickyMenuId,
@@ -270,7 +324,7 @@ const withStickyMenuControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2_
                 });
               },
               placeholder: "section-id"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
               label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Menu Title', 'tour-operator'),
               help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Title to display in the sticky menu', 'tour-operator'),
               value: stickyMenuTitle,
@@ -289,6 +343,8 @@ const withStickyMenuControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2_
 
 /**
  * Add sticky menu attributes to save function
+ * Note: This runs during save and doesn't need to check for sticky menu block presence
+ * since the attributes will be cleared by the editor when no sticky menu block exists
  */
 function addStickyMenuSaveProps(extraProps, blockType, attributes) {
   if (blockType.name !== 'core/group') {
@@ -310,7 +366,7 @@ function addStickyMenuSaveProps(extraProps, blockType, attributes) {
 
     // Add custom CSS class for frontend styling/JavaScript targeting
     const existingClass = extraProps.className || '';
-    extraProps.className = `${existingClass} lsx-sticky-menu-section`.trim();
+    extraProps.className = `${existingClass} lsx-to-lsx-sticky-menu-section`.trim();
   }
   return extraProps;
 }
@@ -326,17 +382,40 @@ const withStickyMenuEditor = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__.
       name
     } = props;
     if (name !== 'core/group') {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(BlockListBlock, {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(BlockListBlock, {
         ...props
       });
     }
+
+    // Check if there's a sticky-menu block in the editor
+    const hasStickyMenuBlock = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_6__.useSelect)(select => {
+      const {
+        getBlocks
+      } = select('core/block-editor');
+
+      // Recursively check all blocks and their inner blocks
+      const checkBlocksForStickyMenu = blocks => {
+        return blocks.some(block => {
+          if (block.name === 'lsx-tour-operator/sticky-menu') {
+            return true;
+          }
+          // Check inner blocks recursively
+          if (block.innerBlocks && block.innerBlocks.length > 0) {
+            return checkBlocksForStickyMenu(block.innerBlocks);
+          }
+          return false;
+        });
+      };
+      const allBlocks = getBlocks();
+      return checkBlocksForStickyMenu(allBlocks);
+    }, []);
     const {
       addToStickyMenu,
       stickyMenuId,
       stickyMenuTitle
     } = attributes;
-    if (!addToStickyMenu || !stickyMenuId) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(BlockListBlock, {
+    if (!hasStickyMenuBlock || !addToStickyMenu || !stickyMenuId) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(BlockListBlock, {
         ...props
       });
     }
@@ -352,7 +431,7 @@ const withStickyMenuEditor = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__.
     };
 
     // Add a badge to show it's part of sticky menu
-    const badge = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    const badge = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       style: {
         position: 'absolute',
         top: '-10px',
@@ -367,11 +446,11 @@ const withStickyMenuEditor = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__.
       },
       children: ["\uD83D\uDCCC ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Sticky Menu Section', 'tour-operator'), ": ", stickyMenuTitle || stickyMenuId]
     });
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       style: {
         position: 'relative'
       },
-      children: [badge, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(BlockListBlock, {
+      children: [badge, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(BlockListBlock, {
         ...props,
         wrapperProps: wrapperProps
       })]
