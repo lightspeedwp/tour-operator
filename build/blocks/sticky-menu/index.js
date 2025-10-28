@@ -34,6 +34,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
 /**
+ * Sticky Menu Block - Main Entry Point
+ *
+ * @package Tour_Operator
+ * @subpackage Blocks
+ * @since 2.1.0
+ */
+
+/**
  * WordPress dependencies
  */
 
@@ -50,7 +58,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
- * Edit component
+ * Edit component for the Sticky Menu block.
+ *
+ * Renders the block in the editor with live preview of menu items
+ * based on group blocks that have sticky menu functionality enabled.
+ *
+ * @since 2.1.0
+ * @param {Object} props Component props.
+ * @param {Object} props.attributes Block attributes.
+ * @param {Function} props.setAttributes Function to update block attributes.
+ * @return {JSX.Element} The edit component.
  */
 
 function Edit({
@@ -119,14 +136,12 @@ function Edit({
         children: menuItems.length > 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("ul", {
             className: "lsx-to-sticky-menu-list",
-            role: "tablist",
             "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Page sections', 'tour-operator'),
             children: menuItems.map(item => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("li", {
               className: "lsx-to-sticky-menu-item",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
                 className: "lsx-to-sticky-menu-button",
                 href: "javascript:void(0);",
-                role: "tab",
                 "aria-current": "false",
                 "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Navigate to %s section', 'tour-operator').replace('%s', item.title),
                 children: item.title
@@ -170,7 +185,15 @@ function Edit({
 }
 
 /**
- * Save component
+ * Save component for the Sticky Menu block.
+ *
+ * Renders the block content that will be saved to the database
+ * and displayed on the frontend.
+ *
+ * @since 2.1.0
+ * @param {Object} props Component props.
+ * @param {Object} props.attributes Block attributes.
+ * @return {JSX.Element} The save component.
  */
 function Save({
   attributes
@@ -194,7 +217,6 @@ function Save({
       "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Page section navigation', 'tour-operator'),
       children: menuItems.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("ul", {
         className: "lsx-to-sticky-menu-list",
-        role: "tablist",
         "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Page sections', 'tour-operator'),
         children: menuItems.map(item => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("li", {
           className: "lsx-to-sticky-menu-item",
@@ -203,7 +225,6 @@ function Save({
             className: "lsx-to-sticky-menu-button",
             href: `#${item.id}`,
             "data-section-id": item.id,
-            role: "tab",
             "aria-current": "false",
             children: item.title
           })
@@ -211,9 +232,16 @@ function Save({
       })
     })
   });
-} /**
-  * Register block
-  */
+}
+
+/**
+ * Register the Sticky Menu block type.
+ *
+ * Combines the block configuration from block.json with the
+ * edit and save components to create a fully functional block.
+ *
+ * @since 2.1.0
+ */
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_5__.name, {
   ..._block_json__WEBPACK_IMPORTED_MODULE_5__,
   edit: Edit,

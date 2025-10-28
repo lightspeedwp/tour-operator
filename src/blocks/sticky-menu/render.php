@@ -12,6 +12,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Add mobile header for sticky menu sections
+ *
+ * This function adds collapsible mobile headers to group blocks that have
+ * sticky menu functionality enabled. It wraps the block content with
+ * interactive controls for mobile navigation.
+ *
+ * @since 2.1.0
+ * @param string $block_content The block's rendered HTML content.
+ * @param array  $block         The full block, including name and attributes.
+ * @return string Modified block content with mobile headers added if applicable.
  */
 function add_mobile_section_headers( $block_content, $block ) {
 	// Only process group blocks with sticky menu enabled
@@ -34,9 +43,10 @@ function add_mobile_section_headers( $block_content, $block ) {
 			<span>%2$s</span>
 			<span class="lsx-to-caret" aria-hidden="true"></span>
 		</button>
-		<div id="%1$s-desc" class="lsx-to-sr-only">Toggle section content visibility</div>',
+		<div id="%1$s-desc" class="lsx-to-sr-only">%3$s</div>',
 		$section_id,
-		$section_title
+		$section_title,
+		esc_html__( 'Toggle section content visibility', 'tour-operator' )
 	);
 
 	// Wrap the entire block content with the header button outside

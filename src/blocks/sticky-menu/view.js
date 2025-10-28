@@ -1,16 +1,36 @@
 /**
- * Sticky Menu Scripts
+ * Sticky Menu Scripts - Frontend Functionality
+ *
+ * Provides interactive functionality for the sticky menu block including
+ * scroll spy, mobile collapsible sections, and smooth scrolling navigation.
  *
  * @package Tour_Operator
- * @subpackage scripts
+ * @subpackage Blocks
+ * @since 2.1.0
  */
 
-// Extend the lsx_to object with sticky menu functionality
+/**
+ * Initialize the lsx_to global namespace if it doesn't exist.
+ *
+ * @since 2.1.0
+ */
 if (typeof lsx_to === 'undefined') {
     window.lsx_to = Object.create(null);
 }
 
-// Sticky menu state
+/**
+ * Sticky menu state object.
+ *
+ * Maintains the current state of the sticky menu functionality
+ * including active sections, menu items, and mobile state.
+ *
+ * @since 2.1.0
+ * @type {Object}
+ * @property {string} current_section Currently active section ID.
+ * @property {Array} menu_items Array of menu item objects.
+ * @property {boolean} is_mobile Whether the interface is in mobile mode.
+ * @property {IntersectionObserver|null} observer Intersection observer instance.
+ */
 lsx_to.sticky_menu = {
     current_section: '',
     menu_items: [],
@@ -19,11 +39,13 @@ lsx_to.sticky_menu = {
 };
 
 /**
- * Scroll to section functionality.
+ * Scroll to a specific section with smooth animation.
  *
- * @param {string} section_id - The ID of the section to scroll to
- * @package Tour_Operator
- * @subpackage scripts
+ * Calculates proper offset for fixed headers and admin bar,
+ * then scrolls to the target section with accessibility support.
+ *
+ * @since 2.1.0
+ * @param {string} section_id The ID of the section to scroll to.
  */
 lsx_to.scroll_to_section = function(section_id) {
     const section = document.getElementById(section_id);
@@ -75,11 +97,13 @@ lsx_to.scroll_to_section = function(section_id) {
 };
 
 /**
- * Toggle mobile section visibility.
+ * Toggle mobile section visibility with accessibility support.
  *
- * @param {Element} element - The section element or wrapper to toggle
- * @package Tour_Operator
- * @subpackage scripts
+ * Toggles the expanded/collapsed state of mobile sections and updates
+ * ARIA attributes for screen reader accessibility.
+ *
+ * @since 2.1.0
+ * @param {Element} element The section element or wrapper to toggle.
  */
 lsx_to.toggle_mobile_section = function(element) {
 	if (!element) return;
@@ -119,12 +143,14 @@ lsx_to.toggle_mobile_section = function(element) {
 };
 
 /**
- * Add mobile header to section.
+ * Add mobile header functionality to a section.
  *
- * @param {Element} section - The section element
- * @param {Object} context - Section context data
- * @package Tour_Operator
- * @subpackage scripts
+ * Sets up mobile header buttons with click and keyboard event handlers,
+ * applies styling from the sticky menu block, and manages accessibility.
+ *
+ * @since 2.1.0
+ * @param {Element} section The section element.
+ * @param {Object} context Section context data including ID and title.
  */
 lsx_to.add_mobile_header = function(section, context) {
 	// Find the wrapper containing this section
@@ -204,9 +230,11 @@ lsx_to.add_mobile_header = function(section, context) {
 /**
  * Update active menu item based on current section.
  *
- * @param {string} section_id - The ID of the active section
- * @package Tour_Operator
- * @subpackage scripts
+ * Removes active state from all menu buttons and applies it to the
+ * button corresponding to the currently active section.
+ *
+ * @since 2.1.0
+ * @param {string} section_id The ID of the active section.
  */
 lsx_to.update_active_menu_item = function(section_id) {
     // Remove active class and aria-current from all menu buttons
@@ -227,9 +255,11 @@ lsx_to.update_active_menu_item = function(section_id) {
 /**
  * Find the currently active section based on scroll position.
  *
- * @returns {string|null} - The ID of the active section
- * @package Tour_Operator
- * @subpackage scripts
+ * Calculates which section is currently visible in the viewport,
+ * accounting for fixed headers and admin bar offsets.
+ *
+ * @since 2.1.0
+ * @return {string|null} The ID of the active section, or null if none found.
  */
 lsx_to.get_active_section_on_scroll = function() {
     const sections = document.querySelectorAll('[data-sticky-menu-section]');
@@ -270,8 +300,10 @@ lsx_to.get_active_section_on_scroll = function() {
 /**
  * Handle scroll events for scroll spy functionality.
  *
- * @package Tour_Operator
- * @subpackage scripts
+ * Monitors scroll position and updates the active menu item accordingly.
+ * Only active on desktop; mobile uses collapsible sections instead.
+ *
+ * @since 2.1.0
  */
 lsx_to.handle_scroll_spy = function() {
     if (lsx_to.sticky_menu.is_mobile) return;
@@ -285,10 +317,12 @@ lsx_to.handle_scroll_spy = function() {
 };
 
 /**
- * Initialize scroll spy functionality.
+ * Initialize scroll spy functionality with responsive behavior.
  *
- * @package Tour_Operator
- * @subpackage scripts
+ * Sets up scroll spy for desktop and mobile section collapsing for mobile.
+ * Uses Intersection Observer for better performance on desktop.
+ *
+ * @since 2.1.0
  */
 lsx_to.initialize_scroll_spy = function() {
     // Check if mobile
@@ -380,11 +414,15 @@ lsx_to.initialize_scroll_spy = function() {
     // Update menu items from DOM
     lsx_to.update_menu_items();
     lsx_to.setup_menu_click_handlers();
-};/**
- * Update menu items array from DOM.
+};
+
+/**
+ * Update menu items array from DOM elements.
  *
- * @package Tour_Operator
- * @subpackage scripts
+ * Scans the page for sections with sticky menu attributes and builds
+ * an array of menu item objects for internal tracking.
+ *
+ * @since 2.1.0
  */
 lsx_to.update_menu_items = function() {
     const sections = document.querySelectorAll('[data-sticky-menu-section]');
@@ -404,10 +442,12 @@ lsx_to.update_menu_items = function() {
 };
 
 /**
- * Setup click handlers for menu items.
+ * Setup click handlers for menu items with accessibility support.
  *
- * @package Tour_Operator
- * @subpackage scripts
+ * Adds click and keyboard event handlers to menu items for navigation
+ * and enhances accessibility with proper ARIA attributes.
+ *
+ * @since 2.1.0
  */
 lsx_to.setup_menu_click_handlers = function() {
     const menu_items = document.querySelectorAll('.wp-block-lsx-tour-operator-sticky-menu .lsx-to-menu-item');
@@ -454,8 +494,10 @@ lsx_to.setup_menu_click_handlers = function() {
 /**
  * Initialize mobile sections with collapsible functionality.
  *
- * @package Tour_Operator
- * @subpackage scripts
+ * Sets up mobile-specific behavior for sticky menu sections,
+ * including collapsible headers and touch-friendly interactions.
+ *
+ * @since 2.1.0
  */
 lsx_to.initialize_mobile_sections = function() {
 	const sections = document.querySelectorAll('[data-sticky-menu-section]');
@@ -491,8 +533,10 @@ lsx_to.initialize_mobile_sections = function() {
 /**
  * Cleanup mobile sections when switching to desktop.
  *
- * @package Tour_Operator
- * @subpackage scripts
+ * Removes mobile-specific classes and attributes when the interface
+ * switches from mobile to desktop mode.
+ *
+ * @since 2.1.0
  */
 lsx_to.cleanup_mobile_sections = function() {
 	const sections = document.querySelectorAll('[data-sticky-menu-section]');
@@ -517,10 +561,12 @@ lsx_to.cleanup_mobile_sections = function() {
 };
 
 /**
- * Cleanup sticky menu functionality.
+ * Cleanup sticky menu functionality on page unload.
  *
- * @package Tour_Operator
- * @subpackage scripts
+ * Removes event listeners, disconnects observers, and resets state
+ * to prevent memory leaks and conflicts.
+ *
+ * @since 2.1.0
  */
 lsx_to.cleanup_sticky_menu = function() {
     // Remove scroll event listener
@@ -540,9 +586,11 @@ lsx_to.cleanup_sticky_menu = function() {
 /**
  * Announce section changes to screen readers.
  *
- * @param {string} section_id - The ID of the active section
- * @package Tour_Operator
- * @subpackage scripts
+ * Creates or updates an ARIA live region to announce section changes
+ * to users of assistive technologies.
+ *
+ * @since 2.1.0
+ * @param {string} section_id The ID of the active section.
  */
 lsx_to.announce_section_change = function(section_id) {
     // Get or create aria-live region
@@ -572,10 +620,12 @@ lsx_to.announce_section_change = function(section_id) {
 };
 
 /**
- * Initialize sticky menu functionality.
+ * Initialize sticky menu functionality on page load.
  *
- * @package Tour_Operator
- * @subpackage scripts
+ * Main initialization function that sets up the sticky menu system,
+ * checks for required elements, and starts the appropriate functionality.
+ *
+ * @since 2.1.0
  */
 lsx_to.initialize_sticky_menu = function() {
     // Only initialize if sticky menu block exists
@@ -612,6 +662,11 @@ lsx_to.initialize_sticky_menu = function() {
 
 /**
  * Initialize when DOM is ready.
+ *
+ * Waits for the DOM to be fully loaded before initializing
+ * the sticky menu functionality.
+ *
+ * @since 2.1.0
  */
 document.addEventListener('DOMContentLoaded', function() {
     lsx_to.initialize_sticky_menu();
@@ -619,6 +674,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /**
  * Cleanup when page is unloaded.
+ *
+ * Performs cleanup operations before the page unloads
+ * to prevent memory leaks and conflicts.
+ *
+ * @since 2.1.0
  */
 window.addEventListener('beforeunload', function() {
     lsx_to.cleanup_sticky_menu();

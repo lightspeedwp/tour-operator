@@ -174,6 +174,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
 /**
+ * Sticky Menu Editor Extensions
+ *
+ * Extends the core/group block with sticky menu functionality
+ * by adding custom attributes, inspector controls, and visual indicators.
+ *
+ * @package Tour_Operator
+ * @subpackage Blocks
+ * @since 2.1.0
+ */
+
+/**
  * WordPress dependencies
  */
 
@@ -185,7 +196,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /**
- * Add sticky menu attributes to core/group block
+ * Add sticky menu attributes to core/group block.
+ *
+ * Extends the core/group block with attributes needed for
+ * sticky menu functionality.
+ *
+ * @since 2.1.0
+ * @param {Object} settings Block registration settings.
+ * @param {string} name Block name.
+ * @return {Object} Modified block settings.
  */
 
 function addStickyMenuAttributes(settings, name) {
@@ -214,7 +233,14 @@ function addStickyMenuAttributes(settings, name) {
 (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.addFilter)('blocks.registerBlockType', 'lsx-tour-operator/add-sticky-menu-attributes', addStickyMenuAttributes);
 
 /**
- * Add sticky menu controls to core/group block
+ * Add sticky menu controls to core/group block.
+ *
+ * Creates a higher-order component that adds sticky menu configuration
+ * controls to the inspector panel of core/group blocks.
+ *
+ * @since 2.1.0
+ * @param {Function} BlockEdit The original block edit component.
+ * @return {Function} Enhanced block edit component with sticky menu controls.
  */
 const withStickyMenuControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__.createHigherOrderComponent)(BlockEdit => {
   return props => {
@@ -342,9 +368,20 @@ const withStickyMenuControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2_
 (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.addFilter)('editor.BlockEdit', 'lsx-tour-operator/with-sticky-menu-controls', withStickyMenuControls);
 
 /**
- * Add sticky menu attributes to save function
+ * Add sticky menu attributes to block save props.
+ *
+ * Modifies the saved HTML attributes for group blocks that have
+ * sticky menu functionality enabled. Adds necessary data attributes
+ * and accessibility properties.
+ *
  * Note: This runs during save and doesn't need to check for sticky menu block presence
- * since the attributes will be cleared by the editor when no sticky menu block exists
+ * since the attributes will be cleared by the editor when no sticky menu block exists.
+ *
+ * @since 2.1.0
+ * @param {Object} extraProps Additional props to add to the block wrapper.
+ * @param {Object} blockType Block type definition.
+ * @param {Object} attributes Block attributes.
+ * @return {Object} Modified extra props.
  */
 function addStickyMenuSaveProps(extraProps, blockType, attributes) {
   if (blockType.name !== 'core/group') {
@@ -373,7 +410,14 @@ function addStickyMenuSaveProps(extraProps, blockType, attributes) {
 (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.addFilter)('blocks.getSaveContent.extraProps', 'lsx-tour-operator/add-sticky-menu-save-props', addStickyMenuSaveProps);
 
 /**
- * Add visual indicator in editor for sticky menu sections
+ * Add visual indicator in editor for sticky menu sections.
+ *
+ * Creates a higher-order component that adds visual styling and badges
+ * to group blocks that are part of the sticky menu system.
+ *
+ * @since 2.1.0
+ * @param {Function} BlockListBlock The original block list block component.
+ * @return {Function} Enhanced block list block component with visual indicators.
  */
 const withStickyMenuEditor = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__.createHigherOrderComponent)(BlockListBlock => {
   return props => {

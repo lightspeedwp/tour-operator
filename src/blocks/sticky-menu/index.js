@@ -1,4 +1,12 @@
 /**
+ * Sticky Menu Block - Main Entry Point
+ *
+ * @package Tour_Operator
+ * @subpackage Blocks
+ * @since 2.1.0
+ */
+
+/**
  * WordPress dependencies
  */
 import { registerBlockType } from '@wordpress/blocks';
@@ -15,7 +23,16 @@ import blockConfig from './block.json';
 import './style.scss';
 
 /**
- * Edit component
+ * Edit component for the Sticky Menu block.
+ *
+ * Renders the block in the editor with live preview of menu items
+ * based on group blocks that have sticky menu functionality enabled.
+ *
+ * @since 2.1.0
+ * @param {Object} props Component props.
+ * @param {Object} props.attributes Block attributes.
+ * @param {Function} props.setAttributes Function to update block attributes.
+ * @return {JSX.Element} The edit component.
  */
 function Edit({ attributes, setAttributes }) {
   const { backgroundColor, textColor, menuItems = [] } = attributes;
@@ -81,13 +98,12 @@ function Edit({ attributes, setAttributes }) {
         <nav className="lsx-to-sticky-menu-nav" aria-label={__('Page section navigation', 'tour-operator')}>
           {menuItems.length > 0 ? (
             <>
-              <ul className="lsx-to-sticky-menu-list" role="tablist" aria-label={__('Page sections', 'tour-operator')}>
+              <ul className="lsx-to-sticky-menu-list" aria-label={__('Page sections', 'tour-operator')}>
                 {menuItems.map((item) => (
                   <li key={item.id} className="lsx-to-sticky-menu-item">
                     <a
                       className="lsx-to-sticky-menu-button"
                       href="javascript:void(0);"
-                      role="tab"
                       aria-current="false"
                       aria-label={__('Navigate to %s section', 'tour-operator').replace('%s', item.title)}
                     >
@@ -121,7 +137,15 @@ function Edit({ attributes, setAttributes }) {
 }
 
 /**
- * Save component
+ * Save component for the Sticky Menu block.
+ *
+ * Renders the block content that will be saved to the database
+ * and displayed on the frontend.
+ *
+ * @since 2.1.0
+ * @param {Object} props Component props.
+ * @param {Object} props.attributes Block attributes.
+ * @return {JSX.Element} The save component.
  */
 function Save({ attributes }) {
   const { backgroundColor, textColor, menuItems = [] } = attributes;
@@ -138,14 +162,13 @@ function Save({ attributes }) {
     <div {...blockProps}>
       <nav className="lsx-to-sticky-menu-nav" aria-label={__('Page section navigation', 'tour-operator')}>
         {menuItems.length > 0 && (
-          <ul className="lsx-to-sticky-menu-list" role="tablist" aria-label={__('Page sections', 'tour-operator')}>
+          <ul className="lsx-to-sticky-menu-list" aria-label={__('Page sections', 'tour-operator')}>
             {menuItems.map((item) => (
               <li key={item.id} className="lsx-to-sticky-menu-item" data-section-id={item.id}>
                 <a
                   className="lsx-to-sticky-menu-button"
                   href={`#${item.id}`}
                   data-section-id={item.id}
-                  role="tab"
                   aria-current="false"
                 >
                   {item.title}
@@ -157,8 +180,15 @@ function Save({ attributes }) {
       </nav>
     </div>
   );
-}/**
- * Register block
+}
+
+/**
+ * Register the Sticky Menu block type.
+ *
+ * Combines the block configuration from block.json with the
+ * edit and save components to create a fully functional block.
+ *
+ * @since 2.1.0
  */
 registerBlockType(blockConfig.name, {
   ...blockConfig,
