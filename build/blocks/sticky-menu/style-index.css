@@ -51,7 +51,7 @@
   text-decoration: none;
   transition: opacity 0.2s ease;
   padding: 0.5rem 1rem;
-  border-radius: 4px;
+  border-radius: 0.25rem;
 }
 
 .lsx-to-sticky-menu-button:hover {
@@ -83,9 +83,9 @@
 /* Editor-specific styles */
 
 .lsx-to-sticky-menu-info {
-  font-size: 11px;
+  font-size: 0.75rem;
   opacity: 0.7;
-  margin-top: 8px;
+  margin-top: 0.5rem;
   text-align: center;
 }
 
@@ -96,12 +96,12 @@
 }
 
 .lsx-to-sticky-menu-help {
-  font-size: 11px;
-  margin-top: 8px;
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
 }
 
 .lsx-to-sticky-menu-help ol {
-  margin-left: 16px;
+  margin-left: 1rem;
   line-height: 1.4;
   text-align: left;
 }
@@ -183,9 +183,9 @@ button.lsx-to-section-header:active {
 
 button.lsx-to-section-header .lsx-to-caret {
   margin-left: auto;
-  border-top: 6px solid currentColor;
-  border-right: 6px solid transparent;
-  border-left: 6px solid transparent;
+  border-top: 0.375rem solid currentColor;
+  border-right: 0.375rem solid transparent;
+  border-left: 0.375rem solid transparent;
   height: 0;
   width: 0;
   transition: transform 0.3s ease;
