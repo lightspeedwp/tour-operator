@@ -58,13 +58,12 @@ function Edit({
   setAttributes
 }) {
   const {
-    position,
     backgroundColor,
     textColor,
     menuItems = []
   } = attributes;
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
-    className: `lsx-to-lsx-sticky-menu lsx-to-position-${position}`,
+    className: `lsx-to-sticky-menu`,
     style: {
       backgroundColor: backgroundColor || undefined,
       color: textColor || undefined
@@ -177,13 +176,12 @@ function Save({
   attributes
 }) {
   const {
-    position,
     backgroundColor,
     textColor,
     menuItems = []
   } = attributes;
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps.save({
-    className: `lsx-to-lsx-sticky-menu lsx-to-position-${position}`,
+    className: `lsx-to-sticky-menu`,
     style: {
       backgroundColor: backgroundColor || undefined,
       color: textColor || undefined
@@ -199,7 +197,7 @@ function Save({
         role: "tablist",
         "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Page sections', 'tour-operator'),
         children: menuItems.map(item => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("li", {
-          className: "lsx-to-menu-item",
+          className: "lsx-to-sticky-menu-item",
           "data-section-id": item.id,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
             className: "lsx-to-sticky-menu-button",

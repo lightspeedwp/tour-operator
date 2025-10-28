@@ -1,31 +1,26 @@
 /*!**********************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/sticky-menu/style.scss ***!
   \**********************************************************************************************************************************************************************************************************************************************************/
-.lsx-to-lsx-sticky-menu {
+.lsx-to-sticky-menu {
   /* Remove hardcoded styles - let theme.json and user styles handle it */
   position: relative;
   z-index: 100;
   opacity: 0;
 }
 
-.block-editor-iframe__body .lsx-to-lsx-sticky-menu {
+.block-editor-iframe__body .lsx-to-sticky-menu {
   opacity: 1;
 }
 
-.lsx-to-lsx-sticky-menu.lsx-to-position-top {
+.lsx-to-sticky-menu {
   position: sticky;
   top: 0;
 }
 
 @media (max-width: 767px) {
-  .lsx-to-lsx-sticky-menu.lsx-to-position-top {
+  .lsx-to-sticky-menu {
     display: none;
   }
-}
-
-.lsx-to-lsx-sticky-menu.lsx-to-position-bottom {
-  position: sticky;
-  bottom: 0;
 }
 
 .lsx-to-sticky-menu-nav {
@@ -138,26 +133,26 @@
 
 @media (max-width: 767px) {
   /* Legacy support for sections without wrapper */
-  .lsx-to-lsx-sticky-menu-section {
+  .lsx-to-sticky-menu-section {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
-  .lsx-to-lsx-sticky-menu-section.collapsed .wp-block-group__inner-container,
-  .lsx-to-lsx-sticky-menu-section.collapsed > .wp-block-group__inner-container,
-  .lsx-to-lsx-sticky-menu-section.collapsed > div:not(.lsx-to-section-header),
-  .lsx-to-lsx-sticky-menu-section.collapsed > *:not(.lsx-to-section-header) {
+  .lsx-to-sticky-menu-section.collapsed .wp-block-group__inner-container,
+  .lsx-to-sticky-menu-section.collapsed > .wp-block-group__inner-container,
+  .lsx-to-sticky-menu-section.collapsed > div:not(.lsx-to-section-header),
+  .lsx-to-sticky-menu-section.collapsed > *:not(.lsx-to-section-header) {
     display: none;
   }
-  .lsx-to-lsx-sticky-menu-section:not(.collapsed) .lsx-to-section-header .lsx-to-caret {
+  .lsx-to-sticky-menu-section:not(.collapsed) .lsx-to-section-header .lsx-to-caret {
     transform: rotate(180deg);
   }
-  .lsx-to-lsx-sticky-menu-section {
+  .lsx-to-sticky-menu-section {
     /* Ensure smooth transitions (respect motion preferences) */
     transition: all 0.3s ease;
   }
 }
 
 @media (max-width: 767px) and (prefers-reduced-motion: reduce) {
-  .lsx-to-lsx-sticky-menu-section {
+  .lsx-to-sticky-menu-section {
     transition: none;
   }
 }

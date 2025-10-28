@@ -366,7 +366,7 @@ function addStickyMenuSaveProps(extraProps, blockType, attributes) {
 
     // Add custom CSS class for frontend styling/JavaScript targeting
     const existingClass = extraProps.className || '';
-    extraProps.className = `${existingClass} lsx-to-lsx-sticky-menu-section`.trim();
+    extraProps.className = `${existingClass} lsx-to-sticky-menu-section`.trim();
   }
   return extraProps;
 }

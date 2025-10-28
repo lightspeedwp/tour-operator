@@ -18,10 +18,10 @@ import './style.scss';
  * Edit component
  */
 function Edit({ attributes, setAttributes }) {
-  const { position, backgroundColor, textColor, menuItems = [] } = attributes;
+  const { backgroundColor, textColor, menuItems = [] } = attributes;
 
   const blockProps = useBlockProps({
-    className: `lsx-to-lsx-sticky-menu lsx-to-position-${position}`,
+    className: `lsx-to-sticky-menu`,
     style: {
       backgroundColor: backgroundColor || undefined,
       color: textColor || undefined,
@@ -124,10 +124,10 @@ function Edit({ attributes, setAttributes }) {
  * Save component
  */
 function Save({ attributes }) {
-  const { position, backgroundColor, textColor, menuItems = [] } = attributes;
+  const { backgroundColor, textColor, menuItems = [] } = attributes;
 
   const blockProps = useBlockProps.save({
-    className: `lsx-to-lsx-sticky-menu lsx-to-position-${position}`,
+    className: `lsx-to-sticky-menu`,
     style: {
       backgroundColor: backgroundColor || undefined,
       color: textColor || undefined,
@@ -140,7 +140,7 @@ function Save({ attributes }) {
         {menuItems.length > 0 && (
           <ul className="lsx-to-sticky-menu-list" role="tablist" aria-label={__('Page sections', 'tour-operator')}>
             {menuItems.map((item) => (
-              <li key={item.id} className="lsx-to-menu-item" data-section-id={item.id}>
+              <li key={item.id} className="lsx-to-sticky-menu-item" data-section-id={item.id}>
                 <a
                   className="lsx-to-sticky-menu-button"
                   href={`#${item.id}`}
