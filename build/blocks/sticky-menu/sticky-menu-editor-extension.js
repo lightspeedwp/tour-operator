@@ -236,7 +236,8 @@ function addStickyMenuAttributes(settings, name) {
  * Add sticky menu controls to core/group block.
  *
  * Creates a higher-order component that adds sticky menu configuration
- * controls to the inspector panel of core/group blocks.
+ * controls to the inspector panel of core/group blocks that have their
+ * HTML element set to 'section'.
  *
  * @since 2.1.0
  * @param {Function} BlockEdit The original block edit component.
@@ -249,7 +250,16 @@ const withStickyMenuControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2_
       setAttributes,
       name
     } = props;
+
+    // Only apply to core/group blocks
     if (name !== 'core/group') {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(BlockEdit, {
+        ...props
+      });
+    }
+
+    // Only show sticky menu settings for groups with tagName set to 'section'
+    if (attributes.tagName !== 'section') {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(BlockEdit, {
         ...props
       });
@@ -280,16 +290,41 @@ const withStickyMenuControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2_
     const {
       addToStickyMenu,
       stickyMenuId,
-      stickyMenuTitle
+      stickyMenuTitle,
+      anchor,
+      metadata
     } = attributes;
 
-    // Local state for the CSS ID input to prevent focus loss
-    const [localStickyMenuId, setLocalStickyMenuId] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useState)(stickyMenuId || '');
+    // Get values from native WordPress attributes
+    const nativeId = anchor || '';
+    const nativeName = metadata?.name || '';
 
-    // Sync local state with attributes when attributes change externally
+    // Sync sticky menu attributes with native WordPress attributes
+    // Use a separate useEffect with debouncing to avoid focus interruption
     (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useEffect)(() => {
-      setLocalStickyMenuId(stickyMenuId || '');
-    }, [stickyMenuId]);
+      if (addToStickyMenu) {
+        const timeoutId = setTimeout(() => {
+          const updates = {};
+
+          // Sync ID if it has changed
+          if (nativeId !== stickyMenuId) {
+            updates.stickyMenuId = nativeId;
+          }
+
+          // Sync title if it has changed and no custom title is set
+          if (nativeName !== stickyMenuTitle) {
+            updates.stickyMenuTitle = nativeName;
+          }
+
+          // Only update if there are changes
+          if (Object.keys(updates).length > 0) {
+            setAttributes(updates);
+          }
+        }, 50); // Small delay to prevent focus interruption
+
+        return () => clearTimeout(timeoutId);
+      }
+    }, [addToStickyMenu, nativeId, nativeName, stickyMenuId, stickyMenuTitle, setAttributes]);
 
     // Clear sticky menu data when no sticky menu block is present
     (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useEffect)(() => {
@@ -301,6 +336,22 @@ const withStickyMenuControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2_
         });
       }
     }, [hasStickyMenuBlock, addToStickyMenu, setAttributes]);
+
+    // Create a stable onChange handler to prevent unnecessary re-renders
+    const handleToggleChange = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.useCallback)(value => {
+      // Combine all attribute updates into a single setAttributes call
+      // to prevent focus loss from multiple re-renders
+      const updates = {
+        addToStickyMenu: value
+      };
+
+      // If disabled, clear the sticky menu attributes
+      if (!value) {
+        updates.stickyMenuId = '';
+        updates.stickyMenuTitle = '';
+      }
+      setAttributes(updates);
+    }, [setAttributes]);
 
     // Don't show controls if no sticky menu block is present
     if (!hasStickyMenuBlock) {
@@ -317,50 +368,64 @@ const withStickyMenuControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2_
           initialOpen: false,
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.ToggleControl, {
             label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Add to Sticky Menu', 'tour-operator'),
-            help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Include this section in the sticky navigation menu', 'tour-operator'),
+            help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Include this section in the sticky navigation menu. ID and title will be taken from block settings.', 'tour-operator'),
             checked: addToStickyMenu,
-            onChange: value => {
-              setAttributes({
-                addToStickyMenu: value
-              });
-
-              // If disabled, clear the other fields
-              if (!value) {
-                setAttributes({
-                  stickyMenuId: '',
-                  stickyMenuTitle: ''
-                });
-              }
-            }
+            onChange: handleToggleChange
           }), addToStickyMenu && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_wordpress_element__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('CSS ID', 'tour-operator'),
-              help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Required: Unique ID for this section (without #)', 'tour-operator'),
-              value: localStickyMenuId,
-              onChange: value => {
-                // Update local state immediately for smooth typing
-                setLocalStickyMenuId(value);
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
+              style: {
+                fontSize: '12px',
+                color: '#757575',
+                margin: '8px 0'
               },
-              onBlur: () => {
-                // Clean and save to attributes when user finishes typing
-                const cleanId = localStickyMenuId.replace(/[^a-zA-Z0-9-_]/g, '').toLowerCase();
-                setLocalStickyMenuId(cleanId);
-                setAttributes({
-                  stickyMenuId: cleanId
-                });
+              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('ID and Title are automatically taken from:', 'tour-operator')
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("ul", {
+              style: {
+                fontSize: '11px',
+                color: '#757575',
+                margin: '0 0 16px 16px',
+                listStyle: 'disc'
               },
-              placeholder: "section-id"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.TextControl, {
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Menu Title', 'tour-operator'),
-              help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Title to display in the sticky menu', 'tour-operator'),
-              value: stickyMenuTitle,
-              onChange: value => setAttributes({
-                stickyMenuTitle: value
-              }),
-              placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Section Title', 'tour-operator')
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("li", {
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('HTML Anchor (Block Settings → Advanced)', 'tour-operator')
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("li", {
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Block Name (rename in List View or toolbar)', 'tour-operator')
+              })]
+            }), nativeId && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("p", {
+              style: {
+                fontSize: '11px',
+                color: '#007cba',
+                margin: '8px 0'
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("strong", {
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Current ID:', 'tour-operator')
+              }), " #", nativeId]
+            }), nativeName && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("p", {
+              style: {
+                fontSize: '11px',
+                color: '#007cba',
+                margin: '8px 0'
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("strong", {
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Current Title:', 'tour-operator')
+              }), " ", nativeName]
+            }), !nativeId && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
+              style: {
+                fontSize: '11px',
+                color: '#d63638',
+                margin: '8px 0'
+              },
+              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('⚠️ No HTML Anchor set. Go to Block Settings → Advanced to add one.', 'tour-operator')
+            }), !nativeName && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
+              style: {
+                fontSize: '11px',
+                color: '#d63638',
+                margin: '8px 0'
+              },
+              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('⚠️ No block name set. Rename this block in the List View.', 'tour-operator')
             })]
           })]
-        })
+        }, "sticky-menu-settings-panel")
       })]
     });
   };
@@ -370,7 +435,7 @@ const withStickyMenuControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2_
 /**
  * Add sticky menu attributes to block save props.
  *
- * Modifies the saved HTML attributes for group blocks that have
+ * Modifies the saved HTML attributes for group blocks with tagName 'section' that have
  * sticky menu functionality enabled. Adds necessary data attributes
  * and accessibility properties.
  *
@@ -384,22 +449,27 @@ const withStickyMenuControls = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2_
  * @return {Object} Modified extra props.
  */
 function addStickyMenuSaveProps(extraProps, blockType, attributes) {
-  if (blockType.name !== 'core/group') {
+  // Only apply to core/group blocks with tagName 'section'
+  if (blockType.name !== 'core/group' || attributes.tagName !== 'section') {
     return extraProps;
   }
   const {
     addToStickyMenu,
-    stickyMenuId,
-    stickyMenuTitle
+    anchor,
+    metadata
   } = attributes;
-  if (addToStickyMenu && stickyMenuId) {
-    extraProps.id = stickyMenuId;
+
+  // Use native WordPress attributes for ID and title
+  const sectionId = anchor || '';
+  const sectionTitle = metadata?.name || '';
+  if (addToStickyMenu && sectionId) {
+    extraProps.id = sectionId;
     extraProps['data-sticky-menu-section'] = 'true';
-    extraProps['data-section-title'] = stickyMenuTitle || stickyMenuId;
+    extraProps['data-section-title'] = sectionTitle || sectionId;
 
     // Add ARIA attributes for accessibility
     extraProps.role = 'region';
-    extraProps['aria-labelledby'] = `${stickyMenuId}-header`;
+    extraProps['aria-labelledby'] = `${sectionId}-header`;
 
     // Add custom CSS class for frontend styling/JavaScript targeting
     const existingClass = extraProps.className || '';
@@ -413,7 +483,7 @@ function addStickyMenuSaveProps(extraProps, blockType, attributes) {
  * Add visual indicator in editor for sticky menu sections.
  *
  * Creates a higher-order component that adds visual styling and badges
- * to group blocks that are part of the sticky menu system.
+ * to group blocks with tagName 'section' that are part of the sticky menu system.
  *
  * @since 2.1.0
  * @param {Function} BlockListBlock The original block list block component.
@@ -425,7 +495,9 @@ const withStickyMenuEditor = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__.
       attributes,
       name
     } = props;
-    if (name !== 'core/group') {
+
+    // Only apply to core/group blocks with tagName 'section'
+    if (name !== 'core/group' || attributes.tagName !== 'section') {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(BlockListBlock, {
         ...props
       });
@@ -455,27 +527,29 @@ const withStickyMenuEditor = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__.
     }, []);
     const {
       addToStickyMenu,
-      stickyMenuId,
-      stickyMenuTitle
+      anchor,
+      metadata
     } = attributes;
-    if (!hasStickyMenuBlock || !addToStickyMenu || !stickyMenuId) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(BlockListBlock, {
-        ...props
-      });
-    }
 
-    // Add a visual indicator in the editor
-    const wrapperProps = {
+    // Use native WordPress attributes
+    const sectionId = anchor || '';
+    const sectionTitle = metadata?.name || '';
+
+    // Always render the BlockListBlock, but conditionally apply styling
+    const shouldShowIndicator = hasStickyMenuBlock && addToStickyMenu && sectionId;
+
+    // Add visual indicator styling only when needed
+    const wrapperProps = shouldShowIndicator ? {
       ...props.wrapperProps,
       style: {
         ...props.wrapperProps?.style,
         border: '2px dashed #007cba',
         position: 'relative'
       }
-    };
+    } : props.wrapperProps;
 
-    // Add a badge to show it's part of sticky menu
-    const badge = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+    // Add a badge to show it's part of sticky menu (only when needed)
+    const badge = shouldShowIndicator ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       style: {
         position: 'absolute',
         top: '-10px',
@@ -488,8 +562,8 @@ const withStickyMenuEditor = (0,_wordpress_compose__WEBPACK_IMPORTED_MODULE_2__.
         zIndex: 10,
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif'
       },
-      children: ["\uD83D\uDCCC ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Sticky Menu Section', 'tour-operator'), ": ", stickyMenuTitle || stickyMenuId]
-    });
+      children: ["\uD83D\uDCCC ", (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Sticky Menu Section', 'tour-operator'), ": ", sectionTitle || sectionId]
+    }) : null;
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       style: {
         position: 'relative'

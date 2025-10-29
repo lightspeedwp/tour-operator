@@ -57,14 +57,19 @@ function Edit({ attributes, setAttributes }) {
         let sticky_blocks = [];
 
         blocks.forEach(block => {
-          // Only include blocks with both enabled AND valid ID
+          // Only include section groups with sticky menu enabled and valid native ID
           if (block.name === 'core/group' &&
+            block.attributes.tagName === 'section' &&
             block.attributes.addToStickyMenu &&
-            block.attributes.stickyMenuId &&
-            block.attributes.stickyMenuId.trim() !== '') {
+            block.attributes.anchor &&
+            block.attributes.anchor.trim() !== '') {
+
+            const sectionId = block.attributes.anchor;
+            const sectionTitle = block.attributes.metadata?.name || sectionId;
+
             sticky_blocks.push({
-              id: block.attributes.stickyMenuId,
-              title: block.attributes.stickyMenuTitle || block.attributes.stickyMenuId
+              id: sectionId,
+              title: sectionTitle
             });
           }
 
@@ -86,7 +91,7 @@ function Edit({ attributes, setAttributes }) {
       if (current_ids !== new_ids) {
         setAttributes({ menuItems: new_menu_items });
       }
-    }, 500); // 500ms debounce
+    }, 100); // 100ms debounce - faster response while still preventing focus interruption
 
 
     return () => clearTimeout(timeoutId);
@@ -116,16 +121,16 @@ function Edit({ attributes, setAttributes }) {
           ) : (
             <div className="lsx-to-sticky-menu-placeholder">
               <p>
-                {__('Add groups with "Add to Sticky Menu" enabled to populate this menu.', 'tour-operator')}
+                {__('Add section groups with "Add to Sticky Menu" enabled to populate this menu.', 'tour-operator')}
               </p>
               <details style={{ fontSize: '11px', color: '#666', marginTop: '8px' }}>
-                <summary>{__('Troubleshooting', 'tour-operator')}</summary>
+                <summary>{__('How to add menu items', 'tour-operator')}</summary>
                 <ol style={{ marginLeft: '16px', lineHeight: '1.4' }}>
-                  <li>{__('Add a Group block to your page', 'tour-operator')}</li>
-                  <li>{__('In the Group block sidebar, find "Sticky Menu Settings"', 'tour-operator')}</li>
-                  <li>{__('Check "Add to Sticky Menu"', 'tour-operator')}</li>
-                  <li>{__('Enter a unique CSS ID and Menu Title', 'tour-operator')}</li>
-                  <li>{__('The menu will automatically populate', 'tour-operator')}</li>
+                  <li>{__('Add a Group block and set HTML element to "section"', 'tour-operator')}</li>
+                  <li>{__('Set an HTML Anchor in Block Settings → Advanced', 'tour-operator')}</li>
+                  <li>{__('Name the block in the List View or toolbar', 'tour-operator')}</li>
+                  <li>{__('Enable "Add to Sticky Menu" in the block sidebar', 'tour-operator')}</li>
+                  <li>{__('The menu will automatically populate with the block name and anchor', 'tour-operator')}</li>
                 </ol>
               </details>
             </div>

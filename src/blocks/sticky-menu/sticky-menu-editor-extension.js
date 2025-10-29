@@ -17,7 +17,7 @@ import { addFilter } from '@wordpress/hooks';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl, TextControl } from '@wordpress/components';
-import { Fragment, useState, useEffect } from '@wordpress/element';
+import { Fragment, useState, useEffect, useCallback } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 
 /**
@@ -66,7 +66,8 @@ addFilter(
  * Add sticky menu controls to core/group block.
  *
  * Creates a higher-order component that adds sticky menu configuration
- * controls to the inspector panel of core/group blocks.
+ * controls to the inspector panel of core/group blocks that have their
+ * HTML element set to 'section'.
  *
  * @since 2.1.0
  * @param {Function} BlockEdit The original block edit component.
@@ -76,7 +77,13 @@ const withStickyMenuControls = createHigherOrderComponent((BlockEdit) => {
 	return (props) => {
 		const { attributes, setAttributes, name } = props;
 
+		// Only apply to core/group blocks
 		if (name !== 'core/group') {
+			return <BlockEdit {...props} />;
+		}
+
+		// Only show sticky menu settings for groups with tagName set to 'section'
+		if (attributes.tagName !== 'section') {
 			return <BlockEdit {...props} />;
 		}
 
@@ -102,15 +109,38 @@ const withStickyMenuControls = createHigherOrderComponent((BlockEdit) => {
 			return checkBlocksForStickyMenu(allBlocks);
 		}, []);
 
-		const { addToStickyMenu, stickyMenuId, stickyMenuTitle } = attributes;
+		const { addToStickyMenu, stickyMenuId, stickyMenuTitle, anchor, metadata } = attributes;
 
-		// Local state for the CSS ID input to prevent focus loss
-		const [localStickyMenuId, setLocalStickyMenuId] = useState(stickyMenuId || '');
+		// Get values from native WordPress attributes
+		const nativeId = anchor || '';
+		const nativeName = metadata?.name || '';
 
-		// Sync local state with attributes when attributes change externally
+		// Sync sticky menu attributes with native WordPress attributes
+		// Use a separate useEffect with debouncing to avoid focus interruption
 		useEffect(() => {
-			setLocalStickyMenuId(stickyMenuId || '');
-		}, [stickyMenuId]);
+			if (addToStickyMenu) {
+				const timeoutId = setTimeout(() => {
+					const updates = {};
+
+					// Sync ID if it has changed
+					if (nativeId !== stickyMenuId) {
+						updates.stickyMenuId = nativeId;
+					}
+
+					// Sync title if it has changed and no custom title is set
+					if (nativeName !== stickyMenuTitle) {
+						updates.stickyMenuTitle = nativeName;
+					}
+
+					// Only update if there are changes
+					if (Object.keys(updates).length > 0) {
+						setAttributes(updates);
+					}
+				}, 50); // Small delay to prevent focus interruption
+
+				return () => clearTimeout(timeoutId);
+			}
+		}, [addToStickyMenu, nativeId, nativeName, stickyMenuId, stickyMenuTitle, setAttributes]);
 
 		// Clear sticky menu data when no sticky menu block is present
 		useEffect(() => {
@@ -122,6 +152,21 @@ const withStickyMenuControls = createHigherOrderComponent((BlockEdit) => {
 				});
 			}
 		}, [hasStickyMenuBlock, addToStickyMenu, setAttributes]);
+
+		// Create a stable onChange handler to prevent unnecessary re-renders
+		const handleToggleChange = useCallback((value) => {
+			// Combine all attribute updates into a single setAttributes call
+			// to prevent focus loss from multiple re-renders
+			const updates = { addToStickyMenu: value };
+
+			// If disabled, clear the sticky menu attributes
+			if (!value) {
+				updates.stickyMenuId = '';
+				updates.stickyMenuTitle = '';
+			}
+
+			setAttributes(updates);
+		}, [setAttributes]);
 
 		// Don't show controls if no sticky menu block is present
 		if (!hasStickyMenuBlock) {
@@ -135,50 +180,44 @@ const withStickyMenuControls = createHigherOrderComponent((BlockEdit) => {
 					<PanelBody
 						title={__('Sticky Menu Settings', 'tour-operator')}
 						initialOpen={false}
+						key="sticky-menu-settings-panel"
 					>
 						<ToggleControl
 							label={__('Add to Sticky Menu', 'tour-operator')}
-							help={__('Include this section in the sticky navigation menu', 'tour-operator')}
+							help={__('Include this section in the sticky navigation menu. ID and title will be taken from block settings.', 'tour-operator')}
 							checked={addToStickyMenu}
-							onChange={(value) => {
-								setAttributes({ addToStickyMenu: value });
-
-								// If disabled, clear the other fields
-								if (!value) {
-									setAttributes({
-										stickyMenuId: '',
-										stickyMenuTitle: '',
-									});
-								}
-							}}
+							onChange={handleToggleChange}
 						/>
 
 						{addToStickyMenu && (
 							<Fragment>
-								<TextControl
-									label={__('CSS ID', 'tour-operator')}
-									help={__('Required: Unique ID for this section (without #)', 'tour-operator')}
-									value={localStickyMenuId}
-									onChange={(value) => {
-										// Update local state immediately for smooth typing
-										setLocalStickyMenuId(value);
-									}}
-									onBlur={() => {
-										// Clean and save to attributes when user finishes typing
-										const cleanId = localStickyMenuId.replace(/[^a-zA-Z0-9-_]/g, '').toLowerCase();
-										setLocalStickyMenuId(cleanId);
-										setAttributes({ stickyMenuId: cleanId });
-									}}
-									placeholder="section-id"
-								/>
-
-								<TextControl
-									label={__('Menu Title', 'tour-operator')}
-									help={__('Title to display in the sticky menu', 'tour-operator')}
-									value={stickyMenuTitle}
-									onChange={(value) => setAttributes({ stickyMenuTitle: value })}
-									placeholder={__('Section Title', 'tour-operator')}
-								/>
+								<p style={{ fontSize: '12px', color: '#757575', margin: '8px 0' }}>
+									{__('ID and Title are automatically taken from:', 'tour-operator')}
+								</p>
+								<ul style={{ fontSize: '11px', color: '#757575', margin: '0 0 16px 16px', listStyle: 'disc' }}>
+									<li>{__('HTML Anchor (Block Settings → Advanced)', 'tour-operator')}</li>
+									<li>{__('Block Name (rename in List View or toolbar)', 'tour-operator')}</li>
+								</ul>
+								{nativeId && (
+									<p style={{ fontSize: '11px', color: '#007cba', margin: '8px 0' }}>
+										<strong>{__('Current ID:', 'tour-operator')}</strong> #{nativeId}
+									</p>
+								)}
+								{nativeName && (
+									<p style={{ fontSize: '11px', color: '#007cba', margin: '8px 0' }}>
+										<strong>{__('Current Title:', 'tour-operator')}</strong> {nativeName}
+									</p>
+								)}
+								{!nativeId && (
+									<p style={{ fontSize: '11px', color: '#d63638', margin: '8px 0' }}>
+										{__('⚠️ No HTML Anchor set. Go to Block Settings → Advanced to add one.', 'tour-operator')}
+									</p>
+								)}
+								{!nativeName && (
+									<p style={{ fontSize: '11px', color: '#d63638', margin: '8px 0' }}>
+										{__('⚠️ No block name set. Rename this block in the List View.', 'tour-operator')}
+									</p>
+								)}
 							</Fragment>
 						)}
 					</PanelBody>
@@ -197,7 +236,7 @@ addFilter(
 /**
  * Add sticky menu attributes to block save props.
  *
- * Modifies the saved HTML attributes for group blocks that have
+ * Modifies the saved HTML attributes for group blocks with tagName 'section' that have
  * sticky menu functionality enabled. Adds necessary data attributes
  * and accessibility properties.
  *
@@ -211,20 +250,25 @@ addFilter(
  * @return {Object} Modified extra props.
  */
 function addStickyMenuSaveProps(extraProps, blockType, attributes) {
-	if (blockType.name !== 'core/group') {
+	// Only apply to core/group blocks with tagName 'section'
+	if (blockType.name !== 'core/group' || attributes.tagName !== 'section') {
 		return extraProps;
 	}
 
-	const { addToStickyMenu, stickyMenuId, stickyMenuTitle } = attributes;
+	const { addToStickyMenu, anchor, metadata } = attributes;
 
-	if (addToStickyMenu && stickyMenuId) {
-		extraProps.id = stickyMenuId;
+	// Use native WordPress attributes for ID and title
+	const sectionId = anchor || '';
+	const sectionTitle = metadata?.name || '';
+
+	if (addToStickyMenu && sectionId) {
+		extraProps.id = sectionId;
 		extraProps['data-sticky-menu-section'] = 'true';
-		extraProps['data-section-title'] = stickyMenuTitle || stickyMenuId;
+		extraProps['data-section-title'] = sectionTitle || sectionId;
 
 		// Add ARIA attributes for accessibility
 		extraProps.role = 'region';
-		extraProps['aria-labelledby'] = `${stickyMenuId}-header`;
+		extraProps['aria-labelledby'] = `${sectionId}-header`;
 
 		// Add custom CSS class for frontend styling/JavaScript targeting
 		const existingClass = extraProps.className || '';
@@ -244,7 +288,7 @@ addFilter(
  * Add visual indicator in editor for sticky menu sections.
  *
  * Creates a higher-order component that adds visual styling and badges
- * to group blocks that are part of the sticky menu system.
+ * to group blocks with tagName 'section' that are part of the sticky menu system.
  *
  * @since 2.1.0
  * @param {Function} BlockListBlock The original block list block component.
@@ -254,7 +298,8 @@ const withStickyMenuEditor = createHigherOrderComponent((BlockListBlock) => {
 	return (props) => {
 		const { attributes, name } = props;
 
-		if (name !== 'core/group') {
+		// Only apply to core/group blocks with tagName 'section'
+		if (name !== 'core/group' || attributes.tagName !== 'section') {
 			return <BlockListBlock {...props} />;
 		}
 
@@ -280,24 +325,27 @@ const withStickyMenuEditor = createHigherOrderComponent((BlockListBlock) => {
 			return checkBlocksForStickyMenu(allBlocks);
 		}, []);
 
-		const { addToStickyMenu, stickyMenuId, stickyMenuTitle } = attributes;
+		const { addToStickyMenu, anchor, metadata } = attributes;
 
-		if (!hasStickyMenuBlock || !addToStickyMenu || !stickyMenuId) {
-			return <BlockListBlock {...props} />;
-		}
+		// Use native WordPress attributes
+		const sectionId = anchor || '';
+		const sectionTitle = metadata?.name || '';
 
-		// Add a visual indicator in the editor
-		const wrapperProps = {
+		// Always render the BlockListBlock, but conditionally apply styling
+		const shouldShowIndicator = hasStickyMenuBlock && addToStickyMenu && sectionId;
+
+		// Add visual indicator styling only when needed
+		const wrapperProps = shouldShowIndicator ? {
 			...props.wrapperProps,
 			style: {
 				...props.wrapperProps?.style,
 				border: '2px dashed #007cba',
 				position: 'relative',
 			},
-		};
+		} : props.wrapperProps;
 
-		// Add a badge to show it's part of sticky menu
-		const badge = (
+		// Add a badge to show it's part of sticky menu (only when needed)
+		const badge = shouldShowIndicator ? (
 			<div
 				style={{
 					position: 'absolute',
@@ -312,9 +360,9 @@ const withStickyMenuEditor = createHigherOrderComponent((BlockListBlock) => {
 					fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif',
 				}}
 			>
-				📌 {__('Sticky Menu Section', 'tour-operator')}: {stickyMenuTitle || stickyMenuId}
+				📌 {__('Sticky Menu Section', 'tour-operator')}: {sectionTitle || sectionId}
 			</div>
-		);
+		) : null;
 
 		return (
 			<div style={{ position: 'relative' }}>

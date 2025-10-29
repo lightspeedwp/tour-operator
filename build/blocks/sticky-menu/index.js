@@ -98,11 +98,13 @@ function Edit({
       const find_sticky_menu_blocks = blocks => {
         let sticky_blocks = [];
         blocks.forEach(block => {
-          // Only include blocks with both enabled AND valid ID
-          if (block.name === 'core/group' && block.attributes.addToStickyMenu && block.attributes.stickyMenuId && block.attributes.stickyMenuId.trim() !== '') {
+          // Only include section groups with sticky menu enabled and valid native ID
+          if (block.name === 'core/group' && block.attributes.tagName === 'section' && block.attributes.addToStickyMenu && block.attributes.anchor && block.attributes.anchor.trim() !== '') {
+            const sectionId = block.attributes.anchor;
+            const sectionTitle = block.attributes.metadata?.name || sectionId;
             sticky_blocks.push({
-              id: block.attributes.stickyMenuId,
-              title: block.attributes.stickyMenuTitle || block.attributes.stickyMenuId
+              id: sectionId,
+              title: sectionTitle
             });
           }
 
@@ -123,7 +125,7 @@ function Edit({
           menuItems: new_menu_items
         });
       }
-    }, 500); // 500ms debounce
+    }, 100); // 100ms debounce - faster response while still preventing focus interruption
 
     return () => clearTimeout(timeoutId);
   }, [allBlocks, menuItems, setAttributes]);
@@ -151,7 +153,7 @@ function Edit({
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
           className: "lsx-to-sticky-menu-placeholder",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
-            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Add groups with "Add to Sticky Menu" enabled to populate this menu.', 'tour-operator')
+            children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Add section groups with "Add to Sticky Menu" enabled to populate this menu.', 'tour-operator')
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("details", {
             style: {
               fontSize: '11px',
@@ -159,22 +161,22 @@ function Edit({
               marginTop: '8px'
             },
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("summary", {
-              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Troubleshooting', 'tour-operator')
+              children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('How to add menu items', 'tour-operator')
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("ol", {
               style: {
                 marginLeft: '16px',
                 lineHeight: '1.4'
               },
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("li", {
-                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Add a Group block to your page', 'tour-operator')
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Add a Group block and set HTML element to "section"', 'tour-operator')
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("li", {
-                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('In the Group block sidebar, find "Sticky Menu Settings"', 'tour-operator')
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Set an HTML Anchor in Block Settings → Advanced', 'tour-operator')
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("li", {
-                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Check "Add to Sticky Menu"', 'tour-operator')
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Name the block in the List View or toolbar', 'tour-operator')
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("li", {
-                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Enter a unique CSS ID and Menu Title', 'tour-operator')
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Enable "Add to Sticky Menu" in the block sidebar', 'tour-operator')
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("li", {
-                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('The menu will automatically populate', 'tour-operator')
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('The menu will automatically populate with the block name and anchor', 'tour-operator')
               })]
             })]
           })]

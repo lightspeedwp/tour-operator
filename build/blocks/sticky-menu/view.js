@@ -166,9 +166,7 @@ lsx_to.add_mobile_header = function (section, context) {
 
   // Get colors from sticky menu block and apply to header
   const sticky_menu = document.querySelector('.wp-block-lsx-tour-operator-sticky-menu');
-  console.log(sticky_menu.classList);
   if (sticky_menu) {
-    console.log('Applying sticky menu colors to mobile header');
     const color_classes = Array.from(sticky_menu.classList).filter(className => className.startsWith('has-') && (className.includes('-color') || className.includes('-background-color') || className.includes('-background')));
     const computedStyles = window.getComputedStyle(sticky_menu);
     existing_header.style.backgroundColor = computedStyles.backgroundColor;
@@ -381,8 +379,6 @@ lsx_to.initialize_scroll_spy = function () {
           lsx_to.update_active_menu_item(firstVisibleSection.id);
         }
       }, 100);
-    } else {
-      console.log('No sections found for scroll spy initialization');
     }
   }
 

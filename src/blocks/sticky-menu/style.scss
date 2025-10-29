@@ -3,6 +3,7 @@
 	position: relative;
 	z-index: 100;
 	opacity: 0;
+	padding: 1rem;
 }
 
 .block-editor-iframe__body .lsx-to-sticky-menu {
@@ -12,9 +13,14 @@
 .lsx-to-sticky-menu {
 	position: sticky;
 	top: 0;
+	background: var(--wp--preset--color--background, #fff);
 	@media (max-width: 767px) {
 		display: none;
 	}
+}
+
+.admin-bar .lsx-to-sticky-menu {
+	top: 32px;
 }
 
 .lsx-to-sticky-menu-nav {
@@ -170,6 +176,7 @@ button.lsx-to-section-header {
 	text-align: left;
 	font-weight: 600;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	padding: 1rem;
 
 	&:active {
 		background: rgba(0, 0, 0, 0.1);
