@@ -15,6 +15,7 @@
 - Added filter `lsx_travel_information_excerpt_length` to control character length for travel information excerpts [#663](https://github.com/lightspeedwp/tour-operator/pull/663)
 - Added filter `lsx_travel_information_modal_enable` to optionally disable travel information modal functionality [#663](https://github.com/lightspeedwp/tour-operator/pull/663)
 - Added filter `lsx_to_query_loop_query_args_{$key}` to allow third parties to alter query arguments in Query_Loop class - [#675](https://github.com/lightspeedwp/tour-operator/pull/675)
+- Added Sticky Menu Block with desktop/mobile navigation for single post templates - [#684](https://github.com/lightspeedwp/tour-operator/pull/684)
 
 ### Enhancements
 - Updated block icons for various block variations: Custom SVGs were added to: dress, facilities, health, ends-in, departs-from, climate, transport. [#579](https://github.com/lightspeedwp/tour-operator/pull/579)

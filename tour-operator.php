@@ -41,3 +41,8 @@ define('LSX_TO_POSTEXPIRATOR_TIMEFORMAT', esc_html__('g:ia', 'tour-operator'));
 
 // Include bootstrapper and start plugin.
 require_once LSX_TO_PATH . 'tour-operator-bootstrap.php';
+
+/**
+ * Include sticky menu block functionality. This doesn't work via the block.json registration method
+ */
+require_once LSX_TO_PATH . 'src/blocks/sticky-menu/render.php';
