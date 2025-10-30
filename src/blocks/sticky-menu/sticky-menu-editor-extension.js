@@ -159,14 +159,30 @@ const withStickyMenuControls = createHigherOrderComponent((BlockEdit) => {
 			// to prevent focus loss from multiple re-renders
 			const updates = { addToStickyMenu: value };
 
-			// If disabled, clear the sticky menu attributes
-			if (!value) {
+			// If enabled, auto-set anchor from block name if no anchor exists
+			if (value) {
+				// Only set anchor if there isn't one already set and block has a name
+				if (!nativeId && nativeName) {
+					// Create a URL-safe anchor from the block name
+					const anchorFromName = nativeName
+						.toLowerCase()
+						.replace(/[^a-z0-9\s-]/g, '') // Remove special characters except spaces and hyphens
+						.replace(/\s+/g, '-') // Replace spaces with hyphens
+						.replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+						.replace(/^-|-$/g, ''); // Remove leading/trailing hyphens
+					
+					if (anchorFromName) {
+						updates.anchor = anchorFromName;
+					}
+				}
+			} else {
+				// If disabled, clear the sticky menu attributes
 				updates.stickyMenuId = '';
 				updates.stickyMenuTitle = '';
 			}
 
 			setAttributes(updates);
-		}, [setAttributes]);
+		}, [setAttributes, nativeId, nativeName]);
 
 		// Don't show controls if no sticky menu block is present
 		if (!hasStickyMenuBlock) {
