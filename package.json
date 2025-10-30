@@ -45,7 +45,7 @@
   "main": "package-lock.json",
   "devDependencies": {
     "@babel/preset-react": "^7.28.5",
-    "@wordpress/eslint-plugin": "22.19.0",
+    "@wordpress/eslint-plugin": "22.20.0",
     "@wordpress/scripts": "^30.27.0",
     "@wordpress/stylelint-config": "^23.25.0",
     "@wordpress/project-management-automation": "^2.34.0",
