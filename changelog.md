@@ -26,6 +26,7 @@
 - Added in the TO Videos block to display your Youtube videos in a gallery type output. [#598](https://github.com/lightspeedwp/tour-operator/pull/598)
 - Added icon block icons instead of images for checkin/checkout time blocks, as well as a filter so they appear only on relevant post types (accommodation) and related templates/template parts [#645](https://github.com/lightspeedwp/tour-operator/pull/645)
 - Enhanced read more functionality for travel style taxonomy descriptions [#660](https://github.com/lightspeedwp/tour-operator/pull/660)
+- Extract the conditional block registration to a separate file [#696](https://github.com/lightspeedwp/tour-operator/pull/696)
 
 ### Integrations
 - Added integration with the Action Scheduler to allow Tours to expire and be set to draft [#490](https://github.com/lightspeedwp/tour-operator/pull/490). Work with any plugin using the Action Scheduler as a vendor [WooCommerce](https://woocommerce.com/), [PublishPress](https://publishpress.com/), [Action Scheduler](https://wordpress.org/plugins/action-scheduler/).
