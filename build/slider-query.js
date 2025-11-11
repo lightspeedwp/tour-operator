@@ -1,1 +1,96 @@
-!function(e,s,t,a){const l=s.createElement,n=t.InspectorControls,r=a.PanelBody,o=a.CheckboxControl,i=wp.compose.createHigherOrderComponent(function(e){return function(t){if("core/query"!==t.name)return l(e,t);let a=t.attributes.hasCustomClass||!1;void 0===t.attributes.hasCustomClass?t.attributes.className&&t.attributes.className.includes("lsx-to-slider")&&(a=!0):a=t.attributes.hasCustomClass;let i=t.attributes.filterByOnsale||!1;void 0===t.attributes.filterByOnsale?t.attributes.className&&t.attributes.className.includes("on-sale")&&(i=!0):i=t.attributes.filterByOnsale;let c=t.attributes.parentsOnly||!1;return void 0===t.attributes.parentsOnly?t.attributes.className&&t.attributes.className.includes("parents-only")&&(c=!0):c=t.attributes.parentsOnly,l(s.Fragment,{},l(e,t),l(n,{},l(r,{title:"Tour Operator",initialOpen:!0},l(o,{label:"Enable Slider",checked:a,onChange(e){console.log(e),t.setAttributes({hasCustomClass:e})}}),l(o,{label:"Filter by On Sale",checked:i,onChange(e){t.setAttributes({filterByOnsale:e})}}),l(o,{label:"Parents Only",checked:c,onChange(e){t.setAttributes({parentsOnly:e})}}))))}},"withInspectorControls");wp.hooks.addFilter("editor.BlockEdit","lsx-tour-operator/settings-panel",i),wp.hooks.addFilter("blocks.getSaveContent.extraProps","lsx-tour-operator/save-settings-panel",function(e,s,t){return"core/query"===s.name&&(!0===t.hasCustomClass?(e.className=(e.className||"")+" lsx-to-slider",console.log("adding")):!1===t.hasCustomClass&&e.className&&(e.className=e.className.replace(/\blsx-to-slider\b\s*/g,"").trim(),console.log("removing")),!0===t.filterByOnsale?e.className=(e.className||"")+" on-sale":!1===t.filterByOnsale&&e.className&&(e.className=e.className.replace(/\bon-sale\b\s*/g,"").trim()),!0===t.parentsOnly?e.className=(e.className||"")+" parents-only":!1===t.parentsOnly&&e.className&&(e.className=e.className.replace(/\bparents-only\b\s*/g,"").trim())),e})}(window.wp.blocks,window.wp.element,window.wp.blockEditor,window.wp.components);
+/******/ (function() { // webpackBootstrap
+/*!***************************************!*\
+  !*** ./src/js/blocks/slider-query.js ***!
+  \***************************************/
+(function (blocks, element, editor, components) {
+  const el = element.createElement;
+  const InspectorControls = editor.InspectorControls;
+  const PanelBody = components.PanelBody;
+  const CheckboxControl = components.CheckboxControl;
+  const withInspectorControls = wp.compose.createHigherOrderComponent(function (BlockEdit) {
+    return function (props) {
+      if (props.name !== 'core/query') {
+        return el(BlockEdit, props);
+      }
+      let hasCustomClass = props.attributes.hasCustomClass || false;
+      if (undefined === props.attributes.hasCustomClass) {
+        if (props.attributes.className && props.attributes.className.includes('lsx-to-slider')) {
+          hasCustomClass = true;
+        }
+      } else {
+        hasCustomClass = props.attributes.hasCustomClass;
+      }
+      let filterByOnsale = props.attributes.filterByOnsale || false;
+      if (undefined === props.attributes.filterByOnsale) {
+        if (props.attributes.className && props.attributes.className.includes('on-sale')) {
+          filterByOnsale = true;
+        }
+      } else {
+        filterByOnsale = props.attributes.filterByOnsale;
+      }
+      let parentsOnly = props.attributes.parentsOnly || false;
+      if (undefined === props.attributes.parentsOnly) {
+        if (props.attributes.className && props.attributes.className.includes('parents-only')) {
+          parentsOnly = true;
+        }
+      } else {
+        parentsOnly = props.attributes.parentsOnly;
+      }
+      return el(element.Fragment, {}, el(BlockEdit, props), el(InspectorControls, {}, el(PanelBody, {
+        title: 'Tour Operator',
+        initialOpen: true
+      }, el(CheckboxControl, {
+        label: 'Enable Slider',
+        checked: hasCustomClass,
+        onChange(value) {
+          console.log(value);
+          props.setAttributes({
+            hasCustomClass: value
+          });
+        }
+      }), el(CheckboxControl, {
+        label: 'Filter by On Sale',
+        checked: filterByOnsale,
+        onChange(value) {
+          props.setAttributes({
+            filterByOnsale: value
+          });
+        }
+      }), el(CheckboxControl, {
+        label: 'Parents Only',
+        checked: parentsOnly,
+        onChange(value) {
+          props.setAttributes({
+            parentsOnly: value
+          });
+        }
+      }))));
+    };
+  }, 'withInspectorControls');
+  wp.hooks.addFilter('editor.BlockEdit', 'lsx-tour-operator/settings-panel', withInspectorControls);
+  wp.hooks.addFilter('blocks.getSaveContent.extraProps', 'lsx-tour-operator/save-settings-panel', function (extraProps, blockType, attributes) {
+    if (blockType.name === 'core/query') {
+      if (true === attributes.hasCustomClass) {
+        extraProps.className = (extraProps.className || '') + ' lsx-to-slider';
+        console.log('adding');
+      } else if (false === attributes.hasCustomClass && extraProps.className) {
+        extraProps.className = extraProps.className.replace(/\blsx-to-slider\b\s*/g, '').trim();
+        console.log('removing');
+      }
+      if (true === attributes.filterByOnsale) {
+        extraProps.className = (extraProps.className || '') + ' on-sale';
+      } else if (false === attributes.filterByOnsale && extraProps.className) {
+        extraProps.className = extraProps.className.replace(/\bon-sale\b\s*/g, '').trim();
+      }
+      if (true === attributes.parentsOnly) {
+        extraProps.className = (extraProps.className || '') + ' parents-only';
+      } else if (false === attributes.parentsOnly && extraProps.className) {
+        extraProps.className = extraProps.className.replace(/\bparents-only\b\s*/g, '').trim();
+      }
+    }
+    return extraProps;
+  });
+})(window.wp.blocks, window.wp.element, window.wp.blockEditor, window.wp.components);
+/******/ })()
+;
+//# sourceMappingURL=slider-query.js.map

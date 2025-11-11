@@ -13,8 +13,7 @@
 		"cost",
 		"amount",
 		"from",
-		"starting",
-		"tour"
+		"starting"
 	],
 	"example": {
 		"attributes": {

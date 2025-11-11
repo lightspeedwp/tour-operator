@@ -1,1 +1,76 @@
-!function(){const e=t=>{if(!t.toElement&&!t.relatedTarget&&t.clientY<10){document.removeEventListener("mouseout",e),document.querySelector("html").classList.add("has-modal-open");const t=document.querySelector('.wp-block-hm-popup[data-trigger="exit"]');t.showModal(),t.focus(),window.localStorage.setItem("exitIntentShown",Date.now())}},t=()=>{let t=!1;document.querySelectorAll(".wp-block-hm-popup").forEach(o=>{if(o.addEventListener("close",()=>{document.querySelector("html").classList.remove("has-modal-open")}),o.addEventListener("mousedown",e=>{e.target===e.currentTarget&&e.currentTarget.close()}),"click"===o?.dataset.trigger&&document.querySelectorAll(`[href="#${o.id||""}"]`).forEach(e=>{e.addEventListener("click",e=>{e.preventDefault(),document.querySelector("html").classList.add("has-modal-open"),o.showModal(),o.focus()})}),"exit"===o?.dataset.trigger){const n=parseInt(o?.dataset.expiry||7,10);parseInt(window.localStorage.getItem("exitIntentShown")||0,10)<Date.now()-24*n*60*60*1e3&&!t&&(t=!0,setTimeout(()=>{document.addEventListener("mouseout",e)},2e3))}}),document.querySelectorAll([".wp-block-hm-popup__close",'.wp-block-hm-popup [href="#close"]'].join(",")).forEach(e=>{e.addEventListener("click",e=>{e.preventDefault(),e.currentTarget.closest(".wp-block-hm-popup").close()})})};"loading"!==document.readyState?t():(document.addEventListener("DOMContentLoaded",t),document.addEventListener("DOMContentLoaded",t))}();
+/******/ (function() { // webpackBootstrap
+/*!**************************!*\
+  !*** ./src/js/modals.js ***!
+  \**************************/
+const mouseEvent = e => {
+  const shouldShowExitIntent = !e.toElement && !e.relatedTarget && e.clientY < 10;
+  if (shouldShowExitIntent) {
+    document.removeEventListener('mouseout', mouseEvent);
+    document.querySelector('html').classList.add('has-modal-open');
+    const exitModal = document.querySelector('.wp-block-hm-popup[data-trigger="exit"]');
+    exitModal.showModal();
+    // Focus the modal container instead of the close button
+    exitModal.focus();
+    window.localStorage.setItem('exitIntentShown', Date.now());
+  }
+};
+const toModalBootstrap = () => {
+  let exitIntentSetup = false;
+  document.querySelectorAll('.wp-block-hm-popup').forEach(popup => {
+    // On close remove HTML class.
+    popup.addEventListener('close', () => {
+      document.querySelector('html').classList.remove('has-modal-open');
+    });
+
+    // On backdrop click, close modal.
+    popup.addEventListener('mousedown', event => {
+      if (event.target === event.currentTarget) {
+        event.currentTarget.close();
+      }
+    });
+
+    // Handle click trigger.
+    if (popup?.dataset.trigger === 'click') {
+      document.querySelectorAll(`[href="#${popup.id || ''}"]`).forEach(trigger => {
+        trigger.addEventListener('click', event => {
+          event.preventDefault();
+          document.querySelector('html').classList.add('has-modal-open');
+          popup.showModal();
+          // Focus the modal container instead of the close button
+          popup.focus();
+        });
+      });
+    }
+
+    // Handle exit intent trigger.
+    if (popup?.dataset.trigger === 'exit') {
+      // Get expiry setting on local storage value.
+      const expirationDays = parseInt(popup?.dataset.expiry || 7, 10);
+      if (parseInt(window.localStorage.getItem('exitIntentShown') || 0, 10) < Date.now() - expirationDays * 24 * 60 * 60 * 1000 && !exitIntentSetup) {
+        exitIntentSetup = true;
+        setTimeout(() => {
+          document.addEventListener('mouseout', mouseEvent);
+        }, 2000);
+      }
+    }
+  });
+
+  // Bind close events.
+  document.querySelectorAll(['.wp-block-hm-popup__close', '.wp-block-hm-popup [href="#close"]'].join(',')).forEach(el => {
+    el.addEventListener('click', event => {
+      event.preventDefault();
+      event.currentTarget.closest('.wp-block-hm-popup').close();
+    });
+  });
+};
+
+// Handle async scripts.
+if (document.readyState !== 'loading') {
+  toModalBootstrap();
+} else {
+  document.addEventListener('DOMContentLoaded', toModalBootstrap);
+  document.addEventListener('DOMContentLoaded', toModalBootstrap);
+}
+/******/ })()
+;
+//# sourceMappingURL=modals.js.map

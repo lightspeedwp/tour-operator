@@ -10,6 +10,14 @@ wp.domReady(() => {
             title: __('Duration', 'tour-operator'),
             icon: 'clock',
             category: 'lsx-tour-operator',
+            keywords:  [
+                __('duration', 'tour-operator'),
+                __('time', 'tour-operator'),
+                __('days', 'tour-operator'),
+                __('length', 'tour-operator'),
+                __('period', 'tour-operator'),
+                __('tour', 'tour-operator'),
+            ],
             isActive: (blockAttributes, variationAttributes) => {
                 return blockAttributes.metadata?.className === variationAttributes.metadata?.className;
             },

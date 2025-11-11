@@ -10,6 +10,15 @@ wp.domReady(() => {
             title: __('Single supplement', 'tour-operator'),
             icon: 'money-alt',
             category: 'lsx-tour-operator',
+            keywords: [
+                __('single', 'tour-operator'),
+                __('supplement', 'tour-operator'),
+                __('charge', 'tour-operator'),
+                __('solo', 'tour-operator'),
+                __('traveler', 'tour-operator'),
+                __('additional', 'tour-operator'),
+                __('cost', 'tour-operator'),
+            ],
             isActive: (blockAttributes, variationAttributes) => {
                 return blockAttributes.metadata?.className === variationAttributes.metadata?.className;
             },

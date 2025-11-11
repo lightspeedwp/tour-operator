@@ -9,6 +9,14 @@ wp.domReady(() => {
             title: __('Travel styles', 'tour-operator'),
             icon: 'airplane',
             category: 'lsx-tour-operator',
+            keyword: [
+                __('travel', 'tour-operator'),
+                __('styles', 'tour-operator'),
+                __('category', 'tour-operator'),
+                __('classification', 'tour-operator'),
+                __('tour', 'tour-operator'),
+                __('type', 'tour-operator'),
+            ],
             isActive: (blockAttributes, variationAttributes) => {
                 return blockAttributes.metadata?.className === variationAttributes.metadata?.className;
             },

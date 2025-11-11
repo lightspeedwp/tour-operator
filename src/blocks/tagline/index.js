@@ -10,6 +10,14 @@ wp.domReady(() => {
             title: __('Tagline', 'tour-operator'),
             category: 'lsx-tour-operator',
             icon: 'text-page',
+            keywords: [
+                __('tagline', 'tour-operator'),
+                __('slogan', 'tour-operator'),
+                __('description', 'tour-operator'),
+                __('headline', 'tour-operator'),
+                __('catchphrase', 'tour-operator'),
+                __('tour', 'tour-operator'),
+            ],
             isActive: (blockAttributes, variationAttributes) => {
                 return blockAttributes.metadata?.className === variationAttributes.metadata?.className;
             },

@@ -10,6 +10,13 @@ wp.domReady(() => {
             title: __('Price', 'tour-operator'),
             category: 'lsx-tour-operator',
             icon: 'money-alt',
+            keywords: [
+                __('price', 'tour-operator'),
+                __('cost', 'tour-operator'),
+                __('amount', 'tour-operator'),
+                __('from', 'tour-operator'),
+                __('starting', 'tour-operator'),
+            ],
             isActive: (blockAttributes, variationAttributes) => {
                 return blockAttributes.metadata?.className === variationAttributes.metadata?.className;
             },
