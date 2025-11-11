@@ -1,27 +1,105 @@
-wp.domReady( () => {
-    wp.blocks.registerBlockVariation( 'core/paragraph', {
-        name: 'lsx-tour-operator/tagline',
-        title: 'Tagline',
-        category: 'lsx-tour-operator',
-        icon: 'text-page',
-        attributes: {
-            metadata: {
-                name: 'Tagline',
-                bindings: {
-                    content: {
-                        source: 'lsx/post-meta',
-                        args: {
-                            key: 'tagline',
+import { __ } from '@wordpress/i18n';
+
+wp.domReady(() => {
+    const { select } = wp.data;
+
+    // Define supported post types
+    const supportedPostTypes = ['tour'];
+    let registered = false;
+    let checking = false;
+
+    // Register variation function
+    const registerTaglineVariation = () => {
+        if (registered) {
+            return;
+        }
+
+        wp.blocks.registerBlockVariation('core/paragraph', {
+            name: 'lsx-tour-operator/tagline',
+            title: __('Tagline', 'tour-operator'),
+            category: 'lsx-tour-operator',
+            icon: 'text-page',
+            isActive: (blockAttributes, variationAttributes) => {
+                return blockAttributes.metadata?.className === variationAttributes.metadata?.className;
+            },
+            attributes: {
+                metadata: {
+                    name: 'Tagline',
+                    bindings: {
+                        content: {
+                            source: 'lsx/post-meta',
+                            args: {
+                                key: 'tagline',
+                            },
                         },
                     },
                 },
+                align: 'center',
+                className: 'lsx-tagline-wrapper',
             },
-            align: 'center',
-            className: 'lsx-tagline-wrapper',
-        },
-        isDefault: false,
-        supports: {
-            renaming: false,
-        },
-    } );
-} );
+            isDefault: false,
+            supports: {
+                renaming: false,
+            },
+            example: {
+                innerBlocks: [
+                    {
+                        name: 'core/paragraph',
+                        attributes: {
+                            content: __('Discover the breathtaking beauty of Africa\'s premier safari destination', 'tour-operator'),
+                        },
+                    },
+                ],
+            },
+        });
+    };
+
+    // Check if current post type is supported
+    const checkAndRegister = () => {
+        if (registered || checking) {
+            return registered;
+        }
+
+        checking = true;
+
+        try {
+            const postType = select('core/editor')?.getCurrentPostType();
+            const postSlug = select('core/editor')?.getEditedPostSlug();
+
+            if (!postType || !postSlug) {
+                checking = false;
+                return false;
+            }
+
+            if (supportedPostTypes.includes(postType) || ((postType === 'wp_template' || postType === 'wp_template_part') && postSlug.includes('tour'))) {
+                registerTaglineVariation();
+                registered = true;
+                checking = false;
+                return true;
+            }
+        } catch (error) {
+            console.error('Error in checkAndRegister:', error);
+        }
+
+        checking = false;
+        return false;
+    };
+
+    // Try initial registration with a small delay
+    setTimeout(() => {
+        if (!checkAndRegister()) {
+            // Subscribe to editor changes if initial check failed
+            let unsubscribed = false;
+            const unsubscribe = wp.data.subscribe(() => {
+                if (unsubscribed) {
+                    return;
+                }
+
+                if (checkAndRegister()) {
+                    unsubscribed = true;
+                    unsubscribe();
+                }
+            });
+        }
+    }, 100);
+});
