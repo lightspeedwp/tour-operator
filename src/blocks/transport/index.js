@@ -75,7 +75,6 @@ wp.domReady(() => {
                                                 },
                                             },
                                         },
-                                        content: '',
                                     },
                                 },
                             ],

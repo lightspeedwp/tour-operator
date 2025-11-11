@@ -324,8 +324,7 @@ wp.domReady(() => {
                 key: 'transport'
               }
             }
-          },
-          content: ''
+          }
         }
       }]]]]], ['core/buttons', {}, [['core/button', {
         width: 100,

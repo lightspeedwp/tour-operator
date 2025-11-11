@@ -325,8 +325,7 @@ wp.domReady(() => {
               }
             }
           }
-        },
-        content: ''
+        }
       }]]]]], ['core/buttons', {}, [['core/button', {
         backgroundColor: 'primary',
         width: 100,

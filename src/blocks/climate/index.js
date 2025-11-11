@@ -89,7 +89,6 @@ wp.domReady(() => {
                                                 },
                                             },
                                         },
-                                        content: '',
                                     },
                                 ],
                             ],
