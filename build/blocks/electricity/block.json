@@ -1,8 +1,45 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/electricity",
   "title": "Electricity",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Display electrical information and power requirements for destinations.",
+  "icon": "admin-plugins",
+  "keywords": [
+    "electricity",
+    "power",
+    "voltage",
+    "outlet"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Electricity"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Electricity",
+              "level": 3
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "Standard voltage 220V, 50Hz. Three-pin plugs are commonly used."
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

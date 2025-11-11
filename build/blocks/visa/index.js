@@ -1,1 +1,213 @@
-!function(){"use strict";var t=window.wp.i18n;wp.domReady(()=>{const{select:e}=wp.data,r=["destination"];let o=!1;const a=()=>{if(o)return!0;const a=e("core/editor")?.getCurrentPostType(),n=e("core/editor")?.getEditedPostSlug();if(!a)return!1;const s="wp_template"===a||"wp_template_part"===a;return(r.includes(a)||s&&n&&(n.includes("destination")||n.includes("country")||n.includes("region")))&&(function(){try{return wp.blocks.registerBlockVariation("core/group",{name:"lsx-tour-operator/visa",title:(0,t.__)("Visa","tour-operator"),icon:"id-alt",category:"lsx-tour-operator",isActive:t=>t?.className?.includes("lsx-visa-wrapper"),attributes:{metadata:{name:(0,t.__)("Visa","tour-operator")},className:"lsx-visa-wrapper"},innerBlocks:[["core/group",{layout:{type:"constrained"}},[["core/group",{layout:{type:"constrained"}},[["core/paragraph",{align:"center",content:`<strong>${(0,t.__)("Visa","tour-operator")}</strong>`}]]],["core/group",{layout:{type:"constrained"}},[["core/paragraph",{metadata:{bindings:{content:{source:"lsx/post-meta",args:{key:"visa"}}}}}]]]]],["core/buttons",{},[["core/button",{width:100,content:(0,t.__)("View More","tour-operator")}]]]],supports:{renaming:!1},example:{attributes:{metadata:{name:(0,t.__)("Visa","tour-operator")}},innerBlocks:[["core/group",{},[["core/heading",{content:(0,t.__)("Visa","tour-operator"),level:3}],["core/paragraph",{content:(0,t.__)("Visa requirements and information.","tour-operator")}]]]]}}),!0}catch(t){return console.error("Failed to register visa block:",t),!1}}(),o=!0),o};if(!a()){const t=setInterval(()=>{a()&&clearInterval(t)},100);setTimeout(()=>clearInterval(t),5e3)}})}();
+/******/ (function() { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "@wordpress/i18n":
+/*!******************************!*\
+  !*** external ["wp","i18n"] ***!
+  \******************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["i18n"];
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	!function() {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = function(module) {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				function() { return module['default']; } :
+/******/ 				function() { return module; };
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	!function() {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = function(exports, definition) {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	!function() {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = function(exports) {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry needs to be wrapped in an IIFE because it needs to be isolated against other modules in the chunk.
+!function() {
+/*!**********************************!*\
+  !*** ./src/blocks/visa/index.js ***!
+  \**********************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/**
+ * Visa Block Variation
+ *
+ * Registers a block variation for destination visa information display.
+ * Only available on destination post type edit screens.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
+
+function registerVisaVariation() {
+  try {
+    wp.blocks.registerBlockVariation('core/group', {
+      name: 'lsx-tour-operator/visa',
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Visa', 'tour-operator'),
+      icon: 'id-alt',
+      category: 'lsx-tour-operator',
+      isActive: blockAttributes => blockAttributes?.className?.includes('lsx-visa-wrapper'),
+      attributes: {
+        metadata: {
+          name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Visa', 'tour-operator')
+        },
+        className: 'lsx-visa-wrapper'
+      },
+      innerBlocks: [['core/group', {
+        layout: {
+          type: 'constrained'
+        }
+      }, [['core/group', {
+        layout: {
+          type: 'constrained'
+        }
+      }, [['core/paragraph', {
+        align: 'center',
+        content: `<strong>${(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Visa', 'tour-operator')}</strong>`
+      }]]], ['core/group', {
+        layout: {
+          type: 'constrained'
+        }
+      }, [['core/paragraph', {
+        metadata: {
+          bindings: {
+            content: {
+              source: 'lsx/post-meta',
+              args: {
+                key: 'visa'
+              }
+            }
+          }
+        }
+      }]]]]], ['core/buttons', {}, [['core/button', {
+        width: 100,
+        content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('View More', 'tour-operator')
+      }]]]],
+      supports: {
+        renaming: false
+      },
+      example: {
+        attributes: {
+          metadata: {
+            name: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Visa', 'tour-operator')
+          }
+        },
+        innerBlocks: [['core/group', {}, [['core/heading', {
+          content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Visa', 'tour-operator'),
+          level: 3
+        }], ['core/paragraph', {
+          content: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Visa requirements and information.', 'tour-operator')
+        }]]]]
+      }
+    });
+    return true;
+  } catch (error) {
+    console.error('Failed to register visa block:', error);
+    return false;
+  }
+}
+wp.domReady(() => {
+  const {
+    select
+  } = wp.data;
+
+  // Define supported post types
+  const supportedPostTypes = ['destination'];
+  let registered = false;
+
+  // Check if current post type is supported
+  const checkAndRegister = () => {
+    if (registered) {
+      return true;
+    }
+    const postType = select('core/editor')?.getCurrentPostType();
+    const postSlug = select('core/editor')?.getEditedPostSlug();
+    if (!postType) {
+      return false;
+    }
+    const isTemplateContext = postType === 'wp_template' || postType === 'wp_template_part';
+    if (supportedPostTypes.includes(postType) || isTemplateContext && postSlug && (postSlug.includes('destination') || postSlug.includes('country') || postSlug.includes('region'))) {
+      registerVisaVariation();
+      registered = true;
+    }
+    return registered;
+  };
+
+  // Try immediate registration
+  if (!checkAndRegister()) {
+    // If not ready, check periodically
+    const interval = setInterval(() => {
+      if (checkAndRegister()) {
+        clearInterval(interval);
+      }
+    }, 100);
+
+    // Clean up after 5 seconds to prevent infinite checking
+    setTimeout(() => clearInterval(interval), 5000);
+  }
+});
+}();
+/******/ })()
+;
+//# sourceMappingURL=index.js.map
