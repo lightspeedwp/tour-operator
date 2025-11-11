@@ -20,12 +20,19 @@ module.exports = {
 		'modals': path.resolve( process.cwd(), 'src/js/modals.js' ),
 		'scporder': path.resolve( process.cwd(), 'src/js/scporder.js' ),
 		'metabox-structure': path.resolve( process.cwd(), 'src/js/metabox-structure.js' ),
+		// 'conditional-block-registration': path.resolve( process.cwd(), 'src/js/conditional-block-registration.js' ),
 
 		// blocks
 		'general': path.resolve( process.cwd(), 'src/js/blocks/general.js' ),
 		'linked-cover': path.resolve( process.cwd(), 'src/js/blocks/linked-cover.js' ),
 		'slider-query': path.resolve( process.cwd(), 'src/js/blocks/slider-query.js' ),
 		'slotfills': path.resolve( process.cwd(), 'src/js/blocks/slotfills.js' ),
+	},
+
+	resolve: {
+		alias: {
+			'@utils': path.resolve( __dirname, 'src/js/' ),
+		},
 	},
 
 	plugins: [
