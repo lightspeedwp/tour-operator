@@ -18,153 +18,153 @@ wp.domReady(() => {
                 __('vaccination', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.metadata?.className === variationAttributes.metadata?.className;
+                return blockAttributes.className === variationAttributes.className;
             },
             attributes: {
                 metadata: {
                     name: 'Health',
                 },
                 className: 'lsx-health-wrapper',
-            layout: {
-                type: 'constrained',
-            },
-        },
-        innerBlocks: [
-            [
-                'core/group',
-                {
-                    layout: {
-                        type: 'constrained',
-                    },
+                layout: {
+                    type: 'constrained',
                 },
-                [
-                    [
-                        'core/group',
-                        {
-                            layout: {
-                                type: 'constrained',
-                            },
-                        },
-                        [
-                            [
-                                'core/paragraph',
-                                {
-                                    align: 'center',
-                                    content: '<strong>' + __('Health', 'tour-operator') + '</strong>',
-                                },
-                            ],
-                        ],
-                    ],
-                    [
-                        'core/group',
-                        {
-                            layout: {
-                                type: 'constrained',
-                            },
-                        },
-                        [
-                            [
-                                'core/paragraph',
-                                {
-                                    metadata: {
-                                        bindings: {
-                                            content: {
-                                                source: 'lsx/post-meta',
-                                                args: {
-                                                    key: 'health',
-                                                },
-                                            },
-                                        },
-                                    },
-                                },
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-            [
-                'core/buttons',
-                {},
-                [
-                    [
-                        'core/button',
-                        {
-                            backgroundColor: 'primary',
-                            width: 100,
-                            text: __('View More', 'tour-operator'),
-                        },
-                    ],
-                ],
-            ],
-        ],
-        supports: {
-            renaming: false,
-        },
-        example: {
-            attributes: {
-                className: 'lsx-health-wrapper',
             },
             innerBlocks: [
-                {
-                    name: 'core/group',
-                    attributes: {
+                [
+                    'core/group',
+                    {
                         layout: {
                             type: 'constrained',
                         },
                     },
-                    innerBlocks: [
-                        {
-                            name: 'core/group',
-                            attributes: {
+                    [
+                        [
+                            'core/group',
+                            {
                                 layout: {
                                     type: 'constrained',
                                 },
                             },
-                            innerBlocks: [
-                                {
-                                    name: 'core/paragraph',
-                                    attributes: {
+                            [
+                                [
+                                    'core/paragraph',
+                                    {
                                         align: 'center',
                                         content: '<strong>' + __('Health', 'tour-operator') + '</strong>',
                                     },
-                                },
+                                ],
                             ],
-                        },
-                        {
-                            name: 'core/group',
-                            attributes: {
+                        ],
+                        [
+                            'core/group',
+                            {
                                 layout: {
                                     type: 'constrained',
                                 },
                             },
-                            innerBlocks: [
-                                {
-                                    name: 'core/paragraph',
-                                    attributes: {
-                                        content: __('Consult your doctor for travel vaccinations. Quality medical facilities available in main cities. Travel insurance recommended.', 'tour-operator'),
+                            [
+                                [
+                                    'core/paragraph',
+                                    {
+                                        metadata: {
+                                            bindings: {
+                                                content: {
+                                                    source: 'lsx/post-meta',
+                                                    args: {
+                                                        key: 'health',
+                                                    },
+                                                },
+                                            },
+                                        },
                                     },
-                                },
+                                ],
                             ],
-                        },
+                        ],
                     ],
-                },
-                {
-                    name: 'core/buttons',
-                    attributes: {},
-                    innerBlocks: [
-                        {
-                            name: 'core/button',
-                            attributes: {
+                ],
+                [
+                    'core/buttons',
+                    {},
+                    [
+                        [
+                            'core/button',
+                            {
                                 backgroundColor: 'primary',
                                 width: 100,
                                 text: __('View More', 'tour-operator'),
                             },
-                        },
+                        ],
                     ],
-                },
+                ],
             ],
-        },
-    });
+            supports: {
+                renaming: false,
+            },
+            example: {
+                attributes: {
+                    className: 'lsx-health-wrapper',
+                },
+                innerBlocks: [
+                    {
+                        name: 'core/group',
+                        attributes: {
+                            layout: {
+                                type: 'constrained',
+                            },
+                        },
+                        innerBlocks: [
+                            {
+                                name: 'core/group',
+                                attributes: {
+                                    layout: {
+                                        type: 'constrained',
+                                    },
+                                },
+                                innerBlocks: [
+                                    {
+                                        name: 'core/paragraph',
+                                        attributes: {
+                                            align: 'center',
+                                            content: '<strong>' + __('Health', 'tour-operator') + '</strong>',
+                                        },
+                                    },
+                                ],
+                            },
+                            {
+                                name: 'core/group',
+                                attributes: {
+                                    layout: {
+                                        type: 'constrained',
+                                    },
+                                },
+                                innerBlocks: [
+                                    {
+                                        name: 'core/paragraph',
+                                        attributes: {
+                                            content: __('Consult your doctor for travel vaccinations. Quality medical facilities available in main cities. Travel insurance recommended.', 'tour-operator'),
+                                        },
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                    {
+                        name: 'core/buttons',
+                        attributes: {},
+                        innerBlocks: [
+                            {
+                                name: 'core/button',
+                                attributes: {
+                                    backgroundColor: 'primary',
+                                    width: 100,
+                                    text: __('View More', 'tour-operator'),
+                                },
+                            },
+                        ],
+                    },
+                ],
+            },
+        });
     };
 
     // Initialize conditional registration

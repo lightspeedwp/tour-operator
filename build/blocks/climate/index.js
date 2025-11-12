@@ -298,7 +298,7 @@ wp.domReady(() => {
       category: 'lsx-tour-operator',
       keywords: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('climate', 'tour-operator'), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('weather', 'tour-operator'), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('temperature', 'tour-operator'), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('season', 'tour-operator')],
       isActive: (blockAttributes, variationAttributes) => {
-        return blockAttributes.metadata?.className === variationAttributes.metadata?.className;
+        return blockAttributes.className === variationAttributes.className;
       },
       attributes: {
         metadata: {
