@@ -1,65 +1,116 @@
-wp.domReady( () => {
-    wp.blocks.registerBlockVariation( 'core/group', {
-        name: 'lsx-tour-operator/travel-styles',
-        title: 'Travel Styles',
-        icon: 'airplane',
-        category: 'lsx-tour-operator',
-        attributes: {
-            metadata: {
-                name: 'Travel Styles',
+import { __ } from '@wordpress/i18n';
+import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
+
+wp.domReady(() => {
+    // Register variation function
+    const registerTravelStylesVariation = () => {
+        wp.blocks.registerBlockVariation('core/group', {
+            name: 'lsx-tour-operator/travel-styles',
+            title: __('Travel styles', 'tour-operator'),
+            icon: 'airplane',
+            category: 'lsx-tour-operator',
+            keyword: [
+                __('travel', 'tour-operator'),
+                __('styles', 'tour-operator'),
+                __('category', 'tour-operator'),
+                __('classification', 'tour-operator'),
+                __('tour', 'tour-operator'),
+                __('type', 'tour-operator'),
+            ],
+            isActive: (blockAttributes, variationAttributes) => {
+                return blockAttributes.className === variationAttributes.className;
             },
-            className: 'lsx-travel-style-wrapper',
-        },
-        innerBlocks: [
-            [
-                'core/group',
-                {
-                    layout: {
-                        type: 'flex',
-                        flexWrap: 'nowrap',
-                        verticalAlignment: 'top',
-                    },
+            attributes: {
+                metadata: {
+                    name: 'Travel styles',
                 },
+                className: 'lsx-travel-style-wrapper',
+            },
+            innerBlocks: [
                 [
-                    [
-                        'core/image',
-                        {
-                            width: '20px',
-                            sizeSlug: 'large',
-                            url:
-                                lsxToEditor.assetsUrl +
-                                'blocks/travel-styles.png',
-                            alt: '',
+                    'core/group',
+                    {
+                        layout: {
+                            type: 'flex',
+                            flexWrap: 'nowrap',
+                            verticalAlignment: 'middle',
                         },
+                    },
+                    [
+                        [
+                            'lsx-tour-operator/icons',
+                            {
+                                iconType: 'solid',
+                                iconName: 'travelStyleIcon',
+                            },
+                        ],
+                        [
+                            'core/paragraph',
+                            {
+                                content: '<strong>' + __('Travel Styles:', 'tour-operator') + '</strong>',
+                            },
+                        ],
                     ],
-                    [
-                        'core/paragraph',
-                        {
-                            content: '<strong>Travel Styles:</strong>',
+                ],
+                [
+                    'core/group',
+                    {
+                        layout: {
+                            type: 'flex',
+                            flexWrap: 'nowrap',
                         },
+                    },
+                    [
+                        [
+                            'core/post-terms',
+                            {
+                                term: 'travel-style',
+                            },
+                        ],
                     ],
                 ],
             ],
-            [
-                'core/group',
-                {
-                    layout: {
-                        type: 'flex',
-                        flexWrap: 'nowrap',
-                    },
-                },
-                [
-                    [
-                        'core/post-terms',
-                        {
-                            term: 'travel-style',
+            supports: {
+                renaming: false,
+            },
+            example: {
+                innerBlocks: [
+                    {
+                        name: 'core/group',
+                        attributes: {
+                            layout: {
+                                type: 'flex',
+                                flexWrap: 'nowrap',
+                                verticalAlignment: 'middle',
+                            },
                         },
-                    ],
+                        innerBlocks: [
+                            {
+                                name: 'lsx-tour-operator/icons',
+                                attributes: {
+                                    iconType: 'solid',
+                                    iconName: 'travelStyleIcon',
+                                },
+                            },
+                            {
+                                name: 'core/paragraph',
+                                attributes: {
+                                    content: '<strong>' + __('Travel Styles:', 'tour-operator') + '</strong>' + ' ' + __('Adventure, Cultural, Wildlife', 'tour-operator'),
+                                },
+                            }
+                        ],
+                    },
                 ],
-            ],
-        ],
-        supports: {
-            renaming: false,
-        },
-    } );
-} );
+            },
+        });
+    };
+
+    // Initialize conditional registration
+    const conditionalRegister = registerForPostTypesAndTemplates(
+        ['tour'], // Supported post types
+        ['tour'], // Template slug patterns
+        registerTravelStylesVariation
+    );
+
+    conditionalRegister();
+});

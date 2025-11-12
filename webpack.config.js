@@ -28,6 +28,12 @@ module.exports = {
 		'slotfills': path.resolve( process.cwd(), 'src/js/blocks/slotfills.js' ),
 	},
 
+	resolve: {
+		alias: {
+			'@utils': path.resolve( __dirname, 'src/js/' ),
+		},
+	},
+
 	plugins: [
 		...defaultConfig.plugins,
 		new RemoveEmptyScriptsPlugin(),
