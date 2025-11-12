@@ -19,7 +19,7 @@ wp.domReady(() => {
                 __('tour', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.metadata?.className === variationAttributes.metadata?.className;
+                return blockAttributes.className === variationAttributes.className;
             },
             attributes: {
                 metadata: {
