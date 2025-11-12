@@ -1,8 +1,71 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/single-supplement-wrapper",
-  "title": "Single Supplement",
+  "title": "Single supplement",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Displays the single supplement charge for solo travelers.",
+  "icon": "money-alt",
+  "keywords": [
+    "single",
+    "supplement",
+    "charge",
+    "solo",
+    "traveler",
+    "additional",
+    "cost"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Single Supplement"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {
+          "layout": {
+            "type": "flex",
+            "flexWrap": "nowrap",
+            "verticalAlignment": "middle"
+          }
+        },
+        [
+          [
+            "lsx-tour-operator/icons",
+            {
+              "iconType": "solid",
+              "iconName": "singleSupplementIcon"
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "<strong>Single supplement:</strong>"
+            }
+          ]
+        ]
+      ],
+      [
+        "core/group",
+        {
+          "layout": {
+            "type": "flex",
+            "flexWrap": "nowrap"
+          }
+        },
+        [
+          [
+            "core/paragraph",
+            {
+              "content": "$500"
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

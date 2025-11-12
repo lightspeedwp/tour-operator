@@ -1,78 +1,128 @@
-wp.domReady( () => {
-    wp.blocks.registerBlockVariation( 'core/group', {
-        name: 'lsx-tour-operator/single-supplement-wrapper',
-        title: 'Single Supplement',
-        icon: 'money-alt',
-        category: 'lsx-tour-operator',
-        attributes: {
-            metadata: {
-                name: 'Single Supplement',
-            },
-            className: 'lsx-single-supplement-wrapper',
+import { __ } from '@wordpress/i18n';
+import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
-            layout: {
-                type: 'flex',
-                flexWrap: 'nowrap',
+wp.domReady(() => {
+    // Register variation function
+    const registerSingleSupplementVariation = () => {
+
+        wp.blocks.registerBlockVariation('core/group', {
+            name: 'lsx-tour-operator/single-supplement-wrapper',
+            title: __('Single supplement', 'tour-operator'),
+            icon: 'money-alt',
+            category: 'lsx-tour-operator',
+            keywords: [
+                __('single', 'tour-operator'),
+                __('supplement', 'tour-operator'),
+                __('charge', 'tour-operator'),
+                __('solo', 'tour-operator'),
+                __('traveler', 'tour-operator'),
+                __('additional', 'tour-operator'),
+                __('cost', 'tour-operator'),
+            ],
+            isActive: (blockAttributes, variationAttributes) => {
+                return blockAttributes.className === variationAttributes.className;
             },
-        },
-        innerBlocks: [
-            [
-                'core/group',
-                {
-                    layout: {
-                        type: 'flex',
-                        flexWrap: 'nowrap',
-                        verticalAlignment: 'top',
-                    },
+            attributes: {
+                metadata: {
+                    name: 'Single supplement',
                 },
+                className: 'lsx-single-supplement-wrapper',
+                layout: {
+                    type: 'flex',
+                    flexWrap: 'nowrap',
+                },
+            },
+            innerBlocks: [
                 [
-                    [
-                        'core/image',
-                        {
-                            id: 122733,
-                            width: '20px',
-                            sizeSlug: 'large',
-                            linkDestination: 'none',
-                            url:
-                                lsxToEditor.assetsUrl +
-                                'blocks/single-supplement-icon.svg',
-                            alt: '',
+                    'core/group',
+                    {
+                        layout: {
+                            type: 'flex',
+                            flexWrap: 'nowrap',
+                            verticalAlignment: 'middle',
                         },
-                    ],
+                    },
                     [
-                        'core/paragraph',
-                        {
-                            content: '<strong>Single supplement:</strong>',
-                        },
+                        [
+                            'lsx-tour-operator/icons',
+                            {
+                                iconType: 'solid',
+                                iconName: 'singleSupplementIcon',
+                            },
+                        ],
+                        [
+                            'core/paragraph',
+                            {
+                                content: '<strong>' + __('Single supplement:', 'tour-operator') + '</strong>',
+                            },
+                        ],
                     ],
                 ],
-            ],
-            [
-                'core/group',
-                {},
                 [
+                    'core/group',
+                    {},
                     [
-                        'core/paragraph',
-                        {
-                            metadata: {
-                                bindings: {
-                                    content: {
-                                        source: 'lsx/post-meta',
-                                        args: {
-                                            key: 'single_supplement',
+                        [
+                            'core/paragraph',
+                            {
+                                metadata: {
+                                    bindings: {
+                                        content: {
+                                            source: 'lsx/post-meta',
+                                            args: {
+                                                key: 'single_supplement',
+                                            },
                                         },
                                     },
                                 },
+                                className: 'amount',
+                                content: '',
                             },
-                            className: 'amount',
-                            content: '',
-                        },
+                        ],
                     ],
                 ],
             ],
-        ],
-        supports: {
-            renaming: false,
-        },
-    } );
-} );
+            supports: {
+                renaming: false,
+            },
+            example: {
+                innerBlocks: [
+                    {
+                        name: 'core/group',
+                        attributes: {
+                            layout: {
+                                type: 'flex',
+                                flexWrap: 'nowrap',
+                                verticalAlignment: 'middle',
+                            },
+                        },
+                        innerBlocks: [
+                            {
+                                name: 'lsx-tour-operator/icons',
+                                attributes: {
+                                    iconType: 'solid',
+                                    iconName: 'singleSupplementIcon',
+                                },
+                            },
+                            {
+                                name: 'core/paragraph',
+                                attributes: {
+                                    content: '<strong>' + __('Single supplement: ', 'tour-operator') + '</strong>' + '$299',
+                                },
+                            },
+                        ],
+                    },
+                ],
+            },
+        });
+    };
+
+    // Initialize conditional registration
+    const conditionalRegister = registerForPostTypesAndTemplates(
+        ['tour'], // Supported post types
+        ['tour'], // Template slug patterns
+        registerSingleSupplementVariation
+    );
+
+    conditionalRegister();
+});
