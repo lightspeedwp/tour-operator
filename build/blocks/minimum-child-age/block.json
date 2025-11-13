@@ -39,8 +39,8 @@
           [
             "lsx-tour-operator/icons",
             {
-              "icon": "id",
-              "size": 20
+              "iconType": "solid",
+              "iconName": "minimumChildAgeIcon"
             }
           ],
           [
