@@ -3,7 +3,7 @@
     const { PluginPostStatusInfo } = wp.editPost;
     const { ToggleControl } = wp.components;
     const { useSelect, useDispatch } = wp.data;
-    const { createElement, useState } = wp.element;
+    const { createElement } = wp.element;
     const i18n = window.wp.i18n;
 
     /**
@@ -55,6 +55,20 @@
     };
 
     const LsxToStatusPlugin = function () {
+        // Check if we're in a post editing context (not template editor)
+        const isEditingPost = useSelect(function (select) {
+            const currentPost = select('core/editor')?.getCurrentPost?.();
+            const postType = select('core/editor')?.getCurrentPostType?.();
+
+            // We're editing a post if we have a current post with an ID and it's not a template
+            return currentPost && currentPost.id && postType !== 'wp_template';
+        }, []);
+
+        // Only show toggles when editing a post (not template)
+        if (!isEditingPost) {
+            return null;
+        }
+
         return createElement(
             PluginPostStatusInfo,
             {
