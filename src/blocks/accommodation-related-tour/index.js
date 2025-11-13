@@ -77,7 +77,7 @@ function registerAccommodationRelatedTourVariation() {
 								name: __('Related accommodation query', 'tour-operator'),
 							},
 							query: {
-								perPage: 8,
+								perPage: 6,
 								postType: 'accommodation',
 								order: 'asc',
 								orderBy: 'date',

@@ -77,10 +77,10 @@ function registerTourRelatedAccommodationVariation() {
                                 name: __('Related Tours Query - Accommodation', 'tour-operator'),
                             },
                             query: {
-                                perPage: 8,
+                                perPage: 6,
                                 postType: 'tour',
                                 order: 'asc',
-                                orderBy: 'date',
+                                orderBy: 'title',
                             },
                             align: 'wide',
                         },

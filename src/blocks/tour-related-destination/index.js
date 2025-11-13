@@ -77,10 +77,10 @@ function registerTourRelatedDestinationVariation() {
                                 name: __('Related Tours Query - Destination', 'tour-operator'),
                             },
                             query: {
-                                perPage: 8,
+                                perPage: 6,
                                 postType: 'tour',
                                 order: 'asc',
-                                orderBy: 'date',
+                                orderBy: 'title',
                             },
                             align: 'wide',
                         },

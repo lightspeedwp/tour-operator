@@ -81,7 +81,7 @@
               "query": {
                 "perPage": 8,
                 "postType": "review",
-                "order": "asc",
+                "order": "desc",
                 "orderBy": "date"
               },
               "align": "wide"
