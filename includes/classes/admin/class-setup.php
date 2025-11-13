@@ -375,7 +375,11 @@ class Setup
 		$allowedtags['dialog']['data-trigger']          = true;
 		$allowedtags['dialog']['data-expiry']           = true;
 		$allowedtags['dialog']['data-backdrop-opacity'] = true;
-		$allowedtags['dialog']['open']['valueless']     = 'y';
+		
+		if (! isset($allowedtags['dialog']['open']) || ! is_array($allowedtags['dialog']['open'])) {
+			$allowedtags['dialog']['open'] = array();
+		}
+		$allowedtags['dialog']['open']['valueless']     = true;
 
 		if (! isset($allowedtags['noscript'])) {
 			$allowedtags['noscript'] = array();
