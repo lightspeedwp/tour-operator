@@ -1,4 +1,4 @@
-( function ( wp ) {
+(function (wp) {
     const { registerPlugin } = wp.plugins;
     const { PluginPostStatusInfo } = wp.editPost;
     const { ToggleControl } = wp.components;
@@ -8,40 +8,40 @@
 
     // Custom Sticky Post Toggle Component
     const StickyToggle = () => {
-        const { editPost } = useDispatch( 'core/editor' );
-        const handleChange = ( newChecked ) => {
-            editPost( { meta: { featured: newChecked } } );
+        const { editPost } = useDispatch('core/editor');
+        const handleChange = (newChecked) => {
+            editPost({ meta: { featured: newChecked } });
         };
 
-        const isSticky = useSelect( function ( select ) {
-            return select( 'core/editor' ).getEditedPostAttribute( 'meta' )
-                .featured;
-        }, [] );
+        const isSticky = useSelect(function (select) {
+            const meta = select('core/editor').getEditedPostAttribute('meta');
+            return meta?.featured || false;
+        }, []);
 
-        return createElement( ToggleControl, {
-            label: i18n.__( 'Featured' ),
+        return createElement(ToggleControl, {
+            label: i18n.__('Featured'),
             checked: isSticky,
             onChange: handleChange,
-        } );
+        });
     };
 
     // Custom Disable Single Toggle Component
     const DisableSingleToggle = () => {
-        const { editPost } = useDispatch( 'core/editor' );
-        const handleChange = ( newChecked ) => {
-            editPost( { meta: { disable_single: newChecked } } );
+        const { editPost } = useDispatch('core/editor');
+        const handleChange = (newChecked) => {
+            editPost({ meta: { disable_single: newChecked } });
         };
 
-        const isSticky = useSelect( function ( select ) {
-            return select( 'core/editor' ).getEditedPostAttribute( 'meta' )
-                .disable_single;
-        }, [] );
+        const isDisabled = useSelect(function (select) {
+            const meta = select('core/editor').getEditedPostAttribute('meta');
+            return meta?.disable_single || false;
+        }, []);
 
-        return createElement( ToggleControl, {
-            label: i18n.__( 'Disable Single' ),
-            checked: isSticky,
+        return createElement(ToggleControl, {
+            label: i18n.__('Disable Single'),
+            checked: isDisabled,
             onChange: handleChange,
-        } );
+        });
     };
 
     const LsxToStatusPlugin = function () {
@@ -61,21 +61,21 @@
                     {
                         className: 'toggle-row',
                     },
-                    createElement( StickyToggle )
+                    createElement(StickyToggle)
                 ),
                 createElement(
                     'div',
                     {
                         className: 'toggle-row',
                     },
-                    createElement( DisableSingleToggle )
+                    createElement(DisableSingleToggle)
                 )
             )
         );
     };
 
-    registerPlugin( 'lsx-to-status-plugin', {
+    registerPlugin('lsx-to-status-plugin', {
         render: LsxToStatusPlugin,
         icon: null,
-    } );
-} )( window.wp );
+    });
+})(window.wp);
