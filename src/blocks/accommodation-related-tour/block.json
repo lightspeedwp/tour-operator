@@ -3,134 +3,104 @@
   "apiVersion": 3,
   "textdomain": "tour-operator",
   "name": "lsx-tour-operator/accommodation-related-tour",
-  "title": "Related accommodation - tour",
+  "title": "Related Accommodation - Tour",
   "category": "lsx-tour-operator",
   "editorScript": "file:index.js",
-  "description": "Displays accommodation related to this tour via the destinations.",
-  "icon": "palmtree",
+  "description": "Displays accommodations related to this tour via the destinations.",
+  "icon": "building",
   "keywords": [
+    "accommodation",
+    "tour",
     "related",
-    "tours",
-    "similar"
+    "cross-reference"
   ],
   "example": {
     "attributes": {
       "metadata": {
-        "name": "Related tours"
+        "name": "Related Accommodation - Tour"
       }
     },
     "innerBlocks": [
       [
         "core/group",
-        {},
+        {
+          "align": "wide",
+          "layout": {
+            "type": "flex",
+            "flexWrap": "nowrap"
+          }
+        },
         [
           [
-            "core/heading",
+            "core/separator",
             {
-              "content": "Related tours",
-              "textAlign": "center"
+              "style": {
+                "layout": {
+                  "selfStretch": "fill",
+                  "flexSize": null
+                }
+              }
             }
           ],
           [
-            "core/group",
+            "core/heading",
+            {
+              "textAlign": "center",
+              "content": "Related Accommodation",
+              "level": 2
+            }
+          ],
+          [
+            "core/separator",
             {
               "style": {
-                "spacing": {
-                  "blockGap": "2rem"
+                "layout": {
+                  "selfStretch": "fill",
+                  "flexSize": null
                 }
-              },
-              "layout": {
-                "type": "grid",
-                "columnCount": 3
               }
+            }
+          ]
+        ]
+      ],
+      [
+        "core/group",
+        {
+          "align": "wide",
+          "layout": {
+            "type": "constrained"
+          }
+        },
+        [
+          [
+            "core/query",
+            {
+              "metadata": {
+                "name": "Related Accommodation Query - Tour"
+              },
+              "query": {
+                "perPage": 6,
+                "postType": "accommodation",
+                "order": "asc",
+                "orderBy": "title"
+              },
+              "align": "wide"
             },
             [
               [
-                "core/group",
+                "core/post-template",
                 {
-                  "style": {
-                    "border": {
-                      "width": "1px",
-                      "style": "solid",
-                      "color": "#e0e0e0"
-                    },
-                    "spacing": {
-                      "padding": "1rem"
-                    }
+                  "className": "lsx-accommodation-related-tour-query",
+                  "layout": {
+                    "type": "grid",
+                    "columnCount": 3
                   }
                 },
                 [
                   [
-                    "core/heading",
+                    "core/pattern",
                     {
-                      "content": "African Safari Adventure",
-                      "level": 3
-                    }
-                  ],
-                  [
-                    "core/paragraph",
-                    {
-                      "content": "Embark on an unforgettable 7-day safari experience through Kenya's most spectacular wildlife reserves."
-                    }
-                  ]
-                ]
-              ],
-              [
-                "core/group",
-                {
-                  "style": {
-                    "border": {
-                      "width": "1px",
-                      "style": "solid",
-                      "color": "#e0e0e0"
-                    },
-                    "spacing": {
-                      "padding": "1rem"
-                    }
-                  }
-                },
-                [
-                  [
-                    "core/heading",
-                    {
-                      "content": "European Cultural Journey",
-                      "level": 3
-                    }
-                  ],
-                  [
-                    "core/paragraph",
-                    {
-                      "content": "Discover the rich history and culture of Europe with visits to iconic cities and historic landmarks."
-                    }
-                  ]
-                ]
-              ],
-              [
-                "core/group",
-                {
-                  "style": {
-                    "border": {
-                      "width": "1px",
-                      "style": "solid",
-                      "color": "#e0e0e0"
-                    },
-                    "spacing": {
-                      "padding": "1rem"
-                    }
-                  }
-                },
-                [
-                  [
-                    "core/heading",
-                    {
-                      "content": "Tropical Island Escape",
-                      "level": 3
-                    }
-                  ],
-                  [
-                    "core/paragraph",
-                    {
-                      "content": "Relax and unwind on pristine beaches with crystal clear waters and vibrant coral reefs."
+                      "slug": "lsx-tour-operator/accommodation-card"
                     }
                   ]
                 ]

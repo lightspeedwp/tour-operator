@@ -1,13 +1,29 @@
-wp.domReady( () => {
-    wp.blocks.registerBlockVariation( 'core/group', {
+/**
+ * Register Tour Related Destination block variation
+ */
+import { registerForPostTypes } from '@utils/conditional-block-registration.js';
+
+const { __ } = wp.i18n;
+
+/**
+ * Register the tour related destination block variation
+ */
+function registerTourRelatedDestinationVariation() {
+    wp.blocks.registerBlockVariation('core/group', {
         name: 'lsx-tour-operator/tour-related-destination',
-        title: 'Related Tours - Destinations',
+        title: __('Related Tours - Destination', 'tour-operator'),
         icon: 'admin-site',
-        description: 'Displays Tours related to a Destination.',
+        description: __('Displays tours related to a destination.', 'tour-operator'),
         category: 'lsx-tour-operator',
+        keywords: [
+            __('tours', 'tour-operator'),
+            __('destination', 'tour-operator'),
+            __('related', 'tour-operator'),
+            __('cross-reference', 'tour-operator'),
+        ],
         attributes: {
             metadata: {
-                name: 'Related Tour - Destination',
+                name: __('Related Tours - Destinations', 'tour-operator'),
             },
             className: 'lsx-tour-related-destination-query-wrapper',
             align: 'full',
@@ -34,7 +50,11 @@ wp.domReady( () => {
                     ],
                     [
                         'core/heading',
-                        { textAlign: 'center', content: 'Related Tours' },
+                        {
+                            textAlign: 'center',
+                            content: __('Related Tours', 'tour-operator'),
+                            level: 2,
+                        },
                     ],
                     [
                         'core/separator',
@@ -54,7 +74,7 @@ wp.domReady( () => {
                         'core/query',
                         {
                             metadata: {
-                                name: 'Related Tours Query',
+                                name: __('Related Tours Query - Destination', 'tour-operator'),
                             },
                             query: {
                                 perPage: 8,
@@ -68,8 +88,7 @@ wp.domReady( () => {
                             [
                                 'core/post-template',
                                 {
-                                    className:
-                                        'lsx-tour-related-destination-query',
+                                    className: 'lsx-tour-related-destination-query',
                                     layout: {
                                         type: 'grid',
                                         columnCount: 3,
@@ -79,7 +98,7 @@ wp.domReady( () => {
                                     [
                                         'core/pattern',
                                         {
-                                            slug: 'lsx-tour-operator/destination-card',
+                                            slug: 'lsx-tour-operator/tour-card',
                                         },
                                     ],
                                 ],
@@ -92,5 +111,13 @@ wp.domReady( () => {
         supports: {
             renaming: false,
         },
-    } );
-} );
+    });
+}
+
+// Register conditionally for destination post types and destination templates
+const conditionalRegister = registerForPostTypes(
+    ['destination'],
+    registerTourRelatedDestinationVariation
+);
+
+wp.domReady(conditionalRegister);

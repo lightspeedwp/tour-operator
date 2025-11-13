@@ -1,17 +1,32 @@
-wp.domReady( () => {
-    wp.blocks.registerBlockVariation( 'core/group', {
+/**
+ * Register Review Related Destination block variation
+ */
+import { registerForPostTypes } from '@utils/conditional-block-registration.js';
+
+const { __ } = wp.i18n;
+
+/**
+ * Register the review related destination block variation
+ */
+function registerReviewRelatedDestinationVariation() {
+    wp.blocks.registerBlockVariation('core/group', {
         name: 'lsx-tour-operator/review-related-destination',
-        title: 'Related Reviews - Destinations',
+        title: __('Related Reviews - Destination', 'tour-operator'),
         icon: 'admin-site',
-        description: 'Displays Reviews related to an Destination.',
+        description: __('Displays reviews related to a destination.', 'tour-operator'),
         category: 'lsx-tour-operator',
+        keywords: [
+            __('reviews', 'tour-operator'),
+            __('destination', 'tour-operator'),
+            __('related', 'tour-operator'),
+            __('testimonials', 'tour-operator'),
+        ],
         attributes: {
             metadata: {
-                name: 'Related Reviews - Destination',
+                name: __('Related Reviews - Destination', 'tour-operator'),
             },
             className: 'lsx-review-related-destination-query-wrapper',
             align: 'full',
-
             backgroundColor: 'primary-200',
             layout: {
                 type: 'constrained',
@@ -36,7 +51,11 @@ wp.domReady( () => {
                     ],
                     [
                         'core/heading',
-                        { textAlign: 'center', content: 'Reviews' },
+                        {
+                            textAlign: 'center',
+                            content: __('Reviews', 'tour-operator'),
+                            level: 2,
+                        },
                     ],
                     [
                         'core/separator',
@@ -56,12 +75,12 @@ wp.domReady( () => {
                         'core/query',
                         {
                             metadata: {
-                                name: 'Related Review Query - Destination',
+                                name: __('Related Review Query - Destinations', 'tour-operator'),
                             },
                             query: {
                                 perPage: 8,
                                 postType: 'review',
-                                order: 'asc',
+                                order: 'desc',
                                 orderBy: 'date',
                             },
                             align: 'wide',
@@ -70,8 +89,7 @@ wp.domReady( () => {
                             [
                                 'core/post-template',
                                 {
-                                    className:
-                                        'lsx-review-related-destination-query',
+                                    className: 'lsx-review-related-destination-query',
                                     layout: {
                                         type: 'grid',
                                         columnCount: 2,
@@ -81,7 +99,7 @@ wp.domReady( () => {
                                     [
                                         'core/pattern',
                                         {
-                                            slug: 'lsx-tour-operator/destination-card',
+                                            slug: 'lsx-tour-operator/review-card',
                                         },
                                     ],
                                 ],
@@ -94,5 +112,13 @@ wp.domReady( () => {
         supports: {
             renaming: false,
         },
-    } );
-} );
+    });
+}
+
+// Register conditionally for destination post types and destination templates
+const conditionalRegister = registerForPostTypes(
+    ['destination'],
+    registerReviewRelatedDestinationVariation
+);
+
+wp.domReady(conditionalRegister);
