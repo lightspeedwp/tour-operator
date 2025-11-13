@@ -6,7 +6,12 @@
     const { createElement, useState } = wp.element;
     const i18n = window.wp.i18n;
 
-    // Custom Sticky Post Toggle Component
+    /**
+     * Component for toggling featured status of a post.
+     *
+     * @since 2.1.0
+     * @return {Element} The toggle control element.
+     */
     const StickyToggle = () => {
         const { editPost } = useDispatch('core/editor');
         const handleChange = (newChecked) => {
@@ -19,13 +24,18 @@
         }, []);
 
         return createElement(ToggleControl, {
-            label: i18n.__('Featured'),
+            label: i18n.__('Featured', 'tour-operator'),
             checked: isSticky,
             onChange: handleChange,
         });
     };
 
-    // Custom Disable Single Toggle Component
+    /**
+     * Component for toggling the disable single post view setting.
+     *
+     * @since 2.1.0
+     * @return {Element} The toggle control element.
+     */
     const DisableSingleToggle = () => {
         const { editPost } = useDispatch('core/editor');
         const handleChange = (newChecked) => {
@@ -38,7 +48,7 @@
         }, []);
 
         return createElement(ToggleControl, {
-            label: i18n.__('Disable Single'),
+            label: i18n.__('Disable Single', 'tour-operator'),
             checked: isDisabled,
             onChange: handleChange,
         });
