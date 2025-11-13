@@ -6,7 +6,7 @@
   "title": "Related Reviews - Accommodation",
   "category": "lsx-tour-operator",
   "editorScript": "file:index.js",
-  "description": "Displays reviews related to an accommodation..",
+  "description": "Displays reviews related to an accommodation.",
   "icon": "admin-multisite",
   "keywords": [
     "reviews",
