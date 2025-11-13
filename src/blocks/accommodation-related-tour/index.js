@@ -12,7 +12,7 @@ function registerAccommodationRelatedTourVariation() {
 	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/accommodation-related-tour',
 		title: __('Related Accommodation - Tour', 'tour-operator'),
-		icon: 'palmtree',
+		icon: 'building',
 		description: __('Displays accommodations related to this tour via the destinations.', 'tour-operator'),
 		category: 'lsx-tour-operator',
 		keywords: [
