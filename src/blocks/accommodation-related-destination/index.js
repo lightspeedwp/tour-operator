@@ -382,6 +382,13 @@ function registerAccommodationRelatedDestinationVariation() {
 				},
 			],
 		},
+		isActive: (blockAttributes) => {
+			return (
+				blockAttributes.className === 'lsx-accommodation-related-destination-query-wrapper' ||
+				(blockAttributes.className &&
+					blockAttributes.className.includes('lsx-accommodation-related-destination-query-wrapper'))
+			);
+		},
 	});
 }
 
