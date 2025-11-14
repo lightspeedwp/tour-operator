@@ -18,12 +18,12 @@
   "attributes": {
     "className": {
       "type": "string",
-      "default": "lsx-special-interest-wrapper"
+      "default": "lsx-special-interests-wrapper"
     }
   },
   "example": {
     "attributes": {
-      "className": "lsx-special-interest-wrapper"
+      "className": "lsx-special-interests-wrapper"
     },
     "innerBlocks": [
       [

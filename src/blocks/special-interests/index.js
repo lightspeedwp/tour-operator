@@ -49,7 +49,7 @@ wp.domReady(() => {
                 metadata: {
                     name: 'Special Interests',
                 },
-                className: 'lsx-special-interest-wrapper',
+                className: 'lsx-special-interests-wrapper',
                 layout: {
                     type: 'constrained',
                 },
@@ -118,7 +118,7 @@ wp.domReady(() => {
             },
             example: {
                 attributes: {
-                    className: 'lsx-special-interest-wrapper',
+                    className: 'lsx-special-interests-wrapper',
                 },
                 innerBlocks: [
                     {
