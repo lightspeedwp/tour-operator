@@ -1,95 +1,220 @@
-wp.domReady( () => {
-    wp.blocks.registerBlockVariation( 'core/group', {
-        name: 'lsx-tour-operator/regions',
-        title: 'Regions',
-        icon: 'admin-site-alt3',
-        description: 'Display any regions attached to this destination.',
-        category: 'lsx-tour-operator',
-        attributes: {
-            metadata: {
-                name: 'Regions',
-            },
-            className: 'lsx-regions-query-wrapper',
-            align: 'full',
-            layout: {
-                type: 'constrained',
-            },
-            tagName: 'section',
-        },
-        innerBlocks: [
-            [
-                'core/group',
-                {
-                    align: 'wide',
-                    layout: { type: 'flex', flexWrap: 'nowrap' },
+import { __ } from '@wordpress/i18n';
+import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
+
+wp.domReady(() => {
+    const registerRegionsBlock = () => {
+        wp.blocks.registerBlockVariation("core/group", {
+            name: "lsx-tour-operator/regions",
+            title: __("Regions", "tour-operator"),
+            icon: "admin-site-alt3",
+            description: __("Displays any regions attached to this destination.", "tour-operator"),
+            category: "lsx-tour-operator",
+            keywords: [
+                __('regions', 'tour-operator'),
+                __('destinations', 'tour-operator'),
+                __('locations', 'tour-operator'),
+            ],
+            attributes: {
+                metadata: {
+                    name: "Regions",
                 },
+                className: "lsx-regions-query-wrapper",
+                align: "full",
+                layout: {
+                    type: "constrained",
+                },
+                tagName: "section",
+            },
+            innerBlocks: [
                 [
+                    "core/group",
+                    {
+                        align: "wide",
+                        layout: { type: "flex", flexWrap: "nowrap" },
+                    },
                     [
-                        'core/separator',
-                        {
-                            style: {
-                                layout: { selfStretch: 'fill', flexSize: null },
-                            },
-                        },
-                    ],
-                    [
-                        'core/heading',
-                        { textAlign: 'center', content: 'Regions' },
-                    ],
-                    [
-                        'core/separator',
-                        {
-                            style: {
-                                layout: { selfStretch: 'fill', flexSize: null },
-                            },
-                        },
+                        ["core/separator", { style: { layout: { selfStretch: "fill", flexSize: null } } }],
+                        ["core/heading", { textAlign: "center", content: __("Regions", "tour-operator") }],
+                        ["core/separator", { style: { layout: { selfStretch: "fill", flexSize: null } } }],
                     ],
                 ],
-            ],
-            [
-                'core/group',
-                { align: 'wide', layout: { type: 'constrained' } },
                 [
+                    "core/group",
+                    { align: "wide", layout: { type: "constrained" } },
                     [
-                        'core/query',
-                        {
-                            metadata: {
-                                name: 'Regions Query',
-                            },
-                            query: {
-                                perPage: 8,
-                                postType: 'destination',
-                                order: 'asc',
-                                orderBy: 'date',
-                            },
-                            align: 'wide',
-                        },
                         [
-                            [
-                                'core/post-template',
-                                {
-                                    className: 'lsx-regions-query',
-                                    layout: {
-                                        type: 'grid',
-                                        columnCount: 4,
-                                    },
+                            "core/query",
+                            {
+                                metadata: {
+                                    name: __("Regions Query", "tour-operator"),
                                 },
+                                query: {
+                                    perPage: 8,
+                                    postType: "destination",
+                                    order: "asc",
+                                    orderBy: "date",
+                                },
+                                align: "wide",
+                            },
+                            [
                                 [
-                                    [
-                                        'core/pattern',
-                                        {
-                                            slug: 'lsx-tour-operator/destination-card',
+                                    "core/post-template",
+                                    {
+                                        className: "lsx-regions-query",
+                                        layout: {
+                                            type: "grid",
+                                            columnCount: 4,
                                         },
-                                    ],
+                                    },
+                                    [["core/pattern", { slug: "lsx-tour-operator/destination-card" }]],
                                 ],
                             ],
                         ],
                     ],
                 ],
             ],
-        ],
-        supports: {
-            renaming: false,
-        },
-    } );
-} );
+            example: {
+                innerBlocks: [
+                    {
+                        name: 'core/group',
+                        attributes: {
+                            align: 'wide',
+                            layout: { type: 'flex', flexWrap: 'nowrap' },
+                        },
+                        innerBlocks: [
+                            {
+                                name: 'core/separator',
+                                attributes: {
+                                    style: {
+                                        layout: { selfStretch: 'fill', flexSize: null },
+                                    },
+                                },
+                            },
+                            {
+                                name: 'core/heading',
+                                attributes: {
+                                    textAlign: 'center',
+                                    content: __('Regions', 'tour-operator'),
+                                    level: 2,
+                                },
+                            },
+                            {
+                                name: 'core/separator',
+                                attributes: {
+                                    style: {
+                                        layout: { selfStretch: 'fill', flexSize: null },
+                                    },
+                                },
+                            },
+                        ],
+                    },
+                    {
+                        name: 'core/group',
+                        attributes: {
+                            align: 'wide',
+                            layout: { type: 'constrained' },
+                        },
+                        innerBlocks: [
+                            {
+                                name: 'core/group',
+                                attributes: {
+                                    className: 'lsx-regions-query',
+                                    layout: {
+                                        type: 'grid',
+                                        columnCount: 2,
+                                    },
+                                },
+                                innerBlocks: [
+                                    {
+                                        name: 'core/group',
+                                        attributes: {
+                                            className: 'lsx-regions-card',
+                                        },
+                                        innerBlocks: [
+                                            {
+                                                name: 'core/image',
+                                                attributes: {
+                                                    alt: __('Northern Region Image', 'tour-operator'),
+                                                    caption: '',
+                                                },
+                                            },
+                                            {
+                                                name: 'core/heading',
+                                                attributes: {
+                                                    content: __('Northern Region', 'tour-operator'),
+                                                    level: 3,
+                                                },
+                                            },
+                                            {
+                                                name: 'core/separator',
+                                                attributes: {
+                                                    style: {
+                                                        layout: { selfStretch: 'fill', flexSize: null },
+                                                    },
+                                                },
+                                            },
+                                            {
+                                                name: 'core/paragraph',
+                                                attributes: {
+                                                    content: __('Explore the stunning landscapes and wildlife of the northern regions.', 'tour-operator'),
+                                                },
+                                            },
+                                        ],
+                                    },
+                                    {
+                                        name: 'core/group',
+                                        attributes: {
+                                            className: 'lsx-regions-card',
+                                        },
+                                        innerBlocks: [
+                                            {
+                                                name: 'core/image',
+                                                attributes: {
+                                                    alt: __('Coastal Region Image', 'tour-operator'),
+                                                    caption: '',
+                                                },
+                                            },
+                                            {
+                                                name: 'core/heading',
+                                                attributes: {
+                                                    content: __('Coastal Region', 'tour-operator'),
+                                                    level: 3,
+                                                },
+                                            },
+                                            {
+                                                name: 'core/separator',
+                                                attributes: {
+                                                    style: {
+                                                        layout: { selfStretch: 'fill', flexSize: null },
+                                                    },
+                                                },
+                                            },
+                                            {
+                                                name: 'core/paragraph',
+                                                attributes: {
+                                                    content: __('Discover pristine beaches and vibrant coastal communities.', 'tour-operator'),
+                                                },
+                                            },
+                                        ],
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                ],
+            },
+            isActive: (blockAttributes, variationAttributes) => {
+                return blockAttributes.className === variationAttributes.className;
+            },
+        });
+    };
+
+    // Initialize conditional registration for destination context
+    const conditionalRegister = registerForPostTypesAndTemplates(
+        ['destination'], // Supported post types
+        ['destination'], // Template slug patterns
+        registerRegionsBlock
+    );
+
+    conditionalRegister();
+});
