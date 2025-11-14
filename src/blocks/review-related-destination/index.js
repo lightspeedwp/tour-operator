@@ -254,6 +254,13 @@ function registerReviewRelatedDestinationVariation() {
         supports: {
             renaming: false,
         },
+        isActive: (blockAttributes) => {
+            return (
+                blockAttributes.className === 'lsx-review-related-destination-query-wrapper' ||
+                (blockAttributes.className &&
+                    blockAttributes.className.includes('lsx-review-related-destination-query-wrapper'))
+            );
+        },
     });
 }
 

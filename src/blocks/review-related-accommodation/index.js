@@ -253,6 +253,13 @@ function registerReviewRelatedAccommodationVariation() {
         supports: {
             renaming: false,
         },
+        isActive: (blockAttributes) => {
+            return (
+                blockAttributes.className === 'lsx-review-related-accommodation-query-wrapper' ||
+                (blockAttributes.className &&
+                    blockAttributes.className.includes('lsx-review-related-accommodation-query-wrapper'))
+            );
+        },
     });
 }
 

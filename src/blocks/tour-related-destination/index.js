@@ -376,6 +376,13 @@ function registerTourRelatedDestinationVariation() {
         supports: {
             renaming: false,
         },
+        isActive: (blockAttributes) => {
+            return (
+                blockAttributes.className === 'lsx-tour-related-destination-query-wrapper' ||
+                (blockAttributes.className &&
+                    blockAttributes.className.includes('lsx-tour-related-destination-query-wrapper'))
+            );
+        },
     });
 }
 

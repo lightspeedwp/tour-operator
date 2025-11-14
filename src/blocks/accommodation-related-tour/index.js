@@ -381,6 +381,13 @@ function registerAccommodationRelatedTourVariation() {
 				},
 			],
 		},
+		isActive: (blockAttributes) => {
+			return (
+				blockAttributes.className === 'lsx-accommodation-related-tour-query-wrapper' ||
+				(blockAttributes.className &&
+					blockAttributes.className.includes('lsx-accommodation-related-tour-query-wrapper'))
+			);
+		},
 	});
 }
 
