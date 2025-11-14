@@ -1,14 +1,28 @@
-wp.domReady( () => {
-	const { __ } = wp.i18n;
-	wp.blocks.registerBlockVariation( 'core/group', {
+/**
+ * Register Accommodation Related Destination block variation
+ */
+import { registerForPostTypes } from '@utils/conditional-block-registration.js';
+
+const { __ } = wp.i18n;
+
+/**
+ * Register the accommodation related destination block variation
+ */
+function registerAccommodationRelatedDestinationVariation() {
+	wp.blocks.registerBlockVariation('core/group', {
 		name: 'lsx-tour-operator/accommodation-related-destination',
-		title: __( 'Related accommodation - destination', 'tour-operator' ),
-		icon: 'admin-site',
-		description: __( 'Displays accommodation related to a destination.', 'tour-operator' ),
+		title: __('Related Accommodations', 'tour-operator'),
+		icon: 'admin-multisite',
+		description: __('Displays accommodation related to this destination.', 'tour-operator'),
 		category: 'lsx-tour-operator',
+		keywords: [
+			__('accommodations', 'tour-operator'),
+			__('related', 'tour-operator'),
+			__('similar', 'tour-operator'),
+		],
 		attributes: {
 			metadata: {
-				name: __( 'Related accommodation - destination', 'tour-operator' ),
+				name: __('Related Accommodations', 'tour-operator'),
 			},
 			className: 'lsx-accommodation-related-destination-query-wrapper',
 			align: 'full',
@@ -37,7 +51,8 @@ wp.domReady( () => {
 						'core/heading',
 						{
 							textAlign: 'center',
-							content: __( 'Related accommodation', 'tour-operator' ),
+							content: __('Related accommodations', 'tour-operator'),
+							level: 2,
 						},
 					],
 					[
@@ -58,7 +73,7 @@ wp.domReady( () => {
 						'core/query',
 						{
 							metadata: {
-								name: __( 'Related accommodation query', 'tour-operator' ),
+								name: __('Related accommodation query', 'tour-operator'),
 							},
 							query: {
 								perPage: 8,
@@ -97,99 +112,283 @@ wp.domReady( () => {
 			renaming: false,
 		},
 		example: {
-			attributes: {
-				metadata: {
-					name: __( 'Related accommodation - destination', 'tour-operator' ),
-				},
-			},
 			innerBlocks: [
-				[
-					'core/group',
-					{},
-					[
-						[
-							'core/heading',
-							{
-								content: __( 'Related destinations', 'tour-operator' ),
-								textAlign: 'center',
-							},
-						],
-						[
-							'core/group',
-							{
+				{
+					name: 'core/group',
+					attributes: {
+						align: 'wide',
+						layout: { type: 'flex', flexWrap: 'nowrap' },
+					},
+					innerBlocks: [
+						{
+							name: 'core/separator',
+							attributes: {
 								style: {
-									spacing: {
-										blockGap: '2rem'
-									}
+									layout: { selfStretch: 'fill', flexSize: null },
 								},
+							},
+						},
+						{
+							name: 'core/heading',
+							attributes: {
+								textAlign: 'center',
+								content: __('Related Accommodations', 'tour-operator'),
+								level: 2,
+							},
+						},
+						{
+							name: 'core/separator',
+							attributes: {
+								style: {
+									layout: { selfStretch: 'fill', flexSize: null },
+								},
+							},
+						},
+					],
+				},
+				{
+					name: 'core/group',
+					attributes: {
+						align: 'wide',
+						layout: { type: 'constrained' },
+					},
+					innerBlocks: [
+						{
+							name: 'core/group',
+							attributes: {
+								className: 'lsx-accommodation-related-destination-query',
 								layout: {
 									type: 'grid',
-									columnCount: 3
-								}
+									columnCount: 3,
+								},
 							},
-							[
-								[
-									'core/group',
-									{
+							innerBlocks: [
+								{
+									name: 'core/group',
+									attributes: {
+										className: 'is-style-shadow-sm',
 										style: {
-											border: {
-												width: '1px',
-												style: 'solid',
-												color: '#e0e0e0'
-											},
-											spacing: {
-												padding: '1rem'
-											}
-										}
+											spacing: { blockGap: '0px', padding: { top: '0px', bottom: '0px', left: '0px', right: '0px' } },
+											border: { radius: '8px' },
+										},
+										backgroundColor: 'base',
+										layout: { type: 'constrained' },
 									},
-									[
-										[ 'core/heading', { content: __( 'Kruger National Park', 'tour-operator' ), level: 3 } ],
-										[ 'core/paragraph', { content: __( 'Premier wildlife destination offering exceptional safari experiences and diverse ecosystems.', 'tour-operator' ) } ]
-									]
-								],
-								[
-									'core/group',
-									{
+									innerBlocks: [
+										{
+											name: 'core/group',
+											attributes: {
+												style: {
+													spacing: { padding: { top: '5px', bottom: '0px', left: '5px', right: '5px' } },
+												},
+												layout: { type: 'constrained' },
+											},
+											innerBlocks: [
+												{
+													name: 'core/heading',
+													attributes: {
+														textAlign: 'center',
+														content: __('Serengeti Safari Lodge', 'tour-operator'),
+														level: 3,
+														fontSize: 'small',
+														style: {
+															spacing: { margin: { top: '0', bottom: '0' } },
+														},
+													},
+												},
+												{
+													name: 'core/group',
+													attributes: {
+														style: {
+															spacing: { padding: { top: '5px', bottom: '10px', left: '5px', right: '5px' }, blockGap: '2px' },
+															border: { top: { width: '2px' }, bottom: { width: '2px' } },
+														},
+														layout: { type: 'constrained' },
+													},
+													innerBlocks: [
+														{
+															name: 'core/paragraph',
+															attributes: {
+																content: '<strong>' + __('From: $450/night', 'tour-operator') + '</strong>',
+																className: 'amount price',
+															},
+														},
+														{
+															name: 'core/paragraph',
+															attributes: {
+																content: '<strong>' + __('Rating: 5 stars', 'tour-operator') + '</strong>',
+															},
+														},
+													],
+												},
+												{
+													name: 'core/paragraph',
+													attributes: {
+														content: __('Experience luxury in the heart of the Serengeti. Our lodge offers stunning views of the African wilderness with world-class amenities and service.', 'tour-operator'),
+														style: {
+															spacing: { padding: { left: '5px', right: '5px' } },
+														},
+													},
+												},
+											],
+										},
+									],
+								},
+								{
+									name: 'core/group',
+									attributes: {
+										className: 'is-style-shadow-sm',
 										style: {
-											border: {
-												width: '1px',
-												style: 'solid',
-												color: '#e0e0e0'
-											},
-											spacing: {
-												padding: '1rem'
-											}
-										}
+											spacing: { blockGap: '0px', padding: { top: '0px', bottom: '0px', left: '0px', right: '0px' } },
+											border: { radius: '8px' },
+										},
+										backgroundColor: 'base',
+										layout: { type: 'constrained' },
 									},
-									[
-										[ 'core/heading', { content: __( 'Garden Route', 'tour-operator' ), level: 3 } ],
-										[ 'core/paragraph', { content: __( 'Scenic coastal route with stunning landscapes, charming towns, and outdoor adventures.', 'tour-operator' ) } ]
-									]
-								],
-								[
-									'core/group',
-									{
+									innerBlocks: [
+										{
+											name: 'core/group',
+											attributes: {
+												style: {
+													spacing: { padding: { top: '5px', bottom: '0px', left: '5px', right: '5px' } },
+												},
+												layout: { type: 'constrained' },
+											},
+											innerBlocks: [
+												{
+													name: 'core/heading',
+													attributes: {
+														textAlign: 'center',
+														content: __('Kilimanjaro View Hotel', 'tour-operator'),
+														level: 3,
+														fontSize: 'small',
+														style: {
+															spacing: { margin: { top: '0', bottom: '0' } },
+														},
+													},
+												},
+												{
+													name: 'core/group',
+													attributes: {
+														style: {
+															spacing: { padding: { top: '5px', bottom: '10px', left: '5px', right: '5px' }, blockGap: '2px' },
+															border: { top: { width: '2px' }, bottom: { width: '2px' } },
+														},
+														layout: { type: 'constrained' },
+													},
+													innerBlocks: [
+														{
+															name: 'core/paragraph',
+															attributes: {
+																content: '<strong>' + __('From: $280/night', 'tour-operator') + '</strong>',
+																className: 'amount price',
+															},
+														},
+														{
+															name: 'core/paragraph',
+															attributes: {
+																content: '<strong>' + __('Rating: 4 stars', 'tour-operator') + '</strong>',
+															},
+														},
+													],
+												},
+												{
+													name: 'core/paragraph',
+													attributes: {
+														content: __('Comfortable accommodation with breathtaking views of Mount Kilimanjaro. Perfect base for trekking adventures and exploring the region.', 'tour-operator'),
+														style: {
+															spacing: { padding: { left: '5px', right: '5px' } },
+														},
+													},
+												},
+											],
+										},
+									],
+								},
+								{
+									name: 'core/group',
+									attributes: {
+										className: 'is-style-shadow-sm',
 										style: {
-											border: {
-												width: '1px',
-												style: 'solid',
-												color: '#e0e0e0'
-											},
-											spacing: {
-												padding: '1rem'
-											}
-										}
+											spacing: { blockGap: '0px', padding: { top: '0px', bottom: '0px', left: '0px', right: '0px' } },
+											border: { radius: '8px' },
+										},
+										backgroundColor: 'base',
+										layout: { type: 'constrained' },
 									},
-									[
-										[ 'core/heading', { content: __( 'Drakensberg Mountains', 'tour-operator' ), level: 3 } ],
-										[ 'core/paragraph', { content: __( 'Majestic mountain range perfect for hiking, culture, and breathtaking scenery.', 'tour-operator' ) } ]
-									]
-								]
-							]
-						],
+									innerBlocks: [
+										{
+											name: 'core/group',
+											attributes: {
+												style: {
+													spacing: { padding: { top: '5px', bottom: '0px', left: '5px', right: '5px' } },
+												},
+												layout: { type: 'constrained' },
+											},
+											innerBlocks: [
+												{
+													name: 'core/heading',
+													attributes: {
+														textAlign: 'center',
+														content: __('Zanzibar Beach Resort', 'tour-operator'),
+														level: 3,
+														fontSize: 'small',
+														style: {
+															spacing: { margin: { top: '0', bottom: '0' } },
+														},
+													},
+												},
+												{
+													name: 'core/group',
+													attributes: {
+														style: {
+															spacing: { padding: { top: '5px', bottom: '10px', left: '5px', right: '5px' }, blockGap: '2px' },
+															border: { top: { width: '2px' }, bottom: { width: '2px' } },
+														},
+														layout: { type: 'constrained' },
+													},
+													innerBlocks: [
+														{
+															name: 'core/paragraph',
+															attributes: {
+																content: '<strong>' + __('From: $320/night', 'tour-operator') + '</strong>',
+																className: 'amount price',
+															},
+														},
+														{
+															name: 'core/paragraph',
+															attributes: {
+																content: '<strong>' + __('Rating: 4.5 stars', 'tour-operator') + '</strong>',
+															},
+														},
+													],
+												},
+												{
+													name: 'core/paragraph',
+													attributes: {
+														content: __('Beachfront resort on the pristine shores of Zanzibar. Enjoy crystal clear waters, white sand beaches, and authentic Swahili culture.', 'tour-operator'),
+														style: {
+															spacing: { padding: { left: '5px', right: '5px' } },
+														},
+													},
+												},
+											],
+										},
+									],
+								},
+							],
+						},
 					],
-				],
+				},
 			],
 		},
-	} );
-} );
+	});
+}
+
+// Register conditionally for destination post types and destination templates
+const conditionalRegister = registerForPostTypes(
+	['destination'],
+	registerAccommodationRelatedDestinationVariation
+);
+
+wp.domReady(conditionalRegister);

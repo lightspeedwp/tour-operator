@@ -1,8 +1,114 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/tour-related-tour",
   "title": "Related Tours - Tour",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Displays similar tours.",
+  "icon": "palmtree",
+  "keywords": [
+    "tours",
+    "tour",
+    "related",
+    "cross-reference"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Related Tours"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {
+          "align": "wide",
+          "layout": {
+            "type": "flex",
+            "flexWrap": "nowrap"
+          }
+        },
+        [
+          [
+            "core/separator",
+            {
+              "style": {
+                "layout": {
+                  "selfStretch": "fill",
+                  "flexSize": null
+                }
+              }
+            }
+          ],
+          [
+            "core/heading",
+            {
+              "textAlign": "center",
+              "content": "Related Tours",
+              "level": 2
+            }
+          ],
+          [
+            "core/separator",
+            {
+              "style": {
+                "layout": {
+                  "selfStretch": "fill",
+                  "flexSize": null
+                }
+              }
+            }
+          ]
+        ]
+      ],
+      [
+        "core/group",
+        {
+          "align": "wide",
+          "layout": {
+            "type": "constrained"
+          }
+        },
+        [
+          [
+            "core/query",
+            {
+              "metadata": {
+                "name": "Related Tours Query - Tours"
+              },
+              "query": {
+                "perPage": 6,
+                "postType": "tour",
+                "order": "asc",
+                "orderBy": "title"
+              },
+              "align": "wide"
+            },
+            [
+              [
+                "core/post-template",
+                {
+                  "className": "lsx-tour-related-tour-query",
+                  "layout": {
+                    "type": "grid",
+                    "columnCount": 3
+                  }
+                },
+                [
+                  [
+                    "core/pattern",
+                    {
+                      "slug": "lsx-tour-operator/tour-card"
+                    }
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  }
 }

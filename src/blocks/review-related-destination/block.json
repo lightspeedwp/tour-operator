@@ -3,10 +3,10 @@
   "apiVersion": 3,
   "textdomain": "tour-operator",
   "name": "lsx-tour-operator/review-related-destination",
-  "title": "Related Reviews - Destination",
+  "title": "Related Reviews",
   "category": "lsx-tour-operator",
   "editorScript": "file:index.js",
-  "description": "Display reviews related to destination posts.",
+  "description": "Display reviews related to this destination.",
   "icon": "star-filled",
   "keywords": [
     "reviews",

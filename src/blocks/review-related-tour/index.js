@@ -11,9 +11,9 @@ const { __ } = wp.i18n;
 function registerReviewRelatedTourVariation() {
     wp.blocks.registerBlockVariation('core/group', {
         name: 'lsx-tour-operator/review-related-tour',
-        title: __('Related Reviews - Tour', 'tour-operator'),
-        icon: 'palmtree',
-        description: __('Displays reviews related to a tour.', 'tour-operator'),
+        title: __('Related Reviews', 'tour-operator'),
+        icon: 'star-filled',
+        description: __('Displays reviews related to this tour.', 'tour-operator'),
         category: 'lsx-tour-operator',
         keywords: [
             __('reviews', 'tour-operator'),
@@ -23,7 +23,7 @@ function registerReviewRelatedTourVariation() {
         ],
         attributes: {
             metadata: {
-                name: __('Related Reviews - Tour', 'tour-operator'),
+                name: __('Related Reviews', 'tour-operator'),
             },
             className: 'lsx-review-related-tour-query-wrapper',
             align: 'full',
@@ -108,6 +108,148 @@ function registerReviewRelatedTourVariation() {
                 ],
             ],
         ],
+        example: {
+            innerBlocks: [
+                {
+                    name: 'core/group',
+                    attributes: {
+                        align: 'wide',
+                        layout: { type: 'flex', flexWrap: 'nowrap' },
+                    },
+                    innerBlocks: [
+                        {
+                            name: 'core/separator',
+                            attributes: {
+                                style: {
+                                    layout: { selfStretch: 'fill', flexSize: null },
+                                },
+                            },
+                        },
+                        {
+                            name: 'core/heading',
+                            attributes: {
+                                textAlign: 'center',
+                                content: __('Reviews', 'tour-operator'),
+                                level: 2,
+                            },
+                        },
+                        {
+                            name: 'core/separator',
+                            attributes: {
+                                style: {
+                                    layout: { selfStretch: 'fill', flexSize: null },
+                                },
+                            },
+                        },
+                    ],
+                },
+                {
+                    name: 'core/group',
+                    attributes: {
+                        align: 'wide',
+                        layout: { type: 'constrained' },
+                    },
+                    innerBlocks: [
+                        {
+                            name: 'core/group',
+                            attributes: {
+                                className: 'lsx-review-related-destination-query',
+                                layout: {
+                                    type: 'grid',
+                                    columnCount: 2,
+                                },
+                            },
+                            innerBlocks: [
+                                {
+                                    name: 'core/group',
+                                    attributes: {
+                                        className: 'lsx-review-card',
+                                        style: {
+                                            border: {
+                                                width: '1px',
+                                                style: 'solid',
+                                                color: '#e2e8f0',
+                                            },
+                                            spacing: {
+                                                padding: '1.5rem',
+                                            },
+                                        },
+                                    },
+                                    innerBlocks: [
+                                        {
+                                            name: 'core/heading',
+                                            attributes: {
+                                                content: __('Amazing Safari Experience', 'tour-operator'),
+                                                level: 3,
+                                            },
+                                        },
+                                        {
+                                            name: 'core/paragraph',
+                                            attributes: {
+                                                content: __('Our family had the most incredible time on the African safari. The guides were knowledgeable and the wildlife viewing was spectacular.', 'tour-operator'),
+                                            },
+                                        },
+                                        {
+                                            name: 'core/paragraph',
+                                            attributes: {
+                                                content: __('— Sarah Johnson', 'tour-operator'),
+                                                style: {
+                                                    typography: {
+                                                        fontStyle: 'italic',
+                                                    },
+                                                },
+                                            },
+                                        },
+                                    ],
+                                },
+                                {
+                                    name: 'core/group',
+                                    attributes: {
+                                        className: 'lsx-review-card',
+                                        style: {
+                                            border: {
+                                                width: '1px',
+                                                style: 'solid',
+                                                color: '#e2e8f0',
+                                            },
+                                            spacing: {
+                                                padding: '1.5rem',
+                                            },
+                                        },
+                                    },
+                                    innerBlocks: [
+                                        {
+                                            name: 'core/heading',
+                                            attributes: {
+                                                content: __('Perfect Beach Getaway', 'tour-operator'),
+                                                level: 3,
+                                            },
+                                        },
+                                        {
+                                            name: 'core/paragraph',
+                                            attributes: {
+                                                content: __('The resort was beautiful and the staff went above and beyond to make our vacation memorable. Highly recommended!', 'tour-operator'),
+                                            },
+                                        },
+                                        {
+                                            name: 'core/paragraph',
+                                            attributes: {
+                                                content: __('— Michael Chen', 'tour-operator'),
+                                                style: {
+                                                    typography: {
+                                                        fontStyle: 'italic',
+                                                    },
+                                                },
+                                            },
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
         supports: {
             renaming: false,
         },

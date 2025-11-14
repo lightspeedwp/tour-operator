@@ -3,11 +3,11 @@
   "apiVersion": 3,
   "textdomain": "tour-operator",
   "name": "lsx-tour-operator/accommodation-related-tour",
-  "title": "Related Accommodation - Tour",
+  "title": "Related Accommodations",
   "category": "lsx-tour-operator",
   "editorScript": "file:index.js",
   "description": "Displays accommodations related to this tour via the destinations.",
-  "icon": "building",
+  "icon": "admin-multisite",
   "keywords": [
     "accommodation",
     "tour",

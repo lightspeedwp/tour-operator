@@ -3,10 +3,10 @@
   "apiVersion": 3,
   "textdomain": "tour-operator",
   "name": "lsx-tour-operator/review-related-tour",
-  "title": "Related Reviews - Tour",
+  "title": "Related Reviews",
   "category": "lsx-tour-operator",
   "editorScript": "file:index.js",
-  "description": "Display reviews related to tour posts.",
+  "description": "Display reviews related to this tour.",
   "icon": "star-filled",
   "keywords": [
     "reviews",
@@ -17,7 +17,7 @@
   "example": {
     "attributes": {
       "metadata": {
-        "name": "Related Reviews - Tour"
+        "name": "Related Reviews"
       }
     },
     "innerBlocks": [

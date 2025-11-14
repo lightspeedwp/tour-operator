@@ -3,11 +3,11 @@
   "apiVersion": 3,
   "textdomain": "tour-operator",
   "name": "lsx-tour-operator/tour-related-accommodation",
-  "title": "Related Tours - Accommodation",
+  "title": "Related Tours",
   "category": "lsx-tour-operator",
   "editorScript": "file:index.js",
-  "description": "Displays tours related to an accommodation via destination relationships.",
-  "icon": "admin-multisite",
+  "description": "Displays tours related to this accommodation.",
+  "icon": "palmtree",
   "keywords": [
     "tours",
     "accommodation",
@@ -17,7 +17,7 @@
   "example": {
     "attributes": {
       "metadata": {
-        "name": "Related Tours - Accommodation"
+        "name": "Related Tours"
       }
     },
     "innerBlocks": [

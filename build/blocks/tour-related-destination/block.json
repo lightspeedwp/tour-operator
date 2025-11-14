@@ -3,11 +3,11 @@
   "apiVersion": 3,
   "textdomain": "tour-operator",
   "name": "lsx-tour-operator/tour-related-destination",
-  "title": "Related Tours - Destination",
+  "title": "Related Tours",
   "category": "lsx-tour-operator",
   "editorScript": "file:index.js",
-  "description": "Displays tours related to a destination.",
-  "icon": "admin-site",
+  "description": "Displays tours related to this destination.",
+  "icon": "palmtree",
   "keywords": [
     "tours",
     "destination",
@@ -17,7 +17,7 @@
   "example": {
     "attributes": {
       "metadata": {
-        "name": "Related Tours - Destinations"
+        "name": "Related Tours"
       }
     },
     "innerBlocks": [
