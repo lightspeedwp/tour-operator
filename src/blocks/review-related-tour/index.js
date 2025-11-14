@@ -153,7 +153,7 @@ function registerReviewRelatedTourVariation() {
                         {
                             name: 'core/group',
                             attributes: {
-                                className: 'lsx-review-related-destination-query',
+                                className: 'lsx-review-related-tour-query',
                                 layout: {
                                     type: 'grid',
                                     columnCount: 2,

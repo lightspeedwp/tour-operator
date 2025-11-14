@@ -153,7 +153,7 @@ function registerTourRelatedDestinationVariation() {
                         {
                             name: 'core/group',
                             attributes: {
-                                className: 'lsx-tour-related-accommodation-query',
+                                className: 'lsx-tour-related-destination-query',
                                 layout: {
                                     type: 'grid',
                                     columnCount: 3,
