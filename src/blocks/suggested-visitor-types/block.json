@@ -1,8 +1,73 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/suggested-visitor-types",
   "title": "Suggested Visitor Types",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Display suggested visitor types suitable for accommodations.",
+  "icon": "groups",
+  "keywords": [
+    "visitor",
+    "types",
+    "guests",
+    "suitable"
+  ],
+  "version": "2.1.0",
+  "attributes": {
+    "className": {
+      "type": "string",
+      "default": "lsx-suggested-visitor-types-wrapper"
+    }
+  },
+  "example": {
+    "attributes": {
+      "className": "lsx-suggested-visitor-types-wrapper"
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {
+          "layout": {
+            "type": "flex",
+            "flexWrap": "nowrap",
+            "verticalAlignment": "middle"
+          }
+        },
+        [
+          [
+            "lsx-tour-operator/icons",
+            {
+              "iconName": "groupSizeIcon",
+              "iconType": "solid"
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "<strong>Suitable For:</strong>"
+            }
+          ]
+        ]
+      ],
+      [
+        "core/group",
+        {
+          "layout": {
+            "type": "flex",
+            "flexWrap": "nowrap"
+          }
+        },
+        [
+          [
+            "core/paragraph",
+            {
+              "content": "Families, Couples, Business travelers, Solo travelers"
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }
