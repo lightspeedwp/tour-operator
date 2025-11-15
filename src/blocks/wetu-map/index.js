@@ -3,6 +3,34 @@ import { registerForPostTypesAndTemplates } from '@utils/conditional-block-regis
 
 wp.domReady(() => {
     const registerWetuMapBlock = () => {
+        // Check if lsxToEditor and assetsUrl are available
+        const hasAssetsUrl = typeof lsxToEditor !== 'undefined' && lsxToEditor?.assetsUrl;
+
+        // Build innerBlocks conditionally
+        const groupInnerBlocks = hasAssetsUrl ? [
+            [
+                'core/image',
+                {
+                    align: 'full',
+                    sizeSlug: 'large',
+                    url: lsxToEditor.assetsUrl + 'blocks/wetu-map-figme-prototype-image.png',
+                    alt: '',
+                },
+            ],
+        ] : [];
+
+        // Build example innerBlocks conditionally
+        const exampleInnerBlocks = hasAssetsUrl ? [
+            {
+                name: 'core/image',
+                attributes: {
+                    align: 'full',
+                    sizeSlug: 'large',
+                    url: lsxToEditor.assetsUrl + 'blocks/wetu-map-figme-prototype-image.png',
+                },
+            }
+        ] : [];
+
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/wetu-map',
             title: __('WETU Map', 'tour-operator'),
@@ -37,19 +65,7 @@ wp.domReady(() => {
                             type: 'default',
                         },
                     },
-                    [
-                        [
-                            'core/image',
-                            {
-                                align: 'full',
-                                sizeSlug: 'large',
-                                url:
-                                    lsxToEditor.assetsUrl +
-                                    'blocks/wetu-map-figme-prototype-image.png',
-                                alt: '',
-                            },
-                        ],
-                    ],
+                    groupInnerBlocks,
                 ],
             ],
             example: {
@@ -62,16 +78,7 @@ wp.domReady(() => {
                                 type: 'default',
                             },
                         },
-                        innerBlocks: [
-                            {
-                                name: 'core/image',
-                                attributes: {
-                                    align: 'full',
-                                    sizeSlug: 'large',
-                                    url: lsxToEditor.assetsUrl + 'blocks/wetu-map-figme-prototype-image.png',
-                                },
-                            }
-                        ],
+                        innerBlocks: exampleInnerBlocks,
                     },
                 ]
             },
