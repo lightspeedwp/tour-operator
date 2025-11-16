@@ -121,7 +121,7 @@ wp.domReady(() => {
                 ],
             },
         });
-    }
+    };
 
     // Initialize conditional registration for accommodation context
     const conditionalRegister = registerForPostTypesAndTemplates(
