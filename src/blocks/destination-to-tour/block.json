@@ -2,21 +2,21 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "textdomain": "tour-operator",
-  "name": "lsx-tour-operator/destination-to-accommodation",
-  "title": "Destination to Accommodation",
+  "name": "lsx-tour-operator/destination-to-tour",
+  "title": "Destination to Tour",
   "category": "lsx-tour-operator",
   "editorScript": "file:index.js",
-  "description": "Displays the destinations associated with this accommodation.",
+  "description": "Displays the destinations associated with this tour.",
   "icon": "admin-site",
   "keywords": [
     "destination",
-    "accommodation",
+    "tour",
     "connection"
   ],
   "example": {
     "attributes": {
       "metadata": {
-        "name": "Tours from this Accommodation"
+        "name": "Tours from this Destination"
       }
     },
     "innerBlocks": [
