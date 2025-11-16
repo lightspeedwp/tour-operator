@@ -16,7 +16,7 @@
   "example": {
     "attributes": {
       "metadata": {
-        "name": "Tours from this Destination"
+        "name": "Destination to Tour"
       }
     },
     "innerBlocks": [
