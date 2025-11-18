@@ -5,7 +5,7 @@
   "title": "Google Map",
   "category": "lsx-tour-operator",
   "editorScript": "file:index.js",
-  "description": "Displays a Google Map for the accommodation's location.",
+  "description": "Display a Google Map based on the current Tour Operator page.",
   "keywords": [
     "google",
     "map",
