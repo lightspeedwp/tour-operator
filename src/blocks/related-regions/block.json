@@ -1,8 +1,44 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/related-regions",
   "title": "Related Regions",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Displays any regions from the parent country.",
+  "icon": "admin-site-alt3",
+  "keywords": [
+    "related",
+    "regions",
+    "nearby"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Related Regions"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Related Regions",
+              "level": 3
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "Explore nearby regions and destinations."
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

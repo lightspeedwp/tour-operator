@@ -1,8 +1,43 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
+  "textdomain": "tour-operator",
   "name": "lsx-tour-operator/destination-to-accommodation",
   "title": "Destination to Accommodation",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Displays the destinations associated with this accommodation.",
+  "icon": "admin-site",
+  "keywords": [
+    "destination",
+    "accommodation",
+    "connection"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Destination to Accommodation"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/paragraph",
+            {
+              "content": "Destinations:"
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "Cape Town, Johannesburg"
+            }
+          ]
+        ]
+      ]
+    ]
+  }
 }

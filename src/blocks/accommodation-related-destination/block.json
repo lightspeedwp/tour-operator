@@ -7,10 +7,10 @@
 	"category": "lsx-tour-operator",
 	"editorScript": "file:index.js",
 	"description": "Displays accommodation related to a destination.",
-	"icon": "admin-site",
+	"icon": "admin-multisite",
 	"keywords": [
 		"related",
-		"destinations",
+		"accommodation",
 		"similar"
 	],
 	"example": {

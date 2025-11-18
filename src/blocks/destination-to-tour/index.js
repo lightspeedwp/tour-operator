@@ -2,27 +2,26 @@ import { __ } from '@wordpress/i18n';
 import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
 wp.domReady(() => {
-    const registerDestinationToAccommodationVariation = () => {
+    const registerDestinationToTourVariation = () => {
         wp.blocks.registerBlockVariation('core/group', {
-            name: 'lsx-tour-operator/destination-to-accommodation',
-            title: __('Destination to Accommodation', 'tour-operator'),
+            name: 'lsx-tour-operator/destination-to-tour',
+            title: __('Destination to Tour', 'tour-operator'),
             icon: 'admin-site',
             category: 'lsx-tour-operator',
-            description: __('Displays the destinations associated with this accommodation.', 'tour-operator'),
+            description: __('Displays the destinations associated with this tour.', 'tour-operator'),
             isActive: (blockAttributes, variationAttributes) => {
                 return blockAttributes.className === variationAttributes.className;
             },
             keywords: [
                 __('destination', 'tour-operator'),
-                __('accommodation', 'tour-operator'),
+                __('tour', 'tour-operator'),
                 __('locations', 'tour-operator'),
             ],
             attributes: {
                 metadata: {
-                    name: __('Destination to Accommodation', 'tour-operator'),
+                    name: __('Destination to Tour', 'tour-operator'),
                 },
-                className: 'lsx-destination-to-accommodation-wrapper',
-
+                className: 'lsx-destination-to-tour-wrapper',
                 layout: {
                     type: 'constrained',
                 },
@@ -48,7 +47,7 @@ wp.domReady(() => {
                         [
                             'core/paragraph',
                             {
-                                content: '<strong>Location</strong>:',
+                                content: '<strong>' + __('Destinations:', 'tour-operator') + '</strong>',
                             },
                         ],
                     ],
@@ -70,11 +69,12 @@ wp.domReady(() => {
                                         content: {
                                             source: 'lsx/post-connection',
                                             args: {
-                                                key: 'destination_to_accommodation',
+                                                key: 'destination_to_tour',
                                             },
                                         },
                                     },
                                 },
+                                content: '',
                             },
                         ],
                     ],
@@ -123,13 +123,12 @@ wp.domReady(() => {
         });
     };
 
-    // Initialize conditional registration for accommodation context
+    // Initialize conditional registration for tour context
     const conditionalRegister = registerForPostTypesAndTemplates(
-        ['accommodation'], // Supported post types
-        ['accommodation'], // Template slug patterns
-        registerDestinationToAccommodationVariation
+        ['tour'], // Supported post types
+        ['tour'], // Template slug patterns
+        registerDestinationToTourVariation
     );
 
     conditionalRegister();
-
 });

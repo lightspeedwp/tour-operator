@@ -2,21 +2,21 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "textdomain": "tour-operator",
-  "name": "lsx-tour-operator/related-regions",
-  "title": "Related Regions",
+  "name": "lsx-tour-operator/destination-to-tour",
+  "title": "Destination to Tour",
   "category": "lsx-tour-operator",
   "editorScript": "file:index.js",
-  "description": "Displays any regions from the parent country.",
-  "icon": "admin-site-alt3",
+  "description": "Displays the destinations associated with this tour.",
+  "icon": "admin-site",
   "keywords": [
-    "related",
-    "regions",
-    "nearby"
+    "destination",
+    "tour",
+    "connection"
   ],
   "example": {
     "attributes": {
       "metadata": {
-        "name": "Related Regions"
+        "name": "Destination to Tour"
       }
     },
     "innerBlocks": [
@@ -25,16 +25,15 @@
         {},
         [
           [
-            "core/heading",
+            "core/paragraph",
             {
-              "content": "Related Regions",
-              "level": 3
+              "content": "Destinations:"
             }
           ],
           [
             "core/paragraph",
             {
-              "content": "Explore nearby regions and destinations."
+              "content": "Cape Town, Johannesburg"
             }
           ]
         ]
