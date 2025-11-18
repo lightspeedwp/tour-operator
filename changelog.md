@@ -4,20 +4,6 @@
 
 ### Added
 
-- A filter to allow the disabling of destinations when searching for related content. `lsx_to_' . $key . '_include_destinations`. - [BH-74](https://www.bugherd.com/projects/430995/tasks/74)
-- Integrate new icons block - PR [#547](https://github.com/lightspeedwp/tour-operator/pull/547), Issue [#548](https://github.com/lightspeedwp/tour-operator/issues/548)
-- Tour Expiration integration with Action Scheduler - PR [#490](https://github.com/lightspeedwp/tour-operator/pull/490)
-- Added new Modal support to blocks - Issue [#488](https://github.com/lightspeedwp/tour-operator/issues/488)
-- Add npm scripts: `start`, `build`, `lint:js`, `lint:css` - Issue [#559](https://github.com/lightspeedwp/tour-operator/issues/559)
-- Banner Cover block which pulls the image set in the Banner Image field. - [#604](https://github.com/lightspeedwp/tour-operator/pull/604)
-- Tagline block which pulls the text set in the Tagline field. - [#604](https://github.com/lightspeedwp/tour-operator/pull/604)
-- Added in a filter to allow the disabling of the facility block links - `lsx_to_accommodation_facilities_should_link` - [#608](https://github.com/lightspeedwp/tour-operator/pull/608)
-- Added in a filter to allow the ordering of the query blocks by post__in. - [#653](https://github.com/lightspeedwp/tour-operator/pull/653)
-- Added filter `lsx_travel_information_excerpt_length` to control character length for travel information excerpts [#663](https://github.com/lightspeedwp/tour-operator/pull/663)
-- Added filter `lsx_travel_information_modal_enable` to optionally disable travel information modal functionality [#663](https://github.com/lightspeedwp/tour-operator/pull/663)
-- Added filter `lsx_to_query_loop_query_args_{$key}` to allow third parties to alter query arguments in Query_Loop class - [#675](https://github.com/lightspeedwp/tour-operator/pull/675)
-- Added Sticky Menu Block with desktop/mobile navigation for single post templates - [#684](https://github.com/lightspeedwp/tour-operator/pull/684)
-
 #### New Blocks
 
 - **Icons Block** - Added new icons block for improved icon management and display capabilities - [#547](https://github.com/lightspeedwp/tour-operator/pull/547), Issue [#548](https://github.com/lightspeedwp/tour-operator/issues/548)
@@ -42,48 +28,9 @@
 - **Travel Information Modal Control** - Added filter `lsx_travel_information_modal_enable` to optionally disable travel information modal functionality - [#663](https://github.com/lightspeedwp/tour-operator/pull/663)
 - **Query Loop Arguments** - Added filter `lsx_to_query_loop_query_args_{$key}` to allow third-party plugins and themes to alter query arguments in Query_Loop class - [#675](https://github.com/lightspeedwp/tour-operator/pull/675)
 
-#### Development Tools
-
-- **NPM Scripts** - Added npm scripts: `start`, `build`, `lint:js`, `lint:css` for improved developer workflow - Issue [#559](https://github.com/lightspeedwp/tour-operator/issues/559), [#576](https://github.com/lightspeedwp/tour-operator/pull/576)
-
 ### Enhancements
 
-- Updated block icons for various block variations: Custom SVGs were added to: dress, facilities, health, ends-in, departs-from, climate, transport. [#579](https://github.com/lightspeedwp/tour-operator/pull/579)
-- Updated the departure day to reply on the previous days Location and Accommodation values. [#491](https://github.com/lightspeedwp/tour-operator/pull/491)
-- Block list updates - taken the blocks that were all listed in the assets folder and have broken them out into individual files along with block.json files - PR [#489](https://github.com/lightspeedwp/tour-operator/pull/489)
 - Removing the debug statements, A filter to allow the disabling of destinations when searching for related content. Prepping the registration for the adjust block registration. Refactoring the query statments into seperate functions. Fixing the filters for the related connections - PR (#486)
-- Added Related post connections to the single posts. - [#595](https://github.com/lightspeedwp/tour-operator/issues/595)
-- Added in the TO Videos block to display your Youtube videos in a gallery type output. [#598](https://github.com/lightspeedwp/tour-operator/pull/598)
-- Added icon block icons instead of images for checkin/checkout time blocks, as well as a filter so they appear only on relevant post types (accommodation) and related templates/template parts [#645](https://github.com/lightspeedwp/tour-operator/pull/645)
-- Enhanced read more functionality for travel style taxonomy descriptions [#660](https://github.com/lightspeedwp/tour-operator/pull/660)
-- Extract the conditional block registration to a separate file [#696](https://github.com/lightspeedwp/tour-operator/pull/696)
-
-### Integrations
-
-- Added integration with the Action Scheduler to allow Tours to expire and be set to draft [#490](https://github.com/lightspeedwp/tour-operator/pull/490). Work with any plugin using the Action Scheduler as a vendor [WooCommerce](https://woocommerce.com/), [PublishPress](https://publishpress.com/), [Action Scheduler](https://wordpress.org/plugins/action-scheduler/).
-
-### Changed
-
-- Updated PHPCS configuration for WPCS 3.x compatibility - Issue [#556](https://github.com/lightspeedwp/tour-operator/issues/556)
-- Added PHP linting scripts to composer.json for automated code quality checks  - Issue [#556](https://github.com/lightspeedwp/tour-operator/issues/556)
-- Updated composer dependencies to latest versions - Issue [#556](https://github.com/lightspeedwp/tour-operator/issues/556)
-- Migrate build system from `cgb-scripts` to `@wordpress/scripts` - Issue [#559](https://github.com/lightspeedwp/tour-operator/issues/559)
-- Enhance CodeRabbit rules, by adding custom rules - PR [#551](https://github.com/lightspeedwp/tour-operator/pull/551), Issue [#550](https://github.com/lightspeedwp/tour-operator/issues/550)
-- Update issue templates for enhancement and design/UX feedback - Issue (#568)
-- `.distignore` updated some of the ignore
-- Itinerary departure day - departure days accommodation and location values reply on the previous days values, to mimic the WETU layout - PR [#491](https://github.com/lightspeedwp/tour-operator/pull/491)
-- Drop Support for Older PHP Versions & Fix Version Mismatches - Issue [#469](https://github.com/lightspeedwp/tour-operator/issues/469)
-- Departure Day to use the previous day information for the "information" box - Issue [#481](https://github.com/lightspeedwp/tour-operator/issues/481)
-- Updated the Gallery render block to return a blank string if the gallery field is empty. - [#608](https://github.com/lightspeedwp/tour-operator/pull/608)
-- Standardized accommodation block metadata with improved internationalization, descriptions, and schema compliance - PR [#625](https://github.com/lightspeedwp/tour-operator/pull/625), Issue [#624](https://github.com/lightspeedwp/tour-operator/issues/624)
-
-#### Build System & Tooling
-
-- **WordPress Scripts Migration** - Migrated build system from deprecated `cgb-scripts` to `@wordpress/scripts` for modern WordPress development standards - [#576](https://github.com/lightspeedwp/tour-operator/pull/576), Issue [#559](https://github.com/lightspeedwp/tour-operator/issues/559)
-- **PHPCS Configuration** - Updated PHPCS configuration for WordPress Coding Standards (WPCS) 3.x compatibility with modern PHP versions - [#577](https://github.com/lightspeedwp/tour-operator/pull/577), Issue [#556](https://github.com/lightspeedwp/tour-operator/issues/556)
-- **PHP Linting Scripts** - Added PHP linting scripts to composer.json for automated code quality checks - Issue [#556](https://github.com/lightspeedwp/tour-operator/issues/556)
-- **Build Process Refactoring** - Refactored and improved build process configuration for better maintainability - [#632](https://github.com/lightspeedwp/tour-operator/pull/632)
-- **CodeRabbit Enhancement** - Enhanced CodeRabbit rules by adding custom analysis rules for improved automated code review - [#551](https://github.com/lightspeedwp/tour-operator/pull/551), Issue [#550](https://github.com/lightspeedwp/tour-operator/issues/550)
 
 #### Block System Improvements
 
@@ -101,58 +48,25 @@
 - **Issue Templates** - Updated issue templates for enhancement and design/UX feedback - [#580](https://github.com/lightspeedwp/tour-operator/pull/580), Issue [#568](https://github.com/lightspeedwp/tour-operator/issues/568)
 - **DistIgnore Update** - Updated `.distignore` file with additional exclusions for cleaner distribution packages
 
-#### Dependency Updates
-
-- **Composer Dependencies** - Updated all composer dependencies to latest versions for security and compatibility - Issue [#556](https://github.com/lightspeedwp/tour-operator/issues/556)
-- **WordPress Packages** - Updated to @wordpress/scripts 31.0.0 - [#699](https://github.com/lightspeedwp/tour-operator/pull/699)
-- **WordPress Packages** - Updated to @wordpress/eslint-plugin 22.21.0 - [#700](https://github.com/lightspeedwp/tour-operator/pull/700)
-- **WordPress Packages** - Updated to @wordpress/project-management-automation 2.35.0 - [#701](https://github.com/lightspeedwp/tour-operator/pull/701)
-- **WordPress Packages** - Updated to @wordpress/blocks 15.8.0 - [#698](https://github.com/lightspeedwp/tour-operator/pull/698)
-- **Babel Packages** - Updated to @babel/preset-react 7.28.5 - [#683](https://github.com/lightspeedwp/tour-operator/pull/683)
-- **Yoast SEO** - Updated wpackagist-plugin/wordpress-seo from 25.7 to 26.0 - [#589](https://github.com/lightspeedwp/tour-operator/pull/589), [#607](https://github.com/lightspeedwp/tour-operator/pull/607), [#621](https://github.com/lightspeedwp/tour-operator/pull/621), [#630](https://github.com/lightspeedwp/tour-operator/pull/630)
-- **Additional Dependencies** - 45+ additional dependency updates via Dependabot for npm packages, composer dependencies, and GitHub Actions ensuring latest security patches and features - PRs [#686](https://github.com/lightspeedwp/tour-operator/pull/686), [#685](https://github.com/lightspeedwp/tour-operator/pull/685), [#689](https://github.com/lightspeedwp/tour-operator/pull/689), [#687](https://github.com/lightspeedwp/tour-operator/pull/687), [#672](https://github.com/lightspeedwp/tour-operator/pull/672), [#669](https://github.com/lightspeedwp/tour-operator/pull/669), [#671](https://github.com/lightspeedwp/tour-operator/pull/671), [#670](https://github.com/lightspeedwp/tour-operator/pull/670), [#668](https://github.com/lightspeedwp/tour-operator/pull/668), [#664](https://github.com/lightspeedwp/tour-operator/pull/664), [#640](https://github.com/lightspeedwp/tour-operator/pull/640), [#639](https://github.com/lightspeedwp/tour-operator/pull/639), [#638](https://github.com/lightspeedwp/tour-operator/pull/638), [#636](https://github.com/lightspeedwp/tour-operator/pull/636), [#637](https://github.com/lightspeedwp/tour-operator/pull/637), [#635](https://github.com/lightspeedwp/tour-operator/pull/635), [#631](https://github.com/lightspeedwp/tour-operator/pull/631), [#629](https://github.com/lightspeedwp/tour-operator/pull/629), [#628](https://github.com/lightspeedwp/tour-operator/pull/628), [#627](https://github.com/lightspeedwp/tour-operator/pull/627), [#626](https://github.com/lightspeedwp/tour-operator/pull/626), [#617](https://github.com/lightspeedwp/tour-operator/pull/617), [#616](https://github.com/lightspeedwp/tour-operator/pull/616), [#615](https://github.com/lightspeedwp/tour-operator/pull/615), [#610](https://github.com/lightspeedwp/tour-operator/pull/610), [#609](https://github.com/lightspeedwp/tour-operator/pull/609), [#600](https://github.com/lightspeedwp/tour-operator/pull/600), [#599](https://github.com/lightspeedwp/tour-operator/pull/599), [#594](https://github.com/lightspeedwp/tour-operator/pull/594), [#593](https://github.com/lightspeedwp/tour-operator/pull/593), [#591](https://github.com/lightspeedwp/tour-operator/pull/591), [#590](https://github.com/lightspeedwp/tour-operator/pull/590), [#588](https://github.com/lightspeedwp/tour-operator/pull/588), [#646](https://github.com/lightspeedwp/tour-operator/pull/646), [#643](https://github.com/lightspeedwp/tour-operator/pull/643), [#649](https://github.com/lightspeedwp/tour-operator/pull/649), [#650](https://github.com/lightspeedwp/tour-operator/pull/650)
-
 #### PHP Version Support
 
 - **PHP Version Requirements** - Dropped support for older PHP versions and fixed version mismatches to align with modern WordPress standards - Issue [#469](https://github.com/lightspeedwp/tour-operator/issues/469)
 
 ### Removed
 
-- `.scrutinizer.yml` removed the file as we no long use Scrutinizer - Issue [#564](https://github.com/lightspeedwp/tour-operator/issues/564)
-- Remove outdated admin assets - Issue (#549), PR (#553)
-- Block settings removal - PR [#493](https://github.com/lightspeedwp/tour-operator/pull/493)
-- Audit All CSS Files and clean out unused CSS in /assets/css - Issue [#533](https://github.com/lightspeedwp/tour-operator/issues/533)
-- Remove outdated admin pages & assets, files removed: add-ons.php, help.php, welcome.php - Issue [#549](https://github.com/lightspeedwp/tour-operator/issues/549), PR [#553](https://github.com/lightspeedwp/tour-operator/pull/553)
-- Remove `cgb-scripts`, `gulp` and old `node-sass` dependencies from package.json - Issue [#559](https://github.com/lightspeedwp/tour-operator/issues/559)
-- Removed the condition restriction the 3 tier destinations for regions. [#654](https://github.com/lightspeedwp/tour-operator/pull/654)
-- **Scrutinizer Configuration** - Removed `.scrutinizer.yml` file as Scrutinizer is no longer used for code analysis - Issue [#564](https://github.com/lightspeedwp/tour-operator/issues/564)
 - **Outdated Admin Assets** - Removed outdated admin pages and assets including: add-ons.php, help.php, and welcome.php - [#553](https://github.com/lightspeedwp/tour-operator/pull/553), Issue [#549](https://github.com/lightspeedwp/tour-operator/issues/549)
 - **Block Settings** - Removed deprecated block settings functionality - [#493](https://github.com/lightspeedwp/tour-operator/pull/493)
 - **Unused CSS** - Audited and cleaned out unused CSS files from /assets/css directory reducing plugin size and improving performance - [#574](https://github.com/lightspeedwp/tour-operator/pull/574), Issue [#533](https://github.com/lightspeedwp/tour-operator/issues/533)
-- **Legacy Build Tools** - Removed deprecated build dependencies from package.json: `cgb-scripts`, `gulp`, and old `node-sass` - Issue [#559](https://github.com/lightspeedwp/tour-operator/issues/559), [#576](https://github.com/lightspeedwp/tour-operator/pull/576)
 - **Destination Restrictions** - Removed the condition restriction for 3-tier destinations for regions, allowing more flexible region hierarchies - [#654](https://github.com/lightspeedwp/tour-operator/pull/654), Issue [#330](https://github.com/lightspeedwp/tour-operator/issues/330)
 - **Outdated Testing Icons** - Removed outdated testing icons and replaced with correct icons from the design system - [#575](https://github.com/lightspeedwp/tour-operator/pull/575), Issue [#554](https://github.com/lightspeedwp/tour-operator/issues/554)
 
 ### Fixed
 
-- Remove outdated testing icons
-- Replace them with correct icons from the design system 
-- Ensure consistent sizing of 20px 
-- Add "currentColor" to all icon colour styling [#575](https://github.com/lightspeedwp/tour-operator/pull/575)
-- Query Block Pagination not Inherting the correct query vars. [#608](https://github.com/lightspeedwp/tour-operator/pull/608)
-- Fixed – Excluded build/ directory from CodeRabbit reviews by updating .coderabbit.yaml. [#620](https://github.com/lightspeedwp/tour-operator/pull/620)
-- Hide "location" custom field and exclude relevant JS when Google Maps API key is missing. Only the map field is shown. ([#657](https://github.com/lightspeedwp/tour-operator/issues/657))
-- Fixed Modal Button block styling supports applying to wrapper instead of button element, added border controls. [#674](https://github.com/lightspeedwp/tour-operator/pull/674)
 - **Icon System Compliance** - Replaced outdated testing icons with correct icons from the design system, ensuring consistent 20px sizing and "currentColor" styling for all icons - [#575](https://github.com/lightspeedwp/tour-operator/pull/575), Issue [#554](https://github.com/lightspeedwp/tour-operator/issues/554)
-- **Query Block Pagination** - Fixed critical issue where query block pagination was not inheriting correct query variables, causing incorrect pagination display - [#608](https://github.com/lightspeedwp/tour-operator/pull/608)
-- **CodeRabbit Configuration** - Excluded build/ directory from CodeRabbit code reviews to focus review efforts on source code only - [#620](https://github.com/lightspeedwp/tour-operator/pull/620)
 - **Location Field Visibility** - Fixed issue where "location" custom field and related JavaScript were shown even when Google Maps API key was missing. Now properly hides location field and excludes relevant JS when API key is not configured - [#659](https://github.com/lightspeedwp/tour-operator/pull/659), Issue [#657](https://github.com/lightspeedwp/tour-operator/issues/657)
 - **Modal Button Block Styling** - Fixed Modal Button block where styling support was incorrectly applying to wrapper instead of button element, added missing border controls - [#674](https://github.com/lightspeedwp/tour-operator/pull/674), Issue [#666](https://github.com/lightspeedwp/tour-operator/issues/666)
 - **Null Safety in Slotfills** - Added comprehensive null safety checks for meta attributes in slotfills to prevent JavaScript errors with missing data - [#762](https://github.com/lightspeedwp/tour-operator/pull/762)
 - **Travel Style Read More** - Enhanced and fixed read more functionality for travel style taxonomy descriptions to properly handle long content - [#660](https://github.com/lightspeedwp/tour-operator/pull/660), Issue [#332](https://github.com/lightspeedwp/tour-operator/issues/332)
-- **GitHub Actions Workflow** - Comprehensive fixes to GitHub Actions workflows for improved CI/CD reliability - [#648](https://github.com/lightspeedwp/tour-operator/pull/648)
-- **Vendor Folder** - Re-added vendor dependencies that were incorrectly excluded from version control - [#652](https://github.com/lightspeedwp/tour-operator/pull/652)
-- **Copilot Automated Fixes** - Applied multiple automated fixes from GitHub Copilot suggestions for code quality improvements - [#641](https://github.com/lightspeedwp/tour-operator/pull/641), [#642](https://github.com/lightspeedwp/tour-operator/pull/642), [#605](https://github.com/lightspeedwp/tour-operator/pull/605)
 - **Special Interests Key** - Fixed special-interests key issue in accommodation blocks metadata - Multiple commits in [#763](https://github.com/lightspeedwp/tour-operator/pull/763)
 - **Block isActive Selector** - Fixed isActive selector for blocks to properly highlight active block variations in the editor - [#696](https://github.com/lightspeedwp/tour-operator/pull/696)
 - **Dialog Attribute Handling** - Fixed dialog open attribute handling in allowed HTML tags for proper KSES compatibility - Multiple commits, Issue [#69](https://github.com/lightspeedwp/tour-operator/issues/69)
@@ -177,9 +91,6 @@
 
 ### Deprecated
 
-- **cgb-scripts** - The cgb-scripts build system is deprecated and has been replaced with @wordpress/scripts. Developers should update their workflow accordingly - Issue [#559](https://github.com/lightspeedwp/tour-operator/issues/559)
-- **Gulp Build System** - The Gulp build system is deprecated and removed. All build tasks now use @wordpress/scripts - Issue [#559](https://github.com/lightspeedwp/tour-operator/issues/559)
-- **node-sass** - The node-sass dependency is deprecated and removed. Modern Sass compilation is handled by @wordpress/scripts - Issue [#559](https://github.com/lightspeedwp/tour-operator/issues/559)
 - **Legacy Admin Pages** - The add-ons.php, help.php, and welcome.php admin pages are deprecated and removed - [#553](https://github.com/lightspeedwp/tour-operator/pull/553), Issue [#549](https://github.com/lightspeedwp/tour-operator/issues/549)
 
 ### Performance
@@ -189,6 +100,11 @@
 - **CSS Optimization** - Removed unused CSS from /assets/css directory, reducing total plugin size and improving frontend load times - [#574](https://github.com/lightspeedwp/tour-operator/pull/574), Issue [#533](https://github.com/lightspeedwp/tour-operator/issues/533)
 - **Build Process Improvements** - Migrated to @wordpress/scripts which provides better optimization, minification, and tree-shaking for production builds - [#576](https://github.com/lightspeedwp/tour-operator/pull/576), Issue [#559](https://github.com/lightspeedwp/tour-operator/issues/559)
 - **Conditional Block Registration** - Implemented conditional block registration to only load blocks when needed, improving initial page load performance - [#696](https://github.com/lightspeedwp/tour-operator/pull/696)
+
+
+
+
+
 
 ## [[2.0.2]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.0.2) - 2025-05-06
 
