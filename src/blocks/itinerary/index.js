@@ -1,5 +1,15 @@
-wp.domReady( () => {
-    wp.blocks.registerBlockVariation( 'core/group', {
+/**
+ * Itinerary Block Variation
+ *
+ * Registers a block variation for displaying tour itinerary.
+ * Available across all post types and templates.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
+wp.domReady(() => {
+    wp.blocks.registerBlockVariation('core/group', {
         name: 'lsx-tour-operator/itinerary',
         title: 'Itinerary',
         icon: 'clipboard',
@@ -68,5 +78,5 @@ wp.domReady( () => {
         supports: {
             renaming: false,
         },
-    } );
-} );
+    });
+});

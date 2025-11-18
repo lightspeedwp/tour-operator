@@ -1,7 +1,17 @@
+/**
+ * Gallery Block Variation
+ *
+ * Registers a gallery block variation for displaying post galleries.
+ * Available across all post types and templates.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
 import { __ } from '@wordpress/i18n';
 
-wp.domReady( () => {
-    wp.blocks.registerBlockVariation( 'core/gallery', {
+wp.domReady(() => {
+    wp.blocks.registerBlockVariation('core/gallery', {
         name: 'lsx-tour-operator/gallery',
         title: __('TO Gallery', 'tour-operator'),
         icon: 'format-gallery',
@@ -43,5 +53,5 @@ wp.domReady( () => {
             ],
         ],
         isDefault: false,
-    } );
-} );
+    });
+});

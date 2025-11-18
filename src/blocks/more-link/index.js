@@ -1,5 +1,15 @@
-wp.domReady( () => {
-    wp.blocks.registerBlockVariation( 'core/button', {
+/**
+ * More Link Block Variation
+ *
+ * Registers a block variation for creating "read more" links.
+ * Available across all post types and templates.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
+wp.domReady(() => {
+    wp.blocks.registerBlockVariation('core/button', {
         name: 'lsx-tour-operator/more-link',
         title: 'More Button',
         icon: 'insert-after',
@@ -16,5 +26,5 @@ wp.domReady( () => {
         supports: {
             renaming: false,
         },
-    } );
-} );
+    });
+});

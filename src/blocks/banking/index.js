@@ -1,3 +1,13 @@
+/**
+ * Banking Block Variation
+ *
+ * Registers a block variation for displaying banking information.
+ * Only available on destination post types and destination, country, and region templates screens.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
 import { __ } from '@wordpress/i18n';
 import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 

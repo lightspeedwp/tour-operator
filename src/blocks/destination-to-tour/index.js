@@ -1,3 +1,13 @@
+/**
+ * Destination to Tour Block Variation
+ *
+ * Registers a block variation for displaying tours linked to this destination.
+ * Only available on destination, country, and region post type edit screens.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
 import { __ } from '@wordpress/i18n';
 import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 

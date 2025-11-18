@@ -1,5 +1,15 @@
-wp.domReady( () => {
-    wp.blocks.registerBlockVariation( 'core/group', {
+/**
+ * Number of Rooms Block Variation
+ *
+ * Registers a block variation for displaying accommodation room count.
+ * Available across all post types and templates.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
+wp.domReady(() => {
+    wp.blocks.registerBlockVariation('core/group', {
         name: 'lsx-tour-operator/number-of-rooms',
         title: 'Number of Rooms',
         icon: 'admin-multisite',
@@ -74,5 +84,5 @@ wp.domReady( () => {
         supports: {
             renaming: false,
         },
-    } );
-} );
+    });
+});

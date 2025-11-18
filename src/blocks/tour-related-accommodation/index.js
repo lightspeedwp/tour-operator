@@ -1,6 +1,13 @@
 /**
- * Register Tour Related Accommodation block variation
+ * Tour Related Accommodation Block Variation
+ *
+ * Registers a block variation for displaying tours related to the current accommodation.
+ * Only available on accommodation post type edit screens.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
  */
+
 import { registerForPostTypes } from '@utils/conditional-block-registration.js';
 import { __ } from '@wordpress/i18n';
 

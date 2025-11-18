@@ -1,3 +1,13 @@
+/**
+ * Icons Custom Block
+ *
+ * Registers a custom block for displaying Tour Operator icons.
+ * Available across all post types and templates.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
 import { registerBlockType } from '@wordpress/blocks';
 import { useState } from '@wordpress/element';
 import { PanelBody, RadioControl } from '@wordpress/components';
@@ -23,94 +33,94 @@ const IconsBlockIcon = () => (
 
 // Validate icons object
 if (
-    ! icons ||
+    !icons ||
     typeof icons !== 'object' ||
-    Object.keys( icons ).length === 0
+    Object.keys(icons).length === 0
 ) {
-    console.error( 'Icons not properly loaded. Please run generate-icons.js' );
+    console.error('Icons not properly loaded. Please run generate-icons.js');
 }
 
-const iconTypes = icons ? Object.keys( icons ) : [];
+const iconTypes = icons ? Object.keys(icons) : [];
 
-registerBlockType( 'lsx-tour-operator/icons', {
+registerBlockType('lsx-tour-operator/icons', {
     title: 'Icons',
     icon: IconsBlockIcon,
     attributes: {
-        iconType: { type: 'string', default: iconTypes[ 0 ] },
+        iconType: { type: 'string', default: iconTypes[0] },
         iconName: { type: 'string', default: '' },
     },
-    edit: ( props ) => {
+    edit: (props) => {
         const { attributes, setAttributes, isSelected } = props;
         const { iconType, iconName } = attributes;
-        const [ localType, setLocalType ] = useState( iconType );
-        const [ localName, setLocalName ] = useState( iconName );
-        const [ chooserOpen, setChooserOpen ] = useState( ! iconName );
-        const [ filter, setFilter ] = useState( '' ); // New state for filter
+        const [localType, setLocalType] = useState(iconType);
+        const [localName, setLocalName] = useState(iconName);
+        const [chooserOpen, setChooserOpen] = useState(!iconName);
+        const [filter, setFilter] = useState(''); // New state for filter
         const blockProps = useBlockProps();
-        const iconList = Object.keys( icons[ localType ] );
+        const iconList = Object.keys(icons[localType]);
         const filteredIconList = filter
-            ? iconList.filter( ( name ) =>
-                  name.toLowerCase().includes( filter.toLowerCase() )
-              )
+            ? iconList.filter((name) =>
+                name.toLowerCase().includes(filter.toLowerCase())
+            )
             : iconList;
 
-        const updateType = ( type ) => {
-            setLocalType( type );
-            const newIconList = Object.keys( icons[ type ] );
-            const nextName = newIconList.includes( localName )
+        const updateType = (type) => {
+            setLocalType(type);
+            const newIconList = Object.keys(icons[type]);
+            const nextName = newIconList.includes(localName)
                 ? localName
-                : newIconList[ 0 ];
-            setAttributes( { iconType: type, iconName: nextName } );
-            setLocalName( nextName );
+                : newIconList[0];
+            setAttributes({ iconType: type, iconName: nextName });
+            setLocalName(nextName);
         };
-        const updateName = ( name ) => {
-            setLocalName( name );
-            setAttributes( { iconName: name } );
+        const updateName = (name) => {
+            setLocalName(name);
+            setAttributes({ iconName: name });
         };
         const handleInsert = () => {
-            setAttributes( { iconType: localType, iconName: localName } );
-            setChooserOpen( false );
+            setAttributes({ iconType: localType, iconName: localName });
+            setChooserOpen(false);
         };
         const handleEdit = () => {
-            setChooserOpen( true );
+            setChooserOpen(true);
         };
 
         return (
-            <div { ...blockProps }>
+            <div {...blockProps}>
                 <InspectorControls>
-                    <PanelBody title="Icon Settings" initialOpen={ true }>
+                    <PanelBody title="Icon Settings" initialOpen={true}>
                         <RadioControl
                             label="Type"
-                            onChange={ updateType }
-                            selected={ localType }
-                            options={ iconTypes.map( ( type ) => ( {
+                            onChange={updateType}
+                            selected={localType}
+                            options={iconTypes.map((type) => ({
                                 label:
-                                    type.charAt( 0 ).toUpperCase() +
-                                    type.slice( 1 ),
+                                    type.charAt(0).toUpperCase() +
+                                    type.slice(1),
                                 value: type,
-                            } ) ) }
+                            }))}
                             disabled={
-                                ! chooserOpen &&
-                                ! iconTypes.every(
-                                    ( type ) => icons[ type ][ localName ]
+                                !chooserOpen &&
+                                !iconTypes.every(
+                                    (type) => icons[type][localName]
                                 )
                             }
                         />
                     </PanelBody>
                 </InspectorControls>
-                { chooserOpen ? (
+                {chooserOpen ? (
                     <>
                         <input
                             type="text"
                             placeholder="Search icons..."
-                            value={ filter }
-                            onChange={ ( e ) => setFilter( e.target.value ) }
+                            value={filter}
+                            onChange={(e) => setFilter(e.target.value)}
                             className="lsx-icons-search"
                             aria-label="Search icons"
                             autoComplete="off"
                         />
                         <div
-                            style={ {
+                            style={{
                                 display: 'flex',
                                 flexWrap: 'wrap',
                                 gap: '8px',
@@ -119,15 +129,15 @@ registerBlockType( 'lsx-tour-operator/icons', {
                                 border: '1px solid #eee',
                                 padding: 8,
                                 fontSize: '1rem',
-                            } }
+                            }}
                         >
-                            { filteredIconList.map( ( name ) => {
+                            {filteredIconList.map((name) => {
                                 const IconComponent =
-                                    icons[ localType ][ name ];
+                                    icons[localType][name];
                                 return (
                                     <div
-                                        key={ name }
-                                        style={ {
+                                        key={name}
+                                        style={{
                                             outline:
                                                 localName === name
                                                     ? '2px solid #8B5CF6'
@@ -139,46 +149,46 @@ registerBlockType( 'lsx-tour-operator/icons', {
                                                 localName === name
                                                     ? '#f3f4f6'
                                                     : 'white',
-                                        } }
-                                        onClick={ () => updateName( name ) }
-                                        title={ name }
+                                        }}
+                                        onClick={() => updateName(name)}
+                                        title={name}
                                     >
                                         <span>
                                             <IconComponent
-                                                width={ 32 }
-                                                height={ 32 }
+                                                width={32}
+                                                height={32}
                                             />
                                         </span>
                                     </div>
                                 );
-                            } ) }
+                            })}
                         </div>
                         <div
-                            style={ { padding: '16px 0', textAlign: 'center' } }
+                            style={{ padding: '16px 0', textAlign: 'center' }}
                         >
                             <div className="block-icon-svg">
-                                { ( () => {
+                                {(() => {
                                     const IconComponent =
-                                        icons[ localType ]?.[ localName ];
-                                    if ( ! IconComponent ) {
+                                        icons[localType]?.[localName];
+                                    if (!IconComponent) {
                                         return null;
                                     }
                                     try {
                                         return <IconComponent />;
-                                    } catch ( error ) {
+                                    } catch (error) {
                                         console.error(
-                                            `Error rendering icon ${ localType }/${ localName }:`,
+                                            `Error rendering icon ${localType}/${localName}:`,
                                             error
                                         );
                                         return (
                                             <span>Icon rendering failed</span>
                                         );
                                     }
-                                } )() }
+                                })()}
                             </div>
                             <button
                                 type="button"
-                                style={ {
+                                style={{
                                     display: 'block',
                                     margin: '12px auto',
                                     padding: '6px 16px',
@@ -187,8 +197,8 @@ registerBlockType( 'lsx-tour-operator/icons', {
                                     border: 'none',
                                     borderRadius: 4,
                                     cursor: 'pointer',
-                                } }
-                                onClick={ handleInsert }
+                                }}
+                                onClick={handleInsert}
                             >
                                 Insert
                             </button>
@@ -196,52 +206,52 @@ registerBlockType( 'lsx-tour-operator/icons', {
                     </>
                 ) : (
                     <div
-                        style={ {
+                        style={{
                             textAlign: 'center',
                             cursor: isSelected ? 'pointer' : 'default',
-                        } }
-                        onClick={ isSelected ? handleEdit : undefined }
+                        }}
+                        onClick={isSelected ? handleEdit : undefined}
                     >
                         <div
                             className="block-icon-svg"
-                            style={ {
+                            style={{
                                 fontSize: 'inherit',
                                 display: 'inline-block',
-                            } }
+                            }}
                         >
-                            { localName &&
-                                icons[ localType ][ localName ] &&
-                                ( () => {
+                            {localName &&
+                                icons[localType][localName] &&
+                                (() => {
                                     const IconComponent =
-                                        icons[ localType ][ localName ];
+                                        icons[localType][localName];
                                     return <IconComponent />;
-                                } )() }
+                                })()}
                         </div>
                     </div>
-                ) }
+                )}
             </div>
         );
     },
-    save: ( props ) => {
+    save: (props) => {
         const { attributes } = props;
         const { iconType, iconName } = attributes;
         if (
-            ! iconName ||
-            ! icons[ iconType ] ||
-            ! icons[ iconType ][ iconName ]
+            !iconName ||
+            !icons[iconType] ||
+            !icons[iconType][iconName]
         ) {
             return null;
         }
-        const IconComponent = icons[ iconType ][ iconName ];
+        const IconComponent = icons[iconType][iconName];
         return (
-            <div { ...useBlockProps.save() }>
+            <div {...useBlockProps.save()}>
                 <span
                     className="block-icon-svg"
-                    style={ { fontSize: 'inherit', display: 'inline-block' } }
+                    style={{ fontSize: 'inherit', display: 'inline-block' }}
                 >
                     <IconComponent />
                 </span>
             </div>
         );
     },
-} );
+});

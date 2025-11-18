@@ -1,8 +1,8 @@
 /**
  * Facts Regions Wrapper Block Variation
  *
- * Registers a block variation for destination regions display.
- * Only available on destination post type edit screens.
+ * Registers a block variation for displaying regional facts in a structured wrapper.
+ * Only available on destination post types, destinations, country, and region templates screens.
  *
  * @since 2.1.0
  * @package Tour_Operator

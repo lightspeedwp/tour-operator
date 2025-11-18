@@ -1,8 +1,8 @@
 /**
  * Best Time to Visit Block Variation
  *
- * Registers a block variation for destination best time to visit display.
- * Only available on destination post type edit screens.
+ * Registers a block variation for displaying best time to visit information.
+ * Only available on destination post types and destination, country, and region templates screens.
  *
  * @since 2.1.0
  * @package Tour_Operator

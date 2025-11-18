@@ -1,3 +1,13 @@
+/**
+ * Booking Validity Block Variation
+ *
+ * Registers a block variation for displaying booking validity dates.
+ * Only available on tour post type edit screens.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
 import { __ } from '@wordpress/i18n';
 import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
@@ -131,7 +141,7 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: '<strong>' + __('Booking validity: ', 'tour-operator') + '</strong>' + __('Start Date - End Date', 'tour-operator') ,
+                                            content: '<strong>' + __('Booking validity: ', 'tour-operator') + '</strong>' + __('Start Date - End Date', 'tour-operator'),
                                         },
                                     },
                                 ],
