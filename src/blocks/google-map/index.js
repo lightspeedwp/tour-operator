@@ -1,14 +1,23 @@
-wp.domReady( () => {
-    wp.blocks.registerBlockVariation( 'core/group', {
+import { __ } from '@wordpress/i18n';
+
+wp.domReady(() => {
+    wp.blocks.registerBlockVariation('core/group', {
         name: 'lsx-tour-operator/google-map',
-        title: 'Google Map',
-        description:
-            'Display a Google Map based on the current Tour Operator page.',
+        title: __('Google Map', 'tour-operator'),
+        description: __('Display a Google Map based on the current Tour Operator page.', 'tour-operator'),
         category: 'lsx-tour-operator',
         icon: 'admin-site-alt3',
+        keywords: [
+            __('google', 'tour-operator'),
+            __('map', 'tour-operator'),
+            __('maps', 'tour-operator'),
+        ],
+        isActive: (blockAttributes, variationAttributes) => {
+            return blockAttributes.className === variationAttributes.className;
+        },
         attributes: {
             metadata: {
-                name: 'Google Map',
+                name: __('Google Map', 'tour-operator'),
             },
             className: 'lsx-location-wrapper',
             align: 'full',
@@ -38,7 +47,7 @@ wp.domReady( () => {
                     ],
                     [
                         'core/heading',
-                        { textAlign: 'center', content: 'Location' },
+                        { textAlign: 'center', content: __('Location', 'tour-operator') },
                     ],
                     [
                         'core/separator',
@@ -110,9 +119,61 @@ wp.domReady( () => {
                 ],
             ],
         ],
-        isDefault: false,
-        /*supports: {
-			renaming: false
-		}*/
-    } );
-} );
+        example: {
+            innerBlocks: [
+                {
+                    name: 'core/group',
+                    attributes: {
+                        align: 'wide',
+                        layout: { type: 'flex', flexWrap: 'nowrap' },
+                    },
+                    innerBlocks: [
+                        {
+                            name: 'core/separator',
+                            attributes: {
+                                style: {
+                                    layout: { selfStretch: 'fill', flexSize: null },
+                                },
+                            },
+                        },
+                        {
+                            name: 'core/heading',
+                            attributes: {
+                                textAlign: 'center',
+                                content: __('Location', 'tour-operator'),
+                                level: 2,
+                            },
+                        },
+                        {
+                            name: 'core/separator',
+                            attributes: {
+                                style: {
+                                    layout: { selfStretch: 'fill', flexSize: null },
+                                },
+                            },
+                        },
+                    ],
+                },
+                {
+                    name: 'core/group',
+                    attributes: {
+                        align: 'wide',
+                        layout: {
+                            type: 'default',
+                        },
+                    },
+                    innerBlocks: [
+                        {
+                            name: 'core/image',
+                            attributes: {
+                                align: 'full',
+                                sizeSlug: 'large',
+                                url: lsxToEditor.assetsUrl + 'blocks/placeholder-map-1920x656.jpg',
+                            },
+                        }
+                    ],
+                },
+            ]
+        },
+    });
+});

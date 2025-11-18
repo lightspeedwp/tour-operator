@@ -4,5 +4,12 @@
   "name": "lsx-tour-operator/google-map",
   "title": "Google Map",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "description": "Displays a Google Map for the accommodation's location.",
+  "keywords": [
+    "google",
+    "map",
+    "maps"
+  ],
+  "icon": "admin-site-alt3"
 }
