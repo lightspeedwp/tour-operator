@@ -4,5 +4,6 @@
   "name": "lsx-tour-operator/more-link",
   "title": "More Link",
   "category": "lsx-tour-operator",
-  "editorScript": "file:index.js"
+  "editorScript": "file:index.js",
+  "icon": "clipboard"
 }

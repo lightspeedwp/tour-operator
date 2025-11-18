@@ -1,19 +1,50 @@
-wp.domReady( () => {
-    wp.blocks.registerBlockVariation( 'core/button', {
+import { __ } from '@wordpress/i18n';
+import { createBlock } from '@wordpress/blocks';
+
+wp.domReady(() => {
+    wp.blocks.registerBlockVariation('core/buttons', {
         name: 'lsx-tour-operator/permalink-button',
-        title: 'Permalink',
-        description: 'Add a button with a link to the current item.',
+        title: __('Permalink Button', 'tour-operator'),
+        description: __('Add a button with a link to the current item.', 'tour-operator'),
         category: 'lsx-tour-operator',
         attributes: {
-            className: 'lsx-to-link permalink',
             metadata: {
-                name: 'Permalink',
+                name: __('Permalink Button', 'tour-operator'),
             },
-            text: 'View More',
-            url: '#permalink',
         },
-        supports: {
-            renaming: false,
-        },
-    } );
-} );
+        keywords: [
+            __('permalink', 'tour-operator'),
+            __('button', 'tour-operator'),
+            __('link', 'tour-operator'),
+        ],
+        innerBlocks: [
+            [
+                'core/button',
+                {
+                    className: 'lsx-to-link permalink',
+                    text: __('View More', 'tour-operator'),
+                    url: '#permalink',
+                    metadata: {
+                        name: __('Permalink', 'tour-operator'),
+                    },
+                }
+            ]
+        ],
+        example:
+        {
+            attributes: {
+                className: 'lsx-to-link permalink',
+            },
+            innerBlocks: [
+                {
+                    name: 'core/button',
+                    attributes: {
+                        className: 'lsx-to-link permalink',
+                        text: __('View More', 'tour-operator'),
+                        url: '#permalink',
+                    },
+                }
+            ],
+        }
+    });
+});
