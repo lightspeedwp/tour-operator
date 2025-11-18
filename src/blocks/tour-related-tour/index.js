@@ -2,8 +2,7 @@
  * Register Tour Related Tours block variation
  */
 import { registerForPostTypes } from '@utils/conditional-block-registration.js';
-
-const { __ } = wp.i18n;
+import { __ } from '@wordpress/i18n';
 
 /**
  * Register the tours related to a tour block variation

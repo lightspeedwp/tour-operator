@@ -2,8 +2,7 @@
  * Register Review Related Destination block variation
  */
 import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
-
-const { __ } = wp.i18n;
+import { __ } from '@wordpress/i18n';
 
 /**
  * Register the review related destination block variation

@@ -2,8 +2,7 @@
  * Register Review Related Tour block variation
  */
 import { registerForPostTypes } from '@utils/conditional-block-registration.js';
-
-const { __ } = wp.i18n;
+import { __ } from '@wordpress/i18n';
 
 /**
  * Register the review related tour block variation
