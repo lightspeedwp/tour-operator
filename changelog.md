@@ -46,7 +46,7 @@
 
 ### Removed
 
-- **Outdated Admin Assets** - Removed outdated admin pages and assets including: add-ons.php, help.php, and welcome.php - [#553](https://github.com/lightspeedwp/tour-operator/pull/553), Issue [#549](https://github.com/lightspeedwp/tour-operator/issues/549)
+- **Outdated Admin Assets** - Removed outdated admin pages and assets: add-ons.php, help.php, and welcome.php - [#553](https://github.com/lightspeedwp/tour-operator/pull/553), Issue [#549](https://github.com/lightspeedwp/tour-operator/issues/549)
 - **Block Settings** - Removed deprecated block settings functionality - [#493](https://github.com/lightspeedwp/tour-operator/pull/493)
 - **Unused CSS** - Audited and cleaned out unused CSS files from /assets/css directory reducing plugin size and improving performance - [#574](https://github.com/lightspeedwp/tour-operator/pull/574), Issue [#533](https://github.com/lightspeedwp/tour-operator/issues/533)
 - **Destination Restrictions** - Removed the condition restriction for 3-tier destinations for regions, allowing more flexible region hierarchies - [#654](https://github.com/lightspeedwp/tour-operator/pull/654), Issue [#330](https://github.com/lightspeedwp/tour-operator/issues/330)
