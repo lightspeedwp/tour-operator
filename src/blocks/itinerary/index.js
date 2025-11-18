@@ -58,7 +58,7 @@ wp.domReady(() => {
                             'core/heading',
                             {
                                 textAlign: 'center',
-                                content: 'Tour Itinerary',
+                                content: __('Tour Itinerary', 'tour-operator'),
                             },
                         ],
                         [
