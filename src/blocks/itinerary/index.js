@@ -78,7 +78,6 @@ wp.domReady(() => {
                     'core/group',
                     {
                         align: 'wide',
-
                         layout: {
                             type: 'constrained',
                         },
