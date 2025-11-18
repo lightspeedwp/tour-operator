@@ -9,16 +9,23 @@
  */
 
 import { __ } from '@wordpress/i18n';
+import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
-function registerCheckoutTimeVariation() {
-    try {
+wp.domReady(() => {
+    const registerCheckoutTimeVariation = () => {
         wp.blocks.registerBlockVariation("core/group", {
             name: "lsx-tour-operator/checkout-time",
             title: __("Check out time", "tour-operator"),
             icon: "clock",
             category: "lsx-tour-operator",
+            description: __("Displays the check-out time for this accommodation.", "tour-operator"),
+            keywords: [
+                __("checkout", "tour-operator"),
+                __("time", "tour-operator"),
+                __("check out", "tour-operator"),
+            ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.metadata?.name === variationAttributes.metadata?.name;
+                return blockAttributes.className === variationAttributes.className;
             },
             attributes: {
                 metadata: {
@@ -86,83 +93,50 @@ function registerCheckoutTimeVariation() {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
-                attributes: {
-                    metadata: {
-                        name: __("Check Out Time", "tour-operator"),
-                    },
-                },
                 innerBlocks: [
-                    [
-                        "core/group",
-                        {},
-                        [
-                            [
-                                "core/heading",
-                                {
-                                    content: __("Check Out Time", "tour-operator"),
-                                    level: 3,
+                    {
+                        name: 'core/group',
+                        attributes: {},
+                        innerBlocks: [
+                            {
+                                name: 'core/group',
+                                attributes: {
+                                    layout: {
+                                        type: 'flex',
+                                        flexWrap: 'nowrap',
+                                        verticalAlignment: 'middle',
+                                    },
                                 },
-                            ],
-                            [
-                                "core/paragraph",
-                                {
-                                    content: "3:00 PM",
-                                },
-                            ],
+                                innerBlocks: [
+                                    {
+                                        name: 'lsx-tour-operator/icons',
+                                        attributes: {
+                                            iconType: 'solid',
+                                            iconName: 'checkInAccommodationIcon',
+                                        },
+                                    },
+                                    {
+                                        name: 'core/paragraph',
+                                        attributes: {
+                                            content: '<strong>' + __('Check out time: ', 'tour-operator') + '</strong>' + ' ' + __('3:00 PM', 'tour-operator'),
+                                        },
+                                    },
+                                ],
+                            },
                         ],
-                    ],
+                    },
                 ],
             },
         });
-        return true;
-    } catch (error) {
-        console.error('Failed to register checkout-time block:', error);
-        return false;
     }
-}
 
-wp.domReady(() => {
-    const { select } = wp.data;
+    // Initialize conditional registration
+    const conditionalRegister = registerForPostTypesAndTemplates(
+        ['accommodation'], // Supported post types
+        ['accommodation'], // Template slug patterns
+        registerCheckoutTimeVariation
+    );
 
-    // Define supported post types
-    const supportedPostTypes = ['accommodation'];
-    let registered = false;
-
-    // Check if current post type is supported
-    const checkAndRegister = () => {
-        if (registered) {
-            return true;
-        }
-
-        const postType = select('core/editor')?.getCurrentPostType();
-        const postSlug = select('core/editor')?.getEditedPostSlug();
-
-        if (!postType || !postSlug) {
-            return false;
-        }
-
-        if (supportedPostTypes.includes(postType) || ((postType === 'wp_template' || postType === 'wp_template_part') && postSlug.includes('accommodation'))) {
-            registerCheckoutTimeVariation();
-            registered = true;
-        }
-
-        return registered;
-    };
-
-    // Try immediate registration
-    if (!checkAndRegister()) {
-        // If not ready, check periodically
-        const interval = setInterval(() => {
-            if (checkAndRegister()) {
-                clearInterval(interval);
-            }
-        }, 100);
-
-        // Clean up after 5 seconds to prevent infinite checking
-        setTimeout(() => clearInterval(interval), 5000);
-    }
+    conditionalRegister();
 });

@@ -88,9 +88,6 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 attributes: {
                     className: 'lsx-spoken-languages-wrapper',

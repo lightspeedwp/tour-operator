@@ -4,10 +4,10 @@ import { registerForPostTypesAndTemplates } from '@utils/conditional-block-regis
 wp.domReady(() => {
     // Register variation function
     const registerSingleSupplementVariation = () => {
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/single-supplement-wrapper',
             title: __('Single supplement', 'tour-operator'),
+            description: __('Displays the single supplement charge for solo travelers.', 'tour-operator'),
             icon: 'money-alt',
             category: 'lsx-tour-operator',
             keywords: [
@@ -24,7 +24,7 @@ wp.domReady(() => {
             },
             attributes: {
                 metadata: {
-                    name: 'Single supplement',
+                    name: __('Single supplement', 'tour-operator'),
                 },
                 className: 'lsx-single-supplement-wrapper',
                 layout: {
@@ -82,9 +82,6 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 innerBlocks: [
                     {

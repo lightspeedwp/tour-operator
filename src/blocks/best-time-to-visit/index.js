@@ -9,19 +9,27 @@
  */
 
 import { __ } from '@wordpress/i18n';
+import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
-function registerBestTimeToVisitVariation() {
-    try {
+wp.domReady(() => {
+    const registerBestTimeToVisitVariation = () => {
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/best-time-to-visit',
-            title: __('Best time to visit', 'tour-operator'),
+            title: __('Best months to visit', 'tour-operator'),
             icon: 'calendar-alt',
             category: 'lsx-tour-operator',
-            isActive: (blockAttributes) =>
-                blockAttributes?.className?.includes('lsx-best-time-to-visit-wrapper'),
+            keywords: [
+                __('best months to visit', 'tour-operator'),
+                __('best time to visit', 'tour-operator'),
+                __('travel', 'tour-operator'),
+                __('visit', 'tour-operator'),
+            ],
+            isActive: (blockAttributes, variationAttributes) => {
+                return blockAttributes.className === variationAttributes.className;
+            },
             attributes: {
                 metadata: {
-                    name: __('Best time to visit', 'tour-operator'),
+                    name: __('Best months to visit', 'tour-operator'),
                 },
                 className: 'lsx-best-time-to-visit-wrapper',
             },
@@ -78,93 +86,55 @@ function registerBestTimeToVisitVariation() {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
-                attributes: {
-                    metadata: {
-                        name: __('Best time to visit', 'tour-operator'),
-                    },
-                },
                 innerBlocks: [
-                    [
-                        'core/group',
-                        {},
-                        [
-                            [
-                                'core/heading',
-                                {
-                                    content: __('Best months to visit', 'tour-operator'),
-                                    level: 3,
+                    {
+                        name: 'core/group',
+                        attributes: {},
+                        innerBlocks: [
+                            {
+                                name: 'core/group',
+                                attributes: {
+                                    layout: {
+                                        type: 'flex',
+                                        flexWrap: 'nowrap',
+                                        verticalAlignment: 'middle',
+                                    },
                                 },
-                            ],
-                            [
-                                'core/paragraph',
-                                {
-                                    content: 'January, February, March',
-                                },
-                            ],
+                                innerBlocks: [
+                                    {
+                                        name: 'lsx-tour-operator/icons',
+                                        attributes: {
+                                            iconName: 'bestMonthsToTravelIcon',
+                                        },
+                                    },
+                                    {
+                                        name: 'core/paragraph',
+                                        attributes: {
+                                            content: '<strong>' + __('Best months to visit', 'tour-operator') + '</strong>',
+                                        },
+                                    },
+                                    {
+                                        name: 'core/paragraph',
+                                        attributes: {
+                                            content: 'January, February, March',
+                                        },
+                                    },
+                                ],
+                            },
                         ],
-                    ],
+                    },
                 ],
             },
         });
-        return true;
-    } catch (error) {
-        console.error('Failed to register best-time-to-visit block:', error);
-        return false;
     }
-}
 
-wp.domReady(() => {
-    const { select } = wp.data;
+    // Initialize conditional registration
+    const conditionalRegister = registerForPostTypesAndTemplates(
+        ['destination'], // Supported post types
+        ['destination'], // Template slug patterns
+        registerBestTimeToVisitVariation
+    );
 
-    // Define supported post types
-    const supportedPostTypes = ['destination'];
-    let registered = false;
-
-    // Check if current post type is supported
-    const checkAndRegister = () => {
-        if (registered) {
-            return true;
-        }
-
-        const postType = select('core/editor')?.getCurrentPostType();
-        const postSlug = select('core/editor')?.getEditedPostSlug();
-
-        if (!postType) {
-            return false;
-        }
-
-        const isTemplateContext =
-            postType === 'wp_template' || postType === 'wp_template_part';
-
-        if (
-            supportedPostTypes.includes(postType) ||
-            (isTemplateContext &&
-                postSlug &&
-                (postSlug.includes('destination') ||
-                    postSlug.includes('country') ||
-                    postSlug.includes('region')))
-        ) {
-            registerBestTimeToVisitVariation();
-            registered = true;
-        }
-
-        return registered;
-    };
-
-    // Try immediate registration
-    if (!checkAndRegister()) {
-        // If not ready, check periodically
-        const interval = setInterval(() => {
-            if (checkAndRegister()) {
-                clearInterval(interval);
-            }
-        }, 100);
-
-        // Clean up after 5 seconds to prevent infinite checking
-        setTimeout(() => clearInterval(interval), 5000);
-    }
+    conditionalRegister();
 });

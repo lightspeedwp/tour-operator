@@ -4,7 +4,6 @@ import { registerForPostTypesAndTemplates } from '@utils/conditional-block-regis
 wp.domReady(() => {
     // Register variation function
     const registerSpecialInterestsVariation = () => {
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/special-interests',
             title: __('Special Interests', 'tour-operator'),
@@ -113,9 +112,6 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 attributes: {
                     className: 'lsx-special-interests-wrapper',

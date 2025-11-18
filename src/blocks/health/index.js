@@ -22,7 +22,7 @@ wp.domReady(() => {
             },
             attributes: {
                 metadata: {
-                    name: 'Health',
+                    name: __('Health', 'tour-operator'),
                 },
                 className: 'lsx-health-wrapper',
                 layout: {
@@ -97,9 +97,6 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 attributes: {
                     className: 'lsx-health-wrapper',

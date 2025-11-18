@@ -2,9 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
 wp.domReady(() => {
-    // Register variation function
     const registerBankingVariation = () => {
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/banking',
             title: __('Banking', 'tour-operator'),
@@ -22,7 +20,7 @@ wp.domReady(() => {
             },
             attributes: {
                 metadata: {
-                    name: 'Banking',
+                    name: __('Banking', 'tour-operator'),
                 },
                 className: 'lsx-banking-wrapper',
                 layout: {
@@ -110,9 +108,6 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 attributes: {
                     className: 'lsx-banking-wrapper',

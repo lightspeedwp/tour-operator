@@ -4,12 +4,12 @@ import { registerForPostTypesAndTemplates } from '@utils/conditional-block-regis
 wp.domReady(() => {
     // Register variation function
     const registerPriceVariation = () => {
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/price',
             title: __('Price', 'tour-operator'),
             category: 'lsx-tour-operator',
             icon: 'money-alt',
+            description: __('Displays the starting price of a tour.', 'tour-operator'),
             keywords: [
                 __('price', 'tour-operator'),
                 __('cost', 'tour-operator'),
@@ -75,9 +75,6 @@ wp.domReady(() => {
                 ],
             ],
             isDefault: false,
-            supports: {
-                renaming: false,
-            },
             example: {
                 innerBlocks: [
                     {

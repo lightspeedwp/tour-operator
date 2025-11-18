@@ -4,7 +4,6 @@ import { registerForPostTypesAndTemplates } from '@utils/conditional-block-regis
 wp.domReady(() => {
     // Register variation function
     const registerClimateVariation = () => {
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/climate',
             title: __('Climate', 'tour-operator'),
@@ -35,7 +34,7 @@ wp.domReady(() => {
             },
             attributes: {
                 metadata: {
-                    name: 'Climate',
+                    name: __('Climate', 'tour-operator'),
                 },
                 className: 'lsx-climate-wrapper',
                 layout: {
@@ -110,9 +109,6 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 attributes: {
                     className: 'lsx-climate-wrapper',

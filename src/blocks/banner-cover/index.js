@@ -1,13 +1,24 @@
-wp.domReady( () => {
-    wp.blocks.registerBlockVariation( 'core/cover', {
+import { __ } from '@wordpress/i18n';
+
+wp.domReady(() => {
+    wp.blocks.registerBlockVariation('core/cover', {
         name: 'lsx-tour-operator/banner-cover',
-        title: 'Banner Cover',
-        description: 'Cover block using banner image from custom field',
+        title: __('Banner Cover', 'tour-operator'),
+        description: __('Cover block using banner image from custom field', 'tour-operator'),
         icon: 'cover-image',
         category: 'lsx-tour-operator',
+        keywords: [
+            __('banner', 'tour-operator'),
+            __('cover', 'tour-operator'),
+            __('image', 'tour-operator'),
+            __('header', 'tour-operator'),
+        ],
+        isActive: (blockAttributes, variationAttributes) => {
+            return blockAttributes.className === variationAttributes.className;
+        },
         attributes: {
             metadata: {
-                name: 'Banner Cover',
+                name: __('Banner Cover', 'tour-operator'),
                 bindings: {
                     content: {
                         source: 'lsx/post-meta',
@@ -35,7 +46,7 @@ wp.domReady( () => {
                 {
                     align: 'center',
                     metadata: {
-                        name: 'Tagline',
+                        name: __('Tagline', 'tour-operator'),
                         bindings: {
                             content: {
                                 source: 'lsx/post-meta',
@@ -49,9 +60,28 @@ wp.domReady( () => {
                 },
             ],
         ],
-        isActive: [ 'metadata', 'className' ],
-        supports: {
-            align: [ 'full', 'wide' ],
+        example: {
+            innerBlocks: [
+                {
+                    name: 'core/group',
+                    innerBlocks: [
+                        {
+                            name: 'core/heading',
+                            attributes: {
+                                content: __('Page Title', 'tour-operator'),
+                                textAlign: 'center',
+                            },
+                        },
+                        {
+                            name: 'core/paragraph',
+                            attributes: {
+                                content: `<strong>${__('Tagline', 'tour-operator')}</strong>`,
+                                align: 'center',
+                            },
+                        },
+                    ],
+                },
+            ],
         },
-    } );
-} );
+    });
+});

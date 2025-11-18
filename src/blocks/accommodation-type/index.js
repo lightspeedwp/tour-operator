@@ -1,93 +1,123 @@
+import { __ } from '@wordpress/i18n';
+import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
+
 wp.domReady(() => {
-	const { __ } = wp.i18n;
-	wp.blocks.registerBlockVariation("core/group", {
-		name: "lsx-tour-operator/accommodation-type",
-		title: __( "Accommodation type", "tour-operator" ),
-		icon: "admin-multisite",
-		category: "lsx-tour-operator",
-		attributes: {
-			metadata: {
-				name: __( "Accommodation type", "tour-operator" ),
-			},
-			className: "lsx-accommodation-type-wrapper",
-			layout: {
-				type: "constrained",
-			},
-		},
-		innerBlocks: [
-			[
-				"core/group",
-				{
-					layout: {
-						type: "flex",
-						flexWrap: "nowrap",
-						verticalAlignment: "top",
-					},
-				},
-				[
-					[
-						"lsx-tour-operator/icons",
-						{
-							iconType: "solid",
-							iconName: "accommodationTypeIcon",
-						},
-					],
-					[
-						"core/paragraph",
-						{
-							content: "<strong>" + __( "Accommodation Type", "tour-operator" ) + "</strong>:",
-						},
-					],
-				],
+	const registerAccommodationTypeVariation = () => {
+		wp.blocks.registerBlockVariation("core/group", {
+			name: "lsx-tour-operator/accommodation-type",
+			title: __("Accommodation type", "tour-operator"),
+			icon: "admin-multisite",
+			category: "lsx-tour-operator",
+			description: __("Displays the accommodation type(s).", "tour-operator"),
+			keywords: [
+				__("accommodation", "tour-operator"),
+				__("type", "tour-operator"),
 			],
-			[
-				"core/group",
-				{
-					layout: {
-						type: "flex",
-						flexWrap: "nowrap",
-					},
-				},
-				[
-					[
-						"core/post-terms",
-						{
-							term: "accommodation-type",
-						},
-					],
-				],
-			],
-		],
-		supports: {
-			renaming: false,
-		},
-		example: {
+			isActive: (blockAttributes, variationAttributes) => {
+				return blockAttributes.className === variationAttributes.className;
+			},
 			attributes: {
 				metadata: {
-					name: __( "Accommodation Type", "tour-operator" ),
+					name: __("Accommodation type", "tour-operator"),
+				},
+				className: "lsx-accommodation-type-wrapper",
+				layout: {
+					type: "constrained",
 				},
 			},
 			innerBlocks: [
 				[
 					"core/group",
-					{},
+					{
+						layout: {
+							type: "flex",
+							flexWrap: "nowrap",
+							verticalAlignment: "middle",
+						},
+					},
 					[
 						[
-							"core/heading",
+							"lsx-tour-operator/icons",
 							{
-								content: __( "Accommodation Type", "tour-operator" ),
-								level: 3,
+								iconType: "solid",
+								iconName: "accommodationTypeIcon",
 							},
 						],
 						[
 							"core/paragraph",
 							{
-								content: __( "Luxury Safari Lodge", "tour-operator" ),
+								content: "<strong>" + __("Accommodation Type", "tour-operator") + "</strong>:",
+							},
+						],
+					],
+				],
+				[
+					"core/group",
+					{
+						layout: {
+							type: "flex",
+							flexWrap: "nowrap",
+						},
+					},
+					[
+						[
+							"core/post-terms",
+							{
+								term: "accommodation-type",
 							},
 						],
 					],
 				],
 			],
-		},
-	});
+			example: {
+				innerBlocks: [
+					{
+						name: 'core/group',
+						attributes: {
+							layout: {
+								type: 'flex',
+								flexWrap: 'nowrap',
+							},
+						},
+						innerBlocks: [
+							{
+								name: 'core/group',
+								attributes: {
+									layout: {
+										type: 'flex',
+										flexWrap: 'nowrap',
+										verticalAlignment: 'middle',
+									},
+								},
+								innerBlocks: [
+									{
+										name: 'lsx-tour-operator/icons',
+										attributes: {
+											iconType: 'solid',
+											iconName: 'accommodationTypeIcon',
+										},
+									},
+									{
+										name: 'core/paragraph',
+										attributes: {
+											content: '<strong>' + __('Accommodation Type: ', 'tour-operator') + '</strong>' + ' ' + __('Hotel', 'tour-operator'),
+										},
+									},
+								],
+							},
+						],
+					},
+				],
+			},
+		});
+	}
+
+	// Initialize conditional registration
+	const conditionalRegister = registerForPostTypesAndTemplates(
+		['accommodation'], // Supported post types
+		['accommodation'], // Template slug patterns
+		registerAccommodationTypeVariation
+	);
+
+	conditionalRegister();
 });

@@ -3,7 +3,6 @@ import { registerForPostTypesAndTemplates } from '@utils/conditional-block-regis
 
 wp.domReady(() => {
     const registerMinimumChildAgeVariation = () => {
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/minimum-child-age',
             title: __('Minimum Child Age', 'tour-operator'),
@@ -110,9 +109,6 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 attributes: {
                     className: 'lsx-minimum-child-age-wrapper',

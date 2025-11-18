@@ -22,7 +22,7 @@ wp.domReady(() => {
             },
             attributes: {
                 metadata: {
-                    name: 'Electricity',
+                    name: __('Electricity', 'tour-operator'),
                 },
                 className: 'lsx-electricity-wrapper',
                 layout: {
@@ -97,9 +97,6 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 attributes: {
                     className: 'lsx-electricity-wrapper',

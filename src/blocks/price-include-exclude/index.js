@@ -3,11 +3,10 @@ import { registerForPostTypesAndTemplates } from '@utils/conditional-block-regis
 
 wp.domReady(() => {
     const registerPriceIncludeExcludeVariation = () => {
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/price-include-exclude',
             title: __('Price Include & Exclude', 'tour-operator'),
-            description: __('Display pricing inclusion and exclusion information for accommodations.', 'tour-operator'),
+            description: __('Displays pricing inclusion and exclusion information for accommodations.', 'tour-operator'),
             icon: 'money-alt',
             category: 'lsx-tour-operator',
             keywords: [
@@ -104,9 +103,6 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 attributes: {
                     align: 'wide',

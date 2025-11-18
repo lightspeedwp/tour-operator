@@ -1,24 +1,20 @@
 import { __ } from '@wordpress/i18n';
+import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
 wp.domReady(() => {
-    const { select } = wp.data;
-
-    // Define supported post types
-    const supportedPostTypes = ['tour', 'accommodation'];
-    let registered = false;
-    let checking = false;
-
     // Register variation function
     const registerNotIncludedVariation = () => {
-        if (registered) {
-            return;
-        }
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/not-included',
             title: __('Excluded items', 'tour-operator'),
             icon: 'dismiss',
             category: 'lsx-tour-operator',
+            description: __('A block to list what is not included in the tour or accommodation price.', 'tour-operator'),
+            keywords: [
+                __('excluded', 'tour-operator'),
+                __('items', 'tour-operator'),
+                __('what is excluded', 'tour-operator'),
+            ],
             isActive: (blockAttributes, variationAttributes) => {
                 return blockAttributes.className === variationAttributes.className;
             },
@@ -51,58 +47,72 @@ wp.domReady(() => {
                     },
                 ],
             ],
-            supports: {
-                renaming: false,
+            example: {
+                attributes: {
+                    className: 'lsx-not-included-wrapper',
+                },
+                innerBlocks: [
+                    {
+                        name: 'core/group',
+                        attributes: {
+                            layout: {
+                                type: 'constrained',
+                            },
+                        },
+                        innerBlocks: [
+                            {
+                                name: 'core/group',
+                                attributes: {
+                                    layout: {
+                                        type: 'constrained',
+                                    },
+                                },
+                                innerBlocks: [
+                                    {
+                                        name: 'core/paragraph',
+                                        attributes: {
+                                            content: '<strong>' + __('Price excludes:', 'tour-operator') + '</strong>',
+                                        },
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                    {
+                        name: 'core/list',
+                        attributes: {},
+                        innerBlocks: [
+                            {
+                                name: 'core/list-item',
+                                attributes: {
+                                    content: __('International airfare', 'tour-operator'),
+                                },
+                            },
+                            {
+                                name: 'core/list-item',
+                                attributes: {
+                                    content: __('Travel insurance', 'tour-operator'),
+                                },
+                            },
+                            {
+                                name: 'core/list-item',
+                                attributes: {
+                                    content: __('Visas', 'tour-operator'),
+                                },
+                            },
+                        ],
+                    },
+                ],
             },
         });
     };
 
-    // Check if current post type is supported
-    const checkAndRegister = () => {
-        if (registered || checking) {
-            return registered;
-        }
+    // Initialize conditional registration
+    const conditionalRegister = registerForPostTypesAndTemplates(
+        ['tour', 'accommodation'], // Supported post types
+        ['tour', 'accommodation'], // Template slug patterns
+        registerNotIncludedVariation
+    );
 
-        checking = true;
-
-        try {
-            const postType = select('core/editor')?.getCurrentPostType();
-            const postSlug = select('core/editor')?.getEditedPostSlug();
-
-            if (!postType || !postSlug) {
-                checking = false;
-                return false;
-            }
-
-            if (supportedPostTypes.includes(postType) || ((postType === 'wp_template' || postType === 'wp_template_part') && (postSlug.includes('tour') || postSlug.includes('accommodation')))) {
-                registerNotIncludedVariation();
-                registered = true;
-                checking = false;
-                return true;
-            }
-        } catch (error) {
-            console.error('Error in checkAndRegister:', error);
-        }
-
-        checking = false;
-        return false;
-    };
-
-    // Try initial registration with a small delay
-    setTimeout(() => {
-        if (!checkAndRegister()) {
-            // Subscribe to editor changes if initial check failed
-            let unsubscribed = false;
-            const unsubscribe = wp.data.subscribe(() => {
-                if (unsubscribed) {
-                    return;
-                }
-
-                if (checkAndRegister()) {
-                    unsubscribed = true;
-                    unsubscribe();
-                }
-            });
-        }
-    }, 100);
+    conditionalRegister();
 });

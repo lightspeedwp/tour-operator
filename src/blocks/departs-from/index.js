@@ -1,22 +1,13 @@
 import { __ } from '@wordpress/i18n';
+import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
 wp.domReady(() => {
-    const { select } = wp.data;
-
-    // Define supported post types
-    const supportedPostTypes = ['tour'];
-    let registered = false;
-    let checking = false;
-
     // Register variation function
     const registerDepartsFromVariation = () => {
-        if (registered) {
-            return;
-        }
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/departs-from',
             title: __('Departs from', 'tour-operator'),
+            description: __('Displays the departure location of the tour.', 'tour-operator'),
             icon: wp.element.createElement(
                 'svg',
                 {
@@ -32,6 +23,10 @@ wp.domReady(() => {
                 })
             ),
             category: 'lsx-tour-operator',
+            keywords: [
+                __('departure', 'tour-operator'),
+                __('from', 'tour-operator'),
+            ],
             isActive: (blockAttributes, variationAttributes) => {
                 return blockAttributes.className === variationAttributes.className;
             },
@@ -98,58 +93,50 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
+            example: {
+                innerBlocks: [
+                    {
+                        name: 'core/group',
+                        attributes: {},
+                        innerBlocks: [
+                            {
+                                name: 'core/group',
+                                attributes: {
+                                    layout: {
+                                        type: 'flex',
+                                        flexWrap: 'nowrap',
+                                        verticalAlignment: 'middle',
+                                    },
+                                },
+                                innerBlocks: [
+                                    {
+                                        name: 'lsx-tour-operator/icons',
+                                        attributes: {
+                                            iconType: 'outline',
+                                            iconName: 'departsFromEndsInIcon',
+                                        },
+                                    },
+                                    {
+                                        name: 'core/paragraph',
+                                        attributes: {
+                                            content: '<strong>' + __('Departs From:', 'tour-operator') + '</strong>' + ' ' + __('Cape Town', 'tour-operator'),
+                                        },
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                ],
             },
         });
     };
 
-    // Check if current post type is supported
-    const checkAndRegister = () => {
-        if (registered || checking) {
-            return registered;
-        }
+    // Initialize conditional registration
+    const conditionalRegister = registerForPostTypesAndTemplates(
+        ['tour'], // Supported post types
+        ['tour'], // Template slug patterns
+        registerDepartsFromVariation
+    );
 
-        checking = true;
-
-        try {
-            const postType = select('core/editor')?.getCurrentPostType();
-            const postSlug = select('core/editor')?.getEditedPostSlug();
-
-            if (!postType || !postSlug) {
-                checking = false;
-                return false;
-            }
-
-            if (supportedPostTypes.includes(postType) || ((postType === 'wp_template' || postType === 'wp_template_part') && postSlug.includes('tour'))) {
-                registerDepartsFromVariation();
-                registered = true;
-                checking = false;
-                return true;
-            }
-        } catch (error) {
-            console.error('Error in checkAndRegister:', error);
-        }
-
-        checking = false;
-        return false;
-    };
-
-    // Try initial registration with a small delay
-    setTimeout(() => {
-        if (!checkAndRegister()) {
-            // Subscribe to editor changes if initial check failed
-            let unsubscribed = false;
-            const unsubscribe = wp.data.subscribe(() => {
-                if (unsubscribed) {
-                    return;
-                }
-
-                if (checkAndRegister()) {
-                    unsubscribed = true;
-                    unsubscribe();
-                }
-            });
-        }
-    }, 100);
+    conditionalRegister();
 });

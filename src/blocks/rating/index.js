@@ -4,11 +4,10 @@ import { registerForPostTypesAndTemplates } from '@utils/conditional-block-regis
 wp.domReady(() => {
     // Register variation function
     const registerRatingVariation = () => {
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/rating',
             title: __('Rating', 'tour-operator'),
-            description: __('Display rating and star classification for accommodations.', 'tour-operator'),
+            description: __('Displays rating and star classification for accommodations.', 'tour-operator'),
             icon: 'star-empty',
             category: 'lsx-tour-operator',
             keywords: [
@@ -131,9 +130,6 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 attributes: {
                     className: 'lsx-rating-wrapper',

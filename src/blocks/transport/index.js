@@ -4,7 +4,6 @@ import { registerForPostTypesAndTemplates } from '@utils/conditional-block-regis
 wp.domReady(() => {
     // Register variation function
     const registerTransportVariation = () => {
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/transport',
             title: __('Transport', 'tour-operator'),
@@ -96,9 +95,6 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 attributes: {
                     className: 'lsx-transport-wrapper',
@@ -169,7 +165,7 @@ wp.domReady(() => {
     // Initialize conditional registration
     const conditionalRegister = registerForPostTypesAndTemplates(
         ['destination'], // Supported post types
-        ['destination'], // Template slug patterns
+        ['destination', 'country', 'region'], // Template slug patterns
         registerTransportVariation
     );
 

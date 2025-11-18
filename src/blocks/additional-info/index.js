@@ -2,9 +2,7 @@ import { __ } from '@wordpress/i18n';
 import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
 wp.domReady(() => {
-    // Register variation function
     const registerAdditionalInfoVariation = () => {
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/additional-info',
             title: __('Additional Information', 'tour-operator'),
@@ -22,7 +20,7 @@ wp.domReady(() => {
             },
             attributes: {
                 metadata: {
-                    name: 'Additional Info',
+                    name: __('Additional Info', 'tour-operator'),
                 },
                 className: 'lsx-additional-info-wrapper',
                 layout: {
@@ -96,9 +94,6 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 attributes: {
                     className: 'lsx-additional-info-wrapper',

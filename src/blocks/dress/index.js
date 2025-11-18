@@ -4,7 +4,6 @@ import { registerForPostTypesAndTemplates } from '@utils/conditional-block-regis
 wp.domReady(() => {
     // Register variation function
     const registerDressVariation = () => {
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/dress',
             title: __('Dress', 'tour-operator'),
@@ -35,7 +34,7 @@ wp.domReady(() => {
             },
             attributes: {
                 metadata: {
-                    name: 'Dress',
+                    name: __('Dress', 'tour-operator'),
                 },
                 className: 'lsx-dress-wrapper',
                 layout: {
@@ -110,9 +109,6 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 attributes: {
                     className: 'lsx-dress-wrapper',

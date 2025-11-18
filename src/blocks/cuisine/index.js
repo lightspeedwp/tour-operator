@@ -22,7 +22,7 @@ wp.domReady(() => {
             },
             attributes: {
                 metadata: {
-                    name: 'Cuisine',
+                    name: __('Cuisine', 'tour-operator'),
                 },
                 className: 'lsx-cuisine-wrapper',
                 layout: {
@@ -97,9 +97,6 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 attributes: {
                     className: 'lsx-cuisine-wrapper',

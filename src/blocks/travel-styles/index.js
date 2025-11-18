@@ -9,6 +9,7 @@ wp.domReady(() => {
             title: __('Travel styles', 'tour-operator'),
             icon: 'airplane',
             category: 'lsx-tour-operator',
+            description: __('Display the travel styles associated with this tour.', 'tour-operator'),
             keyword: [
                 __('travel', 'tour-operator'),
                 __('styles', 'tour-operator'),
@@ -70,9 +71,6 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 innerBlocks: [
                     {

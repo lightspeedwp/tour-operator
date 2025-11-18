@@ -10,7 +10,7 @@ wp.domReady(() => {
             title: __('Duration', 'tour-operator'),
             icon: 'clock',
             category: 'lsx-tour-operator',
-            keywords:  [
+            keywords: [
                 __('duration', 'tour-operator'),
                 __('time', 'tour-operator'),
                 __('days', 'tour-operator'),
@@ -98,12 +98,7 @@ wp.domReady(() => {
                 innerBlocks: [
                     {
                         name: 'core/group',
-                        attributes: {
-                            layout: {
-                                type: 'flex',
-                                flexWrap: 'nowrap',
-                            },
-                        },
+                        attributes: {},
                         innerBlocks: [
                             {
                                 name: 'core/group',
