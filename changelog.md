@@ -31,7 +31,6 @@
 ### Enhancements
 
 #### Block System Improvements
-
 - **Block List Modernization** - Updated block structure by breaking out monolithic blocks from assets folder into individual files with dedicated block.json files for better organization and maintainability - [#489](https://github.com/lightspeedwp/tour-operator/pull/489)
 - **Conditional Block Registration** - Extracted conditional block registration logic to a separate utility file for easier maintainability and reusability - [#696](https://github.com/lightspeedwp/tour-operator/pull/696)
 - **Tour Blocks Metadata** - Enhanced tour-related blocks with comprehensive metadata, improved internationalization, descriptions, keywords, and custom SVG icons for better searchability - [#696](https://github.com/lightspeedwp/tour-operator/pull/696), [#667](https://github.com/lightspeedwp/tour-operator/pull/667)
@@ -43,6 +42,7 @@
 
 - **Itinerary Departure Day Logic** - Updated departure day to rely on the previous day's Location and Accommodation values to mimic WETU layout for better data consistency - [#491](https://github.com/lightspeedwp/tour-operator/pull/491), Issue [#481](https://github.com/lightspeedwp/tour-operator/issues/481)
 - **Gallery Render Block** - Updated Gallery render block to return blank string if gallery field is empty, preventing display of empty galleries - [#608](https://github.com/lightspeedwp/tour-operator/pull/608)
+- **Unit Block** - The unit block was merged into the Units Block [#766](https://github.com/lightspeedwp/tour-operator/pull/766)
 
 ### Removed
 
@@ -76,7 +76,7 @@
 
 - **Changelog Updates** - Multiple comprehensive changelog updates documenting travel style read more functionality, travel information filters, and other feature additions - [#661](https://github.com/lightspeedwp/tour-operator/pull/661), [#663](https://github.com/lightspeedwp/tour-operator/pull/663), Issue [#332](https://github.com/lightspeedwp/tour-operator/issues/332)
 - **Code Documentation** - Improved inline documentation and comments throughout codebase for better developer experience
-- **Block Metadata Documentation** - Enhanced block.json files with comprehensive descriptions, keywords, and i18n support for better discoverability - Multiple PRs [#625](https://github.com/lightspeedwp/tour-operator/pull/625), [#667](https://github.com/lightspeedwp/tour-operator/pull/667), [#656](https://github.com/lightspeedwp/tour-operator/pull/656), [#697](https://github.com/lightspeedwp/tour-operator/pull/697), [#763](https://github.com/lightspeedwp/tour-operator/pull/763)
+- **Block Metadata Documentation** - Enhanced block.json files with comprehensive descriptions, keywords, and i18n support for better discoverability - Multiple PRs [#625](https://github.com/lightspeedwp/tour-operator/pull/625), [#667](https://github.com/lightspeedwp/tour-operator/pull/667), [#656](https://github.com/lightspeedwp/tour-operator/pull/656), [#697](https://github.com/lightspeedwp/tour-operator/pull/697), [#763](https://github.com/lightspeedwp/tour-operator/pull/763), [#764](https://github.com/lightspeedwp/tour-operator/pull/764), [#765](https://github.com/lightspeedwp/tour-operator/pull/765)
 
 ### Deprecated
 
