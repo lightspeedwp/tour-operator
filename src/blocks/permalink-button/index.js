@@ -1,5 +1,4 @@
 import { __ } from '@wordpress/i18n';
-import { createBlock } from '@wordpress/blocks';
 
 wp.domReady(() => {
     wp.blocks.registerBlockVariation('core/buttons', {
