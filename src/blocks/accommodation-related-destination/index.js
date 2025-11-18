@@ -1,7 +1,7 @@
 /**
  * Register Accommodation Related Destination block variation
  */
-import { registerForPostTypes } from '@utils/conditional-block-registration.js';
+import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
 const { __ } = wp.i18n;
 
@@ -393,8 +393,9 @@ function registerAccommodationRelatedDestinationVariation() {
 }
 
 // Register conditionally for destination post types and destination templates
-const conditionalRegister = registerForPostTypes(
+const conditionalRegister = registerForPostTypesAndTemplates(
 	['destination'],
+	['destination', 'country', 'region'],
 	registerAccommodationRelatedDestinationVariation
 );
 
