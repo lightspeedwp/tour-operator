@@ -30,8 +30,6 @@
 
 ### Enhancements
 
-- Removing the debug statements, A filter to allow the disabling of destinations when searching for related content. Prepping the registration for the adjust block registration. Refactoring the query statments into seperate functions. Fixing the filters for the related connections - PR (#486)
-
 #### Block System Improvements
 
 - **Block List Modernization** - Updated block structure by breaking out monolithic blocks from assets folder into individual files with dedicated block.json files for better organization and maintainability - [#489](https://github.com/lightspeedwp/tour-operator/pull/489)
@@ -45,12 +43,6 @@
 
 - **Itinerary Departure Day Logic** - Updated departure day to rely on the previous day's Location and Accommodation values to mimic WETU layout for better data consistency - [#491](https://github.com/lightspeedwp/tour-operator/pull/491), Issue [#481](https://github.com/lightspeedwp/tour-operator/issues/481)
 - **Gallery Render Block** - Updated Gallery render block to return blank string if gallery field is empty, preventing display of empty galleries - [#608](https://github.com/lightspeedwp/tour-operator/pull/608)
-- **Issue Templates** - Updated issue templates for enhancement and design/UX feedback - [#580](https://github.com/lightspeedwp/tour-operator/pull/580), Issue [#568](https://github.com/lightspeedwp/tour-operator/issues/568)
-- **DistIgnore Update** - Updated `.distignore` file with additional exclusions for cleaner distribution packages
-
-#### PHP Version Support
-
-- **PHP Version Requirements** - Dropped support for older PHP versions and fixed version mismatches to align with modern WordPress standards - Issue [#469](https://github.com/lightspeedwp/tour-operator/issues/469)
 
 ### Removed
 
@@ -74,18 +66,15 @@
 ### Security
 
 - **WordPress Compatibility** - Tested and verified compatibility with WordPress 6.8.1+ for secure operation on latest platform
-- **Vendor Dependencies** - Re-added vendor folder dependencies that were incorrectly excluded to ensure security patches are included - [#652](https://github.com/lightspeedwp/tour-operator/pull/652)
-- **Dependency Updates** - Applied 52 security and compatibility updates across npm packages, composer dependencies, and GitHub Actions to address known vulnerabilities and ensure latest security patches
+- **PHP Version Requirements** - Dropped support for older PHP versions and fixed version mismatches to align with modern WordPress standards - Issue [#469](https://github.com/lightspeedwp/tour-operator/issues/469)
 - **PHPCS Standards Compliance** - Updated to WordPress Coding Standards 3.x for improved code security and quality standards - [#577](https://github.com/lightspeedwp/tour-operator/pull/577), Issue [#556](https://github.com/lightspeedwp/tour-operator/issues/556)
 - **Null Safety Improvements** - Added comprehensive null safety checks for meta attributes in slotfills to prevent potential errors and improve stability - [#762](https://github.com/lightspeedwp/tour-operator/pull/762)
 - **Input Sanitization** - Enhanced input sanitization and output escaping throughout the plugin following WordPress security best practices
 
+
 ### Documentation
 
-- **Issue Templates** - Enhanced and updated issue templates for better bug reporting, feature requests, enhancement proposals, and design/UX feedback - [#580](https://github.com/lightspeedwp/tour-operator/pull/580), Issue [#568](https://github.com/lightspeedwp/tour-operator/issues/568)
-- **PR Templates & Labeling** - Added comprehensive documentation files: ISSUE_LABELS.md, PROJECT_META.md, and PR_LABELS.md for improved project management and labeling guidelines - [#647](https://github.com/lightspeedwp/tour-operator/pull/647)
 - **Changelog Updates** - Multiple comprehensive changelog updates documenting travel style read more functionality, travel information filters, and other feature additions - [#661](https://github.com/lightspeedwp/tour-operator/pull/661), [#663](https://github.com/lightspeedwp/tour-operator/pull/663), Issue [#332](https://github.com/lightspeedwp/tour-operator/issues/332)
-- **ReadTheDocs Configuration** - Added `.readthedocs.yaml` configuration file for automated Sphinx documentation builds with Python 3.13 support
 - **Code Documentation** - Improved inline documentation and comments throughout codebase for better developer experience
 - **Block Metadata Documentation** - Enhanced block.json files with comprehensive descriptions, keywords, and i18n support for better discoverability - Multiple PRs [#625](https://github.com/lightspeedwp/tour-operator/pull/625), [#667](https://github.com/lightspeedwp/tour-operator/pull/667), [#656](https://github.com/lightspeedwp/tour-operator/pull/656), [#697](https://github.com/lightspeedwp/tour-operator/pull/697), [#763](https://github.com/lightspeedwp/tour-operator/pull/763)
 
@@ -98,7 +87,6 @@
 - **Query Block Optimization** - Fixed query block pagination to properly inherit query variables, reducing redundant database queries and improving page load times - [#608](https://github.com/lightspeedwp/tour-operator/pull/608)
 - **Block Registration Efficiency** - Standardized block metadata across 50+ blocks for more efficient block registration and loading, reducing memory footprint - [#625](https://github.com/lightspeedwp/tour-operator/pull/625), Issue [#624](https://github.com/lightspeedwp/tour-operator/issues/624)
 - **CSS Optimization** - Removed unused CSS from /assets/css directory, reducing total plugin size and improving frontend load times - [#574](https://github.com/lightspeedwp/tour-operator/pull/574), Issue [#533](https://github.com/lightspeedwp/tour-operator/issues/533)
-- **Build Process Improvements** - Migrated to @wordpress/scripts which provides better optimization, minification, and tree-shaking for production builds - [#576](https://github.com/lightspeedwp/tour-operator/pull/576), Issue [#559](https://github.com/lightspeedwp/tour-operator/issues/559)
 - **Conditional Block Registration** - Implemented conditional block registration to only load blocks when needed, improving initial page load performance - [#696](https://github.com/lightspeedwp/tour-operator/pull/696)
 
 
