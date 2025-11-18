@@ -143,7 +143,7 @@ wp.domReady(() => {
                             {
                                 name: 'core/group',
                                 attributes: {
-                                    className: 'lsx-regions-query',
+                                    className: 'lsx-related-regions-query',
                                     layout: {
                                         type: 'grid',
                                         columnCount: 2,
