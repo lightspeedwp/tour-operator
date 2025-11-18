@@ -90,10 +90,6 @@
 - **Conditional Block Registration** - Implemented conditional block registration to only load blocks when needed, improving initial page load performance - [#696](https://github.com/lightspeedwp/tour-operator/pull/696)
 
 
-
-
-
-
 ## [[2.0.2]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.0.2) - 2025-05-06
 
 ### Added
