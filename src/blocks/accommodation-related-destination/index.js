@@ -51,7 +51,7 @@ function registerAccommodationRelatedDestinationVariation() {
 						'core/heading',
 						{
 							textAlign: 'center',
-							content: __('Related accommodations', 'tour-operator'),
+							content: __('Related Accommodations', 'tour-operator'),
 							level: 2,
 						},
 					],
