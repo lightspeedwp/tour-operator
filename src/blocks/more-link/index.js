@@ -36,6 +36,7 @@ wp.domReady(() => {
             metadata: {
                 name: __('More Button', 'tour-operator'),
             },
+            className: 'lsx-to-more-link-wrapper',
         },
         innerBlocks: [
             [

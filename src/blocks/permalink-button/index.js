@@ -11,6 +11,7 @@ wp.domReady(() => {
             metadata: {
                 name: __('Permalink Button', 'tour-operator'),
             },
+            className: 'lsx-to-permalink-button-wrapper',
         },
         keywords: [
             __('permalink', 'tour-operator'),
