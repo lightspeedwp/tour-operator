@@ -37,6 +37,10 @@
 - **Destination Blocks Metadata** - Enhanced destination block variations with comprehensive metadata and conditional registration for destination-specific posts/pages - [#697](https://github.com/lightspeedwp/tour-operator/pull/697), [#656](https://github.com/lightspeedwp/tour-operator/pull/656), Issue [#691](https://github.com/lightspeedwp/tour-operator/issues/691)
 - **Accommodation Blocks Metadata** - Enhanced accommodation related blocks (Rating, Special Interests, Spoken Languages, Suggested Visitor Types, Minimum Child Age) with comprehensive metadata, improved internationalization, descriptions, keywords, and schema compliance - [#763](https://github.com/lightspeedwp/tour-operator/pull/763), [#625](https://github.com/lightspeedwp/tour-operator/pull/625), Issue [#692](https://github.com/lightspeedwp/tour-operator/issues/692), Issue [#624](https://github.com/lightspeedwp/tour-operator/issues/624)
 - **Block Icons Update** - Updated block icons for various block variations with custom SVGs for: dress, facilities, health, ends-in, departs-from, climate, transport - [#579](https://github.com/lightspeedwp/tour-operator/pull/579), Issue [#563](https://github.com/lightspeedwp/tour-operator/issues/563)
+- **Itinerary Block Refactoring** - Refactored itinerary block registration logic and integrated day-by-day block functionality directly into the itinerary block for better maintainability and functionality - Issue [#783](https://github.com/lightspeedwp/tour-operator/issues/783)
+- **Google Map Block Enhancements** - Enhanced Google Map block with improved localization support, better example content, and refined block metadata for consistent international display - Issue [#783](https://github.com/lightspeedwp/tour-operator/issues/783)
+- **Number of Rooms Block Metadata** - Enhanced Number of Rooms block with comprehensive metadata, improved examples, and better internationalization support for accommodation templates
+- **Permalink Button and More Link Blocks** - Fixed registration issues for permalink-button and more-link blocks to ensure proper functionality and consistent behavior across templates
 
 #### Feature Updates
 
@@ -51,6 +55,7 @@
 - **Unused CSS** - Audited and cleaned out unused CSS files from /assets/css directory reducing plugin size and improving performance - [#574](https://github.com/lightspeedwp/tour-operator/pull/574), Issue [#533](https://github.com/lightspeedwp/tour-operator/issues/533)
 - **Destination Restrictions** - Removed the condition restriction for 3-tier destinations for regions, allowing more flexible region hierarchies - [#654](https://github.com/lightspeedwp/tour-operator/pull/654), Issue [#330](https://github.com/lightspeedwp/tour-operator/issues/330)
 - **Outdated Testing Icons** - Removed outdated testing icons and replaced with correct icons from the design system - [#575](https://github.com/lightspeedwp/tour-operator/pull/575), Issue [#554](https://github.com/lightspeedwp/tour-operator/issues/554)
+- **Day-by-Day Block** - Removed standalone day-by-day block and integrated its functionality directly into the itinerary block for better maintainability and reduced code complexity - Issue [#783](https://github.com/lightspeedwp/tour-operator/issues/783)
 
 ### Fixed
 
