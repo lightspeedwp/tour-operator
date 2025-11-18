@@ -212,7 +212,7 @@ wp.domReady(() => {
     // Initialize conditional registration for destination context
     const conditionalRegister = registerForPostTypesAndTemplates(
         ['destination'], // Supported post types
-        ['destination'], // Template slug patterns
+        ['destination', 'country', 'region'], // Template slug patterns
         registerRegionsBlock
     );
 
