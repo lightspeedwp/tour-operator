@@ -189,7 +189,7 @@ wp.domReady(() => {
     // Initialize conditional registration
     const conditionalRegister = registerForPostTypesAndTemplates(
         ['destination'], // Supported post types
-        ['destination'], // Template slug patterns
+        ['destination', 'country', 'region'], // Template slug patterns
         registerDressVariation
     );
 

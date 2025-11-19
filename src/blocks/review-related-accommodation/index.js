@@ -8,7 +8,7 @@
  * @package Tour_Operator
  */
 
-import { registerForPostTypes } from '@utils/conditional-block-registration.js';
+import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -256,9 +256,6 @@ function registerReviewRelatedAccommodationVariation() {
                 },
             ],
         },
-        supports: {
-            renaming: false,
-        },
         isActive: (blockAttributes) => {
             return (
                 blockAttributes.className === 'lsx-review-related-accommodation-query-wrapper' ||
@@ -270,7 +267,8 @@ function registerReviewRelatedAccommodationVariation() {
 }
 
 // Register conditionally for accommodation post types and accommodation templates
-const conditionalRegister = registerForPostTypes(
+const conditionalRegister = registerForPostTypesAndTemplates(
+    ['accommodation'],
     ['accommodation'],
     registerReviewRelatedAccommodationVariation
 );

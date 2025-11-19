@@ -379,9 +379,6 @@ function registerTourRelatedDestinationVariation() {
                 },
             ],
         },
-        supports: {
-            renaming: false,
-        },
         isActive: (blockAttributes) => {
             return (
                 blockAttributes.className === 'lsx-tour-related-destination-query-wrapper' ||

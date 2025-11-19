@@ -114,9 +114,6 @@ function registerAccommodationRelatedDestinationVariation() {
 				],
 			],
 		],
-		supports: {
-			renaming: false,
-		},
 		example: {
 			innerBlocks: [
 				{

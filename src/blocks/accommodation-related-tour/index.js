@@ -8,7 +8,7 @@
  * @package Tour_Operator
  */
 
-import { registerForPostTypes } from '@utils/conditional-block-registration.js';
+import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -113,9 +113,6 @@ function registerAccommodationRelatedTourVariation() {
 				],
 			],
 		],
-		supports: {
-			renaming: false,
-		},
 		example: {
 			innerBlocks: [
 				{
@@ -398,7 +395,8 @@ function registerAccommodationRelatedTourVariation() {
 }
 
 // Register conditionally for tour post types and tour templates
-const conditionalRegister = registerForPostTypes(
+const conditionalRegister = registerForPostTypesAndTemplates(
+	['tour'],
 	['tour'],
 	registerAccommodationRelatedTourVariation
 );
