@@ -69,7 +69,7 @@ wp.domReady(() => {
                             'core/heading',
                             {
                                 textAlign: 'center',
-                                content: 'Units',
+                                content: __('Units', 'tour-operator'),
                             },
                         ],
                         [

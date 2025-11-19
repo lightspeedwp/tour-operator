@@ -75,7 +75,7 @@ wp.domReady(() => {
                             'core/heading',
                             {
                                 textAlign: 'center',
-                                content: 'Facilities',
+                                content: __('Facilities', 'tour-operator'),
                             },
                         ],
                         [

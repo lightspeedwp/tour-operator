@@ -47,6 +47,7 @@ wp.domReady(() => {
                         [
                             'lsx-tour-operator/icons',
                             {
+                                iconType: 'outline',
                                 iconName: 'bestMonthsToTravelIcon',
                             },
                         ],
@@ -105,6 +106,7 @@ wp.domReady(() => {
                                     {
                                         name: 'lsx-tour-operator/icons',
                                         attributes: {
+                                            iconType: 'outline',
                                             iconName: 'bestMonthsToTravelIcon',
                                         },
                                     },

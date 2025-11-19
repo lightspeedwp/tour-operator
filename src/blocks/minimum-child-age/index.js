@@ -137,7 +137,7 @@ wp.domReady(() => {
                             layout: {
                                 type: 'flex',
                                 flexWrap: 'nowrap',
-                                verticalAlignment: 'top',
+                                verticalAlignment: 'middle',
                             },
                         },
                         innerBlocks: [
