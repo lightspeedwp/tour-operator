@@ -12,6 +12,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import { useState } from '@wordpress/element';
 import { PanelBody, RadioControl } from '@wordpress/components';
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
+import { __ } from '@wordpress/i18n';
 import icons from './icons.react.js';
 
 import './style.scss';
@@ -88,9 +89,9 @@ registerBlockType('lsx-tour-operator/icons', {
         return (
             <div {...blockProps}>
                 <InspectorControls>
-                    <PanelBody title="Icon Settings" initialOpen={true}>
+                    <PanelBody title={__("Icon Settings", "lsx-tour-operator")} initialOpen={true}>
                         <RadioControl
-                            label="Type"
+                            label={__("Type", "lsx-tour-operator")}
                             onChange={updateType}
                             selected={localType}
                             options={iconTypes.map((type) => ({
@@ -112,11 +113,11 @@ registerBlockType('lsx-tour-operator/icons', {
                     <>
                         <input
                             type="text"
-                            placeholder="Search icons..."
+                            placeholder={__("Search icons...", "lsx-tour-operator")}
                             value={filter}
                             onChange={(e) => setFilter(e.target.value)}
                             className="lsx-icons-search"
-                            aria-label="Search icons"
+                            aria-label={__("Search icons", "lsx-tour-operator")}
                             autoComplete="off"
                         />
                         <div
