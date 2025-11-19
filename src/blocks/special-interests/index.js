@@ -1,8 +1,8 @@
 /**
  * Special Interests Block Variation
  *
- * Registers a block variation for displaying special interests taxonomy.
- * Only available on tour post type edit screens.
+ * Registers a block variation for displaying special interests for an accommodation.
+ * Only available on accommodations post type edit screens.
  *
  * @since 2.1.0
  * @package Tour_Operator
@@ -56,7 +56,7 @@ wp.domReady(() => {
             },
             attributes: {
                 metadata: {
-                    name: 'Special Interests',
+                    name: __('Special Interests', 'tour-operator'),
                 },
                 className: 'lsx-special-interests-wrapper',
                 layout: {

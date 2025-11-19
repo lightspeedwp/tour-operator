@@ -15,7 +15,7 @@ wp.domReady(() => {
     const registerFacilitiesVariation = () => {
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/facilities',
-            title: __('Facilities', 'lsx-tour-operator'),
+            title: __('Facilities', 'tour-operator'),
             description: __('Displays the list of facilities for this accommodation.', 'lsx-tour-operator'),
             icon: wp.element.createElement(
                 'svg',
@@ -33,15 +33,15 @@ wp.domReady(() => {
             ),
             category: 'lsx-tour-operator',
             keywords: [
-                __('facilities', 'lsx-tour-operator'),
-                __('amenities', 'lsx-tour-operator'),
+                __('facilities', 'tour-operator'),
+                __('amenities', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
                 return blockAttributes.className === variationAttributes.className;
             },
             attributes: {
                 metadata: {
-                    name: __('Facilities', 'lsx-tour-operator'),
+                    name: __('Facilities', 'tour-operator'),
                 },
                 className: 'lsx-facilities-wrapper',
                 layout: {

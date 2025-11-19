@@ -2,7 +2,7 @@
  * Google Map Block Variation
  *
  * Registers a block variation for displaying Google Maps integration.
- * Available across all post types and templates.
+ * Available across all TO post types and templates.
  *
  * @since 2.1.0
  * @package Tour_Operator

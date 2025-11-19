@@ -2,7 +2,7 @@
  * Suggested Visitor Types Block Variation
  *
  * Registers a block variation for displaying suggested visitor types.
- * Only available on destination post types, destinations, country, and region templates screens.
+ * Only available on accommodation post types and templates screens.
  *
  * @since 2.1.0
  * @package Tour_Operator

@@ -16,7 +16,7 @@ wp.domReady(() => {
         title: __('TO Gallery', 'tour-operator'),
         icon: 'format-gallery',
         category: 'lsx-tour-operator',
-        description: __('Display multiple images a Tour Operator gallery', 'tour-operator'),
+        description: __('Display multiple images in a Tour Operator gallery', 'tour-operator'),
         attributes: {
             metadata: {
                 name: __('TO Gallery', 'tour-operator'),

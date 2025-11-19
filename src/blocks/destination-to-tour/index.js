@@ -1,8 +1,8 @@
 /**
  * Destination to Tour Block Variation
  *
- * Registers a block variation for displaying tours linked to this destination.
- * Only available on destination, country, and region post type edit screens.
+ * Registers a block variation for displaying destinations linked to this tours.
+ * Only available on tour post type edit screens.
  *
  * @since 2.1.0
  * @package Tour_Operator

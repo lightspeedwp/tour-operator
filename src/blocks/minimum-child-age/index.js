@@ -2,7 +2,7 @@
  * Minimum Child Age Block Variation
  *
  * Registers a block variation for displaying minimum age requirements for children.
- * Only available on tour post type edit screens.
+ * Only available on accommodation post type edit screens.
  *
  * @since 2.1.0
  * @package Tour_Operator

@@ -2,7 +2,7 @@
  * Spoken Languages Block Variation
  *
  * Registers a block variation for displaying spoken languages information.
- * Only available on destination post types, destinations, country, and region templates screens.
+ * Only available on accommodations post types and templates screens.
  *
  * @since 2.1.0
  * @package Tour_Operator
@@ -32,7 +32,7 @@ wp.domReady(() => {
             },
             attributes: {
                 metadata: {
-                    name: 'Spoken Languages',
+                    name: __('Spoken Languages', 'tour-operator'),
                 },
                 className: 'lsx-spoken-languages-wrapper',
                 layout: {

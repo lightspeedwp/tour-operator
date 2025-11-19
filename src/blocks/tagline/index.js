@@ -2,7 +2,7 @@
  * Tagline Block Variation
  *
  * Registers a block variation for displaying post taglines.
- * Available across all post types and templates.
+ * Available across tour post types and templates.
  *
  * @since 2.1.0
  * @package Tour_Operator

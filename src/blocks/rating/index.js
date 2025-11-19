@@ -1,8 +1,8 @@
 /**
  * Rating Block Variation
  *
- * Registers a block variation for displaying accommodation and tour ratings.
- * Only available on accommodation and tour post type edit screens.
+ * Registers a block variation for displaying accommodation ratings.
+ * Only available on accommodation post type edit screens.
  *
  * @since 2.1.0
  * @package Tour_Operator

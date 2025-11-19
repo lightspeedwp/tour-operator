@@ -1,8 +1,8 @@
 /**
  * Additional Info Block Variation
  *
- * Registers a block variation for displaying additional tour information.
- * Only available on tour post type edit screens.
+ * Registers a block variation for displaying additional information.
+ * Only available on destination post type edit screens.
  *
  * @since 2.1.0
  * @package Tour_Operator
