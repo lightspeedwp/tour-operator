@@ -185,7 +185,7 @@ lsx_to.add_mobile_header = function (section, context) {
         existing_header.style.color = computedStyles.color;
         existing_header.style.fontSize = computedStyles.fontSize;
 
-        // get padding and margin from the buttons
+        // get padding from the buttons
         if (sticky_menu_buttons && sticky_menu_buttons.length > 0) {
             const buttonStyles = window.getComputedStyle(sticky_menu_buttons[0]);
             existing_header.style.padding = buttonStyles.padding;
