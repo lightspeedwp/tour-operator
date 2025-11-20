@@ -1040,7 +1040,14 @@ class Bindings {
 			return $block_content;
 		}
 
-		$url           = get_permalink();
+		if ( isset( $block_obj->context['termId'] ) && isset( $block_obj->context['taxonomy'] ) ) {
+			$term_id  = $block_obj->context['termId'];
+			$taxonomy = $block_obj->context['taxonomy'];
+			$url      = get_term_link( (int) $term_id, $taxonomy );
+		} else {
+			$url = get_permalink();
+		}
+		
 		$pattern       = '/#permalink/s';
 		$block_content = preg_replace( $pattern, $url, $block_content );
 
