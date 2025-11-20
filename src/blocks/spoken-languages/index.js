@@ -1,3 +1,13 @@
+/**
+ * Spoken Languages Block Variation
+ *
+ * Registers a block variation for displaying spoken languages information.
+ * Only available on accommodations post types and templates screens.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
 import { __ } from '@wordpress/i18n';
 import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
@@ -22,7 +32,7 @@ wp.domReady(() => {
             },
             attributes: {
                 metadata: {
-                    name: 'Spoken Languages',
+                    name: __('Spoken Languages', 'tour-operator'),
                 },
                 className: 'lsx-spoken-languages-wrapper',
                 layout: {
@@ -88,9 +98,6 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 attributes: {
                     className: 'lsx-spoken-languages-wrapper',

@@ -1,3 +1,13 @@
+/**
+ * Travel Styles Block Variation
+ *
+ * Registers a block variation for displaying travel styles taxonomy.
+ * Only available on tour post type edit screens.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
 import { __ } from '@wordpress/i18n';
 import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
@@ -9,6 +19,7 @@ wp.domReady(() => {
             title: __('Travel styles', 'tour-operator'),
             icon: 'airplane',
             category: 'lsx-tour-operator',
+            description: __('Display the travel styles associated with this tour.', 'tour-operator'),
             keyword: [
                 __('travel', 'tour-operator'),
                 __('styles', 'tour-operator'),
@@ -70,9 +81,6 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 innerBlocks: [
                     {

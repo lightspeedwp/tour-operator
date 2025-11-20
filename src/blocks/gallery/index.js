@@ -1,12 +1,25 @@
-wp.domReady( () => {
-    wp.blocks.registerBlockVariation( 'core/gallery', {
+/**
+ * Gallery Block Variation
+ *
+ * Registers a gallery block variation for displaying post galleries.
+ * Available across all post types and templates.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
+import { __ } from '@wordpress/i18n';
+
+wp.domReady(() => {
+    wp.blocks.registerBlockVariation('core/gallery', {
         name: 'lsx-tour-operator/gallery',
-        title: 'TO Gallery',
+        title: __('TO Gallery', 'tour-operator'),
         icon: 'format-gallery',
         category: 'lsx-tour-operator',
+        description: __('Display multiple images in a Tour Operator gallery', 'tour-operator'),
         attributes: {
             metadata: {
-                name: 'TO Gallery',
+                name: __('TO Gallery', 'tour-operator'),
                 bindings: {
                     content: {
                         source: 'lsx/gallery',
@@ -40,5 +53,5 @@ wp.domReady( () => {
             ],
         ],
         isDefault: false,
-    } );
-} );
+    });
+});

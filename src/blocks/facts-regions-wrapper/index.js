@@ -1,24 +1,35 @@
 /**
  * Facts Regions Wrapper Block Variation
  *
- * Registers a block variation for destination regions display.
- * Only available on destination post type edit screens.
+ * Registers a block variation for displaying regional facts in a structured wrapper.
+ * Only available on destination post types, destinations, country, and region templates screens.
  *
  * @since 2.1.0
  * @package Tour_Operator
  */
 
 import { __ } from '@wordpress/i18n';
+import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
-function registerFactsRegionsWrapperVariation() {
-    try {
+
+
+wp.domReady(() => {
+    const registerFactsRegionsWrapperVariation = () => {
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/facts-regions-wrapper',
             title: __('Regions list', 'tour-operator'),
             icon: 'admin-site-alt',
             category: 'lsx-tour-operator',
-            isActive: (blockAttributes) =>
-                blockAttributes?.className?.includes('facts-regions-query-wrapper'),
+            description: __('Displays a list of regions associated with this destination.', 'tour-operator'),
+            keywords: [
+                __('regions', 'tour-operator'),
+                __('destination', 'tour-operator'),
+                __('location', 'tour-operator'),
+                __('facts', 'tour-operator'),
+            ],
+            isActive: (blockAttributes, variationAttributes) => {
+                return blockAttributes.className === variationAttributes.className;
+            },
             attributes: {
                 metadata: {
                     name: __('Regions list', 'tour-operator'),
@@ -83,93 +94,50 @@ function registerFactsRegionsWrapperVariation() {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
-                attributes: {
-                    metadata: {
-                        name: __('Regions list', 'tour-operator'),
-                    },
-                },
                 innerBlocks: [
-                    [
-                        'core/group',
-                        {},
-                        [
-                            [
-                                'core/heading',
-                                {
-                                    content: __('Regions', 'tour-operator'),
-                                    level: 3,
+                    {
+                        name: 'core/group',
+                        attributes: {},
+                        innerBlocks: [
+                            {
+                                name: 'core/group',
+                                attributes: {
+                                    layout: {
+                                        type: 'flex',
+                                        flexWrap: 'nowrap',
+                                        verticalAlignment: 'middle',
+                                    },
                                 },
-                            ],
-                            [
-                                'core/paragraph',
-                                {
-                                    content: 'Western Cape, Eastern Cape, Northern Cape',
-                                },
-                            ],
+                                innerBlocks: [
+                                    {
+                                        name: 'lsx-tour-operator/icons',
+                                        attributes: {
+                                            iconType: 'solid',
+                                            iconName: 'destinationIcon',
+                                        },
+                                    },
+                                    {
+                                        name: 'core/paragraph',
+                                        attributes: {
+                                            content: '<strong>' + __('Regions: ', 'tour-operator') + '</strong>' + ' ' + __('Kilimanjaro region', 'tour-operator'),
+                                        },
+                                    },
+                                ],
+                            },
                         ],
-                    ],
+                    },
                 ],
             },
         });
-        return true;
-    } catch (error) {
-        console.error('Failed to register facts-regions-wrapper block:', error);
-        return false;
     }
-}
 
-wp.domReady(() => {
-    const { select } = wp.data;
+    // Initialize conditional registration
+    const conditionalRegister = registerForPostTypesAndTemplates(
+        ['destination'], // Supported post types
+        ['destination', 'country', 'region'], // Template slug patterns
+        registerFactsRegionsWrapperVariation
+    );
 
-    // Define supported post types
-    const supportedPostTypes = ['destination'];
-    let registered = false;
-
-    // Check if current post type is supported
-    const checkAndRegister = () => {
-        if (registered) {
-            return true;
-        }
-
-        const postType = select('core/editor')?.getCurrentPostType();
-        const postSlug = select('core/editor')?.getEditedPostSlug();
-
-        if (!postType) {
-            return false;
-        }
-
-        const isTemplateContext =
-            postType === 'wp_template' || postType === 'wp_template_part';
-
-        if (
-            supportedPostTypes.includes(postType) ||
-            (isTemplateContext &&
-                postSlug &&
-                (postSlug.includes('destination') ||
-                    postSlug.includes('country') ||
-                    postSlug.includes('region')))
-        ) {
-            registerFactsRegionsWrapperVariation();
-            registered = true;
-        }
-
-        return registered;
-    };
-
-    // Try immediate registration
-    if (!checkAndRegister()) {
-        // If not ready, check periodically
-        const interval = setInterval(() => {
-            if (checkAndRegister()) {
-                clearInterval(interval);
-            }
-        }, 100);
-
-        // Clean up after 5 seconds to prevent infinite checking
-        setTimeout(() => clearInterval(interval), 5000);
-    }
+    conditionalRegister();
 });

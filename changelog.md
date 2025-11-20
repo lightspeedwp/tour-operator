@@ -41,6 +41,10 @@
 - **Google Map Block Enhancements** - Enhanced Google Map block with improved localization support, better example content, and refined block metadata for consistent international display - Issue [#783](https://github.com/lightspeedwp/tour-operator/issues/783)
 - **Number of Rooms Block Metadata** - Enhanced Number of Rooms block with comprehensive metadata, improved examples, and better internationalization support for accommodation templates
 - **Permalink Button and More Link Blocks** - Fixed registration issues for permalink-button and more-link blocks to ensure proper functionality and consistent behavior across templates
+- **Block Structure Standardization** - Standardized all block variations to use consistent registration patterns, examples, and metadata structure for improved maintainability and better user experience in the block editor - Issue [#770](https://github.com/lightspeedwp/tour-operator/issues/770)
+- **Conditional Block Registration System** - Refactored all destination, accommodation, and tour blocks to use the conditional registration utility, ensuring blocks appear only in relevant post type contexts for cleaner editor experience - Issue [#583](https://github.com/lightspeedwp/tour-operator/issues/583)
+- **Internationalization Improvements** - Enhanced all block definitions with proper i18n support using `@wordpress/i18n` for consistent translation handling across the entire block system - Issue [#583](https://github.com/lightspeedwp/tour-operator/issues/583)
+- **Block Metadata Cleanup** - Cleaned up block.json files and registration code across 80+ blocks, removing unused dependencies and improving asset loading efficiency - Issue [#770](https://github.com/lightspeedwp/tour-operator/issues/770)
 
 #### Feature Updates
 
@@ -56,6 +60,7 @@
 - **Destination Restrictions** - Removed the condition restriction for 3-tier destinations for regions, allowing more flexible region hierarchies - [#654](https://github.com/lightspeedwp/tour-operator/pull/654), Issue [#330](https://github.com/lightspeedwp/tour-operator/issues/330)
 - **Outdated Testing Icons** - Removed outdated testing icons and replaced with correct icons from the design system - [#575](https://github.com/lightspeedwp/tour-operator/pull/575), Issue [#554](https://github.com/lightspeedwp/tour-operator/issues/554)
 - **Day-by-Day Block** - Removed standalone day-by-day block and integrated its functionality directly into the itinerary block for better maintainability and reduced code complexity - Issue [#783](https://github.com/lightspeedwp/tour-operator/issues/783)
+- **Block Registration Cleanup** - Removed legacy block registration patterns and unused dependencies across all block definitions to improve loading performance and code maintainability - Issue [#770](https://github.com/lightspeedwp/tour-operator/issues/770)
 
 ### Fixed
 
@@ -67,6 +72,7 @@
 - **Special Interests Key** - Fixed special-interests key issue in accommodation blocks metadata - Multiple commits in [#763](https://github.com/lightspeedwp/tour-operator/pull/763)
 - **Block isActive Selector** - Fixed isActive selector for blocks to properly highlight active block variations in the editor - [#696](https://github.com/lightspeedwp/tour-operator/pull/696)
 - **Dialog Attribute Handling** - Fixed dialog open attribute handling in allowed HTML tags for proper KSES compatibility - Multiple commits, Issue [#69](https://github.com/lightspeedwp/tour-operator/issues/69)
+- **Block Translation Consistency** - Fixed missing translatable strings and inconsistent i18n implementation across block definitions, ensuring all block titles, descriptions, and keywords are properly translatable - Issue [#770](https://github.com/lightspeedwp/tour-operator/issues/770)
 
 ### Security
 
@@ -93,6 +99,7 @@
 - **Block Registration Efficiency** - Standardized block metadata across 50+ blocks for more efficient block registration and loading, reducing memory footprint - [#625](https://github.com/lightspeedwp/tour-operator/pull/625), Issue [#624](https://github.com/lightspeedwp/tour-operator/issues/624)
 - **CSS Optimization** - Removed unused CSS from /assets/css directory, reducing total plugin size and improving frontend load times - [#574](https://github.com/lightspeedwp/tour-operator/pull/574), Issue [#533](https://github.com/lightspeedwp/tour-operator/issues/533)
 - **Conditional Block Registration** - Implemented conditional block registration to only load blocks when needed, improving initial page load performance - [#696](https://github.com/lightspeedwp/tour-operator/pull/696)
+- **Block Asset Optimization** - Optimized block asset dependencies and loading patterns across 80+ blocks, reducing JavaScript bundle sizes and improving editor loading times - Issue [#770](https://github.com/lightspeedwp/tour-operator/issues/770)
 
 
 ## [[2.0.2]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.0.2) - 2025-05-06

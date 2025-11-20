@@ -1,22 +1,23 @@
+/**
+ * Ends In Block Variation
+ *
+ * Registers a block variation for displaying tour end location.
+ * Only available on tour post type edit screens.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
 import { __ } from '@wordpress/i18n';
+import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
 wp.domReady(() => {
-    const { select } = wp.data;
-
-    // Define supported post types
-    const supportedPostTypes = ['tour'];
-    let registered = false;
-    let checking = false;
-
     // Register variation function
     const registerEndsInVariation = () => {
-        if (registered) {
-            return;
-        }
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/ends-in',
             title: __('Ends in', 'tour-operator'),
+            description: __('Displays the destination where the tour ends.', 'tour-operator'),
             icon: wp.element.createElement(
                 'svg',
                 {
@@ -32,6 +33,11 @@ wp.domReady(() => {
                 })
             ),
             category: 'lsx-tour-operator',
+            keywords: [
+                __('arrival', 'tour-operator'),
+                __('ends in', 'tour-operator'),
+                __('to', 'tour-operator'),
+            ],
             isActive: (blockAttributes, variationAttributes) => {
                 return blockAttributes.className === variationAttributes.className;
             },
@@ -98,58 +104,49 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
+            example: {
+                innerBlocks: [
+                    {
+                        name: 'core/group',
+                        attributes: {},
+                        innerBlocks: [
+                            {
+                                name: 'core/group',
+                                attributes: {
+                                    layout: {
+                                        type: 'flex',
+                                        flexWrap: 'nowrap',
+                                        verticalAlignment: 'middle',
+                                    },
+                                },
+                                innerBlocks: [
+                                    {
+                                        name: 'lsx-tour-operator/icons',
+                                        attributes: {
+                                            iconType: 'outline',
+                                            iconName: 'departsFromEndsInIcon',
+                                        },
+                                    },
+                                    {
+                                        name: 'core/paragraph',
+                                        attributes: {
+                                            content: '<strong>' + __('Ends In:', 'tour-operator') + '</strong>' + ' ' + __('Cape Town', 'tour-operator'),
+                                        },
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                ],
             },
         });
     };
+    // Initialize conditional registration
+    const conditionalRegister = registerForPostTypesAndTemplates(
+        ['tour'], // Supported post types
+        ['tour'], // Template slug patterns
+        registerEndsInVariation
+    );
 
-    // Check if current post type is supported
-    const checkAndRegister = () => {
-        if (registered || checking) {
-            return registered;
-        }
-
-        checking = true;
-
-        try {
-            const postType = select('core/editor')?.getCurrentPostType();
-            const postSlug = select('core/editor')?.getEditedPostSlug();
-
-            if (!postType || !postSlug) {
-                checking = false;
-                return false;
-            }
-
-            if (supportedPostTypes.includes(postType) || ((postType === 'wp_template' || postType === 'wp_template_part') && postSlug.includes('tour'))) {
-                registerEndsInVariation();
-                registered = true;
-                checking = false;
-                return true;
-            }
-        } catch (error) {
-            console.error('Error in checkAndRegister:', error);
-        }
-
-        checking = false;
-        return false;
-    };
-
-    // Try initial registration with a small delay
-    setTimeout(() => {
-        if (!checkAndRegister()) {
-            // Subscribe to editor changes if initial check failed
-            let unsubscribed = false;
-            const unsubscribe = wp.data.subscribe(() => {
-                if (unsubscribed) {
-                    return;
-                }
-
-                if (checkAndRegister()) {
-                    unsubscribed = true;
-                    unsubscribe();
-                }
-            });
-        }
-    }, 100);
+    conditionalRegister();
 });

@@ -1,3 +1,13 @@
+/**
+ * Featured Destinations Block Variation
+ *
+ * Registers a block variation for displaying destinations with featured tag.
+ * Available across all post types and templates.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
 import { __ } from '@wordpress/i18n';
 
 wp.domReady(() => {

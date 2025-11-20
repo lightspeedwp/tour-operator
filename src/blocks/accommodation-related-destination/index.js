@@ -1,9 +1,15 @@
 /**
- * Register Accommodation Related Destination block variation
+ * Accommodation Related Destination Block Variation
+ *
+ * Registers a block variation for displaying accommodations related to destination.
+ * Only available on destination post types and destination, country, and region template screens.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
  */
-import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
-const { __ } = wp.i18n;
+import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
+import { __ } from '@wordpress/i18n';
 
 /**
  * Register the accommodation related destination block variation
@@ -108,9 +114,6 @@ function registerAccommodationRelatedDestinationVariation() {
 				],
 			],
 		],
-		supports: {
-			renaming: false,
-		},
 		example: {
 			innerBlocks: [
 				{

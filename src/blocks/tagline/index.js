@@ -1,15 +1,25 @@
+/**
+ * Tagline Block Variation
+ *
+ * Registers a block variation for displaying post taglines.
+ * Available across tour post types and templates.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
 import { __ } from '@wordpress/i18n';
 import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
 wp.domReady(() => {
     // Register variation function
     const registerTaglineVariation = () => {
-
         wp.blocks.registerBlockVariation('core/paragraph', {
             name: 'lsx-tour-operator/tagline',
             title: __('Tagline', 'tour-operator'),
             category: 'lsx-tour-operator',
             icon: 'text-page',
+            description: __('Displays the tagline or slogan for this tour.', 'tour-operator'),
             keywords: [
                 __('tagline', 'tour-operator'),
                 __('slogan', 'tour-operator'),
@@ -37,9 +47,6 @@ wp.domReady(() => {
                 className: 'lsx-tagline-wrapper',
             },
             isDefault: false,
-            supports: {
-                renaming: false,
-            },
             example: {
                 innerBlocks: [
                     {

@@ -1,29 +1,40 @@
 /**
  * Visa Block Variation
  *
- * Registers a block variation for destination visa information display.
- * Only available on destination post type edit screens.
+ * Registers a block variation for displaying visa requirements and information.
+ * Only available on destination post types, destinations, country, and region templates screens.
  *
  * @since 2.1.0
  * @package Tour_Operator
  */
 
 import { __ } from '@wordpress/i18n';
+import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
-function registerVisaVariation() {
-    try {
+wp.domReady(() => {
+    const registerVisaVariation = () => {
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/visa',
             title: __('Visa', 'tour-operator'),
             icon: 'id-alt',
             category: 'lsx-tour-operator',
-            isActive: (blockAttributes) =>
-                blockAttributes?.className?.includes('lsx-visa-wrapper'),
+            description: __('Displays visa information for this destination.', 'tour-operator'),
+            keywords: [
+                __('visa', 'tour-operator'),
+                __('information', 'tour-operator'),
+                __('travel visa', 'tour-operator'),
+            ],
+            isActive: (blockAttributes, variationAttributes) => {
+                return blockAttributes.className === variationAttributes.className;
+            },
             attributes: {
                 metadata: {
                     name: __('Visa', 'tour-operator'),
                 },
                 className: 'lsx-visa-wrapper',
+                layout: {
+                    type: 'constrained',
+                },
             },
             innerBlocks: [
                 [
@@ -86,99 +97,85 @@ function registerVisaVariation() {
                             'core/button',
                             {
                                 width: 100,
-                                content: __('View More', 'tour-operator'),
+                                text: __('View More', 'tour-operator'),
                             },
                         ],
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 attributes: {
-                    metadata: {
-                        name: __('Visa', 'tour-operator'),
-                    },
+                    className: 'lsx-visa-wrapper',
                 },
                 innerBlocks: [
-                    [
-                        'core/group',
-                        {},
-                        [
-                            [
-                                'core/heading',
-                                {
-                                    content: __('Visa', 'tour-operator'),
-                                    level: 3,
+                    {
+                        name: 'core/group',
+                        attributes: {
+                            layout: {
+                                type: 'constrained',
+                            },
+                        },
+                        innerBlocks: [
+                            {
+                                name: 'core/group',
+                                attributes: {
+                                    layout: {
+                                        type: 'constrained',
+                                    },
                                 },
-                            ],
-                            [
-                                'core/paragraph',
-                                {
-                                    content: __('Visa requirements and information.', 'tour-operator'),
+                                innerBlocks: [
+                                    {
+                                        name: 'core/paragraph',
+                                        attributes: {
+                                            align: 'center',
+                                            content: '<strong>' + __('Visa', 'tour-operator') + '</strong>',
+                                        },
+                                    },
+                                ],
+                            },
+                            {
+                                name: 'core/group',
+                                attributes: {
+                                    layout: {
+                                        type: 'constrained',
+                                    },
                                 },
-                            ],
+                                innerBlocks: [
+                                    {
+                                        name: 'core/paragraph',
+                                        attributes: {
+                                            content: __('Visa information will be displayed here.', 'tour-operator'),
+                                        },
+                                    },
+                                ],
+                            },
                         ],
-                    ],
+                    },
+                    {
+                        name: 'core/buttons',
+                        attributes: {},
+                        innerBlocks: [
+                            {
+                                name: 'core/button',
+                                attributes: {
+                                    backgroundColor: 'primary',
+                                    width: 100,
+                                    text: __('View More', 'tour-operator'),
+                                },
+                            },
+                        ],
+                    },
                 ],
             },
         });
-        return true;
-    } catch (error) {
-        console.error('Failed to register visa block:', error);
-        return false;
     }
-}
 
-wp.domReady(() => {
-    const { select } = wp.data;
+    // Initialize conditional registration
+    const conditionalRegister = registerForPostTypesAndTemplates(
+        ['destination'], // Supported post types
+        ['destination', 'country', 'region'], // Template slug patterns
+        registerVisaVariation
+    );
 
-    // Define supported post types
-    const supportedPostTypes = ['destination'];
-    let registered = false;
-
-    // Check if current post type is supported
-    const checkAndRegister = () => {
-        if (registered) {
-            return true;
-        }
-
-        const postType = select('core/editor')?.getCurrentPostType();
-        const postSlug = select('core/editor')?.getEditedPostSlug();
-
-        if (!postType) {
-            return false;
-        }
-
-        const isTemplateContext =
-            postType === 'wp_template' || postType === 'wp_template_part';
-
-        if (
-            supportedPostTypes.includes(postType) ||
-            (isTemplateContext &&
-                postSlug &&
-                (postSlug.includes('destination') ||
-                    postSlug.includes('country') ||
-                    postSlug.includes('region')))
-        ) {
-            registerVisaVariation();
-            registered = true;
-        }
-
-        return registered;
-    };
-
-    // Try immediate registration
-    if (!checkAndRegister()) {
-        // If not ready, check periodically
-        const interval = setInterval(() => {
-            if (checkAndRegister()) {
-                clearInterval(interval);
-            }
-        }, 100);
-
-        // Clean up after 5 seconds to prevent infinite checking
-        setTimeout(() => clearInterval(interval), 5000);
-    }
+    conditionalRegister();
 });
