@@ -20,6 +20,7 @@ import { useEffect } from '@wordpress/element';
  * Internal dependencies
  */
 import blockConfig from './block.json';
+import Inspector from './inspector';
 import './style.scss';
 
 /**
@@ -34,16 +35,42 @@ import './style.scss';
  * @param {Function} props.setAttributes Function to update block attributes.
  * @return {JSX.Element} The edit component.
  */
-function Edit({ attributes, setAttributes }) {
-  const { backgroundColor, textColor, menuItems = [] } = attributes;
+function Edit({ attributes, setAttributes, clientId }) {
+  const {
+    backgroundColor,
+    textColor,
+    menuItems = [],
+    customActiveBackgroundColor,
+    customActiveTextColor,
+    customHoverBackgroundColor,
+    customHoverTextColor,
+  } = attributes;
 
   const blockProps = useBlockProps({
-    className: `lsx-to-sticky-menu`,
     style: {
-      backgroundColor: backgroundColor || undefined,
-      color: textColor || undefined,
+      '--active-bg-color': customActiveBackgroundColor || undefined,
+      '--active-text-color': customActiveTextColor || undefined,
+      '--hover-bg-color': customHoverBackgroundColor || undefined,
+      '--hover-text-color': customHoverTextColor || undefined,
     },
   });
+
+  // Extract padding from blockProps.style to apply to buttons
+  const buttonStyle = {
+    paddingTop: blockProps.style?.paddingTop,
+    paddingRight: blockProps.style?.paddingRight,
+    paddingBottom: blockProps.style?.paddingBottom,
+    paddingLeft: blockProps.style?.paddingLeft,
+  };
+
+  // Remove padding from wrapper
+  const wrapperStyle = {
+    ...blockProps.style,
+    paddingTop: undefined,
+    paddingRight: undefined,
+    paddingBottom: undefined,
+    paddingLeft: undefined,
+  };
 
   // Get all blocks data but with debounced updates
   const allBlocks = useSelect((select) => {
@@ -99,7 +126,12 @@ function Edit({ attributes, setAttributes }) {
 
   return (
     <>
-      <div {...blockProps}>
+      <Inspector
+        attributes={attributes}
+        setAttributes={setAttributes}
+        clientId={clientId}
+      />
+      <div {...blockProps} style={wrapperStyle}>
         <nav className="lsx-to-sticky-menu-nav" aria-label={__('Page section navigation', 'tour-operator')}>
           {menuItems.length > 0 ? (
             <>
@@ -111,6 +143,7 @@ function Edit({ attributes, setAttributes }) {
                       href="javascript:void(0);"
                       aria-current="false"
                       aria-label={__('Navigate to %s section', 'tour-operator').replace('%s', item.title)}
+                      style={buttonStyle}
                     >
                       {item.title}
                     </a>
@@ -153,18 +186,44 @@ function Edit({ attributes, setAttributes }) {
  * @return {JSX.Element} The save component.
  */
 function Save({ attributes }) {
-  const { backgroundColor, textColor, menuItems = [] } = attributes;
+  const {
+    backgroundColor,
+    textColor,
+    menuItems = [],
+    customActiveBackgroundColor,
+    customActiveTextColor,
+    customHoverBackgroundColor,
+    customHoverTextColor,
+  } = attributes;
 
   const blockProps = useBlockProps.save({
-    className: `lsx-to-sticky-menu`,
     style: {
-      backgroundColor: backgroundColor || undefined,
-      color: textColor || undefined,
+      '--active-bg-color': customActiveBackgroundColor || undefined,
+      '--active-text-color': customActiveTextColor || undefined,
+      '--hover-bg-color': customHoverBackgroundColor || undefined,
+      '--hover-text-color': customHoverTextColor || undefined,
     },
   });
 
+  // Extract padding from blockProps.style to apply to buttons
+  const buttonStyle = {
+    paddingTop: blockProps.style?.paddingTop,
+    paddingRight: blockProps.style?.paddingRight,
+    paddingBottom: blockProps.style?.paddingBottom,
+    paddingLeft: blockProps.style?.paddingLeft,
+  };
+
+  // Remove padding from wrapper
+  const wrapperStyle = {
+    ...blockProps.style,
+    paddingTop: undefined,
+    paddingRight: undefined,
+    paddingBottom: undefined,
+    paddingLeft: undefined,
+  };
+
   return (
-    <div {...blockProps}>
+    <div {...blockProps} style={wrapperStyle}>
       <nav className="lsx-to-sticky-menu-nav" aria-label={__('Page section navigation', 'tour-operator')}>
         {menuItems.length > 0 && (
           <ul className="lsx-to-sticky-menu-list" aria-label={__('Page sections', 'tour-operator')}>
@@ -175,6 +234,7 @@ function Save({ attributes }) {
                   href={`#${item.id}`}
                   data-section-id={item.id}
                   aria-current="false"
+                  style={buttonStyle}
                 >
                   {item.title}
                 </a>
