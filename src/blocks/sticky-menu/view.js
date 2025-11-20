@@ -219,12 +219,16 @@ lsx_to.add_mobile_header = function (section, context) {
                 lsx_to.toggle_mobile_section(wrapper);
                 break;
             case 'Escape':
-                event.preventDefault();
-                // Always collapse on Escape if expanded
-                const is_expanded = wrapper.getAttribute('aria-expanded') === 'true';
-                if (is_expanded) {
-                    lsx_to.toggle_mobile_section(wrapper);
+                {
+                    event.preventDefault();
+                    // Always collapse on Escape if expanded
+                    const is_expanded = wrapper.getAttribute('aria-expanded') === 'true';
+                    if (is_expanded) {
+                        lsx_to.toggle_mobile_section(wrapper);
+                    }
+                    break;
                 }
+            default:
                 break;
         }
     });
