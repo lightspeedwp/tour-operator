@@ -1076,7 +1076,7 @@ class Bindings {
 		}
 
 		if ( is_tax() ) {
-			$image_id = get_term_meta( get_queried_object_id(), 'thumbnail', true );
+			$image_id = get_term_meta( get_queried_object_id(), 'banner', true );
 		} else {
 			$image_id = get_post_meta( get_the_ID(), 'banner_image_id', true );
 		}		

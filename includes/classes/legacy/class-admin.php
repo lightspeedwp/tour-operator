@@ -87,7 +87,7 @@ class Admin extends Tour_Operator
 				add_action('edit_term', array($this, 'save_meta'), 10, 2);
 
 				foreach (array_keys($this->taxonomies) as $taxonomy) {
-					add_action("{$taxonomy}_edit_form_fields", array($this, 'add_thumbnail_form_field'), 1, 1);
+					add_action("{$taxonomy}_edit_form_fields", array($this, 'add_images_fields'), 1, 1);
 					add_action("{$taxonomy}_edit_form_fields", array($this, 'add_tagline_form_field'), 3, 1);
 				}
 			}
@@ -259,15 +259,66 @@ class Admin extends Tour_Operator
 		}
 	}
 
+
+
+	/**
+	 * Saves the Taxnomy term banner image
+	 *
+	 * @since 0.1.0
+	 *
+	 * @param  int    $term_id
+	 * @param  string $taxonomy
+	 */
+	public function save_meta($term_id = 0, $taxonomy = '') {
+		if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+			return;
+		}
+
+		if (check_admin_referer('lsx_to_save_term_thumbnail', 'lsx_to_term_thumbnail_nonce')) {
+
+			$fields = [
+				'thumbnail',
+				'banner',
+				'tagline',
+			];
+
+			foreach ( $fields as $field ) {
+				// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				if (isset($_POST[ $field ]) && ! empty($_POST[ $field ])) {
+					$thumbnail_meta = sanitize_text_field(wp_unslash($_POST[ $field ]));
+					$thumbnail_meta = ! empty($thumbnail_meta) ? $thumbnail_meta : '';
+
+					if (empty($thumbnail_meta)) {
+						delete_term_meta($term_id, $field);
+					} else {
+						update_term_meta($term_id, $field, $thumbnail_meta);
+					}
+				}
+			}
+		}
+	}
+
 	/**
 	 * Output the form field for this metadata when adding a new term
 	 *
 	 * @since 0.1.0
 	 */
-	public function add_thumbnail_form_field($term = false)
+	public function add_images_fields($term = false) {
+
+		$this->add_image_field( 'thumbnail', __( 'Featured Image', 'tour-operator' ) , $term );
+		$this->add_image_field( 'banner', __( 'Banner', 'tour-operator' ), $term );
+		wp_nonce_field('lsx_to_save_term_thumbnail', 'lsx_to_term_thumbnail_nonce');
+	}
+
+	/**
+	 * Output the form field for this metadata when adding a new term
+	 *
+	 * @since 0.1.0
+	 */
+	public function add_image_field( $key = '', $label = '', $term = false )
 	{
 		if (is_object($term)) {
-			$value         = get_term_meta($term->term_id, 'thumbnail', true);
+			$value         = get_term_meta($term->term_id, $key, true);
 			$image_preview = wp_get_attachment_image_src($value, 'thumbnail');
 
 			if (is_array($image_preview)) {
@@ -278,65 +329,19 @@ class Admin extends Tour_Operator
 			$image_preview = false;
 			$value         = false;
 		}
-?>
-		<tr class="form-field term-thumbnail-wrap">
-			<th scope="row"><label for="thumbnail"><?php esc_html_e('Featured Image', 'tour-operator'); ?></label></th>
+		?>
+		<tr class="form-field term-<?php echo esc_attr($key); ?>-wrap">
+			<th scope="row"><label for="<?php echo esc_attr($key); ?>"><?php echo esc_html( $label ); ?></label></th>
 			<td>
-				<input class="input_image" type="hidden" name="thumbnail" value="<?php echo wp_kses_post($value); ?>">
-				<div class="thumbnail-preview">
+				<input class="input_image" type="hidden" name="<?php echo esc_attr($key); ?>" value="<?php echo wp_kses_post($value); ?>">
+				<div class="<?php echo esc_attr($key); ?>-preview">
 					<?php echo wp_kses_post($image_preview); ?>
 				</div>
 				<a style="<?php if ('' !== $value && false !== $value) { ?> display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-add"><?php esc_html_e('Choose Image', 'tour-operator'); ?></a>
 				<a style="<?php if ('' === $value || false === $value) { ?>display:none;<?php } ?>" class="button-secondary lsx-thumbnail-image-remove"><?php esc_html_e('Remove Image', 'tour-operator'); ?></a>
-				<?php wp_nonce_field('lsx_to_save_term_thumbnail', 'lsx_to_term_thumbnail_nonce'); ?>
 			</td>
 		</tr>
-	<?php
-	}
-
-	/**
-	 * Saves the Taxnomy term banner image
-	 *
-	 * @since 0.1.0
-	 *
-	 * @param  int    $term_id
-	 * @param  string $taxonomy
-	 */
-	public function save_meta($term_id = 0, $taxonomy = '')
-	{
-		if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-			return;
-		}
-		// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		if (! isset($_POST['thumbnail']) || ! isset($_POST['tagline'])) {
-			return;
-		}
-
-		if (check_admin_referer('lsx_to_save_term_thumbnail', 'lsx_to_term_thumbnail_nonce')) {
-			// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			if (isset($_POST['thumbnail']) && ! empty($_POST['thumbnail'])) {
-				$thumbnail_meta = sanitize_text_field(wp_unslash($_POST['thumbnail']));
-				$thumbnail_meta = ! empty($thumbnail_meta) ? $thumbnail_meta : '';
-
-				if (empty($thumbnail_meta)) {
-					delete_term_meta($term_id, 'thumbnail');
-				} else {
-					update_term_meta($term_id, 'thumbnail', $thumbnail_meta);
-				}
-			}
-
-			// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			if (isset($_POST['tagline']) && ! empty($_POST['tagline'])) {
-				$meta = sanitize_text_field(wp_unslash($_POST['tagline']));
-				$meta = ! empty($meta) ? $meta : '';
-
-				if (empty($meta)) {
-					delete_term_meta($term_id, 'tagline');
-				} else {
-					update_term_meta($term_id, 'tagline', $meta);
-				}
-			}
-		}
+		<?php
 	}
 
 	/**
@@ -358,6 +363,6 @@ class Admin extends Tour_Operator
 				<input name="tagline" id="tagline" type="text" value="<?php echo wp_kses_post($value); ?>" size="40">
 			</td>
 		</tr>
-<?php
+	<?php
 	}
 }
