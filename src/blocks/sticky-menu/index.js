@@ -33,6 +33,7 @@ import './style.scss';
  * @param {Object} props Component props.
  * @param {Object} props.attributes Block attributes.
  * @param {Function} props.setAttributes Function to update block attributes.
+ * @param {string} props.clientId Block client ID.
  * @return {JSX.Element} The edit component.
  */
 function Edit({ attributes, setAttributes, clientId }) {
@@ -140,7 +141,7 @@ function Edit({ attributes, setAttributes, clientId }) {
                   <li key={item.id} className="lsx-to-sticky-menu-item">
                     <a
                       className="lsx-to-sticky-menu-button"
-                      href="javascript:void(0);"
+                      href={`#${item.id}`}
                       aria-current="false"
                       aria-label={__('Navigate to %s section', 'tour-operator').replace('%s', item.title)}
                       style={buttonStyle}
