@@ -1,11 +1,22 @@
-const { __ } = wp.i18n;
+/**
+ * Videos Block Variation
+ *
+ * Registers a block variation for displaying video content.
+ * Available across all post types and templates.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
 
-wp.domReady( () => {
-    wp.blocks.registerBlockVariation( 'core/gallery', {
+import { __ } from '@wordpress/i18n';
+
+wp.domReady(() => {
+    wp.blocks.registerBlockVariation('core/gallery', {
         name: 'lsx-tour-operator/videos',
-        title: __( 'TO Videos', 'tour-operator' ),
+        title: __('TO Videos', 'tour-operator'),
         icon: 'video-alt3',
         category: 'lsx-tour-operator',
+        description: __('Display a gallery of videos related to the tour or destination.', 'tour-operator'),
         attributes: {
             metadata: {
                 name: 'TO Videos',
@@ -24,7 +35,7 @@ wp.domReady( () => {
                 {
                     sizeSlug: 'large',
                     url: lsxToEditor.assetsUrl + 'blocks/placeholder.png',
-                    alt: __( 'Video placeholder', 'tour-operator' ),
+                    alt: __('Video placeholder', 'tour-operator'),
                 },
             ],
             [
@@ -32,7 +43,7 @@ wp.domReady( () => {
                 {
                     sizeSlug: 'large',
                     url: lsxToEditor.assetsUrl + 'blocks/placeholder.png',
-                    alt: __( 'Video placeholder', 'tour-operator' ),
+                    alt: __('Video placeholder', 'tour-operator'),
                 },
             ],
             [
@@ -40,34 +51,34 @@ wp.domReady( () => {
                 {
                     sizeSlug: 'large',
                     url: lsxToEditor.assetsUrl + 'blocks/placeholder.png',
-                    alt: __( 'Video placeholder', 'tour-operator' ),
+                    alt: __('Video placeholder', 'tour-operator'),
                 },
             ],
         ],
         isDefault: false,
-    } );
+    });
 
     // Add slider toggle functionality for videos block
-    ( function ( blocks, element, editor, components ) {
+    (function (blocks, element, editor, components) {
         const el = element.createElement;
         const InspectorControls = editor.InspectorControls;
         const PanelBody = components.PanelBody;
         const CheckboxControl = components.CheckboxControl;
 
         const withInspectorControls = wp.compose.createHigherOrderComponent(
-            function ( BlockEdit ) {
-                return function ( props ) {
+            function (BlockEdit) {
+                return function (props) {
                     // Only apply to core/gallery blocks that are the videos variation
                     if (
                         props.name !== 'core/gallery' ||
-                        ! props.attributes.metadata ||
+                        !props.attributes.metadata ||
                         props.attributes.metadata.name !== 'TO Videos'
                     ) {
-                        return el( BlockEdit, props );
+                        return el(BlockEdit, props);
                     }
 
                     let hasSlider = props.attributes.hasSlider || false;
-                    if ( undefined === props.attributes.hasSlider ) {
+                    if (undefined === props.attributes.hasSlider) {
                         if (
                             props.attributes.className &&
                             props.attributes.className.includes(
@@ -83,7 +94,7 @@ wp.domReady( () => {
                     return el(
                         element.Fragment,
                         {},
-                        el( BlockEdit, props ),
+                        el(BlockEdit, props),
                         el(
                             InspectorControls,
                             {},
@@ -96,18 +107,18 @@ wp.domReady( () => {
                                     ),
                                     initialOpen: true,
                                 },
-                                el( CheckboxControl, {
+                                el(CheckboxControl, {
                                     label: __(
                                         'Enable Slider',
                                         'tour-operator'
                                     ),
                                     checked: hasSlider,
-                                    onChange( value ) {
-                                        props.setAttributes( {
+                                    onChange(value) {
+                                        props.setAttributes({
                                             hasSlider: value,
-                                        } );
+                                        });
                                     },
-                                } )
+                                })
                             )
                         )
                     );
@@ -125,31 +136,31 @@ wp.domReady( () => {
         wp.hooks.addFilter(
             'blocks.getSaveContent.extraProps',
             'lsx-tour-operator/videos-save-settings-panel',
-            function ( extraProps, blockType, attributes ) {
+            function (extraProps, blockType, attributes) {
                 if (
                     blockType.name === 'core/gallery' &&
                     attributes.metadata &&
                     attributes.metadata.name === 'TO Videos'
                 ) {
-                    if ( true === attributes.hasSlider ) {
+                    if (true === attributes.hasSlider) {
                         extraProps.className =
-                            ( extraProps.className || '' ) + ' lsx-to-slider';
+                            (extraProps.className || '') + ' lsx-to-slider';
                     } else if (
                         false === attributes.hasSlider &&
                         extraProps.className
                     ) {
                         extraProps.className = extraProps.className
-                            .replace( /\blsx-to-slider\b\s*/g, '' )
+                            .replace(/\blsx-to-slider\b\s*/g, '')
                             .trim();
                     }
                 }
                 return extraProps;
             }
         );
-    } )(
+    })(
         window.wp.blocks,
         window.wp.element,
         window.wp.blockEditor || window.wp.editor,
         window.wp.components
     );
-} );
+});

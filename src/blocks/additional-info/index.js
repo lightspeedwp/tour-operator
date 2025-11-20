@@ -1,10 +1,18 @@
+/**
+ * Additional Info Block Variation
+ *
+ * Registers a block variation for displaying additional information.
+ * Only available on destination post type edit screens.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
 import { __ } from '@wordpress/i18n';
 import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
 wp.domReady(() => {
-    // Register variation function
     const registerAdditionalInfoVariation = () => {
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/additional-info',
             title: __('Additional Information', 'tour-operator'),
@@ -22,7 +30,7 @@ wp.domReady(() => {
             },
             attributes: {
                 metadata: {
-                    name: 'Additional Info',
+                    name: __('Additional Info', 'tour-operator'),
                 },
                 className: 'lsx-additional-info-wrapper',
                 layout: {
@@ -96,9 +104,6 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 attributes: {
                     className: 'lsx-additional-info-wrapper',
@@ -168,7 +173,7 @@ wp.domReady(() => {
     // Initialize conditional registration
     const conditionalRegister = registerForPostTypesAndTemplates(
         ['destination'], // Supported post types
-        ['destination'], // Template slug patterns
+        ['destination', 'country', 'region'], // Template slug patterns
         registerAdditionalInfoVariation
     );
 

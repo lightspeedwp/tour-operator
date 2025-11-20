@@ -1,3 +1,13 @@
+/**
+ * Duration Block Variation
+ *
+ * Registers a block variation for displaying tour duration.
+ * Only available on tour post type edit screens.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
 import { __ } from '@wordpress/i18n';
 import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
@@ -10,7 +20,7 @@ wp.domReady(() => {
             title: __('Duration', 'tour-operator'),
             icon: 'clock',
             category: 'lsx-tour-operator',
-            keywords:  [
+            keywords: [
                 __('duration', 'tour-operator'),
                 __('time', 'tour-operator'),
                 __('days', 'tour-operator'),
@@ -91,19 +101,11 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 innerBlocks: [
                     {
                         name: 'core/group',
-                        attributes: {
-                            layout: {
-                                type: 'flex',
-                                flexWrap: 'nowrap',
-                            },
-                        },
+                        attributes: {},
                         innerBlocks: [
                             {
                                 name: 'core/group',

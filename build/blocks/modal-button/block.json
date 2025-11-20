@@ -54,5 +54,25 @@
       "width": true
     }
   },
-  "editorScript": "file:./index.js"
+  "editorScript": "file:./index.js",
+  "example": {
+    "innerBlocks": [
+      {
+        "name": "core/buttons",
+        "innerBlocks": [
+          {
+            "name": "core/button",
+            "attributes": {
+              "text": "Enquire Now",
+              "style": {
+                "border": {
+                  "radius": "4px"
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -1,14 +1,23 @@
+/**
+ * Suggested Visitor Types Block Variation
+ *
+ * Registers a block variation for displaying suggested visitor types.
+ * Only available on accommodation post types and templates screens.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
 import { __ } from '@wordpress/i18n';
 import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
 wp.domReady(() => {
     // Register variation function
     const registerSuggestedVisitorTypesVariation = () => {
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/suggested-visitor-types',
             title: __('Suggested Visitor Types', 'tour-operator'),
-            description: __('Display suggested visitor types suitable for accommodations.', 'tour-operator'),
+            description: __('Display suggested visitor types suitable for this accommodation.', 'tour-operator'),
             icon: wp.element.createElement(
                 'svg',
                 {
@@ -35,7 +44,7 @@ wp.domReady(() => {
             },
             attributes: {
                 metadata: {
-                    name: 'Suggested Visitor Types',
+                    name: __('Suggested Visitor Types', 'tour-operator'),
                 },
                 className: 'lsx-suggested-visitor-types-wrapper',
                 layout: {
@@ -101,9 +110,6 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 attributes: {
                     className: 'lsx-suggested-visitor-types-wrapper',

@@ -1,9 +1,15 @@
 /**
- * Register Review Related Tour block variation
+ * Review Related Tour Block Variation
+ *
+ * Registers a block variation for displaying tours related to the current review.
+ * Only available on review post type edit screens.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
  */
-import { registerForPostTypes } from '@utils/conditional-block-registration.js';
 
-const { __ } = wp.i18n;
+import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
+import { __ } from '@wordpress/i18n';
 
 /**
  * Register the review related tour block variation
@@ -250,9 +256,6 @@ function registerReviewRelatedTourVariation() {
                 },
             ],
         },
-        supports: {
-            renaming: false,
-        },
         isActive: (blockAttributes) => {
             return (
                 blockAttributes.className === 'lsx-review-related-tour-query-wrapper' ||
@@ -264,7 +267,8 @@ function registerReviewRelatedTourVariation() {
 }
 
 // Register conditionally for tour post types and tour templates
-const conditionalRegister = registerForPostTypes(
+const conditionalRegister = registerForPostTypesAndTemplates(
+    ['tour'],
     ['tour'],
     registerReviewRelatedTourVariation
 );

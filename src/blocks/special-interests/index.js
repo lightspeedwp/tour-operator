@@ -1,10 +1,19 @@
+/**
+ * Special Interests Block Variation
+ *
+ * Registers a block variation for displaying special interests for an accommodation.
+ * Only available on accommodations post type edit screens.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
 import { __ } from '@wordpress/i18n';
 import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
 wp.domReady(() => {
     // Register variation function
     const registerSpecialInterestsVariation = () => {
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/special-interests',
             title: __('Special Interests', 'tour-operator'),
@@ -47,7 +56,7 @@ wp.domReady(() => {
             },
             attributes: {
                 metadata: {
-                    name: 'Special Interests',
+                    name: __('Special Interests', 'tour-operator'),
                 },
                 className: 'lsx-special-interests-wrapper',
                 layout: {
@@ -113,9 +122,6 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 attributes: {
                     className: 'lsx-special-interests-wrapper',

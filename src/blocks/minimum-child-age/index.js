@@ -1,9 +1,18 @@
+/**
+ * Minimum Child Age Block Variation
+ *
+ * Registers a block variation for displaying minimum age requirements for children.
+ * Only available on accommodation post type edit screens.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
 import { __ } from '@wordpress/i18n';
 import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
 wp.domReady(() => {
     const registerMinimumChildAgeVariation = () => {
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/minimum-child-age',
             title: __('Minimum Child Age', 'tour-operator'),
@@ -110,9 +119,6 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 attributes: {
                     className: 'lsx-minimum-child-age-wrapper',
@@ -131,7 +137,7 @@ wp.domReady(() => {
                             layout: {
                                 type: 'flex',
                                 flexWrap: 'nowrap',
-                                verticalAlignment: 'top',
+                                verticalAlignment: 'middle',
                             },
                         },
                         innerBlocks: [

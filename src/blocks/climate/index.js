@@ -1,10 +1,19 @@
+/**
+ * Climate Block Variation
+ *
+ * Registers a block variation for displaying climate information.
+ * Only available on destination post types, destinations, country, and region templates screens.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
 import { __ } from '@wordpress/i18n';
 import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
 wp.domReady(() => {
     // Register variation function
     const registerClimateVariation = () => {
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/climate',
             title: __('Climate', 'tour-operator'),
@@ -35,7 +44,7 @@ wp.domReady(() => {
             },
             attributes: {
                 metadata: {
-                    name: 'Climate',
+                    name: __('Climate', 'tour-operator'),
                 },
                 className: 'lsx-climate-wrapper',
                 layout: {
@@ -110,9 +119,6 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 attributes: {
                     className: 'lsx-climate-wrapper',
@@ -183,7 +189,7 @@ wp.domReady(() => {
     // Initialize conditional registration
     const conditionalRegister = registerForPostTypesAndTemplates(
         ['destination'], // Supported post types
-        ['destination'], // Template slug patterns
+        ['destination', 'country', 'region'], // Template slug patterns
         registerClimateVariation
     );
 

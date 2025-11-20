@@ -1,9 +1,15 @@
 /**
- * Register Accommodation Related Tour block variation
+ * Accommodation Related Tour Block Variation
+ *
+ * Registers a block variation for displaying accommodations related to the current tour.
+ * Only available on tour post type edit screens.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
  */
-import { registerForPostTypes } from '@utils/conditional-block-registration.js';
 
-const { __ } = wp.i18n;
+import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
+import { __ } from '@wordpress/i18n';
 
 /**
  * Register the accommodation related tour block variation
@@ -107,9 +113,6 @@ function registerAccommodationRelatedTourVariation() {
 				],
 			],
 		],
-		supports: {
-			renaming: false,
-		},
 		example: {
 			innerBlocks: [
 				{
@@ -392,7 +395,8 @@ function registerAccommodationRelatedTourVariation() {
 }
 
 // Register conditionally for tour post types and tour templates
-const conditionalRegister = registerForPostTypes(
+const conditionalRegister = registerForPostTypesAndTemplates(
+	['tour'],
 	['tour'],
 	registerAccommodationRelatedTourVariation
 );

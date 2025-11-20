@@ -1,3 +1,12 @@
+/**
+ * Permalink Button Block Variation
+ *
+ * Registers a block variation for creating permalink buttons.
+ * Available across all post types and templates.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
 import { __ } from '@wordpress/i18n';
 
 wp.domReady(() => {

@@ -1,9 +1,15 @@
 /**
- * Register Review Related Accommodation block variation
+ * Review Related Accommodation Block Variation
+ *
+ * Registers a block variation for displaying reviews related to the current accommodation.
+ * Only available on accommodation post type edit screens.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
  */
-import { registerForPostTypes } from '@utils/conditional-block-registration.js';
 
-const { __ } = wp.i18n;
+import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
+import { __ } from '@wordpress/i18n';
 
 /**
  * Register the review related accommodation block variation
@@ -250,9 +256,6 @@ function registerReviewRelatedAccommodationVariation() {
                 },
             ],
         },
-        supports: {
-            renaming: false,
-        },
         isActive: (blockAttributes) => {
             return (
                 blockAttributes.className === 'lsx-review-related-accommodation-query-wrapper' ||
@@ -264,7 +267,8 @@ function registerReviewRelatedAccommodationVariation() {
 }
 
 // Register conditionally for accommodation post types and accommodation templates
-const conditionalRegister = registerForPostTypes(
+const conditionalRegister = registerForPostTypesAndTemplates(
+    ['accommodation'],
     ['accommodation'],
     registerReviewRelatedAccommodationVariation
 );

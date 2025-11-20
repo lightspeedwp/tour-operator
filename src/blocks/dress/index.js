@@ -1,10 +1,19 @@
+/**
+ * Dress Block Variation
+ *
+ * Registers a block variation for displaying dress code and clothing recommendations.
+ * Only available on destination post types, destinations, country, and region templates screens.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
 import { __ } from '@wordpress/i18n';
 import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
 wp.domReady(() => {
     // Register variation function
     const registerDressVariation = () => {
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/dress',
             title: __('Dress', 'tour-operator'),
@@ -35,7 +44,7 @@ wp.domReady(() => {
             },
             attributes: {
                 metadata: {
-                    name: 'Dress',
+                    name: __('Dress', 'tour-operator'),
                 },
                 className: 'lsx-dress-wrapper',
                 layout: {
@@ -110,9 +119,6 @@ wp.domReady(() => {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
                 attributes: {
                     className: 'lsx-dress-wrapper',
@@ -183,7 +189,7 @@ wp.domReady(() => {
     // Initialize conditional registration
     const conditionalRegister = registerForPostTypesAndTemplates(
         ['destination'], // Supported post types
-        ['destination'], // Template slug patterns
+        ['destination', 'country', 'region'], // Template slug patterns
         registerDressVariation
     );
 

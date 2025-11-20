@@ -1,15 +1,25 @@
+/**
+ * Price Block Variation
+ *
+ * Registers a block variation for displaying the starting price of a tour.
+ * Only available on tour post type edit screens.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
+ */
+
 import { __ } from '@wordpress/i18n';
 import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
 wp.domReady(() => {
     // Register variation function
     const registerPriceVariation = () => {
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/price',
             title: __('Price', 'tour-operator'),
             category: 'lsx-tour-operator',
             icon: 'money-alt',
+            description: __('Displays the starting price of a tour.', 'tour-operator'),
             keywords: [
                 __('price', 'tour-operator'),
                 __('cost', 'tour-operator'),
@@ -75,9 +85,6 @@ wp.domReady(() => {
                 ],
             ],
             isDefault: false,
-            supports: {
-                renaming: false,
-            },
             example: {
                 innerBlocks: [
                     {

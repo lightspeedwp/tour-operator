@@ -27,10 +27,5 @@
     }
   },
   "style": "file:style-index.css",
-  "example": {
-    "attributes": {
-      "iconType": "outline",
-      "iconName": "academicCap"
-    }
-  }
+  "example": {}
 }

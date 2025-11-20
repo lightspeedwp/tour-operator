@@ -1,7 +1,7 @@
 /**
  * Check In Time Block Variation
  *
- * Registers a block variation for accommodation check-in time display.
+ * Registers a block variation for displaying accommodation check-in time.
  * Only available on accommodation post type edit screens.
  *
  * @since 2.1.0
@@ -9,16 +9,23 @@
  */
 
 import { __ } from '@wordpress/i18n';
+import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
 
-function registerCheckinTimeVariation() {
-    try {
+wp.domReady(() => {
+    const registerCheckinTimeVariation = () => {
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/checkin-time',
             title: __('Check in time', 'tour-operator'),
             icon: 'clock',
             category: 'lsx-tour-operator',
+            description: __('Displays the check-in time for this accommodation.', 'tour-operator'),
+            keywords: [
+                __('check in', 'tour-operator'),
+                __('time', 'tour-operator'),
+                __('checkin', 'tour-operator'),
+            ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.metadata?.name === variationAttributes.metadata?.name;
+                return blockAttributes.className === variationAttributes.className;
             },
             attributes: {
                 metadata: {
@@ -86,83 +93,50 @@ function registerCheckinTimeVariation() {
                     ],
                 ],
             ],
-            supports: {
-                renaming: false,
-            },
             example: {
-                attributes: {
-                    metadata: {
-                        name: __('Check in time', 'tour-operator'),
-                    },
-                },
                 innerBlocks: [
-                    [
-                        'core/group',
-                        {},
-                        [
-                            [
-                                'core/heading',
-                                {
-                                    content: __('Check in time', 'tour-operator'),
-                                    level: 3,
+                    {
+                        name: 'core/group',
+                        attributes: {},
+                        innerBlocks: [
+                            {
+                                name: 'core/group',
+                                attributes: {
+                                    layout: {
+                                        type: 'flex',
+                                        flexWrap: 'nowrap',
+                                        verticalAlignment: 'middle',
+                                    },
                                 },
-                            ],
-                            [
-                                'core/paragraph',
-                                {
-                                    content: '11:00 AM',
-                                },
-                            ],
+                                innerBlocks: [
+                                    {
+                                        name: 'lsx-tour-operator/icons',
+                                        attributes: {
+                                            iconType: 'solid',
+                                            iconName: 'checkInAccommodationIcon',
+                                        },
+                                    },
+                                    {
+                                        name: 'core/paragraph',
+                                        attributes: {
+                                            content: '<strong>' + __('Check in time: ', 'tour-operator') + '</strong>' + ' ' + __('11:00 AM', 'tour-operator'),
+                                        },
+                                    },
+                                ],
+                            },
                         ],
-                    ],
+                    },
                 ],
             },
         });
-        return true;
-    } catch (error) {
-        console.error('Failed to register checkin-time block:', error);
-        return false;
     }
-}
 
-wp.domReady(() => {
-    const { select } = wp.data;
+    // Initialize conditional registration
+    const conditionalRegister = registerForPostTypesAndTemplates(
+        ['accommodation'], // Supported post types
+        ['accommodation'], // Template slug patterns
+        registerCheckinTimeVariation
+    );
 
-    // Define supported post types
-    const supportedPostTypes = ['accommodation'];
-    let registered = false;
-
-    // Check if current post type is supported
-    const checkAndRegister = () => {
-        if (registered) {
-            return true;
-        }
-
-        const postType = select('core/editor')?.getCurrentPostType();
-        const postSlug = select('core/editor')?.getEditedPostSlug();
-
-        if (!postType || !postSlug) {
-            return false;
-        }
-
-        if (supportedPostTypes.includes(postType) || ((postType === 'wp_template' || postType === 'wp_template_part') && postSlug.includes('accommodation'))) {
-            registerCheckinTimeVariation();
-            registered = true;
-        }
-
-        return registered;
-    };
-
-    // Try immediate registration
-    if (!checkAndRegister()) {
-        // If not ready, check periodically
-        const interval = setInterval(() => {
-            if (checkAndRegister()) {
-                clearInterval(interval);
-            }
-        }, 100);
-
-        // Clean up after 5 seconds to prevent infinite checking
-        setTimeout(() => clearInterval(interval), 5000);
-    }
+    conditionalRegister();
 });

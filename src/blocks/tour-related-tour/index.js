@@ -1,9 +1,15 @@
 /**
- * Register Tour Related Tours block variation
+ * Tour Related Tour Block Variation
+ *
+ * Registers a block variation for displaying similar tours.
+ * Only available on tour post type edit screens.
+ *
+ * @since 2.1.0
+ * @package Tour_Operator
  */
-import { registerForPostTypes } from '@utils/conditional-block-registration.js';
 
-const { __ } = wp.i18n;
+import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
+import { __ } from '@wordpress/i18n';
 
 /**
  * Register the tours related to a tour block variation
@@ -373,9 +379,6 @@ function registerTourRelatedToursVariation() {
                 },
             ],
         },
-        supports: {
-            renaming: false,
-        },
         isActive: (blockAttributes) => {
             return (
                 blockAttributes.className === 'lsx-tour-related-tour-query-wrapper' ||
@@ -387,7 +390,8 @@ function registerTourRelatedToursVariation() {
 }
 
 // Register conditionally for tour post types and tour templates
-const conditionalRegister = registerForPostTypes(
+const conditionalRegister = registerForPostTypesAndTemplates(
+    ['tour'],
     ['tour'],
     registerTourRelatedToursVariation
 );
