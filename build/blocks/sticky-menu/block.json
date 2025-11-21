@@ -15,9 +15,7 @@
       "full"
     ],
     "color": {
-      "background": true,
-      "gradients": true,
-      "link": true
+      "background": true
     },
     "spacing": {
       "padding": true,

@@ -41,7 +41,7 @@ function add_mobile_section_headers( $block_content, $block ) {
 	$mobile_header = sprintf(
 		'<button class="lsx-to-section-header" aria-expanded="false" id="%1$s-header" aria-controls="%1$s-content" aria-describedby="%1$s-desc">
 			<span>%2$s</span>
-			<span class="lsx-to-caret" aria-hidden="true"></span>
+			<span class="lsx-to-sticky-caret"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16.25 6.875L10 13.125L3.75 6.875" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
 		</button>
 		<div id="%1$s-desc" class="lsx-to-sr-only">%3$s</div>',
 		$section_id,
