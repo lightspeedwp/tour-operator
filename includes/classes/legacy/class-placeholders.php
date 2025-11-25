@@ -238,7 +238,7 @@ class Placeholders {
 	 */
 	public function default_term_thumbnail( $meta, $post_id, $meta_key ) {
 
-		if ( 'thumbnail' === $meta_key ) {
+		if ( 'thumbnail' === $meta_key || 'banner' === $meta_key ) {
 			$options     = get_option( 'lsx_to_settings', false );
 			$placeholder = 'lsx-placeholder';
 
@@ -248,9 +248,9 @@ class Placeholders {
 			}
 		}
 
-		if ( 'thumbnail' === $meta_key && false === $this->checking_for_thumb ) {
+		if ( ( 'thumbnail' === $meta_key || 'banner' === $meta_key ) && false === $this->checking_for_thumb ) {
 			$this->checking_for_thumb = true;
-			$image                    = get_term_meta( $post_id, 'thumbnail', true );
+			$image                    = get_term_meta( $post_id, $meta_key, true );
 			$this->checking_for_thumb = false;
 			if ( false !== $image && '' !== $image && ! empty( $image ) ) {
 				return $meta;

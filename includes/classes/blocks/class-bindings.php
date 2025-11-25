@@ -1040,7 +1040,14 @@ class Bindings {
 			return $block_content;
 		}
 
-		$url           = get_permalink();
+		if ( isset( $block_obj->context['termId'] ) && isset( $block_obj->context['taxonomy'] ) ) {
+			$term_id  = $block_obj->context['termId'];
+			$taxonomy = $block_obj->context['taxonomy'];
+			$url      = get_term_link( (int) $term_id, $taxonomy );
+		} else {
+			$url = get_permalink();
+		}
+		
 		$pattern       = '/#permalink/s';
 		$block_content = preg_replace( $pattern, $url, $block_content );
 
@@ -1052,10 +1059,10 @@ class Bindings {
 	 *
 	 * @param string $block_content The block content about to be rendered.
 	 * @param array  $parsed_block  The full block, including name and attributes.
-	 * @param object $instance      The block instance.
+	 * @param object $block_obj     The block instance.
 	 * @return string Modified block content.
 	 */
-	public function render_banner_block( $block_content, $parsed_block, $instance ) {
+	public function render_banner_block( $block_content, $parsed_block, $block_obj ) {
 		if ( 'core/cover' !== $parsed_block['blockName'] ) {
 			return $block_content;
 		}
@@ -1068,7 +1075,14 @@ class Bindings {
 			return $block_content;
 		}
 
-		$image_id = get_post_meta( get_the_ID(), 'banner_image_id', true );
+		if ( is_tax() ) {
+			$image_id = get_term_meta( get_queried_object_id(), 'banner', true );
+			if ( empty( $image_id ) ) {
+				$image_id = get_term_meta( get_queried_object_id(), 'thumbnail', true );
+			}
+		} else {
+			$image_id = get_post_meta( get_the_ID(), 'banner_image_id', true );
+		}		
 
 		// If no valid image ID is set, return the original block content.
 		if ( empty( $image_id ) ) {

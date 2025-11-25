@@ -18,9 +18,11 @@
 - **Tour Expiration with Action Scheduler** - Integrated Action Scheduler to automatically expire tours and set them to draft status. Works with any plugin using Action Scheduler as a vendor including WooCommerce, PublishPress, and Action Scheduler plugin - [#490](https://github.com/lightspeedwp/tour-operator/pull/490)
 - **Modal Support for Blocks** - Added modal functionality support to various blocks for enhanced user interaction - Issue [#488](https://github.com/lightspeedwp/tour-operator/issues/488)
 - **Related Post Connections** - Added CMB2 metaboxes for related post connections to single posts, enabling better content relationships - [#596](https://github.com/lightspeedwp/tour-operator/pull/596), Issue [#595](https://github.com/lightspeedwp/tour-operator/issues/595)
+- **Terms Query Block** - Allowing the use of the permalink and featured image blocks inside the Terms Query -  - [#776](https://github.com/lightspeedwp/tour-operator/pull/776)
 
 #### Filters & Extensibility
 
+- **Core Featured Image Block Integration** - Added comprehensive filtering system for core/post-featured-image block to support taxonomy images. New filters: `lsx_to_taxonomy_images_featured_image_id`, `lsx_to_taxonomy_images_featured_image_size`, `lsx_to_taxonomy_images_featured_image_attr`, and `lsx_to_taxonomy_images_featured_image_html` to enable complete customization of taxonomy-based featured image display with support for term meta 'thumbnail' field - [#776](https://github.com/lightspeedwp/tour-operator/pull/776)
 - **Destinations Filtering** - Added filter `lsx_to_{$key}_include_destinations` to allow disabling of destinations when searching for related content - [BH-74](https://www.bugherd.com/projects/430995/tasks/74)
 - **Facility Block Links Control** - Added filter `lsx_to_accommodation_facilities_should_link` to optionally disable facility block links - [#608](https://github.com/lightspeedwp/tour-operator/pull/608)
 - **Query Block Ordering** - Added filter to allow ordering of query blocks by `post__in` parameter for custom content ordering - [#653](https://github.com/lightspeedwp/tour-operator/pull/653), Issue [#123](https://github.com/lightspeedwp/tour-operator/issues/123)
@@ -45,6 +47,7 @@
 - **Conditional Block Registration System** - Refactored all destination, accommodation, and tour blocks to use the conditional registration utility, ensuring blocks appear only in relevant post type contexts for cleaner editor experience - Issue [#583](https://github.com/lightspeedwp/tour-operator/issues/583)
 - **Internationalization Improvements** - Enhanced all block definitions with proper i18n support using `@wordpress/i18n` for consistent translation handling across the entire block system - Issue [#583](https://github.com/lightspeedwp/tour-operator/issues/583)
 - **Block Metadata Cleanup** - Cleaned up block.json files and registration code across 80+ blocks, removing unused dependencies and improving asset loading efficiency - Issue [#770](https://github.com/lightspeedwp/tour-operator/issues/770)
+- **Banner Block** - Allowing the user of the banner block on the terms archive, and it falls back to the terms featured image if non is found. - [#776](https://github.com/lightspeedwp/tour-operator/pull/776)
 
 #### Feature Updates
 
