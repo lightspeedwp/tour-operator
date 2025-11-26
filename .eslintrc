@@ -1,4 +1,58 @@
 {
-	"root": true,
-	"extends": ["./.github/linting/.eslintrc.js"]
+  "root": true,
+  "extends": [
+    "plugin:@wordpress/eslint-plugin/recommended"
+  ],
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "jquery": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "globals": {
+    "wp": "readonly",
+    "jQuery": "readonly",
+    "$": "readonly",
+    "ajaxurl": "readonly",
+    "tour_operator": "readonly",
+    "tourOperatorAdmin": "readonly",
+    "tourOperatorPublic": "readonly",
+    "google": "readonly",
+    "lsx_to_maps_params": "readonly",
+    "LSX_TO_Maps": "readonly",
+    "scporderjs_params": "readonly",
+    "lsxToEditor": "readonly",
+    "tb_show": "readonly",
+    "tb_remove": "readonly",
+    "toModalBootstrap": "readonly",
+    "SnazzyDataForSnazzyMaps": "readonly",
+    "coordinates": "readonly",
+    "MarkerClusterer": "readonly"
+  },
+  "rules": {
+    "no-console": "warn",
+    "no-unused-vars": "warn",
+    "prefer-const": "warn",
+    "no-var": "warn",
+    "camelcase": "warn",
+    "object-shorthand": "warn",
+    "no-undef": "error",
+    "@wordpress/no-unsafe-wp-apis": "error",
+    "@wordpress/no-global-active-element": "off",
+    "no-unused-expressions": "off"
+  },
+  "ignorePatterns": [
+    "build/**",
+    "node_modules/**",
+    "vendor/**",
+    "tests/**",
+    "*.min.js",
+    "webpack.config.cjs",
+    "**/blocks/*/index.js",
+    "includes/blocks/*/index.js"
+  ]
 }

@@ -2,9 +2,55 @@
   "name": "tour-operator",
   "version": "2.1.0",
   "description": "Tour Operators for LSX",
+  "author": "LightSpeed",
+  "license": "ISC",
+  "keywords": [
+    "lsx",
+    "tours",
+    "safaris",
+    "accommodation"
+  ],
+  "homepage": "https://touroperator.solutions/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lightspeedwp/tour-operator"
+  },
+  "bugs": {
+    "url": "https://github.com/lightspeedwp/tour-operator/issues"
+  },
+  "main": "package-lock.json",
+  "dependencies": {
+    "@wordpress/blocks": "15.8.0",
+    "classnames": "^2.5.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.28.3",
+    "@babel/core": "7.28.5",
+    "@babel/preset-react": "^7.28.5",
+    "@wordpress/a11y": "4.36.0",
+    "@wordpress/babel-preset-default": "8.36.0",
+    "@wordpress/e2e-test-utils-playwright": "1.36.0",
+    "@wordpress/eslint-plugin": "22.21.0",
+    "@wordpress/i18n": "6.9.0",
+    "@wordpress/jest-preset-default": "12.36.0",
+    "@wordpress/npm-package-json-lint-config": "5.36.0",
+    "@wordpress/prettier-config": "4.36.0",
+    "@wordpress/project-management-automation": "^2.35.0",
+    "@wordpress/scripts": "^31.0.0",
+    "@wordpress/stylelint-config": "^23.25.0",
+    "eslint": "8.57.1",
+    "jest": "30.2.0",
+    "npm-package-json-lint": "9.0.0",
+    "prettier": "3.6.2",
+    "stylelint": "16.26.0",
+    "webpack-remove-empty-scripts": "^1.1.1"
+  },
   "scripts": {
     "test": "npm run test:php && npm run test:e2e",
     "test:php": "./vendor/bin/phpunit --no-configuration tests/php/TestSimpleFunctions.php",
+    "test:unit": "jest",
+    "test:unit:watch": "jest --watch",
+    "test:unit:coverage": "jest --coverage",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:debug": "playwright test --debug",
@@ -13,46 +59,17 @@
     "build-pot": "wp i18n make-pot . languages/tour-operator.pot",
     "build-mopo": "rm -R languages/tour-operator-en_EN.mo && cp languages/tour-operator.pot languages/tour-operator-en_EN.po && wp i18n make-mo languages",
     "translate-US": "cp languages/tour-operator-en_EN.po languages/tour-operator-en_US.po && cp languages/tour-operator-en_EN.mo languages/tour-operator-en_US.mo",
-    "lint:js": "wp-scripts lint-js",
-    "lint:css": "wp-scripts lint-style",
+    "lint:js": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
+    "lint:js:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
+    "lint:css": "stylelint 'src/**/*.{css,scss}'",
+    "lint:css:fix": "stylelint 'src/**/*.{css,scss}' --fix",
     "lint:php": "composer phpcs",
     "lint:php:fix": "composer phpcbf",
     "lint:php:report": "composer phpcs:report",
-    "lint:all": "npm run lint:php && npm run lint:js && npm run lint:css",
+    "lint:pkg-json": "npmPkgJsonLint .",
+    "lint:all": "npm run lint:php && npm run lint:js && npm run lint:css && npm run lint:pkg-json",
     "format": "npm run lint:php:fix && wp-scripts format",
-    "generate-readme": "node .github/scripts/update-readme.js",
-    "validate-collections": "node .github/scripts/validate-collections.js",
-    "create-collection": "node .github/scripts/create-collection.js create",
-    "list-collections": "node .github/scripts/create-collection.js list",
-    "validate": "node .github/scripts/validate-collections.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lightspeedwp/tour-operator"
-  },
-  "keywords": [
-    "lsx",
-    "tours",
-    "safaris",
-    "accommodation"
-  ],
-  "author": "LightSpeed",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/lightspeedwp/tour-operator/issues"
-  },
-  "homepage": "https://touroperator.solutions/",
-  "main": "package-lock.json",
-  "devDependencies": {
-    "@babel/preset-react": "^7.28.5",
-    "@wordpress/eslint-plugin": "22.21.0",
-    "@wordpress/scripts": "^31.0.0",
-    "@wordpress/stylelint-config": "^23.25.0",
-    "@wordpress/project-management-automation": "^2.35.0",
-    "webpack-remove-empty-scripts": "^1.1.1"
-  },
-  "dependencies": {
-    "@wordpress/blocks": "15.8.0",
-    "classnames": "^2.5.1"
+    "format:js": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
+    "generate-readme": "node .github/scripts/update-readme.js"
   }
 }

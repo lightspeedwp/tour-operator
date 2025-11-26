@@ -21,11 +21,13 @@
 .eslintrc
 .eslintrc.js
 .eslintrc.json
-.prettierrc.js
+.prettierrc.cjs
 .stylelintrc.json
-stylelint.config.js
-webpack.config.js
-playwright.config.js
+.stylelint.config.cjs
+.webpack.config.cjs
+.playwright.config.cjs
+.jest.config.cjs
+.babel.config.cjs
 composer.json
 composer.lock
 package.json
