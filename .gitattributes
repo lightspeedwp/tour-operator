@@ -45,12 +45,14 @@ wp-config-sample.php text eol=crlf
 .gitattributes export-ignore
 .gitignore export-ignore
 gulpfile.js export-ignore
-webpack.config.js export-ignore
+.webpack.config.cjs export-ignore
 package.json export-ignore
 package-lock.json export-ignore
 .eslintrc export-ignore
-stylelint.config.js export-ignore
-playwright.config.js export-ignore
+.stylelint.config.cjs export-ignore
+.playwright.config.cjs export-ignore
+.jest.config.cjs export-ignore
+.babel.config.cjs export-ignore
 composer.json export-ignore
 composer.lock export-ignore
 .editorconfig export-ignore
