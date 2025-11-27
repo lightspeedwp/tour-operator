@@ -496,7 +496,7 @@ knowledge_base:
   # Learn from PR feedback
   learnings:
     enabled: true
-    scope: "organization"
+    scope: "global"
 
   # Link to GitHub issues
   issues:
