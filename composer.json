@@ -9,26 +9,28 @@
     "require-dev": {
         "phpunit/phpunit": "^10.5",
         "10up/phpcs-composer": "^3.0",
-        "wpackagist-plugin/wordpress-seo": "^26.0"
+        "yoast/phpunit-polyfills": "^2.0"
     },
     "scripts": {
-    "phpcs": "vendor/bin/phpcs -d memory_limit=1G tour-operator.php tour-operator-bootstrap.php includes templates post-types src",
-    "phpcbf": "vendor/bin/phpcbf -d memory_limit=1G tour-operator.php tour-operator-bootstrap.php includes templates post-types src",
-    "phpcs:report": "vendor/bin/phpcs -d memory_limit=1G tour-operator.php tour-operator-bootstrap.php includes templates post-types src --report=json --report-file=phpcs-report.json",
-            "lint": [
-                "@phpcs"
-            ],
-    "phpcs:baseline": "vendor/bin/phpcs -d memory_limit=1G tour-operator.php tour-operator-bootstrap.php includes templates post-types src --report=checkstyle --report-file=phpcs-baseline.xml || true",
-      "test": "vendor/bin/phpunit --no-configuration tests/php/TestSimpleFunctions.php",
-      "test:simple": "vendor/bin/phpunit --no-configuration tests/php/TestSimpleFunctions.php",
-      "test:wp": "./bin/run-wp-tests.sh",
-      "test:coverage": "vendor/bin/phpunit --no-configuration --coverage-html tests/coverage tests/php/TestSimpleFunctions.php",
-      "test:unit": "vendor/bin/phpunit -c phpunit.xml --testsuite='Tour Operator Plugin Test Suite'"
+        "phpcs": "vendor/bin/phpcs -d memory_limit=1G tour-operator.php tour-operator-bootstrap.php includes templates post-types src",
+        "phpcbf": "vendor/bin/phpcbf -d memory_limit=1G tour-operator.php tour-operator-bootstrap.php includes templates post-types src",
+        "phpcs:report": "vendor/bin/phpcs -d memory_limit=1G tour-operator.php tour-operator-bootstrap.php includes templates post-types src --report=json --report-file=phpcs-report.json",
+        "lint": [
+            "@phpcs"
+        ],
+        "phpcs:baseline": "vendor/bin/phpcs -d memory_limit=1G tour-operator.php tour-operator-bootstrap.php includes templates post-types src --report=checkstyle --report-file=phpcs-baseline.xml || true",
+        "test": "vendor/bin/phpunit --no-configuration tests/php/TestSimpleFunctions.php",
+        "test:simple": "vendor/bin/phpunit --no-configuration tests/php/TestSimpleFunctions.php",
+        "test:wp": "./bin/run-wp-tests.sh",
+        "test:coverage": "vendor/bin/phpunit --no-configuration --coverage-html tests/coverage tests/php/TestSimpleFunctions.php",
+        "test:unit": "vendor/bin/phpunit -c phpunit.xml --testsuite='Tour Operator Plugin Test Suite'"
     },
-    "repositories":[{
-        "type":"composer",
-        "url":"https://wpackagist.org"
-    }],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org"
+        }
+    ],
     "license": "GPL-3.0-or-later",
     "prefer-stable": true,
     "minimum-stability": "dev",

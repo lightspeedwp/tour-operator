@@ -3,13 +3,15 @@
  * Configures test environment and global mocks
  */
 
-// Mock WordPress globals
+// Mock WordPress globals - only include installed packages
 global.wp = {
 	element: require('@wordpress/element'),
 	blocks: require('@wordpress/blocks'),
-	components: require('@wordpress/components'),
 	i18n: require('@wordpress/i18n'),
-	data: require('@wordpress/data'),
+	data: {
+		select: jest.fn(),
+		subscribe: jest.fn(),
+	},
 };
 
 // Mock console methods in tests to reduce noise

@@ -57,7 +57,8 @@ jobs:
       - name: Nudge for changelog label (adds meta:needs-changelog if missing)
         run: |
           labels=$(gh pr view ${{ github.event.pull_request.number }} --json labels --jq '.labels[].name')
-          if ! echo "$labels" | grep -Eq '^(no-changelog|changelog:(added|changed|fixed|security|deprecated|removed))$'; then
+          changelog_pattern='^(no-changelog|changelog:(added|changed|fixed|security|deprecated|removed))$'
+          if ! echo "$labels" | grep -Eq "$changelog_pattern"; then
             echo "::warning::No changelog label found. Please add appropriate changelog label or 'no-changelog'"
             # Try to add the label, but don't fail if it doesn't exist
             gh pr edit ${{ github.event.pull_request.number }} --add-label "meta:needs-changelog" || {
