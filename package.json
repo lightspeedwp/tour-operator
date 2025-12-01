@@ -19,6 +19,10 @@
     "url": "https://github.com/lightspeedwp/tour-operator/issues"
   },
   "main": "package-lock.json",
+  "engines": {
+    "node": ">=18.18.0",
+    "npm": ">=8.0.0"
+  },
   "dependencies": {
     "@wordpress/blocks": "15.8.0",
     "classnames": "^2.5.1"
