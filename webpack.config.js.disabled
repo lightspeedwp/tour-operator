@@ -1,19 +1,19 @@
-
-/**
- * External dependencies
- */
-const RemoveEmptyScriptsPlugin = require( 'webpack-remove-empty-scripts' );
-const path = require( 'path' );
 const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
+const path = require( 'path' );
 
-module.exports = {
-	...defaultConfig,
-	entry: {
-		...defaultConfig.entry(),
+module.exports = ( env, argv ) => {
+	// Get the default configuration
+	const config = typeof defaultConfig === 'function' ? defaultConfig( env, argv ) : defaultConfig;
+	
+	// Add our additional entries without overriding the existing ones
+	config.entry = {
+		...config.entry,
+		// CSS entries
 		'metaboxes': path.resolve( process.cwd(), 'src/css/metaboxes.scss' ),
 		'style': path.resolve( process.cwd(), 'src/css/index.scss' ),
 		'admin': path.resolve( process.cwd(), 'src/css/admin.scss' ),
 
+		// JS entries
 		'admin-script': path.resolve( process.cwd(), 'src/js/admin.js' ),
 		'custom': path.resolve( process.cwd(), 'src/js/custom.js' ),
 		'maps': path.resolve( process.cwd(), 'src/js/maps.js' ),
@@ -21,21 +21,21 @@ module.exports = {
 		'scporder': path.resolve( process.cwd(), 'src/js/scporder.js' ),
 		'metabox-structure': path.resolve( process.cwd(), 'src/js/metabox-structure.js' ),
 
-		// blocks
+		// Additional JS files (not actual blocks with index.js)
 		'general': path.resolve( process.cwd(), 'src/js/blocks/general.js' ),
 		'linked-cover': path.resolve( process.cwd(), 'src/js/blocks/linked-cover.js' ),
 		'slider-query': path.resolve( process.cwd(), 'src/js/blocks/slider-query.js' ),
 		'slotfills': path.resolve( process.cwd(), 'src/js/blocks/slotfills.js' ),
-	},
+	};
 
-	resolve: {
+	// Add resolve alias
+	config.resolve = {
+		...config.resolve,
 		alias: {
-			'@utils': path.resolve( __dirname, 'src/js/' ),
+			...config.resolve.alias,
+			'@utils': path.resolve( process.cwd(), 'src/js/utils' ),
 		},
-	},
+	};
 
-	plugins: [
-		...defaultConfig.plugins,
-		new RemoveEmptyScriptsPlugin(),
-	]
+	return config;
 };

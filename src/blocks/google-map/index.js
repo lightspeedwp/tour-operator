@@ -8,7 +8,7 @@
  * @package Tour_Operator
  */
 import { __ } from '@wordpress/i18n';
-import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
+import { registerForPostTypesAndTemplates } from '../../utils/conditional-block-registration';
 
 wp.domReady(() => {
     const registerGoogleMapVariation = () => {
