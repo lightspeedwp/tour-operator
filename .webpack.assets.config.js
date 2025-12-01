@@ -1,6 +1,54 @@
 const path = require( 'path' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 
+// Custom plugin to generate .asset.php files like wp-scripts
+class AssetPhpPlugin {
+	apply( compiler ) {
+		compiler.hooks.compilation.tap( 'AssetPhpPlugin', ( compilation ) => {
+			compilation.hooks.processAssets.tap(
+				{
+					name: 'AssetPhpPlugin',
+					stage: compilation.constructor.PROCESS_ASSETS_STAGE_ADDITIONAL,
+				},
+				( assets ) => {
+					// Get the package.json version for the asset files
+					const packageJson = require( './package.json' );
+					const version = packageJson.version || '1.0.0';
+
+					// Generate .asset.php for each JS entry point
+					for ( const [entryName, entrypoint] of compilation.entrypoints ) {
+						// Only generate asset.php for entries that produce JS files
+						if ( assets[ entryName + '.js' ] ) {
+							// Collect dependencies (this is a simplified version)
+							const dependencies = [];
+							
+							// Add common WordPress dependencies based on file type
+							if ( entryName.includes( 'admin' ) ) {
+								dependencies.push( 'wp-element', 'wp-components', 'wp-i18n' );
+							}
+							if ( entryName.includes( 'block' ) || entryName.includes( 'editor' ) ) {
+								dependencies.push( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components' );
+							}
+							
+							// Default dependencies for all JS files
+							dependencies.push( 'wp-polyfill' );
+
+							// Generate the PHP content in WordPress format
+							const assetContent = `<?php return array('dependencies' => array(${dependencies.map(dep => `'${dep}'`).join(', ')}), 'version' => '${version}');`;
+							
+							// Add the .asset.php file to compilation assets
+							compilation.emitAsset( entryName + '.asset.php', {
+								source: () => assetContent,
+								size: () => assetContent.length
+							});
+						}
+					}
+				}
+			);
+		});
+	}
+}
+
 module.exports = {
 	mode: process.env.NODE_ENV || 'production',
 	entry: {
@@ -54,6 +102,7 @@ module.exports = {
 		new MiniCssExtractPlugin( {
 			filename: '[name].css',
 		} ),
+		new AssetPhpPlugin(),
 	],
 	resolve: {
 		alias: {
