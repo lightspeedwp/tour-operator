@@ -20,7 +20,7 @@
   },
   "main": "package-lock.json",
   "dependencies": {
-    "@wordpress/blocks": "15.8.0",
+    "@wordpress/blocks": "15.9.0",
     "classnames": "^2.5.1"
   },
   "devDependencies": {
