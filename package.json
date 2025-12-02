@@ -63,7 +63,7 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:debug": "playwright test --debug",
-    "start": "wp-scripts start",
+    "start": "wp-scripts start --source-path=src/blocks --output-path=build/blocks",
     "build": "npm run build:blocks && npm run build:assets",
     "build:blocks": "wp-scripts build",
     "build:assets": "webpack --config .webpack.assets.config.js",
