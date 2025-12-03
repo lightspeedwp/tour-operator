@@ -17,7 +17,7 @@ area:dependencies:
 # CI / Build configuration
 area:ci:
   - changed-files:
-    - any-glob-to-any-file: ['.webpack.config.cjs', 'package.json', '.github/workflows/*', 'tests/**/*', '**/*_test.php', '**/*Test.php', '.editorconfig', '.eslintrc.js', 'phpcs.xml', '.github/workflows/**']
+    - any-glob-to-any-file: ['webpack.config.js', 'package.json', '.github/workflows/*', 'tests/**/*', '**/*_test.php', '**/*Test.php', '.editorconfig', '.eslintrc.js', 'phpcs.xml', '.github/workflows/**']
 
 # JavaScript sources
 lang:javascript:

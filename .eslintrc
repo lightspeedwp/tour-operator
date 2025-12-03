@@ -51,7 +51,7 @@
     "vendor/**",
     "tests/**",
     "*.min.js",
-    "webpack.config.cjs",
+    "webpack.config.js",
     "**/blocks/*/index.js",
     "includes/blocks/*/index.js"
   ]

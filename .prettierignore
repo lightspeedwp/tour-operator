@@ -57,7 +57,7 @@ phpcs.xml.dist
 phpunit.xml
 phpunit.xml.dist
 # Config files
-.webpack.config.cjs
+webpack.config.js
 .playwright.config.cjs
 .stylelint.config.cjs
 .jest.config.cjs

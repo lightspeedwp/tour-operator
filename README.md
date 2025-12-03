@@ -268,7 +268,7 @@ All configuration files use `.cjs` extension for explicit CommonJS module format
 
 - `.babel.config.cjs` - Babel transpilation with WordPress preset
 - `.jest.config.cjs` - Jest unit testing configuration
-- `.webpack.config.cjs` - Webpack build configuration
+- `webpack.config.js` - Webpack build configuration
 - `.stylelint.config.cjs` - CSS/SCSS linting with WordPress standards
 - `.playwright.config.cjs` - End-to-end testing configuration
 - `.prettierrc.cjs` - Code formatting with WordPress preset
