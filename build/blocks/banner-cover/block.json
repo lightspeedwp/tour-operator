@@ -25,7 +25,7 @@
           "content": {
             "source": "lsx/post-meta",
             "args": {
-              "key": "banner"
+              "key": "banner_image"
             }
           }
         }
