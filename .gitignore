@@ -71,3 +71,6 @@ phpcs-report.xml
 phpcs-report.txt
 test-results/*
 playwright-report/*
+vendor/bin/.phpunit.result.cache
+
+vendor/bin/.phpunit.result.cache

@@ -339,7 +339,7 @@ test.describe('Tour Block', () => {
 
 - Clear build cache: `rm -rf build node_modules && npm install`
 - Check `.babel.config.cjs` for proper preset configuration
-- Verify `.webpack.config.cjs` extends WordPress defaults
+- Verify `webpack.config.js` extends WordPress defaults
 
 ## Resources
 
