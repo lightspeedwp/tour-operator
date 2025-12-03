@@ -303,7 +303,22 @@ After thorough analysis, the following CSS rules can be removed as they are **co
 }
 ```
 
-### 2. Classes to Verify Before Removal
+### 2. How to Verify a Class is Unused
+
+Before removing any CSS class, verify it's not used elsewhere with these commands:
+
+```bash
+# Search for class in all PHP, JS, HTML, and JSON files
+grep -rn "class-name" . --include="*.php" --include="*.js" --include="*.html" --include="*.json" | grep -v "node_modules"
+
+# Search in LSX theme if installed alongside
+grep -rn "class-name" ../lsx/ --include="*.php" --include="*.js" 2>/dev/null
+
+# Check if class is generated dynamically in JavaScript
+grep -rn "addClass.*class-name\|classList.*class-name" . --include="*.js" | grep -v "node_modules"
+```
+
+### 3. Classes to Verify Before Removal
 
 These classes may be used by external integrations:
 
@@ -315,7 +330,7 @@ These classes may be used by external integrations:
 | `dropdown-menu` | `_slider.scss` | Used as selector exclusion - verify if needed |
 | `moretag` | `_maps.scss` | WordPress core class for "read more" links |
 
-### 3. WordPress Context Classes (Keep)
+### 4. WordPress Context Classes (Keep)
 
 These are WordPress-added classes that the CSS targets for styling in specific contexts. **Keep these**:
 
@@ -324,7 +339,7 @@ These are WordPress-added classes that the CSS targets for styling in specific c
 - `wp-block-group__inner-container` - Legacy inner container class
 - `has-x-large-font-size` / `has-xx-large-font-size` - Typography presets
 
-### 4. Future Maintenance Recommendations
+### 5. Future Maintenance Recommendations
 
 1. **Remove confirmed unused CSS**: Apply the removals in section 1 above (~40 lines)
 2. **Add comments for external classes**: Document which classes come from third-party integrations
