@@ -108,14 +108,48 @@ export function createConditionalRegistration(config) {
             if (!checkAndRegister()) {
                 // Subscribe to editor changes if initial check failed
                 let unsubscribed = false;
+                let retryCount = 0;
+                let timeoutId = null;
+                
+                // Maximum retries and wait time constants
+                const MAX_RETRIES = 50;
+                const MAX_WAIT = 30000; // 30 seconds
+                
+                const cleanup = () => {
+                    if (!unsubscribed) {
+                        unsubscribed = true;
+                        if (unsubscribe) {
+                            unsubscribe();
+                        }
+                        if (timeoutId) {
+                            clearTimeout(timeoutId);
+                            timeoutId = null;
+                        }
+                    }
+                };
+                
+                // Set up maximum wait timeout
+                timeoutId = setTimeout(() => {
+                    console.warn(`Block registration timeout after ${MAX_WAIT}ms, unsubscribing`);
+                    cleanup();
+                }, MAX_WAIT);
+                
                 const unsubscribe = wp.data.subscribe(() => {
                     if (unsubscribed) {
                         return;
                     }
+                    
+                    retryCount++;
+                    
+                    // Check if we've exceeded maximum retries
+                    if (retryCount > MAX_RETRIES) {
+                        console.warn(`Block registration exceeded ${MAX_RETRIES} retries, unsubscribing`);
+                        cleanup();
+                        return;
+                    }
 
                     if (checkAndRegister()) {
-                        unsubscribed = true;
-                        unsubscribe();
+                        cleanup();
                     }
                 });
             }
