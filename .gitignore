@@ -1,5 +1,6 @@
 # Dependencies
 node_modules/
+vendor/
 
 # Build artifacts and compiled files (but keep build/ for WordPress plugin distribution)
 /assets/dist/
