@@ -2,6 +2,7 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
   "editorScript": "file:index.js",
+  "render": "file:render.php",
   "name": "lsx-tour-operator/icons",
   "title": "Icons",
   "description": "A simple block that allows you to insert any SVG icons from a custom library.",
@@ -11,6 +12,16 @@
     "icon",
     "svg"
   ],
+  "attributes": {
+    "iconType": {
+      "type": "string",
+      "default": "outline"
+    },
+    "iconName": {
+      "type": "string",
+      "default": ""
+    }
+  },
   "supports": {
     "html": false,
     "color": {
