@@ -55,7 +55,6 @@ wp.domReady(() => {
             attributes: {
                 metadata: {
                     name: 'WETU Map',
-                    className: 'lsx-wetu-map-wrapper',
                     bindings: {
                         content: {
                             source: 'lsx/map',
@@ -63,6 +62,7 @@ wp.domReady(() => {
                         },
                     },
                 },
+                className: 'lsx-wetu-map-wrapper',
                 layout: {
                     type: 'constrained',
                 },
