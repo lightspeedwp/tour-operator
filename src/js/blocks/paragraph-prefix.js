@@ -57,19 +57,25 @@
         withInspectorControls
     );
 
+    // Register the custom attributes for the paragraph block
     wp.hooks.addFilter(
-        'blocks.getSaveContent.extraProps',
-        'lsx-tour-operator/save-paragraph-prefix-panel',
-        function ( extraProps, blockType, attributes ) {
-            if ( blockType.name === 'core/paragraph' ) {
-                if ( attributes.prefixText ) {
-                    extraProps['data-prefix-text'] = attributes.prefixText;
-                }
-                if ( attributes.prefixBold ) {
-                    extraProps['data-prefix-bold'] = attributes.prefixBold;
-                }
+        'blocks.registerBlockType',
+        'lsx-tour-operator/paragraph-prefix-attributes',
+        function ( settings, name ) {
+            if ( name === 'core/paragraph' ) {
+                settings.attributes = {
+                    ...settings.attributes,
+                    prefixText: {
+                        type: 'string',
+                        default: '',
+                    },
+                    prefixBold: {
+                        type: 'boolean',
+                        default: false,
+                    },
+                };
             }
-            return extraProps;
+            return settings;
         }
     );
 } )(
