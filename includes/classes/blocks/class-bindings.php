@@ -1173,20 +1173,17 @@ class Bindings {
 			$prefix_text .= ' ';
 		}
 
-		// Use WP_HTML_Tag_Processor to safely modify the paragraph content
-		$tags = new \WP_HTML_Tag_Processor( $block_content );
-
-		if ( $tags->next_tag( 'p' ) ) {
-			// Get current content
-			$current_content = $tags->get_inner_html();
-			
-			// Prepend prefix to the content
-			$new_content = $prefix_text . $current_content;
-			
-			// Set the new content
-			$tags->set_inner_html( $new_content );
-			
-			$block_content = $tags->__toString();
+		// Use regex to modify the first paragraph tag content
+		// Pattern matches opening <p> tag (with any attributes) and captures the inner content
+		$pattern = '/(<p[^>]*>)(.*?)(<\/p>)/s';
+		
+		if ( preg_match( $pattern, $block_content ) ) {
+			$block_content = preg_replace( 
+				$pattern, 
+				'$1' . $prefix_text . '$2$3', 
+				$block_content, 
+				1 // Only replace the first match
+			);
 		}
 
 		return $block_content;
