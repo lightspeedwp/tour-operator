@@ -58,13 +58,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'priceIcon',
                             },
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: '<strong>' + __('From:', 'tour-operator') + '</strong>',
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -80,6 +74,8 @@ wp.domReady(() => {
                                 },
                             },
                         },
+						prefixText : __('From:', 'tour-operator'),
+						prefixBold: true,
                         className: 'amount',
                     },
                 ],
