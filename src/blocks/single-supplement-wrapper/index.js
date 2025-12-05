@@ -58,15 +58,9 @@ wp.domReady(() => {
                             {
                                 iconType: 'solid',
                                 iconName: 'singleSupplementIcon',
-                            },
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: '<strong>' + __('Single supplement:', 'tour-operator') + '</strong>',
-                            },
-                        ],
-                    ],
+                            }
+                        ]
+                    ]
                 ],
                 [
                     'core/group',
@@ -86,6 +80,8 @@ wp.domReady(() => {
                                     },
                                 },
                                 className: 'amount',
+								prefixText : __('Single supplement:', 'tour-operator'),
+								prefixBold: true,
                                 content: '',
                             },
                         ],
