@@ -48,7 +48,8 @@ wp.domReady(() => {
                 },
                 className: 'lsx-suggested-visitor-types-wrapper',
                 layout: {
-                    type: 'constrained',
+					type: 'flex',
+					flexWrap: 'nowrap',
                 },
             },
             innerBlocks: [
@@ -71,13 +72,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'groupSizeIcon',
                             },
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: '<strong>' + __('Suitable For:', 'tour-operator') + '</strong>',
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -105,6 +100,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								prefixText : __('Suitable For:', 'tour-operator'),
+								prefixBold: true,
                             },
                         ],
                     ],
@@ -131,13 +128,7 @@ wp.domReady(() => {
                                     iconType: 'solid',
                                     iconName: 'groupSizeIcon',
                                 },
-                            },
-                            {
-                                name: 'core/paragraph',
-                                attributes: {
-                                    content: '<strong>' + __('Suitable For:', 'tour-operator') + '</strong>',
-                                },
-                            },
+                            }
                         ],
                     },
                     {
@@ -152,7 +143,7 @@ wp.domReady(() => {
                             {
                                 name: 'core/paragraph',
                                 attributes: {
-                                    content: __('Families, Couples, Business travelers, Solo travelers', 'tour-operator'),
+                                    content: '<strong>' + __('Suitable For:', 'tour-operator') + '</strong>' + __('  Families, Couples, Business travelers, Solo travelers', 'tour-operator'),
                                 },
                             },
                         ],
