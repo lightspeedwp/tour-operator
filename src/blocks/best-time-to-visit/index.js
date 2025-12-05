@@ -79,7 +79,7 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefixText : __('Best months to visit:', 'tour-operator'),
+								prefix : __('Best months to visit:', 'tour-operator'),
 								prefixBold: true,
                                 content: __('Best months to visit', 'tour-operator'),
                             },

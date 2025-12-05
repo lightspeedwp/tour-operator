@@ -74,7 +74,7 @@ wp.domReady(() => {
                                 },
                             },
                         },
-						prefixText : __('From:', 'tour-operator'),
+						prefix : __('From:', 'tour-operator'),
 						prefixBold: true,
                         className: 'amount',
                     },

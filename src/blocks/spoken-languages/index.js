@@ -88,7 +88,7 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefixText : __('Spoken Languages:', 'tour-operator'),
+								prefix : __('Spoken Languages:', 'tour-operator'),
 								prefixBold: true,
                             },
                         ],

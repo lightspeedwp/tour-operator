@@ -79,7 +79,7 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefixText : __( 'Location:', 'tour-operator'),
+								prefix : __( 'Location:', 'tour-operator'),
 								prefixBold: true,
                             },
                         ],

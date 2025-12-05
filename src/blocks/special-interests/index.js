@@ -112,7 +112,7 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefixText : "Duration:",
+								prefix : "Duration:",
 								prefixBold: true,
                             },
                         ],

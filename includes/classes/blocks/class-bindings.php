@@ -1154,11 +1154,11 @@ class Bindings {
 		}
 
 		// Check if the block has prefix attributes
-		if ( ! isset( $parsed_block['attrs']['prefixText'] ) || empty( $parsed_block['attrs']['prefixText'] ) ) {
+		if ( ! isset( $parsed_block['attrs']['prefix'] ) || empty( $parsed_block['attrs']['prefix'] ) ) {
 			return $block_content;
 		}
 
-		$prefix_text = $parsed_block['attrs']['prefixText'];
+		$prefix_text = $parsed_block['attrs']['prefix'];
 		$prefix_bold = isset( $parsed_block['attrs']['prefixBold'] ) ? $parsed_block['attrs']['prefixBold'] : false;
 
 		// Wrap prefix in bold tags if requested

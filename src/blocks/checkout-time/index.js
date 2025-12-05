@@ -79,7 +79,7 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefixText : __('Check out time: ', 'tour-operator'),
+								prefix : __('Check out time: ', 'tour-operator'),
 								prefixBold: true,
                             },
                         ],

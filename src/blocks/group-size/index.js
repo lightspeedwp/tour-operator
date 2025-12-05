@@ -75,7 +75,7 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefixText : __('Group size:', 'tour-operator'),
+								prefix : __('Group size:', 'tour-operator'),
 								prefixBold: true,
                                 content: '',
                             },

@@ -88,7 +88,7 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefixText : __('Rating:', 'tour-operator'),
+								prefix : __('Rating:', 'tour-operator'),
 								prefixBold: true,
                             },
                         ],

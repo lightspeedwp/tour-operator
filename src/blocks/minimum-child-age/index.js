@@ -108,7 +108,7 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefixText : __('Minimum Child Age:', 'tour-operator'),
+								prefix : __('Minimum Child Age:', 'tour-operator'),
 								prefixBold: true,
                             },
                         ],

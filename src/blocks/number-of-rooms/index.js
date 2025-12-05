@@ -78,7 +78,7 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefixText : __('Number of Units:', 'tour-operator'),
+								prefix : __('Number of Units:', 'tour-operator'),
 								prefixBold: true,
                             },
                         ],

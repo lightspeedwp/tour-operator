@@ -21,7 +21,7 @@
                     return el( BlockEdit, props );
                 }
 
-                let prefixText = props.attributes.prefixText || '';
+                let prefix = props.attributes.prefix || '';
                 let prefixBold = props.attributes.prefixBold || false;
 
                 return el(
@@ -36,10 +36,10 @@
                             { title: 'Tour Operator', initialOpen: true },
                             el( TextControl, {
                                 label: 'Prefix Text',
-                                value: prefixText,
+                                value: prefix,
                                 onChange( value ) {
                                     props.setAttributes( {
-                                        prefixText: value,
+                                        prefix: value,
                                     } );
                                 },
                             } ),
@@ -74,7 +74,7 @@
             if ( name === 'core/paragraph' ) {
                 settings.attributes = {
                     ...settings.attributes,
-                    prefixText: {
+                    prefix: {
                         type: 'string',
                         default: '',
                     },

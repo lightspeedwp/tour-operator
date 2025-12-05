@@ -93,7 +93,7 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefixText : __('Ends In:', 'tour-operator'),
+								prefix : __('Ends In:', 'tour-operator'),
 								prefixBold: true,
                                 content: '',
                             },

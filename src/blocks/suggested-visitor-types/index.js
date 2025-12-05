@@ -100,7 +100,7 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefixText : __('Suitable For:', 'tour-operator'),
+								prefix : __('Suitable For:', 'tour-operator'),
 								prefixBold: true,
                             },
                         ],

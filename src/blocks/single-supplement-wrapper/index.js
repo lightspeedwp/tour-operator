@@ -80,7 +80,7 @@ wp.domReady(() => {
                                     },
                                 },
                                 className: 'amount',
-								prefixText : __('Single supplement:', 'tour-operator'),
+								prefix : __('Single supplement:', 'tour-operator'),
 								prefixBold: true,
                                 content: '',
                             },

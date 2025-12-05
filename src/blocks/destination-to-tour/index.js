@@ -79,7 +79,7 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefixText : __('Destinations:', 'tour-operator'),
+								prefix : __('Destinations:', 'tour-operator'),
 								prefixBold: true,
                                 content: '',
                             },

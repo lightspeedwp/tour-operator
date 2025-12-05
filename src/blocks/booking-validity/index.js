@@ -80,7 +80,7 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefixText : __('Booking validity:', 'tour-operator'),
+								prefix : __('Booking validity:', 'tour-operator'),
 								prefixBold: true,
                                 content: '',
                             },
