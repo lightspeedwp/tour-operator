@@ -36,7 +36,8 @@ wp.domReady(() => {
                 },
                 className: 'lsx-spoken-languages-wrapper',
                 layout: {
-                    type: 'constrained',
+					type: 'flex',
+					flexWrap: 'nowrap',
                 },
             },
             innerBlocks: [
@@ -59,13 +60,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'spokenLanguagesIcon',
                             },
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: '<strong>' + __('Spoken Languages:', 'tour-operator') + '</strong>',
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -93,6 +88,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								prefixText : __('Spoken Languages:', 'tour-operator'),
+								prefixBold: true,
                             },
                         ],
                     ],
