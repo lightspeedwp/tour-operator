@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $icon_type = isset( $attributes['iconType'] ) ? sanitize_key( $attributes['iconType'] ) : 'outline';
-$icon_name = isset( $attributes['iconName'] ) ? sanitize_key( $attributes['iconName'] ) : '';
+$icon_name = isset( $attributes['iconName'] ) ? $attributes['iconName'] : '';
 
 // If no icon name is provided, return nothing.
 if ( empty( $icon_name ) ) {

@@ -671,6 +671,8 @@ function lsx_to_get_icon_svg( $icon_type = 'outline', $icon_name = '' ) {
 	// Convert camelCase icon name to kebab-case file name.
 	$file_name = strtolower( preg_replace( '/([a-z])([A-Z])/', '$1-$2', $icon_name ) );
 
+	
+
 	// Build the path to the SVG file.
 	$svg_path = LSX_TO_PATH . 'src/blocks/icons/source-icons/' . $icon_type . '/' . $file_name . '.svg';
 
