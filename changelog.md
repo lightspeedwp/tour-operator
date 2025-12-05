@@ -4,6 +4,10 @@
 
 ### Added
 
+#### Build & Pattern Infrastructure
+
+- **Pattern Registration Infrastructure** - Established directory structure and registration system for tour operator patterns with proper categorization and template support - []()
+
 #### New Blocks
 
 - **Icons Block** - Added new icons block for improved icon management and display capabilities - [#547](https://github.com/lightspeedwp/tour-operator/pull/547), Issue [#548](https://github.com/lightspeedwp/tour-operator/issues/548)
