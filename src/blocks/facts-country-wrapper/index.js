@@ -33,10 +33,10 @@ wp.domReady(() => {
                     name: __('Country', 'tour-operator'),
                 },
                 className: 'facts-country-query-wrapper',
-                layout: {
-                    type: 'flex',
-                    flexWrap: 'nowrap',
-                },
+				layout: {
+					type: 'flex',
+					flexWrap: 'nowrap',
+				},
             },
             innerBlocks: [
                 [
@@ -55,13 +55,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'destinationIcon',
                             },
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: `<strong>${__('Country', 'tour-operator')}</strong>`,
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -86,6 +80,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								prefixText : __('Country', 'tour-operator'),
+								prefixBold: true,
                                 content: '',
                             },
                         ],
