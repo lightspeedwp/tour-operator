@@ -66,13 +66,7 @@ wp.domReady(() => {
                                 iconType: 'outline',
                                 iconName: 'departsFromEndsInIcon',
                             },
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: '<strong>' + __('Departs From:', 'tour-operator') + '</strong>',
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -97,6 +91,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								prefixText : "Duration:",
+								prefixBold: true,
                                 content: '',
                             },
                         ],
