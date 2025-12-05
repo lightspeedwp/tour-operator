@@ -54,16 +54,7 @@ wp.domReady(() => {
                                 iconType: "solid",
                                 iconName: "checkInAccommodationIcon",
                             },
-                        ],
-                        [
-                            "core/paragraph",
-                            {
-                                content: __(
-                                    'Check out time:',
-                                    'tour-operator'
-                                ),
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -88,6 +79,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								prefixText : __('Check out time: ', 'tour-operator'),
+								prefixBold: true,
                             },
                         ],
                     ],
