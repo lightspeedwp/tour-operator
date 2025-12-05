@@ -113,7 +113,7 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefix : "Duration:",
+								prefix : __( 'Special Interests:', 'tour-operator' ),
 								prefixBold: true,
                             },
                         ],

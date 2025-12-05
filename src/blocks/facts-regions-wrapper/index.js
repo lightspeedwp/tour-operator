@@ -83,7 +83,7 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefix : "Duration:",
+								prefix : __( 'Regions', 'tour-operator' ),
 								prefixBold: true,
                                 content: '',
                             },
