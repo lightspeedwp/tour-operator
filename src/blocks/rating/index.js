@@ -59,13 +59,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'ratingIcon',
                             },
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: '<strong>' + __('Rating:', 'tour-operator') + '</strong>',
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -94,6 +88,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								prefixText : __('Rating:', 'tour-operator'),
+								prefixBold: true,
                             },
                         ],
                         [
