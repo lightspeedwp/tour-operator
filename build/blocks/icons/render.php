@@ -17,7 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $icon_type = isset( $attributes['iconType'] ) ? sanitize_key( $attributes['iconType'] ) : 'outline';
-$icon_name = isset( $attributes['iconName'] ) ? sanitize_key( $attributes['iconName'] ) : '';
+// Don't use sanitize_key for iconName as it converts to lowercase and breaks camelCase to kebab-case conversion.
+$icon_name = isset( $attributes['iconName'] ) ? preg_replace( '/[^a-zA-Z0-9]/', '', $attributes['iconName'] ) : '';
 
 // If no icon name is provided, return nothing.
 if ( empty( $icon_name ) ) {
