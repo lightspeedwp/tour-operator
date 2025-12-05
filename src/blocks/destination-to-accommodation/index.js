@@ -32,10 +32,10 @@ wp.domReady(() => {
                     name: __('Destination to Accommodation', 'tour-operator'),
                 },
                 className: 'lsx-destination-to-accommodation-wrapper',
-
-                layout: {
-                    type: 'constrained',
-                },
+				layout: {
+					type: 'flex',
+					flexWrap: 'nowrap',
+				},
             },
             innerBlocks: [
                 [
@@ -54,13 +54,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'destinationIcon',
                             },
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: '<strong>Location</strong>:',
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -85,6 +79,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								prefixText : __( 'Location:', 'tour-operator'),
+								prefixBold: true,
                             },
                         ],
                     ],

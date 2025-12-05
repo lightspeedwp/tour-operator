@@ -27,13 +27,7 @@
           [
             "core/paragraph",
             {
-              "content": "Destinations:"
-            }
-          ],
-          [
-            "core/paragraph",
-            {
-              "content": "Cape Town, Johannesburg"
+              "content": "<strong>Location:</strong> Cape Town, Johannesburg"
             }
           ]
         ]
