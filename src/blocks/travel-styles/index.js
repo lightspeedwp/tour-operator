@@ -36,6 +36,10 @@ wp.domReady(() => {
                     name: 'Travel styles',
                 },
                 className: 'lsx-travel-style-wrapper',
+				layout: {
+					type: 'flex',
+					flexWrap: 'nowrap',
+				},
             },
             innerBlocks: [
                 [
@@ -54,13 +58,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'travelStyleIcon',
                             },
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: '<strong>' + __('Travel Styles:', 'tour-operator') + '</strong>',
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -76,10 +74,11 @@ wp.domReady(() => {
                             'core/post-terms',
                             {
                                 term: 'travel-style',
-                            },
-                        ],
-                    ],
-                ],
+								prefix: '<strong>' + __('Travel Styles:', 'tour-operator') + '</strong>'
+                            }
+                        ]
+                    ]
+                ]
             ],
             example: {
                 innerBlocks: [
