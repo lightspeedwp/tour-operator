@@ -51,12 +51,6 @@ wp.domReady(() => {
                                 iconName: 'bestMonthsToTravelIcon',
                             },
                         ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: `<strong>${__('Best months to visit', 'tour-operator')}</strong>`,
-                            },
-                        ],
                     ],
                 ],
                 [
@@ -81,6 +75,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								prefixText : __('Best months to visit', 'tour-operator'),
+								prefixBold: true,
                                 content: __('Best months to visit', 'tour-operator'),
                             },
                         ],
@@ -113,13 +109,7 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: '<strong>' + __('Best months to visit', 'tour-operator') + '</strong>',
-                                        },
-                                    },
-                                    {
-                                        name: 'core/paragraph',
-                                        attributes: {
-                                            content: 'January, February, March',
+                                            content: '<strong>' + __('Best months to visit', 'tour-operator') + '</strong>: January, February, March',
                                         },
                                     },
                                 ],
@@ -133,8 +123,8 @@ wp.domReady(() => {
 
     // Initialize conditional registration
     const conditionalRegister = registerForPostTypesAndTemplates(
-        ['destination'], // Supported post types
-        ['destination', 'country', 'region'], // Template slug patterns
+        ['destination','tour','accommodation'], // Supported post types
+        ['destination', 'country', 'region','tour','accommodation'], // Template slug patterns
         registerBestTimeToVisitVariation
     );
 
