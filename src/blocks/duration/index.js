@@ -58,13 +58,7 @@ wp.domReady(() => {
                                 iconType: 'outline',
                                 iconName: 'durationIcon',
                             },
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: '<strong>' + __('Duration:', 'tour-operator') + '</strong>',
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -89,6 +83,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								prefixText : "Duration:",
+								prefixBold: true,
                                 content: '',
                             },
                         ],
