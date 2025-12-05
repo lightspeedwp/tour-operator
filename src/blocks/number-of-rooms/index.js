@@ -53,13 +53,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'numberOfUnitsIcon',
                             },
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: '<strong>Number of Units</strong>:',
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -84,6 +78,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								prefixText : __('Number of Units:', 'tour-operator'),
+								prefixBold: true,
                             },
                         ],
                     ],
