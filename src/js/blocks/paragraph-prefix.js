@@ -12,6 +12,15 @@
                     return el( BlockEdit, props );
                 }
 
+                // Only show prefix controls for paragraphs with bindings
+                const hasBindings = props.attributes.metadata && 
+                                  props.attributes.metadata.bindings && 
+                                  props.attributes.metadata.bindings.content;
+
+                if ( ! hasBindings ) {
+                    return el( BlockEdit, props );
+                }
+
                 let prefixText = props.attributes.prefixText || '';
                 let prefixBold = props.attributes.prefixBold || false;
 
@@ -24,7 +33,7 @@
                         {},
                         el(
                             PanelBody,
-                            { title: 'Tour Operator - Prefix', initialOpen: true },
+                            { title: 'Tour Operator', initialOpen: true },
                             el( TextControl, {
                                 label: 'Prefix Text',
                                 value: prefixText,
