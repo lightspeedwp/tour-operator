@@ -35,6 +35,7 @@ wp.domReady(() => {
 				layout: {
 					type: 'flex',
 					flexWrap: 'nowrap',
+					verticalAlignment: 'top'
 				},
             },
             innerBlocks: [

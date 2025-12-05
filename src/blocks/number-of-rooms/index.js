@@ -34,6 +34,7 @@ wp.domReady(() => {
                 layout: {
                     type: 'flex',
                     flexWrap: 'nowrap',
+					verticalAlignment: 'top'
                 },
             },
             innerBlocks: [
@@ -43,7 +44,6 @@ wp.domReady(() => {
                         layout: {
                             type: 'flex',
                             flexWrap: 'nowrap',
-                            verticalAlignment: 'top',
                         },
                     },
                     [

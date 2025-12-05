@@ -38,6 +38,7 @@ wp.domReady(() => {
                 layout: {
                     type: 'flex',
                     flexWrap: 'nowrap',
+					verticalAlignment: 'top'
                 },
                 className: 'lsx-price-wrapper',
             },
@@ -48,7 +49,6 @@ wp.domReady(() => {
                         layout: {
                             type: 'flex',
                             flexWrap: 'nowrap',
-                            verticalAlignment: 'middle',
                         },
                     },
                     [
