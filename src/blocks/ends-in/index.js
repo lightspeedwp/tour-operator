@@ -67,13 +67,7 @@ wp.domReady(() => {
                                 iconType: 'outline',
                                 iconName: 'departsFromEndsInIcon',
                             },
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: '<strong>' + __('Ends In:', 'tour-operator') + '</strong>',
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -98,6 +92,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								prefixText : __('Ends In:', 'tour-operator'),
+								prefixBold: true,
                                 content: '',
                             },
                         ],

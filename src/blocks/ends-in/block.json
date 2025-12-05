@@ -64,12 +64,6 @@
               "iconType": "solid",
               "iconName": "bookingValidityIcon"
             }
-          ],
-          [
-            "core/paragraph",
-            {
-              "content": "<strong>Ends In:</strong>"
-            }
           ]
         ]
       ],
@@ -85,7 +79,7 @@
           [
             "core/paragraph",
             {
-              "content": "Johannesburg, South Africa"
+              "content": "<strong>Ends In:</strong> Johannesburg, South Africa"
             }
           ]
         ]
