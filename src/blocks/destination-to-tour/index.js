@@ -53,13 +53,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'destinationIcon',
                             },
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: '<strong>' + __('Destinations:', 'tour-operator') + '</strong>',
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -84,6 +78,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								prefixText : __('Destinations:', 'tour-operator'),
+								prefixBold: true,
                                 content: '',
                             },
                         ],
