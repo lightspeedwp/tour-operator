@@ -32,9 +32,10 @@ wp.domReady(() => {
                     name: __('Destination to Tour', 'tour-operator'),
                 },
                 className: 'lsx-destination-to-tour-wrapper',
-                layout: {
-                    type: 'constrained',
-                },
+				layout: {
+					type: 'flex',
+					flexWrap: 'nowrap',
+				},
             },
             innerBlocks: [
                 [

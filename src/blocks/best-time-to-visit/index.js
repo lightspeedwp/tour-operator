@@ -32,6 +32,10 @@ wp.domReady(() => {
                     name: __('Best months to visit', 'tour-operator'),
                 },
                 className: 'lsx-best-time-to-visit-wrapper',
+				layout: {
+					type: 'flex',
+					flexWrap: 'nowrap',
+				},
             },
             innerBlocks: [
                 [
@@ -75,7 +79,7 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefixText : __('Best months to visit', 'tour-operator'),
+								prefixText : __('Best months to visit:', 'tour-operator'),
 								prefixBold: true,
                                 content: __('Best months to visit', 'tour-operator'),
                             },

@@ -45,9 +45,10 @@ wp.domReady(() => {
                     name: __('Departs from', 'tour-operator'),
                 },
                 className: 'lsx-departs-from-wrapper',
-                layout: {
-                    type: 'constrained',
-                },
+				layout: {
+					type: 'flex',
+					flexWrap: 'nowrap',
+				},
             },
             innerBlocks: [
                 [

@@ -74,7 +74,7 @@ wp.domReady(() => {
                             'core/post-terms',
                             {
                                 term: 'travel-style',
-								prefix: '<strong>' + __('Travel Styles:', 'tour-operator') + '</strong>'
+								prefix: '<strong>' + __('Travel Styles: ', 'tour-operator') + '</strong>'
                             }
                         ]
                     ]

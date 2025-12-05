@@ -46,9 +46,10 @@ wp.domReady(() => {
                     name: __('Ends in', 'tour-operator'),
                 },
                 className: 'lsx-ends-in-wrapper',
-                layout: {
-                    type: 'constrained',
-                },
+				layout: {
+					type: 'flex',
+					flexWrap: 'nowrap',
+				},
             },
             innerBlocks: [
                 [
