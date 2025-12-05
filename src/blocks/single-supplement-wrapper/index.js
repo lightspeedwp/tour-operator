@@ -122,8 +122,8 @@ wp.domReady(() => {
 
     // Initialize conditional registration
     const conditionalRegister = registerForPostTypesAndTemplates(
-        ['tour'], // Supported post types
-        ['tour'], // Template slug patterns
+        ['tour','accommodation'], // Supported post types
+        ['tour','accommodation'], // Template slug patterns
         registerSingleSupplementVariation
     );
 
