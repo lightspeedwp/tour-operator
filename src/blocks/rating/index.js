@@ -92,47 +92,6 @@ wp.domReady(() => {
 								prefixBold: true,
                             },
                         ],
-                        [
-                            'core/group',
-                            {
-                                metadata: {
-                                    name: __('Rating Type', 'tour-operator'),
-                                },
-                                layout: {
-                                    type: 'flex',
-                                    flexWrap: 'nowrap',
-                                },
-                            },
-                            [
-                                [
-                                    'core/paragraph',
-                                    {
-                                        content: '(',
-                                    },
-                                ],
-                                [
-                                    'core/paragraph',
-                                    {
-                                        metadata: {
-                                            bindings: {
-                                                content: {
-                                                    source: 'lsx/post-meta',
-                                                    args: {
-                                                        key: 'rating_type',
-                                                    },
-                                                },
-                                            },
-                                        },
-                                    },
-                                ],
-                                [
-                                    'core/paragraph',
-                                    {
-                                        content: ')',
-                                    },
-                                ],
-                            ],
-                        ],
                     ],
                 ],
             ],
@@ -185,36 +144,7 @@ wp.domReady(() => {
                                 attributes: {
                                     content: __('4.5', 'tour-operator'),
                                 },
-                            },
-                            {
-                                name: 'core/group',
-                                attributes: {
-                                    layout: {
-                                        type: 'flex',
-                                        flexWrap: 'nowrap',
-                                    },
-                                },
-                                innerBlocks: [
-                                    {
-                                        name: 'core/paragraph',
-                                        attributes: {
-                                            content: '(',
-                                        },
-                                    },
-                                    {
-                                        name: 'core/paragraph',
-                                        attributes: {
-                                            content: __('Star Rating', 'tour-operator'),
-                                        },
-                                    },
-                                    {
-                                        name: 'core/paragraph',
-                                        attributes: {
-                                            content: ')',
-                                        },
-                                    },
-                                ],
-                            },
+                            }
                         ],
                     },
                 ],
