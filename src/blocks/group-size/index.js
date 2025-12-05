@@ -55,13 +55,7 @@ wp.domReady(() => {
                                 iconName: 'groupSizeIcon',
                             },
 
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: '<strong>' + __('Group size:', 'tour-operator') + '</strong>',
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -81,6 +75,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								prefixText : __('Group size:', 'tour-operator'),
+								prefixBold: true,
                                 content: '',
                             },
                         ],
