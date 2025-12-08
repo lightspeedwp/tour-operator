@@ -1,3 +1,12 @@
+---
+title: Directory Index
+description: Documentation for this directory
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 [![Latest Stable Version](https://poser.pugx.org/sebastian/environment/v/stable.png)](https://packagist.org/packages/sebastian/environment)
 [![CI Status](https://github.com/sebastianbergmann/environment/workflows/CI/badge.svg)](https://github.com/sebastianbergmann/environment/actions)
 [![Type Coverage](https://shepherd.dev/github/sebastianbergmann/environment/coverage.svg)](https://shepherd.dev/github/sebastianbergmann/environment)

@@ -1,3 +1,12 @@
+---
+title: Directory Index
+description: Documentation for this directory
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 # PHPUnit
 
 [![Latest Stable Version](https://poser.pugx.org/phpunit/phpunit/v)](https://packagist.org/packages/phpunit/phpunit)

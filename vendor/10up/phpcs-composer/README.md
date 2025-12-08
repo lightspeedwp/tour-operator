@@ -1,3 +1,12 @@
+---
+title: Directory Index
+description: Documentation for this directory
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 # 10up PHPCS Configuration
 
 > Composer library to provide drop in installation and configuration of [WPCS](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) and [PHPCompatibilityWP](https://github.com/PHPCompatibility/PHPCompatibilityWP), setting reasonable defaults for WordPress development with nearly zero configuration.

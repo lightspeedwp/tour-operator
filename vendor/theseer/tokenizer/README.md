@@ -1,3 +1,12 @@
+---
+title: Directory Index
+description: Documentation for this directory
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 # Tokenizer
 
 A small library for converting tokenized PHP source code into XML.

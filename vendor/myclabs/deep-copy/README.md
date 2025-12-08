@@ -1,3 +1,12 @@
+---
+title: Directory Index
+description: Documentation for this directory
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 # DeepCopy
 
 DeepCopy helps you create deep copies (clones) of your objects. It is designed to handle cycles in the association graph.

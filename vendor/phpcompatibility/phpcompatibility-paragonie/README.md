@@ -1,3 +1,12 @@
+---
+title: Directory Index
+description: Documentation for this directory
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 [![Latest Stable Version](https://img.shields.io/packagist/v/phpcompatibility/phpcompatibility-paragonie?label=stable)](https://packagist.org/packages/phpcompatibility/phpcompatibility-paragonie)
 [![Latest Unstable Version](https://img.shields.io/badge/unstable-dev--develop-e68718.svg?maxAge=2419200)](https://packagist.org/packages/phpcompatibility/phpcompatibility-paragonie)
 [![License](https://img.shields.io/github/license/PHPCompatibility/PHPCompatibilityParagonie?color=00a7a7)](https://github.com/PHPCompatibility/PHPCompatibilityParagonie/blob/master/LICENSE)

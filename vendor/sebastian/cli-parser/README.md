@@ -1,3 +1,12 @@
+---
+title: Directory Index
+description: Documentation for this directory
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 [![Latest Stable Version](https://poser.pugx.org/sebastian/cli-parser/v/stable.png)](https://packagist.org/packages/sebastian/cli-parser)
 [![CI Status](https://github.com/sebastianbergmann/cli-parser/workflows/CI/badge.svg)](https://github.com/sebastianbergmann/cli-parser/actions)
 [![Type Coverage](https://shepherd.dev/github/sebastianbergmann/cli-parser/coverage.svg)](https://shepherd.dev/github/sebastianbergmann/cli-parser)

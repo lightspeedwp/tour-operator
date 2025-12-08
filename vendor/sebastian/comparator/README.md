@@ -1,3 +1,12 @@
+---
+title: Directory Index
+description: Documentation for this directory
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 [![Latest Stable Version](https://poser.pugx.org/sebastian/comparator/v/stable.png)](https://packagist.org/packages/sebastian/comparator)
 [![CI Status](https://github.com/sebastianbergmann/comparator/workflows/CI/badge.svg)](https://github.com/sebastianbergmann/comparator/actions)
 [![Type Coverage](https://shepherd.dev/github/sebastianbergmann/comparator/coverage.svg)](https://shepherd.dev/github/sebastianbergmann/comparator)

@@ -1,3 +1,12 @@
+---
+title: Directory Index
+description: Documentation for this directory
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 [![Latest Stable Version](https://poser.pugx.org/sebastian/object-reflector/v/stable.png)](https://packagist.org/packages/sebastian/object-reflector)
 [![CI Status](https://github.com/sebastianbergmann/object-reflector/workflows/CI/badge.svg)](https://github.com/sebastianbergmann/object-reflector/actions)
 [![Type Coverage](https://shepherd.dev/github/sebastianbergmann/object-reflector/coverage.svg)](https://shepherd.dev/github/sebastianbergmann/object-reflector)

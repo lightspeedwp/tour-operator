@@ -1,3 +1,12 @@
+---
+title: Directory Index
+description: Documentation for this directory
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 # VIP Coding Standards
 
 This project contains [PHP_CodeSniffer (PHPCS) sniffs and rulesets](https://github.com/PHPCSStandards/PHP_CodeSniffer) to validate code developed for [WordPress VIP](https://wpvip.com/).

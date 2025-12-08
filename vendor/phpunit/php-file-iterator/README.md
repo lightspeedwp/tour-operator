@@ -1,3 +1,12 @@
+---
+title: Directory Index
+description: Documentation for this directory
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 [![Latest Stable Version](https://poser.pugx.org/phpunit/php-file-iterator/v/stable.png)](https://packagist.org/packages/phpunit/php-file-iterator)
 [![CI Status](https://github.com/sebastianbergmann/php-file-iterator/workflows/CI/badge.svg)](https://github.com/sebastianbergmann/php-file-iterator/actions)
 [![Type Coverage](https://shepherd.dev/github/sebastianbergmann/php-file-iterator/coverage.svg)](https://shepherd.dev/github/sebastianbergmann/php-file-iterator)

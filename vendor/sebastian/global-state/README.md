@@ -1,3 +1,12 @@
+---
+title: Directory Index
+description: Documentation for this directory
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 [![Latest Stable Version](https://poser.pugx.org/sebastian/global-state/v/stable.png)](https://packagist.org/packages/sebastian/global-state)
 [![CI Status](https://github.com/sebastianbergmann/global-state/workflows/CI/badge.svg)](https://github.com/sebastianbergmann/global-state/actions)
 [![Type Coverage](https://shepherd.dev/github/sebastianbergmann/global-state/coverage.svg)](https://shepherd.dev/github/sebastianbergmann/global-state)

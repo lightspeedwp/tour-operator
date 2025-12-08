@@ -1,3 +1,12 @@
+---
+title: Directory Index
+description: Documentation for this directory
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 [![Latest Stable Version](https://poser.pugx.org/sebastian/lines-of-code/v/stable.png)](https://packagist.org/packages/sebastian/lines-of-code)
 [![CI Status](https://github.com/sebastianbergmann/lines-of-code/workflows/CI/badge.svg)](https://github.com/sebastianbergmann/lines-of-code/actions)
 [![Type Coverage](https://shepherd.dev/github/sebastianbergmann/lines-of-code/coverage.svg)](https://shepherd.dev/github/sebastianbergmann/lines-of-code)

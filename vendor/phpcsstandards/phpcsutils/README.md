@@ -1,3 +1,12 @@
+---
+title: Directory Index
+description: Documentation for this directory
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 # PHPCSUtils: A suite of utility functions for use with PHP_CodeSniffer
 
 <div aria-hidden="true">

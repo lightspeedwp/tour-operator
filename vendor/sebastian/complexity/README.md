@@ -1,3 +1,12 @@
+---
+title: Directory Index
+description: Documentation for this directory
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 [![Latest Stable Version](https://poser.pugx.org/sebastian/complexity/v/stable.png)](https://packagist.org/packages/sebastian/complexity)
 [![CI Status](https://github.com/sebastianbergmann/complexity/workflows/CI/badge.svg)](https://github.com/sebastianbergmann/complexity/actions)
 [![Type Coverage](https://shepherd.dev/github/sebastianbergmann/complexity/coverage.svg)](https://shepherd.dev/github/sebastianbergmann/complexity)

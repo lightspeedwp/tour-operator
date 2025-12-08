@@ -1,3 +1,12 @@
+---
+title: Directory Index
+description: Documentation for this directory
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 [![Latest Stable Version](https://poser.pugx.org/sebastian/recursion-context/v/stable.png)](https://packagist.org/packages/sebastian/recursion-context)
 [![CI Status](https://github.com/sebastianbergmann/recursion-context/workflows/CI/badge.svg)](https://github.com/sebastianbergmann/recursion-context/actions)
 [![Type Coverage](https://shepherd.dev/github/sebastianbergmann/recursion-context/coverage.svg)](https://shepherd.dev/github/sebastianbergmann/recursion-context)

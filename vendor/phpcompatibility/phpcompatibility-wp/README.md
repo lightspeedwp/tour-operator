@@ -1,3 +1,12 @@
+---
+title: Directory Index
+description: Documentation for this directory
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 [![Latest Stable Version](https://img.shields.io/packagist/v/phpcompatibility/phpcompatibility-wp?label=stable)](https://packagist.org/packages/phpcompatibility/phpcompatibility-wp)
 [![Latest Unstable Version](https://img.shields.io/badge/unstable-dev--develop-e68718.svg?maxAge=2419200)](https://packagist.org/packages/phpcompatibility/phpcompatibility-wp)
 [![License](https://img.shields.io/github/license/PHPCompatibility/PHPCompatibilityWP?color=00a7a7)](https://github.com/PHPCompatibility/PHPCompatibilityWP/blob/master/LICENSE)

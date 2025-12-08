@@ -1,3 +1,12 @@
+---
+title: Directory Index
+description: Documentation for this directory
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 # PHP_CodeSniffer VariableAnalysis
 
 [![CS and QA Build Status](https://github.com/sirbrillig/phpcs-variable-analysis/actions/workflows/csqa.yml/badge.svg)](https://github.com/sirbrillig/phpcs-variable-analysis/actions/workflows/csqa.yml)

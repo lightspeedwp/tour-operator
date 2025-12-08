@@ -1,3 +1,12 @@
+---
+title: Directory Index
+description: Documentation for this directory
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 [![Latest Stable Version](https://poser.pugx.org/sebastian/code-unit/v/stable.png)](https://packagist.org/packages/sebastian/code-unit)
 [![CI Status](https://github.com/sebastianbergmann/code-unit/workflows/CI/badge.svg)](https://github.com/sebastianbergmann/code-unit/actions)
 [![Type Coverage](https://shepherd.dev/github/sebastianbergmann/code-unit/coverage.svg)](https://shepherd.dev/github/sebastianbergmann/code-unit)
