@@ -74,6 +74,7 @@ class Bindings {
 		add_filter( 'render_block', array( $this, 'render_map_block' ), 10, 3 );
 		add_filter( 'render_block', array( $this, 'render_permalink_block' ), 10, 3 );
 		add_filter( 'render_block_core/cover', array( $this, 'render_banner_block' ), 10, 3 );
+		add_filter( 'render_block', array( $this, 'render_paragraph_prefix_block' ), 20, 3 );
 	}
 
 	/**
@@ -1129,6 +1130,61 @@ class Bindings {
 		// Replace only the Cover's background image.
 		$pattern       = '/<img[^>]*class="[^"]*wp-block-cover__image-background[^"]*"[^>]*>/';
 		$block_content = preg_replace( $pattern, $new_img . ' />', $block_content, 1 );
+
+		return $block_content;
+	}
+
+	/**
+	 * Renders the paragraph block with prefix text.
+	 *
+	 * This function processes core/paragraph blocks that have prefix text attributes
+	 * and prepends the specified text to the paragraph content. The prefix can
+	 * optionally be made bold based on the block settings.
+	 *
+	 * @param string $block_content The original content of the block.
+	 * @param array  $parsed_block  Parsed data for the block, including type and attributes.
+	 * @param object $block_obj     Block object instance for the current block being processed.
+	 *
+	 * @return string Returns the modified block content with prefix text prepended.
+	 */
+	public function render_paragraph_prefix_block( $block_content, $parsed_block, $block_obj ) {
+		// Only process core/paragraph blocks
+		if ( 'core/paragraph' !== $parsed_block['blockName'] ) {
+			return $block_content;
+		}
+
+		// Check if the block has prefix attributes
+		if ( ! isset( $parsed_block['attrs']['prefix'] ) || empty( $parsed_block['attrs']['prefix'] ) ) {
+			return $block_content;
+		}
+
+		$prefix_text = $parsed_block['attrs']['prefix'];
+		$prefix_bold = isset( $parsed_block['attrs']['prefixBold'] ) ? $parsed_block['attrs']['prefixBold'] : false;
+
+		// Wrap prefix in bold tags if requested
+		if ( $prefix_bold ) {
+			$prefix_text = '<strong>' . esc_html( $prefix_text ) . '</strong>';
+		} else {
+			$prefix_text = esc_html( $prefix_text );
+		}
+
+		// Add a space after prefix if it doesn't end with punctuation or space
+		if ( ! preg_match( '/[\s\p{P}]$/u', $prefix_text ) ) {
+			$prefix_text .= ' ';
+		}
+
+		// Use regex to modify the first paragraph tag content
+		// Pattern matches opening <p> tag (with any attributes) and captures the inner content
+		$pattern = '/(<p[^>]*>)(.*?)(<\/p>)/s';
+		
+		if ( preg_match( $pattern, $block_content ) ) {
+			$block_content = preg_replace( 
+				$pattern, 
+				'$1' . $prefix_text . '$2$3', 
+				$block_content, 
+				1 // Only replace the first match
+			);
+		}
 
 		return $block_content;
 	}

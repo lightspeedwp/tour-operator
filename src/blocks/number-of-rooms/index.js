@@ -34,6 +34,7 @@ wp.domReady(() => {
                 layout: {
                     type: 'flex',
                     flexWrap: 'nowrap',
+					verticalAlignment: 'top'
                 },
             },
             innerBlocks: [
@@ -43,7 +44,6 @@ wp.domReady(() => {
                         layout: {
                             type: 'flex',
                             flexWrap: 'nowrap',
-                            verticalAlignment: 'top',
                         },
                     },
                     [
@@ -53,13 +53,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'numberOfUnitsIcon',
                             },
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: '<strong>Number of Units</strong>:',
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -84,6 +78,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								prefix : __('Number of Units:', 'tour-operator'),
+								prefixBold: true,
                             },
                         ],
                     ],

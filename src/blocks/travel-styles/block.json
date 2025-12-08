@@ -39,12 +39,6 @@
               "iconType": "solid",
               "iconName": "travelStyleIcon"
             }
-          ],
-          [
-            "core/paragraph",
-            {
-              "content": "<strong>Travel Styles:</strong>"
-            }
           ]
         ]
       ],
@@ -60,7 +54,7 @@
           [
             "core/paragraph",
             {
-              "content": "Adventure, Cultural, Wildlife"
+              "content": "<strong>Travel Styles:</strong> Adventure, Cultural, Wildlife"
             }
           ]
         ]

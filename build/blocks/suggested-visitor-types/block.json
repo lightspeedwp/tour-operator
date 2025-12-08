@@ -42,12 +42,6 @@
               "iconName": "groupSizeIcon",
               "iconType": "solid"
             }
-          ],
-          [
-            "core/paragraph",
-            {
-              "content": "<strong>Suitable For:</strong>"
-            }
           ]
         ]
       ],
@@ -63,7 +57,7 @@
           [
             "core/paragraph",
             {
-              "content": "Families, Couples, Business travelers, Solo travelers"
+              "content": "<strong>Suitable For:</strong> Families, Couples, Business travelers, Solo travelers"
             }
           ]
         ]

@@ -25,16 +25,9 @@
         {},
         [
           [
-            "core/heading",
-            {
-              "content": "Check In Time",
-              "level": 3
-            }
-          ],
-          [
             "core/paragraph",
             {
-              "content": "11:00 AM"
+              "content": "<strong>Check In Time:</strong> 11:00 AM"
             }
           ]
         ]

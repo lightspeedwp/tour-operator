@@ -83,13 +83,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'minimumChildAgeIcon',
                             },
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: '<strong>' + __('Minimum Child Age:', 'tour-operator') + '</strong>',
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -114,6 +108,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								prefix : __('Minimum Child Age:', 'tour-operator'),
+								prefixBold: true,
                             },
                         ],
                     ],

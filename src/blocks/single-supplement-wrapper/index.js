@@ -40,6 +40,7 @@ wp.domReady(() => {
                 layout: {
                     type: 'flex',
                     flexWrap: 'nowrap',
+					verticalAlignment: 'top'
                 },
             },
             innerBlocks: [
@@ -58,15 +59,9 @@ wp.domReady(() => {
                             {
                                 iconType: 'solid',
                                 iconName: 'singleSupplementIcon',
-                            },
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: '<strong>' + __('Single supplement:', 'tour-operator') + '</strong>',
-                            },
-                        ],
-                    ],
+                            }
+                        ]
+                    ]
                 ],
                 [
                     'core/group',
@@ -86,6 +81,8 @@ wp.domReady(() => {
                                     },
                                 },
                                 className: 'amount',
+								prefix : __('Single supplement:', 'tour-operator'),
+								prefixBold: true,
                                 content: '',
                             },
                         ],
@@ -126,8 +123,8 @@ wp.domReady(() => {
 
     // Initialize conditional registration
     const conditionalRegister = registerForPostTypesAndTemplates(
-        ['tour'], // Supported post types
-        ['tour'], // Template slug patterns
+        ['tour','accommodation'], // Supported post types
+        ['tour','accommodation'], // Template slug patterns
         registerSingleSupplementVariation
     );
 

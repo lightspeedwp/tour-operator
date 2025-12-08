@@ -36,6 +36,7 @@ wp.domReady(() => {
                 layout: {
                     type: 'flex',
                     flexWrap: 'nowrap',
+					verticalAlignment: 'top'
                 },
             },
             innerBlocks: [
@@ -55,14 +56,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'bookingValidityIcon',
                             },
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                fontSize: 'x-small',
-                                content: '<strong>' + __('Booking validity:', 'tour-operator') + '</strong>',
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -87,6 +81,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								prefix : __('Booking validity:', 'tour-operator'),
+								prefixBold: true,
                                 content: '',
                             },
                         ],
@@ -109,7 +105,6 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-                                content: 'End',
                             },
                         ],
                     ],

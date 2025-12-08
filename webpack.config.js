@@ -26,6 +26,7 @@ module.exports = {
 		'linked-cover': path.resolve( process.cwd(), 'src/js/blocks/linked-cover.js' ),
 		'slider-query': path.resolve( process.cwd(), 'src/js/blocks/slider-query.js' ),
 		'slotfills': path.resolve( process.cwd(), 'src/js/blocks/slotfills.js' ),
+		'paragraph-prefix': path.resolve( process.cwd(), 'src/js/blocks/paragraph-prefix.js' ),
 	},
 
 	resolve: {

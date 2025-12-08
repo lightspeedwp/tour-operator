@@ -33,6 +33,7 @@
 ### Enhancements
 
 #### Block System Improvements
+- **Fast-Facts Meta Display Enhancement** - Implemented single-line display for fast-facts and meta data blocks with bold prefixes for improved clarity. Enhanced 20+ blocks including duration, travel styles, accommodation type, check-in/out times, ratings, and language blocks with consistent prefix formatting and responsive layout improvements - [#802](https://github.com/lightspeedwp/tour-operator/pull/802), Issue [#514](https://github.com/lightspeedwp/tour-operator/issues/514)
 - **Block List Modernization** - Updated block structure by breaking out monolithic blocks from assets folder into individual files with dedicated block.json files for better organization and maintainability - [#489](https://github.com/lightspeedwp/tour-operator/pull/489)
 - **Conditional Block Registration** - Extracted conditional block registration logic to a separate utility file for easier maintainability and reusability - [#696](https://github.com/lightspeedwp/tour-operator/pull/696)
 - **Tour Blocks Metadata** - Enhanced tour-related blocks with comprehensive metadata, improved internationalization, descriptions, keywords, and custom SVG icons for better searchability - [#696](https://github.com/lightspeedwp/tour-operator/pull/696), [#667](https://github.com/lightspeedwp/tour-operator/pull/667)

@@ -64,12 +64,6 @@
               "iconType": "solid",
               "iconName": "bookingValidityIcon"
             }
-          ],
-          [
-            "core/paragraph",
-            {
-              "content": "<strong>Booking validity:</strong>"
-            }
           ]
         ]
       ],
@@ -85,7 +79,7 @@
           [
             "core/paragraph",
             {
-              "content": "December 1, 2024"
+              "content": "<strong>Booking validity:</strong> December 1, 2024"
             }
           ],
           [

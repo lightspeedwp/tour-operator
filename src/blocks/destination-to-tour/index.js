@@ -32,9 +32,11 @@ wp.domReady(() => {
                     name: __('Destination to Tour', 'tour-operator'),
                 },
                 className: 'lsx-destination-to-tour-wrapper',
-                layout: {
-                    type: 'constrained',
-                },
+				layout: {
+					type: 'flex',
+					flexWrap: 'nowrap',
+					verticalAlignment: 'top'
+				},
             },
             innerBlocks: [
                 [
@@ -53,13 +55,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'destinationIcon',
                             },
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: '<strong>' + __('Destinations:', 'tour-operator') + '</strong>',
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -84,6 +80,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								prefix : __('Destinations:', 'tour-operator'),
+								prefixBold: true,
                                 content: '',
                             },
                         ],

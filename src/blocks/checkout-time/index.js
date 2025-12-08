@@ -35,6 +35,7 @@ wp.domReady(() => {
                 layout: {
                     type: "flex",
                     flexWrap: "nowrap",
+					verticalAlignment: 'top'
                 },
             },
             innerBlocks: [
@@ -54,16 +55,7 @@ wp.domReady(() => {
                                 iconType: "solid",
                                 iconName: "checkInAccommodationIcon",
                             },
-                        ],
-                        [
-                            "core/paragraph",
-                            {
-                                content: __(
-                                    'Check out time:',
-                                    'tour-operator'
-                                ),
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -88,6 +80,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								prefix : __('Check out time: ', 'tour-operator'),
+								prefixBold: true,
                             },
                         ],
                     ],

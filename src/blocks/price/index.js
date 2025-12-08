@@ -38,6 +38,7 @@ wp.domReady(() => {
                 layout: {
                     type: 'flex',
                     flexWrap: 'nowrap',
+					verticalAlignment: 'top'
                 },
                 className: 'lsx-price-wrapper',
             },
@@ -48,7 +49,6 @@ wp.domReady(() => {
                         layout: {
                             type: 'flex',
                             flexWrap: 'nowrap',
-                            verticalAlignment: 'middle',
                         },
                     },
                     [
@@ -58,13 +58,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'priceIcon',
                             },
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: '<strong>' + __('From:', 'tour-operator') + '</strong>',
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -80,6 +74,8 @@ wp.domReady(() => {
                                 },
                             },
                         },
+						prefix : __('From:', 'tour-operator'),
+						prefixBold: true,
                         className: 'amount',
                     },
                 ],

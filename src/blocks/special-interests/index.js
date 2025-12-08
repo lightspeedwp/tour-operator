@@ -59,9 +59,11 @@ wp.domReady(() => {
                     name: __('Special Interests', 'tour-operator'),
                 },
                 className: 'lsx-special-interests-wrapper',
-                layout: {
-                    type: 'constrained',
-                },
+				layout: {
+					type: 'flex',
+					flexWrap: 'nowrap',
+					verticalAlignment: 'top'
+				},
             },
             innerBlocks: [
                 [
@@ -83,13 +85,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'specialInterestsIcon',
                             },
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: '<strong>' + __('Special Interests:', 'tour-operator') + '</strong>',
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -117,6 +113,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								prefix : __( 'Special Interests:', 'tour-operator' ),
+								prefixBold: true,
                             },
                         ],
                     ],
