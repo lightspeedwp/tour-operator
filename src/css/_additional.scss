@@ -1,4 +1,38 @@
 /* Additional information specific styles */
+
+/* Fix for card patterns - override theme's featured image height: 100% */
+.is-style-shadow-sm .wp-block-post-featured-image a {
+	height: auto;
+}
+
+.overflow-hidden {
+	overflow: hidden;
+}
+
+.line-clamp-4 {
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.is-style-shadow-sm {
+	box-shadow: 0 0 1px 0 rgba(9, 9, 9, 0.15), 0 4px 8px 0 rgba(9, 9, 9, 0.25);
+}
+
+.slick-slide {
+	height: auto;
+}
+
+.itinerary-description p:first-child,
+.unit-description p:first-child {
+	margin-top: 0;
+}
+
+.itinerary-image {
+	flex-shrink: 0;
+}
+
 .fast-facts-wrapper > .wp-block-group .wp-block-group:last-child {
 	flex: 1;
 }

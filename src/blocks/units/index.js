@@ -9,7 +9,7 @@
  */
 
 import { __ } from '@wordpress/i18n';
-import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
+import { registerForPostTypesAndTemplates } from '../../js/conditional-block-registration.js';
 
 wp.domReady(() => {
     const registerUnitsVariation = () => {
@@ -29,12 +29,6 @@ wp.domReady(() => {
             attributes: {
                 metadata: {
                     name: __('Units', 'tour-operator'),
-                    bindings: {
-                        content: {
-                            source: 'lsx/accommodation-units',
-                            type: 'rooms',
-                        },
-                    },
                 },
                 align: 'wide',
                 layout: {
@@ -42,6 +36,14 @@ wp.domReady(() => {
                 },
                 className: 'lsx-units-wrapper',
                 tagName: 'section',
+                style: {
+                    spacing: {
+                        padding: {
+                            top: 'var:preset|spacing|50',
+                            bottom: 'var:preset|spacing|50',
+                        },
+                    },
+                },
             },
             innerBlocks: [
                 [
@@ -89,9 +91,17 @@ wp.domReady(() => {
                     'core/group',
                     {
                         align: 'wide',
-
+                        metadata: {
+                            name: __('Accommodation Units', 'tour-operator'),
+                            bindings: {
+                                content: {
+                                    source: 'lsx/accommodation-units',
+                                    type: 'rooms',
+                                },
+                            },
+                        },
                         layout: {
-                            type: 'constrained',
+                            type: 'default',
                         },
                     },
                     [

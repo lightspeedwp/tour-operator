@@ -8,7 +8,7 @@
  * @package Tour_Operator
  */
 import { __ } from '@wordpress/i18n';
-import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
+import { registerForPostTypesAndTemplates } from '../../js/conditional-block-registration.js';
 
 wp.domReady(() => {
     const registerItineraryVariation = () => {
@@ -29,11 +29,6 @@ wp.domReady(() => {
             attributes: {
                 metadata: {
                     name: __('Itinerary', 'tour-operator'),
-                    bindings: {
-                        content: {
-                            source: 'lsx/tour-itinerary',
-                        },
-                    },
                 },
                 align: 'wide',
                 layout: {
@@ -41,20 +36,33 @@ wp.domReady(() => {
                 },
                 className: 'lsx-itinerary-wrapper',
                 tagName: 'section',
+                style: {
+                    spacing: {
+                        padding: {
+                            top: 'var:preset|spacing|50',
+                            bottom: 'var:preset|spacing|50',
+                        },
+                    },
+                },
             },
             innerBlocks: [
                 [
                     'core/group',
                     {
+                        align: 'wide',
                         layout: {
                             type: 'flex',
                             flexWrap: 'nowrap',
+                        },
+                        metadata: {
+                            name: __('Tour Itinerary Title', 'tour-operator'),
                         },
                     },
                     [
                         [
                             'core/separator',
                             {
+                                backgroundColor: 'primary',
                                 style: {
                                     layout: {
                                         selfStretch: 'fill',
@@ -73,6 +81,7 @@ wp.domReady(() => {
                         [
                             'core/separator',
                             {
+                                backgroundColor: 'primary',
                                 style: {
                                     layout: {
                                         selfStretch: 'fill',
@@ -86,9 +95,17 @@ wp.domReady(() => {
                 [
                     'core/group',
                     {
+                        metadata: {
+                            name: __('Itinerary Day Loop', 'tour-operator'),
+                            bindings: {
+                                content: {
+                                    source: 'lsx/tour-itinerary',
+                                },
+                            },
+                        },
                         align: 'wide',
                         layout: {
-                            type: 'constrained',
+                            type: 'default',
                         },
                     },
                     [
