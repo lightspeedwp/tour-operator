@@ -31,14 +31,14 @@ Before converting any Figma design to a WordPress pattern:
 
 2. **Map Figma tokens to WordPress CSS custom properties with fallbacks**:
 
-   Since this is a **plugin** (not a theme), patterns must work with any theme. Always include absolute fallback values:
+   Since this is a **plugin** (not a theme), patterns must work with any theme. Never include absolute fallback values, as they break the editor rendering
 
    | Figma Token | WordPress Variable | Fallback |
    |-------------|-------------------|----------|
-   | `Buttons/Fill/Background Default` | `var(--wp--preset--color--buttons-fill-background-default, #ac9f7c)` | `#ac9f7c` |
-   | `Theme/Contrast` | `var(--wp--preset--color--contrast, #090909)` | `#090909` |
-   | `Buttons/Small/Horizontal` | `var(--wp--preset--spacing--buttons-small-horizontal, 1.25rem)` | `1.25rem` (20px) |
-   | `Radius Small` | `var(--wp--preset--spacing--radius-small, 0.25rem)` | `0.25rem` (4px) |
+   | `Buttons/Fill/Background Default` | `var(--wp--preset--color--buttons-fill-background-default)`|
+   | `Theme/Contrast` | `var(--wp--preset--color--contrast)` |
+   | `Buttons/Small/Horizontal` | `var(--wp--preset--spacing--buttons-small-horizontal)` |
+   | `Radius Small` | `var(--wp--preset--spacing--radius-small)` |
 
 3. **Store token mappings** in memory for reference during conversion
 
