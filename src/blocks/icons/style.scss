@@ -5,7 +5,6 @@
   max-width: 100%; /* Ensure it doesn't overflow its container */
   display: inline-block; /* Align with text */
   vertical-align: middle; /* Vertically center with text */
-  margin-top: 0.2em; /* Adjust vertical alignment. WP default line-height is 1.4 */
 }
 .has-small-font-size .block-icon-svg svg {
   height: 0.875em; /* Small font size */
