@@ -64,12 +64,6 @@
               "iconType": "solid",
               "iconName": "groupSizeIcon"
             }
-          ],
-          [
-            "core/paragraph",
-            {
-              "content": "<strong>Group Size:</strong>"
-            }
           ]
         ]
       ],
@@ -85,7 +79,7 @@
           [
             "core/paragraph",
             {
-              "content": "Maximum 12 people"
+              "content": "<strong>Group Size:</strong> Maximum 12 people"
             }
           ]
         ]

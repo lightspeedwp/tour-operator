@@ -42,12 +42,6 @@
               "iconName": "specialInterestsIcon",
               "iconType": "solid"
             }
-          ],
-          [
-            "core/paragraph",
-            {
-              "content": "<strong>Special Interests:</strong>"
-            }
           ]
         ]
       ],
@@ -63,7 +57,7 @@
           [
             "core/paragraph",
             {
-              "content": "Wildlife viewing, Photography, Cultural experiences, Adventure activities"
+              "content": "<strong>Special Interests:</strong> Wildlife viewing, Photography, Cultural experiences, Adventure activities"
             }
           ]
         ]

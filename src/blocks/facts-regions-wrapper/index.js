@@ -38,6 +38,7 @@ wp.domReady(() => {
                 layout: {
                     type: 'flex',
                     flexWrap: 'nowrap',
+					verticalAlignment: 'top'
                 },
             },
             innerBlocks: [
@@ -57,13 +58,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'destinationIcon',
                             },
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: `<strong>${__('Regions', 'tour-operator')}</strong>`,
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -88,6 +83,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								prefix : __( 'Regions', 'tour-operator' ),
+								prefixBold: true,
                                 content: '',
                             },
                         ],

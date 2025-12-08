@@ -59,6 +59,7 @@ class Registration {
 		$additional_scripts = [
 			'linked-cover' => array( 'wp-blocks', 'wp-element', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-data', 'wp-hooks' ),
 			'slider-query' => array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-compose' ),
+			'paragraph-prefix' => array( 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-compose', 'wp-hooks' ),
 		];
 
 		// Make sure the script is only enqueued in the block editor.

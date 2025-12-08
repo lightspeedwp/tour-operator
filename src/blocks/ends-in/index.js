@@ -46,9 +46,11 @@ wp.domReady(() => {
                     name: __('Ends in', 'tour-operator'),
                 },
                 className: 'lsx-ends-in-wrapper',
-                layout: {
-                    type: 'constrained',
-                },
+				layout: {
+					type: 'flex',
+					flexWrap: 'nowrap',
+					verticalAlignment: 'top'
+				},
             },
             innerBlocks: [
                 [
@@ -67,13 +69,7 @@ wp.domReady(() => {
                                 iconType: 'outline',
                                 iconName: 'departsFromEndsInIcon',
                             },
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: '<strong>' + __('Ends In:', 'tour-operator') + '</strong>',
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -98,6 +94,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								prefix : __('Ends In:', 'tour-operator'),
+								prefixBold: true,
                                 content: '',
                             },
                         ],

@@ -64,12 +64,6 @@
               "iconType": "solid",
               "iconName": "bookingValidityIcon"
             }
-          ],
-          [
-            "core/paragraph",
-            {
-              "content": "<strong>Departs From:</strong>"
-            }
           ]
         ]
       ],
@@ -85,7 +79,7 @@
           [
             "core/paragraph",
             {
-              "content": "Cape Town, South Africa"
+              "content": "<strong>Departs From:</strong> Cape Town, South Africa"
             }
           ]
         ]

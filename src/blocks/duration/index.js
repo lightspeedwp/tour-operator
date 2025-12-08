@@ -39,6 +39,7 @@ wp.domReady(() => {
                 layout: {
                     type: 'flex',
                     flexWrap: 'nowrap',
+					verticalAlignment: 'top'
                 },
             },
             innerBlocks: [
@@ -58,13 +59,7 @@ wp.domReady(() => {
                                 iconType: 'outline',
                                 iconName: 'durationIcon',
                             },
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: '<strong>' + __('Duration:', 'tour-operator') + '</strong>',
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -89,6 +84,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								prefix : __('Duration:', 'tour-operator'),
+								prefixBold: true,
                                 content: '',
                             },
                         ],

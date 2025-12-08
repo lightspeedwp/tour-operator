@@ -4,6 +4,7 @@
   width: auto; /* Maintain aspect ratio */
   max-width: 100%; /* Ensure it doesn't overflow its container */
   display: inline-block; /* Align with text */
+  vertical-align: middle; /* Vertically center with text */
 }
 .has-small-font-size .block-icon-svg svg {
   height: 0.875em; /* Small font size */

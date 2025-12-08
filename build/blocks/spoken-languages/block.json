@@ -42,12 +42,6 @@
               "iconName": "spokenLanguagesIcon",
               "iconType": "solid"
             }
-          ],
-          [
-            "core/paragraph",
-            {
-              "content": "<strong>Spoken Languages:</strong>"
-            }
           ]
         ]
       ],
@@ -63,7 +57,7 @@
           [
             "core/paragraph",
             {
-              "content": "English, Spanish, French, German"
+              "content": "<strong>Spoken Languages:</strong> English, Spanish, French, German"
             }
           ]
         ]

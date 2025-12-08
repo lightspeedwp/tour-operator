@@ -45,9 +45,11 @@ wp.domReady(() => {
                     name: __('Departs from', 'tour-operator'),
                 },
                 className: 'lsx-departs-from-wrapper',
-                layout: {
-                    type: 'constrained',
-                },
+				layout: {
+					type: 'flex',
+					flexWrap: 'nowrap',
+					verticalAlignment: 'top'
+				},
             },
             innerBlocks: [
                 [
@@ -66,13 +68,7 @@ wp.domReady(() => {
                                 iconType: 'outline',
                                 iconName: 'departsFromEndsInIcon',
                             },
-                        ],
-                        [
-                            'core/paragraph',
-                            {
-                                content: '<strong>' + __('Departs From:', 'tour-operator') + '</strong>',
-                            },
-                        ],
+                        ]
                     ],
                 ],
                 [
@@ -97,6 +93,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								prefix : __('Departs From:', 'tour-operator'),
+								prefixBold: true,
                                 content: '',
                             },
                         ],

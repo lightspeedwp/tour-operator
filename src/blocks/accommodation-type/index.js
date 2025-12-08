@@ -32,7 +32,8 @@ wp.domReady(() => {
 				},
 				className: "lsx-accommodation-type-wrapper",
 				layout: {
-					type: "constrained",
+					type: "flex",
+					flexWrap: "nowrap",
 				},
 			},
 			innerBlocks: [
@@ -52,13 +53,7 @@ wp.domReady(() => {
 								iconType: "solid",
 								iconName: "accommodationTypeIcon",
 							},
-						],
-						[
-							"core/paragraph",
-							{
-								content: "<strong>" + __("Accommodation Type", "tour-operator") + "</strong>:",
-							},
-						],
+						]
 					],
 				],
 				[
@@ -74,6 +69,7 @@ wp.domReady(() => {
 							"core/post-terms",
 							{
 								term: "accommodation-type",
+								prefix: wp.escapeHtml( '<strong>' + __('Accommodation Type: ', 'tour-operator') + '</strong>' )
 							},
 						],
 					],

@@ -39,12 +39,6 @@
               "iconType": "outline",
               "iconName": "durationIcon"
             }
-          ],
-          [
-            "core/paragraph",
-            {
-              "content": "<strong>Duration:</strong>"
-            }
           ]
         ]
       ],
@@ -60,7 +54,7 @@
           [
             "core/paragraph",
             {
-              "content": "7 days"
+              "content": "<strong>Duration:</strong> 7 days"
             }
           ]
         ]
