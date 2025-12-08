@@ -15,7 +15,7 @@ vendor/
 .DS_Store?
 ._*
 .Spotlight-V100
-.Trashes
+.Trashes/Users/krugazul/Local Sites/beta/app/public/wp-content/plugins/tour-operator/.gitignore
 ehthumbs.db
 Thumbs.db
 Thumbs.db:encryptable
@@ -74,4 +74,22 @@ test-results/*
 playwright-report/*
 vendor/bin/.phpunit.result.cache
 
-vendor/bin/.phpunit.result.cache
+#Unit Test and Composer
+vendor/10up
+vendor/10up/phpcs-composer
+vendor/automattic
+vendor/bin
+vendor/composer
+vendor/dealerdirect
+vendor/myclabs
+vendor/nikic
+vendor/phar-io
+vendor/phpcompatibility
+vendor/phpcsstandards
+vendor/phpunit
+vendor/sebastian
+vendor/sirbrillig
+vendor/squizlabs
+vendor/theseer
+vendor/wp-coding-standards
+vendor/autoload.php

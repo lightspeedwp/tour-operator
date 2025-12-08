@@ -1,3 +1,12 @@
+---
+title: Directory Index
+description: Documentation for this directory
+category: Documentation
+type: Index
+audience: Developers
+date: 2025-12-01
+---
+
 # Tour Operator WordPress Plugin
 
 A comprehensive WordPress plugin for tour operators, built with modern WordPress Block Editor (Gutenberg) and following WordPress Block API v3 standards.

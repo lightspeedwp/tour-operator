@@ -9,7 +9,7 @@
     "require-dev": {
         "phpunit/phpunit": "^10.5",
         "10up/phpcs-composer": "^3.0",
-        "wpackagist-plugin/wordpress-seo": "^26.0"
+        "yoast/phpunit-polyfills": "^2.0"
     },
     "scripts": {
     "phpcs": "vendor/bin/phpcs -d memory_limit=1G tour-operator.php includes templates post-types src",
@@ -25,10 +25,12 @@
       "test:coverage": "vendor/bin/phpunit --no-configuration --coverage-html tests/coverage tests/php/TestSimpleFunctions.php",
       "test:unit": "vendor/bin/phpunit -c phpunit.xml --testsuite='Tour Operator Plugin Test Suite'"
     },
-    "repositories":[{
-        "type":"composer",
-        "url":"https://wpackagist.org"
-    }],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org"
+        }
+    ],
     "license": "GPL-3.0-or-later",
     "prefer-stable": true,
     "minimum-stability": "dev",
