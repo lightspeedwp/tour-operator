@@ -90,51 +90,53 @@ $travel_info_cards = array(
  * @param array $card Card configuration array.
  * @return string Card HTML markup.
  */
-function lsx_to_generate_travel_info_card( $card ) {
-	$slug          = $card['slug'];
-	$title         = $card['title'];
-	$meta_key      = $card['meta_key'];
-	$wrapper_class = isset( $card['wrapper_class'] ) ? $card['wrapper_class'] : 'lsx-' . $slug . '-wrapper';
+if ( ! function_exists( 'lsx_to_generate_travel_info_card' ) ) {
+	function lsx_to_generate_travel_info_card( $card ) {
+		$slug          = $card['slug'];
+		$title         = $card['title'];
+		$meta_key      = $card['meta_key'];
+		$wrapper_class = isset( $card['wrapper_class'] ) ? $card['wrapper_class'] : 'lsx-' . $slug . '-wrapper';
 
-	// Build outer group opening comment.
-	$markup = '<!-- wp:group {"metadata":{"name":"' . esc_attr( $title ) . '"},"className":"' . esc_attr( $wrapper_class ) . ' additional-info is-style-shadow-sm overflow-hidden","style":{"border":{"radius":"0.5rem"}},"backgroundColor":"base","textColor":"contrast","layout":{"type":"constrained"}} -->' . "\n";
+		// Build outer group opening comment.
+		$markup = '<!-- wp:group {"metadata":{"name":"' . esc_attr( $title ) . '"},"className":"' . esc_attr( $wrapper_class ) . ' additional-info is-style-shadow-sm overflow-hidden","style":{"border":{"radius":"0.5rem"}},"backgroundColor":"base","textColor":"contrast","layout":{"type":"constrained"}} -->' . "\n";
 
-	// Opening div with proper classes.
-	$markup .= '<div class="wp-block-group ' . esc_attr( $wrapper_class ) . ' additional-info is-style-shadow-sm overflow-hidden has-base-background-color has-contrast-color has-text-color has-background" style="border-radius:0.5rem">';
+		// Opening div with proper classes.
+		$markup .= '<div class="wp-block-group ' . esc_attr( $wrapper_class ) . ' additional-info is-style-shadow-sm overflow-hidden has-base-background-color has-contrast-color has-text-color has-background" style="border-radius:0.5rem">';
 
-	// Content wrapper group opening comment.
-	$markup .= '<!-- wp:group {"style":{"spacing":{"padding":{"right":"var:preset|spacing|20","left":"var:preset|spacing|20","top":"var:preset|spacing|30","bottom":"var:preset|spacing|30"}}},"layout":{"type":"constrained"}} -->' . "\n";
+		// Content wrapper group opening comment.
+		$markup .= '<!-- wp:group {"style":{"spacing":{"padding":{"right":"var:preset|spacing|20","left":"var:preset|spacing|20","top":"var:preset|spacing|30","bottom":"var:preset|spacing|30"}}},"layout":{"type":"constrained"}} -->' . "\n";
 
-	// Content div.
-	$markup .= '<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--20)">';
+		// Content div.
+		$markup .= '<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--20)">';
 
-	// Title group.
-	$markup .= '<!-- wp:group {"layout":{"type":"constrained"}} -->' . "\n";
-	$markup .= '<div class="wp-block-group"><!-- wp:heading {"textAlign":"center","level":4,"textColor":"contrast","fontSize":"large"} -->' . "\n";
-	$markup .= '<h4 class="wp-block-heading has-text-align-center has-contrast-color has-text-color has-large-font-size" id="h-' . esc_attr( $slug ) . '">' . esc_html( $title ) . '</h4>' . "\n";
-	$markup .= '<!-- /wp:heading --></div>' . "\n";
-	$markup .= '<!-- /wp:group -->' . "\n\n";
+		// Title group.
+		$markup .= '<!-- wp:group {"layout":{"type":"constrained"}} -->' . "\n";
+		$markup .= '<div class="wp-block-group"><!-- wp:heading {"textAlign":"center","level":4,"textColor":"contrast","fontSize":"large"} -->' . "\n";
+		$markup .= '<h4 class="wp-block-heading has-text-align-center has-contrast-color has-text-color has-large-font-size" id="h-' . esc_attr( $slug ) . '">' . esc_html( $title ) . '</h4>' . "\n";
+		$markup .= '<!-- /wp:heading --></div>' . "\n";
+		$markup .= '<!-- /wp:group -->' . "\n\n";
 
-	// Description with binding.
-	$markup .= '<!-- wp:group {"className":"content","layout":{"type":"constrained"}} -->' . "\n";
-	$markup .= '<div class="wp-block-group content"><!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"lsx/post-meta","args":{"key":"' . esc_attr( $meta_key ) . '"}}}},"fontSize":"medium"} -->' . "\n";
-	$markup .= '<p class="has-medium-font-size"></p>' . "\n";
-	$markup .= '<!-- /wp:paragraph --></div>' . "\n";
-	$markup .= '<!-- /wp:group --></div>' . "\n";
-	$markup .= '<!-- /wp:group -->' . "\n\n";
+		// Description with binding.
+		$markup .= '<!-- wp:group {"className":"content","layout":{"type":"constrained"}} -->' . "\n";
+		$markup .= '<div class="wp-block-group content"><!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"lsx/post-meta","args":{"key":"' . esc_attr( $meta_key ) . '"}}}},"fontSize":"medium"} -->' . "\n";
+		$markup .= '<p class="has-medium-font-size"></p>' . "\n";
+		$markup .= '<!-- /wp:paragraph --></div>' . "\n";
+		$markup .= '<!-- /wp:group --></div>' . "\n";
+		$markup .= '<!-- /wp:group -->' . "\n\n";
 
-	// Read more button.
-	$markup .= '<!-- wp:buttons -->' . "\n";
-	$markup .= '<div class="wp-block-buttons">';
+		// Read more button.
+		$markup .= '<!-- wp:buttons -->' . "\n";
+		$markup .= '<div class="wp-block-buttons">';
 
-	$markup .= '<!-- wp:button {"backgroundColor":"primary","width":100,"className":"lsx-to-more-link","style":{"border":{"radius":{"topLeft":"0px","topRight":"0px","bottomLeft":"0px","bottomRight":"0px"}}}} -->' . "\n";
-	$markup .= '<div class="wp-block-button has-custom-width wp-block-button__width-100 lsx-to-more-link"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" href="#to-modal-' . esc_attr( $slug ) . '" style="border-top-left-radius:0px;border-top-right-radius:0px;border-bottom-left-radius:0px;border-bottom-right-radius:0px">' . esc_html__( 'Read more', 'tour-operator' ) . '</a></div>' . "\n";
-	$markup .= '<!-- /wp:button --></div>' . "\n";
-	$markup .= '<!-- /wp:buttons --></div>' . "\n";
-	$markup .= '<!-- /wp:group -->' . "\n\n";
+		$markup .= '<!-- wp:button {"backgroundColor":"primary","width":100,"className":"lsx-to-more-link","style":{"border":{"radius":{"topLeft":"0px","topRight":"0px","bottomLeft":"0px","bottomRight":"0px"}}}} -->' . "\n";
+		$markup .= '<div class="wp-block-button has-custom-width wp-block-button__width-100 lsx-to-more-link"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" href="#to-modal-' . esc_attr( $slug ) . '" style="border-top-left-radius:0px;border-top-right-radius:0px;border-bottom-left-radius:0px;border-bottom-right-radius:0px">' . esc_html__( 'Read more', 'tour-operator' ) . '</a></div>' . "\n";
+		$markup .= '<!-- /wp:button --></div>' . "\n";
+		$markup .= '<!-- /wp:buttons --></div>' . "\n";
+		$markup .= '<!-- /wp:group -->' . "\n\n";
 
-	return $markup;
-}// Generate all card markups.
+		return $markup;
+	} // Generate all card markups.
+}
 $cards_markup = '';
 foreach ( $travel_info_cards as $card ) {
 	$cards_markup .= lsx_to_generate_travel_info_card( $card );
