@@ -105,7 +105,6 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-                                content: 'End',
                             },
                         ],
                     ],
