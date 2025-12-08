@@ -289,6 +289,14 @@ function lsx_to_custom_field_query( $meta_key = false, $before = '', $after = ''
 			$value = get_post_meta( $post_id, $meta_key, $single );
 
 			if ( is_array( $value ) ) {
+				// Filter out any non-scalar values (arrays, objects) to prevent "Array to string conversion" warnings.
+				$value = array_filter(
+					$value,
+					function( $item ) {
+						return is_scalar( $item );
+					}
+				);
+
 				$value = array_unique( $value );
 
 				// Try to exclude any old data

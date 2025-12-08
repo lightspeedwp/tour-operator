@@ -6,7 +6,7 @@
 
 #### Build & Pattern Infrastructure
 
-- **Pattern Registration Infrastructure** - Established directory structure and registration system for tour operator patterns with proper categorization and template support - []()
+- **Pattern Registration Infrastructure** - Established directory structure and registration system for tour operator patterns with proper categorization and template support - PR[#803](https://github.com/lightspeedwp/tour-operator/pull/803), Issue [#795](https://github.com/lightspeedwp/tour-operator/issues/795)
 
 #### New Blocks
 
@@ -81,6 +81,7 @@
 - **Block isActive Selector** - Fixed isActive selector for blocks to properly highlight active block variations in the editor - [#696](https://github.com/lightspeedwp/tour-operator/pull/696)
 - **Dialog Attribute Handling** - Fixed dialog open attribute handling in allowed HTML tags for proper KSES compatibility - Multiple commits, Issue [#69](https://github.com/lightspeedwp/tour-operator/issues/69)
 - **Block Translation Consistency** - Fixed missing translatable strings and inconsistent i18n implementation across block definitions, ensuring all block titles, descriptions, and keywords are properly translatable - Issue [#770](https://github.com/lightspeedwp/tour-operator/issues/770)
+- **Array to String Conversion Warnings** - Fixed PHP warnings in `lsx_to_custom_field_query()` helper function by filtering out non-scalar values (nested arrays, objects) before implode operation to prevent "Array to string conversion" errors when debug mode is enabled - PR [#803](https://github.com/lightspeedwp/tour-operator/pull/803)
 
 ### Security
 
