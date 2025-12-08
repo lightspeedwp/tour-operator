@@ -1,5 +1,6 @@
 # Dependencies
 node_modules/
+vendor/
 
 # Build artifacts and compiled files (but keep build/ for WordPress plugin distribution)
 /assets/dist/
@@ -71,3 +72,6 @@ phpcs-report.xml
 phpcs-report.txt
 test-results/*
 playwright-report/*
+vendor/bin/.phpunit.result.cache
+
+vendor/bin/.phpunit.result.cache

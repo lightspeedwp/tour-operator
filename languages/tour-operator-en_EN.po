@@ -9,17 +9,18 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-05-05T16:04:13+00:00\n"
+"POT-Creation-Date: 2025-12-01T12:46:01+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: tour-operator\n"
 
 #. Plugin Name of the plugin
-#: includes/classes/admin/class-permalinks.php:95
-#: includes/classes/admin/class-settings.php:146
-#: includes/classes/blocks/class-patterns.php:38
-#: includes/classes/blocks/class-patterns.php:51
-#: includes/pages/config-tour-operator.php:14
+#: includes/classes/admin/class-permalinks.php:105
+#: includes/classes/admin/class-settings.php:142
+#: includes/classes/blocks/class-patterns.php:37
+#: includes/classes/blocks/class-patterns.php:50
+#: build/blocks/videos/index.js:1
+#: src/blocks/videos/index.js:104
 msgid "Tour Operator"
 msgstr ""
 
@@ -39,140 +40,157 @@ msgstr ""
 msgid "https://lightspeedwp.agency/"
 msgstr ""
 
-#: includes/classes/admin/class-admin.php:37
+#: includes/classes/admin/class-admin.php:42
 msgid "Select featured image"
 msgstr ""
 
-#: includes/classes/admin/class-admin.php:48
-#: includes/classes/admin/class-settings.php:132
-#: includes/classes/admin/class-settings.php:146
+#: includes/classes/admin/class-admin.php:56
+#: includes/classes/admin/class-settings.php:127
+#: includes/classes/admin/class-settings.php:142
 msgid "Settings"
 msgstr ""
 
-#: includes/classes/admin/class-admin.php:49
+#: includes/classes/admin/class-admin.php:57
 msgid "Documentation"
 msgstr ""
 
-#: includes/classes/admin/class-admin.php:50
+#: includes/classes/admin/class-admin.php:58
 msgid "Support"
 msgstr ""
 
-#: includes/classes/admin/class-permalinks.php:84
-#: includes/classes/legacy/class-destination.php:93
-#: includes/classes/legacy/class-tour-operator.php:294
-#: includes/taxonomies/config-travel-style.php:26
+#: includes/classes/admin/class-permalinks.php:94
+#: includes/classes/legacy/class-destination.php:94
+#: includes/classes/legacy/class-tour-operator.php:284
+#: includes/taxonomies/config-travel-style.php:27
 msgid "Travel Style"
 msgstr ""
 
-#: includes/classes/admin/class-permalinks.php:87
-#: includes/classes/legacy/class-tour-operator.php:296
-#: includes/taxonomies/config-accommodation-type.php:19
+#: includes/classes/admin/class-permalinks.php:97
+#: includes/classes/legacy/class-tour-operator.php:286
+#: includes/taxonomies/config-accommodation-type.php:20
+#: build/blocks/accommodation-type/index.js:1
+#: src/blocks/accommodation-type/index.js:59
 msgid "Accommodation Type"
 msgstr ""
 
-#: includes/classes/admin/class-permalinks.php:90
-#: includes/classes/legacy/class-tour-operator.php:295
-#: includes/taxonomies/config-accommodation-brand.php:19
+#: includes/classes/admin/class-permalinks.php:100
+#: includes/classes/legacy/class-tour-operator.php:285
+#: includes/taxonomies/config-accommodation-brand.php:20
 msgid "Brand"
 msgstr ""
 
-#: includes/classes/admin/class-settings.php:99
-#: includes/metaboxes/config-destination.php:110
+#: includes/classes/admin/class-settings.php:94
+#: includes/metaboxes/config-destination.php:111
 #: includes/partials/navigation.php:13
+#: build/blocks/additional-info/index.js:1
+#: src/blocks/additional-info/index.js:61
+#: src/blocks/additional-info/index.js:132
 msgid "General"
 msgstr ""
 
-#: includes/classes/admin/class-settings.php:104
-#: includes/classes/legacy/class-frontend.php:186
-#: includes/classes/legacy/class-tour-operator.php:277
+#: includes/classes/admin/class-settings.php:99
+#: includes/classes/legacy/class-frontend.php:159
+#: includes/classes/legacy/class-tour-operator.php:267
 msgid "Destinations"
 msgstr ""
 
-#: includes/classes/admin/class-settings.php:109
-#: includes/classes/legacy/class-frontend.php:291
-#: includes/classes/legacy/class-tour-operator.php:279
+#: includes/classes/admin/class-settings.php:104
+#: includes/classes/legacy/class-frontend.php:267
+#: includes/classes/legacy/class-tour-operator.php:269
 msgid "Tours"
 msgstr ""
 
-#: includes/classes/admin/class-settings.php:114
-#: includes/classes/legacy/class-frontend.php:238
-#: includes/classes/legacy/class-tour-operator.php:278
-#: includes/classes/legacy/class-tour-operator.php:284
+#: includes/classes/admin/class-settings.php:109
+#: includes/classes/legacy/class-frontend.php:213
+#: includes/classes/legacy/class-tour-operator.php:268
+#: includes/classes/legacy/class-tour-operator.php:274
+#: build/blocks/included/index.js:1
+#: src/blocks/included/index.js:98
 msgid "Accommodation"
 msgstr ""
 
-#: includes/classes/admin/class-settings.php:131
-#: includes/partials/settings.php:6
+#: includes/classes/admin/class-settings.php:126
+#: includes/partials/settings.php:5
 msgid "Tour Operator Settings"
 msgstr ""
 
-#: includes/classes/admin/class-settings.php:136
+#: includes/classes/admin/class-settings.php:131
 msgid "Save Changes"
 msgstr ""
 
-#: includes/classes/admin/class-settings.php:167
-msgid "Welcome"
-msgstr ""
-
-#: includes/classes/admin/class-settings.php:449
-#: includes/classes/legacy/class-admin.php:263
+#: includes/classes/admin/class-settings.php:444
+#: includes/classes/legacy/class-admin.php:340
+#: includes/metaboxes/config-accommodation.php:110
+#: includes/metaboxes/config-destination.php:134
+#: includes/metaboxes/config-post.php:28
+#: includes/metaboxes/config-tour.php:154
 msgid "Choose Image"
 msgstr ""
 
-#: includes/classes/admin/class-settings.php:450
+#: includes/classes/admin/class-settings.php:445
 msgid "Delete"
 msgstr ""
 
-#: includes/classes/blocks/class-bindings.php:62
+#: includes/classes/blocks/class-bindings.php:63
 #: includes/classes/legacy/class-accommodation.php:69
 msgid "Chalet"
 msgstr ""
 
-#: includes/classes/blocks/class-bindings.php:63
+#: includes/classes/blocks/class-bindings.php:64
 #: includes/classes/legacy/class-accommodation.php:70
 msgid "Room"
 msgstr ""
 
-#: includes/classes/blocks/class-bindings.php:64
+#: includes/classes/blocks/class-bindings.php:65
 #: includes/classes/legacy/class-accommodation.php:71
 msgid "Spa"
 msgstr ""
 
-#: includes/classes/blocks/class-bindings.php:65
+#: includes/classes/blocks/class-bindings.php:66
 #: includes/classes/legacy/class-accommodation.php:72
 msgid "Tent"
 msgstr ""
 
-#: includes/classes/blocks/class-bindings.php:66
+#: includes/classes/blocks/class-bindings.php:67
 #: includes/classes/legacy/class-accommodation.php:73
 msgid "Villa"
 msgstr ""
 
-#: includes/classes/blocks/class-bindings.php:88
+#: includes/classes/blocks/class-bindings.php:91
 msgid "Post Connection"
 msgstr ""
 
-#: includes/classes/blocks/class-bindings.php:96
+#: includes/classes/blocks/class-bindings.php:99
 msgid "Post Meta"
 msgstr ""
 
-#: includes/classes/blocks/class-bindings.php:104
-#: includes/metaboxes/config-tour.php:158
+#: includes/classes/blocks/class-bindings.php:107
+#: includes/metaboxes/config-tour.php:181
+#: build/blocks/itinerary/index.js:1
+#: src/blocks/itinerary/index.js:17
+#: src/blocks/itinerary/index.js:31
+#: src/blocks/itinerary/index.js:122
 msgid "Itinerary"
 msgstr ""
 
-#: includes/classes/blocks/class-bindings.php:112
+#: includes/classes/blocks/class-bindings.php:115
+#: build/blocks/units/index.js:1
+#: src/blocks/units/index.js:18
+#: src/blocks/units/index.js:31
+#: src/blocks/units/index.js:72
+#: src/blocks/units/index.js:125
 msgid "Units"
 msgstr ""
 
-#: includes/classes/blocks/class-bindings.php:120
-#: includes/metaboxes/config-accommodation.php:98
-#: includes/metaboxes/config-destination.php:125
-#: includes/metaboxes/config-tour.php:145
+#: includes/classes/blocks/class-bindings.php:123
+#: includes/metaboxes/config-accommodation.php:124
+#: includes/metaboxes/config-destination.php:148
+#: includes/metaboxes/config-post.php:42
+#: includes/metaboxes/config-tour.php:168
 msgid "Gallery"
 msgstr ""
 
-#: includes/classes/blocks/class-bindings.php:128
+#: includes/classes/blocks/class-bindings.php:131
 msgid "Map"
 msgstr ""
 
@@ -248,6 +266,84 @@ msgstr ""
 msgid "Displays when a visitor performs a search on your website."
 msgstr ""
 
+#: includes/classes/frontend/class-modals.php:112
+msgid "Enable Preview Modals"
+msgstr ""
+
+#: includes/classes/frontend/class-modals.php:113
+msgid "Links to this item will trigger a popup preview modal allowing a quick look at it before clicking through. "
+msgstr ""
+
+#: includes/classes/frontend/class-modals.php:118
+msgid "Modal Template"
+msgstr ""
+
+#: includes/classes/frontend/class-modals.php:214
+msgid "Please select a pattern or customize your layout with the Tour Operator blocks."
+msgstr ""
+
+#: includes/classes/frontend/class-modals.php:236
+msgctxt "template part area"
+msgid "Modals"
+msgstr ""
+
+#: includes/classes/frontend/class-modals.php:237
+msgid "Design an advanced popup modals for your site."
+msgstr ""
+
+#: includes/classes/frontend/class-modals.php:262
+msgid "Default"
+msgstr ""
+
+#: includes/classes/frontend/class-modals.php:269
+msgid "No other templates found."
+msgstr ""
+
+#: includes/classes/frontend/class-modals.php:357
+msgid "Accommodation Modal"
+msgstr ""
+
+#: includes/classes/frontend/class-modals.php:427
+msgid "This modal displays the accommodation details including the featured image, title, excerpt, and additional information."
+msgstr ""
+
+#: includes/classes/frontend/class-modals.php:431
+msgid "Destination Modal"
+msgstr ""
+
+#: includes/classes/frontend/class-modals.php:445
+msgid "This modal displays the destination details including the featured image, title, excerpt, and travel information."
+msgstr ""
+
+#: includes/classes/frontend/class-modals.php:449
+msgid "Tour Modal"
+msgstr ""
+
+#: includes/classes/frontend/class-modals.php:502
+msgid "This modal displays the tour details including the featured image, title, excerpt, and tour information."
+msgstr ""
+
+#: includes/classes/frontend/class-modals.php:506
+msgid "Enquiry Form Modal"
+msgstr ""
+
+#: includes/classes/frontend/class-modals.php:512
+msgid "This modal displays an enquiry form via shortcode or block insert."
+msgstr ""
+
+#: includes/classes/frontend/class-modals.php:642
+msgid "Select a modal..."
+msgstr ""
+
+#: includes/classes/frontend/class-modals.php:741
+msgid "Close"
+msgstr ""
+
+#. translators: %d is the term ID.
+#: includes/classes/frontend/class-taxonomy-images.php:112
+msgid "Untitled term %d"
+msgstr ""
+
 #: includes/classes/legacy/class-accommodation.php:68
 #: includes/template-tags/general.php:24
 #: includes/template-tags/general.php:122
@@ -262,156 +358,200 @@ msgstr ""
 msgid "From price"
 msgstr ""
 
-#: includes/classes/legacy/class-admin.php:257
-#: includes/metaboxes/config-tour.php:188
+#: includes/classes/legacy/class-admin.php:308
+#: includes/metaboxes/config-tour.php:211
 msgid "Featured Image"
 msgstr ""
 
-#: includes/classes/legacy/class-admin.php:264
+#: includes/classes/legacy/class-admin.php:309
+#: includes/metaboxes/config-accommodation.php:102
+#: includes/metaboxes/config-destination.php:126
+#: includes/metaboxes/config-post.php:20
+#: includes/metaboxes/config-tour.php:146
+msgid "Banner"
+msgstr ""
+
+#: includes/classes/legacy/class-admin.php:341
 msgid "Remove Image"
 msgstr ""
 
-#: includes/classes/legacy/class-admin.php:328
+#: includes/classes/legacy/class-admin.php:361
+#: build/blocks/banner-cover/index.js:1
+#: build/blocks/tagline/index.js:1
+#: src/blocks/banner-cover/index.js:59
+#: src/blocks/banner-cover/index.js:88
+#: src/blocks/tagline/index.js:19
 msgid "Tagline"
 msgstr ""
 
-#: includes/classes/legacy/class-destination.php:96
+#: includes/classes/legacy/class-destination.php:97
 msgid "Activities"
 msgstr ""
 
-#: includes/classes/legacy/class-frontend.php:234
-#: includes/classes/legacy/class-frontend.php:287
+#: includes/classes/legacy/class-frontend.php:209
+#: includes/classes/legacy/class-frontend.php:263
 msgid "Home"
 msgstr ""
 
-#: includes/classes/legacy/class-maps.php:492
+#: includes/classes/legacy/class-maps.php:499
 msgid "Style"
 msgstr ""
 
-#: includes/classes/legacy/class-maps.php:493
+#: includes/classes/legacy/class-maps.php:500
 msgid "Type"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:283
+#: includes/classes/legacy/class-tour-operator.php:273
 msgid "Destination"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:285
+#: includes/classes/legacy/class-tour-operator.php:275
 msgid "Tour"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:297
-#: includes/taxonomies/config-facility.php:19
+#: includes/classes/legacy/class-tour-operator.php:287
+#: includes/taxonomies/config-facility.php:20
 msgid "Facility"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:298
-#: includes/taxonomies/config-continent.php:19
+#: includes/classes/legacy/class-tour-operator.php:288
+#: includes/taxonomies/config-continent.php:20
 msgid "Continent"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:299
+#: includes/classes/legacy/class-tour-operator.php:289
 msgid "Region"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:303
-#: includes/taxonomies/config-travel-style.php:25
-#: includes/taxonomies/config-travel-style.php:28
-#: includes/taxonomies/config-travel-style.php:35
+#: includes/classes/legacy/class-tour-operator.php:293
+#: includes/taxonomies/config-travel-style.php:26
+#: includes/taxonomies/config-travel-style.php:29
+#: includes/taxonomies/config-travel-style.php:36
 msgid "Travel Styles"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:304
-#: includes/taxonomies/config-accommodation-brand.php:18
-#: includes/taxonomies/config-accommodation-brand.php:21
-#: includes/taxonomies/config-accommodation-brand.php:28
+#: includes/classes/legacy/class-tour-operator.php:294
+#: includes/taxonomies/config-accommodation-brand.php:19
+#: includes/taxonomies/config-accommodation-brand.php:22
+#: includes/taxonomies/config-accommodation-brand.php:29
 msgid "Brands"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:305
-#: includes/taxonomies/config-accommodation-type.php:18
-#: includes/taxonomies/config-accommodation-type.php:21
-#: includes/taxonomies/config-accommodation-type.php:28
+#: includes/classes/legacy/class-tour-operator.php:295
+#: includes/taxonomies/config-accommodation-type.php:19
+#: includes/taxonomies/config-accommodation-type.php:22
+#: includes/taxonomies/config-accommodation-type.php:29
 msgid "Accommodation Types"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:306
-#: includes/taxonomies/config-facility.php:18
-#: includes/taxonomies/config-facility.php:21
-#: includes/taxonomies/config-facility.php:28
+#: includes/classes/legacy/class-tour-operator.php:296
+#: includes/taxonomies/config-facility.php:19
+#: includes/taxonomies/config-facility.php:22
+#: includes/taxonomies/config-facility.php:29
+#: build/blocks/facilities/index.js:1
+#: src/blocks/facilities/index.js:18
+#: src/blocks/facilities/index.js:44
+#: src/blocks/facilities/index.js:78
+#: src/blocks/facilities/index.js:146
 msgid "Facilities"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:307
-#: includes/taxonomies/config-continent.php:18
-#: includes/taxonomies/config-continent.php:21
-#: includes/taxonomies/config-continent.php:28
+#: includes/classes/legacy/class-tour-operator.php:297
+#: includes/taxonomies/config-continent.php:19
+#: includes/taxonomies/config-continent.php:22
+#: includes/taxonomies/config-continent.php:29
 msgid "Continents"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:308
+#: includes/classes/legacy/class-tour-operator.php:298
+#: build/blocks/facts-regions-wrapper/index.js:1
+#: build/blocks/regions/index.js:1
+#: build/blocks/related-regions/index.js:1
+#: src/blocks/facts-regions-wrapper/index.js:64
+#: src/blocks/regions/index.js:18
+#: src/blocks/regions/index.js:47
+#: src/blocks/regions/index.js:107
+#: src/blocks/related-regions/index.js:132
 msgid "Regions"
 msgstr ""
 
-#: includes/classes/legacy/class-tour.php:197
+#: includes/classes/legacy/class-tour-operator.php:396
+msgid "Posts"
+msgstr ""
+
+#: includes/classes/legacy/class-tour.php:206
 msgid "Unspecified"
 msgstr ""
 
-#: includes/classes/legacy/class-video.php:65
+#: includes/classes/legacy/class-video.php:70
 msgid "Video Gallery"
 msgstr ""
 
-#: includes/classes/legacy/class-video.php:66
+#: includes/classes/legacy/class-video.php:71
 msgid "Link to videos about this item, including a title, URL, caption, and alt text."
 msgstr ""
 
-#: includes/classes/legacy/class-video.php:71
+#: includes/classes/legacy/class-video.php:76
 msgid "Video {#}"
 msgstr ""
 
-#: includes/classes/legacy/class-video.php:72
+#: includes/classes/legacy/class-video.php:77
 msgid "Add Video"
 msgstr ""
 
-#: includes/classes/legacy/class-video.php:73
+#: includes/classes/legacy/class-video.php:78
 msgid "Remove Video"
 msgstr ""
 
-#: includes/classes/legacy/class-video.php:79
-#: includes/metaboxes/config-tour.php:164
+#: includes/classes/legacy/class-video.php:84
+#: includes/metaboxes/config-tour.php:187
+#: build/blocks/banking/index.js:1
+#: build/blocks/minimum-child-age/index.js:1
+#: build/blocks/rating/index.js:1
+#: build/blocks/special-interests/index.js:1
+#: build/blocks/spoken-languages/index.js:1
+#: build/blocks/suggested-visitor-types/index.js:1
+#: src/blocks/banking/index.js:56
+#: src/blocks/banking/index.js:141
+#: src/blocks/minimum-child-age/index.js:71
+#: src/blocks/minimum-child-age/index.js:135
+#: src/blocks/rating/index.js:47
+#: src/blocks/special-interests/index.js:71
+#: src/blocks/spoken-languages/index.js:47
+#: src/blocks/suggested-visitor-types/index.js:59
 msgid "Title"
 msgstr ""
 
-#: includes/classes/legacy/class-video.php:80
+#: includes/classes/legacy/class-video.php:85
 msgid "The title of the video."
 msgstr ""
 
-#: includes/classes/legacy/class-video.php:85
+#: includes/classes/legacy/class-video.php:90
 msgid "Url"
 msgstr ""
 
-#: includes/classes/legacy/class-video.php:86
+#: includes/classes/legacy/class-video.php:91
 msgid "The URL link to the video."
 msgstr ""
 
-#: includes/classes/legacy/class-video.php:91
+#: includes/classes/legacy/class-video.php:96
 msgid "Caption"
 msgstr ""
 
-#: includes/classes/legacy/class-video.php:92
+#: includes/classes/legacy/class-video.php:97
 msgid "The caption displayed with the video on the frontend."
 msgstr ""
 
-#: includes/classes/legacy/class-video.php:97
+#: includes/classes/legacy/class-video.php:102
 msgid "Alt Text"
 msgstr ""
 
-#: includes/classes/legacy/class-video.php:98
+#: includes/classes/legacy/class-video.php:103
 msgid "Alternative text for accessibility, describing the video for screen readers."
 msgstr ""
 
 #: includes/classes/legacy/schema/class-lsx-to-schema-graph-piece.php:174
-#: includes/template-tags/helpers.php:499
+#: includes/template-tags/helpers.php:497
 msgid "Per Person Per Night"
 msgstr ""
 
@@ -549,446 +689,529 @@ msgstr ""
 msgid "When disabled you will be redirected to the homepage when trying to access a single page."
 msgstr ""
 
-#: includes/functions.php:416
+#: includes/functions.php:412
 msgid "Read More"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:13
-#: includes/metaboxes/config-tour.php:13
+#: includes/metaboxes/config-accommodation.php:14
+#: includes/metaboxes/config-tour.php:14
 msgid "Details"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:20
-#: includes/metaboxes/config-tour.php:68
-#: includes/metaboxes/config-tour.php:237
+#: includes/metaboxes/config-accommodation.php:21
+#: includes/metaboxes/config-tour.php:69
+#: includes/metaboxes/config-tour.php:260
+#: build/blocks/included/index.js:1
+#: src/blocks/included/index.js:33
 msgid "Included"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:21
+#: includes/metaboxes/config-accommodation.php:22
 msgid "Items or services provided with the accommodation."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:30
-#: includes/metaboxes/config-tour.php:78
+#: includes/metaboxes/config-accommodation.php:31
+#: includes/metaboxes/config-tour.php:79
 msgid "Not Included"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:31
+#: includes/metaboxes/config-accommodation.php:32
 msgid "Items or services not provided with the accommodation."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:41
+#: includes/metaboxes/config-accommodation.php:42
 msgid "Accommodation Expert"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:56
-#: includes/metaboxes/config-destination.php:139
-#: includes/metaboxes/config-tour.php:110
+#: includes/metaboxes/config-accommodation.php:57
+#: includes/metaboxes/config-destination.php:162
+#: includes/metaboxes/config-tour.php:111
+#: build/blocks/google-map/index.js:1
+#: src/blocks/google-map/index.js:61
+#: src/blocks/google-map/index.js:154
 msgid "Location"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:65
-#: includes/metaboxes/config-destination.php:153
+#: includes/metaboxes/config-accommodation.php:67
+#: includes/metaboxes/config-destination.php:177
 msgid "Address"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:66
+#: includes/metaboxes/config-accommodation.php:68
 msgid "The address of the accommodation for map display."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:72
-#: includes/metaboxes/config-destination.php:159
-#: includes/metaboxes/config-tour.php:115
+#: includes/metaboxes/config-accommodation.php:76
+#: includes/metaboxes/config-destination.php:184
+#: includes/metaboxes/config-tour.php:116
 msgid "Map Placeholder"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:73
-#: includes/metaboxes/config-tour.php:116
-msgid "A placeholder image for the map if no address or GPS data is available."
+#: includes/metaboxes/config-accommodation.php:77
+msgid "A placeholder image for the map, allowing lazy loading."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:93
-#: includes/metaboxes/config-destination.php:120
-#: includes/metaboxes/config-tour.php:140
+#: includes/metaboxes/config-accommodation.php:97
+#: includes/metaboxes/config-destination.php:121
+#: includes/metaboxes/config-post.php:14
+#: includes/metaboxes/config-tour.php:141
 msgid "Media"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:99
+#: includes/metaboxes/config-accommodation.php:125
 msgid "Add images related to the accommodation to be displayed in the Accommodation's gallery."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:105
-#: includes/metaboxes/config-accommodation.php:164
-#: includes/metaboxes/config-destination.php:132
-#: includes/metaboxes/config-tour.php:152
+#: includes/metaboxes/config-accommodation.php:131
+#: includes/metaboxes/config-accommodation.php:190
+#: includes/metaboxes/config-destination.php:155
+#: includes/metaboxes/config-post.php:49
+#: includes/metaboxes/config-tour.php:175
 msgid "Add new image"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:111
+#: includes/metaboxes/config-accommodation.php:137
 msgid "Rooms / Units"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:122
+#: includes/metaboxes/config-accommodation.php:148
 msgid "Unit {#}"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:123
-#: includes/metaboxes/config-tour.php:280
+#: includes/metaboxes/config-accommodation.php:149
+#: includes/metaboxes/config-tour.php:303
 msgid "Add Another"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:124
-#: includes/metaboxes/config-tour.php:281
+#: includes/metaboxes/config-accommodation.php:150
+#: includes/metaboxes/config-tour.php:304
 msgid "Remove"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:130
+#: includes/metaboxes/config-accommodation.php:156
 msgid "Unit Type"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:131
+#: includes/metaboxes/config-accommodation.php:157
 msgid "Select the type of unit (e.g., room, suite) from the dropdown."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:137
+#: includes/metaboxes/config-accommodation.php:163
 msgid "Unit Title"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:138
+#: includes/metaboxes/config-accommodation.php:164
 msgid "Enter the name or title of the unit (e.g., Deluxe Room, Family Suite)."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:143
+#: includes/metaboxes/config-accommodation.php:169
 msgid "Unit Description"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:144
+#: includes/metaboxes/config-accommodation.php:170
 msgid "Provide a brief description of the unit’s features and amenities."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:152
+#: includes/metaboxes/config-accommodation.php:178
 msgid "Unit Price"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:153
+#: includes/metaboxes/config-accommodation.php:179
 msgid "Enter the price of the unit."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:157
+#: includes/metaboxes/config-accommodation.php:183
 msgid "Unit Images"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:158
+#: includes/metaboxes/config-accommodation.php:184
 msgid "Showcase the unit by adding images."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:172
-#: includes/metaboxes/config-destination.php:175
-#: includes/metaboxes/config-tour.php:288
+#: includes/metaboxes/config-accommodation.php:198
+#: includes/metaboxes/config-destination.php:200
+#: includes/metaboxes/config-post.php:55
+#: includes/metaboxes/config-tour.php:311
 msgid "Related"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:177
-#: includes/metaboxes/config-destination.php:181
-#: includes/metaboxes/config-tour.php:294
+#: includes/metaboxes/config-accommodation.php:203
+#: includes/metaboxes/config-destination.php:206
+#: includes/metaboxes/config-tour.php:317
 msgid "Related Posts"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:178
+#: includes/metaboxes/config-accommodation.php:204
 msgid "Select blog posts about this Accommodation."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:190
-#: includes/metaboxes/config-tour.php:320
+#: includes/metaboxes/config-accommodation.php:216
+#: includes/metaboxes/config-post.php:74
+#: includes/metaboxes/config-tour.php:343
 msgid "Related Destinations"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:191
+#: includes/metaboxes/config-accommodation.php:217
 msgid "The Destination (country or region) where this Accommodation is found."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:203
-#: includes/metaboxes/config-destination.php:207
+#: includes/metaboxes/config-accommodation.php:229
+#: includes/metaboxes/config-destination.php:232
+#: includes/metaboxes/config-post.php:87
+#: build/blocks/tour-related-accommodation/index.js:1
+#: build/blocks/tour-related-destination/index.js:1
+#: build/blocks/tour-related-tour/index.js:1
+#: src/blocks/tour-related-accommodation/index.js:20
+#: src/blocks/tour-related-accommodation/index.js:32
+#: src/blocks/tour-related-accommodation/index.js:61
+#: src/blocks/tour-related-accommodation/index.js:138
+#: src/blocks/tour-related-destination/index.js:20
+#: src/blocks/tour-related-destination/index.js:32
+#: src/blocks/tour-related-destination/index.js:61
+#: src/blocks/tour-related-destination/index.js:138
+#: src/blocks/tour-related-tour/index.js:20
+#: src/blocks/tour-related-tour/index.js:32
+#: src/blocks/tour-related-tour/index.js:61
+#: src/blocks/tour-related-tour/index.js:138
 msgid "Related Tours"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:204
+#: includes/metaboxes/config-accommodation.php:230
 msgid "Choose tours that are linked to the accommodation."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:13
+#: includes/metaboxes/config-destination.php:14
 msgid "Travel Info"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:20
+#: includes/metaboxes/config-destination.php:21
+#: build/blocks/electricity/index.js:1
+#: src/blocks/electricity/index.js:20
+#: src/blocks/electricity/index.js:35
+#: src/blocks/electricity/index.js:63
+#: src/blocks/electricity/index.js:135
 msgid "Electricity"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:22
+#: includes/metaboxes/config-destination.php:23
 msgid "Enter details about the country's electrical system (e.g., voltage, plug types)."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:30
+#: includes/metaboxes/config-destination.php:31
+#: build/blocks/banking/index.js:1
+#: src/blocks/banking/index.js:18
+#: src/blocks/banking/index.js:33
+#: src/blocks/banking/index.js:67
+#: src/blocks/banking/index.js:152
 msgid "Banking"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:32
+#: includes/metaboxes/config-destination.php:33
 msgid "Provide information about banking services and currency in the country."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:40
+#: includes/metaboxes/config-destination.php:41
+#: build/blocks/cuisine/index.js:1
+#: src/blocks/cuisine/index.js:20
+#: src/blocks/cuisine/index.js:35
+#: src/blocks/cuisine/index.js:63
+#: src/blocks/cuisine/index.js:135
 msgid "Cuisine"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:42
+#: includes/metaboxes/config-destination.php:43
 msgid "Describe the typical cuisine or food experiences in the country."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:50
+#: includes/metaboxes/config-destination.php:51
+#: build/blocks/climate/index.js:1
+#: src/blocks/climate/index.js:19
+#: src/blocks/climate/index.js:47
+#: src/blocks/climate/index.js:75
+#: src/blocks/climate/index.js:147
 msgid "Climate"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:52
+#: includes/metaboxes/config-destination.php:53
 msgid "Give an overview of the country's climate and weather patterns."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:60
+#: includes/metaboxes/config-destination.php:61
+#: build/blocks/transport/index.js:1
+#: src/blocks/transport/index.js:19
+#: src/blocks/transport/index.js:62
+#: src/blocks/transport/index.js:133
 msgid "Transport"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:62
+#: includes/metaboxes/config-destination.php:63
 msgid "Provide information on transportation options available in the country."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:70
+#: includes/metaboxes/config-destination.php:71
+#: build/blocks/dress/index.js:1
+#: src/blocks/dress/index.js:19
+#: src/blocks/dress/index.js:47
+#: src/blocks/dress/index.js:75
+#: src/blocks/dress/index.js:147
 msgid "Dress"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:72
+#: includes/metaboxes/config-destination.php:73
 msgid "Describe any local dress customs or recommended clothing for visitors."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:80
+#: includes/metaboxes/config-destination.php:81
+#: build/blocks/health/index.js:1
+#: src/blocks/health/index.js:20
+#: src/blocks/health/index.js:35
+#: src/blocks/health/index.js:63
+#: src/blocks/health/index.js:135
 msgid "Health"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:82
+#: includes/metaboxes/config-destination.php:83
 msgid "Provide important health-related information for travellers (e.g., vaccinations, health services)."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:90
+#: includes/metaboxes/config-destination.php:91
+#: build/blocks/safety/index.js:1
+#: src/blocks/safety/index.js:20
+#: src/blocks/safety/index.js:35
+#: src/blocks/safety/index.js:60
+#: src/blocks/safety/index.js:131
 msgid "Safety"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:92
+#: includes/metaboxes/config-destination.php:93
 msgid "Enter safety tips or advice for staying secure in the country."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:100
+#: includes/metaboxes/config-destination.php:101
+#: build/blocks/visa/index.js:1
+#: src/blocks/visa/index.js:18
+#: src/blocks/visa/index.js:32
+#: src/blocks/visa/index.js:60
+#: src/blocks/visa/index.js:131
 msgid "Visa"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:102
+#: includes/metaboxes/config-destination.php:103
 msgid "Provide details on visa requirements for entering the country."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:112
+#: includes/metaboxes/config-destination.php:113
 msgid "Add any other relevant general travel information about the country."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:128
+#: includes/metaboxes/config-destination.php:151
 msgid "Add images related to the country to be displayed in the Destination’s gallery."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:144
+#: includes/metaboxes/config-destination.php:167
 msgid "Disable Auto Zoom"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:183
+#: includes/metaboxes/config-destination.php:208
 msgid "Select related posts by typing the post name and choosing from the dropdown."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:194
-#: includes/metaboxes/config-tour.php:206
-#: includes/metaboxes/config-tour.php:307
+#: includes/metaboxes/config-destination.php:219
+#: includes/metaboxes/config-post.php:61
+#: includes/metaboxes/config-tour.php:229
+#: includes/metaboxes/config-tour.php:330
 msgid "Related Accommodation"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:195
+#: includes/metaboxes/config-destination.php:220
 msgid "Attach related accommodations by selecting the relevant accommodation from the dropdown."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:208
+#: includes/metaboxes/config-destination.php:233
 msgid "Choose related tours by typing the tour name and selecting from the dropdown."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:20
-msgid "Departs From"
+#: includes/metaboxes/config-post.php:45
+msgid "Add images for this post’s gallery."
+msgstr ""
+
+#: includes/metaboxes/config-post.php:62
+msgid "Select accommodation related to this post."
+msgstr ""
+
+#: includes/metaboxes/config-post.php:75
+msgid "The Destination (country or region) where this post is found."
+msgstr ""
+
+#: includes/metaboxes/config-post.php:88
+msgid "Choose tours that are linked to the post."
 msgstr ""
 
 #: includes/metaboxes/config-tour.php:21
+msgid "Departs From"
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:22
 msgid "Select the destination where the tour starts."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:34
+#: includes/metaboxes/config-tour.php:35
 msgid "Ends In"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:35
+#: includes/metaboxes/config-tour.php:36
 msgid "Select the destination where the tour ends."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:48
+#: includes/metaboxes/config-tour.php:49
 msgid "Group Size"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:49
+#: includes/metaboxes/config-tour.php:50
 msgid "The range of group sizes for the tour (e.g., 2 - 20 people)."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:58
+#: includes/metaboxes/config-tour.php:59
 msgid "Highlights"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:59
+#: includes/metaboxes/config-tour.php:60
 msgid "Key experiences or features of the tour."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:69
+#: includes/metaboxes/config-tour.php:70
 msgid "List the items and services included with the tour (typically a paragraph or list)."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:79
+#: includes/metaboxes/config-tour.php:80
 msgid "List the items and services not included with the tour (typically a paragraph or list)."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:88
+#: includes/metaboxes/config-tour.php:89
 msgid "Booking Validity (start)"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:89
+#: includes/metaboxes/config-tour.php:90
 msgid "The start date for when the tour can be booked."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:95
+#: includes/metaboxes/config-tour.php:96
 msgid "Booking Validity (end)"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:96
+#: includes/metaboxes/config-tour.php:97
 msgid "The end date for when the tour can be booked."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:102
+#: includes/metaboxes/config-tour.php:103
 msgid "Expire this tour automatically"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:103
+#: includes/metaboxes/config-tour.php:104
 msgid "This tour will expire automatically when the Booking Validity ends."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:130
-msgid "Itinerary KML File"
+#: includes/metaboxes/config-tour.php:117
+msgid "A placeholder image for the map if no address or GPS data is available."
 msgstr ""
 
 #: includes/metaboxes/config-tour.php:131
+msgid "Itinerary KML File"
+msgstr ""
+
+#: includes/metaboxes/config-tour.php:132
 msgid "A file containing GPS points for the tour route."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:146
+#: includes/metaboxes/config-tour.php:169
 msgid "Add images related to the tour to be displayed in the Tour gallery."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:165
+#: includes/metaboxes/config-tour.php:188
 msgid "Enter the title for the time frame (e.g., Day 1, Day 1-3)."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:171
+#: includes/metaboxes/config-tour.php:194
 msgid "Tagline (Optional)"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:172
+#: includes/metaboxes/config-tour.php:195
 msgid "Add an optional tagline for the itinerary entry (if left blank, it won’t display)."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:178
+#: includes/metaboxes/config-tour.php:201
+#: build/blocks/banking/index.js:1
+#: src/blocks/banking/index.js:77
+#: src/blocks/banking/index.js:162
 msgid "Description"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:179
+#: includes/metaboxes/config-tour.php:202
 msgid "Provide a description of what happens during this time frame."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:189
+#: includes/metaboxes/config-tour.php:212
 msgid "Upload or select a featured image for the itinerary entry."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:207
+#: includes/metaboxes/config-tour.php:230
 msgid "Select the accommodation associated with this Itinerary entry."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:222
+#: includes/metaboxes/config-tour.php:245
 msgid "Related Destination"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:223
+#: includes/metaboxes/config-tour.php:246
 msgid "Choose the destination (region or country) associated with this Itinerary entry."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:238
+#: includes/metaboxes/config-tour.php:261
 msgid "Items or services provided during that part of the tour itinerary."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:247
+#: includes/metaboxes/config-tour.php:270
 msgid "Excluded"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:248
+#: includes/metaboxes/config-tour.php:271
 msgid "Items or services not provided during that part of the tour itinerary."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:257
+#: includes/metaboxes/config-tour.php:280
 msgid "Drinks Basis"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:258
+#: includes/metaboxes/config-tour.php:281
 msgid "Select the drinks basis for the itinerary (e.g., tea & coffee, all local drinks)."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:264
+#: includes/metaboxes/config-tour.php:287
 msgid "Room Basis"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:265
+#: includes/metaboxes/config-tour.php:288
 msgid "Choose the room basis for the itinerary (e.g., breakfast only, full board)."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:273
+#: includes/metaboxes/config-tour.php:296
 msgid "Day(s)"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:279
+#: includes/metaboxes/config-tour.php:302
 msgid "Itinerary {#}"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:295
+#: includes/metaboxes/config-tour.php:318
 msgid "Select blog posts about this tour."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:308
+#: includes/metaboxes/config-tour.php:331
 msgid "Attach other accommodations similar to this tour."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:321
+#: includes/metaboxes/config-tour.php:344
 msgid "The Destinations (countries or regions) where this Tour takes place."
-msgstr ""
-
-#: includes/pages/config-help.php:13
-#: includes/pages/config-help.php:14
-msgid "Help"
-msgstr ""
-
-#: includes/pages/config-tour-operator.php:13
-msgid "Dashboard"
 msgstr ""
 
 #: includes/partials/general.php:9
@@ -1011,6 +1234,7 @@ msgstr ""
 #: includes/partials/general.php:45
 msgid "APIs"
 msgstr ""
+
 #: includes/partials/post-type.php:17
 msgid "Template Settings"
 msgstr ""
@@ -1032,6 +1256,9 @@ msgid "A grid display for destinations."
 msgstr ""
 
 #: includes/patterns/gallery.php:4
+#: build/blocks/gallery/index.js:1
+#: src/blocks/gallery/index.js:16
+#: src/blocks/gallery/index.js:22
 msgid "TO Gallery"
 msgstr ""
 
@@ -1071,157 +1298,157 @@ msgstr ""
 msgid "Display the travel information like banking and cusine."
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-brand.php:20
+#: includes/taxonomies/config-accommodation-brand.php:21
 msgid "Search Brands"
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-brand.php:22
+#: includes/taxonomies/config-accommodation-brand.php:23
 msgid "Parent Brand"
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-brand.php:23
+#: includes/taxonomies/config-accommodation-brand.php:24
 msgid "Parent Brand:"
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-brand.php:24
+#: includes/taxonomies/config-accommodation-brand.php:25
 msgid "Edit Brand"
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-brand.php:25
+#: includes/taxonomies/config-accommodation-brand.php:26
 msgid "Update Brand"
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-brand.php:26
+#: includes/taxonomies/config-accommodation-brand.php:27
 msgid "Add New Brand"
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-brand.php:27
+#: includes/taxonomies/config-accommodation-brand.php:28
 msgid "New Brand"
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-brand.php:29
+#: includes/taxonomies/config-accommodation-brand.php:30
 msgid "Select the brand the Accommodation belongs to."
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-type.php:20
+#: includes/taxonomies/config-accommodation-type.php:21
 msgid "Search Accommodation Types"
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-type.php:22
+#: includes/taxonomies/config-accommodation-type.php:23
 msgid "Parent Accommodation Type"
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-type.php:23
+#: includes/taxonomies/config-accommodation-type.php:24
 msgid "Parent Accommodation Type:"
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-type.php:24
+#: includes/taxonomies/config-accommodation-type.php:25
 msgid "Edit Accommodation Type"
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-type.php:25
+#: includes/taxonomies/config-accommodation-type.php:26
 msgid "Update Accommodation Type"
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-type.php:26
+#: includes/taxonomies/config-accommodation-type.php:27
 msgid "Add New Accommodation Type"
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-type.php:27
+#: includes/taxonomies/config-accommodation-type.php:28
 msgid "New Accommodation Type"
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-type.php:29
+#: includes/taxonomies/config-accommodation-type.php:30
 msgid "Select the type(s) of accommodation (e.g., hotel, resort)."
 msgstr ""
 
-#: includes/taxonomies/config-continent.php:20
+#: includes/taxonomies/config-continent.php:21
 msgid "Search Continents"
-msgstr ""
-
-#: includes/taxonomies/config-continent.php:22
-#: includes/taxonomies/config-facility.php:22
-msgid "Parent"
 msgstr ""
 
 #: includes/taxonomies/config-continent.php:23
 #: includes/taxonomies/config-facility.php:23
-msgid "Parent:"
+msgid "Parent"
 msgstr ""
 
 #: includes/taxonomies/config-continent.php:24
-msgid "Edit Continent"
+#: includes/taxonomies/config-facility.php:24
+msgid "Parent:"
 msgstr ""
 
 #: includes/taxonomies/config-continent.php:25
-msgid "Update Continent"
+msgid "Edit Continent"
 msgstr ""
 
 #: includes/taxonomies/config-continent.php:26
-msgid "Add New Continent"
+msgid "Update Continent"
 msgstr ""
 
 #: includes/taxonomies/config-continent.php:27
+msgid "Add New Continent"
+msgstr ""
+
+#: includes/taxonomies/config-continent.php:28
 msgid "New Continent"
 msgstr ""
 
-#: includes/taxonomies/config-continent.php:29
+#: includes/taxonomies/config-continent.php:30
 msgid "Select the continent that the country belongs to."
 msgstr ""
 
-#: includes/taxonomies/config-facility.php:20
+#: includes/taxonomies/config-facility.php:21
 msgid "Search Facilities"
 msgstr ""
 
-#: includes/taxonomies/config-facility.php:24
+#: includes/taxonomies/config-facility.php:25
 msgid "Edit Facility"
 msgstr ""
 
-#: includes/taxonomies/config-facility.php:25
+#: includes/taxonomies/config-facility.php:26
 msgid "Update Facility"
 msgstr ""
 
-#: includes/taxonomies/config-facility.php:26
+#: includes/taxonomies/config-facility.php:27
 msgid "Add New Facility"
 msgstr ""
 
-#: includes/taxonomies/config-facility.php:27
+#: includes/taxonomies/config-facility.php:28
 msgid "New Facility"
 msgstr ""
 
-#: includes/taxonomies/config-facility.php:29
+#: includes/taxonomies/config-facility.php:30
 msgid "Choose the facilities offered by the accommodation (e.g., pool, gym)."
 msgstr ""
 
-#: includes/taxonomies/config-travel-style.php:27
+#: includes/taxonomies/config-travel-style.php:28
 msgid "Search Travel Styles"
 msgstr ""
 
-#: includes/taxonomies/config-travel-style.php:29
+#: includes/taxonomies/config-travel-style.php:30
 msgid "Parent Travel Style"
 msgstr ""
 
-#: includes/taxonomies/config-travel-style.php:30
+#: includes/taxonomies/config-travel-style.php:31
 msgid "Parent Travel Style:"
 msgstr ""
 
-#: includes/taxonomies/config-travel-style.php:31
+#: includes/taxonomies/config-travel-style.php:32
 msgid "Edit Travel Style"
 msgstr ""
 
-#: includes/taxonomies/config-travel-style.php:32
+#: includes/taxonomies/config-travel-style.php:33
 msgid "Update Travel Style"
 msgstr ""
 
-#: includes/taxonomies/config-travel-style.php:33
+#: includes/taxonomies/config-travel-style.php:34
 msgid "Add New Travel Style"
 msgstr ""
 
-#: includes/taxonomies/config-travel-style.php:34
+#: includes/taxonomies/config-travel-style.php:35
 msgid "New Travel Style"
 msgstr ""
 
-#: includes/taxonomies/config-travel-style.php:36
+#: includes/taxonomies/config-travel-style.php:37
 msgid "Select the relevant travel styles that apply to this item."
 msgstr ""
 
@@ -1321,50 +1548,4238 @@ msgstr ""
 msgid "All Drinks"
 msgstr ""
 
-#: includes/template-tags/helpers.php:451
+#: includes/template-tags/helpers.php:449
 msgid "Africa"
 msgstr ""
 
-#: includes/template-tags/helpers.php:452
+#: includes/template-tags/helpers.php:450
 msgid "Asia"
 msgstr ""
 
-#: includes/template-tags/helpers.php:453
+#: includes/template-tags/helpers.php:451
 msgid "Europe"
 msgstr ""
 
-#: includes/template-tags/helpers.php:454
+#: includes/template-tags/helpers.php:452
 msgid "Oceania"
 msgstr ""
 
-#: includes/template-tags/helpers.php:455
+#: includes/template-tags/helpers.php:453
 msgid "North America"
 msgstr ""
 
-#: includes/template-tags/helpers.php:456
+#: includes/template-tags/helpers.php:454
 msgid "South America"
 msgstr ""
 
-#: includes/template-tags/helpers.php:457
+#: includes/template-tags/helpers.php:455
 msgid "Antarctica"
 msgstr ""
 
-#: includes/template-tags/helpers.php:503
+#: includes/template-tags/helpers.php:501
 msgid "Per Person Sharing"
 msgstr ""
 
-#: includes/template-tags/helpers.php:507
+#: includes/template-tags/helpers.php:505
 msgid "Per Person Sharing Per Night"
 msgstr ""
 
-#: includes/template-tags/helpers.php:511
+#: includes/template-tags/helpers.php:509
 msgid "Percentage Off Your Price."
 msgstr ""
 
-#: tour-operator.php:33
+#: src/blocks/sticky-menu/render.php:49
+msgid "Toggle section content visibility"
+msgstr ""
+
+#: tour-operator.php:39
 msgid "l F jS, Y"
 msgstr ""
 
-#: tour-operator.php:34
+#: tour-operator.php:40
 msgid "g:ia"
+msgstr ""
+
+#: build/blocks/accommodation-related-accommodation/index.js:1
+#: build/blocks/accommodation-related-destination/index.js:1
+#: build/blocks/accommodation-related-tour/index.js:1
+#: src/blocks/accommodation-related-accommodation/index.js:20
+#: src/blocks/accommodation-related-accommodation/index.js:31
+#: src/blocks/accommodation-related-accommodation/index.js:60
+#: src/blocks/accommodation-related-accommodation/index.js:137
+#: src/blocks/accommodation-related-destination/index.js:20
+#: src/blocks/accommodation-related-destination/index.js:31
+#: src/blocks/accommodation-related-destination/index.js:60
+#: src/blocks/accommodation-related-destination/index.js:138
+#: src/blocks/accommodation-related-tour/index.js:20
+#: src/blocks/accommodation-related-tour/index.js:31
+#: src/blocks/accommodation-related-tour/index.js:60
+#: src/blocks/accommodation-related-tour/index.js:137
+msgid "Related Accommodations"
+msgstr ""
+
+#: build/blocks/accommodation-related-accommodation/index.js:1
+#: src/blocks/accommodation-related-accommodation/index.js:22
+msgid "Displays other accommodation in the area."
+msgstr ""
+
+#: build/blocks/accommodation-related-accommodation/index.js:1
+#: build/blocks/accommodation-related-destination/index.js:1
+#: build/blocks/accommodation-related-tour/index.js:1
+#: build/blocks/featured-accommodation/index.js:1
+#: src/blocks/accommodation-related-accommodation/index.js:25
+#: src/blocks/accommodation-related-destination/index.js:25
+#: src/blocks/accommodation-related-tour/index.js:25
+#: src/blocks/featured-accommodation/index.js:22
+msgid "accommodations"
+msgstr ""
+
+#: build/blocks/accommodation-related-accommodation/index.js:1
+#: build/blocks/accommodation-related-destination/index.js:1
+#: build/blocks/accommodation-related-tour/index.js:1
+#: build/blocks/related-regions/index.js:1
+#: build/blocks/review-related-accommodation/index.js:1
+#: build/blocks/review-related-destination/index.js:1
+#: build/blocks/review-related-tour/index.js:1
+#: build/blocks/tour-related-accommodation/index.js:1
+#: build/blocks/tour-related-destination/index.js:1
+#: build/blocks/tour-related-tour/index.js:1
+#: src/blocks/accommodation-related-accommodation/index.js:26
+#: src/blocks/accommodation-related-destination/index.js:26
+#: src/blocks/accommodation-related-tour/index.js:26
+#: src/blocks/related-regions/index.js:23
+#: src/blocks/review-related-accommodation/index.js:27
+#: src/blocks/review-related-destination/index.js:27
+#: src/blocks/review-related-tour/index.js:27
+#: src/blocks/tour-related-accommodation/index.js:27
+#: src/blocks/tour-related-destination/index.js:27
+#: src/blocks/tour-related-tour/index.js:27
+msgid "related"
+msgstr ""
+
+#: build/blocks/accommodation-related-accommodation/index.js:1
+#: build/blocks/accommodation-related-destination/index.js:1
+#: build/blocks/accommodation-related-tour/index.js:1
+#: src/blocks/accommodation-related-accommodation/index.js:27
+#: src/blocks/accommodation-related-destination/index.js:27
+#: src/blocks/accommodation-related-tour/index.js:27
+msgid "similar"
+msgstr ""
+
+#: build/blocks/accommodation-related-accommodation/index.js:1
+#: src/blocks/accommodation-related-accommodation/index.js:82
+msgid "Related Accommodation Query"
+msgstr ""
+
+#: build/blocks/accommodation-related-accommodation/index.js:1
+#: build/blocks/accommodation-related-destination/index.js:1
+#: build/blocks/accommodation-related-tour/index.js:1
+#: src/blocks/accommodation-related-accommodation/index.js:193
+#: src/blocks/accommodation-related-destination/index.js:194
+#: src/blocks/accommodation-related-tour/index.js:193
+msgid "Serengeti Safari Lodge"
+msgstr ""
+
+#: build/blocks/accommodation-related-accommodation/index.js:1
+#: build/blocks/accommodation-related-destination/index.js:1
+#: build/blocks/accommodation-related-tour/index.js:1
+#: src/blocks/accommodation-related-accommodation/index.js:214
+#: src/blocks/accommodation-related-destination/index.js:215
+#: src/blocks/accommodation-related-tour/index.js:214
+msgid "From: $450/night"
+msgstr ""
+
+#: build/blocks/accommodation-related-accommodation/index.js:1
+#: build/blocks/accommodation-related-destination/index.js:1
+#: build/blocks/accommodation-related-tour/index.js:1
+#: src/blocks/accommodation-related-accommodation/index.js:221
+#: src/blocks/accommodation-related-destination/index.js:222
+#: src/blocks/accommodation-related-tour/index.js:221
+msgid "Rating: 5 stars"
+msgstr ""
+
+#: build/blocks/accommodation-related-accommodation/index.js:1
+#: build/blocks/accommodation-related-destination/index.js:1
+#: build/blocks/accommodation-related-tour/index.js:1
+#: src/blocks/accommodation-related-accommodation/index.js:229
+#: src/blocks/accommodation-related-destination/index.js:230
+#: src/blocks/accommodation-related-tour/index.js:229
+msgid "Experience luxury in the heart of the Serengeti. Our lodge offers stunning views of the African wilderness with world-class amenities and service."
+msgstr ""
+
+#: build/blocks/accommodation-related-accommodation/index.js:1
+#: build/blocks/accommodation-related-destination/index.js:1
+#: build/blocks/accommodation-related-tour/index.js:1
+#: src/blocks/accommodation-related-accommodation/index.js:264
+#: src/blocks/accommodation-related-destination/index.js:265
+#: src/blocks/accommodation-related-tour/index.js:264
+msgid "Kilimanjaro View Hotel"
+msgstr ""
+
+#: build/blocks/accommodation-related-accommodation/index.js:1
+#: build/blocks/accommodation-related-destination/index.js:1
+#: build/blocks/accommodation-related-tour/index.js:1
+#: src/blocks/accommodation-related-accommodation/index.js:285
+#: src/blocks/accommodation-related-destination/index.js:286
+#: src/blocks/accommodation-related-tour/index.js:285
+msgid "From: $280/night"
+msgstr ""
+
+#: build/blocks/accommodation-related-accommodation/index.js:1
+#: build/blocks/accommodation-related-destination/index.js:1
+#: build/blocks/accommodation-related-tour/index.js:1
+#: src/blocks/accommodation-related-accommodation/index.js:292
+#: src/blocks/accommodation-related-destination/index.js:293
+#: src/blocks/accommodation-related-tour/index.js:292
+msgid "Rating: 4 stars"
+msgstr ""
+
+#: build/blocks/accommodation-related-accommodation/index.js:1
+#: build/blocks/accommodation-related-destination/index.js:1
+#: build/blocks/accommodation-related-tour/index.js:1
+#: src/blocks/accommodation-related-accommodation/index.js:300
+#: src/blocks/accommodation-related-destination/index.js:301
+#: src/blocks/accommodation-related-tour/index.js:300
+msgid "Comfortable accommodation with breathtaking views of Mount Kilimanjaro. Perfect base for trekking adventures and exploring the region."
+msgstr ""
+
+#: build/blocks/accommodation-related-accommodation/index.js:1
+#: build/blocks/accommodation-related-destination/index.js:1
+#: build/blocks/accommodation-related-tour/index.js:1
+#: src/blocks/accommodation-related-accommodation/index.js:335
+#: src/blocks/accommodation-related-destination/index.js:336
+#: src/blocks/accommodation-related-tour/index.js:335
+msgid "Zanzibar Beach Resort"
+msgstr ""
+
+#: build/blocks/accommodation-related-accommodation/index.js:1
+#: build/blocks/accommodation-related-destination/index.js:1
+#: build/blocks/accommodation-related-tour/index.js:1
+#: src/blocks/accommodation-related-accommodation/index.js:356
+#: src/blocks/accommodation-related-destination/index.js:357
+#: src/blocks/accommodation-related-tour/index.js:356
+msgid "From: $320/night"
+msgstr ""
+
+#: build/blocks/accommodation-related-accommodation/index.js:1
+#: build/blocks/accommodation-related-destination/index.js:1
+#: build/blocks/accommodation-related-tour/index.js:1
+#: src/blocks/accommodation-related-accommodation/index.js:363
+#: src/blocks/accommodation-related-destination/index.js:364
+#: src/blocks/accommodation-related-tour/index.js:363
+msgid "Rating: 4.5 stars"
+msgstr ""
+
+#: build/blocks/accommodation-related-accommodation/index.js:1
+#: build/blocks/accommodation-related-destination/index.js:1
+#: build/blocks/accommodation-related-tour/index.js:1
+#: src/blocks/accommodation-related-accommodation/index.js:371
+#: src/blocks/accommodation-related-destination/index.js:372
+#: src/blocks/accommodation-related-tour/index.js:371
+msgid "Beachfront resort on the pristine shores of Zanzibar. Enjoy crystal clear waters, white sand beaches, and authentic Swahili culture."
+msgstr ""
+
+#: build/blocks/accommodation-related-destination/index.js:1
+#: src/blocks/accommodation-related-destination/index.js:22
+msgid "Displays accommodation related to this destination."
+msgstr ""
+
+#: build/blocks/accommodation-related-destination/index.js:1
+#: build/blocks/accommodation-related-tour/index.js:1
+#: src/blocks/accommodation-related-destination/index.js:82
+#: src/blocks/accommodation-related-tour/index.js:82
+msgid "Related accommodation query"
+msgstr ""
+
+#: build/blocks/accommodation-related-tour/index.js:1
+#: src/blocks/accommodation-related-tour/index.js:22
+msgid "Displays accommodations related to this tour."
+msgstr ""
+
+#: build/blocks/accommodation-type/index.js:1
+#: src/blocks/accommodation-type/index.js:18
+#: src/blocks/accommodation-type/index.js:31
+msgid "Accommodation type"
+msgstr ""
+
+#: build/blocks/accommodation-type/index.js:1
+#: src/blocks/accommodation-type/index.js:21
+msgid "Displays the accommodation type(s)."
+msgstr ""
+
+#: build/blocks/accommodation-type/index.js:1
+#: build/blocks/destination-to-accommodation/index.js:1
+#: build/blocks/review-related-accommodation/index.js:1
+#: build/blocks/tour-related-accommodation/index.js:1
+#: src/blocks/accommodation-type/index.js:23
+#: src/blocks/destination-to-accommodation/index.js:27
+#: src/blocks/review-related-accommodation/index.js:26
+#: src/blocks/tour-related-accommodation/index.js:26
+msgid "accommodation"
+msgstr ""
+
+#: build/blocks/accommodation-type/index.js:1
+#: build/blocks/travel-styles/index.js:1
+#: src/blocks/accommodation-type/index.js:24
+#: src/blocks/travel-styles/index.js:29
+msgid "type"
+msgstr ""
+
+#: build/blocks/accommodation-type/index.js:1
+#: src/blocks/accommodation-type/index.js:113
+msgid "Accommodation Type: "
+msgstr ""
+
+#: build/blocks/accommodation-type/index.js:1
+#: src/blocks/accommodation-type/index.js:113
+msgid "Hotel"
+msgstr ""
+
+#: build/blocks/additional-info/index.js:1
+#: src/blocks/additional-info/index.js:18
+msgid "Additional Information"
+msgstr ""
+
+#: build/blocks/additional-info/index.js:1
+#: src/blocks/additional-info/index.js:19
+msgid "Display additional information content for destinations."
+msgstr ""
+
+#: build/blocks/additional-info/index.js:1
+#: build/blocks/single-supplement-wrapper/index.js:1
+#: src/blocks/additional-info/index.js:23
+#: src/blocks/single-supplement-wrapper/index.js:29
+msgid "additional"
+msgstr ""
+
+#: build/blocks/additional-info/index.js:1
+#: build/blocks/safety/index.js:1
+#: build/blocks/visa/index.js:1
+#: src/blocks/additional-info/index.js:24
+#: src/blocks/safety/index.js:26
+#: src/blocks/visa/index.js:24
+msgid "information"
+msgstr ""
+
+#: build/blocks/additional-info/index.js:1
+#: src/blocks/additional-info/index.js:25
+msgid "general"
+msgstr ""
+
+#: build/blocks/additional-info/index.js:1
+#: src/blocks/additional-info/index.js:26
+msgid "details"
+msgstr ""
+
+#: build/blocks/additional-info/index.js:1
+#: src/blocks/additional-info/index.js:33
+msgid "Additional Info"
+msgstr ""
+
+#: build/blocks/additional-info/index.js:1
+#: build/blocks/banking/index.js:1
+#: build/blocks/climate/index.js:1
+#: build/blocks/cuisine/index.js:1
+#: build/blocks/dress/index.js:1
+#: build/blocks/electricity/index.js:1
+#: build/blocks/health/index.js:1
+#: build/blocks/more-link/index.js:1
+#: build/blocks/permalink-button/index.js:1
+#: build/blocks/safety/index.js:1
+#: build/blocks/transport/index.js:1
+#: build/blocks/visa/index.js:1
+#: src/blocks/additional-info/index.js:101
+#: src/blocks/additional-info/index.js:163
+#: src/blocks/banking/index.js:115
+#: src/blocks/banking/index.js:191
+#: src/blocks/climate/index.js:116
+#: src/blocks/climate/index.js:179
+#: src/blocks/cuisine/index.js:104
+#: src/blocks/cuisine/index.js:167
+#: src/blocks/dress/index.js:116
+#: src/blocks/dress/index.js:179
+#: src/blocks/electricity/index.js:104
+#: src/blocks/electricity/index.js:167
+#: src/blocks/health/index.js:104
+#: src/blocks/health/index.js:167
+#: src/blocks/more-link/index.js:55
+#: src/blocks/more-link/index.js:71
+#: src/blocks/permalink-button/index.js:34
+#: src/blocks/permalink-button/index.js:52
+#: src/blocks/safety/index.js:100
+#: src/blocks/safety/index.js:163
+#: src/blocks/transport/index.js:102
+#: src/blocks/transport/index.js:165
+#: src/blocks/visa/index.js:100
+#: src/blocks/visa/index.js:163
+msgid "View More"
+msgstr ""
+
+#: build/blocks/additional-info/index.js:1
+#: src/blocks/additional-info/index.js:148
+msgid "This destination provides excellent facilities and services for visitors. Local attractions include historical sites, natural wonders, and cultural experiences."
+msgstr ""
+
+#: build/blocks/banking/index.js:1
+#: src/blocks/banking/index.js:19
+msgid "Display banking and financial information for destinations."
+msgstr ""
+
+#: build/blocks/banking/index.js:1
+#: src/blocks/banking/index.js:23
+msgid "banking"
+msgstr ""
+
+#: build/blocks/banking/index.js:1
+#: src/blocks/banking/index.js:24
+msgid "finance"
+msgstr ""
+
+#: build/blocks/banking/index.js:1
+#: src/blocks/banking/index.js:25
+msgid "currency"
+msgstr ""
+
+#: build/blocks/banking/index.js:1
+#: src/blocks/banking/index.js:26
+msgid "money"
+msgstr ""
+
+#: build/blocks/banking/index.js:1
+#: src/blocks/banking/index.js:45
+#: src/blocks/banking/index.js:130
+msgid "Content"
+msgstr ""
+
+#: build/blocks/banking/index.js:1
+#: build/blocks/more-link/index.js:1
+#: src/blocks/banking/index.js:111
+#: src/blocks/banking/index.js:187
+#: src/blocks/more-link/index.js:32
+#: src/blocks/more-link/index.js:46
+#: src/blocks/more-link/index.js:57
+msgid "More Button"
+msgstr ""
+
+#: build/blocks/banking/index.js:1
+#: src/blocks/banking/index.js:172
+msgid "Local currency is widely accepted. ATMs are available throughout the city center. Major credit cards accepted at most establishments."
+msgstr ""
+
+#: build/blocks/banner-cover/index.js:1
+#: src/blocks/banner-cover/index.js:16
+#: src/blocks/banner-cover/index.js:31
+msgid "Banner Cover"
+msgstr ""
+
+#: build/blocks/banner-cover/index.js:1
+#: src/blocks/banner-cover/index.js:17
+msgid "Cover block using banner image from custom field"
+msgstr ""
+
+#: build/blocks/banner-cover/index.js:1
+#: src/blocks/banner-cover/index.js:21
+msgid "banner"
+msgstr ""
+
+#: build/blocks/banner-cover/index.js:1
+#: src/blocks/banner-cover/index.js:22
+msgid "cover"
+msgstr ""
+
+#: build/blocks/banner-cover/index.js:1
+#: src/blocks/banner-cover/index.js:23
+msgid "image"
+msgstr ""
+
+#: build/blocks/banner-cover/index.js:1
+#: src/blocks/banner-cover/index.js:24
+msgid "header"
+msgstr ""
+
+#: build/blocks/banner-cover/index.js:1
+#: src/blocks/banner-cover/index.js:81
+msgid "Page Title"
+msgstr ""
+
+#: build/blocks/best-time-to-visit/index.js:1
+#: src/blocks/best-time-to-visit/index.js:18
+#: src/blocks/best-time-to-visit/index.js:32
+#: src/blocks/best-time-to-visit/index.js:57
+#: src/blocks/best-time-to-visit/index.js:84
+#: src/blocks/best-time-to-visit/index.js:116
+msgid "Best months to visit"
+msgstr ""
+
+#: build/blocks/best-time-to-visit/index.js:1
+#: src/blocks/best-time-to-visit/index.js:22
+msgid "best months to visit"
+msgstr ""
+
+#: build/blocks/best-time-to-visit/index.js:1
+#: src/blocks/best-time-to-visit/index.js:23
+msgid "best time to visit"
+msgstr ""
+
+#: build/blocks/best-time-to-visit/index.js:1
+#: build/blocks/featured-tours/index.js:1
+#: build/blocks/transport/index.js:1
+#: build/blocks/travel-styles/index.js:1
+#: src/blocks/best-time-to-visit/index.js:24
+#: src/blocks/featured-tours/index.js:22
+#: src/blocks/transport/index.js:26
+#: src/blocks/travel-styles/index.js:24
+msgid "travel"
+msgstr ""
+
+#: build/blocks/best-time-to-visit/index.js:1
+#: src/blocks/best-time-to-visit/index.js:25
+msgid "visit"
+msgstr ""
+
+#: build/blocks/booking-validity/index.js:1
+#: src/blocks/booking-validity/index.js:19
+#: src/blocks/booking-validity/index.js:33
+msgid "Booking validity"
+msgstr ""
+
+#: build/blocks/booking-validity/index.js:1
+#: src/blocks/booking-validity/index.js:22
+msgid "Displays the booking validity period for a tour."
+msgstr ""
+
+#: build/blocks/booking-validity/index.js:1
+#: src/blocks/booking-validity/index.js:24
+msgid "booking"
+msgstr ""
+
+#: build/blocks/booking-validity/index.js:1
+#: src/blocks/booking-validity/index.js:25
+msgid "validity"
+msgstr ""
+
+#: build/blocks/booking-validity/index.js:1
+#: build/blocks/destination-to-tour/index.js:1
+#: build/blocks/duration/index.js:1
+#: build/blocks/review-related-tour/index.js:1
+#: build/blocks/tagline/index.js:1
+#: build/blocks/tour-related-tour/index.js:1
+#: build/blocks/travel-styles/index.js:1
+#: src/blocks/booking-validity/index.js:26
+#: src/blocks/destination-to-tour/index.js:27
+#: src/blocks/duration/index.js:29
+#: src/blocks/review-related-tour/index.js:26
+#: src/blocks/tagline/index.js:29
+#: src/blocks/tour-related-tour/index.js:26
+#: src/blocks/travel-styles/index.js:28
+msgid "tour"
+msgstr ""
+
+#: build/blocks/booking-validity/index.js:1
+#: src/blocks/booking-validity/index.js:63
+msgid "Booking validity:"
+msgstr ""
+
+#: build/blocks/booking-validity/index.js:1
+#: src/blocks/booking-validity/index.js:144
+msgid "Booking validity: "
+msgstr ""
+
+#: build/blocks/booking-validity/index.js:1
+#: src/blocks/booking-validity/index.js:144
+msgid "Start Date - End Date"
+msgstr ""
+
+#: build/blocks/checkin-time/index.js:1
+#: src/blocks/checkin-time/index.js:18
+#: src/blocks/checkin-time/index.js:32
+msgid "Check in time"
+msgstr ""
+
+#: build/blocks/checkin-time/index.js:1
+#: src/blocks/checkin-time/index.js:21
+msgid "Displays the check-in time for this accommodation."
+msgstr ""
+
+#: build/blocks/checkin-time/index.js:1
+#: src/blocks/checkin-time/index.js:23
+msgid "check in"
+msgstr ""
+
+#: build/blocks/checkin-time/index.js:1
+#: build/blocks/checkout-time/index.js:1
+#: build/blocks/duration/index.js:1
+#: src/blocks/checkin-time/index.js:24
+#: src/blocks/checkout-time/index.js:24
+#: src/blocks/duration/index.js:25
+msgid "time"
+msgstr ""
+
+#: build/blocks/checkin-time/index.js:1
+#: src/blocks/checkin-time/index.js:25
+msgid "checkin"
+msgstr ""
+
+#: build/blocks/checkin-time/index.js:1
+#: src/blocks/checkin-time/index.js:61
+msgid "Check in time:"
+msgstr ""
+
+#: build/blocks/checkin-time/index.js:1
+#: src/blocks/checkin-time/index.js:122
+msgid "Check in time: "
+msgstr ""
+
+#: build/blocks/checkin-time/index.js:1
+#: src/blocks/checkin-time/index.js:122
+msgid "11:00 AM"
+msgstr ""
+
+#: build/blocks/checkout-time/index.js:1
+#: src/blocks/checkout-time/index.js:18
+#: src/blocks/checkout-time/index.js:32
+msgid "Check out time"
+msgstr ""
+
+#: build/blocks/checkout-time/index.js:1
+#: src/blocks/checkout-time/index.js:21
+msgid "Displays the check-out time for this accommodation."
+msgstr ""
+
+#: build/blocks/checkout-time/index.js:1
+#: src/blocks/checkout-time/index.js:23
+msgid "checkout"
+msgstr ""
+
+#: build/blocks/checkout-time/index.js:1
+#: src/blocks/checkout-time/index.js:25
+msgid "check out"
+msgstr ""
+
+#: build/blocks/checkout-time/index.js:1
+#: src/blocks/checkout-time/index.js:61
+msgid "Check out time:"
+msgstr ""
+
+#: build/blocks/checkout-time/index.js:1
+#: src/blocks/checkout-time/index.js:122
+msgid "Check out time: "
+msgstr ""
+
+#: build/blocks/checkout-time/index.js:1
+#: src/blocks/checkout-time/index.js:122
+msgid "3:00 PM"
+msgstr ""
+
+#: build/blocks/climate/index.js:1
+#: src/blocks/climate/index.js:20
+msgid "Display climate and weather information for destinations."
+msgstr ""
+
+#: build/blocks/climate/index.js:1
+#: src/blocks/climate/index.js:37
+msgid "climate"
+msgstr ""
+
+#: build/blocks/climate/index.js:1
+#: src/blocks/climate/index.js:38
+msgid "weather"
+msgstr ""
+
+#: build/blocks/climate/index.js:1
+#: src/blocks/climate/index.js:39
+msgid "temperature"
+msgstr ""
+
+#: build/blocks/climate/index.js:1
+#: src/blocks/climate/index.js:40
+msgid "season"
+msgstr ""
+
+#: build/blocks/climate/index.js:1
+#: src/blocks/climate/index.js:163
+msgid "Tropical climate with warm temperatures year-round. Dry season from May to October. Average temperature ranges from 24°C to 30°C."
+msgstr ""
+
+#: build/blocks/cuisine/index.js:1
+#: src/blocks/cuisine/index.js:21
+msgid "Display local cuisine and food information for destinations."
+msgstr ""
+
+#: build/blocks/cuisine/index.js:1
+#: src/blocks/cuisine/index.js:25
+msgid "cuisine"
+msgstr ""
+
+#: build/blocks/cuisine/index.js:1
+#: src/blocks/cuisine/index.js:26
+msgid "food"
+msgstr ""
+
+#: build/blocks/cuisine/index.js:1
+#: src/blocks/cuisine/index.js:27
+msgid "local"
+msgstr ""
+
+#: build/blocks/cuisine/index.js:1
+#: src/blocks/cuisine/index.js:28
+msgid "dining"
+msgstr ""
+
+#: build/blocks/cuisine/index.js:1
+#: src/blocks/cuisine/index.js:151
+msgid "Traditional local dishes feature fresh seafood, tropical fruits, and aromatic spices. Street food markets offer authentic flavors and regional specialties."
+msgstr ""
+
+#: build/blocks/departs-from/index.js:1
+#: src/blocks/departs-from/index.js:19
+#: src/blocks/departs-from/index.js:45
+msgid "Departs from"
+msgstr ""
+
+#: build/blocks/departs-from/index.js:1
+#: src/blocks/departs-from/index.js:20
+msgid "Displays the departure location of the tour."
+msgstr ""
+
+#: build/blocks/departs-from/index.js:1
+#: src/blocks/departs-from/index.js:37
+msgid "departure"
+msgstr ""
+
+#: build/blocks/departs-from/index.js:1
+#: build/blocks/price/index.js:1
+#: src/blocks/departs-from/index.js:38
+#: src/blocks/price/index.js:27
+msgid "from"
+msgstr ""
+
+#: build/blocks/departs-from/index.js:1
+#: src/blocks/departs-from/index.js:73
+#: src/blocks/departs-from/index.js:132
+msgid "Departs From:"
+msgstr ""
+
+#: build/blocks/departs-from/index.js:1
+#: build/blocks/ends-in/index.js:1
+#: src/blocks/departs-from/index.js:132
+#: src/blocks/ends-in/index.js:133
+msgid "Cape Town"
+msgstr ""
+
+#: build/blocks/destination-to-accommodation/index.js:1
+#: src/blocks/destination-to-accommodation/index.js:18
+#: src/blocks/destination-to-accommodation/index.js:32
+msgid "Destination to Accommodation"
+msgstr ""
+
+#: build/blocks/destination-to-accommodation/index.js:1
+#: src/blocks/destination-to-accommodation/index.js:21
+msgid "Displays the destinations associated with this accommodation."
+msgstr ""
+
+#: build/blocks/destination-to-accommodation/index.js:1
+#: build/blocks/destination-to-tour/index.js:1
+#: build/blocks/facts-country-wrapper/index.js:1
+#: build/blocks/facts-regions-wrapper/index.js:1
+#: build/blocks/review-related-destination/index.js:1
+#: build/blocks/tour-related-destination/index.js:1
+#: src/blocks/destination-to-accommodation/index.js:26
+#: src/blocks/destination-to-tour/index.js:26
+#: src/blocks/facts-country-wrapper/index.js:24
+#: src/blocks/facts-regions-wrapper/index.js:26
+#: src/blocks/review-related-destination/index.js:26
+#: src/blocks/tour-related-destination/index.js:26
+msgid "destination"
+msgstr ""
+
+#: build/blocks/destination-to-accommodation/index.js:1
+#: build/blocks/destination-to-tour/index.js:1
+#: build/blocks/featured-destinations/index.js:1
+#: build/blocks/regions/index.js:1
+#: build/blocks/related-regions/index.js:1
+#: src/blocks/destination-to-accommodation/index.js:28
+#: src/blocks/destination-to-tour/index.js:28
+#: src/blocks/featured-destinations/index.js:23
+#: src/blocks/regions/index.js:25
+#: src/blocks/related-regions/index.js:26
+msgid "locations"
+msgstr ""
+
+#: build/blocks/destination-to-accommodation/index.js:1
+#: build/blocks/destination-to-tour/index.js:1
+#: src/blocks/destination-to-accommodation/index.js:124
+#: src/blocks/destination-to-tour/index.js:124
+msgid "Destinations: "
+msgstr ""
+
+#: build/blocks/destination-to-tour/index.js:1
+#: src/blocks/destination-to-tour/index.js:18
+#: src/blocks/destination-to-tour/index.js:32
+msgid "Destination to Tour"
+msgstr ""
+
+#: build/blocks/destination-to-tour/index.js:1
+#: src/blocks/destination-to-tour/index.js:21
+msgid "Displays the destinations associated with this tour."
+msgstr ""
+
+#: build/blocks/destination-to-tour/index.js:1
+#: src/blocks/destination-to-tour/index.js:60
+msgid "Destinations:"
+msgstr ""
+
+#: build/blocks/dress/index.js:1
+#: src/blocks/dress/index.js:20
+msgid "Display dress code and clothing recommendations for destinations."
+msgstr ""
+
+#: build/blocks/dress/index.js:1
+#: src/blocks/dress/index.js:37
+msgid "dress"
+msgstr ""
+
+#: build/blocks/dress/index.js:1
+#: src/blocks/dress/index.js:38
+msgid "clothing"
+msgstr ""
+
+#: build/blocks/dress/index.js:1
+#: src/blocks/dress/index.js:39
+msgid "attire"
+msgstr ""
+
+#: build/blocks/dress/index.js:1
+#: src/blocks/dress/index.js:40
+msgid "code"
+msgstr ""
+
+#: build/blocks/dress/index.js:1
+#: src/blocks/dress/index.js:163
+msgid "Smart casual attire is recommended. Lightweight clothing suitable for warm weather. Comfortable walking shoes advised for outdoor activities."
+msgstr ""
+
+#: build/blocks/duration/index.js:1
+#: src/blocks/duration/index.js:20
+msgid "Duration"
+msgstr ""
+
+#: build/blocks/duration/index.js:1
+#: src/blocks/duration/index.js:24
+msgid "duration"
+msgstr ""
+
+#: build/blocks/duration/index.js:1
+#: build/blocks/itinerary/index.js:1
+#: src/blocks/duration/index.js:26
+#: src/blocks/itinerary/index.js:27
+msgid "days"
+msgstr ""
+
+#: build/blocks/duration/index.js:1
+#: src/blocks/duration/index.js:27
+msgid "length"
+msgstr ""
+
+#: build/blocks/duration/index.js:1
+#: src/blocks/duration/index.js:28
+msgid "period"
+msgstr ""
+
+#: build/blocks/duration/index.js:1
+#: src/blocks/duration/index.js:65
+msgid "Duration:"
+msgstr ""
+
+#: build/blocks/duration/index.js:1
+#: src/blocks/duration/index.js:98
+msgid "Days"
+msgstr ""
+
+#: build/blocks/duration/index.js:1
+#: src/blocks/duration/index.js:130
+msgid "Duration: "
+msgstr ""
+
+#: build/blocks/duration/index.js:1
+#: src/blocks/duration/index.js:130
+msgid "7 Days"
+msgstr ""
+
+#: build/blocks/electricity/index.js:1
+#: src/blocks/electricity/index.js:21
+msgid "Display electrical information and power requirements for destinations."
+msgstr ""
+
+#: build/blocks/electricity/index.js:1
+#: src/blocks/electricity/index.js:25
+msgid "electricity"
+msgstr ""
+
+#: build/blocks/electricity/index.js:1
+#: src/blocks/electricity/index.js:26
+msgid "power"
+msgstr ""
+
+#: build/blocks/electricity/index.js:1
+#: src/blocks/electricity/index.js:27
+msgid "voltage"
+msgstr ""
+
+#: build/blocks/electricity/index.js:1
+#: src/blocks/electricity/index.js:28
+msgid "outlet"
+msgstr ""
+
+#: build/blocks/electricity/index.js:1
+#: src/blocks/electricity/index.js:151
+msgid "Standard voltage 220V, 50Hz. Three-pin plugs are commonly used. Adapters available at most hotels and stores."
+msgstr ""
+
+#: build/blocks/ends-in/index.js:1
+#: src/blocks/ends-in/index.js:19
+#: src/blocks/ends-in/index.js:46
+msgid "Ends in"
+msgstr ""
+
+#: build/blocks/ends-in/index.js:1
+#: src/blocks/ends-in/index.js:20
+msgid "Displays the destination where the tour ends."
+msgstr ""
+
+#: build/blocks/ends-in/index.js:1
+#: src/blocks/ends-in/index.js:37
+msgid "arrival"
+msgstr ""
+
+#: build/blocks/ends-in/index.js:1
+#: src/blocks/ends-in/index.js:38
+msgid "ends in"
+msgstr ""
+
+#: build/blocks/ends-in/index.js:1
+#: src/blocks/ends-in/index.js:39
+msgid "to"
+msgstr ""
+
+#: build/blocks/ends-in/index.js:1
+#: src/blocks/ends-in/index.js:74
+#: src/blocks/ends-in/index.js:133
+msgid "Ends In:"
+msgstr ""
+
+#: build/blocks/facilities/index.js:1
+#: src/blocks/facilities/index.js:36
+msgid "facilities"
+msgstr ""
+
+#: build/blocks/facilities/index.js:1
+#: src/blocks/facilities/index.js:37
+msgid "amenities"
+msgstr ""
+
+#: build/blocks/facilities/index.js:1
+#: src/blocks/facilities/index.js:162
+msgid "Swimming pools, fitness center, and spa."
+msgstr ""
+
+#: build/blocks/facts-country-wrapper/index.js:1
+#: src/blocks/facts-country-wrapper/index.js:18
+#: src/blocks/facts-country-wrapper/index.js:33
+#: src/blocks/facts-country-wrapper/index.js:62
+msgid "Country"
+msgstr ""
+
+#: build/blocks/facts-country-wrapper/index.js:1
+#: src/blocks/facts-country-wrapper/index.js:21
+msgid "Display the country associated with this destination."
+msgstr ""
+
+#: build/blocks/facts-country-wrapper/index.js:1
+#: src/blocks/facts-country-wrapper/index.js:23
+msgid "country"
+msgstr ""
+
+#: build/blocks/facts-country-wrapper/index.js:1
+#: build/blocks/facts-regions-wrapper/index.js:1
+#: src/blocks/facts-country-wrapper/index.js:25
+#: src/blocks/facts-regions-wrapper/index.js:27
+msgid "location"
+msgstr ""
+
+#: build/blocks/facts-country-wrapper/index.js:1
+#: build/blocks/facts-regions-wrapper/index.js:1
+#: src/blocks/facts-country-wrapper/index.js:26
+#: src/blocks/facts-regions-wrapper/index.js:28
+msgid "facts"
+msgstr ""
+
+#: build/blocks/facts-country-wrapper/index.js:1
+#: src/blocks/facts-country-wrapper/index.js:121
+msgid "Country: "
+msgstr ""
+
+#: build/blocks/facts-country-wrapper/index.js:1
+#: src/blocks/facts-country-wrapper/index.js:121
+msgid "South Africa"
+msgstr ""
+
+#: build/blocks/facts-regions-wrapper/index.js:1
+#: src/blocks/facts-regions-wrapper/index.js:20
+#: src/blocks/facts-regions-wrapper/index.js:35
+msgid "Regions list"
+msgstr ""
+
+#: build/blocks/facts-regions-wrapper/index.js:1
+#: src/blocks/facts-regions-wrapper/index.js:23
+msgid "Displays a list of regions associated with this destination."
+msgstr ""
+
+#: build/blocks/facts-regions-wrapper/index.js:1
+#: build/blocks/regions/index.js:1
+#: build/blocks/related-regions/index.js:1
+#: src/blocks/facts-regions-wrapper/index.js:25
+#: src/blocks/regions/index.js:23
+#: src/blocks/related-regions/index.js:24
+msgid "regions"
+msgstr ""
+
+#: build/blocks/facts-regions-wrapper/index.js:1
+#: src/blocks/facts-regions-wrapper/index.js:123
+msgid "Regions: "
+msgstr ""
+
+#: build/blocks/facts-regions-wrapper/index.js:1
+#: src/blocks/facts-regions-wrapper/index.js:123
+msgid "Kilimanjaro region"
+msgstr ""
+
+#: build/blocks/featured-accommodation/index.js:1
+#: src/blocks/featured-accommodation/index.js:16
+#: src/blocks/featured-accommodation/index.js:56
+msgid "Featured Accommodations"
+msgstr ""
+
+#: build/blocks/featured-accommodation/index.js:1
+#: src/blocks/featured-accommodation/index.js:18
+msgid "Displays Accommodations with the Featured tag."
+msgstr ""
+
+#: build/blocks/featured-accommodation/index.js:1
+#: build/blocks/featured-destinations/index.js:1
+#: build/blocks/featured-tours/index.js:1
+#: src/blocks/featured-accommodation/index.js:21
+#: src/blocks/featured-destinations/index.js:21
+#: src/blocks/featured-tours/index.js:20
+msgid "featured"
+msgstr ""
+
+#: build/blocks/featured-accommodation/index.js:1
+#: src/blocks/featured-accommodation/index.js:23
+msgid "lodging"
+msgstr ""
+
+#: build/blocks/featured-destinations/index.js:1
+#: src/blocks/featured-destinations/index.js:16
+#: src/blocks/featured-destinations/index.js:45
+msgid "Featured Destinations"
+msgstr ""
+
+#: build/blocks/featured-destinations/index.js:1
+#: src/blocks/featured-destinations/index.js:18
+msgid "Displays Destinations with Featured tag."
+msgstr ""
+
+#: build/blocks/featured-destinations/index.js:1
+#: build/blocks/regions/index.js:1
+#: build/blocks/related-regions/index.js:1
+#: src/blocks/featured-destinations/index.js:22
+#: src/blocks/regions/index.js:24
+#: src/blocks/related-regions/index.js:25
+msgid "destinations"
+msgstr ""
+
+#: build/blocks/featured-tours/index.js:1
+#: src/blocks/featured-tours/index.js:16
+#: src/blocks/featured-tours/index.js:54
+msgid "Featured Tours"
+msgstr ""
+
+#: build/blocks/featured-tours/index.js:1
+#: src/blocks/featured-tours/index.js:18
+msgid "Displays Tours with the Featured tag."
+msgstr ""
+
+#: build/blocks/featured-tours/index.js:1
+#: build/blocks/tour-related-accommodation/index.js:1
+#: build/blocks/tour-related-destination/index.js:1
+#: build/blocks/tour-related-tour/index.js:1
+#: src/blocks/featured-tours/index.js:21
+#: src/blocks/tour-related-accommodation/index.js:25
+#: src/blocks/tour-related-destination/index.js:25
+#: src/blocks/tour-related-tour/index.js:25
+msgid "tours"
+msgstr ""
+
+#: build/blocks/gallery/index.js:1
+#: src/blocks/gallery/index.js:19
+msgid "Display multiple images in a Tour Operator gallery"
+msgstr ""
+
+#: build/blocks/google-map/index.js:1
+#: src/blocks/google-map/index.js:17
+#: src/blocks/google-map/index.js:31
+msgid "Google Map"
+msgstr ""
+
+#: build/blocks/google-map/index.js:1
+#: src/blocks/google-map/index.js:18
+msgid "Display a Google Map based on the current Tour Operator page."
+msgstr ""
+
+#: build/blocks/google-map/index.js:1
+#: src/blocks/google-map/index.js:22
+msgid "google"
+msgstr ""
+
+#: build/blocks/google-map/index.js:1
+#: build/blocks/wetu-map/index.js:1
+#: src/blocks/google-map/index.js:23
+#: src/blocks/wetu-map/index.js:52
+msgid "map"
+msgstr ""
+
+#: build/blocks/google-map/index.js:1
+#: src/blocks/google-map/index.js:24
+msgid "maps"
+msgstr ""
+
+#: build/blocks/group-size/index.js:1
+#: src/blocks/group-size/index.js:19
+#: src/blocks/group-size/index.js:32
+msgid "Group size"
+msgstr ""
+
+#: build/blocks/group-size/index.js:1
+#: src/blocks/group-size/index.js:20
+msgid "Displays the group size for a tour."
+msgstr ""
+
+#: build/blocks/group-size/index.js:1
+#: src/blocks/group-size/index.js:24
+msgid "group size"
+msgstr ""
+
+#: build/blocks/group-size/index.js:1
+#: src/blocks/group-size/index.js:25
+msgid "size"
+msgstr ""
+
+#: build/blocks/group-size/index.js:1
+#: src/blocks/group-size/index.js:62
+msgid "Group size:"
+msgstr ""
+
+#: build/blocks/group-size/index.js:1
+#: src/blocks/group-size/index.js:116
+msgid "Group size: "
+msgstr ""
+
+#: build/blocks/group-size/index.js:1
+#: src/blocks/group-size/index.js:116
+msgid "10 people"
+msgstr ""
+
+#: build/blocks/health/index.js:1
+#: src/blocks/health/index.js:21
+msgid "Display health and medical information for destinations."
+msgstr ""
+
+#: build/blocks/health/index.js:1
+#: src/blocks/health/index.js:25
+msgid "health"
+msgstr ""
+
+#: build/blocks/health/index.js:1
+#: src/blocks/health/index.js:26
+msgid "medical"
+msgstr ""
+
+#: build/blocks/health/index.js:1
+#: build/blocks/safety/index.js:1
+#: src/blocks/health/index.js:27
+#: src/blocks/safety/index.js:25
+msgid "safety"
+msgstr ""
+
+#: build/blocks/health/index.js:1
+#: src/blocks/health/index.js:28
+msgid "vaccination"
+msgstr ""
+
+#: build/blocks/health/index.js:1
+#: src/blocks/health/index.js:151
+msgid "Consult your doctor for travel vaccinations. Quality medical facilities available in main cities. Travel insurance recommended."
+msgstr ""
+
+#: build/blocks/included/index.js:1
+#: src/blocks/included/index.js:19
+msgid "Included items"
+msgstr ""
+
+#: build/blocks/included/index.js:1
+#: src/blocks/included/index.js:22
+msgid "A block to list what is included in the tour or accommodation price."
+msgstr ""
+
+#: build/blocks/included/index.js:1
+#: src/blocks/included/index.js:24
+msgid "included"
+msgstr ""
+
+#: build/blocks/included/index.js:1
+#: build/blocks/not-included/index.js:1
+#: src/blocks/included/index.js:25
+#: src/blocks/not-included/index.js:25
+msgid "items"
+msgstr ""
+
+#: build/blocks/included/index.js:1
+#: src/blocks/included/index.js:26
+msgid "what is included"
+msgstr ""
+
+#: build/blocks/included/index.js:1
+#: src/blocks/included/index.js:41
+#: src/blocks/included/index.js:84
+msgid "Price includes:"
+msgstr ""
+
+#: build/blocks/included/index.js:1
+#: src/blocks/included/index.js:104
+msgid "All meals and local brand drinks"
+msgstr ""
+
+#: build/blocks/included/index.js:1
+#: src/blocks/included/index.js:110
+msgid "Guided excursions"
+msgstr ""
+
+#: build/blocks/itinerary/index.js:1
+#: src/blocks/itinerary/index.js:20
+msgid "A block to display the tour itinerary with a title and a list of day-by-day activities."
+msgstr ""
+
+#: build/blocks/itinerary/index.js:1
+#: build/blocks/wetu-map/index.js:1
+#: src/blocks/itinerary/index.js:25
+#: src/blocks/wetu-map/index.js:53
+msgid "itinerary"
+msgstr ""
+
+#: build/blocks/itinerary/index.js:1
+#: src/blocks/itinerary/index.js:26
+msgid "schedule"
+msgstr ""
+
+#: build/blocks/itinerary/index.js:1
+#: src/blocks/itinerary/index.js:70
+msgid "Tour Itinerary"
+msgstr ""
+
+#: build/blocks/itinerary/index.js:1
+#: src/blocks/itinerary/index.js:155
+msgid "Day 1"
+msgstr ""
+
+#: build/blocks/itinerary/index.js:1
+#: src/blocks/itinerary/index.js:165
+msgid "Arrival and transfer to hotel"
+msgstr ""
+
+#: build/blocks/itinerary/index.js:1
+#: src/blocks/itinerary/index.js:177
+#: src/blocks/itinerary/index.js:225
+msgid "Accommodation:"
+msgstr ""
+
+#: build/blocks/itinerary/index.js:1
+#: src/blocks/itinerary/index.js:184
+msgid "Post Hotel"
+msgstr ""
+
+#: build/blocks/itinerary/index.js:1
+#: src/blocks/itinerary/index.js:203
+msgid "Day 2"
+msgstr ""
+
+#: build/blocks/itinerary/index.js:1
+#: src/blocks/itinerary/index.js:213
+msgid "Safari activities and details"
+msgstr ""
+
+#: build/blocks/itinerary/index.js:1
+#: src/blocks/itinerary/index.js:232
+msgid "Grand Hotel Africa"
+msgstr ""
+
+#: build/blocks/minimum-child-age/index.js:1
+#: src/blocks/minimum-child-age/index.js:18
+msgid "Minimum Child Age"
+msgstr ""
+
+#: build/blocks/minimum-child-age/index.js:1
+#: src/blocks/minimum-child-age/index.js:19
+msgid "Display minimum child age requirements for accommodations."
+msgstr ""
+
+#: build/blocks/minimum-child-age/index.js:1
+#: src/blocks/minimum-child-age/index.js:48
+msgid "minimum"
+msgstr ""
+
+#: build/blocks/minimum-child-age/index.js:1
+#: src/blocks/minimum-child-age/index.js:49
+msgid "child"
+msgstr ""
+
+#: build/blocks/minimum-child-age/index.js:1
+#: src/blocks/minimum-child-age/index.js:50
+msgid "age"
+msgstr ""
+
+#: build/blocks/minimum-child-age/index.js:1
+#: src/blocks/minimum-child-age/index.js:51
+msgid "requirements"
+msgstr ""
+
+#: build/blocks/minimum-child-age/index.js:1
+#: src/blocks/minimum-child-age/index.js:90
+#: src/blocks/minimum-child-age/index.js:154
+msgid "Minimum Child Age:"
+msgstr ""
+
+#: build/blocks/minimum-child-age/index.js:1
+#: src/blocks/minimum-child-age/index.js:163
+msgid "Age Content"
+msgstr ""
+
+#: build/blocks/minimum-child-age/index.js:1
+#: src/blocks/minimum-child-age/index.js:174
+msgid "12 years old"
+msgstr ""
+
+#: build/blocks/modal-button/index.js:1
+#: src/blocks/modal-button/index.js:65
+msgid "Select a modal…"
+msgstr ""
+
+#: build/blocks/modal-button/index.js:1
+#: src/blocks/modal-button/index.js:69
+msgid "No modals found"
+msgstr ""
+
+#: build/blocks/modal-button/index.js:1
+#: src/blocks/modal-button/index.js:95
+msgid "Modal Settings"
+msgstr ""
+
+#: build/blocks/modal-button/index.js:1
+#: src/blocks/modal-button/index.js:107
+msgid "Loading modal options…"
+msgstr ""
+
+#: build/blocks/modal-button/index.js:1
+#: src/blocks/modal-button/index.js:115
+msgid "Modal to Open"
+msgstr ""
+
+#: build/blocks/modal-button/index.js:1
+#: src/blocks/modal-button/index.js:121
+msgid "Select which modal template should open when this button is clicked. These are filtered from the lsx_to_modals template part area."
+msgstr ""
+
+#: build/blocks/modal-button/index.js:1
+#: src/blocks/modal-button/index.js:138
+msgid "Add button text…"
+msgstr ""
+
+#: build/blocks/modal-button/index.js:1
+#: src/blocks/modal-button/index.js:148
+msgid "Please select a modal in the block settings."
+msgstr ""
+
+#: build/blocks/more-link/index.js:1
+#: src/blocks/more-link/index.js:35
+msgid "A button linking to more items in a list or collection."
+msgstr ""
+
+#: build/blocks/more-link/index.js:1
+#: src/blocks/more-link/index.js:37
+msgid "more"
+msgstr ""
+
+#: build/blocks/more-link/index.js:1
+#: build/blocks/permalink-button/index.js:1
+#: src/blocks/more-link/index.js:38
+#: src/blocks/permalink-button/index.js:27
+msgid "link"
+msgstr ""
+
+#: build/blocks/more-link/index.js:1
+#: build/blocks/permalink-button/index.js:1
+#: src/blocks/more-link/index.js:39
+#: src/blocks/permalink-button/index.js:26
+msgid "button"
+msgstr ""
+
+#: build/blocks/not-included/index.js:1
+#: src/blocks/not-included/index.js:19
+msgid "Excluded items"
+msgstr ""
+
+#: build/blocks/not-included/index.js:1
+#: src/blocks/not-included/index.js:22
+msgid "A block to list what is not included in the tour or accommodation price."
+msgstr ""
+
+#: build/blocks/not-included/index.js:1
+#: src/blocks/not-included/index.js:24
+msgid "excluded"
+msgstr ""
+
+#: build/blocks/not-included/index.js:1
+#: src/blocks/not-included/index.js:26
+msgid "what is excluded"
+msgstr ""
+
+#: build/blocks/not-included/index.js:1
+#: src/blocks/not-included/index.js:33
+msgid "Not included"
+msgstr ""
+
+#: build/blocks/not-included/index.js:1
+#: src/blocks/not-included/index.js:41
+#: src/blocks/not-included/index.js:84
+msgid "Price excludes:"
+msgstr ""
+
+#: build/blocks/not-included/index.js:1
+#: src/blocks/not-included/index.js:98
+msgid "International airfare"
+msgstr ""
+
+#: build/blocks/not-included/index.js:1
+#: src/blocks/not-included/index.js:104
+msgid "Travel insurance"
+msgstr ""
+
+#: build/blocks/not-included/index.js:1
+#: src/blocks/not-included/index.js:110
+msgid "Visas"
+msgstr ""
+
+#: build/blocks/number-of-rooms/index.js:1
+#: src/blocks/number-of-rooms/index.js:17
+#: src/blocks/number-of-rooms/index.js:31
+msgid "Number of Rooms"
+msgstr ""
+
+#: build/blocks/number-of-rooms/index.js:1
+#: src/blocks/number-of-rooms/index.js:20
+msgid "Displays the number of rooms available for this accommodation."
+msgstr ""
+
+#: build/blocks/number-of-rooms/index.js:1
+#: src/blocks/number-of-rooms/index.js:22
+msgid "number"
+msgstr ""
+
+#: build/blocks/number-of-rooms/index.js:1
+#: build/blocks/units/index.js:1
+#: src/blocks/number-of-rooms/index.js:23
+#: src/blocks/units/index.js:27
+msgid "rooms"
+msgstr ""
+
+#: build/blocks/number-of-rooms/index.js:1
+#: build/blocks/units/index.js:1
+#: src/blocks/number-of-rooms/index.js:24
+#: src/blocks/units/index.js:26
+msgid "units"
+msgstr ""
+
+#: build/blocks/number-of-rooms/index.js:1
+#: src/blocks/number-of-rooms/index.js:114
+msgid "Number of Units: "
+msgstr ""
+
+#: build/blocks/permalink-button/index.js:1
+#: src/blocks/permalink-button/index.js:15
+#: src/blocks/permalink-button/index.js:20
+msgid "Permalink Button"
+msgstr ""
+
+#: build/blocks/permalink-button/index.js:1
+#: src/blocks/permalink-button/index.js:16
+msgid "Add a button with a link to the current item."
+msgstr ""
+
+#: build/blocks/permalink-button/index.js:1
+#: src/blocks/permalink-button/index.js:25
+msgid "permalink"
+msgstr ""
+
+#: build/blocks/permalink-button/index.js:1
+#: src/blocks/permalink-button/index.js:37
+msgid "Permalink"
+msgstr ""
+
+#: build/blocks/price-include-exclude/index.js:1
+#: src/blocks/price-include-exclude/index.js:18
+msgid "Price Include & Exclude"
+msgstr ""
+
+#: build/blocks/price-include-exclude/index.js:1
+#: src/blocks/price-include-exclude/index.js:19
+msgid "Displays pricing inclusion and exclusion information for accommodations."
+msgstr ""
+
+#: build/blocks/price-include-exclude/index.js:1
+#: build/blocks/price/index.js:1
+#: src/blocks/price-include-exclude/index.js:23
+#: src/blocks/price/index.js:24
+msgid "price"
+msgstr ""
+
+#: build/blocks/price-include-exclude/index.js:1
+#: src/blocks/price-include-exclude/index.js:24
+msgid "includes"
+msgstr ""
+
+#: build/blocks/price-include-exclude/index.js:1
+#: src/blocks/price-include-exclude/index.js:25
+msgid "excludes"
+msgstr ""
+
+#: build/blocks/price-include-exclude/index.js:1
+#: src/blocks/price-include-exclude/index.js:26
+msgid "pricing"
+msgstr ""
+
+#: build/blocks/price-include-exclude/index.js:1
+#: src/blocks/price-include-exclude/index.js:47
+msgid "Price Columns"
+msgstr ""
+
+#: build/blocks/price-include-exclude/index.js:1
+#: src/blocks/price-include-exclude/index.js:56
+msgid "Included Column"
+msgstr ""
+
+#: build/blocks/price-include-exclude/index.js:1
+#: src/blocks/price-include-exclude/index.js:64
+#: src/blocks/price-include-exclude/index.js:138
+msgid "Price Includes:"
+msgstr ""
+
+#: build/blocks/price-include-exclude/index.js:1
+#: src/blocks/price-include-exclude/index.js:87
+msgid "Excluded Column"
+msgstr ""
+
+#: build/blocks/price-include-exclude/index.js:1
+#: src/blocks/price-include-exclude/index.js:95
+#: src/blocks/price-include-exclude/index.js:159
+msgid "Price Excludes:"
+msgstr ""
+
+#: build/blocks/price-include-exclude/index.js:1
+#: src/blocks/price-include-exclude/index.js:144
+msgid "WiFi, breakfast, airport transfers, daily housekeeping"
+msgstr ""
+
+#: build/blocks/price-include-exclude/index.js:1
+#: src/blocks/price-include-exclude/index.js:165
+msgid "Meals not mentioned, tours, spa treatments, minibar"
+msgstr ""
+
+#: build/blocks/price/index.js:1
+#: src/blocks/price/index.js:19
+msgid "Price"
+msgstr ""
+
+#: build/blocks/price/index.js:1
+#: src/blocks/price/index.js:22
+msgid "Displays the starting price of a tour."
+msgstr ""
+
+#: build/blocks/price/index.js:1
+#: build/blocks/single-supplement-wrapper/index.js:1
+#: src/blocks/price/index.js:25
+#: src/blocks/single-supplement-wrapper/index.js:30
+msgid "cost"
+msgstr ""
+
+#: build/blocks/price/index.js:1
+#: src/blocks/price/index.js:26
+msgid "amount"
+msgstr ""
+
+#: build/blocks/price/index.js:1
+#: src/blocks/price/index.js:28
+msgid "starting"
+msgstr ""
+
+#: build/blocks/price/index.js:1
+#: build/blocks/units/index.js:1
+#: src/blocks/price/index.js:65
+#: src/blocks/units/index.js:178
+#: src/blocks/units/index.js:223
+msgid "From:"
+msgstr ""
+
+#: build/blocks/price/index.js:1
+#: src/blocks/price/index.js:119
+msgid "From: "
+msgstr ""
+
+#: build/blocks/rating/index.js:1
+#: src/blocks/rating/index.js:19
+msgid "Rating"
+msgstr ""
+
+#: build/blocks/rating/index.js:1
+#: src/blocks/rating/index.js:20
+msgid "Displays rating and star classification for accommodations."
+msgstr ""
+
+#: build/blocks/rating/index.js:1
+#: src/blocks/rating/index.js:24
+msgid "rating"
+msgstr ""
+
+#: build/blocks/rating/index.js:1
+#: src/blocks/rating/index.js:25
+msgid "stars"
+msgstr ""
+
+#: build/blocks/rating/index.js:1
+#: build/blocks/travel-styles/index.js:1
+#: src/blocks/rating/index.js:26
+#: src/blocks/travel-styles/index.js:27
+msgid "classification"
+msgstr ""
+
+#: build/blocks/rating/index.js:1
+#: src/blocks/rating/index.js:27
+msgid "quality"
+msgstr ""
+
+#: build/blocks/rating/index.js:1
+#: src/blocks/rating/index.js:66
+#: src/blocks/rating/index.js:172
+msgid "Rating:"
+msgstr ""
+
+#: build/blocks/rating/index.js:1
+#: src/blocks/rating/index.js:75
+msgid "Rating Content"
+msgstr ""
+
+#: build/blocks/rating/index.js:1
+#: src/blocks/rating/index.js:103
+msgid "Rating Type"
+msgstr ""
+
+#: build/blocks/rating/index.js:1
+#: src/blocks/rating/index.js:190
+msgid "4.5"
+msgstr ""
+
+#: build/blocks/rating/index.js:1
+#: src/blocks/rating/index.js:211
+msgid "Star Rating"
+msgstr ""
+
+#: build/blocks/regions/index.js:1
+#: src/blocks/regions/index.js:20
+msgid "Displays any regions attached to this destination."
+msgstr ""
+
+#: build/blocks/regions/index.js:1
+#: src/blocks/regions/index.js:59
+msgid "Regions Query"
+msgstr ""
+
+#: build/blocks/regions/index.js:1
+#: build/blocks/related-regions/index.js:1
+#: src/blocks/regions/index.js:147
+#: src/blocks/related-regions/index.js:172
+msgid "Northern Region Image"
+msgstr ""
+
+#: build/blocks/regions/index.js:1
+#: build/blocks/related-regions/index.js:1
+#: src/blocks/regions/index.js:154
+#: src/blocks/related-regions/index.js:179
+msgid "Northern Region"
+msgstr ""
+
+#: build/blocks/regions/index.js:1
+#: build/blocks/related-regions/index.js:1
+#: src/blocks/regions/index.js:169
+#: src/blocks/related-regions/index.js:194
+msgid "Explore the stunning landscapes and wildlife of the northern regions."
+msgstr ""
+
+#: build/blocks/regions/index.js:1
+#: build/blocks/related-regions/index.js:1
+#: src/blocks/regions/index.js:183
+#: src/blocks/related-regions/index.js:208
+msgid "Coastal Region Image"
+msgstr ""
+
+#: build/blocks/regions/index.js:1
+#: build/blocks/related-regions/index.js:1
+#: src/blocks/regions/index.js:190
+#: src/blocks/related-regions/index.js:215
+msgid "Coastal Region"
+msgstr ""
+
+#: build/blocks/regions/index.js:1
+#: build/blocks/related-regions/index.js:1
+#: src/blocks/regions/index.js:205
+#: src/blocks/related-regions/index.js:230
+msgid "Discover pristine beaches and vibrant coastal communities."
+msgstr ""
+
+#: build/blocks/related-regions/index.js:1
+#: src/blocks/related-regions/index.js:18
+#: src/blocks/related-regions/index.js:57
+msgid "Related Regions"
+msgstr ""
+
+#: build/blocks/related-regions/index.js:1
+#: src/blocks/related-regions/index.js:20
+msgid "Displays any regions from the parent country."
+msgstr ""
+
+#: build/blocks/related-regions/index.js:1
+#: src/blocks/related-regions/index.js:77
+msgid "Related Regions Query"
+msgstr ""
+
+#: build/blocks/review-related-accommodation/index.js:1
+#: build/blocks/review-related-destination/index.js:1
+#: build/blocks/review-related-tour/index.js:1
+#: src/blocks/review-related-accommodation/index.js:20
+#: src/blocks/review-related-accommodation/index.js:32
+#: src/blocks/review-related-destination/index.js:20
+#: src/blocks/review-related-destination/index.js:32
+#: src/blocks/review-related-tour/index.js:20
+#: src/blocks/review-related-tour/index.js:32
+msgid "Related Reviews"
+msgstr ""
+
+#: build/blocks/review-related-accommodation/index.js:1
+#: src/blocks/review-related-accommodation/index.js:22
+msgid "Displays reviews related to this accommodation."
+msgstr ""
+
+#: build/blocks/review-related-accommodation/index.js:1
+#: build/blocks/review-related-destination/index.js:1
+#: build/blocks/review-related-tour/index.js:1
+#: src/blocks/review-related-accommodation/index.js:25
+#: src/blocks/review-related-destination/index.js:25
+#: src/blocks/review-related-tour/index.js:25
+msgid "reviews"
+msgstr ""
+
+#: build/blocks/review-related-accommodation/index.js:1
+#: build/blocks/review-related-destination/index.js:1
+#: build/blocks/review-related-tour/index.js:1
+#: src/blocks/review-related-accommodation/index.js:28
+#: src/blocks/review-related-destination/index.js:28
+#: src/blocks/review-related-tour/index.js:28
+msgid "testimonials"
+msgstr ""
+
+#: build/blocks/review-related-accommodation/index.js:1
+#: build/blocks/review-related-destination/index.js:1
+#: build/blocks/review-related-tour/index.js:1
+#: src/blocks/review-related-accommodation/index.js:61
+#: src/blocks/review-related-accommodation/index.js:138
+#: src/blocks/review-related-destination/index.js:62
+#: src/blocks/review-related-destination/index.js:139
+#: src/blocks/review-related-tour/index.js:61
+#: src/blocks/review-related-tour/index.js:138
+msgid "Reviews"
+msgstr ""
+
+#: build/blocks/review-related-accommodation/index.js:1
+#: build/blocks/review-related-destination/index.js:1
+#: src/blocks/review-related-accommodation/index.js:83
+#: src/blocks/review-related-destination/index.js:84
+msgid "Related Reviews Query"
+msgstr ""
+
+#: build/blocks/review-related-accommodation/index.js:1
+#: src/blocks/review-related-accommodation/index.js:188
+msgid "Excellent Hotel Stay"
+msgstr ""
+
+#: build/blocks/review-related-accommodation/index.js:1
+#: src/blocks/review-related-accommodation/index.js:195
+msgid "The hotel exceeded our expectations with comfortable rooms, excellent service, and a fantastic location. The staff were friendly and helpful throughout our stay."
+msgstr ""
+
+#: build/blocks/review-related-accommodation/index.js:1
+#: build/blocks/review-related-destination/index.js:1
+#: build/blocks/review-related-tour/index.js:1
+#: src/blocks/review-related-accommodation/index.js:201
+#: src/blocks/review-related-destination/index.js:202
+#: src/blocks/review-related-tour/index.js:201
+msgid "— Sarah Johnson"
+msgstr ""
+
+#: build/blocks/review-related-accommodation/index.js:1
+#: src/blocks/review-related-accommodation/index.js:230
+msgid "Beautiful Resort Experience"
+msgstr ""
+
+#: build/blocks/review-related-accommodation/index.js:1
+#: src/blocks/review-related-accommodation/index.js:237
+msgid "Amazing resort with stunning ocean views, clean facilities, and top-notch amenities. Perfect for a romantic getaway. Would definitely return!"
+msgstr ""
+
+#: build/blocks/review-related-accommodation/index.js:1
+#: build/blocks/review-related-destination/index.js:1
+#: build/blocks/review-related-tour/index.js:1
+#: src/blocks/review-related-accommodation/index.js:243
+#: src/blocks/review-related-destination/index.js:244
+#: src/blocks/review-related-tour/index.js:243
+msgid "— Michael Chen"
+msgstr ""
+
+#: build/blocks/review-related-destination/index.js:1
+#: src/blocks/review-related-destination/index.js:22
+msgid "Displays reviews related to this destination."
+msgstr ""
+
+#: build/blocks/review-related-destination/index.js:1
+#: src/blocks/review-related-destination/index.js:189
+msgid "Beautiful South Africa Experience"
+msgstr ""
+
+#: build/blocks/review-related-destination/index.js:1
+#: src/blocks/review-related-destination/index.js:196
+msgid "South Africa exceeded all expectations! The wildlife, landscapes, and culture were truly unforgettable."
+msgstr ""
+
+#: build/blocks/review-related-destination/index.js:1
+#: src/blocks/review-related-destination/index.js:231
+msgid "Amazing Zimbabwe Adventure"
+msgstr ""
+
+#: build/blocks/review-related-destination/index.js:1
+#: src/blocks/review-related-destination/index.js:238
+msgid "Zimbabwe offers a unique blend of natural beauty and cultural richness. The adventure was truly unforgettable."
+msgstr ""
+
+#: build/blocks/review-related-tour/index.js:1
+#: src/blocks/review-related-tour/index.js:22
+msgid "Displays reviews related to this tour."
+msgstr ""
+
+#: build/blocks/review-related-tour/index.js:1
+#: src/blocks/review-related-tour/index.js:83
+msgid "Related Reviews Query - Tour"
+msgstr ""
+
+#: build/blocks/review-related-tour/index.js:1
+#: src/blocks/review-related-tour/index.js:188
+msgid "Amazing Safari Experience"
+msgstr ""
+
+#: build/blocks/review-related-tour/index.js:1
+#: src/blocks/review-related-tour/index.js:195
+msgid "Our family had the most incredible time on the African safari. The guides were knowledgeable and the wildlife viewing was spectacular."
+msgstr ""
+
+#: build/blocks/review-related-tour/index.js:1
+#: src/blocks/review-related-tour/index.js:230
+msgid "Perfect Beach Getaway"
+msgstr ""
+
+#: build/blocks/review-related-tour/index.js:1
+#: src/blocks/review-related-tour/index.js:237
+msgid "The resort was beautiful and the staff went above and beyond to make our vacation memorable. Highly recommended!"
+msgstr ""
+
+#: build/blocks/safety/index.js:1
+#: src/blocks/safety/index.js:23
+msgid "Displays safety information for this destination."
+msgstr ""
+
+#: build/blocks/safety/index.js:1
+#: src/blocks/safety/index.js:27
+msgid "travel safety"
+msgstr ""
+
+#: build/blocks/safety/index.js:1
+#: src/blocks/safety/index.js:28
+msgid "destination safety"
+msgstr ""
+
+#: build/blocks/safety/index.js:1
+#: src/blocks/safety/index.js:147
+msgid "This is a generally safe destination with low crime rates. Stay alert in crowded tourist areas, use hotel safes for valuables, and follow local guidance. Emergency services are reliable and English is widely spoken."
+msgstr ""
+
+#: build/blocks/single-supplement-wrapper/index.js:1
+#: src/blocks/single-supplement-wrapper/index.js:19
+#: src/blocks/single-supplement-wrapper/index.js:37
+msgid "Single supplement"
+msgstr ""
+
+#: build/blocks/single-supplement-wrapper/index.js:1
+#: src/blocks/single-supplement-wrapper/index.js:20
+msgid "Displays the single supplement charge for solo travelers."
+msgstr ""
+
+#: build/blocks/single-supplement-wrapper/index.js:1
+#: src/blocks/single-supplement-wrapper/index.js:24
+msgid "single"
+msgstr ""
+
+#: build/blocks/single-supplement-wrapper/index.js:1
+#: src/blocks/single-supplement-wrapper/index.js:25
+msgid "supplement"
+msgstr ""
+
+#: build/blocks/single-supplement-wrapper/index.js:1
+#: src/blocks/single-supplement-wrapper/index.js:26
+msgid "charge"
+msgstr ""
+
+#: build/blocks/single-supplement-wrapper/index.js:1
+#: src/blocks/single-supplement-wrapper/index.js:27
+msgid "solo"
+msgstr ""
+
+#: build/blocks/single-supplement-wrapper/index.js:1
+#: src/blocks/single-supplement-wrapper/index.js:28
+msgid "traveler"
+msgstr ""
+
+#: build/blocks/single-supplement-wrapper/index.js:1
+#: src/blocks/single-supplement-wrapper/index.js:66
+msgid "Single supplement:"
+msgstr ""
+
+#: build/blocks/single-supplement-wrapper/index.js:1
+#: src/blocks/single-supplement-wrapper/index.js:117
+msgid "Single supplement: "
+msgstr ""
+
+#: build/blocks/special-interests/index.js:1
+#: src/blocks/special-interests/index.js:19
+#: src/blocks/special-interests/index.js:59
+msgid "Special Interests"
+msgstr ""
+
+#: build/blocks/special-interests/index.js:1
+#: src/blocks/special-interests/index.js:20
+msgid "Display special interests and activities for accommodations."
+msgstr ""
+
+#: build/blocks/special-interests/index.js:1
+#: src/blocks/special-interests/index.js:49
+msgid "special"
+msgstr ""
+
+#: build/blocks/special-interests/index.js:1
+#: src/blocks/special-interests/index.js:50
+msgid "interests"
+msgstr ""
+
+#: build/blocks/special-interests/index.js:1
+#: src/blocks/special-interests/index.js:51
+msgid "activities"
+msgstr ""
+
+#: build/blocks/special-interests/index.js:1
+#: src/blocks/special-interests/index.js:52
+msgid "features"
+msgstr ""
+
+#: build/blocks/special-interests/index.js:1
+#: src/blocks/special-interests/index.js:90
+#: src/blocks/special-interests/index.js:150
+msgid "Special Interests:"
+msgstr ""
+
+#: build/blocks/special-interests/index.js:1
+#: src/blocks/special-interests/index.js:99
+msgid "Interests Content"
+msgstr ""
+
+#: build/blocks/special-interests/index.js:1
+#: src/blocks/special-interests/index.js:167
+msgid "Wildlife viewing, Photography, Cultural experiences, Adventure activities"
+msgstr ""
+
+#: build/blocks/spoken-languages/index.js:1
+#: src/blocks/spoken-languages/index.js:20
+#: src/blocks/spoken-languages/index.js:35
+msgid "Spoken Languages"
+msgstr ""
+
+#: build/blocks/spoken-languages/index.js:1
+#: src/blocks/spoken-languages/index.js:21
+msgid "Display spoken languages information for accommodations."
+msgstr ""
+
+#: build/blocks/spoken-languages/index.js:1
+#: src/blocks/spoken-languages/index.js:25
+msgid "spoken"
+msgstr ""
+
+#: build/blocks/spoken-languages/index.js:1
+#: src/blocks/spoken-languages/index.js:26
+msgid "languages"
+msgstr ""
+
+#: build/blocks/spoken-languages/index.js:1
+#: src/blocks/spoken-languages/index.js:27
+msgid "communication"
+msgstr ""
+
+#: build/blocks/spoken-languages/index.js:1
+#: src/blocks/spoken-languages/index.js:28
+msgid "multilingual"
+msgstr ""
+
+#: build/blocks/spoken-languages/index.js:1
+#: src/blocks/spoken-languages/index.js:66
+#: src/blocks/spoken-languages/index.js:126
+msgid "Spoken Languages:"
+msgstr ""
+
+#: build/blocks/spoken-languages/index.js:1
+#: src/blocks/spoken-languages/index.js:75
+msgid "Languages Content"
+msgstr ""
+
+#: build/blocks/spoken-languages/index.js:1
+#: src/blocks/spoken-languages/index.js:143
+msgid "English, Spanish, French, German"
+msgstr ""
+
+#: build/blocks/sticky-menu/index.js:1
+#: src/blocks/sticky-menu/inspector.js:51
+msgid "Active Background Color"
+msgstr ""
+
+#: build/blocks/sticky-menu/index.js:1
+#: src/blocks/sticky-menu/inspector.js:60
+msgid "Active Text Color"
+msgstr ""
+
+#: build/blocks/sticky-menu/index.js:1
+#: src/blocks/sticky-menu/inspector.js:69
+msgid "Hover Background Color"
+msgstr ""
+
+#: build/blocks/sticky-menu/index.js:1
+#: src/blocks/sticky-menu/inspector.js:78
+msgid "Hover Text Color"
+msgstr ""
+
+#: build/blocks/sticky-menu/index.js:1
+#: src/blocks/sticky-menu/index.js:136
+#: src/blocks/sticky-menu/index.js:228
+msgid "Page section navigation"
+msgstr ""
+
+#: build/blocks/sticky-menu/index.js:1
+#: src/blocks/sticky-menu/index.js:139
+#: src/blocks/sticky-menu/index.js:230
+msgid "Page sections"
+msgstr ""
+
+#: build/blocks/sticky-menu/index.js:1
+#: src/blocks/sticky-menu/index.js:146
+msgid "Navigate to %s section"
+msgstr ""
+
+#: build/blocks/sticky-menu/index.js:1
+#: src/blocks/sticky-menu/index.js:158
+msgid "Add section groups with \"Add to Sticky Menu\" enabled to populate this menu."
+msgstr ""
+
+#: build/blocks/sticky-menu/index.js:1
+#: src/blocks/sticky-menu/index.js:161
+msgid "How to add menu items"
+msgstr ""
+
+#: build/blocks/sticky-menu/index.js:1
+#: src/blocks/sticky-menu/index.js:163
+msgid "Add a Group block and set HTML element to \"section\""
+msgstr ""
+
+#: build/blocks/sticky-menu/index.js:1
+#: src/blocks/sticky-menu/index.js:164
+msgid "Set an HTML Anchor in Block Settings → Advanced"
+msgstr ""
+
+#: build/blocks/sticky-menu/index.js:1
+#: src/blocks/sticky-menu/index.js:165
+msgid "Name the block in the List View or toolbar"
+msgstr ""
+
+#: build/blocks/sticky-menu/index.js:1
+#: src/blocks/sticky-menu/index.js:166
+msgid "Enable \"Add to Sticky Menu\" in the block sidebar"
+msgstr ""
+
+#: build/blocks/sticky-menu/index.js:1
+#: src/blocks/sticky-menu/index.js:167
+msgid "The menu will automatically populate with the block name and anchor"
+msgstr ""
+
+#: build/blocks/sticky-menu/sticky-menu-editor-extension.js:1
+#: src/blocks/sticky-menu/sticky-menu-editor-extension.js:197
+msgid "Sticky Menu Settings"
+msgstr ""
+
+#: build/blocks/sticky-menu/sticky-menu-editor-extension.js:1
+#: src/blocks/sticky-menu/sticky-menu-editor-extension.js:202
+msgid "Add to Sticky Menu"
+msgstr ""
+
+#: build/blocks/sticky-menu/sticky-menu-editor-extension.js:1
+#: src/blocks/sticky-menu/sticky-menu-editor-extension.js:203
+msgid "Include this section in the sticky navigation menu. ID and title will be taken from block settings."
+msgstr ""
+
+#: build/blocks/sticky-menu/sticky-menu-editor-extension.js:1
+#: src/blocks/sticky-menu/sticky-menu-editor-extension.js:211
+msgid "ID and Title are automatically taken from:"
+msgstr ""
+
+#: build/blocks/sticky-menu/sticky-menu-editor-extension.js:1
+#: src/blocks/sticky-menu/sticky-menu-editor-extension.js:214
+msgid "HTML Anchor (Block Settings → Advanced)"
+msgstr ""
+
+#: build/blocks/sticky-menu/sticky-menu-editor-extension.js:1
+#: src/blocks/sticky-menu/sticky-menu-editor-extension.js:215
+msgid "Block Name (rename in List View or toolbar)"
+msgstr ""
+
+#: build/blocks/sticky-menu/sticky-menu-editor-extension.js:1
+#: src/blocks/sticky-menu/sticky-menu-editor-extension.js:219
+msgid "Current ID:"
+msgstr ""
+
+#: build/blocks/sticky-menu/sticky-menu-editor-extension.js:1
+#: src/blocks/sticky-menu/sticky-menu-editor-extension.js:224
+msgid "Current Title:"
+msgstr ""
+
+#: build/blocks/sticky-menu/sticky-menu-editor-extension.js:1
+#: src/blocks/sticky-menu/sticky-menu-editor-extension.js:229
+msgid "⚠️ No HTML Anchor set. Go to Block Settings → Advanced to add one."
+msgstr ""
+
+#: build/blocks/sticky-menu/sticky-menu-editor-extension.js:1
+#: src/blocks/sticky-menu/sticky-menu-editor-extension.js:234
+msgid "⚠️ No block name set. Rename this block in the List View."
+msgstr ""
+
+#: build/blocks/sticky-menu/sticky-menu-editor-extension.js:1
+#: src/blocks/sticky-menu/sticky-menu-editor-extension.js:379
+msgid "Sticky Menu Section"
+msgstr ""
+
+#: build/blocks/suggested-visitor-types/index.js:1
+#: src/blocks/suggested-visitor-types/index.js:19
+#: src/blocks/suggested-visitor-types/index.js:47
+msgid "Suggested Visitor Types"
+msgstr ""
+
+#: build/blocks/suggested-visitor-types/index.js:1
+#: src/blocks/suggested-visitor-types/index.js:20
+msgid "Display suggested visitor types suitable for this accommodation."
+msgstr ""
+
+#: build/blocks/suggested-visitor-types/index.js:1
+#: src/blocks/suggested-visitor-types/index.js:37
+msgid "visitor"
+msgstr ""
+
+#: build/blocks/suggested-visitor-types/index.js:1
+#: src/blocks/suggested-visitor-types/index.js:38
+msgid "types"
+msgstr ""
+
+#: build/blocks/suggested-visitor-types/index.js:1
+#: src/blocks/suggested-visitor-types/index.js:39
+msgid "guests"
+msgstr ""
+
+#: build/blocks/suggested-visitor-types/index.js:1
+#: src/blocks/suggested-visitor-types/index.js:40
+msgid "suitable"
+msgstr ""
+
+#: build/blocks/suggested-visitor-types/index.js:1
+#: src/blocks/suggested-visitor-types/index.js:78
+#: src/blocks/suggested-visitor-types/index.js:138
+msgid "Suitable For:"
+msgstr ""
+
+#: build/blocks/suggested-visitor-types/index.js:1
+#: src/blocks/suggested-visitor-types/index.js:87
+msgid "Visitor Types Content"
+msgstr ""
+
+#: build/blocks/suggested-visitor-types/index.js:1
+#: src/blocks/suggested-visitor-types/index.js:155
+msgid "Families, Couples, Business travelers, Solo travelers"
+msgstr ""
+
+#: build/blocks/tagline/index.js:1
+#: src/blocks/tagline/index.js:22
+msgid "Displays the tagline or slogan for this tour."
+msgstr ""
+
+#: build/blocks/tagline/index.js:1
+#: src/blocks/tagline/index.js:24
+msgid "tagline"
+msgstr ""
+
+#: build/blocks/tagline/index.js:1
+#: src/blocks/tagline/index.js:25
+msgid "slogan"
+msgstr ""
+
+#: build/blocks/tagline/index.js:1
+#: src/blocks/tagline/index.js:26
+msgid "description"
+msgstr ""
+
+#: build/blocks/tagline/index.js:1
+#: src/blocks/tagline/index.js:27
+msgid "headline"
+msgstr ""
+
+#: build/blocks/tagline/index.js:1
+#: src/blocks/tagline/index.js:28
+msgid "catchphrase"
+msgstr ""
+
+#: build/blocks/tagline/index.js:1
+#: src/blocks/tagline/index.js:55
+msgid "Discover the breathtaking beauty of Africa's premier safari destination"
+msgstr ""
+
+#: build/blocks/tour-related-accommodation/index.js:1
+#: src/blocks/tour-related-accommodation/index.js:22
+msgid "Displays tours related to this accommodation."
+msgstr ""
+
+#: build/blocks/tour-related-accommodation/index.js:1
+#: build/blocks/tour-related-destination/index.js:1
+#: build/blocks/tour-related-tour/index.js:1
+#: src/blocks/tour-related-accommodation/index.js:28
+#: src/blocks/tour-related-destination/index.js:28
+#: src/blocks/tour-related-tour/index.js:28
+msgid "cross-reference"
+msgstr ""
+
+#: build/blocks/tour-related-accommodation/index.js:1
+#: build/blocks/tour-related-destination/index.js:1
+#: build/blocks/tour-related-tour/index.js:1
+#: src/blocks/tour-related-accommodation/index.js:83
+#: src/blocks/tour-related-destination/index.js:83
+#: src/blocks/tour-related-tour/index.js:83
+msgid "Related Tours Query"
+msgstr ""
+
+#: build/blocks/tour-related-accommodation/index.js:1
+#: build/blocks/tour-related-destination/index.js:1
+#: build/blocks/tour-related-tour/index.js:1
+#: src/blocks/tour-related-accommodation/index.js:188
+#: src/blocks/tour-related-destination/index.js:188
+#: src/blocks/tour-related-tour/index.js:188
+msgid "African Safari Adventure"
+msgstr ""
+
+#: build/blocks/tour-related-accommodation/index.js:1
+#: build/blocks/tour-related-destination/index.js:1
+#: build/blocks/tour-related-tour/index.js:1
+#: src/blocks/tour-related-accommodation/index.js:209
+#: src/blocks/tour-related-destination/index.js:209
+#: src/blocks/tour-related-tour/index.js:209
+msgid "From: $2,499"
+msgstr ""
+
+#: build/blocks/tour-related-accommodation/index.js:1
+#: build/blocks/tour-related-destination/index.js:1
+#: build/blocks/tour-related-tour/index.js:1
+#: src/blocks/tour-related-accommodation/index.js:216
+#: src/blocks/tour-related-destination/index.js:216
+#: src/blocks/tour-related-tour/index.js:216
+msgid "Duration: 7 Days"
+msgstr ""
+
+#: build/blocks/tour-related-accommodation/index.js:1
+#: build/blocks/tour-related-destination/index.js:1
+#: build/blocks/tour-related-tour/index.js:1
+#: src/blocks/tour-related-accommodation/index.js:224
+#: src/blocks/tour-related-destination/index.js:224
+#: src/blocks/tour-related-tour/index.js:224
+msgid "Experience the breathtaking wildlife and stunning landscapes of Africa on this unforgettable safari adventure. Perfect for nature lovers and photography enthusiasts."
+msgstr ""
+
+#: build/blocks/tour-related-accommodation/index.js:1
+#: build/blocks/tour-related-destination/index.js:1
+#: build/blocks/tour-related-tour/index.js:1
+#: src/blocks/tour-related-accommodation/index.js:259
+#: src/blocks/tour-related-destination/index.js:259
+#: src/blocks/tour-related-tour/index.js:259
+msgid "Kilimanjaro Trek and Safari"
+msgstr ""
+
+#: build/blocks/tour-related-accommodation/index.js:1
+#: build/blocks/tour-related-destination/index.js:1
+#: build/blocks/tour-related-tour/index.js:1
+#: src/blocks/tour-related-accommodation/index.js:280
+#: src/blocks/tour-related-destination/index.js:280
+#: src/blocks/tour-related-tour/index.js:280
+msgid "From: $1,899"
+msgstr ""
+
+#: build/blocks/tour-related-accommodation/index.js:1
+#: build/blocks/tour-related-destination/index.js:1
+#: build/blocks/tour-related-tour/index.js:1
+#: src/blocks/tour-related-accommodation/index.js:287
+#: src/blocks/tour-related-destination/index.js:287
+#: src/blocks/tour-related-tour/index.js:287
+msgid "Duration: 10 Days"
+msgstr ""
+
+#: build/blocks/tour-related-accommodation/index.js:1
+#: build/blocks/tour-related-destination/index.js:1
+#: build/blocks/tour-related-tour/index.js:1
+#: src/blocks/tour-related-accommodation/index.js:295
+#: src/blocks/tour-related-destination/index.js:295
+#: src/blocks/tour-related-tour/index.js:295
+msgid "Discover the breathtaking landscapes and unique wildlife of Kilimanjaro. Experience an unforgettable adventure combining trekking and safari."
+msgstr ""
+
+#: build/blocks/tour-related-accommodation/index.js:1
+#: build/blocks/tour-related-destination/index.js:1
+#: build/blocks/tour-related-tour/index.js:1
+#: src/blocks/tour-related-accommodation/index.js:330
+#: src/blocks/tour-related-destination/index.js:330
+#: src/blocks/tour-related-tour/index.js:330
+msgid "Tropical Beach Getaway"
+msgstr ""
+
+#: build/blocks/tour-related-accommodation/index.js:1
+#: build/blocks/tour-related-destination/index.js:1
+#: build/blocks/tour-related-tour/index.js:1
+#: src/blocks/tour-related-accommodation/index.js:351
+#: src/blocks/tour-related-destination/index.js:351
+#: src/blocks/tour-related-tour/index.js:351
+msgid "From: $1,299"
+msgstr ""
+
+#: build/blocks/tour-related-accommodation/index.js:1
+#: build/blocks/tour-related-destination/index.js:1
+#: build/blocks/tour-related-tour/index.js:1
+#: src/blocks/tour-related-accommodation/index.js:358
+#: src/blocks/tour-related-destination/index.js:358
+#: src/blocks/tour-related-tour/index.js:358
+msgid "Duration: 5 Days"
+msgstr ""
+
+#: build/blocks/tour-related-accommodation/index.js:1
+#: build/blocks/tour-related-destination/index.js:1
+#: build/blocks/tour-related-tour/index.js:1
+#: src/blocks/tour-related-accommodation/index.js:366
+#: src/blocks/tour-related-destination/index.js:366
+#: src/blocks/tour-related-tour/index.js:366
+msgid "Relax and unwind on pristine beaches with crystal clear waters. Enjoy water sports, local cuisine, and stunning sunsets."
+msgstr ""
+
+#: build/blocks/tour-related-destination/index.js:1
+#: src/blocks/tour-related-destination/index.js:22
+msgid "Displays tours related to this destination."
+msgstr ""
+
+#: build/blocks/tour-related-tour/index.js:1
+#: src/blocks/tour-related-tour/index.js:22
+msgid "Displays similar tours."
+msgstr ""
+
+#: build/blocks/transport/index.js:1
+#: src/blocks/transport/index.js:20
+msgid "Display transportation information and options for destinations."
+msgstr ""
+
+#: build/blocks/transport/index.js:1
+#: src/blocks/transport/index.js:24
+msgid "transport"
+msgstr ""
+
+#: build/blocks/transport/index.js:1
+#: src/blocks/transport/index.js:25
+msgid "transportation"
+msgstr ""
+
+#: build/blocks/transport/index.js:1
+#: src/blocks/transport/index.js:27
+msgid "getting around"
+msgstr ""
+
+#: build/blocks/transport/index.js:1
+#: src/blocks/transport/index.js:149
+msgid "Excellent public transport network including buses, trains, and taxis. Car rentals available. Airport transfers and shuttle services widely available."
+msgstr ""
+
+#: build/blocks/travel-styles/index.js:1
+#: src/blocks/travel-styles/index.js:19
+msgid "Travel styles"
+msgstr ""
+
+#: build/blocks/travel-styles/index.js:1
+#: src/blocks/travel-styles/index.js:22
+msgid "Display the travel styles associated with this tour."
+msgstr ""
+
+#: build/blocks/travel-styles/index.js:1
+#: src/blocks/travel-styles/index.js:25
+msgid "styles"
+msgstr ""
+
+#: build/blocks/travel-styles/index.js:1
+#: src/blocks/travel-styles/index.js:26
+msgid "category"
+msgstr ""
+
+#: build/blocks/travel-styles/index.js:1
+#: src/blocks/travel-styles/index.js:61
+#: src/blocks/travel-styles/index.js:106
+msgid "Travel Styles:"
+msgstr ""
+
+#: build/blocks/travel-styles/index.js:1
+#: src/blocks/travel-styles/index.js:106
+msgid "Adventure, Cultural, Wildlife"
+msgstr ""
+
+#: build/blocks/units/index.js:1
+#: src/blocks/units/index.js:21
+msgid "Displays all the unit (rooms/camps) types for this accommodation"
+msgstr ""
+
+#: build/blocks/units/index.js:1
+#: src/blocks/units/index.js:28
+msgid "camps"
+msgstr ""
+
+#: build/blocks/units/index.js:1
+#: src/blocks/units/index.js:158
+msgid "Double Room"
+msgstr ""
+
+#: build/blocks/units/index.js:1
+#: src/blocks/units/index.js:167
+msgid "Comfortable room with amenities"
+msgstr ""
+
+#: build/blocks/units/index.js:1
+#: src/blocks/units/index.js:184
+msgid "$150"
+msgstr ""
+
+#: build/blocks/units/index.js:1
+#: src/blocks/units/index.js:203
+msgid "King Room"
+msgstr ""
+
+#: build/blocks/units/index.js:1
+#: src/blocks/units/index.js:212
+msgid "Luxury room with premium features"
+msgstr ""
+
+#: build/blocks/units/index.js:1
+#: src/blocks/units/index.js:229
+msgid "$250"
+msgstr ""
+
+#: build/blocks/videos/index.js:1
+#: src/blocks/videos/index.js:16
+msgid "TO Videos"
+msgstr ""
+
+#: build/blocks/videos/index.js:1
+#: src/blocks/videos/index.js:19
+msgid "Display a gallery of videos related to the tour or destination."
+msgstr ""
+
+#: build/blocks/videos/index.js:1
+#: src/blocks/videos/index.js:38
+#: src/blocks/videos/index.js:46
+#: src/blocks/videos/index.js:54
+msgid "Video placeholder"
+msgstr ""
+
+#: build/blocks/videos/index.js:1
+#: src/blocks/videos/index.js:111
+msgid "Enable Slider"
+msgstr ""
+
+#: build/blocks/visa/index.js:1
+#: src/blocks/visa/index.js:21
+msgid "Displays visa information for this destination."
+msgstr ""
+
+#: build/blocks/visa/index.js:1
+#: src/blocks/visa/index.js:23
+msgid "visa"
+msgstr ""
+
+#: build/blocks/visa/index.js:1
+#: src/blocks/visa/index.js:25
+msgid "travel visa"
+msgstr ""
+
+#: build/blocks/visa/index.js:1
+#: src/blocks/visa/index.js:147
+msgid "Visa information will be displayed here."
+msgstr ""
+
+#: build/blocks/wetu-map/index.js:1
+#: src/blocks/wetu-map/index.js:46
+msgid "WETU Map"
+msgstr ""
+
+#: build/blocks/wetu-map/index.js:1
+#: src/blocks/wetu-map/index.js:49
+msgid "Displays a WETU map for itineraries."
+msgstr ""
+
+#: build/blocks/wetu-map/index.js:1
+#: src/blocks/wetu-map/index.js:51
+msgid "wetu"
+msgstr ""
+
+#: build/slotfills.js:1
+#: src/js/blocks/slotfills.js:27
+msgid "Featured"
+msgstr ""
+
+#: build/slotfills.js:1
+#: src/js/blocks/slotfills.js:51
+msgid "Disable Single"
+msgstr ""
+
+#: build/blocks/accommodation-related-accommodation/block.json
+#: build/blocks/accommodation-related-tour/block.json
+#: src/blocks/accommodation-related-accommodation/block.json
+#: src/blocks/accommodation-related-tour/block.json
+msgctxt "block title"
+msgid "Related Accommodations"
+msgstr ""
+
+#: build/blocks/accommodation-related-accommodation/block.json
+#: src/blocks/accommodation-related-accommodation/block.json
+msgctxt "block description"
+msgid "Displays other accommodation in the area."
+msgstr ""
+
+#: build/blocks/accommodation-related-accommodation/block.json
+#: build/blocks/accommodation-related-destination/block.json
+#: build/blocks/accommodation-related-tour/block.json
+#: build/blocks/related-regions/block.json
+#: build/blocks/review-related-accommodation/block.json
+#: build/blocks/review-related-destination/block.json
+#: build/blocks/review-related-tour/block.json
+#: build/blocks/tour-related-accommodation/block.json
+#: build/blocks/tour-related-destination/block.json
+#: build/blocks/tour-related-tour/block.json
+#: src/blocks/accommodation-related-accommodation/block.json
+#: src/blocks/accommodation-related-destination/block.json
+#: src/blocks/accommodation-related-tour/block.json
+#: src/blocks/related-regions/block.json
+#: src/blocks/review-related-accommodation/block.json
+#: src/blocks/review-related-destination/block.json
+#: src/blocks/review-related-tour/block.json
+#: src/blocks/tour-related-accommodation/block.json
+#: src/blocks/tour-related-destination/block.json
+#: src/blocks/tour-related-tour/block.json
+msgctxt "block keyword"
+msgid "related"
+msgstr ""
+
+#: build/blocks/accommodation-related-accommodation/block.json
+#: build/blocks/accommodation-related-destination/block.json
+#: build/blocks/accommodation-related-tour/block.json
+#: build/blocks/accommodation-type/block.json
+#: build/blocks/destination-to-accommodation/block.json
+#: build/blocks/featured-accommodation/block.json
+#: build/blocks/review-related-accommodation/block.json
+#: build/blocks/tour-related-accommodation/block.json
+#: src/blocks/accommodation-related-accommodation/block.json
+#: src/blocks/accommodation-related-destination/block.json
+#: src/blocks/accommodation-related-tour/block.json
+#: src/blocks/accommodation-type/block.json
+#: src/blocks/destination-to-accommodation/block.json
+#: src/blocks/featured-accommodation/block.json
+#: src/blocks/review-related-accommodation/block.json
+#: src/blocks/tour-related-accommodation/block.json
+msgctxt "block keyword"
+msgid "accommodation"
+msgstr ""
+
+#: build/blocks/accommodation-related-accommodation/block.json
+#: build/blocks/accommodation-related-destination/block.json
+#: src/blocks/accommodation-related-accommodation/block.json
+#: src/blocks/accommodation-related-destination/block.json
+msgctxt "block keyword"
+msgid "similar"
+msgstr ""
+
+#: build/blocks/accommodation-related-destination/block.json
+#: src/blocks/accommodation-related-destination/block.json
+msgctxt "block title"
+msgid "Related accommodation - destination"
+msgstr ""
+
+#: build/blocks/accommodation-related-destination/block.json
+#: src/blocks/accommodation-related-destination/block.json
+msgctxt "block description"
+msgid "Displays accommodation related to a destination."
+msgstr ""
+
+#: build/blocks/accommodation-related-tour/block.json
+#: src/blocks/accommodation-related-tour/block.json
+msgctxt "block description"
+msgid "Displays accommodations related to this tour via the destinations."
+msgstr ""
+
+#: build/blocks/accommodation-related-tour/block.json
+#: build/blocks/destination-to-tour/block.json
+#: build/blocks/duration/block.json
+#: build/blocks/review-related-tour/block.json
+#: build/blocks/tagline/block.json
+#: build/blocks/tour-related-tour/block.json
+#: build/blocks/travel-styles/block.json
+#: src/blocks/accommodation-related-tour/block.json
+#: src/blocks/destination-to-tour/block.json
+#: src/blocks/duration/block.json
+#: src/blocks/review-related-tour/block.json
+#: src/blocks/tagline/block.json
+#: src/blocks/tour-related-tour/block.json
+#: src/blocks/travel-styles/block.json
+msgctxt "block keyword"
+msgid "tour"
+msgstr ""
+
+#: build/blocks/accommodation-related-tour/block.json
+#: build/blocks/tour-related-accommodation/block.json
+#: build/blocks/tour-related-destination/block.json
+#: build/blocks/tour-related-tour/block.json
+#: src/blocks/accommodation-related-tour/block.json
+#: src/blocks/tour-related-accommodation/block.json
+#: src/blocks/tour-related-destination/block.json
+#: src/blocks/tour-related-tour/block.json
+msgctxt "block keyword"
+msgid "cross-reference"
+msgstr ""
+
+#: build/blocks/accommodation-type/block.json
+#: src/blocks/accommodation-type/block.json
+msgctxt "block title"
+msgid "Accommodation type"
+msgstr ""
+
+#: build/blocks/accommodation-type/block.json
+#: src/blocks/accommodation-type/block.json
+msgctxt "block description"
+msgid "Display accommodation type and category information."
+msgstr ""
+
+#: build/blocks/accommodation-type/block.json
+#: build/blocks/travel-styles/block.json
+#: src/blocks/accommodation-type/block.json
+#: src/blocks/travel-styles/block.json
+msgctxt "block keyword"
+msgid "type"
+msgstr ""
+
+#: build/blocks/accommodation-type/block.json
+#: src/blocks/accommodation-type/block.json
+msgctxt "block keyword"
+msgid "lodging"
+msgstr ""
+
+#: build/blocks/additional-info/block.json
+#: src/blocks/additional-info/block.json
+msgctxt "block title"
+msgid "Additional Information"
+msgstr ""
+
+#: build/blocks/additional-info/block.json
+#: src/blocks/additional-info/block.json
+msgctxt "block description"
+msgid "Display additional information and details."
+msgstr ""
+
+#: build/blocks/additional-info/block.json
+#: build/blocks/not-included/block.json
+#: build/blocks/single-supplement-wrapper/block.json
+#: src/blocks/additional-info/block.json
+#: src/blocks/not-included/block.json
+#: src/blocks/single-supplement-wrapper/block.json
+msgctxt "block keyword"
+msgid "additional"
+msgstr ""
+
+#: build/blocks/additional-info/block.json
+#: build/blocks/safety/block.json
+#: src/blocks/additional-info/block.json
+#: src/blocks/safety/block.json
+msgctxt "block keyword"
+msgid "information"
+msgstr ""
+
+#: build/blocks/additional-info/block.json
+#: src/blocks/additional-info/block.json
+msgctxt "block keyword"
+msgid "details"
+msgstr ""
+
+#: build/blocks/banking/block.json
+#: src/blocks/banking/block.json
+msgctxt "block title"
+msgid "Banking"
+msgstr ""
+
+#: build/blocks/banking/block.json
+#: src/blocks/banking/block.json
+msgctxt "block description"
+msgid "Show banking, currency, and financial information."
+msgstr ""
+
+#: build/blocks/banking/block.json
+#: src/blocks/banking/block.json
+msgctxt "block keyword"
+msgid "banking"
+msgstr ""
+
+#: build/blocks/banking/block.json
+#: src/blocks/banking/block.json
+msgctxt "block keyword"
+msgid "currency"
+msgstr ""
+
+#: build/blocks/banking/block.json
+#: src/blocks/banking/block.json
+msgctxt "block keyword"
+msgid "finance"
+msgstr ""
+
+#: build/blocks/banner-cover/block.json
+#: src/blocks/banner-cover/block.json
+msgctxt "block title"
+msgid "Banner Cover"
+msgstr ""
+
+#: build/blocks/banner-cover/block.json
+#: src/blocks/banner-cover/block.json
+msgctxt "block description"
+msgid "Cover block using banner image from custom field"
+msgstr ""
+
+#: build/blocks/best-time-to-visit/block.json
+#: src/blocks/best-time-to-visit/block.json
+msgctxt "block title"
+msgid "Best time to visit"
+msgstr ""
+
+#: build/blocks/best-time-to-visit/block.json
+#: src/blocks/best-time-to-visit/block.json
+msgctxt "block description"
+msgid "Display optimal travel months for destinations with visual calendar indicators."
+msgstr ""
+
+#: build/blocks/best-time-to-visit/block.json
+#: build/blocks/checkin-time/block.json
+#: build/blocks/checkout-time/block.json
+#: build/blocks/duration/block.json
+#: src/blocks/best-time-to-visit/block.json
+#: src/blocks/checkin-time/block.json
+#: src/blocks/checkout-time/block.json
+#: src/blocks/duration/block.json
+msgctxt "block keyword"
+msgid "time"
+msgstr ""
+
+#: build/blocks/best-time-to-visit/block.json
+#: src/blocks/best-time-to-visit/block.json
+msgctxt "block keyword"
+msgid "visit"
+msgstr ""
+
+#: build/blocks/best-time-to-visit/block.json
+#: src/blocks/best-time-to-visit/block.json
+msgctxt "block keyword"
+msgid "months"
+msgstr ""
+
+#: build/blocks/best-time-to-visit/block.json
+#: build/blocks/safety/block.json
+#: build/blocks/transport/block.json
+#: build/blocks/travel-styles/block.json
+#: build/blocks/visa/block.json
+#: src/blocks/best-time-to-visit/block.json
+#: src/blocks/safety/block.json
+#: src/blocks/transport/block.json
+#: src/blocks/travel-styles/block.json
+#: src/blocks/visa/block.json
+msgctxt "block keyword"
+msgid "travel"
+msgstr ""
+
+#: build/blocks/best-time-to-visit/block.json
+#: build/blocks/destination-to-accommodation/block.json
+#: build/blocks/destination-to-tour/block.json
+#: build/blocks/facts-country-wrapper/block.json
+#: build/blocks/facts-regions-wrapper/block.json
+#: build/blocks/review-related-destination/block.json
+#: build/blocks/safety/block.json
+#: build/blocks/tour-related-destination/block.json
+#: build/blocks/visa/block.json
+#: src/blocks/best-time-to-visit/block.json
+#: src/blocks/destination-to-accommodation/block.json
+#: src/blocks/destination-to-tour/block.json
+#: src/blocks/facts-country-wrapper/block.json
+#: src/blocks/facts-regions-wrapper/block.json
+#: src/blocks/review-related-destination/block.json
+#: src/blocks/safety/block.json
+#: src/blocks/tour-related-destination/block.json
+#: src/blocks/visa/block.json
+msgctxt "block keyword"
+msgid "destination"
+msgstr ""
+
+#: build/blocks/best-time-to-visit/block.json
+#: build/blocks/booking-validity/block.json
+#: src/blocks/best-time-to-visit/block.json
+#: src/blocks/booking-validity/block.json
+msgctxt "block keyword"
+msgid "calendar"
+msgstr ""
+
+#: build/blocks/best-time-to-visit/block.json
+#: src/blocks/best-time-to-visit/block.json
+msgctxt "block keyword"
+msgid "optimal"
+msgstr ""
+
+#: build/blocks/booking-validity/block.json
+#: src/blocks/booking-validity/block.json
+msgctxt "block title"
+msgid "Booking validity"
+msgstr ""
+
+#: build/blocks/booking-validity/block.json
+#: src/blocks/booking-validity/block.json
+msgctxt "block description"
+msgid "Displays the booking validity date range for tours."
+msgstr ""
+
+#: build/blocks/booking-validity/block.json
+#: src/blocks/booking-validity/block.json
+msgctxt "block keyword"
+msgid "booking"
+msgstr ""
+
+#: build/blocks/booking-validity/block.json
+#: src/blocks/booking-validity/block.json
+msgctxt "block keyword"
+msgid "validity"
+msgstr ""
+
+#: build/blocks/booking-validity/block.json
+#: src/blocks/booking-validity/block.json
+msgctxt "block keyword"
+msgid "dates"
+msgstr ""
+
+#: build/blocks/booking-validity/block.json
+#: build/blocks/duration/block.json
+#: src/blocks/booking-validity/block.json
+#: src/blocks/duration/block.json
+msgctxt "block keyword"
+msgid "period"
+msgstr ""
+
+#: build/blocks/booking-validity/block.json
+#: src/blocks/booking-validity/block.json
+msgctxt "block keyword"
+msgid "availability"
+msgstr ""
+
+#: build/blocks/checkin-time/block.json
+#: src/blocks/checkin-time/block.json
+msgctxt "block title"
+msgid "Check In Time"
+msgstr ""
+
+#: build/blocks/checkin-time/block.json
+#: src/blocks/checkin-time/block.json
+msgctxt "block description"
+msgid "Show accommodation check-in time and procedures."
+msgstr ""
+
+#: build/blocks/checkin-time/block.json
+#: src/blocks/checkin-time/block.json
+msgctxt "block keyword"
+msgid "checkin"
+msgstr ""
+
+#: build/blocks/checkin-time/block.json
+#: src/blocks/checkin-time/block.json
+msgctxt "block keyword"
+msgid "arrival"
+msgstr ""
+
+#: build/blocks/checkout-time/block.json
+#: src/blocks/checkout-time/block.json
+msgctxt "block title"
+msgid "Check Out Time"
+msgstr ""
+
+#: build/blocks/checkout-time/block.json
+#: src/blocks/checkout-time/block.json
+msgctxt "block description"
+msgid "Show accommodation check-out time and procedures."
+msgstr ""
+
+#: build/blocks/checkout-time/block.json
+#: src/blocks/checkout-time/block.json
+msgctxt "block keyword"
+msgid "checkout"
+msgstr ""
+
+#: build/blocks/checkout-time/block.json
+#: build/blocks/departs-from/block.json
+#: src/blocks/checkout-time/block.json
+#: src/blocks/departs-from/block.json
+msgctxt "block keyword"
+msgid "departure"
+msgstr ""
+
+#: build/blocks/climate/block.json
+#: src/blocks/climate/block.json
+msgctxt "block title"
+msgid "Climate"
+msgstr ""
+
+#: build/blocks/climate/block.json
+#: src/blocks/climate/block.json
+msgctxt "block description"
+msgid "Display climate and weather information for destinations."
+msgstr ""
+
+#: build/blocks/climate/block.json
+#: src/blocks/climate/block.json
+msgctxt "block keyword"
+msgid "climate"
+msgstr ""
+
+#: build/blocks/climate/block.json
+#: src/blocks/climate/block.json
+msgctxt "block keyword"
+msgid "weather"
+msgstr ""
+
+#: build/blocks/climate/block.json
+#: src/blocks/climate/block.json
+msgctxt "block keyword"
+msgid "temperature"
+msgstr ""
+
+#: build/blocks/cuisine/block.json
+#: src/blocks/cuisine/block.json
+msgctxt "block title"
+msgid "Cuisine"
+msgstr ""
+
+#: build/blocks/cuisine/block.json
+#: src/blocks/cuisine/block.json
+msgctxt "block description"
+msgid "Display local cuisine and food information for destinations."
+msgstr ""
+
+#: build/blocks/cuisine/block.json
+#: src/blocks/cuisine/block.json
+msgctxt "block keyword"
+msgid "cuisine"
+msgstr ""
+
+#: build/blocks/cuisine/block.json
+#: src/blocks/cuisine/block.json
+msgctxt "block keyword"
+msgid "food"
+msgstr ""
+
+#: build/blocks/cuisine/block.json
+#: src/blocks/cuisine/block.json
+msgctxt "block keyword"
+msgid "local"
+msgstr ""
+
+#: build/blocks/cuisine/block.json
+#: src/blocks/cuisine/block.json
+msgctxt "block keyword"
+msgid "dining"
+msgstr ""
+
+#: build/blocks/departs-from/block.json
+#: src/blocks/departs-from/block.json
+msgctxt "block title"
+msgid "Departs from"
+msgstr ""
+
+#: build/blocks/departs-from/block.json
+#: src/blocks/departs-from/block.json
+msgctxt "block description"
+msgid "Displays the departure location for tours."
+msgstr ""
+
+#: build/blocks/departs-from/block.json
+#: src/blocks/departs-from/block.json
+msgctxt "block keyword"
+msgid "departs"
+msgstr ""
+
+#: build/blocks/departs-from/block.json
+#: build/blocks/price/block.json
+#: src/blocks/departs-from/block.json
+#: src/blocks/price/block.json
+msgctxt "block keyword"
+msgid "from"
+msgstr ""
+
+#: build/blocks/departs-from/block.json
+#: build/blocks/ends-in/block.json
+#: build/blocks/facts-country-wrapper/block.json
+#: build/blocks/wetu-map/block.json
+#: src/blocks/departs-from/block.json
+#: src/blocks/ends-in/block.json
+#: src/blocks/facts-country-wrapper/block.json
+#: src/blocks/wetu-map/block.json
+msgctxt "block keyword"
+msgid "location"
+msgstr ""
+
+#: build/blocks/departs-from/block.json
+#: build/blocks/price/block.json
+#: src/blocks/departs-from/block.json
+#: src/blocks/price/block.json
+msgctxt "block keyword"
+msgid "starting"
+msgstr ""
+
+#: build/blocks/departs-from/block.json
+#: build/blocks/ends-in/block.json
+#: src/blocks/departs-from/block.json
+#: src/blocks/ends-in/block.json
+msgctxt "block keyword"
+msgid "point"
+msgstr ""
+
+#: build/blocks/destination-to-accommodation/block.json
+#: src/blocks/destination-to-accommodation/block.json
+msgctxt "block title"
+msgid "Destination to Accommodation"
+msgstr ""
+
+#: build/blocks/destination-to-accommodation/block.json
+#: src/blocks/destination-to-accommodation/block.json
+msgctxt "block description"
+msgid "Displays the destinations associated with this accommodation."
+msgstr ""
+
+#: build/blocks/destination-to-accommodation/block.json
+#: build/blocks/destination-to-tour/block.json
+#: build/blocks/facts-country-wrapper/block.json
+#: build/blocks/facts-regions-wrapper/block.json
+#: src/blocks/destination-to-accommodation/block.json
+#: src/blocks/destination-to-tour/block.json
+#: src/blocks/facts-country-wrapper/block.json
+#: src/blocks/facts-regions-wrapper/block.json
+msgctxt "block keyword"
+msgid "connection"
+msgstr ""
+
+#: build/blocks/destination-to-tour/block.json
+#: src/blocks/destination-to-tour/block.json
+msgctxt "block title"
+msgid "Destination to Tour"
+msgstr ""
+
+#: build/blocks/destination-to-tour/block.json
+#: src/blocks/destination-to-tour/block.json
+msgctxt "block description"
+msgid "Displays the destinations associated with this tour."
+msgstr ""
+
+#: build/blocks/dress/block.json
+#: src/blocks/dress/block.json
+msgctxt "block title"
+msgid "Dress"
+msgstr ""
+
+#: build/blocks/dress/block.json
+#: src/blocks/dress/block.json
+msgctxt "block description"
+msgid "Display dress code and clothing recommendations for destinations."
+msgstr ""
+
+#: build/blocks/dress/block.json
+#: src/blocks/dress/block.json
+msgctxt "block keyword"
+msgid "dress"
+msgstr ""
+
+#: build/blocks/dress/block.json
+#: src/blocks/dress/block.json
+msgctxt "block keyword"
+msgid "clothing"
+msgstr ""
+
+#: build/blocks/dress/block.json
+#: src/blocks/dress/block.json
+msgctxt "block keyword"
+msgid "attire"
+msgstr ""
+
+#: build/blocks/duration/block.json
+#: src/blocks/duration/block.json
+msgctxt "block title"
+msgid "Duration"
+msgstr ""
+
+#: build/blocks/duration/block.json
+#: src/blocks/duration/block.json
+msgctxt "block description"
+msgid "Displays the duration of the tour in days."
+msgstr ""
+
+#: build/blocks/duration/block.json
+#: src/blocks/duration/block.json
+msgctxt "block keyword"
+msgid "duration"
+msgstr ""
+
+#: build/blocks/duration/block.json
+#: src/blocks/duration/block.json
+msgctxt "block keyword"
+msgid "days"
+msgstr ""
+
+#: build/blocks/duration/block.json
+#: src/blocks/duration/block.json
+msgctxt "block keyword"
+msgid "length"
+msgstr ""
+
+#: build/blocks/electricity/block.json
+#: src/blocks/electricity/block.json
+msgctxt "block title"
+msgid "Electricity"
+msgstr ""
+
+#: build/blocks/electricity/block.json
+#: src/blocks/electricity/block.json
+msgctxt "block description"
+msgid "Display electrical information and power requirements for destinations."
+msgstr ""
+
+#: build/blocks/electricity/block.json
+#: src/blocks/electricity/block.json
+msgctxt "block keyword"
+msgid "electricity"
+msgstr ""
+
+#: build/blocks/electricity/block.json
+#: src/blocks/electricity/block.json
+msgctxt "block keyword"
+msgid "power"
+msgstr ""
+
+#: build/blocks/electricity/block.json
+#: src/blocks/electricity/block.json
+msgctxt "block keyword"
+msgid "voltage"
+msgstr ""
+
+#: build/blocks/electricity/block.json
+#: src/blocks/electricity/block.json
+msgctxt "block keyword"
+msgid "outlet"
+msgstr ""
+
+#: build/blocks/ends-in/block.json
+#: src/blocks/ends-in/block.json
+msgctxt "block title"
+msgid "Ends in"
+msgstr ""
+
+#: build/blocks/ends-in/block.json
+#: src/blocks/ends-in/block.json
+msgctxt "block description"
+msgid "Displays the end location for tours."
+msgstr ""
+
+#: build/blocks/ends-in/block.json
+#: src/blocks/ends-in/block.json
+msgctxt "block keyword"
+msgid "ends"
+msgstr ""
+
+#: build/blocks/ends-in/block.json
+#: src/blocks/ends-in/block.json
+msgctxt "block keyword"
+msgid "in"
+msgstr ""
+
+#: build/blocks/ends-in/block.json
+#: src/blocks/ends-in/block.json
+msgctxt "block keyword"
+msgid "end"
+msgstr ""
+
+#: build/blocks/ends-in/block.json
+#: src/blocks/ends-in/block.json
+msgctxt "block keyword"
+msgid "finishing"
+msgstr ""
+
+#: build/blocks/facilities/block.json
+#: src/blocks/facilities/block.json
+msgctxt "block title"
+msgid "Facilities"
+msgstr ""
+
+#: build/blocks/facts-country-wrapper/block.json
+#: src/blocks/facts-country-wrapper/block.json
+msgctxt "block title"
+msgid "Country"
+msgstr ""
+
+#: build/blocks/facts-country-wrapper/block.json
+#: src/blocks/facts-country-wrapper/block.json
+msgctxt "block description"
+msgid "Display parent country relationship for destinations with icon and connection link."
+msgstr ""
+
+#: build/blocks/facts-country-wrapper/block.json
+#: src/blocks/facts-country-wrapper/block.json
+msgctxt "block keyword"
+msgid "country"
+msgstr ""
+
+#: build/blocks/facts-country-wrapper/block.json
+#: src/blocks/facts-country-wrapper/block.json
+msgctxt "block keyword"
+msgid "parent"
+msgstr ""
+
+#: build/blocks/facts-country-wrapper/block.json
+#: build/blocks/facts-regions-wrapper/block.json
+#: src/blocks/facts-country-wrapper/block.json
+#: src/blocks/facts-regions-wrapper/block.json
+msgctxt "block keyword"
+msgid "facts"
+msgstr ""
+
+#: build/blocks/facts-regions-wrapper/block.json
+#: src/blocks/facts-regions-wrapper/block.json
+msgctxt "block title"
+msgid "Regions list"
+msgstr ""
+
+#: build/blocks/facts-regions-wrapper/block.json
+#: src/blocks/facts-regions-wrapper/block.json
+msgctxt "block description"
+msgid "Display child regions for country-level destinations with post connection bindings."
+msgstr ""
+
+#: build/blocks/facts-regions-wrapper/block.json
+#: build/blocks/regions/block.json
+#: build/blocks/related-regions/block.json
+#: src/blocks/facts-regions-wrapper/block.json
+#: src/blocks/regions/block.json
+#: src/blocks/related-regions/block.json
+msgctxt "block keyword"
+msgid "regions"
+msgstr ""
+
+#: build/blocks/facts-regions-wrapper/block.json
+#: src/blocks/facts-regions-wrapper/block.json
+msgctxt "block keyword"
+msgid "children"
+msgstr ""
+
+#: build/blocks/facts-regions-wrapper/block.json
+#: src/blocks/facts-regions-wrapper/block.json
+msgctxt "block keyword"
+msgid "list"
+msgstr ""
+
+#: build/blocks/featured-accommodation/block.json
+#: src/blocks/featured-accommodation/block.json
+msgctxt "block title"
+msgid "Featured Accommodations"
+msgstr ""
+
+#: build/blocks/featured-accommodation/block.json
+#: src/blocks/featured-accommodation/block.json
+msgctxt "block description"
+msgid "Displays Accommodations with the Featured tag."
+msgstr ""
+
+#: build/blocks/featured-accommodation/block.json
+#: build/blocks/featured-destinations/block.json
+#: build/blocks/featured-tours/block.json
+#: src/blocks/featured-accommodation/block.json
+#: src/blocks/featured-destinations/block.json
+#: src/blocks/featured-tours/block.json
+msgctxt "block keyword"
+msgid "featured"
+msgstr ""
+
+#: build/blocks/featured-accommodation/block.json
+#: build/blocks/featured-destinations/block.json
+#: build/blocks/featured-tours/block.json
+#: src/blocks/featured-accommodation/block.json
+#: src/blocks/featured-destinations/block.json
+#: src/blocks/featured-tours/block.json
+msgctxt "block keyword"
+msgid "highlight"
+msgstr ""
+
+#: build/blocks/featured-destinations/block.json
+#: src/blocks/featured-destinations/block.json
+msgctxt "block title"
+msgid "Featured Destinations"
+msgstr ""
+
+#: build/blocks/featured-destinations/block.json
+#: src/blocks/featured-destinations/block.json
+msgctxt "block description"
+msgid "Displays Destinations with Featured tag."
+msgstr ""
+
+#: build/blocks/featured-destinations/block.json
+#: src/blocks/featured-destinations/block.json
+msgctxt "block keyword"
+msgid "destinations"
+msgstr ""
+
+#: build/blocks/featured-tours/block.json
+#: src/blocks/featured-tours/block.json
+msgctxt "block title"
+msgid "Featured Tours"
+msgstr ""
+
+#: build/blocks/featured-tours/block.json
+#: src/blocks/featured-tours/block.json
+msgctxt "block description"
+msgid "Displays Tours with the Featured tag."
+msgstr ""
+
+#: build/blocks/featured-tours/block.json
+#: build/blocks/tour-related-accommodation/block.json
+#: build/blocks/tour-related-destination/block.json
+#: build/blocks/tour-related-tour/block.json
+#: src/blocks/featured-tours/block.json
+#: src/blocks/tour-related-accommodation/block.json
+#: src/blocks/tour-related-destination/block.json
+#: src/blocks/tour-related-tour/block.json
+msgctxt "block keyword"
+msgid "tours"
+msgstr ""
+
+#: build/blocks/gallery/block.json
+#: src/blocks/gallery/block.json
+msgctxt "block title"
+msgid "Gallery"
+msgstr ""
+
+#: build/blocks/google-map/block.json
+#: src/blocks/google-map/block.json
+msgctxt "block title"
+msgid "Google Map"
+msgstr ""
+
+#: build/blocks/google-map/block.json
+#: src/blocks/google-map/block.json
+msgctxt "block description"
+msgid "Display a Google Map based on the current Tour Operator page."
+msgstr ""
+
+#: build/blocks/google-map/block.json
+#: src/blocks/google-map/block.json
+msgctxt "block keyword"
+msgid "google"
+msgstr ""
+
+#: build/blocks/google-map/block.json
+#: build/blocks/wetu-map/block.json
+#: src/blocks/google-map/block.json
+#: src/blocks/wetu-map/block.json
+msgctxt "block keyword"
+msgid "map"
+msgstr ""
+
+#: build/blocks/google-map/block.json
+#: src/blocks/google-map/block.json
+msgctxt "block keyword"
+msgid "maps"
+msgstr ""
+
+#: build/blocks/group-size/block.json
+#: src/blocks/group-size/block.json
+msgctxt "block title"
+msgid "Group size"
+msgstr ""
+
+#: build/blocks/group-size/block.json
+#: src/blocks/group-size/block.json
+msgctxt "block description"
+msgid "Displays the maximum group size for tours."
+msgstr ""
+
+#: build/blocks/group-size/block.json
+#: src/blocks/group-size/block.json
+msgctxt "block keyword"
+msgid "group"
+msgstr ""
+
+#: build/blocks/group-size/block.json
+#: src/blocks/group-size/block.json
+msgctxt "block keyword"
+msgid "size"
+msgstr ""
+
+#: build/blocks/group-size/block.json
+#: src/blocks/group-size/block.json
+msgctxt "block keyword"
+msgid "people"
+msgstr ""
+
+#: build/blocks/group-size/block.json
+#: src/blocks/group-size/block.json
+msgctxt "block keyword"
+msgid "maximum"
+msgstr ""
+
+#: build/blocks/group-size/block.json
+#: src/blocks/group-size/block.json
+msgctxt "block keyword"
+msgid "capacity"
+msgstr ""
+
+#: build/blocks/group-size/block.json
+#: src/blocks/group-size/block.json
+msgctxt "block keyword"
+msgid "travellers"
+msgstr ""
+
+#: build/blocks/health/block.json
+#: src/blocks/health/block.json
+msgctxt "block title"
+msgid "Health"
+msgstr ""
+
+#: build/blocks/health/block.json
+#: src/blocks/health/block.json
+msgctxt "block description"
+msgid "Display health information and medical requirements for destinations."
+msgstr ""
+
+#: build/blocks/health/block.json
+#: src/blocks/health/block.json
+msgctxt "block keyword"
+msgid "health"
+msgstr ""
+
+#: build/blocks/health/block.json
+#: src/blocks/health/block.json
+msgctxt "block keyword"
+msgid "medical"
+msgstr ""
+
+#: build/blocks/health/block.json
+#: src/blocks/health/block.json
+msgctxt "block keyword"
+msgid "vaccinations"
+msgstr ""
+
+#: build/blocks/icons/block.json
+#: src/blocks/icons/block.json
+msgctxt "block title"
+msgid "Icons"
+msgstr ""
+
+#: build/blocks/icons/block.json
+#: src/blocks/icons/block.json
+msgctxt "block description"
+msgid "A simple block that allows you to insert any SVG icons from a custom library."
+msgstr ""
+
+#: build/blocks/icons/block.json
+#: src/blocks/icons/block.json
+msgctxt "block keyword"
+msgid "icons"
+msgstr ""
+
+#: build/blocks/icons/block.json
+#: src/blocks/icons/block.json
+msgctxt "block keyword"
+msgid "icon"
+msgstr ""
+
+#: build/blocks/icons/block.json
+#: src/blocks/icons/block.json
+msgctxt "block keyword"
+msgid "svg"
+msgstr ""
+
+#: build/blocks/included/block.json
+#: src/blocks/included/block.json
+msgctxt "block title"
+msgid "Included items"
+msgstr ""
+
+#: build/blocks/included/block.json
+#: src/blocks/included/block.json
+msgctxt "block description"
+msgid "Displays what is included in the tour price."
+msgstr ""
+
+#: build/blocks/included/block.json
+#: build/blocks/not-included/block.json
+#: src/blocks/included/block.json
+#: src/blocks/not-included/block.json
+msgctxt "block keyword"
+msgid "included"
+msgstr ""
+
+#: build/blocks/included/block.json
+#: build/blocks/not-included/block.json
+#: build/blocks/price-include-exclude/block.json
+#: build/blocks/price/block.json
+#: src/blocks/included/block.json
+#: src/blocks/not-included/block.json
+#: src/blocks/price-include-exclude/block.json
+#: src/blocks/price/block.json
+msgctxt "block keyword"
+msgid "price"
+msgstr ""
+
+#: build/blocks/included/block.json
+#: build/blocks/price-include-exclude/block.json
+#: src/blocks/included/block.json
+#: src/blocks/price-include-exclude/block.json
+msgctxt "block keyword"
+msgid "includes"
+msgstr ""
+
+#: build/blocks/included/block.json
+#: src/blocks/included/block.json
+msgctxt "block keyword"
+msgid "what's"
+msgstr ""
+
+#: build/blocks/included/block.json
+#: src/blocks/included/block.json
+msgctxt "block keyword"
+msgid "services"
+msgstr ""
+
+#: build/blocks/itinerary/block.json
+#: src/blocks/itinerary/block.json
+msgctxt "block title"
+msgid "Itinerary"
+msgstr ""
+
+#: build/blocks/minimum-child-age/block.json
+#: src/blocks/minimum-child-age/block.json
+msgctxt "block title"
+msgid "Minimum Child Age"
+msgstr ""
+
+#: build/blocks/minimum-child-age/block.json
+#: src/blocks/minimum-child-age/block.json
+msgctxt "block description"
+msgid "Display minimum child age requirements for accommodations."
+msgstr ""
+
+#: build/blocks/minimum-child-age/block.json
+#: src/blocks/minimum-child-age/block.json
+msgctxt "block keyword"
+msgid "minimum"
+msgstr ""
+
+#: build/blocks/minimum-child-age/block.json
+#: src/blocks/minimum-child-age/block.json
+msgctxt "block keyword"
+msgid "child"
+msgstr ""
+
+#: build/blocks/minimum-child-age/block.json
+#: src/blocks/minimum-child-age/block.json
+msgctxt "block keyword"
+msgid "age"
+msgstr ""
+
+#: build/blocks/minimum-child-age/block.json
+#: build/blocks/visa/block.json
+#: src/blocks/minimum-child-age/block.json
+#: src/blocks/visa/block.json
+msgctxt "block keyword"
+msgid "requirements"
+msgstr ""
+
+#: build/blocks/more-link/block.json
+#: src/blocks/more-link/block.json
+msgctxt "block title"
+msgid "More Link"
+msgstr ""
+
+#: build/blocks/not-included/block.json
+#: src/blocks/not-included/block.json
+msgctxt "block title"
+msgid "Not included"
+msgstr ""
+
+#: build/blocks/not-included/block.json
+#: src/blocks/not-included/block.json
+msgctxt "block description"
+msgid "Displays what is not included in the tour price."
+msgstr ""
+
+#: build/blocks/not-included/block.json
+#: src/blocks/not-included/block.json
+msgctxt "block keyword"
+msgid "not"
+msgstr ""
+
+#: build/blocks/not-included/block.json
+#: src/blocks/not-included/block.json
+msgctxt "block keyword"
+msgid "excluded"
+msgstr ""
+
+#: build/blocks/not-included/block.json
+#: build/blocks/price-include-exclude/block.json
+#: src/blocks/not-included/block.json
+#: src/blocks/price-include-exclude/block.json
+msgctxt "block keyword"
+msgid "excludes"
+msgstr ""
+
+#: build/blocks/not-included/block.json
+#: src/blocks/not-included/block.json
+msgctxt "block keyword"
+msgid "costs"
+msgstr ""
+
+#: build/blocks/number-of-rooms/block.json
+#: src/blocks/number-of-rooms/block.json
+msgctxt "block title"
+msgid "Number of Rooms"
+msgstr ""
+
+#: build/blocks/number-of-rooms/block.json
+#: src/blocks/number-of-rooms/block.json
+msgctxt "block description"
+msgid "Displays the number of rooms available for this accommodation."
+msgstr ""
+
+#: build/blocks/number-of-rooms/block.json
+#: src/blocks/number-of-rooms/block.json
+msgctxt "block keyword"
+msgid "number"
+msgstr ""
+
+#: build/blocks/number-of-rooms/block.json
+#: src/blocks/number-of-rooms/block.json
+msgctxt "block keyword"
+msgid "rooms"
+msgstr ""
+
+#: build/blocks/number-of-rooms/block.json
+#: src/blocks/number-of-rooms/block.json
+msgctxt "block keyword"
+msgid "units"
+msgstr ""
+
+#: build/blocks/permalink-button/block.json
+#: src/blocks/permalink-button/block.json
+msgctxt "block title"
+msgid "Permalink Button"
+msgstr ""
+
+#: build/blocks/price-include-exclude/block.json
+#: src/blocks/price-include-exclude/block.json
+msgctxt "block title"
+msgid "Price Include & Exclude"
+msgstr ""
+
+#: build/blocks/price-include-exclude/block.json
+#: src/blocks/price-include-exclude/block.json
+msgctxt "block description"
+msgid "Display pricing inclusion and exclusion information for accommodations."
+msgstr ""
+
+#: build/blocks/price-include-exclude/block.json
+#: src/blocks/price-include-exclude/block.json
+msgctxt "block keyword"
+msgid "pricing"
+msgstr ""
+
+#: build/blocks/price/block.json
+#: src/blocks/price/block.json
+msgctxt "block title"
+msgid "Price"
+msgstr ""
+
+#: build/blocks/price/block.json
+#: src/blocks/price/block.json
+msgctxt "block description"
+msgid "Displays the starting price for the tour."
+msgstr ""
+
+#: build/blocks/price/block.json
+#: build/blocks/single-supplement-wrapper/block.json
+#: src/blocks/price/block.json
+#: src/blocks/single-supplement-wrapper/block.json
+msgctxt "block keyword"
+msgid "cost"
+msgstr ""
+
+#: build/blocks/price/block.json
+#: src/blocks/price/block.json
+msgctxt "block keyword"
+msgid "amount"
+msgstr ""
+
+#: build/blocks/rating/block.json
+#: src/blocks/rating/block.json
+msgctxt "block title"
+msgid "Rating"
+msgstr ""
+
+#: build/blocks/rating/block.json
+#: src/blocks/rating/block.json
+msgctxt "block description"
+msgid "Display rating and star classification for accommodations."
+msgstr ""
+
+#: build/blocks/rating/block.json
+#: src/blocks/rating/block.json
+msgctxt "block keyword"
+msgid "rating"
+msgstr ""
+
+#: build/blocks/rating/block.json
+#: src/blocks/rating/block.json
+msgctxt "block keyword"
+msgid "stars"
+msgstr ""
+
+#: build/blocks/rating/block.json
+#: build/blocks/travel-styles/block.json
+#: src/blocks/rating/block.json
+#: src/blocks/travel-styles/block.json
+msgctxt "block keyword"
+msgid "classification"
+msgstr ""
+
+#: build/blocks/rating/block.json
+#: src/blocks/rating/block.json
+msgctxt "block keyword"
+msgid "quality"
+msgstr ""
+
+#: build/blocks/regions/block.json
+#: src/blocks/regions/block.json
+msgctxt "block title"
+msgid "Regions"
+msgstr ""
+
+#: build/blocks/regions/block.json
+#: src/blocks/regions/block.json
+msgctxt "block description"
+msgid "Displays any regions attached to this destination."
+msgstr ""
+
+#: build/blocks/regions/block.json
+#: src/blocks/regions/block.json
+msgctxt "block keyword"
+msgid "geography"
+msgstr ""
+
+#: build/blocks/regions/block.json
+#: src/blocks/regions/block.json
+msgctxt "block keyword"
+msgid "areas"
+msgstr ""
+
+#: build/blocks/related-regions/block.json
+#: src/blocks/related-regions/block.json
+msgctxt "block title"
+msgid "Related Regions"
+msgstr ""
+
+#: build/blocks/related-regions/block.json
+#: src/blocks/related-regions/block.json
+msgctxt "block description"
+msgid "Displays any regions from the parent country."
+msgstr ""
+
+#: build/blocks/related-regions/block.json
+#: src/blocks/related-regions/block.json
+msgctxt "block keyword"
+msgid "nearby"
+msgstr ""
+
+#: build/blocks/review-related-accommodation/block.json
+#: build/blocks/review-related-destination/block.json
+#: build/blocks/review-related-tour/block.json
+#: src/blocks/review-related-accommodation/block.json
+#: src/blocks/review-related-destination/block.json
+#: src/blocks/review-related-tour/block.json
+msgctxt "block title"
+msgid "Related Reviews"
+msgstr ""
+
+#: build/blocks/review-related-accommodation/block.json
+#: src/blocks/review-related-accommodation/block.json
+msgctxt "block description"
+msgid "Displays reviews related to this accommodation."
+msgstr ""
+
+#: build/blocks/review-related-accommodation/block.json
+#: build/blocks/review-related-destination/block.json
+#: build/blocks/review-related-tour/block.json
+#: src/blocks/review-related-accommodation/block.json
+#: src/blocks/review-related-destination/block.json
+#: src/blocks/review-related-tour/block.json
+msgctxt "block keyword"
+msgid "reviews"
+msgstr ""
+
+#: build/blocks/review-related-accommodation/block.json
+#: build/blocks/review-related-destination/block.json
+#: build/blocks/review-related-tour/block.json
+#: src/blocks/review-related-accommodation/block.json
+#: src/blocks/review-related-destination/block.json
+#: src/blocks/review-related-tour/block.json
+msgctxt "block keyword"
+msgid "testimonials"
+msgstr ""
+
+#: build/blocks/review-related-destination/block.json
+#: src/blocks/review-related-destination/block.json
+msgctxt "block description"
+msgid "Display reviews related to this destination."
+msgstr ""
+
+#: build/blocks/review-related-tour/block.json
+#: src/blocks/review-related-tour/block.json
+msgctxt "block description"
+msgid "Display reviews related to this tour."
+msgstr ""
+
+#: build/blocks/safety/block.json
+#: src/blocks/safety/block.json
+msgctxt "block title"
+msgid "Safety"
+msgstr ""
+
+#: build/blocks/safety/block.json
+#: src/blocks/safety/block.json
+msgctxt "block description"
+msgid "Display safety information for destinations with expandable content and styling."
+msgstr ""
+
+#: build/blocks/safety/block.json
+#: src/blocks/safety/block.json
+msgctxt "block keyword"
+msgid "safety"
+msgstr ""
+
+#: build/blocks/safety/block.json
+#: src/blocks/safety/block.json
+msgctxt "block keyword"
+msgid "security"
+msgstr ""
+
+#: build/blocks/safety/block.json
+#: src/blocks/safety/block.json
+msgctxt "block keyword"
+msgid "guide"
+msgstr ""
+
+#: build/blocks/single-supplement-wrapper/block.json
+#: src/blocks/single-supplement-wrapper/block.json
+msgctxt "block title"
+msgid "Single supplement"
+msgstr ""
+
+#: build/blocks/single-supplement-wrapper/block.json
+#: src/blocks/single-supplement-wrapper/block.json
+msgctxt "block description"
+msgid "Displays the single supplement charge for solo travelers."
+msgstr ""
+
+#: build/blocks/single-supplement-wrapper/block.json
+#: src/blocks/single-supplement-wrapper/block.json
+msgctxt "block keyword"
+msgid "single"
+msgstr ""
+
+#: build/blocks/single-supplement-wrapper/block.json
+#: src/blocks/single-supplement-wrapper/block.json
+msgctxt "block keyword"
+msgid "supplement"
+msgstr ""
+
+#: build/blocks/single-supplement-wrapper/block.json
+#: src/blocks/single-supplement-wrapper/block.json
+msgctxt "block keyword"
+msgid "charge"
+msgstr ""
+
+#: build/blocks/single-supplement-wrapper/block.json
+#: src/blocks/single-supplement-wrapper/block.json
+msgctxt "block keyword"
+msgid "solo"
+msgstr ""
+
+#: build/blocks/single-supplement-wrapper/block.json
+#: src/blocks/single-supplement-wrapper/block.json
+msgctxt "block keyword"
+msgid "traveler"
+msgstr ""
+
+#: build/blocks/special-interests/block.json
+#: src/blocks/special-interests/block.json
+msgctxt "block title"
+msgid "Special Interests"
+msgstr ""
+
+#: build/blocks/special-interests/block.json
+#: src/blocks/special-interests/block.json
+msgctxt "block description"
+msgid "Display special interests and activities for accommodations."
+msgstr ""
+
+#: build/blocks/special-interests/block.json
+#: src/blocks/special-interests/block.json
+msgctxt "block keyword"
+msgid "special"
+msgstr ""
+
+#: build/blocks/special-interests/block.json
+#: src/blocks/special-interests/block.json
+msgctxt "block keyword"
+msgid "interests"
+msgstr ""
+
+#: build/blocks/special-interests/block.json
+#: src/blocks/special-interests/block.json
+msgctxt "block keyword"
+msgid "activities"
+msgstr ""
+
+#: build/blocks/special-interests/block.json
+#: src/blocks/special-interests/block.json
+msgctxt "block keyword"
+msgid "features"
+msgstr ""
+
+#: build/blocks/spoken-languages/block.json
+#: src/blocks/spoken-languages/block.json
+msgctxt "block title"
+msgid "Spoken Languages"
+msgstr ""
+
+#: build/blocks/spoken-languages/block.json
+#: src/blocks/spoken-languages/block.json
+msgctxt "block description"
+msgid "Display spoken languages information for accommodations."
+msgstr ""
+
+#: build/blocks/spoken-languages/block.json
+#: src/blocks/spoken-languages/block.json
+msgctxt "block keyword"
+msgid "spoken"
+msgstr ""
+
+#: build/blocks/spoken-languages/block.json
+#: src/blocks/spoken-languages/block.json
+msgctxt "block keyword"
+msgid "languages"
+msgstr ""
+
+#: build/blocks/spoken-languages/block.json
+#: src/blocks/spoken-languages/block.json
+msgctxt "block keyword"
+msgid "communication"
+msgstr ""
+
+#: build/blocks/spoken-languages/block.json
+#: src/blocks/spoken-languages/block.json
+msgctxt "block keyword"
+msgid "multilingual"
+msgstr ""
+
+#: build/blocks/sticky-menu/block.json
+#: src/blocks/sticky-menu/block.json
+msgctxt "block title"
+msgid "Sticky Menu"
+msgstr ""
+
+#: build/blocks/sticky-menu/block.json
+#: src/blocks/sticky-menu/block.json
+msgctxt "block description"
+msgid "A sticky navigation menu that links to sections on the page"
+msgstr ""
+
+#: build/blocks/suggested-visitor-types/block.json
+#: src/blocks/suggested-visitor-types/block.json
+msgctxt "block title"
+msgid "Suggested Visitor Types"
+msgstr ""
+
+#: build/blocks/suggested-visitor-types/block.json
+#: src/blocks/suggested-visitor-types/block.json
+msgctxt "block description"
+msgid "Display suggested visitor types suitable for accommodations."
+msgstr ""
+
+#: build/blocks/suggested-visitor-types/block.json
+#: src/blocks/suggested-visitor-types/block.json
+msgctxt "block keyword"
+msgid "visitor"
+msgstr ""
+
+#: build/blocks/suggested-visitor-types/block.json
+#: src/blocks/suggested-visitor-types/block.json
+msgctxt "block keyword"
+msgid "types"
+msgstr ""
+
+#: build/blocks/suggested-visitor-types/block.json
+#: src/blocks/suggested-visitor-types/block.json
+msgctxt "block keyword"
+msgid "guests"
+msgstr ""
+
+#: build/blocks/suggested-visitor-types/block.json
+#: src/blocks/suggested-visitor-types/block.json
+msgctxt "block keyword"
+msgid "suitable"
+msgstr ""
+
+#: build/blocks/tagline/block.json
+#: src/blocks/tagline/block.json
+msgctxt "block title"
+msgid "Tagline"
+msgstr ""
+
+#: build/blocks/tagline/block.json
+#: src/blocks/tagline/block.json
+msgctxt "block description"
+msgid "Displays the tagline or short description for the tour."
+msgstr ""
+
+#: build/blocks/tagline/block.json
+#: src/blocks/tagline/block.json
+msgctxt "block keyword"
+msgid "tagline"
+msgstr ""
+
+#: build/blocks/tagline/block.json
+#: src/blocks/tagline/block.json
+msgctxt "block keyword"
+msgid "slogan"
+msgstr ""
+
+#: build/blocks/tagline/block.json
+#: src/blocks/tagline/block.json
+msgctxt "block keyword"
+msgid "description"
+msgstr ""
+
+#: build/blocks/tagline/block.json
+#: src/blocks/tagline/block.json
+msgctxt "block keyword"
+msgid "headline"
+msgstr ""
+
+#: build/blocks/tagline/block.json
+#: src/blocks/tagline/block.json
+msgctxt "block keyword"
+msgid "catchphrase"
+msgstr ""
+
+#: build/blocks/tour-related-accommodation/block.json
+#: build/blocks/tour-related-destination/block.json
+#: src/blocks/tour-related-accommodation/block.json
+#: src/blocks/tour-related-destination/block.json
+msgctxt "block title"
+msgid "Related Tours"
+msgstr ""
+
+#: build/blocks/tour-related-accommodation/block.json
+#: src/blocks/tour-related-accommodation/block.json
+msgctxt "block description"
+msgid "Displays tours related to this accommodation."
+msgstr ""
+
+#: build/blocks/tour-related-destination/block.json
+#: src/blocks/tour-related-destination/block.json
+msgctxt "block description"
+msgid "Displays tours related to this destination."
+msgstr ""
+
+#: build/blocks/tour-related-tour/block.json
+#: src/blocks/tour-related-tour/block.json
+msgctxt "block title"
+msgid "Related Tours - Tour"
+msgstr ""
+
+#: build/blocks/tour-related-tour/block.json
+#: src/blocks/tour-related-tour/block.json
+msgctxt "block description"
+msgid "Displays similar tours."
+msgstr ""
+
+#: build/blocks/transport/block.json
+#: src/blocks/transport/block.json
+msgctxt "block title"
+msgid "Transport"
+msgstr ""
+
+#: build/blocks/transport/block.json
+#: src/blocks/transport/block.json
+msgctxt "block description"
+msgid "Display transport options and getting around information for destinations."
+msgstr ""
+
+#: build/blocks/transport/block.json
+#: src/blocks/transport/block.json
+msgctxt "block keyword"
+msgid "transport"
+msgstr ""
+
+#: build/blocks/transport/block.json
+#: src/blocks/transport/block.json
+msgctxt "block keyword"
+msgid "transportation"
+msgstr ""
+
+#: build/blocks/travel-styles/block.json
+#: src/blocks/travel-styles/block.json
+msgctxt "block title"
+msgid "Travel styles"
+msgstr ""
+
+#: build/blocks/travel-styles/block.json
+#: src/blocks/travel-styles/block.json
+msgctxt "block description"
+msgid "Displays the travel styles associated with the tour."
+msgstr ""
+
+#: build/blocks/travel-styles/block.json
+#: src/blocks/travel-styles/block.json
+msgctxt "block keyword"
+msgid "styles"
+msgstr ""
+
+#: build/blocks/travel-styles/block.json
+#: src/blocks/travel-styles/block.json
+msgctxt "block keyword"
+msgid "category"
+msgstr ""
+
+#: build/blocks/videos/block.json
+#: src/blocks/videos/block.json
+msgctxt "block title"
+msgid "Videos"
+msgstr ""
+
+#: build/blocks/visa/block.json
+#: src/blocks/visa/block.json
+msgctxt "block title"
+msgid "Visa"
+msgstr ""
+
+#: build/blocks/visa/block.json
+#: src/blocks/visa/block.json
+msgctxt "block description"
+msgid "Display visa requirements for destinations with expandable content and styling."
+msgstr ""
+
+#: build/blocks/visa/block.json
+#: src/blocks/visa/block.json
+msgctxt "block keyword"
+msgid "visa"
+msgstr ""
+
+#: build/blocks/visa/block.json
+#: src/blocks/visa/block.json
+msgctxt "block keyword"
+msgid "documentation"
+msgstr ""
+
+#: build/blocks/visa/block.json
+#: src/blocks/visa/block.json
+msgctxt "block keyword"
+msgid "entry"
+msgstr ""
+
+#: build/blocks/wetu-map/block.json
+#: src/blocks/wetu-map/block.json
+msgctxt "block title"
+msgid "WETU Map"
+msgstr ""
+
+#: build/blocks/wetu-map/block.json
+#: src/blocks/wetu-map/block.json
+msgctxt "block description"
+msgid "Displays WETU integration maps for tour locations."
+msgstr ""
+
+#: build/blocks/wetu-map/block.json
+#: src/blocks/wetu-map/block.json
+msgctxt "block keyword"
+msgid "wetu"
 msgstr ""

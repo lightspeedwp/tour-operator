@@ -24,7 +24,7 @@
 .prettierrc.cjs
 .stylelintrc.json
 .stylelint.config.cjs
-.webpack.config.cjs
+webpack.config.js
 .playwright.config.cjs
 .jest.config.cjs
 .babel.config.cjs

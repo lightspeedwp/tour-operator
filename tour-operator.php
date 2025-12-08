@@ -39,8 +39,36 @@ $CONTENT_MODEL_JSON_PATH[] = LSX_TO_PATH;
 define('LSX_TO_POSTEXPIRATOR_DATEFORMAT', esc_html__('l F jS, Y', 'tour-operator'));
 define('LSX_TO_POSTEXPIRATOR_TIMEFORMAT', esc_html__('g:ia', 'tour-operator'));
 
-// Include bootstrapper and start plugin.
-require_once LSX_TO_PATH . 'tour-operator-bootstrap.php';
+// Define asset debug mode based on SCRIPT_DEBUG constant.
+if (! defined('DEBUG_SCRIPTS')) {
+	define('LSX_TO_ASSET_DEBUG', '.min');
+} else {
+	define('LSX_TO_ASSET_DEBUG', '');
+}
+
+// Vendor dependencies.
+require_once LSX_TO_PATH . 'vendor/cmb2/init.php';
+require_once LSX_TO_PATH . 'vendor/cmb2-field-map/cmb-field-map.php';
+require_once LSX_TO_PATH . 'vendor/cmb-field-select2/cmb-field-select2.php';
+
+// Template Tags.
+require_once LSX_TO_PATH . 'includes/template-tags/general.php';
+require_once LSX_TO_PATH . 'includes/template-tags/helpers.php';
+require_once LSX_TO_PATH . 'includes/template-tags/maps.php';
+
+// Include context helper & autoloader.
+require_once LSX_TO_PATH . 'includes/tour-operator.php';
+// Include functions.
+require_once LSX_TO_PATH . 'includes/functions.php';
+
+// Register tour operator autoloader.
+spl_autoload_register('tour_operator_autoload_class', true, false);
+
+// Init legacy.
+\lsx\legacy\Tour_Operator::get_instance();
+
+// Init Plugin.
+tour_operator();
 
 /**
  * Include sticky menu block functionality. This doesn't work via the block.json registration method

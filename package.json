@@ -18,6 +18,10 @@
   "bugs": {
     "url": "https://github.com/lightspeedwp/tour-operator/issues"
   },
+  "engines": {
+    "node": ">=24.11.0",
+    "npm": ">=10.0.0"
+  },
   "main": "package-lock.json",
   "dependencies": {
     "@wordpress/blocks": "15.9.0",
@@ -40,8 +44,9 @@
     "eslint": "9.39.1",
     "jest": "30.2.0",
     "npm-package-json-lint": "9.0.0",
-    "prettier": "3.7.3",
+    "prettier": "3.7.4",
     "stylelint": "16.26.1",
+    "webpack-cli": "6.0.1",
     "webpack-remove-empty-scripts": "^1.1.1"
   },
   "scripts": {
@@ -55,9 +60,9 @@
     "test:e2e:debug": "playwright test --debug",
     "start": "wp-scripts start",
     "build": "wp-scripts build",
-    "build-pot": "wp i18n make-pot . languages/tour-operator.pot",
-    "build-mopo": "rm -R languages/tour-operator-en_EN.mo && cp languages/tour-operator.pot languages/tour-operator-en_EN.po && wp i18n make-mo languages",
-    "translate-US": "cp languages/tour-operator-en_EN.po languages/tour-operator-en_US.po && cp languages/tour-operator-en_EN.mo languages/tour-operator-en_US.mo",
+    "build:pot": "wp i18n make-pot . languages/tour-operator.pot",
+    "build:mopo": "rm -R languages/tour-operator-en_EN.mo && cp languages/tour-operator.pot languages/tour-operator-en_EN.po && wp i18n make-mo languages",
+    "build:translate-US": "cp languages/tour-operator-en_EN.po languages/tour-operator-en_US.po && cp languages/tour-operator-en_EN.mo languages/tour-operator-en_US.mo",
     "lint:js": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "lint:js:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
     "lint:css": "stylelint 'src/**/*.{css,scss}'",
