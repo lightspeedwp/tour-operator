@@ -109,10 +109,10 @@
                 const displayPrefix = prefix + ( needsSpace ? ' ' : '' );
 
                 // Create CSS for the pseudo-element
-                const uniqueId = 'prefix-' + Math.random().toString(36).substr(2, 9);
+                const uniqueId = 'prefix-' + props.clientId;
                 const css = `
                     p.${uniqueId}::before {
-                        content: "${displayPrefix.replace(/"/g, '\\"')} ";
+                        content: "${displayPrefix.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\A ')} ";
                         font-weight: ${prefixBold ? 'bold' : 'normal'};
                     }
                 `;
