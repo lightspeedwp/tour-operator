@@ -124,13 +124,13 @@
                     const targetDoc = editorCanvas ? editorCanvas.contentDocument : document;
 
                     if ( targetDoc ) {
-                        const existingStyle = targetDoc.getElementById( uniqueId );
+                        let existingStyle = targetDoc.getElementById( uniqueId );
                         if ( ! existingStyle ) {
-                            const styleEl = targetDoc.createElement( 'style' );
+                            styleEl = targetDoc.createElement( 'style' );
                             styleEl.id = uniqueId;
-                            styleEl.textContent = css;
                             targetDoc.head.appendChild( styleEl );
                         }
+                        styleEl.textContent = css;
                     }
                 }
 
