@@ -1,5 +1,6 @@
 # Dependencies
 node_modules/
+# Exclude vendor directory (Composer dependencies) - custom plugins are in /plugins/
 vendor/
 
 # Build artifacts and compiled files (but keep build/ for WordPress plugin distribution)
@@ -75,21 +76,22 @@ playwright-report/*
 vendor/bin/.phpunit.result.cache
 
 #Unit Test and Composer
-vendor/10up
-vendor/10up/phpcs-composer
-vendor/automattic
-vendor/bin
-vendor/composer
-vendor/dealerdirect
-vendor/myclabs
-vendor/nikic
-vendor/phar-io
-vendor/phpcompatibility
-vendor/phpcsstandards
-vendor/phpunit
-vendor/sebastian
-vendor/sirbrillig
-vendor/squizlabs
-vendor/theseer
-vendor/wp-coding-standards
-vendor/autoload.php
+# Note: vendor/ is fully excluded above, these entries are kept for reference
+# vendor/10up
+# vendor/10up/phpcs-composer
+# vendor/automattic
+# vendor/bin
+# vendor/composer
+# vendor/dealerdirect
+# vendor/myclabs
+# vendor/nikic
+# vendor/phar-io
+# vendor/phpcompatibility
+# vendor/phpcsstandards
+# vendor/phpunit
+# vendor/sebastian
+# vendor/sirbrillig
+# vendor/squizlabs
+# vendor/theseer
+# vendor/wp-coding-standards
+# vendor/autoload.php
