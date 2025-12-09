@@ -1,33 +1,548 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+# Tour Operator WordPress Plugin - CodeRabbit Configuration
+# Last updated: 2025-11-26
+
 language: "en-ZA"
-early_access: false
-commands:
-  enabled: true
-linked_issues:
-  enabled: true
+early_access: true
+enable_free_tier: true
+
+# =============================================================================
+# GENERAL SETTINGS
+# =============================================================================
+tone_instructions: |
+  You are reviewing a WordPress multi-block plugin for tour operators.
+  Be helpful but thorough. Focus on WordPress coding standards (WPCS),
+  accessibility (WCAG 2.2 AA), security, and block development best practices.
+  Use British English (en-ZA) for all communications.
+
+# =============================================================================
+# REVIEWS CONFIGURATION
+# =============================================================================
 reviews:
   profile: "chill"
   request_changes_workflow: true
   high_level_summary: true
-  poem: false
+  high_level_summary_placeholder: "@coderabbitai summary"
+  high_level_summary_in_walkthrough: false
+  auto_title_placeholder: "@coderabbitai"
   review_status: true
+  commit_status: true
+  fail_commit_status: false
   collapse_walkthrough: false
+  changed_files_summary: true
+  sequence_diagrams: true
+  estimate_code_review_effort: true
+  assess_linked_issues: true
+  related_issues: true
+  related_prs: true
+  suggested_labels: true
+  auto_apply_labels: false
+  suggested_reviewers: true
+  auto_assign_reviewers: false
+  poem: false
+  in_progress_fortune: false
+  abort_on_close: true
+  disable_cache: false
+
+  # ---------------------------------------------------------------------------
+  # AUTO REVIEW SETTINGS
+  # ---------------------------------------------------------------------------
   auto_review:
     enabled: true
     drafts: false
     base_branches:
-      - '.*'
+      - "develop"
+      - "2.1-trunk"
+      - "main"
+      - "master"
+    ignore_title_keywords:
+      - "WIP"
+      - "DO NOT MERGE"
+      - "DRAFT"
+
+  # ---------------------------------------------------------------------------
+  # FINISHING TOUCHES
+  # ---------------------------------------------------------------------------
+  finishing_touches:
+    docstrings:
+      enabled: true
+    unit_tests:
+      enabled: true
+
+  # ---------------------------------------------------------------------------
+  # PRE-MERGE CHECKS
+  # ---------------------------------------------------------------------------
+  pre_merge_checks:
+    enabled: true
+
+  # ---------------------------------------------------------------------------
+  # LABELING INSTRUCTIONS
+  # ---------------------------------------------------------------------------
+  labeling_instructions:
+    - label: "type:bug"
+      instructions: "Apply when the PR fixes a bug or defect"
+    - label: "type:feature"
+      instructions: "Apply when the PR adds new functionality"
+    - label: "type:enhancement"
+      instructions: "Apply when the PR improves existing functionality"
+    - label: "type:documentation"
+      instructions: "Apply when the PR primarily updates documentation"
+    - label: "type:refactor"
+      instructions: "Apply when the PR restructures code without changing behavior"
+    - label: "scope:blocks"
+      instructions: "Apply when changes affect Gutenberg blocks in src/blocks/"
+    - label: "scope:templates"
+      instructions: "Apply when changes affect template files"
+    - label: "scope:api"
+      instructions: "Apply when changes affect REST API endpoints"
+    - label: "scope:booking"
+      instructions: "Apply when changes affect tour booking functionality"
+    - label: "needs:accessibility-review"
+      instructions: "Apply when changes affect UI components that need a11y verification"
+    - label: "needs:security-review"
+      instructions: "Apply when changes involve user input, database queries, or authentication"
+
+  # ---------------------------------------------------------------------------
+  # PATH FILTERS - Exclude from review
+  # ---------------------------------------------------------------------------
+  path_filters:
+    - "!build/**"
+    - "!assets/dist/**"
+    - "!node_modules/**"
+    - "!vendor/**"
+    - "!languages/*.mo"
+    - "!languages/*.pot"
+    - "!*.min.js"
+    - "!*.min.css"
+    - "!package-lock.json"
+    - "!composer.lock"
+    - "!*.map"
+
+  # ---------------------------------------------------------------------------
+  # PATH INSTRUCTIONS - Review guidelines by file type
+  # ---------------------------------------------------------------------------
   path_instructions:
-    - path: '**/*.{php,js,ts,jsx,tsx}'
+    # -------------------------------------------------------------------------
+    # JavaScript/TypeScript Files
+    # -------------------------------------------------------------------------
+    - path: "**/*.{js,ts,tsx,jsx}"
       instructions: |
-        - Follow WordPress coding standards.
-        - Escape output and sanitize input.
-        - Follow plugin security best practices.
-        - Enforce prefixing for all functions, classes, and constants to avoid naming collisions.
-        - Check for accessibility best practices in UI code (labels, ARIA attributes, color contrast).
-        - Ensure inline documentation/comments for all custom functions and classes.
-        - Ensure consistent formatting and schema validation.
-        - Keep documentation up to date and clear.
-        - On Pull Requests check for updates to the changelog file.
+        ## WordPress JavaScript Review Standards
+
+        ### Coding Standards
+        - Follow WordPress JavaScript coding standards and @wordpress/eslint-plugin rules
+        - Use @wordpress/scripts for build configuration
+        - Prefer ES6+ syntax with proper transpilation support
+
+        ### Documentation
+        - Every function must have JSDoc with @param, @return, @since tags
+        - Use meaningful variable names with camelCase convention
+        - Line comments should end with a period
+
+        ### WordPress Integration
+        - Use WordPress script dependencies correctly (wp.element, wp.components, etc.)
+        - Use wp.i18n for all user-facing strings (__(), _x(), _n())
+        - Properly enqueue scripts with wp_enqueue_script()
+        - Use WordPress data store patterns (@wordpress/data) where applicable
+
+        ### Block Development
+        - Use useBlockProps() for block wrapper attributes
+        - Implement InspectorControls for block settings
+        - Follow WordPress block patterns and components
+        - Ensure blocks are accessible (keyboard navigation, ARIA)
+
+        ### Security
+        - Never trust user input - sanitize and validate
+        - Use nonce verification for AJAX requests
+        - Escape all dynamic output
+
+        ### Tour Operator Specific
+        - Focus on tour booking interfaces and search functionality
+        - Ensure date pickers and pricing displays are accessible
+        - Handle tour availability and capacity properly
+
+    # -------------------------------------------------------------------------
+    # CSS/SCSS Files
+    # -------------------------------------------------------------------------
+    - path: "**/*.{css,scss}"
+      instructions: |
+        ## WordPress CSS Review Standards
+
+        ### Coding Standards
+        - Follow WordPress CSS coding standards
+        - Use BEM methodology for class naming
+        - Use tour-operator- prefix for all classes
+
+        ### Modern CSS
+        - Use CSS custom properties for theming
+        - Prefer Flexbox and Grid for layouts
+        - Use rem/em for spacing (convert px >= 3 to rem)
+        - Avoid !important declarations
+
+        ### Responsive Design
+        - Mobile-first approach
+        - Use meaningful breakpoints
+        - Test all tour displays on various screen sizes
+
+        ### Accessibility (WCAG 2.2 AA)
+        - Minimum color contrast ratio 4.5:1
+        - Focus indicators for interactive elements
+        - Ensure touch targets are at least 44x44px
+
+        ### Theme Compatibility
+        - Use theme.json compatible values where possible
+        - Support RTL languages
+        - Don't override WordPress admin styles unnecessarily
+
+    # -------------------------------------------------------------------------
+    # PHP Files (General)
+    # -------------------------------------------------------------------------
+    - path: "**/*.php"
+      instructions: |
+        ## WordPress PHP Review Standards
+
+        ### Coding Standards (WPCS)
+        - Follow WordPress PHP Coding Standards strictly
+        - Use snake_case for functions and variables
+        - Use PascalCase for class names with Tour_Operator_ prefix
+        - Add comprehensive DocBlocks with @param, @return, @since tags
+
+        ### Security (CRITICAL)
+        - Sanitize ALL input: sanitize_text_field(), absint(), etc.
+        - Escape ALL output: esc_html(), esc_attr(), esc_url(), wp_kses_post()
+        - Validate nonces for form submissions
+        - Check user capabilities before performing actions
+        - Use prepared statements for database queries
+
+        ### WordPress Best Practices
+        - Use WordPress functions over native PHP (wp_remote_get vs curl)
+        - Hook into appropriate actions and filters
+        - Use transients for caching expensive operations
+        - Support internationalization (i18n)
+
+        ### Performance
+        - Avoid queries inside loops
+        - Use lazy loading for heavy operations
+        - Cache database queries where appropriate
+
+        ### Tour Operator Specific
+        - Validate tour dates, pricing, and availability
+        - Handle booking workflows securely
+        - Support multi-site and WPML integration
+
+    # -------------------------------------------------------------------------
+    # PHP Classes
+    # -------------------------------------------------------------------------
+    - path: "includes/classes/*.php"
+      instructions: |
+        ## WordPress Class Review Standards
+
+        Additional to general PHP standards:
+        - Use proper namespace or Tour_Operator_ prefix
+        - Implement singleton pattern correctly (if used)
+        - Prefer dependency injection over global state
+        - Follow SOLID principles
+        - Add type declarations where PHP version allows
+        - Handle errors gracefully with try/catch
+        - Log errors using error_log() for debugging
+
+    # -------------------------------------------------------------------------
+    # Block PHP Files
+    # -------------------------------------------------------------------------
+    - path: "includes/blocks/*.php"
+      instructions: |
+        ## WordPress Block PHP Standards
+
+        ### Block Registration
+        - Use register_block_type() with block.json
+        - Implement render_callback for dynamic blocks
+        - Use get_block_wrapper_attributes() for wrapper
+
+        ### Block Output
+        - All output must be properly escaped
+        - Use wp_kses_post() for rich content
+        - Ensure valid HTML structure
+
+        ### Accessibility
+        - Add appropriate ARIA attributes
+        - Ensure keyboard navigation works
+        - Test with screen readers
+
+    # -------------------------------------------------------------------------
+    # Block JavaScript
+    # -------------------------------------------------------------------------
+    - path: "src/blocks/**/*.{js,jsx,ts,tsx}"
+      instructions: |
+        ## WordPress Block Editor Standards
+
+        ### Block Structure
+        - Follow @wordpress/create-block patterns
+        - Separate edit.js and save.js properly
+        - Use block.json for metadata
+
+        ### WordPress Components
+        - Use @wordpress/components library
+        - Use @wordpress/block-editor hooks (useBlockProps, etc.)
+        - Use @wordpress/data for state management
+
+        ### InnerBlocks
+        - Define allowed blocks appropriately
+        - Use template and templateLock when needed
+
+        ### Accessibility
+        - All interactive elements must be keyboard accessible
+        - Use proper ARIA labels and roles
+        - Test focus management
+
+    # -------------------------------------------------------------------------
+    # Block Templates
+    # -------------------------------------------------------------------------
+    - path: "templates/*.html"
+      instructions: |
+        ## WordPress Block Theme Template Standards
+
+        ### Template Structure
+        - Follow WordPress template hierarchy
+        - Use proper template parts (wp:template-part)
+        - Include required blocks (post-title, post-content, etc.)
+
+        ### Semantic HTML
+        - Use semantic HTML5 elements (article, section, nav, etc.)
+        - Ensure proper heading hierarchy
+        - Add schema.org markup for tour content
+
+        ### Accessibility
+        - Include skip links where appropriate
+        - Ensure landmark regions are defined
+        - Test template with screen readers
+
+    # -------------------------------------------------------------------------
+    # Block Patterns
+    # -------------------------------------------------------------------------
+    - path: "includes/patterns/*.php"
+      instructions: |
+        ## WordPress Block Pattern Standards
+
+        ### Pattern Registration
+        - Use register_block_pattern() correctly
+        - Set appropriate categories
+        - Include meaningful title and description
+
+        ### Pattern Content
+        - Use proper block markup
+        - Include placeholder content
+        - Ensure responsive design
+        - Test in block editor inserter
+
+    # -------------------------------------------------------------------------
+    # Taxonomies
+    # -------------------------------------------------------------------------
+    - path: "includes/taxonomies/*.php"
+      instructions: |
+        ## WordPress Taxonomy Standards
+
+        - Use register_taxonomy() correctly
+        - Set proper capabilities
+        - Include REST API support (show_in_rest)
+        - Add custom fields where needed
+        - Follow naming conventions (singular/plural labels)
+
+    # -------------------------------------------------------------------------
+    # Custom Post Types (JSON)
+    # -------------------------------------------------------------------------
+    - path: "post-types/*.json"
+      instructions: |
+        ## WordPress CPT JSON Standards
+
+        - Validate against WordPress post type schema
+        - Include all required properties
+        - Set proper supports array
+        - Enable REST API (show_in_rest)
+        - Define proper capabilities
+        - Ensure consistent naming across post types
+
+    # -------------------------------------------------------------------------
+    # Test Files
+    # -------------------------------------------------------------------------
+    - path: "tests/**"
+      instructions: |
+        ## Testing Standards
+
+        ### PHPUnit Tests
+        - Extend WP_UnitTestCase for WordPress tests
+        - Use proper test fixtures and factories
+        - Test edge cases and error conditions
+        - Mock external dependencies
+
+        ### Playwright E2E Tests
+        - Follow Page Object pattern
+        - Test critical user flows (booking, search)
+        - Include accessibility assertions
+        - Test responsive breakpoints
+
+        ### Coverage
+        - Aim for high coverage on business logic
+        - Test security-critical paths thoroughly
+
+    # -------------------------------------------------------------------------
+    # Documentation
+    # -------------------------------------------------------------------------
+    - path: "**/*.md"
+      instructions: |
+        ## Documentation Standards
+
+        - Keep docs synchronized with code changes
+        - Use proper markdown formatting
+        - Include code examples where helpful
+        - Document API endpoints with request/response examples
+        - Include installation and configuration steps
+        - Note any breaking changes in changelog
+
+    # -------------------------------------------------------------------------
+    # GitHub Workflows
+    # -------------------------------------------------------------------------
+    - path: ".github/workflows/*.yml"
+      instructions: |
+        ## GitHub Actions Standards
+
+        - Use latest stable action versions
+        - Cache dependencies for faster runs
+        - Use secrets for sensitive data
+        - Add proper job dependencies
+        - Include status checks
+        - Use matrix for multi-version testing when needed
+
+    # -------------------------------------------------------------------------
+    # Configuration Files
+    # -------------------------------------------------------------------------
+    - path: "*.json"
+      instructions: |
+        ## JSON Configuration Standards
+
+        - Validate JSON syntax
+        - Include schema references where available
+        - Use consistent formatting (2 space indent)
+        - Document complex configurations
+
+  # ---------------------------------------------------------------------------
+  # TOOLS CONFIGURATION
+  # ---------------------------------------------------------------------------
+  tools:
+    # PHP Tools
+    phpcs:
+      enabled: true
+    phpstan:
+      enabled: false
+    phpmd:
+      enabled: false
+
+    # JavaScript Tools
+    eslint:
+      enabled: true
+
+    # Security Tools
+    gitleaks:
+      enabled: true
+    semgrep:
+      enabled: true
+
+    # Markdown
+    markdownlint:
+      enabled: true
+    languagetool:
+      enabled: true
+
+    # YAML
+    yamllint:
+      enabled: true
+    actionlint:
+      enabled: true
+
+    # Shell
+    shellcheck:
+      enabled: true
+
+    # AST-based rules
+    ast-grep:
+      essential_rules: true
+      rule_dirs: []
+      packages: []
+
+    # GitHub integration
+    github-checks:
+      enabled: true
+
+# =============================================================================
+# CHAT CONFIGURATION
+# =============================================================================
 chat:
   auto_reply: true
+  art: false
+
+# =============================================================================
+# KNOWLEDGE BASE
+# =============================================================================
+knowledge_base:
+  opt_out: false
+
+  # Web search for up-to-date WordPress info
+  web_search:
+    enabled: true
+
+  # Code guidelines - CodeRabbit will learn from these files
+  code_guidelines:
+    enabled: true
+
+  # Learn from PR feedback
+  learnings:
+    enabled: true
+    scope: "global"
+
+  # Link to GitHub issues
+  issues:
+    enabled: true
+
+  # Pull request history
+  pull_requests:
+    enabled: true
+
+# =============================================================================
+# CODE GENERATION
+# =============================================================================
+code_generation:
+  docstrings:
+    path_instructions:
+      - path: "**/*.php"
+        instructions: |
+          Generate WordPress-style DocBlocks with:
+          - @since {version} tag (use next version placeholder)
+          - @param tags with type and description
+          - @return tag with type and description
+          - @throws if applicable
+          - @access if not public
+      - path: "**/*.{js,ts,jsx,tsx}"
+        instructions: |
+          Generate JSDoc comments with:
+          - @since {version} tag
+          - @param tags with {type} and description
+          - @returns tag with {type} and description
+          - @example if usage is complex
+
+  unit_tests:
+    path_instructions:
+      - path: "includes/**/*.php"
+        instructions: |
+          Generate PHPUnit tests that:
+          - Extend WP_UnitTestCase
+          - Use WordPress test factories
+          - Test success and error cases
+          - Mock external dependencies
+          - Follow WordPress testing conventions
+      - path: "src/blocks/**/*.{js,jsx,ts,tsx}"
+        instructions: |
+          Generate Jest tests that:
+          - Use @wordpress/scripts test configuration
+          - Test block registration
+          - Test edit component rendering
+          - Test save output
+          - Use @testing-library/react patterns

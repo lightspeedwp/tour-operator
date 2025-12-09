@@ -1,0 +1,55 @@
+# This file configures the 'actions/labeler' GitHub Action.
+# It maps labels to file paths. When a pull request modifies a file
+# matching a path, the corresponding label is automatically applied.
+#
+# For more information, see: https://github.com/actions/labeler
+
+# Documentation
+lang:md:
+  - changed-files:
+    - any-glob-to-any-file: ['**/*.md', 'docs/**/*', 'docs/**/*.md']
+
+# Dependencies
+area:dependencies:
+  - changed-files:
+    - any-glob-to-any-file: ['composer.json', 'composer.lock', 'package.json', 'package-lock.json']
+
+# CI / Build configuration
+area:ci:
+  - changed-files:
+    - any-glob-to-any-file: ['webpack.config.js', 'package.json', '.github/workflows/*', 'tests/**/*', '**/*_test.php', '**/*Test.php', '.editorconfig', '.eslintrc.js', 'phpcs.xml', '.github/workflows/**']
+
+# JavaScript sources
+lang:javascript:
+  - changed-files:
+    - any-glob-to-any-file: ['src/js/**/*.js', 'assets/js/**/*.js', 'src/blocks/**/*.js', '**/*.{js,jsx,ts,tsx}']
+
+# CSS / SASS sources
+lang:css:
+  - changed-files:
+    - any-glob-to-any-file: ['src/css/**/*.scss', 'src/css/**/*.css', 'assets/css/**/*.css', 'src/blocks/**/*.scss', '**/*.{css,scss}']
+
+# PHP sources
+lang:php:
+  - changed-files:
+    - any-glob-to-any-file: ['**/*.php']
+
+# Block editor / patterns
+area:block-editor:
+  - changed-files:
+    - any-glob-to-any-file: ['src/blocks/**/*', '**/block.json', '**/src/blocks/**']
+
+area:theme:
+  - changed-files:
+    - any-glob-to-any-file: ['**/theme.json', '**/templates/**', '**/patterns/**', '**/parts/**']
+
+# Integration-specific changes
+area:integration:
+  - changed-files:
+    - any-glob-to-any-file: ['includes/integrations/**/*.php', 'integrations/**/*.php']
+
+# Head branch → status hints (works on PRs)
+"status:needs-review":
+  - head-branch: ['^feat/.*', '^fix/.*', '^docs?/.*', '^(chore|build)/.*']
+
+# (changed-files mappings folded into the original label mappings above)

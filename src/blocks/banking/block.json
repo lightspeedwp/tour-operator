@@ -1,0 +1,44 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "textdomain": "tour-operator",
+  "name": "lsx-tour-operator/banking",
+  "title": "Banking",
+  "category": "lsx-tour-operator",
+  "editorScript": "file:index.js",
+  "description": "Show banking, currency, and financial information.",
+  "icon": "bank",
+  "keywords": [
+    "banking",
+    "currency",
+    "finance"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Banking"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Banking",
+              "level": 3
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "South African Rand (ZAR). Credit cards widely accepted."
+            }
+          ]
+        ]
+      ]
+    ]
+  }
+}

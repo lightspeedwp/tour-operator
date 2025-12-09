@@ -1,0 +1,84 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "textdomain": "tour-operator",
+  "name": "lsx-tour-operator/price-include-exclude",
+  "title": "Price Include & Exclude",
+  "category": "lsx-tour-operator",
+  "editorScript": "file:index.js",
+  "description": "Display pricing inclusion and exclusion information for accommodations.",
+  "icon": "money-alt",
+  "keywords": [
+    "price",
+    "includes",
+    "excludes",
+    "pricing"
+  ],
+  "version": "2.1.0",
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "wide"
+    },
+    "className": {
+      "type": "string",
+      "default": "lsx-include-exclude-wrapper"
+    }
+  },
+  "example": {
+    "attributes": {
+      "align": "wide",
+      "className": "lsx-include-exclude-wrapper"
+    },
+    "innerBlocks": [
+      [
+        "core/columns",
+        {
+          "align": "wide"
+        },
+        [
+          [
+            "core/column",
+            {
+              "width": "50%"
+            },
+            [
+              [
+                "core/paragraph",
+                {
+                  "content": "<strong>Price Includes:</strong>"
+                }
+              ],
+              [
+                "core/paragraph",
+                {
+                  "content": "WiFi, breakfast, airport transfers, daily housekeeping"
+                }
+              ]
+            ]
+          ],
+          [
+            "core/column",
+            {
+              "width": "50%"
+            },
+            [
+              [
+                "core/paragraph",
+                {
+                  "content": "<strong>Price Excludes:</strong>"
+                }
+              ],
+              [
+                "core/paragraph",
+                {
+                  "content": "Meals not mentioned, tours, spa treatments, minibar"
+                }
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  }
+}

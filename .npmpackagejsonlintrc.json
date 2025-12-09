@@ -1,0 +1,25 @@
+{
+  "extends": "@wordpress/npm-package-json-lint-config",
+  "rules": {
+    "require-name": "error",
+    "require-version": "error",
+    "require-description": "error",
+    "require-keywords": "warning",
+    "require-homepage": "warning",
+    "require-bugs": "warning",
+    "require-license": "error",
+    "require-author": "warning",
+    "require-repository": "warning",
+    "valid-values-license": [
+      "error",
+      [
+        "GPL-2.0-or-later",
+        "GPL-3.0-or-later",
+        "MIT",
+        "ISC"
+      ]
+    ],
+    "prefer-alphabetical-dependencies": "warning",
+    "prefer-alphabetical-devDependencies": "warning"
+  }
+}

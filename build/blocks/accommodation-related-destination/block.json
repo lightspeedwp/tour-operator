@@ -1,0 +1,144 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "textdomain": "tour-operator",
+  "name": "lsx-tour-operator/accommodation-related-destination",
+  "title": "Related accommodation - destination",
+  "category": "lsx-tour-operator",
+  "editorScript": "file:index.js",
+  "description": "Displays accommodation related to a destination.",
+  "icon": "admin-multisite",
+  "keywords": [
+    "related",
+    "accommodation",
+    "similar"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Related accommodation - destination"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Related destinations",
+              "textAlign": "center"
+            }
+          ],
+          [
+            "core/group",
+            {
+              "style": {
+                "spacing": {
+                  "blockGap": "2rem"
+                }
+              },
+              "layout": {
+                "type": "grid",
+                "columnCount": 3
+              }
+            },
+            [
+              [
+                "core/group",
+                {
+                  "style": {
+                    "border": {
+                      "width": "1px",
+                      "style": "solid",
+                      "color": "#e0e0e0"
+                    },
+                    "spacing": {
+                      "padding": "1rem"
+                    }
+                  }
+                },
+                [
+                  [
+                    "core/heading",
+                    {
+                      "content": "Kruger National Park",
+                      "level": 3
+                    }
+                  ],
+                  [
+                    "core/paragraph",
+                    {
+                      "content": "Premier wildlife destination offering exceptional safari experiences and diverse ecosystems."
+                    }
+                  ]
+                ]
+              ],
+              [
+                "core/group",
+                {
+                  "style": {
+                    "border": {
+                      "width": "1px",
+                      "style": "solid",
+                      "color": "#e0e0e0"
+                    },
+                    "spacing": {
+                      "padding": "1rem"
+                    }
+                  }
+                },
+                [
+                  [
+                    "core/heading",
+                    {
+                      "content": "Garden Route",
+                      "level": 3
+                    }
+                  ],
+                  [
+                    "core/paragraph",
+                    {
+                      "content": "Scenic coastal route with stunning landscapes, charming towns, and outdoor adventures."
+                    }
+                  ]
+                ]
+              ],
+              [
+                "core/group",
+                {
+                  "style": {
+                    "border": {
+                      "width": "1px",
+                      "style": "solid",
+                      "color": "#e0e0e0"
+                    },
+                    "spacing": {
+                      "padding": "1rem"
+                    }
+                  }
+                },
+                [
+                  [
+                    "core/heading",
+                    {
+                      "content": "Drakensberg Mountains",
+                      "level": 3
+                    }
+                  ],
+                  [
+                    "core/paragraph",
+                    {
+                      "content": "Majestic mountain range perfect for hiking, culture, and breathtaking scenery."
+                    }
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  }
+}

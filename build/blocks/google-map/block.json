@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "lsx-tour-operator/google-map",
+  "title": "Google Map",
+  "category": "lsx-tour-operator",
+  "editorScript": "file:index.js",
+  "description": "Display a Google Map based on the current Tour Operator page.",
+  "keywords": [
+    "google",
+    "map",
+    "maps"
+  ],
+  "icon": "admin-site-alt3"
+}

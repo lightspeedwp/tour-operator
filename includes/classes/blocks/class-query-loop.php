@@ -33,6 +33,14 @@ class Query_Loop {
 	protected $parents_only = false;
 
 	/**
+	 * Stores processed query args keyed by the core/query block queryId so we don't
+	 * recalculate alterations multiple times for the same block on a single request.
+	 *
+	 * @var array
+	 */
+	protected $saved_queries = [];
+
+	/**
 	 * Initialize the plugin by setting localization, filters, and administration functions.
 	 *
 	 * @since 1.0.0
@@ -41,15 +49,15 @@ class Query_Loop {
 	 */
 	public function __construct() {
 		add_filter( 'render_block_data', array( $this, 'save_checkbox_queries' ), 300, 1 );
+		// Log pagination block parameters for debugging pagination issues.
 		add_filter( 'render_block', array( $this, 'maybe_hide_varitaion' ), 10, 3 );
-
 		add_filter( 'posts_pre_query', array( $this, 'posts_pre_query' ), 10, 2 );
 		add_filter( 'query_loop_block_query_vars', array( $this, 'query_args_filter' ), 1, 2 );
 	}
 
 	/**
 	 * A function to detect variation, and alter the query args.
-	 * 
+	 *
 	 * Following the https://developer.wordpress.org/news/2022/12/building-a-book-review-grid-with-a-query-loop-block-variation/
 	 *
 	 * @param string|null   $pre_render   The pre-rendered content. Default null.
@@ -58,21 +66,22 @@ class Query_Loop {
 	 */
 	public function maybe_hide_varitaion( $block_content, $parsed_block, $block_obj ) {
 		// Determine if this is the custom block variation.
-		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
+		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] ) ) {
 			return $block_content;
 		}
 		$allowed_blocks = array(
 			'core/group',
+			'core/paragraph',
 		);
 
 		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
-			return $block_content; 
+			return $block_content;
 		}
 		if ( ! isset( $parsed_block['attrs']['className'] ) || '' === $parsed_block['attrs']['className'] || false === $parsed_block['attrs']['className'] ) {
 			return $block_content;
 		}
 
-		$pattern = "/(lsx|facts)-(.*?)-wrapper/";
+		$pattern = '/(lsx|facts)-(.*?)-wrapper/';
 		preg_match( $pattern, $parsed_block['attrs']['className'], $matches );
 
 		if ( empty( $matches ) ) {
@@ -98,22 +107,18 @@ class Query_Loop {
 		 */
 
 		if ( 0 < stripos( $key, '-query' ) ) {
-			
+
 			$query_key      = str_replace( [ '-query' ], '', $key );
 			$current_parent = get_post_parent( get_the_ID() );
 
 			switch ( $query_key ) {
 				case 'regions':
-					// If the current item is not a country
-					if ( null !== $current_parent ) {
-						return '';
-					}
 
 					if ( false === lsx_to_item_has_children( get_the_ID(), 'destination' ) ) {
 						return '';
 					}
 
-				break;
+					break;
 
 				case 'related-regions':
 					// If the current item is a country, then there wont be any other child regions.
@@ -124,8 +129,8 @@ class Query_Loop {
 					if ( false === lsx_to_item_has_children( $current_parent, 'destination' ) ) {
 						return '';
 					}
-				
-				break;
+
+					break;
 
 				case 'country':
 					// If the current item is not a country
@@ -133,28 +138,28 @@ class Query_Loop {
 						return '';
 					}
 
-				break;
+					break;
 
 				default:
 					if ( isset( $this->disabled[ $query_key ] ) ) {
 						return '';
 					}
 
-				break;
+					break;
 			}
-		} else if ( taxonomy_exists( $key ) ) {
+		} elseif ( taxonomy_exists( $key ) ) {
 			// Check to see if this is a taxonomy or a custom field.
 			$tax_args = array(
-				'fields' => 'ids'
+				'fields' => 'ids',
 			);
 			if ( empty( wp_get_post_terms( get_the_ID(), $key, $tax_args ) ) ) {
 				$block_content = '';
 			}
-		} else if ( 'location' === $key ) {
+		} elseif ( 'location' === $key ) {
 			if ( ! lsx_to_has_map() ) {
 				$block_content = '';
 			}
-		} else if ( 'gallery' === $key ) {
+		} elseif ( 'gallery' === $key ) {
 			$value = get_post_meta( get_the_ID(), $key, true );
 			if ( ! is_array( $value ) ) {
 				$block_content = '';
@@ -171,9 +176,9 @@ class Query_Loop {
 
 			foreach ( $key_array as $meta_key ) {
 				$value = lsx_to_custom_field_query( $meta_key, '', '', false );
-				
+
 				// we need to see if the posts exist before we can use them
-				if ( stripos( $meta_key, '_to_' ) && 0 === $this->post_ids_exist( $value ) ) {
+				if ( 'best_time_to_visit' !== $meta_key && stripos( $meta_key, '_to_' ) && 0 === $this->post_ids_exist( $value ) ) {
 					continue;
 				}
 
@@ -181,7 +186,7 @@ class Query_Loop {
 					$has_values = true;
 				}
 			}
-			
+
 			if ( false === $has_values ) {
 				$block_content = '';
 			}
@@ -193,7 +198,7 @@ class Query_Loop {
 	/**
 	 * This function will grab our Featured query so we dont have to redo that.
 	 *
-	 * @param null $posts
+	 * @param null     $posts
 	 * @param WP_Query $query
 	 * @return null|array
 	 */
@@ -211,7 +216,7 @@ class Query_Loop {
 	 * @return array
 	 */
 	public function save_checkbox_queries( $parsed_block ) {
-		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] )  ) {
+		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] ) ) {
 			return $parsed_block;
 		}
 		$allowed_blocks = array(
@@ -219,7 +224,7 @@ class Query_Loop {
 		);
 
 		if ( ! in_array( $parsed_block['blockName'], $allowed_blocks, true ) ) {
-			return $parsed_block; 
+			return $parsed_block;
 		}
 
 		if ( ! isset( $parsed_block['attrs']['className'] ) || '' === $parsed_block['attrs']['className'] || false === $parsed_block['attrs']['className'] ) {
@@ -230,7 +235,7 @@ class Query_Loop {
 		if ( false !== stripos( $parsed_block['attrs']['className'], 'on-sale' ) ) {
 			$this->onsale = true;
 		}
-		
+
 		$this->parents_only = false;
 		if ( false !== stripos( $parsed_block['attrs']['className'], 'parents-only' ) ) {
 			$this->parents_only = true;
@@ -242,12 +247,20 @@ class Query_Loop {
 	/**
 	 * Filters the Query Block and alters the query for our variations.
 	 *
-	 * @param array $query
+	 * @param array  $query
 	 * @param object $block
 	 * @return array
 	 */
 	public function query_args_filter( $query, $block ) {
-		$block = $block->parsed_block;
+
+		// Grab the unique queryId assigned to each core/query block instance.
+		$query_id = isset( $block->context['queryId'] ) ? (int) $block->context['queryId'] : null;
+		$block    = $block->parsed_block;
+
+		// If we've already processed this query block during this request, just return the cached args.
+		if ( null !== $query_id && isset( $this->saved_queries[ $query_id ] ) ) {
+			return $this->saved_queries[ $query_id ];
+		}
 
 		// These are for all query blocks.
 		if ( true === $this->onsale ) {
@@ -255,25 +268,25 @@ class Query_Loop {
 				$query['meta_query']['relation'] = 'AND';
 			}
 			$query['meta_query'][] = array(
-				'key' => 'sale_price',
+				'key'     => 'sale_price',
 				'compare' => 'EXISTS',
 			);
 
 			// reset this to false for the next query.
 			$this->onsale = false;
 		}
-		
+
 		if ( true === $this->parents_only ) {
 			$query['post_parent'] = 0;
 		}
 
 		// Determine if this is the custom block variation.
-		if ( ! isset( $block['attrs']['className'] )  ) {
+		if ( ! isset( $block['attrs']['className'] ) ) {
 			return $query;
 		}
 
 		// Add our specific query args to the query for our variations.
-		$pattern = "/(lsx|facts)-(.*?)-query/";
+		$pattern = '/(lsx|facts)-(.*?)-query/';
 		preg_match( $pattern, $block['attrs']['className'], $matches );
 
 		if ( ! empty( $matches ) && isset( $matches[0] ) ) {
@@ -291,7 +304,7 @@ class Query_Loop {
 					// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
 					$query['post__not_in'] = [ get_the_ID() ];
 				}
-			break;
+				break;
 
 			case 'related-regions':
 				// We only restric this on the destination post type, in case the block is used on a landing page.
@@ -301,22 +314,20 @@ class Query_Loop {
 					// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
 					$query['post__not_in'] = [ get_the_ID() ];
 				}
-			break;
+				break;
 
 			case 'featured-accommodation':
 			case 'featured-tours':
 			case 'featured-destinations':
 				$query = $this->featured_query( $query, $key );
-			break;
-	
+				break;
+
 			// Accommodation relating to the tour via the destinations.
 			case 'accommodation-related-tour':
 			case 'tour-related-tour':
-
-			// Tour Query Loops
+				// Tour Query Loops
 			case 'tour-related-accommodation':
 			case 'accommodation-related-accommodation':
-
 				$to         = '';
 				$from       = '';
 				$directions = explode( '-related-', $key );
@@ -328,8 +339,8 @@ class Query_Loop {
 				if ( $to === $from ) {
 					// phpcs:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_post__not_in
 					$query['post__not_in'] = [ get_the_ID() ];
-				} 
-				
+				}
+
 				// Find the items stored in the relevant connection custom field.
 				$items = $this->related_connection_query( $items, $to, $from );
 
@@ -337,11 +348,9 @@ class Query_Loop {
 				$items = $this->related_destination_query( $items, $to, $from );
 
 				if ( ! empty( $items ) ) {
-					$items = array_unique( $items );
+					$items             = array_unique( $items );
 					$query['post__in'] = $items;
 				}
-
-				
 
 				$query = $this->related_taxonomy_query( $query, $key );
 
@@ -349,17 +358,17 @@ class Query_Loop {
 					$this->disabled[ $key ] = true;
 				}
 
-			break;
+				break;
 
 			// Destination Query Loops
-			case 'tour-related-destination':
-			case 'accommodation-related-destination':
+			// 'tour-related-destination':
+			// 'accommodation-related-destination':
 
 			// CPTs Reviews Query Loops
-			case 'review-related-tour':
-			case 'review-related-accommodation':
-			case 'review-related-destination':
-				
+			// 'review-related-tour':
+			// 'review-related-accommodation':
+			// 'review-related-destination':
+			default:
 				$to         = '';
 				$from       = '';
 				$directions = explode( '-related-', $key );
@@ -371,17 +380,28 @@ class Query_Loop {
 				$items = $this->related_connection_query( $items, $to, $from );
 
 				if ( ! empty( $items ) ) {
-					$items = array_unique( $items );
+					$items             = array_unique( $items );
 					$query['post__in'] = $items;
 				} else {
 					$this->disabled[ $key ] = true;
 					$query['post__in']      = [ get_the_ID() ];
 				}
 
-			break;
+				break;
+		}
 
-			default:
-			break;
+		// Allow 3rd Parties to alter the query order
+		if ( isset( $query['post__in'] ) && apply_filters( 'lsx_to_query_orderby_post__in', false, $query, $block ) ) {
+			$query['orderby'] = 'post__in';
+			$query['order'] = 'ASC';
+		}
+
+		// Allow 3rd Parties to alter the query args
+		$query = apply_filters( 'lsx_to_query_loop_query_args_' . $key, $query, $block );
+
+		// Store the processed query for this queryId (if available) and also keep legacy property.
+		if ( null !== $query_id ) {
+			$this->saved_queries[ $query_id ] = $query;
 		}
 
 		return $query;
@@ -389,7 +409,6 @@ class Query_Loop {
 
 	/**
 	 * Determines if a post exists based on the ID.
-	 *
 	 *
 	 * @global wpdb $wpdb WordPress database abstraction object.
 	 *
@@ -399,7 +418,7 @@ class Query_Loop {
 	 * @param string $type    Optional. Post type.
 	 * @param string $status  Optional. Post status.
 	 * @return int Post ID if post exists, 0 otherwise.
-	*/
+	 */
 	protected function post_ids_exist( $ids ) {
 		global $wpdb;
 
@@ -411,14 +430,14 @@ class Query_Loop {
 
 		$ids = wp_unslash( sanitize_post_field( 'id', $ids, 0, 'db' ) );
 		// phpcs:disable WordPress.DB -- Start ignoring
-		$query = "SELECT COUNT(ID)
+		$query  = "SELECT COUNT(ID)
 				  FROM $wpdb->posts
 				  WHERE 1=1
 				  AND ID IN (%s)
 				  AND post_status IN ('draft', 'publish')";
 		$result = (int) $wpdb->get_var( $wpdb->prepare( $query, $ids ) );
 		// phpcs:enable -- Stop ignoring
-		return  $result;
+		return $result;
 	}
 
 	/**
@@ -445,7 +464,7 @@ class Query_Loop {
 	/**
 	 * Adds in the Featured Query Parameters
 	 *
-	 * @param array $query
+	 * @param array  $query
 	 * @param string $key
 	 * @return array
 	 */
@@ -454,8 +473,8 @@ class Query_Loop {
 		$query['meta_query'] = array(
 			'relation' => 'OR',
 			array(
-				'key' => 'featured',
-				'value' => true,
+				'key'     => 'featured',
+				'value'   => true,
 				'compare' => '=',
 			),
 		);
@@ -477,7 +496,7 @@ class Query_Loop {
 	 * @return array
 	 */
 	public function find_featured_items( $query ) {
-		$items = [];
+		$items      = [];
 		$item_query = new \WP_Query( $query );
 		if ( $item_query->have_posts() ) {
 			$items = $item_query->posts;
@@ -488,7 +507,7 @@ class Query_Loop {
 	/**
 	 * Find the item in the relevant connection custom field.
 	 *
-	 * @param array $items
+	 * @param array  $items
 	 * @param string $to
 	 * @param string $from
 	 * @return array
@@ -518,7 +537,7 @@ class Query_Loop {
 	/**
 	 * Includes the items connected to the destinations.
 	 *
-	 * @param array $items
+	 * @param array  $items
 	 * @param string $to
 	 * @param string $from
 	 * @return array
@@ -545,7 +564,7 @@ class Query_Loop {
 						$found_items = [ $found_items ];
 					}
 					$found_items = $this->filter_existing_ids( $found_items );
-					$items = array_merge( $items, $found_items );
+					$items       = array_merge( $items, $found_items );
 				}
 			}
 		}
@@ -556,7 +575,7 @@ class Query_Loop {
 	/**
 	 * Adds in the Featured Query Parameters
 	 *
-	 * @param array $query
+	 * @param array  $query
 	 * @param string $key
 	 * @return array
 	 */
@@ -570,23 +589,23 @@ class Query_Loop {
 		$taxonomy  = 'travel-style';
 		$post_type = get_post_type( get_the_ID() );
 		if ( 'accommodation' === $post_type ) {
-			$taxonomy  = 'accommodation-type';
+			$taxonomy = 'accommodation-type';
 		}
-		
-		$group     = array();
-		$terms     = get_the_terms( get_the_ID(), $taxonomy );
+
+		$group = array();
+		$terms = get_the_terms( get_the_ID(), $taxonomy );
 
 		if ( is_array( $terms ) && ! empty( $terms ) ) {
-			foreach( $terms as $term ) {
+			foreach ( $terms as $term ) {
 				$group[] = $term->term_id;
 			}
 		}
-		$query['tax_query'] = array(
+		$query['tax_query']    = array(
 			array(
 				'taxonomy' => $taxonomy,
 				'field'    => 'term_id',
-				'terms'     => $group,
-			)
+				'terms'    => $group,
+			),
 		);
 		$query['post__not_in'] = array( get_the_ID() );
 

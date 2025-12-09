@@ -1,0 +1,693 @@
+/**
+ * Scripts
+ *
+ * @package
+ * @subpackage scripts
+ */
+
+const lsx_to = Object.create( null );
+
+if ( window.location.hash ) {
+    ( document.body || document.documentElement ).scrollIntoView();
+    setTimeout( function () {
+        ( document.body || document.documentElement ).scrollIntoView();
+    }, 1 );
+}
+
+( function ( $, window, document, undefined ) {
+    'use strict';
+
+    let $document = $( document ),
+        $window = $( window ),
+        window_height =
+            window.innerHeight ||
+            document.documentElement.clientHeight ||
+            document.body.clientHeight,
+        window_width =
+            window.innerWidth ||
+            document.documentElement.clientWidth ||
+            document.body.clientWidth;
+
+    /**
+     * Easing browser scroll on page load (document URL with hash).
+     *
+     * @package
+     * @subpackage scripts
+     */
+    lsx_to.set_easing_scroll_on_page_load = function () {
+        if ( window.location.hash ) {
+            let $to = $( window.location.hash ),
+                top = parseInt( $to.offset().top );
+
+            top -=
+                $( '#wpadminbar' ).length > 0
+                    ? $( '#wpadminbar' ).outerHeight( true )
+                    : 0;
+            top -=
+                $( '.top-menu-fixed #masthead' ).length > 0
+                    ? $( '.top-menu-fixed #masthead' ).outerHeight( true )
+                    : 0;
+            top -=
+                $( '.lsx-to-navigation' ).length > 0
+                    ? $( '.lsx-to-navigation' ).outerHeight( true )
+                    : 0;
+
+            $( 'html, body' ).animate( { scrollTop: top }, 800 );
+        }
+    };
+
+    /**
+     * Read more effect.
+     *
+     * @package
+     * @subpackage scripts
+     */
+    lsx_to.set_read_more = function () {
+        $( '.single-tour-operator .wp-block-read-more' ).each( function () {
+            if (
+                0 <
+                $( this )
+                    .parent( '.wp-block-group' )
+                    .find( '.wp-block-post-content' ).length
+            ) {
+                lsx_to.readMoreText = $( this )
+                    .contents()
+                    .filter( function () {
+                        return this.nodeType === Node.TEXT_NODE;
+                    } )
+                    .text();
+
+                lsx_to.readMoreSet(
+                    $( this ),
+                    $( this )
+                        .parent( '.wp-block-group' )
+                        .find( '.wp-block-post-content' )
+                );
+            }
+        } );
+
+        $( '.tax-travel-style .wp-block-read-more, .tax-accommodation-brand .wp-block-read-more, .tax-accommodation-type .wp-block-read-more' ).each( function () {
+            if (
+                0 <
+                $( this )
+                    .parents( '.wp-block-post-content.term-description' ).length
+            ) {
+				console.log(this);
+                lsx_to.readMoreText = $( this )
+                    .contents()
+                    .filter( function () {
+                        return this.nodeType === Node.TEXT_NODE;
+                    } )
+                    .text();
+
+				// Determine which number P tag the read more is in.
+				let pIndex = 0;
+				$( this ).parents( '.wp-block-post-content.term-description' ).find( 'p' ).each( function ( index ) {
+					if ( $( this ).find( '.wp-block-read-more' ).length ) {
+						pIndex = index;
+					}
+				} );
+				$( this ).parents( '.wp-block-post-content.term-description' ).attr( 'data-readmore-index', pIndex );
+
+				// Now lets move the read more with its parent <p> to the end of the .wp-block-post-content.term-description block.
+				// First lets copy the read more block, append that to the end, then remove the original.
+				// This ensures the read more is always at the end of the description.
+				// This is important if the read more is in the middle of the description.
+				$( this ).parents( '.wp-block-post-content.term-description' ).append( $( this ).parents( 'p' ).clone() );
+				$( this ).parents( 'p' ).remove();
+
+				// Now we need to link the newly cloned item to $(this) so the read more works correctly.
+				// We can do this by re-selecting the last read more in the description block.
+				let newMore = $( '.wp-block-post-content.term-description' ).find( '.wp-block-read-more' ).last();
+
+                lsx_to.readMoreSet(
+                    newMore,
+                    newMore.parents( '.wp-block-post-content.term-description' ),
+					pIndex
+                );
+            }
+        } );
+
+        $( '.single-tour-operator .wp-block-read-more' ).on(
+            'click',
+            function ( event ) {
+                event.preventDefault();
+
+                if (
+                    0 <
+                    $( this )
+                        .parent( '.wp-block-group' )
+                        .find( '.wp-block-post-content' ).length
+                ) {
+                    $( this ).hide();
+
+                    if ( $( this ).hasClass( 'less-link' ) ) {
+                        lsx_to.readMoreSet(
+                            $( this ),
+                            $( this )
+                                .parent( '.wp-block-group' )
+                                .find( '.wp-block-post-content' )
+                        );
+                    } else {
+                        lsx_to.readMoreOpen(
+                            $( this ),
+                            $( this )
+                                .parent( '.wp-block-group' )
+                                .find( '.wp-block-post-content' )
+                        );
+                    }
+
+                    $( this ).show();
+                }
+            }
+        );
+
+        $( '.tax-travel-style .wp-block-read-more, .tax-accommodation-brand .wp-block-read-more, .tax-accommodation-type .wp-block-read-more' ).on(
+            'click',
+            function ( event ) {
+                event.preventDefault();
+
+                if (
+                    0 <
+                    $( this )
+                        .parents( '.wp-block-post-content.term-description' ).length
+                ) {
+                    $( this ).hide();
+
+					let pIndex = $( this ).parents( '.wp-block-post-content.term-description' ).data( 'readmore-index' );
+                    if ( $( this ).hasClass( 'less-link' ) ) {
+                        lsx_to.readMoreSet(
+                            $( this ),
+                            $( this )
+                                .parents( '.wp-block-post-content.term-description' ),
+							pIndex
+                        );
+                    } else {
+                        lsx_to.readMoreOpen(
+                            $( this ),
+                            $( this )
+                                .parents( '.wp-block-post-content.term-description' ),
+                        );
+                    }
+
+					$( this ).show();
+					$( this ).parent('p').show();
+                }
+            }
+        );
+    };
+
+    lsx_to.readMoreSet = function ( button, contentWrapper, limit = 1 ) {
+        if ( 0 < contentWrapper.length ) {
+            if ( 1 < contentWrapper.children().length ) {
+                let counter = 0;
+
+                contentWrapper.children().each( function () {
+                    if ( limit <= counter ) {
+                        $( this ).hide();
+                    }
+                    counter++;
+                } );
+				button.parent('p').show();
+            } else {
+                button.hide();
+            }
+            button.removeClass( 'less-link' );
+            button.text( lsx_to.readMoreText );
+        } else {
+            button.hide();
+        }
+    };
+
+    lsx_to.readMoreOpen = function ( button, contentWrapper ) {
+        if ( 0 < contentWrapper.children().length ) {
+            contentWrapper.children().each( function () {
+                if ( ! $( this ).hasClass( 'wp-block-read-more' ) ) {
+                    $( this ).show();
+                }
+            } );
+            button.addClass( 'less-link' );
+            button.text( 'Read Less' );
+            button.show();
+        }
+    };
+
+    /**
+     * Read more (itinerary) effect.
+     *
+     * @package
+     * @subpackage scripts
+     */
+
+    lsx_to.readMoreItinText = '';
+
+    lsx_to.set_read_more_itinerary = function () {
+        $(
+            '.single-tour-operator .lsx-itinerary-wrapper .wp-block-read-more'
+        ).each( function () {
+            $( this ).show();
+            lsx_to.readMoreItinText = $( this ).find( 'a' ).text();
+            lsx_to.readMoreSet(
+                $( this ),
+                $( this ).parent( 'div' ).find( '.itinerary-description' )
+            );
+        } );
+
+        $(
+            '.single-tour-operator .lsx-itinerary-wrapper .wp-block-read-more'
+        ).on( 'click', function ( event ) {
+            event.preventDefault();
+            $( this ).hide();
+
+            if ( $( this ).hasClass( 'less-link' ) ) {
+                lsx_to.readMoreSet(
+                    $( this ),
+                    $( this ).parent( 'div' ).find( '.itinerary-description' )
+                );
+            } else {
+                lsx_to.readMoreOpen(
+                    $( this ),
+                    $( this ).parent( 'div' ).find( '.itinerary-description' )
+                );
+            }
+
+            $( this ).show();
+        } );
+    };
+
+    /**
+     * Slider - Pre build.
+     *
+     * @param      $slider
+     * @package
+     * @subpackage scripts
+     */
+    lsx_to.pre_build_slider = function ( $slider ) {
+        $slider.removeClass( 'is-layout-grid' );
+
+        $slider.on( 'init', function ( event, slick ) {
+            if (
+                slick.options.arrows &&
+                slick.slideCount > slick.options.slidesToShow
+            ) {
+                $slider.addClass( 'slick-has-arrows' );
+            }
+        } );
+
+        $slider.on( 'setPosition', function ( event, slick ) {
+            if ( ! slick.options.arrows ) {
+                $slider.removeClass( 'slick-has-arrows' );
+            } else if ( slick.slideCount > slick.options.slidesToShow ) {
+                $slider.addClass( 'slick-has-arrows' );
+            }
+        } );
+    };
+
+    /**
+     * Get responsive breakpoints for sliders
+     *
+     * @param      slidesToShow
+     * @package
+     * @subpackage scripts
+     */
+    lsx_to.get_responsive_breakpoints = function ( slidesToShow ) {
+        return [
+            {
+                breakpoint: 1228,
+                settings: {
+                    slidesToShow,
+                    slidesToScroll: 1,
+                    draggable: true,
+                    arrows: false,
+                    swipe: true,
+                    dots: true,
+                },
+            },
+            {
+                breakpoint: 1028,
+                settings: {
+                    slidesToShow: slidesToShow <= 2 ? 1 : 2,
+                    slidesToScroll: 1,
+                    draggable: true,
+                    arrows: false,
+                    swipe: true,
+                    dots: true,
+                },
+            },
+            {
+                breakpoint: 782,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    draggable: true,
+                    arrows: false,
+                    swipe: true,
+                    dots: true,
+                },
+            },
+        ];
+    };
+
+    /**
+     * Slider.
+     *
+     * @param      window_width
+     * @package
+     * @subpackage scripts
+     */
+    lsx_to.build_slider = function ( window_width ) {
+        // First slider: .lsx-to-slider
+        $(
+            '.lsx-to-slider:not(.lsx-block-videos) .wp-block-post-template:not(.slider-disabled)'
+        ).each( function () {
+            const $this = $( this );
+            let slidesToShow = 3;
+
+            lsx_to.pre_build_slider( $this );
+
+            const str = $this.attr( 'class' );
+            const classRegex = /columns-\S*/g;
+            const matches = str.match( classRegex );
+            if ( 0 < matches.length ) {
+                const column = matches[ 0 ].split( '-' )[ 1 ];
+                slidesToShow = column;
+            }
+
+            if ( 1 < $this.children().length ) {
+                $this.slick( {
+                    draggable: false,
+                    infinite: true,
+                    swipe: false,
+                    dots: true,
+                    slidesToShow, // Show 3 items at a time
+                    slidesToScroll: 1, // Scroll 1 item at a time
+                    autoplay: false,
+                    autoplaySpeed: 0,
+                    appendArrows: $this.parent(), // Ensure arrows are appended correctly
+                    appendDots: $this.parent(), // Append dots in the right container
+                    responsive:
+                        lsx_to.get_responsive_breakpoints( slidesToShow ),
+                } );
+            }
+        } );
+
+        // Second slider: .lsx-to-slider.travel-information
+        $(
+            '.lsx-travel-information-wrapper.lsx-to-slider .travel-information:not(.slider-disabled)'
+        ).each( function () {
+            const $this = $( this );
+
+            lsx_to.pre_build_slider( $this );
+
+            // Ensure the second slider has 4 slides showing
+            if ( 1 < $this.children().length ) {
+                $this.slick( {
+                    draggable: false,
+                    infinite: true,
+                    swipe: false,
+                    dots: true,
+                    slidesToShow: 4, // Show 4 items at a time
+                    slidesToScroll: 1, // Scroll 1 item at a time
+                    autoplay: false,
+                    autoplaySpeed: 0,
+                    appendArrows: $this.parent(), // Ensure arrows are appended correctly for this slider
+                    appendDots: $this.parent(), // Append dots in the correct place
+                    responsive: [
+                        {
+                            breakpoint: 1028,
+                            settings: {
+                                slidesToShow: 3,
+                                slidesToScroll: 1,
+                                draggable: true,
+                                arrows: true,
+                                swipe: true,
+                                dots: true,
+                            },
+                        },
+                        {
+                            breakpoint: 782,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1,
+                                draggable: true,
+                                arrows: true,
+                                swipe: true,
+                                dots: true,
+                            },
+                        },
+                    ],
+                } );
+
+                $this.on( 'init', function ( event, slick ) {
+                    if ( typeof toModalBootstrap === 'function' ) {
+                        toModalBootstrap();
+                    }
+                } );
+            }
+        } );
+
+        lsx_to.build_video_slider();
+    };
+
+    /**
+     * Video Slider.
+     *
+     * @package
+     * @subpackage scripts
+     */
+    lsx_to.build_video_slider = function () {
+        // Video Slider
+        $(
+            '.lsx-block-videos.lsx-to-slider:not(.slider-disabled):not(.slick-initialized)'
+        ).each( function () {
+            const $this = $( this );
+            let slidesToShow = 3;
+
+            lsx_to.pre_build_slider( $this );
+
+            const str = $this.attr( 'class' ) || '';
+            const classRegex = /\bcolumns-(\d+)\b/;
+            const m = str.match( classRegex );
+            if ( m && m[ 1 ] ) {
+                slidesToShow = Number.parseInt( m[ 1 ], 10 ) || slidesToShow;
+            }
+
+            $this.removeClass(
+                'is-layout-flex wp-block-gallery-is-layout-flex is-layout-grid'
+            );
+            // Remove any left/right padding explicitly set (inline or inherited) to allow full-width slider alignment.
+            $this.css( { 'padding-left': 0, 'padding-right': 0 } );
+
+            if ( 1 < $this.children().length ) {
+                $this.slick( {
+                    draggable: false,
+                    infinite: true,
+                    swipe: false,
+                    dots: true,
+                    slidesToShow, // Show 3 items at a time
+                    slidesToScroll: 1, // Scroll 1 item at a time
+                    autoplay: false,
+                    autoplaySpeed: 0,
+                    //appendArrows: $this.parent(), // Ensure arrows are appended correctly
+                    //appendDots: $this.parent(), // Append dots in the right container
+                    responsive: lsx_to.get_responsive_breakpoints(
+                        slidesToShow,
+                        $this.children().length
+                    ),
+                } );
+            }
+        } );
+    };
+
+    /**
+     * Watch for YouTube videos to load and initialize video slider
+     *
+     * @package
+     * @subpackage scripts
+     */
+    lsx_to.watch_for_youtube_videos = function () {
+        // Only observe video containers to reduce performance impact
+        const videoContainers =
+            document.querySelectorAll( '.lsx-block-videos' );
+
+        if ( videoContainers.length === 0 ) {
+            return; // No video containers found, exit early
+        }
+
+        // Create a MutationObserver to watch for YouTube iframes
+        const observer = new MutationObserver( function ( mutations ) {
+            let shouldInitSlider = false;
+            const isYouTube = ( el ) => {
+                if ( ! el ) {
+                    return false;
+                }
+                const src = el.src || '';
+                return /youtube\.com|youtube-nocookie\.com|youtu\.be/i.test(
+                    src
+                );
+            };
+            let debounceTimer = null;
+
+            mutations.forEach( function ( mutation ) {
+                if ( mutation.type === 'childList' ) {
+                    mutation.addedNodes.forEach( function ( node ) {
+                        if ( node.nodeType === 1 ) {
+                            // Element node
+                            // Check if the added node is a YouTube iframe or contains one
+                            if (
+                                node.tagName === 'IFRAME' &&
+                                isYouTube( node )
+                            ) {
+                                shouldInitSlider = true;
+                            } else if (
+                                node.querySelector &&
+                                node.querySelector(
+                                    'iframe[src*="youtube.com"],iframe[src*="youtube-nocookie.com"],iframe[src*="youtu.be"]'
+                                )
+                            ) {
+                                shouldInitSlider = true;
+                            }
+                        }
+                    } );
+                }
+            } );
+
+            if ( shouldInitSlider ) {
+                // Small, debounced delay to ensure videos are fully loaded and avoid re-init storms
+                clearTimeout( debounceTimer );
+                debounceTimer = setTimeout( function () {
+                    lsx_to.build_video_slider();
+                }, 200 );
+            }
+        } );
+
+        // Observe only video containers instead of entire document
+        videoContainers.forEach( function ( container ) {
+            observer.observe( container, {
+                childList: true,
+                subtree: true,
+            } );
+        } );
+    };
+
+    /**
+     * Slider Lightbox.
+     *
+     * @package
+     * @subpackage scripts
+     */
+    lsx_to.build_slider_lightbox = function () {
+        if ( 0 < $( '.wp-block-gallery.has-nested-images' ).length ) {
+            $( '.wp-block-gallery.has-nested-images' ).slickLightbox( {
+                caption( element, info ) {
+                    return $( element ).find( 'img' ).attr( 'alt' );
+                },
+            } );
+        }
+
+        if ( 0 < $( '.lsx-units-wrapper .unit-image a' ).length ) {
+            const roomImages = $( '.lsx-units-wrapper .unit-image a img' )
+                .map( function () {
+                    return $( this ).attr( 'src' );
+                } )
+                .get();
+            console.log( roomImages );
+
+            $( '.lsx-units-wrapper' ).slickLightbox( {
+                //images : roomImages,
+                itemSelector: '.unit-image a',
+                caption( element, info ) {
+                    return $( element ).find( 'img' ).attr( 'alt' );
+                },
+            } );
+        }
+    };
+
+    /**
+     * On window resize.
+     *
+     * @package
+     * @subpackage scripts
+     */
+    $window.resize( function () {
+        window_height =
+            window.innerHeight ||
+            document.documentElement.clientHeight ||
+            document.body.clientHeight;
+        window_width =
+            window.innerWidth ||
+            document.documentElement.clientWidth ||
+            document.body.clientWidth;
+    } );
+
+    /**
+     * On document ready.
+     *
+     * @package
+     * @subpackage scripts
+     */
+    $document.ready( function () {
+        lsx_to.readMoreText = 'Read more';
+        lsx_to.set_read_more();
+        lsx_to.set_read_more_itinerary();
+        lsx_to.build_slider( window_width );
+        lsx_to.watch_for_youtube_videos(); // Start watching for YouTube videos
+    } );
+
+    /**
+     * On window load.
+     *
+     * @package
+     * @subpackage scripts
+     */
+
+    $window.on( 'load', function () {
+        lsx_to.build_slider_lightbox();
+    } );
+
+    /*document.addEventListener("DOMContentLoaded", function () {
+    // Select all sections within `.single-tour-operator`
+    const sections = document.querySelectorAll(
+      ".single-tour-operator section.wp-block-group, .single-tour-operator section.wp-block-cover"
+    );
+
+    sections.forEach((section) => {
+      // Locate the first <h2> within the section
+      const heading = section.querySelector("h2");
+      // Locate the second div with the class wp-block-group
+      const toggleTarget = section.querySelectorAll(".wp-block-group")[1];
+
+      if (heading && toggleTarget) {
+        // Create a toggle button
+        const toggleButton = document.createElement("button");
+        toggleButton.classList.add("toggle-button");
+        toggleButton.innerHTML = `
+					<svg class="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+						<path class="icon-down" d="M1 5l7 7 7-7H1z"></path>
+						<path class="icon-up" d="M1 11l7-7 7 7H1z" style="display: none;"></path>
+					</svg>
+				`;
+
+        // Insert the button after the heading
+        heading.insertAdjacentElement("afterend", toggleButton);
+
+        // Add click event listener to toggle visibility of the second wp-block-group
+        toggleButton.addEventListener("click", function () {
+          toggleTarget.classList.toggle("collapsed"); // Add or remove the collapsed class
+
+          // Toggle the display of the up/down icons
+          const iconDown = toggleButton.querySelector(".icon-down");
+          const iconUp = toggleButton.querySelector(".icon-up");
+
+          if (toggleTarget.classList.contains("collapsed")) {
+            iconDown.style.display = "none";
+            iconUp.style.display = "inline";
+          } else {
+            iconDown.style.display = "inline";
+            iconUp.style.display = "none";
+          }
+        });
+      }
+    });
+  });*/
+} )( jQuery, window, document );

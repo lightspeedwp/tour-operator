@@ -1,0 +1,64 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "textdomain": "tour-operator",
+  "name": "lsx-tour-operator/travel-styles",
+  "title": "Travel styles",
+  "category": "lsx-tour-operator",
+  "editorScript": "file:index.js",
+  "description": "Displays the travel styles associated with the tour.",
+  "icon": "category",
+  "keywords": [
+    "travel",
+    "styles",
+    "category",
+    "classification",
+    "tour",
+    "type"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Travel Styles"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {
+          "layout": {
+            "type": "flex",
+            "flexWrap": "nowrap",
+            "verticalAlignment": "middle"
+          }
+        },
+        [
+          [
+            "lsx-tour-operator/icons",
+            {
+              "iconType": "solid",
+              "iconName": "travelStyleIcon"
+            }
+          ]
+        ]
+      ],
+      [
+        "core/group",
+        {
+          "layout": {
+            "type": "flex",
+            "flexWrap": "nowrap"
+          }
+        },
+        [
+          [
+            "core/paragraph",
+            {
+              "content": "<strong>Travel Styles:</strong> Adventure, Cultural, Wildlife"
+            }
+          ]
+        ]
+      ]
+    ]
+  }
+}

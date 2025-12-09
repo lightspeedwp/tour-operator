@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "lsx-tour-operator/more-link",
+  "title": "More Link",
+  "category": "lsx-tour-operator",
+  "editorScript": "file:index.js",
+  "example": {
+    "attributes": {
+      "className": "lsx-to-more-link more-link"
+    },
+    "innerBlocks": [
+      {
+        "name": "core/button",
+        "attributes": {
+          "className": "lsx-to-more-link more-link",
+          "text": "View More"
+        }
+      }
+    ]
+  }
+}

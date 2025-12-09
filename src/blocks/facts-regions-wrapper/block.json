@@ -1,0 +1,45 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "lsx-tour-operator/facts-regions-wrapper",
+  "title": "Regions list",
+  "description": "Display child regions for country-level destinations with post connection bindings.",
+  "keywords": [
+    "regions",
+    "children",
+    "connection",
+    "destination",
+    "facts",
+    "list"
+  ],
+  "icon": "admin-site-alt",
+  "category": "lsx-tour-operator",
+  "version": "1.0.0",
+  "textdomain": "tour-operator",
+  "supports": {
+    "renaming": false,
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    }
+  },
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Regions list"
+      },
+      "className": "facts-regions-query-wrapper"
+    }
+  },
+  "editorScript": "file:index.js"
+}

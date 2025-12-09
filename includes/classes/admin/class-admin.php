@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Tour Operator - Admin Main Class
  *
@@ -6,7 +7,7 @@
  * @author    LightSpeed
  * @license   GPL-2.0+
  * @link
- * @copyright 2017 LightSpeedDevelopment
+ * @copyright 2017 lightspeedwp
  */
 
 namespace lsx\admin;
@@ -18,18 +19,22 @@ namespace lsx\admin;
  */
 class Admin {
 
+
 	/**
 	 * Tour Operator Admin constructor.
 	 */
 	public function __construct() {
 		add_filter( 'type_url_form_media', array( $this, 'change_attachment_field_button' ), 20, 1 );
 		add_filter( 'plugin_action_links_' . plugin_basename( LSX_TO_CORE ), array( $this, 'add_action_links' ) );
-		add_filter( 'content_model_post_type_args', [ $this, 'disable_archives_singles' ], 10, 2 );
+		add_filter( 'content_model_post_type_args', array( $this, 'disable_archives_singles' ), 10, 2 );
 	}
 
 	/**
 	 * Change the "Insert into Post" button text when media modal is used for
 	 * feature images
+	 *
+	 * @param string $html The HTML content.
+	 * @return string
 	 */
 	public function change_attachment_field_button( $html ) {
 		// @phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -42,6 +47,9 @@ class Admin {
 
 	/**
 	 * Adds in the "settings" link for the plugins.php page
+	 *
+	 * @param array $links The existing plugin action links.
+	 * @return array
 	 */
 	public function add_action_links( $links ) {
 		$mylinks = array(
@@ -54,13 +62,15 @@ class Admin {
 	}
 
 	/**
-	 * Undocumented function
+	 * Disable archives and singles based on settings.
 	 *
-	 * @return void
+	 * @param array  $post_type_args The post type arguments.
+	 * @param string $slug The post type slug.
+	 * @return array
 	 */
 	public function disable_archives_singles( $post_type_args, $slug ) {
-
-		$options = get_option( 'lsx_to_settings', [] );
+		$options = get_option( 'lsx_to_settings', array() );
+		
 		if ( isset( $options[ $slug . '_disable_archives' ] ) && 0 !== $options[ $slug . '_disable_archives' ] ) {
 			$post_type_args['has_archive'] = false;
 		}

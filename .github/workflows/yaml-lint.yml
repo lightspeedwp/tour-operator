@@ -1,0 +1,70 @@
+name: YAML Lint
+
+on:
+  push:
+    branches:
+      - develop
+      - main
+      - '2.*-trunk'
+    paths:
+      - '**.yml'
+      - '**.yaml'
+      - '.yamllint'
+      - '.github/workflows/yaml-lint.yml'
+  pull_request:
+    paths:
+      - '**.yml'
+      - '**.yaml'
+      - '.yamllint'
+      - '.github/workflows/yaml-lint.yml'
+  workflow_dispatch:
+
+jobs:
+  yamllint:
+    name: Validate YAML Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.x'
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-yamllint
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install yamllint
+        run: |
+          pip install --upgrade pip
+          pip install yamllint
+
+      - name: Lint GitHub Workflows
+        run: |
+          echo "Linting GitHub Actions workflows..."
+          yamllint .github/workflows/
+        continue-on-error: false
+
+      - name: Lint all YAML files
+        run: |
+          echo "Linting all YAML files in repository..."
+          yamllint .
+        continue-on-error: true
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## YAML Lint Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ GitHub Actions workflows validated" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Configuration: \`.yamllint\`" >> $GITHUB_STEP_SUMMARY

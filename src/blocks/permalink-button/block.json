@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "lsx-tour-operator/permalink-button",
+  "title": "Permalink Button",
+  "category": "lsx-tour-operator",
+  "editorScript": "file:index.js",
+  "example": {
+    "attributes": {
+      "className": "lsx-to-link permalink"
+    },
+    "innerBlocks": [
+      {
+        "name": "core/button",
+        "attributes": {
+          "className": "lsx-to-link permalink",
+          "text": "View More",
+          "url": "#permalink"
+        }
+      }
+    ]
+  }
+}

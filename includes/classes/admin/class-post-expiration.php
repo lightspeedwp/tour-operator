@@ -36,7 +36,7 @@ class Post_Expiration {
 
 		$expire_post = get_post_meta( $post_id, 'expire_post', true );
 		$action_id   = get_post_meta( $post_id, 'to_expiration_id', true );
-		
+
 		// Nothing to do
 		if ( 'on' !== $expire_post && false === $action_id ) {
 			return;
@@ -60,10 +60,10 @@ class Post_Expiration {
 
 				$action_id = null;
 			}
-			
+
 			return;
 		}
-		
+
 		// Schedule the action and save the meta.
 		$expire_date = get_post_meta( $post_id, 'booking_validity_end', true );
 		if ( false === $expire_date ) {
@@ -83,7 +83,7 @@ class Post_Expiration {
 	}
 
 	public function expire_tour( $post_id ) {
-		$args = [
+		$args    = [
 			'ID'          => $post_id,
 			'post_status' => 'draft',
 		];

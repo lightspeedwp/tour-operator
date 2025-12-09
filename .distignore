@@ -1,27 +1,86 @@
+# Development directories
 /.wordpress-org
 /.git
 /.github
+/.vscode
+/.idea
+/tests
+/test-results
+/playwright-report
+/coverage
+/bin
+/node_modules
+/vendor
+/src
+
+# Development files
 .distignore
 .gitattributes
-.editorconfig
-.git
 .gitignore
-.DS_Store
-Thumbs.db
-bin
+.editorconfig
+.eslintrc
+.eslintrc.js
+.eslintrc.json
+.prettierrc.cjs
+.stylelintrc.json
+.stylelint.config.cjs
+webpack.config.js
+.playwright.config.cjs
+.jest.config.cjs
+.babel.config.cjs
 composer.json
 composer.lock
 package.json
+package-lock.json
+
+# Testing and CI files
 phpunit.xml
 phpunit.xml.dist
 multisite.xml
 multisite.xml.dist
-phpcs.ruleset.xml
-README.md
+phpcs.xml
+phpcs.xml.dist
+behat.yml
+.gitlab-ci.yml
+.travis.yml
+circle.yml
 wp-cli.local.yml
-tests
-.github
-node_modules
+
+# Documentation
+README.md
+*.md
+CHANGELOG
+AGENTS.md
+
+# OS and IDE files
+.DS_Store
+Thumbs.db
+.coderabbit.yaml
+
+# Build artifacts
+*.map
+*.log
+
+# Archives
 *.sql
 *.tar.gz
 *.zip
+
+# Security-related files (never distribute private keys/certs)
+*.ppk
+*.pem
+*.key
+*.cer
+*.crt
+*.p12
+id_rsa
+id_dsa
+id_ecdsa
+id_ed25519
+
+# Backup and swap files
+*.bak
+*.orig
+*.old
+*~
+*.backup

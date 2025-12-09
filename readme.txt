@@ -1,7 +1,7 @@
 === Tour Operator ===
 Contributors: lightspeedwp, wetudev
-Donate link: https://lightspeedwp.agency/donate/
-Tags: lsx, tour operator, travel, tourism, itinerary
+Plugin URI: https://touroperator.solutions/tour-operator-wordpress-plugin/
+Tags: tour operator, travel, itinerary, tours, destinations, accommodations, tourism
 Requires at least: 6.7
 Tested up to: 6.8
 Requires PHP: 8.0
@@ -9,71 +9,62 @@ Stable tag: 2.1.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-The Tour Operator is plugin specially designed & developed for the tourism and travel industry. Build to showcase your tours and accommodation.
+Tour Operator is a block-based plugin for WordPress that helps travel agencies and tour operators showcase tours, destinations, and accommodations using custom post types, structured templates, and optional Wetu content integration.
 
 == Description ==
 
-Tour Operator is a comprehensive tour management and booking plugin designed for travel companies, tour operators, and agencies of all sizes. With robust features like customizable seasonal pricing, integrated booking calendars, and flexible availability management, you can effortlessly create, manage, and promote tours directly on your WordPress site.
+The Tour Operator plugin provides all the tools needed to create compelling tour listings and travel content, designed specifically for tourism and destination marketing websites.
 
-**Key Features:**
-* **Modular Booking Engine:** Easily handle complex date ranges, multiple seasonal prices, and overlapping availability.
-* **Admin-Friendly UI:** Intuitive controls for adding and managing tours, plus streamlined booking management to reduce admin overhead.
-* **Performance Optimized:** Enjoy faster load times, reduced server strain, and enhanced scalability for large catalogs.
-* **Seamless Compatibility:** Works well with popular themes, WooCommerce payment gateways, and multilingual setups.
-* **Customization & Extendibility:** Extend the plugin with hooks and filters, integrate with third-party builders, and tailor the experience to your brand.
+Key Features:
+* Custom post types for Tours, Destinations, and Accommodation.
+* Day-by-day itinerary blocks, Fast Facts, galleries, and maps.
+* Fully compatible with block themes and Full Site Editing.
+* Optional Wetu integration for importing structured travel data.
+* JSON-based field registration for clean customization.
+* Developer-friendly with hooks, filters, and template overrides.
 
-**Perfect For:**
-* Tour operators and travel agencies looking for a powerful yet simple solution.
-* Business owners wanting to scale their tourism offerings without complex code.
-* Developers seeking a flexible, well-structured plugin to customize for clients.
+Official site: https://touroperator.solutions/
 
 == Installation ==
 
-1. Upload the `tour-operator` directory to the `/wp-content/plugins/` directory, or install via the Plugins screen directly.
-2. Activate the plugin through the ‘Plugins’ screen in WordPress.
-3. Configure your tours, seasonal pricing, and bookings under the "Tours" menu in your WordPress dashboard.
-4. (Optional) Integrate with WooCommerce or other payment gateways for secure checkout.
+1. Upload the plugin to the `/wp-content/plugins/` directory.
+2. Activate the plugin through the 'Plugins' screen in WordPress.
+3. Navigate to 'Tours', 'Destinations', or 'Accommodation' to start adding content.
+4. (Optional) Install the Wetu Importer plugin to sync content from Wetu.
 
 == Frequently Asked Questions ==
 
-= Can I manage seasonal pricing and availability easily? =  
-Yes. Tour Operator supports dynamic seasonal pricing and multiple availability ranges, making it easy to set special rates for holidays, peak seasons, and off-peak periods.
+= Can I import content from Wetu? =
+Yes. Install our Wetu Content Importer to connect your Wetu account and pull tours, accommodations, and destinations into WordPress.
 
-= Does it integrate with WooCommerce? =  
-Absolutely. You can use WooCommerce payment gateways and cart flows for secure and familiar checkout experiences.
+= Is this compatible with block themes? =
+Yes, the plugin is built for use with WordPress' block editor and works seamlessly with modern block themes.
 
-= Is it compatible with my WordPress theme or builder? =  
-Tour Operator is designed to work with most well-coded themes and page builders. For advanced customization, you can override templates or use hooks and filters.
-
-= Can I translate the plugin into other languages? =  
-Yes, the plugin is translation-ready. You can use standard translation tools to localize all front-end and back-end strings.
+= Where can I find documentation? =
+Visit https://touroperator.solutions/docs/
 
 == Screenshots ==
 
-1. **Destinations Landing:** A sleek, modern landing page showcasing curated travel destinations.
-2. **Accommodation Page:** A clean, grid-style layout presenting featured accommodations with thumbnail images, pricing, and booking options.
-3. **Tours Page:** A visually engaging catalog of tour packages with filter options, descriptive thumbnails, and pricing details.
-4. **Featured Tours:** Display your selected featured tours through the query loop block.
-5. **Destinations Page:** A dynamic listing of global destinations, combining eye-catching imagery with brief travel summaries and navigation links.
-6. **Featured Destinations:** Display your selected featured countries or regions, or both.
-7. **Top Rated Tours:** Highlight a list of your top tours, rated by your customers.
-8. **Destinations by country:** Display the top level destinations on your site.
-9. **Gallery:** Display beautifully curated images of your tour, accommodation or destination.
-10.**Travel Styles:** Showcase your tours grouped by the type of tour.
+1. Editor view of itinerary blocks
+2. Tour archive template using query loop
+3. Example of Wetu content sync
 
 == Changelog ==
 
-= 2.0.0 =
-* Major overhaul of the booking logic and data structures for improved reliability and maintainability.
-* Introduced advanced seasonal pricing rules to handle overlapping date ranges and complex availability scenarios.
-* Enhanced admin UI with clearer navigation and updated field layouts for easier tour and booking management.
-* Improved compatibility with popular WordPress themes, WooCommerce gateways, and multilingual setups.
-* Performance optimizations including faster load times and more efficient database queries for large tour catalogs.
-* Updated email templating system to support custom placeholders and improved formatting.
-* Added more translation strings and refined `.pot` file for better internationalization support.
-* Overall code refactoring to ensure cleaner, more maintainable, and future-proof architecture.
+= 2.1.0 =
+* Improved Wetu sync UI and logic
+* Enhanced block editor and template compatibility
+* Verified WordPress 6.8 and PHP 8.0+ support
+* Bug fixes and performance updates
 
 == Upgrade Notice ==
 
-= 2.0.0 =  
-This is a major release that overhauls the booking engine and introduces new features. Back up your site before upgrading. After the update, review and re-save settings to ensure seasonal pricing and availability are correctly applied.
+= 2.1.0 =
+Please review block templates and Wetu import settings after upgrade. Ensure you're using PHP 8.0+.
+
+== Related Extensions ==
+
+- Special Offers: https://wordpress.org/plugins/tour-operator-special-offers/
+- Reviews: https://wordpress.org/plugins/tour-operator-reviews/
+- Team: https://wordpress.org/plugins/tour-operator-team/
+- Wetu Importer: https://wordpress.org/plugins/lsx-importer-for-wetu/

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "textdomain": "tour-operator",
+  "name": "lsx-tour-operator/climate",
+  "title": "Climate",
+  "category": "lsx-tour-operator",
+  "editorScript": "file:index.js",
+  "description": "Display climate and weather information for destinations.",
+  "icon": "cloud",
+  "keywords": [
+    "climate",
+    "weather",
+    "temperature"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Climate"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Climate",
+              "level": 3
+            }
+          ],
+          [
+            "core/paragraph",
+            {
+              "content": "Tropical climate with warm temperatures year-round. Rainy season from November to March."
+            }
+          ]
+        ]
+      ]
+    ]
+  }
+}

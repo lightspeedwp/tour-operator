@@ -1,0 +1,34 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "textdomain": "tour-operator",
+  "name": "lsx-tour-operator/tagline",
+  "title": "Tagline",
+  "category": "lsx-tour-operator",
+  "editorScript": "file:index.js",
+  "description": "Displays the tagline or short description for the tour.",
+  "icon": "text-page",
+  "keywords": [
+    "tagline",
+    "slogan",
+    "description",
+    "headline",
+    "catchphrase",
+    "tour"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Tagline"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/paragraph",
+        {
+          "content": "Discover the breathtaking beauty of Africa's premier safari destination"
+        }
+      ]
+    ]
+  }
+}

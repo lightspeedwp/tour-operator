@@ -1,0 +1,37 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "textdomain": "tour-operator",
+  "name": "lsx-tour-operator/destination-to-tour",
+  "title": "Destination to Tour",
+  "category": "lsx-tour-operator",
+  "editorScript": "file:index.js",
+  "description": "Displays the destinations associated with this tour.",
+  "icon": "admin-site",
+  "keywords": [
+    "destination",
+    "tour",
+    "connection"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Destination to Tour"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/paragraph",
+            {
+              "content": "<strong>Destinations:</strong> Cape Town, Johannesburg"
+            }
+          ]
+        ]
+      ]
+    ]
+  }
+}

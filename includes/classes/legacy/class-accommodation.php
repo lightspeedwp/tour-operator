@@ -60,7 +60,7 @@ class Accommodation {
 	 * @access private
 	 */
 	private function __construct() {
-		$this->is_wetu_active          = false;
+		$this->is_wetu_active = false;
 
 		$this->options = get_option( 'lsx_to_settings', false );
 
@@ -77,7 +77,7 @@ class Accommodation {
 
 		add_filter( 'lsx_to_custom_field_query', array( $this, 'rating' ), 5, 10 );
 
-		include( 'class-unit-query.php' );
+		include 'class-unit-query.php';
 	}
 
 	/**
@@ -102,7 +102,7 @@ class Accommodation {
 	public function price_filter( $html = '', $meta_key = false, $value = false, $before = '', $after = '' ) {
 		$currency_fields = [
 			'price',
-			'single_supplement'
+			'single_supplement',
 		];
 
 		if ( get_post_type() === 'accommodation' && in_array( $meta_key, $currency_fields ) ) {
@@ -117,7 +117,7 @@ class Accommodation {
 
 			if ( is_object( $tour_operator ) && isset( $tour_operator->options['currency'] ) && ! empty( $tour_operator->options['currency'] ) ) {
 				$letter_code = $tour_operator->options['currency'];
-				$currency = '<span class="currency-icon ' . mb_strtolower( $letter_code ) . '"></span>';
+				$currency    = '<span class="currency-icon ' . mb_strtolower( $letter_code ) . '"></span>';
 			}
 
 			$value = apply_filters( 'lsx_to_accommodation_price', $value, $price_type, $currency );
@@ -126,7 +126,7 @@ class Accommodation {
 			if ( 'price' === $meta_key ) {
 				$sale_price = get_post_meta( get_the_ID(), 'sale_price', true );
 				if ( false !== $sale_price && ! empty( $sale_price ) && 0 !== intval( $sale_price ) ) {
-					$value = number_format( intval( $sale_price ) , 2 );
+					$value = number_format( intval( $sale_price ), 2 );
 				}
 			}
 
@@ -138,7 +138,7 @@ class Accommodation {
 					break;
 
 				case 'total_percentage':
-					$value  .= '% ' . esc_html__( 'Off', 'tour-operator' );
+					$value .= '% ' . esc_html__( 'Off', 'tour-operator' );
 					$before = str_replace( esc_html__( 'From price', 'tour-operator' ), '', $before );
 					break;
 
@@ -149,7 +149,7 @@ class Accommodation {
 			}
 
 			// Get the currency settings
-			if ( is_object( $tour_operator ) &&  ( isset( $tour_operator->options['country_code_disabled'] ) && 0 === intval( $tour_operator->options['country_code_disabled'] ) || ! isset( $tour_operator->options['country_code_disabled'] ) ) ) {
+			if ( is_object( $tour_operator ) && ( isset( $tour_operator->options['country_code_disabled'] ) && 0 === intval( $tour_operator->options['country_code_disabled'] ) || ! isset( $tour_operator->options['country_code_disabled'] ) ) ) {
 				$value = $letter_code . $value;
 			}
 
@@ -177,11 +177,11 @@ class Accommodation {
 					} else {
 						$ratings_array[] = LSX_TO_URL . 'assets/img/rating-star-empty.png';
 					}
-					$ratings_array[] = '" alt="" style="width:20px;vertical-align:sub;">';
+					$ratings_array[] = '" alt="" style="width:20px;vertical-align:unset;">';
 					$ratings_array[] = '</figure>';
 
-					$counter --;
-					$value --;
+					--$counter;
+					--$value;
 				}
 				$html = $before . implode( '', $ratings_array ) . $after;
 			}
