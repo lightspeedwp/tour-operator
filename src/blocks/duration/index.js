@@ -20,6 +20,7 @@ wp.domReady(() => {
             title: __('Duration', 'tour-operator'),
             icon: 'clock',
             category: 'lsx-tour-operator',
+            description: __('Displays the duration of the tour in days.', 'tour-operator'),
             keywords: [
                 __('duration', 'tour-operator'),
                 __('time', 'tour-operator'),

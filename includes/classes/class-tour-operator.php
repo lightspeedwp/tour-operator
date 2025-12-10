@@ -13,6 +13,7 @@ use lsx\blocks\Bindings;
 use lsx\blocks\Patterns;
 use lsx\blocks\Query_Loop;
 use lsx\blocks\Registration;
+use lsx\blocks\Template_Parts;
 use lsx\blocks\Templates;
 use lsx\integrations\facetwp\Post_Connections;
 
@@ -203,6 +204,7 @@ class Tour_Operator
 		$this->classes['registration']    = new Registration();
 		$this->classes['patterns']        = new Patterns();
 		$this->classes['templates']       = new Templates();
+		$this->classes['template_parts']  = new Template_Parts();
 		$this->classes['query_loop']      = new Query_Loop();
 		$this->classes['post_expiration'] = new Post_Expiration();
 		$this->classes['modals']          = new Modals();

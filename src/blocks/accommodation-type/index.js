@@ -69,7 +69,7 @@ wp.domReady(() => {
 							"core/post-terms",
 							{
 								term: "accommodation-type",
-								prefix: wp.escapeHtml( '<strong>' + __('Accommodation Type: ', 'tour-operator') + '</strong>' )
+								prefix: '<strong>' + __('Accommodation Type: ', 'tour-operator') + '</strong>'
 							},
 						],
 					],

@@ -8,6 +8,23 @@
 
 - **Pattern Registration Infrastructure** - Established directory structure and registration system for tour operator patterns with proper categorization and template support - PR[#803](https://github.com/lightspeedwp/tour-operator/pull/803), Issue [#795](https://github.com/lightspeedwp/tour-operator/issues/795)
 
+#### Patterns
+
+- **Section Header Pattern** - Added reusable section header pattern (`lsx-tour-operator/section-header`) with centered heading text flanked by horizontal separators for consistent section dividers across templates. Includes pattern overrides binding for easy customization - [#809](https://github.com/lightspeedwp/tour-operator/pull/809), Issue [#796](https://github.com/lightspeedwp/tour-operator/issues/796)
+
+#### Template Parts
+
+- **Template Parts Infrastructure** - Added `Template_Parts` registration class for auto-discovery and registration of template parts from the `parts/` directory with proper metadata, i18n support, and area assignment - [#809](https://github.com/lightspeedwp/tour-operator/pull/809), Issue [#796](https://github.com/lightspeedwp/tour-operator/issues/796)
+- **Fast Facts Template Parts** - Created fast facts template parts for tour, accommodation, and destination single templates with comprehensive information display including duration, price, facilities, location, and quick reference details - [#809](https://github.com/lightspeedwp/tour-operator/pull/809), Issue [#796](https://github.com/lightspeedwp/tour-operator/issues/796)
+  - `fast-facts-tour.html` - Tour information including duration, price, group size, booking validity, destinations, travel styles, and enquiry button
+  - `fast-facts-accommodation.html` - Accommodation details including rating, number of rooms, facilities, check-in/out times, location, and accommodation type
+  - `fast-facts-destination.html` - Destination overview including country, travel styles, and best time to visit
+- **Modal Template Parts** - Created modal template parts for preview functionality across tour operator post types with customizable content display - [#809](https://github.com/lightspeedwp/tour-operator/pull/809), Issue [#796](https://github.com/lightspeedwp/tour-operator/issues/796)
+  - `modal-tour.html` - Tour preview modal with featured image, title, tagline, excerpt, and destinations
+  - `modal-accommodation.html` - Accommodation preview modal with featured image, title, tagline, excerpt, location, and facilities
+  - `modal-destination.html` - Destination preview modal with featured image, title, and excerpt
+  - `modal-enquiry.html` - Enquiry form modal placeholder for contact functionality
+
 #### New Blocks
 
 - **Icons Block** - Added new icons block for improved icon management and display capabilities - [#547](https://github.com/lightspeedwp/tour-operator/pull/547), Issue [#548](https://github.com/lightspeedwp/tour-operator/issues/548)
@@ -56,6 +73,7 @@
 
 #### Feature Updates
 
+- **Modal System Refactoring** - Refactored modal system to use template parts instead of hardcoded PHP templates, enabling customization through Site Editor. Added automatic default modal template selection for tour, accommodation, and destination post types with support for custom modal template parts in the 'modals' area - [#809](https://github.com/lightspeedwp/tour-operator/pull/809), Issue [#796](https://github.com/lightspeedwp/tour-operator/issues/796)
 - **Itinerary Departure Day Logic** - Updated departure day to rely on the previous day's Location and Accommodation values to mimic WETU layout for better data consistency - [#491](https://github.com/lightspeedwp/tour-operator/pull/491), Issue [#481](https://github.com/lightspeedwp/tour-operator/issues/481)
 - **Gallery Render Block** - Updated Gallery render block to return blank string if gallery field is empty, preventing display of empty galleries - [#608](https://github.com/lightspeedwp/tour-operator/pull/608)
 - **Unit Block** - The unit block was merged into the Units Block [#766](https://github.com/lightspeedwp/tour-operator/pull/766)

@@ -30,6 +30,9 @@
     "align": {
       "type": "string",
       "default": "left"
+    },
+    "width": {
+      "type": "number"
     }
   },
   "supports": {
