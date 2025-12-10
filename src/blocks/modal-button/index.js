@@ -15,9 +15,8 @@ import {
     RichText,
     InspectorControls,
     BlockControls,
-    AlignmentToolbar,
 } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, Spinner } from '@wordpress/components';
+import { PanelBody, SelectControl, Spinner, Button, ButtonGroup } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 
@@ -41,12 +40,14 @@ const modalButtonIcon = (
 registerBlockType('lsx-tour-operator/modal-button', {
     icon: modalButtonIcon,
     edit: ({ attributes, setAttributes }) => {
-        const { text, modalId, align } = attributes;
+        const { text, modalId, width } = attributes;
         const [modalOptions, setModalOptions] = useState([]);
         const [isLoading, setIsLoading] = useState(true);
 
+        const widthClassName = width ? `has-custom-width wp-block-button__width-${width}` : '';
+
         const blockProps = useBlockProps({
-            className: `has-text-align-${align} wp-block-button__link`,
+            className: 'wp-block-buttons',
         });
 
         // Fetch modal options from the REST API
@@ -81,14 +82,58 @@ registerBlockType('lsx-tour-operator/modal-button', {
 
         return (
             <>
-                <BlockControls>
-                    <AlignmentToolbar
-                        value={align}
-                        onChange={(newAlign) =>
-                            setAttributes({ align: newAlign })
-                        }
-                    />
-                </BlockControls>
+                <InspectorControls group="settings">
+                    <PanelBody
+                        title={__('Settings', 'tour-operator')}
+                    >
+                        <p className="block-editor-button-width__label">
+                            {__('Width', 'tour-operator')}
+                        </p>
+                        <ButtonGroup
+                            className="block-editor-button-width__buttons"
+                            aria-label={__('Button Width', 'tour-operator')}
+                        >
+                            <Button
+                                size="small"
+                                variant={width === 25 ? 'primary' : undefined}
+                                onClick={() => setAttributes({ width: 25 })}
+                            >
+                                25%
+                            </Button>
+                            <Button
+                                size="small"
+                                variant={width === 50 ? 'primary' : undefined}
+                                onClick={() => setAttributes({ width: 50 })}
+                            >
+                                50%
+                            </Button>
+                            <Button
+                                size="small"
+                                variant={width === 75 ? 'primary' : undefined}
+                                onClick={() => setAttributes({ width: 75 })}
+                            >
+                                75%
+                            </Button>
+                            <Button
+                                size="small"
+                                variant={width === 100 ? 'primary' : undefined}
+                                onClick={() => setAttributes({ width: 100 })}
+                            >
+                                100%
+                            </Button>
+                        </ButtonGroup>
+                        {width && (
+                            <Button
+                                size="small"
+                                variant="tertiary"
+                                onClick={() => setAttributes({ width: undefined })}
+                                style={{ marginTop: '8px', width: '100%' }}
+                            >
+                                {__('Reset', 'tour-operator')}
+                            </Button>
+                        )}
+                    </PanelBody>
+                </InspectorControls>
 
                 <InspectorControls>
                     <PanelBody
@@ -127,21 +172,23 @@ registerBlockType('lsx-tour-operator/modal-button', {
                     </PanelBody>
                 </InspectorControls>
 
-                <div className={`wp-block-button is-layout-flex`}>
-                    <button {...blockProps} type="button">
-                        <RichText
-                            tagName="span"
-                            value={text}
-                            onChange={(newText) =>
-                                setAttributes({ text: newText })
-                            }
-                            placeholder={__(
-                                'Add button text…',
-                                'tour-operator'
-                            )}
-                            allowedFormats={[]}
-                        />
-                    </button>
+                <div {...blockProps}>
+                    <div className={`wp-block-button ${widthClassName}`}>
+                        <button className={`wp-block-button__link`} type="button">
+                            <RichText
+                                tagName="span"
+                                value={text}
+                                onChange={(newText) =>
+                                    setAttributes({ text: newText })
+                                }
+                                placeholder={__(
+                                    'Add button text…',
+                                    'tour-operator'
+                                )}
+                                allowedFormats={[]}
+                            />
+                        </button>
+                    </div>
                 </div>
                 {!modalId && !isLoading && (
                     <div className="block-editor-warning">
@@ -156,9 +203,12 @@ registerBlockType('lsx-tour-operator/modal-button', {
     },
 
     save: ({ attributes }) => {
-        const { text, modalId, align } = attributes;
+        const { text, modalId, width } = attributes;
+
+        const widthClassName = width ? `has-custom-width wp-block-button__width-${width}` : '';
+
         const blockProps = useBlockProps.save({
-            className: `wp-block-button wp-block-button__link has-text-align-${align}`,
+            className: 'wp-block-buttons',
         });
 
         if (!modalId) {
@@ -166,15 +216,17 @@ registerBlockType('lsx-tour-operator/modal-button', {
         }
 
         return (
-            <div className={`wp-block-button is-layout-flex`}>
-                <a
-                    {...blockProps}
-                    href={`#to-modal-${modalId}`}
-                    aria-haspopup="dialog"
-                    aria-controls={`to-modal-${modalId}`}
-                >
-                    {text}
-                </a>
+            <div {...blockProps}>
+                <div className={`wp-block-button ${widthClassName}`}>
+                    <a
+                        className={`wp-block-button__link`}
+                        href={`#to-modal-${modalId}`}
+                        aria-haspopup="dialog"
+                        aria-controls={`to-modal-${modalId}`}
+                    >
+                        {text}
+                    </a>
+                </div>
             </div>
         );
     },
