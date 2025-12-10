@@ -18,14 +18,6 @@ namespace lsx\blocks;
 class Template_Parts {
 
 	/**
-	 * Holds array of template parts to be created.
-	 *
-	 * @since 2.1.0
-	 * @var array
-	 */
-	public $template_parts = [];
-
-	/**
 	 * Initialize the class by creating template parts as posts.
 	 *
 	 * @since 2.1.0
@@ -75,7 +67,7 @@ class Template_Parts {
 		$areas[] = [
 			'area'        => 'modals',
 			'label'       => __( 'Modals', 'tour-operator' ),
-			'description' => __(' Template parts for customizing the modals.','tour-operator' ),
+			'description' => __( 'Template parts for customizing the modals.','tour-operator' ),
 			'icon'        => 'welcome-widgets-menus',
 			'area_tag'    => 'div',
 		];
