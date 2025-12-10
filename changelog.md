@@ -8,6 +8,17 @@
 
 - **Pattern Registration Infrastructure** - Established directory structure and registration system for tour operator patterns with proper categorization and template support - PR[#803](https://github.com/lightspeedwp/tour-operator/pull/803), Issue [#795](https://github.com/lightspeedwp/tour-operator/issues/795)
 
+#### Patterns
+
+- **Section Header Pattern** - Added reusable section header pattern (`lsx-tour-operator/section-header`) with centered heading text flanked by horizontal separators for consistent section dividers across templates. Includes pattern overrides binding for easy customization - Issue [#796](https://github.com/lightspeedwp/tour-operator/issues/796)
+
+#### Template Parts
+
+- **Template Parts Infrastructure** - Added `Template_Parts` registration class for auto-discovery and registration of template parts from the `parts/` directory with proper metadata, i18n support, and area assignment - Issue [#796](https://github.com/lightspeedwp/tour-operator/issues/796)
+- **Tour Sidebar Template Part** - Created `sidebar-tour.html` template part with fast facts sidebar for tour single templates, including duration, price, group size, booking validity, destinations, travel styles, and enquiry button - Issue [#796](https://github.com/lightspeedwp/tour-operator/issues/796)
+- **Accommodation Sidebar Template Part** - Created `sidebar-accommodation.html` template part with fast facts sidebar for accommodation single templates, including rating, number of rooms, facilities, check-in/out times, location, and accommodation type - Issue [#796](https://github.com/lightspeedwp/tour-operator/issues/796)
+- **Destination Sidebar Template Part** - Created `sidebar-destination.html` template part with fast facts sidebar for destination single templates, including country, travel styles, and best time to visit - Issue [#796](https://github.com/lightspeedwp/tour-operator/issues/796)
+
 #### New Blocks
 
 - **Icons Block** - Added new icons block for improved icon management and display capabilities - [#547](https://github.com/lightspeedwp/tour-operator/pull/547), Issue [#548](https://github.com/lightspeedwp/tour-operator/issues/548)
