@@ -39,13 +39,13 @@ class Template_Parts {
 	 * Registers custom template part areas.
 	 *
 	 * WordPress core only provides 'header', 'footer', and 'uncategorized' (general) by default.
-	 * This adds a 'sidebar' area for our template parts.
+	 * This adds custom template parts areas for our template parts.
 	 *
 	 * @since 2.1.0
 	 * @return void
 	 */
 	public function register_template_part_areas() {
-		add_filter( 'default_wp_template_part_areas', [ $this, 'add_fast_facts_area' ] );
+		add_filter( 'default_wp_template_part_areas', [ $this, 'add_template_parts_area' ] );
 	}
 
 	/**
@@ -56,15 +56,14 @@ class Template_Parts {
 	 * @param array $areas Existing template part areas.
 	 * @return array Modified template part areas.
 	 */
-	public function add_fast_facts_area( $areas ) {
-		// Check if fast facts area already exists to avoid duplicates.
+	public function add_template_parts_area( $areas ) {
+		// Check if template parts areas already exists to avoid duplicates.
 		foreach ( $areas as $area ) {
-			if ( isset( $area['area'] ) && 'fast-facts' === $area['area'] ) {
+			if ( isset( $area['area'] ) && ( 'fast-facts' === $area['area'] || 'modals' === $area['area'] ) ) {
 				return $areas;
 			}
 		}
 
-		// Add sidebar area.
 		$areas[] = [
 			'area'        => 'fast-facts',
 			'label'       => __( 'Fast Facts Sidebar', 'tour-operator' ),
@@ -73,8 +72,16 @@ class Template_Parts {
 			'area_tag'    => 'aside',
 		];
 
+		$areas[] = [
+			'area'        => 'modals',
+			'label'       => __( 'Modals', 'tour-operator' ),
+			'description' => __(' Template parts for customizing the modals.','tour-operator' ),
+			'icon'        => 'welcome-widgets-menus',
+			'area_tag'    => 'div',
+		];
+
 		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			error_log( 'Template Parts: Registered sidebar area via filter' );
+			error_log( 'Template Parts: Registered new areas via filter' );
 		}
 
 		return $areas;
@@ -115,6 +122,27 @@ class Template_Parts {
 				'description' => __( 'Fast facts sidebar for all destination templates (countries and regions) with parent country, child regions, spoken languages, and travel styles.', 'tour-operator' ),
 				'area'        => 'fast-facts',
 			],
+			'modal-tour'                    => [
+				'title'       => __( 'Tour Modal', 'tour-operator' ),
+				'description' => __( 'Modal template for tour quick view with essential tour information and booking options.', 'tour-operator' ),
+				'area'        => 'modals',
+			],
+			'modal-accommodation'           => [
+				'title'       => __( 'Accommodation Modal', 'tour-operator' ),
+				'description' => __( 'Modal template for accommodation quick view with room details and booking options.', 'tour-operator' ),
+				'area'        => 'modals',
+			],
+			'modal-destination'             => [
+				'title'       => __( 'Destination Modal', 'tour-operator' ),
+				'description' => __( 'Modal template for destination quick view with key information and related tours.', 'tour-operator' ),
+				'area'        => 'modals',
+			],
+			'modal-enquiry'                 => [
+				'title'       => __( 'Enquiry Modal', 'tour-operator' ),
+				'description' => __( 'Modal template for enquiry form to capture customer queries and contact information.', 'tour-operator' ),
+				'area'        => 'modals',
+			],
+
 		];
 
 		/**
