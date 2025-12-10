@@ -31,7 +31,53 @@ class Template_Parts {
 	 * @since 2.1.0
 	 */
 	public function __construct() {
+		add_action( 'init', [ $this, 'register_template_part_areas' ], 10 );
 		add_action( 'init', [ $this, 'create_template_parts' ], 20 );
+	}
+
+	/**
+	 * Registers custom template part areas.
+	 *
+	 * WordPress core only provides 'header', 'footer', and 'uncategorized' (general) by default.
+	 * This adds a 'sidebar' area for our template parts.
+	 *
+	 * @since 2.1.0
+	 * @return void
+	 */
+	public function register_template_part_areas() {
+		add_filter( 'default_wp_template_part_areas', [ $this, 'add_fast_facts_area' ] );
+	}
+
+	/**
+	 * Adds fast facts area to default template part areas.
+	 *
+	 * @since 2.1.0
+	 *
+	 * @param array $areas Existing template part areas.
+	 * @return array Modified template part areas.
+	 */
+	public function add_fast_facts_area( $areas ) {
+		// Check if fast facts area already exists to avoid duplicates.
+		foreach ( $areas as $area ) {
+			if ( isset( $area['area'] ) && 'fast-facts' === $area['area'] ) {
+				return $areas;
+			}
+		}
+
+		// Add sidebar area.
+		$areas[] = [
+			'area'        => 'fast-facts',
+			'label'       => __( 'Fast Facts Sidebar', 'tour-operator' ),
+			'description' => __( 'Sidebar template parts for displaying supplementary content alongside main content.', 'tour-operator' ),
+			'icon'        => 'sidebar',
+			'area_tag'    => 'aside',
+		];
+
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+			error_log( 'Template Parts: Registered sidebar area via filter' );
+		}
+
+		return $areas;
 	}
 
 	/**
@@ -54,20 +100,20 @@ class Template_Parts {
 		 * - area: Template part area (header, footer, sidebar, uncategorized)
 		 */
 		$template_parts = [
-			'sidebar-tour'               => [
-				'title'       => __( 'Tour Sidebar', 'tour-operator' ),
+			'fast-facts-tour'               => [
+				'title'       => __( 'Tour Fast Facts', 'tour-operator' ),
 				'description' => __( 'Fast facts sidebar for tour single templates with duration, price, group size, and other tour metadata.', 'tour-operator' ),
-				'area'        => 'sidebar',
+				'area'        => 'fast-facts',
 			],
-			'sidebar-accommodation'      => [
-				'title'       => __( 'Accommodation Sidebar', 'tour-operator' ),
+			'fast-facts-accommodation'      => [
+				'title'       => __( 'Accommodation Fast Facts', 'tour-operator' ),
 				'description' => __( 'Fast facts sidebar for accommodation single templates with rating, facilities, rooms, and other accommodation metadata.', 'tour-operator' ),
-				'area'        => 'sidebar',
+				'area'        => 'fast-facts',
 			],
-			'sidebar-destination'        => [
-				'title'       => __( 'Destination Sidebar', 'tour-operator' ),
+			'fast-facts-destination'        => [
+				'title'       => __( 'Destination Fast Facts', 'tour-operator' ),
 				'description' => __( 'Fast facts sidebar for all destination templates (countries and regions) with parent country, child regions, spoken languages, and travel styles.', 'tour-operator' ),
-				'area'        => 'sidebar',
+				'area'        => 'fast-facts',
 			],
 		];
 
