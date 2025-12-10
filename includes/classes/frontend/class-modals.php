@@ -101,9 +101,6 @@ class Modals {
 	 * @return void
 	 */
 	public function settings_fields( $fields = [] ) {
-		// Get the default modal template based on post type
-		$default_modal = $this->get_default_modal_for_post_type( '{{post_type}}' );
-
 		$fields['post_types']['template']['enable_modals']  = array(
 			'label'   => esc_html__( 'Enable Preview Modals', 'tour-operator' ),
 			'desc'    => esc_html__( 'Links to this item will trigger a popup preview modal allowing a quick look at it before clicking through. ', 'tour-operator' ),
@@ -113,7 +110,7 @@ class Modals {
 		$fields['post_types']['template']['modal_template'] = array(
 			'label'   => esc_html__( 'Modal Template', 'tour-operator' ),
 			'type'    => 'select',
-			'default' => $default_modal,
+			'default' => 'default',
 			'options' => $this->get_template_part_options(),
 		);
 		return $fields;
@@ -268,7 +265,7 @@ class Modals {
 		}
 
 		// Only show "no templates" message if we found no modal template parts
-		if ( count( $options ) === 1 ) {
+		if ( empty( $options ) ) {
 			$options[''] = __( 'No other templates found.', 'tour-operator' );
 		}
 

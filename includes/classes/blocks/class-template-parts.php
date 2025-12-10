@@ -49,13 +49,6 @@ class Template_Parts {
 	 * @return array Modified template part areas.
 	 */
 	public function add_template_parts_area( $areas ) {
-		// Check if template parts areas already exists to avoid duplicates.
-		foreach ( $areas as $area ) {
-			if ( isset( $area['area'] ) && ( 'fast-facts' === $area['area'] || 'modals' === $area['area'] ) ) {
-				return $areas;
-			}
-		}
-
 		// Add template parts area if they don't exist
 		$fast_facts_exists = false;
 		$modals_exists = false;
