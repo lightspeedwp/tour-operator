@@ -87,7 +87,7 @@ This is a WordPress plugin following standard WordPress plugin architecture with
   ```bash
   npm run build
   ```
-  Builds Gutenberg blocks using @wordpress/scripts (Create Gist Block)
+  Builds Gutenberg blocks using @wordpress/scripts
 
 * **Watch Mode for Block Development**
   ```bash
