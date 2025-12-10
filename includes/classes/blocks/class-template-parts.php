@@ -56,21 +56,40 @@ class Template_Parts {
 			}
 		}
 
-		$areas[] = [
-			'area'        => 'fast-facts',
-			'label'       => __( 'Fast Facts Sidebar', 'tour-operator' ),
-			'description' => __( 'Sidebar template parts for displaying supplementary content alongside main content.', 'tour-operator' ),
-			'icon'        => 'sidebar',
-			'area_tag'    => 'aside',
-		];
+		// Add template parts area if they don't exist
+		$fast_facts_exists = false;
+		$modals_exists = false;
 
-		$areas[] = [
-			'area'        => 'modals',
-			'label'       => __( 'Modals', 'tour-operator' ),
-			'description' => __( 'Template parts for customizing the modals.','tour-operator' ),
-			'icon'        => 'welcome-widgets-menus',
-			'area_tag'    => 'div',
-		];
+		foreach ( $areas as $area ) {
+			if ( isset( $area['area'] ) ) {
+				if ( 'fast-facts' === $area['area'] ) {
+					$fast_facts_exists = true;
+				}
+				if ( 'modals' === $area['area'] ) {
+					$modals_exists = true;
+				}
+			}
+		}
+
+		if ( ! $fast_facts_exists ) {
+			$areas[] = [
+				'area'        => 'fast-facts',
+				'label'       => __( 'Fast Facts Sidebar', 'tour-operator' ),
+				'description' => __( 'Sidebar template parts for displaying supplementary content alongside main content.', 'tour-operator' ),
+				'icon'        => 'sidebar',
+				'area_tag'    => 'aside',
+			];
+		}
+
+		if ( ! $modals_exists ) {
+			$areas[] = [
+				'area'        => 'modals',
+				'label'       => __( 'Modals', 'tour-operator' ),
+				'description' => __( 'Template parts for customizing the modals.', 'tour-operator' ),
+				'icon'        => 'welcome-widgets-menus',
+				'area_tag'    => 'div',
+			];
+		}
 
 		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
 			error_log( 'Template Parts: Registered new areas via filter' );
@@ -160,7 +179,7 @@ class Template_Parts {
 	}
 
 	/**
-	 * Creates a template part post if it doesn't exist, or updates it in dev mode.
+	 * Creates a template part post if it doesn't exist.
 	 *
 	 * @since 2.1.0
 	 *
