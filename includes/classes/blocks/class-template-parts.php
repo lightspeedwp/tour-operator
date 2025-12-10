@@ -220,6 +220,7 @@ class Template_Parts {
 				'posts_per_page' => 1,
 				'post_status'    => 'any',
 				'no_found_rows'  => true,
+				'fields'         => 'ids',
 				'tax_query'      => [
 					[
 						'taxonomy' => 'wp_theme',
