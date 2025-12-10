@@ -72,7 +72,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Default issue status on open → status:needs-triage
         if: contains(fromJson('["opened","reopened","transferred"]'), github.event.action)
