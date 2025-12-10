@@ -96,7 +96,7 @@ When asked to:
 * "Generate an endpoint" → Place it in `src/api/`, include a test in `tests/`
 * "Create a new module" → Follow folder structure and export pattern
 * "Refactor" → Improve modularity, clarify naming, remove dead code
-* "Write tests" → Use Vitest or Jest; place in `tests/`, mirror structure of `src/`
+* "Write tests" → Use Vitest or Jest for unit tests, Playwright for E2E tests; place in `tests/`, mirror structure of `src/`
 
 ---
 
