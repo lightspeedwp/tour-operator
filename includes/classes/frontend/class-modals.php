@@ -46,11 +46,37 @@ class Modals {
 	 */
 	public function __construct() {
 		$this->options = get_option( 'lsx_to_settings', [] );
+		$this->maybe_set_default_modal_templates();
 
 		add_action( 'wp_loaded', [ $this, 'init' ], 10 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_stylescripts' ), 1 );
 		add_action( 'rest_api_init', array( $this, 'register_rest_routes' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_editor_scripts' ) );
+	}
+
+	/**
+	 * Set default modal templates on first run if not already set.
+	 *
+	 * @return void
+	 */
+	public function maybe_set_default_modal_templates() {
+		$post_types = [ 'tour', 'accommodation', 'destination' ];
+		$updated    = false;
+
+		foreach ( $post_types as $post_type ) {
+			$option_key = $post_type . '_modal_template';
+
+			// Only set if the option doesn't exist
+			if ( ! isset( $this->options[ $option_key ] ) || empty( $this->options[ $option_key ] ) ) {
+				$this->options[ $option_key ] = $this->get_default_modal_for_post_type( $post_type );
+				$updated                      = true;
+			}
+		}
+
+		// Save the updated options if any were changed
+		if ( $updated ) {
+			update_option( 'lsx_to_settings', $this->options );
+		}
 	}
 
 	/**
@@ -75,6 +101,9 @@ class Modals {
 	 * @return void
 	 */
 	public function settings_fields( $fields = [] ) {
+		// Get the default modal template based on post type
+		$default_modal = $this->get_default_modal_for_post_type( '{{post_type}}' );
+
 		$fields['post_types']['template']['enable_modals']  = array(
 			'label'   => esc_html__( 'Enable Preview Modals', 'tour-operator' ),
 			'desc'    => esc_html__( 'Links to this item will trigger a popup preview modal allowing a quick look at it before clicking through. ', 'tour-operator' ),
@@ -84,7 +113,7 @@ class Modals {
 		$fields['post_types']['template']['modal_template'] = array(
 			'label'   => esc_html__( 'Modal Template', 'tour-operator' ),
 			'type'    => 'select',
-			'default' => 'default',
+			'default' => $default_modal,
 			'options' => $this->get_template_part_options(),
 		);
 		return $fields;
@@ -192,6 +221,23 @@ class Modals {
 	}
 
 	/**
+	 * Get the default modal template slug for a given post type.
+	 *
+	 * @param string $post_type The post type to get default modal for.
+	 * @return string The default modal slug.
+	 */
+	public function get_default_modal_for_post_type( $post_type ) {
+		$defaults = array(
+			'tour'          => 'modal-tour',
+			'accommodation' => 'modal-accommodation',
+			'destination'   => 'modal-destination',
+		);
+
+		// Return the specific default or 'default' if not found
+		return isset( $defaults[ $post_type ] ) ? $defaults[ $post_type ] : 'default';
+	}
+
+	/**
 	 * Get a list of all registered modal template parts for the site editor.
 	 *
 	 * @return array List of modal template part names and titles.
@@ -213,8 +259,7 @@ class Modals {
 			)
 		);
 
-		$options            = array();
-		$options['default'] = __( 'Default', 'tour-operator' );
+		$options = array();
 
 		if ( ! empty( $template_parts ) ) {
 			foreach ( $template_parts as $template ) {
