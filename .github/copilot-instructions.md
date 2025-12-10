@@ -105,9 +105,8 @@ When asked to:
 If supported by your GitHub plan, exclude these directories in settings:
 
 ```
-/wordpress/
-/deprecated/
-/classic-theme/
+# No content exclusions are necessary for this repository, as it does not contain legacy or CMS-related directories.
+# If new directories are added that should be excluded, list them here.
 ```
 
 ---
