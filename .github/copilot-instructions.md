@@ -6,7 +6,7 @@ These are repository-specific instructions to guide GitHub Copilot’s behavior 
 
 ## 🔍 Project Overview
 
-This repository is a modular JavaScript/TypeScript application that includes a plugin system, API integration layer, and custom UI components. It is **not a WordPress project** and does **not** use any CMS frameworks or legacy PHP code.
+This repository is a WordPress plugin (Tour Operator) project. It is built using PHP, leverages WordPress blocks for custom functionality, and strictly follows the WordPress Coding Standards (WPCS). The codebase is structured as a WordPress plugin and may include PHP files, block registration, and other WordPress-specific patterns.
 
 ---
 
