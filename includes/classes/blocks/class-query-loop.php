@@ -175,7 +175,8 @@ class Query_Loop {
 			}
 
 			foreach ( $key_array as $meta_key ) {
-				$value = lsx_to_custom_field_query( $meta_key, '', '', false );
+				// Get the raw unfiltered value.
+				$value = get_post_meta( get_the_ID(), $meta_key, true );
 
 				// we need to see if the posts exist before we can use them
 				if ( 'best_time_to_visit' !== $meta_key && stripos( $meta_key, '_to_' ) && 0 === $this->post_ids_exist( $value ) ) {
