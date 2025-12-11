@@ -46,12 +46,12 @@
 }
 
 .lsx-to-sticky-menu-button {
-	background: none;
+	background-color: var(--button-bg-color, transparent);
 	border: none;
 	cursor: pointer;
 	font-family: inherit;
 	font-size: inherit;
-	color: inherit;
+	color: var(--button-text-color, inherit);
 	text-decoration: none;
 	transition: all 0.2s ease;
 	padding: 0.5rem 1rem;
@@ -69,7 +69,7 @@
 
 .lsx-to-sticky-menu-button.active {
 	background-color: var(--active-bg-color, currentColor);
-	color: var(--active-text-color, var(--wp--preset--color--background, #fff));
+	color: var(--active-text-color, inherit);
 }
 
 /* Screen reader only text */
