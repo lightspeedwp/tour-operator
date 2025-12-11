@@ -206,23 +206,46 @@ class Template_Parts {
 		}
 
 		// Check if template part already exists.
-		$existing = get_posts(
+		// Note: We must use tax_query WITHOUT the 'name' parameter because
+		// WordPress ignores tax_query when 'name' is present in the query args.
+		$query = new \WP_Query(
 			[
 				'post_type'      => 'wp_template_part',
-				'name'           => $slug,
-				'posts_per_page' => 1,
+				'posts_per_page' => -1,
 				'post_status'    => 'any',
 				'no_found_rows'  => true,
 				'fields'         => 'ids',
 				'tax_query'      => [
 					[
 						'taxonomy' => 'wp_theme',
-						'field'    => 'name',
+						'field'    => 'slug',
 						'terms'    => $theme,
 					],
 				],
 			]
 		);
+
+		// Filter by slug manually since we can't use 'name' with tax_query
+		$existing = array_filter(
+			$query->posts,
+			function ( $post_id ) use ( $slug ) {
+				$post = get_post( $post_id );
+				return $post && $post->post_name === $slug;
+			}
+		);
+
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+			error_log( sprintf( 'Template Parts: Checking %s for theme %s', $slug, $theme ) );
+			error_log( sprintf( 'Template Parts: SQL Query: %s', $query->request ) );
+			error_log( sprintf( 'Template Parts: Found %d template parts for theme %s', count( $query->posts ), $theme ) );
+			error_log( sprintf( 'Template Parts: Found %d matching slug %s', count( $existing ), $slug ) );
+			if ( ! empty( $existing ) ) {
+				// Check what theme is actually assigned
+				$first_id = reset( $existing );
+				$terms = wp_get_post_terms( $first_id, 'wp_theme' );
+				error_log( sprintf( 'Template Parts: Existing post themes: %s', print_r( wp_list_pluck( $terms, 'slug' ), true ) ) );
+			}
+		}
 
 		// If template part doesn't exist, create it.
 		if ( empty( $existing ) ) {
