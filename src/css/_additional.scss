@@ -24,6 +24,12 @@
 	height: auto;
 }
 
+.accommodation.slick-slide .wp-block-post-featured-image img,
+.destination.slick-slide .wp-block-post-featured-image img,
+.tour.slick-slide .wp-block-post-featured-image img {
+	border-radius: 0;
+}
+
 .itinerary-description p:first-child,
 .unit-description p:first-child {
 	margin-top: 0;
