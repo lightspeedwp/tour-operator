@@ -9,12 +9,13 @@
 /**
  * WordPress dependencies
  */
+import { InspectorControls } from '@wordpress/block-editor';
+import { __ } from '@wordpress/i18n';
 import {
   __experimentalColorGradientSettingsDropdown as ColorGradientSettingsDropdown,
-  InspectorControls,
   __experimentalUseMultipleOriginColorsAndGradients as useMultipleOriginColorsAndGradients,
+  useSetting,
 } from '@wordpress/block-editor';
-import { __ } from '@wordpress/i18n';
 
 /**
  * Inspector component for Sticky Menu block.
@@ -31,9 +32,13 @@ import { __ } from '@wordpress/i18n';
 const Inspector = (props) => {
   const {
     attributes: {
+      activeBackgroundColor,
       customActiveBackgroundColor,
+      activeTextColor,
       customActiveTextColor,
+      hoverBackgroundColor,
       customHoverBackgroundColor,
+      hoverTextColor,
       customHoverTextColor,
     },
     setAttributes,
@@ -41,53 +46,90 @@ const Inspector = (props) => {
   } = props;
 
   const colorGradientSettings = useMultipleOriginColorsAndGradients();
+  const colors = useSetting('color.palette') || [];
+
+  /**
+   * Helper to find color object by value from theme palette
+   *
+   * @param {string} colorValue The color value to search for
+   * @return {Object|undefined} The color object if found
+   */
+  const getColorObjectByColorValue = (colorValue) => {
+    if (!colorValue || !colors) return undefined;
+    
+    // Flatten all color origins
+    const allColors = colors.flatMap(origin => 
+      Array.isArray(origin.colors) ? origin.colors : []
+    );
+    
+    return allColors.find(color => color.color === colorValue);
+  };
+
+  /**
+   * Create color change handler that stores preset slug when available
+   *
+   * @param {string} slugAttr The attribute name for the preset slug
+   * @param {string} customAttr The attribute name for custom color
+   * @return {Function} The color change handler
+   */
+  const createColorChangeHandler = (slugAttr, customAttr) => (newColor) => {
+    const colorObject = getColorObjectByColorValue(newColor);
+    
+    if (colorObject && colorObject.slug) {
+      // It's a preset color - store the slug, clear custom
+      setAttributes({
+        [slugAttr]: colorObject.slug,
+        [customAttr]: undefined,
+      });
+    } else {
+      // It's a custom color - store the value, clear slug
+      setAttributes({
+        [slugAttr]: undefined,
+        [customAttr]: newColor,
+      });
+    }
+  };
 
   return (
     <>
       <InspectorControls group="color">
         <ColorGradientSettingsDropdown
+          __experimentalIsRenderedInSidebar
           settings={[
             {
-              label: __('Active Background Color', 'tour-operator'),
-              colorValue: customActiveBackgroundColor,
-              onColorChange: (value) => {
-                setAttributes({
-                  customActiveBackgroundColor: value,
-                });
-              },
+              label: __('Active Background', 'tour-operator'),
+              colorValue: customActiveBackgroundColor || 
+                (activeBackgroundColor ? 
+                  colors.flatMap(o => o.colors || []).find(c => c.slug === activeBackgroundColor)?.color 
+                  : undefined),
+              onColorChange: createColorChangeHandler('activeBackgroundColor', 'customActiveBackgroundColor'),
             },
             {
-              label: __('Active Text Color', 'tour-operator'),
-              colorValue: customActiveTextColor,
-              onColorChange: (value) => {
-                setAttributes({
-                  customActiveTextColor: value,
-                });
-              },
+              label: __('Active Text', 'tour-operator'),
+              colorValue: customActiveTextColor || 
+                (activeTextColor ? 
+                  colors.flatMap(o => o.colors || []).find(c => c.slug === activeTextColor)?.color 
+                  : undefined),
+              onColorChange: createColorChangeHandler('activeTextColor', 'customActiveTextColor'),
             },
             {
-              label: __('Hover Background Color', 'tour-operator'),
-              colorValue: customHoverBackgroundColor,
-              onColorChange: (value) => {
-                setAttributes({
-                  customHoverBackgroundColor: value,
-                });
-              },
+              label: __('Hover Background', 'tour-operator'),
+              colorValue: customHoverBackgroundColor || 
+                (hoverBackgroundColor ? 
+                  colors.flatMap(o => o.colors || []).find(c => c.slug === hoverBackgroundColor)?.color 
+                  : undefined),
+              onColorChange: createColorChangeHandler('hoverBackgroundColor', 'customHoverBackgroundColor'),
             },
             {
-              label: __('Hover Text Color', 'tour-operator'),
-              colorValue: customHoverTextColor,
-              onColorChange: (value) => {
-                setAttributes({
-                  customHoverTextColor: value,
-                });
-              },
+              label: __('Hover Text', 'tour-operator'),
+              colorValue: customHoverTextColor || 
+                (hoverTextColor ? 
+                  colors.flatMap(o => o.colors || []).find(c => c.slug === hoverTextColor)?.color 
+                  : undefined),
+              onColorChange: createColorChangeHandler('hoverTextColor', 'customHoverTextColor'),
             },
           ]}
           panelId={clientId}
-          hasColorsOrGradients={false}
-          disableCustomColors={false}
-          __experimentalIsRenderedInSidebar
           {...colorGradientSettings}
         />
       </InspectorControls>

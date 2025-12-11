@@ -41,18 +41,33 @@ function Edit({ attributes, setAttributes, clientId }) {
     backgroundColor,
     textColor,
     menuItems = [],
+    activeBackgroundColor,
     customActiveBackgroundColor,
+    activeTextColor,
     customActiveTextColor,
+    hoverBackgroundColor,
     customHoverBackgroundColor,
+    hoverTextColor,
     customHoverTextColor,
   } = attributes;
 
+  // Helper function to get CSS variable or custom color value
+  const getColorValue = (presetSlug, customValue) => {
+    if (customValue) {
+      return customValue;
+    }
+    if (presetSlug) {
+      return `var(--wp--preset--color--${presetSlug})`;
+    }
+    return undefined;
+  };
+
   const blockProps = useBlockProps({
     style: {
-      '--active-bg-color': customActiveBackgroundColor || undefined,
-      '--active-text-color': customActiveTextColor || undefined,
-      '--hover-bg-color': customHoverBackgroundColor || undefined,
-      '--hover-text-color': customHoverTextColor || undefined,
+      '--active-bg-color': getColorValue(activeBackgroundColor, customActiveBackgroundColor),
+      '--active-text-color': getColorValue(activeTextColor, customActiveTextColor),
+      '--hover-bg-color': getColorValue(hoverBackgroundColor, customHoverBackgroundColor),
+      '--hover-text-color': getColorValue(hoverTextColor, customHoverTextColor),
     },
   });
 
@@ -191,18 +206,33 @@ function Save({ attributes }) {
     backgroundColor,
     textColor,
     menuItems = [],
+    activeBackgroundColor,
     customActiveBackgroundColor,
+    activeTextColor,
     customActiveTextColor,
+    hoverBackgroundColor,
     customHoverBackgroundColor,
+    hoverTextColor,
     customHoverTextColor,
   } = attributes;
 
+  // Helper function to get CSS variable or custom color value
+  const getColorValue = (presetSlug, customValue) => {
+    if (customValue) {
+      return customValue;
+    }
+    if (presetSlug) {
+      return `var(--wp--preset--color--${presetSlug})`;
+    }
+    return undefined;
+  };
+
   const blockProps = useBlockProps.save({
     style: {
-      '--active-bg-color': customActiveBackgroundColor || undefined,
-      '--active-text-color': customActiveTextColor || undefined,
-      '--hover-bg-color': customHoverBackgroundColor || undefined,
-      '--hover-text-color': customHoverTextColor || undefined,
+      '--active-bg-color': getColorValue(activeBackgroundColor, customActiveBackgroundColor),
+      '--active-text-color': getColorValue(activeTextColor, customActiveTextColor),
+      '--hover-bg-color': getColorValue(hoverBackgroundColor, customHoverBackgroundColor),
+      '--hover-text-color': getColorValue(hoverTextColor, customHoverTextColor),
     },
   });
 
