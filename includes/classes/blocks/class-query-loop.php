@@ -89,6 +89,34 @@ class Query_Loop {
 		}
 
 		if ( in_array( 'travel-information', $matches ) ) {
+			// Check if ANY travel information fields have content
+			$travel_info_keys = array(
+				'additional_info',
+				'banking',
+				'climate',
+				'cuisine',
+				'electricity',
+				'dress',
+				'health',
+				'safety',
+				'transport',
+				'visa',
+			);
+			
+			$has_travel_info = false;
+			foreach ( $travel_info_keys as $meta_key ) {
+				$value = get_post_meta( get_the_ID(), $meta_key, true );
+				if ( ! empty( $value ) && '' !== $value ) {
+					$has_travel_info = true;
+					break;
+				}
+			}
+			
+			// If no travel info exists, hide the entire section
+			if ( ! $has_travel_info ) {
+				return '';
+			}
+
 			return $block_content;
 		}
 
