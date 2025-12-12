@@ -143,7 +143,7 @@ foreach ( $travel_info_cards as $card ) {
 }
 
 return array(
-	'title'         => __( 'Travel Information', 'tour-operator' ),
+	'title'         => __( 'Travel Information Cards', 'tour-operator' ),
 	'description'   => __( 'Display travel information such as banking, climate, cuisine, and visa details for a destination.', 'tour-operator' ),
 	'categories'    => array( 'lsx-tour-operator' ),
 	'keywords'      => array(
@@ -155,27 +155,14 @@ return array(
 		__( 'destination', 'tour-operator' ),
 	),
 	'postTypes'     => array( 'wp_template' ),
-	'content'       => '<!-- wp:group {"tagName":"section","metadata":{"name":"' . esc_attr__( 'Travel Information', 'tour-operator' ) . '","categories":["lsx-tour-operator"],"patternName":"lsx-tour-operator/travel-information"},"align":"wide","className":"lsx-travel-information-wrapper lsx-to-slider","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} -->
-<section class="wp-block-group alignwide lsx-travel-information-wrapper lsx-to-slider" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)"><!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"0","bottom":"var:preset|spacing|small","left":"0","right":"0"},"blockGap":"var:preset|spacing|small"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-<div class="wp-block-group alignwide" style="margin-top:0;margin-bottom:0;padding-top:0;padding-right:0;padding-bottom:var(--wp--preset--spacing--small);padding-left:0"><!-- wp:separator {"style":{"layout":{"selfStretch":"fill","flexSize":null}},"backgroundColor":"primary"} -->
-<hr class="wp-block-separator has-text-color has-primary-color has-alpha-channel-opacity has-primary-background-color has-background"/>
-<!-- /wp:separator -->
-
-<!-- wp:heading {"textAlign":"center"} -->
-<h2 class="wp-block-heading has-text-align-center">' . esc_html__( 'Travel Information', 'tour-operator' ) . '</h2>
-<!-- /wp:heading -->
-
-<!-- wp:separator {"style":{"layout":{"selfStretch":"fill","flexSize":null}},"backgroundColor":"primary"} -->
-<hr class="wp-block-separator has-text-color has-primary-color has-alpha-channel-opacity has-primary-background-color has-background"/>
-<!-- /wp:separator --></div>
-<!-- /wp:group -->
-
+	'content'       => '<!-- wp:group {"tagName":"div","metadata":{"name":"' . esc_attr__( 'Travel Information', 'tour-operator' ) . '","categories":["lsx-tour-operator"],"patternName":"lsx-tour-operator/travel-information"},"align":"wide","className":"lsx-travel-information-wrapper lsx-to-slider","style":{"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignwide lsx-travel-information-wrapper lsx-to-slider">
 <!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
 <div class="wp-block-group alignwide"><!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
-<div class="wp-block-group alignwide"><!-- wp:group {"align":"wide","className":"travel-information is-style-section-9","layout":{"type":"grid"},"ariaLabel":"' . esc_attr__( 'Travel information categories', 'tour-operator' ) . '"} -->
-<div class="wp-block-group alignwide travel-information is-style-section-9" aria-label="' . esc_attr__( 'Travel information categories', 'tour-operator' ) . '">' . $cards_markup . '</div>
+<div class="wp-block-group alignwide"><!-- wp:group {"align":"wide","className":"travel-information","layout":{"type":"grid"},"ariaLabel":"' . esc_attr__( 'Travel information categories', 'tour-operator' ) . '"} -->
+<div class="wp-block-group alignwide travel-information" aria-label="' . esc_attr__( 'Travel information categories', 'tour-operator' ) . '">' . $cards_markup . '</div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></div>
-<!-- /wp:group --></section>
+<!-- /wp:group --></div>
 <!-- /wp:group -->',
 );
