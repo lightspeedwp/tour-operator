@@ -164,7 +164,18 @@ class Query_Loop {
 			if ( ! is_array( $value ) ) {
 				$block_content = '';
 			}
-		} else {
+		} elseif ( 'itinerary' === $key ) {
+            // Itinerary data is stored in a repeater group, use the dedicated function.
+            if ( ! lsx_to_has_itinerary() ) {
+                $block_content = '';
+            }
+        } elseif ( 'units' === $key ) {
+            // Units data is stored in a repeater group, use the dedicated function.
+            if ( ! lsx_to_accommodation_has_rooms() ) {
+                $block_content = '';
+            }
+		}
+			else {
 			$key        = str_replace( '-', '_', $key );
 			$key_array  = [ $key ];
 			$has_values = false;
