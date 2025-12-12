@@ -35,7 +35,7 @@
 
 <!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
 <div class="wp-block-group"><!-- wp:paragraph {"className":"is-style-subheading-3","fontSize":"medium"} -->
-<p class="is-style-subheading-3 has-medium-font-size">Share this destination:</p>
+<p class="is-style-subheading-3 has-medium-font-size">Share this accommodation:</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:outermost/social-sharing {"iconColor":"contrast","iconColorValue":"var( \u002d\u002dwp\u002d\u002dcustom\u002d\u002dcolour\u002d\u002dcontrast\u002d\u002d900 )","size":"has-normal-icon-size","className":"is-style-logos-only","layout":{"type":"flex","flexWrap":"nowrap"}} -->
@@ -226,8 +226,8 @@
 <!-- /wp:group --></section>
 <!-- /wp:group -->
 
-<!-- wp:group {"tagName":"section","metadata":{"name":"Reviews"},"align":"full","className":"lsx-review-related-destination-query-wrapper","style":{"spacing":{"blockGap":"var:preset|spacing|50","padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"backgroundColor":"primary-200","layout":{"type":"constrained"},"addToStickyMenu":true,"stickyMenuId":"related-reviews","stickyMenuTitle":"Reviews"} -->
-<section class="wp-block-group alignfull lsx-review-related-destination-query-wrapper has-primary-200-background-color has-background lsx-to-sticky-menu-section" id="related-reviews" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)" data-sticky-menu-section="true" data-section-title="Reviews" role="region" aria-labelledby="related-reviews-header"><!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"nowrap"}} -->
+<!-- wp:group {"tagName":"section","metadata":{"name":"Reviews"},"align":"full","className":"lsx-review-related-accommodation-query-wrapper","style":{"spacing":{"blockGap":"var:preset|spacing|50","padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"backgroundColor":"primary-200","layout":{"type":"constrained"},"addToStickyMenu":true,"stickyMenuId":"related-reviews","stickyMenuTitle":"Reviews"} -->
+<section class="wp-block-group alignfull lsx-review-related-accommodation-query-wrapper has-primary-200-background-color has-background lsx-to-sticky-menu-section" id="related-reviews" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)" data-sticky-menu-section="true" data-section-title="Reviews" role="region" aria-labelledby="related-reviews-header"><!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"nowrap"}} -->
 <div class="wp-block-group alignwide"><!-- wp:separator {"style":{"layout":{"selfStretch":"fill","flexSize":null}}} -->
 <hr class="wp-block-separator has-alpha-channel-opacity"/>
 <!-- /wp:separator -->
@@ -243,7 +243,7 @@
 
 <!-- wp:group {"align":"wide","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignwide"><!-- wp:query {"queryId":9,"query":{"perPage":8,"postType":"review","order":"desc","orderBy":"date"},"metadata":{"name":"Related Reviews Query"},"align":"wide"} -->
-<div class="wp-block-query alignwide"><!-- wp:post-template {"className":"lsx-review-related-destination-query","layout":{"type":"grid","columnCount":2}} -->
+<div class="wp-block-query alignwide lsx-to-slider"><!-- wp:post-template {"className":"lsx-review-related-accommodation-query","layout":{"type":"grid","columnCount":2}} -->
 <!-- wp:pattern {"slug":"lsx-tour-operator/review-card"} /-->
 <!-- /wp:post-template --></div>
 <!-- /wp:query --></div>
@@ -267,7 +267,7 @@
 
 <!-- wp:group {"align":"wide","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignwide"><!-- wp:query {"queryId":3,"query":{"perPage":6,"postType":"tour","order":"asc","orderBy":"title"},"metadata":{"name":"Related Tours Query"},"align":"wide"} -->
-<div class="wp-block-query alignwide"><!-- wp:post-template {"className":"lsx-tour-related-accommodation-query","layout":{"type":"grid","columnCount":3}} -->
+<div class="wp-block-query alignwide lsx-to-slider"><!-- wp:post-template {"className":"lsx-tour-related-accommodation-query","layout":{"type":"grid","columnCount":3}} -->
     <!-- wp:pattern {"slug":"lsx-tour-operator/tour-card"} /-->
 <!-- /wp:post-template --></div>
 <!-- /wp:query --></div>
@@ -291,7 +291,7 @@
 
 <!-- wp:group {"align":"wide","layout":{"type":"constrained"}} -->
 <div class="wp-block-group alignwide"><!-- wp:query {"queryId":5,"query":{"perPage":8,"postType":"accommodation","order":"asc","orderBy":"date"},"metadata":{"name":"Related Accommodation Query"},"align":"wide"} -->
-<div class="wp-block-query alignwide"><!-- wp:post-template {"className":"lsx-accommodation-related-accommodation-query","layout":{"type":"grid","columnCount":3}} -->
+<div class="wp-block-query alignwide lsx-to-slider"><!-- wp:post-template {"className":"lsx-accommodation-related-accommodation-query","layout":{"type":"grid","columnCount":3}} -->
     <!-- wp:pattern {"slug":"lsx-tour-operator/accommodation-card"} /-->
 <!-- /wp:post-template --></div>
 <!-- /wp:query --></div>
