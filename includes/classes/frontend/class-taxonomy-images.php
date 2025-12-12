@@ -43,7 +43,8 @@ class Taxonomy_Images {
 	}
 
 	/**
-	 * Filter the core/post-featured-image block to use term thumbnail when term ID is present.
+	 * Filter the core/post-featured-image block to use term thumbnail when term ID is present
+	 * or display placeholder when no image exists.
 	 *
 	 * @since 2.1.0
 	 *
@@ -55,22 +56,95 @@ class Taxonomy_Images {
 	public function filter_featured_image_block( $block_content, $block, $instance ) {
 
 		// Check if we have a term ID in the block context
-		if ( ! isset( $instance->context['termId'] ) ) {
-			return $block_content;
+		if ( isset( $instance->context['termId'] ) ) {
+			$term_id = $instance->context['termId'];
+			$thumbnail_id = $this->get_term_thumbnail_id( $term_id );
+	
+			if ( $thumbnail_id ) {
+				$attributes = $block['attrs'] ?? [];
+				return $this->render_term_featured_image( $thumbnail_id, $attributes, $term_id );
+			}
 		}
-
-		$term_id = $instance->context['termId'];
-		$thumbnail_id = $this->get_term_thumbnail_id( $term_id );
-
-		if ( ! $thumbnail_id ) {
-			return $block_content;
+	
+		// If block content is empty (no featured image), add placeholder
+		if ( empty( trim( $block_content ) ) || false === strpos( $block_content, '<img' ) ) {
+			return $this->render_placeholder_image( $block );
 		}
+	
+		return $block_content;
+	}
 
-		// Get block attributes
+	/**
+	 * Render a placeholder image when no featured image exists.
+	 *
+	 * @since 2.1.0
+	 *
+	 * @param array $block The full block, including name and attributes.
+	 * @return string The placeholder image HTML.
+	 */
+	private function render_placeholder_image( $block ) {
 		$attributes = $block['attrs'] ?? [];
 		
-		// Render the term thumbnail using the same logic as the core block
-		return $this->render_term_featured_image( $thumbnail_id, $attributes, $term_id );
+		// Get placeholder URL - check settings first, then fall back to default
+		$options = get_option( 'lsx_to_settings', [] );
+		$placeholder_url = LSX_TO_URL . 'assets/img/blocks/placeholder.png';
+		
+		// Check for custom placeholder in settings
+		if ( ! empty( $options['display']['default_placeholder_id'] ) ) {
+			$custom_placeholder = wp_get_attachment_image_url( $options['display']['default_placeholder_id'], 'large' );
+			if ( $custom_placeholder ) {
+				$placeholder_url = $custom_placeholder;
+			}
+		}
+		
+		// Build image attributes
+		$img_attr = [
+			'src'   => esc_url( $placeholder_url ),
+			'alt'   => esc_attr__( 'Placeholder image', 'tour-operator' ),
+			'class' => 'wp-post-image lsx-placeholder-image',
+		];
+		
+		// Handle aspect ratio
+		$extra_styles = '';
+		if ( ! empty( $attributes['aspectRatio'] ) ) {
+			$extra_styles .= 'width:100%;height:100%;object-fit:cover;';
+		}
+		
+		if ( ! empty( $extra_styles ) ) {
+			$img_attr['style'] = $extra_styles;
+		}
+		
+		// Build img tag
+		$img_html = '<img';
+		foreach ( $img_attr as $name => $value ) {
+			$img_html .= ' ' . $name . '="' . $value . '"';
+		}
+		$img_html .= ' />';
+		
+		// Wrap in link if needed
+		if ( ! empty( $attributes['isLink'] ) ) {
+			$post_id = get_the_ID();
+			$permalink = get_permalink( $post_id );
+			$link_target = $attributes['linkTarget'] ?? '_self';
+			$img_html = sprintf(
+				'<a href="%s" target="%s">%s</a>',
+				esc_url( $permalink ),
+				esc_attr( $link_target ),
+				$img_html
+			);
+		}
+		
+		// Generate wrapper with aspect ratio
+		$wrapper_styles = '';
+		if ( ! empty( $attributes['aspectRatio'] ) ) {
+			$wrapper_styles = 'style="aspect-ratio:' . esc_attr( $attributes['aspectRatio'] ) . ';"';
+		}
+		
+		$wrapper_attributes = get_block_wrapper_attributes( 
+			! empty( $wrapper_styles ) ? [ 'style' => 'aspect-ratio:' . $attributes['aspectRatio'] . ';' ] : []
+		);
+		
+		return "<figure {$wrapper_attributes}>{$img_html}</figure>";
 	}
 
 	/**
