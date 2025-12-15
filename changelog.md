@@ -11,6 +11,7 @@
 #### Patterns
 
 - **Section Header Pattern** - Added reusable section header pattern (`lsx-tour-operator/section-header`) with centered heading text flanked by horizontal separators for consistent section dividers across templates. Includes pattern overrides binding for easy customization - [#809](https://github.com/lightspeedwp/tour-operator/pull/809), Issue [#796](https://github.com/lightspeedwp/tour-operator/issues/796)
+- **Review Card Pattern** - Added review card pattern for displaying review content with quotation icons and consistent formatting - Issue [#798](https://github.com/lightspeedwp/tour-operator/issues/798)
 
 #### Template Parts
 
@@ -53,6 +54,22 @@
 
 ### Enhancements
 
+#### Template Refactoring
+
+- **Complete Template System Modernization** - Refactored all archive and single templates to use patterns and template parts instead of hardcoded HTML, enabling full Site Editor customization - Issue [#798](https://github.com/lightspeedwp/tour-operator/issues/798)
+  - Updated `single-tour.html` with pattern-based sections (sticky menu, itinerary, gallery, reviews)
+  - Updated `single-accommodation.html` with pattern-based layout (units, gallery sections)
+  - Updated `single-destination.html` with travel information and gallery patterns
+  - Updated `single-country.html` and `single-region.html` templates
+  - Updated all archive templates (`archive-tour.html`, `archive-accommodation.html`, `archive-destination.html`, `archive-review.html`)
+  - Replaced hardcoded inline styles with WordPress CSS variables (`var(--wp--preset--*)`)
+  - Implemented responsive spacing using WordPress spacing scale
+  - Added placeholder image fallback for posts without featured images
+  - Enhanced price display to show only when price is set and different than 0
+  - Improved sticky menu behavior with proper sticky positioning
+  - Fixed travel information section visibility (hides when no cards are visible)
+  - Cleaned up queryIDs and local development paths from templates
+
 #### Block System Improvements
 - **Fast-Facts Meta Display Enhancement** - Implemented single-line display for fast-facts and meta data blocks with bold prefixes for improved clarity. Enhanced 20+ blocks including duration, travel styles, accommodation type, check-in/out times, ratings, and language blocks with consistent prefix formatting and responsive layout improvements - [#802](https://github.com/lightspeedwp/tour-operator/pull/802), Issue [#514](https://github.com/lightspeedwp/tour-operator/issues/514), Issue [#433](https://github.com/lightspeedwp/tour-operator/pull/433)
 - **Block List Modernization** - Updated block structure by breaking out monolithic blocks from assets folder into individual files with dedicated block.json files for better organization and maintainability - [#489](https://github.com/lightspeedwp/tour-operator/pull/489)
@@ -81,6 +98,8 @@
 ### Removed
 
 - **Bootstrap File Consolidation** - Removed `tour-operator-bootstrap.php` and merged its logic into `tour-operator.php` for a cleaner, more maintainable plugin structure - Issue [#787](https://github.com/lightspeedwp/tour-operator/issues/787)
+- **Search Template Removal** - Removed non-functional search page template - Issue [#798](https://github.com/lightspeedwp/tour-operator/issues/798)
+- **Sticky Header Template** - Removed custom sticky header in favor of WordPress default header behavior - Issue [#798](https://github.com/lightspeedwp/tour-operator/issues/798)
 - **Outdated Admin Assets** - Removed outdated admin pages and assets: add-ons.php, help.php, and welcome.php - [#553](https://github.com/lightspeedwp/tour-operator/pull/553), Issue [#549](https://github.com/lightspeedwp/tour-operator/issues/549)
 - **Block Settings** - Removed deprecated block settings functionality - [#493](https://github.com/lightspeedwp/tour-operator/pull/493)
 - **Unused CSS** - Audited and cleaned out unused CSS files from /assets/css directory reducing plugin size and improving performance - [#574](https://github.com/lightspeedwp/tour-operator/pull/574), Issue [#533](https://github.com/lightspeedwp/tour-operator/issues/533)
@@ -92,6 +111,11 @@
 ### Fixed
 
 - **Icon System Compliance** - Replaced outdated testing icons with correct icons from the design system, ensuring consistent 20px sizing and "currentColor" styling for all icons - [#575](https://github.com/lightspeedwp/tour-operator/pull/575), Issue [#554](https://github.com/lightspeedwp/tour-operator/issues/554)
+- **Template Part Registration** - Fixed template part registration to work correctly with current theme context - Issue [#798](https://github.com/lightspeedwp/tour-operator/issues/798)
+- **Card Image Styling** - Removed border-radius from card images for consistent design - Issue [#798](https://github.com/lightspeedwp/tour-operator/issues/798)
+- **Pattern Variables** - Fixed WordPress CSS variable usage in patterns for proper theme integration - Issue [#798](https://github.com/lightspeedwp/tour-operator/issues/798)
+- **Itinerary and Units Display** - Fixed conditional display logic to properly show itinerary and units sections when data exists - Issue [#798](https://github.com/lightspeedwp/tour-operator/issues/798)
+- **Sticky Menu Colors** - Fixed color scheme for sticky menu to match theme design system - Issue [#798](https://github.com/lightspeedwp/tour-operator/issues/798)
 - **Location Field Visibility** - Fixed issue where "location" custom field and related JavaScript were shown even when Google Maps API key was missing. Now properly hides location field and excludes relevant JS when API key is not configured - [#659](https://github.com/lightspeedwp/tour-operator/pull/659), Issue [#657](https://github.com/lightspeedwp/tour-operator/issues/657)
 - **Modal Button Block Styling** - Fixed Modal Button block where styling support was incorrectly applying to wrapper instead of button element, added missing border controls - [#674](https://github.com/lightspeedwp/tour-operator/pull/674), Issue [#666](https://github.com/lightspeedwp/tour-operator/issues/666)
 - **Null Safety in Slotfills** - Added comprehensive null safety checks for meta attributes in slotfills to prevent JavaScript errors with missing data - [#762](https://github.com/lightspeedwp/tour-operator/pull/762)
