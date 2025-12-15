@@ -135,7 +135,7 @@
 
 		&:not(.collapsed) {
 			.lsx-to-section-header .lsx-to-sticky-caret {
-				transform: rotate(180deg);
+				transform: rotate(180deg) translateY(5px);
 			}
 		}
 
