@@ -56,7 +56,7 @@
 
 #### Template Refactoring
 
-- **Complete Template System Modernization** - Refactored all archive and single templates to use patterns and template parts instead of hardcoded HTML, enabling full Site Editor customization - Issue [#798](https://github.com/lightspeedwp/tour-operator/issues/798)
+- **Complete Template System Modernization** - Refactored all archive and single templates to use patterns and template parts instead of hardcoded HTML, enabling full Site Editor customization - Issue [#798](https://github.com/lightspeedwp/tour-operator/issues/798), PR [#814](https://github.com/lightspeedwp/tour-operator/pull/814) 
   - Updated `single-tour.html` with pattern-based sections (sticky menu, itinerary, gallery, reviews)
   - Updated `single-accommodation.html` with pattern-based layout (units, gallery sections)
   - Updated `single-destination.html` with travel information and gallery patterns
@@ -65,7 +65,6 @@
   - Replaced hardcoded inline styles with WordPress CSS variables (`var(--wp--preset--*)`)
   - Implemented responsive spacing using WordPress spacing scale
   - Added placeholder image fallback for posts without featured images
-  - Enhanced price display to show only when price is set and different from 0
   - Improved sticky menu behavior with proper sticky positioning
   - Fixed travel information section visibility (hides when no cards are visible)
   - Cleaned up queryIDs and local development paths from templates
@@ -125,6 +124,7 @@
 - **Dialog Attribute Handling** - Fixed dialog open attribute handling in allowed HTML tags for proper KSES compatibility - Multiple commits, Issue [#69](https://github.com/lightspeedwp/tour-operator/issues/69)
 - **Block Translation Consistency** - Fixed missing translatable strings and inconsistent i18n implementation across block definitions, ensuring all block titles, descriptions, and keywords are properly translatable - Issue [#770](https://github.com/lightspeedwp/tour-operator/issues/770)
 - **Array to String Conversion Warnings** - Fixed PHP warnings in `lsx_to_custom_field_query()` helper function by filtering out non-scalar values (nested arrays, objects) before implode operation to prevent "Array to string conversion" errors when debug mode is enabled - PR [#803](https://github.com/lightspeedwp/tour-operator/pull/803)
+- **Show prices only when set** - Fixed prices that were showing up when a currency was set, but no price value (or value of 0) - PR [#814](https://github.com/lightspeedwp/tour-operator/pull/814)
 
 ### Security
 
