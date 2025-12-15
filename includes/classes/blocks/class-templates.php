@@ -79,10 +79,6 @@ class Templates {
 				'description' => __( 'Used to display a country in the Destination post-type', 'tour-operator' ),
 				'post_types'  => [ 'destination' ],
 			],
-			'search-results'        => [
-				'title'       => __( 'Search Results', 'tour-operator' ),
-				'description' => __( 'Displays when a visitor performs a search on your website.', 'tour-operator' ),
-			],
 			'archive-review'        => [
 				'title'       => __( 'Review Archive', 'tour-operator' ),
 				'description' => __( 'Displays all the reviews.', 'tour-operator' ),
