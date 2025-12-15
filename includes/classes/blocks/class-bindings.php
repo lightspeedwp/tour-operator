@@ -569,14 +569,15 @@ class Bindings {
 
                     if ( is_object( $tour_operator ) && isset( $tour_operator->options['currency'] ) && ! empty( $tour_operator->options['currency'] ) ) {
                         $letter_code = $tour_operator->options['currency'];
-                        $currency    = '<span class="currency-icon ' . mb_strtolower( $letter_code ) . '"></span>';
+						$currency    = '<span class="currency-icon ' . esc_attr( mb_strtolower( $letter_code ) ) . '"></span>';
+
                     }
 
                     $value = $currency . $value;
 
                     // Get the currency settings
                     if ( is_object( $tour_operator ) && ( isset( $tour_operator->options['country_code_disabled'] ) && 0 === intval( $tour_operator->options['country_code_disabled'] ) || ! isset( $tour_operator->options['country_code_disabled'] ) ) ) {
-                        $value = $letter_code . $value;
+						$value = esc_html( $letter_code ) . $value;
                     }
                 }
 

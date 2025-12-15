@@ -134,6 +134,12 @@ class Taxonomy_Images {
 			);
 		}
 		
+		// Generate wrapper with aspect ratio
+		$wrapper_styles = '';
+		if ( ! empty( $attributes['aspectRatio'] ) ) {
+			$wrapper_styles = 'style="aspect-ratio:' . esc_attr( $attributes['aspectRatio'] ) . ';"';
+		}
+		
 		$wrapper_attributes = get_block_wrapper_attributes( 
 			! empty( $wrapper_styles ) ? [ 'style' => 'aspect-ratio:' . $attributes['aspectRatio'] . ';' ] : []
 		);

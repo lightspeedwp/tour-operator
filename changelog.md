@@ -56,7 +56,7 @@
 
 #### Template Refactoring
 
-- **Complete Template System Modernization** - Refactored all archive and single templates to use patterns and template parts instead of hardcoded HTML, enabling full Site Editor customization - Issue [#798](https://github.com/lightspeedwp/tour-operator/issues/798), PR [#814](https://github.com/lightspeedwp/tour-operator/pull/814) 
+- **Complete Template System Modernization** - Refactored all archive and single templates to use patterns and template parts instead of hardcoded HTML, enabling full Site Editor customization - Issue [#798](https://github.com/lightspeedwp/tour-operator/issues/798), PR [#814](https://github.com/lightspeedwp/tour-operator/pull/814)
   - Updated `single-tour.html` with pattern-based sections (sticky menu, itinerary, gallery, reviews)
   - Updated `single-accommodation.html` with pattern-based layout (units, gallery sections)
   - Updated `single-destination.html` with travel information and gallery patterns
