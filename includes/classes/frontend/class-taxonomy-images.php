@@ -90,8 +90,8 @@ class Taxonomy_Images {
 		$placeholder_url = LSX_TO_URL . 'assets/img/blocks/placeholder.png';
 		
 		// Check for custom placeholder in settings
-		if ( ! empty( $options['display']['default_placeholder_id'] ) ) {
-			$custom_placeholder = wp_get_attachment_image_url( $options['display']['default_placeholder_id'], 'large' );
+		if ( ! empty( $options['general']['default_placeholder_id'] ) ) {
+			$custom_placeholder = wp_get_attachment_image_url( $options['general']['default_placeholder_id'], 'large' );
 			if ( $custom_placeholder ) {
 				$placeholder_url = $custom_placeholder;
 			}
@@ -132,12 +132,6 @@ class Taxonomy_Images {
 				esc_attr( $link_target ),
 				$img_html
 			);
-		}
-		
-		// Generate wrapper with aspect ratio
-		$wrapper_styles = '';
-		if ( ! empty( $attributes['aspectRatio'] ) ) {
-			$wrapper_styles = 'style="aspect-ratio:' . esc_attr( $attributes['aspectRatio'] ) . ';"';
 		}
 		
 		$wrapper_attributes = get_block_wrapper_attributes( 

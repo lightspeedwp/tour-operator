@@ -562,8 +562,9 @@ class Bindings {
 				$raw_price = $rooms->item_price( '', '', false );
                 
                 // Only show price if it exists and is not zero
-                if ( ! empty( $raw_price ) && '0' !== $raw_price && 0 !== $raw_price ) {
+                if ( floatval( $raw_price ) > 0 ) {
                     $value       = $raw_price;
+					$currency	 = '';
                     $letter_code = '';
 
                     if ( is_object( $tour_operator ) && isset( $tour_operator->options['currency'] ) && ! empty( $tour_operator->options['currency'] ) ) {

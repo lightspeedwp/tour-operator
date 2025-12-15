@@ -11,7 +11,7 @@
 #### Patterns
 
 - **Section Header Pattern** - Added reusable section header pattern (`lsx-tour-operator/section-header`) with centered heading text flanked by horizontal separators for consistent section dividers across templates. Includes pattern overrides binding for easy customization - [#809](https://github.com/lightspeedwp/tour-operator/pull/809), Issue [#796](https://github.com/lightspeedwp/tour-operator/issues/796)
-- **Review Card Pattern** - Added review card pattern for displaying review content with quotation icons and consistent formatting - Issue [#798](https://github.com/lightspeedwp/tour-operator/issues/798)
+- **Review Card Pattern** - Added review card pattern for displaying review content with quotation icons and consistent formatting - Issue [#798](https://github.com/lightspeedwp/tour-operator/issues/798), PR [#814](https://github.com/lightspeedwp/tour-operator/pull/814)
 
 #### Template Parts
 
@@ -65,7 +65,7 @@
   - Replaced hardcoded inline styles with WordPress CSS variables (`var(--wp--preset--*)`)
   - Implemented responsive spacing using WordPress spacing scale
   - Added placeholder image fallback for posts without featured images
-  - Enhanced price display to show only when price is set and different than 0
+  - Enhanced price display to show only when price is set and different from 0
   - Improved sticky menu behavior with proper sticky positioning
   - Fixed travel information section visibility (hides when no cards are visible)
   - Cleaned up queryIDs and local development paths from templates
