@@ -84,10 +84,6 @@ class Template_Parts {
 			];
 		}
 
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			error_log( 'Template Parts: Registered new areas via filter' );
-		}
-
 		return $areas;
 	}
 
@@ -162,10 +158,6 @@ class Template_Parts {
 
 		$theme = get_stylesheet();
 
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			error_log( sprintf( 'Template Parts: Processing %d template parts for theme: %s', count( $template_parts ), $theme ) );
-		}
-
 		foreach ( $template_parts as $slug => $args ) {
 			$this->maybe_create_template_part( $slug, $args, $theme );
 		}
@@ -185,25 +177,14 @@ class Template_Parts {
 		// Get template content from file.
 		$file = LSX_TO_PATH . 'parts/' . $slug . '.html';
 
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			error_log( sprintf( 'Template Parts: Checking %s (file: %s)', $slug, $file ) );
-		}
-
 		// Check if template part file exists.
 		if ( ! file_exists( $file ) ) {
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				error_log( sprintf( 'Template part file not found: %s', $file ) );
-			}
 			return;
 		}
 
 		// Read template content.
 		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 		$content = file_get_contents( $file );
-
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			error_log( sprintf( 'Template Parts: Read %d bytes from %s', strlen( $content ), $slug ) );
-		}
 
 		// Check if template part already exists.
 		// Note: We must use tax_query WITHOUT the 'name' parameter because
@@ -234,19 +215,6 @@ class Template_Parts {
 			}
 		);
 
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			error_log( sprintf( 'Template Parts: Checking %s for theme %s', $slug, $theme ) );
-			error_log( sprintf( 'Template Parts: SQL Query: %s', $query->request ) );
-			error_log( sprintf( 'Template Parts: Found %d template parts for theme %s', count( $query->posts ), $theme ) );
-			error_log( sprintf( 'Template Parts: Found %d matching slug %s', count( $existing ), $slug ) );
-			if ( ! empty( $existing ) ) {
-				// Check what theme is actually assigned
-				$first_id = reset( $existing );
-				$terms = wp_get_post_terms( $first_id, 'wp_theme' );
-				error_log( sprintf( 'Template Parts: Existing post themes: %s', print_r( wp_list_pluck( $terms, 'slug' ), true ) ) );
-			}
-		}
-
 		// If template part doesn't exist, create it.
 		if ( empty( $existing ) ) {
 			$template_part_id = wp_insert_post(
@@ -269,14 +237,6 @@ class Template_Parts {
 				// Set area taxonomy term.
 				if ( isset( $args['area'] ) ) {
 					wp_set_post_terms( $template_part_id, [ $args['area'] ], 'wp_template_part_area' );
-				}
-
-				if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-					error_log( sprintf( 'Created template part: %s (ID: %d)', $slug, $template_part_id ) );
-				}
-			} else {
-				if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-					error_log( sprintf( 'Error creating template part %s: %s', $slug, $template_part_id->get_error_message() ) );
 				}
 			}
 		}
