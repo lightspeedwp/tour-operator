@@ -308,15 +308,18 @@ class Bindings {
 			return $block_content;
 		}
 
-		$pattern = $block_content;
-		$group   = array();
+		$build_template = $block_content;
+		$group          = array();
+
+		//$pattern_registry = \WP_Block_Patterns_Registry::get_instance();
+		//$pattern_registry->get_registered();
 
 		// Iterate through and build our itinerary from the block content template.
 		if ( lsx_to_has_itinerary() ) {
 			$itinerary_count = 1;
 			while ( lsx_to_itinerary_loop() ) {
 				lsx_to_itinerary_loop_item();
-				$build = $pattern;
+				$build = $build_template;
 
 				foreach ( $this->itinerary_fields as $field ) {
 					$build = $this->build_itinerary_field( $build, $field, $itinerary_count );
@@ -343,6 +346,7 @@ class Bindings {
 	public function build_itinerary_field( $build = '', $field = '', $count = 1 ) {
 		$pattern = '';
 		$value   = '';
+		$prefix  = '';
 
 		switch ( $field ) {
 			case 'title':
@@ -366,26 +370,31 @@ class Bindings {
 			case 'location':
 				$value   = lsx_to_itinerary_destinations( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-location\b[^"]*"[^>]*>).*?(<\/p>)/is';
+				$prefix  = $this->maybe_get_prefix( 'itinerary-location', $build );
 				break;
 
 			case 'accommodation':
 				$value   = lsx_to_itinerary_accommodation( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-accommodation\b[^"]*"[^>]*>).*?(<\/p>)/is';
+				$prefix  = $this->maybe_get_prefix( 'itinerary-accommodation', $build );
 				break;
 
 			case 'type':
 				$value   = lsx_to_itinerary_accommodation_type( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-type\b[^"]*"[^>]*>).*?(<\/p>)/is';
+				$prefix  = $this->maybe_get_prefix( 'itinerary-type', $build );
 				break;
 
 			case 'drinks':
 				$value   = lsx_to_itinerary_drinks_basis( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-drinks\b[^"]*"[^>]*>).*?(<\/p>)/is';
+				$prefix  = $this->maybe_get_prefix( 'itinerary-drinks', $build );
 				break;
 
 			case 'room':
 				$value   = lsx_to_itinerary_room_basis( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bitinerary-room\b[^"]*"[^>]*>).*?(<\/p>)/is';
+				$prefix  = $this->maybe_get_prefix( 'itinerary-room', $build );
 				break;
 
 			case 'included':
@@ -408,12 +417,23 @@ class Bindings {
 		if ( '' === $value || false === $value || empty( $value ) ) {
 			$pattern = '/\bitin-' . $field . '-wrapper\b/';
 			$value   = 'hidden itin-' . $field . '-wrapper';
+		} else {
+			// Or set the prefix.
+			$value = $prefix . $value;
 		}
 
 		$replacement = '$1' . $value . '$2';
 		$build       = preg_replace( $pattern, $replacement, $build );
 
 		return $build;
+	}
+
+	public function maybe_get_prefix( $key, $build ) {
+		$pattern = '/<p\s+[^>]*\bclass="[^"]*\b' . esc_attr( $key ) . '\b[^"]*"[^>]*>(.*?)<\/p>/is';
+		if ( preg_match( $pattern, $build, $matches ) ) {
+			return str_replace( 'Card Link', '', $matches[1] );
+		}
+		return '';
 	}
 
 	/**

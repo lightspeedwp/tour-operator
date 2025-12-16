@@ -54,15 +54,15 @@ return array(
 <div class="wp-block-group lsx-itinerary-info has-base-background-color has-background" style="border-radius:0.5rem;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">
 
 
-<!-- wp:group {"metadata":{"name":"Location Row"},"className":"itin-location-wrapper","style":{"spacing":{"blockGap":"0.3125rem"}},"layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"center"}} -->
+<!-- wp:group {"metadata":{"name":"Location Row"},"className":"itin-location-wrapper","style":{"spacing":{"blockGap":"0.3125rem"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
 <div class="wp-block-group itin-location-wrapper"><!-- wp:lsx-tour-operator/icons {"iconType":"solid","iconName":"destinationIcon"} /-->
 <!-- wp:paragraph {"metadata":{"name":"Location Value"},"className":"itinerary-location","fontSize":"medium","prefix":"Location:","prefixBold":true} -->
-<p class="itinerary-location has-medium-font-size">Location</p>
+<p class="itinerary-location has-medium-font-size">Card Link</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
 
-<!-- wp:group {"metadata":{"name":"Accommodation Row"},"className":"itin-accommodation-wrapper","style":{"spacing":{"blockGap":"0.3125rem"}},"layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"center"}} -->
+<!-- wp:group {"metadata":{"name":"Accommodation Row"},"className":"itin-accommodation-wrapper","style":{"spacing":{"blockGap":"0.3125rem"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
 <div class="wp-block-group itin-accommodation-wrapper"><!-- wp:lsx-tour-operator/icons {"iconType":"solid","iconName":"accommodationIcon"} /-->
 <!-- wp:paragraph {"metadata":{"name":"Accommodation Value"},"className":"itinerary-accommodation","fontSize":"medium","prefix":"Accommodation:","prefixBold":true} -->
 <p class="itinerary-accommodation has-medium-font-size">Card Link</p>
@@ -70,7 +70,7 @@ return array(
 <!-- /wp:group -->
 
 
-<!-- wp:group {"metadata":{"name":"Type Row"},"className":"itin-type-wrapper","style":{"spacing":{"blockGap":"0.3125rem"}},"layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"top"}} -->
+<!-- wp:group {"metadata":{"name":"Type Row"},"className":"itin-type-wrapper","style":{"spacing":{"blockGap":"0.3125rem"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"}} -->
 <div class="wp-block-group itin-type-wrapper"><!-- wp:lsx-tour-operator/icons {"iconType":"solid","iconName":"accommodationTypeIcon"} /-->
 <!-- wp:paragraph {"metadata":{"name":"Type Value"},"className":"itinerary-type","fontSize":"medium","prefix":"Type:","prefixBold":true} -->
 <p class="itinerary-type has-medium-font-size">Card Link</p>
