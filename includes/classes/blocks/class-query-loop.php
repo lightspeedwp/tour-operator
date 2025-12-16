@@ -519,7 +519,13 @@ class Query_Loop {
 			return $items;
 		}
 
-		$found_items = get_post_meta( get_the_ID(), $to . '_to_' . $from, true );
+		/**
+		 * lsx_to_related_connection_found_items filter.
+		 * @var $key
+		 * @var $current_item_ID
+		 */
+		$key         = apply_filters( 'lsx_to_related_connection_query_key', $to . '_to_' . $from, get_the_ID() );
+		$found_items = get_post_meta( get_the_ID(), $key, true );
 
 		if ( false !== $found_items && ! empty( $found_items ) ) {
 			if ( ! is_array( $found_items ) ) {
