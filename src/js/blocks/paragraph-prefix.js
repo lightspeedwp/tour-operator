@@ -12,10 +12,20 @@
                     return el( BlockEdit, props );
                 }
 
-                // Only show prefix controls for paragraphs with bindings
-                const hasBindings = props.attributes.metadata &&
-                                  props.attributes.metadata.bindings &&
-                                  props.attributes.metadata.bindings.content;
+                // Only show prefix controls for paragraphs with bindings or specific CSS classes
+                const hasMetadataBindings = props.attributes.metadata &&
+                                          props.attributes.metadata.bindings &&
+                                          props.attributes.metadata.bindings.content;
+                
+                const hasSpecificClasses = props.attributes.className && (
+                    props.attributes.className.includes('itinerary-accommodation') ||
+                    props.attributes.className.includes('itinerary-location') ||
+                    props.attributes.className.includes('itinerary-type') ||
+                    props.attributes.className.includes('itinerary-drinks') ||
+                    props.attributes.className.includes('itinerary-room')
+                );
+                
+                const hasBindings = hasMetadataBindings || hasSpecificClasses;
 
                 if ( ! hasBindings ) {
                     return el( BlockEdit, props );

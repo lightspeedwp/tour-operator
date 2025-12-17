@@ -100,7 +100,7 @@ wp.domReady(() => {
                                     layout: {
                                         type: 'flex',
                                         flexWrap: 'nowrap',
-                                        verticalAlignment: 'middle',
+                                        verticalAlignment: 'top',
                                     },
                                 },
                                 innerBlocks: [

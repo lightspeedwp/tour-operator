@@ -76,6 +76,7 @@ wp.domReady(() => {
                                             source: 'lsx/post-connection',
                                             args: {
                                                 key: 'destination_to_tour',
+												parents: true,
                                             },
                                         },
                                     },

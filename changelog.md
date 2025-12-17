@@ -34,6 +34,7 @@
 - **Sticky Menu Block** - Added sticky navigation menu block with desktop and mobile navigation support for single post templates, includes anchor support and section group functionality - [#684](https://github.com/lightspeedwp/tour-operator/pull/684), Issue [#496](https://github.com/lightspeedwp/tour-operator/issues/496)
 - **TO Videos Block** - Added YouTube video gallery block for displaying videos on tours, accommodation, and destination templates in a professional gallery layout - [#598](https://github.com/lightspeedwp/tour-operator/pull/598), Issue [#397](https://github.com/lightspeedwp/tour-operator/issues/397)
 - **Check-in/Checkout Time Icon Blocks** - Added icon-based blocks (replacing images) for check-in and checkout times with filters to display only on relevant post types (accommodation) and related templates - [#645](https://github.com/lightspeedwp/tour-operator/pull/645)
+- **Unit Blocks** - Added comprehensive unit blocks functionality with refined assets and WordPress coding standards alignment - [#815](https://github.com/lightspeedwp/tour-operator/pull/815)
 
 #### Features & Integrations
 
