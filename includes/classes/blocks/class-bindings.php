@@ -559,23 +559,30 @@ class Bindings {
 				break;
 
 			case 'price':
-				$value       = $rooms->item_price( '', '', false );
-				$letter_code = '';
+				$raw_price = $rooms->item_price( '', '', false );
+                
+                // Only show price if it exists and is not zero
+                if ( floatval( $raw_price ) > 0 ) {
+                    $value       = $raw_price;
+					$currency	 = '';
+                    $letter_code = '';
 
-				if ( is_object( $tour_operator ) && isset( $tour_operator->options['currency'] ) && ! empty( $tour_operator->options['currency'] ) ) {
-					$letter_code = $tour_operator->options['currency'];
-					$currency    = '<span class="currency-icon ' . mb_strtolower( $letter_code ) . '"></span>';
-				}
+                    if ( is_object( $tour_operator ) && isset( $tour_operator->options['currency'] ) && ! empty( $tour_operator->options['currency'] ) ) {
+                        $letter_code = $tour_operator->options['currency'];
+						$currency    = '<span class="currency-icon ' . esc_attr( mb_strtolower( $letter_code ) ) . '"></span>';
 
-				$value = $currency . $value;
+                    }
 
-				// Get the currency settings
-				if ( is_object( $tour_operator ) && ( isset( $tour_operator->options['country_code_disabled'] ) && 0 === intval( $tour_operator->options['country_code_disabled'] ) || ! isset( $tour_operator->options['country_code_disabled'] ) ) ) {
-					$value = $letter_code . $value;
-				}
+                    $value = $currency . $value;
 
-				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bunit-price\b[^"]*"[^>]*>).*?(<\/p>)/is';
-				break;
+                    // Get the currency settings
+                    if ( is_object( $tour_operator ) && ( isset( $tour_operator->options['country_code_disabled'] ) && 0 === intval( $tour_operator->options['country_code_disabled'] ) || ! isset( $tour_operator->options['country_code_disabled'] ) ) ) {
+						$value = esc_html( $letter_code ) . $value;
+                    }
+                }
+
+                $pattern = '/(<p\s+[^>]*\bclass="[^"]*\bunit-price\b[^"]*"[^>]*>).*?(<\/p>)/is';
+                break;
 
 			default:
 				break;

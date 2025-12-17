@@ -21,8 +21,8 @@ return array(
 		__( 'room', 'tour-operator' ),
 	),
 	'inserter'      => false,
-	'content'       => '<!-- wp:columns {"style":{"spacing":{"blockGap":{"left":"0"}}}} -->
-<div class="wp-block-columns"><!-- wp:column {"width":"25%"} -->
+	'content'       => '<!-- wp:columns {"style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|20","right":"var:preset|spacing|20"},"blockGap":{"left":"0"}}}} -->
+<div class="wp-block-columns" style="padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)"><!-- wp:column {"width":"25%"} -->
 <div class="wp-block-column" style="flex-basis:25%"><!-- wp:group {"metadata":{"name":"' . esc_attr__( 'Image', 'tour-operator' ) . '"},"className":"lsx-unit-image","style":{"layout":{"selfStretch":"fixed","flexSize":"275px"},"dimensions":{"minHeight":"275px"},"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"}} -->
 <div class="wp-block-group lsx-unit-image" style="min-height:275px"><!-- wp:image {"aspectRatio":"1","scale":"cover","sizeSlug":"medium","linkDestination":"none","className":"unit-image","style":{"border":{"radius":"0.5rem"},"layout":{"selfStretch":"fixed","flexSize":"275px"}}} -->
 <figure class="wp-block-image size-medium has-custom-border unit-image"><img src="' . esc_url( LSX_TO_URL ) . 'assets/img/blocks/placeholder.png" alt="' . esc_attr__( 'Room image', 'tour-operator' ) . '" style="border-radius:0.5rem;aspect-ratio:1;object-fit:cover"/></figure>
@@ -48,8 +48,8 @@ return array(
 <!-- /wp:column -->
 
 <!-- wp:column {"width":"40%"} -->
-<div class="wp-block-column" style="flex-basis:40%"><!-- wp:group {"metadata":{"name":"' . esc_attr__( 'Information', 'tour-operator' ) . '"},"className":"lsx-unit-info","style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30","right":"var:preset|spacing|30"},"blockGap":"var:preset|spacing|40"},"border":{"radius":"0.5rem"},"layout":{"selfStretch":"fixed","flexSize":"40%"}},"backgroundColor":"base","layout":{"type":"constrained"}} -->
-<div class="wp-block-group lsx-unit-info has-base-background-color has-background" style="border-radius:0.5rem;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)"><!-- wp:heading {"level":4,"fontSize":"large"} -->
+<div class="wp-block-column" style="flex-basis:40%"><!-- wp:group {"metadata":{"name":"' . esc_attr__( 'Information', 'tour-operator' ) . '"},"className":"lsx-unit-info","style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30","right":"var:preset|spacing|30"},"blockGap":"var:preset|spacing|40"},"border":{"radius":"0.5rem"},"layout":{"selfStretch":"fixed","flexSize":"40%"}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group lsx-unit-info" style="border-radius:0.5rem;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)"><!-- wp:heading {"level":4,"fontSize":"large"} -->
 <h4 class="wp-block-heading has-large-font-size">' . esc_html__( 'Information', 'tour-operator' ) . '</h4>
 <!-- /wp:heading -->
 

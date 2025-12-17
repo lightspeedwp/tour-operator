@@ -35,6 +35,30 @@
     "menuItems": {
       "type": "array",
       "default": []
+    },
+    "activeBackgroundColor": {
+      "type": "string"
+    },
+    "customActiveBackgroundColor": {
+      "type": "string"
+    },
+    "activeTextColor": {
+      "type": "string"
+    },
+    "customActiveTextColor": {
+      "type": "string"
+    },
+    "hoverBackgroundColor": {
+      "type": "string"
+    },
+    "customHoverBackgroundColor": {
+      "type": "string"
+    },
+    "hoverTextColor": {
+      "type": "string"
+    },
+    "customHoverTextColor": {
+      "type": "string"
     }
   },
   "textdomain": "tour-operator",

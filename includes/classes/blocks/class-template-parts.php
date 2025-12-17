@@ -84,10 +84,6 @@ class Template_Parts {
 			];
 		}
 
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			error_log( 'Template Parts: Registered new areas via filter' );
-		}
-
 		return $areas;
 	}
 
@@ -162,10 +158,6 @@ class Template_Parts {
 
 		$theme = get_stylesheet();
 
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			error_log( sprintf( 'Template Parts: Processing %d template parts for theme: %s', count( $template_parts ), $theme ) );
-		}
-
 		foreach ( $template_parts as $slug => $args ) {
 			$this->maybe_create_template_part( $slug, $args, $theme );
 		}
@@ -185,15 +177,8 @@ class Template_Parts {
 		// Get template content from file.
 		$file = LSX_TO_PATH . 'parts/' . $slug . '.html';
 
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			error_log( sprintf( 'Template Parts: Checking %s (file: %s)', $slug, $file ) );
-		}
-
 		// Check if template part file exists.
 		if ( ! file_exists( $file ) ) {
-			if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-				error_log( sprintf( 'Template part file not found: %s', $file ) );
-			}
 			return;
 		}
 
@@ -201,27 +186,33 @@ class Template_Parts {
 		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 		$content = file_get_contents( $file );
 
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			error_log( sprintf( 'Template Parts: Read %d bytes from %s', strlen( $content ), $slug ) );
-		}
-
 		// Check if template part already exists.
-		$existing = get_posts(
+		// Note: We must use tax_query WITHOUT the 'name' parameter because
+		// WordPress ignores tax_query when 'name' is present in the query args.
+		$query = new \WP_Query(
 			[
 				'post_type'      => 'wp_template_part',
-				'name'           => $slug,
-				'posts_per_page' => 1,
+				'posts_per_page' => -1,
 				'post_status'    => 'any',
 				'no_found_rows'  => true,
 				'fields'         => 'ids',
 				'tax_query'      => [
 					[
 						'taxonomy' => 'wp_theme',
-						'field'    => 'name',
+						'field'    => 'slug',
 						'terms'    => $theme,
 					],
 				],
 			]
+		);
+
+		// Filter by slug manually since we can't use 'name' with tax_query
+		$existing = array_filter(
+			$query->posts,
+			function ( $post_id ) use ( $slug ) {
+				$post = get_post( $post_id );
+				return $post && $post->post_name === $slug;
+			}
 		);
 
 		// If template part doesn't exist, create it.
@@ -246,14 +237,6 @@ class Template_Parts {
 				// Set area taxonomy term.
 				if ( isset( $args['area'] ) ) {
 					wp_set_post_terms( $template_part_id, [ $args['area'] ], 'wp_template_part_area' );
-				}
-
-				if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-					error_log( sprintf( 'Created template part: %s (ID: %d)', $slug, $template_part_id ) );
-				}
-			} else {
-				if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-					error_log( sprintf( 'Error creating template part %s: %s', $slug, $template_part_id->get_error_message() ) );
 				}
 			}
 		}
