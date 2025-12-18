@@ -148,7 +148,7 @@ function Edit({ attributes, setAttributes, clientId }) {
         clientId={clientId}
       />
       <div {...blockProps} style={wrapperStyle}>
-        <nav className="lsx-to-sticky-menu-nav" aria-label={__('Page section navigation', 'tour-operator')}>
+        <nav className="lsx-to-sticky-menu-nav alignwide" aria-label={__('Page section navigation', 'tour-operator')}>
           {menuItems.length > 0 ? (
             <>
               <ul className="lsx-to-sticky-menu-list" aria-label={__('Page sections', 'tour-operator')}>
@@ -255,7 +255,7 @@ function Save({ attributes }) {
 
   return (
     <div {...blockProps} style={wrapperStyle}>
-      <nav className="lsx-to-sticky-menu-nav" aria-label={__('Page section navigation', 'tour-operator')}>
+      <nav className="lsx-to-sticky-menu-nav alignwide" aria-label={__('Page section navigation', 'tour-operator')}>
         {menuItems.length > 0 && (
           <ul className="lsx-to-sticky-menu-list" aria-label={__('Page sections', 'tour-operator')}>
             {menuItems.map((item) => (
