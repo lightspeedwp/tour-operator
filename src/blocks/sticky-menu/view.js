@@ -62,7 +62,7 @@ lsx_to.scroll_to_section = function (section_id) {
 
         // Use getBoundingClientRect for accurate position relative to viewport
         const rect = section.getBoundingClientRect();
-        const top = window.pageYOffset + rect.top - offset;
+        const top = window.pageYOffset + rect.top - offset - 5;
 
         // Check user's motion preference
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
