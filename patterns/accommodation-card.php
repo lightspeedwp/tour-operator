@@ -66,7 +66,7 @@ return array(
 <!-- /wp:group -->
 
 <!-- wp:group {"metadata":{"name":"' . esc_attr__( 'Rooms Row', 'tour-operator' ) . '"},"className":"lsx-number-of-rooms-wrapper","style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
-<div class="wp-block-group lsx-number-of-rooms-wrapper"><!-- wp:group {"className":"lsx-info-label","style":{"spacing":{"blockGap":"var:preset|spacing|10"},"layout":{"selfStretch":"fixed"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+<div class="wp-block-group lsx-number-of-rooms-wrapper"><!-- wp:group {"className":"lsx-info-label","style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
 <div class="wp-block-group lsx-info-label"><!-- wp:lsx-tour-operator/icons {"iconType":"solid","iconName":"roomBasisIcon"} /-->
 
 <!-- wp:paragraph -->
