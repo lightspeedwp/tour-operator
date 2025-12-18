@@ -7,7 +7,7 @@
 #### Build & Pattern Infrastructure
 
 - **Pattern Registration Infrastructure** - Established directory structure and registration system for tour operator patterns with proper categorization and template support - PR[#803](https://github.com/lightspeedwp/tour-operator/pull/803), Issue [#795](https://github.com/lightspeedwp/tour-operator/issues/795)
-- **Spacing Variables with Theme Inheritance** - Added CSS spacing variables (`--wp--preset--spacing--10` through `--wp--preset--spacing--80`) with zero-specificity fallbacks using `:where()` selector to ensure theme values take precedence while providing consistent rem-based fallback values for patterns and templates when theme doesn't define them
+- **Spacing Variables with Theme Inheritance** - Added CSS spacing variables (`--wp--preset--spacing--10` through `--wp--preset--spacing--80`) with zero-specificity fallbacks using `:where()` selector to ensure theme values take precedence while providing consistent rem-based fallback values for patterns and templates when theme doesn't define them PR [#818](https://github.com/lightspeedwp/tour-operator/pull/818)
 
 #### Patterns
 

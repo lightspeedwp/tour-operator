@@ -47,7 +47,7 @@ return array(
 <!-- /wp:group -->
 
 <!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"lsx/post-meta","args":{"key":"price"}},"__default":{"source":"core/pattern-overrides"}},"name":"' . esc_attr__( 'Price', 'tour-operator' ) . '"},"className":"lsx-info-value","style":{"spacing":{"padding":{"top":"0.125rem","bottom":"0.125rem"}}}} -->
-<p class="lsx-info-value"></p>
+<p class="lsx-info-value" style="padding-top:0.125rem;padding-bottom:0.125rem"></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
@@ -75,7 +75,7 @@ return array(
 <!-- /wp:group -->
 
 <!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"lsx/post-meta","args":{"key":"number_of_rooms"}},"__default":{"source":"core/pattern-overrides"}},"name":"' . esc_attr__( 'Number of Rooms', 'tour-operator' ) . '"},"className":"lsx-info-value","style":{"spacing":{"padding":{"top":"0.125rem","bottom":"0.125rem"}}}} -->
-<p class="lsx-info-value"></p>
+<p class="lsx-info-value" style="padding-top:0.125rem;padding-bottom:0.125rem"></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
