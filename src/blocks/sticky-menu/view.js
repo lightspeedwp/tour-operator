@@ -530,12 +530,13 @@ lsx_to.initialize_mobile_sections = function () {
         return;
     }
 
-    sections.forEach(function (section) {
+    sections.forEach(function (section, index) {
         const section_title = section.getAttribute('data-section-title') || section.id;
+        const is_first_section = index === 0;
         const context = {
             section_id: section.id,
             section_title: section_title,
-            is_collapsed: true
+            is_collapsed: !is_first_section
         };
 
         // Find the wrapper (new structure) or use section (legacy)
@@ -544,9 +545,14 @@ lsx_to.initialize_mobile_sections = function () {
             wrapper = section; // Legacy support
         }
 
-        // Add collapsed class by default to wrapper
-        wrapper.classList.add('collapsed');
-        wrapper.setAttribute('aria-expanded', 'false');
+        // First section is open by default on mobile, others are collapsed
+        if (is_first_section) {
+            wrapper.classList.remove('collapsed');
+            wrapper.setAttribute('aria-expanded', 'true');
+        } else {
+            wrapper.classList.add('collapsed');
+            wrapper.setAttribute('aria-expanded', 'false');
+        }
 
         // Setup mobile header (PHP already added it, we just need to add functionality)
         lsx_to.add_mobile_header(section, context);
