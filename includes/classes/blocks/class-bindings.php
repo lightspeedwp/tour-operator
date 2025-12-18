@@ -550,6 +550,7 @@ class Bindings {
 		global $rooms;
 		$pattern       = '';
 		$value         = '';
+		$prefix        = '';
 		$tour_operator = tour_operator();
 
 		switch ( $field ) {
@@ -576,6 +577,7 @@ class Bindings {
 			case 'type':
 				$value   = $rooms->item_type( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bunit-type\b[^"]*"[^>]*>).*?(<\/p>)/is';
+				$prefix  = $this->maybe_get_prefix( 'unit-type', $build );
 				break;
 
 			case 'price':
@@ -602,6 +604,7 @@ class Bindings {
                 }
 
                 $pattern = '/(<p\s+[^>]*\bclass="[^"]*\bunit-price\b[^"]*"[^>]*>).*?(<\/p>)/is';
+				$prefix  = $this->maybe_get_prefix( 'unit-price', $build );
                 break;
 
 			default:
@@ -609,9 +612,12 @@ class Bindings {
 		}
 
 		// if the value is emtpy than add a css class to hide the element.
-		if ( '' === $value ) {
+		if ( '' === $value || false === $value || empty( $value ) ) {
 			$pattern = '/\bunit-' . $field . '-wrapper\b/';
 			$value   = 'hidden unit-' . $field . '-wrapper';
+		} else {
+			// Or set the prefix.
+			$value = $prefix . $value;
 		}
 
 		$replacement = '$1 ' . $value . ' $2';

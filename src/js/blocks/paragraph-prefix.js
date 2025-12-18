@@ -22,7 +22,9 @@
                     props.attributes.className.includes('itinerary-location') ||
                     props.attributes.className.includes('itinerary-type') ||
                     props.attributes.className.includes('itinerary-drinks') ||
-                    props.attributes.className.includes('itinerary-room')
+                    props.attributes.className.includes('itinerary-room') ||
+					props.attributes.className.includes('unit-price') ||
+					props.attributes.className.includes('unit-type')
                 );
                 
                 const hasBindings = hasMetadataBindings || hasSpecificClasses;
