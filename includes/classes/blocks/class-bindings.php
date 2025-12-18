@@ -550,6 +550,7 @@ class Bindings {
 		global $rooms;
 		$pattern       = '';
 		$value         = '';
+		$prefix        = '';
 		$tour_operator = tour_operator();
 
 		switch ( $field ) {
@@ -576,35 +577,43 @@ class Bindings {
 			case 'type':
 				$value   = $rooms->item_type( '', '', false );
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bunit-type\b[^"]*"[^>]*>).*?(<\/p>)/is';
+				$prefix  = $this->maybe_get_prefix( 'unit-type', $build );
 				break;
 
 			case 'price':
 				$value       = $rooms->item_price( '', '', false );
 				$letter_code = '';
 
-				if ( is_object( $tour_operator ) && isset( $tour_operator->options['currency'] ) && ! empty( $tour_operator->options['currency'] ) ) {
-					$letter_code = $tour_operator->options['currency'];
-					$currency    = '<span class="currency-icon ' . mb_strtolower( $letter_code ) . '"></span>';
+				if ( ! empty( $value ) ) {
+					if ( is_object( $tour_operator ) && isset( $tour_operator->options['currency'] ) && ! empty( $tour_operator->options['currency'] ) ) {
+						$letter_code = $tour_operator->options['currency'];
+						$currency    = '<span class="currency-icon ' . mb_strtolower( $letter_code ) . '"></span>';
+					}
+
+					$value = $currency . $value;
+
+					// Get the currency settings
+					if ( is_object( $tour_operator ) && ( isset( $tour_operator->options['country_code_disabled'] ) && 0 === intval( $tour_operator->options['country_code_disabled'] ) || ! isset( $tour_operator->options['country_code_disabled'] ) ) ) {
+						$value = $letter_code . $value;
+					}
 				}
-
-				$value = $currency . $value;
-
-				// Get the currency settings
-				if ( is_object( $tour_operator ) && ( isset( $tour_operator->options['country_code_disabled'] ) && 0 === intval( $tour_operator->options['country_code_disabled'] ) || ! isset( $tour_operator->options['country_code_disabled'] ) ) ) {
-					$value = $letter_code . $value;
-				}
-
 				$pattern = '/(<p\s+[^>]*\bclass="[^"]*\bunit-price\b[^"]*"[^>]*>).*?(<\/p>)/is';
+				$prefix  = $this->maybe_get_prefix( 'unit-price', $build );
 				break;
 
 			default:
 				break;
 		}
 
+		do_action( 'qm/debug', $value );
+
 		// if the value is emtpy than add a css class to hide the element.
-		if ( '' === $value ) {
+		if ( '' === $value || false === $value || empty( $value ) ) {
 			$pattern = '/\bunit-' . $field . '-wrapper\b/';
 			$value   = 'hidden unit-' . $field . '-wrapper';
+		} else {
+			// Or set the prefix.
+			$value = $prefix . $value;
 		}
 
 		$replacement = '$1 ' . $value . ' $2';
