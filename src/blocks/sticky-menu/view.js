@@ -62,7 +62,7 @@ lsx_to.scroll_to_section = function (section_id) {
 
         // Use getBoundingClientRect for accurate position relative to viewport
         const rect = section.getBoundingClientRect();
-        const top = window.pageYOffset + rect.top - offset - 5;
+        const top = window.pageYOffset + rect.top - offset + 5;
 
         // Check user's motion preference
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -88,8 +88,8 @@ lsx_to.scroll_to_section = function (section_id) {
                 section.setAttribute('tabindex', '-1');
             }
 
-            // Focus the section
-            section.focus();
+            // Focus the section without scrolling (preventScroll prevents interference)
+            section.focus({ preventScroll: true });
 
             // Remove temporary tabindex if we added it
             if (!originalTabIndex) {
