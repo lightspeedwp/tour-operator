@@ -1,0 +1,35 @@
+/**
+ * Tour Operator CSS Variables
+ *
+ * Spacing variables that inherit from WordPress theme presets with fallback values.
+ * These values ensure consistent spacing throughout patterns and templates.
+ *
+ * @package LightSpeed_Tour_Operator
+ */
+
+/**
+ * Spacing Scale Fallbacks
+ * These use :where() for zero specificity, allowing theme values to always take precedence.
+ * If the theme doesn't define these variables, these fallback values will be used.
+ * Base: 1rem = 16px (default browser setting)
+ *
+ * Scale ratios:
+ * - 10: 0.125rem (2px)   - Extra small
+ * - 20: 0.5rem (8px)     - Small
+ * - 30: 1rem (16px)      - Medium
+ * - 40: 2rem (32px)      - Large
+ * - 50: 3rem (48px)      - Extra large
+ * - 60: 4rem (64px)      - 2X large
+ * - 70: 5rem (80px)      - 3X large
+ * - 80: 6rem (96px)      - 4X large
+ */
+:where(:root) {
+	--wp--preset--spacing--10: 0.125rem;
+	--wp--preset--spacing--20: 0.5rem;
+	--wp--preset--spacing--30: 1rem;
+	--wp--preset--spacing--40: 2rem;
+	--wp--preset--spacing--50: 3rem;
+	--wp--preset--spacing--60: 4rem;
+	--wp--preset--spacing--70: 5rem;
+	--wp--preset--spacing--80: 6rem;
+}
