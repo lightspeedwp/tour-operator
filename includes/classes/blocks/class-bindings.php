@@ -605,8 +605,6 @@ class Bindings {
 				break;
 		}
 
-		do_action( 'qm/debug', $value );
-
 		// if the value is emtpy than add a css class to hide the element.
 		if ( '' === $value || false === $value || empty( $value ) ) {
 			$pattern = '/\bunit-' . $field . '-wrapper\b/';

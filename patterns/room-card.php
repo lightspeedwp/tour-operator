@@ -54,17 +54,13 @@ return array(
 <!-- /wp:heading -->
 
 <!-- wp:group {"metadata":{"name":"' . esc_attr__( 'Info Items', 'tour-operator' ) . '"},"style":{"spacing":{"blockGap":"var:preset|spacing|30"}},"layout":{"type":"constrained"}} -->
-<div class="wp-block-group"><!-- wp:group {"metadata":{"name":"' . esc_attr__( 'From Price Row', 'tour-operator' ) . '"},"className":"unit-price-wrapper","style":{"spacing":{"blockGap":"0.3125rem"}},"layout":{"type":"flex","flexWrap":"wrap","verticalAlignment":"center"}} -->
-<div class="wp-block-group unit-price-wrapper"><!-- wp:group {"style":{"spacing":{"blockGap":"0.3125rem"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
-<div class="wp-block-group"><!-- wp:lsx-tour-operator/icons {"iconType":"outline","iconName":"priceIcon"} /-->
+<div class="wp-block-group">
 
-<!-- wp:paragraph {"style":{"typography":{"fontStyle":"normal","fontWeight":"700"}},"fontSize":"medium"} -->
-<p class="has-medium-font-size" style="font-style:normal;font-weight:700">' . esc_html__( 'From:', 'tour-operator' ) . '</p>
-<!-- /wp:paragraph --></div>
-<!-- /wp:group -->
+<!-- wp:group {"className":"unit-price-wrapper","style":{"spacing":{"margin":{"top":"0","bottom":"0"},"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+<div class="wp-block-group unit-price-wrapper" style="margin-top:0;margin-bottom:0"><!-- wp:lsx-tour-operator/icons {"iconName":"priceIcon"} /-->
 
-<!-- wp:paragraph {"metadata":{"name":"' . esc_attr__( 'Price Value', 'tour-operator' ) . '"},"className":"unit-price","fontSize":"medium"} -->
-<p class="unit-price has-medium-font-size">' . esc_html__( 'Price', 'tour-operator' ) . '</p>
+<!-- wp:paragraph {"className":"unit-price amount","style":{"elements":{"link":{"color":{"text":"var:preset|color|primary-700"}}},"spacing":{"padding":{"top":"2px","bottom":"2px"}}},"textColor":"primary-700","prefix":"From:","prefixBold":true} -->
+<p class="unit-price amount has-primary-700-color has-text-color has-link-color" style="padding-top:2px;padding-bottom:2px"></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
 
