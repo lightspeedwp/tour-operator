@@ -52,14 +52,17 @@ lsx_to.scroll_to_section = function (section_id) {
 
     if (section) {
         // Calculate offset for admin bar and fixed headers
-        let top = section.offsetTop;
-
-        top -= document.querySelector('#wpadminbar') ?
+        let offset = 0;
+        offset += document.querySelector('#wpadminbar') ?
             document.querySelector('#wpadminbar').offsetHeight : 0;
-        top -= document.querySelector('.top-menu-fixed #masthead') ?
+        offset += document.querySelector('.top-menu-fixed #masthead') ?
             document.querySelector('.top-menu-fixed #masthead').offsetHeight : 0;
-        top -= document.querySelector('.lsx-to-navigation') ?
+        offset += document.querySelector('.lsx-to-navigation') ?
             document.querySelector('.lsx-to-navigation').offsetHeight : 0;
+
+        // Use getBoundingClientRect for accurate position relative to viewport
+        const rect = section.getBoundingClientRect();
+        const top = window.pageYOffset + rect.top - offset;
 
         // Check user's motion preference
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -282,19 +285,25 @@ lsx_to.get_active_section_on_scroll = function () {
     if (masthead) offset += masthead.offsetHeight;
     if (stickyMenu) offset += stickyMenu.offsetHeight;
 
-    const scrollPos = window.scrollY + offset;
     let activeSection = null;
+    let closestDistance = Infinity;
 
     // Find the section that is currently in view
-    for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        const sectionTop = section.offsetTop;
-
-        if (scrollPos >= sectionTop) {
-            activeSection = section.id;
-            break;
+    // The section whose top is closest to (but not below) the offset line is active
+    Array.from(sections).forEach(section => {
+        const rect = section.getBoundingClientRect();
+        const sectionTop = rect.top;
+        
+        // Check if section top is above or at the offset line
+        if (sectionTop <= offset) {
+            const distance = offset - sectionTop;
+            // This section is above the line - check if it's the closest one
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                activeSection = section.id;
+            }
         }
-    }
+    });
 
     // If no section is found above scroll position, use the first section
     if (!activeSection && sections.length > 0) {
@@ -403,14 +412,23 @@ lsx_to.initialize_scroll_spy = function () {
 
             // Initial check for active section on page load
             setTimeout(() => {
-                const firstVisibleSection = Array.from(sections).find(section => {
-                    const rect = section.getBoundingClientRect();
-                    return rect.top <= offset + 50 && rect.bottom >= offset;
-                });
+                // Find all visible sections
+                const visibleSections = Array.from(sections)
+                    .filter(section => {
+                        const rect = section.getBoundingClientRect();
+                        return rect.top <= offset + 50 && rect.bottom >= offset;
+                    })
+                    .sort((a, b) => {
+                        // Sort by position - topmost first
+                        return a.getBoundingClientRect().top - b.getBoundingClientRect().top;
+                    });
 
-                if (firstVisibleSection) {
-                    lsx_to.sticky_menu.current_section = firstVisibleSection.id;
-                    lsx_to.update_active_menu_item(firstVisibleSection.id);
+                // Use the topmost visible section, or the first section if none are visible
+                const activeSection = visibleSections.length > 0 ? visibleSections[0] : sections[0];
+                
+                if (activeSection) {
+                    lsx_to.sticky_menu.current_section = activeSection.id;
+                    lsx_to.update_active_menu_item(activeSection.id);
                 }
             }, 100);
         }
