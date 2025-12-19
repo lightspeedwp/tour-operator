@@ -1,0 +1,101 @@
+<!-- wp:template-part {"slug":"header","theme":"twentytwentyfive","area":"header"} /-->
+
+<!-- wp:group {"metadata":{"name":"Breadcrumbs"},"align":"full","className":"is-style-default has-text-color has-link-color","style":{"elements":{"link":{":hover":{"color":{"text":"var:preset|color|primary-700"}}}},"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"}}},"backgroundColor":"primary","fontSize":"medium","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignfull is-style-default has-text-color has-link-color has-primary-background-color has-background has-medium-font-size" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)"><!-- wp:group {"align":"wide","className":"is-style-default","layout":{"type":"default"}} -->
+<div class="wp-block-group alignwide is-style-default"><!-- wp:yoast-seo/breadcrumbs /--></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:cover {"useFeaturedImage":true,"dimRatio":50,"isUserOverlayColor":true,"customGradient":"linear-gradient(85deg,rgb(0,0,0) 0%,rgba(0,0,0,0) 100%)","contentPosition":"bottom center","isDark":false,"tagName":"section","metadata":{"name":"Hero"},"style":{"spacing":{"margin":{"top":"0","bottom":"0"},"padding":{"top":"var:preset|spacing|40","bottom":"var:preset|spacing|40"}}},"layout":{"type":"constrained"}} -->
+<section class="wp-block-cover is-light has-custom-content-position is-position-bottom-center" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--40);padding-bottom:var(--wp--preset--spacing--40)"><span aria-hidden="true" class="wp-block-cover__background has-background-dim has-background-gradient" style="background:linear-gradient(85deg,rgb(0,0,0) 0%,rgba(0,0,0,0) 100%)"></span><div class="wp-block-cover__inner-container"><!-- wp:group {"align":"wide","layout":{"type":"default"}} -->
+<div class="wp-block-group alignwide"><!-- wp:group {"align":"wide","style":{"elements":{"link":{"color":{"text":"var:preset|color|base"}}}},"textColor":"base","layout":{"type":"flex","orientation":"vertical","verticalAlignment":"bottom"}} -->
+<div class="wp-block-group alignwide has-base-color has-text-color has-link-color"><!-- wp:query-title {"type":"archive","showPrefix":false} /--></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div></section>
+<!-- /wp:cover -->
+
+<!-- wp:group {"metadata":{"name":"Archive Description"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)"><!-- wp:group {"metadata":{"name":"Content"},"align":"wide","layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignwide"><!-- wp:term-description /--></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Archive Content"},"align":"wide","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignwide" style="margin-top:0;margin-bottom:0"><!-- wp:query {"queryId":1,"query":{"perPage":"9","pages":"3","offset":"0","postType":"tour","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false,"parents":[]},"align":"wide","layout":{"type":"constrained","contentSize":""}} -->
+<div class="wp-block-query alignwide"><!-- wp:post-template {"lock":{"move":false,"remove":false},"align":"wide","layout":{"type":"grid","columnCount":3,"minimumColumnWidth":null}} -->
+<!-- wp:group {"metadata":{"name":"Tour Card","categories":["lsx-tour-operator"],"patternName":"lsx-tour-operator/tour-card"},"className":"overflow-hidden is-style-shadow-sm","style":{"spacing":{"blockGap":"var:preset|spacing|20"},"border":{"radius":"0.5rem"}},"layout":{"type":"default"},"ariaLabel":"Tour Card"} -->
+<div aria-label="Tour Card" class="wp-block-group overflow-hidden is-style-shadow-sm" style="border-radius:0.5rem"><!-- wp:post-featured-image {"isLink":true,"aspectRatio":"3/2","linkTarget":"_blank"} /-->
+
+<!-- wp:group {"metadata":{"name":"Content"},"style":{"spacing":{"padding":{"right":"var:preset|spacing|30","left":"var:preset|spacing|30"}}},"layout":{"type":"default"}} -->
+<div class="wp-block-group" style="padding-right:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)"><!-- wp:group {"metadata":{"name":"Tour Title"},"className":"center-vertically","style":{"dimensions":{"minHeight":"3.75rem"}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"center"}} -->
+<div class="wp-block-group center-vertically" style="min-height:3.75rem"><!-- wp:post-title {"textAlign":"center","level":3,"isLink":true,"style":{"elements":{"link":{":hover":{"color":{"text":"var:preset|color|primary-700"}}}}},"fontSize":"large"} /--></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Tour Information"},"className":"lsx-tour-info","style":{"spacing":{"padding":{"left":"var:preset|spacing|20","right":"var:preset|spacing|20","top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"},"blockGap":"0"},"border":{"top":{"width":"1px"},"bottom":{"width":"1px"}}},"fontSize":"medium","layout":{"type":"default"},"ariaLabel":"Tour details"} -->
+<div aria-label="Tour details" class="wp-block-group lsx-tour-info has-medium-font-size" style="border-top-width:1px;border-bottom-width:1px;padding-top:var(--wp--preset--spacing--20);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)"><!-- wp:group {"metadata":{"name":"Price Row"},"className":"lsx-price-wrapper","style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+<div class="wp-block-group lsx-price-wrapper"><!-- wp:group {"className":"lsx-info-label","style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+<div class="wp-block-group lsx-info-label"><!-- wp:lsx-tour-operator/icons {"iconName":"priceIcon"} /-->
+
+<!-- wp:paragraph {"style":{"spacing":{"padding":{"top":"0.125rem","bottom":"0.125rem"}}}} -->
+<p style="padding-top:0.125rem;padding-bottom:0.125rem">From:</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"lsx/post-meta","args":{"key":"price"}},"__default":{"source":"core/pattern-overrides"}},"name":"Price"},"className":"lsx-info-value","style":{"spacing":{"padding":{"top":"0.125rem","bottom":"0.125rem"}}}} -->
+<p class="lsx-info-value" style="padding-top:0.125rem;padding-bottom:0.125rem"></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Duration Row"},"className":"lsx-duration-wrapper","style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+<div class="wp-block-group lsx-duration-wrapper"><!-- wp:group {"className":"lsx-info-label","style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+<div class="wp-block-group lsx-info-label"><!-- wp:lsx-tour-operator/icons {"iconName":"durationIcon"} /-->
+
+<!-- wp:paragraph {"style":{"spacing":{"padding":{"top":"0.125rem","bottom":"0.125rem"}}}} -->
+<p style="padding-top:0.125rem;padding-bottom:0.125rem">Duration:</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"className":"lsx-info-value","style":{"spacing":{"padding":{"top":"0.125rem","bottom":"0.125rem"},"blockGap":"var:preset|spacing|10"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+<div class="wp-block-group lsx-info-value" style="padding-top:0.125rem;padding-bottom:0.125rem"><!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"lsx/post-meta","args":{"key":"duration"}},"__default":{"source":"core/pattern-overrides"}},"name":"Duration"}} -->
+<p></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Days</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"name":"Tour Text Content"},"style":{"spacing":{"padding":{"right":"var:preset|spacing|20","left":"var:preset|spacing|20","bottom":"var:preset|spacing|20"}}},"layout":{"type":"default"}} -->
+<div class="wp-block-group" style="padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--20)"><!-- wp:post-excerpt {"showMoreOnNewLine":false,"excerptLength":40,"className":"line-clamp-4","fontSize":"medium"} /--></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:buttons -->
+<div class="wp-block-buttons"><!-- wp:button {"backgroundColor":"primary","width":100,"metadata":{"name":"Permalink"},"style":{"border":{"radius":"0px"}}} -->
+<div class="wp-block-button has-custom-width wp-block-button__width-100"><a class="wp-block-button__link has-primary-background-color has-background wp-element-button" href="#permalink" style="border-radius:0px">View more</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons --></div>
+<!-- /wp:group -->
+<!-- /wp:post-template -->
+
+<!-- wp:query-no-results -->
+<!-- wp:paragraph {"align":"center","placeholder":"Add text or blocks that will display when the query returns no results."} -->
+<p class="has-text-align-center">Unfortunately, there are no tours listed at the moment. Please check back soon as we regularly update our offerings.</p>
+<!-- /wp:paragraph -->
+<!-- /wp:query-no-results -->
+
+<!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"},"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20"}}},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group alignwide" style="margin-top:var(--wp--preset--spacing--20);margin-bottom:var(--wp--preset--spacing--20);padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20)"><!-- wp:query-pagination {"paginationArrow":"chevron","align":"wide","className":"is-style-default","layout":{"type":"flex","justifyContent":"space-between"}} -->
+<!-- wp:query-pagination-previous /-->
+
+<!-- wp:query-pagination-numbers /-->
+
+<!-- wp:query-pagination-next /-->
+<!-- /wp:query-pagination --></div>
+<!-- /wp:group --></div>
+<!-- /wp:query --></div>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","theme":"twentytwentyfive","area":"footer"} /-->

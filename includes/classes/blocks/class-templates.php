@@ -69,6 +69,11 @@ class Templates {
 				'description' => __( 'Displays all the tours.', 'tour-operator' ),
 				'post_types'  => [ 'tour' ],
 			],
+			'taxonomy-travel-style'          => [
+				'title'       => __( 'Travel Style Term Archive', 'tour-operator' ),
+				'description' => __( 'Displays all the tours in the current travel style.', 'tour-operator' ),
+				'post_types'  => [ 'tour' ],
+			],
 			'single-region'         => [
 				'title'       => __( 'Single Region', 'tour-operator' ),
 				'description' => __( 'Used to display a region of a country in the Destination post-type', 'tour-operator' ),
