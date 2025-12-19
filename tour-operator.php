@@ -46,10 +46,13 @@ if (! defined('DEBUG_SCRIPTS')) {
 	define('LSX_TO_ASSET_DEBUG', '');
 }
 
+// phpcs:disable WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 // Plugin dependencies.
+require_once LSX_TO_PATH . 'plugins/content-models/create-content-model.php';
 require_once LSX_TO_PATH . 'plugins/cmb2/init.php';
 require_once LSX_TO_PATH . 'plugins/cmb2-field-map/cmb-field-map.php';
 require_once LSX_TO_PATH . 'plugins/cmb-field-select2/cmb-field-select2.php';
+// phpcs:enable WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 
 // Template Tags.
 require_once LSX_TO_PATH . 'includes/template-tags/general.php';

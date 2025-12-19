@@ -193,7 +193,6 @@ class Tour_Operator
 	 */
 	public function setup()
 	{
-		require_once LSX_TO_PATH . 'plugins/content-models/create-content-model.php';
 
 		$this->classes['permalinks']      = new Permalinks();
 		$this->classes['taxonomies']      = Taxonomies::init();

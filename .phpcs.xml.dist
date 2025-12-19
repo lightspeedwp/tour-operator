@@ -3,6 +3,7 @@
 	<description>Minimal PHPCS configuration for IDE integration using 10up-Default ruleset. Extended project-specific config lives in phpcs.xml.dist.</description>
 	<rule ref="10up-Default" />
 	<arg name="extensions" value="php"/>
+	<exclude-pattern>plugins/*</exclude-pattern>
 	<exclude-pattern>vendor/*</exclude-pattern>
 	<exclude-pattern>node_modules/*</exclude-pattern>
 	<exclude-pattern>build/*</exclude-pattern>

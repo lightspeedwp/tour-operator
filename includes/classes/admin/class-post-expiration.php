@@ -52,7 +52,7 @@ class Post_Expiration {
 					$action_id,
 					sprintf(
 						/* translators: %1$s is the name of the hook to be cancelled, %2$s is the exception message. */
-						__( 'Caught exception while cancelling action "%1$s": %2$s', 'action-scheduler' ),
+						__( 'Caught exception while cancelling action "%1$s": %2$s', 'tour-operator' ),
 						'lsx_to_expire_tour',
 						$exception->getMessage()
 					)
