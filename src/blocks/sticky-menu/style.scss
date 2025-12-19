@@ -8,6 +8,8 @@
 	position: sticky;
 	top: 0;
 	z-index: 100;
+
+
 }
 
 .admin-bar .wp-block-lsx-tour-operator-sticky-menu {
@@ -49,6 +51,11 @@
 	margin: 0;
 	padding: 0;
 	justify-content: flex-start;
+
+
+	.wp-block-lsx-tour-operator-sticky-menu.has-text-align-center & {
+		justify-content: center;
+	}
 }
 
 .lsx-to-sticky-menu-item {
