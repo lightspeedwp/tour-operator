@@ -8,6 +8,8 @@
 	position: sticky;
 	top: 0;
 	z-index: 100;
+
+
 }
 
 .admin-bar .wp-block-lsx-tour-operator-sticky-menu {
@@ -49,6 +51,11 @@
 	margin: 0;
 	padding: 0;
 	justify-content: flex-start;
+
+
+	.wp-block-lsx-tour-operator-sticky-menu.has-text-align-center & {
+		justify-content: center;
+	}
 }
 
 .lsx-to-sticky-menu-item {
@@ -73,13 +80,11 @@
 }
 
 .lsx-to-sticky-menu-button:hover {
-	background-color: var(--hover-bg-color, rgba(0, 0, 0, 0.1));
-	color: var(--hover-text-color, inherit);
+	color: var(--wp--preset--color--accent-1);
 }
 
 .lsx-to-sticky-menu-button.active {
-	background-color: var(--active-bg-color, currentColor);
-	color: var(--active-text-color, inherit);
+	color: var(--wp--preset--color--accent-1, inherit);
 }
 
 /* Screen reader only text */
