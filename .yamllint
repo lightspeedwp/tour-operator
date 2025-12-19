@@ -1,0 +1,87 @@
+---
+# YAML Linting Configuration for Tour Operator Plugin
+# Validates GitHub Actions workflows and other YAML files
+
+extends: default
+
+rules:
+    # Line Length - Allow longer lines for readability
+    line-length:
+        max: 120
+        level: warning
+
+    # Indentation - Standard 2 spaces
+    indentation:
+        spaces: 2
+        indent-sequences: true
+
+    # Comments - Require space after # but be lenient
+    comments:
+        min-spaces-from-content: 2
+        require-starting-space: true
+        ignore-shebangs: true
+
+    # Document Start - Optional for GitHub Actions
+    document-start:
+        present: false
+
+    # Truthy values - Allow yes/no/on/off (common in GitHub Actions)
+    truthy:
+        allowed-values: ['true', 'false', 'yes', 'no', 'on', 'off']
+        check-keys: false
+
+    # New lines - Be lenient with trailing newlines
+    new-line-at-end-of-file: enable
+    new-lines:
+        type: unix
+
+    # Empty values - Allow for GitHub Actions syntax
+    empty-values:
+        forbid-in-block-mappings: false
+        forbid-in-flow-mappings: true
+
+    # Brackets and braces - Standard formatting
+    brackets:
+        min-spaces-inside: 0
+        max-spaces-inside: 0
+
+    braces:
+        min-spaces-inside: 0
+        max-spaces-inside: 1
+
+    # Colons - Standard spacing
+    colons:
+        max-spaces-before: 0
+        max-spaces-after: 1
+
+    # Commas - Standard spacing
+    commas:
+        max-spaces-before: 0
+        min-spaces-after: 1
+        max-spaces-after: 1
+
+    # Hyphens - Consistent list formatting
+    hyphens:
+        max-spaces-after: 1
+
+    # Key duplicates - Never allow
+    key-duplicates: enable
+
+    # Octal values - Forbid implicit octal
+    octal-values:
+        forbid-implicit-octal: true
+        forbid-explicit-octal: false
+
+    # Quoted strings - Be flexible (GitHub Actions uses various quoting styles)
+    quoted-strings:
+        quote-type: any
+        required: false
+
+# Files to ignore
+ignore: |
+    node_modules/
+    vendor/
+    build/
+    .git/
+    .github/ISSUE_TEMPLATE/
+    languages/

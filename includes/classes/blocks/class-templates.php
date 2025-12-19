@@ -3,7 +3,7 @@ namespace lsx\blocks;
 
 /**
  * Registers our Block Templates
- * 
+ *
  * @link https://github.com/lightspeedwp/lsx-starter-plugin/blob/master/classes/class-templates.php
  * @version 1.0.0
  */
@@ -42,47 +42,63 @@ class Templates {
 			'single-accommodation'  => [
 				'title'       => __( 'Single Accommodations', 'tour-operator' ),
 				'description' => __( 'Displays a single accommodation', 'tour-operator' ),
-				'post_types'  => ['accommodation'],
+				'post_types'  => [ 'accommodation' ],
 			],
 			'archive-accommodation' => [
 				'title'       => __( 'Accommodation Archive', 'tour-operator' ),
 				'description' => __( 'Displays all the accommodation.', 'tour-operator' ),
-				'post_types'  => ['accommodations'],
+				'post_types'  => [ 'accommodation' ],
 			],
-			'single-destination'  => [
+			'taxonomy-accommodation-type'          => [
+				'title'       => __( 'Accommodation Type Term Archive', 'tour-operator' ),
+				'description' => __( 'Displays all the tours in the current accommodation type.', 'tour-operator' ),
+				'post_types'  => [ 'accommodation' ],
+			],
+			'taxonomy-accommodation-brand'          => [
+				'title'       => __( 'Accommodation Brand Term Archive', 'tour-operator' ),
+				'description' => __( 'Displays all the tours in the current accommodation brand.', 'tour-operator' ),
+				'post_types'  => [ 'accommodation' ],
+			],
+			'single-destination'    => [
 				'title'       => __( 'Single Destination', 'tour-operator' ),
 				'description' => __( 'Displays a single destination', 'tour-operator' ),
-				'post_types'  => ['destination'],
+				'post_types'  => [ 'destination' ],
 			],
-			'archive-destination' => [
+			'archive-destination'   => [
 				'title'       => __( 'Destination Archive', 'tour-operator' ),
 				'description' => __( 'Displays all the destinations.', 'tour-operator' ),
-				'post_types'  => ['destinations'],
+				'post_types'  => [ 'destination' ],
 			],
-			'single-tour'  => [
+			'single-tour'           => [
 				'title'       => __( 'Single Tour', 'tour-operator' ),
 				'description' => __( 'Displays a single tour', 'tour-operator' ),
-				'post_types'  => ['tour'],
+				'post_types'  => [ 'tour' ],
 			],
-			'archive-tour' => [
+			'archive-tour'          => [
 				'title'       => __( 'Tour Archive', 'tour-operator' ),
 				'description' => __( 'Displays all the tours.', 'tour-operator' ),
-				'post_types'  => ['tours'],
+				'post_types'  => [ 'tour' ],
 			],
-			'single-region' => [
+			'taxonomy-travel-style'          => [
+				'title'       => __( 'Travel Style Term Archive', 'tour-operator' ),
+				'description' => __( 'Displays all the tours in the current travel style.', 'tour-operator' ),
+				'post_types'  => [ 'tour' ],
+			],
+			'single-region'         => [
 				'title'       => __( 'Single Region', 'tour-operator' ),
 				'description' => __( 'Used to display a region of a country in the Destination post-type', 'tour-operator' ),
-				'post_types'  => ['destination'],
+				'post_types'  => [ 'destination' ],
 			],
-			'single-country' => [
+			'single-country'        => [
 				'title'       => __( 'Single Country', 'tour-operator' ),
 				'description' => __( 'Used to display a country in the Destination post-type', 'tour-operator' ),
-				'post_types'  => ['destination'],
+				'post_types'  => [ 'destination' ],
 			],
-			'search-results' => [
-				'title'       => __( 'Search Results', 'tour-operator' ),
-				'description' => __( 'Displays when a visitor performs a search on your website.', 'tour-operator' ),
-			]
+			'archive-review'        => [
+				'title'       => __( 'Review Archive', 'tour-operator' ),
+				'description' => __( 'Displays all the reviews.', 'tour-operator' ),
+				'post_types'  => [ 'review' ],
+			],
 		];
 
 		foreach ( $post_types as $key => $labels ) {

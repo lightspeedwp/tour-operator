@@ -1,0 +1,45 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "lsx-tour-operator/visa",
+  "title": "Visa",
+  "description": "Display visa requirements for destinations with expandable content and styling.",
+  "keywords": [
+    "visa",
+    "requirements",
+    "destination",
+    "travel",
+    "documentation",
+    "entry"
+  ],
+  "icon": "id-alt",
+  "category": "lsx-tour-operator",
+  "version": "1.0.0",
+  "textdomain": "tour-operator",
+  "supports": {
+    "renaming": false,
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    }
+  },
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Visa"
+      },
+      "className": "lsx-visa-wrapper"
+    }
+  },
+  "editorScript": "file:index.js"
+}

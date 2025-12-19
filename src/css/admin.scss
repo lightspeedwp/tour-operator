@@ -1,0 +1,27 @@
+/*
+ * Tour Operators Administrator
+ */
+/* The Tab Styling */
+.wrap.lsx-to-settings {
+	.spinner {
+		background-color: #fff;
+		border-radius: 10px;
+	}
+
+	.form-field {
+		input[type="text"],
+		input[type="number"],
+		select
+		 {
+			max-width: 300px;
+		}
+	}
+
+	.ui-tab {
+		display:none;
+
+		&.active {
+			display: block;
+		}
+	}
+}

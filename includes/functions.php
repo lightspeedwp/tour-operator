@@ -209,7 +209,7 @@ function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square', $meta_key =
 	$accommodation_id = '';
 	$temp_id          = '';
 	$tour_operator    = tour_operator();
-	
+
 	if ( isset( $tour_operator->options['tour']['itinerary_use_destination_images'] ) && '' !== $tour_operator->options['tour']['itinerary_use_destination_images'] ) {
 		$meta_key = 'destination_to_tour';
 	}
@@ -267,7 +267,7 @@ function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square', $meta_key =
 			$temp_id = get_post_thumbnail_id();
 
 			if ( false !== $temp_id ) {
-				$temp_src_array   = wp_get_attachment_image_src( $temp_id, $size );
+				$temp_src_array = wp_get_attachment_image_src( $temp_id, $size );
 				if ( is_array( $temp_src_array ) ) {
 					$thumbnail_src = $temp_src_array[0];
 				}
@@ -284,6 +284,48 @@ function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square', $meta_key =
 	}
 }
 
+
+/**
+ * Helper for itinerary connected fields.
+ *
+ * @param string $field The field key to fetch.
+ * @param string $type  The type for lsx_to_connected_list or taxonomy for get_the_term_list.
+ * @param string $before
+ * @param string $after
+ * @param bool   $echo
+ * @param bool   $term_list If true, use get_the_term_list instead of lsx_to_connected_list.
+ * @return string|null
+ */
+function lsx_to_itinerary_connected_field( $field, $type, $before = '', $after = '', $echo = true, $term_list = false ) {
+	global $tour_itinerary;
+	if ( ! $tour_itinerary || empty( $tour_itinerary->has_itinerary ) ) {
+		return '';
+	}
+
+	if ( $tour_itinerary->count === $tour_itinerary->index ) {
+		$data = $tour_itinerary->itineraries[ $tour_itinerary->index - 2 ][ $field ] ?? '';
+	} else {
+		$data = $tour_itinerary->itinerary[ $field ] ?? '';
+	}
+
+	if ( empty( $data ) ) {
+		return '';
+	}
+
+	$data = (array) $data;
+
+	if ( $term_list ) {
+		$return = get_the_term_list( $data[0], $type, $before, ', ', $after );
+	} else {
+		$return = $before . lsx_to_connected_list( $data, $type, true, ', ' ) . $after;
+	}
+
+	if ( $echo ) {
+		echo wp_kses_post( $return );
+	}
+	return $return;
+}
+
 /**
  * Outputs The current Itinerary connected destinations, can only be used in
  * the itinerary loop.
@@ -293,21 +335,7 @@ function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square', $meta_key =
  * @category      itinerary
  */
 function lsx_to_itinerary_destinations( $before = '', $after = '', $echo = true ) {
-	global $tour_itinerary;
-
-	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) && ! empty( $tour_itinerary->itinerary['destination_to_tour'] ) ) {
-		$itinerary_destinations = $tour_itinerary->itinerary['destination_to_tour'];
-		if ( ! is_array( $itinerary_destinations ) ) {
-			$itinerary_destinations = array( $itinerary_destinations );
-		}
-		$itinerary_destinations = $before . lsx_to_connected_list( $itinerary_destinations, 'destination', true, ', ' ) . $after;
-
-		if ( true === $echo ) {
-			echo wp_kses_post( $itinerary_destinations );
-		} else {
-			return $itinerary_destinations;
-		}	
-	}
+	return lsx_to_itinerary_connected_field( 'destination_to_tour', 'destination', $before, $after, $echo );
 }
 
 /**
@@ -319,20 +347,7 @@ function lsx_to_itinerary_destinations( $before = '', $after = '', $echo = true 
  * @category      itinerary
  */
 function lsx_to_itinerary_accommodation( $before = '', $after = '', $echo = true ) {
-	global $tour_itinerary;
-	$return = '';
-
-	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) && ! empty( $tour_itinerary->itinerary['accommodation_to_tour'] ) ) {
-		$itinerary_accommodation = $tour_itinerary->itinerary['accommodation_to_tour'];
-		if ( ! is_array( $itinerary_accommodation ) ) {
-			$itinerary_accommodation = array( $itinerary_accommodation );
-		}
-		$return = $before . lsx_to_connected_list( $itinerary_accommodation, 'accommodation', true, ', ' ) . $after;
-		if ( true === $echo ) {
-			echo wp_kses_post( $return );
-		}
-	}
-	return $return;
+	return lsx_to_itinerary_connected_field( 'accommodation_to_tour', 'accommodation', $before, $after, $echo );
 }
 
 /**
@@ -344,20 +359,7 @@ function lsx_to_itinerary_accommodation( $before = '', $after = '', $echo = true
  * @category      itinerary
  */
 function lsx_to_itinerary_accommodation_type( $before = '', $after = '', $echo = true ) {
-	global $tour_itinerary;
-	$return = '';
-
-	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) && ! empty( $tour_itinerary->itinerary['accommodation_to_tour'] ) ) {
-		$itinerary_accommodation = $tour_itinerary->itinerary['accommodation_to_tour'];
-		if ( ! is_array( $itinerary_accommodation ) ) {
-			$itinerary_accommodation = array( $itinerary_accommodation );
-		}
-		$return = get_the_term_list( $itinerary_accommodation[0], 'accommodation-type', $before, ', ', $after );
-		if ( true === $echo ) {
-			echo wp_kses_post( $return );
-		}
-	}
-	return $return;
+	return lsx_to_itinerary_connected_field( 'accommodation_to_tour', 'accommodation-type', $before, $after, $echo, true );
 }
 
 /**
@@ -369,13 +371,7 @@ function lsx_to_itinerary_accommodation_type( $before = '', $after = '', $echo =
  * @category      itinerary
  */
 function lsx_to_itinerary_activities( $before = '', $after = '' ) {
-	global $tour_itinerary;
-
-	if ( $tour_itinerary && $tour_itinerary->has_itinerary && ! empty( $tour_itinerary->itinerary ) ) {
-		if ( ! empty( $tour_itinerary->itinerary['activity_to_tour'] ) && is_array( $tour_itinerary->itinerary['activity_to_tour'] ) ) {
-			echo wp_kses_post( $before . lsx_to_connected_list( $tour_itinerary->itinerary['activity_to_tour'], 'activity', true, ', ' ) . $after );
-		}
-	}
+	return lsx_to_itinerary_connected_field( 'activity_to_tour', 'activity', $before, $after, true );
 }
 
 /**
@@ -621,4 +617,157 @@ function lsx_to_accommodation_check_type( $type = false ) {
 function lsx_to_accommodation_reset_units_loop() {
 	global $rooms;
 	return $rooms->reset_loop();
+}
+
+/**
+ * Sanitizes a tour title for safe output and storage.
+ *
+ * @since 2.1.0
+ * @package       tour-operator
+ * @subpackage    template-tags
+ * @category      tour
+ *
+ * @param string $title The tour title to sanitize.
+ * @return string The sanitized tour title.
+ */
+function lsx_to_sanitize_tour_title( $title = '' ) {
+	if ( empty( $title ) || ! is_string( $title ) ) {
+		return '';
+	}
+
+	$sanitized_title = sanitize_text_field( $title );
+
+	/**
+	 * Filters the sanitized tour title.
+	 *
+	 * @since 2.1.0
+	 *
+	 * @param string $sanitized_title The sanitized title.
+	 * @param string $title           The original title.
+	 */
+	return apply_filters( 'lsx_to_sanitize_tour_title', $sanitized_title, $title );
+}
+
+/**
+ * Get SVG icon content from the icons library.
+ *
+ * Retrieves an SVG icon from the Tour Operator icons block source directory.
+ * The SVG is sanitized using wp_kses with allowed SVG elements and attributes.
+ *
+ * @since 2.1.0
+ * @package       tour-operator
+ * @subpackage    template-tags
+ * @category      icons
+ *
+ * @param string $icon_type The icon type/category (e.g., 'outline', 'solid').
+ * @param string $icon_name The icon name in camelCase format (e.g., 'priceIcon').
+ * @return string The sanitized SVG content, or empty string if not found.
+ */
+function lsx_to_get_icon_svg( $icon_type = 'outline', $icon_name = '' ) {
+	if ( empty( $icon_name ) ) {
+		return '';
+	}
+
+	// Convert camelCase icon name to kebab-case file name.
+	$file_name = strtolower( preg_replace( '/([a-z])([A-Z])/', '$1-$2', $icon_name ) );
+
+	// Build the path to the SVG file.
+	$svg_path = LSX_TO_PATH . 'src/blocks/icons/source-icons/' . $icon_type . '/' . $file_name . '.svg';
+
+	// Check if the file exists.
+	if ( ! file_exists( $svg_path ) ) {
+		return '';
+	}
+
+	// Get the SVG content.
+	$svg_content = file_get_contents( $svg_path ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+
+	if ( empty( $svg_content ) ) {
+		return '';
+	}
+
+	// Sanitize the SVG content.
+	$allowed_svg_tags = array(
+		'svg'      => array(
+			'class'           => true,
+			'aria-hidden'     => true,
+			'aria-labelledby' => true,
+			'role'            => true,
+			'xmlns'           => true,
+			'width'           => true,
+			'height'          => true,
+			'viewbox'         => true,
+			'fill'            => true,
+		),
+		'g'        => array(
+			'fill'      => true,
+			'clip-path' => true,
+		),
+		'title'    => array(
+			'title' => true,
+		),
+		'path'     => array(
+			'd'               => true,
+			'fill'            => true,
+			'stroke'          => true,
+			'stroke-width'    => true,
+			'stroke-linecap'  => true,
+			'stroke-linejoin' => true,
+			'fill-rule'       => true,
+			'clip-rule'       => true,
+		),
+		'circle'   => array(
+			'cx'     => true,
+			'cy'     => true,
+			'r'      => true,
+			'fill'   => true,
+			'stroke' => true,
+		),
+		'rect'     => array(
+			'x'         => true,
+			'y'         => true,
+			'width'     => true,
+			'height'    => true,
+			'fill'      => true,
+			'stroke'    => true,
+			'rx'        => true,
+			'ry'        => true,
+			'transform' => true,
+		),
+		'line'     => array(
+			'x1'           => true,
+			'y1'           => true,
+			'x2'           => true,
+			'y2'           => true,
+			'stroke'       => true,
+			'stroke-width' => true,
+		),
+		'polygon'  => array(
+			'points' => true,
+			'fill'   => true,
+			'stroke' => true,
+		),
+		'polyline' => array(
+			'points' => true,
+			'fill'   => true,
+			'stroke' => true,
+		),
+		'defs'     => array(),
+		'clippath' => array(
+			'id' => true,
+		),
+	);
+
+	$svg_content = wp_kses( $svg_content, $allowed_svg_tags );
+
+	/**
+	 * Filters the SVG icon content.
+	 *
+	 * @since 2.1.0
+	 *
+	 * @param string $svg_content The SVG content.
+	 * @param string $icon_type   The icon type.
+	 * @param string $icon_name   The icon name.
+	 */
+	return apply_filters( 'lsx_to_icon_svg', $svg_content, $icon_type, $icon_name );
 }

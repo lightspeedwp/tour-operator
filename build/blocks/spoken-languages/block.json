@@ -1,0 +1,67 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "textdomain": "tour-operator",
+  "name": "lsx-tour-operator/spoken-languages",
+  "title": "Spoken Languages",
+  "category": "lsx-tour-operator",
+  "editorScript": "file:index.js",
+  "description": "Display spoken languages information for accommodations.",
+  "icon": "translation",
+  "keywords": [
+    "spoken",
+    "languages",
+    "communication",
+    "multilingual"
+  ],
+  "version": "2.1.0",
+  "attributes": {
+    "className": {
+      "type": "string",
+      "default": "lsx-spoken-languages-wrapper"
+    }
+  },
+  "example": {
+    "attributes": {
+      "className": "lsx-spoken-languages-wrapper"
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {
+          "layout": {
+            "type": "flex",
+            "flexWrap": "nowrap",
+            "verticalAlignment": "middle"
+          }
+        },
+        [
+          [
+            "lsx-tour-operator/icons",
+            {
+              "iconName": "spokenLanguagesIcon",
+              "iconType": "solid"
+            }
+          ]
+        ]
+      ],
+      [
+        "core/group",
+        {
+          "layout": {
+            "type": "flex",
+            "flexWrap": "nowrap"
+          }
+        },
+        [
+          [
+            "core/paragraph",
+            {
+              "content": "<strong>Spoken Languages:</strong> English, Spanish, French, German"
+            }
+          ]
+        ]
+      ]
+    ]
+  }
+}

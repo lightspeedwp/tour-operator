@@ -1,0 +1,64 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "textdomain": "tour-operator",
+  "name": "lsx-tour-operator/duration",
+  "title": "Duration",
+  "category": "lsx-tour-operator",
+  "editorScript": "file:index.js",
+  "description": "Displays the duration of the tour in days.",
+  "icon": "clock",
+  "keywords": [
+    "duration",
+    "time",
+    "days",
+    "length",
+    "period",
+    "tour"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Duration"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {
+          "layout": {
+            "type": "flex",
+            "flexWrap": "nowrap",
+            "verticalAlignment": "middle"
+          }
+        },
+        [
+          [
+            "lsx-tour-operator/icons",
+            {
+              "iconType": "outline",
+              "iconName": "durationIcon"
+            }
+          ]
+        ]
+      ],
+      [
+        "core/group",
+        {
+          "layout": {
+            "type": "flex",
+            "flexWrap": "nowrap"
+          }
+        },
+        [
+          [
+            "core/paragraph",
+            {
+              "content": "<strong>Duration:</strong> 7 days"
+            }
+          ]
+        ]
+      ]
+    ]
+  }
+}

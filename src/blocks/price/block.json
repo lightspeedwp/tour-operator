@@ -1,0 +1,33 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"textdomain": "tour-operator",
+	"name": "lsx-tour-operator/price",
+	"title": "Price",
+	"category": "lsx-tour-operator",
+	"editorScript": "file:index.js",
+	"description": "Displays the starting price for the tour.",
+	"icon": "money-alt",
+	"keywords": [
+		"price",
+		"cost",
+		"amount",
+		"from",
+		"starting"
+	],
+	"example": {
+		"attributes": {
+			"metadata": {
+				"name": "Price"
+			}
+		},
+		"innerBlocks": [
+			[
+				"core/paragraph",
+				{
+					"content": "<strong>From:</strong> $2,499"
+				}
+			]
+		]
+	}
+}

@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: ["2.1-trunk"]
+
+jobs:
+  lint-build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+      - name: Run Playwright tests
+        run: |
+          npx playwright install --with-deps
+          npx playwright test
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+      - name: Install Composer deps
+        run: composer install --no-interaction --no-progress
+      - name: PHP CodeSniffer (WPCS)
+        run: vendor/bin/phpcs -q

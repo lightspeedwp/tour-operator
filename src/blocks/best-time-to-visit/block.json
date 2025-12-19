@@ -1,0 +1,46 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "lsx-tour-operator/best-time-to-visit",
+  "title": "Best time to visit",
+  "description": "Display optimal travel months for destinations with visual calendar indicators.",
+  "keywords": [
+    "time",
+    "visit",
+    "months",
+    "travel",
+    "destination",
+    "calendar",
+    "optimal"
+  ],
+  "icon": "calendar-alt",
+  "category": "lsx-tour-operator",
+  "version": "1.0.0",
+  "textdomain": "tour-operator",
+  "supports": {
+    "renaming": false,
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    }
+  },
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Best time to visit"
+      },
+      "className": "lsx-best-time-to-visit-wrapper"
+    }
+  },
+  "editorScript": "file:index.js"
+}

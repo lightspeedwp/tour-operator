@@ -1,0 +1,66 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "textdomain": "tour-operator",
+  "name": "lsx-tour-operator/not-included",
+  "title": "Not included",
+  "category": "lsx-tour-operator",
+  "editorScript": "file:index.js",
+  "description": "Displays what is not included in the tour price.",
+  "icon": "dismiss",
+  "keywords": [
+    "not",
+    "included",
+    "excluded",
+    "price",
+    "excludes",
+    "additional",
+    "costs"
+  ],
+  "supports": {
+    "anchor": true,
+    "className": true,
+    "customClassName": true,
+    "html": false,
+    "lock": false,
+    "multiple": true,
+    "reusable": true,
+    "renaming": false,
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "blockGap": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "textAlign": true
+    },
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true
+    }
+  },
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Not Included"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/paragraph",
+        {
+          "content": "<strong>Price Excludes:</strong>"
+        }
+      ],
+      [
+        "core/paragraph",
+        {
+          "content": "• International flights<br>• Travel insurance<br>• Personal expenses<br>• Alcoholic beverages<br>• Optional activities<br>• Tips and gratuities"
+        }
+      ]
+    ]
+  }
+}

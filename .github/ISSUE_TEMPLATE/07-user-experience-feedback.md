@@ -2,7 +2,7 @@
 name: User Experience Feedback
 about: Share feedback on the usability and interface design of the extension
 title: "[UX] "
-labels: ux, feedback, needs-triage
+labels: UX, needs-triage
 assignees: ''
 ---
 

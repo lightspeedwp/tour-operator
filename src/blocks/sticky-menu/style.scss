@@ -1,0 +1,223 @@
+.lsx-to-sticky-menu-section-wrapper {
+	margin: 0;
+}
+// Wrapper element - remove default padding as it will be applied to buttons
+.wp-block-lsx-tour-operator-sticky-menu {
+	padding: 0!important;
+	margin-top: 0;
+	position: sticky;
+	top: 0;
+	z-index: 100;
+
+
+}
+
+.admin-bar .wp-block-lsx-tour-operator-sticky-menu {
+	top: 32px;
+}
+
+.lsx-to-sticky-menu {
+	/* Remove hardcoded styles - let theme.json and user styles handle it */
+	position: relative;
+	z-index: 100;
+	opacity: 0;
+}
+
+.block-editor-iframe__body .lsx-to-sticky-menu {
+	opacity: 1;
+}
+
+.lsx-to-sticky-menu {
+	position: sticky;
+	top: 0;
+	background: var(--wp--preset--color--background, #fff);
+	@media (max-width: 767px) {
+		display: none;
+	}
+}
+
+.admin-bar .lsx-to-sticky-menu {
+	top: 32px;
+}
+
+.lsx-to-sticky-menu-nav {
+	width: 100%;
+}
+
+.lsx-to-sticky-menu-list {
+	display: flex;
+	flex-wrap: wrap;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	justify-content: flex-start;
+
+
+	.wp-block-lsx-tour-operator-sticky-menu.has-text-align-center & {
+		justify-content: center;
+	}
+}
+
+.lsx-to-sticky-menu-item {
+	margin: 0;
+}
+
+.lsx-to-sticky-menu-button {
+	background-color: var(--button-bg-color, transparent);
+	border: none;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: inherit;
+	color: var(--button-text-color, inherit);
+	text-decoration: none;
+	transition: all 0.2s ease;
+	padding: 0.5rem 1rem;
+	display: inline-block;
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
+}
+
+.lsx-to-sticky-menu-button:hover {
+	color: var(--wp--preset--color--accent-1);
+}
+
+.lsx-to-sticky-menu-button.active {
+	color: var(--wp--preset--color--accent-1, inherit);
+}
+
+/* Screen reader only text */
+.lsx-to-sr-only {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	padding: 0 !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	clip: rect(0, 0, 0, 0) !important;
+	white-space: nowrap !important;
+	border: 0 !important;
+}
+
+/* Editor-specific styles */
+.lsx-to-sticky-menu-info {
+	font-size: 0.75rem;
+	opacity: 0.7;
+	margin-top: 0.5rem;
+	text-align: center;
+}
+
+.lsx-to-sticky-menu-placeholder {
+	text-align: left;
+	padding: 2rem;
+	opacity: 0.7;
+}
+
+.lsx-to-sticky-menu-help {
+	font-size: 0.75rem;
+	margin-top: 0.5rem;
+}
+
+.lsx-to-sticky-menu-help ol {
+	margin-left: 1rem;
+	line-height: 1.4;
+	text-align: left;
+}
+
+/* Mobile section toggle functionality */
+@media (max-width: 767px) {
+	.wp-block-lsx-tour-operator-sticky-menu {
+		display: none;
+	}
+	
+	.lsx-to-sticky-menu-section-wrapper {
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    	margin: 0;
+
+		&.collapsed {
+			.lsx-to-sticky-menu-section-content {
+				display: none;
+			}
+		}
+
+		&:not(.collapsed) {
+			.lsx-to-section-header .lsx-to-sticky-caret {
+				transform: rotate(180deg) translateY(5px);
+			}
+		}
+
+		/* Ensure smooth transitions (respect motion preferences) */
+		transition: all 0.3s ease;
+
+		@media (prefers-reduced-motion: reduce) {
+			transition: none;
+		}
+	}
+
+	/* Legacy support for sections without wrapper */
+	.lsx-to-sticky-menu-section {
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+		&.collapsed {
+			.wp-block-group__inner-container,
+			> .wp-block-group__inner-container,
+			> div:not(.lsx-to-section-header),
+			> *:not(.lsx-to-section-header) {
+				display: none;
+			}
+		}
+
+		&:not(.collapsed) {
+			.lsx-to-section-header .lsx-to-sticky-caret {
+				transform: rotate(180deg);
+			}
+		}
+
+		/* Ensure smooth transitions (respect motion preferences) */
+		transition: all 0.3s ease;
+
+		@media (prefers-reduced-motion: reduce) {
+			transition: none;
+		}
+	}
+}
+
+button.lsx-to-section-header {
+	background: none;
+	border: none;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;
+	text-decoration: none;
+	transition: all 0.2s ease;
+	padding: 1rem;
+	border-radius: 0;
+	width: 100%;
+	display: none; /* Hidden by default, shown on mobile */
+	align-items: center;
+	justify-content: space-between;
+	text-align: left;
+	font-weight: 600;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	padding: 1rem;
+
+	&:active {
+		background: rgba(0, 0, 0, 0.1);
+	}
+
+	.lsx-to-sticky-caret {
+		transition: transform 0.3s ease;
+		flex-shrink: 0;
+
+		@media (prefers-reduced-motion: reduce) {
+			transition: none;
+		}
+	}
+
+	/* Show mobile headers only on mobile */
+	@media (max-width: 767px) {
+		display: flex;
+	}
+}

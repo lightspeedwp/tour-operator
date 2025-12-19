@@ -1,0 +1,81 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "lsx-tour-operator/modal-button",
+	"version": "1.0.0",
+	"title": "Modal Button",
+	"category": "tour-operator",
+	"description": "A button that opens a modal dialog.",
+	"keywords": [
+		"button",
+		"modal",
+		"popup",
+		"enquiry",
+		"contact"
+	],
+	"textdomain": "lsx-tour-operator",
+	"attributes": {
+		"text": {
+			"type": "string",
+			"default": "Contact Us"
+		},
+		"modalId": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonStyle": {
+			"type": "string",
+			"default": "primary"
+		},
+		"align": {
+			"type": "string",
+			"default": "left"
+		},
+		"width": {
+			"type": "number"
+		}
+	},
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"spacing": {
+			"margin": true,
+			"padding": true
+		},
+		"color": {
+			"background": true,
+			"text": true
+		},
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true
+		},
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true
+		}
+	},
+	"editorScript": "file:./index.js",
+	"example": {
+		"innerBlocks": [
+			{
+				"name": "core/buttons",
+				"innerBlocks": [
+					{
+						"name": "core/button",
+						"attributes": {
+							"text": "Enquire Now",
+							"style": {
+								"border": {
+									"radius": "4px"
+								}
+							}
+						}
+					}
+				]
+			}
+		]
+	}
+}

@@ -1,0 +1,292 @@
+.lsx-to-slider {
+	&.lsx-travel-information-wrapper {
+	  .slick-list {
+		max-width: 100% !important;
+		width: 100% !important;
+	  }
+
+	  .slick-slide {
+		padding: 0 !important;
+		margin: 10px !important;
+	  }
+
+	  .wp-block-group:has(>.slick-arrow) {
+		position: relative;
+		max-width: calc(100% - 4rem);
+		margin: 0 auto 2rem;
+		@media (min-width: 1600px) {
+			max-width: 100%;
+		}
+	}
+
+	.slick-dots {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: -2rem;
+	}
+  }
+}
+
+.wp-block-query,
+.lsx-block-videos,
+.lsx-travel-information-wrapper {
+	&.lsx-to-slider {
+		gap: var(--wp--preset--spacing--small) var(--wp--preset--spacing--small);
+		position: relative;
+
+		.slick-arrow {
+			cursor: pointer;
+			border-color: #000 !important;
+			height: 30px;
+			width: 30px;
+
+			&:before {
+				border-color: #000 !important;
+				height: 30px;
+				width: 30px;
+			}
+
+			&.slick-prev:before {
+				background: url('../img/left-arrow-dark.svg') no-repeat center center;
+				width: 20px;
+				left: 3px;
+				height: 20px;
+			}
+
+			&.slick-next:before {
+				background: url('../img/right-arrow-dark.svg') no-repeat center center;
+				width: 20px;
+				left: 3px;
+				height: 20px;
+			}
+		}
+	}
+}
+
+.lsx-travel-information-wrapper {
+	&.lsx-to-slider {
+		.slick-arrow {
+			width: 3.375rem;
+			height: 3.375rem;
+			color: currentColor;
+			border-color: currentColor !important;
+
+			&.slick-prev:before {
+				width: 36px;
+				height: 36px;
+				left: 5px;
+			}
+
+			&.slick-next:before {
+				width: 36px;
+				height: 36px;
+				left: 9px;
+			}
+		}
+		.slick-dots:not(.dropdown-menu) > li {
+			&.slick-active > button {
+				color: currentColor;
+				background: currentColor;  // Active state color
+			}
+
+			> button {
+				color: currentColor;
+				border-color: currentColor !important;
+			}
+		}
+
+		@media (max-width: 767px) {
+			.slick-arrow {
+				display: none!important;
+			}
+		}
+
+	}
+}
+
+.wp-block-query {
+	&.lsx-to-slider {
+		.slick-slide {
+			padding: 15px !important;
+		}
+	}
+}
+
+.slick-lightbox-close {
+  right: 52px;
+  top: 35px;
+
+  &:before {
+	font-size: 40px;
+  }
+}
+
+.lsx-to-slider,
+.slick-lightbox-inner {
+  .slick-arrow {
+	background: transparent;
+	border-radius: 50%;
+	position: absolute;
+	top: 50%;
+	border-style: solid;
+	border-color: #fff;
+	border-width: 2px;
+	font: 0/0 a;
+	height: 4rem;
+	margin-top: calc((2.25rem - 17px) / 2);
+	padding: 0;
+	text-shadow: none;
+	transform: translateY(-50%);
+	transition: border 300ms ease;
+	width: 4rem;
+	z-index: 3;
+	color: white;
+
+	&:before {
+	  display: block;
+	  font-family: "slick";
+	  color: white;
+	  font-size: 3rem;
+	  line-height: 1;
+	  position: absolute;
+	  text-rendering: auto;
+	  top: 47%;
+	  transform: translateY(-50%);
+	  transition: color 300ms ease;
+	  -webkit-font-smoothing: antialiased;
+	  -moz-osx-font-smoothing: grayscale;
+	}
+	&.slick-prev:before {
+		background: url('../img/left-arrow.svg') no-repeat center center;
+		width: 20px;
+		left: 3px;
+		height: 20px;
+	}
+
+	&.slick-next:before {
+		background: url('../img/right-arrow.svg') no-repeat center center;
+		width: 20px;
+		left: 3px;
+		height: 20px;
+	}
+  }
+}
+
+.slick-prev svg,
+.slick-next svg {
+  color: white;
+}
+
+.lsx-to-slider,
+.slick-lightbox-inner {
+  .slick-arrow {
+    &.slick-disabled {
+      cursor: not-allowed;
+    }
+
+    &.slick-prev {
+      &:before {
+        content: ''; /* Remove font icon */
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        left: 8px;
+      }
+    }
+
+    &.slick-next {
+      &:before {
+        content: ''; /* Remove font icon */
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        left: 12px;
+      }
+    }
+  }
+}
+
+.lsx-to-slider {
+	.slick-dots:not(.dropdown-menu) {
+	  align-items: center;
+	  display: flex;
+	  flex-flow: row wrap;
+	  height: auto;
+	  justify-content: center;
+	  list-style: none;
+	  margin: 1rem 0 0;
+	  padding: 0;
+
+	  > li {
+		line-height: 1;
+		padding: 5px;
+		margin-left:15px;
+
+		&.slick-active > button {
+			background: #000;  // Active state color
+		  }
+
+		> button {
+		  background: transparent;
+		  border-style: solid;
+		  border-width: 1px;
+		  font: 0/0 a;
+		  height: 12px;
+		  border-radius:50%;
+		  transition: all 300ms ease-in-out;
+		  width: 12px;
+
+		}
+	  }
+	}
+
+	.slick-arrow {
+	  &.slick-prev {
+		left: -2rem;
+	  }
+
+	  &.slick-next {
+		right: -2rem;
+	  }
+	}
+
+	&.slider-disabled {
+	  overflow: hidden;
+	}
+
+	.slick-slide {
+	  .lazy-hidden {
+		max-height: 154px;
+	  }
+	}
+}
+
+.slick-lightbox-inner {
+	.slick-arrow {
+		opacity: 0.75;
+
+		&:hover {
+		opacity: 1;
+		}
+	}
+}
+
+.slick-lightbox-slick-caption {
+	display: inline-block;
+}
+
+.lsx-post-carousel-items {
+	.slick-slide {
+		.lazy-hidden {
+			max-height: 154px;
+		}
+	}
+}
+
+.lsx-itinerary-wrapper,
+.lsx-units-wrapper {
+	.hidden {
+		display: none;
+	}
+}

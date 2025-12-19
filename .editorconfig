@@ -3,22 +3,32 @@
 
 # WordPress Coding Standards
 # https://make.wordpress.org/core/handbook/coding-standards/
+# Based on WordPress Core .editorconfig: https://core.trac.wordpress.org/browser/trunk/.editorconfig
 
 root = true
 
+# All files (WordPress defaults: tabs, LF line endings)
 [*]
 charset = utf-8
 end_of_line = lf
-indent_size = 4
-tab_width = 4
-indent_style = tab
 insert_final_newline = true
 trim_trailing_whitespace = true
+indent_style = tab
 
-[*.txt]
-trim_trailing_whitespace = false
-
-[{.jshintrc,*.md,*.json,*.yml}]
-trim_trailing_whitespace = false
+# JavaScript/TypeScript files (WordPress wp-scripts standard: spaces)
+[*.{js,jsx,ts,tsx,json}]
 indent_style = space
 indent_size = 2
+
+# YAML files (standard: 2 spaces)
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# Markdown files (preserve trailing whitespace for line breaks)
+[*.md]
+trim_trailing_whitespace = false
+
+# Special WordPress files (CRLF line endings as per Core)
+[{*.txt,wp-config-sample.php}]
+end_of_line = crlf

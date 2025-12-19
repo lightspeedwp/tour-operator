@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "textdomain": "lsx-tour-operator",
+  "name": "lsx-tour-operator/units",
+  "title": "Units",
+  "category": "lsx-tour-operator",
+  "editorScript": "file:index.js",
+  "icon": "admin-multisite",
+  "description": "A Units block to display your rooms and camps.",
+  "keywords": [
+    "units",
+    "rooms",
+    "camps"
+  ]
+}

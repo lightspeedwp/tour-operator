@@ -1,0 +1,18 @@
+/*
+ * Tour Operators
+ */
+
+@use 'variables';
+@use 'icons';
+@use 'additional';
+@use 'slider';
+@use 'collapse';
+@use 'modals';
+@use 'maps';
+
+.lsx-itinerary-wrapper,
+.lsx-units-wrapper {
+	.hidden {
+		display: none;
+	}
+}

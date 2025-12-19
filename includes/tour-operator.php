@@ -25,8 +25,6 @@ function tour_operator_autoload_class( $class ) {
 		array_shift( $parts );
 		$name = array_shift( $parts );
 
-		
-
 		if ( 'Settings' === $name ) {
 			$name = 'admin\\' . $name;
 		}
@@ -49,7 +47,6 @@ function tour_operator_autoload_class( $class ) {
 			include_once LSX_TO_PATH . 'includes/classes/class-' . $name . '.php';
 		}
 	}
-
 }
 
 /**

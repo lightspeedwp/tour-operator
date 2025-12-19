@@ -1,0 +1,45 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "lsx-tour-operator/facts-country-wrapper",
+  "title": "Country",
+  "description": "Display parent country relationship for destinations with icon and connection link.",
+  "keywords": [
+    "country",
+    "parent",
+    "connection",
+    "destination",
+    "facts",
+    "location"
+  ],
+  "icon": "admin-site",
+  "category": "lsx-tour-operator",
+  "version": "1.0.0",
+  "textdomain": "tour-operator",
+  "supports": {
+    "renaming": false,
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": true,
+      "blockGap": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true
+    }
+  },
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Country"
+      },
+      "className": "facts-country-query-wrapper"
+    }
+  },
+  "editorScript": "file:index.js"
+}

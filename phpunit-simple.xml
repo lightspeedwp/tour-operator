@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+         colors="true"
+         processIsolation="false"
+         stopOnFailure="false"
+         backupGlobals="false">
+
+    <testsuites>
+        <!-- Simple tests that don't require WordPress -->
+        <testsuite name="Simple Tests">
+            <directory>./tests/php</directory>
+            <exclude>./tests/php/bootstrap.php</exclude>
+            <exclude>./tests/php/test-basic.php</exclude>
+            <exclude>./tests/php/utils</exclude>
+        </testsuite>
+    </testsuites>    <source>
+        <include>
+            <directory suffix=".php">./includes</directory>
+            <directory suffix=".php">./src</directory>
+        </include>
+        <exclude>
+            <directory>./vendor</directory>
+            <directory>./tests</directory>
+            <directory>./build</directory>
+            <directory>./assets</directory>
+            <file>./tour-operator.php</file>
+            <file>./tour-operator-bootstrap.php</file>
+        </exclude>
+    </source>
+
+    <coverage includeUncoveredFiles="true">
+        <report>
+            <html outputDirectory="tests/coverage/html"/>
+            <clover outputFile="tests/coverage/clover.xml"/>
+        </report>
+    </coverage>
+
+    <logging>
+        <junit outputFile="tests/results/junit.xml"/>
+    </logging>
+</phpunit>

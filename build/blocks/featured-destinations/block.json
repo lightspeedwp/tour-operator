@@ -1,0 +1,174 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "textdomain": "tour-operator",
+  "name": "lsx-tour-operator/featured-destinations",
+  "title": "Featured Destinations",
+  "category": "lsx-tour-operator",
+  "editorScript": "file:index.js",
+  "description": "Displays Destinations with Featured tag.",
+  "icon": "admin-site",
+  "keywords": [
+    "featured",
+    "destinations",
+    "highlight"
+  ],
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Featured Destinations"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/group",
+        {},
+        [
+          [
+            "core/heading",
+            {
+              "content": "Featured Destinations",
+              "textAlign": "center"
+            }
+          ],
+          [
+            "core/group",
+            {
+              "style": {
+                "spacing": {
+                  "blockGap": "2rem"
+                }
+              },
+              "layout": {
+                "type": "grid",
+                "columnCount": 2
+              }
+            },
+            [
+              [
+                "core/group",
+                {
+                  "style": {
+                    "border": {
+                      "width": "1px",
+                      "style": "solid",
+                      "color": "#e0e0e0"
+                    },
+                    "spacing": {
+                      "padding": "1rem"
+                    }
+                  }
+                },
+                [
+                  [
+                    "core/heading",
+                    {
+                      "content": "Maasai Mara, Kenya",
+                      "level": 3
+                    }
+                  ],
+                  [
+                    "core/paragraph",
+                    {
+                      "content": "World-famous safari destination offering incredible wildlife viewing opportunities and authentic cultural experiences."
+                    }
+                  ]
+                ]
+              ],
+              [
+                "core/group",
+                {
+                  "style": {
+                    "border": {
+                      "width": "1px",
+                      "style": "solid",
+                      "color": "#e0e0e0"
+                    },
+                    "spacing": {
+                      "padding": "1rem"
+                    }
+                  }
+                },
+                [
+                  [
+                    "core/heading",
+                    {
+                      "content": "Swiss Alps, Switzerland",
+                      "level": 3
+                    }
+                  ],
+                  [
+                    "core/paragraph",
+                    {
+                      "content": "Breathtaking alpine scenery with pristine mountain peaks, charming villages, and world-class skiing."
+                    }
+                  ]
+                ]
+              ],
+              [
+                "core/group",
+                {
+                  "style": {
+                    "border": {
+                      "width": "1px",
+                      "style": "solid",
+                      "color": "#e0e0e0"
+                    },
+                    "spacing": {
+                      "padding": "1rem"
+                    }
+                  }
+                },
+                [
+                  [
+                    "core/heading",
+                    {
+                      "content": "Bali, Indonesia",
+                      "level": 3
+                    }
+                  ],
+                  [
+                    "core/paragraph",
+                    {
+                      "content": "Tropical paradise with stunning beaches, ancient temples, and rich cultural heritage."
+                    }
+                  ]
+                ]
+              ],
+              [
+                "core/group",
+                {
+                  "style": {
+                    "border": {
+                      "width": "1px",
+                      "style": "solid",
+                      "color": "#e0e0e0"
+                    },
+                    "spacing": {
+                      "padding": "1rem"
+                    }
+                  }
+                },
+                [
+                  [
+                    "core/heading",
+                    {
+                      "content": "Patagonia, Chile",
+                      "level": 3
+                    }
+                  ],
+                  [
+                    "core/paragraph",
+                    {
+                      "content": "Wild and remote landscape featuring dramatic glaciers, towering mountains, and pristine wilderness."
+                    }
+                  ]
+                ]
+              ]
+            ]
+          ]
+        ]
+      ]
+    ]
+  }
+}

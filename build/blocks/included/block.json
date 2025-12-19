@@ -1,0 +1,65 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "textdomain": "tour-operator",
+  "name": "lsx-tour-operator/included",
+  "title": "Included items",
+  "category": "lsx-tour-operator",
+  "editorScript": "file:index.js",
+  "description": "Displays what is included in the tour price.",
+  "icon": "yes-alt",
+  "keywords": [
+    "included",
+    "price",
+    "includes",
+    "what's",
+    "included",
+    "services"
+  ],
+  "supports": {
+    "anchor": true,
+    "className": true,
+    "customClassName": true,
+    "html": false,
+    "lock": false,
+    "multiple": true,
+    "reusable": true,
+    "renaming": false,
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "blockGap": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "textAlign": true
+    },
+    "color": {
+      "background": true,
+      "text": true,
+      "link": true
+    }
+  },
+  "example": {
+    "attributes": {
+      "metadata": {
+        "name": "Included"
+      }
+    },
+    "innerBlocks": [
+      [
+        "core/paragraph",
+        {
+          "content": "<strong>Price Includes:</strong>"
+        }
+      ],
+      [
+        "core/paragraph",
+        {
+          "content": "• Accommodation for 7 nights<br>• All meals and beverages<br>• Professional tour guide<br>• Transportation between locations<br>• Entry fees to all attractions"
+        }
+      ]
+    ]
+  }
+}
