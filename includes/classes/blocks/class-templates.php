@@ -49,6 +49,16 @@ class Templates {
 				'description' => __( 'Displays all the accommodation.', 'tour-operator' ),
 				'post_types'  => [ 'accommodation' ],
 			],
+			'taxonomy-accommodation-type'          => [
+				'title'       => __( 'Accommodation Type Term Archive', 'tour-operator' ),
+				'description' => __( 'Displays all the tours in the current accommodation type.', 'tour-operator' ),
+				'post_types'  => [ 'accommodation' ],
+			],
+			'taxonomy-accommodation-brand'          => [
+				'title'       => __( 'Accommodation Brand Term Archive', 'tour-operator' ),
+				'description' => __( 'Displays all the tours in the current accommodation brand.', 'tour-operator' ),
+				'post_types'  => [ 'accommodation' ],
+			],
 			'single-destination'    => [
 				'title'       => __( 'Single Destination', 'tour-operator' ),
 				'description' => __( 'Displays a single destination', 'tour-operator' ),
