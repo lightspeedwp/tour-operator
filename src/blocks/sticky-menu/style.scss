@@ -80,13 +80,11 @@
 }
 
 .lsx-to-sticky-menu-button:hover {
-	background-color: var(--hover-bg-color, rgba(0, 0, 0, 0.1));
-	color: var(--hover-text-color, inherit);
+	color: var(--wp--preset--color--accent-1);
 }
 
 .lsx-to-sticky-menu-button.active {
-	background-color: var(--active-bg-color, currentColor);
-	color: var(--active-text-color, inherit);
+	color: var(--wp--preset--color--accent-1, inherit);
 }
 
 /* Screen reader only text */
