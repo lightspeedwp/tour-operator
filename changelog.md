@@ -113,6 +113,7 @@
 
 ### Fixed
 
+- **Sticky Menu Block Filter File in Production** - Renamed `render.php` to `filters.php` in sticky-menu block and configured webpack to copy it to build folder using CopyWebpackPlugin. This ensures the mobile section headers filter is available in production releases (which only include the build/ folder). Added `function_exists()` check to prevent redeclaration errors.
 - **Icon System Compliance** - Replaced outdated testing icons with correct icons from the design system, ensuring consistent 20px sizing and "currentColor" styling for all icons - [#575](https://github.com/lightspeedwp/tour-operator/pull/575), Issue [#554](https://github.com/lightspeedwp/tour-operator/issues/554)
 - **Template Part Registration** - Fixed template part registration to work correctly with current theme context - Issue [#798](https://github.com/lightspeedwp/tour-operator/issues/798)
 - **Card Image Styling** - Removed border-radius from card images for consistent design - Issue [#798](https://github.com/lightspeedwp/tour-operator/issues/798)

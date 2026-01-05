@@ -74,6 +74,6 @@ spl_autoload_register('tour_operator_autoload_class', true, false);
 tour_operator();
 
 /**
- * Include sticky menu block functionality. This doesn't work via the block.json registration method
+ * Include sticky menu block filters. This adds mobile section headers to group blocks.
  */
-require_once LSX_TO_PATH . 'src/blocks/sticky-menu/render.php';
+require_once LSX_TO_PATH . 'build/blocks/sticky-menu/filters.php';
