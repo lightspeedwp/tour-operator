@@ -6,7 +6,7 @@
  * Description:       Showcase tours, destinations, and accommodations with digital itineraries, galleries, and integrated maps.
  * Author:            lightspeedwp
  * Author URI:        https://lightspeedwp.agency/
- * Version:           2.1.0
+ * Version:           2.1.1
  * Requires at least: 6.7
  * Tested up to:      6.9
  * Requires PHP:      8.0
@@ -27,7 +27,7 @@ if (! defined('WPINC')) {
 define('LSX_TO_PATH', plugin_dir_path(__FILE__));
 define('LSX_TO_CORE', __FILE__);
 define('LSX_TO_URL', plugin_dir_url(__FILE__));
-define('LSX_TO_VER', '2.1.0');
+define('LSX_TO_VER', '2.1.1');
 
 // Maintain a list of content model JSON paths consumed by the plugin.
 // phpcs:disable WordPress.WP.GlobalVariablesOverride.Prohibited
