@@ -167,11 +167,11 @@ These classes are actively used in PHP templates, JavaScript files, or block ren
 | `lsx-to-sticky-menu-item` | `src/blocks/sticky-menu/index.js` |
 | `lsx-to-sticky-menu-button` | `src/blocks/sticky-menu/index.js`, `view.js` |
 | `lsx-to-sticky-menu-section` | `src/blocks/sticky-menu/` |
-| `lsx-to-sticky-menu-section-wrapper` | `src/blocks/sticky-menu/render.php`, `view.js` |
-| `lsx-to-sticky-menu-section-content` | `src/blocks/sticky-menu/render.php` |
-| `lsx-to-section-header` | `src/blocks/sticky-menu/render.php`, `view.js` |
-| `lsx-to-sticky-caret` | `src/blocks/sticky-menu/render.php` |
-| `lsx-to-sr-only` | `src/blocks/sticky-menu/render.php`, `view.js` |
+| `lsx-to-sticky-menu-section-wrapper` | `src/blocks/sticky-menu/filters.php`, `view.js` |
+| `lsx-to-sticky-menu-section-content` | `src/blocks/sticky-menu/filters.php` |
+| `lsx-to-section-header` | `src/blocks/sticky-menu/filters.php`, `view.js` |
+| `lsx-to-sticky-caret` | `src/blocks/sticky-menu/filters.php` |
+| `lsx-to-sr-only` | `src/blocks/sticky-menu/filters.php`, `view.js` |
 | `lsx-to-sticky-menu-placeholder` | `src/blocks/sticky-menu/index.js` |
 | `wp-block-lsx-tour-operator-sticky-menu` | `src/blocks/sticky-menu/view.js` |
 

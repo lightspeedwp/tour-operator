@@ -6,7 +6,7 @@
  * Description:       Showcase tours, destinations, and accommodations with digital itineraries, galleries, and integrated maps.
  * Author:            lightspeedwp
  * Author URI:        https://lightspeedwp.agency/
- * Version:           2.1.0
+ * Version:           2.1.1
  * Requires at least: 6.7
  * Tested up to:      6.9
  * Requires PHP:      8.0
@@ -27,7 +27,7 @@ if (! defined('WPINC')) {
 define('LSX_TO_PATH', plugin_dir_path(__FILE__));
 define('LSX_TO_CORE', __FILE__);
 define('LSX_TO_URL', plugin_dir_url(__FILE__));
-define('LSX_TO_VER', '2.1.0');
+define('LSX_TO_VER', '2.1.1');
 
 // Maintain a list of content model JSON paths consumed by the plugin.
 // phpcs:disable WordPress.WP.GlobalVariablesOverride.Prohibited
@@ -74,6 +74,6 @@ spl_autoload_register('tour_operator_autoload_class', true, false);
 tour_operator();
 
 /**
- * Include sticky menu block functionality. This doesn't work via the block.json registration method
+ * Include sticky menu block filters. This adds mobile section headers to group blocks.
  */
-require_once LSX_TO_PATH . 'src/blocks/sticky-menu/render.php';
+require_once LSX_TO_PATH . 'build/blocks/sticky-menu/filters.php';

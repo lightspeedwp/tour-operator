@@ -3,6 +3,7 @@
  * External dependencies
  */
 const RemoveEmptyScriptsPlugin = require( 'webpack-remove-empty-scripts' );
+const CopyWebpackPlugin = require( 'copy-webpack-plugin' );
 const path = require( 'path' );
 const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
 
@@ -38,5 +39,13 @@ module.exports = {
 	plugins: [
 		...defaultConfig.plugins,
 		new RemoveEmptyScriptsPlugin(),
+		new CopyWebpackPlugin( {
+			patterns: [
+				{
+					from: 'src/blocks/sticky-menu/filters.php',
+					to: 'blocks/sticky-menu/filters.php',
+				},
+			],
+		} ),
 	]
 };

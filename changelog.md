@@ -1,6 +1,14 @@
 # Changelog
 
-## [[2.1.0]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.0) - In Dev
+## [[2.1.1]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.1) - 2026-01-05
+
+### Fixed
+
+#### Build & Deployment
+
+- **Sticky Menu Block Filter File in Production** - Renamed `render.php` to `filters.php` in sticky-menu block and configured webpack to copy it to build folder using CopyWebpackPlugin. This ensures the mobile section headers filter is available in production releases (which only include the build/ folder). Added `function_exists()` check to prevent redeclaration errors - PR [#834](https://github.com/lightspeedwp/tour-operator/pull/834)
+
+## [[2.1.0]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.0) - 2025-12-19
 
 ### Added
 
