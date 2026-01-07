@@ -225,6 +225,8 @@ class Query_Loop {
 				if ( ! empty( $value ) && '' !== $value ) {
 					$has_values = true;
 				}
+
+				$has_values = apply_filters( 'lsx_to_maybe_hide_varitaion_override', $has_values, $meta_key, $value, get_the_ID() );
 			}
 
 			if ( false === $has_values ) {

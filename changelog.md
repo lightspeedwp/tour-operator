@@ -1,5 +1,12 @@
 # Changelog
 
+## [[2.1.2]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.2) - WIP
+
+### Added
+
+#### Developers
+- **Block Visibility** - adding in a `lsx_to_maybe_hide_varitaion_override` to allow 3rd party plugins to control the visibility.
+
 ## [[2.1.1]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.1) - 2026-01-05
 
 ### Fixed
