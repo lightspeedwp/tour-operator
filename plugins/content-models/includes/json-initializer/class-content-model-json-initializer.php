@@ -74,6 +74,9 @@ class Content_Model_Json_Initializer {
 
 		foreach ( $post_types as $post_type ) {
 
+			// Allow 3rd parties to edit the values before they are registered.
+			$post_type = apply_filters( 'lsx_to_content_model_post_type', $post_type );
+
 			$content_model_post = array(
 				'post_name'    => $post_type['slug'],
 				'post_title'   => $post_type['label'],
