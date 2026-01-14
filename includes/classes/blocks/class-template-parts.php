@@ -70,7 +70,7 @@ class Template_Parts {
 				'label'       => __( 'Fast Facts Sidebar', 'tour-operator' ),
 				'description' => __( 'Sidebar template parts for displaying supplementary content alongside main content.', 'tour-operator' ),
 				'icon'        => 'sidebar',
-				'area_tag'    => 'aside',
+				'area_tag'    => 'div',
 			];
 		}
 
