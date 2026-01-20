@@ -32,7 +32,7 @@
     "@babel/preset-react": "^7.28.5",
     "@wordpress/a11y": "4.37.0",
     "@wordpress/babel-preset-default": "8.37.0",
-    "@wordpress/block-library": "9.37.0",
+    "@wordpress/block-library": "9.38.0",
     "@wordpress/blocks": "15.10.0",
     "@wordpress/e2e-test-utils-playwright": "1.37.0",
     "@wordpress/eslint-plugin": "23.0.0",
