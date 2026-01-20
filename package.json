@@ -30,7 +30,7 @@
     "@babel/cli": "7.28.6",
     "@babel/core": "7.28.6",
     "@babel/preset-react": "^7.28.5",
-    "@wordpress/a11y": "4.37.0",
+    "@wordpress/a11y": "4.38.0",
     "@wordpress/babel-preset-default": "8.37.0",
     "@wordpress/block-library": "9.37.0",
     "@wordpress/blocks": "15.10.0",
