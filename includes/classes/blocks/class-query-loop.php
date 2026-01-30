@@ -337,6 +337,9 @@ class Query_Loop {
 		}
 
 		switch ( $key ) {
+			case 'onsale':
+				// Handled above for all queries.
+				break;
 			case 'regions':
 				// We only restric this on the destination post type, in case the block is used on a landing page.
 				if ( 'destination' === get_post_type() ) {
