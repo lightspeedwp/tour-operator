@@ -133,6 +133,18 @@
                         .trim();
                     console.log( 'removing' );
                 }
+
+                if ( true === attributes.parentsOnly ) {
+                    extraProps.className =
+                        ( extraProps.className || '' ) + ' parents-only';
+                } else if (
+                    false === attributes.parentsOnly &&
+                    extraProps.className
+                ) {
+                    extraProps.className = extraProps.className
+                        .replace( /\bparents-only\b\s*/g, '' )
+                        .trim();
+                }
             }
             return extraProps;
         }
