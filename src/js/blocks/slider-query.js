@@ -81,7 +81,7 @@
                                     if ( value ) {
                                         // Add on-sale class if not present
                                         if ( ! className.includes( 'on-sale' ) ) {
-                                            className = ( className + ' on-sale' ).trim();
+                                            className = [ className.trim(), 'on-sale' ].filter( Boolean ).join( ' ' );
                                         }
                                     } else {
                                         // Remove on-sale class
