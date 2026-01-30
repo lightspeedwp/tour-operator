@@ -133,10 +133,6 @@
                         .trim();
                     console.log( 'removing' );
                 }
-
-                // Remove the on-sale and parents-only logic from here since we handle it in onChange
-                // to avoid duplication
-
             }
             return extraProps;
         }
