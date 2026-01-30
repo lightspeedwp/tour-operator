@@ -41,7 +41,7 @@
     "@wordpress/npm-package-json-lint-config": "5.38.0",
     "@wordpress/prettier-config": "4.38.0",
     "@wordpress/scripts": "^31.3.0",
-    "@wordpress/stylelint-config": "^23.29.0",
+    "@wordpress/stylelint-config": "^23.31.0",
     "copy-webpack-plugin": "^13.0.1",
     "eslint": "9.39.2",
     "jest": "30.2.0",
