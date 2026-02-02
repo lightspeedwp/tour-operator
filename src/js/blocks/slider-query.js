@@ -71,9 +71,25 @@
                                 label: 'Filter by On Sale',
                                 checked: filterByOnsale,
                                 onChange( value ) {
-                                    props.setAttributes( {
+                                    // Update the filterByOnsale attribute
+                                    const newAttributes = {
                                         filterByOnsale: value,
-                                    } );
+                                    };
+                                    
+                                    // Also update className attribute to include/remove 'on-sale'
+                                    let className = props.attributes.className || '';
+                                    if ( value ) {
+                                        // Add on-sale class if not present
+                                        if ( ! className.includes( 'on-sale' ) ) {
+                                            className = [ className.trim(), 'on-sale' ].filter( Boolean ).join( ' ' );
+                                        }
+                                    } else {
+                                        // Remove on-sale class
+                                        className = className.replace( /\bon-sale\b\s*/g, '' ).trim();
+                                    }
+                                    newAttributes.className = className;
+                                    
+                                    props.setAttributes( newAttributes );
                                 },
                             } ),
                             el( CheckboxControl, {
@@ -116,18 +132,6 @@
                         .replace( /\blsx-to-slider\b\s*/g, '' )
                         .trim();
                     console.log( 'removing' );
-                }
-
-                if ( true === attributes.filterByOnsale ) {
-                    extraProps.className =
-                        ( extraProps.className || '' ) + ' on-sale';
-                } else if (
-                    false === attributes.filterByOnsale &&
-                    extraProps.className
-                ) {
-                    extraProps.className = extraProps.className
-                        .replace( /\bon-sale\b\s*/g, '' )
-                        .trim();
                 }
 
                 if ( true === attributes.parentsOnly ) {

@@ -1,5 +1,11 @@
 # Changelog
 
+## [[2.1.2]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.2) - in development
+
+### Fixed
+
+- **On sale query loops** - Fixed query loop filtering to properly detect and display tours marked as "on sale". Changed the checkbox functionality for adding/removing the on-sale class.
+
 ## [[2.1.1]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.1) - 2026-01-05
 
 ### Fixed
