@@ -11,6 +11,29 @@
                     return el( BlockEdit, props );
                 }
 
+                // Clean up on-sale class and attribute when post type changes from tour to something else
+                const currentPostType = props.attributes.query && props.attributes.query.postType;
+                const previousPostType = wp.element.useRef( currentPostType );
+                
+                wp.element.useEffect( () => {
+                    if ( previousPostType.current === 'tour' && currentPostType !== 'tour' ) {
+                        // Post type changed from tour to something else, clear on-sale
+                        const hasOnSale = props.attributes.filterByOnsale || 
+                            ( props.attributes.className && props.attributes.className.includes( 'on-sale' ) );
+                        
+                        if ( hasOnSale ) {
+                            const newAttributes = { filterByOnsale: false };
+                            let className = props.attributes.className || '';
+                            className = className.replace( /\bon-sale\b\s*/g, '' ).trim();
+                            if ( className ) {
+                                newAttributes.className = className;
+                            }
+                            props.setAttributes( newAttributes );
+                        }
+                    }
+                    previousPostType.current = currentPostType;
+                }, [ currentPostType ] );
+
                 let hasCustomClass = props.attributes.hasCustomClass || false;
                 if ( undefined === props.attributes.hasCustomClass ) {
                     if (
