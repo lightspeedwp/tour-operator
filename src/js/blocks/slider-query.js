@@ -67,7 +67,8 @@
                                     } );
                                 },
                             } ),
-                            el( CheckboxControl, {
+                            // Only show Filter by On Sale for tour post type
+                            props.attributes.query && props.attributes.query.postType === 'tour' && el( CheckboxControl, {
                                 label: 'Filter by On Sale',
                                 checked: filterByOnsale,
                                 onChange( value ) {
