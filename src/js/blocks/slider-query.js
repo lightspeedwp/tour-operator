@@ -61,7 +61,6 @@
                                 label: 'Enable Slider',
                                 checked: hasCustomClass,
                                 onChange( value ) {
-                                    console.log( value );
                                     props.setAttributes( {
                                         hasCustomClass: value,
                                     } );
@@ -124,7 +123,6 @@
                 if ( true === attributes.hasCustomClass ) {
                     extraProps.className =
                         ( extraProps.className || '' ) + ' lsx-to-slider';
-                    console.log( 'adding' );
                 } else if (
                     false === attributes.hasCustomClass &&
                     extraProps.className
@@ -132,7 +130,6 @@
                     extraProps.className = extraProps.className
                         .replace( /\blsx-to-slider\b\s*/g, '' )
                         .trim();
-                    console.log( 'removing' );
                 }
 
                 if ( true === attributes.parentsOnly ) {
