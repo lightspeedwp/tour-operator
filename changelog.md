@@ -4,7 +4,9 @@
 
 ### Fixed
 
-- **On sale query loops** - Fixed query loop filtering to properly detect and display tours marked as "on sale". Changed the checkbox functionality for adding/removing the on-sale class.
+- **On sale query loops** - Fixed query loop filtering to properly detect and display tours marked as "on sale". Changed the checkbox functionality for adding/removing the on-sale class. - PR [#1008](https://github.com/lightspeedwp/tour-operator/pull/1008)
+- **Filter by On Sale visibility** - Restricted "Filter by On Sale" checkbox to only display in query loop settings when post type is set to 'tour'. - PR [#1009](https://github.com/lightspeedwp/tour-operator/pull/1009)
+
 
 ## [[2.1.1]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.1) - 2026-01-05
 
