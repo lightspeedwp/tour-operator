@@ -8,6 +8,9 @@
 	-webkit-line-clamp: 4;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
+	p {
+		padding-bottom: 0;
+	}
 }
 
 .is-style-shadow-sm {
