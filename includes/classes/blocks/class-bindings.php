@@ -265,6 +265,15 @@ class Bindings {
 					$saved = wp_date( 'j M Y', $saved );
 				}
 
+				// Hide rating_type when it's empty or "Unspecified"
+				if ( 'rating_type' === $key && ( empty( $saved ) || 'unspecified' === $saved ) ) {
+					$saved = '';
+				}
+
+				if ( 'rating_type' === $key && ! ( empty( $saved ) || 'unspecified' === $saved ) ) {
+					$saved = '<small>(' . esc_html( $saved ) . ')</small>';
+				}
+
 				$value = $saved;
 
 			}
