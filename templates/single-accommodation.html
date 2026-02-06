@@ -25,7 +25,20 @@
 <!-- wp:group {"tagName":"section","metadata":{"name":"Overview"},"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"},"margin":{"top":"0","bottom":"0"}}},"backgroundColor":"base","layout":{"type":"constrained"},"addToStickyMenu":true,"stickyMenuId":"overview","stickyMenuTitle":"Overview"} -->
 <section class="wp-block-group alignwide has-base-background-color has-background lsx-to-sticky-menu-section" id="overview" style="margin-top:0;margin-bottom:0;padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)" data-sticky-menu-section="true" data-section-title="Overview" role="region" aria-labelledby="overview-header"><!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|50"}}}} -->
 <div class="wp-block-columns alignwide"><!-- wp:column {"width":"65%"} -->
-<div class="wp-block-column" style="flex-basis:65%"><!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10"}}},"layout":{"type":"constrained","justifyContent":"left"}} -->
+<div class="wp-block-column" style="flex-basis:65%"><!-- wp:group {"metadata":{"name":"Accommodation Title \u0026 Price"},"style":{"spacing":{"blockGap":"var:preset|spacing|10"}},"layout":{"type":"constrained","justifyContent":"left"}} -->
+<div class="wp-block-group"><!-- wp:post-title /-->
+
+<!-- wp:group {"metadata":{"name":"Price"},"align":"wide","className":"lsx-price-wrapper","style":{"spacing":{"blockGap":"5px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
+<div class="wp-block-group alignwide lsx-price-wrapper"><!-- wp:paragraph -->
+<p><strong>From:</strong></p><!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"metadata":{"bindings":{"content":{"source":"lsx/post-meta","args":{"key":"price"}}}},"className":"amount has-primary-color has-text-color has-link-color"} -->
+<p class="amount has-primary-color has-text-color has-link-color"></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10"}}},"layout":{"type":"constrained","justifyContent":"left"}} -->
 <div class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10)"><!-- wp:post-content {"align":"wide","fontSize":"medium","layout":{"type":"default"}} /-->
 
 <!-- wp:read-more {"content":"Read more","fontSize":"large"} /--></div>
