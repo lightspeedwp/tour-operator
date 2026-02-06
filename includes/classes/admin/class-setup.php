@@ -272,6 +272,8 @@ class Setup
 		$allowedtags['a']['data-video-width']        = true;
 		$allowedtags['a']['data-video-height']       = true;
 		$allowedtags['a']['data-video-aspect-ratio'] = true;
+		$allowedtags['a']['aria-haspopup']           = true;
+		$allowedtags['a']['aria-controls']           = true;
 
 		if (! isset($allowedtags['h2'])) {
 			$allowedtags['h2'] = array();

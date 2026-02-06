@@ -265,6 +265,15 @@ class Bindings {
 					$saved = wp_date( 'j M Y', $saved );
 				}
 
+				// Hide rating_type when it's empty or "Unspecified"
+				if ( 'rating_type' === $key ) {  
+					if ( empty( $saved ) || __( 'Unspecified', 'tour-operator' ) === $saved ) {  
+						$saved = '';  
+					} else {  
+						$saved = '<small>(' . esc_html( $saved ) . ')</small>';  
+					}  
+				}
+
 				$value = $saved;
 
 			}
