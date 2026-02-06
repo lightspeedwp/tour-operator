@@ -12,6 +12,10 @@
 - **Sticky menu overflow** - Fixed overflowing sticky menu to prevent layout issues
 - **Fast facts rating display** - Fixed rating display in fast facts section and ensured dots are properly rendered as circles in the slider
 - **Social sharing alignment** - Vertically aligned social sharing toolbar for consistent positioning
+- **Destination button styles** - Ensured core WordPress button styles are loaded on single destination pages for consistent button appearance
+- **Accommodation rating display** - Wrapped rating stars in a div container for better styling control in accommodation template
+- **Accommodation price display** - Added price information to single accommodation template with improved layout for better presentation
+- **Rating stars styling** - Added new styles for rating stars display with improved spacing and alignment in accommodation info section
 
 #### Query Loops & Filtering
 
