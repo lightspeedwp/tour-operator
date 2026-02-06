@@ -112,15 +112,15 @@
 			"options": [
 				{
 				"label": "Unspecified",
-				"value": "unspecified"
+				"value": ""
 				},
 				{
 				"label": "TGCSA",
-				"value": "TGCSA"
+				"value": "tgcsa"
 				},
 				{
 				"label": "Hotelstars Union",
-				"value": "Hotelstars Union"
+				"value": "hotelstars_union"
 				}
 			]
 		},
