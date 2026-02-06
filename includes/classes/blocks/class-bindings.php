@@ -266,12 +266,12 @@ class Bindings {
 				}
 
 				// Hide rating_type when it's empty or "Unspecified"
-				if ( 'rating_type' === $key && ( empty( $saved ) || 'unspecified' === $saved ) ) {
-					$saved = '';
-				}
-
-				if ( 'rating_type' === $key && ! ( empty( $saved ) || 'unspecified' === $saved ) ) {
-					$saved = '<small>(' . esc_html( $saved ) . ')</small>';
+				if ( 'rating_type' === $key ) {  
+					if ( empty( $saved ) || __( 'Unspecified', 'tour-operator' ) === $saved ) {  
+						$saved = '';  
+					} else {  
+						$saved = '<small>(' . esc_html( $saved ) . ')</small>';  
+					}  
 				}
 
 				$value = $saved;
