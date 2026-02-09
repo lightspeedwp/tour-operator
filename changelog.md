@@ -5,7 +5,8 @@
 ### Added
 
 #### Filters
-- **Block Visibility** - adding in a `lsx_to_maybe_hide_varitaion_override` to allow 3rd party plugins to control the visibility.
+- **Block Visibility** - added in a `lsx_to_maybe_hide_varitaion_override` to allow 3rd party plugins to control the visibility.
+- **Post Connections** - added in a `lsx_to_post_connections_value` allowing you to alter the data before it is returned to the block render function. (e.g strip out the tags).
 
 ### Fixed
 

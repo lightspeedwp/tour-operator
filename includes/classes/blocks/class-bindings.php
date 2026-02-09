@@ -219,6 +219,8 @@ class Bindings {
 
 			}
 
+			$value = apply_filters( 'lsx_to_post_connections_value', $value, $source_args['key'], get_the_ID() );
+
 			return $value;
 		}
 	}
