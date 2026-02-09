@@ -4,8 +4,35 @@
 
 ### Added
 
-#### Developers
+#### Filters
 - **Block Visibility** - adding in a `lsx_to_maybe_hide_varitaion_override` to allow 3rd party plugins to control the visibility.
+
+### Fixed
+
+#### Layout & Styling
+
+- **Archive query loop padding** - Added top and bottom default padding to archive query loops and taxonomy archives for consistent spacing
+- **Card text clipping** - Fixed text clipping issues in cards to ensure all content is visible
+- **Booking validity wrapping** - Fixed booking validity text to wrap to next row when needed for better mobile responsiveness
+- **Sticky menu overflow** - Fixed overflowing sticky menu to prevent layout issues
+- **Fast facts rating display** - Fixed rating display in fast facts section and ensured dots are properly rendered as circles in the slider
+- **Social sharing alignment** - Vertically aligned social sharing toolbar for consistent positioning
+- **Destination button styles** - Ensured core WordPress button styles are loaded on single destination pages for consistent button appearance
+- **Accommodation rating display** - Wrapped rating stars in a div container for better styling control in accommodation template
+- **Accommodation price display** - Added price information to single accommodation template with improved layout for better presentation
+- **Rating stars styling** - Added new styles for rating stars display with improved spacing and alignment in accommodation info section
+
+#### Query Loops & Filtering
+
+- **On sale query loops** - Fixed query loop filtering to properly detect and display tours marked as "on sale". Changed the checkbox functionality for adding/removing the on-sale class. - PR [#1008](https://github.com/lightspeedwp/tour-operator/pull/1008)
+- **Filter by On Sale visibility** - Restricted "Filter by On Sale" checkbox to only display in query loop settings when post type is set to 'tour'. - PR [#1009](https://github.com/lightspeedwp/tour-operator/pull/1009)
+
+### Enhancements
+
+- **Tour summary information** - Added price info and title in the tour summary section for better visibility
+- **Block gap consistency** - Adjusted block gap spacing for improved visual consistency across templates
+- **Travel information cards** - Increased padding for travel information cards to improve readability
+
 
 ## [[2.1.1]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.1) - 2026-01-05
 

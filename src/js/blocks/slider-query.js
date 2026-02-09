@@ -11,6 +11,29 @@
                     return el( BlockEdit, props );
                 }
 
+                // Clean up on-sale class and attribute when post type changes from tour to something else
+                const currentPostType = props.attributes.query && props.attributes.query.postType;
+                const previousPostType = wp.element.useRef( currentPostType );
+                
+                wp.element.useEffect( () => {
+                    if ( previousPostType.current === 'tour' && currentPostType !== 'tour' ) {
+                        // Post type changed from tour to something else, clear on-sale
+                        const hasOnSale = props.attributes.filterByOnsale || 
+                            ( props.attributes.className && props.attributes.className.includes( 'on-sale' ) );
+                        
+                        if ( hasOnSale ) {
+                            const newAttributes = { filterByOnsale: false };
+                            let className = props.attributes.className || '';
+                            className = className.replace( /\bon-sale\b\s*/g, '' ).trim();
+                            if ( className ) {
+                                newAttributes.className = className;
+                            }
+                            props.setAttributes( newAttributes );
+                        }
+                    }
+                    previousPostType.current = currentPostType;
+                }, [ currentPostType ] );
+
                 let hasCustomClass = props.attributes.hasCustomClass || false;
                 if ( undefined === props.attributes.hasCustomClass ) {
                     if (
@@ -61,19 +84,35 @@
                                 label: 'Enable Slider',
                                 checked: hasCustomClass,
                                 onChange( value ) {
-                                    console.log( value );
                                     props.setAttributes( {
                                         hasCustomClass: value,
                                     } );
                                 },
                             } ),
-                            el( CheckboxControl, {
+                            // Only show Filter by On Sale for tour post type
+                            props.attributes.query && props.attributes.query.postType === 'tour' && el( CheckboxControl, {
                                 label: 'Filter by On Sale',
                                 checked: filterByOnsale,
                                 onChange( value ) {
-                                    props.setAttributes( {
+                                    // Update the filterByOnsale attribute
+                                    const newAttributes = {
                                         filterByOnsale: value,
-                                    } );
+                                    };
+                                    
+                                    // Also update className attribute to include/remove 'on-sale'
+                                    let className = props.attributes.className || '';
+                                    if ( value ) {
+                                        // Add on-sale class if not present
+                                        if ( ! className.includes( 'on-sale' ) ) {
+                                            className = [ className.trim(), 'on-sale' ].filter( Boolean ).join( ' ' );
+                                        }
+                                    } else {
+                                        // Remove on-sale class
+                                        className = className.replace( /\bon-sale\b\s*/g, '' ).trim();
+                                    }
+                                    newAttributes.className = className;
+                                    
+                                    props.setAttributes( newAttributes );
                                 },
                             } ),
                             el( CheckboxControl, {
@@ -107,26 +146,12 @@
                 if ( true === attributes.hasCustomClass ) {
                     extraProps.className =
                         ( extraProps.className || '' ) + ' lsx-to-slider';
-                    console.log( 'adding' );
                 } else if (
                     false === attributes.hasCustomClass &&
                     extraProps.className
                 ) {
                     extraProps.className = extraProps.className
                         .replace( /\blsx-to-slider\b\s*/g, '' )
-                        .trim();
-                    console.log( 'removing' );
-                }
-
-                if ( true === attributes.filterByOnsale ) {
-                    extraProps.className =
-                        ( extraProps.className || '' ) + ' on-sale';
-                } else if (
-                    false === attributes.filterByOnsale &&
-                    extraProps.className
-                ) {
-                    extraProps.className = extraProps.className
-                        .replace( /\bon-sale\b\s*/g, '' )
                         .trim();
                 }
 

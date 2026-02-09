@@ -104,10 +104,10 @@ if ( ! function_exists( 'lsx_to_generate_travel_info_card' ) ) {
 		$markup .= '<div class="wp-block-group ' . esc_attr( $wrapper_class ) . ' additional-info is-style-shadow-sm overflow-hidden has-base-background-color has-contrast-color has-text-color has-background" style="border-radius:0.5rem">';
 
 		// Content wrapper group opening comment.
-		$markup .= '<!-- wp:group {"style":{"spacing":{"padding":{"right":"var:preset|spacing|20","left":"var:preset|spacing|20","top":"var:preset|spacing|30","bottom":"var:preset|spacing|30"}}},"layout":{"type":"constrained"}} -->' . "\n";
+		$markup .= '<!-- wp:group {"style":{"spacing":{"padding":{"right":"var:preset|spacing|30","left":"var:preset|spacing|30","top":"var:preset|spacing|30","bottom":"var:preset|spacing|30"}}},"layout":{"type":"constrained"}} -->' . "\n";
 
 		// Content div.
-		$markup .= '<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--20)">';
+		$markup .= '<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)">';
 
 		// Title group.
 		$markup .= '<!-- wp:group {"layout":{"type":"constrained"}} -->' . "\n";

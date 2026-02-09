@@ -183,7 +183,7 @@ class Accommodation {
 					--$counter;
 					--$value;
 				}
-				$html = $before . implode( '', $ratings_array ) . $after;
+				$html = $before . '<div class="rating-stars">' . implode( '', $ratings_array ) . '</div>' . $after;
 			}
 		}
 		return $html;
