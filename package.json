@@ -38,7 +38,7 @@
     "@wordpress/eslint-plugin": "24.2.0",
     "@wordpress/i18n": "6.13.0",
     "@wordpress/jest-preset-default": "12.39.0",
-    "@wordpress/npm-package-json-lint-config": "5.39.0",
+    "@wordpress/npm-package-json-lint-config": "5.40.0",
     "@wordpress/prettier-config": "4.40.0",
     "@wordpress/scripts": "^31.4.0",
     "@wordpress/stylelint-config": "^23.31.0",
