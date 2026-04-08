@@ -153,37 +153,44 @@ final class Content_Model {
 		$plural_name   = $this->get_plural_label();
 
 		$labels = array(
-			'name'               => $plural_name,
-			'singular_name'      => $singular_name,
-			'menu_name'          => $plural_name,
+			'name'                  => $plural_name,
+			'singular_name'         => $singular_name,
+			'menu_name'             => $plural_name,
 			// translators: %s is the plural name of the post type.
-			'all_items'          => sprintf( __( 'All %s' ), $plural_name ),
+			'all_items'             => sprintf( __( 'All %s', 'tour-operator' ), $plural_name ),
 			// translators: %s is the singular name of the post type.
-			'add_new'            => sprintf( __( 'Add New %s' ), $singular_name ),
+			'add_new'               => sprintf( __( 'Add New %s', 'tour-operator' ), $singular_name ),
 			// translators: %s is the singular name of the post type.
-			'add_new_item'       => sprintf( __( 'Add New %s' ), $singular_name ),
+			'add_new_item'          => sprintf( __( 'Add New %s', 'tour-operator' ), $singular_name ),
 			// translators: %s is the singular name of the post type.
-			'edit_item'          => sprintf( __( 'Edit %s' ), $singular_name ),
+			'edit_item'             => sprintf( __( 'Edit %s', 'tour-operator' ), $singular_name ),
 			// translators: %s is the singular name of the post type.
-			'new_item'           => sprintf( __( 'New %s' ), $singular_name ),
+			'new_item'              => sprintf( __( 'New %s', 'tour-operator' ), $singular_name ),
 			// translators: %s is the singular name of the post type.
-			'view_item'          => sprintf( __( 'View %s' ), $singular_name ),
+			'view_item'             => sprintf( __( 'View %s', 'tour-operator' ), $singular_name ),
 			// translators: %s is the plural name of the post type.
-			'search_items'       => sprintf( __( 'Search %s' ), $plural_name ),
+			'search_items'          => sprintf( __( 'Search %s', 'tour-operator' ), $plural_name ),
 			// translators: %s is the plural name of the post type.
-			'not_found'          => sprintf( __( 'No %s found' ), $plural_name ),
+			'not_found'             => sprintf( __( 'No %s found', 'tour-operator' ), $plural_name ),
 			// translators: %s is the plural name of the post type.
-			'not_found_in_trash' => sprintf( __( 'No %s found in trash' ), $plural_name ),
+			'not_found_in_trash'    => sprintf( __( 'No %s found in trash', 'tour-operator' ), $plural_name ),
+			// translators: %s is the navigation label of the post type.
+			'item_link'             => sprintf( __( '%s links', 'tour-operator' ), $singular_name ),
+			// translators: %s is the navigation label of the post type.
+			'item_link_description' => sprintf( __( 'Link to %s', 'tour-operator' ), $plural_name ),
 		);
 
 		$post_type_args = array(
-			'labels'       => $labels,
-			'public'       => true,
-			'show_in_menu' => true,
-			'has_archive'  => sanitize_key( $plural_name ),
-			'show_in_rest' => true,
-			'menu_icon'    => "dashicons-{$this->get_icon()}",
-			'supports'     => array( 'title', 'slug', 'excerpt', 'editor', 'custom-fields','thumbnail' ),
+			'labels'              => $labels,
+			'public'              => true,
+			'show_in_menu'        => true,
+			'publicly_queryable'  => true,
+			'exclude_from_search' => false,
+			'show_in_nav_menus'   => true,
+			'has_archive'         => sanitize_key( $plural_name ),
+			'show_in_rest'        => true,
+			'menu_icon'           => "dashicons-{$this->get_icon()}",
+			'supports'            => array( 'title', 'slug', 'excerpt', 'editor', 'custom-fields','thumbnail' ),
 		);
 
 		if ( 'destination' === $this->slug ) {
