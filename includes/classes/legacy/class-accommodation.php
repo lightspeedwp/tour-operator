@@ -53,6 +53,14 @@ class Accommodation {
 	public $unit_types = false;
 
 	/**
+	 * Holds the Tour post type options.
+	 *
+	 * @since 1.0.0
+	 * @var array|bool
+	 */
+	public $options = false;
+
+	/**
 	 * Initialize the plugin by setting localization, filters, and
 	 * administration functions.
 	 *
