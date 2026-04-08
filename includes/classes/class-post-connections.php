@@ -205,6 +205,12 @@ class Post_Connections {
 
 			$values = (array) $params['facet_value'];
 			foreach ( $values as $val ) {
+
+				$skip_row = apply_filters( 'lsx_to_facetwp_index_skip_row', false, $class->facet['source'], $val );
+				if ( true === $skip_row ) {
+					continue;
+				}
+
 				$params['facet_value']         = $val;
 				$params['facet_display_value'] = $val;
 

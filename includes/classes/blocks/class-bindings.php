@@ -219,6 +219,8 @@ class Bindings {
 
 			}
 
+			$value = apply_filters( 'lsx_to_post_connections_value', $value, $source_args['key'], get_the_ID() );
+
 			return $value;
 		}
 	}
@@ -429,6 +431,7 @@ class Bindings {
 		} else {
 			// Or set the prefix.
 			$value = $prefix . $value;
+			$value = apply_filters( 'lsx_to_itinerary_field_value', $value, $field, get_the_ID() );
 		}
 
 		$replacement = '$1' . $value . '$2';

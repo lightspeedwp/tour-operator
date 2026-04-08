@@ -183,7 +183,7 @@ class Query_Loop {
 			if ( empty( wp_get_post_terms( get_the_ID(), $key, $tax_args ) ) ) {
 				$block_content = '';
 			}
-		} elseif ( 'location' === $key ) {
+		} elseif ( 'location' === $key || 'wetu_map' === $key || 'google_map' === $key ) {
 			if ( ! lsx_to_has_map() ) {
 				$block_content = '';
 			}
@@ -225,6 +225,8 @@ class Query_Loop {
 				if ( ! empty( $value ) && '' !== $value ) {
 					$has_values = true;
 				}
+
+				$has_values = apply_filters( 'lsx_to_maybe_hide_variation_override', $has_values, $meta_key, $value, get_the_ID() );
 			}
 
 			if ( false === $has_values ) {

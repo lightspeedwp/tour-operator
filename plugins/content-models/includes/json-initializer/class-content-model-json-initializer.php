@@ -74,6 +74,9 @@ class Content_Model_Json_Initializer {
 
 		foreach ( $post_types as $post_type ) {
 
+			// Allow 3rd parties to edit the values before they are registered.
+			$post_type = apply_filters( 'lsx_to_content_model_post_type', $post_type );
+
 			$content_model_post = array(
 				'post_name'    => $post_type['slug'],
 				'post_title'   => $post_type['label'],
@@ -106,6 +109,11 @@ class Content_Model_Json_Initializer {
 	private static function delete_dangling_content_models( $post_types ) {
 		$content_models = self::group_content_models_by_slug();
 		$post_types     = self::group_post_types_by_slug( $post_types );
+
+		foreach ( $post_types as $index => $post_type ) {
+			// Allow 3rd parties to edit the values before they are registered.
+			$post_types[ $index ] = apply_filters( 'lsx_to_content_model_post_type', $post_type );
+		}
 
 		foreach ( $content_models as $model_slug => $model ) {
 			if ( ! isset( $post_types[ $model_slug ] ) ) {
