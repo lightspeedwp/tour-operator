@@ -70,8 +70,7 @@ class Permalinks
 	 * @param array $input Raw input from the form.
 	 * @return array Sanitized input.
 	 */
-	public function sanitize_permalink_fields($input)
-	{
+	public function sanitize_permalink_fields( $input ) {
 		$sanitized = array();
 		$fields    = $this->get_post_type_fields( $this->defaults );
 
@@ -101,7 +100,7 @@ class Permalinks
 			],
 		];
 		?>
-		<h2><?php esc_html_e('Tour Operator', 'tour-operator'); ?></h2>
+		<h2><?php esc_html_e('Tour Operator - Taxonomies', 'tour-operator'); ?></h2>
 		<table class="form-table">
 			<p>Use the following fields to alter the base slug for the Tour Operator taxonomies like <code><?php echo esc_html(home_url()); ?>/travel-style/honeymoon/</code></p>
 			<?php
@@ -127,6 +126,7 @@ class Permalinks
 
 		$fields = $this->get_post_type_fields( [] );
 		?>
+		<h2><?php esc_html_e('Tour Operator - Post Types', 'tour-operator'); ?></h2>
 		<table class="form-table">
 			<p>Use the following fields to alter the base slug for the Tour Operator post types like <code><?php echo esc_html(home_url()); ?>/destination/south-africa/</code></p>
 			<?php
@@ -210,7 +210,8 @@ class Permalinks
 				$types
 			);
 			foreach ( $types as $types ) {
-				$fields[ $types['slug'] ] = [ 'label' => $types['label'] ];
+				$fields[ $types['slug'] ] = [ 'label' => __( 'Single', 'tour-operator' ) . ' ' . $types['label'] ];
+				$fields[ 'archive_' . $types['slug'] ] = [ 'label' => __( 'Archive', 'tour-operator' ) . ' ' . $types['label'] ];
 			}
 		}
 
@@ -244,6 +245,11 @@ class Permalinks
 		if ( isset( $slug_options[ 'lsx_to_' . $slug ] ) && '' !== $slug_options[ 'lsx_to_' . $slug ] ) {
 			$post_type['rewrite']['slug'] = $slug_options[ 'lsx_to_' . $slug ];
 		}
+
+		if ( isset( $slug_options[ 'lsx_to_archive_' . $slug ] ) && '' !== $slug_options[ 'lsx_to_archive_' . $slug ] ) {
+			$post_type['has_archive'] = $slug_options[ 'lsx_to_archive_' . $slug ];
+		}
+
 		return $post_type;
 	}
 }

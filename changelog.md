@@ -32,10 +32,13 @@
 
 ### Enhancements
 
+#### Frontend
 - **Tour summary information** - Added price info and title in the tour summary section for better visibility
 - **Block gap consistency** - Adjusted block gap spacing for improved visual consistency across templates
 - **Travel information cards** - Increased padding for travel information cards to improve readability
 
+#### Backend
+- **Post Type Permalinks** - Extended the Taxonomy permalinks to handle Post Type Permalinks as well. This only covers the single items.
 
 ## [[2.1.1]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.1) - 2026-01-05
 
