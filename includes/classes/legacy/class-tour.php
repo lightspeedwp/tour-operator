@@ -46,6 +46,22 @@ class Tour
 	public $search_fields = false;
 
 	/**
+	 * Holds the Tour post type options.
+	 *
+	 * @since 1.0.0
+	 * @var array|bool
+	 */
+	public $options = false;
+
+	/**
+	 * Flags whether the WETU importer is active.
+	 *
+	 * @since 1.0.0
+	 * @var bool
+	 */
+	public $is_wetu_active = false;
+
+	/**
 	 * Initialize the plugin by setting localization, filters, and
 	 * administration functions.
 	 *
