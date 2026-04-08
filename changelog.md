@@ -38,7 +38,7 @@
 - **Travel information cards** - Increased padding for travel information cards to improve readability
 
 #### Backend
-- **Post Type Permalinks** - Extended the Taxonomy permalinks to handle Post Type Permalinks as well. This only covers the single items.
+- **Post Type Permalinks** - Extended the Taxonomy permalinks to handle Post Type Permalinks for the single and archive slugs.
 
 ## [[2.1.1]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.1) - 2026-01-05
 
