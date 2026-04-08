@@ -110,6 +110,11 @@ class Content_Model_Json_Initializer {
 		$content_models = self::group_content_models_by_slug();
 		$post_types     = self::group_post_types_by_slug( $post_types );
 
+		foreach ( $post_types as $index => $post_type ) {
+			// Allow 3rd parties to edit the values before they are registered.
+			$post_types[ $index ] = apply_filters( 'lsx_to_content_model_post_type', $post_type );
+		}
+
 		foreach ( $content_models as $model_slug => $model ) {
 			if ( ! isset( $post_types[ $model_slug ] ) ) {
 				wp_delete_post( $model->ID, false );
