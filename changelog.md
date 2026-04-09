@@ -12,6 +12,10 @@
 
 ### Fixed
 
+#### Editor & Navigation
+
+- **Navigation Link variation labels for CPTs and taxonomies** - Added missing `item_link` and `item_link_description` labels plus explicit `show_in_nav_menus` support for Tour Operator content models and related taxonomies so they appear correctly in Navigation Link variations and link pickers - Issue [#922](https://github.com/lightspeedwp/tour-operator/issues/922), Issue [#923](https://github.com/lightspeedwp/tour-operator/issues/923)
+
 #### Layout & Styling
 
 - **Archive query loop padding** - Added top and bottom default padding to archive query loops and taxonomy archives for consistent spacing
