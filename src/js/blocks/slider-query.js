@@ -3,20 +3,30 @@
     const InspectorControls = editor.InspectorControls;
     const PanelBody = components.PanelBody;
     const CheckboxControl = components.CheckboxControl;
+    const supportedBlocks = [ 'core/query', 'core/terms-query' ];
 
     const withInspectorControls = wp.compose.createHigherOrderComponent(
         function ( BlockEdit ) {
             return function ( props ) {
-                if ( props.name !== 'core/query' ) {
+                if ( ! supportedBlocks.includes( props.name ) ) {
                     return el( BlockEdit, props );
                 }
 
+                const isQueryBlock = props.name === 'core/query';
+
                 // Clean up on-sale class and attribute when post type changes from tour to something else
-                const currentPostType = props.attributes.query && props.attributes.query.postType;
+                const currentPostType =
+                    isQueryBlock && props.attributes.query
+                        ? props.attributes.query.postType
+                        : null;
                 const previousPostType = wp.element.useRef( currentPostType );
                 
                 wp.element.useEffect( () => {
-                    if ( previousPostType.current === 'tour' && currentPostType !== 'tour' ) {
+                    if (
+                        isQueryBlock &&
+                        previousPostType.current === 'tour' &&
+                        currentPostType !== 'tour'
+                    ) {
                         // Post type changed from tour to something else, clear on-sale
                         const hasOnSale = props.attributes.filterByOnsale || 
                             ( props.attributes.className && props.attributes.className.includes( 'on-sale' ) );
@@ -32,7 +42,7 @@
                         }
                     }
                     previousPostType.current = currentPostType;
-                }, [ currentPostType ] );
+                }, [ currentPostType, isQueryBlock ] );
 
                 let hasCustomClass = props.attributes.hasCustomClass || false;
                 if ( undefined === props.attributes.hasCustomClass ) {
@@ -90,7 +100,7 @@
                                 },
                             } ),
                             // Only show Filter by On Sale for tour post type
-                            props.attributes.query && props.attributes.query.postType === 'tour' && el( CheckboxControl, {
+                            isQueryBlock && props.attributes.query && props.attributes.query.postType === 'tour' && el( CheckboxControl, {
                                 label: 'Filter by On Sale',
                                 checked: filterByOnsale,
                                 onChange( value ) {
@@ -142,7 +152,7 @@
         'blocks.getSaveContent.extraProps',
         'lsx-tour-operator/save-settings-panel',
         function ( extraProps, blockType, attributes ) {
-            if ( blockType.name === 'core/query' ) {
+            if ( supportedBlocks.includes( blockType.name ) ) {
                 if ( true === attributes.hasCustomClass ) {
                     extraProps.className =
                         ( extraProps.className || '' ) + ' lsx-to-slider';
