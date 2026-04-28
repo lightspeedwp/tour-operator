@@ -53,6 +53,7 @@ class Query_Loop {
 		add_filter( 'render_block', array( $this, 'maybe_hide_varitaion' ), 10, 3 );
 		add_filter( 'posts_pre_query', array( $this, 'posts_pre_query' ), 10, 2 );
 		add_filter( 'query_loop_block_query_vars', array( $this, 'query_args_filter' ), 1, 2 );
+		add_filter( 'lsx_to_query_orderby_post__in', array( $this, 'enable_post_in_ordering' ), 10, 3 );
 	}
 
 	/**
@@ -661,5 +662,41 @@ class Query_Loop {
 		$query['post__not_in'] = array( get_the_ID() );
 
 		return $query;
+	}
+
+	/**
+	 * Determines which query variations should preserve the order from post__in array.
+	 *
+	 * This enables ordering tours on destination pages by the order set in the
+	 * tour_to_destination multiselect field in the backend.
+	 *
+	 * @param bool  $enable Whether to enable post__in ordering (default false).
+	 * @param array $query  The query arguments.
+	 * @param array $block  The block data.
+	 * @return bool Whether to enable post__in ordering.
+	 */
+	public function enable_post_in_ordering( $enable, $query, $block ) {
+		// Extract the query variation key from the block className
+		if ( isset( $block['attrs']['className'] ) ) {
+			$pattern = '/(lsx|facts)-(.*?)-query/';
+			preg_match( $pattern, $block['attrs']['className'], $matches );
+
+			if ( ! empty( $matches ) ) {
+				$key = str_replace( [ 'facts-', 'lsx-', '-query' ], '', $matches[0] );
+
+				// Enable post__in ordering for specific query variations
+				$ordered_variations = array(
+					'tour-related-destination',        // Tours on destination pages
+					'accommodation-related-destination', // Accommodations on destination pages
+					// Add other variations here as needed
+				);
+
+				if ( in_array( $key, $ordered_variations, true ) ) {
+					return true;
+				}
+			}
+		}
+
+		return $enable;
 	}
 }
