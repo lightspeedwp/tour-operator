@@ -70,6 +70,18 @@
                     parentsOnly = props.attributes.parentsOnly;
                 }
 
+                let customOrder = props.attributes.customOrder || false;
+                if ( undefined === props.attributes.customOrder ) {
+                    if (
+                        props.attributes.className &&
+                        props.attributes.className.includes( 'custom-order' )
+                    ) {
+                        customOrder = true;
+                    }
+                } else {
+                    customOrder = props.attributes.customOrder;
+                }
+
                 return el(
                     element.Fragment,
                     {},
@@ -123,6 +135,16 @@
                                         parentsOnly: value,
                                     } );
                                 },
+                            } ),
+                            el( CheckboxControl, {
+                                label: 'Custom Order',
+                                checked: customOrder,
+                                help: 'Preserve the order from connected posts (e.g., tours ordered in destination multiselect field)',
+                                onChange( value ) {
+                                    props.setAttributes( {
+                                        customOrder: value,
+                                    } );
+                                },
                             } )
                         )
                     )
@@ -164,6 +186,18 @@
                 ) {
                     extraProps.className = extraProps.className
                         .replace( /\bparents-only\b\s*/g, '' )
+                        .trim();
+                }
+
+                if ( true === attributes.customOrder ) {
+                    extraProps.className =
+                        ( extraProps.className || '' ) + ' custom-order';
+                } else if (
+                    false === attributes.customOrder &&
+                    extraProps.className
+                ) {
+                    extraProps.className = extraProps.className
+                        .replace( /\bcustom-order\b\s*/g, '' )
                         .trim();
                 }
             }

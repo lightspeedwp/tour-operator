@@ -668,7 +668,8 @@ class Query_Loop {
 	 * Determines which query variations should preserve the order from post__in array.
 	 *
 	 * This enables ordering tours on destination pages by the order set in the
-	 * tour_to_destination multiselect field in the backend.
+	 * tour_to_destination multiselect field in the backend, or when the Custom Order
+	 * checkbox is enabled in the query block settings.
 	 *
 	 * @param bool  $enable Whether to enable post__in ordering (default false).
 	 * @param array $query  The query arguments.
@@ -676,6 +677,11 @@ class Query_Loop {
 	 * @return bool Whether to enable post__in ordering.
 	 */
 	public function enable_post_in_ordering( $enable, $query, $block ) {
+		// Check if the custom-order class is present (from Custom Order checkbox)
+		if ( isset( $block['attrs']['className'] ) && false !== stripos( $block['attrs']['className'], 'custom-order' ) ) {
+			return true;
+		}
+
 		// Extract the query variation key from the block className
 		if ( isset( $block['attrs']['className'] ) ) {
 			$pattern = '/(lsx|facts)-(.*?)-query/';
