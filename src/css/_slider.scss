@@ -29,6 +29,7 @@
 }
 
 .wp-block-query,
+.wp-block-terms-query,
 .lsx-block-videos,
 .lsx-travel-information-wrapper {
 	&.lsx-to-slider {
@@ -106,6 +107,14 @@
 }
 
 .wp-block-query {
+	&.lsx-to-slider {
+		.slick-slide {
+			padding: 15px !important;
+		}
+	}
+}
+
+.wp-block-terms-query {
 	&.lsx-to-slider {
 		.slick-slide {
 			padding: 15px !important;

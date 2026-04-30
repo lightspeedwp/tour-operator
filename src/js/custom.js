@@ -358,17 +358,18 @@ if ( window.location.hash ) {
     lsx_to.build_slider = function ( window_width ) {
         // First slider: .lsx-to-slider
         $(
-            '.lsx-to-slider:not(.lsx-block-videos) .wp-block-post-template:not(.slider-disabled)'
+            '.lsx-to-slider:not(.lsx-block-videos) .wp-block-post-template:not(.slider-disabled), ' +
+                '.lsx-to-slider:not(.lsx-block-videos) .wp-block-term-template:not(.slider-disabled)'
         ).each( function () {
             const $this = $( this );
             let slidesToShow = 3;
 
             lsx_to.pre_build_slider( $this );
 
-            const str = $this.attr( 'class' );
+            const str = $this.attr( 'class' ) || '';
             const classRegex = /columns-\S*/g;
             const matches = str.match( classRegex );
-            if ( 0 < matches.length ) {
+            if ( matches && 0 < matches.length ) {
                 const column = matches[ 0 ].split( '-' )[ 1 ];
                 slidesToShow = column;
             }
