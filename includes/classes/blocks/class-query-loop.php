@@ -691,8 +691,6 @@ class Query_Loop {
 	 */
 	public function enable_post_in_ordering( $enable, $query, $block ) {
 
-		do_action( 'qm/debug', $this->custom_order );
-
 		return $this->custom_order;
 
 		// Extract the query variation key from the block className
