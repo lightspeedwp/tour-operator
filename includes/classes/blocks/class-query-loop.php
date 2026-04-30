@@ -33,6 +33,13 @@ class Query_Loop {
 	protected $parents_only = false;
 
 	/**
+	 * True if the current query outputting needs a custom order.
+	 *
+	 * @var boolean
+	 */
+	protected $custom_order = false;
+
+	/**
 	 * Stores processed query args keyed by the core/query block queryId so we don't
 	 * recalculate alterations multiple times for the same block on a single request.
 	 *
@@ -259,6 +266,7 @@ class Query_Loop {
 	 * @return array
 	 */
 	public function save_checkbox_queries( $parsed_block ) {
+
 		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] ) ) {
 			return $parsed_block;
 		}
@@ -270,18 +278,23 @@ class Query_Loop {
 			return $parsed_block;
 		}
 
-		if ( ! isset( $parsed_block['attrs']['className'] ) || '' === $parsed_block['attrs']['className'] || false === $parsed_block['attrs']['className'] ) {
+		if ( ! isset( $parsed_block['innerHTML'] ) || '' === $parsed_block['innerHTML'] || false === $parsed_block['innerHTML'] ) {
 			return $parsed_block;
 		}
 
 		$this->onsale = false;
-		if ( false !== stripos( $parsed_block['attrs']['className'], 'on-sale' ) ) {
+		if ( false !== stripos( $parsed_block['innerHTML'], 'on-sale' ) ) {
 			$this->onsale = true;
 		}
 
 		$this->parents_only = false;
-		if ( false !== stripos( $parsed_block['attrs']['className'], 'parents-only' ) ) {
+		if ( false !== stripos( $parsed_block['innerHTML'], 'parents-only' ) ) {
 			$this->parents_only = true;
+		}
+
+		$this->custom_order = false;
+		if ( false !== stripos( $parsed_block['innerHTML'], 'custom-order' ) ) {
+			$this->custom_order = true;
 		}
 
 		return $parsed_block;
@@ -677,13 +690,13 @@ class Query_Loop {
 	 * @return bool Whether to enable post__in ordering.
 	 */
 	public function enable_post_in_ordering( $enable, $query, $block ) {
-		// Check if the custom-order class is present (from Custom Order checkbox)
-		if ( isset( $block['attrs']['className'] ) && false !== stripos( $block['attrs']['className'], 'custom-order' ) ) {
-			return true;
-		}
+
+		do_action( 'qm/debug', $this->custom_order );
+
+		return $this->custom_order;
 
 		// Extract the query variation key from the block className
-		if ( isset( $block['attrs']['className'] ) ) {
+		/*if ( isset( $block['attrs']['className'] ) ) {
 			$pattern = '/(lsx|facts)-(.*?)-query/';
 			preg_match( $pattern, $block['attrs']['className'], $matches );
 
@@ -701,7 +714,7 @@ class Query_Loop {
 					return true;
 				}
 			}
-		}
+		}*/
 
 		return $enable;
 	}
