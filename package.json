@@ -34,7 +34,7 @@
     "@wordpress/babel-preset-default": "8.45.0",
     "@wordpress/block-library": "9.45.0",
     "@wordpress/blocks": "15.17.0",
-    "@wordpress/e2e-test-utils-playwright": "1.44.0",
+    "@wordpress/e2e-test-utils-playwright": "1.45.0",
     "@wordpress/eslint-plugin": "25.1.0",
     "@wordpress/i18n": "6.18.0",
     "@wordpress/jest-preset-default": "12.45.0",
