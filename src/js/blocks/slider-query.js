@@ -190,8 +190,14 @@
                 }
 
                 if ( true === attributes.customOrder ) {
-                    extraProps.className =
-                        ( extraProps.className || '' ) + ' custom-order';
+                    if (
+                        ! /\bcustom-order\b/.test(
+                            extraProps.className || ''
+                        )
+                    ) {
+                        extraProps.className =
+                            ( extraProps.className || '' ) + ' custom-order';
+                    }
                 } else if (
                     false === attributes.customOrder &&
                     extraProps.className
