@@ -4,6 +4,11 @@
 
 ### Added
 
+#### Query Loops & Ordering
+- **Custom Order Checkbox** - Added "Custom Order" checkbox control to Query block settings panel, allowing queries to preserve the exact order from multiselect fields or `post__in` arrays. Works with all query variations (tours, destinations, accommodations, reviews) - [Documentation](docs/query-ordering.md)
+- **Custom Order Support for Slider Query** - Extended custom ordering functionality to the slider query block, enabling user control over post ordering in sliders
+- **Query Ordering Documentation** - Added comprehensive documentation (`docs/query-ordering.md`) explaining two methods for custom ordering: checkbox control and automatic query variations
+
 #### Filters
 - **Block Visibility** - added in a `lsx_to_maybe_hide_variation_override` to allow 3rd party plugins to control the visibility.
 - **Post Connections** - added in a `lsx_to_post_connections_value` allowing you to alter the data before it is returned to the block render function. (e.g strip out the tags).
@@ -31,6 +36,8 @@
 
 #### Query Loops & Filtering
 
+- **Query Block Class Detection** - Improved reliability of query block class detection by checking `innerHTML` instead of `attrs['className']`, ensuring custom classes like `on-sale`, `parents-only`, and `custom-order` are properly detected even when applied via block variations or programmatically
+- **Post__in Ordering Filter** - Added new `lsx_to_query_orderby_post__in` filter hook and `enable_post_in_ordering()` method to allow third-party control over when queries should preserve `post__in` order
 - **On sale query loops** - Fixed query loop filtering to properly detect and display tours marked as "on sale". Changed the checkbox functionality for adding/removing the on-sale class. - PR [#1008](https://github.com/lightspeedwp/tour-operator/pull/1008)
 - **Filter by On Sale visibility** - Restricted "Filter by On Sale" checkbox to only display in query loop settings when post type is set to 'tour'. - PR [#1009](https://github.com/lightspeedwp/tour-operator/pull/1009)
 - **Terms Query slider support** - Extended slider block controls and frontend slider initialisation to support the Terms Query block (`core/terms-query`) and term templates, while keeping tour-only on-sale behaviour limited to Query Loop.

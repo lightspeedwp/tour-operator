@@ -11,8 +11,8 @@ enable_free_tier: true
 # =============================================================================
 tone_instructions: |
   You are reviewing a WordPress multi-block plugin for tour operators.
-  Be helpful but thorough. Focus on WordPress coding standards (WPCS),
-  accessibility (WCAG 2.2 AA), security, and block development best practices.
+  Focus on WordPress coding standards (WPCS), accessibility (WCAG 2.2 AA), 
+  security, and block development best practices.
   Use British English (en-ZA) for all communications.
 
 # =============================================================================
