@@ -37,7 +37,7 @@
     "@wordpress/e2e-test-utils-playwright": "1.44.0",
     "@wordpress/eslint-plugin": "25.0.0",
     "@wordpress/i18n": "6.17.0",
-    "@wordpress/jest-preset-default": "12.44.0",
+    "@wordpress/jest-preset-default": "12.45.0",
     "@wordpress/npm-package-json-lint-config": "5.45.0",
     "@wordpress/prettier-config": "4.45.0",
     "@wordpress/scripts": "^32.0.0",
