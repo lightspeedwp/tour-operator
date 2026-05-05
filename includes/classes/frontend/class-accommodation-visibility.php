@@ -25,7 +25,7 @@ class Accommodation_Visibility {
 	 * @since 2.1.0
 	 * @var string
 	 */
-	const META_KEY = '_lsx_to_hide_accommodation';
+	const META_KEY = '_lsx_to_hide_from_listings';
 
 	/**
 	 * Supported post types
