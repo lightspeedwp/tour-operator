@@ -21,7 +21,6 @@ module.exports = {
 		'modals': path.resolve( process.cwd(), 'src/js/modals.js' ),
 		'scporder': path.resolve( process.cwd(), 'src/js/scporder.js' ),
 		'metabox-structure': path.resolve( process.cwd(), 'src/js/metabox-structure.js' ),
-		'accommodation-visibility': path.resolve( process.cwd(), 'src/js/accommodation-visibility.js' ),
 
 		// blocks
 		'general': path.resolve( process.cwd(), 'src/js/blocks/general.js' ),

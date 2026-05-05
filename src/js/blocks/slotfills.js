@@ -31,25 +31,37 @@
     };
 
     /**
-     * Component for toggling the disable single post view setting.
+     * Component for toggling visibility (hide from listings and search).
      *
      * @since 2.1.0
-     * @return {Element} The toggle control element.
+     * @return {Element} The toggle control element or null if not allowed post type.
      */
-    const DisableSingleToggle = () => {
+    const HideFromListingsToggle = () => {
+        const postType = useSelect(function (select) {
+            return select('core/editor')?.getCurrentPostType?.();
+        }, []);
+
+        // Only show for tour, accommodation, and destination post types
+        if (!['tour', 'accommodation', 'destination'].includes(postType)) {
+            return null;
+        }
+
         const { editPost } = useDispatch('core/editor');
         const handleChange = (newChecked) => {
-            editPost({ meta: { disable_single: newChecked } });
+            editPost({ meta: { _lsx_to_hide_accommodation: newChecked } });
         };
 
-        const isDisabled = useSelect(function (select) {
+        const isHidden = useSelect(function (select) {
             const meta = select('core/editor').getEditedPostAttribute('meta');
-            return meta?.disable_single || false;
+            return meta?._lsx_to_hide_accommodation || false;
         }, []);
 
         return createElement(ToggleControl, {
-            label: i18n.__('Disable Single', 'tour-operator'),
-            checked: isDisabled,
+            label: i18n.__('Hide from listings and search', 'tour-operator'),
+            help: isHidden
+                ? i18n.__('This will not appear in category pages, search results, or show View More buttons in modals.', 'tour-operator')
+                : i18n.__('This will be visible in listings and search results.', 'tour-operator'),
+            checked: isHidden,
             onChange: handleChange,
         });
     };
@@ -92,7 +104,7 @@
                     {
                         className: 'toggle-row',
                     },
-                    createElement(DisableSingleToggle)
+                    createElement(HideFromListingsToggle)
                 )
             )
         );

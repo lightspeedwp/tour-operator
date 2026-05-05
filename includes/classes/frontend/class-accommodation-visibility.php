@@ -12,7 +12,7 @@ namespace lsx\frontend;
 /**
  * Class Accommodation_Visibility
  *
- * Handles visibility control for accommodation posts
+ * Handles visibility control for tour, accommodation, and destination posts
  *
  * @since 2.1.0
  * @package lsx\frontend
@@ -28,14 +28,21 @@ class Accommodation_Visibility {
 	const META_KEY = '_lsx_to_hide_accommodation';
 
 	/**
+	 * Supported post types
+	 *
+	 * @since 2.1.0
+	 * @var array
+	 */
+	private $post_types = [ 'tour', 'accommodation', 'destination' ];
+
+	/**
 	 * Constructor
 	 */
 	public function __construct() {
 		add_action( 'init', [ $this, 'register_meta_field' ] );
-		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_editor_assets' ] );
 		add_action( 'pre_get_posts', [ $this, 'exclude_hidden_from_queries' ] );
-		add_filter( 'lsx_to_connected_list_item', [ $this, 'filter_hidden_accommodation_modal_links' ], 10, 3 );
-		add_filter( 'excerpt_more', [ $this, 'remove_view_more_for_hidden_accommodation' ], 10, 1 );
+		add_filter( 'lsx_to_connected_list_item', [ $this, 'filter_hidden_modal_links' ], 10, 3 );
+		add_filter( 'excerpt_more', [ $this, 'remove_view_more_for_hidden' ], 10, 1 );
 	}
 
 	/**
@@ -44,70 +51,42 @@ class Accommodation_Visibility {
 	 * @return void
 	 */
 	public function register_meta_field() {
-		register_post_meta(
-			'accommodation',
-			self::META_KEY,
-			[
-				'type'         => 'boolean',
-				'single'       => true,
-				'show_in_rest' => true,
-				'default'      => false,
-				'auth_callback' => function() {
-					return current_user_can( 'edit_posts' );
-				},
-			]
-		);
-	}
-
-	/**
-	 * Enqueue editor scripts and styles
-	 *
-	 * @return void
-	 */
-	public function enqueue_editor_assets() {
-		global $post;
-
-		// Only load on accommodation post type
-		if ( ! $post || 'accommodation' !== get_post_type( $post ) ) {
-			return;
+		foreach ( $this->post_types as $post_type ) {
+			register_post_meta(
+				$post_type,
+				self::META_KEY,
+				[
+					'type'         => 'boolean',
+					'single'       => true,
+					'show_in_rest' => true,
+					'default'      => false,
+					'auth_callback' => function() {
+						return current_user_can( 'edit_posts' );
+					},
+				]
+			);
 		}
-
-		wp_enqueue_script(
-			'lsx-to-accommodation-visibility',
-			LSX_TO_URL . 'build/accommodation-visibility.js',
-			[ 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-components', 'wp-data' ],
-			LSX_TO_VER,
-			true
-		);
-
-		wp_localize_script(
-			'lsx-to-accommodation-visibility',
-			'lsxAccommodationVisibility',
-			[
-				'metaKey' => self::META_KEY,
-			]
-		);
 	}
 
 	/**
-	 * Exclude hidden accommodation from queries
+	 * Exclude hidden posts from queries
 	 *
 	 * @param \WP_Query $query The WP_Query instance
 	 * @return void
 	 */
 	public function exclude_hidden_from_queries( $query ) {
-		// Only modify main query or queries for accommodation post type
+		// Only modify main query
 		if ( is_admin() || ! $query->is_main_query() ) {
 			return;
 		}
 
-		// Check if this is a query for accommodation posts
+		// Check if this is a query for our supported post types
 		$post_type = $query->get( 'post_type' );
-		if ( 'accommodation' !== $post_type && ! $this->is_accommodation_query( $query ) ) {
+		if ( ! $this->is_supported_query( $query, $post_type ) ) {
 			return;
 		}
 
-		// Add meta query to exclude hidden accommodation
+		// Add meta query to exclude hidden posts
 		$meta_query = $query->get( 'meta_query' ) ?: [];
 		
 		$meta_query[] = [
@@ -127,33 +106,40 @@ class Accommodation_Visibility {
 	}
 
 	/**
-	 * Check if the query is for accommodation
+	 * Check if the query is for supported post types
 	 *
 	 * @param \WP_Query $query The WP_Query instance
+	 * @param string|array $post_type The post type from the query
 	 * @return bool
 	 */
-	private function is_accommodation_query( $query ) {
-		// Check for accommodation type taxonomy archive
-		if ( $query->is_tax( 'accommodation-type' ) || $query->is_tax( 'accommodation-brand' ) ) {
+	private function is_supported_query( $query, $post_type ) {
+		// Check if post_type matches our supported types
+		if ( in_array( $post_type, $this->post_types, true ) ) {
 			return true;
 		}
 
-		// Check for search queries that might include accommodation
+		// Check for taxonomy archives
+		if ( $query->is_tax( 'accommodation-type' ) || $query->is_tax( 'accommodation-brand' ) || $query->is_tax( 'travel-style' ) ) {
+			return true;
+		}
+
+		// Check for search queries
 		if ( $query->is_search() ) {
-			$post_types = $query->get( 'post_type' );
+			$search_post_types = $query->get( 'post_type' );
 			
-			// If post_type is not set, search includes all post types (including accommodation)
-			if ( empty( $post_types ) ) {
+			// If post_type is not set, search includes all post types
+			if ( empty( $search_post_types ) ) {
 				return true;
 			}
 
-			// Check if accommodation is in the post_type array
-			if ( is_array( $post_types ) && in_array( 'accommodation', $post_types, true ) ) {
-				return true;
-			}
-
-			// Check if post_type is exactly 'accommodation'
-			if ( 'accommodation' === $post_types ) {
+			// Check if any of our post types are in the search
+			if ( is_array( $search_post_types ) ) {
+				foreach ( $this->post_types as $supported_type ) {
+					if ( in_array( $supported_type, $search_post_types, true ) ) {
+						return true;
+					}
+				}
+			} elseif ( in_array( $search_post_types, $this->post_types, true ) ) {
 				return true;
 			}
 		}
@@ -162,13 +148,16 @@ class Accommodation_Visibility {
 	}
 
 	/**
-	 * Check if an accommodation post is hidden
+	 * Check if a post is hidden
 	 *
 	 * @param int $post_id The post ID to check
 	 * @return bool True if hidden, false otherwise
 	 */
-	public static function is_accommodation_hidden( $post_id ) {
-		if ( 'accommodation' !== get_post_type( $post_id ) ) {
+	public static function is_post_hidden( $post_id ) {
+		$post_type = get_post_type( $post_id );
+		$supported_types = [ 'tour', 'accommodation', 'destination' ];
+		
+		if ( ! in_array( $post_type, $supported_types, true ) ) {
 			return false;
 		}
 
@@ -177,21 +166,22 @@ class Accommodation_Visibility {
 	}
 
 	/**
-	 * Filter accommodation modal links to prevent modals for hidden accommodation
+	 * Filter modal links to prevent modals for hidden posts
 	 *
 	 * @param string $html The HTML output for the connected list item
 	 * @param int    $post_id The post ID
 	 * @param bool   $has_single Whether the post has a single page
 	 * @return string Modified HTML
 	 */
-	public function filter_hidden_accommodation_modal_links( $html, $post_id, $has_single ) {
-		// Only process if this is an accommodation post
-		if ( 'accommodation' !== get_post_type( $post_id ) ) {
+	public function filter_hidden_modal_links( $html, $post_id, $has_single ) {
+		// Only process if this is one of our supported post types
+		$post_type = get_post_type( $post_id );
+		if ( ! in_array( $post_type, $this->post_types, true ) ) {
 			return $html;
 		}
 
-		// If accommodation is hidden, return just the title without a link
-		if ( self::is_accommodation_hidden( $post_id ) ) {
+		// If post is hidden, return just the title without a link
+		if ( self::is_post_hidden( $post_id ) ) {
 			return get_the_title( $post_id );
 		}
 
@@ -199,21 +189,21 @@ class Accommodation_Visibility {
 	}
 
 	/**
-	 * Remove "View More" text from excerpts of hidden accommodation
+	 * Remove "View More" text from excerpts of hidden posts
 	 *
 	 * @param string $more_string The excerpt more string
 	 * @return string Modified more string
 	 */
-	public function remove_view_more_for_hidden_accommodation( $more_string ) {
+	public function remove_view_more_for_hidden( $more_string ) {
 		global $post;
 
-		// Only process accommodation posts
-		if ( ! $post || 'accommodation' !== get_post_type( $post ) ) {
+		// Only process our supported post types
+		if ( ! $post || ! in_array( get_post_type( $post ), $this->post_types, true ) ) {
 			return $more_string;
 		}
 
-		// If accommodation is hidden, return empty string (no "View More" link)
-		if ( self::is_accommodation_hidden( $post->ID ) ) {
+		// If post is hidden, return empty string (no "View More" link)
+		if ( self::is_post_hidden( $post->ID ) ) {
 			return '';
 		}
 
