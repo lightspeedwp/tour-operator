@@ -37,8 +37,16 @@
      * @return {Element} The toggle control element or null if not allowed post type.
      */
     const HideFromListingsToggle = () => {
+        // Hoist all hooks to run unconditionally
         const postType = useSelect(function (select) {
             return select('core/editor')?.getCurrentPostType?.();
+        }, []);
+
+        const { editPost } = useDispatch('core/editor');
+
+        const isChecked = useSelect(function (select) {
+            const meta = select('core/editor').getEditedPostAttribute('meta');
+            return meta?._lsx_to_hide_from_listings || false;
         }, []);
 
         // Only show for tour, accommodation, and destination post types
@@ -46,22 +54,16 @@
             return null;
         }
 
-        const { editPost } = useDispatch('core/editor');
         const handleChange = (newChecked) => {
             editPost({ meta: { _lsx_to_hide_from_listings: newChecked } });
         };
 
-        const isChecked = useSelect(function (select) {
-            const meta = select('core/editor').getEditedPostAttribute('meta');
-            return meta?._lsx_to_hide_from_listings || false;
-        }, []);
-
         return createElement(ToggleControl, {
             label: i18n.__('Hide from listings and search', 'tour-operator'),
-            help: isHidden
+            help: isChecked
                 ? i18n.__('This will not appear in category pages, search results, or show View More buttons in modals.', 'tour-operator')
                 : i18n.__('This will be visible in listings and search results.', 'tour-operator'),
-            checked: isHidden,
+            checked: isChecked,
             onChange: handleChange,
         });
     };
