@@ -4,6 +4,9 @@
 
 ### Added
 
+#### Visibility Controls
+- **Hide from Listings Toggle** - Added "Hide from Listings and Search" toggle in block editor Post Status sidebar for tour, accommodation, and destination post types. Hidden posts are excluded from category archives, taxonomy pages, search results, and Query Block custom queries. Hidden accommodation in day-by-day itineraries display title only without "View More" buttons in modals - Issue [#TBD](https://github.com/lightspeedwp/tour-operator/issues/TBD)
+
 #### Query Loops & Ordering
 - **Custom Order Checkbox** - Added "Custom Order" checkbox control to Query block settings panel, allowing queries to preserve the exact order from multiselect fields or `post__in` arrays. Works with all query variations (tours, destinations, accommodations, reviews) - [Documentation](docs/query-ordering.md)
 - **Custom Order Support for Slider Query** - Extended custom ordering functionality to the slider query block, enabling user control over post ordering in sliders
