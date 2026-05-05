@@ -1,5 +1,6 @@
 ( function ( blocks, element, editor, components ) {
     const el = element.createElement;
+    const __ = wp.i18n.__;
     const InspectorControls = editor.InspectorControls;
     const PanelBody = components.PanelBody;
     const CheckboxControl = components.CheckboxControl;
@@ -147,9 +148,9 @@
                                 },
                             } ),
                             el( CheckboxControl, {
-                                label: 'Custom Order',
+                                label: __( 'Custom Order', 'tour-operator' ),
                                 checked: customOrder,
-                                help: 'Preserve the order from connected posts (e.g., tours ordered in destination multiselect field)',
+                                help: __( 'Preserve the order from connected posts (e.g., tours ordered in destination multiselect field)', 'tour-operator' ),
                                 onChange( value ) {
                                     props.setAttributes( {
                                         customOrder: value,
