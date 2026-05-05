@@ -9,6 +9,7 @@ use lsx\admin\Permalinks;
 use lsx\admin\Post_Expiration;
 use lsx\frontend\Modals;
 use lsx\frontend\Taxonomy_Images;
+use lsx\frontend\Accommodation_Visibility;
 use lsx\blocks\Bindings;
 use lsx\blocks\Patterns;
 use lsx\blocks\Query_Loop;
@@ -208,6 +209,7 @@ class Tour_Operator
 		$this->classes['post_expiration'] = new Post_Expiration();
 		$this->classes['modals']          = new Modals();
 		$this->classes['taxonomy_images'] = new Taxonomy_Images();
+		$this->classes['accommodation_visibility'] = new Accommodation_Visibility();
 
 		// Files that wont load with the badly written spl_autoregister function.
 		require_once LSX_TO_PATH . 'includes/classes/class-post-connections.php';
