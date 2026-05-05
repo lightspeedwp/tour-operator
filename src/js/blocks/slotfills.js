@@ -44,6 +44,10 @@
 
         const { editPost } = useDispatch('core/editor');
 
+        const handleChange = (newChecked) => {
+            editPost({ meta: { _lsx_to_hide_from_listings: newChecked } });
+        };
+
         const isChecked = useSelect(function (select) {
             const meta = select('core/editor').getEditedPostAttribute('meta');
             return meta?._lsx_to_hide_from_listings || false;
@@ -53,10 +57,6 @@
         if (!['tour', 'accommodation', 'destination'].includes(postType)) {
             return null;
         }
-
-        const handleChange = (newChecked) => {
-            editPost({ meta: { _lsx_to_hide_from_listings: newChecked } });
-        };
 
         return createElement(ToggleControl, {
             label: i18n.__('Hide from listings and search', 'tour-operator'),
