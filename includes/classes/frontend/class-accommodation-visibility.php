@@ -41,6 +41,7 @@ class Accommodation_Visibility {
 	public function __construct() {
 		add_action( 'init', [ $this, 'register_meta_field' ] );
 		add_action( 'pre_get_posts', [ $this, 'exclude_hidden_from_queries' ] );
+		add_filter( 'query_loop_block_query_vars', [ $this, 'filter_query_block_args' ], 10, 1 );
 		add_filter( 'lsx_to_connected_list_item', [ $this, 'filter_hidden_modal_links' ], 10, 3 );
 		add_filter( 'excerpt_more', [ $this, 'remove_view_more_for_hidden' ], 10, 1 );
 	}
@@ -103,6 +104,59 @@ class Accommodation_Visibility {
 		];
 
 		$query->set( 'meta_query', $meta_query );
+	}
+
+	/**
+	 * Filter Query Block query arguments to exclude hidden posts
+	 *
+	 * @param array $query_args The query arguments
+	 * @return array Modified query arguments
+	 */
+	public function filter_query_block_args( $query_args ) {
+		// Check if this query is for our supported post types
+		$post_type = isset( $query_args['post_type'] ) ? $query_args['post_type'] : '';
+		
+		// Skip if not one of our post types
+		if ( empty( $post_type ) ) {
+			return $query_args;
+		}
+
+		// Check if post_type matches our supported types
+		$is_supported = false;
+		if ( is_array( $post_type ) ) {
+			foreach ( $this->post_types as $supported_type ) {
+				if ( in_array( $supported_type, $post_type, true ) ) {
+					$is_supported = true;
+					break;
+				}
+			}
+		} elseif ( in_array( $post_type, $this->post_types, true ) ) {
+			$is_supported = true;
+		}
+
+		if ( ! $is_supported ) {
+			return $query_args;
+		}
+
+		// Add meta query to exclude hidden posts
+		$meta_query = isset( $query_args['meta_query'] ) ? $query_args['meta_query'] : [];
+		
+		$meta_query[] = [
+			'relation' => 'OR',
+			[
+				'key'     => self::META_KEY,
+				'compare' => 'NOT EXISTS',
+			],
+			[
+				'key'     => self::META_KEY,
+				'value'   => '1',
+				'compare' => '!=',
+			],
+		];
+
+		$query_args['meta_query'] = $meta_query;
+
+		return $query_args;
 	}
 
 	/**
