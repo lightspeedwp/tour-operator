@@ -67,9 +67,6 @@ class Accommodation_Visibility {
 					],
 					'default'           => false,
 					'sanitize_callback' => 'rest_sanitize_boolean',
-					'auth_callback'     => function ( $allowed, $meta_key, $object_id ) {
-						return current_user_can( 'edit_post', $object_id );
-					},
 				]
 			);
 		}
