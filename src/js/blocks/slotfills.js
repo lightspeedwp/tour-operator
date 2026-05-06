@@ -37,13 +37,11 @@
      * @return {Element} The toggle control element or null if not allowed post type.
      */
     const HideFromListingsToggle = () => {
-        // Hoist all hooks to run unconditionally
         const postType = useSelect(function (select) {
             return select('core/editor')?.getCurrentPostType?.();
         }, []);
 
         const { editPost } = useDispatch('core/editor');
-
         const handleChange = (newChecked) => {
             editPost({ meta: { lsx_to_hide_from_listings: newChecked } });
         };
