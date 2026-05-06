@@ -25,7 +25,7 @@ class Accommodation_Visibility {
 	 * @since 2.1.0
 	 * @var string
 	 */
-	const META_KEY = '_lsx_to_hide_from_listings';
+	const META_KEY = 'lsx_to_hide_from_listings';
 
 	/**
 	 * Supported post types
@@ -57,19 +57,9 @@ class Accommodation_Visibility {
 				$post_type,
 				self::META_KEY,
 				[
-					'type'              => 'boolean',
-					'single'            => true,
-					'show_in_rest'      => [
-						'schema' => [
-							'type'    => 'boolean',
-							'default' => false,
-						],
-					],
-					'default'           => false,
-					'sanitize_callback' => 'rest_sanitize_boolean',
-					'auth_callback'     => function() {
-						return current_user_can( 'edit_posts' );
-					},
+					'type'         => 'boolean',
+					'single'       => true,
+					'show_in_rest' => true,
 				]
 			);
 		}
