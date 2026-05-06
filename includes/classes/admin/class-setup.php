@@ -141,7 +141,7 @@ class Setup
 
 		register_meta(
 			'post',
-			'disable_single',
+			'lsx_to_hide_from_listings',
 			array(
 				'type'         => 'boolean',
 				'single'       => true,

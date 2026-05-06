@@ -59,6 +59,7 @@ class Accommodation_Visibility {
 				[
 					'type'         => 'boolean',
 					'single'       => true,
+					'default'      => false,
 					'show_in_rest' => true,
 				]
 			);
