@@ -136,6 +136,7 @@ class Setup
 				'type'         => 'boolean',
 				'single'       => true,
 				'show_in_rest' => true,
+				'default'      => false,
 			)
 		);
 
@@ -146,6 +147,7 @@ class Setup
 				'type'         => 'boolean',
 				'single'       => true,
 				'show_in_rest' => true,
+				'default'      => false,
 			)
 		);
 	}

@@ -39,31 +39,10 @@ class Accommodation_Visibility {
 	 * Constructor
 	 */
 	public function __construct() {
-		add_action( 'init', [ $this, 'register_meta_field' ] );
 		add_action( 'pre_get_posts', [ $this, 'exclude_hidden_from_queries' ] );
 		add_filter( 'query_loop_block_query_vars', [ $this, 'filter_query_block_args' ], 10, 1 );
 		add_filter( 'lsx_to_connected_list_item', [ $this, 'filter_hidden_modal_links' ], 10, 3 );
 		add_filter( 'excerpt_more', [ $this, 'remove_view_more_for_hidden' ], 10, 1 );
-	}
-
-	/**
-	 * Register the meta field for visibility control
-	 *
-	 * @return void
-	 */
-	public function register_meta_field() {
-		foreach ( $this->post_types as $post_type ) {
-			register_post_meta(
-				$post_type,
-				self::META_KEY,
-				[
-					'type'         => 'boolean',
-					'single'       => true,
-					'default'      => false,
-					'show_in_rest' => true,
-				]
-			);
-		}
 	}
 
 	/**
