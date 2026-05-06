@@ -3,6 +3,7 @@
     const { PluginPostStatusInfo } = wp.editPost;
     const { ToggleControl } = wp.components;
     const { useSelect, useDispatch } = wp.data;
+    const { useEntityProp } = wp.coreData;
     const { createElement } = wp.element;
     const i18n = window.wp.i18n;
 
@@ -15,6 +16,7 @@
     const StickyToggle = () => {
         const { editPost } = useDispatch('core/editor');
         const handleChange = (newChecked) => {
+			console.log(newChecked);
             editPost({ meta: { featured: newChecked } });
         };
 
@@ -41,27 +43,24 @@
             return select('core/editor')?.getCurrentPostType?.();
         }, []);
 
-        const { editPost } = useDispatch('core/editor');
-        const handleChange = (newChecked) => {
-            editPost({ meta: { lsx_to_hide_from_listings: newChecked } });
-        };
-
-        const isChecked = useSelect(function (select) {
-            const meta = select('core/editor').getEditedPostAttribute('meta');
-            return meta?.lsx_to_hide_from_listings || 0;
-        }, []);
-
         // Only show for tour, accommodation, and destination post types
         if (!['tour', 'accommodation', 'destination'].includes(postType)) {
             return null;
         }
 
+        const [meta, setMeta] = useEntityProp('postType', postType, 'meta');
+        const toggleValue = meta?.lsx_to_hide_from_listings || false;
+
+        const handleChange = (newValue) => {
+            setMeta({ ...meta, lsx_to_hide_from_listings: newValue });
+        };
+
         return createElement(ToggleControl, {
             label: i18n.__('Hide from listings and search', 'tour-operator'),
-            help: isChecked
+            help: toggleValue
                 ? i18n.__('This will not appear in category pages, search results, or show View More buttons in modals.', 'tour-operator')
                 : i18n.__('This will be visible in listings and search results.', 'tour-operator'),
-            checked: isChecked,
+            checked: toggleValue,
             onChange: handleChange,
         });
     };
