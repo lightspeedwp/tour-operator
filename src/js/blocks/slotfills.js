@@ -20,7 +20,7 @@
 
         const isSticky = useSelect(function (select) {
             const meta = select('core/editor').getEditedPostAttribute('meta');
-            return meta?.featured || false;
+            return meta?.featured || 0;
         }, []);
 
         return createElement(ToggleControl, {
@@ -48,7 +48,7 @@
 
         const isChecked = useSelect(function (select) {
             const meta = select('core/editor').getEditedPostAttribute('meta');
-            return meta?.lsx_to_hide_from_listings || false;
+            return meta?.lsx_to_hide_from_listings || 0;
         }, []);
 
         // Only show for tour, accommodation, and destination post types
