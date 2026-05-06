@@ -46,6 +46,26 @@ class Accommodation_Visibility {
 	}
 
 	/**
+	 * Register the meta field for visibility control
+	 *
+	 * @return void
+	 */
+	public function register_meta_field() {
+		foreach ( $this->post_types as $post_type ) {
+			register_post_meta(
+				$post_type,
+				self::META_KEY,
+				[
+					'type'         => 'boolean',
+					'single'       => true,
+					'default'      => false,
+					'show_in_rest' => true,
+				]
+			);
+		}
+	}
+
+	/**
 	 * Exclude hidden posts from queries
 	 *
 	 * @param \WP_Query $query The WP_Query instance
