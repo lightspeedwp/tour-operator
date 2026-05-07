@@ -24,32 +24,34 @@
             return meta?.featured || false;
         }, []);
 
-        const handleChange = (newValue) => {
-            if (!newValue) {
-                // When toggling off, delete the meta via REST API
-                wp.apiFetch({
-                    path: `/tour-operator/v1/meta/${postId}/featured`,
-                    method: 'DELETE',
-                }).then(() => {
+        const handleChange = async (newValue) => {
+            try {
+                if (!newValue) {
+                    // When toggling off, delete the meta via REST API
+                    await wp.apiFetch({
+                        path: `/tour-operator/v1/meta/${postId}/featured`,
+                        method: 'DELETE',
+                    });
                     // Update editor state to reflect the deletion
                     editPost({ meta: { featured: false } });
-                }).catch((error) => {
-                    console.error('Error deleting featured meta:', error);
-                });
-            } else {
-                // When toggling on, update the meta via REST API
-                wp.apiFetch({
-                    path: `/tour-operator/v1/meta/${postId}/featured`,
-                    method: 'POST',
-                    data: {
-                        value: true
-                    }
-                }).then(() => {
+                } else {
+                    // When toggling on, update the meta via REST API
+                    await wp.apiFetch({
+                        path: `/tour-operator/v1/meta/${postId}/featured`,
+                        method: 'POST',
+                        data: {
+                            value: true
+                        }
+                    });
                     // Update editor state to reflect the update
                     editPost({ meta: { featured: true } });
-                }).catch((error) => {
+                }
+            } catch (error) {
+                if (!newValue) {
+                    console.error('Error deleting featured meta:', error);
+                } else {
                     console.error('Error updating featured meta:', error);
-                });
+                }
             }
         };
 
@@ -87,32 +89,34 @@
             return meta?.lsx_to_hide_from_listings || false;
         }, []);
 
-        const handleChange = (newValue) => {
-            if (!newValue) {
-                // When toggling off, delete the meta via REST API
-                wp.apiFetch({
-                    path: `/tour-operator/v1/meta/${postId}/lsx_to_hide_from_listings`,
-                    method: 'DELETE',
-                }).then(() => {
+        const handleChange = async (newValue) => {
+            try {
+                if (!newValue) {
+                    // When toggling off, delete the meta via REST API
+                    await wp.apiFetch({
+                        path: `/tour-operator/v1/meta/${postId}/lsx_to_hide_from_listings`,
+                        method: 'DELETE',
+                    });
                     // Update editor state to reflect the deletion
                     editPost({ meta: { lsx_to_hide_from_listings: false } });
-                }).catch((error) => {
-                    console.error('Error deleting meta:', error);
-                });
-            } else {
-                // When toggling on, update the meta via REST API
-                wp.apiFetch({
-                    path: `/tour-operator/v1/meta/${postId}/lsx_to_hide_from_listings`,
-                    method: 'POST',
-                    data: {
-                        value: true
-                    }
-                }).then(() => {
+                } else {
+                    // When toggling on, update the meta via REST API
+                    await wp.apiFetch({
+                        path: `/tour-operator/v1/meta/${postId}/lsx_to_hide_from_listings`,
+                        method: 'POST',
+                        data: {
+                            value: true
+                        }
+                    });
                     // Update editor state to reflect the update
                     editPost({ meta: { lsx_to_hide_from_listings: true } });
-                }).catch((error) => {
+                }
+            } catch (error) {
+                if (!newValue) {
+                    console.error('Error deleting meta:', error);
+                } else {
                     console.error('Error updating meta:', error);
-                });
+                }
             }
         };
 
