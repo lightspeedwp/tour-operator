@@ -1,6 +1,6 @@
 <?php
 /**
- * Tour Operator - Accommodation Visibility Class
+ * Tour Operator - Post Visibility Class
  *
  * @package   lsx
  * @author    LightSpeed
