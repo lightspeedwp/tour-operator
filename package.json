@@ -40,7 +40,7 @@
     "@wordpress/jest-preset-default": "12.45.0",
     "@wordpress/npm-package-json-lint-config": "5.45.0",
     "@wordpress/prettier-config": "4.45.0",
-    "@wordpress/scripts": "^32.0.0",
+    "@wordpress/scripts": "^32.1.0",
     "@wordpress/stylelint-config": "^23.37.0",
     "copy-webpack-plugin": "^14.0.0",
     "eslint": "10.3.0",
