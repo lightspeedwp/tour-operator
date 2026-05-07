@@ -205,9 +205,8 @@ class Accommodation_Visibility {
 	 */
 	public static function is_post_hidden( $post_id ) {
 		$post_type = get_post_type( $post_id );
-		$supported_types = [ 'tour', 'accommodation', 'destination' ];
 		
-		if ( ! in_array( $post_type, $supported_types, true ) ) {
+		if ( ! in_array( $post_type, $this->post_types, true ) ) {
 			return false;
 		}
 
@@ -232,7 +231,7 @@ class Accommodation_Visibility {
 
 		// If post is hidden, return just the title without a link
 		if ( self::is_post_hidden( $post_id ) ) {
-			return get_the_title( $post_id );
+			return esc_html( get_the_title( $post_id ) );
 		}
 
 		return $html;
