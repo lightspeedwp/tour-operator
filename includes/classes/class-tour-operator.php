@@ -7,6 +7,7 @@ use lsx\admin\Settings;
 use lsx\admin\Setup;
 use lsx\admin\Permalinks;
 use lsx\admin\Post_Expiration;
+use lsx\admin\Meta_Rest_API;
 use lsx\frontend\Modals;
 use lsx\frontend\Taxonomy_Images;
 use lsx\frontend\Accommodation_Visibility;
@@ -200,6 +201,7 @@ class Tour_Operator
 		$this->classes['admin']           = new Admin();
 		$this->classes['settings']        = Settings::init();
 		$this->classes['setup']           = new Setup();
+		$this->classes['meta_rest_api']   = new Meta_Rest_API();
 		$this->classes['bindings']        = new Bindings();
 		$this->classes['registration']    = new Registration();
 		$this->classes['patterns']        = new Patterns();

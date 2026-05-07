@@ -3,7 +3,6 @@
     const { PluginPostStatusInfo } = wp.editPost;
     const { ToggleControl } = wp.components;
     const { useSelect, useDispatch } = wp.data;
-    const { useEntityProp } = wp.coreData;
     const { createElement } = wp.element;
     const i18n = window.wp.i18n;
 
@@ -43,16 +42,38 @@
             return select('core/editor')?.getCurrentPostType?.();
         }, []);
 
+        const postId = useSelect(function (select) {
+            return select('core/editor')?.getCurrentPostId?.();
+        }, []);
+
+        const { editPost } = useDispatch('core/editor');
+
         // Only show for tour, accommodation, and destination post types
         if (!['tour', 'accommodation', 'destination'].includes(postType)) {
             return null;
         }
 
-        const [meta, setMeta] = useEntityProp('postType', postType, 'meta');
-        const toggleValue = meta?.lsx_to_hide_from_listings || false;
+        const toggleValue = useSelect(function (select) {
+            const meta = select('core/editor').getEditedPostAttribute('meta');
+            return meta?.lsx_to_hide_from_listings || false;
+        }, []);
 
         const handleChange = (newValue) => {
-            setMeta({ ...meta, lsx_to_hide_from_listings: newValue });
+            if (!newValue) {
+                // When toggling off, delete the meta via REST API
+                wp.apiFetch({
+                    path: `/tour-operator/v1/meta/${postId}/lsx_to_hide_from_listings`,
+                    method: 'DELETE',
+                }).then(() => {
+                    // Force update the editor state to reflect the deletion
+                    editPost({ meta: { lsx_to_hide_from_listings: false } });
+                }).catch((error) => {
+                    console.error('Error deleting meta:', error);
+                });
+            } else {
+                // When toggling on, set the meta using editPost
+                editPost({ meta: { lsx_to_hide_from_listings: newValue } });
+            }
         };
 
         return createElement(ToggleControl, {
