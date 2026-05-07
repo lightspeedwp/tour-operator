@@ -144,18 +144,10 @@ class Setup
 			'post',
 			'lsx_to_hide_from_listings',
 			array(
-				'type'              => 'boolean',
-				'single'            => true,
-				'show_in_rest'      => array(
-					'schema' => array(
-						'type'    => 'boolean',
-						'default' => false,
-					),
-				),
-				'default'           => false,
-				'sanitize_callback' => function( $value ) {
-					return $value ? 1 : 0;
-				},
+				'type'         => 'boolean',
+				'single'       => true,
+				'show_in_rest' => true,
+				'default'      => false,
 			)
 		);
 	}

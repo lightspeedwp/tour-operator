@@ -13,16 +13,48 @@
      * @return {Element} The toggle control element.
      */
     const StickyToggle = () => {
+        const postId = useSelect(function (select) {
+            return select('core/editor')?.getCurrentPostId?.();
+        }, []);
+
         const { editPost } = useDispatch('core/editor');
-        const handleChange = (newChecked) => {
-			console.log(newChecked);
-            editPost({ meta: { featured: newChecked } });
-        };
 
         const isSticky = useSelect(function (select) {
             const meta = select('core/editor').getEditedPostAttribute('meta');
-            return meta?.featured || 0;
+            return meta?.featured || false;
         }, []);
+
+        const handleChange = (newValue) => {
+            console.log('Featured toggle changed to:', newValue);
+            if (!newValue) {
+                // When toggling off, delete the meta via REST API
+                wp.apiFetch({
+                    path: `/tour-operator/v1/meta/${postId}/featured`,
+                    method: 'DELETE',
+                }).then(() => {
+                    console.log('Featured meta deleted successfully');
+                    // Update editor state to reflect the deletion
+                    editPost({ meta: { featured: false } });
+                }).catch((error) => {
+                    console.error('Error deleting featured meta:', error);
+                });
+            } else {
+                // When toggling on, update the meta via REST API
+                wp.apiFetch({
+                    path: `/tour-operator/v1/meta/${postId}/featured`,
+                    method: 'POST',
+                    data: {
+                        value: true
+                    }
+                }).then(() => {
+                    console.log('Featured meta updated successfully');
+                    // Update editor state to reflect the update
+                    editPost({ meta: { featured: true } });
+                }).catch((error) => {
+                    console.error('Error updating featured meta:', error);
+                });
+            }
+        };
 
         return createElement(ToggleControl, {
             label: i18n.__('Featured', 'tour-operator'),
@@ -59,20 +91,34 @@
         }, []);
 
         const handleChange = (newValue) => {
+            console.log('Toggle changed to:', newValue);
             if (!newValue) {
                 // When toggling off, delete the meta via REST API
                 wp.apiFetch({
                     path: `/tour-operator/v1/meta/${postId}/lsx_to_hide_from_listings`,
                     method: 'DELETE',
                 }).then(() => {
-                    // Force update the editor state to reflect the deletion
+                    console.log('Meta deleted successfully');
+                    // Update editor state to reflect the deletion
                     editPost({ meta: { lsx_to_hide_from_listings: false } });
                 }).catch((error) => {
                     console.error('Error deleting meta:', error);
                 });
             } else {
-                // When toggling on, set the meta using editPost
-                editPost({ meta: { lsx_to_hide_from_listings: newValue } });
+                // When toggling on, update the meta via REST API
+                wp.apiFetch({
+                    path: `/tour-operator/v1/meta/${postId}/lsx_to_hide_from_listings`,
+                    method: 'POST',
+                    data: {
+                        value: true
+                    }
+                }).then(() => {
+                    console.log('Meta updated successfully');
+                    // Update editor state to reflect the update
+                    editPost({ meta: { lsx_to_hide_from_listings: true } });
+                }).catch((error) => {
+                    console.error('Error updating meta:', error);
+                });
             }
         };
 

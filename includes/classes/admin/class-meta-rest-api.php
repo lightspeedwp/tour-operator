@@ -36,22 +36,77 @@ class Meta_Rest_API {
 			'tour-operator/v1',
 			'/meta/(?P<id>\d+)/(?P<key>[a-zA-Z0-9_-]+)',
 			[
-				'methods'             => 'DELETE',
-				'callback'            => [ $this, 'delete_meta' ],
-				'permission_callback' => [ $this, 'check_permissions' ],
-				'args'                => [
-					'id'  => [
-						'validate_callback' => function ( $param ) {
-							return is_numeric( $param );
-						},
+				[
+					'methods'             => 'POST',
+					'callback'            => [ $this, 'update_meta' ],
+					'permission_callback' => [ $this, 'check_permissions' ],
+					'args'                => [
+						'id'    => [
+							'validate_callback' => function ( $param ) {
+								return is_numeric( $param );
+							},
+						],
+						'key'   => [
+							'validate_callback' => function ( $param ) {
+								return preg_match( '/^[a-zA-Z0-9_-]+$/', $param );
+							},
+						],
+						'value' => [
+							'required' => true,
+						],
 					],
-					'key' => [
-						'validate_callback' => function ( $param ) {
-							return preg_match( '/^[a-zA-Z0-9_-]+$/', $param );
-						},
+				],
+				[
+					'methods'             => 'DELETE',
+					'callback'            => [ $this, 'delete_meta' ],
+					'permission_callback' => [ $this, 'check_permissions' ],
+					'args'                => [
+						'id'  => [
+							'validate_callback' => function ( $param ) {
+								return is_numeric( $param );
+							},
+						],
+						'key' => [
+							'validate_callback' => function ( $param ) {
+								return preg_match( '/^[a-zA-Z0-9_-]+$/', $param );
+							},
+						],
 					],
 				],
 			]
+		);
+	}
+
+	/**
+	 * Update post meta
+	 *
+	 * @param \WP_REST_Request $request Request object.
+	 * @return \WP_REST_Response
+	 */
+	public function update_meta( $request ) {
+		$post_id   = (int) $request['id'];
+		$meta_key  = sanitize_key( $request['key'] );
+		$meta_value = $request['value'];
+
+		// Additional security: only allow specific meta keys
+		$allowed_keys = [ 'lsx_to_hide_from_listings', 'featured' ];
+		if ( ! in_array( $meta_key, $allowed_keys, true ) ) {
+			return new \WP_REST_Response(
+				[ 'error' => 'Invalid meta key' ],
+				403
+			);
+		}
+
+		// Update the meta
+		$updated = update_post_meta( $post_id, $meta_key, $meta_value );
+
+		return new \WP_REST_Response(
+			[
+				'success' => true,
+				'message' => 'Meta updated successfully',
+				'value'   => $meta_value,
+			],
+			200
 		);
 	}
 
@@ -66,7 +121,7 @@ class Meta_Rest_API {
 		$meta_key = sanitize_key( $request['key'] );
 
 		// Additional security: only allow specific meta keys
-		$allowed_keys = [ 'lsx_to_hide_from_listings' ];
+		$allowed_keys = [ 'lsx_to_hide_from_listings', 'featured' ];
 		if ( ! in_array( $meta_key, $allowed_keys, true ) ) {
 			return new \WP_REST_Response(
 				[ 'error' => 'Invalid meta key' ],
