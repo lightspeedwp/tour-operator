@@ -25,14 +25,12 @@
         }, []);
 
         const handleChange = (newValue) => {
-            console.log('Featured toggle changed to:', newValue);
             if (!newValue) {
                 // When toggling off, delete the meta via REST API
                 wp.apiFetch({
                     path: `/tour-operator/v1/meta/${postId}/featured`,
                     method: 'DELETE',
                 }).then(() => {
-                    console.log('Featured meta deleted successfully');
                     // Update editor state to reflect the deletion
                     editPost({ meta: { featured: false } });
                 }).catch((error) => {
@@ -47,7 +45,6 @@
                         value: true
                     }
                 }).then(() => {
-                    console.log('Featured meta updated successfully');
                     // Update editor state to reflect the update
                     editPost({ meta: { featured: true } });
                 }).catch((error) => {
@@ -91,14 +88,12 @@
         }, []);
 
         const handleChange = (newValue) => {
-            console.log('Toggle changed to:', newValue);
             if (!newValue) {
                 // When toggling off, delete the meta via REST API
                 wp.apiFetch({
                     path: `/tour-operator/v1/meta/${postId}/lsx_to_hide_from_listings`,
                     method: 'DELETE',
                 }).then(() => {
-                    console.log('Meta deleted successfully');
                     // Update editor state to reflect the deletion
                     editPost({ meta: { lsx_to_hide_from_listings: false } });
                 }).catch((error) => {
@@ -113,7 +108,6 @@
                         value: true
                     }
                 }).then(() => {
-                    console.log('Meta updated successfully');
                     // Update editor state to reflect the update
                     editPost({ meta: { lsx_to_hide_from_listings: true } });
                 }).catch((error) => {
