@@ -138,6 +138,9 @@ class Frontend extends Tour_Operator
 			$crumbs = $this->continent_breadcrumb_links($crumbs);
 		}
 
+		if ( is_post_type_archive('destination') ) {
+			$crumbs = $this->continent_breadcrumb_links($crumbs);
+		}
 		if (is_singular('destination')) {
 			$crumbs = $this->destination_breadcrumb_links($crumbs);
 		}
