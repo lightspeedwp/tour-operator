@@ -63,6 +63,9 @@
 #### Backend
 - **Post Type Permalinks** - Extended the Taxonomy permalinks to handle Post Type Permalinks for the single and archive slugs.
 
+#### Code Quality
+- **Breadcrumb text and URL refactoring** - Extracted repeated breadcrumb text strings and post type archive URLs to class properties (`$home_text`, `$home_url`, `$destinations_text`, `$destinations_url`, `$tours_text`, `$tours_url`, `$accommodation_text`, `$accommodation_url`) initialized in the constructor. Improves code maintainability by declaring values once and reduces repeated function calls for better performance.
+
 ## [[2.1.1]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.1) - 2026-01-05
 
 ### Fixed
