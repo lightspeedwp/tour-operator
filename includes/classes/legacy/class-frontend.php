@@ -43,6 +43,13 @@ class Frontend extends Tour_Operator
 	public $accommodation_url;
 
 	/**
+	 * Track if breadcrumb properties have been initialized
+	 *
+	 * @var bool
+	 */
+	private $breadcrumb_props_initialized = false;
+
+	/**
 	 * Initialize the plugin by setting localization, filters, and
 	 * administration functions.
 	 *
@@ -53,16 +60,6 @@ class Frontend extends Tour_Operator
 	{
 		$this->options = get_option('lsx_to_settings', false);
 		$this->set_vars();
-
-		// Set up breadcrumb text and URLs
-		$this->home_text           = esc_attr__('Home', 'tour-operator');
-		$this->home_url            = home_url();
-		$this->destinations_text   = esc_attr__('Destinations', 'tour-operator');
-		$this->destinations_url    = get_post_type_archive_link('destination');
-		$this->tours_text          = esc_attr__('Tours', 'tour-operator');
-		$this->tours_url           = get_post_type_archive_link('tour');
-		$this->accommodation_text  = esc_attr__('Accommodation', 'tour-operator');
-		$this->accommodation_url   = get_post_type_archive_link('accommodation');
 
 		add_action('wp_enqueue_scripts', array($this, 'enqueue_stylescripts'), 1);
 		add_filter('body_class', array($this, 'body_class'), 15, 1);
@@ -153,10 +150,34 @@ class Frontend extends Tour_Operator
 	}
 
 	/**
+	 * Initialize breadcrumb properties.
+	 *
+	 * @since 2.1.2
+	 */
+	private function init_breadcrumb_properties() {
+		if ( $this->breadcrumb_props_initialized ) {
+			return;
+		}
+
+		$this->home_text           = esc_attr__('Home', 'tour-operator');
+		$this->home_url            = home_url();
+		$this->destinations_text   = esc_attr__('Destinations', 'tour-operator');
+		$this->destinations_url    = get_post_type_archive_link('destination');
+		$this->tours_text          = esc_attr__('Tours', 'tour-operator');
+		$this->tours_url           = get_post_type_archive_link('tour');
+		$this->accommodation_text  = esc_attr__('Accommodation', 'tour-operator');
+		$this->accommodation_url   = get_post_type_archive_link('accommodation');
+
+		$this->breadcrumb_props_initialized = true;
+	}
+
+	/**
 	 * Add continent item to the breadcrumb.
 	 */
 	public function wpseo_breadcrumb_links($crumbs)
 	{
+		// Initialize breadcrumb properties when needed
+		$this->init_breadcrumb_properties();
 
 		if ( is_tax( [ 'continent', 'accommodation-brand', 'travel-style', 'accommodation-type' ] ) ) {
 			$crumbs = $this->taxonomy_breadcrumb_links($crumbs);
