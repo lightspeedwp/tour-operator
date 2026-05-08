@@ -52,7 +52,7 @@ class Frontend extends Tour_Operator
 		// Readmore
 		remove_filter('term_description', 'wpautop');
 
-		add_filter('wpseo_breadcrumb_links', array($this, 'wpseo_breadcrumb_links'), 20);
+		add_filter('wpseo_breadcrumb_links', array($this, 'wpseo_breadcrumb_links'), 200);
 	}
 
 	/**
@@ -133,6 +133,7 @@ class Frontend extends Tour_Operator
 	 */
 	public function wpseo_breadcrumb_links($crumbs)
 	{
+
 		if (is_tax('continent')) {
 			$crumbs = $this->continent_breadcrumb_links($crumbs);
 		}
@@ -177,6 +178,18 @@ class Frontend extends Tour_Operator
 	 */
 	public function destination_breadcrumb_links($crumbs)
 	{
+
+		$new_crumbs = array(
+			array(
+				'text' => esc_attr__('Home', 'tour-operator'),
+				'url'  => home_url(),
+			),
+			array(
+				'text' => esc_attr__('Destinations', 'tour-operator'),
+				'url'  => get_post_type_archive_link('destination'),
+			),
+		);
+
 		global $post;
 		$continents = wp_get_post_terms($post->ID, 'continent');
 		if (empty($continents) || ! is_array($continents)) {
@@ -194,11 +207,27 @@ class Frontend extends Tour_Operator
 					'url'  => get_term_link($continent),
 				);
 
-				array_splice($crumbs, 2, 0, array($continent_breadcrumb));
+				array_splice($new_crumbs, 2, 0, array($continent_breadcrumb));
 				break;
 			}
 		}
-		return $crumbs;
+
+		if ( null !== has_post_parent() ) {
+			$parent = get_post_parent();
+			$parent_breadcrumb = array(
+				'text' => $parent->post_title,
+				'url'  => get_permalink( $parent->ID ),
+			);
+
+			array_splice($new_crumbs, 3, 0, array($parent_breadcrumb));
+		}
+
+		$new_crumbs[] = array(
+			'text' => get_the_title(),
+			'url'  => get_permalink(),
+		);
+
+		return $new_crumbs;
 	}
 
 	/**
@@ -285,7 +314,8 @@ class Frontend extends Tour_Operator
 			);
 		} else {
 			$counter = 0;
-			$terms   = wp_get_object_terms(get_the_ID(), 'travel-style');
+			$terms   = wp_get_object_terms( get_the_ID(), 'travel-style');
+
 			if (! is_wp_error($terms) && ! empty($terms)) {
 				foreach ($terms as $term) {
 					if (0 < $counter) {
