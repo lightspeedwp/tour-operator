@@ -138,22 +138,58 @@ class Frontend extends Tour_Operator
 			$crumbs = $this->continent_breadcrumb_links($crumbs);
 		}
 
-		if ( is_post_type_archive('destination') ) {
-			$crumbs = $this->continent_breadcrumb_links($crumbs);
+		// Post type archives
+		if ( is_post_type_archive( [ 'destination', 'accommodation', 'tour' ] ) ) {
+			$crumbs = $this->archive_breadcrumbs_links( $crumbs, get_post_type());
 		}
+
+		// Single Items
 		if (is_singular('destination')) {
 			$crumbs = $this->destination_breadcrumb_links($crumbs);
 		}
-
 		if (is_singular('accommodation')) {
 			$crumbs = $this->accommodation_breadcrumb_links($crumbs);
 		}
-
 		if (is_singular('tour')) {
 			$crumbs = $this->tour_breadcrumb_links($crumbs);
 		}
 
 		return $crumbs;
+	}
+
+	public function archive_breadcrumbs_links( $crumbs, $post_type ) {
+		$post_type_object = get_post_type_object( $post_type );
+		if ( ! is_post_type_archive( $post_type ) || ! $post_type_object ) {
+			return $crumbs;
+		}
+
+		switch ( $post_type ) {
+			case 'destination':
+				$text = esc_attr__('Destinations', 'tour-operator');
+				break;
+			case 'tour':
+				$text = esc_attr__('Tours', 'tour-operator');
+				break;
+			case 'accommodation':
+				$text = esc_attr__('Accommodation', 'tour-operator');
+				break;
+			default:
+				$text = esc_attr( $post_type_object->labels->name );
+				break;
+		}
+
+		$new_crumbs = array(
+			array(
+				'text' => esc_attr__('Home', 'tour-operator'),
+				'url'  => home_url(),
+			),
+			array(
+				'text' => $text,
+				'url'  => get_post_type_archive_link( $post_type ),
+			),
+		);
+
+		return $new_crumbs;
 	}
 
 	/**
