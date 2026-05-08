@@ -24,6 +24,7 @@
 #### Editor & Navigation
 
 - **Navigation Link variation labels for CPTs and taxonomies** - Added missing `item_link` and `item_link_description` labels plus explicit `show_in_nav_menus` support for Tour Operator content models and related taxonomies so they appear correctly in Navigation Link variations and link pickers - Issue [#922](https://github.com/lightspeedwp/tour-operator/issues/922), Issue [#923](https://github.com/lightspeedwp/tour-operator/issues/923)
+- **Breadcrumb links priority and structure** - Increased Yoast SEO breadcrumb filter priority from 20 to 200 to ensure Tour Operator breadcrumb customisations take precedence. Enhanced destination breadcrumb structure to properly build hierarchical paths including Home → Destinations → Continent → Parent Destination → Current Destination for improved navigation clarity
 
 #### Layout & Styling
 
