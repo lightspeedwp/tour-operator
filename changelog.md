@@ -31,6 +31,7 @@
   - Expanded taxonomy breadcrumb support from continent-only to include accommodation-brand, travel-style, and accommodation-type taxonomies, each linking to their respective post type archives
   - Renamed `continent_breadcrumb_links()` to `taxonomy_breadcrumb_links()` for better semantic clarity and added switch logic for multiple taxonomy types
   - Created new `archive_breadcrumbs_links()` method to handle post type archive breadcrumb generation
+  - Fixed timing issue by moving `get_post_type_archive_link()` calls from constructor to `wpseo_breadcrumb_links` filter callback via new `init_breadcrumb_properties()` method, ensuring post types are registered and permalink structure is ready before generating archive URLs
 
 #### Layout & Styling
 
