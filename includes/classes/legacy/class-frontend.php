@@ -33,21 +33,14 @@ class Frontend extends Tour_Operator
 	 *
 	 * @var string
 	 */
-	public $home_text;
-	public $home_url;
-	public $destinations_text;
-	public $destinations_url;
-	public $tours_text;
-	public $tours_url;
-	public $accommodation_text;
-	public $accommodation_url;
-
-	/**
-	 * Track if breadcrumb properties have been initialized
-	 *
-	 * @var bool
-	 */
-	private $breadcrumb_props_initialized = false;
+	public string $home_text;
+	public string $home_url;
+	public string $destinations_text;
+	public string $destinations_url;
+	public string $tours_text;
+	public string $tours_url;
+	public string $accommodation_text;
+	public string $accommodation_url;
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and
