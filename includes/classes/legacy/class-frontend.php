@@ -319,7 +319,7 @@ class Frontend extends Tour_Operator
 			}
 		}
 
-		if ( null !== has_post_parent() ) {
+		if ( has_post_parent() ) {
 			$parent = get_post_parent();
 			$parent_breadcrumb = array(
 				'text' => $parent->post_title,
