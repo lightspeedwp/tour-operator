@@ -134,8 +134,8 @@ class Frontend extends Tour_Operator
 	public function wpseo_breadcrumb_links($crumbs)
 	{
 
-		if (is_tax('continent')) {
-			$crumbs = $this->continent_breadcrumb_links($crumbs);
+		if ( is_tax( [ 'continent', 'accommodation-brand', 'travel-style', 'accommodation-type' ] ) ) {
+			$crumbs = $this->taxonomy_breadcrumb_links($crumbs);
 		}
 
 		// Post type archives
@@ -198,14 +198,40 @@ class Frontend extends Tour_Operator
 	 * @param array $crumbs
 	 * @return array
 	 */
-	public function continent_breadcrumb_links($crumbs)
+	public function taxonomy_breadcrumb_links($crumbs)
 	{
-		$destination_breadcrumb = array(
-			'text' => esc_html__('Destinations', 'tour-operator'),
-			'url'  => get_post_type_archive_link('destination'),
-		);
-
-		array_splice($crumbs, 1, 0, array($destination_breadcrumb));
+		$taxonomy   = get_queried_object()->taxonomy;
+		$new_crumbs	= array();
+		switch ( $taxonomy ) {
+			case 'continent':
+				$new_crumbs = array(
+					'text' => esc_attr__('Destinations', 'tour-operator'),
+					'url'  => get_post_type_archive_link('destination'),
+				);
+				break;
+			case 'accommodation-brand':
+				$new_crumbs = array(
+					'text' => esc_attr__('Accommodation', 'tour-operator'),
+					'url'  => get_post_type_archive_link('accommodation'),
+				);
+				break;
+			case 'travel-style':
+				$new_crumbs = array(
+					'text' => esc_attr__('Tours', 'tour-operator'),
+					'url'  => get_post_type_archive_link('tour'),
+				);
+				break;
+			case 'accommodation-type':
+				$new_crumbs = array(
+					'text' => esc_attr__('Accommodation', 'tour-operator'),
+					'url'  => get_post_type_archive_link('accommodation'),
+				);
+				break;
+		}
+		if ( ! empty( $new_crumbs ) ) {
+			array_splice($crumbs, 1, 0, array( $new_crumbs ));
+		}
+		
 		return $crumbs;
 	}
 
