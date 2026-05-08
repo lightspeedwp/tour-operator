@@ -29,6 +29,20 @@ class Frontend extends Tour_Operator
 	public $maps = array();
 
 	/**
+	 * Breadcrumb text and URL properties
+	 *
+	 * @var string
+	 */
+	public $home_text;
+	public $home_url;
+	public $destinations_text;
+	public $destinations_url;
+	public $tours_text;
+	public $tours_url;
+	public $accommodation_text;
+	public $accommodation_url;
+
+	/**
 	 * Initialize the plugin by setting localization, filters, and
 	 * administration functions.
 	 *
@@ -39,6 +53,16 @@ class Frontend extends Tour_Operator
 	{
 		$this->options = get_option('lsx_to_settings', false);
 		$this->set_vars();
+
+		// Set up breadcrumb text and URLs
+		$this->home_text           = esc_attr__('Home', 'tour-operator');
+		$this->home_url            = home_url();
+		$this->destinations_text   = esc_attr__('Destinations', 'tour-operator');
+		$this->destinations_url    = get_post_type_archive_link('destination');
+		$this->tours_text          = esc_attr__('Tours', 'tour-operator');
+		$this->tours_url           = get_post_type_archive_link('tour');
+		$this->accommodation_text  = esc_attr__('Accommodation', 'tour-operator');
+		$this->accommodation_url   = get_post_type_archive_link('accommodation');
 
 		add_action('wp_enqueue_scripts', array($this, 'enqueue_stylescripts'), 1);
 		add_filter('body_class', array($this, 'body_class'), 15, 1);
@@ -165,27 +189,31 @@ class Frontend extends Tour_Operator
 
 		switch ( $post_type ) {
 			case 'destination':
-				$text = esc_attr__('Destinations', 'tour-operator');
+				$text = $this->destinations_text;
+				$url  = $this->destinations_url;
 				break;
 			case 'tour':
-				$text = esc_attr__('Tours', 'tour-operator');
+				$text = $this->tours_text;
+				$url  = $this->tours_url;
 				break;
 			case 'accommodation':
-				$text = esc_attr__('Accommodation', 'tour-operator');
+				$text = $this->accommodation_text;
+				$url  = $this->accommodation_url;
 				break;
 			default:
 				$text = esc_attr( $post_type_object->labels->name );
+				$url  = get_post_type_archive_link( $post_type );
 				break;
 		}
 
 		$new_crumbs = array(
 			array(
-				'text' => esc_attr__('Home', 'tour-operator'),
-				'url'  => home_url(),
+				'text' => $this->home_text,
+				'url'  => $this->home_url,
 			),
 			array(
 				'text' => $text,
-				'url'  => get_post_type_archive_link( $post_type ),
+				'url'  => $url,
 			),
 		);
 
@@ -205,26 +233,26 @@ class Frontend extends Tour_Operator
 		switch ( $taxonomy ) {
 			case 'continent':
 				$new_crumbs = array(
-					'text' => esc_attr__('Destinations', 'tour-operator'),
-					'url'  => get_post_type_archive_link('destination'),
+					'text' => $this->destinations_text,
+					'url'  => $this->destinations_url,
 				);
 				break;
 			case 'accommodation-brand':
 				$new_crumbs = array(
-					'text' => esc_attr__('Accommodation', 'tour-operator'),
-					'url'  => get_post_type_archive_link('accommodation'),
+					'text' => $this->accommodation_text,
+					'url'  => $this->accommodation_url,
 				);
 				break;
 			case 'travel-style':
 				$new_crumbs = array(
-					'text' => esc_attr__('Tours', 'tour-operator'),
-					'url'  => get_post_type_archive_link('tour'),
+					'text' => $this->tours_text,
+					'url'  => $this->tours_url,
 				);
 				break;
 			case 'accommodation-type':
 				$new_crumbs = array(
-					'text' => esc_attr__('Accommodation', 'tour-operator'),
-					'url'  => get_post_type_archive_link('accommodation'),
+					'text' => $this->accommodation_text,
+					'url'  => $this->accommodation_url,
 				);
 				break;
 		}
@@ -246,12 +274,12 @@ class Frontend extends Tour_Operator
 
 		$new_crumbs = array(
 			array(
-				'text' => esc_attr__('Home', 'tour-operator'),
-				'url'  => home_url(),
+				'text' => $this->home_text,
+				'url'  => $this->home_url,
 			),
 			array(
-				'text' => esc_attr__('Destinations', 'tour-operator'),
-				'url'  => get_post_type_archive_link('destination'),
+				'text' => $this->destinations_text,
+				'url'  => $this->destinations_url,
 			),
 		);
 
@@ -305,12 +333,12 @@ class Frontend extends Tour_Operator
 	{
 		$new_crumbs = array(
 			array(
-				'text' => esc_attr__('Home', 'tour-operator'),
-				'url'  => home_url(),
+				'text' => $this->home_text,
+				'url'  => $this->home_url,
 			),
 			array(
-				'text' => esc_attr__('Accommodation', 'tour-operator'),
-				'url'  => get_post_type_archive_link('accommodation'),
+				'text' => $this->accommodation_text,
+				'url'  => $this->accommodation_url,
 			),
 		);
 
@@ -359,12 +387,12 @@ class Frontend extends Tour_Operator
 	{
 		$new_crumbs = array(
 			array(
-				'text' => esc_attr__('Home', 'tour-operator'),
-				'url'  => home_url(),
+				'text' => $this->home_text,
+				'url'  => $this->home_url,
 			),
 			array(
-				'text' => esc_attr__('Tours', 'tour-operator'),
-				'url'  => get_post_type_archive_link('tour'),
+				'text' => $this->tours_text,
+				'url'  => $this->tours_url,
 			),
 		);
 
