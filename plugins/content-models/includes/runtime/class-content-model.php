@@ -111,9 +111,6 @@ final class Content_Model {
 		add_filter( 'block_categories_all', array( $this, 'register_block_category' ) );
 
 		add_filter( 'rest_request_before_callbacks', array( $this, 'remove_default_meta_keys_on_save' ), 10, 3 );
-		//add_filter( 'rest_post_dispatch', array( $this, 'fill_empty_meta_keys_with_default_values' ), 10, 3 );
-
-		//add_action( 'rest_after_insert_' . $this->slug, array( $this, 'extract_post_content_from_blocks' ), 99, 1 );
 
 		/**
 		 * We need two different hooks here because the Editor and the front-end read from different sources.
@@ -431,26 +428,6 @@ final class Content_Model {
 	}
 
 	/**
-	 * Finds the post_content content area within blocks.
-	 *
-	 * @param WP_Post $post The post.
-	 */
-	public function extract_post_content_from_blocks( $post ) {
-		if ( 'publish' !== $post->post_status ) {
-			return;
-		}
-
-		$blocks = parse_blocks( wp_unslash( $post->post_content ) );
-
-		wp_update_post(
-			array(
-				'ID'           => $post->ID,
-				'post_content' => self::get_post_content( $blocks ) ?? '',
-			)
-		);
-	}
-
-	/**
 	 * Intercepts the saving request and removes the meta keys with default values.
 	 *
 	 * @param WP_HTTP_Response|null $response The response.
@@ -479,38 +456,6 @@ final class Content_Model {
 		return $response;
 	}
 
-	/**
-	 * Intercepts the response and fills the empty meta keys with default values.
-	 *
-	 * @param WP_HTTP_Response $result The response.
-	 * @param WP_REST_Server   $server The server.
-	 * @param WP_REST_Request  $request The request.
-	 *
-	 * @return WP_REST_Response The response.
-	 */
-	public function fill_empty_meta_keys_with_default_values( $result, $server, $request ) {
-		$is_allowed_method     = in_array( $request->get_method(), array( 'GET', 'POST', 'PUT' ), true );
-		$is_touching_post_type = str_starts_with( $request->get_route(), '/wp/v2/' . $this->slug );
-
-		if ( $is_allowed_method && $is_touching_post_type ) {
-			$data = $result->get_data();
-
-			$data['meta'] ??= array();
-
-			foreach ( $data['meta'] as $key => $value ) {
-				$bound_meta_key = $this->bound_meta_keys[ $key ] ?? null;
-
-				if ( empty( $value ) && $bound_meta_key ) {
-					// TODO: Switch to empty string when Gutenberg 19.2 gets released.
-					$data['meta'][ $key ] = self::FALLBACK_VALUE_PLACEHOLDER;
-				}
-			}
-
-			$result->set_data( $data );
-		}
-
-		return $result;
-	}
 	/**
 	 * Extracts the post content from the blocks.
 	 *

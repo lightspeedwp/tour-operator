@@ -38,7 +38,7 @@ class Permalinks
 		add_action('admin_init', [$this, 'register_permalink_settings']);
 		add_action('admin_init', [$this, 'save_custom_permalink_fields'], 20);
 		add_filter('lsx_to_register_taxonomy_args', [$this, 'apply_taxonomy_slugs'], 10, 2);
-		add_filter('lsx_to_content_model_post_type', [$this, 'alter_post_type_slugs']);
+		//add_filter('lsx_to_content_model_post_type', [$this, 'alter_post_type_slugs']);
 		add_filter('content_model_post_type_args', [$this, 'alter_post_type_args'], 10, 2);
 	}
 
