@@ -99,26 +99,16 @@ final class Content_Model {
 		$this->register_post_type();
 
 		// TODO: Not load this eagerly.
-		//$this->blocks = $this->inflate_template_blocks( $this->template );
 		if ( empty( $this->fields ) ) {
 			$this->fields = $this->parse_fields();
 		}
 		$this->register_meta_fields();
 
-		//add_action( 'enqueue_block_editor_assets', array( $this, 'maybe_enqueue_templating_scripts' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'maybe_enqueue_data_entry_scripts' ) );
 
 		add_filter( 'block_categories_all', array( $this, 'register_block_category' ) );
 
 		add_filter( 'rest_request_before_callbacks', array( $this, 'remove_default_meta_keys_on_save' ), 10, 3 );
-
-		/**
-		 * We need two different hooks here because the Editor and the front-end read from different sources.
-		 *
-		 * The Editor reads the whole post, while the front-end reads only the post content.
-		 */
-		//add_action( 'the_post', array( $this, 'hydrate_bound_groups' ) );
-		//add_filter( 'the_content', array( $this, 'swap_post_content_with_hydrated_template' ) );
 
 		add_filter( 'get_post_metadata', array( $this, 'cast_meta_field_types' ), 10, 3 );
 	}
@@ -258,34 +248,6 @@ final class Content_Model {
 		return array();
 	}
 
-
-	/**
-	 * Recursively inflates (i.e., maps the block into Content_Model_Block) the blocks.
-	 *
-	 * @param array $blocks The template blocks to inflate.
-	 * @return Content_Model_Block[] The Content_Model_Block instances.
-	 */
-	private function inflate_template_blocks( $blocks ) {
-		$acc = array();
-
-		content_model_block_walker(
-			$blocks,
-			function ( $block ) use ( &$acc ) {
-				$content_model_block = new Content_Model_Block( $block, $this );
-
-				if ( empty( $content_model_block->get_bindings() ) ) {
-					return $block;
-				}
-
-				$acc[ $content_model_block->get_block_variation_name() ] = $content_model_block;
-
-				return $block;
-			}
-		);
-
-		return $acc;
-	}
-
 	/**
 	 * Registers meta fields for the content model.
 	 *
@@ -323,39 +285,6 @@ final class Content_Model {
 				);
 			}
 		}
-
-		/*foreach ( $this->blocks as $block ) {
-			foreach ( $block->get_bindings() as $attribute_name => $binding ) {
-				$field = $binding['args']['key'];
-
-				if ( 'post_content' === $field ) {
-					continue;
-				}
-
-				$this->bound_meta_keys[ $field ] = (object) array(
-					'block'          => $block,
-					'attribute_name' => $attribute_name,
-				);
-
-				$args = array(
-					'show_in_rest' => true,
-					'single'       => true,
-					'type'         => $block->get_attribute_type( $attribute_name ),
-				);
-
-				$default_value = $block->get_default_value_for_attribute( $attribute_name );
-
-				if ( ! empty( $default_value ) ) {
-					$args['default'] = $default_value;
-				}
-
-				register_post_meta(
-					$this->slug,
-					$field,
-					$args
-				);
-			}
-		}*/
 	}
 
 	/**
@@ -491,24 +420,6 @@ final class Content_Model {
 	}
 
 	/**
-	 * In the editor, display the template and fill bound Groups with data.
-	 * Blocks using the supported Bindings API attributes will be filled automatically.
-	 *
-	 * @param WP_Post $post The current post.
-	 */
-	public function hydrate_bound_groups( $post ) {
-		if ( $this->slug !== $post->post_type ) {
-			return;
-		}
-
-		$editor_blocks = $this->template;
-		$editor_blocks = ( new Content_Model_Data_Hydrator( $editor_blocks, false ) )->hydrate();
-		$editor_blocks = content_model_block_walker( $editor_blocks, array( $this, 'add_fallback_value_placeholder' ) );
-
-		$post->post_content = serialize_blocks( $editor_blocks );
-	}
-
-	/**
 	 * If a block has bindings modify the placeholder text.
 	 *
 	 * @param array $block The original block.
@@ -526,21 +437,6 @@ final class Content_Model {
 		}
 
 		return $block;
-	}
-
-	/**
-	 * In the front-end, swap the post_content with the hydrated template.
-	 *
-	 * @param string $post_content The current post content.
-	 */
-	public function swap_post_content_with_hydrated_template( $post_content ) {
-		global $post;
-
-		if ( $this->slug !== $post->post_type ) {
-			return $post_content;
-		}
-
-		return implode( '', array_map( fn( $block ) => render_block( $block ), $this->template ) );
 	}
 
 	/**
@@ -573,29 +469,6 @@ final class Content_Model {
 				'FIELDS'                     => $this->fields,
 				'FALLBACK_VALUE_PLACEHOLDER' => self::FALLBACK_VALUE_PLACEHOLDER,
 			)
-		);
-	}
-
-	/**
-	 * Enqueue the templating helper scripts.
-	 *
-	 * @return void
-	 */
-	public function maybe_enqueue_templating_scripts() {
-		$current_screen = get_current_screen();
-
-		if ( 'site-editor' !== $current_screen->id ) {
-			return;
-		}
-
-		$asset_file = include CONTENT_MODEL_PLUGIN_PATH . 'includes/runtime/dist/templating.asset.php';
-
-		wp_enqueue_script(
-			'content-model/templating',
-			CONTENT_MODEL_PLUGIN_URL . '/includes/runtime/dist/templating.js',
-			$asset_file['dependencies'],
-			$asset_file['version'],
-			true
 		);
 	}
 }
