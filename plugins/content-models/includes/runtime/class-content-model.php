@@ -57,29 +57,52 @@ final class Content_Model {
 	public $fields = array();
 
 	/**
-	 * The ID of the content model post.
+	 * The plural label of the content model.
 	 *
-	 * @var int
+	 * @var string
 	 */
-	private $post_id;
+	private $plural_label = '';
 
 	/**
-	 * Initializes the Content_Model instance with the given WP_Post object.
+	 * The icon of the content model.
 	 *
-	 * @param WP_Post $content_model_post The WP_Post object representing the content model.
+	 * @var string
+	 */
+	private $icon = '';
+
+	/**
+	 * Additional metadata for the content model.
+	 *
+	 * @var array
+	 */
+	private $metadata = array();
+
+	/**
+	 * Initializes the Content_Model instance with the given data array.
+	 *
+	 * @param array $content_model_data The data array representing the content model from JSON.
 	 * @return void
 	 */
-	public function __construct( WP_Post $content_model_post ) {
-		$this->slug     = $content_model_post->post_name;
-		$this->title    = $content_model_post->post_title;
-		$this->template = parse_blocks( $content_model_post->post_content );
-		$this->post_id  = $content_model_post->ID;
+	public function __construct( array $content_model_data ) {
+		$this->slug         = $content_model_data['slug'] ?? '';
+		$this->title        = $content_model_data['label'] ?? '';
+		$this->plural_label = $content_model_data['pluralLabel'] ?? '';
+		$this->icon         = $content_model_data['icon'] ?? 'admin-post';
+		$this->fields       = $content_model_data['fields'] ?? array();
+		$this->metadata     = $content_model_data;
+
+		// Parse template blocks from the template array.
+		if ( isset( $content_model_data['template'] ) && is_array( $content_model_data['template'] ) ) {
+			$this->template = $content_model_data['template'];
+		}
 
 		$this->register_post_type();
 
 		// TODO: Not load this eagerly.
 		//$this->blocks = $this->inflate_template_blocks( $this->template );
-		$this->fields = $this->parse_fields();
+		if ( empty( $this->fields ) ) {
+			$this->fields = $this->parse_fields();
+		}
 		$this->register_meta_fields();
 
 		//add_action( 'enqueue_block_editor_assets', array( $this, 'maybe_enqueue_templating_scripts' ) );
@@ -111,7 +134,7 @@ final class Content_Model {
 	 * @return string The plural label.
 	 */
 	public function get_plural_label() {
-		return $this->get_model_meta( 'plural_label' ) ?? "{$this->title}s";
+		return ! empty( $this->plural_label ) ? $this->plural_label : "{$this->title}s";
 	}
 
 	/**
@@ -134,10 +157,22 @@ final class Content_Model {
 	 * @return mixed The value of the meta field, or null if it does not exist.
 	 */
 	private function get_model_meta( $key ) {
-		$meta = get_post_meta( $this->post_id, $key, true );
+		// Return from stored properties first.
+		if ( 'plural_label' === $key && ! empty( $this->plural_label ) ) {
+			return $this->plural_label;
+		}
 
-		if ( ! empty( $meta ) ) {
-			return $meta;
+		if ( 'icon' === $key && ! empty( $this->icon ) ) {
+			return $this->icon;
+		}
+
+		if ( 'fields' === $key && ! empty( $this->fields ) ) {
+			return wp_json_encode( $this->fields );
+		}
+
+		// Check metadata array.
+		if ( isset( $this->metadata[ $key ] ) ) {
+			return $this->metadata[ $key ];
 		}
 
 		return null;
