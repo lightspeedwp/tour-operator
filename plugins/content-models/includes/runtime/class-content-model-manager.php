@@ -81,19 +81,64 @@ class Content_Model_Manager {
 	 * @return void
 	 */
 	private function register_content_models() {
-		$content_models = self::get_content_models_from_database();
+		$content_models = self::get_content_models_from_json();
 
 		foreach ( $content_models as $content_model ) {
+			// Skip if content model data is invalid.
+			if ( empty( $content_model ) || ! is_array( $content_model ) ) {
+				continue;
+			}
+
 			$this->content_models[] = new Content_Model( $content_model );
 		}
 	}
 
 	/**
-	 * Retrieves the list of registered content models.
+	 * Retrieves the list of registered content models from JSON files.
 	 *
-	 * @return WP_Post[] An array of WP_Post objects representing the registered content models.
+	 * @return array[] An array of content model data arrays from JSON files.
+	 */
+	public static function get_content_models_from_json() {
+		global $CONTENT_MODEL_JSON_PATH;
+
+		$post_types = array();
+
+		if ( ! isset( $CONTENT_MODEL_JSON_PATH ) || ! is_array( $CONTENT_MODEL_JSON_PATH ) ) {
+			return $post_types;
+		}
+
+		foreach ( $CONTENT_MODEL_JSON_PATH as $json_path ) {
+			if ( ! is_dir( $json_path . '/post-types' ) ) {
+				continue;
+			}
+
+			$types = glob( $json_path . '/post-types/*.json' );
+
+			if ( empty( $types ) ) {
+				continue;
+			}
+
+			foreach ( $types as $file ) {
+				$content = file_get_contents( $file );
+				$data    = json_decode( $content, true );
+
+				if ( json_last_error() === JSON_ERROR_NONE && is_array( $data ) ) {
+					// Allow 3rd parties to edit the values before they are registered.
+					$post_types[] = apply_filters( 'lsx_to_content_model_post_type', $data );
+				}
+			}
+		}
+
+		return $post_types;
+	}
+
+	/**
+	 * Legacy method for backwards compatibility - now loads from JSON.
+	 *
+	 * @deprecated Use get_content_models_from_json() instead.
+	 * @return array[] An array of content model data arrays.
 	 */
 	public static function get_content_models_from_database() {
-		return get_posts( array( 'post_type' => self::POST_TYPE_NAME ) );
+		return self::get_content_models_from_json();
 	}
 }

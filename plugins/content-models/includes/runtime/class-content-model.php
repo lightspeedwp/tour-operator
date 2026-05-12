@@ -57,48 +57,58 @@ final class Content_Model {
 	public $fields = array();
 
 	/**
-	 * The ID of the content model post.
+	 * The plural label of the content model.
 	 *
-	 * @var int
+	 * @var string
 	 */
-	private $post_id;
+	private $plural_label = '';
 
 	/**
-	 * Initializes the Content_Model instance with the given WP_Post object.
+	 * The icon of the content model.
 	 *
-	 * @param WP_Post $content_model_post The WP_Post object representing the content model.
+	 * @var string
+	 */
+	private $icon = '';
+
+	/**
+	 * Additional metadata for the content model.
+	 *
+	 * @var array
+	 */
+	private $metadata = array();
+
+	/**
+	 * Initializes the Content_Model instance with the given data array.
+	 *
+	 * @param array $content_model_data The data array representing the content model from JSON.
 	 * @return void
 	 */
-	public function __construct( WP_Post $content_model_post ) {
-		$this->slug     = $content_model_post->post_name;
-		$this->title    = $content_model_post->post_title;
-		$this->template = parse_blocks( $content_model_post->post_content );
-		$this->post_id  = $content_model_post->ID;
+	public function __construct( array $content_model_data ) {
+		$this->slug         = $content_model_data['slug'] ?? '';
+		$this->title        = $content_model_data['label'] ?? '';
+		$this->plural_label = $content_model_data['pluralLabel'] ?? '';
+		$this->icon         = $content_model_data['icon'] ?? 'admin-post';
+		$this->fields       = $content_model_data['fields'] ?? array();
+		$this->metadata     = $content_model_data;
+
+		// Parse template blocks from the template array.
+		if ( isset( $content_model_data['template'] ) && is_array( $content_model_data['template'] ) ) {
+			$this->template = $content_model_data['template'];
+		}
 
 		$this->register_post_type();
 
 		// TODO: Not load this eagerly.
-		//$this->blocks = $this->inflate_template_blocks( $this->template );
-		$this->fields = $this->parse_fields();
+		if ( empty( $this->fields ) ) {
+			$this->fields = $this->parse_fields();
+		}
 		$this->register_meta_fields();
 
-		//add_action( 'enqueue_block_editor_assets', array( $this, 'maybe_enqueue_templating_scripts' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'maybe_enqueue_data_entry_scripts' ) );
 
 		add_filter( 'block_categories_all', array( $this, 'register_block_category' ) );
 
 		add_filter( 'rest_request_before_callbacks', array( $this, 'remove_default_meta_keys_on_save' ), 10, 3 );
-		//add_filter( 'rest_post_dispatch', array( $this, 'fill_empty_meta_keys_with_default_values' ), 10, 3 );
-
-		//add_action( 'rest_after_insert_' . $this->slug, array( $this, 'extract_post_content_from_blocks' ), 99, 1 );
-
-		/**
-		 * We need two different hooks here because the Editor and the front-end read from different sources.
-		 *
-		 * The Editor reads the whole post, while the front-end reads only the post content.
-		 */
-		//add_action( 'the_post', array( $this, 'hydrate_bound_groups' ) );
-		//add_filter( 'the_content', array( $this, 'swap_post_content_with_hydrated_template' ) );
 
 		add_filter( 'get_post_metadata', array( $this, 'cast_meta_field_types' ), 10, 3 );
 	}
@@ -111,7 +121,7 @@ final class Content_Model {
 	 * @return string The plural label.
 	 */
 	public function get_plural_label() {
-		return $this->get_model_meta( 'plural_label' ) ?? "{$this->title}s";
+		return ! empty( $this->plural_label ) ? $this->plural_label : "{$this->title}s";
 	}
 
 	/**
@@ -134,10 +144,22 @@ final class Content_Model {
 	 * @return mixed The value of the meta field, or null if it does not exist.
 	 */
 	private function get_model_meta( $key ) {
-		$meta = get_post_meta( $this->post_id, $key, true );
+		// Return from stored properties first.
+		if ( 'plural_label' === $key && ! empty( $this->plural_label ) ) {
+			return $this->plural_label;
+		}
 
-		if ( ! empty( $meta ) ) {
-			return $meta;
+		if ( 'icon' === $key && ! empty( $this->icon ) ) {
+			return $this->icon;
+		}
+
+		if ( 'fields' === $key && ! empty( $this->fields ) ) {
+			return wp_json_encode( $this->fields );
+		}
+
+		// Check metadata array.
+		if ( isset( $this->metadata[ $key ] ) ) {
+			return $this->metadata[ $key ];
 		}
 
 		return null;
@@ -226,34 +248,6 @@ final class Content_Model {
 		return array();
 	}
 
-
-	/**
-	 * Recursively inflates (i.e., maps the block into Content_Model_Block) the blocks.
-	 *
-	 * @param array $blocks The template blocks to inflate.
-	 * @return Content_Model_Block[] The Content_Model_Block instances.
-	 */
-	private function inflate_template_blocks( $blocks ) {
-		$acc = array();
-
-		content_model_block_walker(
-			$blocks,
-			function ( $block ) use ( &$acc ) {
-				$content_model_block = new Content_Model_Block( $block, $this );
-
-				if ( empty( $content_model_block->get_bindings() ) ) {
-					return $block;
-				}
-
-				$acc[ $content_model_block->get_block_variation_name() ] = $content_model_block;
-
-				return $block;
-			}
-		);
-
-		return $acc;
-	}
-
 	/**
 	 * Registers meta fields for the content model.
 	 *
@@ -291,39 +285,6 @@ final class Content_Model {
 				);
 			}
 		}
-
-		/*foreach ( $this->blocks as $block ) {
-			foreach ( $block->get_bindings() as $attribute_name => $binding ) {
-				$field = $binding['args']['key'];
-
-				if ( 'post_content' === $field ) {
-					continue;
-				}
-
-				$this->bound_meta_keys[ $field ] = (object) array(
-					'block'          => $block,
-					'attribute_name' => $attribute_name,
-				);
-
-				$args = array(
-					'show_in_rest' => true,
-					'single'       => true,
-					'type'         => $block->get_attribute_type( $attribute_name ),
-				);
-
-				$default_value = $block->get_default_value_for_attribute( $attribute_name );
-
-				if ( ! empty( $default_value ) ) {
-					$args['default'] = $default_value;
-				}
-
-				register_post_meta(
-					$this->slug,
-					$field,
-					$args
-				);
-			}
-		}*/
 	}
 
 	/**
@@ -396,26 +357,6 @@ final class Content_Model {
 	}
 
 	/**
-	 * Finds the post_content content area within blocks.
-	 *
-	 * @param WP_Post $post The post.
-	 */
-	public function extract_post_content_from_blocks( $post ) {
-		if ( 'publish' !== $post->post_status ) {
-			return;
-		}
-
-		$blocks = parse_blocks( wp_unslash( $post->post_content ) );
-
-		wp_update_post(
-			array(
-				'ID'           => $post->ID,
-				'post_content' => self::get_post_content( $blocks ) ?? '',
-			)
-		);
-	}
-
-	/**
 	 * Intercepts the saving request and removes the meta keys with default values.
 	 *
 	 * @param WP_HTTP_Response|null $response The response.
@@ -444,38 +385,6 @@ final class Content_Model {
 		return $response;
 	}
 
-	/**
-	 * Intercepts the response and fills the empty meta keys with default values.
-	 *
-	 * @param WP_HTTP_Response $result The response.
-	 * @param WP_REST_Server   $server The server.
-	 * @param WP_REST_Request  $request The request.
-	 *
-	 * @return WP_REST_Response The response.
-	 */
-	public function fill_empty_meta_keys_with_default_values( $result, $server, $request ) {
-		$is_allowed_method     = in_array( $request->get_method(), array( 'GET', 'POST', 'PUT' ), true );
-		$is_touching_post_type = str_starts_with( $request->get_route(), '/wp/v2/' . $this->slug );
-
-		if ( $is_allowed_method && $is_touching_post_type ) {
-			$data = $result->get_data();
-
-			$data['meta'] ??= array();
-
-			foreach ( $data['meta'] as $key => $value ) {
-				$bound_meta_key = $this->bound_meta_keys[ $key ] ?? null;
-
-				if ( empty( $value ) && $bound_meta_key ) {
-					// TODO: Switch to empty string when Gutenberg 19.2 gets released.
-					$data['meta'][ $key ] = self::FALLBACK_VALUE_PLACEHOLDER;
-				}
-			}
-
-			$result->set_data( $data );
-		}
-
-		return $result;
-	}
 	/**
 	 * Extracts the post content from the blocks.
 	 *
@@ -511,24 +420,6 @@ final class Content_Model {
 	}
 
 	/**
-	 * In the editor, display the template and fill bound Groups with data.
-	 * Blocks using the supported Bindings API attributes will be filled automatically.
-	 *
-	 * @param WP_Post $post The current post.
-	 */
-	public function hydrate_bound_groups( $post ) {
-		if ( $this->slug !== $post->post_type ) {
-			return;
-		}
-
-		$editor_blocks = $this->template;
-		$editor_blocks = ( new Content_Model_Data_Hydrator( $editor_blocks, false ) )->hydrate();
-		$editor_blocks = content_model_block_walker( $editor_blocks, array( $this, 'add_fallback_value_placeholder' ) );
-
-		$post->post_content = serialize_blocks( $editor_blocks );
-	}
-
-	/**
 	 * If a block has bindings modify the placeholder text.
 	 *
 	 * @param array $block The original block.
@@ -546,21 +437,6 @@ final class Content_Model {
 		}
 
 		return $block;
-	}
-
-	/**
-	 * In the front-end, swap the post_content with the hydrated template.
-	 *
-	 * @param string $post_content The current post content.
-	 */
-	public function swap_post_content_with_hydrated_template( $post_content ) {
-		global $post;
-
-		if ( $this->slug !== $post->post_type ) {
-			return $post_content;
-		}
-
-		return implode( '', array_map( fn( $block ) => render_block( $block ), $this->template ) );
 	}
 
 	/**
@@ -593,29 +469,6 @@ final class Content_Model {
 				'FIELDS'                     => $this->fields,
 				'FALLBACK_VALUE_PLACEHOLDER' => self::FALLBACK_VALUE_PLACEHOLDER,
 			)
-		);
-	}
-
-	/**
-	 * Enqueue the templating helper scripts.
-	 *
-	 * @return void
-	 */
-	public function maybe_enqueue_templating_scripts() {
-		$current_screen = get_current_screen();
-
-		if ( 'site-editor' !== $current_screen->id ) {
-			return;
-		}
-
-		$asset_file = include CONTENT_MODEL_PLUGIN_PATH . 'includes/runtime/dist/templating.asset.php';
-
-		wp_enqueue_script(
-			'content-model/templating',
-			CONTENT_MODEL_PLUGIN_URL . '/includes/runtime/dist/templating.js',
-			$asset_file['dependencies'],
-			$asset_file['version'],
-			true
 		);
 	}
 }
