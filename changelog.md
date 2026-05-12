@@ -33,6 +33,10 @@
   - Created new `archive_breadcrumbs_links()` method to handle post type archive breadcrumb generation
   - Fixed timing issue by moving `get_post_type_archive_link()` calls from constructor to `wpseo_breadcrumb_links` filter callback via new `init_breadcrumb_properties()` method, ensuring post types are registered and permalink structure is ready before generating archive URLs
 
+#### Blocks
+
+- **Wetu Map block variation** - Removed className from Wetu Map block variation to prevent style conflicts and reverted build version in index.asset.php for consistency
+
 #### Layout & Styling
 
 - **Archive query loop padding** - Added top and bottom default padding to archive query loops and taxonomy archives for consistent spacing
