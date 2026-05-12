@@ -52,6 +52,15 @@
 #### Backend
 - **Post Type Permalinks** - Extended the Taxonomy permalinks to handle Post Type Permalinks for the single and archive slugs.
 
+### Changed
+
+#### Code Quality & Architecture
+
+- **Content Model Loading Refactored** - Streamlined content model loading system to use JSON files more efficiently, improving data handling and initialisation process
+- **Content Model Class Cleanup** - Removed unused methods and filters from `Content_Model` class, reducing codebase complexity and improving maintainability (removed 310+ lines of unused code)
+- **JSON Initializer Removed** - Eliminated deprecated `Content_Model_JSON_Initializer` class and related loader files, consolidating functionality into `Content_Model_Manager` for a cleaner architecture
+- **Permalink Handler Updated** - Updated permalink handling to work with refactored content model structure
+
 ## [[2.1.1]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.1) - 2026-01-05
 
 ### Fixed
