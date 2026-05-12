@@ -38,7 +38,6 @@ class Permalinks
 		add_action('admin_init', [$this, 'register_permalink_settings']);
 		add_action('admin_init', [$this, 'save_custom_permalink_fields'], 20);
 		add_filter('lsx_to_register_taxonomy_args', [$this, 'apply_taxonomy_slugs'], 10, 2);
-		//add_filter('lsx_to_content_model_post_type', [$this, 'alter_post_type_slugs']);
 		add_filter('content_model_post_type_args', [$this, 'alter_post_type_args'], 10, 2);
 	}
 
@@ -216,21 +215,6 @@ class Permalinks
 		}
 
 		return $fields;
-	}
-
-	/**
-	 * Alters the post type slugs based on the saved options.
-	 *
-	 * @param array $post_type The post type arguments.
-	 * @return array The modified post type arguments.
-	 */
-	public function alter_post_type_slugs( $post_type ) {
-		$slug_options = get_option( 'lsx_to_slugs', $this->defaults );
-
-		if ( isset( $slug_options[ 'lsx_to_' . $post_type['slug'] ] ) && '' !== $slug_options[ 'lsx_to_' . $post_type['slug'] ] ) {
-			$post_type['slug'] = $slug_options[ 'lsx_to_' . $post_type['slug'] ];
-		}
-		return $post_type;
 	}
 
 	/**
