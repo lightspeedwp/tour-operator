@@ -49,6 +49,7 @@ function Edit({ attributes, setAttributes, clientId }) {
     customHoverBackgroundColor,
     hoverTextColor,
     customHoverTextColor,
+    stickyOffsetSelector,
   } = attributes;
 
   // Helper function to get CSS variable or custom color value
@@ -147,7 +148,7 @@ function Edit({ attributes, setAttributes, clientId }) {
         setAttributes={setAttributes}
         clientId={clientId}
       />
-      <div {...blockProps} style={wrapperStyle}>
+      <div {...blockProps} style={wrapperStyle} data-sticky-offset-selector={stickyOffsetSelector || undefined}>
         <nav className="lsx-to-sticky-menu-nav is-layout-constrained has-global-padding" aria-label={__('Page section navigation', 'tour-operator')}>
           {menuItems.length > 0 ? (
             <>
@@ -214,6 +215,7 @@ function Save({ attributes }) {
     customHoverBackgroundColor,
     hoverTextColor,
     customHoverTextColor,
+    stickyOffsetSelector,
   } = attributes;
 
   // Helper function to get CSS variable or custom color value
@@ -254,7 +256,7 @@ function Save({ attributes }) {
   };
 
   return (
-    <div {...blockProps} style={wrapperStyle}>
+    <div {...blockProps} style={wrapperStyle} data-sticky-offset-selector={stickyOffsetSelector || undefined}>
       <nav className="lsx-to-sticky-menu-nav is-layout-constrained has-global-padding" aria-label={__('Page section navigation', 'tour-operator')}>
         {menuItems.length > 0 && (
           <ul className="lsx-to-sticky-menu-list alignwide" aria-label={__('Page sections', 'tour-operator')}>

@@ -39,6 +39,48 @@ lsx_to.sticky_menu = {
 };
 
 /**
+ * Get the total extra offset from any externally-registered sticky headers.
+ *
+ * Reads the CSS selector stored in the block's data-sticky-offset-selector
+ * attribute and measures that element's height. Also checks
+ * window.lsx_to_sticky_offset_selectors (array of selector strings) so
+ * themes or plugins can register additional headers programmatically.
+ *
+ * @since 2.2.0
+ * @return {number} Total pixel height to add to the offset.
+ */
+lsx_to.get_extra_sticky_offset = function () {
+    let extra = 0;
+
+    // Selectors registered programmatically by themes / plugins.
+    const global_selectors = Array.isArray(window.lsx_to_sticky_offset_selectors)
+        ? window.lsx_to_sticky_offset_selectors
+        : [];
+
+    // Selector stored on the block element itself via the block attribute.
+    const block_selector_el = document.querySelector(
+        '.wp-block-lsx-tour-operator-sticky-menu[data-sticky-offset-selector]'
+    );
+    const block_selector = block_selector_el
+        ? block_selector_el.getAttribute('data-sticky-offset-selector')
+        : '';
+
+    const all_selectors = block_selector
+        ? [...global_selectors, block_selector]
+        : global_selectors;
+
+    all_selectors.forEach(function (selector) {
+        if (!selector) return;
+        const el = document.querySelector(selector);
+        if (el) {
+            extra += el.offsetHeight;
+        }
+    });
+
+    return extra;
+};
+
+/**
  * Scroll to a specific section with smooth animation.
  *
  * Calculates proper offset for fixed headers and admin bar,
@@ -59,6 +101,7 @@ lsx_to.scroll_to_section = function (section_id) {
             document.querySelector('.top-menu-fixed #masthead').offsetHeight : 0;
         offset += document.querySelector('.lsx-to-navigation') ?
             document.querySelector('.lsx-to-navigation').offsetHeight : 0;
+        offset += lsx_to.get_extra_sticky_offset();
 
         // Use getBoundingClientRect for accurate position relative to viewport
         const rect = section.getBoundingClientRect();
@@ -284,6 +327,7 @@ lsx_to.get_active_section_on_scroll = function () {
     if (adminBar) offset += adminBar.offsetHeight;
     if (masthead) offset += masthead.offsetHeight;
     if (stickyMenu) offset += stickyMenu.offsetHeight;
+    offset += lsx_to.get_extra_sticky_offset();
 
     let activeSection = null;
     let closestDistance = Infinity;
@@ -377,6 +421,7 @@ lsx_to.initialize_scroll_spy = function () {
             if (adminBar) offset += adminBar.offsetHeight;
             if (masthead) offset += masthead.offsetHeight;
             if (stickyMenu) offset += stickyMenu.offsetHeight;
+            offset += lsx_to.get_extra_sticky_offset();
 
             // Convert offset to percentage for rootMargin
             const offsetPercentage = Math.min(50, Math.max(10, (offset / window.innerHeight) * 100));

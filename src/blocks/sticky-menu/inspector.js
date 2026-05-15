@@ -11,6 +11,7 @@
  */
 import { InspectorControls } from '@wordpress/block-editor';
 import { __ } from '@wordpress/i18n';
+import { PanelBody, TextControl } from '@wordpress/components';
 import {
   __experimentalColorGradientSettingsDropdown as ColorGradientSettingsDropdown,
   __experimentalUseMultipleOriginColorsAndGradients as useMultipleOriginColorsAndGradients,
@@ -40,6 +41,7 @@ const Inspector = (props) => {
       customHoverBackgroundColor,
       hoverTextColor,
       customHoverTextColor,
+      stickyOffsetSelector,
     },
     setAttributes,
     clientId,
@@ -92,6 +94,17 @@ const Inspector = (props) => {
 
   return (
     <>
+      <InspectorControls>
+        <PanelBody title={__('Offset Settings', 'tour-operator')} initialOpen={false}>
+          <TextControl
+            label={__('Sticky Header Selector', 'tour-operator')}
+            help={__('CSS selector for an additional sticky header whose height should be accounted for (e.g. #site-header, .my-sticky-bar).', 'tour-operator')}
+            value={stickyOffsetSelector || ''}
+            onChange={(value) => setAttributes({ stickyOffsetSelector: value })}
+            placeholder="#site-header"
+          />
+        </PanelBody>
+      </InspectorControls>
       <InspectorControls group="color">
         <ColorGradientSettingsDropdown
           __experimentalIsRenderedInSidebar
