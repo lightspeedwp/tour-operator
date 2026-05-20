@@ -30,11 +30,12 @@ if (! function_exists('apply_filters')) {
 	/**
 	 * Stub for apply_filters() – returns the second argument unchanged.
 	 *
-	 * @param string $hook  Unused.
-	 * @param mixed  $value Value to return.
+	 * @param string $hook   Unused.
+	 * @param mixed  $value  Value to return.
+	 * @param mixed  ...$args Additional arguments (unused).
 	 * @return mixed
 	 */
-	function apply_filters($hook, $value)
+	function apply_filters($hook, $value, ...$args)
 	{
 		return $value;
 	}

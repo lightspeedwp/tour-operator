@@ -61,10 +61,16 @@ class Accommodation {
 	protected $canonical;
 
 	/**
-	 * Constructor.
+	 * Official rating classification system slugs.
 	 *
-	 * @param \WPSEO_Schema_Context|null $context Yoast context, or null for standalone use.
+	 * Only these types map to schema.org `starRating`; user-generated or
+	 * unspecified ratings are intentionally excluded to prevent misleading
+	 * structured data. Use the `lsx_to_official_rating_types` filter to add
+	 * further official classification systems.
+	 *
+	 * @var string[]
 	 */
+	const OFFICIAL_RATING_TYPES = array( 'tgcsa', 'hotelstars_union' );
 	public function __construct( $context = null ) {
 		$this->context   = $context;
 		$this->post_id   = ( null !== $context ) ? (int) $context->id : (int) get_the_ID();
@@ -180,7 +186,7 @@ class Accommodation {
 	 * @return array
 	 */
 	protected function add_image( array $data ) {
-		if ( null !== $this->context && $this->context->has_image ) {
+		if ( null !== $this->context && $this->context->has_image && defined( 'WPSEO_Schema_IDs::PRIMARY_IMAGE_HASH' ) ) {
 			$data['image'] = array( '@id' => $this->canonical . \WPSEO_Schema_IDs::PRIMARY_IMAGE_HASH );
 		} else {
 			$thumbnail_url = get_the_post_thumbnail_url( $this->post_id, 'large' );
@@ -236,7 +242,12 @@ class Accommodation {
 		$rating      = Helpers::get_meta( $this->post_id, 'rating' );
 		$rating_type = Helpers::get_meta( $this->post_id, 'rating_type' );
 
-		$official_types = array( 'tgcsa', 'hotelstars_union' );
+		/**
+		 * Filter the list of official rating type slugs that map to starRating.
+		 *
+		 * @param string[] $types Official rating type slugs.
+		 */
+		$official_types = (array) apply_filters( 'lsx_to_official_rating_types', self::OFFICIAL_RATING_TYPES );
 
 		if ( '' === $rating || '0' === $rating || ! in_array( $rating_type, $official_types, true ) ) {
 			return $data;

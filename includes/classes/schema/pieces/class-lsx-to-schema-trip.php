@@ -173,7 +173,7 @@ class Trip {
 	 * @return array
 	 */
 	protected function add_image( array $data ) {
-		if ( null !== $this->context && $this->context->has_image ) {
+		if ( null !== $this->context && $this->context->has_image && defined( 'WPSEO_Schema_IDs::PRIMARY_IMAGE_HASH' ) ) {
 			$data['image'] = array( '@id' => $this->canonical . \WPSEO_Schema_IDs::PRIMARY_IMAGE_HASH );
 		} else {
 			$thumbnail_url = get_the_post_thumbnail_url( $this->post_id, 'large' );

@@ -116,7 +116,10 @@ class Schema
 					'@context' => 'https://schema.org',
 					'@graph'   => array($piece->generate()),
 				);
-				$json = wp_json_encode($graph, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+				// JSON_HEX_TAG prevents </script> injection; JSON_HEX_AMP avoids
+				// HTML entity issues. JSON_UNESCAPED_UNICODE keeps readability.
+				$flags = JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP;
+				$json  = wp_json_encode($graph, $flags);
 				if ($json) {
 					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					echo '<script type="application/ld+json">' . "\n" . $json . "\n</script>\n";
