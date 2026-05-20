@@ -43,6 +43,7 @@
 - **Card text clipping** - Fixed text clipping issues in cards to ensure all content is visible
 - **Booking validity wrapping** - Fixed booking validity text to wrap to next row when needed for better mobile responsiveness
 - **Sticky menu overflow** - Fixed overflowing sticky menu to prevent layout issues
+- **Sticky menu offset selector positioning** - Fixed sticky menu overlap with additional sticky headers by applying the configured offset selector height to the sticky menu top position at runtime
 - **Fast facts rating display** - Fixed rating display in fast facts section and ensured dots are properly rendered as circles in the slider
 - **Social sharing alignment** - Vertically aligned social sharing toolbar for consistent positioning
 - **Destination button styles** - Ensured core WordPress button styles are loaded on single destination pages for consistent button appearance
