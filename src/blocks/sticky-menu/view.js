@@ -81,6 +81,41 @@ lsx_to.get_extra_sticky_offset = function () {
 };
 
 /**
+ * Apply sticky top offset to the menu element.
+ *
+ * Combines admin bar height and user-configured sticky header offsets,
+ * then applies the final pixel value to the sticky menu's top position.
+ *
+ * @since 2.2.0
+ * @return {number} The applied pixel offset.
+ */
+lsx_to.apply_sticky_menu_offset = function () {
+    const sticky_menu_block = document.querySelector('.wp-block-lsx-tour-operator-sticky-menu');
+    if (!sticky_menu_block) {
+        return 0;
+    }
+
+    let offset = 0;
+    const admin_bar = document.querySelector('#wpadminbar');
+
+    if (admin_bar) {
+        offset += admin_bar.offsetHeight;
+    }
+
+    offset += lsx_to.get_extra_sticky_offset();
+
+    sticky_menu_block.style.top = `${offset}px`;
+
+    // Keep legacy selector support aligned if present in older markup.
+    const legacy_sticky_menu = sticky_menu_block.querySelector('.lsx-to-sticky-menu');
+    if (legacy_sticky_menu) {
+        legacy_sticky_menu.style.top = `${offset}px`;
+    }
+
+    return offset;
+};
+
+/**
  * Scroll to a specific section with smooth animation.
  *
  * Calculates proper offset for fixed headers and admin bar,
@@ -387,6 +422,7 @@ lsx_to.handle_scroll_spy = function () {
 lsx_to.initialize_scroll_spy = function () {
     // Check if mobile
     const check_mobile = function () {
+        lsx_to.apply_sticky_menu_offset();
         lsx_to.sticky_menu.is_mobile = window.innerWidth < 768;
 
         // Initialize mobile sections if on mobile
@@ -707,6 +743,8 @@ lsx_to.initialize_sticky_menu = function () {
     if (!sticky_menu_block) {
         return;
     }
+
+    lsx_to.apply_sticky_menu_offset();
 
     // Check if any sections exist before proceeding
     const sections = document.querySelectorAll('[data-sticky-menu-section]');
