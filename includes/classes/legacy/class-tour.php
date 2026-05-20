@@ -161,6 +161,8 @@ class Tour
 			'single_supplement',
 		];
 
+		$currency_fields = apply_filters( 'lsx_to_tour_currency_fields', $currency_fields );
+
 		if (get_post_type() === 'tour' && in_array($meta_key, $currency_fields)) {
 			$value         = preg_replace('/[^0-9,.]/', '', $value);
 			$value         = ltrim($value, '.');

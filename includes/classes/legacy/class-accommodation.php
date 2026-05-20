@@ -113,6 +113,8 @@ class Accommodation {
 			'single_supplement',
 		];
 
+		$currency_fields = apply_filters( 'lsx_to_accommodation_currency_fields', $currency_fields );
+
 		if ( get_post_type() === 'accommodation' && in_array( $meta_key, $currency_fields ) ) {
 			$price_type    = get_post_meta( get_the_ID(), 'price_type', true );
 			$value         = preg_replace( '/[^0-9,.]/', '', $value );
