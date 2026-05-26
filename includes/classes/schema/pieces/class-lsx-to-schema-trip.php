@@ -8,14 +8,15 @@
  * file calls `generate()` directly and prints a JSON-LD script tag.
  *
  * Fields mapped (per implementation plan):
- *   name, description, url, mainEntityOfPage, image, slogan (tagline),
- *   duration → ISO 8601 or additionalProperty, fromLocation (departs_from),
- *   toLocation (ends_in), provider (Yoast site_represents_reference),
+ *   name, description, url, mainEntityOfPage, image,
+ *   tripOrigin (departs_from), duration → additionalProperty,
+ *   provider (Yoast site_represents_reference),
  *   offers → Offer (price, sale_price, priceCurrency, availabilityStarts,
  *                    availabilityEnds),
- *   subTrip → itinerary day list,
- *   additionalProperty → single_supplement, best_time_to_visit, group_size,
- *                         highlights, included, not_included.
+ *   subTrip → itinerary day list (typed as TouristTrip),
+ *   additionalProperty → tagline, duration, ends_in, single_supplement,
+ *                         best_time_to_visit, group_size, highlights,
+ *                         included, not_included.
  *
  * @package    Tour_Operator
  * @subpackage Schema
@@ -87,7 +88,7 @@ class Trip {
 	 */
 	public function generate() {
 		$data = array(
-			'@type'            => 'Trip',
+			'@type'            => 'TouristTrip',
 			'@id'              => $this->canonical . '#/schema/trip/' . $this->post_id,
 			'name'             => get_the_title( $this->post_id ),
 			'url'              => $this->canonical,
@@ -100,27 +101,18 @@ class Trip {
 			$data['description'] = $description;
 		}
 
-		// Tagline → slogan.
-		$tagline = Helpers::get_meta( $this->post_id, 'tagline' );
-		if ( '' !== $tagline ) {
-			$data['slogan'] = sanitize_text_field( $tagline );
-		}
-
-		// Duration → ISO 8601 when numeric, otherwise plain additionalProperty.
+		// Duration → always additionalProperty (duration is not a valid Trip/TouristTrip property).
 		$duration_raw = Helpers::get_meta( $this->post_id, 'duration' );
 		if ( '' !== $duration_raw ) {
-			$iso = Helpers::format_iso_duration( $duration_raw );
-			if ( '' !== $iso ) {
-				$data['duration'] = $iso;
-			} else {
-				$data = $this->append_property_value( $data, 'Duration', sanitize_text_field( $duration_raw ) );
-			}
+			$iso     = Helpers::format_iso_duration( $duration_raw );
+			$display = '' !== $iso ? $iso : sanitize_text_field( $duration_raw );
+			$data    = $this->append_property_value( $data, 'Duration', $display );
 		}
 
 		// Image: reference Yoast primary image when available, else featured image.
 		$data = $this->add_image( $data );
 
-		// fromLocation / toLocation (departs_from / ends_in destination posts).
+		// tripOrigin / ends_in (departs_from / ends_in destination posts).
 		$data = $this->add_locations( $data );
 
 		// Offers node (price, sale_price, booking window).
@@ -185,7 +177,11 @@ class Trip {
 	}
 
 	/**
-	 * Add fromLocation / toLocation from departs_from / ends_in meta fields.
+	 * Add tripOrigin from departs_from and ends_in as additionalProperty.
+	 *
+	 * tripOrigin (schema.org) replaces the non-existent fromLocation property.
+	 * toLocation is not a schema.org Trip property; ends_in is recorded as an
+	 * additionalProperty instead.
 	 *
 	 * @param array $data Schema data.
 	 * @return array
@@ -193,7 +189,7 @@ class Trip {
 	protected function add_locations( array $data ) {
 		$departs_from_id = (int) Helpers::get_meta( $this->post_id, 'departs_from' );
 		if ( $departs_from_id > 0 && get_post( $departs_from_id ) ) {
-			$data['fromLocation'] = array(
+			$data['tripOrigin'] = array(
 				'@type' => 'Place',
 				'name'  => get_the_title( $departs_from_id ),
 				'url'   => get_permalink( $departs_from_id ),
@@ -202,10 +198,10 @@ class Trip {
 
 		$ends_in_id = (int) Helpers::get_meta( $this->post_id, 'ends_in' );
 		if ( $ends_in_id > 0 && get_post( $ends_in_id ) ) {
-			$data['toLocation'] = array(
-				'@type' => 'Place',
-				'name'  => get_the_title( $ends_in_id ),
-				'url'   => get_permalink( $ends_in_id ),
+			$data = $this->append_property_value(
+				$data,
+				'Ends in',
+				get_the_title( $ends_in_id )
 			);
 		}
 
@@ -281,7 +277,7 @@ class Trip {
 			}
 
 			$sub_trip = array(
-				'@type' => 'Trip',
+				'@type' => 'TouristTrip',
 				'@id'   => $this->canonical . '#/schema/trip/' . $this->post_id . '/day/' . ( (int) $index + 1 ),
 				'name'  => $title,
 			);
@@ -297,7 +293,7 @@ class Trip {
 			$accom_id = isset( $day['accommodation_to_tour'] ) ? (int) $day['accommodation_to_tour'] : 0;
 			if ( $accom_id > 0 && get_post( $accom_id ) ) {
 				$stops[] = array(
-					'@type' => 'Accommodation',
+					'@type' => 'LodgingBusiness',
 					'name'  => get_the_title( $accom_id ),
 					'url'   => get_permalink( $accom_id ),
 				);
@@ -337,6 +333,12 @@ class Trip {
 	 */
 	protected function add_additional_properties( array $data ) {
 		$properties = array();
+
+		// Tagline (slogan is not a valid Trip/Thing property).
+		$tagline = sanitize_text_field( Helpers::get_meta( $this->post_id, 'tagline' ) );
+		if ( '' !== $tagline ) {
+			$properties[] = Helpers::make_property_value( 'Tagline', $tagline );
+		}
 
 		// Single supplement (price value).
 		$supplement = Helpers::normalise_price( Helpers::get_meta( $this->post_id, 'single_supplement' ) );

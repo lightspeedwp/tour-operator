@@ -8,13 +8,13 @@
  * fallback calls `generate()` directly.
  *
  * Fields mapped (per implementation plan):
- *   name, description, url, mainEntityOfPage, image, slogan (tagline),
+ *   name, description, url, mainEntityOfPage, image,
  *   numberOfRooms, checkinTime, checkoutTime, availableLanguage (Language[]),
  *   starRating (only for official ratings: TGCSA / Hotelstars Union),
  *   containedInPlace → destination_to_accommodation,
  *   address + geo → location meta,
  *   offers → Offer (price, sale_price, priceCurrency, priceSpecification),
- *   additionalProperty → single_supplement, best_time_to_visit,
+ *   additionalProperty → tagline, single_supplement, best_time_to_visit,
  *                         minimum_child_age, suggested_visitor_types,
  *                         special_interests.
  *
@@ -94,7 +94,7 @@ class Accommodation {
 	 */
 	public function generate() {
 		$data = array(
-			'@type'            => 'Accommodation',
+			'@type'            => 'LodgingBusiness',
 			'@id'              => $this->canonical . '#/schema/accommodation/' . $this->post_id,
 			'name'             => get_the_title( $this->post_id ),
 			'url'              => $this->canonical,
@@ -105,12 +105,6 @@ class Accommodation {
 		$description = $this->get_description();
 		if ( '' !== $description ) {
 			$data['description'] = $description;
-		}
-
-		// Tagline → slogan.
-		$tagline = Helpers::get_meta( $this->post_id, 'tagline' );
-		if ( '' !== $tagline ) {
-			$data['slogan'] = sanitize_text_field( $tagline );
 		}
 
 		// Image.
@@ -374,6 +368,12 @@ class Accommodation {
 	 */
 	protected function add_additional_properties( array $data ) {
 		$properties = array();
+
+		// Tagline (slogan is not a valid Accommodation/Place property).
+		$tagline = sanitize_text_field( Helpers::get_meta( $this->post_id, 'tagline' ) );
+		if ( '' !== $tagline ) {
+			$properties[] = Helpers::make_property_value( 'Tagline', $tagline );
+		}
 
 		// Single supplement.
 		$supplement = Helpers::normalise_price( Helpers::get_meta( $this->post_id, 'single_supplement' ) );

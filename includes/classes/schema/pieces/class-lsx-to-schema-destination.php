@@ -8,14 +8,14 @@
  * fallback calls `generate()` directly.
  *
  * Fields mapped (per implementation plan):
- *   name, description, url, mainEntityOfPage, image, slogan (tagline),
+ *   name, description, url, mainEntityOfPage, image,
  *   touristType → travel-style taxonomy,
  *   containedInPlace → parent destination post,
  *   containsPlace → direct child destination posts,
  *   address + geo → location meta,
- *   additionalProperty → best_time_to_visit, electricity, banking, cuisine,
- *                         climate, transport, dress, health, safety, visa,
- *                         additional_info.
+ *   additionalProperty → tagline, best_time_to_visit, electricity, banking,
+ *                         cuisine, climate, transport, dress, health, safety,
+ *                         visa, additional_info.
  *
  * @package    Tour_Operator
  * @subpackage Schema
@@ -98,12 +98,6 @@ class Destination {
 		$description = $this->get_description();
 		if ( '' !== $description ) {
 			$data['description'] = $description;
-		}
-
-		// Tagline → slogan.
-		$tagline = Helpers::get_meta( $this->post_id, 'tagline' );
-		if ( '' !== $tagline ) {
-			$data['slogan'] = sanitize_text_field( $tagline );
 		}
 
 		// Image.
@@ -320,6 +314,12 @@ class Destination {
 	protected function add_additional_properties( array $data ) {
 		$properties = array();
 
+		// Tagline (slogan is not a valid TouristDestination/Place property).
+		$tagline = sanitize_text_field( Helpers::get_meta( $this->post_id, 'tagline' ) );
+		if ( '' !== $tagline ) {
+			$properties[] = Helpers::make_property_value( 'Tagline', $tagline );
+		}
+
 		// Best time to visit.
 		$best_time_slugs = Helpers::get_meta_array( $this->post_id, 'best_time_to_visit' );
 		if ( ! empty( $best_time_slugs ) ) {
@@ -330,8 +330,7 @@ class Destination {
 		}
 
 		// Travel information fields from config-destination.php.
-		// Note: 'safety' is handled separately below so it can also populate
-		// the dedicated safetyConsideration property.
+		// Note: 'safety' is handled separately below to keep field ordering consistent.
 		$travel_info_fields = array(
 			'electricity'     => 'Electricity',
 			'banking'         => 'Banking',
@@ -351,14 +350,10 @@ class Destination {
 			}
 		}
 
-		// Safety: add as additionalProperty and, when concise (≤300 chars),
-		// also promote to the dedicated safetyConsideration property.
+		// Safety: additionalProperty only (safetyConsideration is not a valid Place property).
 		$safety = Helpers::strip_to_text( Helpers::get_meta( $this->post_id, 'safety' ) );
 		if ( '' !== $safety ) {
 			$properties[] = Helpers::make_property_value( 'Safety', $safety );
-			if ( mb_strlen( $safety ) <= 300 ) {
-				$data['safetyConsideration'] = $safety;
-			}
 		}
 
 		if ( ! empty( $properties ) ) {
