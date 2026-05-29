@@ -48,7 +48,7 @@
     "npm-package-json-lint": "10.4.0",
     "prettier": "3.8.3",
     "stylelint": "16.26.1",
-    "webpack-cli": "7.0.2",
+    "webpack-cli": "7.0.3",
     "webpack-remove-empty-scripts": "^1.1.1"
   },
   "scripts": {
