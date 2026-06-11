@@ -315,7 +315,11 @@ function lsx_to_itinerary_connected_field( $field, $type, $before = '', $after =
 	$data = (array) $data;
 
 	if ( $term_list ) {
-		$return = get_the_term_list( $data[0], $type, $before, ', ', $after );
+		$first_term = array_values( $data );
+		if ( is_array( $first_term ) && ! empty( $first_term ) ) {
+			$first_term = $first_term[0];
+		}
+		$return = get_the_term_list( $first_term, $type, $before, ', ', $after );
 	} else {
 		$return = $before . lsx_to_connected_list( $data, $type, true, ', ' ) . $after;
 	}

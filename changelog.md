@@ -54,6 +54,10 @@
 - **Accommodation price display** - Added price information to single accommodation template with improved layout for better presentation
 - **Rating stars styling** - Added new styles for rating stars display with improved spacing and alignment in accommodation info section
 
+#### Itinerary
+
+- **Itinerary connected field term list** - Fixed term list retrieval in `lsx_to_itinerary_connected_field()` by normalising the data array with `array_values()` before extracting the first element, ensuring `get_the_term_list()` always receives a valid post ID rather than a potentially non-zero-indexed array offset
+
 #### Query Loops & Filtering
 
 - **Query Block Class Detection** - Improved reliability of query block class detection by checking `innerHTML` instead of `attrs['className']`, ensuring custom classes like `on-sale`, `parents-only`, and `custom-order` are properly detected even when applied via block variations or programmatically
