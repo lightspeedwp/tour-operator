@@ -308,8 +308,6 @@ function lsx_to_itinerary_connected_field( $field, $type, $before = '', $after =
 		$data = $tour_itinerary->itinerary[ $field ] ?? '';
 	}
 
-	do_action( 'qm/debug', [ $field, $data ] );
-
 	if ( empty( $data ) ) {
 		return '';
 	}
