@@ -378,6 +378,9 @@ class Query_Loop {
 			case 'featured-accommodation':
 			case 'featured-tours':
 			case 'featured-destinations':
+			case 'featured-review':
+			case 'featured-special':
+			case 'featured-team':
 				$query = $this->featured_query( $query, $key );
 				break;
 
@@ -387,6 +390,9 @@ class Query_Loop {
 				// Tour Query Loops
 			case 'tour-related-accommodation':
 			case 'accommodation-related-accommodation':
+			case 'review-related-review':
+			case 'special-related-special':
+			case 'team-related-team':
 				$to         = '';
 				$from       = '';
 				$directions = explode( '-related-', $key );
@@ -427,6 +433,16 @@ class Query_Loop {
 			// 'review-related-tour':
 			// 'review-related-accommodation':
 			// 'review-related-destination':
+
+			// CPTs Specials Query Loops
+			// 'special-related-destination':
+			// 'special-related-accommodation':
+			// 'special-related-tour':
+
+			// CPTs Team Query Loops
+			// 'team-related-destination':
+			// 'team-related-accommodation':
+			// 'team-related-tour':
 			default:
 				$to         = '';
 				$from       = '';
