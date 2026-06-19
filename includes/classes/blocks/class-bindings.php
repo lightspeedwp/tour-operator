@@ -245,6 +245,8 @@ class Bindings {
 
 			$key = str_replace( '-', '_', $source_args['key'] );
 
+			do_action( 'qm/debug', $key );
+
 			$multiples = [
 				'best_time_to_visit',
 				'spoken_languages',
@@ -257,6 +259,8 @@ class Bindings {
 				$single = false;
 			}
 			$saved = lsx_to_custom_field_query( $key, '', '', false, get_the_ID(), $single );
+
+			do_action( 'qm/debug', $saved );
 
 			if ( null !== $saved ) {
 				$date_transforms = [

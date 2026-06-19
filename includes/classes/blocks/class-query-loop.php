@@ -96,36 +96,43 @@ class Query_Loop {
 			return $block_content;
 		}
 
-		if ( in_array( 'travel-information', $matches ) ) {
-			// Check if ANY travel information fields have content
-			$travel_info_keys = array(
-				'additional_info',
-				'banking',
-				'climate',
-				'cuisine',
-				'electricity',
-				'dress',
-				'health',
-				'safety',
-				'transport',
-				'visa',
-			);
-			
-			$has_travel_info = false;
-			foreach ( $travel_info_keys as $meta_key ) {
+		/**
+		 * Wrappers that house multiple meta fields: hide the block only when ALL fields are empty.
+		 * Add-on plugins register their own groups via this filter.
+		 *
+		 * @param array $wrappers Map of CSS wrapper key (without lsx- prefix / -wrapper suffix)
+		 *                        to an array of post-meta keys that belong to that wrapper.
+		 */
+		$multi_field_wrappers = apply_filters(
+			'lsx_to_multi_field_wrappers',
+			array(
+				'travel-information' => array(
+					'additional_info',
+					'banking',
+					'climate',
+					'cuisine',
+					'electricity',
+					'dress',
+					'health',
+					'safety',
+					'transport',
+					'visa',
+				),
+			)
+		);
+
+		$wrapper_key = isset( $matches[2] ) ? $matches[2] : '';
+
+		if ( isset( $multi_field_wrappers[ $wrapper_key ] ) ) {
+			$has_value = false;
+			foreach ( $multi_field_wrappers[ $wrapper_key ] as $meta_key ) {
 				$value = get_post_meta( get_the_ID(), $meta_key, true );
 				if ( ! empty( $value ) && '' !== $value ) {
-					$has_travel_info = true;
+					$has_value = true;
 					break;
 				}
 			}
-			
-			// If no travel info exists, hide the entire section
-			if ( ! $has_travel_info ) {
-				return '';
-			}
-
-			return $block_content;
+			return $has_value ? $block_content : '';
 		}
 
 		if ( ! empty( $matches ) && isset( $matches[0] ) ) {
