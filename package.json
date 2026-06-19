@@ -27,7 +27,7 @@
     "classnames": "^2.5.1"
   },
   "devDependencies": {
-    "@babel/cli": "8.0.0",
+    "@babel/cli": "8.0.1",
     "@babel/core": "8.0.0",
     "@babel/preset-react": "^8.0.0",
     "@wordpress/a11y": "4.48.1",
