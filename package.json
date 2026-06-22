@@ -29,7 +29,7 @@
   "devDependencies": {
     "@babel/cli": "8.0.1",
     "@babel/core": "8.0.0",
-    "@babel/preset-react": "^8.0.0",
+    "@babel/preset-react": "^8.0.1",
     "@wordpress/a11y": "4.48.1",
     "@wordpress/babel-preset-default": "8.48.1",
     "@wordpress/block-library": "9.48.1",
