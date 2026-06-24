@@ -198,7 +198,7 @@ class Query_Loop {
 			if ( empty( wp_get_post_terms( get_the_ID(), $key, $tax_args ) ) ) {
 				$block_content = '';
 			}
-		} elseif ( 'location' === $key || 'wetu_map' === $key || 'google_map' === $key ) {
+		} elseif ( 'location' === $key || 'wetu_map' === $key || 'google_map' === $key || 'wetu-map' === $key || 'google-map' === $key ) {
 			if ( ! lsx_to_has_map() ) {
 				$block_content = '';
 			}
