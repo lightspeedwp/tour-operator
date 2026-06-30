@@ -35,7 +35,7 @@
     "@wordpress/block-library": "10.0.0",
     "@wordpress/blocks": "15.21.1",
     "@wordpress/e2e-test-utils-playwright": "1.49.0",
-    "@wordpress/eslint-plugin": "25.4.1",
+    "@wordpress/eslint-plugin": "25.5.0",
     "@wordpress/i18n": "6.22.0",
     "@wordpress/jest-preset-default": "12.49.0",
     "@wordpress/npm-package-json-lint-config": "5.49.0",
