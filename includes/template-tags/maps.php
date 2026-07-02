@@ -150,68 +150,42 @@ if (! function_exists('lsx_to_has_map')) {
 		}
 
 		$kml      = false;
-		$location = false;
+		$location = array();
 		$zoom     = 15;
 		if (is_array($map_data) && isset($map_data['zoom'])) {
 			$zoom = $map_data['zoom'];
 		}
+		$args        = array();
+		$connections = array();
 
-		if (is_post_type_archive('destination')) {
-			$location = array(
-				'latitude' => true,
-			);
-		} elseif (is_singular('tour')) {
-			$file_id = get_post_meta(get_the_ID(), 'itinerary_kml', true);
+		switch (true) {
+			case is_singular('tour'):
+				$file_id = get_post_meta(get_the_ID(), 'itinerary_kml', true);
 
-			if (false !== $file_id) {
-				$kml = wp_get_attachment_url($file_id);
-			}
+				if (false !== $file_id) {
+					$kml = wp_get_attachment_url($file_id);
+				}
 
-			$accommodation_connected = lsx_to_get_tour_itinerary_ids();
-			$accommodation_connected = apply_filters('lsx_to_maps_tour_connections', $accommodation_connected);
-			if (is_array($accommodation_connected) && ! empty($accommodation_connected)) {
-				$location = array(
-					'connections' => $accommodation_connected,
-				);
-			}
-		} else {
-			$location = get_post_meta(get_the_ID(), 'location', true);
-		}
+				$accommodation_connected = lsx_to_get_tour_itinerary_ids();
+				$accommodation_connected = apply_filters('lsx_to_maps_tour_connections', $accommodation_connected);
+				if (is_array($accommodation_connected) && ! empty($accommodation_connected)) {
+					$location['connections'] = $accommodation_connected;
+				}
 
-		$location = apply_filters('lsx_to_has_maps_location', $location, get_the_ID());
+				$location = apply_filters('lsx_to_has_maps_location', $location, get_the_ID());
+				if (! is_array($location)) {
+					$location = array();
+				}
 
-		if (! is_array($location)) {
-			$location = array();
-		}
+				if (false !== $kml) {
+					$location['kml'] = $kml;
+				}
 
-		if (false !== $kml) {
-			$location['kml'] = $kml;
-		}
+				if (isset($location['zoom'])) {
+					$zoom = $location['zoom'];
+				}
+				$zoom = apply_filters('lsx_to_map_zoom', $zoom);
 
-		if (isset($location['zoom'])) {
-			$zoom = $location['zoom'];
-		}
-
-		$zoom        = apply_filters('lsx_to_map_zoom', $zoom);
-		$map_type    = 'default';
-		$parent_id   = false;
-		$connections = false;
-
-		if (is_singular('tour')) {
-			$map_type = 'itinerary';
-		} elseif (is_post_type_archive('destination')) {
-			$map_type  = 'region_archive';
-			$parent_id = '0';
-		} elseif (is_singular('destination')) {
-			$map_type  = 'region_archive';
-			$parent_id = get_queried_object_id();
-		} elseif (is_tax('continent')) {
-			$map_type  = 'continent_archive';
-			$parent_id = '0';
-		}
-
-		switch ($map_type) {
-			case 'itinerary':
 				$args = array(
 					'zoom'   => $zoom,
 					'width'  => '100%',
@@ -223,14 +197,37 @@ if (! function_exists('lsx_to_has_map')) {
 					$args['kml'] = $location['kml'];
 				} elseif (isset($location['connections'])) {
 					$args['connections'] = $location['connections'];
+				} else {
+					return false;
 				}
 
 				break;
 
-			case 'region_archive':
-				$args        = array();
-				$connections = array();
-				if (false !== lsx_to_item_has_children($parent_id, 'destination')) {
+			case is_post_type_archive('destination'):
+			case is_singular('destination'):
+				$destination_id = is_singular('destination') ? get_queried_object_id() : '0';
+
+				if (! is_singular('destination')) {
+					$location = array(
+						'latitude' => true,
+					);
+				} else {
+					$location = get_post_meta(get_the_ID(), 'location', true);
+				}
+
+				$location = apply_filters('lsx_to_has_maps_location', $location, get_the_ID());
+				if (! is_array($location)) {
+					$location = array();
+				}
+
+				if (isset($location['zoom'])) {
+					$zoom = $location['zoom'];
+				}
+				$zoom       = apply_filters('lsx_to_map_zoom', $zoom);
+				$args       = array();
+				$has_kids   = lsx_to_item_has_children( $destination_id, 'destination' );
+
+				if ( false !== $has_kids ) {
 					$region_args                = array(
 						'post_type'      => 'destination',
 						'post_status'    => 'publish',
@@ -238,9 +235,9 @@ if (! function_exists('lsx_to_has_map')) {
 						'posts_per_page' => '-1',
 						'fields'         => 'ids',
 					);
-					$region_args['post_parent'] = $parent_id;
+					$region_args['post_parent'] = $destination_id;
 
-					if (true === lsx_to_display_fustion_tables()) {
+					if ( true === lsx_to_display_fustion_tables() ) {
 						$region_args['post_parent']              = 0;
 						$args['fusion_tables']                   = true;
 						$args['fusion_tables_colour_border']     = lsx_to_fustion_tables_attr('colour_border', '#000000');
@@ -250,11 +247,15 @@ if (! function_exists('lsx_to_has_map')) {
 					$regions = new WP_Query($region_args);
 					if (isset($regions->posts) && ! empty($regions->posts)) {
 						$connections = $regions->posts;
+					} else {
+						return false;
 					}
 				} else {
-					$accommodation = get_post_meta($parent_id, 'accommodation_to_destination', true);
+					$accommodation = get_post_meta( $destination_id, 'accommodation_to_destination', true );
 					if (false !== $accommodation && ! empty($accommodation)) {
 						$connections = $accommodation;
+					} else {
+						return false;
 					}
 				}
 
@@ -264,10 +265,10 @@ if (! function_exists('lsx_to_has_map')) {
 					$args['connections'] = $connections;
 					$args['type']        = 'cluster';
 
-					if ('0' === $parent_id) {
+					if ('0' === $destination_id) {
 						$args['disable_cluster_js'] = true;
 					}
-				} elseif (isset($location['longitude'], $location['latitude']) && '' !== $location['longitude'] && '' !== $location['latitude']) {
+				} elseif (isset($location['longitude'], $location['latitude']) && '' !== $location['longitude'] && '' !== $location['latitude'] ) {
 					$args['longitude'] = $location['longitude'];
 					$args['latitude']  = $location['latitude'];
 				} else {
@@ -275,7 +276,7 @@ if (! function_exists('lsx_to_has_map')) {
 				}
 
 				// Check to see if the zoom is disabled.
-				$manual_zoom = get_post_meta($parent_id, 'disable_auto_zoom', true);
+				$manual_zoom = get_post_meta($destination_id, 'disable_auto_zoom', true);
 				if (false !== $manual_zoom && '' !== $manual_zoom) {
 					$args['disable_auto_zoom'] = true;
 					$args['zoom']              = $manual_zoom;
@@ -285,7 +286,17 @@ if (! function_exists('lsx_to_has_map')) {
 
 				break;
 
-			case 'continent_archive':
+			case is_tax('continent'):
+				$parent_id = '0';
+				$location  = apply_filters('lsx_to_has_maps_location', $location, get_the_ID());
+				if (! is_array($location)) {
+					$location = array();
+				}
+				if (isset($location['zoom'])) {
+					$zoom = $location['zoom'];
+				}
+				$zoom = apply_filters('lsx_to_map_zoom', $zoom);
+
 				$args = array();
 
 				$country_args = array(
@@ -334,6 +345,17 @@ if (! function_exists('lsx_to_has_map')) {
 				break;
 
 			default:
+				$location = get_post_meta(get_the_ID(), 'location', true);
+				$location = apply_filters('lsx_to_has_maps_location', $location, get_the_ID());
+				if (! is_array($location)) {
+					$location = array();
+				}
+
+				if (isset($location['zoom'])) {
+					$zoom = $location['zoom'];
+				}
+				$zoom = apply_filters('lsx_to_map_zoom', $zoom);
+
 				if (! isset($location['longitude'], $location['latitude']) || '' === $location['longitude'] || '' === $location['latitude']) {
 					return false;
 				}
