@@ -257,8 +257,7 @@ class Post_Connections {
 	 * @return string
 	 */
 	public function destination_facet_html( $output, $params ) {
-
-		if ( in_array( $params['facet']['source'], $this->sources ) ) {
+		if ( isset( $params['facet']['source'] ) && in_array( $params['facet']['source'], $this->sources ) ) {
 			$output = $this->destination_facet_render( $params );
 		}
 		return $output;
@@ -333,8 +332,8 @@ class Post_Connections {
 					}
 				}
 			} elseif ( '0' === $result['depth'] || 0 === $result['depth'] ) {
-					$sorted_values[] = $result;
-					$destinations    = $this->get_regions( $stored, $result['facet_value'], '1' );
+				$sorted_values[] = $result;
+				$destinations    = $this->get_regions( $stored, $result['facet_value'], '1' );
 
 				if ( ! empty( $destinations ) ) {
 					foreach ( $destinations as $destination ) {
