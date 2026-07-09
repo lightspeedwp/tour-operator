@@ -36,7 +36,7 @@ if (! function_exists('lsx_to_map')) {
 	 */
 	function lsx_to_map($before = '', $after = '', $echo = true)
 	{
-		if (! lsx_to_has_map()) {
+		if ( ! lsx_to_has_map() ) {
 			if (false === $echo) {
 				return '';
 			}
@@ -44,6 +44,7 @@ if (! function_exists('lsx_to_map')) {
 		}
 
 		$map_data = get_transient(get_the_ID() . '_location');
+
 		if (! is_array($map_data) || ! isset($map_data['args']) || ! is_array($map_data['args'])) {
 			if (false === $echo) {
 				return '';
@@ -77,7 +78,7 @@ if (! function_exists('lsx_to_display_fustion_tables')) {
 	function lsx_to_display_fustion_tables()
 	{
 		$temp = get_option('lsx_to_settings', false);
-		if (isset($temp['fusion_tables_enabled'])) {
+		if ( isset( $temp['fusion_tables_enabled'] ) && 0 !== (int) $temp['fusion_tables_enabled'] ) {
 			return true;
 		} else {
 			return false;
@@ -145,6 +146,7 @@ if (! function_exists('lsx_to_has_map')) {
 
 		// Get any existing copy of our transient data.
 		$map_data = get_transient(get_the_ID() . '_location');
+
 		if (is_array($map_data) && isset($map_data['args']) && is_array($map_data['args']) && ! empty($map_data['args'])) {
 			return true;
 		}
@@ -227,6 +229,7 @@ if (! function_exists('lsx_to_has_map')) {
 				$args       = array();
 				$has_kids   = lsx_to_item_has_children( $destination_id, 'destination' );
 
+				// If it is a destination parent, then show the regions.
 				if ( false !== $has_kids ) {
 					$region_args                = array(
 						'post_type'      => 'destination',
@@ -245,6 +248,7 @@ if (! function_exists('lsx_to_has_map')) {
 						$args['fusion_tables_colour_background'] = lsx_to_fustion_tables_attr('colour_background', '#000000');
 					}
 					$regions = new WP_Query($region_args);
+
 					if (isset($regions->posts) && ! empty($regions->posts)) {
 						$connections = $regions->posts;
 					} else {
@@ -255,7 +259,7 @@ if (! function_exists('lsx_to_has_map')) {
 					if (false !== $accommodation && ! empty($accommodation)) {
 						$connections = $accommodation;
 					} else {
-						return false;
+						$connections = [ $destination_id ];
 					}
 				}
 
@@ -373,7 +377,7 @@ if (! function_exists('lsx_to_has_map')) {
 
 		$args = apply_filters('lsx_to_maps_args', $args, get_the_ID());
 
-		if (! is_array($args) || empty($args)) {
+		if ( ! is_array( $args ) || empty( $args ) ) {
 			return false;
 		}
 

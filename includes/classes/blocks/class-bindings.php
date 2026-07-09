@@ -991,9 +991,20 @@ class Bindings {
 
 		if ( is_post_type_archive() || is_tax() || is_singular( [ 'destination' ] ) ) {
 			$map_type = 'accommodation-cluster';
+			$zoom = '';
+			
+			// If we have a zoom set, then call it for use when there is only 1 cluster point.
+			if ( is_singular( [ 'destination' ] ) ) {
+				$zoom  = get_post_meta( get_the_ID(), 'disable_auto_zoom', true );
+				if ( empty( $zoom ) || false === $zoom || 0 === (int) $zoom ) {
+					$zoom = 10;
+				}
+			}
+
 		} else {
 			$map_type = $post_type;
 			$wetu_id  = get_post_meta( get_the_ID(), 'lsx_wetu_id', true );
+			$zoom     = 5;
 		}
 
 		switch ( $map_type ) {
@@ -1006,7 +1017,16 @@ class Bindings {
 				break;
 
 			case 'accommodation-cluster':
-				$accommodation_ids = get_post_meta( get_the_ID(), 'accommodation_to_' . $post_type, true );
+
+				$accommodation_ids = [];
+
+				if ( lsx_to_has_map() ) {
+					$map_data = get_transient( get_the_ID() . '_location' );
+
+					if ( is_array( $map_data ) && isset( $map_data['args']['connections'] ) ) {
+						$accommodation_ids = $map_data['args']['connections'];
+					}
+				}
 
 				if ( ! empty( $accommodation_ids ) ) {
 					if ( ! is_array( $accommodation_ids ) ) {
@@ -1019,8 +1039,14 @@ class Bindings {
 							$wetu_ids[] = $wetu_id;
 						}
 					}
+
 					if ( ! empty( $wetu_ids ) ) {
 						$url = 'https://wetu.com/EmbedMap/' . $url_params . '&ids=' . implode( ',', $wetu_ids );
+
+						// If its a single point them set the zoom, otherwise it auto calculates around the cluster.
+						if ( 1 === count( $wetu_ids ) ) {
+							$url .= '&zoom=' . $zoom;
+						}
 					}
 				}
 
@@ -1029,7 +1055,7 @@ class Bindings {
 			default:
 				$location = get_post_meta( get_the_ID(), 'location', true );
 				if ( isset( $location['lat'] ) && isset( $location['lng'] ) ) {
-					$url = 'https://wetu.com/EmbedMap/?center=' . $location['lat'] . ',' . $location['lng'] . '&zoom=5';
+					$url = 'https://wetu.com/EmbedMap/?center=' . $location['lat'] . ',' . $location['lng'] . '&zoom=15';
 				} else {
 					$wetu_id = false;
 				}
