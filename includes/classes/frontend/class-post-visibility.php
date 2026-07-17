@@ -9,7 +9,6 @@
 
 namespace lsx\frontend;
 
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

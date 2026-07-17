@@ -2,7 +2,6 @@
 
 namespace lsx;
 
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

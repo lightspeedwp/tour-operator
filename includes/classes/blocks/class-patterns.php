@@ -13,7 +13,6 @@
 
 namespace lsx\blocks;
 
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

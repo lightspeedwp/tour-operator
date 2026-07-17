@@ -5,7 +5,6 @@
 
 namespace lsx\integrations\facetwp;
 
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

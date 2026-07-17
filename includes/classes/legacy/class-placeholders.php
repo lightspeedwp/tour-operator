@@ -10,7 +10,6 @@
 
 namespace lsx\legacy;
 
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
