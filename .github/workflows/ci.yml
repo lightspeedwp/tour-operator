@@ -15,7 +15,8 @@ jobs:
           node-version-file: '.nvmrc'
           cache: 'npm'
       - run: npm ci
-      - run: npm run lint
+      - run: npm run lint:js
+      - run: npm run lint:css
       - run: npm run build
       - name: Run Playwright tests
         run: |
