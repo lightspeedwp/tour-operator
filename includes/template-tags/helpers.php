@@ -118,7 +118,9 @@ function lsx_to_item_has_children( $post_id = false, $post_type = false ) {
 	);
 	// phpcs:enable -- Stop ignoring
 
-	$result             = ( count( $children ) > 0 ) ? $children : false;
+	// ! empty() rather than count(): $wpdb->get_results() returns null on a DB
+	// error, and count( null ) is a TypeError on PHP 8+.
+	$result             = ! empty( $children ) ? $children : false;
 	$cache[ $cache_key ] = $result;
 	return $result;
 }

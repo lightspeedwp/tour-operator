@@ -19,6 +19,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          # Don't leave the GITHUB_TOKEN in .git/config for later build steps.
+          persist-credentials: false
 
       # --- JS build ---
       - uses: actions/setup-node@v7
