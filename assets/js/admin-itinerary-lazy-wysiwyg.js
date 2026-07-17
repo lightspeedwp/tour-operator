@@ -15,8 +15,8 @@
  * We override window.CMB2.wysiwyg.init at parse time (not on DOM ready) so the
  * override is in place before CMB2 fires cmb_init -> wysiwyg.initAll().
  *
- * ponytail: relies on CMB2's '.cmb-repeatable-grouping.closed' / '.cmbhandle'
- * markup conventions; revisit if the bundled CMB2 group markup changes.
+ * ponytail: relies on CMB2's '.cmb-repeatable-grouping' + 'closed' class
+ * convention; revisit if the bundled CMB2 group markup changes.
  */
 ( function ( window, $ ) {
 	'use strict';
@@ -60,19 +60,43 @@
 	}
 
 	$( function () {
-		// CMB2 toggles a row open/closed when its handle (or title bar) is clicked.
-		$( document ).on(
-			'click',
-			'.cmb-repeatable-grouping .cmbhandle, .cmb-repeatable-grouping .cmb-group-title',
-			function () {
-				var $row = $( this ).closest( '.cmb-repeatable-grouping' );
-				// The class toggle happens on the same click; defer past it.
-				window.setTimeout( function () {
-					if ( ! $row.hasClass( 'closed' ) ) {
-						flushRow( $row );
+		// Watch for the 'closed' class being removed from a group row and flush that
+		// row's deferred editors. A MutationObserver reacts to ANY expansion — click,
+		// keyboard, drag-sort, or a programmatic class change — and avoids the race a
+		// setTimeout(0) click handler is prone to. flushRow() is a no-op once a row
+		// has been flushed, so repeat fires are harmless.
+		if ( 'undefined' !== typeof MutationObserver ) {
+			var observer = new MutationObserver( function ( mutations ) {
+				mutations.forEach( function ( mutation ) {
+					var target = mutation.target;
+					if (
+						target.classList &&
+						target.classList.contains( 'cmb-repeatable-grouping' ) &&
+						! target.classList.contains( 'closed' )
+					) {
+						flushRow( $( target ) );
 					}
-				}, 0 );
-			}
-		);
+				} );
+			} );
+			observer.observe( document.body, {
+				attributes: true,
+				subtree: true,
+				attributeFilter: [ 'class' ],
+			} );
+		} else {
+			// Fallback for browsers without MutationObserver.
+			$( document ).on(
+				'click',
+				'.cmb-repeatable-grouping .cmbhandle, .cmb-repeatable-grouping .cmb-group-title',
+				function () {
+					var $row = $( this ).closest( '.cmb-repeatable-grouping' );
+					window.setTimeout( function () {
+						if ( ! $row.hasClass( 'closed' ) ) {
+							flushRow( $row );
+						}
+					}, 0 );
+				}
+			);
+		}
 	} );
 } )( window, jQuery );
