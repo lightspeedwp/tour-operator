@@ -5,6 +5,11 @@
 
 namespace lsx\integrations\facetwp;
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 class Post_Connections {
 
 	/**

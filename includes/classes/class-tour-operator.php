@@ -2,6 +2,11 @@
 
 namespace lsx;
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 use lsx\admin\Admin;
 use lsx\admin\Settings;
 use lsx\admin\Setup;

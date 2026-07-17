@@ -12,6 +12,11 @@
 
 namespace lsx\admin;
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Main plugin class.
  *

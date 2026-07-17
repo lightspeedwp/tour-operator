@@ -5,6 +5,11 @@
 
 namespace lsx\admin;
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Registers our Custom Fields
  *

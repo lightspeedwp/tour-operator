@@ -9,6 +9,11 @@
 
 namespace lsx\admin;
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Class Meta_Rest_API
  *

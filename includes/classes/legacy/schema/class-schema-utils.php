@@ -6,6 +6,11 @@
  */
 namespace lsx\legacy;
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Schema utility functions.
  *

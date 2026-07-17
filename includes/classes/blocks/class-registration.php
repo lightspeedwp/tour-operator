@@ -1,6 +1,11 @@
 <?php
 namespace lsx\blocks;
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * The creation of the block variants and the code to control the display.
  *

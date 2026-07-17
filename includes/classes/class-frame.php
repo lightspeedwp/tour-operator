@@ -12,6 +12,11 @@
 
 namespace lsx;
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Class pages
  * Handles registration of objects, like Pages, Taxonomies, Metaboxes, and

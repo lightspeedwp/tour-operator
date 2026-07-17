@@ -1,6 +1,11 @@
 <?php
 namespace lsx\blocks;
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Registers our Block Template Parts
  *

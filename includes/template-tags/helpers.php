@@ -95,6 +95,14 @@ function lsx_to_item_has_children( $post_id = false, $post_type = false ) {
 		$post_type = 'page';
 	}
 
+	// Request-level cache: this runs once per menu item, so the same
+	// (post_type, post_id) pair is queried repeatedly on nav-heavy pages.
+	static $cache = array();
+	$cache_key = $post_type . ':' . $post_id;
+	if ( isset( $cache[ $cache_key ] ) ) {
+		return $cache[ $cache_key ];
+	}
+
 	// phpcs:disable WordPress.DB -- Start ignoring
 	$children = $wpdb->get_results(
 		$wpdb->prepare(
@@ -110,11 +118,9 @@ function lsx_to_item_has_children( $post_id = false, $post_type = false ) {
 	);
 	// phpcs:enable -- Stop ignoring
 
-	if ( count( $children ) > 0 ) {
-		return $children;
-	} else {
-		return false;
-	}
+	$result             = ( count( $children ) > 0 ) ? $children : false;
+	$cache[ $cache_key ] = $result;
+	return $result;
 }
 
 

@@ -9,6 +9,11 @@
 
 namespace lsx\legacy;
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 use stdClass;
 
 // Setup the post connections.
