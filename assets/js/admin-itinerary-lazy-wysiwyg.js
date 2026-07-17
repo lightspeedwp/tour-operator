@@ -55,7 +55,25 @@
 		}
 		$row.removeData( 'lazyWysiwyg' );
 		pending.forEach( function ( item ) {
-			originalInit.call( wysiwyg, item.el, item.data, item.buttonsInit );
+			var $el  = item.el;
+			var data = item.data;
+
+			// CMB2 renumbers a group row's field id/name/iterator when rows are
+			// added, removed, or sorted (resetTitlesAndIterator). The values
+			// captured when this row was deferred can therefore be stale, so
+			// re-read them from the live placeholder at flush time — otherwise the
+			// editor would bind to an old index and edits could save under the
+			// wrong itinerary day. groupid/fieldid/hash are index-independent and
+			// stay as cached.
+			data.id    = $el.attr( 'id' );
+			data.name  = $el.attr( 'name' );
+			data.value = $el.val();
+			var iterator = $row.attr( 'data-iterator' );
+			if ( 'undefined' !== typeof iterator && false !== iterator ) {
+				data.iterator = iterator;
+			}
+
+			originalInit.call( wysiwyg, $el, data, item.buttonsInit );
 		} );
 	}
 
