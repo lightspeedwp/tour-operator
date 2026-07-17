@@ -117,6 +117,17 @@ class Admin extends Tour_Operator
 				wp_enqueue_script('select2', trailingslashit(CMB_URL) . 'js/vendor/select2/select2.js', array('jquery'), LSX_TO_VER, ['in_footer' => true]);
 				wp_enqueue_style('select2', trailingslashit(CMB_URL) . 'js/vendor/select2/select2.css', [], LSX_TO_VER);
 			}
+
+			// Lazy-init grouped WYSIWYG editors so tours with long itineraries load fast.
+			// Depends on 'cmb2-scripts' (always present; the wysiwyg logic is bundled into
+			// it in production and split out only in debug mode).
+			wp_enqueue_script(
+				'lsx-to-lazy-wysiwyg',
+				LSX_TO_URL . 'assets/js/admin-itinerary-lazy-wysiwyg.js',
+				array('jquery', 'cmb2-scripts'),
+				file_exists(LSX_TO_PATH . 'assets/js/admin-itinerary-lazy-wysiwyg.js') ? filemtime(LSX_TO_PATH . 'assets/js/admin-itinerary-lazy-wysiwyg.js') : LSX_TO_VER,
+				true
+			);
 		}
 
 		// TO Pages: Settings

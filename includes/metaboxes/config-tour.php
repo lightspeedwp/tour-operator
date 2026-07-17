@@ -303,6 +303,10 @@ $metabox['fields'][] = array(
 		'add_button'    => __('Add Another', 'tour-operator'),
 		'remove_button' => __('Remove', 'tour-operator'),
 		'sortable'      => false,
+		// Render rows collapsed so their WYSIWYG editors are not all initialised on
+		// page load. Combined with admin-itinerary-lazy-wysiwyg.js this keeps the
+		// tour edit screen fast regardless of how many itinerary days exist.
+		'closed'        => true,
 	),
 );
 
