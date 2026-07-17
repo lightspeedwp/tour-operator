@@ -12,6 +12,10 @@
 
 namespace lsx\admin;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Class Admin
  *

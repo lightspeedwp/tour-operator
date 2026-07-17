@@ -2,6 +2,11 @@
 
 ## [[2.1.2]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.2) - WIP
 
+### Fixed
+
+#### Performance
+- **Tour itinerary edit screen load time** - Itinerary day rows now render collapsed (`'closed' => true`) and their WYSIWYG (TinyMCE) editors initialise lazily the first time a day is expanded, instead of all editors initialising on page load. Previously a tour with many days spawned one TinyMCE instance per WYSIWYG field per day at once (e.g. a 15-day tour = 45 editors), each re-fetching the full editor asset bundle and pushing edit-screen load times into the minutes. Load cost no longer scales with the number of itinerary days. All three itinerary WYSIWYG fields (Description, Included, Excluded) remain full rich-text editors.
+
 ### Added
 
 #### Visibility Controls

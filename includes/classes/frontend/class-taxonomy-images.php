@@ -9,6 +9,10 @@
 
 namespace lsx\frontend;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Class Taxonomy_Images
  *

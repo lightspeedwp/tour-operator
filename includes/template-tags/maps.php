@@ -11,6 +11,31 @@
  */
 
 /**
+ * Return destination post IDs for a WP_Query args set, cached in the object cache.
+ *
+ * The map archives run unbounded `posts_per_page => -1`, `fields => ids`
+ * destination queries on every render. Cache the resulting ID set (keyed by the
+ * args) so repeat renders / object-cache-backed sites avoid re-querying. The
+ * short TTL keeps newly published destinations appearing on maps promptly.
+ *
+ * @param array $args WP_Query arguments (expected to include fields => ids).
+ * @return array Array of post IDs (empty array when none).
+ */
+function lsx_to_get_cached_destination_ids( $args )
+{
+	$cache_key = 'lsx_to_destination_ids_' . md5( maybe_serialize( $args ) );
+	$ids       = wp_cache_get( $cache_key, 'tour-operator' );
+
+	if ( false === $ids ) {
+		$query = new WP_Query( $args );
+		$ids   = ! empty( $query->posts ) ? $query->posts : array();
+		wp_cache_set( $cache_key, $ids, 'tour-operator', HOUR_IN_SECONDS );
+	}
+
+	return $ids;
+}
+
+/**
  * Checks if maps are enabled.
  *
  * @return boolean
@@ -102,9 +127,9 @@ if (! function_exists('lsx_to_map')) {
 								$args['fusion_tables_width_border']      = lsx_to_fustion_tables_attr('width_border', '2');
 								$args['fusion_tables_colour_background'] = lsx_to_fustion_tables_attr('colour_background', '#000000');
 							}
-							$regions = new WP_Query($region_args);
-							if (isset($regions->posts) && ! empty($regions->posts)) {
-								$connections = $regions->posts;
+							$region_ids = lsx_to_get_cached_destination_ids($region_args);
+							if (! empty($region_ids)) {
+								$connections = $region_ids;
 							}
 						} else {
 							$accommodation = get_post_meta($parent_id, 'accommodation_to_destination', true);
@@ -168,10 +193,10 @@ if (! function_exists('lsx_to_map')) {
 							$args['fusion_tables_colour_background'] = lsx_to_fustion_tables_attr('colour_background', '#000000');
 						}
 
-						$countries = new WP_Query($country_args);
+						$country_ids = lsx_to_get_cached_destination_ids($country_args);
 
-						if (isset($countries->posts) && ! empty($countries->posts)) {
-							$connections = $countries->posts;
+						if (! empty($country_ids)) {
+							$connections = $country_ids;
 						}
 
 						$args['content'] = 'excerpt';
