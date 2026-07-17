@@ -86,7 +86,6 @@ class Meta_Rest_API {
 	public function update_meta( $request ) {
 		$post_id   = (int) $request['id'];
 		$meta_key  = sanitize_key( $request['key'] );
-		$meta_value = $request['value'];
 
 		// Additional security: only allow specific meta keys
 		$allowed_keys = [ 'lsx_to_hide_from_listings', 'featured' ];
@@ -97,8 +96,26 @@ class Meta_Rest_API {
 			);
 		}
 
-		// Update the meta
-		$updated = update_post_meta( $post_id, $meta_key, $meta_value );
+		// Both allowed keys are boolean flags; store a canonical 0/1 rather than
+		// the raw request value (which arrived unsanitised).
+		$meta_value = (int) rest_sanitize_boolean( $request['value'] );
+
+		// update_post_meta() returns false both on real failure and when the new
+		// value equals the stored one, so treat an unchanged value as success and
+		// only report an error on an actual write failure.
+		$current = (int) get_post_meta( $post_id, $meta_key, true );
+		if ( $current === $meta_value ) {
+			$updated = true;
+		} else {
+			$updated = update_post_meta( $post_id, $meta_key, $meta_value );
+		}
+
+		if ( false === $updated ) {
+			return new \WP_REST_Response(
+				[ 'error' => 'Failed to update meta' ],
+				500
+			);
+		}
 
 		return new \WP_REST_Response(
 			[

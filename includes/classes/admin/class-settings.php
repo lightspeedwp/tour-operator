@@ -516,6 +516,12 @@ class Settings
 			return;
 		}
 
+		// The nonce guards against CSRF but not authorisation; require the same
+		// capability used to view this settings page before writing options.
+		if (! current_user_can('manage_options')) {
+			return;
+		}
+
 		$settings_fields = $this->get_settings_fields();
 		$settings_values = array();
 		foreach ($settings_fields as $section => $fields) {
