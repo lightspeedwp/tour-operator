@@ -328,6 +328,7 @@ class Modals {
 				'visa'             => __( 'Visa', 'tour-operator' ),
 				'additional_info'  => __( 'General', 'tour-operator' ),
 			];
+			$titles = apply_filters( 'lsx_to_travel_info_modal_titles', $titles );
 			$title = $titles[ $meta_key ] ?? ucwords( $meta_key );
 
 			$this->modal_contents[ $meta_key ] = '<h2 class="wp-block-heading" style="margin-top:0px;padding-right: 0px; padding-left: 0px;">' . esc_html( $title ) . '</h2>' . $html;
