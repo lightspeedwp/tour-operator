@@ -210,7 +210,8 @@ function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square', $meta_key =
 	$temp_id          = '';
 	$tour_operator    = tour_operator();
 
-	if ( isset( $tour_operator->options['tour']['itinerary_use_destination_images'] ) && '' !== $tour_operator->options['tour']['itinerary_use_destination_images'] ) {
+	if ( ( isset( $tour_operator->options['tour']['itinerary_use_destination_images'] ) && '' !== $tour_operator->options['tour']['itinerary_use_destination_images'] )
+		|| true === apply_filters( 'lsx_to_itinerary_use_destination_images', false ) ) {
 		$meta_key = 'destination_to_tour';
 	}
 
