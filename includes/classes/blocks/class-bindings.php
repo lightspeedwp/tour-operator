@@ -199,6 +199,9 @@ class Bindings {
 					$value  = array_filter( $value );
 					$values = array();
 					foreach ( $value as $pid ) {
+						if ( isset( $values[ $pid ] ) ) {
+							continue;
+						}
 						if ( true === $only_parents ) {
 							$pid_parent = get_post_parent( $pid );
 							if ( null !== $pid_parent ) {
@@ -206,7 +209,7 @@ class Bindings {
 							}
 						}
 
-						$values[] = apply_filters( 'lsx_to_connected_list_item', '<a href="' . get_permalink( $pid ) . '">' . get_the_title( $pid ) . '</a>', $pid, true );
+						$values[ $pid ] = apply_filters( 'lsx_to_connected_list_item', '<a href="' . get_permalink( $pid ) . '">' . get_the_title( $pid ) . '</a>', $pid, true );
 					}
 
 					$seperator = '';
