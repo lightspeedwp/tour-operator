@@ -528,12 +528,6 @@ if ( window.location.hash ) {
                         },
                     ],
                 } );
-
-                $this.on( 'init', function ( event, slick ) {
-                    if ( typeof toModalBootstrap === 'function' ) {
-                        toModalBootstrap();
-                    }
-                } );
             }
         } );
 
