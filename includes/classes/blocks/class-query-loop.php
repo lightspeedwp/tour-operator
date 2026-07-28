@@ -188,6 +188,14 @@ class Query_Loop {
 						return '';
 					}
 
+					// Get the _to_ and _from_ directions.
+					$directions = explode( '-related-', $query_key );
+
+					// Check if the post type exists, maybe the plugin is disabled.
+					if ( ! post_type_exists( $directions[0] ) ) {
+						return;
+					}
+
 					break;
 			}
 		} elseif ( taxonomy_exists( $key ) ) {
