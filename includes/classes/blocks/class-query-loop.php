@@ -245,7 +245,7 @@ class Query_Loop {
 					continue;
 				}
 
-				if ( ! empty( $value ) && '' !== $value ) {
+				if ( ! empty( $value ) && '' !== $value && 'none' !== $value ) {
 					$has_values = true;
 				}
 
