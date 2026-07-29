@@ -96,6 +96,17 @@ class Frontend extends Tour_Operator
 		}
 
 		wp_enqueue_script('tour-operator-script', LSX_TO_URL . $prefix . 'custom' . $suffix . '.js', array('jquery', 'slick', 'slick-lightbox'/*, 'fixto'*/), LSX_TO_VER, true);
+		$js_strings = array(
+			'read_less'   => __( 'Read Less', 'tour-operator' ),
+			'readMoreText' => __( 'Read more', 'tour-operator' ),
+		);
+		$js_strings = apply_filters( 'lsx_to_js_strings', $js_strings );
+		wp_localize_script(
+			'tour-operator-script',
+			'lsx_to_translations',
+			$js_strings
+		);
+		
 
 		if (! $has_slick) {
 			wp_enqueue_style('slick', LSX_TO_URL . 'assets/css/vendor/slick.css', array(), LSX_TO_VER);
