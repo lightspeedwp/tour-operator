@@ -10,6 +10,10 @@
  * @copyright 2017 lightspeedwp
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $metabox = array(
 	'title'  => esc_html__('Details', 'tour-operator'),
 	'pages'  => 'tour',

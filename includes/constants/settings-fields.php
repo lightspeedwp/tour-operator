@@ -1,4 +1,9 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $settings_fields = array(
 	'currency'    => array(
 		'currency'              => array(
