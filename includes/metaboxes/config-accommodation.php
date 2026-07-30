@@ -13,7 +13,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 $metabox = array(
 	'title'  => esc_html__('Details', 'tour-operator'),
 	'pages'  => 'accommodation',

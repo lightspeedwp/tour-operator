@@ -2,7 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-$settings_pages = tour_operator()->legacy->get_post_types();
+$settings_pages = tour_operator()->legacy->get_post_types(); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 ?>
 <div class="wrap lsx-to-settings">
 	<h1><?php echo esc_html__( 'Tour Operator Settings', 'tour-operator' ); ?></h1>

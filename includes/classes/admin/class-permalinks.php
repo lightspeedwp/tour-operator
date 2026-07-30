@@ -157,7 +157,7 @@ class Permalinks
 	public function save_custom_permalink_fields() {
 		if (
 			isset($_POST['lsx_to_slugs']) &&
-			is_array($_POST['lsx_to_slugs']) &&
+			is_array($_POST['lsx_to_slugs']) && // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- type check only; value is sanitized below.
 			current_user_can('manage_options')
 		) {
 			check_admin_referer('update-permalink'); // default nonce for permalink page
