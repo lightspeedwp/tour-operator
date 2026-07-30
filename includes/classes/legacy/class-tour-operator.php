@@ -9,6 +9,10 @@
 
 namespace lsx\legacy;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 use stdClass;
 
 // Setup the post connections.
@@ -37,6 +41,30 @@ class Tour_Operator {
 	 * @var      object
 	 */
 	public $framework = false;
+
+	/**
+	 * Holds the admin class instance.
+	 *
+	 * @since 1.0.0
+	 * @var object
+	 */
+	public $admin = false;
+
+	/**
+	 * Holds the frontend class instance.
+	 *
+	 * @since 1.0.0
+	 * @var object
+	 */
+	public $frontend = false;
+
+	/**
+	 * Holds the placeholders class instance.
+	 *
+	 * @since 1.0.0
+	 * @var object
+	 */
+	public $placeholders = false;
 
 	/**
 	 * Holds the array of post_types
@@ -124,6 +152,14 @@ class Tour_Operator {
 	 * @var array
 	 */
 	public $map_post_type = array();
+
+	/**
+	 * Holds an array of post types used for map markers.
+	 *
+	 * @since 1.1.5
+	 * @var array
+	 */
+	public $map_post_types = array();
 
 	/**
 	 * Holds an array of the marker URLs
@@ -378,7 +414,7 @@ class Tour_Operator {
 	public function require_post_type_classes() {
 		foreach ( $this->post_types as $post_type => $label ) {
 			if ( class_exists( "lsx\\legacy\\{$post_type}" ) ) {
-				$this->$post_type = call_user_func_array( array( "lsx\\legacy\\{$post_type}", 'get_instance' ), array() );
+				call_user_func_array( array( "lsx\\legacy\\{$post_type}", 'get_instance' ), array() );
 			}
 		}
 

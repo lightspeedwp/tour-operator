@@ -39,6 +39,83 @@ lsx_to.sticky_menu = {
 };
 
 /**
+ * Get the total extra offset from any externally-registered sticky headers.
+ *
+ * Reads the CSS selector stored in the block's data-sticky-offset-selector
+ * attribute and measures that element's height. Also checks
+ * window.lsx_to_sticky_offset_selectors (array of selector strings) so
+ * themes or plugins can register additional headers programmatically.
+ *
+ * @since 2.2.0
+ * @return {number} Total pixel height to add to the offset.
+ */
+lsx_to.get_extra_sticky_offset = function () {
+    let extra = 0;
+
+    // Selectors registered programmatically by themes / plugins.
+    const global_selectors = Array.isArray(window.lsx_to_sticky_offset_selectors)
+        ? window.lsx_to_sticky_offset_selectors
+        : [];
+
+    // Selector stored on the block element itself via the block attribute.
+    const block_selector_el = document.querySelector(
+        '.wp-block-lsx-tour-operator-sticky-menu[data-sticky-offset-selector]'
+    );
+    const block_selector = block_selector_el
+        ? block_selector_el.getAttribute('data-sticky-offset-selector')
+        : '';
+
+    const all_selectors = block_selector
+        ? [...global_selectors, block_selector]
+        : global_selectors;
+
+    all_selectors.forEach(function (selector) {
+        if (!selector) return;
+        const el = document.querySelector(selector);
+        if (el) {
+            extra += el.offsetHeight;
+        }
+    });
+
+    return extra;
+};
+
+/**
+ * Apply sticky top offset to the menu element.
+ *
+ * Combines admin bar height and user-configured sticky header offsets,
+ * then applies the final pixel value to the sticky menu's top position.
+ *
+ * @since 2.2.0
+ * @return {number} The applied pixel offset.
+ */
+lsx_to.apply_sticky_menu_offset = function () {
+    const sticky_menu_block = document.querySelector('.wp-block-lsx-tour-operator-sticky-menu');
+    if (!sticky_menu_block) {
+        return 0;
+    }
+
+    let offset = 0;
+    const admin_bar = document.querySelector('#wpadminbar');
+
+    if (admin_bar) {
+        offset += admin_bar.offsetHeight;
+    }
+
+    offset += lsx_to.get_extra_sticky_offset();
+
+    sticky_menu_block.style.top = `${offset}px`;
+
+    // Keep legacy selector support aligned if present in older markup.
+    const legacy_sticky_menu = sticky_menu_block.querySelector('.lsx-to-sticky-menu');
+    if (legacy_sticky_menu) {
+        legacy_sticky_menu.style.top = `${offset}px`;
+    }
+
+    return offset;
+};
+
+/**
  * Scroll to a specific section with smooth animation.
  *
  * Calculates proper offset for fixed headers and admin bar,
@@ -59,6 +136,7 @@ lsx_to.scroll_to_section = function (section_id) {
             document.querySelector('.top-menu-fixed #masthead').offsetHeight : 0;
         offset += document.querySelector('.lsx-to-navigation') ?
             document.querySelector('.lsx-to-navigation').offsetHeight : 0;
+        offset += lsx_to.get_extra_sticky_offset();
 
         // Use getBoundingClientRect for accurate position relative to viewport
         const rect = section.getBoundingClientRect();
@@ -284,6 +362,7 @@ lsx_to.get_active_section_on_scroll = function () {
     if (adminBar) offset += adminBar.offsetHeight;
     if (masthead) offset += masthead.offsetHeight;
     if (stickyMenu) offset += stickyMenu.offsetHeight;
+    offset += lsx_to.get_extra_sticky_offset();
 
     let activeSection = null;
     let closestDistance = Infinity;
@@ -343,6 +422,7 @@ lsx_to.handle_scroll_spy = function () {
 lsx_to.initialize_scroll_spy = function () {
     // Check if mobile
     const check_mobile = function () {
+        lsx_to.apply_sticky_menu_offset();
         lsx_to.sticky_menu.is_mobile = window.innerWidth < 768;
 
         // Initialize mobile sections if on mobile
@@ -377,6 +457,7 @@ lsx_to.initialize_scroll_spy = function () {
             if (adminBar) offset += adminBar.offsetHeight;
             if (masthead) offset += masthead.offsetHeight;
             if (stickyMenu) offset += stickyMenu.offsetHeight;
+            offset += lsx_to.get_extra_sticky_offset();
 
             // Convert offset to percentage for rootMargin
             const offsetPercentage = Math.min(50, Math.max(10, (offset / window.innerHeight) * 100));
@@ -662,6 +743,8 @@ lsx_to.initialize_sticky_menu = function () {
     if (!sticky_menu_block) {
         return;
     }
+
+    lsx_to.apply_sticky_menu_offset();
 
     // Check if any sections exist before proceeding
     const sections = document.querySelectorAll('[data-sticky-menu-section]');

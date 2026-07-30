@@ -12,6 +12,10 @@
 
 namespace lsx\legacy;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Plugin class.
  *
@@ -51,6 +55,14 @@ class Accommodation {
 	 * @var      array
 	 */
 	public $unit_types = false;
+
+	/**
+	 * Holds the Tour post type options.
+	 *
+	 * @since 1.0.0
+	 * @var array|bool
+	 */
+	public $options = false;
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and
@@ -104,6 +116,8 @@ class Accommodation {
 			'price',
 			'single_supplement',
 		];
+
+		$currency_fields = apply_filters( 'lsx_to_accommodation_currency_fields', $currency_fields );
 
 		if ( get_post_type() === 'accommodation' && in_array( $meta_key, $currency_fields ) ) {
 			$price_type    = get_post_meta( get_the_ID(), 'price_type', true );
@@ -183,7 +197,7 @@ class Accommodation {
 					--$counter;
 					--$value;
 				}
-				$html = $before . implode( '', $ratings_array ) . $after;
+				$html = $before . '<div class="rating-stars">' . implode( '', $ratings_array ) . '</div>' . $after;
 			}
 		}
 		return $html;

@@ -9,6 +9,10 @@
  * @copyright 2016 LightSpeed
  **/
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Tour Operator class autoloader.
  * It locates and finds class via classes folder structure.

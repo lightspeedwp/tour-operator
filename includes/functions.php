@@ -8,6 +8,10 @@
  * @copyright 2017 LightSpeed
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Returns an array of the tour taxonomies.
  *
@@ -210,7 +214,8 @@ function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square', $meta_key =
 	$temp_id          = '';
 	$tour_operator    = tour_operator();
 
-	if ( isset( $tour_operator->options['tour']['itinerary_use_destination_images'] ) && '' !== $tour_operator->options['tour']['itinerary_use_destination_images'] ) {
+	if ( ( isset( $tour_operator->options['tour']['itinerary_use_destination_images'] ) && '' !== $tour_operator->options['tour']['itinerary_use_destination_images'] )
+		|| true === apply_filters( 'lsx_to_itinerary_use_destination_images', false ) ) {
 		$meta_key = 'destination_to_tour';
 	}
 
@@ -315,7 +320,11 @@ function lsx_to_itinerary_connected_field( $field, $type, $before = '', $after =
 	$data = (array) $data;
 
 	if ( $term_list ) {
-		$return = get_the_term_list( $data[0], $type, $before, ', ', $after );
+		$first_term = array_values( $data );
+		if ( is_array( $first_term ) && ! empty( $first_term ) ) {
+			$first_term = $first_term[0];
+		}
+		$return = get_the_term_list( $first_term, $type, $before, ', ', $after );
 	} else {
 		$return = $before . lsx_to_connected_list( $data, $type, true, ', ' ) . $after;
 	}
@@ -498,7 +507,7 @@ function lsx_to_itinerary_count( $echo = true ) {
  * @category      accommodation
  */
 function lsx_to_accommodation_has_rooms() {
-	global $rooms;
+	global $rooms; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 	$have_rooms = false;
 	if ( null === $rooms ) {
 		$rooms = new \lsx\legacy\Unit_Query();
@@ -519,7 +528,7 @@ function lsx_to_accommodation_has_rooms() {
  * @category      room
  */
 function lsx_to_accommodation_room_loop() {
-	global $rooms;
+	global $rooms; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 	if ( is_object( $rooms ) ) {
 		return $rooms->while_query();
 	} else {
@@ -537,7 +546,7 @@ function lsx_to_accommodation_room_loop() {
  * @category      room
  */
 function lsx_to_accommodation_room_loop_item( $type = false ) {
-	global $rooms;
+	global $rooms; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 	if ( is_object( $rooms ) ) {
 		return $rooms->current_queried_item( $type );
 	} else {
@@ -557,7 +566,7 @@ function lsx_to_accommodation_room_loop_item( $type = false ) {
  * @category      room
  */
 function lsx_to_accommodation_room_title( $before = '', $after = '', $echo = true ) {
-	global $rooms;
+	global $rooms; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 	if ( is_object( $rooms ) ) {
 		$rooms->item_title( $before, $after, $echo );
 	}
@@ -575,7 +584,7 @@ function lsx_to_accommodation_room_title( $before = '', $after = '', $echo = tru
  * @category      room
  */
 function lsx_to_accommodation_room_description( $before = '', $after = '', $echo = true ) {
-	global $rooms;
+	global $rooms; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 	if ( is_object( $rooms ) ) {
 		$rooms->item_description( $before, $after, $echo );
 	}
@@ -589,7 +598,7 @@ function lsx_to_accommodation_room_description( $before = '', $after = '', $echo
  * @category      room
  */
 function lsx_to_accommodation_room_has_thumbnail() {
-	global $rooms;
+	global $rooms; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 	if ( $rooms && $rooms->have_query ) {
 		return true;
 	}
@@ -603,7 +612,7 @@ function lsx_to_accommodation_room_has_thumbnail() {
  * @category      room
  */
 function lsx_to_accommodation_check_type( $type = false ) {
-	global $rooms;
+	global $rooms; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 	return $rooms->check_type( $type );
 }
 
@@ -615,7 +624,7 @@ function lsx_to_accommodation_check_type( $type = false ) {
  * @category      room
  */
 function lsx_to_accommodation_reset_units_loop() {
-	global $rooms;
+	global $rooms; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 	return $rooms->reset_loop();
 }
 

@@ -10,6 +10,10 @@
  * @copyright 2017 lightspeedwp
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $taxonomy = array(
 	'object_types'  => array(
 		'accommodation',
@@ -25,6 +29,8 @@ $taxonomy = array(
 		'labels'              => array(
 			'name'              => esc_html__('Travel Styles', 'tour-operator'),
 			'singular_name'     => esc_html__('Travel Style', 'tour-operator'),
+			'item_link'         => esc_html__( 'Travel Style links', 'tour-operator' ),
+			'item_link_description' => esc_html__( 'Link to travel styles', 'tour-operator' ),
 			'search_items'      => esc_html__('Search Travel Styles', 'tour-operator'),
 			'all_items'         => esc_html__('Travel Styles', 'tour-operator'),
 			'parent_item'       => esc_html__('Parent Travel Style', 'tour-operator'),
@@ -40,6 +46,7 @@ $taxonomy = array(
 		'public'              => true,
 		'show_tagcloud'       => false,
 		'show_in_rest'        => true,
+		'show_in_nav_menus'   => true,
 		'exclude_from_search' => true,
 		'show_admin_column'   => true,
 		'query_var'           => true,

@@ -10,6 +10,10 @@
  * @copyright 2017 lightspeedwp
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $taxonomy = array(
 	'object_types'  => 'destination',
 	'menu_position' => 15,
@@ -18,6 +22,8 @@ $taxonomy = array(
 		'labels'              => array(
 			'name'              => esc_html__('Continents', 'tour-operator'),
 			'singular_name'     => esc_html__('Continent', 'tour-operator'),
+			'item_link'         => esc_html__( 'Continent links', 'tour-operator' ),
+			'item_link_description' => esc_html__( 'Link to continents', 'tour-operator' ),
 			'search_items'      => esc_html__('Search Continents', 'tour-operator'),
 			'all_items'         => esc_html__('Continents', 'tour-operator'),
 			'parent_item'       => esc_html__('Parent', 'tour-operator'),
@@ -33,6 +39,7 @@ $taxonomy = array(
 		'show_in_quick_edit'  => true,
 		'show_in_rest'        => true,
 		'public'              => true,
+		'show_in_nav_menus'   => true,
 		'show_tagcloud'       => false,
 		'exclude_from_search' => true,
 		'show_admin_column'   => true,

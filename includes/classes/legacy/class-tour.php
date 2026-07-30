@@ -12,6 +12,10 @@
 
 namespace lsx\legacy;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Main plugin class.
  *
@@ -44,6 +48,22 @@ class Tour
 	 * @var      object
 	 */
 	public $search_fields = false;
+
+	/**
+	 * Holds the Tour post type options.
+	 *
+	 * @since 1.0.0
+	 * @var array|bool
+	 */
+	public $options = false;
+
+	/**
+	 * Flags whether the WETU importer is active.
+	 *
+	 * @since 1.0.0
+	 * @var bool
+	 */
+	public $is_wetu_active = false;
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and
@@ -144,6 +164,8 @@ class Tour
 			'price',
 			'single_supplement',
 		];
+
+		$currency_fields = apply_filters( 'lsx_to_tour_currency_fields', $currency_fields );
 
 		if (get_post_type() === 'tour' && in_array($meta_key, $currency_fields)) {
 			$value         = preg_replace('/[^0-9,.]/', '', $value);

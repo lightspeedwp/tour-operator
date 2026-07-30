@@ -1,6 +1,137 @@
 # Changelog
 
-## [[2.1.0]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.0) - In Dev
+## [[2.1.2]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.2) - WIP
+
+### Fixed
+
+#### Performance
+- **Tour itinerary edit screen load time** - Itinerary day rows now render collapsed (`'closed' => true`) and their WYSIWYG (TinyMCE) editors initialise lazily the first time a day is expanded, instead of all editors initialising on page load. Previously a tour with many days spawned one TinyMCE instance per WYSIWYG field per day at once (e.g. a 15-day tour = 45 editors), each re-fetching the full editor asset bundle and pushing edit-screen load times into the minutes. Load cost no longer scales with the number of itinerary days. All three itinerary WYSIWYG fields (Description, Included, Excluded) remain full rich-text editors.
+
+### Added
+
+#### Visibility Controls
+- **Hide from Listings Toggle** - Added "Hide from Listings and Search" toggle in block editor Post Status sidebar for tour, accommodation, and destination post types. Hidden posts are excluded from category archives, taxonomy pages, search results, and Query Block custom queries. Hidden accommodation in day-by-day itineraries display title only without "View More" buttons in modals. Uses custom REST API endpoints for reliable meta updates and deletions - Issue [#TBD](https://github.com/lightspeedwp/tour-operator/issues/TBD)
+- **Featured Toggle REST API** - Migrated Featured toggle to use the same REST API endpoints for consistent and reliable meta handling across all post types
+
+#### Query Loops & Ordering
+- **Custom Order Checkbox** - Added "Custom Order" checkbox control to Query block settings panel, allowing queries to preserve the exact order from multiselect fields or `post__in` arrays. Works with all query variations (tours, destinations, accommodations, reviews) - [Documentation](docs/query-ordering.md)
+- **Custom Order Support for Slider Query** - Extended custom ordering functionality to the slider query block, enabling user control over post ordering in sliders
+- **Query Ordering Documentation** - Added comprehensive documentation (`docs/query-ordering.md`) explaining two methods for custom ordering: checkbox control and automatic query variations
+
+#### Filters
+- **Block Visibility** - added in a `lsx_to_maybe_hide_variation_override` to allow 3rd party plugins to control the visibility.
+- **Post Connections** - added in a `lsx_to_post_connections_value` allowing you to alter the data before it is returned to the block render function. (e.g strip out the tags).
+- **Itinerary Meta** - added in a `lsx_to_itinerary_field_value` allowing you to alter the data before it is returned to the block render function. (e.g strip out the tags).
+- **FacetWP Indexing** - added in a `lsx_to_facetwp_index_skip_row` to allow the user to skip certain items from being indexed.
+- **Itinerary Room Basis Label** - added in a `lsx_to_room_basis_label` filter to allow 3rd party plugins to override the room basis label on itinerary items.
+- **Itinerary Drinks Basis Label** - added in a `lsx_to_drinks_basis_label` filter to allow 3rd party plugins to override the drinks basis label on itinerary items.
+- **Multi-Field Wrapper Groups** - added a `lsx_to_multi_field_wrappers` filter so 3rd party plugins can register their own "hide wrapper unless one of these meta fields has content" groups in Query Loop rendering, alongside the built-in `travel-information` group.
+- **Map Location Override** - added a `lsx_to_has_maps_location` filter, applied per map type (tour, destination, continent archive) in `lsx_to_has_map()`, to allow 3rd party plugins to alter the location/connections data used to build a map before it is cached.
+- **Custom Field Group Debugging** - added a `qm/debug` action around custom field binding lookups in `Bindings::get_custom_field_value()` to aid 3rd party plugins/debugging when building custom field groups (temporary debug output was removed before release).
+
+#### Query Loops
+- **Additional CPT Query Loop Support** - Added `featured-review`, `featured-special`, `featured-team`, `review-related-review`, `special-related-special`, and `team-related-team` query loop variations, extending featured/related query support beyond tour, accommodation, and destination to the review, special, and team content types.
+- **Additional Map Attribute Keys** - Query Loop visibility checks for map blocks now also recognise the hyphenated `wetu-map` and `google-map` attribute keys, in addition to the existing `wetu_map`/`google_map`/`location` keys.
+
+### Fixed
+
+#### Editor & Navigation
+
+- **Navigation Link variation labels for CPTs and taxonomies** - Added missing `item_link` and `item_link_description` labels plus explicit `show_in_nav_menus` support for Tour Operator content models and related taxonomies so they appear correctly in Navigation Link variations and link pickers - Issue [#922](https://github.com/lightspeedwp/tour-operator/issues/922), Issue [#923](https://github.com/lightspeedwp/tour-operator/issues/923)
+- **Breadcrumb links priority and hierarchical structure** - Comprehensive breadcrumb improvements for Tour Operator content:
+  - Increased Yoast SEO breadcrumb filter priority from 20 to 200 to ensure Tour Operator breadcrumb customisations take precedence over other plugins
+  - Enhanced destination single page breadcrumbs to properly build hierarchical paths: Home → Destinations → Continent → Parent Destination → Current Destination
+  - Added post type archive breadcrumbs for destination, accommodation, and tour archives with proper Home → Archive structure
+  - Expanded taxonomy breadcrumb support from continent-only to include accommodation-brand, travel-style, and accommodation-type taxonomies, each linking to their respective post type archives
+  - Renamed `continent_breadcrumb_links()` to `taxonomy_breadcrumb_links()` for better semantic clarity and added switch logic for multiple taxonomy types
+  - Created new `archive_breadcrumbs_links()` method to handle post type archive breadcrumb generation
+  - Fixed timing issue by moving `get_post_type_archive_link()` calls from constructor to `wpseo_breadcrumb_links` filter callback via new `init_breadcrumb_properties()` method, ensuring post types are registered and permalink structure is ready before generating archive URLs
+
+#### Blocks
+
+- **Wetu Map block variation** - Removed className from Wetu Map block variation to prevent style conflicts and reverted build version in index.asset.php for consistency
+
+#### Maps
+
+- **Map data caching** - Refactored `lsx_to_map()`/`lsx_to_has_map()` in `includes/template-tags/maps.php` to resolve and cache the fully-built map render args (not just raw location data) in the `_location` transient, reducing duplicate arg-building work across tour, destination, region, and continent map contexts
+- **Destination map zoom for auto-clustered maps** - `Bindings::get_wetu_map_link()` now sets an explicit zoom when a destination's accommodation cluster resolves to a single point, rather than relying on the map auto-calculating around a single marker
+- **Destination default map zoom** - Increased the default zoom for the generic map binding from 5 to 15 for a closer initial view
+- **Custom field group debug statements** - Removed temporary `qm/debug` calls added while building the 3rd-party custom field group support
+
+#### Layout & Styling
+
+- **Archive query loop padding** - Added top and bottom default padding to archive query loops and taxonomy archives for consistent spacing
+- **Card text clipping** - Fixed text clipping issues in cards to ensure all content is visible
+- **Booking validity wrapping** - Fixed booking validity text to wrap to next row when needed for better mobile responsiveness
+- **Slider width in collapsed mobile sections** - Refreshed Slick slider layout after opening collapsed mobile sections so slide widths recalculate correctly instead of rendering at zero width.
+- **Sticky menu overflow** - Fixed overflowing sticky menu to prevent layout issues
+- **Sticky menu offset selector positioning** - Fixed sticky menu overlap with additional sticky headers by applying the configured offset selector height to the sticky menu top position at runtime
+- **Fast facts rating display** - Fixed rating display in fast facts section and ensured dots are properly rendered as circles in the slider
+- **Social sharing alignment** - Vertically aligned social sharing toolbar for consistent positioning
+- **Destination button styles** - Ensured core WordPress button styles are loaded on single destination pages for consistent button appearance
+- **Accommodation rating display** - Wrapped rating stars in a div container for better styling control in accommodation template
+- **Accommodation price display** - Added price information to single accommodation template with improved layout for better presentation
+- **Rating stars styling** - Added new styles for rating stars display with improved spacing and alignment in accommodation info section
+
+#### Itinerary
+
+- **Itinerary connected field term list** - Fixed term list retrieval in `lsx_to_itinerary_connected_field()` by normalising the data array with `array_values()` before extracting the first element, ensuring `get_the_term_list()` always receives a valid post ID rather than a potentially non-zero-indexed array offset
+
+#### Query Loops & Filtering
+
+- **Query Block Class Detection** - Improved reliability of query block class detection by checking `innerHTML` instead of `attrs['className']`, ensuring custom classes like `on-sale`, `parents-only`, and `custom-order` are properly detected even when applied via block variations or programmatically
+- **Post__in Ordering Filter** - Added new `lsx_to_query_orderby_post__in` filter hook and `enable_post_in_ordering()` method to allow third-party control over when queries should preserve `post__in` order
+- **On sale query loops** - Fixed query loop filtering to properly detect and display tours marked as "on sale". Changed the checkbox functionality for adding/removing the on-sale class. - PR [#1008](https://github.com/lightspeedwp/tour-operator/pull/1008)
+- **Filter by On Sale visibility** - Restricted "Filter by On Sale" checkbox to only display in query loop settings when post type is set to 'tour'. - PR [#1009](https://github.com/lightspeedwp/tour-operator/pull/1009)
+- **Terms Query slider support** - Extended slider block controls and frontend slider initialisation to support the Terms Query block (`core/terms-query`) and term templates, while keeping tour-only on-sale behaviour limited to Query Loop.
+- **Multi-field wrapper visibility** - Generalised the "hide wrapper unless a meta field has content" logic in `Query_Loop::render_query_loop_dynamic()` from a hard-coded `travel-information` check into a filterable, reusable `lsx_to_multi_field_wrappers` map
+
+#### Facets & Filtering
+
+- **Destination facet HTML rendering** - Guarded `destination_facet_html()` against a missing `$params['facet']['source']` key before checking it against the registered facet sources
+- **Destination facet depth/parent hierarchy** - `destination_facet_render()` now rebuilds each facet value's `depth`/`parent_id` from the actual post hierarchy (and continent taxonomy, when the continent filter is enabled) instead of trusting FacetWP's indexed values, fixing incorrectly nested continent/country/region facet options
+- **Facet depth comparisons** - Normalised `depth`/`parent_id` comparisons in `get_regions()`/`get_countries()` to consistent `(int)`/`(string)` casts, fixing sibling-depth matches that could fail due to mixed string/int types from FacetWP
+
+### Enhancements
+
+#### Frontend
+- **Tour summary information** - Added price info and title in the tour summary section for better visibility
+- **Block gap consistency** - Adjusted block gap spacing for improved visual consistency across templates
+- **Travel information cards** - Increased padding for travel information cards to improve readability
+
+#### Backend
+- **Post Type Permalinks** - Extended the Taxonomy permalinks to handle Post Type Permalinks for the single and archive slugs.
+
+#### Code Quality
+- **Breadcrumb text and URL refactoring** - Extracted repeated breadcrumb text strings and post type archive URLs to class properties (`$home_text`, `$home_url`, `$destinations_text`, `$destinations_url`, `$tours_text`, `$tours_url`, `$accommodation_text`, `$accommodation_url`) initialized in the constructor. Improves code maintainability by declaring values once and reduces repeated function calls for better performance.
+### Changed
+
+#### Code Quality & Architecture
+
+- **Content Model Loading Refactored** - Streamlined content model loading system to use JSON files more efficiently, improving data handling and initialisation process
+- **Content Model Class Cleanup** - Removed unused methods and filters from `Content_Model` class, reducing codebase complexity and improving maintainability (removed 310+ lines of unused code)
+- **JSON Initializer Removed** - Eliminated deprecated `Content_Model_JSON_Initializer` class and related loader files, consolidating functionality into `Content_Model_Manager` for a cleaner architecture
+- **Permalink Handler Updated** - Updated permalink handling to work with refactored content model structure
+
+### Removed
+
+- **Review-related query loop blocks** - Removed the `review-related-accommodation`, `review-related-destination`, and `review-related-tour` blocks; this functionality has been migrated to the TO Reviews plugin
+
+### Known Issues
+
+- **Map zoom field type mismatch** - The `disable_auto_zoom` destination field renders as a checkbox when a Google Maps API key is configured, but as a numeric 0-15 select when it isn't, while the same stored meta value is read as a single consistent zoom by `maps.php`/`class-bindings.php`. Saving a destination with no API key configured can persist `0` and force the map to render fully zoomed out - needs a fix before release.
+- **Wetu map blank on parent destinations and non-destination archives** - `Bindings::get_wetu_map_link()`'s accommodation-cluster case now reuses cached map connection data that can hold region/destination IDs rather than accommodation IDs (on parent destinations), and routes any post type archive into the same cluster path even though `lsx_to_has_map()` only builds cluster data for destination archives - needs a fix before release.
+- **Empty continent archive map** - `lsx_to_has_map()`'s continent-archive branch doesn't fall back to `false` when no countries are found, so a continent with zero destinations still renders an empty cluster map rather than hiding it - needs a fix before release.
+
+## [[2.1.1]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.1) - 2026-01-05
+
+### Fixed
+
+#### Build & Deployment
+
+- **Sticky Menu Block Filter File in Production** - Renamed `render.php` to `filters.php` in sticky-menu block and configured webpack to copy it to build folder using CopyWebpackPlugin. This ensures the mobile section headers filter is available in production releases (which only include the build/ folder). Added `function_exists()` check to prevent redeclaration errors - PR [#834](https://github.com/lightspeedwp/tour-operator/pull/834)
+
+## [[2.1.0]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.0) - 2025-12-19
 
 ### Added
 

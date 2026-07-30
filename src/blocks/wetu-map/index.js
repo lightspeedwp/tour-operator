@@ -62,7 +62,7 @@ wp.domReady(() => {
                         },
                     },
                 },
-                className: 'lsx-wetu-map-wrapper',
+                className: 'lsx-wetu-map',
                 layout: {
                     type: 'constrained',
                 },

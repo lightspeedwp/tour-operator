@@ -12,6 +12,10 @@
 
 namespace lsx\legacy;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Main plugin class.
  *
@@ -27,6 +31,20 @@ class Frontend extends Tour_Operator
 	 * @var      object
 	 */
 	public $maps = array();
+
+	/**
+	 * Breadcrumb text and URL properties
+	 *
+	 * @var string
+	 */
+	public string $home_text;
+	public string $home_url;
+	public string $destinations_text;
+	public string $destinations_url;
+	public string $tours_text;
+	public string $tours_url;
+	public string $accommodation_text;
+	public string $accommodation_url;
 
 	/**
 	 * Initialize the plugin by setting localization, filters, and
@@ -52,7 +70,7 @@ class Frontend extends Tour_Operator
 		// Readmore
 		remove_filter('term_description', 'wpautop');
 
-		add_filter('wpseo_breadcrumb_links', array($this, 'wpseo_breadcrumb_links'), 20);
+		add_filter('wpseo_breadcrumb_links', array($this, 'wpseo_breadcrumb_links'), 200);
 	}
 
 	/**
@@ -82,6 +100,17 @@ class Frontend extends Tour_Operator
 		}
 
 		wp_enqueue_script('tour-operator-script', LSX_TO_URL . $prefix . 'custom' . $suffix . '.js', array('jquery', 'slick', 'slick-lightbox'/*, 'fixto'*/), LSX_TO_VER, true);
+		$js_strings = array(
+			'read_less'   => __( 'Read Less', 'tour-operator' ),
+			'readMoreText' => __( 'Read more', 'tour-operator' ),
+		);
+		$js_strings = apply_filters( 'lsx_to_js_strings', $js_strings );
+		wp_localize_script(
+			'tour-operator-script',
+			'lsx_to_translations',
+			$js_strings
+		);
+		
 
 		if (! $has_slick) {
 			wp_enqueue_style('slick', LSX_TO_URL . 'assets/css/vendor/slick.css', array(), LSX_TO_VER);
@@ -89,6 +118,11 @@ class Frontend extends Tour_Operator
 
 		if (! $has_slick_lightbox) {
 			wp_enqueue_style('slick-lightbox', LSX_TO_URL . 'assets/css/vendor/slick-lightbox.css', array('slick'), LSX_TO_VER);
+		}
+
+		if ( is_singular( 'destination' ) ) {
+			wp_enqueue_style( 'wp-block-button' );
+			wp_enqueue_style( 'wp-block-buttons' );
 		}
 
 		wp_enqueue_style('tour-operator-style', LSX_TO_URL . 'build/style.css', array(), LSX_TO_VER);
@@ -124,27 +158,95 @@ class Frontend extends Tour_Operator
 	}
 
 	/**
+	 * Initialize breadcrumb properties.
+	 *
+	 * @since 2.1.2
+	 */
+	private function init_breadcrumb_properties() {
+		if ( $this->breadcrumb_props_initialized ) {
+			return;
+		}
+
+		$this->home_text           = esc_attr__('Home', 'tour-operator');
+		$this->home_url            = home_url();
+		$this->destinations_text   = esc_attr__('Destinations', 'tour-operator');
+		$this->destinations_url    = get_post_type_archive_link('destination');
+		$this->tours_text          = esc_attr__('Tours', 'tour-operator');
+		$this->tours_url           = get_post_type_archive_link('tour');
+		$this->accommodation_text  = esc_attr__('Accommodation', 'tour-operator');
+		$this->accommodation_url   = get_post_type_archive_link('accommodation');
+
+		$this->breadcrumb_props_initialized = true;
+	}
+
+	/**
 	 * Add continent item to the breadcrumb.
 	 */
 	public function wpseo_breadcrumb_links($crumbs)
 	{
-		if (is_tax('continent')) {
-			$crumbs = $this->continent_breadcrumb_links($crumbs);
+		// Initialize breadcrumb properties when needed
+		$this->init_breadcrumb_properties();
+
+		if ( is_tax( [ 'continent', 'accommodation-brand', 'travel-style', 'accommodation-type' ] ) ) {
+			$crumbs = $this->taxonomy_breadcrumb_links($crumbs);
 		}
 
+		// Post type archives
+		if ( is_post_type_archive( [ 'destination', 'accommodation', 'tour' ] ) ) {
+			$crumbs = $this->archive_breadcrumbs_links( $crumbs, get_post_type());
+		}
+
+		// Single Items
 		if (is_singular('destination')) {
 			$crumbs = $this->destination_breadcrumb_links($crumbs);
 		}
-
 		if (is_singular('accommodation')) {
 			$crumbs = $this->accommodation_breadcrumb_links($crumbs);
 		}
-
 		if (is_singular('tour')) {
 			$crumbs = $this->tour_breadcrumb_links($crumbs);
 		}
 
 		return $crumbs;
+	}
+
+	public function archive_breadcrumbs_links( $crumbs, $post_type ) {
+		$post_type_object = get_post_type_object( $post_type );
+		if ( ! is_post_type_archive( $post_type ) || ! $post_type_object ) {
+			return $crumbs;
+		}
+
+		switch ( $post_type ) {
+			case 'destination':
+				$text = $this->destinations_text;
+				$url  = $this->destinations_url;
+				break;
+			case 'tour':
+				$text = $this->tours_text;
+				$url  = $this->tours_url;
+				break;
+			case 'accommodation':
+				$text = $this->accommodation_text;
+				$url  = $this->accommodation_url;
+				break;
+			default:
+				$text = esc_attr( $post_type_object->labels->name );
+				$url  = get_post_type_archive_link( $post_type );
+				break;
+		}
+
+		$new_crumbs = array(
+			array(
+				'text' => $this->home_text,
+				'url'  => $this->home_url,
+			),
+			array(
+				'text' => $text,
+				'url'  => $url,
+			),
+		);
+
+		return $new_crumbs;
 	}
 
 	/**
@@ -153,14 +255,40 @@ class Frontend extends Tour_Operator
 	 * @param array $crumbs
 	 * @return array
 	 */
-	public function continent_breadcrumb_links($crumbs)
+	public function taxonomy_breadcrumb_links($crumbs)
 	{
-		$destination_breadcrumb = array(
-			'text' => esc_html__('Destinations', 'tour-operator'),
-			'url'  => get_post_type_archive_link('destination'),
-		);
-
-		array_splice($crumbs, 1, 0, array($destination_breadcrumb));
+		$taxonomy   = get_queried_object()->taxonomy;
+		$new_crumbs	= array();
+		switch ( $taxonomy ) {
+			case 'continent':
+				$new_crumbs = array(
+					'text' => $this->destinations_text,
+					'url'  => $this->destinations_url,
+				);
+				break;
+			case 'accommodation-brand':
+				$new_crumbs = array(
+					'text' => $this->accommodation_text,
+					'url'  => $this->accommodation_url,
+				);
+				break;
+			case 'travel-style':
+				$new_crumbs = array(
+					'text' => $this->tours_text,
+					'url'  => $this->tours_url,
+				);
+				break;
+			case 'accommodation-type':
+				$new_crumbs = array(
+					'text' => $this->accommodation_text,
+					'url'  => $this->accommodation_url,
+				);
+				break;
+		}
+		if ( ! empty( $new_crumbs ) ) {
+			array_splice($crumbs, 1, 0, array( $new_crumbs ));
+		}
+		
 		return $crumbs;
 	}
 
@@ -172,6 +300,18 @@ class Frontend extends Tour_Operator
 	 */
 	public function destination_breadcrumb_links($crumbs)
 	{
+
+		$new_crumbs = array(
+			array(
+				'text' => $this->home_text,
+				'url'  => $this->home_url,
+			),
+			array(
+				'text' => $this->destinations_text,
+				'url'  => $this->destinations_url,
+			),
+		);
+
 		global $post;
 		$continents = wp_get_post_terms($post->ID, 'continent');
 		if (empty($continents) || ! is_array($continents)) {
@@ -189,11 +329,27 @@ class Frontend extends Tour_Operator
 					'url'  => get_term_link($continent),
 				);
 
-				array_splice($crumbs, 2, 0, array($continent_breadcrumb));
+				array_splice($new_crumbs, 2, 0, array($continent_breadcrumb));
 				break;
 			}
 		}
-		return $crumbs;
+
+		if ( has_post_parent() ) {
+			$parent = get_post_parent();
+			$parent_breadcrumb = array(
+				'text' => $parent->post_title,
+				'url'  => get_permalink( $parent->ID ),
+			);
+
+			array_splice($new_crumbs, 3, 0, array($parent_breadcrumb));
+		}
+
+		$new_crumbs[] = array(
+			'text' => get_the_title(),
+			'url'  => get_permalink(),
+		);
+
+		return $new_crumbs;
 	}
 
 	/**
@@ -206,12 +362,12 @@ class Frontend extends Tour_Operator
 	{
 		$new_crumbs = array(
 			array(
-				'text' => esc_attr__('Home', 'tour-operator'),
-				'url'  => home_url(),
+				'text' => $this->home_text,
+				'url'  => $this->home_url,
 			),
 			array(
-				'text' => esc_attr__('Accommodation', 'tour-operator'),
-				'url'  => get_post_type_archive_link('accommodation'),
+				'text' => $this->accommodation_text,
+				'url'  => $this->accommodation_url,
 			),
 		);
 
@@ -260,12 +416,12 @@ class Frontend extends Tour_Operator
 	{
 		$new_crumbs = array(
 			array(
-				'text' => esc_attr__('Home', 'tour-operator'),
-				'url'  => home_url(),
+				'text' => $this->home_text,
+				'url'  => $this->home_url,
 			),
 			array(
-				'text' => esc_attr__('Tours', 'tour-operator'),
-				'url'  => get_post_type_archive_link('tour'),
+				'text' => $this->tours_text,
+				'url'  => $this->tours_url,
 			),
 		);
 
@@ -280,7 +436,8 @@ class Frontend extends Tour_Operator
 			);
 		} else {
 			$counter = 0;
-			$terms   = wp_get_object_terms(get_the_ID(), 'travel-style');
+			$terms   = wp_get_object_terms( get_the_ID(), 'travel-style');
+
 			if (! is_wp_error($terms) && ! empty($terms)) {
 				foreach ($terms as $term) {
 					if (0 < $counter) {

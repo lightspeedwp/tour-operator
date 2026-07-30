@@ -8,6 +8,9 @@
 	-webkit-line-clamp: 4;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
+	p {
+		padding-bottom: 0;
+	}
 }
 
 .is-style-shadow-sm {
@@ -147,6 +150,25 @@ button.facetwp-reset{
 	width:150px;
 	border-radius: 4px;
 }
+
+.rating-stars {
+	figure {
+		display: inline-block;
+		margin: 0;
+		line-height: 1rem;
+	}
+}
+
+.lsx-accommodation-info, .lsx-tour-info {
+	> div {
+		flex-wrap: wrap;
+		> * {
+			flex-shrink: 0;
+			max-width: 100%;
+		}
+	}
+}
+
 @media only screen and (min-width:1240px){
 	body .facetwp-facet .facetwp-dropdown,body .facetwp-facet .facetwp-checkboxes,body .facetwp-facet .facetwp-range,body .facetwp-facet .facetwp-radio {
 		min-width: 220px;

@@ -227,7 +227,7 @@ if ( window.location.hash ) {
                 }
             } );
             button.addClass( 'less-link' );
-            button.text( 'Read Less' );
+            button.text( lsx_to_translations.read_less ); 
             button.show();
         }
     };
@@ -304,6 +304,96 @@ if ( window.location.hash ) {
     };
 
     /**
+     * Refresh initialized slick sliders after hidden content becomes visible.
+     *
+     * @param      root
+     * @package
+     * @subpackage scripts
+     */
+    lsx_to.refresh_slick_in = function ( root = document ) {
+        const $root = root instanceof jQuery ? root : $( root );
+        const $sliders =
+            $root.is( '.slick-initialized' )
+                ? $root
+                : $root.find( '.slick-initialized' );
+
+        $sliders.each( function () {
+            const $slider = $( this );
+            if ( ! $slider.hasClass( 'slick-initialized' ) ) {
+                return;
+            }
+
+            // Trigger a full slick layout recalculation now that the slider is visible.
+            $slider.slick( 'setPosition' );
+            $slider.trigger( 'resize' );
+        } );
+    };
+
+    /**
+     * Reflow slick sliders when hidden/collapsed sections are opened.
+     *
+     * @package
+     * @subpackage scripts
+     */
+    lsx_to.bind_slider_visibility_refresh = function () {
+        const scheduleRefresh = function ( target ) {
+            // Delay to let CSS class/state transitions finish before measuring widths.
+            setTimeout( function () {
+                lsx_to.refresh_slick_in( target || document );
+            }, 50 );
+        };
+
+        // Legacy mobile collapse toggle.
+        $document.on(
+            'click',
+            '.single-tour-operator .toggle-button',
+            function () {
+                const section = $( this ).closest( 'section' );
+                scheduleRefresh( section.length ? section : document );
+            }
+        );
+
+        // Sticky menu mobile section header toggle.
+        $document.on(
+            'click',
+            '.single-tour-operator .lsx-to-section-header',
+            function () {
+                const wrapper =
+                    $( this ).closest( '.lsx-to-sticky-menu-section-wrapper' );
+                scheduleRefresh( wrapper.length ? wrapper : document );
+            }
+        );
+
+        // Generic fallback: watch for collapsed class changes on mobile wrappers.
+        const collapseTargets = document.querySelectorAll(
+            '.single-tour-operator section .wp-block-group, .single-tour-operator .lsx-to-sticky-menu-section-wrapper'
+        );
+
+        if ( collapseTargets.length === 0 ) {
+            return;
+        }
+
+        const observer = new MutationObserver( function ( mutations ) {
+            mutations.forEach( function ( mutation ) {
+                if ( mutation.attributeName !== 'class' ) {
+                    return;
+                }
+                const target = mutation.target;
+                if ( ! target.classList.contains( 'collapsed' ) ) {
+                    scheduleRefresh( target );
+                }
+            } );
+        } );
+
+        collapseTargets.forEach( function ( node ) {
+            observer.observe( node, {
+                attributes: true,
+                attributeFilter: [ 'class' ],
+            } );
+        } );
+    };
+
+    /**
      * Get responsive breakpoints for sliders
      *
      * @param      slidesToShow
@@ -358,17 +448,18 @@ if ( window.location.hash ) {
     lsx_to.build_slider = function ( window_width ) {
         // First slider: .lsx-to-slider
         $(
-            '.lsx-to-slider:not(.lsx-block-videos) .wp-block-post-template:not(.slider-disabled)'
+            '.lsx-to-slider:not(.lsx-block-videos) .wp-block-post-template:not(.slider-disabled), ' +
+                '.lsx-to-slider:not(.lsx-block-videos) .wp-block-term-template:not(.slider-disabled)'
         ).each( function () {
             const $this = $( this );
             let slidesToShow = 3;
 
             lsx_to.pre_build_slider( $this );
 
-            const str = $this.attr( 'class' );
+            const str = $this.attr( 'class' ) || '';
             const classRegex = /columns-\S*/g;
             const matches = str.match( classRegex );
-            if ( 0 < matches.length ) {
+            if ( matches && 0 < matches.length ) {
                 const column = matches[ 0 ].split( '-' )[ 1 ];
                 slidesToShow = column;
             }
@@ -436,12 +527,6 @@ if ( window.location.hash ) {
                             },
                         },
                     ],
-                } );
-
-                $this.on( 'init', function ( event, slick ) {
-                    if ( typeof toModalBootstrap === 'function' ) {
-                        toModalBootstrap();
-                    }
                 } );
             }
         } );
@@ -627,10 +712,11 @@ if ( window.location.hash ) {
      * @subpackage scripts
      */
     $document.ready( function () {
-        lsx_to.readMoreText = 'Read more';
+        lsx_to.readMoreText = lsx_to_translations.readMoreText;
         lsx_to.set_read_more();
         lsx_to.set_read_more_itinerary();
         lsx_to.build_slider( window_width );
+        lsx_to.bind_slider_visibility_refresh();
         lsx_to.watch_for_youtube_videos(); // Start watching for YouTube videos
     } );
 

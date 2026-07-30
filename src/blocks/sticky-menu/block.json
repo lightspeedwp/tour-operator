@@ -59,6 +59,10 @@
     },
     "customHoverTextColor": {
       "type": "string"
+    },
+    "stickyOffsetSelector": {
+      "type": "string",
+      "default": ""
     }
   },
   "textdomain": "tour-operator",

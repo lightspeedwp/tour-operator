@@ -31,5 +31,4 @@ if ( ! function_exists( 'content_model_require_if_exists' ) ) {
 	}
 }
 
-content_model_require_if_exists( __DIR__ . '/includes/json-initializer/0-load.php' );
 content_model_require_if_exists( __DIR__ . '/includes/runtime/0-load.php' );

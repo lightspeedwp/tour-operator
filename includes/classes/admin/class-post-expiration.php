@@ -5,6 +5,10 @@
 
 namespace lsx\admin;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Registers our Custom Fields
  *
@@ -19,8 +23,8 @@ class Post_Expiration {
 	 * @access private
 	 */
 	public function __construct() {
-		add_action( 'save_post_tour', [ $this, 'maybe_schedule_tour_expiration' ], 10, 1 );
-		add_action( 'lsx_to_expire_tour', array( $this, 'expire_tour' ), 10, 2 );
+		//add_action( 'save_post_tour', [ $this, 'maybe_schedule_tour_expiration' ], 10, 1 );
+		//	add_action( 'lsx_to_expire_tour', array( $this, 'expire_tour' ), 10, 2 );
 	}
 
 	/**

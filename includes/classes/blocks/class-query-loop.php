@@ -1,6 +1,10 @@
 <?php
 namespace lsx\blocks;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * The creation of the block variants and the code to control the display.
  *
@@ -33,6 +37,13 @@ class Query_Loop {
 	protected $parents_only = false;
 
 	/**
+	 * True if the current query outputting needs a custom order.
+	 *
+	 * @var boolean
+	 */
+	protected $custom_order = false;
+
+	/**
 	 * Stores processed query args keyed by the core/query block queryId so we don't
 	 * recalculate alterations multiple times for the same block on a single request.
 	 *
@@ -53,6 +64,7 @@ class Query_Loop {
 		add_filter( 'render_block', array( $this, 'maybe_hide_varitaion' ), 10, 3 );
 		add_filter( 'posts_pre_query', array( $this, 'posts_pre_query' ), 10, 2 );
 		add_filter( 'query_loop_block_query_vars', array( $this, 'query_args_filter' ), 1, 2 );
+		add_filter( 'lsx_to_query_orderby_post__in', array( $this, 'enable_post_in_ordering' ), 10, 3 );
 	}
 
 	/**
@@ -88,36 +100,43 @@ class Query_Loop {
 			return $block_content;
 		}
 
-		if ( in_array( 'travel-information', $matches ) ) {
-			// Check if ANY travel information fields have content
-			$travel_info_keys = array(
-				'additional_info',
-				'banking',
-				'climate',
-				'cuisine',
-				'electricity',
-				'dress',
-				'health',
-				'safety',
-				'transport',
-				'visa',
-			);
-			
-			$has_travel_info = false;
-			foreach ( $travel_info_keys as $meta_key ) {
+		/**
+		 * Wrappers that house multiple meta fields: hide the block only when ALL fields are empty.
+		 * Add-on plugins register their own groups via this filter.
+		 *
+		 * @param array $wrappers Map of CSS wrapper key (without lsx- prefix / -wrapper suffix)
+		 *                        to an array of post-meta keys that belong to that wrapper.
+		 */
+		$multi_field_wrappers = apply_filters(
+			'lsx_to_multi_field_wrappers',
+			array(
+				'travel-information' => array(
+					'additional_info',
+					'banking',
+					'climate',
+					'cuisine',
+					'electricity',
+					'dress',
+					'health',
+					'safety',
+					'transport',
+					'visa',
+				),
+			)
+		);
+
+		$wrapper_key = isset( $matches[2] ) ? $matches[2] : '';
+
+		if ( isset( $multi_field_wrappers[ $wrapper_key ] ) ) {
+			$has_value = false;
+			foreach ( $multi_field_wrappers[ $wrapper_key ] as $meta_key ) {
 				$value = get_post_meta( get_the_ID(), $meta_key, true );
 				if ( ! empty( $value ) && '' !== $value ) {
-					$has_travel_info = true;
+					$has_value = true;
 					break;
 				}
 			}
-			
-			// If no travel info exists, hide the entire section
-			if ( ! $has_travel_info ) {
-				return '';
-			}
-
-			return $block_content;
+			return $has_value ? $block_content : '';
 		}
 
 		if ( ! empty( $matches ) && isset( $matches[0] ) ) {
@@ -173,6 +192,14 @@ class Query_Loop {
 						return '';
 					}
 
+					// Get the _to_ and _from_ directions.
+					$directions = explode( '-related-', $query_key );
+
+					// Check if the post type exists, maybe the plugin is disabled.
+					if ( ! post_type_exists( $directions[0] ) ) {
+						return;
+					}
+
 					break;
 			}
 		} elseif ( taxonomy_exists( $key ) ) {
@@ -183,7 +210,7 @@ class Query_Loop {
 			if ( empty( wp_get_post_terms( get_the_ID(), $key, $tax_args ) ) ) {
 				$block_content = '';
 			}
-		} elseif ( 'location' === $key ) {
+		} elseif ( 'location' === $key || 'wetu_map' === $key || 'google_map' === $key || 'wetu-map' === $key || 'google-map' === $key ) {
 			if ( ! lsx_to_has_map() ) {
 				$block_content = '';
 			}
@@ -222,9 +249,11 @@ class Query_Loop {
 					continue;
 				}
 
-				if ( ! empty( $value ) && '' !== $value ) {
+				if ( ! empty( $value ) && '' !== $value && 'none' !== $value ) {
 					$has_values = true;
 				}
+
+				$has_values = apply_filters( 'lsx_to_maybe_hide_variation_override', $has_values, $meta_key, $value, get_the_ID() );
 			}
 
 			if ( false === $has_values ) {
@@ -256,6 +285,7 @@ class Query_Loop {
 	 * @return array
 	 */
 	public function save_checkbox_queries( $parsed_block ) {
+
 		if ( ! isset( $parsed_block['blockName'] ) || ! isset( $parsed_block['attrs'] ) ) {
 			return $parsed_block;
 		}
@@ -267,18 +297,23 @@ class Query_Loop {
 			return $parsed_block;
 		}
 
-		if ( ! isset( $parsed_block['attrs']['className'] ) || '' === $parsed_block['attrs']['className'] || false === $parsed_block['attrs']['className'] ) {
+		if ( ! isset( $parsed_block['innerHTML'] ) || '' === $parsed_block['innerHTML'] || false === $parsed_block['innerHTML'] ) {
 			return $parsed_block;
 		}
 
 		$this->onsale = false;
-		if ( false !== stripos( $parsed_block['attrs']['className'], 'on-sale' ) ) {
+		if ( false !== stripos( $parsed_block['innerHTML'], 'on-sale' ) ) {
 			$this->onsale = true;
 		}
 
 		$this->parents_only = false;
-		if ( false !== stripos( $parsed_block['attrs']['className'], 'parents-only' ) ) {
+		if ( false !== stripos( $parsed_block['innerHTML'], 'parents-only' ) ) {
 			$this->parents_only = true;
+		}
+
+		$this->custom_order = false;
+		if ( false !== stripos( $parsed_block['innerHTML'], 'custom-order' ) ) {
+			$this->custom_order = true;
 		}
 
 		return $parsed_block;
@@ -337,6 +372,9 @@ class Query_Loop {
 		}
 
 		switch ( $key ) {
+			case 'onsale':
+				// Handled above for all queries.
+				break;
 			case 'regions':
 				// We only restric this on the destination post type, in case the block is used on a landing page.
 				if ( 'destination' === get_post_type() ) {
@@ -359,6 +397,9 @@ class Query_Loop {
 			case 'featured-accommodation':
 			case 'featured-tours':
 			case 'featured-destinations':
+			case 'featured-review':
+			case 'featured-special':
+			case 'featured-team':
 				$query = $this->featured_query( $query, $key );
 				break;
 
@@ -368,6 +409,9 @@ class Query_Loop {
 				// Tour Query Loops
 			case 'tour-related-accommodation':
 			case 'accommodation-related-accommodation':
+			case 'review-related-review':
+			case 'special-related-special':
+			case 'team-related-team':
 				$to         = '';
 				$from       = '';
 				$directions = explode( '-related-', $key );
@@ -394,7 +438,9 @@ class Query_Loop {
 
 				$query = $this->related_taxonomy_query( $query, $key );
 
-				if ( ! isset( $query['post__in'] ) && ! isset( $query['tax_query'] ) ) {
+				do_action( 'qm/debug', $query );
+
+				if ( ( ! isset( $query['post__in'] ) && ! isset( $query['tax_query'] ) ) || ( empty( $query['post__in'] ) && empty( $query['tax_query'] ) ) ) {
 					$this->disabled[ $key ] = true;
 				}
 
@@ -408,6 +454,16 @@ class Query_Loop {
 			// 'review-related-tour':
 			// 'review-related-accommodation':
 			// 'review-related-destination':
+
+			// CPTs Specials Query Loops
+			// 'special-related-destination':
+			// 'special-related-accommodation':
+			// 'special-related-tour':
+
+			// CPTs Team Query Loops
+			// 'team-related-destination':
+			// 'team-related-accommodation':
+			// 'team-related-tour':
 			default:
 				$to         = '';
 				$from       = '';
@@ -656,5 +712,45 @@ class Query_Loop {
 		$query['post__not_in'] = array( get_the_ID() );
 
 		return $query;
+	}
+
+	/**
+	 * Determines which query variations should preserve the order from post__in array.
+	 *
+	 * This enables ordering tours on destination pages by the order set in the
+	 * tour_to_destination multiselect field in the backend, or when the Custom Order
+	 * checkbox is enabled in the query block settings.
+	 *
+	 * @param bool  $enable Whether to enable post__in ordering (default false).
+	 * @param array $query  The query arguments.
+	 * @param array $block  The block data.
+	 * @return bool Whether to enable post__in ordering.
+	 */
+	public function enable_post_in_ordering( $enable, $query, $block ) {
+
+		return $this->custom_order;
+
+		// Extract the query variation key from the block className
+		/*if ( isset( $block['attrs']['className'] ) ) {
+			$pattern = '/(lsx|facts)-(.*?)-query/';
+			preg_match( $pattern, $block['attrs']['className'], $matches );
+
+			if ( ! empty( $matches ) ) {
+				$key = str_replace( [ 'facts-', 'lsx-', '-query' ], '', $matches[0] );
+
+				// Enable post__in ordering for specific query variations
+				$ordered_variations = array(
+					'tour-related-destination',        // Tours on destination pages
+					'accommodation-related-destination', // Accommodations on destination pages
+					// Add other variations here as needed
+				);
+
+				if ( in_array( $key, $ordered_variations, true ) ) {
+					return true;
+				}
+			}
+		}*/
+
+		return $enable;
 	}
 }
