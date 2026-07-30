@@ -1,3 +1,4 @@
+<?php if ( ! defined( 'ABSPATH' ) ) { exit; } ?>
 <div id="ui-<?php echo esc_attr( $tab_index ); ?>" class="ui-tab tabs-content">
 	<table class="form-table">
 		<tbody>

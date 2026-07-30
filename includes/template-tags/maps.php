@@ -10,6 +10,10 @@
  * @copyright 2016 lightspeedwp
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Checks if maps are enabled.
  *
