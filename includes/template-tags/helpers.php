@@ -8,6 +8,10 @@
  * @license         GPL3
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /* ================== CONDITIONAL ================== */
 
 /**

@@ -3,7 +3,7 @@ Contributors: lightspeedwp, wetudev
 Plugin URI: https://touroperator.solutions/tour-operator-wordpress-plugin/
 Tags: tour operator, travel, itinerary, tours, destinations, accommodations, tourism
 Requires at least: 6.7
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 8.0
 Stable tag: 2.1.2
 License: GPLv3 or later

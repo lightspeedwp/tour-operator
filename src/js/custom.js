@@ -227,7 +227,7 @@ if ( window.location.hash ) {
                 }
             } );
             button.addClass( 'less-link' );
-            button.text( 'Read Less' );
+            button.text( lsx_to_translations.read_less ); 
             button.show();
         }
     };
@@ -528,12 +528,6 @@ if ( window.location.hash ) {
                         },
                     ],
                 } );
-
-                $this.on( 'init', function ( event, slick ) {
-                    if ( typeof toModalBootstrap === 'function' ) {
-                        toModalBootstrap();
-                    }
-                } );
             }
         } );
 
@@ -718,7 +712,7 @@ if ( window.location.hash ) {
      * @subpackage scripts
      */
     $document.ready( function () {
-        lsx_to.readMoreText = 'Read more';
+        lsx_to.readMoreText = lsx_to_translations.readMoreText;
         lsx_to.set_read_more();
         lsx_to.set_read_more_itinerary();
         lsx_to.build_slider( window_width );

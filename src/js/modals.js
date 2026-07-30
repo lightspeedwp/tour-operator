@@ -15,9 +15,20 @@ const mouseEvent = ( e ) => {
     }
 };
 
+// Triggers (e.g. links inside a Slick slider) can be cloned by third-party
+// scripts after this file runs, and clones don't inherit listeners bound via
+// addEventListener. So click handling for triggers/close links is delegated
+// on `document` and resolved at click-time instead of bound per-element -
+// that way it keeps working no matter how the trigger element got into the DOM.
 const toModalBootstrap = () => {
     let exitIntentSetup = false;
+
     document.querySelectorAll( '.wp-block-hm-popup' ).forEach( ( popup ) => {
+        if ( popup.dataset.lsxToModalBound ) {
+            return;
+        }
+        popup.dataset.lsxToModalBound = '1';
+
         // On close remove HTML class.
         popup.addEventListener( 'close', () => {
             document
@@ -31,23 +42,6 @@ const toModalBootstrap = () => {
                 event.currentTarget.close();
             }
         } );
-
-        // Handle click trigger.
-        if ( popup?.dataset.trigger === 'click' ) {
-            document
-                .querySelectorAll( `[href="#${ popup.id || '' }"]` )
-                .forEach( ( trigger ) => {
-                    trigger.addEventListener( 'click', ( event ) => {
-                        event.preventDefault();
-                        document
-                            .querySelector( 'html' )
-                            .classList.add( 'has-modal-open' );
-                        popup.showModal();
-                        // Focus the modal container instead of the close button
-                        popup.focus();
-                    } );
-                } );
-        }
 
         // Handle exit intent trigger.
         if ( popup?.dataset.trigger === 'exit' ) {
@@ -69,28 +63,50 @@ const toModalBootstrap = () => {
             }
         }
     } );
-
-    // Bind close events.
-    document
-        .querySelectorAll(
-            [
-                '.wp-block-hm-popup__close',
-                '.wp-block-hm-popup [href="#close"]',
-            ].join( ',' )
-        )
-        .forEach( ( el ) => {
-            el.addEventListener( 'click', ( event ) => {
-                event.preventDefault();
-                event.currentTarget.closest( '.wp-block-hm-popup' ).close();
-            } );
-        } );
 };
+
+// Delegated: handles click-trigger links, including ones cloned into the
+// DOM (e.g. by Slick) after toModalBootstrap() has already run.
+document.addEventListener( 'click', ( event ) => {
+    const trigger = event.target.closest( 'a[href^="#"]' );
+    if ( ! trigger ) {
+        return;
+    }
+
+    const popup = document.getElementById(
+        trigger.getAttribute( 'href' ).slice( 1 )
+    );
+    if (
+        ! popup ||
+        ! popup.classList.contains( 'wp-block-hm-popup' ) ||
+        popup.dataset.trigger !== 'click'
+    ) {
+        return;
+    }
+
+    event.preventDefault();
+    document.querySelector( 'html' ).classList.add( 'has-modal-open' );
+    popup.showModal();
+    // Focus the modal container instead of the close button
+    popup.focus();
+} );
+
+// Delegated: handles close buttons/links, including clones.
+document.addEventListener( 'click', ( event ) => {
+    const closeTrigger = event.target.closest(
+        '.wp-block-hm-popup__close, .wp-block-hm-popup [href="#close"]'
+    );
+    if ( ! closeTrigger ) {
+        return;
+    }
+
+    event.preventDefault();
+    closeTrigger.closest( '.wp-block-hm-popup' ).close();
+} );
 
 // Handle async scripts.
 if ( document.readyState !== 'loading' ) {
     toModalBootstrap();
 } else {
-    document.addEventListener( 'DOMContentLoaded', toModalBootstrap );
-
     document.addEventListener( 'DOMContentLoaded', toModalBootstrap );
 }

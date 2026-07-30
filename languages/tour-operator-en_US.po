@@ -1,43 +1,52 @@
-# Copyright (C) 2025 lightspeedwp
+# Copyright (C) 2026 lightspeedwp
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Tour Operator 2.1.0\n"
+"Project-Id-Version: Tour Operator 2.1.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/tour-operator\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-12-01T12:46:01+00:00\n"
+"POT-Creation-Date: 2026-07-30T07:34:48+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.8.1\n"
+"X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: tour-operator\n"
 
 #. Plugin Name of the plugin
-#: includes/classes/admin/class-permalinks.php:105
+#: tour-operator.php
 #: includes/classes/admin/class-settings.php:142
-#: includes/classes/blocks/class-patterns.php:37
-#: includes/classes/blocks/class-patterns.php:50
+#: includes/classes/blocks/class-patterns.php:48
+#: includes/classes/blocks/class-patterns.php:70
 #: build/blocks/videos/index.js:1
 #: src/blocks/videos/index.js:104
 msgid "Tour Operator"
 msgstr ""
 
 #. Plugin URI of the plugin
+#: tour-operator.php
 msgid "https://touroperator.solutions/"
 msgstr ""
 
 #. Description of the plugin
+#: tour-operator.php
 msgid "Showcase tours, destinations, and accommodations with digital itineraries, galleries, and integrated maps."
 msgstr ""
 
 #. Author of the plugin
+#: tour-operator.php
 msgid "lightspeedwp"
 msgstr ""
 
 #. Author URI of the plugin
+#: tour-operator.php
 msgid "https://lightspeedwp.agency/"
+msgstr ""
+
+#: build/blocks/sticky-menu/filters.php:54
+#: src/blocks/sticky-menu/filters.php:54
+msgid "Toggle section content visibility"
 msgstr ""
 
 #: includes/classes/admin/class-admin.php:42
@@ -47,6 +56,8 @@ msgstr ""
 #: includes/classes/admin/class-admin.php:56
 #: includes/classes/admin/class-settings.php:127
 #: includes/classes/admin/class-settings.php:142
+#: build/blocks/modal-button/index.js:1
+#: src/blocks/modal-button/index.js:87
 msgid "Settings"
 msgstr ""
 
@@ -58,30 +69,52 @@ msgstr ""
 msgid "Support"
 msgstr ""
 
-#: includes/classes/admin/class-permalinks.php:94
+#: includes/classes/admin/class-permalinks.php:92
 #: includes/classes/legacy/class-destination.php:94
-#: includes/classes/legacy/class-tour-operator.php:284
-#: includes/taxonomies/config-travel-style.php:27
+#: includes/classes/legacy/class-tour-operator.php:316
+#: includes/taxonomies/config-travel-style.php:31
 msgid "Travel Style"
 msgstr ""
 
-#: includes/classes/admin/class-permalinks.php:97
-#: includes/classes/legacy/class-tour-operator.php:286
-#: includes/taxonomies/config-accommodation-type.php:20
-#: build/blocks/accommodation-type/index.js:1
-#: src/blocks/accommodation-type/index.js:59
+#: includes/classes/admin/class-permalinks.php:95
+#: includes/classes/legacy/class-tour-operator.php:318
+#: includes/taxonomies/config-accommodation-type.php:24
 msgid "Accommodation Type"
 msgstr ""
 
-#: includes/classes/admin/class-permalinks.php:100
-#: includes/classes/legacy/class-tour-operator.php:285
-#: includes/taxonomies/config-accommodation-brand.php:20
+#: includes/classes/admin/class-permalinks.php:98
+#: includes/classes/legacy/class-tour-operator.php:317
+#: includes/taxonomies/config-accommodation-brand.php:24
 msgid "Brand"
 msgstr ""
 
+#: includes/classes/admin/class-permalinks.php:102
+msgid "Tour Operator - Taxonomies"
+msgstr ""
+
+#: includes/classes/admin/class-permalinks.php:128
+msgid "Tour Operator - Post Types"
+msgstr ""
+
+#: includes/classes/admin/class-permalinks.php:212
+msgid "Single"
+msgstr ""
+
+#: includes/classes/admin/class-permalinks.php:213
+msgid "Archive"
+msgstr ""
+
+#. translators: %1$s is the name of the hook to be cancelled, %2$s is the exception message.
+#: includes/classes/admin/class-post-expiration.php:55
+#, php-format
+msgid "Caught exception while cancelling action \"%1$s\": %2$s"
+msgstr ""
+
 #: includes/classes/admin/class-settings.php:94
-#: includes/metaboxes/config-destination.php:111
-#: includes/partials/navigation.php:13
+#: includes/classes/frontend/class-modals.php:329
+#: includes/metaboxes/config-destination.php:115
+#: includes/partials/navigation.php:16
+#: patterns/travel-information.php:31
 #: build/blocks/additional-info/index.js:1
 #: src/blocks/additional-info/index.js:61
 #: src/blocks/additional-info/index.js:132
@@ -89,28 +122,28 @@ msgid "General"
 msgstr ""
 
 #: includes/classes/admin/class-settings.php:99
-#: includes/classes/legacy/class-frontend.php:159
-#: includes/classes/legacy/class-tour-operator.php:267
+#: includes/classes/legacy/class-frontend.php:168
+#: includes/classes/legacy/class-tour-operator.php:299
 msgid "Destinations"
 msgstr ""
 
 #: includes/classes/admin/class-settings.php:104
-#: includes/classes/legacy/class-frontend.php:267
-#: includes/classes/legacy/class-tour-operator.php:269
+#: includes/classes/legacy/class-frontend.php:170
+#: includes/classes/legacy/class-tour-operator.php:301
 msgid "Tours"
 msgstr ""
 
 #: includes/classes/admin/class-settings.php:109
-#: includes/classes/legacy/class-frontend.php:213
-#: includes/classes/legacy/class-tour-operator.php:268
-#: includes/classes/legacy/class-tour-operator.php:274
+#: includes/classes/legacy/class-frontend.php:172
+#: includes/classes/legacy/class-tour-operator.php:300
+#: includes/classes/legacy/class-tour-operator.php:306
 #: build/blocks/included/index.js:1
 #: src/blocks/included/index.js:98
 msgid "Accommodation"
 msgstr ""
 
 #: includes/classes/admin/class-settings.php:126
-#: includes/partials/settings.php:5
+#: includes/partials/settings.php:8
 msgid "Tour Operator Settings"
 msgstr ""
 
@@ -120,10 +153,10 @@ msgstr ""
 
 #: includes/classes/admin/class-settings.php:444
 #: includes/classes/legacy/class-admin.php:340
-#: includes/metaboxes/config-accommodation.php:110
-#: includes/metaboxes/config-destination.php:134
-#: includes/metaboxes/config-post.php:28
-#: includes/metaboxes/config-tour.php:154
+#: includes/metaboxes/config-accommodation.php:114
+#: includes/metaboxes/config-destination.php:138
+#: includes/metaboxes/config-post.php:32
+#: includes/metaboxes/config-tour.php:158
 msgid "Choose Image"
 msgstr ""
 
@@ -132,66 +165,145 @@ msgid "Delete"
 msgstr ""
 
 #: includes/classes/blocks/class-bindings.php:63
-#: includes/classes/legacy/class-accommodation.php:69
+#: includes/classes/legacy/class-accommodation.php:77
 msgid "Chalet"
 msgstr ""
 
 #: includes/classes/blocks/class-bindings.php:64
-#: includes/classes/legacy/class-accommodation.php:70
+#: includes/classes/legacy/class-accommodation.php:78
 msgid "Room"
 msgstr ""
 
 #: includes/classes/blocks/class-bindings.php:65
-#: includes/classes/legacy/class-accommodation.php:71
+#: includes/classes/legacy/class-accommodation.php:79
 msgid "Spa"
 msgstr ""
 
 #: includes/classes/blocks/class-bindings.php:66
-#: includes/classes/legacy/class-accommodation.php:72
+#: includes/classes/legacy/class-accommodation.php:80
 msgid "Tent"
 msgstr ""
 
 #: includes/classes/blocks/class-bindings.php:67
-#: includes/classes/legacy/class-accommodation.php:73
+#: includes/classes/legacy/class-accommodation.php:81
 msgid "Villa"
 msgstr ""
 
-#: includes/classes/blocks/class-bindings.php:91
+#: includes/classes/blocks/class-bindings.php:92
 msgid "Post Connection"
 msgstr ""
 
-#: includes/classes/blocks/class-bindings.php:99
+#: includes/classes/blocks/class-bindings.php:100
 msgid "Post Meta"
 msgstr ""
 
-#: includes/classes/blocks/class-bindings.php:107
-#: includes/metaboxes/config-tour.php:181
+#: includes/classes/blocks/class-bindings.php:108
+#: includes/metaboxes/config-tour.php:185
 #: build/blocks/itinerary/index.js:1
 #: src/blocks/itinerary/index.js:17
 #: src/blocks/itinerary/index.js:31
-#: src/blocks/itinerary/index.js:122
+#: src/blocks/itinerary/index.js:139
 msgid "Itinerary"
 msgstr ""
 
-#: includes/classes/blocks/class-bindings.php:115
+#: includes/classes/blocks/class-bindings.php:116
 #: build/blocks/units/index.js:1
 #: src/blocks/units/index.js:18
 #: src/blocks/units/index.js:31
-#: src/blocks/units/index.js:72
-#: src/blocks/units/index.js:125
+#: src/blocks/units/index.js:74
+#: src/blocks/units/index.js:135
 msgid "Units"
 msgstr ""
 
-#: includes/classes/blocks/class-bindings.php:123
-#: includes/metaboxes/config-accommodation.php:124
-#: includes/metaboxes/config-destination.php:148
-#: includes/metaboxes/config-post.php:42
-#: includes/metaboxes/config-tour.php:168
+#: includes/classes/blocks/class-bindings.php:124
+#: includes/metaboxes/config-accommodation.php:128
+#: includes/metaboxes/config-destination.php:152
+#: includes/metaboxes/config-post.php:46
+#: includes/metaboxes/config-tour.php:172
+#: patterns/gallery-section.php:40
+#: patterns/gallery-section.php:49
 msgid "Gallery"
 msgstr ""
 
-#: includes/classes/blocks/class-bindings.php:131
+#: includes/classes/blocks/class-bindings.php:132
 msgid "Map"
+msgstr ""
+
+#: includes/classes/blocks/class-bindings.php:275
+#: includes/classes/legacy/class-tour.php:224
+msgid "Unspecified"
+msgstr ""
+
+#: includes/classes/blocks/class-template-parts.php:70
+msgid "Fast Facts Sidebar"
+msgstr ""
+
+#: includes/classes/blocks/class-template-parts.php:71
+msgid "Sidebar template parts for displaying supplementary content alongside main content."
+msgstr ""
+
+#: includes/classes/blocks/class-template-parts.php:80
+msgid "Modals"
+msgstr ""
+
+#: includes/classes/blocks/class-template-parts.php:81
+msgid "Template parts for customizing the modals."
+msgstr ""
+
+#: includes/classes/blocks/class-template-parts.php:111
+msgid "Tour Fast Facts"
+msgstr ""
+
+#: includes/classes/blocks/class-template-parts.php:112
+msgid "Fast facts sidebar for tour single templates with duration, price, group size, and other tour metadata."
+msgstr ""
+
+#: includes/classes/blocks/class-template-parts.php:116
+msgid "Accommodation Fast Facts"
+msgstr ""
+
+#: includes/classes/blocks/class-template-parts.php:117
+msgid "Fast facts sidebar for accommodation single templates with rating, facilities, rooms, and other accommodation metadata."
+msgstr ""
+
+#: includes/classes/blocks/class-template-parts.php:121
+msgid "Destination Fast Facts"
+msgstr ""
+
+#: includes/classes/blocks/class-template-parts.php:122
+msgid "Fast facts sidebar for all destination templates (countries and regions) with parent country, child regions, spoken languages, and travel styles."
+msgstr ""
+
+#: includes/classes/blocks/class-template-parts.php:126
+msgid "Tour Modal"
+msgstr ""
+
+#: includes/classes/blocks/class-template-parts.php:127
+msgid "Modal template for tour quick view with essential tour information and booking options."
+msgstr ""
+
+#: includes/classes/blocks/class-template-parts.php:131
+msgid "Accommodation Modal"
+msgstr ""
+
+#: includes/classes/blocks/class-template-parts.php:132
+msgid "Modal template for accommodation quick view with room details and booking options."
+msgstr ""
+
+#: includes/classes/blocks/class-template-parts.php:136
+msgid "Destination Modal"
+msgstr ""
+
+#: includes/classes/blocks/class-template-parts.php:137
+msgid "Modal template for destination quick view with key information and related tours."
+msgstr ""
+
+#: includes/classes/blocks/class-template-parts.php:141
+msgid "Enquiry Modal"
+msgstr ""
+
+#: includes/classes/blocks/class-template-parts.php:142
+msgid "Modal template for enquiry form to capture customer queries and contact information."
 msgstr ""
 
 #: includes/classes/blocks/class-templates.php:43
@@ -211,163 +323,245 @@ msgid "Displays all the accommodation."
 msgstr ""
 
 #: includes/classes/blocks/class-templates.php:53
-msgid "Single Destination"
+msgid "Accommodation Type Term Archive"
 msgstr ""
 
 #: includes/classes/blocks/class-templates.php:54
-msgid "Displays a single destination"
+msgid "Displays all the tours in the current accommodation type."
 msgstr ""
 
 #: includes/classes/blocks/class-templates.php:58
-msgid "Destination Archive"
+msgid "Accommodation Brand Term Archive"
 msgstr ""
 
 #: includes/classes/blocks/class-templates.php:59
-msgid "Displays all the destinations."
+msgid "Displays all the tours in the current accommodation brand."
 msgstr ""
 
 #: includes/classes/blocks/class-templates.php:63
-msgid "Single Tour"
+msgid "Single Destination"
 msgstr ""
 
 #: includes/classes/blocks/class-templates.php:64
-msgid "Displays a single tour"
+msgid "Displays a single destination"
 msgstr ""
 
 #: includes/classes/blocks/class-templates.php:68
-msgid "Tour Archive"
+msgid "Destination Archive"
 msgstr ""
 
 #: includes/classes/blocks/class-templates.php:69
-msgid "Displays all the tours."
+msgid "Displays all the destinations."
 msgstr ""
 
 #: includes/classes/blocks/class-templates.php:73
-msgid "Single Region"
+msgid "Single Tour"
 msgstr ""
 
 #: includes/classes/blocks/class-templates.php:74
-msgid "Used to display a region of a country in the Destination post-type"
+msgid "Displays a single tour"
 msgstr ""
 
 #: includes/classes/blocks/class-templates.php:78
-msgid "Single Country"
+msgid "Tour Archive"
 msgstr ""
 
 #: includes/classes/blocks/class-templates.php:79
-msgid "Used to display a country in the Destination post-type"
+msgid "Displays all the tours."
 msgstr ""
 
 #: includes/classes/blocks/class-templates.php:83
-msgid "Search Results"
+msgid "Travel Style Term Archive"
 msgstr ""
 
 #: includes/classes/blocks/class-templates.php:84
-msgid "Displays when a visitor performs a search on your website."
+msgid "Displays all the tours in the current travel style."
 msgstr ""
 
-#: includes/classes/frontend/class-modals.php:112
+#: includes/classes/blocks/class-templates.php:88
+msgid "Single Region"
+msgstr ""
+
+#: includes/classes/blocks/class-templates.php:89
+msgid "Used to display a region of a country in the Destination post-type"
+msgstr ""
+
+#: includes/classes/blocks/class-templates.php:93
+msgid "Single Country"
+msgstr ""
+
+#: includes/classes/blocks/class-templates.php:94
+msgid "Used to display a country in the Destination post-type"
+msgstr ""
+
+#: includes/classes/blocks/class-templates.php:98
+msgid "Review Archive"
+msgstr ""
+
+#: includes/classes/blocks/class-templates.php:99
+msgid "Displays all the reviews."
+msgstr ""
+
+#: includes/classes/frontend/class-modals.php:105
 msgid "Enable Preview Modals"
 msgstr ""
 
-#: includes/classes/frontend/class-modals.php:113
+#: includes/classes/frontend/class-modals.php:106
 msgid "Links to this item will trigger a popup preview modal allowing a quick look at it before clicking through. "
 msgstr ""
 
-#: includes/classes/frontend/class-modals.php:118
+#: includes/classes/frontend/class-modals.php:111
 msgid "Modal Template"
 msgstr ""
 
-#: includes/classes/frontend/class-modals.php:214
+#: includes/classes/frontend/class-modals.php:207
 msgid "Please select a pattern or customize your layout with the Tour Operator blocks."
-msgstr ""
-
-#: includes/classes/frontend/class-modals.php:236
-msgctxt "template part area"
-msgid "Modals"
-msgstr ""
-
-#: includes/classes/frontend/class-modals.php:237
-msgid "Design an advanced popup modals for your site."
-msgstr ""
-
-#: includes/classes/frontend/class-modals.php:262
-msgid "Default"
 msgstr ""
 
 #: includes/classes/frontend/class-modals.php:269
 msgid "No other templates found."
 msgstr ""
 
-#: includes/classes/frontend/class-modals.php:357
-msgid "Accommodation Modal"
+#: includes/classes/frontend/class-modals.php:320
+#: includes/metaboxes/config-destination.php:25
+#: patterns/travel-information.php:55
+#: build/blocks/electricity/index.js:1
+#: src/blocks/electricity/index.js:20
+#: src/blocks/electricity/index.js:35
+#: src/blocks/electricity/index.js:63
+#: src/blocks/electricity/index.js:135
+msgid "Electricity"
 msgstr ""
 
-#: includes/classes/frontend/class-modals.php:427
-msgid "This modal displays the accommodation details including the featured image, title, excerpt, and additional information."
+#: includes/classes/frontend/class-modals.php:321
+#: includes/metaboxes/config-destination.php:35
+#: patterns/travel-information.php:37
+#: build/blocks/banking/index.js:1
+#: src/blocks/banking/index.js:18
+#: src/blocks/banking/index.js:33
+#: src/blocks/banking/index.js:67
+#: src/blocks/banking/index.js:152
+msgid "Banking"
 msgstr ""
 
-#: includes/classes/frontend/class-modals.php:431
-msgid "Destination Modal"
+#: includes/classes/frontend/class-modals.php:322
+#: includes/metaboxes/config-destination.php:45
+#: patterns/travel-information.php:49
+#: build/blocks/cuisine/index.js:1
+#: src/blocks/cuisine/index.js:20
+#: src/blocks/cuisine/index.js:35
+#: src/blocks/cuisine/index.js:63
+#: src/blocks/cuisine/index.js:135
+msgid "Cuisine"
 msgstr ""
 
-#: includes/classes/frontend/class-modals.php:445
-msgid "This modal displays the destination details including the featured image, title, excerpt, and travel information."
+#: includes/classes/frontend/class-modals.php:323
+#: includes/metaboxes/config-destination.php:55
+#: patterns/travel-information.php:43
+#: build/blocks/climate/index.js:1
+#: src/blocks/climate/index.js:19
+#: src/blocks/climate/index.js:47
+#: src/blocks/climate/index.js:75
+#: src/blocks/climate/index.js:147
+msgid "Climate"
 msgstr ""
 
-#: includes/classes/frontend/class-modals.php:449
-msgid "Tour Modal"
+#: includes/classes/frontend/class-modals.php:324
+#: includes/metaboxes/config-destination.php:65
+#: patterns/travel-information.php:79
+#: build/blocks/transport/index.js:1
+#: src/blocks/transport/index.js:19
+#: src/blocks/transport/index.js:62
+#: src/blocks/transport/index.js:133
+msgid "Transport"
 msgstr ""
 
-#: includes/classes/frontend/class-modals.php:502
-msgid "This modal displays the tour details including the featured image, title, excerpt, and tour information."
+#: includes/classes/frontend/class-modals.php:325
+#: includes/metaboxes/config-destination.php:75
+#: patterns/travel-information.php:61
+#: build/blocks/dress/index.js:1
+#: src/blocks/dress/index.js:19
+#: src/blocks/dress/index.js:47
+#: src/blocks/dress/index.js:75
+#: src/blocks/dress/index.js:147
+msgid "Dress"
 msgstr ""
 
-#: includes/classes/frontend/class-modals.php:506
-msgid "Enquiry Form Modal"
+#: includes/classes/frontend/class-modals.php:326
+#: includes/metaboxes/config-destination.php:85
+#: patterns/travel-information.php:67
+#: build/blocks/health/index.js:1
+#: src/blocks/health/index.js:20
+#: src/blocks/health/index.js:35
+#: src/blocks/health/index.js:63
+#: src/blocks/health/index.js:135
+msgid "Health"
 msgstr ""
 
-#: includes/classes/frontend/class-modals.php:512
-msgid "This modal displays an enquiry form via shortcode or block insert."
+#: includes/classes/frontend/class-modals.php:327
+#: includes/metaboxes/config-destination.php:95
+#: patterns/travel-information.php:73
+#: build/blocks/safety/index.js:1
+#: src/blocks/safety/index.js:20
+#: src/blocks/safety/index.js:35
+#: src/blocks/safety/index.js:60
+#: src/blocks/safety/index.js:131
+msgid "Safety"
 msgstr ""
 
-#: includes/classes/frontend/class-modals.php:642
+#: includes/classes/frontend/class-modals.php:328
+#: includes/metaboxes/config-destination.php:105
+#: patterns/travel-information.php:85
+#: build/blocks/visa/index.js:1
+#: src/blocks/visa/index.js:18
+#: src/blocks/visa/index.js:32
+#: src/blocks/visa/index.js:60
+#: src/blocks/visa/index.js:131
+msgid "Visa"
+msgstr ""
+
+#: includes/classes/frontend/class-modals.php:408
 msgid "Select a modal..."
 msgstr ""
 
-#: includes/classes/frontend/class-modals.php:741
+#: includes/classes/frontend/class-modals.php:507
 msgid "Close"
 msgstr ""
 
+#: includes/classes/frontend/class-taxonomy-images.php:103
+msgid "Placeholder image"
+msgstr ""
+
 #. translators: %d is the term ID.
-#: includes/classes/frontend/class-taxonomy-images.php:112
+#: includes/classes/frontend/class-taxonomy-images.php:186
+#, php-format
 msgid "Untitled term %d"
 msgstr ""
 
-#: includes/classes/legacy/class-accommodation.php:68
-#: includes/template-tags/general.php:24
-#: includes/template-tags/general.php:122
+#: includes/classes/legacy/class-accommodation.php:76
+#: includes/template-tags/general.php:28
+#: includes/template-tags/general.php:126
 msgid "None"
 msgstr ""
 
-#: includes/classes/legacy/class-accommodation.php:141
+#: includes/classes/legacy/class-accommodation.php:151
 msgid "Off"
 msgstr ""
 
-#: includes/classes/legacy/class-accommodation.php:142
+#: includes/classes/legacy/class-accommodation.php:152
 msgid "From price"
 msgstr ""
 
 #: includes/classes/legacy/class-admin.php:308
-#: includes/metaboxes/config-tour.php:211
+#: includes/metaboxes/config-tour.php:215
 msgid "Featured Image"
 msgstr ""
 
 #: includes/classes/legacy/class-admin.php:309
-#: includes/metaboxes/config-accommodation.php:102
-#: includes/metaboxes/config-destination.php:126
-#: includes/metaboxes/config-post.php:20
-#: includes/metaboxes/config-tour.php:146
+#: includes/metaboxes/config-accommodation.php:106
+#: includes/metaboxes/config-destination.php:130
+#: includes/metaboxes/config-post.php:24
+#: includes/metaboxes/config-tour.php:150
 msgid "Banner"
 msgstr ""
 
@@ -388,8 +582,16 @@ msgstr ""
 msgid "Activities"
 msgstr ""
 
-#: includes/classes/legacy/class-frontend.php:209
-#: includes/classes/legacy/class-frontend.php:263
+#: includes/classes/legacy/class-frontend.php:100
+msgid "Read Less"
+msgstr ""
+
+#: includes/classes/legacy/class-frontend.php:101
+#: patterns/travel-information.php:136
+msgid "Read more"
+msgstr ""
+
+#: includes/classes/legacy/class-frontend.php:166
 msgid "Home"
 msgstr ""
 
@@ -401,53 +603,53 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:273
+#: includes/classes/legacy/class-tour-operator.php:305
 msgid "Destination"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:275
+#: includes/classes/legacy/class-tour-operator.php:307
 msgid "Tour"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:287
-#: includes/taxonomies/config-facility.php:20
+#: includes/classes/legacy/class-tour-operator.php:319
+#: includes/taxonomies/config-facility.php:24
 msgid "Facility"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:288
-#: includes/taxonomies/config-continent.php:20
+#: includes/classes/legacy/class-tour-operator.php:320
+#: includes/taxonomies/config-continent.php:24
 msgid "Continent"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:289
+#: includes/classes/legacy/class-tour-operator.php:321
 msgid "Region"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:293
-#: includes/taxonomies/config-travel-style.php:26
-#: includes/taxonomies/config-travel-style.php:29
-#: includes/taxonomies/config-travel-style.php:36
+#: includes/classes/legacy/class-tour-operator.php:325
+#: includes/taxonomies/config-travel-style.php:30
+#: includes/taxonomies/config-travel-style.php:35
+#: includes/taxonomies/config-travel-style.php:42
 msgid "Travel Styles"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:294
-#: includes/taxonomies/config-accommodation-brand.php:19
-#: includes/taxonomies/config-accommodation-brand.php:22
-#: includes/taxonomies/config-accommodation-brand.php:29
+#: includes/classes/legacy/class-tour-operator.php:326
+#: includes/taxonomies/config-accommodation-brand.php:23
+#: includes/taxonomies/config-accommodation-brand.php:28
+#: includes/taxonomies/config-accommodation-brand.php:35
 msgid "Brands"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:295
-#: includes/taxonomies/config-accommodation-type.php:19
-#: includes/taxonomies/config-accommodation-type.php:22
-#: includes/taxonomies/config-accommodation-type.php:29
+#: includes/classes/legacy/class-tour-operator.php:327
+#: includes/taxonomies/config-accommodation-type.php:23
+#: includes/taxonomies/config-accommodation-type.php:28
+#: includes/taxonomies/config-accommodation-type.php:35
 msgid "Accommodation Types"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:296
-#: includes/taxonomies/config-facility.php:19
-#: includes/taxonomies/config-facility.php:22
-#: includes/taxonomies/config-facility.php:29
+#: includes/classes/legacy/class-tour-operator.php:328
+#: includes/taxonomies/config-facility.php:23
+#: includes/taxonomies/config-facility.php:28
+#: includes/taxonomies/config-facility.php:35
 #: build/blocks/facilities/index.js:1
 #: src/blocks/facilities/index.js:18
 #: src/blocks/facilities/index.js:44
@@ -456,18 +658,18 @@ msgstr ""
 msgid "Facilities"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:297
-#: includes/taxonomies/config-continent.php:19
-#: includes/taxonomies/config-continent.php:22
-#: includes/taxonomies/config-continent.php:29
+#: includes/classes/legacy/class-tour-operator.php:329
+#: includes/taxonomies/config-continent.php:23
+#: includes/taxonomies/config-continent.php:28
+#: includes/taxonomies/config-continent.php:35
 msgid "Continents"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:298
+#: includes/classes/legacy/class-tour-operator.php:330
 #: build/blocks/facts-regions-wrapper/index.js:1
 #: build/blocks/regions/index.js:1
 #: build/blocks/related-regions/index.js:1
-#: src/blocks/facts-regions-wrapper/index.js:64
+#: src/blocks/facts-regions-wrapper/index.js:86
 #: src/blocks/regions/index.js:18
 #: src/blocks/regions/index.js:47
 #: src/blocks/regions/index.js:107
@@ -475,12 +677,8 @@ msgstr ""
 msgid "Regions"
 msgstr ""
 
-#: includes/classes/legacy/class-tour-operator.php:396
+#: includes/classes/legacy/class-tour-operator.php:428
 msgid "Posts"
-msgstr ""
-
-#: includes/classes/legacy/class-tour.php:206
-msgid "Unspecified"
 msgstr ""
 
 #: includes/classes/legacy/class-video.php:70
@@ -504,7 +702,7 @@ msgid "Remove Video"
 msgstr ""
 
 #: includes/classes/legacy/class-video.php:84
-#: includes/metaboxes/config-tour.php:187
+#: includes/metaboxes/config-tour.php:191
 #: build/blocks/banking/index.js:1
 #: build/blocks/minimum-child-age/index.js:1
 #: build/blocks/rating/index.js:1
@@ -513,12 +711,12 @@ msgstr ""
 #: build/blocks/suggested-visitor-types/index.js:1
 #: src/blocks/banking/index.js:56
 #: src/blocks/banking/index.js:141
-#: src/blocks/minimum-child-age/index.js:71
-#: src/blocks/minimum-child-age/index.js:135
-#: src/blocks/rating/index.js:47
-#: src/blocks/special-interests/index.js:71
-#: src/blocks/spoken-languages/index.js:47
-#: src/blocks/suggested-visitor-types/index.js:59
+#: src/blocks/minimum-child-age/index.js:72
+#: src/blocks/minimum-child-age/index.js:132
+#: src/blocks/rating/index.js:48
+#: src/blocks/special-interests/index.js:73
+#: src/blocks/spoken-languages/index.js:49
+#: src/blocks/suggested-visitor-types/index.js:61
 msgid "Title"
 msgstr ""
 
@@ -551,7 +749,7 @@ msgid "Alternative text for accessibility, describing the video for screen reade
 msgstr ""
 
 #: includes/classes/legacy/schema/class-lsx-to-schema-graph-piece.php:174
-#: includes/template-tags/helpers.php:497
+#: includes/template-tags/helpers.php:509
 msgid "Per Person Per Night"
 msgstr ""
 
@@ -563,301 +761,301 @@ msgstr ""
 msgid "Standard"
 msgstr ""
 
-#: includes/constants/settings-fields.php:5
+#: includes/constants/settings-fields.php:10
 msgid "Currency"
 msgstr ""
 
-#: includes/constants/settings-fields.php:9
+#: includes/constants/settings-fields.php:14
 msgid "USD (united states dollar)"
 msgstr ""
 
-#: includes/constants/settings-fields.php:10
+#: includes/constants/settings-fields.php:15
 msgid "GBP (british pound)"
 msgstr ""
 
-#: includes/constants/settings-fields.php:11
+#: includes/constants/settings-fields.php:16
 msgid "ZAR (south african rand)"
 msgstr ""
 
-#: includes/constants/settings-fields.php:12
+#: includes/constants/settings-fields.php:17
 msgid "NAD (namibian dollar)"
 msgstr ""
 
-#: includes/constants/settings-fields.php:13
+#: includes/constants/settings-fields.php:18
 msgid "CAD (canadian dollar)"
 msgstr ""
 
-#: includes/constants/settings-fields.php:14
+#: includes/constants/settings-fields.php:19
 msgid "EUR (euro)"
 msgstr ""
 
-#: includes/constants/settings-fields.php:15
+#: includes/constants/settings-fields.php:20
 msgid "HKD (hong kong dollar)"
 msgstr ""
 
-#: includes/constants/settings-fields.php:16
+#: includes/constants/settings-fields.php:21
 msgid "SGD (singapore dollar)"
 msgstr ""
 
-#: includes/constants/settings-fields.php:17
+#: includes/constants/settings-fields.php:22
 msgid "NZD (new zealand dollar)"
 msgstr ""
 
-#: includes/constants/settings-fields.php:18
+#: includes/constants/settings-fields.php:23
 msgid "AUD (australian dollar)"
 msgstr ""
 
-#: includes/constants/settings-fields.php:22
+#: includes/constants/settings-fields.php:27
 msgid "Disable Country Code"
 msgstr ""
 
-#: includes/constants/settings-fields.php:23
+#: includes/constants/settings-fields.php:28
 msgid "This will disable the 3 letter code which outputs before the price."
 msgstr ""
 
-#: includes/constants/settings-fields.php:30
+#: includes/constants/settings-fields.php:35
 msgid "Disable Maps"
 msgstr ""
 
-#: includes/constants/settings-fields.php:31
+#: includes/constants/settings-fields.php:36
 msgid "This will disable maps on all post types."
 msgstr ""
 
-#: includes/constants/settings-fields.php:36
+#: includes/constants/settings-fields.php:41
 msgid "Choose a default marker"
 msgstr ""
 
-#: includes/constants/settings-fields.php:42
+#: includes/constants/settings-fields.php:47
 msgid "Choose a cluster marker"
 msgstr ""
 
-#: includes/constants/settings-fields.php:48
+#: includes/constants/settings-fields.php:53
 msgid "Choose a start marker"
 msgstr ""
 
-#: includes/constants/settings-fields.php:54
+#: includes/constants/settings-fields.php:59
 msgid "Choose a end marker"
 msgstr ""
 
-#: includes/constants/settings-fields.php:62
-#: includes/constants/settings-fields.php:102
+#: includes/constants/settings-fields.php:67
+#: includes/constants/settings-fields.php:107
 msgid "Upload a placeholder"
 msgstr ""
 
-#: includes/constants/settings-fields.php:70
+#: includes/constants/settings-fields.php:75
 msgid "Enable Fusion Tables"
 msgstr ""
 
-#: includes/constants/settings-fields.php:75
+#: includes/constants/settings-fields.php:80
 msgid "Border Width"
 msgstr ""
 
-#: includes/constants/settings-fields.php:76
+#: includes/constants/settings-fields.php:81
 msgid "Default value: 2"
 msgstr ""
 
-#: includes/constants/settings-fields.php:81
+#: includes/constants/settings-fields.php:86
 msgid "Border Colour"
 msgstr ""
 
-#: includes/constants/settings-fields.php:82
-#: includes/constants/settings-fields.php:88
+#: includes/constants/settings-fields.php:87
+#: includes/constants/settings-fields.php:93
 msgid "Default value: #000000"
 msgstr ""
 
-#: includes/constants/settings-fields.php:87
+#: includes/constants/settings-fields.php:92
 msgid "Background Colour"
 msgstr ""
 
-#: includes/constants/settings-fields.php:95
+#: includes/constants/settings-fields.php:100
 msgid "Google Maps API"
 msgstr ""
 
-#: includes/constants/settings-fields.php:110
+#: includes/constants/settings-fields.php:115
 msgid "Disable Archives"
 msgstr ""
 
-#: includes/constants/settings-fields.php:111
+#: includes/constants/settings-fields.php:116
 msgid "This disables the \"post type archive\", if you create your own custom loop it will still work."
 msgstr ""
 
-#: includes/constants/settings-fields.php:116
+#: includes/constants/settings-fields.php:121
 msgid "Disable Singles"
 msgstr ""
 
-#: includes/constants/settings-fields.php:117
+#: includes/constants/settings-fields.php:122
 msgid "When disabled you will be redirected to the homepage when trying to access a single page."
 msgstr ""
 
-#: includes/functions.php:412
+#: includes/functions.php:421
 msgid "Read More"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:14
-#: includes/metaboxes/config-tour.php:14
+#: includes/metaboxes/config-accommodation.php:18
+#: includes/metaboxes/config-tour.php:18
 msgid "Details"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:21
-#: includes/metaboxes/config-tour.php:69
-#: includes/metaboxes/config-tour.php:260
+#: includes/metaboxes/config-accommodation.php:25
+#: includes/metaboxes/config-tour.php:73
+#: includes/metaboxes/config-tour.php:264
 #: build/blocks/included/index.js:1
 #: src/blocks/included/index.js:33
 msgid "Included"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:22
+#: includes/metaboxes/config-accommodation.php:26
 msgid "Items or services provided with the accommodation."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:31
-#: includes/metaboxes/config-tour.php:79
+#: includes/metaboxes/config-accommodation.php:35
+#: includes/metaboxes/config-tour.php:83
 msgid "Not Included"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:32
+#: includes/metaboxes/config-accommodation.php:36
 msgid "Items or services not provided with the accommodation."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:42
+#: includes/metaboxes/config-accommodation.php:46
 msgid "Accommodation Expert"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:57
-#: includes/metaboxes/config-destination.php:162
-#: includes/metaboxes/config-tour.php:111
+#: includes/metaboxes/config-accommodation.php:61
+#: includes/metaboxes/config-destination.php:166
+#: includes/metaboxes/config-tour.php:115
 #: build/blocks/google-map/index.js:1
 #: src/blocks/google-map/index.js:61
 #: src/blocks/google-map/index.js:154
 msgid "Location"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:67
-#: includes/metaboxes/config-destination.php:177
+#: includes/metaboxes/config-accommodation.php:71
+#: includes/metaboxes/config-destination.php:181
 msgid "Address"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:68
+#: includes/metaboxes/config-accommodation.php:72
 msgid "The address of the accommodation for map display."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:76
-#: includes/metaboxes/config-destination.php:184
-#: includes/metaboxes/config-tour.php:116
+#: includes/metaboxes/config-accommodation.php:80
+#: includes/metaboxes/config-destination.php:213
+#: includes/metaboxes/config-tour.php:120
 msgid "Map Placeholder"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:77
+#: includes/metaboxes/config-accommodation.php:81
 msgid "A placeholder image for the map, allowing lazy loading."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:97
-#: includes/metaboxes/config-destination.php:121
-#: includes/metaboxes/config-post.php:14
-#: includes/metaboxes/config-tour.php:141
+#: includes/metaboxes/config-accommodation.php:101
+#: includes/metaboxes/config-destination.php:125
+#: includes/metaboxes/config-post.php:18
+#: includes/metaboxes/config-tour.php:145
 msgid "Media"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:125
+#: includes/metaboxes/config-accommodation.php:129
 msgid "Add images related to the accommodation to be displayed in the Accommodation's gallery."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:131
-#: includes/metaboxes/config-accommodation.php:190
-#: includes/metaboxes/config-destination.php:155
-#: includes/metaboxes/config-post.php:49
-#: includes/metaboxes/config-tour.php:175
+#: includes/metaboxes/config-accommodation.php:135
+#: includes/metaboxes/config-accommodation.php:194
+#: includes/metaboxes/config-destination.php:159
+#: includes/metaboxes/config-post.php:53
+#: includes/metaboxes/config-tour.php:179
 msgid "Add new image"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:137
+#: includes/metaboxes/config-accommodation.php:141
 msgid "Rooms / Units"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:148
+#: includes/metaboxes/config-accommodation.php:152
 msgid "Unit {#}"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:149
-#: includes/metaboxes/config-tour.php:303
+#: includes/metaboxes/config-accommodation.php:153
+#: includes/metaboxes/config-tour.php:307
 msgid "Add Another"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:150
-#: includes/metaboxes/config-tour.php:304
+#: includes/metaboxes/config-accommodation.php:154
+#: includes/metaboxes/config-tour.php:308
 msgid "Remove"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:156
+#: includes/metaboxes/config-accommodation.php:160
 msgid "Unit Type"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:157
+#: includes/metaboxes/config-accommodation.php:161
 msgid "Select the type of unit (e.g., room, suite) from the dropdown."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:163
+#: includes/metaboxes/config-accommodation.php:167
 msgid "Unit Title"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:164
+#: includes/metaboxes/config-accommodation.php:168
 msgid "Enter the name or title of the unit (e.g., Deluxe Room, Family Suite)."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:169
+#: includes/metaboxes/config-accommodation.php:173
 msgid "Unit Description"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:170
+#: includes/metaboxes/config-accommodation.php:174
 msgid "Provide a brief description of the unit’s features and amenities."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:178
+#: includes/metaboxes/config-accommodation.php:182
 msgid "Unit Price"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:179
+#: includes/metaboxes/config-accommodation.php:183
 msgid "Enter the price of the unit."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:183
+#: includes/metaboxes/config-accommodation.php:187
 msgid "Unit Images"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:184
+#: includes/metaboxes/config-accommodation.php:188
 msgid "Showcase the unit by adding images."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:198
-#: includes/metaboxes/config-destination.php:200
-#: includes/metaboxes/config-post.php:55
-#: includes/metaboxes/config-tour.php:311
+#: includes/metaboxes/config-accommodation.php:202
+#: includes/metaboxes/config-destination.php:229
+#: includes/metaboxes/config-post.php:59
+#: includes/metaboxes/config-tour.php:315
 msgid "Related"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:203
-#: includes/metaboxes/config-destination.php:206
-#: includes/metaboxes/config-tour.php:317
+#: includes/metaboxes/config-accommodation.php:207
+#: includes/metaboxes/config-destination.php:235
+#: includes/metaboxes/config-tour.php:321
 msgid "Related Posts"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:204
+#: includes/metaboxes/config-accommodation.php:208
 msgid "Select blog posts about this Accommodation."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:216
-#: includes/metaboxes/config-post.php:74
-#: includes/metaboxes/config-tour.php:343
+#: includes/metaboxes/config-accommodation.php:220
+#: includes/metaboxes/config-post.php:78
+#: includes/metaboxes/config-tour.php:347
 msgid "Related Destinations"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:217
+#: includes/metaboxes/config-accommodation.php:221
 msgid "The Destination (country or region) where this Accommodation is found."
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:229
-#: includes/metaboxes/config-destination.php:232
-#: includes/metaboxes/config-post.php:87
+#: includes/metaboxes/config-accommodation.php:233
+#: includes/metaboxes/config-destination.php:261
+#: includes/metaboxes/config-post.php:91
 #: build/blocks/tour-related-accommodation/index.js:1
 #: build/blocks/tour-related-destination/index.js:1
 #: build/blocks/tour-related-tour/index.js:1
@@ -876,720 +1074,1164 @@ msgstr ""
 msgid "Related Tours"
 msgstr ""
 
-#: includes/metaboxes/config-accommodation.php:230
+#: includes/metaboxes/config-accommodation.php:234
 msgid "Choose tours that are linked to the accommodation."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:14
+#: includes/metaboxes/config-destination.php:18
 msgid "Travel Info"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:21
-#: build/blocks/electricity/index.js:1
-#: src/blocks/electricity/index.js:20
-#: src/blocks/electricity/index.js:35
-#: src/blocks/electricity/index.js:63
-#: src/blocks/electricity/index.js:135
-msgid "Electricity"
-msgstr ""
-
-#: includes/metaboxes/config-destination.php:23
+#: includes/metaboxes/config-destination.php:27
 msgid "Enter details about the country's electrical system (e.g., voltage, plug types)."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:31
-#: build/blocks/banking/index.js:1
-#: src/blocks/banking/index.js:18
-#: src/blocks/banking/index.js:33
-#: src/blocks/banking/index.js:67
-#: src/blocks/banking/index.js:152
-msgid "Banking"
-msgstr ""
-
-#: includes/metaboxes/config-destination.php:33
+#: includes/metaboxes/config-destination.php:37
 msgid "Provide information about banking services and currency in the country."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:41
-#: build/blocks/cuisine/index.js:1
-#: src/blocks/cuisine/index.js:20
-#: src/blocks/cuisine/index.js:35
-#: src/blocks/cuisine/index.js:63
-#: src/blocks/cuisine/index.js:135
-msgid "Cuisine"
-msgstr ""
-
-#: includes/metaboxes/config-destination.php:43
+#: includes/metaboxes/config-destination.php:47
 msgid "Describe the typical cuisine or food experiences in the country."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:51
-#: build/blocks/climate/index.js:1
-#: src/blocks/climate/index.js:19
-#: src/blocks/climate/index.js:47
-#: src/blocks/climate/index.js:75
-#: src/blocks/climate/index.js:147
-msgid "Climate"
-msgstr ""
-
-#: includes/metaboxes/config-destination.php:53
+#: includes/metaboxes/config-destination.php:57
 msgid "Give an overview of the country's climate and weather patterns."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:61
-#: build/blocks/transport/index.js:1
-#: src/blocks/transport/index.js:19
-#: src/blocks/transport/index.js:62
-#: src/blocks/transport/index.js:133
-msgid "Transport"
-msgstr ""
-
-#: includes/metaboxes/config-destination.php:63
+#: includes/metaboxes/config-destination.php:67
 msgid "Provide information on transportation options available in the country."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:71
-#: build/blocks/dress/index.js:1
-#: src/blocks/dress/index.js:19
-#: src/blocks/dress/index.js:47
-#: src/blocks/dress/index.js:75
-#: src/blocks/dress/index.js:147
-msgid "Dress"
-msgstr ""
-
-#: includes/metaboxes/config-destination.php:73
+#: includes/metaboxes/config-destination.php:77
 msgid "Describe any local dress customs or recommended clothing for visitors."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:81
-#: build/blocks/health/index.js:1
-#: src/blocks/health/index.js:20
-#: src/blocks/health/index.js:35
-#: src/blocks/health/index.js:63
-#: src/blocks/health/index.js:135
-msgid "Health"
-msgstr ""
-
-#: includes/metaboxes/config-destination.php:83
+#: includes/metaboxes/config-destination.php:87
 msgid "Provide important health-related information for travellers (e.g., vaccinations, health services)."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:91
-#: build/blocks/safety/index.js:1
-#: src/blocks/safety/index.js:20
-#: src/blocks/safety/index.js:35
-#: src/blocks/safety/index.js:60
-#: src/blocks/safety/index.js:131
-msgid "Safety"
-msgstr ""
-
-#: includes/metaboxes/config-destination.php:93
+#: includes/metaboxes/config-destination.php:97
 msgid "Enter safety tips or advice for staying secure in the country."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:101
-#: build/blocks/visa/index.js:1
-#: src/blocks/visa/index.js:18
-#: src/blocks/visa/index.js:32
-#: src/blocks/visa/index.js:60
-#: src/blocks/visa/index.js:131
-msgid "Visa"
-msgstr ""
-
-#: includes/metaboxes/config-destination.php:103
+#: includes/metaboxes/config-destination.php:107
 msgid "Provide details on visa requirements for entering the country."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:113
+#: includes/metaboxes/config-destination.php:117
 msgid "Add any other relevant general travel information about the country."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:151
+#: includes/metaboxes/config-destination.php:155
 msgid "Add images related to the country to be displayed in the Destination’s gallery."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:167
+#: includes/metaboxes/config-destination.php:176
 msgid "Disable Auto Zoom"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:208
+#: includes/metaboxes/config-destination.php:188
+msgid "Zoom"
+msgstr ""
+
+#: includes/metaboxes/config-destination.php:192
+msgid "Auto Zoom"
+msgstr ""
+
+#: includes/metaboxes/config-destination.php:193
+msgid "(far)"
+msgstr ""
+
+#: includes/metaboxes/config-destination.php:207
+msgid "(near)"
+msgstr ""
+
+#: includes/metaboxes/config-destination.php:237
 msgid "Select related posts by typing the post name and choosing from the dropdown."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:219
-#: includes/metaboxes/config-post.php:61
-#: includes/metaboxes/config-tour.php:229
-#: includes/metaboxes/config-tour.php:330
+#: includes/metaboxes/config-destination.php:248
+#: includes/metaboxes/config-post.php:65
+#: includes/metaboxes/config-tour.php:233
+#: includes/metaboxes/config-tour.php:334
 msgid "Related Accommodation"
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:220
+#: includes/metaboxes/config-destination.php:249
 msgid "Attach related accommodations by selecting the relevant accommodation from the dropdown."
 msgstr ""
 
-#: includes/metaboxes/config-destination.php:233
+#: includes/metaboxes/config-destination.php:262
 msgid "Choose related tours by typing the tour name and selecting from the dropdown."
 msgstr ""
 
-#: includes/metaboxes/config-post.php:45
+#: includes/metaboxes/config-post.php:49
 msgid "Add images for this post’s gallery."
 msgstr ""
 
-#: includes/metaboxes/config-post.php:62
+#: includes/metaboxes/config-post.php:66
 msgid "Select accommodation related to this post."
 msgstr ""
 
-#: includes/metaboxes/config-post.php:75
+#: includes/metaboxes/config-post.php:79
 msgid "The Destination (country or region) where this post is found."
 msgstr ""
 
-#: includes/metaboxes/config-post.php:88
+#: includes/metaboxes/config-post.php:92
 msgid "Choose tours that are linked to the post."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:21
+#: includes/metaboxes/config-tour.php:25
 msgid "Departs From"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:22
+#: includes/metaboxes/config-tour.php:26
 msgid "Select the destination where the tour starts."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:35
+#: includes/metaboxes/config-tour.php:39
 msgid "Ends In"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:36
+#: includes/metaboxes/config-tour.php:40
 msgid "Select the destination where the tour ends."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:49
+#: includes/metaboxes/config-tour.php:53
 msgid "Group Size"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:50
+#: includes/metaboxes/config-tour.php:54
 msgid "The range of group sizes for the tour (e.g., 2 - 20 people)."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:59
+#: includes/metaboxes/config-tour.php:63
 msgid "Highlights"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:60
+#: includes/metaboxes/config-tour.php:64
 msgid "Key experiences or features of the tour."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:70
+#: includes/metaboxes/config-tour.php:74
 msgid "List the items and services included with the tour (typically a paragraph or list)."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:80
+#: includes/metaboxes/config-tour.php:84
 msgid "List the items and services not included with the tour (typically a paragraph or list)."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:89
+#: includes/metaboxes/config-tour.php:93
 msgid "Booking Validity (start)"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:90
+#: includes/metaboxes/config-tour.php:94
 msgid "The start date for when the tour can be booked."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:96
+#: includes/metaboxes/config-tour.php:100
 msgid "Booking Validity (end)"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:97
+#: includes/metaboxes/config-tour.php:101
 msgid "The end date for when the tour can be booked."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:103
+#: includes/metaboxes/config-tour.php:107
 msgid "Expire this tour automatically"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:104
+#: includes/metaboxes/config-tour.php:108
 msgid "This tour will expire automatically when the Booking Validity ends."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:117
+#: includes/metaboxes/config-tour.php:121
 msgid "A placeholder image for the map if no address or GPS data is available."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:131
+#: includes/metaboxes/config-tour.php:135
 msgid "Itinerary KML File"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:132
+#: includes/metaboxes/config-tour.php:136
 msgid "A file containing GPS points for the tour route."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:169
+#: includes/metaboxes/config-tour.php:173
 msgid "Add images related to the tour to be displayed in the Tour gallery."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:188
+#: includes/metaboxes/config-tour.php:192
 msgid "Enter the title for the time frame (e.g., Day 1, Day 1-3)."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:194
+#: includes/metaboxes/config-tour.php:198
 msgid "Tagline (Optional)"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:195
+#: includes/metaboxes/config-tour.php:199
 msgid "Add an optional tagline for the itinerary entry (if left blank, it won’t display)."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:201
+#: includes/metaboxes/config-tour.php:205
+#: patterns/itinerary-list.php:47
+#: patterns/room-card.php:47
 #: build/blocks/banking/index.js:1
 #: src/blocks/banking/index.js:77
 #: src/blocks/banking/index.js:162
 msgid "Description"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:202
+#: includes/metaboxes/config-tour.php:206
 msgid "Provide a description of what happens during this time frame."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:212
+#: includes/metaboxes/config-tour.php:216
 msgid "Upload or select a featured image for the itinerary entry."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:230
+#: includes/metaboxes/config-tour.php:234
 msgid "Select the accommodation associated with this Itinerary entry."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:245
+#: includes/metaboxes/config-tour.php:249
 msgid "Related Destination"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:246
+#: includes/metaboxes/config-tour.php:250
 msgid "Choose the destination (region or country) associated with this Itinerary entry."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:261
+#: includes/metaboxes/config-tour.php:265
 msgid "Items or services provided during that part of the tour itinerary."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:270
+#: includes/metaboxes/config-tour.php:274
 msgid "Excluded"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:271
+#: includes/metaboxes/config-tour.php:275
 msgid "Items or services not provided during that part of the tour itinerary."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:280
+#: includes/metaboxes/config-tour.php:284
 msgid "Drinks Basis"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:281
+#: includes/metaboxes/config-tour.php:285
 msgid "Select the drinks basis for the itinerary (e.g., tea & coffee, all local drinks)."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:287
+#: includes/metaboxes/config-tour.php:291
 msgid "Room Basis"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:288
+#: includes/metaboxes/config-tour.php:292
 msgid "Choose the room basis for the itinerary (e.g., breakfast only, full board)."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:296
+#: includes/metaboxes/config-tour.php:300
 msgid "Day(s)"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:302
+#: includes/metaboxes/config-tour.php:306
 msgid "Itinerary {#}"
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:318
+#: includes/metaboxes/config-tour.php:322
 msgid "Select blog posts about this tour."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:331
+#: includes/metaboxes/config-tour.php:335
 msgid "Attach other accommodations similar to this tour."
 msgstr ""
 
-#: includes/metaboxes/config-tour.php:344
+#: includes/metaboxes/config-tour.php:348
 msgid "The Destinations (countries or regions) where this Tour takes place."
 msgstr ""
 
-#: includes/partials/general.php:9
+#: includes/partials/general.php:10
 msgid "Currency Settings"
 msgstr ""
 
-#: includes/partials/general.php:18
+#: includes/partials/general.php:19
 msgid "Map Settings"
 msgstr ""
 
-#: includes/partials/general.php:27
+#: includes/partials/general.php:28
 msgid "Fusion Table Settings"
 msgstr ""
 
-#: includes/partials/general.php:36
-#: includes/partials/post-type.php:7
+#: includes/partials/general.php:37
+#: includes/partials/post-type.php:8
 msgid "Placeholder Settings"
 msgstr ""
 
-#: includes/partials/general.php:45
+#: includes/partials/general.php:46
 msgid "APIs"
 msgstr ""
 
-#: includes/partials/post-type.php:17
+#: includes/partials/post-type.php:18
 msgid "Template Settings"
 msgstr ""
 
-#: includes/patterns/accommodation-card.php:5
-msgid "Accommodation Card"
-msgstr ""
-
-#: includes/patterns/accommodation-card.php:6
-msgid "A grid display for accommodation."
-msgstr ""
-
-#: includes/patterns/destination-card.php:4
-msgid "Destination Card"
-msgstr ""
-
-#: includes/patterns/destination-card.php:5
-msgid "A grid display for destinations."
-msgstr ""
-
-#: includes/patterns/gallery.php:4
-#: build/blocks/gallery/index.js:1
-#: src/blocks/gallery/index.js:16
-#: src/blocks/gallery/index.js:22
-msgid "TO Gallery"
-msgstr ""
-
-#: includes/patterns/gallery.php:5
-msgid "Display the attached images, with a lightbox gallery."
-msgstr ""
-
-#: includes/patterns/itinerary-list.php:4
-msgid "Itinerary (list)"
-msgstr ""
-
-#: includes/patterns/itinerary-list.php:5
-msgid "A list display for the tour itineraries."
-msgstr ""
-
-#: includes/patterns/room-card.php:4
-msgid "Room Card"
-msgstr ""
-
-#: includes/patterns/room-card.php:5
-msgid "A list display for the accommodation units."
-msgstr ""
-
-#: includes/patterns/tour-card.php:4
-msgid "Tour Card"
-msgstr ""
-
-#: includes/patterns/tour-card.php:5
-msgid "A grid display for tours."
-msgstr ""
-
-#: includes/patterns/travel-information.php:4
-msgid "Travel Information"
-msgstr ""
-
-#: includes/patterns/travel-information.php:5
-msgid "Display the travel information like banking and cusine."
-msgstr ""
-
-#: includes/taxonomies/config-accommodation-brand.php:21
-msgid "Search Brands"
-msgstr ""
-
-#: includes/taxonomies/config-accommodation-brand.php:23
-msgid "Parent Brand"
-msgstr ""
-
-#: includes/taxonomies/config-accommodation-brand.php:24
-msgid "Parent Brand:"
-msgstr ""
-
 #: includes/taxonomies/config-accommodation-brand.php:25
-msgid "Edit Brand"
+msgid "Brand links"
 msgstr ""
 
 #: includes/taxonomies/config-accommodation-brand.php:26
-msgid "Update Brand"
+msgid "Link to brands"
 msgstr ""
 
 #: includes/taxonomies/config-accommodation-brand.php:27
-msgid "Add New Brand"
+msgid "Search Brands"
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-brand.php:28
-msgid "New Brand"
+#: includes/taxonomies/config-accommodation-brand.php:29
+msgid "Parent Brand"
 msgstr ""
 
 #: includes/taxonomies/config-accommodation-brand.php:30
+msgid "Parent Brand:"
+msgstr ""
+
+#: includes/taxonomies/config-accommodation-brand.php:31
+msgid "Edit Brand"
+msgstr ""
+
+#: includes/taxonomies/config-accommodation-brand.php:32
+msgid "Update Brand"
+msgstr ""
+
+#: includes/taxonomies/config-accommodation-brand.php:33
+msgid "Add New Brand"
+msgstr ""
+
+#: includes/taxonomies/config-accommodation-brand.php:34
+msgid "New Brand"
+msgstr ""
+
+#: includes/taxonomies/config-accommodation-brand.php:36
 msgid "Select the brand the Accommodation belongs to."
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-type.php:21
-msgid "Search Accommodation Types"
-msgstr ""
-
-#: includes/taxonomies/config-accommodation-type.php:23
-msgid "Parent Accommodation Type"
-msgstr ""
-
-#: includes/taxonomies/config-accommodation-type.php:24
-msgid "Parent Accommodation Type:"
-msgstr ""
-
 #: includes/taxonomies/config-accommodation-type.php:25
-msgid "Edit Accommodation Type"
+msgid "Accommodation Type links"
 msgstr ""
 
 #: includes/taxonomies/config-accommodation-type.php:26
-msgid "Update Accommodation Type"
+msgid "Link to accommodation types"
 msgstr ""
 
 #: includes/taxonomies/config-accommodation-type.php:27
-msgid "Add New Accommodation Type"
+msgid "Search Accommodation Types"
 msgstr ""
 
-#: includes/taxonomies/config-accommodation-type.php:28
-msgid "New Accommodation Type"
+#: includes/taxonomies/config-accommodation-type.php:29
+msgid "Parent Accommodation Type"
 msgstr ""
 
 #: includes/taxonomies/config-accommodation-type.php:30
+msgid "Parent Accommodation Type:"
+msgstr ""
+
+#: includes/taxonomies/config-accommodation-type.php:31
+msgid "Edit Accommodation Type"
+msgstr ""
+
+#: includes/taxonomies/config-accommodation-type.php:32
+msgid "Update Accommodation Type"
+msgstr ""
+
+#: includes/taxonomies/config-accommodation-type.php:33
+msgid "Add New Accommodation Type"
+msgstr ""
+
+#: includes/taxonomies/config-accommodation-type.php:34
+msgid "New Accommodation Type"
+msgstr ""
+
+#: includes/taxonomies/config-accommodation-type.php:36
 msgid "Select the type(s) of accommodation (e.g., hotel, resort)."
 msgstr ""
 
-#: includes/taxonomies/config-continent.php:21
-msgid "Search Continents"
-msgstr ""
-
-#: includes/taxonomies/config-continent.php:23
-#: includes/taxonomies/config-facility.php:23
-msgid "Parent"
-msgstr ""
-
-#: includes/taxonomies/config-continent.php:24
-#: includes/taxonomies/config-facility.php:24
-msgid "Parent:"
-msgstr ""
-
 #: includes/taxonomies/config-continent.php:25
-msgid "Edit Continent"
+msgid "Continent links"
 msgstr ""
 
 #: includes/taxonomies/config-continent.php:26
-msgid "Update Continent"
+msgid "Link to continents"
 msgstr ""
 
 #: includes/taxonomies/config-continent.php:27
-msgid "Add New Continent"
+msgid "Search Continents"
 msgstr ""
 
-#: includes/taxonomies/config-continent.php:28
-msgid "New Continent"
+#: includes/taxonomies/config-continent.php:29
+#: includes/taxonomies/config-facility.php:29
+msgid "Parent"
 msgstr ""
 
 #: includes/taxonomies/config-continent.php:30
+#: includes/taxonomies/config-facility.php:30
+msgid "Parent:"
+msgstr ""
+
+#: includes/taxonomies/config-continent.php:31
+msgid "Edit Continent"
+msgstr ""
+
+#: includes/taxonomies/config-continent.php:32
+msgid "Update Continent"
+msgstr ""
+
+#: includes/taxonomies/config-continent.php:33
+msgid "Add New Continent"
+msgstr ""
+
+#: includes/taxonomies/config-continent.php:34
+msgid "New Continent"
+msgstr ""
+
+#: includes/taxonomies/config-continent.php:36
 msgid "Select the continent that the country belongs to."
 msgstr ""
 
-#: includes/taxonomies/config-facility.php:21
-msgid "Search Facilities"
-msgstr ""
-
 #: includes/taxonomies/config-facility.php:25
-msgid "Edit Facility"
+msgid "Facility links"
 msgstr ""
 
 #: includes/taxonomies/config-facility.php:26
-msgid "Update Facility"
+msgid "Link to facilities"
 msgstr ""
 
 #: includes/taxonomies/config-facility.php:27
+msgid "Search Facilities"
+msgstr ""
+
+#: includes/taxonomies/config-facility.php:31
+msgid "Edit Facility"
+msgstr ""
+
+#: includes/taxonomies/config-facility.php:32
+msgid "Update Facility"
+msgstr ""
+
+#: includes/taxonomies/config-facility.php:33
 msgid "Add New Facility"
 msgstr ""
 
-#: includes/taxonomies/config-facility.php:28
+#: includes/taxonomies/config-facility.php:34
 msgid "New Facility"
 msgstr ""
 
-#: includes/taxonomies/config-facility.php:30
+#: includes/taxonomies/config-facility.php:36
 msgid "Choose the facilities offered by the accommodation (e.g., pool, gym)."
 msgstr ""
 
-#: includes/taxonomies/config-travel-style.php:28
-msgid "Search Travel Styles"
-msgstr ""
-
-#: includes/taxonomies/config-travel-style.php:30
-msgid "Parent Travel Style"
-msgstr ""
-
-#: includes/taxonomies/config-travel-style.php:31
-msgid "Parent Travel Style:"
-msgstr ""
-
 #: includes/taxonomies/config-travel-style.php:32
-msgid "Edit Travel Style"
+msgid "Travel Style links"
 msgstr ""
 
 #: includes/taxonomies/config-travel-style.php:33
-msgid "Update Travel Style"
+msgid "Link to travel styles"
 msgstr ""
 
 #: includes/taxonomies/config-travel-style.php:34
-msgid "Add New Travel Style"
+msgid "Search Travel Styles"
 msgstr ""
 
-#: includes/taxonomies/config-travel-style.php:35
-msgid "New Travel Style"
+#: includes/taxonomies/config-travel-style.php:36
+msgid "Parent Travel Style"
 msgstr ""
 
 #: includes/taxonomies/config-travel-style.php:37
+msgid "Parent Travel Style:"
+msgstr ""
+
+#: includes/taxonomies/config-travel-style.php:38
+msgid "Edit Travel Style"
+msgstr ""
+
+#: includes/taxonomies/config-travel-style.php:39
+msgid "Update Travel Style"
+msgstr ""
+
+#: includes/taxonomies/config-travel-style.php:40
+msgid "Add New Travel Style"
+msgstr ""
+
+#: includes/taxonomies/config-travel-style.php:41
+msgid "New Travel Style"
+msgstr ""
+
+#: includes/taxonomies/config-travel-style.php:43
 msgid "Select the relevant travel styles that apply to this item."
 msgstr ""
 
-#: includes/template-tags/general.php:25
+#: includes/template-tags/general.php:29
 msgid "B&amp;B: Bed and Breakfast"
 msgstr ""
 
-#: includes/template-tags/general.php:26
+#: includes/template-tags/general.php:30
 msgid "Room Only"
 msgstr ""
 
-#: includes/template-tags/general.php:27
+#: includes/template-tags/general.php:31
 msgid "Self Catering"
 msgstr ""
 
-#: includes/template-tags/general.php:28
+#: includes/template-tags/general.php:32
 msgid "Lunch"
 msgstr ""
 
-#: includes/template-tags/general.php:29
+#: includes/template-tags/general.php:33
 msgid "Dinner"
 msgstr ""
 
-#: includes/template-tags/general.php:30
+#: includes/template-tags/general.php:34
 msgid "Lunch and Dinner"
 msgstr ""
 
-#: includes/template-tags/general.php:31
+#: includes/template-tags/general.php:35
 msgid "Bed, Breakfast and Lunch"
 msgstr ""
 
-#: includes/template-tags/general.php:32
+#: includes/template-tags/general.php:36
 msgid "Dinner, Bed and Breakfast"
 msgstr ""
 
-#: includes/template-tags/general.php:33
+#: includes/template-tags/general.php:37
 msgid "Half Board - Dinner, Bed and Breakfast"
 msgstr ""
 
-#: includes/template-tags/general.php:34
+#: includes/template-tags/general.php:38
 msgid "Half Board Plus - Dinner, Bed, Breakfast and Activities"
 msgstr ""
 
-#: includes/template-tags/general.php:35
+#: includes/template-tags/general.php:39
 msgid "Full Board - Dinner, Bed, Breakfast and Lunch"
 msgstr ""
 
-#: includes/template-tags/general.php:36
+#: includes/template-tags/general.php:40
 msgid "Full Board Plus -  Dinner, Bed, Breakfast, Lunch and Activities"
 msgstr ""
 
-#: includes/template-tags/general.php:37
+#: includes/template-tags/general.php:41
 msgid "All Inclusive - Bed and All Meals"
 msgstr ""
 
-#: includes/template-tags/general.php:38
+#: includes/template-tags/general.php:42
 msgid "Fully Inclusive - Bed, All Meals, Fees and Activities"
 msgstr ""
 
-#: includes/template-tags/general.php:39
+#: includes/template-tags/general.php:43
 msgid "Premier - Executive Club / Premier Benefits"
 msgstr ""
 
-#: includes/template-tags/general.php:40
+#: includes/template-tags/general.php:44
 msgid "Camping"
 msgstr ""
 
-#: includes/template-tags/general.php:41
+#: includes/template-tags/general.php:45
 msgid "Catered Camping"
 msgstr ""
 
-#: includes/template-tags/general.php:123
+#: includes/template-tags/general.php:127
 msgid "Tea and Coffee Only"
 msgstr ""
 
-#: includes/template-tags/general.php:124
+#: includes/template-tags/general.php:128
 msgid "Tea, Coffee and Soft Drinks Only"
 msgstr ""
 
-#: includes/template-tags/general.php:125
+#: includes/template-tags/general.php:129
 msgid "All Local Brands (Spirits, Wine and Beers)"
 msgstr ""
 
-#: includes/template-tags/general.php:126
+#: includes/template-tags/general.php:130
 msgid "All Local Brands (excl Spirits)"
 msgstr ""
 
-#: includes/template-tags/general.php:127
+#: includes/template-tags/general.php:131
 msgid "All Drinks (excl Champagne)"
 msgstr ""
 
-#: includes/template-tags/general.php:128
+#: includes/template-tags/general.php:132
 msgid "All Drinks (excl Premium Brands)"
 msgstr ""
 
-#: includes/template-tags/general.php:129
+#: includes/template-tags/general.php:133
 msgid "All Drinks"
 msgstr ""
 
-#: includes/template-tags/helpers.php:449
+#: includes/template-tags/helpers.php:461
 msgid "Africa"
 msgstr ""
 
-#: includes/template-tags/helpers.php:450
+#: includes/template-tags/helpers.php:462
 msgid "Asia"
 msgstr ""
 
-#: includes/template-tags/helpers.php:451
+#: includes/template-tags/helpers.php:463
 msgid "Europe"
 msgstr ""
 
-#: includes/template-tags/helpers.php:452
+#: includes/template-tags/helpers.php:464
 msgid "Oceania"
 msgstr ""
 
-#: includes/template-tags/helpers.php:453
+#: includes/template-tags/helpers.php:465
 msgid "North America"
 msgstr ""
 
-#: includes/template-tags/helpers.php:454
+#: includes/template-tags/helpers.php:466
 msgid "South America"
 msgstr ""
 
-#: includes/template-tags/helpers.php:455
+#: includes/template-tags/helpers.php:467
 msgid "Antarctica"
 msgstr ""
 
-#: includes/template-tags/helpers.php:501
+#: includes/template-tags/helpers.php:513
 msgid "Per Person Sharing"
 msgstr ""
 
-#: includes/template-tags/helpers.php:505
+#: includes/template-tags/helpers.php:517
 msgid "Per Person Sharing Per Night"
 msgstr ""
 
-#: includes/template-tags/helpers.php:509
+#: includes/template-tags/helpers.php:521
 msgid "Percentage Off Your Price."
 msgstr ""
 
-#: src/blocks/sticky-menu/render.php:49
-msgid "Toggle section content visibility"
+#: patterns/accommodation-card.php:21
+#: patterns/accommodation-card.php:35
+#: patterns/accommodation-card.php:36
+msgid "Accommodation Card"
+msgstr ""
+
+#: patterns/accommodation-card.php:22
+msgid "A card layout for displaying accommodation in grid/query loops with price and room information."
+msgstr ""
+
+#: patterns/accommodation-card.php:25
+#: build/blocks/accommodation-type/index.js:1
+#: build/blocks/destination-to-accommodation/index.js:1
+#: build/blocks/tour-related-accommodation/index.js:1
+#: src/blocks/accommodation-type/index.js:23
+#: src/blocks/destination-to-accommodation/index.js:27
+#: src/blocks/tour-related-accommodation/index.js:26
+msgid "accommodation"
+msgstr ""
+
+#: patterns/accommodation-card.php:26
+#: patterns/destination-card.php:26
+#: patterns/tour-card.php:26
+msgid "card"
+msgstr ""
+
+#: patterns/accommodation-card.php:27
+#: patterns/destination-card.php:27
+#: patterns/tour-card.php:27
+msgid "grid"
+msgstr ""
+
+#: patterns/accommodation-card.php:28
+msgid "hotel"
+msgstr ""
+
+#: patterns/accommodation-card.php:29
+msgid "lodge"
+msgstr ""
+
+#: patterns/accommodation-card.php:30
+#: build/blocks/number-of-rooms/index.js:1
+#: build/blocks/units/index.js:1
+#: src/blocks/number-of-rooms/index.js:23
+#: src/blocks/units/index.js:27
+msgid "rooms"
+msgstr ""
+
+#: patterns/accommodation-card.php:38
+#: patterns/destination-card.php:38
+#: patterns/itinerary-list.php:38
+#: patterns/room-card.php:38
+#: patterns/tour-card.php:38
+#: build/blocks/banking/index.js:1
+#: src/blocks/banking/index.js:45
+#: src/blocks/banking/index.js:130
+msgid "Content"
+msgstr ""
+
+#: patterns/accommodation-card.php:39
+msgid "Accommodation Title"
+msgstr ""
+
+#: patterns/accommodation-card.php:43
+msgid "Accommodation Information"
+msgstr ""
+
+#: patterns/accommodation-card.php:43
+#: patterns/accommodation-card.php:44
+msgid "Accommodation details"
+msgstr ""
+
+#: patterns/accommodation-card.php:44
+#: patterns/tour-card.php:44
+msgid "Price Row"
+msgstr ""
+
+#: patterns/accommodation-card.php:49
+#: patterns/tour-card.php:49
+#: build/blocks/price/index.js:1
+#: build/blocks/units/index.js:1
+#: src/blocks/price/index.js:77
+#: src/blocks/units/index.js:188
+#: src/blocks/units/index.js:233
+msgid "From:"
+msgstr ""
+
+#: patterns/accommodation-card.php:53
+#: patterns/tour-card.php:53
+#: build/blocks/price/index.js:1
+#: src/blocks/price/index.js:19
+msgid "Price"
+msgstr ""
+
+#: patterns/accommodation-card.php:58
+msgid "Type Row"
+msgstr ""
+
+#: patterns/accommodation-card.php:63
+msgid "Type:"
+msgstr ""
+
+#: patterns/accommodation-card.php:72
+msgid "Rooms Row"
+msgstr ""
+
+#: patterns/accommodation-card.php:77
+msgid "Rooms:"
+msgstr ""
+
+#: patterns/accommodation-card.php:81
+#: build/blocks/number-of-rooms/index.js:1
+#: src/blocks/number-of-rooms/index.js:17
+#: src/blocks/number-of-rooms/index.js:31
+msgid "Number of Rooms"
+msgstr ""
+
+#: patterns/accommodation-card.php:87
+msgid "Accommodation Text Content"
+msgstr ""
+
+#: patterns/accommodation-card.php:94
+#: patterns/destination-card.php:50
+#: patterns/tour-card.php:86
+msgid "View more"
+msgstr ""
+
+#: patterns/destination-card.php:21
+#: patterns/destination-card.php:35
+#: patterns/destination-card.php:36
+msgid "Destination Card"
+msgstr ""
+
+#: patterns/destination-card.php:22
+msgid "A card layout for displaying destinations in grid/query loops."
+msgstr ""
+
+#: patterns/destination-card.php:25
+#: patterns/travel-information.php:159
+#: build/blocks/destination-to-accommodation/index.js:1
+#: build/blocks/destination-to-tour/index.js:1
+#: build/blocks/facts-country-wrapper/index.js:1
+#: build/blocks/facts-regions-wrapper/index.js:1
+#: build/blocks/tour-related-destination/index.js:1
+#: src/blocks/destination-to-accommodation/index.js:26
+#: src/blocks/destination-to-tour/index.js:26
+#: src/blocks/facts-country-wrapper/index.js:24
+#: src/blocks/facts-regions-wrapper/index.js:26
+#: src/blocks/tour-related-destination/index.js:26
+msgid "destination"
+msgstr ""
+
+#: patterns/destination-card.php:28
+#: build/blocks/facts-country-wrapper/index.js:1
+#: src/blocks/facts-country-wrapper/index.js:23
+msgid "country"
+msgstr ""
+
+#: patterns/destination-card.php:29
+msgid "region"
+msgstr ""
+
+#: patterns/destination-card.php:30
+#: build/blocks/facts-country-wrapper/index.js:1
+#: build/blocks/facts-regions-wrapper/index.js:1
+#: src/blocks/facts-country-wrapper/index.js:25
+#: src/blocks/facts-regions-wrapper/index.js:27
+msgid "location"
+msgstr ""
+
+#: patterns/destination-card.php:39
+msgid "Destination Title"
+msgstr ""
+
+#: patterns/destination-card.php:43
+msgid "Destination Text Content"
+msgstr ""
+
+#: patterns/gallery-section.php:21
+#: patterns/gallery-section.php:33
+#: patterns/gallery-section.php:34
+msgid "Gallery Section"
+msgstr ""
+
+#: patterns/gallery-section.php:22
+msgid "Display attached images in a lightbox gallery with decorative heading."
+msgstr ""
+
+#: patterns/gallery-section.php:25
+msgid "gallery"
+msgstr ""
+
+#: patterns/gallery-section.php:26
+msgid "images"
+msgstr ""
+
+#: patterns/gallery-section.php:27
+msgid "photos"
+msgstr ""
+
+#: patterns/gallery-section.php:28
+msgid "lightbox"
+msgstr ""
+
+#: patterns/gallery-section.php:29
+#: patterns/section-header.php:23
+msgid "section"
+msgstr ""
+
+#: patterns/gallery-section.php:34
+msgid "Gallery Heading"
+msgstr ""
+
+#: patterns/gallery-section.php:48
+msgid "Gallery Content"
+msgstr ""
+
+#: patterns/gallery-section.php:51
+#: patterns/gallery-section.php:55
+#: patterns/gallery-section.php:59
+msgid "Gallery image"
+msgstr ""
+
+#: patterns/itinerary-list.php:21
+msgid "Itinerary Item"
+msgstr ""
+
+#: patterns/itinerary-list.php:22
+msgid "A single itinerary day item with image, description, and accommodation details."
+msgstr ""
+
+#: patterns/itinerary-list.php:25
+#: build/blocks/itinerary/index.js:1
+#: build/blocks/wetu-map/index.js:1
+#: src/blocks/itinerary/index.js:25
+#: src/blocks/wetu-map/index.js:53
+msgid "itinerary"
+msgstr ""
+
+#: patterns/itinerary-list.php:30
+#: patterns/room-card.php:30
+msgid "Image"
+msgstr ""
+
+#: patterns/itinerary-list.php:32
+msgid "Itinerary day image"
+msgstr ""
+
+#: patterns/itinerary-list.php:39
+msgid "Day Heading"
+msgstr ""
+
+#: patterns/itinerary-list.php:41
+msgid "Day 1 - 3"
+msgstr ""
+
+#: patterns/itinerary-list.php:49
+#: patterns/room-card.php:49
+msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vehicula auctor nisl, ut suscipit purus consectetur dictum. Sed dapibus congue dolor sed iaculis. Fusce in molestie metus, vitae commodo nibh."
+msgstr ""
+
+#: patterns/itinerary-list.php:57
+#: patterns/room-card.php:55
+#: patterns/room-card.php:57
+msgid "Information"
+msgstr ""
+
+#: patterns/room-card.php:21
+msgid "Room Card"
+msgstr ""
+
+#: patterns/room-card.php:22
+msgid "A horizontal card layout for accommodation units with image, description, and pricing."
+msgstr ""
+
+#: patterns/room-card.php:25
+msgid "room"
+msgstr ""
+
+#: patterns/room-card.php:32
+msgid "Room image"
+msgstr ""
+
+#: patterns/room-card.php:39
+msgid "Room Heading"
+msgstr ""
+
+#: patterns/room-card.php:41
+msgid "Room Title"
+msgstr ""
+
+#: patterns/room-card.php:60
+msgid "Info Items"
+msgstr ""
+
+#: patterns/section-header.php:19
+#: patterns/section-header.php:33
+#: patterns/section-header.php:34
+msgid "Section Header"
+msgstr ""
+
+#: patterns/section-header.php:20
+msgid "A section header with centered heading text flanked by horizontal separators."
+msgstr ""
+
+#: patterns/section-header.php:24
+#: build/blocks/banner-cover/index.js:1
+#: src/blocks/banner-cover/index.js:24
+msgid "header"
+msgstr ""
+
+#: patterns/section-header.php:25
+msgid "heading"
+msgstr ""
+
+#: patterns/section-header.php:26
+msgid "separator"
+msgstr ""
+
+#: patterns/section-header.php:27
+msgid "divider"
+msgstr ""
+
+#: patterns/section-header.php:38
+msgid "Heading"
+msgstr ""
+
+#: patterns/section-header.php:38
+#: patterns/section-header.php:39
+msgid "Section Title"
+msgstr ""
+
+#: patterns/tour-card.php:21
+#: patterns/tour-card.php:35
+#: patterns/tour-card.php:36
+msgid "Tour Card"
+msgstr ""
+
+#: patterns/tour-card.php:22
+msgid "A card layout for displaying tours in grid/query loops with price and duration information."
+msgstr ""
+
+#: patterns/tour-card.php:25
+#: build/blocks/booking-validity/index.js:1
+#: build/blocks/destination-to-tour/index.js:1
+#: build/blocks/duration/index.js:1
+#: build/blocks/tagline/index.js:1
+#: build/blocks/tour-related-tour/index.js:1
+#: build/blocks/travel-styles/index.js:1
+#: src/blocks/booking-validity/index.js:26
+#: src/blocks/destination-to-tour/index.js:27
+#: src/blocks/duration/index.js:30
+#: src/blocks/tagline/index.js:29
+#: src/blocks/tour-related-tour/index.js:26
+#: src/blocks/travel-styles/index.js:28
+msgid "tour"
+msgstr ""
+
+#: patterns/tour-card.php:28
+#: build/blocks/price-include-exclude/index.js:1
+#: build/blocks/price/index.js:1
+#: src/blocks/price-include-exclude/index.js:23
+#: src/blocks/price/index.js:24
+msgid "price"
+msgstr ""
+
+#: patterns/tour-card.php:29
+#: build/blocks/duration/index.js:1
+#: src/blocks/duration/index.js:25
+msgid "duration"
+msgstr ""
+
+#: patterns/tour-card.php:39
+msgid "Tour Title"
+msgstr ""
+
+#: patterns/tour-card.php:43
+msgid "Tour Information"
+msgstr ""
+
+#: patterns/tour-card.php:43
+#: patterns/tour-card.php:44
+msgid "Tour details"
+msgstr ""
+
+#: patterns/tour-card.php:58
+msgid "Duration Row"
+msgstr ""
+
+#: patterns/tour-card.php:63
+#: build/blocks/duration/index.js:1
+#: src/blocks/duration/index.js:88
+msgid "Duration:"
+msgstr ""
+
+#: patterns/tour-card.php:68
+#: build/blocks/duration/index.js:1
+#: src/blocks/duration/index.js:20
+msgid "Duration"
+msgstr ""
+
+#: patterns/tour-card.php:73
+#: build/blocks/duration/index.js:1
+#: src/blocks/duration/index.js:96
+msgid "Days"
+msgstr ""
+
+#: patterns/tour-card.php:79
+msgid "Tour Text Content"
+msgstr ""
+
+#: patterns/travel-information.php:150
+msgid "Travel Information Cards"
+msgstr ""
+
+#: patterns/travel-information.php:151
+msgid "Display travel information such as banking, climate, cuisine, and visa details for a destination."
+msgstr ""
+
+#: patterns/travel-information.php:154
+#: build/blocks/best-time-to-visit/index.js:1
+#: build/blocks/featured-tours/index.js:1
+#: build/blocks/transport/index.js:1
+#: build/blocks/travel-styles/index.js:1
+#: src/blocks/best-time-to-visit/index.js:24
+#: src/blocks/featured-tours/index.js:22
+#: src/blocks/transport/index.js:26
+#: src/blocks/travel-styles/index.js:24
+msgid "travel"
+msgstr ""
+
+#: patterns/travel-information.php:155
+#: build/blocks/additional-info/index.js:1
+#: build/blocks/safety/index.js:1
+#: build/blocks/visa/index.js:1
+#: src/blocks/additional-info/index.js:24
+#: src/blocks/safety/index.js:26
+#: src/blocks/visa/index.js:24
+msgid "information"
+msgstr ""
+
+#: patterns/travel-information.php:156
+#: build/blocks/banking/index.js:1
+#: src/blocks/banking/index.js:23
+msgid "banking"
+msgstr ""
+
+#: patterns/travel-information.php:157
+#: build/blocks/climate/index.js:1
+#: src/blocks/climate/index.js:37
+msgid "climate"
+msgstr ""
+
+#: patterns/travel-information.php:158
+#: build/blocks/visa/index.js:1
+#: src/blocks/visa/index.js:23
+msgid "visa"
+msgstr ""
+
+#: patterns/travel-information.php:162
+msgid "Travel Information"
+msgstr ""
+
+#: patterns/travel-information.php:166
+#: patterns/travel-information.php:167
+msgid "Travel information categories"
+msgstr ""
+
+#. translators: %s is the plural name of the post type.
+#: plugins/content-models/includes/runtime/class-content-model.php:182
+#, php-format
+msgid "All %s"
+msgstr ""
+
+#. translators: %s is the singular name of the post type.
+#: plugins/content-models/includes/runtime/class-content-model.php:184
+#: plugins/content-models/includes/runtime/class-content-model.php:186
+#, php-format
+msgid "Add New %s"
+msgstr ""
+
+#. translators: %s is the singular name of the post type.
+#: plugins/content-models/includes/runtime/class-content-model.php:188
+#, php-format
+msgid "Edit %s"
+msgstr ""
+
+#. translators: %s is the singular name of the post type.
+#: plugins/content-models/includes/runtime/class-content-model.php:190
+#, php-format
+msgid "New %s"
+msgstr ""
+
+#. translators: %s is the singular name of the post type.
+#: plugins/content-models/includes/runtime/class-content-model.php:192
+#, php-format
+msgid "View %s"
+msgstr ""
+
+#. translators: %s is the plural name of the post type.
+#: plugins/content-models/includes/runtime/class-content-model.php:194
+#, php-format
+msgid "Search %s"
+msgstr ""
+
+#. translators: %s is the plural name of the post type.
+#: plugins/content-models/includes/runtime/class-content-model.php:196
+#, php-format
+msgid "No %s found"
+msgstr ""
+
+#. translators: %s is the plural name of the post type.
+#: plugins/content-models/includes/runtime/class-content-model.php:198
+#, php-format
+msgid "No %s found in trash"
+msgstr ""
+
+#. translators: %s is the navigation label of the post type.
+#: plugins/content-models/includes/runtime/class-content-model.php:200
+#, php-format
+msgid "%s links"
+msgstr ""
+
+#. translators: %s is the navigation label of the post type.
+#: plugins/content-models/includes/runtime/class-content-model.php:202
+#, php-format
+msgid "Link to %s"
 msgstr ""
 
 #: tour-operator.php:39
@@ -1638,9 +2280,6 @@ msgstr ""
 #: build/blocks/accommodation-related-destination/index.js:1
 #: build/blocks/accommodation-related-tour/index.js:1
 #: build/blocks/related-regions/index.js:1
-#: build/blocks/review-related-accommodation/index.js:1
-#: build/blocks/review-related-destination/index.js:1
-#: build/blocks/review-related-tour/index.js:1
 #: build/blocks/tour-related-accommodation/index.js:1
 #: build/blocks/tour-related-destination/index.js:1
 #: build/blocks/tour-related-tour/index.js:1
@@ -1648,9 +2287,6 @@ msgstr ""
 #: src/blocks/accommodation-related-destination/index.js:26
 #: src/blocks/accommodation-related-tour/index.js:26
 #: src/blocks/related-regions/index.js:23
-#: src/blocks/review-related-accommodation/index.js:27
-#: src/blocks/review-related-destination/index.js:27
-#: src/blocks/review-related-tour/index.js:27
 #: src/blocks/tour-related-accommodation/index.js:27
 #: src/blocks/tour-related-destination/index.js:27
 #: src/blocks/tour-related-tour/index.js:27
@@ -1808,17 +2444,6 @@ msgid "Displays the accommodation type(s)."
 msgstr ""
 
 #: build/blocks/accommodation-type/index.js:1
-#: build/blocks/destination-to-accommodation/index.js:1
-#: build/blocks/review-related-accommodation/index.js:1
-#: build/blocks/tour-related-accommodation/index.js:1
-#: src/blocks/accommodation-type/index.js:23
-#: src/blocks/destination-to-accommodation/index.js:27
-#: src/blocks/review-related-accommodation/index.js:26
-#: src/blocks/tour-related-accommodation/index.js:26
-msgid "accommodation"
-msgstr ""
-
-#: build/blocks/accommodation-type/index.js:1
 #: build/blocks/travel-styles/index.js:1
 #: src/blocks/accommodation-type/index.js:24
 #: src/blocks/travel-styles/index.js:29
@@ -1826,12 +2451,13 @@ msgid "type"
 msgstr ""
 
 #: build/blocks/accommodation-type/index.js:1
-#: src/blocks/accommodation-type/index.js:113
+#: src/blocks/accommodation-type/index.js:73
+#: src/blocks/accommodation-type/index.js:110
 msgid "Accommodation Type: "
 msgstr ""
 
 #: build/blocks/accommodation-type/index.js:1
-#: src/blocks/accommodation-type/index.js:113
+#: src/blocks/accommodation-type/index.js:110
 msgid "Hotel"
 msgstr ""
 
@@ -1850,15 +2476,6 @@ msgstr ""
 #: src/blocks/additional-info/index.js:23
 #: src/blocks/single-supplement-wrapper/index.js:29
 msgid "additional"
-msgstr ""
-
-#: build/blocks/additional-info/index.js:1
-#: build/blocks/safety/index.js:1
-#: build/blocks/visa/index.js:1
-#: src/blocks/additional-info/index.js:24
-#: src/blocks/safety/index.js:26
-#: src/blocks/visa/index.js:24
-msgid "information"
 msgstr ""
 
 #: build/blocks/additional-info/index.js:1
@@ -1926,11 +2543,6 @@ msgid "Display banking and financial information for destinations."
 msgstr ""
 
 #: build/blocks/banking/index.js:1
-#: src/blocks/banking/index.js:23
-msgid "banking"
-msgstr ""
-
-#: build/blocks/banking/index.js:1
 #: src/blocks/banking/index.js:24
 msgid "finance"
 msgstr ""
@@ -1943,12 +2555,6 @@ msgstr ""
 #: build/blocks/banking/index.js:1
 #: src/blocks/banking/index.js:26
 msgid "money"
-msgstr ""
-
-#: build/blocks/banking/index.js:1
-#: src/blocks/banking/index.js:45
-#: src/blocks/banking/index.js:130
-msgid "Content"
 msgstr ""
 
 #: build/blocks/banking/index.js:1
@@ -1993,11 +2599,6 @@ msgid "image"
 msgstr ""
 
 #: build/blocks/banner-cover/index.js:1
-#: src/blocks/banner-cover/index.js:24
-msgid "header"
-msgstr ""
-
-#: build/blocks/banner-cover/index.js:1
 #: src/blocks/banner-cover/index.js:81
 msgid "Page Title"
 msgstr ""
@@ -2005,9 +2606,8 @@ msgstr ""
 #: build/blocks/best-time-to-visit/index.js:1
 #: src/blocks/best-time-to-visit/index.js:18
 #: src/blocks/best-time-to-visit/index.js:32
-#: src/blocks/best-time-to-visit/index.js:57
-#: src/blocks/best-time-to-visit/index.js:84
-#: src/blocks/best-time-to-visit/index.js:116
+#: src/blocks/best-time-to-visit/index.js:85
+#: src/blocks/best-time-to-visit/index.js:117
 msgid "Best months to visit"
 msgstr ""
 
@@ -2022,19 +2622,13 @@ msgid "best time to visit"
 msgstr ""
 
 #: build/blocks/best-time-to-visit/index.js:1
-#: build/blocks/featured-tours/index.js:1
-#: build/blocks/transport/index.js:1
-#: build/blocks/travel-styles/index.js:1
-#: src/blocks/best-time-to-visit/index.js:24
-#: src/blocks/featured-tours/index.js:22
-#: src/blocks/transport/index.js:26
-#: src/blocks/travel-styles/index.js:24
-msgid "travel"
+#: src/blocks/best-time-to-visit/index.js:25
+msgid "visit"
 msgstr ""
 
 #: build/blocks/best-time-to-visit/index.js:1
-#: src/blocks/best-time-to-visit/index.js:25
-msgid "visit"
+#: src/blocks/best-time-to-visit/index.js:83
+msgid "Best months to visit:"
 msgstr ""
 
 #: build/blocks/booking-validity/index.js:1
@@ -2059,34 +2653,17 @@ msgid "validity"
 msgstr ""
 
 #: build/blocks/booking-validity/index.js:1
-#: build/blocks/destination-to-tour/index.js:1
-#: build/blocks/duration/index.js:1
-#: build/blocks/review-related-tour/index.js:1
-#: build/blocks/tagline/index.js:1
-#: build/blocks/tour-related-tour/index.js:1
-#: build/blocks/travel-styles/index.js:1
-#: src/blocks/booking-validity/index.js:26
-#: src/blocks/destination-to-tour/index.js:27
-#: src/blocks/duration/index.js:29
-#: src/blocks/review-related-tour/index.js:26
-#: src/blocks/tagline/index.js:29
-#: src/blocks/tour-related-tour/index.js:26
-#: src/blocks/travel-styles/index.js:28
-msgid "tour"
-msgstr ""
-
-#: build/blocks/booking-validity/index.js:1
-#: src/blocks/booking-validity/index.js:63
+#: src/blocks/booking-validity/index.js:84
 msgid "Booking validity:"
 msgstr ""
 
 #: build/blocks/booking-validity/index.js:1
-#: src/blocks/booking-validity/index.js:144
+#: src/blocks/booking-validity/index.js:139
 msgid "Booking validity: "
 msgstr ""
 
 #: build/blocks/booking-validity/index.js:1
-#: src/blocks/booking-validity/index.js:144
+#: src/blocks/booking-validity/index.js:139
 msgid "Start Date - End Date"
 msgstr ""
 
@@ -2111,7 +2688,7 @@ msgstr ""
 #: build/blocks/duration/index.js:1
 #: src/blocks/checkin-time/index.js:24
 #: src/blocks/checkout-time/index.js:24
-#: src/blocks/duration/index.js:25
+#: src/blocks/duration/index.js:26
 msgid "time"
 msgstr ""
 
@@ -2121,17 +2698,13 @@ msgid "checkin"
 msgstr ""
 
 #: build/blocks/checkin-time/index.js:1
-#: src/blocks/checkin-time/index.js:61
-msgid "Check in time:"
-msgstr ""
-
-#: build/blocks/checkin-time/index.js:1
-#: src/blocks/checkin-time/index.js:122
+#: src/blocks/checkin-time/index.js:83
+#: src/blocks/checkin-time/index.js:116
 msgid "Check in time: "
 msgstr ""
 
 #: build/blocks/checkin-time/index.js:1
-#: src/blocks/checkin-time/index.js:122
+#: src/blocks/checkin-time/index.js:116
 msgid "11:00 AM"
 msgstr ""
 
@@ -2157,28 +2730,19 @@ msgid "check out"
 msgstr ""
 
 #: build/blocks/checkout-time/index.js:1
-#: src/blocks/checkout-time/index.js:61
-msgid "Check out time:"
-msgstr ""
-
-#: build/blocks/checkout-time/index.js:1
-#: src/blocks/checkout-time/index.js:122
+#: src/blocks/checkout-time/index.js:83
+#: src/blocks/checkout-time/index.js:116
 msgid "Check out time: "
 msgstr ""
 
 #: build/blocks/checkout-time/index.js:1
-#: src/blocks/checkout-time/index.js:122
+#: src/blocks/checkout-time/index.js:116
 msgid "3:00 PM"
 msgstr ""
 
 #: build/blocks/climate/index.js:1
 #: src/blocks/climate/index.js:20
 msgid "Display climate and weather information for destinations."
-msgstr ""
-
-#: build/blocks/climate/index.js:1
-#: src/blocks/climate/index.js:37
-msgid "climate"
 msgstr ""
 
 #: build/blocks/climate/index.js:1
@@ -2255,15 +2819,15 @@ msgid "from"
 msgstr ""
 
 #: build/blocks/departs-from/index.js:1
-#: src/blocks/departs-from/index.js:73
-#: src/blocks/departs-from/index.js:132
+#: src/blocks/departs-from/index.js:96
+#: src/blocks/departs-from/index.js:130
 msgid "Departs From:"
 msgstr ""
 
 #: build/blocks/departs-from/index.js:1
 #: build/blocks/ends-in/index.js:1
-#: src/blocks/departs-from/index.js:132
-#: src/blocks/ends-in/index.js:133
+#: src/blocks/departs-from/index.js:130
+#: src/blocks/ends-in/index.js:131
 msgid "Cape Town"
 msgstr ""
 
@@ -2280,21 +2844,6 @@ msgstr ""
 
 #: build/blocks/destination-to-accommodation/index.js:1
 #: build/blocks/destination-to-tour/index.js:1
-#: build/blocks/facts-country-wrapper/index.js:1
-#: build/blocks/facts-regions-wrapper/index.js:1
-#: build/blocks/review-related-destination/index.js:1
-#: build/blocks/tour-related-destination/index.js:1
-#: src/blocks/destination-to-accommodation/index.js:26
-#: src/blocks/destination-to-tour/index.js:26
-#: src/blocks/facts-country-wrapper/index.js:24
-#: src/blocks/facts-regions-wrapper/index.js:26
-#: src/blocks/review-related-destination/index.js:26
-#: src/blocks/tour-related-destination/index.js:26
-msgid "destination"
-msgstr ""
-
-#: build/blocks/destination-to-accommodation/index.js:1
-#: build/blocks/destination-to-tour/index.js:1
 #: build/blocks/featured-destinations/index.js:1
 #: build/blocks/regions/index.js:1
 #: build/blocks/related-regions/index.js:1
@@ -2307,9 +2856,14 @@ msgid "locations"
 msgstr ""
 
 #: build/blocks/destination-to-accommodation/index.js:1
+#: src/blocks/destination-to-accommodation/index.js:83
+msgid "Location:"
+msgstr ""
+
+#: build/blocks/destination-to-accommodation/index.js:1
 #: build/blocks/destination-to-tour/index.js:1
-#: src/blocks/destination-to-accommodation/index.js:124
-#: src/blocks/destination-to-tour/index.js:124
+#: src/blocks/destination-to-accommodation/index.js:121
+#: src/blocks/destination-to-tour/index.js:123
 msgid "Destinations: "
 msgstr ""
 
@@ -2325,7 +2879,7 @@ msgid "Displays the destinations associated with this tour."
 msgstr ""
 
 #: build/blocks/destination-to-tour/index.js:1
-#: src/blocks/destination-to-tour/index.js:60
+#: src/blocks/destination-to-tour/index.js:84
 msgid "Destinations:"
 msgstr ""
 
@@ -2360,49 +2914,34 @@ msgid "Smart casual attire is recommended. Lightweight clothing suitable for war
 msgstr ""
 
 #: build/blocks/duration/index.js:1
-#: src/blocks/duration/index.js:20
-msgid "Duration"
-msgstr ""
-
-#: build/blocks/duration/index.js:1
-#: src/blocks/duration/index.js:24
-msgid "duration"
+#: src/blocks/duration/index.js:23
+msgid "Displays the duration of the tour in days."
 msgstr ""
 
 #: build/blocks/duration/index.js:1
 #: build/blocks/itinerary/index.js:1
-#: src/blocks/duration/index.js:26
+#: src/blocks/duration/index.js:27
 #: src/blocks/itinerary/index.js:27
 msgid "days"
 msgstr ""
 
 #: build/blocks/duration/index.js:1
-#: src/blocks/duration/index.js:27
+#: src/blocks/duration/index.js:28
 msgid "length"
 msgstr ""
 
 #: build/blocks/duration/index.js:1
-#: src/blocks/duration/index.js:28
+#: src/blocks/duration/index.js:29
 msgid "period"
 msgstr ""
 
 #: build/blocks/duration/index.js:1
-#: src/blocks/duration/index.js:65
-msgid "Duration:"
-msgstr ""
-
-#: build/blocks/duration/index.js:1
-#: src/blocks/duration/index.js:98
-msgid "Days"
-msgstr ""
-
-#: build/blocks/duration/index.js:1
-#: src/blocks/duration/index.js:130
+#: src/blocks/duration/index.js:128
 msgid "Duration: "
 msgstr ""
 
 #: build/blocks/duration/index.js:1
-#: src/blocks/duration/index.js:130
+#: src/blocks/duration/index.js:128
 msgid "7 Days"
 msgstr ""
 
@@ -2463,8 +3002,8 @@ msgid "to"
 msgstr ""
 
 #: build/blocks/ends-in/index.js:1
-#: src/blocks/ends-in/index.js:74
-#: src/blocks/ends-in/index.js:133
+#: src/blocks/ends-in/index.js:97
+#: src/blocks/ends-in/index.js:131
 msgid "Ends In:"
 msgstr ""
 
@@ -2486,25 +3025,13 @@ msgstr ""
 #: build/blocks/facts-country-wrapper/index.js:1
 #: src/blocks/facts-country-wrapper/index.js:18
 #: src/blocks/facts-country-wrapper/index.js:33
-#: src/blocks/facts-country-wrapper/index.js:62
+#: src/blocks/facts-country-wrapper/index.js:84
 msgid "Country"
 msgstr ""
 
 #: build/blocks/facts-country-wrapper/index.js:1
 #: src/blocks/facts-country-wrapper/index.js:21
 msgid "Display the country associated with this destination."
-msgstr ""
-
-#: build/blocks/facts-country-wrapper/index.js:1
-#: src/blocks/facts-country-wrapper/index.js:23
-msgid "country"
-msgstr ""
-
-#: build/blocks/facts-country-wrapper/index.js:1
-#: build/blocks/facts-regions-wrapper/index.js:1
-#: src/blocks/facts-country-wrapper/index.js:25
-#: src/blocks/facts-regions-wrapper/index.js:27
-msgid "location"
 msgstr ""
 
 #: build/blocks/facts-country-wrapper/index.js:1
@@ -2515,12 +3042,12 @@ msgid "facts"
 msgstr ""
 
 #: build/blocks/facts-country-wrapper/index.js:1
-#: src/blocks/facts-country-wrapper/index.js:121
+#: src/blocks/facts-country-wrapper/index.js:118
 msgid "Country: "
 msgstr ""
 
 #: build/blocks/facts-country-wrapper/index.js:1
-#: src/blocks/facts-country-wrapper/index.js:121
+#: src/blocks/facts-country-wrapper/index.js:118
 msgid "South Africa"
 msgstr ""
 
@@ -2545,12 +3072,12 @@ msgid "regions"
 msgstr ""
 
 #: build/blocks/facts-regions-wrapper/index.js:1
-#: src/blocks/facts-regions-wrapper/index.js:123
+#: src/blocks/facts-regions-wrapper/index.js:120
 msgid "Regions: "
 msgstr ""
 
 #: build/blocks/facts-regions-wrapper/index.js:1
-#: src/blocks/facts-regions-wrapper/index.js:123
+#: src/blocks/facts-regions-wrapper/index.js:120
 msgid "Kilimanjaro region"
 msgstr ""
 
@@ -2622,6 +3149,12 @@ msgid "tours"
 msgstr ""
 
 #: build/blocks/gallery/index.js:1
+#: src/blocks/gallery/index.js:16
+#: src/blocks/gallery/index.js:22
+msgid "TO Gallery"
+msgstr ""
+
+#: build/blocks/gallery/index.js:1
 #: src/blocks/gallery/index.js:19
 msgid "Display multiple images in a Tour Operator gallery"
 msgstr ""
@@ -2676,17 +3209,17 @@ msgid "size"
 msgstr ""
 
 #: build/blocks/group-size/index.js:1
-#: src/blocks/group-size/index.js:62
+#: src/blocks/group-size/index.js:79
 msgid "Group size:"
 msgstr ""
 
 #: build/blocks/group-size/index.js:1
-#: src/blocks/group-size/index.js:116
+#: src/blocks/group-size/index.js:113
 msgid "Group size: "
 msgstr ""
 
 #: build/blocks/group-size/index.js:1
-#: src/blocks/group-size/index.js:116
+#: src/blocks/group-size/index.js:113
 msgid "10 people"
 msgstr ""
 
@@ -2771,55 +3304,58 @@ msgid "A block to display the tour itinerary with a title and a list of day-by-d
 msgstr ""
 
 #: build/blocks/itinerary/index.js:1
-#: build/blocks/wetu-map/index.js:1
-#: src/blocks/itinerary/index.js:25
-#: src/blocks/wetu-map/index.js:53
-msgid "itinerary"
-msgstr ""
-
-#: build/blocks/itinerary/index.js:1
 #: src/blocks/itinerary/index.js:26
 msgid "schedule"
 msgstr ""
 
 #: build/blocks/itinerary/index.js:1
-#: src/blocks/itinerary/index.js:70
+#: src/blocks/itinerary/index.js:58
+msgid "Tour Itinerary Title"
+msgstr ""
+
+#: build/blocks/itinerary/index.js:1
+#: src/blocks/itinerary/index.js:78
 msgid "Tour Itinerary"
 msgstr ""
 
 #: build/blocks/itinerary/index.js:1
-#: src/blocks/itinerary/index.js:155
+#: src/blocks/itinerary/index.js:99
+msgid "Itinerary Day Loop"
+msgstr ""
+
+#: build/blocks/itinerary/index.js:1
+#: src/blocks/itinerary/index.js:172
 msgid "Day 1"
 msgstr ""
 
 #: build/blocks/itinerary/index.js:1
-#: src/blocks/itinerary/index.js:165
+#: src/blocks/itinerary/index.js:182
 msgid "Arrival and transfer to hotel"
 msgstr ""
 
 #: build/blocks/itinerary/index.js:1
-#: src/blocks/itinerary/index.js:177
-#: src/blocks/itinerary/index.js:225
+#: src/blocks/itinerary/index.js:194
+#: src/blocks/itinerary/index.js:242
 msgid "Accommodation:"
 msgstr ""
 
 #: build/blocks/itinerary/index.js:1
-#: src/blocks/itinerary/index.js:184
+#: src/blocks/itinerary/index.js:201
 msgid "Post Hotel"
 msgstr ""
 
 #: build/blocks/itinerary/index.js:1
-#: src/blocks/itinerary/index.js:203
+#: src/blocks/itinerary/index.js:220
 msgid "Day 2"
 msgstr ""
 
 #: build/blocks/itinerary/index.js:1
-#: src/blocks/itinerary/index.js:213
+#: src/blocks/itinerary/index.js:230
 msgid "Safari activities and details"
 msgstr ""
 
 #: build/blocks/itinerary/index.js:1
-#: src/blocks/itinerary/index.js:232
+#: src/blocks/itinerary/index.js:249
 msgid "Grand Hotel Africa"
 msgstr ""
 
@@ -2854,58 +3390,73 @@ msgid "requirements"
 msgstr ""
 
 #: build/blocks/minimum-child-age/index.js:1
-#: src/blocks/minimum-child-age/index.js:90
-#: src/blocks/minimum-child-age/index.js:154
+#: src/blocks/minimum-child-age/index.js:112
+#: src/blocks/minimum-child-age/index.js:151
 msgid "Minimum Child Age:"
 msgstr ""
 
 #: build/blocks/minimum-child-age/index.js:1
-#: src/blocks/minimum-child-age/index.js:163
+#: src/blocks/minimum-child-age/index.js:160
 msgid "Age Content"
 msgstr ""
 
 #: build/blocks/minimum-child-age/index.js:1
-#: src/blocks/minimum-child-age/index.js:174
+#: src/blocks/minimum-child-age/index.js:171
 msgid "12 years old"
 msgstr ""
 
 #: build/blocks/modal-button/index.js:1
-#: src/blocks/modal-button/index.js:65
+#: src/blocks/modal-button/index.js:66
 msgid "Select a modal…"
 msgstr ""
 
 #: build/blocks/modal-button/index.js:1
-#: src/blocks/modal-button/index.js:69
+#: src/blocks/modal-button/index.js:70
 msgid "No modals found"
 msgstr ""
 
 #: build/blocks/modal-button/index.js:1
-#: src/blocks/modal-button/index.js:95
+#: src/blocks/modal-button/index.js:90
+msgid "Width"
+msgstr ""
+
+#: build/blocks/modal-button/index.js:1
+#: src/blocks/modal-button/index.js:94
+msgid "Button Width"
+msgstr ""
+
+#: build/blocks/modal-button/index.js:1
+#: src/blocks/modal-button/index.js:132
+msgid "Reset"
+msgstr ""
+
+#: build/blocks/modal-button/index.js:1
+#: src/blocks/modal-button/index.js:140
 msgid "Modal Settings"
 msgstr ""
 
 #: build/blocks/modal-button/index.js:1
-#: src/blocks/modal-button/index.js:107
+#: src/blocks/modal-button/index.js:152
 msgid "Loading modal options…"
 msgstr ""
 
 #: build/blocks/modal-button/index.js:1
-#: src/blocks/modal-button/index.js:115
+#: src/blocks/modal-button/index.js:160
 msgid "Modal to Open"
 msgstr ""
 
 #: build/blocks/modal-button/index.js:1
-#: src/blocks/modal-button/index.js:121
+#: src/blocks/modal-button/index.js:166
 msgid "Select which modal template should open when this button is clicked. These are filtered from the lsx_to_modals template part area."
 msgstr ""
 
 #: build/blocks/modal-button/index.js:1
-#: src/blocks/modal-button/index.js:138
+#: src/blocks/modal-button/index.js:184
 msgid "Add button text…"
 msgstr ""
 
 #: build/blocks/modal-button/index.js:1
-#: src/blocks/modal-button/index.js:148
+#: src/blocks/modal-button/index.js:195
 msgid "Please select a modal in the block settings."
 msgstr ""
 
@@ -2980,12 +3531,6 @@ msgid "Visas"
 msgstr ""
 
 #: build/blocks/number-of-rooms/index.js:1
-#: src/blocks/number-of-rooms/index.js:17
-#: src/blocks/number-of-rooms/index.js:31
-msgid "Number of Rooms"
-msgstr ""
-
-#: build/blocks/number-of-rooms/index.js:1
 #: src/blocks/number-of-rooms/index.js:20
 msgid "Displays the number of rooms available for this accommodation."
 msgstr ""
@@ -2997,20 +3542,18 @@ msgstr ""
 
 #: build/blocks/number-of-rooms/index.js:1
 #: build/blocks/units/index.js:1
-#: src/blocks/number-of-rooms/index.js:23
-#: src/blocks/units/index.js:27
-msgid "rooms"
-msgstr ""
-
-#: build/blocks/number-of-rooms/index.js:1
-#: build/blocks/units/index.js:1
 #: src/blocks/number-of-rooms/index.js:24
 #: src/blocks/units/index.js:26
 msgid "units"
 msgstr ""
 
 #: build/blocks/number-of-rooms/index.js:1
-#: src/blocks/number-of-rooms/index.js:114
+#: src/blocks/number-of-rooms/index.js:81
+msgid "Number of Units:"
+msgstr ""
+
+#: build/blocks/number-of-rooms/index.js:1
+#: src/blocks/number-of-rooms/index.js:110
 msgid "Number of Units: "
 msgstr ""
 
@@ -3043,13 +3586,6 @@ msgstr ""
 #: build/blocks/price-include-exclude/index.js:1
 #: src/blocks/price-include-exclude/index.js:19
 msgid "Displays pricing inclusion and exclusion information for accommodations."
-msgstr ""
-
-#: build/blocks/price-include-exclude/index.js:1
-#: build/blocks/price/index.js:1
-#: src/blocks/price-include-exclude/index.js:23
-#: src/blocks/price/index.js:24
-msgid "price"
 msgstr ""
 
 #: build/blocks/price-include-exclude/index.js:1
@@ -3105,11 +3641,6 @@ msgid "Meals not mentioned, tours, spa treatments, minibar"
 msgstr ""
 
 #: build/blocks/price/index.js:1
-#: src/blocks/price/index.js:19
-msgid "Price"
-msgstr ""
-
-#: build/blocks/price/index.js:1
 #: src/blocks/price/index.js:22
 msgid "Displays the starting price of a tour."
 msgstr ""
@@ -3132,15 +3663,7 @@ msgid "starting"
 msgstr ""
 
 #: build/blocks/price/index.js:1
-#: build/blocks/units/index.js:1
-#: src/blocks/price/index.js:65
-#: src/blocks/units/index.js:178
-#: src/blocks/units/index.js:223
-msgid "From:"
-msgstr ""
-
-#: build/blocks/price/index.js:1
-#: src/blocks/price/index.js:119
+#: src/blocks/price/index.js:115
 msgid "From: "
 msgstr ""
 
@@ -3177,29 +3700,19 @@ msgid "quality"
 msgstr ""
 
 #: build/blocks/rating/index.js:1
-#: src/blocks/rating/index.js:66
-#: src/blocks/rating/index.js:172
-msgid "Rating:"
-msgstr ""
-
-#: build/blocks/rating/index.js:1
-#: src/blocks/rating/index.js:75
+#: src/blocks/rating/index.js:70
 msgid "Rating Content"
 msgstr ""
 
 #: build/blocks/rating/index.js:1
-#: src/blocks/rating/index.js:103
-msgid "Rating Type"
+#: src/blocks/rating/index.js:92
+#: src/blocks/rating/index.js:128
+msgid "Rating:"
 msgstr ""
 
 #: build/blocks/rating/index.js:1
-#: src/blocks/rating/index.js:190
+#: src/blocks/rating/index.js:146
 msgid "4.5"
-msgstr ""
-
-#: build/blocks/rating/index.js:1
-#: src/blocks/rating/index.js:211
-msgid "Star Rating"
 msgstr ""
 
 #: build/blocks/regions/index.js:1
@@ -3270,153 +3783,6 @@ msgstr ""
 msgid "Related Regions Query"
 msgstr ""
 
-#: build/blocks/review-related-accommodation/index.js:1
-#: build/blocks/review-related-destination/index.js:1
-#: build/blocks/review-related-tour/index.js:1
-#: src/blocks/review-related-accommodation/index.js:20
-#: src/blocks/review-related-accommodation/index.js:32
-#: src/blocks/review-related-destination/index.js:20
-#: src/blocks/review-related-destination/index.js:32
-#: src/blocks/review-related-tour/index.js:20
-#: src/blocks/review-related-tour/index.js:32
-msgid "Related Reviews"
-msgstr ""
-
-#: build/blocks/review-related-accommodation/index.js:1
-#: src/blocks/review-related-accommodation/index.js:22
-msgid "Displays reviews related to this accommodation."
-msgstr ""
-
-#: build/blocks/review-related-accommodation/index.js:1
-#: build/blocks/review-related-destination/index.js:1
-#: build/blocks/review-related-tour/index.js:1
-#: src/blocks/review-related-accommodation/index.js:25
-#: src/blocks/review-related-destination/index.js:25
-#: src/blocks/review-related-tour/index.js:25
-msgid "reviews"
-msgstr ""
-
-#: build/blocks/review-related-accommodation/index.js:1
-#: build/blocks/review-related-destination/index.js:1
-#: build/blocks/review-related-tour/index.js:1
-#: src/blocks/review-related-accommodation/index.js:28
-#: src/blocks/review-related-destination/index.js:28
-#: src/blocks/review-related-tour/index.js:28
-msgid "testimonials"
-msgstr ""
-
-#: build/blocks/review-related-accommodation/index.js:1
-#: build/blocks/review-related-destination/index.js:1
-#: build/blocks/review-related-tour/index.js:1
-#: src/blocks/review-related-accommodation/index.js:61
-#: src/blocks/review-related-accommodation/index.js:138
-#: src/blocks/review-related-destination/index.js:62
-#: src/blocks/review-related-destination/index.js:139
-#: src/blocks/review-related-tour/index.js:61
-#: src/blocks/review-related-tour/index.js:138
-msgid "Reviews"
-msgstr ""
-
-#: build/blocks/review-related-accommodation/index.js:1
-#: build/blocks/review-related-destination/index.js:1
-#: src/blocks/review-related-accommodation/index.js:83
-#: src/blocks/review-related-destination/index.js:84
-msgid "Related Reviews Query"
-msgstr ""
-
-#: build/blocks/review-related-accommodation/index.js:1
-#: src/blocks/review-related-accommodation/index.js:188
-msgid "Excellent Hotel Stay"
-msgstr ""
-
-#: build/blocks/review-related-accommodation/index.js:1
-#: src/blocks/review-related-accommodation/index.js:195
-msgid "The hotel exceeded our expectations with comfortable rooms, excellent service, and a fantastic location. The staff were friendly and helpful throughout our stay."
-msgstr ""
-
-#: build/blocks/review-related-accommodation/index.js:1
-#: build/blocks/review-related-destination/index.js:1
-#: build/blocks/review-related-tour/index.js:1
-#: src/blocks/review-related-accommodation/index.js:201
-#: src/blocks/review-related-destination/index.js:202
-#: src/blocks/review-related-tour/index.js:201
-msgid "— Sarah Johnson"
-msgstr ""
-
-#: build/blocks/review-related-accommodation/index.js:1
-#: src/blocks/review-related-accommodation/index.js:230
-msgid "Beautiful Resort Experience"
-msgstr ""
-
-#: build/blocks/review-related-accommodation/index.js:1
-#: src/blocks/review-related-accommodation/index.js:237
-msgid "Amazing resort with stunning ocean views, clean facilities, and top-notch amenities. Perfect for a romantic getaway. Would definitely return!"
-msgstr ""
-
-#: build/blocks/review-related-accommodation/index.js:1
-#: build/blocks/review-related-destination/index.js:1
-#: build/blocks/review-related-tour/index.js:1
-#: src/blocks/review-related-accommodation/index.js:243
-#: src/blocks/review-related-destination/index.js:244
-#: src/blocks/review-related-tour/index.js:243
-msgid "— Michael Chen"
-msgstr ""
-
-#: build/blocks/review-related-destination/index.js:1
-#: src/blocks/review-related-destination/index.js:22
-msgid "Displays reviews related to this destination."
-msgstr ""
-
-#: build/blocks/review-related-destination/index.js:1
-#: src/blocks/review-related-destination/index.js:189
-msgid "Beautiful South Africa Experience"
-msgstr ""
-
-#: build/blocks/review-related-destination/index.js:1
-#: src/blocks/review-related-destination/index.js:196
-msgid "South Africa exceeded all expectations! The wildlife, landscapes, and culture were truly unforgettable."
-msgstr ""
-
-#: build/blocks/review-related-destination/index.js:1
-#: src/blocks/review-related-destination/index.js:231
-msgid "Amazing Zimbabwe Adventure"
-msgstr ""
-
-#: build/blocks/review-related-destination/index.js:1
-#: src/blocks/review-related-destination/index.js:238
-msgid "Zimbabwe offers a unique blend of natural beauty and cultural richness. The adventure was truly unforgettable."
-msgstr ""
-
-#: build/blocks/review-related-tour/index.js:1
-#: src/blocks/review-related-tour/index.js:22
-msgid "Displays reviews related to this tour."
-msgstr ""
-
-#: build/blocks/review-related-tour/index.js:1
-#: src/blocks/review-related-tour/index.js:83
-msgid "Related Reviews Query - Tour"
-msgstr ""
-
-#: build/blocks/review-related-tour/index.js:1
-#: src/blocks/review-related-tour/index.js:188
-msgid "Amazing Safari Experience"
-msgstr ""
-
-#: build/blocks/review-related-tour/index.js:1
-#: src/blocks/review-related-tour/index.js:195
-msgid "Our family had the most incredible time on the African safari. The guides were knowledgeable and the wildlife viewing was spectacular."
-msgstr ""
-
-#: build/blocks/review-related-tour/index.js:1
-#: src/blocks/review-related-tour/index.js:230
-msgid "Perfect Beach Getaway"
-msgstr ""
-
-#: build/blocks/review-related-tour/index.js:1
-#: src/blocks/review-related-tour/index.js:237
-msgid "The resort was beautiful and the staff went above and beyond to make our vacation memorable. Highly recommended!"
-msgstr ""
-
 #: build/blocks/safety/index.js:1
 #: src/blocks/safety/index.js:23
 msgid "Displays safety information for this destination."
@@ -3474,12 +3840,12 @@ msgid "traveler"
 msgstr ""
 
 #: build/blocks/single-supplement-wrapper/index.js:1
-#: src/blocks/single-supplement-wrapper/index.js:66
+#: src/blocks/single-supplement-wrapper/index.js:84
 msgid "Single supplement:"
 msgstr ""
 
 #: build/blocks/single-supplement-wrapper/index.js:1
-#: src/blocks/single-supplement-wrapper/index.js:117
+#: src/blocks/single-supplement-wrapper/index.js:114
 msgid "Single supplement: "
 msgstr ""
 
@@ -3515,18 +3881,18 @@ msgid "features"
 msgstr ""
 
 #: build/blocks/special-interests/index.js:1
-#: src/blocks/special-interests/index.js:90
-#: src/blocks/special-interests/index.js:150
-msgid "Special Interests:"
-msgstr ""
-
-#: build/blocks/special-interests/index.js:1
-#: src/blocks/special-interests/index.js:99
+#: src/blocks/special-interests/index.js:95
 msgid "Interests Content"
 msgstr ""
 
 #: build/blocks/special-interests/index.js:1
-#: src/blocks/special-interests/index.js:167
+#: src/blocks/special-interests/index.js:116
+#: src/blocks/special-interests/index.js:148
+msgid "Special Interests:"
+msgstr ""
+
+#: build/blocks/special-interests/index.js:1
+#: src/blocks/special-interests/index.js:165
 msgid "Wildlife viewing, Photography, Cultural experiences, Adventure activities"
 msgstr ""
 
@@ -3562,90 +3928,106 @@ msgid "multilingual"
 msgstr ""
 
 #: build/blocks/spoken-languages/index.js:1
-#: src/blocks/spoken-languages/index.js:66
-#: src/blocks/spoken-languages/index.js:126
-msgid "Spoken Languages:"
-msgstr ""
-
-#: build/blocks/spoken-languages/index.js:1
-#: src/blocks/spoken-languages/index.js:75
+#: src/blocks/spoken-languages/index.js:71
 msgid "Languages Content"
 msgstr ""
 
 #: build/blocks/spoken-languages/index.js:1
-#: src/blocks/spoken-languages/index.js:143
+#: src/blocks/spoken-languages/index.js:92
+#: src/blocks/spoken-languages/index.js:124
+msgid "Spoken Languages:"
+msgstr ""
+
+#: build/blocks/spoken-languages/index.js:1
+#: src/blocks/spoken-languages/index.js:141
 msgid "English, Spanish, French, German"
 msgstr ""
 
 #: build/blocks/sticky-menu/index.js:1
-#: src/blocks/sticky-menu/inspector.js:51
-msgid "Active Background Color"
+#: src/blocks/sticky-menu/inspector.js:98
+msgid "Offset Settings"
 msgstr ""
 
 #: build/blocks/sticky-menu/index.js:1
-#: src/blocks/sticky-menu/inspector.js:60
-msgid "Active Text Color"
+#: src/blocks/sticky-menu/inspector.js:100
+msgid "Sticky Header Selector"
 msgstr ""
 
 #: build/blocks/sticky-menu/index.js:1
-#: src/blocks/sticky-menu/inspector.js:69
-msgid "Hover Background Color"
+#: src/blocks/sticky-menu/inspector.js:101
+msgid "CSS selector for an additional sticky header whose height should be accounted for (e.g. #site-header, .my-sticky-bar)."
 msgstr ""
 
 #: build/blocks/sticky-menu/index.js:1
-#: src/blocks/sticky-menu/inspector.js:78
-msgid "Hover Text Color"
+#: src/blocks/sticky-menu/inspector.js:113
+msgid "Active Background"
 msgstr ""
 
 #: build/blocks/sticky-menu/index.js:1
-#: src/blocks/sticky-menu/index.js:136
-#: src/blocks/sticky-menu/index.js:228
+#: src/blocks/sticky-menu/inspector.js:121
+msgid "Active Text"
+msgstr ""
+
+#: build/blocks/sticky-menu/index.js:1
+#: src/blocks/sticky-menu/inspector.js:129
+msgid "Hover Background"
+msgstr ""
+
+#: build/blocks/sticky-menu/index.js:1
+#: src/blocks/sticky-menu/inspector.js:137
+msgid "Hover Text"
+msgstr ""
+
+#: build/blocks/sticky-menu/index.js:1
+#: src/blocks/sticky-menu/index.js:152
+#: src/blocks/sticky-menu/index.js:260
 msgid "Page section navigation"
 msgstr ""
 
 #: build/blocks/sticky-menu/index.js:1
-#: src/blocks/sticky-menu/index.js:139
-#: src/blocks/sticky-menu/index.js:230
+#: src/blocks/sticky-menu/index.js:155
+#: src/blocks/sticky-menu/index.js:262
 msgid "Page sections"
 msgstr ""
 
 #: build/blocks/sticky-menu/index.js:1
-#: src/blocks/sticky-menu/index.js:146
+#: src/blocks/sticky-menu/index.js:162
+#, js-format
 msgid "Navigate to %s section"
 msgstr ""
 
 #: build/blocks/sticky-menu/index.js:1
-#: src/blocks/sticky-menu/index.js:158
+#: src/blocks/sticky-menu/index.js:174
 msgid "Add section groups with \"Add to Sticky Menu\" enabled to populate this menu."
 msgstr ""
 
 #: build/blocks/sticky-menu/index.js:1
-#: src/blocks/sticky-menu/index.js:161
+#: src/blocks/sticky-menu/index.js:177
 msgid "How to add menu items"
 msgstr ""
 
 #: build/blocks/sticky-menu/index.js:1
-#: src/blocks/sticky-menu/index.js:163
+#: src/blocks/sticky-menu/index.js:179
 msgid "Add a Group block and set HTML element to \"section\""
 msgstr ""
 
 #: build/blocks/sticky-menu/index.js:1
-#: src/blocks/sticky-menu/index.js:164
+#: src/blocks/sticky-menu/index.js:180
 msgid "Set an HTML Anchor in Block Settings → Advanced"
 msgstr ""
 
 #: build/blocks/sticky-menu/index.js:1
-#: src/blocks/sticky-menu/index.js:165
+#: src/blocks/sticky-menu/index.js:181
 msgid "Name the block in the List View or toolbar"
 msgstr ""
 
 #: build/blocks/sticky-menu/index.js:1
-#: src/blocks/sticky-menu/index.js:166
+#: src/blocks/sticky-menu/index.js:182
 msgid "Enable \"Add to Sticky Menu\" in the block sidebar"
 msgstr ""
 
 #: build/blocks/sticky-menu/index.js:1
-#: src/blocks/sticky-menu/index.js:167
+#: src/blocks/sticky-menu/index.js:183
 msgid "The menu will automatically populate with the block name and anchor"
 msgstr ""
 
@@ -3736,19 +4118,19 @@ msgid "suitable"
 msgstr ""
 
 #: build/blocks/suggested-visitor-types/index.js:1
-#: src/blocks/suggested-visitor-types/index.js:78
-#: src/blocks/suggested-visitor-types/index.js:138
-msgid "Suitable For:"
-msgstr ""
-
-#: build/blocks/suggested-visitor-types/index.js:1
-#: src/blocks/suggested-visitor-types/index.js:87
+#: src/blocks/suggested-visitor-types/index.js:83
 msgid "Visitor Types Content"
 msgstr ""
 
 #: build/blocks/suggested-visitor-types/index.js:1
-#: src/blocks/suggested-visitor-types/index.js:155
-msgid "Families, Couples, Business travelers, Solo travelers"
+#: src/blocks/suggested-visitor-types/index.js:104
+#: src/blocks/suggested-visitor-types/index.js:147
+msgid "Suitable For:"
+msgstr ""
+
+#: build/blocks/suggested-visitor-types/index.js:1
+#: src/blocks/suggested-visitor-types/index.js:147
+msgid "  Families, Couples, Business travelers, Solo travelers"
 msgstr ""
 
 #: build/blocks/tagline/index.js:1
@@ -3973,7 +4355,11 @@ msgid "category"
 msgstr ""
 
 #: build/blocks/travel-styles/index.js:1
-#: src/blocks/travel-styles/index.js:61
+#: src/blocks/travel-styles/index.js:78
+msgid "Travel Styles: "
+msgstr ""
+
+#: build/blocks/travel-styles/index.js:1
 #: src/blocks/travel-styles/index.js:106
 msgid "Travel Styles:"
 msgstr ""
@@ -3994,32 +4380,37 @@ msgid "camps"
 msgstr ""
 
 #: build/blocks/units/index.js:1
-#: src/blocks/units/index.js:158
+#: src/blocks/units/index.js:95
+msgid "Accommodation Units"
+msgstr ""
+
+#: build/blocks/units/index.js:1
+#: src/blocks/units/index.js:168
 msgid "Double Room"
 msgstr ""
 
 #: build/blocks/units/index.js:1
-#: src/blocks/units/index.js:167
+#: src/blocks/units/index.js:177
 msgid "Comfortable room with amenities"
 msgstr ""
 
 #: build/blocks/units/index.js:1
-#: src/blocks/units/index.js:184
+#: src/blocks/units/index.js:194
 msgid "$150"
 msgstr ""
 
 #: build/blocks/units/index.js:1
-#: src/blocks/units/index.js:203
+#: src/blocks/units/index.js:213
 msgid "King Room"
 msgstr ""
 
 #: build/blocks/units/index.js:1
-#: src/blocks/units/index.js:212
+#: src/blocks/units/index.js:222
 msgid "Luxury room with premium features"
 msgstr ""
 
 #: build/blocks/units/index.js:1
-#: src/blocks/units/index.js:229
+#: src/blocks/units/index.js:239
 msgid "$250"
 msgstr ""
 
@@ -4051,11 +4442,6 @@ msgid "Displays visa information for this destination."
 msgstr ""
 
 #: build/blocks/visa/index.js:1
-#: src/blocks/visa/index.js:23
-msgid "visa"
-msgstr ""
-
-#: build/blocks/visa/index.js:1
 #: src/blocks/visa/index.js:25
 msgid "travel visa"
 msgstr ""
@@ -4080,14 +4466,34 @@ msgstr ""
 msgid "wetu"
 msgstr ""
 
+#: build/slider-query.js:1
+#: src/js/blocks/slider-query.js:151
+msgid "Custom Order"
+msgstr ""
+
+#: build/slider-query.js:1
+#: src/js/blocks/slider-query.js:153
+msgid "Preserve the order from connected posts (e.g., tours ordered in destination multiselect field)"
+msgstr ""
+
 #: build/slotfills.js:1
-#: src/js/blocks/slotfills.js:27
+#: src/js/blocks/slotfills.js:59
 msgid "Featured"
 msgstr ""
 
 #: build/slotfills.js:1
-#: src/js/blocks/slotfills.js:51
-msgid "Disable Single"
+#: src/js/blocks/slotfills.js:124
+msgid "Hide from listings and search"
+msgstr ""
+
+#: build/slotfills.js:1
+#: src/js/blocks/slotfills.js:126
+msgid "This will not appear in category pages, search results, or show View More buttons in modals."
+msgstr ""
+
+#: build/slotfills.js:1
+#: src/js/blocks/slotfills.js:127
+msgid "This will be visible in listings and search results."
 msgstr ""
 
 #: build/blocks/accommodation-related-accommodation/block.json
@@ -4108,9 +4514,6 @@ msgstr ""
 #: build/blocks/accommodation-related-destination/block.json
 #: build/blocks/accommodation-related-tour/block.json
 #: build/blocks/related-regions/block.json
-#: build/blocks/review-related-accommodation/block.json
-#: build/blocks/review-related-destination/block.json
-#: build/blocks/review-related-tour/block.json
 #: build/blocks/tour-related-accommodation/block.json
 #: build/blocks/tour-related-destination/block.json
 #: build/blocks/tour-related-tour/block.json
@@ -4118,9 +4521,6 @@ msgstr ""
 #: src/blocks/accommodation-related-destination/block.json
 #: src/blocks/accommodation-related-tour/block.json
 #: src/blocks/related-regions/block.json
-#: src/blocks/review-related-accommodation/block.json
-#: src/blocks/review-related-destination/block.json
-#: src/blocks/review-related-tour/block.json
 #: src/blocks/tour-related-accommodation/block.json
 #: src/blocks/tour-related-destination/block.json
 #: src/blocks/tour-related-tour/block.json
@@ -4134,7 +4534,6 @@ msgstr ""
 #: build/blocks/accommodation-type/block.json
 #: build/blocks/destination-to-accommodation/block.json
 #: build/blocks/featured-accommodation/block.json
-#: build/blocks/review-related-accommodation/block.json
 #: build/blocks/tour-related-accommodation/block.json
 #: src/blocks/accommodation-related-accommodation/block.json
 #: src/blocks/accommodation-related-destination/block.json
@@ -4142,7 +4541,6 @@ msgstr ""
 #: src/blocks/accommodation-type/block.json
 #: src/blocks/destination-to-accommodation/block.json
 #: src/blocks/featured-accommodation/block.json
-#: src/blocks/review-related-accommodation/block.json
 #: src/blocks/tour-related-accommodation/block.json
 msgctxt "block keyword"
 msgid "accommodation"
@@ -4177,14 +4575,12 @@ msgstr ""
 #: build/blocks/accommodation-related-tour/block.json
 #: build/blocks/destination-to-tour/block.json
 #: build/blocks/duration/block.json
-#: build/blocks/review-related-tour/block.json
 #: build/blocks/tagline/block.json
 #: build/blocks/tour-related-tour/block.json
 #: build/blocks/travel-styles/block.json
 #: src/blocks/accommodation-related-tour/block.json
 #: src/blocks/destination-to-tour/block.json
 #: src/blocks/duration/block.json
-#: src/blocks/review-related-tour/block.json
 #: src/blocks/tagline/block.json
 #: src/blocks/tour-related-tour/block.json
 #: src/blocks/travel-styles/block.json
@@ -4363,7 +4759,6 @@ msgstr ""
 #: build/blocks/destination-to-tour/block.json
 #: build/blocks/facts-country-wrapper/block.json
 #: build/blocks/facts-regions-wrapper/block.json
-#: build/blocks/review-related-destination/block.json
 #: build/blocks/safety/block.json
 #: build/blocks/tour-related-destination/block.json
 #: build/blocks/visa/block.json
@@ -4372,7 +4767,6 @@ msgstr ""
 #: src/blocks/destination-to-tour/block.json
 #: src/blocks/facts-country-wrapper/block.json
 #: src/blocks/facts-regions-wrapper/block.json
-#: src/blocks/review-related-destination/block.json
 #: src/blocks/safety/block.json
 #: src/blocks/tour-related-destination/block.json
 #: src/blocks/visa/block.json
@@ -5366,54 +5760,6 @@ msgstr ""
 #: src/blocks/related-regions/block.json
 msgctxt "block keyword"
 msgid "nearby"
-msgstr ""
-
-#: build/blocks/review-related-accommodation/block.json
-#: build/blocks/review-related-destination/block.json
-#: build/blocks/review-related-tour/block.json
-#: src/blocks/review-related-accommodation/block.json
-#: src/blocks/review-related-destination/block.json
-#: src/blocks/review-related-tour/block.json
-msgctxt "block title"
-msgid "Related Reviews"
-msgstr ""
-
-#: build/blocks/review-related-accommodation/block.json
-#: src/blocks/review-related-accommodation/block.json
-msgctxt "block description"
-msgid "Displays reviews related to this accommodation."
-msgstr ""
-
-#: build/blocks/review-related-accommodation/block.json
-#: build/blocks/review-related-destination/block.json
-#: build/blocks/review-related-tour/block.json
-#: src/blocks/review-related-accommodation/block.json
-#: src/blocks/review-related-destination/block.json
-#: src/blocks/review-related-tour/block.json
-msgctxt "block keyword"
-msgid "reviews"
-msgstr ""
-
-#: build/blocks/review-related-accommodation/block.json
-#: build/blocks/review-related-destination/block.json
-#: build/blocks/review-related-tour/block.json
-#: src/blocks/review-related-accommodation/block.json
-#: src/blocks/review-related-destination/block.json
-#: src/blocks/review-related-tour/block.json
-msgctxt "block keyword"
-msgid "testimonials"
-msgstr ""
-
-#: build/blocks/review-related-destination/block.json
-#: src/blocks/review-related-destination/block.json
-msgctxt "block description"
-msgid "Display reviews related to this destination."
-msgstr ""
-
-#: build/blocks/review-related-tour/block.json
-#: src/blocks/review-related-tour/block.json
-msgctxt "block description"
-msgid "Display reviews related to this tour."
 msgstr ""
 
 #: build/blocks/safety/block.json

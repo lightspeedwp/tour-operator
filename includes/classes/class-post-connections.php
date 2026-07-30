@@ -261,8 +261,7 @@ class Post_Connections {
 	 * @return string
 	 */
 	public function destination_facet_html( $output, $params ) {
-
-		if ( in_array( $params['facet']['source'], $this->sources ) ) {
+		if ( isset( $params['facet']['source'] ) && in_array( $params['facet']['source'], $this->sources ) ) {
 			$output = $this->destination_facet_render( $params );
 		}
 		return $output;
@@ -278,10 +277,11 @@ class Post_Connections {
 			return;
 		}
 
-		$output          = '';
-		$values          = (array) $params['values'];
-		$selected_values = (array) $params['selected_values'];
-		$continents      = array();
+		$output           = '';
+		$values           = (array) $params['values'];
+		$selected_values  = (array) $params['selected_values'];
+		$continent_filter = ! empty( $this->options['display']['engine_search_continent_filter'] );
+		$continents       = array();
 
 		$continent_terms = get_terms(
 			array(
@@ -295,28 +295,49 @@ class Post_Connections {
 			}
 		}
 
-		// Create a relationship of the facet value and the their depths
-		$depths  = array();
-		$parents = array();
-		foreach ( $values as $value ) {
-			$depths[ $value['facet_value'] ]  = (int) $value['depth'];
-			$parents[ $value['facet_value'] ] = (int) $value['parent_id'];
+		// Ignore whatever depth/parent_id FacetWP indexed and rebuild both from the post hierarchy.
+		foreach ( $values as $key => $value ) {
+			if ( in_array( $value['facet_value'], $continents, true ) ) {
+				$values[ $key ]['depth']     = 0;
+				$values[ $key ]['parent_id'] = 0;
+				continue;
+			}
+
+			$parent = wp_get_post_parent_id( $value['facet_value'] );
+
+			if ( $parent ) {
+				$depth     = 1;
+				$parent_id = $parent;
+			} else {
+				$depth     = 0;
+				$parent_id = 0;
+
+				// The continent term stands in as the parent of top-level destinations.
+				if ( $continent_filter ) {
+					$terms     = wp_get_object_terms( $value['facet_value'], 'continent' );
+					$parent_id = ( ! is_wp_error( $terms ) && ! empty( $terms ) ) ? $terms[0]->term_id : 0;
+				}
+			}
+
+			// The continent term occupies depth 0, so everything below it shifts down one level.
+			if ( $continent_filter ) {
+				++$depth;
+			}
+
+			$values[ $key ]['depth']     = $depth;
+			$values[ $key ]['parent_id'] = $parent_id;
 		}
 
 		// Determine the current depth and check if the selected values parents are in the selected array.
-		$current_depth     = 0;
-		$additional_values = array();
+		$depths        = wp_list_pluck( $values, 'depth', 'facet_value' );
+		$current_depth = 0;
 		if ( ! empty( $selected_values ) ) {
 			foreach ( $selected_values as $selected ) {
-				if ( $depths[ $selected ] > $current_depth ) {
+				if ( isset( $depths[ $selected ] ) && $depths[ $selected ] > $current_depth ) {
 					$current_depth = $depths[ $selected ];
 				}
 			}
 			++$current_depth;
-		}
-
-		if ( ! empty( $additional_values ) ) {
-			$selected_values = array_merge( $selected_values, $additional_values );
 		}
 
 		// This is where the items are sorted by their depth
@@ -324,27 +345,19 @@ class Post_Connections {
 		$stored        = $values;
 
 		// sort the options so
-		foreach ( $values as $key => $result ) {
-			if ( ! empty( $this->options['display']['engine_search_continent_filter'] ) ) {
-				if ( in_array( $result['facet_value'], $continents ) ) {
-					$sorted_values[] = $result;
-					$destinations    = $this->get_countries( $stored, $result['facet_value'], $continents, '1' );
+		foreach ( $values as $result ) {
+			if ( 0 !== (int) $result['depth'] ) {
+				continue;
+			}
 
-					if ( ! empty( $destinations ) ) {
-						foreach ( $destinations as $destination ) {
-							$sorted_values[] = $destination;
-						}
-					}
-				}
-			} elseif ( '0' === $result['depth'] || 0 === $result['depth'] ) {
-					$sorted_values[] = $result;
-					$destinations    = $this->get_regions( $stored, $result['facet_value'], '1' );
+			$sorted_values[] = $result;
 
-				if ( ! empty( $destinations ) ) {
-					foreach ( $destinations as $destination ) {
-						$sorted_values[] = $destination;
-					}
-				}
+			$destinations = $continent_filter
+				? $this->get_countries( $stored, $result['facet_value'], $continents, 1 )
+				: $this->get_regions( $stored, $result['facet_value'], 1 );
+
+			foreach ( $destinations as $destination ) {
+				$sorted_values[] = $destination;
 			}
 		}
 		$values = $sorted_values;
@@ -359,30 +372,30 @@ class Post_Connections {
 		foreach ( $values as $key => $facet ) {
 			$depth_type = '';
 
-			if ( ! empty( $this->options['display']['engine_search_continent_filter'] ) ) {
+			if ( $continent_filter ) {
 				switch ( $facet['depth'] ) {
-					case '0':
+					case 0:
 						$depth_type      = '';
 						$continent_class = in_array( $facet['facet_value'], $selected_values ) ? $depth_type .= ' continent-checked' : '';
 						break;
 
-					case '1':
+					case 1:
 						$depth_type    = 'country' . $continent_class;
 						$country_class = in_array( $facet['facet_value'], $selected_values ) ? $depth_type .= ' country-checked' : '';
 						break;
 
-					case '2':
+					case 2:
 						$depth_type = 'region' . $continent_class . $country_class;
 						break;
 				}
 			} else {
 				switch ( $facet['depth'] ) {
-					case '0':
+					case 0:
 						$depth_type    = 'country continent-checked';
 						$country_class = in_array( $facet['facet_value'], $selected_values ) ? $depth_type .= ' country-checked' : '';
 						break;
 
-					case '1':
+					case 1:
 						$depth_type = 'region continent-checked' . $country_class;
 						break;
 				}
@@ -423,10 +436,10 @@ class Post_Connections {
 		$stored   = $values;
 
 		foreach ( $values as $value ) {
-			if ( isset( $continents[ $value['parent_id'] ] ) && $continents[ $value['parent_id'] ] === $parent && $value['depth'] === $depth ) {
+			if ( isset( $continents[ $value['parent_id'] ] ) && $continents[ $value['parent_id'] ] === $parent && (int) $value['depth'] === (int) $depth ) {
 				$children[] = $value;
 
-				$destinations = $this->get_regions( $stored, $value['facet_value'], '2' );
+				$destinations = $this->get_regions( $stored, $value['facet_value'], $depth + 1 );
 				if ( ! empty( $destinations ) ) {
 					foreach ( $destinations as $destination ) {
 						$children[] = $destination;
@@ -443,7 +456,7 @@ class Post_Connections {
 	public function get_regions( $values, $parent, $depth ) {
 		$children = array();
 		foreach ( $values as $value ) {
-			if ( $value['parent_id'] === $parent && $value['depth'] === $depth ) {
+			if ( (string) $value['parent_id'] === (string) $parent && (int) $value['depth'] === (int) $depth ) {
 				$children[] = $value;
 			}
 		}
