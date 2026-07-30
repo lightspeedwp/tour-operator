@@ -8,6 +8,10 @@
  * @copyright 2017 LightSpeed
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Returns an array of the tour taxonomies.
  *

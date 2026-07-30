@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 $settings_pages = tour_operator()->legacy->get_post_types();
 ?>
 <h2 class="nav-tab-wrapper">
