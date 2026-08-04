@@ -31,7 +31,7 @@
     "@babel/core": "^7.28.0",
     "@babel/preset-react": "^8.0.1",
     "@wordpress/a11y": "4.51.0",
-    "@wordpress/babel-preset-default": "8.51.0",
+    "@wordpress/babel-preset-default": "8.52.0",
     "@wordpress/block-library": "10.2.0",
     "@wordpress/blocks": "15.24.0",
     "@wordpress/e2e-test-utils-playwright": "1.51.0",
