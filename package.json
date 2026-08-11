@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^8.0.4",
-    "@babel/core": "^7.28.0",
+    "@babel/core": "^8.0.1",
     "@babel/preset-react": "^8.0.1",
     "@wordpress/a11y": "4.51.0",
     "@wordpress/babel-preset-default": "8.52.0",
