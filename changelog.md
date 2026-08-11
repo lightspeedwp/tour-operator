@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased]
+
+### Fixed
+
+#### Query Loops
+- **Featured blocks rendered nothing** - The `Featured Tours`, `Featured Destinations` and `Featured Accommodation` variations (and `featured-review` / `featured-special` / `featured-team` in the add-ons) were stripped from the front end entirely — wrapper, heading and grid — since 2.2.0. The post-type-existence guard added in 2.2.0 ran against every key reaching the `default:` arm of `Query_Loop::maybe_hide_varitaion()`, but only `{$to}-related-{$from}` keys encode a post type in their first segment. `post_type_exists( 'featured-tours' )` is always false, so the block was always discarded. The guard is now scoped to `-related-` keys, preserving its original purpose of hiding related queries whose add-on plugin is deactivated - Issue [#1284](https://github.com/lightspeedwp/tour-operator/issues/1284)
+- **Featured query returned every post when nothing was featured** - `Query_Loop::featured_query()` overwrote `meta_query` and wrapped its single clause in an `OR` relation. Once `Post_Visibility::filter_query_block_args()` appended its hide-from-listings group on the same filter, the query became "featured **OR** not-hidden", which matches everything. The corrupted query only executed when the featured set was empty (no `posts_pre_query` short-circuit), so an empty Featured block would have rendered the entire archive. The clause is now appended to any existing `meta_query` and joined with `AND` - Issue [#1284](https://github.com/lightspeedwp/tour-operator/issues/1284)
+
 ## [[2.2.0]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.2.0) - 2026-07-30
 
 ### Fixed

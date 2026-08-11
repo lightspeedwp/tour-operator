@@ -192,12 +192,20 @@ class Query_Loop {
 						return '';
 					}
 
-					// Get the _to_ and _from_ directions.
-					$directions = explode( '-related-', $query_key );
+					/*
+					 * Only the "{$to}-related-{$from}" keys encode a post type in their
+					 * first segment. Keys such as "featured-tours" do not, so running the
+					 * post type check against them would always fail and wrongly discard
+					 * the block.
+					 */
+					if ( false !== strpos( $query_key, '-related-' ) ) {
+						// Get the _to_ and _from_ directions.
+						$directions = explode( '-related-', $query_key );
 
-					// Check if the post type exists, maybe the plugin is disabled.
-					if ( ! post_type_exists( $directions[0] ) ) {
-						return;
+						// Check if the post type exists, maybe the plugin is disabled.
+						if ( ! post_type_exists( $directions[0] ) ) {
+							return '';
+						}
 					}
 
 					break;
@@ -565,14 +573,23 @@ class Query_Loop {
 	 * @return array
 	 */
 	public function featured_query( $query, $key ) {
-		// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
-		$query['meta_query'] = array(
-			'relation' => 'OR',
-			array(
-				'key'     => 'featured',
-				'value'   => true,
-				'compare' => '=',
-			),
+		/*
+		 * Append to any existing meta_query rather than replacing it, and join with
+		 * AND. Other callers on query_loop_block_query_vars (Post_Visibility, for one)
+		 * add their own clauses, and an OR relation here would widen the query to
+		 * "featured OR <their clause>" instead of narrowing it.
+		 */
+		if ( ! isset( $query['meta_query'] ) || ! is_array( $query['meta_query'] ) ) {
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+			$query['meta_query'] = array();
+		}
+
+		$query['meta_query']['relation'] = 'AND';
+
+		$query['meta_query'][] = array(
+			'key'     => 'featured',
+			'value'   => true,
+			'compare' => '=',
 		);
 
 		$featured_items = $this->find_featured_items( $query );
