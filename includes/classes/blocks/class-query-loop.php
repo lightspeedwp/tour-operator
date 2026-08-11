@@ -586,7 +586,16 @@ class Query_Loop {
 			$query['meta_query'] = array();
 		}
 
-		$query['meta_query']['relation'] = 'AND';
+		// Combine featured with any existing meta_query without changing its internal relation.
+		$existing_meta_query = $query['meta_query'];
+
+		$query['meta_query'] = array(
+			'relation' => 'AND',
+		);
+
+		if ( ! empty( $existing_meta_query ) ) {
+			$query['meta_query'][] = $existing_meta_query;
+		}
 
 		$query['meta_query'][] = array(
 			'key'     => 'featured',
