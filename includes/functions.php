@@ -680,8 +680,14 @@ function lsx_to_get_icon_svg( $icon_type = 'outline', $icon_name = '' ) {
 	// Convert camelCase icon name to kebab-case file name.
 	$file_name = strtolower( preg_replace( '/([a-z])([A-Z])/', '$1-$2', $icon_name ) );
 
-	// Build the path to the SVG file.
-	$svg_path = LSX_TO_PATH . 'src/blocks/icons/source-icons/' . $icon_type . '/' . $file_name . '.svg';
+	// Build the path to the SVG file. The icons are copied into the build directory
+	// so they survive packaging -- /src is excluded from the distributed plugin by .distignore.
+	$svg_path = LSX_TO_PATH . 'build/blocks/icons/source-icons/' . $icon_type . '/' . $file_name . '.svg';
+
+	// Fall back to the source directory for development installs running from an unbuilt checkout.
+	if ( ! file_exists( $svg_path ) ) {
+		$svg_path = LSX_TO_PATH . 'src/blocks/icons/source-icons/' . $icon_type . '/' . $file_name . '.svg';
+	}
 
 	// Check if the file exists.
 	if ( ! file_exists( $svg_path ) ) {
