@@ -84,5 +84,8 @@
     "format": "npm run lint:php:fix && wp-scripts format",
     "format:js": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
     "generate-readme": "node .github/scripts/update-readme.js"
+  },
+  "overrides": {
+    "linkify-it": "^5.0.2"
   }
 }
