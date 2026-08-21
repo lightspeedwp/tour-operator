@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+### Fixed
+
+#### Data Integrity
+- **Itinerary featured image URL corruption** - CMB2's default sanitizer was overwriting a valid attachment URL/ID in the itinerary `featured_image` field on every save, corrupting it into a non-functional value. A dedicated sanitization callback now resolves and stores the correct URL and attachment ID instead.
+
 ### Changed
 
 #### Requirements

@@ -289,6 +289,152 @@ function lsx_to_itinerary_thumbnail( $size = 'lsx-thumbnail-square', $meta_key =
 	}
 }
 
+/**
+ * Resolves an itinerary day's `featured_image` field to a real attachment URL
+ * plus its numeric ID, whatever shape the raw submitted/stored value is in.
+ *
+ * The `featured_image` field (registered in includes/metaboxes/config-tour.php)
+ * is a CMB2 `file` type nested in a `group`, so CMB2 normally re-sanitizes its
+ * value as a URL on every save via CMB2_Sanitize::file() -> sanitize_and_secure_url().
+ * That call chain runs WordPress core's esc_url_raw()/set_url_scheme(), which
+ * treat any schemeless string as a bare domain missing its protocol and
+ * prefix it with "https://" -- the same behaviour that turns "example.com"
+ * typed into a user profile's Website field into "https://example.com". A
+ * bare attachment ID such as "945" is not a domain, but core has no way to
+ * know that, so on the very next save it silently becomes the non-functional
+ * "https://945", however that "945" got there in the first place (a direct
+ * postmeta write from an importer, a stale value from before this field's
+ * type changed, or any other path that bypassed CMB2's own media-picker JS).
+ *
+ * This is called from lsx_to_sanitize_itinerary_featured_image() below in
+ * place of CMB2's default sanitizer, so every save resolves whatever is
+ * there -- correct, bare-ID, or already-corrupted -- to a working URL and ID
+ * pair instead of re-corrupting or perpetuating it.
+ *
+ * @since 2.3.0
+ *
+ * @param string $raw_value The field's own submitted/stored value.
+ * @param string $raw_id    The value of its companion `_id` hidden input,
+ *                           i.e. what CMB2's own media-picker JS
+ *                           (CMB2_Type_File::render(), cmb2.js
+ *                           handlers.single) sets when a user actually
+ *                           picks an image through "Add or Upload File".
+ *                           Empty when the field's value arrived by any
+ *                           other path.
+ * @return array{url: string, id: string} Both empty when neither value
+ *                           resolves to an attachment that still exists.
+ */
+function lsx_to_resolve_itinerary_featured_image( string $raw_value, string $raw_id ): array {
+	// The companion hidden field takes priority: when it is populated, a
+	// human picked this image through the media modal in this very save, so
+	// it is already known-good and there is nothing to resolve.
+	if ( ctype_digit( $raw_id ) && (int) $raw_id > 0 ) {
+		$url = wp_get_attachment_url( (int) $raw_id );
+
+		if ( ! empty( $url ) ) {
+			return array(
+				'url' => $url,
+				'id'  => $raw_id,
+			);
+		}
+	}
+
+	if ( '' === $raw_value ) {
+		return array(
+			'url' => '',
+			'id'  => '',
+		);
+	}
+
+	$attachment_id = match ( true ) {
+		ctype_digit( $raw_value ) => (int) $raw_value,
+		str_starts_with( $raw_value, 'https://' ) && ctype_digit( substr( $raw_value, 8 ) ) => (int) substr( $raw_value, 8 ),
+		str_starts_with( $raw_value, 'http://' ) && ctype_digit( substr( $raw_value, 7 ) ) => (int) substr( $raw_value, 7 ),
+		default => null,
+	};
+
+	if ( null !== $attachment_id ) {
+		$url = wp_get_attachment_url( $attachment_id );
+
+		return empty( $url ) ? array(
+			'url' => '',
+			'id'  => '',
+		) : array(
+			'url' => $url,
+			'id'  => (string) $attachment_id,
+		);
+	}
+
+	// Already a real URL -- the expected shape. This sanitization_cb
+	// replaces CMB2's own entirely (that's the whole point -- see the
+	// docblock above), so nothing else in the save path will sanitize this
+	// value; esc_url_raw() here is not optional. Without it, any user with
+	// edit access to this post type could persist a `javascript:`/`data:`
+	// URL or arbitrary markup in `featured_image` verbatim, since the
+	// numeric shapes above never reach this branch and this was the one
+	// path left unsanitized.
+	$safe_url = esc_url_raw( $raw_value );
+
+	if ( '' === $safe_url ) {
+		return array(
+			'url' => '',
+			'id'  => '',
+		);
+	}
+
+	// Resolve its attachment ID too, so `featured_image_id` (what
+	// lsx_to_itinerary_thumbnail() above reads first, before falling back
+	// to the connected destination/accommodation's own image) is finally
+	// populated instead of staying permanently empty.
+	$resolved_id = attachment_url_to_postid( $safe_url );
+
+	return array(
+		'url' => $safe_url,
+		'id'  => $resolved_id > 0 ? (string) $resolved_id : '',
+	);
+}
+
+/**
+ * CMB2 `sanitization_cb` for the itinerary `featured_image` field, wired up
+ * in includes/metaboxes/config-tour.php.
+ *
+ * A `sanitization_cb` on a field nested in a CMB2 `group` pre-empts CMB2's
+ * own default sanitizer entirely (CMB2_Field::sanitization_cb() checks for a
+ * registered callback before ever constructing a CMB2_Sanitize instance),
+ * which is what stops CMB2_Sanitize::file()'s URL-sanitization path from
+ * running on this field at all. Returning the `supporting_field_id` /
+ * `supporting_field_value` shape below is the same contract CMB2's own
+ * group-save code (CMB2::save_group_field()) already understands for `file`
+ * fields -- every `file`-type field is auto-flagged `has_supporting_data`
+ * (see CMB2_Field::set_group_sub_field_defaults()) -- so returning it here
+ * correctly writes the companion `featured_image_id` field too, exactly as
+ * if CMB2's default handling had produced it.
+ *
+ * @since 2.3.0
+ *
+ * @param mixed      $value      The field's raw submitted value.
+ * @param array      $field_args CMB2 field argument array (unused; required
+ *                                by CMB2's sanitization_cb signature).
+ * @param CMB2_Field $field      The CMB2_Field instance for this sub-field.
+ * @return array{value: string, supporting_field_id: string, supporting_field_value: string}
+ */
+function lsx_to_sanitize_itinerary_featured_image( $value, $field_args, $field ) {
+	$id_key = 'featured_image_id';
+	$raw_id = '';
+
+	if ( $field->group ) {
+		$raw_id = $field->group->data_to_save[ $field->group->id() ][ $field->group->index ][ $id_key ] ?? '';
+	}
+
+	$resolved = lsx_to_resolve_itinerary_featured_image( (string) $value, (string) $raw_id );
+
+	return array(
+		'value'                  => $resolved['url'],
+		'supporting_field_id'    => $id_key,
+		'supporting_field_value' => $resolved['id'],
+	);
+}
+
 
 /**
  * Helper for itinerary connected fields.
