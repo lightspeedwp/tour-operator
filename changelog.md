@@ -12,6 +12,11 @@
 #### Performance
 - **Featured query loop re-scanned wp_postmeta on every render** - `find_featured_items()` ran its `meta_query` as a fresh, uncached `WP_Query` on every render of every Featured Tours/Destinations/Accommodation block variation, with no caching layer anywhere in the path. On a site with a non-trivial `wp_postmeta` table this multi-joins the table once per meta_query clause; observed on a production incident at ~2.1M rows examined per call, 2.0-2.8s each, hit on effectively every front-end page load. Now memoized in the object cache, keyed by the query args, with a persisted generation counter (an option, not a cache entry, so it survives an object-cache eviction/restart) bumped on the relevant meta/post-save events for near-immediate invalidation, plus a one-hour TTL as a backstop - Issue [#1327](https://github.com/lightspeedwp/tour-operator/issues/1327)
 
+### Changed
+
+#### Compatibility
+- **Tested up to WordPress 7.1** - WordPress 7.1 released 2026-08-19; `Tested up to` in the plugin header and `readme.txt` raised from 7.0 to 7.1. `Requires at least` stays at 6.7 (the minimum-supported floor, unaffected by a new release). No code changes required for compatibility.
+
 ## [[2.2.0]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.2.0) - 2026-07-30
 
 ### Fixed
