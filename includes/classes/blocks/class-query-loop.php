@@ -13,6 +13,26 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Query_Loop {
 
+	/**
+	 * How long a featured-query result set is trusted before it's re-queried,
+	 * even without an explicit invalidation (belt-and-suspenders against a
+	 * missed hook, e.g. a meta value changed by direct SQL or an import tool).
+	 *
+	 * Backed by set_transient()/get_transient() rather than wp_cache_*()
+	 * directly: a transient uses the persistent object cache when one is
+	 * configured, and transparently falls back to a non-autoloaded row in
+	 * wp_options when it isn't -- so this cache is real on every site, not
+	 * only the ones with Redis/Memcached/etc. already set up. A plain
+	 * wp_cache_set() call on a site with no persistent backend is silently a
+	 * no-op past the current request, which would leave this exact
+	 * optimisation doing nothing on precisely the sites most likely to need
+	 * it.
+	 *
+	 * @var int
+	 * @since 2.3.0
+	 */
+	const FEATURED_CACHE_TTL = HOUR_IN_SECONDS;
+
 	protected $disabled = [];
 
 	/**
@@ -67,6 +87,17 @@ class Query_Loop {
 		// find_featured_items() is built from the fully filtered query args.
 		add_filter( 'query_loop_block_query_vars', array( $this, 'query_args_filter' ), 20, 2 );
 		add_filter( 'lsx_to_query_orderby_post__in', array( $this, 'enable_post_in_ordering' ), 10, 3 );
+
+		// Bust the featured-query cache as soon as the thing it depends on changes,
+		// rather than waiting out FEATURED_CACHE_TTL. Post_Visibility's own
+		// "Hide from Listings" toggle also affects the query (ANDed in via
+		// query_args_filter()), but that class has no postmeta hooks of its
+		// own, so maybe_flush_featured_cache_on_meta_change() checks for both
+		// meta keys on these same hooks.
+		add_action( 'updated_postmeta', array( $this, 'maybe_flush_featured_cache_on_meta_change' ), 10, 4 );
+		add_action( 'added_postmeta', array( $this, 'maybe_flush_featured_cache_on_meta_change' ), 10, 4 );
+		add_action( 'deleted_postmeta', array( $this, 'maybe_flush_featured_cache_on_meta_change' ), 10, 4 );
+		add_action( 'save_post', array( $this, 'flush_featured_cache_for_post' ), 10, 1 );
 	}
 
 	/**
@@ -614,18 +645,139 @@ class Query_Loop {
 	}
 
 	/**
-	 * Find the featured items for the current query
+	 * Find the featured items for the current query.
 	 *
-	 * @param array $query
-	 * @return array
+	 * This meta_query (featured, ANDed with whatever Post_Visibility already
+	 * attached) joins wp_postmeta once per clause with no LIMIT on the read side
+	 * of the join, and query_args_filter() calls this on every render of every
+	 * Query Loop block variation on the page -- with no cache, that is a full
+	 * multi-join postmeta scan per block, per page load, unconditionally. Wrapped
+	 * in a transient: a cache hit costs one lookup instead of the query above,
+	 * and it stays a real cache hit even on a site with no persistent object
+	 * cache configured, since a transient falls back to a non-autoloaded
+	 * wp_options row rather than silently doing nothing past the current
+	 * request the way a bare wp_cache_set() call would. self::FEATURED_CACHE_TTL
+	 * plus the invalidation hooks in the constructor mean a change to the
+	 * underlying data is never stale for longer than one hour, and typically
+	 * not at all (invalidated immediately on the relevant meta/post-save
+	 * action).
+	 *
+	 * @param array $query WP_Query arguments, already filtered by featured_query().
+	 * @return array Post objects (or IDs, matching $query['fields']) for the featured set.
+	 * @since 2.3.0
 	 */
-	public function find_featured_items( $query ) {
+	public function find_featured_items( $query ): array {
+		if ( ! is_array( $query ) ) {
+			return [];
+		}
+
+		$cache_key = 'lsx_to_ft_' . md5( self::get_featured_cache_generation() . '_' . maybe_serialize( $query ) );
+		$items     = get_transient( $cache_key );
+
+		if ( false !== $items ) {
+			return $items;
+		}
+
 		$items      = [];
 		$item_query = new \WP_Query( $query );
 		if ( $item_query->have_posts() ) {
 			$items = $item_query->posts;
 		}
+
+		set_transient( $cache_key, $items, self::FEATURED_CACHE_TTL );
+
 		return $items;
+	}
+
+	/**
+	 * Flush the featured-query cache when a meta key the featured query depends
+	 * on changes: the 'featured' flag itself, or Post_Visibility's "Hide from
+	 * Listings" key -- that class ANDs its own clause into the same query in
+	 * query_args_filter(), but has no postmeta hooks of its own, so this class
+	 * has to cover both.
+	 *
+	 * Cache keys are a hash of the full query args, so there's no way to target
+	 * just the affected transient -- this orphans every currently-cached
+	 * featured query at once (via the generation bump below), which on a
+	 * normal edit frequency (a handful of featured toggles, not thousands) is
+	 * cheap next to what it protects against: a stale featured list for up to
+	 * an hour.
+	 *
+	 * @param int    $meta_id    ID of the metadata entry (unused, part of the hook signature).
+	 * @param int    $object_id  Post ID the meta belongs to (unused, part of the hook signature).
+	 * @param string $meta_key   Meta key that changed.
+	 * @param mixed  $meta_value New meta value (unused, part of the hook signature).
+	 * @return void
+	 * @since 2.3.0
+	 */
+	public function maybe_flush_featured_cache_on_meta_change( $meta_id, $object_id, $meta_key, $meta_value ): void { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $meta_value is unused, but the hook signature requires it to receive $meta_key at all.
+		if ( 'featured' !== $meta_key && \lsx\frontend\Post_Visibility::META_KEY !== $meta_key ) {
+			return;
+		}
+		self::bump_featured_cache_generation();
+	}
+
+	/**
+	 * Flush the featured-query cache on save of any post that could be a featured
+	 * candidate. Covers publish/unpublish/trash transitions -- 'featured' => true
+	 * on a post that just left publish status must not keep it showing.
+	 *
+	 * @param int $post_id Post ID being saved.
+	 * @return void
+	 * @since 2.3.0
+	 */
+	public function flush_featured_cache_for_post( $post_id ): void {
+		if ( wp_is_post_revision( $post_id ) || wp_is_post_autosave( $post_id ) ) {
+			return;
+		}
+		self::bump_featured_cache_generation();
+	}
+
+	/**
+	 * Option name the featured-query cache generation is persisted under.
+	 *
+	 * Deliberately a DB option, not an object-cache entry: this value has to
+	 * outlive both an object-cache eviction/restart AND its own TTL, because it
+	 * is what makes self::FEATURED_CACHE_TTL on the *entries* safe. If the
+	 * generation itself lived in the same volatile cache as the entries it
+	 * guards, a cold cache (evicted, restarted, or simply expired) would read
+	 * back as generation 1 and resurrect any not-yet-expired entry that was
+	 * ALSO written under generation 1 before the last bump -- silently serving
+	 * a stale featured list instead of the fresh one the bump was for.
+	 * Autoload is explicitly off: this is read once per uncached featured
+	 * query, not on every page load, so it has no business in the autoloaded
+	 * options blob.
+	 *
+	 * @var string
+	 * @since 2.3.0
+	 */
+	const FEATURED_CACHE_GENERATION_OPTION = 'lsx_to_featured_query_generation';
+
+	/**
+	 * Current featured-query cache generation. Folded into every cache key so
+	 * bumping it invalidates every previously-cached featured query in one
+	 * write, without deleting or even enumerating the individual transients --
+	 * there's no delete_transients_like() in WordPress, so this is what makes
+	 * a single bump equivalent to invalidating all of them at once. Orphaned
+	 * transients age out on their own via self::FEATURED_CACHE_TTL.
+	 *
+	 * @return int
+	 * @since 2.3.0
+	 */
+	protected static function get_featured_cache_generation(): int {
+		return (int) get_option( self::FEATURED_CACHE_GENERATION_OPTION, 1 );
+	}
+
+	/**
+	 * Advance the featured-query cache generation, orphaning every cache entry
+	 * written under the previous generation. Orphaned entries age out on their
+	 * own via self::FEATURED_CACHE_TTL; nothing has to reap them.
+	 *
+	 * @return void
+	 * @since 2.3.0
+	 */
+	protected static function bump_featured_cache_generation(): void {
+		update_option( self::FEATURED_CACHE_GENERATION_OPTION, self::get_featured_cache_generation() + 1, false );
 	}
 
 	/**
