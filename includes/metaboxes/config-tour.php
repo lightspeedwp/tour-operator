@@ -211,12 +211,16 @@ $itinerary_fields[] = array(
 );
 
 $itinerary_fields[] = array(
-	'id'         => 'featured_image',
-	'name'       => esc_html__('Featured Image', 'tour-operator'),
-	'desc'       => esc_html__('Upload or select a featured image for the itinerary entry.', 'tour-operator'),
-	'type'       => 'file',
-	'show_size'  => false,
-	'query_args' => array(
+	'id'              => 'featured_image',
+	'name'            => esc_html__('Featured Image', 'tour-operator'),
+	'desc'            => esc_html__('Upload or select a featured image for the itinerary entry.', 'tour-operator'),
+	'type'            => 'file',
+	'show_size'       => false,
+	// Pre-empts CMB2's own URL sanitizer, which corrupts a bare attachment ID
+	// into "https://<id>" -- see lsx_to_sanitize_itinerary_featured_image()
+	// and lsx_to_resolve_itinerary_featured_image() in includes/functions.php.
+	'sanitization_cb' => 'lsx_to_sanitize_itinerary_featured_image',
+	'query_args'      => array(
 		'type' => array(
 			'image/gif',
 			'image/jpeg',

@@ -41,7 +41,7 @@ jobs:
       - name: Install Composer deps
         run: composer install --no-interaction --no-progress
       - name: PHPUnit (standalone, no WordPress required)
-        run: vendor/bin/phpunit --no-configuration tests/php/TestSimpleFunctions.php tests/php/TestItineraryEditorPerformance.php
+        run: vendor/bin/phpunit --no-configuration tests/php/TestSimpleFunctions.php tests/php/TestItineraryEditorPerformance.php tests/php/TestItineraryFeaturedImage.php
 
       # Non-blocking until the legacy WPCS debt is cleared (or scoped to changed
       # files). Flip continue-on-error to false to make it gate the build.
