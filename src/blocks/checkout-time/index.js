@@ -5,7 +5,7 @@
  * Only available on accommodation post type edit screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -13,75 +13,80 @@ import { registerForPostTypesAndTemplates } from '@utils/conditional-block-regis
 
 wp.domReady(() => {
     const registerCheckoutTimeVariation = () => {
-        wp.blocks.registerBlockVariation("core/group", {
-            name: "lsx-tour-operator/checkout-time",
-            title: __("Check out time", "tour-operator"),
-            icon: "clock",
-            category: "lsx-tour-operator",
-            description: __("Displays the check-out time for this accommodation.", "tour-operator"),
+        wp.blocks.registerBlockVariation('core/group', {
+            name: 'lsx-tour-operator/checkout-time',
+            title: __('Check out time', 'tour-operator'),
+            icon: 'clock',
+            category: 'lsx-tour-operator',
+            description: __(
+                'Displays the check-out time for this accommodation.',
+                'tour-operator'
+            ),
             keywords: [
-                __("checkout", "tour-operator"),
-                __("time", "tour-operator"),
-                __("check out", "tour-operator"),
+                __('checkout', 'tour-operator'),
+                __('time', 'tour-operator'),
+                __('check out', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
-                    name: __("Check out time", "tour-operator"),
+                    name: __('Check out time', 'tour-operator'),
                 },
-                className: "lsx-checkout-time-wrapper",
+                className: 'lsx-checkout-time-wrapper',
                 layout: {
-                    type: "flex",
-                    flexWrap: "nowrap",
-					verticalAlignment: 'top'
+                    type: 'flex',
+                    flexWrap: 'nowrap',
+                    verticalAlignment: 'top',
                 },
             },
             innerBlocks: [
                 [
-                    "core/group",
+                    'core/group',
                     {
                         layout: {
-                            type: "flex",
-                            flexWrap: "nowrap",
-                            verticalAlignment: "middle",
+                            type: 'flex',
+                            flexWrap: 'nowrap',
+                            verticalAlignment: 'middle',
                         },
                     },
                     [
                         [
-                            "lsx-tour-operator/icons",
+                            'lsx-tour-operator/icons',
                             {
-                                iconType: "solid",
-                                iconName: "checkInAccommodationIcon",
+                                iconType: 'solid',
+                                iconName: 'checkInAccommodationIcon',
                             },
-                        ]
+                        ],
                     ],
                 ],
                 [
-                    "core/group",
+                    'core/group',
                     {
                         layout: {
-                            type: "flex",
-                            flexWrap: "nowrap",
+                            type: 'flex',
+                            flexWrap: 'nowrap',
                         },
                     },
                     [
                         [
-                            "core/paragraph",
+                            'core/paragraph',
                             {
                                 metadata: {
                                     bindings: {
                                         content: {
-                                            source: "lsx/post-meta",
+                                            source: 'lsx/post-meta',
                                             args: {
-                                                key: "checkout_time",
+                                                key: 'checkout_time',
                                             },
                                         },
                                     },
                                 },
-								prefix : __('Check out time: ', 'tour-operator'),
-								prefixBold: true,
+                                prefix: __('Check out time:', 'tour-operator'),
+                                prefixBold: true,
                             },
                         ],
                     ],
@@ -107,13 +112,22 @@ wp.domReady(() => {
                                         name: 'lsx-tour-operator/icons',
                                         attributes: {
                                             iconType: 'solid',
-                                            iconName: 'checkInAccommodationIcon',
+                                            iconName:
+                                                'checkInAccommodationIcon',
                                         },
                                     },
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: '<strong>' + __('Check out time: ', 'tour-operator') + '</strong>' + ' ' + __('3:00 PM', 'tour-operator'),
+                                            content:
+                                                '<strong>' +
+                                                __(
+                                                    'Check out time:',
+                                                    'tour-operator'
+                                                ) +
+                                                '</strong>' +
+                                                ' ' +
+                                                __('3:00 PM', 'tour-operator'),
                                         },
                                     },
                                 ],
@@ -123,7 +137,7 @@ wp.domReady(() => {
                 ],
             },
         });
-    }
+    };
 
     // Initialize conditional registration
     const conditionalRegister = registerForPostTypesAndTemplates(

@@ -5,13 +5,11 @@
  * Only available on destination post types, destinations, country, and region templates screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
 import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
-
-
 
 wp.domReady(() => {
     const registerSafetyVariation = () => {
@@ -20,7 +18,10 @@ wp.domReady(() => {
             title: __('Safety', 'tour-operator'),
             icon: 'shield',
             category: 'lsx-tour-operator',
-            description: __('Displays safety information for this destination.', 'tour-operator'),
+            description: __(
+                'Displays safety information for this destination.',
+                'tour-operator'
+            ),
             keywords: [
                 __('safety', 'tour-operator'),
                 __('information', 'tour-operator'),
@@ -28,7 +29,9 @@ wp.domReady(() => {
                 __('destination safety', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -128,7 +131,10 @@ wp.domReady(() => {
                                         name: 'core/paragraph',
                                         attributes: {
                                             align: 'center',
-                                            content: '<strong>' + __('Safety', 'tour-operator') + '</strong>',
+                                            content:
+                                                '<strong>' +
+                                                __('Safety', 'tour-operator') +
+                                                '</strong>',
                                         },
                                     },
                                 ],
@@ -144,7 +150,10 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: __('This is a generally safe destination with low crime rates. Stay alert in crowded tourist areas, use hotel safes for valuables, and follow local guidance. Emergency services are reliable and English is widely spoken.', 'tour-operator'),
+                                            content: __(
+                                                'This is a generally safe destination with low crime rates. Stay alert in crowded tourist areas, use hotel safes for valuables, and follow local guidance. Emergency services are reliable and English is widely spoken.',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                 ],
@@ -168,7 +177,7 @@ wp.domReady(() => {
                 ],
             },
         });
-    }
+    };
 
     // Initialize conditional registration
     const conditionalRegister = registerForPostTypesAndTemplates(

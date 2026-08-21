@@ -5,7 +5,7 @@
  * Only available on destination post types, destinations, country, and region templates screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -17,7 +17,10 @@ wp.domReady(() => {
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/dress',
             title: __('Dress', 'tour-operator'),
-            description: __('Display dress code and clothing recommendations for destinations.', 'tour-operator'),
+            description: __(
+                'Display dress code and clothing recommendations for destinations.',
+                'tour-operator'
+            ),
             icon: wp.element.createElement(
                 'svg',
                 {
@@ -40,7 +43,9 @@ wp.domReady(() => {
                 __('code', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -72,7 +77,10 @@ wp.domReady(() => {
                                     'core/paragraph',
                                     {
                                         align: 'center',
-                                        content: '<strong>' + __('Dress', 'tour-operator') + '</strong>',
+                                        content:
+                                            '<strong>' +
+                                            __('Dress', 'tour-operator') +
+                                            '</strong>',
                                     },
                                 ],
                             ],
@@ -144,7 +152,10 @@ wp.domReady(() => {
                                         name: 'core/paragraph',
                                         attributes: {
                                             align: 'center',
-                                            content: '<strong>' + __('Dress', 'tour-operator') + '</strong>',
+                                            content:
+                                                '<strong>' +
+                                                __('Dress', 'tour-operator') +
+                                                '</strong>',
                                         },
                                     },
                                 ],
@@ -160,7 +171,10 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: __('Smart casual attire is recommended. Lightweight clothing suitable for warm weather. Comfortable walking shoes advised for outdoor activities.', 'tour-operator'),
+                                            content: __(
+                                                'Smart casual attire is recommended. Lightweight clothing suitable for warm weather. Comfortable walking shoes advised for outdoor activities.',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                 ],

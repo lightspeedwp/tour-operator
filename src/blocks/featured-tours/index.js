@@ -5,7 +5,7 @@
  * Available across all post types and templates.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -15,7 +15,10 @@ wp.domReady(() => {
         name: 'lsx-tour-operator/featured-tours',
         title: __('Featured Tours', 'tour-operator'),
         icon: 'palmtree',
-        description: __('Displays Tours with the Featured tag.', 'tour-operator'),
+        description: __(
+            'Displays Tours with the Featured tag.',
+            'tour-operator'
+        ),
         keywords: [
             __('featured', 'tour-operator'),
             __('tours', 'tour-operator'),
@@ -51,7 +54,10 @@ wp.domReady(() => {
                     ],
                     [
                         'core/heading',
-                        { textAlign: 'center', content: __('Featured Tours', 'tour-operator') },
+                        {
+                            textAlign: 'center',
+                            content: __('Featured Tours', 'tour-operator'),
+                        },
                     ],
                     [
                         'core/separator',
@@ -108,200 +114,274 @@ wp.domReady(() => {
         example: {
             attributes: {
                 metadata: {
-                    name: "Featured Tours",
+                    name: 'Featured Tours',
                 },
             },
             innerBlocks: [
                 {
-                    name: "core/group",
+                    name: 'core/group',
                     attributes: {
-                        align: "wide",
-                        layout: { type: "flex", flexWrap: "nowrap" },
+                        align: 'wide',
+                        layout: { type: 'flex', flexWrap: 'nowrap' },
                     },
                     innerBlocks: [
                         {
-                            name: "core/separator",
+                            name: 'core/separator',
                             attributes: {
                                 style: {
-                                    layout: { selfStretch: "fill", flexSize: null },
+                                    layout: {
+                                        selfStretch: 'fill',
+                                        flexSize: null,
+                                    },
                                 },
                             },
                         },
                         {
-                            name: "core/heading",
+                            name: 'core/heading',
                             attributes: {
-                                textAlign: "center",
-                                content: "Featured Tours",
+                                textAlign: 'center',
+                                content: 'Featured Tours',
                                 level: 2,
                             },
                         },
                         {
-                            name: "core/separator",
+                            name: 'core/separator',
                             attributes: {
                                 style: {
-                                    layout: { selfStretch: "fill", flexSize: null },
+                                    layout: {
+                                        selfStretch: 'fill',
+                                        flexSize: null,
+                                    },
                                 },
                             },
                         },
                     ],
                 },
                 {
-                    name: "core/group",
+                    name: 'core/group',
                     attributes: {
-                        align: "wide",
-                        layout: { type: "constrained" },
+                        align: 'wide',
+                        layout: { type: 'constrained' },
                     },
                     innerBlocks: [
                         {
-                            name: "core/group",
+                            name: 'core/group',
                             attributes: {
-                                className: "lsx-featured-tours-query",
+                                className: 'lsx-featured-tours-query',
                                 layout: {
-                                    type: "grid",
+                                    type: 'grid',
                                     columnCount: 2,
                                 },
                             },
                             innerBlocks: [
                                 {
-                                    name: "core/group",
+                                    name: 'core/group',
                                     attributes: {
-                                        className: "tour-card",
+                                        className: 'tour-card',
                                         style: {
-                                            spacing: { blockGap: "0px", padding: { top: "0px", bottom: "0px", left: "0px", right: "0px" } },
-                                            border: { radius: "8px" }
-                                        }
+                                            spacing: {
+                                                blockGap: '0px',
+                                                padding: {
+                                                    top: '0px',
+                                                    bottom: '0px',
+                                                    left: '0px',
+                                                    right: '0px',
+                                                },
+                                            },
+                                            border: { radius: '8px' },
+                                        },
                                     },
                                     innerBlocks: [
                                         {
-                                            name: "core/image",
+                                            name: 'core/image',
                                             attributes: {
-                                                alt: "Mountain hiking adventure tour",
-                                                aspectRatio: "3/2",
+                                                alt: 'Mountain hiking adventure tour',
+                                                aspectRatio: '3/2',
                                                 style: {
-                                                    border: { radius: { topLeft: "8px", topRight: "8px" } }
-                                                }
+                                                    border: {
+                                                        radius: {
+                                                            topLeft: '8px',
+                                                            topRight: '8px',
+                                                        },
+                                                    },
+                                                },
                                             },
                                         },
                                         {
-                                            name: "core/group",
+                                            name: 'core/group',
                                             attributes: {
                                                 style: {
-                                                    spacing: { padding: { top: "10px", bottom: "0px", left: "10px", right: "10px" } }
-                                                }
+                                                    spacing: {
+                                                        padding: {
+                                                            top: '10px',
+                                                            bottom: '0px',
+                                                            left: '10px',
+                                                            right: '10px',
+                                                        },
+                                                    },
+                                                },
                                             },
                                             innerBlocks: [
                                                 {
-                                                    name: "core/heading",
+                                                    name: 'core/heading',
                                                     attributes: {
                                                         level: 4,
-                                                        content: "Alpine Mountain Adventure",
-                                                        textAlign: "center",
+                                                        content:
+                                                            'Alpine Mountain Adventure',
+                                                        textAlign: 'center',
                                                         style: {
-                                                            spacing: { padding: { top: "5px" } }
-                                                        }
+                                                            spacing: {
+                                                                padding: {
+                                                                    top: '5px',
+                                                                },
+                                                            },
+                                                        },
                                                     },
                                                 },
                                                 {
-                                                    name: "core/group",
+                                                    name: 'core/group',
                                                     attributes: {
                                                         style: {
-                                                            spacing: { padding: { top: "10px", bottom: "10px" }, blockGap: "2px" }
-                                                        }
+                                                            spacing: {
+                                                                padding: {
+                                                                    top: '10px',
+                                                                    bottom: '10px',
+                                                                },
+                                                                blockGap: '2px',
+                                                            },
+                                                        },
                                                     },
                                                     innerBlocks: [
                                                         {
-                                                            name: "core/paragraph",
+                                                            name: 'core/paragraph',
                                                             attributes: {
-                                                                content: "<strong>From: $299</strong>",
+                                                                content:
+                                                                    '<strong>From: $299</strong>',
                                                             },
                                                         },
                                                         {
-                                                            name: "core/paragraph",
+                                                            name: 'core/paragraph',
                                                             attributes: {
-                                                                content: "<strong>Duration:</strong> 5 Days",
+                                                                content:
+                                                                    '<strong>Duration:</strong> 5 Days',
                                                             },
-                                                        }
-                                                    ]
+                                                        },
+                                                    ],
                                                 },
                                                 {
-                                                    name: "core/paragraph",
+                                                    name: 'core/paragraph',
                                                     attributes: {
-                                                        content: "Experience breathtaking mountain views on this guided hiking adventure through alpine trails and scenic valleys.",
+                                                        content:
+                                                            'Experience breathtaking mountain views on this guided hiking adventure through alpine trails and scenic valleys.',
                                                     },
-                                                }
-                                            ]
-                                        }
+                                                },
+                                            ],
+                                        },
                                     ],
                                 },
                                 {
-                                    name: "core/group",
+                                    name: 'core/group',
                                     attributes: {
-                                        className: "tour-card",
+                                        className: 'tour-card',
                                         style: {
-                                            spacing: { blockGap: "0px", padding: { top: "0px", bottom: "0px", left: "0px", right: "0px" } },
-                                            border: { radius: "8px" }
-                                        }
+                                            spacing: {
+                                                blockGap: '0px',
+                                                padding: {
+                                                    top: '0px',
+                                                    bottom: '0px',
+                                                    left: '0px',
+                                                    right: '0px',
+                                                },
+                                            },
+                                            border: { radius: '8px' },
+                                        },
                                     },
                                     innerBlocks: [
                                         {
-                                            name: "core/image",
+                                            name: 'core/image',
                                             attributes: {
-                                                alt: "Coastal sailing and island hopping tour",
-                                                aspectRatio: "3/2",
+                                                alt: 'Coastal sailing and island hopping tour',
+                                                aspectRatio: '3/2',
                                                 style: {
-                                                    border: { radius: { topLeft: "8px", topRight: "8px" } }
-                                                }
+                                                    border: {
+                                                        radius: {
+                                                            topLeft: '8px',
+                                                            topRight: '8px',
+                                                        },
+                                                    },
+                                                },
                                             },
                                         },
                                         {
-                                            name: "core/group",
+                                            name: 'core/group',
                                             attributes: {
                                                 style: {
-                                                    spacing: { padding: { top: "10px", bottom: "0px", left: "10px", right: "10px" } }
-                                                }
+                                                    spacing: {
+                                                        padding: {
+                                                            top: '10px',
+                                                            bottom: '0px',
+                                                            left: '10px',
+                                                            right: '10px',
+                                                        },
+                                                    },
+                                                },
                                             },
                                             innerBlocks: [
                                                 {
-                                                    name: "core/heading",
+                                                    name: 'core/heading',
                                                     attributes: {
                                                         level: 4,
-                                                        content: "Island Hopping Cruise",
-                                                        textAlign: "center",
+                                                        content:
+                                                            'Island Hopping Cruise',
+                                                        textAlign: 'center',
                                                         style: {
-                                                            spacing: { padding: { top: "5px" } }
-                                                        }
+                                                            spacing: {
+                                                                padding: {
+                                                                    top: '5px',
+                                                                },
+                                                            },
+                                                        },
                                                     },
                                                 },
                                                 {
-                                                    name: "core/group",
+                                                    name: 'core/group',
                                                     attributes: {
                                                         style: {
-                                                            spacing: { padding: { top: "10px", bottom: "10px" }, blockGap: "2px" }
-                                                        }
+                                                            spacing: {
+                                                                padding: {
+                                                                    top: '10px',
+                                                                    bottom: '10px',
+                                                                },
+                                                                blockGap: '2px',
+                                                            },
+                                                        },
                                                     },
                                                     innerBlocks: [
                                                         {
-                                                            name: "core/paragraph",
+                                                            name: 'core/paragraph',
                                                             attributes: {
-                                                                content: "<strong>From: $450</strong>",
+                                                                content:
+                                                                    '<strong>From: $450</strong>',
                                                             },
                                                         },
                                                         {
-                                                            name: "core/paragraph",
+                                                            name: 'core/paragraph',
                                                             attributes: {
-                                                                content: "<strong>Duration:</strong> 3 Days",
+                                                                content:
+                                                                    '<strong>Duration:</strong> 3 Days',
                                                             },
-                                                        }
-                                                    ]
+                                                        },
+                                                    ],
                                                 },
                                                 {
-                                                    name: "core/paragraph",
+                                                    name: 'core/paragraph',
                                                     attributes: {
-                                                        content: "Sail through crystal clear waters and discover hidden coves on this unforgettable island hopping adventure.",
+                                                        content:
+                                                            'Sail through crystal clear waters and discover hidden coves on this unforgettable island hopping adventure.',
                                                     },
-                                                }
-                                            ]
-                                        }
+                                                },
+                                            ],
+                                        },
                                     ],
                                 },
                             ],

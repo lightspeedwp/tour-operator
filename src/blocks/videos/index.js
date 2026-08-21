@@ -5,7 +5,7 @@
  * Available across all post types and templates.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -16,7 +16,10 @@ wp.domReady(() => {
         title: __('TO Videos', 'tour-operator'),
         icon: 'video-alt3',
         category: 'lsx-tour-operator',
-        description: __('Display a gallery of videos related to the tour or destination.', 'tour-operator'),
+        description: __(
+            'Display a gallery of videos related to the tour or destination.',
+            'tour-operator'
+        ),
         attributes: {
             metadata: {
                 name: 'TO Videos',
@@ -81,9 +84,7 @@ wp.domReady(() => {
                     if (undefined === props.attributes.hasSlider) {
                         if (
                             props.attributes.className &&
-                            props.attributes.className.includes(
-                                'lsx-to-slider'
-                            )
+                            props.attributes.className.includes('lsx-to-slider')
                         ) {
                             hasSlider = true;
                         }
@@ -101,17 +102,11 @@ wp.domReady(() => {
                             el(
                                 PanelBody,
                                 {
-                                    title: __(
-                                        'Tour Operator',
-                                        'tour-operator'
-                                    ),
+                                    title: __('Tour Operator', 'tour-operator'),
                                     initialOpen: true,
                                 },
                                 el(CheckboxControl, {
-                                    label: __(
-                                        'Enable Slider',
-                                        'tour-operator'
-                                    ),
+                                    label: __('Enable Slider', 'tour-operator'),
                                     checked: hasSlider,
                                     onChange(value) {
                                         props.setAttributes({

@@ -5,7 +5,7 @@
  * Available across all post types and templates.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -16,7 +16,13 @@ import {
     InspectorControls,
     BlockControls,
 } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, Spinner, Button, ButtonGroup } from '@wordpress/components';
+import {
+    PanelBody,
+    SelectControl,
+    Spinner,
+    Button,
+    ButtonGroup,
+} from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 
@@ -44,7 +50,9 @@ registerBlockType('lsx-tour-operator/modal-button', {
         const [modalOptions, setModalOptions] = useState([]);
         const [isLoading, setIsLoading] = useState(true);
 
-        const widthClassName = width ? `has-custom-width wp-block-button__width-${width}` : '';
+        const widthClassName = width
+            ? `has-custom-width wp-block-button__width-${width}`
+            : '';
 
         const blockProps = useBlockProps({
             className: 'wp-block-buttons',
@@ -83,9 +91,7 @@ registerBlockType('lsx-tour-operator/modal-button', {
         return (
             <>
                 <InspectorControls group="settings">
-                    <PanelBody
-                        title={__('Settings', 'tour-operator')}
-                    >
+                    <PanelBody title={__('Settings', 'tour-operator')}>
                         <p className="block-editor-button-width__label">
                             {__('Width', 'tour-operator')}
                         </p>
@@ -126,7 +132,9 @@ registerBlockType('lsx-tour-operator/modal-button', {
                             <Button
                                 size="small"
                                 variant="tertiary"
-                                onClick={() => setAttributes({ width: undefined })}
+                                onClick={() =>
+                                    setAttributes({ width: undefined })
+                                }
                                 style={{ marginTop: '8px', width: '100%' }}
                             >
                                 {__('Reset', 'tour-operator')}
@@ -136,9 +144,7 @@ registerBlockType('lsx-tour-operator/modal-button', {
                 </InspectorControls>
 
                 <InspectorControls>
-                    <PanelBody
-                        title={__('Modal Settings', 'tour-operator')}
-                    >
+                    <PanelBody title={__('Modal Settings', 'tour-operator')}>
                         {isLoading ? (
                             <div
                                 style={{
@@ -174,7 +180,10 @@ registerBlockType('lsx-tour-operator/modal-button', {
 
                 <div {...blockProps}>
                     <div className={`wp-block-button ${widthClassName}`}>
-                        <button className={`wp-block-button__link`} type="button">
+                        <button
+                            className={`wp-block-button__link`}
+                            type="button"
+                        >
                             <RichText
                                 tagName="span"
                                 value={text}
@@ -205,7 +214,9 @@ registerBlockType('lsx-tour-operator/modal-button', {
     save: ({ attributes }) => {
         const { text, modalId, width } = attributes;
 
-        const widthClassName = width ? `has-custom-width wp-block-button__width-${width}` : '';
+        const widthClassName = width
+            ? `has-custom-width wp-block-button__width-${width}`
+            : '';
 
         const blockProps = useBlockProps.save({
             className: 'wp-block-buttons',

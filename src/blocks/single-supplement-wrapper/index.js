@@ -5,7 +5,7 @@
  * Only available on tour post type edit screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -17,7 +17,10 @@ wp.domReady(() => {
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/single-supplement-wrapper',
             title: __('Single supplement', 'tour-operator'),
-            description: __('Displays the single supplement charge for solo travelers.', 'tour-operator'),
+            description: __(
+                'Displays the single supplement charge for solo travelers.',
+                'tour-operator'
+            ),
             icon: 'money-alt',
             category: 'lsx-tour-operator',
             keywords: [
@@ -30,7 +33,9 @@ wp.domReady(() => {
                 __('cost', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -40,7 +45,7 @@ wp.domReady(() => {
                 layout: {
                     type: 'flex',
                     flexWrap: 'nowrap',
-					verticalAlignment: 'top'
+                    verticalAlignment: 'top',
                 },
             },
             innerBlocks: [
@@ -59,9 +64,9 @@ wp.domReady(() => {
                             {
                                 iconType: 'solid',
                                 iconName: 'singleSupplementIcon',
-                            }
-                        ]
-                    ]
+                            },
+                        ],
+                    ],
                 ],
                 [
                     'core/group',
@@ -81,8 +86,11 @@ wp.domReady(() => {
                                     },
                                 },
                                 className: 'amount',
-								prefix : __('Single supplement:', 'tour-operator'),
-								prefixBold: true,
+                                prefix: __(
+                                    'Single supplement:',
+                                    'tour-operator'
+                                ),
+                                prefixBold: true,
                                 content: '',
                             },
                         ],
@@ -111,7 +119,14 @@ wp.domReady(() => {
                             {
                                 name: 'core/paragraph',
                                 attributes: {
-                                    content: '<strong>' + __('Single supplement: ', 'tour-operator') + '</strong>' + '$299',
+                                    content:
+                                        '<strong>' +
+                                        __(
+                                            'Single supplement:',
+                                            'tour-operator'
+                                        ) +
+                                        '</strong>' +
+                                        '$299',
                                 },
                             },
                         ],
@@ -123,8 +138,8 @@ wp.domReady(() => {
 
     // Initialize conditional registration
     const conditionalRegister = registerForPostTypesAndTemplates(
-        ['tour','accommodation'], // Supported post types
-        ['tour','accommodation'], // Template slug patterns
+        ['tour', 'accommodation'], // Supported post types
+        ['tour', 'accommodation'], // Template slug patterns
         registerSingleSupplementVariation
     );
 

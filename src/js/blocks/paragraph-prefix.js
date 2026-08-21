@@ -1,4 +1,4 @@
-( function ( blocks, element, editor, components ) {
+(function (blocks, element, editor, components) {
     const el = element.createElement;
     const InspectorControls = editor.InspectorControls;
     const PanelBody = components.PanelBody;
@@ -6,64 +6,71 @@
     const TextControl = components.TextControl;
 
     const withInspectorControls = wp.compose.createHigherOrderComponent(
-        function ( BlockEdit ) {
-            return function ( props ) {
-                if ( props.name !== 'core/paragraph' ) {
-                    return el( BlockEdit, props );
+        function (BlockEdit) {
+            return function (props) {
+                if (props.name !== 'core/paragraph') {
+                    return el(BlockEdit, props);
                 }
 
                 // Only show prefix controls for paragraphs with bindings or specific CSS classes
-                const hasMetadataBindings = props.attributes.metadata &&
-                                          props.attributes.metadata.bindings &&
-                                          props.attributes.metadata.bindings.content;
-                
-                const hasSpecificClasses = props.attributes.className && (
-                    props.attributes.className.includes('itinerary-accommodation') ||
-                    props.attributes.className.includes('itinerary-location') ||
-                    props.attributes.className.includes('itinerary-type') ||
-                    props.attributes.className.includes('itinerary-drinks') ||
-                    props.attributes.className.includes('itinerary-room') ||
-					props.attributes.className.includes('unit-price') ||
-					props.attributes.className.includes('unit-type')
-                );
-                
+                const hasMetadataBindings =
+                    props.attributes.metadata &&
+                    props.attributes.metadata.bindings &&
+                    props.attributes.metadata.bindings.content;
+
+                const hasSpecificClasses =
+                    props.attributes.className &&
+                    (props.attributes.className.includes(
+                        'itinerary-accommodation'
+                    ) ||
+                        props.attributes.className.includes(
+                            'itinerary-location'
+                        ) ||
+                        props.attributes.className.includes('itinerary-type') ||
+                        props.attributes.className.includes(
+                            'itinerary-drinks'
+                        ) ||
+                        props.attributes.className.includes('itinerary-room') ||
+                        props.attributes.className.includes('unit-price') ||
+                        props.attributes.className.includes('unit-type'));
+
                 const hasBindings = hasMetadataBindings || hasSpecificClasses;
 
-                if ( ! hasBindings ) {
-                    return el( BlockEdit, props );
+                if (!hasBindings) {
+                    return el(BlockEdit, props);
                 }
 
-                let prefix = props.attributes.prefix || '';
-                let prefixBold = props.attributes.prefixBold || false;
+                const prefix = props.attributes.prefix || '';
+                const prefixBold = props.attributes.prefixBold || false;
 
                 return el(
                     element.Fragment,
                     {},
-                    el( BlockEdit, props ),
+                    el(BlockEdit, props),
                     el(
                         InspectorControls,
                         {},
                         el(
                             PanelBody,
                             { title: 'Tour Operator', initialOpen: true },
-                            el( TextControl, {
+                            el(TextControl, {
                                 label: 'Prefix Text',
                                 value: prefix,
-                                onChange( value ) {
-                                    props.setAttributes( {
+                                onChange(value) {
+                                    props.setAttributes({
                                         prefix: value,
-                                    } );
+                                    });
                                 },
-                            } ),
-                            el( CheckboxControl, {
+                            }),
+                            el(CheckboxControl, {
                                 label: 'Bold Prefix',
                                 checked: prefixBold,
-                                onChange( value ) {
-                                    props.setAttributes( {
+                                onChange(value) {
+                                    props.setAttributes({
                                         prefixBold: value,
-                                    } );
+                                    });
                                 },
-                            } )
+                            })
                         )
                     )
                 );
@@ -82,8 +89,8 @@
     wp.hooks.addFilter(
         'blocks.registerBlockType',
         'lsx-tour-operator/paragraph-prefix-attributes',
-        function ( settings, name ) {
-            if ( name === 'core/paragraph' ) {
+        function (settings, name) {
+            if (name === 'core/paragraph') {
                 settings.attributes = {
                     ...settings.attributes,
                     prefix: {
@@ -101,69 +108,74 @@
     );
 
     // Add visual prefix display in the editor using CSS
-    const withPrefixDisplay = wp.compose.createHigherOrderComponent(
-        function ( BlockListBlock ) {
-            return function ( props ) {
-                if ( props.name !== 'core/paragraph' ) {
-                    return el( BlockListBlock, props );
-                }
+    const withPrefixDisplay = wp.compose.createHigherOrderComponent(function (
+        BlockListBlock
+    ) {
+        return function (props) {
+            if (props.name !== 'core/paragraph') {
+                return el(BlockListBlock, props);
+            }
 
-                const { attributes } = props;
-                const prefix = attributes.prefix || '';
-                const prefixBold = attributes.prefixBold || false;
+            const { attributes } = props;
+            const prefix = attributes.prefix || '';
+            const prefixBold = attributes.prefixBold || false;
 
-                if ( ! prefix ) {
-                    return el( BlockListBlock, props );
-                }
+            if (!prefix) {
+                return el(BlockListBlock, props);
+            }
 
-                // Add a space after prefix if it doesn't end with punctuation or space
-                const needsSpace = ! /[\s\p{P}]$/u.test( prefix );
-                const displayPrefix = prefix + ( needsSpace ? ' ' : '' );
+            // Add a space after prefix if it doesn't end with punctuation or space
+            const needsSpace = !/[\s\p{P}]$/u.test(prefix);
+            const displayPrefix = prefix + (needsSpace ? ' ' : '');
 
-                // Create CSS for the pseudo-element
-                const uniqueId = 'prefix-' + props.clientId;
-                const css = `
+            // Create CSS for the pseudo-element
+            const uniqueId = 'prefix-' + props.clientId;
+            const css = `
                     p.${uniqueId}::before {
                         content: "${displayPrefix.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\A ')} ";
                         font-weight: ${prefixBold ? 'bold' : 'normal'};
                     }
                 `;
 
-                // Inject the style into the editor iframe
-                if ( typeof document !== 'undefined' ) {
-                    // Find the editor iframe (canvas)
-                    const editorCanvas = document.querySelector( 'iframe[name="editor-canvas"]' );
-                    const targetDoc = editorCanvas ? editorCanvas.contentDocument : document;
+            // Inject the style into the editor iframe
+            if (typeof document !== 'undefined') {
+                // Find the editor iframe (canvas)
+                const editorCanvas = document.querySelector(
+                    'iframe[name="editor-canvas"]'
+                );
+                const targetDoc = editorCanvas
+                    ? editorCanvas.contentDocument
+                    : document;
 
-                    if ( targetDoc ) {
-                        let existingStyle = targetDoc.getElementById( uniqueId );
-                        if ( ! existingStyle ) {
-                            styleEl = targetDoc.createElement( 'style' );
-                            styleEl.id = uniqueId;
-                            targetDoc.head.appendChild( styleEl );
-                        }
-                        styleEl.textContent = css;
+                if (targetDoc) {
+                    const existingStyle = targetDoc.getElementById(uniqueId);
+                    if (!existingStyle) {
+                        styleEl = targetDoc.createElement('style');
+                        styleEl.id = uniqueId;
+                        targetDoc.head.appendChild(styleEl);
                     }
+                    styleEl.textContent = css;
                 }
+            }
 
-                // Add custom wrapper props with the unique class
-                const wrapperProps = {
-                    ...( props.wrapperProps || {} ),
-                    className: [ props.wrapperProps?.className, uniqueId ].filter(Boolean).join(' ')
-                };
-
-                return el( BlockListBlock, { ...props, wrapperProps } );
+            // Add custom wrapper props with the unique class
+            const wrapperProps = {
+                ...(props.wrapperProps || {}),
+                className: [props.wrapperProps?.className, uniqueId]
+                    .filter(Boolean)
+                    .join(' '),
             };
-        },
-        'withPrefixDisplay'
-    );
+
+            return el(BlockListBlock, { ...props, wrapperProps });
+        };
+    }, 'withPrefixDisplay');
 
     wp.hooks.addFilter(
         'editor.BlockListBlock',
         'lsx-tour-operator/paragraph-prefix-display',
         withPrefixDisplay
     );
-} )(
+})(
     window.wp.blocks,
     window.wp.element,
     window.wp.blockEditor,

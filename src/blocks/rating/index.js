@@ -5,7 +5,7 @@
  * Only available on accommodation post type edit screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -17,7 +17,10 @@ wp.domReady(() => {
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/rating',
             title: __('Rating', 'tour-operator'),
-            description: __('Displays rating and star classification for accommodations.', 'tour-operator'),
+            description: __(
+                'Displays rating and star classification for accommodations.',
+                'tour-operator'
+            ),
             icon: 'star-empty',
             category: 'lsx-tour-operator',
             keywords: [
@@ -27,7 +30,9 @@ wp.domReady(() => {
                 __('quality', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -37,7 +42,7 @@ wp.domReady(() => {
                 layout: {
                     type: 'flex',
                     flexWrap: 'nowrap',
-					verticalAlignment: 'top'
+                    verticalAlignment: 'top',
                 },
             },
             innerBlocks: [
@@ -60,7 +65,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'ratingIcon',
                             },
-                        ]
+                        ],
                     ],
                 ],
                 [
@@ -89,8 +94,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefix : __('Rating:', 'tour-operator'),
-								prefixBold: true,
+                                prefix: __('Rating:', 'tour-operator'),
+                                prefixBold: true,
                             },
                         ],
                     ],
@@ -125,7 +130,10 @@ wp.domReady(() => {
                             {
                                 name: 'core/paragraph',
                                 attributes: {
-                                    content: '<strong>' + __('Rating:', 'tour-operator') + '</strong>',
+                                    content:
+                                        '<strong>' +
+                                        __('Rating:', 'tour-operator') +
+                                        '</strong>',
                                 },
                             },
                         ],
@@ -145,7 +153,7 @@ wp.domReady(() => {
                                 attributes: {
                                     content: __('4.5', 'tour-operator'),
                                 },
-                            }
+                            },
                         ],
                     },
                 ],

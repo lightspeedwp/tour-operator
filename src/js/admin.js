@@ -2,56 +2,52 @@
  * admin.js
  */
 
-jQuery( document ).ready( function () {
+jQuery(document).ready(function () {
     /*
      * Choose Image
      */
-    if ( undefined === window.lsx_thumbnail_image_add ) {
-        jQuery( document ).on(
-            'click',
-            '.lsx-thumbnail-image-add',
-            function ( e ) {
-                e.preventDefault();
-                e.stopPropagation();
+    if (undefined === window.lsx_thumbnail_image_add) {
+        jQuery(document).on('click', '.lsx-thumbnail-image-add', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
 
-                tb_show(
-                    'Select an Image',
-                    'media-upload.php?type=image&feature_image_text_button=1&TB_iframe=1'
-                );
+            tb_show(
+                'Select an Image',
+                'media-upload.php?type=image&feature_image_text_button=1&TB_iframe=1'
+            );
 
-                const $this = jQuery( this ),
-                    $td = $this.parent( 'td' );
+            const $this = jQuery(this),
+                $td = $this.parent('td');
 
-                window.send_to_editor = function ( html ) {
-                    let $image = jQuery( html ).is( 'img' )
-                            ? jQuery( html )
-                            : jQuery( 'img', html ),
-                        image_thumbnail = $image.html(),
-                        image_src = $image.attr( 'src' ),
-                        image_class;
+            window.send_to_editor = function (html) {
+                let $image = jQuery(html).is('img')
+                        ? jQuery(html)
+                        : jQuery('img', html),
+                    image_thumbnail = $image.html(),
+                    image_src = $image.attr('src'),
+                    image_class;
 
-                    image_class = $image.attr( 'class' );
-                    image_class = image_class.split( 'wp-image-' );
+                image_class = $image.attr('class');
+                image_class = image_class.split('wp-image-');
 
-                    $td.find( '.thumbnail-preview img' )
-                        .attr( 'src', image_src )
-                        .parent()
-                        .show();
-                    $td.find( 'input.input_image' )
-                        .val( image_class[ 1 ] )
-                        .attr( 'width', $image.attr( 'width' ) )
-                        .attr( 'height', $image.attr( 'height' ) );
-                    $this.hide();
-                    $td.find(
-                        '.lsx-thumbnail-image-delete, .lsx-thumbnail-image-remove'
-                    ).show();
+                $td.find('.thumbnail-preview img')
+                    .attr('src', image_src)
+                    .parent()
+                    .show();
+                $td.find('input.input_image')
+                    .val(image_class[1])
+                    .attr('width', $image.attr('width'))
+                    .attr('height', $image.attr('height'));
+                $this.hide();
+                $td.find(
+                    '.lsx-thumbnail-image-delete, .lsx-thumbnail-image-remove'
+                ).show();
 
-                    tb_remove();
-                };
+                tb_remove();
+            };
 
-                return false;
-            }
-        );
+            return false;
+        });
 
         window.lsx_thumbnail_image_add = true;
     }
@@ -59,24 +55,24 @@ jQuery( document ).ready( function () {
     /*
      * Delete Image
      */
-    if ( undefined === window.lsx_thumbnail_image_delete ) {
-        jQuery( document ).on(
+    if (undefined === window.lsx_thumbnail_image_delete) {
+        jQuery(document).on(
             'click',
             '.lsx-thumbnail-image-delete, .lsx-thumbnail-image-remove',
-            function ( e ) {
+            function (e) {
                 e.preventDefault();
                 e.stopPropagation();
 
-                const $this = jQuery( this ),
-                    $td = $this.parent( 'td' );
+                const $this = jQuery(this),
+                    $td = $this.parent('td');
 
-                $td.find( 'input.input_image' ).val( '' );
-                $td.find( '.thumbnail-preview img' )
-                    .attr( 'src', '' )
+                $td.find('input.input_image').val('');
+                $td.find('.thumbnail-preview img')
+                    .attr('src', '')
                     .parent()
                     .hide();
                 $this.hide();
-                $td.find( '.lsx-thumbnail-image-add' ).show();
+                $td.find('.lsx-thumbnail-image-add').show();
 
                 return false;
             }
@@ -88,36 +84,36 @@ jQuery( document ).ready( function () {
     /*
      * Subtabs navigation
      */
-    if ( undefined === window.lsx_thumbnail_subtabs_nav ) {
-        jQuery( document ).on( 'click', '.nav-tab-wrapper a', function ( e ) {
+    if (undefined === window.lsx_thumbnail_subtabs_nav) {
+        jQuery(document).on('click', '.nav-tab-wrapper a', function (e) {
             e.preventDefault();
             e.stopPropagation();
 
-            const $this = jQuery( this );
+            const $this = jQuery(this);
 
-            jQuery( '.nav-tab-wrapper a.nav-tab-active' ).removeClass(
+            jQuery('.nav-tab-wrapper a.nav-tab-active').removeClass(
                 'nav-tab-active'
             );
-            $this.addClass( 'nav-tab-active' );
-            jQuery( '.ui-tab.active' ).removeClass( 'active' );
-            jQuery( $this.attr( 'href' ) ).addClass( 'active' );
+            $this.addClass('nav-tab-active');
+            jQuery('.ui-tab.active').removeClass('active');
+            jQuery($this.attr('href')).addClass('active');
 
             return false;
-        } );
+        });
 
         window.lsx_thumbnail_subtabs_nav = true;
     }
 
-    jQuery( document ).on(
+    jQuery(document).on(
         'click',
         '.lsx-to-theme-notice .notice-dismiss',
         function () {
-            jQuery.ajax( {
+            jQuery.ajax({
                 url: ajaxurl,
                 data: {
                     action: 'lsx_to_theme_notice_dismiss',
                 },
-            } );
+            });
         }
     );
-} );
+});

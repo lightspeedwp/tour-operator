@@ -5,7 +5,7 @@
  * Available across all TO post types and templates.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 import { __ } from '@wordpress/i18n';
 import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
@@ -15,7 +15,10 @@ wp.domReady(() => {
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/google-map',
             title: __('Google Map', 'tour-operator'),
-            description: __('Display a Google Map based on the current Tour Operator page.', 'tour-operator'),
+            description: __(
+                'Display a Google Map based on the current Tour Operator page.',
+                'tour-operator'
+            ),
             category: 'lsx-tour-operator',
             icon: 'admin-site-alt3',
             keywords: [
@@ -24,7 +27,9 @@ wp.domReady(() => {
                 __('maps', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -52,19 +57,28 @@ wp.domReady(() => {
                             'core/separator',
                             {
                                 style: {
-                                    layout: { selfStretch: 'fill', flexSize: null },
+                                    layout: {
+                                        selfStretch: 'fill',
+                                        flexSize: null,
+                                    },
                                 },
                             },
                         ],
                         [
                             'core/heading',
-                            { textAlign: 'center', content: __('Location', 'tour-operator') },
+                            {
+                                textAlign: 'center',
+                                content: __('Location', 'tour-operator'),
+                            },
                         ],
                         [
                             'core/separator',
                             {
                                 style: {
-                                    layout: { selfStretch: 'fill', flexSize: null },
+                                    layout: {
+                                        selfStretch: 'fill',
+                                        flexSize: null,
+                                    },
                                 },
                             },
                         ],
@@ -143,7 +157,10 @@ wp.domReady(() => {
                                 name: 'core/separator',
                                 attributes: {
                                     style: {
-                                        layout: { selfStretch: 'fill', flexSize: null },
+                                        layout: {
+                                            selfStretch: 'fill',
+                                            flexSize: null,
+                                        },
                                     },
                                 },
                             },
@@ -159,7 +176,10 @@ wp.domReady(() => {
                                 name: 'core/separator',
                                 attributes: {
                                     style: {
-                                        layout: { selfStretch: 'fill', flexSize: null },
+                                        layout: {
+                                            selfStretch: 'fill',
+                                            flexSize: null,
+                                        },
                                     },
                                 },
                             },
@@ -179,15 +199,17 @@ wp.domReady(() => {
                                 attributes: {
                                     align: 'full',
                                     sizeSlug: 'large',
-                                    url: lsxToEditor.assetsUrl + 'blocks/placeholder-map-1920x656.jpg',
+                                    url:
+                                        lsxToEditor.assetsUrl +
+                                        'blocks/placeholder-map-1920x656.jpg',
                                 },
-                            }
+                            },
                         ],
                     },
-                ]
+                ],
             },
         });
-    }
+    };
 
     // Initialize conditional registration
     const conditionalRegister = registerForPostTypesAndTemplates(
