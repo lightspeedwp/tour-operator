@@ -45,6 +45,24 @@ if ( ! function_exists( 'attachment_url_to_postid' ) ) {
 	}
 }
 
+if ( ! function_exists( 'esc_url_raw' ) ) {
+	// A faithful-enough stand-in for WP core's real esc_url_raw(): reject a
+	// disallowed/missing scheme (this is the actual security property under
+	// test -- a `javascript:`/`data:` value must not survive), pass an
+	// allowed http(s) URL through unchanged otherwise. Real esc_url_raw()
+	// also percent-encodes a few characters; none of this file's fixtures
+	// contain any, so that behaviour isn't exercised here.
+	function esc_url_raw( $url, $protocols = null ) {
+		if ( '' === $url ) {
+			return '';
+		}
+
+		$scheme = strtolower( (string) parse_url( $url, PHP_URL_SCHEME ) );
+
+		return in_array( $scheme, array( 'http', 'https' ), true ) ? $url : '';
+	}
+}
+
 if ( ! function_exists( 'lsx_to_resolve_itinerary_featured_image' ) ) {
 	require_once dirname( __DIR__, 2 ) . '/includes/functions.php';
 }
@@ -60,11 +78,20 @@ class Test_Fake_CMB2_Group {
 	public $index;
 	public $data_to_save;
 
+	/**
+	 * @param int   $index        Which repeatable group row this fake represents.
+	 * @param array $data_to_save The full posted meta-box save array, keyed
+	 *                            the same way CMB2::save_group_field() sets
+	 *                            it: `data_to_save[<group id>][<index>][<sub field id>]`.
+	 */
 	public function __construct( int $index, array $data_to_save ) {
 		$this->index        = $index;
 		$this->data_to_save = $data_to_save;
 	}
 
+	/**
+	 * @return string Always "itinerary" -- the only group this fake needs to represent.
+	 */
 	public function id() {
 		return 'itinerary';
 	}
@@ -73,6 +100,11 @@ class Test_Fake_CMB2_Group {
 class Test_Fake_CMB2_Field {
 	public $group;
 
+	/**
+	 * @param Test_Fake_CMB2_Group|null $group The parent group field, or null
+	 *                                          to exercise the no-group case
+	 *                                          (see test_sanitization_cb_without_group_does_not_fatal()).
+	 */
 	public function __construct( ?Test_Fake_CMB2_Group $group = null ) {
 		$this->group = $group;
 	}
@@ -80,11 +112,18 @@ class Test_Fake_CMB2_Field {
 
 class TestItineraryFeaturedImage extends TestCase {
 
+	/**
+	 * Resets the fake attachment table before every test so one test's
+	 * fixtures can never leak into another.
+	 */
 	protected function setUp(): void {
 		parent::setUp();
 		$GLOBALS['test_fake_attachments'] = array();
 	}
 
+	/**
+	 * Clears the fake attachment table after every test.
+	 */
 	protected function tearDown(): void {
 		$GLOBALS['test_fake_attachments'] = array();
 		parent::tearDown();
@@ -223,6 +262,85 @@ class TestItineraryFeaturedImage extends TestCase {
 		$GLOBALS['test_fake_attachments'][945] = 'https://example.com/wp-content/uploads/mkuze.jpg';
 
 		$result = lsx_to_resolve_itinerary_featured_image( 'https://945', '0' );
+
+		$this->assertSame( 'https://example.com/wp-content/uploads/mkuze.jpg', $result['url'] );
+		$this->assertSame( '945', $result['id'] );
+	}
+
+	/**
+	 * The security property this fix depends on: this sanitization_cb
+	 * replaces CMB2's default sanitizer entirely, so nothing else in the
+	 * save path escapes a "real URL"-shaped value before it's stored. A
+	 * disallowed scheme must be rejected here, not merely passed through,
+	 * or any user with edit access could persist a `javascript:`/`data:`
+	 * value in `featured_image` verbatim.
+	 */
+	public function test_disallowed_scheme_is_rejected_not_stored(): void {
+		$result = lsx_to_resolve_itinerary_featured_image( 'javascript:alert(1)', '' );
+
+		$this->assertSame( '', $result['url'] );
+		$this->assertSame( '', $result['id'] );
+	}
+
+	/**
+	 * Same property, the other commonly-abused scheme.
+	 */
+	public function test_data_scheme_is_rejected_not_stored(): void {
+		$result = lsx_to_resolve_itinerary_featured_image( 'data:text/html,<script>alert(1)</script>', '' );
+
+		$this->assertSame( '', $result['url'] );
+		$this->assertSame( '', $result['id'] );
+	}
+
+	/**
+	 * Near-miss shapes that don't match the exact "scheme + all-digits"
+	 * pattern the corruption-repair branches look for. These fall through
+	 * to the real-URL branch and are kept (sanitized, but otherwise
+	 * verbatim) rather than repaired -- documenting that this is
+	 * deliberate, not an oversight: the resolver only ever repairs the
+	 * specific shapes this bug is known to produce, not free-form input
+	 * that happens to start with digits after a scheme.
+	 */
+	public function test_trailing_slash_after_bare_id_is_not_repaired(): void {
+		$result = lsx_to_resolve_itinerary_featured_image( 'https://945/', '' );
+
+		$this->assertSame( 'https://945/', $result['url'] );
+		$this->assertSame( '', $result['id'] );
+	}
+
+	/**
+	 * @see test_trailing_slash_after_bare_id_is_not_repaired() -- same
+	 * documented "near-miss, not repaired" property, for a query string.
+	 */
+	public function test_query_string_after_bare_id_is_not_repaired(): void {
+		$result = lsx_to_resolve_itinerary_featured_image( 'https://945?x=1', '' );
+
+		$this->assertSame( 'https://945?x=1', $result['url'] );
+		$this->assertSame( '', $result['id'] );
+	}
+
+	/**
+	 * @see test_trailing_slash_after_bare_id_is_not_repaired() -- same
+	 * documented "near-miss, not repaired" property, for an uppercase scheme.
+	 */
+	public function test_uppercase_scheme_is_not_repaired(): void {
+		// str_starts_with() is case-sensitive; "HTTPS://" doesn't match the
+		// lowercase "https://" the corruption-repair branch checks for.
+		$result = lsx_to_resolve_itinerary_featured_image( 'HTTPS://945', '' );
+
+		$this->assertSame( 'HTTPS://945', $result['url'] );
+		$this->assertSame( '', $result['id'] );
+	}
+
+	/**
+	 * A companion ID pointing at a deleted attachment must not block
+	 * resolving the field's own value -- it should fall through exactly as
+	 * if no companion ID had been submitted at all.
+	 */
+	public function test_deleted_attachment_companion_id_falls_back_to_raw_value(): void {
+		$GLOBALS['test_fake_attachments'][945] = 'https://example.com/wp-content/uploads/mkuze.jpg';
+
+		$result = lsx_to_resolve_itinerary_featured_image( 'https://945', '999999' );
 
 		$this->assertSame( 'https://example.com/wp-content/uploads/mkuze.jpg', $result['url'] );
 		$this->assertSame( '945', $result['id'] );

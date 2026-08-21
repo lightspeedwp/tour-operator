@@ -365,14 +365,31 @@ function lsx_to_resolve_itinerary_featured_image( string $raw_value, string $raw
 		);
 	}
 
-	// Already a real URL -- the expected shape. Resolve its attachment ID too,
-	// so `featured_image_id` (what lsx_to_itinerary_thumbnail() above reads
-	// first, before falling back to the connected destination/accommodation's
-	// own image) is finally populated instead of staying permanently empty.
-	$resolved_id = attachment_url_to_postid( $raw_value );
+	// Already a real URL -- the expected shape. This sanitization_cb
+	// replaces CMB2's own entirely (that's the whole point -- see the
+	// docblock above), so nothing else in the save path will sanitize this
+	// value; esc_url_raw() here is not optional. Without it, any user with
+	// edit access to this post type could persist a `javascript:`/`data:`
+	// URL or arbitrary markup in `featured_image` verbatim, since the
+	// numeric shapes above never reach this branch and this was the one
+	// path left unsanitized.
+	$safe_url = esc_url_raw( $raw_value );
+
+	if ( '' === $safe_url ) {
+		return array(
+			'url' => '',
+			'id'  => '',
+		);
+	}
+
+	// Resolve its attachment ID too, so `featured_image_id` (what
+	// lsx_to_itinerary_thumbnail() above reads first, before falling back
+	// to the connected destination/accommodation's own image) is finally
+	// populated instead of staying permanently empty.
+	$resolved_id = attachment_url_to_postid( $safe_url );
 
 	return array(
-		'url' => $raw_value,
+		'url' => $safe_url,
 		'id'  => $resolved_id > 0 ? (string) $resolved_id : '',
 	);
 }
