@@ -45,6 +45,12 @@ module.exports = {
 					from: 'src/blocks/sticky-menu/filters.php',
 					to: 'blocks/sticky-menu/filters.php',
 				},
+				{
+					// Read at runtime by lsx_to_get_icon_svg(). Must live in the build
+					// directory -- .distignore excludes /src from the distributed plugin.
+					from: 'src/blocks/icons/source-icons',
+					to: 'blocks/icons/source-icons',
+				},
 			],
 		} ),
 	]
