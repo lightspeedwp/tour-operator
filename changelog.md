@@ -9,6 +9,14 @@
 - **Featured query returned every post when nothing was featured** - `Query_Loop::featured_query()` overwrote `meta_query` and wrapped its single clause in an `OR` relation. Once `Post_Visibility::filter_query_block_args()` appended its hide-from-listings group on the same filter, the query became "featured **OR** not-hidden", which matches everything. The corrupted query only executed when the featured set was empty (no `posts_pre_query` short-circuit), so an empty Featured block would have rendered the entire archive. The clause is now appended to any existing `meta_query` and joined with `AND` - Issue [#1284](https://github.com/lightspeedwp/tour-operator/issues/1284)
 - **Featured blocks ignored "Hide from Listings"** - `find_featured_items()` snapshotted its result set on `query_loop_block_query_vars` at priority 1, before `Post_Visibility` appended its clause at priority 10, and `posts_pre_query` then served that snapshot. Items flagged *Hide from Listings* consequently still appeared in Featured blocks. `Query_Loop::query_args_filter()` now runs at priority 20 so the snapshot is built from the fully filtered query args - Issue [#1284](https://github.com/lightspeedwp/tour-operator/issues/1284)
 
+#### Data Integrity
+- **Itinerary featured image URL corruption** - CMB2's default sanitizer was overwriting a valid attachment URL/ID in the itinerary `featured_image` field on every save, corrupting it into a non-functional value. A dedicated sanitization callback now resolves and stores the correct URL and attachment ID instead.
+
+### Changed
+
+#### Requirements
+- **Minimum PHP version raised from 8.0 to 8.2** - PHP 8.0 and 8.1 have both reached end of life (2023-11-26 and 2025-12-31 respectively) and no longer receive security fixes. `Requires PHP` (plugin header, `composer.json`, `readme.txt`) now floors at 8.2, the earliest version still supported - matching what CI already tests against. `phpcs.xml.dist`'s PHPCompatibilityWP `testVersion` raised to match; confirmed no new compatibility findings from the change.
+
 ## [[2.2.0]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.2.0) - 2026-07-30
 
 ### Fixed

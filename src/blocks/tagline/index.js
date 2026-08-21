@@ -5,7 +5,7 @@
  * Available across tour post types and templates.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -19,7 +19,10 @@ wp.domReady(() => {
             title: __('Tagline', 'tour-operator'),
             category: 'lsx-tour-operator',
             icon: 'text-page',
-            description: __('Displays the tagline or slogan for this tour.', 'tour-operator'),
+            description: __(
+                'Displays the tagline or slogan for this tour.',
+                'tour-operator'
+            ),
             keywords: [
                 __('tagline', 'tour-operator'),
                 __('slogan', 'tour-operator'),
@@ -29,7 +32,9 @@ wp.domReady(() => {
                 __('tour', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -52,7 +57,10 @@ wp.domReady(() => {
                     {
                         name: 'core/paragraph',
                         attributes: {
-                            content: __('Discover the breathtaking beauty of Africa\'s premier safari destination', 'tour-operator'),
+                            content: __(
+                                "Discover the breathtaking beauty of Africa's premier safari destination",
+                                'tour-operator'
+                            ),
                         },
                     },
                 ],

@@ -5,7 +5,7 @@
  * Only available on destination post types, destinations, country, and region templates screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -18,7 +18,10 @@ wp.domReady(() => {
             title: __('Country', 'tour-operator'),
             icon: 'admin-site',
             category: 'lsx-tour-operator',
-            description: __('Display the country associated with this destination.', 'tour-operator'),
+            description: __(
+                'Display the country associated with this destination.',
+                'tour-operator'
+            ),
             keywords: [
                 __('country', 'tour-operator'),
                 __('destination', 'tour-operator'),
@@ -26,18 +29,20 @@ wp.domReady(() => {
                 __('facts', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
                     name: __('Country', 'tour-operator'),
                 },
                 className: 'facts-country-query-wrapper',
-				layout: {
-					type: 'flex',
-					flexWrap: 'nowrap',
-					verticalAlignment: 'top'
-				},
+                layout: {
+                    type: 'flex',
+                    flexWrap: 'nowrap',
+                    verticalAlignment: 'top',
+                },
             },
             innerBlocks: [
                 [
@@ -56,7 +61,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'destinationIcon',
                             },
-                        ]
+                        ],
                     ],
                 ],
                 [
@@ -81,8 +86,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefix : __('Country', 'tour-operator'),
-								prefixBold: true,
+                                prefix: __('Country', 'tour-operator'),
+                                prefixBold: true,
                                 content: '',
                             },
                         ],
@@ -115,7 +120,18 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: '<strong>' + __('Country: ', 'tour-operator') + '</strong>' + ' ' + __('South Africa', 'tour-operator'),
+                                            content:
+                                                '<strong>' +
+                                                __(
+                                                    'Country:',
+                                                    'tour-operator'
+                                                ) +
+                                                '</strong>' +
+                                                ' ' +
+                                                __(
+                                                    'South Africa',
+                                                    'tour-operator'
+                                                ),
                                         },
                                     },
                                 ],
@@ -125,8 +141,7 @@ wp.domReady(() => {
                 ],
             },
         });
-    }
-
+    };
 
     // Initialize conditional registration
     const conditionalRegister = registerForPostTypesAndTemplates(

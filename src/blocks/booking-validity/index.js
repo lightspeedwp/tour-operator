@@ -5,7 +5,7 @@
  * Only available on tour post type edit screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -19,14 +19,19 @@ wp.domReady(() => {
             title: __('Booking validity', 'tour-operator'),
             icon: 'calendar',
             category: 'lsx-tour-operator',
-            description: __('Displays the booking validity period for a tour.', 'tour-operator'),
+            description: __(
+                'Displays the booking validity period for a tour.',
+                'tour-operator'
+            ),
             keywords: [
                 __('booking', 'tour-operator'),
                 __('validity', 'tour-operator'),
                 __('tour', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -36,7 +41,7 @@ wp.domReady(() => {
                 layout: {
                     type: 'flex',
                     flexWrap: 'nowrap',
-					verticalAlignment: 'top'
+                    verticalAlignment: 'top',
                 },
             },
             innerBlocks: [
@@ -56,7 +61,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'bookingValidityIcon',
                             },
-                        ]
+                        ],
                     ],
                 ],
                 [
@@ -81,8 +86,11 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefix : __('Booking validity:', 'tour-operator'),
-								prefixBold: true,
+                                prefix: __(
+                                    'Booking validity:',
+                                    'tour-operator'
+                                ),
+                                prefixBold: true,
                                 content: '',
                             },
                         ],
@@ -136,7 +144,17 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: '<strong>' + __('Booking validity: ', 'tour-operator') + '</strong>' + __('Start Date - End Date', 'tour-operator'),
+                                            content:
+                                                '<strong>' +
+                                                __(
+                                                    'Booking validity:',
+                                                    'tour-operator'
+                                                ) +
+                                                '</strong>' +
+                                                __(
+                                                    'Start Date - End Date',
+                                                    'tour-operator'
+                                                ),
                                         },
                                     },
                                 ],

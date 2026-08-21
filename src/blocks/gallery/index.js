@@ -5,7 +5,7 @@
  * Available across all post types and templates.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -16,7 +16,10 @@ wp.domReady(() => {
         title: __('TO Gallery', 'tour-operator'),
         icon: 'format-gallery',
         category: 'lsx-tour-operator',
-        description: __('Display multiple images in a Tour Operator gallery', 'tour-operator'),
+        description: __(
+            'Display multiple images in a Tour Operator gallery',
+            'tour-operator'
+        ),
         attributes: {
             metadata: {
                 name: __('TO Gallery', 'tour-operator'),

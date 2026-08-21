@@ -23,32 +23,25 @@
     "npm": ">=10.0.0"
   },
   "main": "package-lock.json",
-  "dependencies": {
-    "classnames": "^2.5.1"
-  },
   "devDependencies": {
-    "@babel/cli": "^8.0.4",
-    "@babel/core": "^7.28.0",
-    "@babel/preset-react": "^8.0.1",
+    "@babel/core": "^7.29.7",
     "@wordpress/a11y": "4.51.0",
     "@wordpress/babel-preset-default": "8.52.0",
-    "@wordpress/block-library": "10.2.0",
     "@wordpress/blocks": "15.25.0",
-    "@wordpress/e2e-test-utils-playwright": "1.51.0",
-    "@wordpress/eslint-plugin": "25.7.0",
-    "@wordpress/i18n": "6.24.0",
-    "@wordpress/jest-preset-default": "12.51.0",
-    "@wordpress/npm-package-json-lint-config": "5.51.0",
-    "@wordpress/prettier-config": "4.52.0",
-    "@wordpress/scripts": "^33.0.0",
+    "@wordpress/e2e-test-utils-playwright": "1.53.0",
+    "@wordpress/eslint-plugin": "25.9.0",
+    "@wordpress/i18n": "6.26.0",
+    "@wordpress/jest-preset-default": "14.0.0",
+    "@wordpress/npm-package-json-lint-config": "5.53.0",
+    "@wordpress/prettier-config": "4.53.0",
+    "@wordpress/scripts": "^34.1.0",
     "@wordpress/stylelint-config": "^24.1.0",
     "copy-webpack-plugin": "^14.0.0",
     "eslint": "10.8.0",
     "jest": "30.4.2",
     "npm-package-json-lint": "10.4.1",
-    "prettier": "3.9.5",
+    "prettier": "3.9.6",
     "stylelint": "16.26.1",
-    "typescript": "7.0.2",
     "webpack-cli": "7.2.1",
     "webpack-remove-empty-scripts": "^1.1.1"
   },
@@ -84,5 +77,8 @@
     "format": "npm run lint:php:fix && wp-scripts format",
     "format:js": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
     "generate-readme": "node .github/scripts/update-readme.js"
+  },
+  "overrides": {
+    "linkify-it": "^5.0.2"
   }
 }

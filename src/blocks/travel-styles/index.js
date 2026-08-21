@@ -5,7 +5,7 @@
  * Only available on tour post type edit screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -19,7 +19,10 @@ wp.domReady(() => {
             title: __('Travel styles', 'tour-operator'),
             icon: 'airplane',
             category: 'lsx-tour-operator',
-            description: __('Display the travel styles associated with this tour.', 'tour-operator'),
+            description: __(
+                'Display the travel styles associated with this tour.',
+                'tour-operator'
+            ),
             keyword: [
                 __('travel', 'tour-operator'),
                 __('styles', 'tour-operator'),
@@ -29,18 +32,20 @@ wp.domReady(() => {
                 __('type', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
                     name: 'Travel styles',
                 },
                 className: 'lsx-travel-style-wrapper',
-				layout: {
-					type: 'flex',
-					flexWrap: 'nowrap',
-					verticalAlignment: 'top'
-				},
+                layout: {
+                    type: 'flex',
+                    flexWrap: 'nowrap',
+                    verticalAlignment: 'top',
+                },
             },
             innerBlocks: [
                 [
@@ -59,7 +64,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'travelStyleIcon',
                             },
-                        ]
+                        ],
                     ],
                 ],
                 [
@@ -75,11 +80,14 @@ wp.domReady(() => {
                             'core/post-terms',
                             {
                                 term: 'travel-style',
-								prefix: '<strong>' + __('Travel Styles: ', 'tour-operator') + '</strong>'
-                            }
-                        ]
-                    ]
-                ]
+                                prefix:
+                                    '<strong>' +
+                                    __('Travel Styles:', 'tour-operator') +
+                                    '</strong>',
+                            },
+                        ],
+                    ],
+                ],
             ],
             example: {
                 innerBlocks: [
@@ -103,9 +111,17 @@ wp.domReady(() => {
                             {
                                 name: 'core/paragraph',
                                 attributes: {
-                                    content: '<strong>' + __('Travel Styles:', 'tour-operator') + '</strong>' + ' ' + __('Adventure, Cultural, Wildlife', 'tour-operator'),
+                                    content:
+                                        '<strong>' +
+                                        __('Travel Styles:', 'tour-operator') +
+                                        '</strong>' +
+                                        ' ' +
+                                        __(
+                                            'Adventure, Cultural, Wildlife',
+                                            'tour-operator'
+                                        ),
                                 },
-                            }
+                            },
                         ],
                     },
                 ],

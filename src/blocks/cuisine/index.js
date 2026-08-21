@@ -5,7 +5,7 @@
  * Only available on destination post types, destinations, country, and region templates screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -14,11 +14,13 @@ import { registerForPostTypesAndTemplates } from '@utils/conditional-block-regis
 wp.domReady(() => {
     // Register variation function
     const registerCuisineVariation = () => {
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/cuisine',
             title: __('Cuisine', 'tour-operator'),
-            description: __('Display local cuisine and food information for destinations.', 'tour-operator'),
+            description: __(
+                'Display local cuisine and food information for destinations.',
+                'tour-operator'
+            ),
             icon: 'food',
             category: 'lsx-tour-operator',
             keywords: [
@@ -28,7 +30,9 @@ wp.domReady(() => {
                 __('dining', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -60,7 +64,10 @@ wp.domReady(() => {
                                     'core/paragraph',
                                     {
                                         align: 'center',
-                                        content: '<strong>' + __('Cuisine', 'tour-operator') + '</strong>',
+                                        content:
+                                            '<strong>' +
+                                            __('Cuisine', 'tour-operator') +
+                                            '</strong>',
                                     },
                                 ],
                             ],
@@ -132,7 +139,10 @@ wp.domReady(() => {
                                         name: 'core/paragraph',
                                         attributes: {
                                             align: 'center',
-                                            content: '<strong>' + __('Cuisine', 'tour-operator') + '</strong>',
+                                            content:
+                                                '<strong>' +
+                                                __('Cuisine', 'tour-operator') +
+                                                '</strong>',
                                         },
                                     },
                                 ],
@@ -148,7 +158,10 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: __('Traditional local dishes feature fresh seafood, tropical fruits, and aromatic spices. Street food markets offer authentic flavors and regional specialties.', 'tour-operator'),
+                                            content: __(
+                                                'Traditional local dishes feature fresh seafood, tropical fruits, and aromatic spices. Street food markets offer authentic flavors and regional specialties.',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                 ],

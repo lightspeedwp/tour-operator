@@ -5,7 +5,7 @@
  * Only available on destination post types, destinations, country, and region templates screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -14,11 +14,13 @@ import { registerForPostTypesAndTemplates } from '@utils/conditional-block-regis
 wp.domReady(() => {
     // Register variation function
     const registerElectricityVariation = () => {
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/electricity',
             title: __('Electricity', 'tour-operator'),
-            description: __('Display electrical information and power requirements for destinations.', 'tour-operator'),
+            description: __(
+                'Display electrical information and power requirements for destinations.',
+                'tour-operator'
+            ),
             icon: 'admin-plugins',
             category: 'lsx-tour-operator',
             keywords: [
@@ -28,7 +30,9 @@ wp.domReady(() => {
                 __('outlet', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -60,7 +64,10 @@ wp.domReady(() => {
                                     'core/paragraph',
                                     {
                                         align: 'center',
-                                        content: '<strong>' + __('Electricity', 'tour-operator') + '</strong>',
+                                        content:
+                                            '<strong>' +
+                                            __('Electricity', 'tour-operator') +
+                                            '</strong>',
                                     },
                                 ],
                             ],
@@ -132,7 +139,13 @@ wp.domReady(() => {
                                         name: 'core/paragraph',
                                         attributes: {
                                             align: 'center',
-                                            content: '<strong>' + __('Electricity', 'tour-operator') + '</strong>',
+                                            content:
+                                                '<strong>' +
+                                                __(
+                                                    'Electricity',
+                                                    'tour-operator'
+                                                ) +
+                                                '</strong>',
                                         },
                                     },
                                 ],
@@ -148,7 +161,10 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: __('Standard voltage 220V, 50Hz. Three-pin plugs are commonly used. Adapters available at most hotels and stores.', 'tour-operator'),
+                                            content: __(
+                                                'Standard voltage 220V, 50Hz. Three-pin plugs are commonly used. Adapters available at most hotels and stores.',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                 ],
