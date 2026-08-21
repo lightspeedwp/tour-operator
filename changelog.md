@@ -1,5 +1,12 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+
+#### Requirements
+- **Minimum PHP version raised from 8.0 to 8.2** - PHP 8.0 and 8.1 have both reached end of life (2023-11-26 and 2025-12-31 respectively) and no longer receive security fixes. `Requires PHP` (plugin header, `composer.json`, `readme.txt`) now floors at 8.2, the earliest version still supported - matching what CI already tests against. `phpcs.xml.dist`'s PHPCompatibilityWP `testVersion` raised to match; confirmed no new compatibility findings from the change.
+
 ## [[2.2.0]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.2.0) - 2026-07-30
 
 ### Fixed
