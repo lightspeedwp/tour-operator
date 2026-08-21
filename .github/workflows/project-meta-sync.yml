@@ -17,6 +17,14 @@ env:
 jobs:
   add-and-sync:
     runs-on: ubuntu-latest
+    # Dependabot-triggered workflow runs cannot see this repo's regular Actions
+    # secrets (LS_APP_ID / LS_APP_PRIVATE_KEY included) -- a GitHub security
+    # boundary, not a misconfiguration: a compromised/malicious dependency
+    # update should never be able to mint a GitHub App token. Every step below
+    # needs that token, and there's no board-triage value in placing an
+    # auto-merged version-bump PR on the project board anyway, so skip the
+    # whole job for that actor rather than let it fail on the first step.
+    if: github.actor != 'dependabot[bot]'
     steps:
       - name: Checkout repo
         uses: actions/checkout@v7
