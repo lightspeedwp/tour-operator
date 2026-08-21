@@ -14,16 +14,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Query_Loop {
 
 	/**
-	 * Object cache group for featured-query result memoization.
-	 *
-	 * @var string
-	 */
-	const FEATURED_CACHE_GROUP = 'tour-operator';
-
-	/**
 	 * How long a featured-query result set is trusted before it's re-queried,
 	 * even without an explicit invalidation (belt-and-suspenders against a
 	 * missed hook, e.g. a meta value changed by direct SQL or an import tool).
+	 *
+	 * Backed by set_transient()/get_transient() rather than wp_cache_*()
+	 * directly: a transient uses the persistent object cache when one is
+	 * configured, and transparently falls back to a non-autoloaded row in
+	 * wp_options when it isn't -- so this cache is real on every site, not
+	 * only the ones with Redis/Memcached/etc. already set up. A plain
+	 * wp_cache_set() call on a site with no persistent backend is silently a
+	 * no-op past the current request, which would leave this exact
+	 * optimisation doing nothing on precisely the sites most likely to need
+	 * it.
 	 *
 	 * @var int
 	 */
@@ -648,11 +651,15 @@ class Query_Loop {
 	 * of the join, and query_args_filter() calls this on every render of every
 	 * Query Loop block variation on the page -- with no cache, that is a full
 	 * multi-join postmeta scan per block, per page load, unconditionally. Wrapped
-	 * in the object cache: a cache hit costs one round trip instead of the query
-	 * above, and self::FEATURED_CACHE_TTL plus the invalidation hooks in the
-	 * constructor mean a change to the underlying data is never stale for longer
-	 * than one hour, and typically not at all (invalidated immediately on the
-	 * relevant meta/post-save action).
+	 * in a transient: a cache hit costs one lookup instead of the query above,
+	 * and it stays a real cache hit even on a site with no persistent object
+	 * cache configured, since a transient falls back to a non-autoloaded
+	 * wp_options row rather than silently doing nothing past the current
+	 * request the way a bare wp_cache_set() call would. self::FEATURED_CACHE_TTL
+	 * plus the invalidation hooks in the constructor mean a change to the
+	 * underlying data is never stale for longer than one hour, and typically
+	 * not at all (invalidated immediately on the relevant meta/post-save
+	 * action).
 	 *
 	 * @param array $query WP_Query arguments, already filtered by featured_query().
 	 * @return array Post objects (or IDs, matching $query['fields']) for the featured set.
@@ -662,8 +669,8 @@ class Query_Loop {
 			return [];
 		}
 
-		$cache_key = 'lsx_to_featured_' . self::get_featured_cache_generation() . '_' . md5( maybe_serialize( $query ) );
-		$items     = wp_cache_get( $cache_key, self::FEATURED_CACHE_GROUP );
+		$cache_key = 'lsx_to_ft_' . md5( self::get_featured_cache_generation() . '_' . maybe_serialize( $query ) );
+		$items     = get_transient( $cache_key );
 
 		if ( false !== $items ) {
 			return $items;
@@ -675,7 +682,7 @@ class Query_Loop {
 			$items = $item_query->posts;
 		}
 
-		wp_cache_set( $cache_key, $items, self::FEATURED_CACHE_GROUP, self::FEATURED_CACHE_TTL );
+		set_transient( $cache_key, $items, self::FEATURED_CACHE_TTL );
 
 		return $items;
 	}
@@ -684,9 +691,11 @@ class Query_Loop {
 	 * Flush the featured-query cache when the 'featured' meta itself changes.
 	 *
 	 * Cache keys are a hash of the full query args, so there's no way to target
-	 * just the affected key -- this flushes the whole group, which on a normal
-	 * edit frequency (a handful of featured toggles, not thousands) is cheap
-	 * next to what it protects against: a stale featured list for up to an hour.
+	 * just the affected transient -- this orphans every currently-cached
+	 * featured query at once (via the generation bump below), which on a
+	 * normal edit frequency (a handful of featured toggles, not thousands) is
+	 * cheap next to what it protects against: a stale featured list for up to
+	 * an hour.
 	 *
 	 * @param int    $meta_id    ID of the metadata entry (unused, part of the hook signature).
 	 * @param int    $object_id  Post ID the meta belongs to (unused, part of the hook signature).
@@ -737,11 +746,11 @@ class Query_Loop {
 
 	/**
 	 * Current featured-query cache generation. Folded into every cache key so
-	 * bumping it invalidates every previously-cached featured query in one write,
-	 * without requiring the object-cache backend to support group flushing
-	 * (wp_cache_flush_group() is a no-op on backends that don't implement it --
-	 * this works identically on all of them, including the non-persistent
-	 * default when no object-cache drop-in is installed at all).
+	 * bumping it invalidates every previously-cached featured query in one
+	 * write, without deleting or even enumerating the individual transients --
+	 * there's no delete_transients_like() in WordPress, so this is what makes
+	 * a single bump equivalent to invalidating all of them at once. Orphaned
+	 * transients age out on their own via self::FEATURED_CACHE_TTL.
 	 *
 	 * @return int
 	 */

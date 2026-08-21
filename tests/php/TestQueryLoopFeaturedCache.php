@@ -4,7 +4,7 @@
  * Unit tests for Query_Loop's featured-query cache-generation logic.
  *
  * Runs without a WordPress environment (see TestSimpleFunctions.php for the same
- * approach): the handful of WP cache functions the class calls are stubbed with a
+ * approach): the handful of WP functions the class calls are stubbed with a
  * simple in-memory array so the actual class methods under test are exercised
  * directly, not a re-implementation of them.
  *
@@ -22,17 +22,15 @@ if ( ! defined( 'HOUR_IN_SECONDS' ) ) {
 	define( 'HOUR_IN_SECONDS', 3600 );
 }
 
-if ( ! function_exists( 'wp_cache_get' ) ) {
-	function wp_cache_get( $key, $group = '' ) {
-		$k = $group . ':' . $key;
-		return $GLOBALS['__test_cache_store'][ $k ] ?? false;
+if ( ! function_exists( 'get_transient' ) ) {
+	function get_transient( $key ) {
+		return $GLOBALS['__test_transient_store'][ $key ] ?? false;
 	}
 }
 
-if ( ! function_exists( 'wp_cache_set' ) ) {
-	function wp_cache_set( $key, $value, $group = '', $ttl = 0 ) {
-		$k = $group . ':' . $key;
-		$GLOBALS['__test_cache_store'][ $k ] = $value;
+if ( ! function_exists( 'set_transient' ) ) {
+	function set_transient( $key, $value, $ttl = 0 ) {
+		$GLOBALS['__test_transient_store'][ $key ] = $value;
 		return true;
 	}
 }
@@ -77,15 +75,16 @@ class TestQueryLoopFeaturedCache extends TestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		// Each test gets a clean slate. The generation counter now lives in the
-		// stubbed options store (a real WP option, not the object cache -- see
-		// the class's own FEATURED_CACHE_GENERATION_OPTION docblock for why);
-		// the cached featured-query results themselves still go through the
-		// stubbed wp_cache_* functions.
-		$GLOBALS['__test_cache_store']  = [];
-		$GLOBALS['__test_option_store'] = [];
+		// Each test gets a clean slate. The generation counter lives in the
+		// stubbed options store (a real WP option, not a cache entry -- see the
+		// class's own FEATURED_CACHE_GENERATION_OPTION docblock for why); the
+		// cached featured-query results go through the stubbed transient
+		// functions, which is what find_featured_items() itself now uses so the
+		// cache is real even on a site with no persistent object cache.
+		$GLOBALS['__test_transient_store'] = [];
+		$GLOBALS['__test_option_store']    = [];
 
-		$this->get_generation = new \ReflectionMethod( \lsx\blocks\Query_Loop::class, 'get_featured_cache_generation' );
+		$this->get_generation  = new \ReflectionMethod( \lsx\blocks\Query_Loop::class, 'get_featured_cache_generation' );
 		$this->bump_generation = new \ReflectionMethod( \lsx\blocks\Query_Loop::class, 'bump_featured_cache_generation' );
 	}
 
@@ -110,22 +109,27 @@ class TestQueryLoopFeaturedCache extends TestCase {
 	 * cache key built only from the query args would keep resolving to a
 	 * pre-invalidation result forever (or until FEATURED_CACHE_TTL expires),
 	 * because nothing about the key itself changes when the underlying data does.
+	 *
+	 * Mirrors find_featured_items()'s own key construction exactly (a single
+	 * md5 of the generation plus the serialized query args) rather than
+	 * re-deriving it differently here, since testing against a hand-rolled
+	 * variant of the real key format wouldn't catch a mismatch between the two.
 	 */
 	public function test_a_cache_key_from_before_a_bump_never_resolves_after_it() {
 		$query = [ 'post_type' => 'tour', 'meta_key' => 'featured' ];
 
 		$generation_before = $this->get_generation->invoke( null );
-		$key_before         = 'lsx_to_featured_' . $generation_before . '_' . md5( maybe_serialize( $query ) );
-		wp_cache_set( $key_before, [ 'stale-result' ], \lsx\blocks\Query_Loop::FEATURED_CACHE_GROUP, HOUR_IN_SECONDS );
+		$key_before        = 'lsx_to_ft_' . md5( $generation_before . '_' . maybe_serialize( $query ) );
+		set_transient( $key_before, [ 'stale-result' ], HOUR_IN_SECONDS );
 
 		$this->bump_generation->invoke( null );
 
 		$generation_after = $this->get_generation->invoke( null );
-		$key_after         = 'lsx_to_featured_' . $generation_after . '_' . md5( maybe_serialize( $query ) );
+		$key_after         = 'lsx_to_ft_' . md5( $generation_after . '_' . maybe_serialize( $query ) );
 
 		$this->assertNotSame( $key_before, $key_after, 'cache key must change across a generation bump' );
 		$this->assertFalse(
-			wp_cache_get( $key_after, \lsx\blocks\Query_Loop::FEATURED_CACHE_GROUP ),
+			get_transient( $key_after ),
 			'the post-bump key must not resolve to the pre-bump (stale) cached value'
 		);
 	}
