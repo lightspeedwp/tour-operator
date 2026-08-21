@@ -63,7 +63,9 @@ class Query_Loop {
 		// Log pagination block parameters for debugging pagination issues.
 		add_filter( 'render_block', array( $this, 'maybe_hide_varitaion' ), 10, 3 );
 		add_filter( 'posts_pre_query', array( $this, 'posts_pre_query' ), 10, 2 );
-		add_filter( 'query_loop_block_query_vars', array( $this, 'query_args_filter' ), 1, 2 );
+		// Runs after Post_Visibility (priority 10) so the featured snapshot taken in
+		// find_featured_items() is built from the fully filtered query args.
+		add_filter( 'query_loop_block_query_vars', array( $this, 'query_args_filter' ), 20, 2 );
 		add_filter( 'lsx_to_query_orderby_post__in', array( $this, 'enable_post_in_ordering' ), 10, 3 );
 	}
 
@@ -192,12 +194,20 @@ class Query_Loop {
 						return '';
 					}
 
-					// Get the _to_ and _from_ directions.
-					$directions = explode( '-related-', $query_key );
+					/*
+					 * Only the "{$to}-related-{$from}" keys encode a post type in their
+					 * first segment. Keys such as "featured-tours" do not, so running the
+					 * post type check against them would always fail and wrongly discard
+					 * the block.
+					 */
+					if ( false !== strpos( $query_key, '-related-' ) ) {
+						// Get the _to_ and _from_ directions.
+						$directions = explode( '-related-', $query_key );
 
-					// Check if the post type exists, maybe the plugin is disabled.
-					if ( ! post_type_exists( $directions[0] ) ) {
-						return;
+						// Check if the post type exists, maybe the plugin is disabled.
+						if ( ! post_type_exists( $directions[0] ) ) {
+							return '';
+						}
 					}
 
 					break;
@@ -565,14 +575,32 @@ class Query_Loop {
 	 * @return array
 	 */
 	public function featured_query( $query, $key ) {
-		// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+		/*
+		 * Append to any existing meta_query rather than replacing it, and join with
+		 * AND. Other callers on query_loop_block_query_vars (Post_Visibility, for one)
+		 * add their own clauses, and an OR relation here would widen the query to
+		 * "featured OR <their clause>" instead of narrowing it.
+		 */
+		if ( ! isset( $query['meta_query'] ) || ! is_array( $query['meta_query'] ) ) {
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+			$query['meta_query'] = array();
+		}
+
+		// Combine featured with any existing meta_query without changing its internal relation.
+		$existing_meta_query = $query['meta_query'];
+
 		$query['meta_query'] = array(
-			'relation' => 'OR',
-			array(
-				'key'     => 'featured',
-				'value'   => true,
-				'compare' => '=',
-			),
+			'relation' => 'AND',
+		);
+
+		if ( ! empty( $existing_meta_query ) ) {
+			$query['meta_query'][] = $existing_meta_query;
+		}
+
+		$query['meta_query'][] = array(
+			'key'     => 'featured',
+			'value'   => true,
+			'compare' => '=',
 		);
 
 		$featured_items = $this->find_featured_items( $query );
