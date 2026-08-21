@@ -5,7 +5,7 @@
  * Available across all post types and templates.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -15,7 +15,10 @@ wp.domReady(() => {
         name: 'lsx-tour-operator/featured-accommodation',
         title: __('Featured Accommodations', 'tour-operator'),
         icon: 'admin-multisite',
-        description: __('Displays Accommodations with the Featured tag.', 'tour-operator'),
+        description: __(
+            'Displays Accommodations with the Featured tag.',
+            'tour-operator'
+        ),
         category: 'lsx-tour-operator',
         keywords: [
             __('featured', 'tour-operator'),
@@ -53,7 +56,10 @@ wp.domReady(() => {
                         'core/heading',
                         {
                             textAlign: 'center',
-                            content: __('Featured Accommodations', 'tour-operator'),
+                            content: __(
+                                'Featured Accommodations',
+                                'tour-operator'
+                            ),
                         },
                     ],
                     [
@@ -112,158 +118,180 @@ wp.domReady(() => {
         example: {
             attributes: {
                 metadata: {
-                    name: "Featured Accommodations",
+                    name: 'Featured Accommodations',
                 },
             },
             innerBlocks: [
                 {
-                    name: "core/group",
+                    name: 'core/group',
                     attributes: {
-                        align: "wide",
-                        layout: { type: "flex", flexWrap: "nowrap" },
+                        align: 'wide',
+                        layout: { type: 'flex', flexWrap: 'nowrap' },
                     },
                     innerBlocks: [
                         {
-                            name: "core/separator",
+                            name: 'core/separator',
                             attributes: {
                                 style: {
-                                    layout: { selfStretch: "fill", flexSize: null },
+                                    layout: {
+                                        selfStretch: 'fill',
+                                        flexSize: null,
+                                    },
                                 },
                             },
                         },
                         {
-                            name: "core/heading",
+                            name: 'core/heading',
                             attributes: {
-                                textAlign: "center",
-                                content: "Featured Accommodations",
+                                textAlign: 'center',
+                                content: 'Featured Accommodations',
                                 level: 3,
                             },
                         },
                         {
-                            name: "core/separator",
+                            name: 'core/separator',
                             attributes: {
                                 style: {
-                                    layout: { selfStretch: "fill", flexSize: null },
+                                    layout: {
+                                        selfStretch: 'fill',
+                                        flexSize: null,
+                                    },
                                 },
                             },
                         },
                     ],
                 },
                 {
-                    name: "core/group",
+                    name: 'core/group',
                     attributes: {
-                        align: "wide",
-                        layout: { type: "constrained" },
+                        align: 'wide',
+                        layout: { type: 'constrained' },
                     },
                     innerBlocks: [
                         {
-                            name: "core/group",
+                            name: 'core/group',
                             attributes: {
-                                className: "lsx-featured-accommodation-query",
+                                className: 'lsx-featured-accommodation-query',
                                 layout: {
-                                    type: "grid",
+                                    type: 'grid',
                                     columnCount: 2,
                                 },
                             },
                             innerBlocks: [
                                 {
-                                    name: "core/group",
+                                    name: 'core/group',
                                     attributes: {
-                                        className: "accommodation-card",
+                                        className: 'accommodation-card',
                                     },
                                     innerBlocks: [
                                         {
-                                            name: "core/image",
+                                            name: 'core/image',
                                             attributes: {
-                                                alt: "Luxury mountain lodge with scenic views",
-                                                aspectRatio: "3/2",
+                                                alt: 'Luxury mountain lodge with scenic views',
+                                                aspectRatio: '3/2',
                                                 style: {
-                                                    border: { radius: { topLeft: "8px", topRight: "8px" } }
-                                                }
+                                                    border: {
+                                                        radius: {
+                                                            topLeft: '8px',
+                                                            topRight: '8px',
+                                                        },
+                                                    },
+                                                },
                                             },
                                         },
                                         {
-                                            name: "core/heading",
+                                            name: 'core/heading',
                                             attributes: {
                                                 level: 3,
-                                                content: "Alpine Mountain Lodge",
-                                                textAlign: "center",
+                                                content:
+                                                    'Alpine Mountain Lodge',
+                                                textAlign: 'center',
                                             },
                                         },
                                         {
-                                            name: "core/paragraph",
+                                            name: 'core/paragraph',
                                             attributes: {
-                                                content: "<strong>From: $180/night</strong>",
+                                                content:
+                                                    '<strong>From: $180/night</strong>',
                                             },
                                         },
                                         {
-                                            name: "core/paragraph",
+                                            name: 'core/paragraph',
                                             attributes: {
-                                                content: "Type: Resort",
+                                                content: 'Type: Resort',
                                             },
                                         },
                                         {
-                                            name: "core/paragraph",
+                                            name: 'core/paragraph',
                                             attributes: {
-                                                content: "Rooms: 25",
+                                                content: 'Rooms: 25',
                                             },
                                         },
                                         {
-                                            name: "core/paragraph",
+                                            name: 'core/paragraph',
                                             attributes: {
-                                                content: "Experience luxury at its finest in our mountain lodge featuring breathtaking alpine views, spa services, and world-class dining.",
+                                                content:
+                                                    'Experience luxury at its finest in our mountain lodge featuring breathtaking alpine views, spa services, and world-class dining.',
                                             },
-                                        }
+                                        },
                                     ],
                                 },
                                 {
-                                    name: "core/group",
+                                    name: 'core/group',
                                     attributes: {
-                                        className: "accommodation-card",
+                                        className: 'accommodation-card',
                                     },
                                     innerBlocks: [
                                         {
-                                            name: "core/image",
+                                            name: 'core/image',
                                             attributes: {
-                                                alt: "Cozy beachfront hotel with ocean access",
-                                                aspectRatio: "3/2",
+                                                alt: 'Cozy beachfront hotel with ocean access',
+                                                aspectRatio: '3/2',
                                                 style: {
-                                                    border: { radius: { topLeft: "8px", topRight: "8px" } }
-                                                }
+                                                    border: {
+                                                        radius: {
+                                                            topLeft: '8px',
+                                                            topRight: '8px',
+                                                        },
+                                                    },
+                                                },
                                             },
                                         },
                                         {
-                                            name: "core/heading",
+                                            name: 'core/heading',
                                             attributes: {
                                                 level: 3,
-                                                content: "Seaside Boutique Hotel",
-                                                textAlign: "center",
+                                                content:
+                                                    'Seaside Boutique Hotel',
+                                                textAlign: 'center',
                                             },
                                         },
                                         {
-                                            name: "core/paragraph",
+                                            name: 'core/paragraph',
                                             attributes: {
-                                                content: "<strong>From: $95/night</strong>",
+                                                content:
+                                                    '<strong>From: $95/night</strong>',
                                             },
                                         },
                                         {
-                                            name: "core/paragraph",
+                                            name: 'core/paragraph',
                                             attributes: {
-                                                content: "Type: Hotel",
+                                                content: 'Type: Hotel',
                                             },
                                         },
                                         {
-                                            name: "core/paragraph",
+                                            name: 'core/paragraph',
                                             attributes: {
-                                                content: "Rooms: 42",
+                                                content: 'Rooms: 42',
                                             },
                                         },
                                         {
-                                            name: "core/paragraph",
+                                            name: 'core/paragraph',
                                             attributes: {
-                                                content: "Relax in comfort just steps from the beach. Our boutique hotel offers modern amenities with personalized service and stunning ocean views.",
+                                                content:
+                                                    'Relax in comfort just steps from the beach. Our boutique hotel offers modern amenities with personalized service and stunning ocean views.',
                                             },
-                                        }
+                                        },
                                     ],
                                 },
                             ],

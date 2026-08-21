@@ -9,6 +9,9 @@
 - **Featured query returned every post when nothing was featured** - `Query_Loop::featured_query()` overwrote `meta_query` and wrapped its single clause in an `OR` relation. Once `Post_Visibility::filter_query_block_args()` appended its hide-from-listings group on the same filter, the query became "featured **OR** not-hidden", which matches everything. The corrupted query only executed when the featured set was empty (no `posts_pre_query` short-circuit), so an empty Featured block would have rendered the entire archive. The clause is now appended to any existing `meta_query` and joined with `AND` - Issue [#1284](https://github.com/lightspeedwp/tour-operator/issues/1284)
 - **Featured blocks ignored "Hide from Listings"** - `find_featured_items()` snapshotted its result set on `query_loop_block_query_vars` at priority 1, before `Post_Visibility` appended its clause at priority 10, and `posts_pre_query` then served that snapshot. Items flagged *Hide from Listings* consequently still appeared in Featured blocks. `Query_Loop::query_args_filter()` now runs at priority 20 so the snapshot is built from the fully filtered query args - Issue [#1284](https://github.com/lightspeedwp/tour-operator/issues/1284)
 
+#### Data Integrity
+- **Itinerary featured image URL corruption** - CMB2's default sanitizer was overwriting a valid attachment URL/ID in the itinerary `featured_image` field on every save, corrupting it into a non-functional value. A dedicated sanitization callback now resolves and stores the correct URL and attachment ID instead.
+
 #### Performance
 - **Featured query loop re-scanned wp_postmeta on every render** - `find_featured_items()` ran its `meta_query` as a fresh, uncached `WP_Query` on every render of every Featured Tours/Destinations/Accommodation block variation, with no caching layer anywhere in the path. On a site with a non-trivial `wp_postmeta` table this multi-joins the table once per meta_query clause; observed on a production incident at ~2.1M rows examined per call, 2.0-2.8s each, hit on effectively every front-end page load. Now memoized in the object cache, keyed by the query args, with a persisted generation counter (an option, not a cache entry, so it survives an object-cache eviction/restart) bumped on the relevant meta/post-save events for near-immediate invalidation, plus a one-hour TTL as a backstop - Issue [#1327](https://github.com/lightspeedwp/tour-operator/issues/1327)
 
@@ -16,6 +19,9 @@
 
 #### Compatibility
 - **Tested up to WordPress 7.1** - WordPress 7.1 released 2026-08-19; `Tested up to` in the plugin header and `readme.txt` raised from 7.0 to 7.1. `Requires at least` stays at 6.7 (the minimum-supported floor, unaffected by a new release). No code changes required for compatibility.
+
+#### Requirements
+- **Minimum PHP version raised from 8.0 to 8.2** - PHP 8.0 and 8.1 have both reached end of life (2023-11-26 and 2025-12-31 respectively) and no longer receive security fixes. `Requires PHP` (plugin header, `composer.json`, `readme.txt`) now floors at 8.2, the earliest version still supported - matching what CI already tests against. `phpcs.xml.dist`'s PHPCompatibilityWP `testVersion` raised to match; confirmed no new compatibility findings from the change.
 
 ## [[2.2.0]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.2.0) - 2026-07-30
 

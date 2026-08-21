@@ -40,8 +40,8 @@
                         path: `/tour-operator/v1/meta/${postId}/featured`,
                         method: 'POST',
                         data: {
-                            value: true
-                        }
+                            value: true,
+                        },
                     });
                     // Update editor state to reflect the update
                     editPost({ meta: { featured: true } });
@@ -105,8 +105,8 @@
                         path: `/tour-operator/v1/meta/${postId}/lsx_to_hide_from_listings`,
                         method: 'POST',
                         data: {
-                            value: true
-                        }
+                            value: true,
+                        },
                     });
                     // Update editor state to reflect the update
                     editPost({ meta: { lsx_to_hide_from_listings: true } });
@@ -123,8 +123,14 @@
         return createElement(ToggleControl, {
             label: i18n.__('Hide from listings and search', 'tour-operator'),
             help: toggleValue
-                ? i18n.__('This will not appear in category pages, search results, or show View More buttons in modals.', 'tour-operator')
-                : i18n.__('This will be visible in listings and search results.', 'tour-operator'),
+                ? i18n.__(
+                      'This will not appear in category pages, search results, or show View More buttons in modals.',
+                      'tour-operator'
+                  )
+                : i18n.__(
+                      'This will be visible in listings and search results.',
+                      'tour-operator'
+                  ),
             checked: toggleValue,
             onChange: handleChange,
         });

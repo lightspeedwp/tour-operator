@@ -55,6 +55,7 @@ reviews:
       - "2.1-trunk"
       - "main"
       - "master"
+      - "fix/1284-featured-query-loop-variations"
     ignore_title_keywords:
       - "WIP"
       - "DO NOT MERGE"

@@ -8,13 +8,13 @@ const { InspectorControls } = wp.blockEditor || wp.editor;
 const { PanelBody, TextControl, ToggleControl } = wp.components;
 
 // Add new attributes to the core/cover block
-function addLinkAttributes( settings, name ) {
-    if ( name !== 'core/cover' ) {
+function addLinkAttributes(settings, name) {
+    if (name !== 'core/cover') {
         return settings;
     }
 
     // Add new attributes
-    settings.attributes = Object.assign( {}, settings.attributes, {
+    settings.attributes = Object.assign({}, settings.attributes, {
         linkUrl: {
             type: 'string',
             default: '',
@@ -23,7 +23,7 @@ function addLinkAttributes( settings, name ) {
             type: 'string',
             default: '_self', // '_self' for same tab, '_blank' for new tab
         },
-    } );
+    });
 
     return settings;
 }
@@ -35,12 +35,12 @@ addFilter(
 );
 
 // Extend the edit component to include new controls
-const withLinkInspectorControl = createHigherOrderComponent( function (
+const withLinkInspectorControl = createHigherOrderComponent(function (
     BlockEdit
 ) {
-    return function ( props ) {
-        if ( props.name !== 'core/cover' ) {
-            return createElement( BlockEdit, props );
+    return function (props) {
+        if (props.name !== 'core/cover') {
+            return createElement(BlockEdit, props);
         }
 
         const { attributes, setAttributes } = props;
@@ -49,34 +49,34 @@ const withLinkInspectorControl = createHigherOrderComponent( function (
         return createElement(
             Fragment,
             null,
-            createElement( BlockEdit, props ),
+            createElement(BlockEdit, props),
             createElement(
                 InspectorControls,
                 null,
                 createElement(
                     PanelBody,
                     { title: 'Cover Link Settings', initialOpen: true },
-                    createElement( TextControl, {
+                    createElement(TextControl, {
                         label: 'Link URL',
                         value: linkUrl,
-                        onChange( value ) {
-                            setAttributes( { linkUrl: value } );
+                        onChange(value) {
+                            setAttributes({ linkUrl: value });
                         },
-                    } ),
-                    createElement( ToggleControl, {
+                    }),
+                    createElement(ToggleControl, {
                         label: 'Open link in a new tab',
                         checked: linkTarget === '_blank',
-                        onChange( value ) {
-                            setAttributes( {
+                        onChange(value) {
+                            setAttributes({
                                 linkTarget: value ? '_blank' : '_self',
-                            } );
+                            });
                         },
-                    } )
+                    })
                 )
             )
         );
     };
-}, 'withLinkInspectorControl' );
+}, 'withLinkInspectorControl');
 
 addFilter(
     'editor.BlockEdit',
@@ -85,14 +85,14 @@ addFilter(
 );
 
 // Modify the save element to wrap content in a link
-function modifyCoverSaveElement( element, blockType, attributes ) {
-    if ( blockType.name !== 'core/cover' ) {
+function modifyCoverSaveElement(element, blockType, attributes) {
+    if (blockType.name !== 'core/cover') {
         return element;
     }
 
     const { linkUrl, linkTarget } = attributes;
 
-    if ( linkUrl ) {
+    if (linkUrl) {
         return createElement(
             'a',
             { href: linkUrl, target: linkTarget },

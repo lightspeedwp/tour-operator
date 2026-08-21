@@ -5,7 +5,7 @@
  * Available across all post types and templates.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -14,7 +14,10 @@ wp.domReady(() => {
     wp.blocks.registerBlockVariation('core/cover', {
         name: 'lsx-tour-operator/banner-cover',
         title: __('Banner Cover', 'tour-operator'),
-        description: __('Cover block using banner image from custom field', 'tour-operator'),
+        description: __(
+            'Cover block using banner image from custom field',
+            'tour-operator'
+        ),
         icon: 'cover-image',
         category: 'lsx-tour-operator',
         keywords: [

@@ -5,7 +5,7 @@
  * Only available on destination post types and destination, country, and region templates screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -25,18 +25,20 @@ wp.domReady(() => {
                 __('visit', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
                     name: __('Best months to visit', 'tour-operator'),
                 },
                 className: 'lsx-best-time-to-visit-wrapper',
-				layout: {
-					type: 'flex',
-					flexWrap: 'nowrap',
-					verticalAlignment: 'top'
-				},
+                layout: {
+                    type: 'flex',
+                    flexWrap: 'nowrap',
+                    verticalAlignment: 'top',
+                },
             },
             innerBlocks: [
                 [
@@ -80,9 +82,15 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefix : __('Best months to visit:', 'tour-operator'),
-								prefixBold: true,
-                                content: __('Best months to visit', 'tour-operator'),
+                                prefix: __(
+                                    'Best months to visit:',
+                                    'tour-operator'
+                                ),
+                                prefixBold: true,
+                                content: __(
+                                    'Best months to visit',
+                                    'tour-operator'
+                                ),
                             },
                         ],
                     ],
@@ -114,7 +122,13 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: '<strong>' + __('Best months to visit', 'tour-operator') + '</strong>: January, February, March',
+                                            content:
+                                                '<strong>' +
+                                                __(
+                                                    'Best months to visit',
+                                                    'tour-operator'
+                                                ) +
+                                                '</strong>: January, February, March',
                                         },
                                     },
                                 ],
@@ -124,12 +138,12 @@ wp.domReady(() => {
                 ],
             },
         });
-    }
+    };
 
     // Initialize conditional registration
     const conditionalRegister = registerForPostTypesAndTemplates(
-        ['destination','tour','accommodation'], // Supported post types
-        ['destination', 'country', 'region','tour','accommodation'], // Template slug patterns
+        ['destination', 'tour', 'accommodation'], // Supported post types
+        ['destination', 'country', 'region', 'tour', 'accommodation'], // Template slug patterns
         registerBestTimeToVisitVariation
     );
 
