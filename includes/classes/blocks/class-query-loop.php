@@ -13,6 +13,22 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Query_Loop {
 
+	/**
+	 * Object cache group for featured-query result memoization.
+	 *
+	 * @var string
+	 */
+	const FEATURED_CACHE_GROUP = 'tour-operator';
+
+	/**
+	 * How long a featured-query result set is trusted before it's re-queried,
+	 * even without an explicit invalidation (belt-and-suspenders against a
+	 * missed hook, e.g. a meta value changed by direct SQL or an import tool).
+	 *
+	 * @var int
+	 */
+	const FEATURED_CACHE_TTL = HOUR_IN_SECONDS;
+
 	protected $disabled = [];
 
 	/**
@@ -67,6 +83,17 @@ class Query_Loop {
 		// find_featured_items() is built from the fully filtered query args.
 		add_filter( 'query_loop_block_query_vars', array( $this, 'query_args_filter' ), 20, 2 );
 		add_filter( 'lsx_to_query_orderby_post__in', array( $this, 'enable_post_in_ordering' ), 10, 3 );
+
+		// Bust the featured-query cache as soon as the thing it depends on changes,
+		// rather than waiting out FEATURED_CACHE_TTL. Post_Visibility's own toggle
+		// (self::META_KEY there) also affects the query, but that class already
+		// fires on the same updated_postmeta/added_postmeta/deleted_postmeta hooks
+		// for its own key, so listening for 'featured' here covers this class's
+		// half without duplicating the other's.
+		add_action( 'updated_postmeta', array( $this, 'maybe_flush_featured_cache_on_meta_change' ), 10, 4 );
+		add_action( 'added_postmeta', array( $this, 'maybe_flush_featured_cache_on_meta_change' ), 10, 4 );
+		add_action( 'deleted_postmeta', array( $this, 'maybe_flush_featured_cache_on_meta_change' ), 10, 4 );
+		add_action( 'save_post', array( $this, 'flush_featured_cache_for_post' ), 10, 1 );
 	}
 
 	/**
@@ -614,18 +641,102 @@ class Query_Loop {
 	}
 
 	/**
-	 * Find the featured items for the current query
+	 * Find the featured items for the current query.
 	 *
-	 * @param array $query
-	 * @return array
+	 * This meta_query (featured, ANDed with whatever Post_Visibility already
+	 * attached) joins wp_postmeta once per clause with no LIMIT on the read side
+	 * of the join, and query_args_filter() calls this on every render of every
+	 * Query Loop block variation on the page -- with no cache, that is a full
+	 * multi-join postmeta scan per block, per page load, unconditionally. Wrapped
+	 * in the object cache: a cache hit costs one round trip instead of the query
+	 * above, and self::FEATURED_CACHE_TTL plus the invalidation hooks in the
+	 * constructor mean a change to the underlying data is never stale for longer
+	 * than one hour, and typically not at all (invalidated immediately on the
+	 * relevant meta/post-save action).
+	 *
+	 * @param array $query WP_Query arguments, already filtered by featured_query().
+	 * @return array Post objects (or IDs, matching $query['fields']) for the featured set.
 	 */
-	public function find_featured_items( $query ) {
+	public function find_featured_items( array $query ): array {
+		$cache_key = 'lsx_to_featured_' . self::get_featured_cache_generation() . '_' . md5( maybe_serialize( $query ) );
+		$items     = wp_cache_get( $cache_key, self::FEATURED_CACHE_GROUP );
+
+		if ( false !== $items ) {
+			return $items;
+		}
+
 		$items      = [];
 		$item_query = new \WP_Query( $query );
 		if ( $item_query->have_posts() ) {
 			$items = $item_query->posts;
 		}
+
+		wp_cache_set( $cache_key, $items, self::FEATURED_CACHE_GROUP, self::FEATURED_CACHE_TTL );
+
 		return $items;
+	}
+
+	/**
+	 * Flush the featured-query cache when the 'featured' meta itself changes.
+	 *
+	 * Cache keys are a hash of the full query args, so there's no way to target
+	 * just the affected key -- this flushes the whole group, which on a normal
+	 * edit frequency (a handful of featured toggles, not thousands) is cheap
+	 * next to what it protects against: a stale featured list for up to an hour.
+	 *
+	 * @param int    $meta_id    ID of the metadata entry (unused, part of the hook signature).
+	 * @param int    $object_id  Post ID the meta belongs to (unused, part of the hook signature).
+	 * @param string $meta_key   Meta key that changed.
+	 * @param mixed  $meta_value New meta value (unused, part of the hook signature).
+	 * @return void
+	 */
+	public function maybe_flush_featured_cache_on_meta_change( $meta_id, $object_id, $meta_key, $meta_value ): void { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $meta_value is unused, but the hook signature requires it to receive $meta_key at all.
+		if ( 'featured' !== $meta_key ) {
+			return;
+		}
+		self::bump_featured_cache_generation();
+	}
+
+	/**
+	 * Flush the featured-query cache on save of any post that could be a featured
+	 * candidate. Covers publish/unpublish/trash transitions -- 'featured' => true
+	 * on a post that just left publish status must not keep it showing.
+	 *
+	 * @param int $post_id Post ID being saved.
+	 * @return void
+	 */
+	public function flush_featured_cache_for_post( $post_id ): void {
+		if ( wp_is_post_revision( $post_id ) || wp_is_post_autosave( $post_id ) ) {
+			return;
+		}
+		self::bump_featured_cache_generation();
+	}
+
+	/**
+	 * Current featured-query cache generation. Folded into every cache key so
+	 * bumping it invalidates every previously-cached featured query in one write,
+	 * without requiring the object-cache backend to support group flushing
+	 * (wp_cache_flush_group() is a no-op on backends that don't implement it --
+	 * this works identically on all of them, including the non-persistent
+	 * default when no object-cache drop-in is installed at all).
+	 *
+	 * @return int
+	 */
+	protected static function get_featured_cache_generation(): int {
+		$generation = wp_cache_get( 'featured_query_generation', self::FEATURED_CACHE_GROUP );
+		return false === $generation ? 1 : (int) $generation;
+	}
+
+	/**
+	 * Advance the featured-query cache generation, orphaning every cache entry
+	 * written under the previous generation. Orphaned entries age out on their
+	 * own via self::FEATURED_CACHE_TTL; nothing has to reap them.
+	 *
+	 * @return void
+	 */
+	protected static function bump_featured_cache_generation(): void {
+		$generation = self::get_featured_cache_generation();
+		wp_cache_set( 'featured_query_generation', $generation + 1, self::FEATURED_CACHE_GROUP, self::FEATURED_CACHE_TTL );
 	}
 
 	/**
