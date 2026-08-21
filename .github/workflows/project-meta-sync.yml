@@ -50,7 +50,7 @@ jobs:
       #  labeled: status:ready,status:in-progress
       #  label-operator: OR
 
-      - name: Derive Status/Priority/Type from labels & branch
+      - name: Derive Status/Priority from labels & branch
         id: derive
         run: |
           set -euo pipefail
@@ -64,42 +64,27 @@ jobs:
 
           # Status mapping (labels → project field values)
           STATUS=""
-          echo "$LABELS" | grep -q '^status:in-progress' && STATUS='In progress'
-          echo "$LABELS" | grep -q '^status:needs-review' && STATUS='In review'
-          echo "$LABELS" | grep -q '^status:needs-qa' && STATUS='In QA'
-          echo "$LABELS" | grep -q '^status:blocked' && STATUS='Blocked'
-          echo "$LABELS" | grep -q '^status:ready' && STATUS='Ready'
+          echo "$LABELS" | grep -q '^status:in-progress' && STATUS='🏗️ In Progress'
+          echo "$LABELS" | grep -q '^status:needs-review' && STATUS='🔎 In Review'
+          echo "$LABELS" | grep -q '^status:needs-qa' && STATUS='Needs Testing'
+          # status:blocked has no matching board option; left unmapped for human triage
+          echo "$LABELS" | grep -q '^status:ready' && STATUS='📥 Needs Dev'
           # Closed/merged → Done
-          if [ "${{ github.event_name }}" = "issues" ] && [ "${{ github.event.action }}" = "closed" ]; then STATUS='Done'; fi
-          if [ "${{ github.event_name }}" = "pull_request" ] && [ "${{ github.event.action }}" = "closed" ] && [ "${{ github.event.pull_request.merged }}" = "true" ]; then STATUS='Done'; fi
-          [ -z "$STATUS" ] && STATUS='Triage'
+          if [ "${{ github.event_name }}" = "issues" ] && [ "${{ github.event.action }}" = "closed" ]; then STATUS='✅ Done'; fi
+          if [ "${{ github.event_name }}" = "pull_request" ] && [ "${{ github.event.action }}" = "closed" ] && [ "${{ github.event.pull_request.merged }}" = "true" ]; then STATUS='✅ Done'; fi
+          [ -z "$STATUS" ] && STATUS='Needs Triage'
 
           # Priority mapping
           PRIORITY=""
           echo "$LABELS" | grep -q '^priority:critical'  && PRIORITY='Critical'
           echo "$LABELS" | grep -q '^priority:important' && PRIORITY='Important'
           echo "$LABELS" | grep -q '^priority:normal'    && PRIORITY='Normal'
-          echo "$LABELS" | grep -q '^priority:minor'     && PRIORITY='Minor'
-
-          # Type mapping (from branch for PRs; optional)
-          TYPE=""
-          # read head ref from environment to avoid inlining untrusted content into the script
-          HEAD_ENV="${GH_HEAD:-}"
-          if [ -n "$HEAD_ENV" ]; then
-            # use the quoted variable to avoid shell evaluation of special characters
-            [[ "$HEAD_ENV" =~ ^feat/  ]] && TYPE='Feature'
-            [[ "$HEAD_ENV" =~ ^fix/   ]] && TYPE='Bug'
-            [[ "$HEAD_ENV" =~ ^docs?/ ]] && TYPE='Documentation'
-            [[ "$HEAD_ENV" =~ ^(chore/|build/) ]] && TYPE='Task'
-          fi
+          echo "$LABELS" | grep -q '^priority:minor'     && PRIORITY='Low'
 
           echo "status=$STATUS"   >> $GITHUB_OUTPUT
           echo "priority=$PRIORITY" >> $GITHUB_OUTPUT
-          echo "type=$TYPE"       >> $GITHUB_OUTPUT
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # pass the PR head ref in a safe env var for use inside the script
-          GH_HEAD: ${{ github.head_ref }}
 
       - name: Update project fields
         if: steps.addp.outputs.itemId != ''
@@ -117,7 +102,6 @@ jobs:
             const fieldValues = {
               Status: process.env.STATUS,
               Priority: process.env.PRIORITY,
-              Type: process.env.TYPE,
             };
 
             const match = projectUrl.match(/github\.com\/(orgs|users)\/([^/]+)\/projects\/(\d+)/);
@@ -183,4 +167,3 @@ jobs:
           ITEM_ID: ${{ steps.addp.outputs.itemId }}
           STATUS: ${{ steps.derive.outputs.status }}
           PRIORITY: ${{ steps.derive.outputs.priority }}
-          TYPE: ${{ steps.derive.outputs.type }}
