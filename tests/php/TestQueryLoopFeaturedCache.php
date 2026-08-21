@@ -55,6 +55,19 @@ if ( ! function_exists( 'wp_is_post_autosave' ) ) {
 	}
 }
 
+if ( ! function_exists( 'get_option' ) ) {
+	function get_option( $option, $default = false ) {
+		return $GLOBALS['__test_option_store'][ $option ] ?? $default;
+	}
+}
+
+if ( ! function_exists( 'update_option' ) ) {
+	function update_option( $option, $value, $autoload = null ) {
+		$GLOBALS['__test_option_store'][ $option ] = $value;
+		return true;
+	}
+}
+
 require_once dirname( __DIR__, 2 ) . '/includes/classes/blocks/class-query-loop.php';
 
 class TestQueryLoopFeaturedCache extends TestCase {
@@ -64,9 +77,13 @@ class TestQueryLoopFeaturedCache extends TestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		// Each test gets a clean slate -- the generation counter lives in the same
-		// in-memory store the stubbed wp_cache_* functions share globally.
-		$GLOBALS['__test_cache_store'] = [];
+		// Each test gets a clean slate. The generation counter now lives in the
+		// stubbed options store (a real WP option, not the object cache -- see
+		// the class's own FEATURED_CACHE_GENERATION_OPTION docblock for why);
+		// the cached featured-query results themselves still go through the
+		// stubbed wp_cache_* functions.
+		$GLOBALS['__test_cache_store']  = [];
+		$GLOBALS['__test_option_store'] = [];
 
 		$this->get_generation = new \ReflectionMethod( \lsx\blocks\Query_Loop::class, 'get_featured_cache_generation' );
 		$this->bump_generation = new \ReflectionMethod( \lsx\blocks\Query_Loop::class, 'bump_featured_cache_generation' );

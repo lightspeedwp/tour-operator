@@ -657,7 +657,11 @@ class Query_Loop {
 	 * @param array $query WP_Query arguments, already filtered by featured_query().
 	 * @return array Post objects (or IDs, matching $query['fields']) for the featured set.
 	 */
-	public function find_featured_items( array $query ): array {
+	public function find_featured_items( $query ): array {
+		if ( ! is_array( $query ) ) {
+			return [];
+		}
+
 		$cache_key = 'lsx_to_featured_' . self::get_featured_cache_generation() . '_' . md5( maybe_serialize( $query ) );
 		$items     = wp_cache_get( $cache_key, self::FEATURED_CACHE_GROUP );
 
@@ -713,6 +717,25 @@ class Query_Loop {
 	}
 
 	/**
+	 * Option name the featured-query cache generation is persisted under.
+	 *
+	 * Deliberately a DB option, not an object-cache entry: this value has to
+	 * outlive both an object-cache eviction/restart AND its own TTL, because it
+	 * is what makes self::FEATURED_CACHE_TTL on the *entries* safe. If the
+	 * generation itself lived in the same volatile cache as the entries it
+	 * guards, a cold cache (evicted, restarted, or simply expired) would read
+	 * back as generation 1 and resurrect any not-yet-expired entry that was
+	 * ALSO written under generation 1 before the last bump -- silently serving
+	 * a stale featured list instead of the fresh one the bump was for.
+	 * Autoload is explicitly off: this is read once per uncached featured
+	 * query, not on every page load, so it has no business in the autoloaded
+	 * options blob.
+	 *
+	 * @var string
+	 */
+	const FEATURED_CACHE_GENERATION_OPTION = 'lsx_to_featured_query_generation';
+
+	/**
 	 * Current featured-query cache generation. Folded into every cache key so
 	 * bumping it invalidates every previously-cached featured query in one write,
 	 * without requiring the object-cache backend to support group flushing
@@ -723,8 +746,7 @@ class Query_Loop {
 	 * @return int
 	 */
 	protected static function get_featured_cache_generation(): int {
-		$generation = wp_cache_get( 'featured_query_generation', self::FEATURED_CACHE_GROUP );
-		return false === $generation ? 1 : (int) $generation;
+		return (int) get_option( self::FEATURED_CACHE_GENERATION_OPTION, 1 );
 	}
 
 	/**
@@ -735,8 +757,7 @@ class Query_Loop {
 	 * @return void
 	 */
 	protected static function bump_featured_cache_generation(): void {
-		$generation = self::get_featured_cache_generation();
-		wp_cache_set( 'featured_query_generation', $generation + 1, self::FEATURED_CACHE_GROUP, self::FEATURED_CACHE_TTL );
+		update_option( self::FEATURED_CACHE_GENERATION_OPTION, self::get_featured_cache_generation() + 1, false );
 	}
 
 	/**
