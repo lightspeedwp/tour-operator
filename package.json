@@ -39,7 +39,7 @@
     "@wordpress/i18n": "6.24.0",
     "@wordpress/jest-preset-default": "12.51.0",
     "@wordpress/npm-package-json-lint-config": "5.51.0",
-    "@wordpress/prettier-config": "4.52.0",
+    "@wordpress/prettier-config": "4.53.0",
     "@wordpress/scripts": "^33.0.0",
     "@wordpress/stylelint-config": "^24.1.0",
     "copy-webpack-plugin": "^14.0.0",
