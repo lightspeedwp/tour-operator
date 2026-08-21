@@ -5,7 +5,7 @@
  * Only available on destination post types, destinations, country, and region templates screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -18,9 +18,14 @@ wp.domReady(() => {
             title: __('Destination to Accommodation', 'tour-operator'),
             icon: 'admin-site',
             category: 'lsx-tour-operator',
-            description: __('Displays the destinations associated with this accommodation.', 'tour-operator'),
+            description: __(
+                'Displays the destinations associated with this accommodation.',
+                'tour-operator'
+            ),
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             keywords: [
                 __('destination', 'tour-operator'),
@@ -32,11 +37,11 @@ wp.domReady(() => {
                     name: __('Destination to Accommodation', 'tour-operator'),
                 },
                 className: 'lsx-destination-to-accommodation-wrapper',
-				layout: {
-					type: 'flex',
-					flexWrap: 'nowrap',
-					verticalAlignment: 'top'
-				},
+                layout: {
+                    type: 'flex',
+                    flexWrap: 'nowrap',
+                    verticalAlignment: 'top',
+                },
             },
             innerBlocks: [
                 [
@@ -55,7 +60,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'destinationIcon',
                             },
-                        ]
+                        ],
                     ],
                 ],
                 [
@@ -80,8 +85,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefix : __( 'Location:', 'tour-operator'),
-								prefixBold: true,
+                                prefix: __('Location:', 'tour-operator'),
+                                prefixBold: true,
                             },
                         ],
                     ],
@@ -118,7 +123,15 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: '<strong>' + __('Destinations: ', 'tour-operator') + '</strong>' + ' ' + 'Cape Town, Johannesburg',
+                                            content:
+                                                '<strong>' +
+                                                __(
+                                                    'Destinations:',
+                                                    'tour-operator'
+                                                ) +
+                                                '</strong>' +
+                                                ' ' +
+                                                'Cape Town, Johannesburg',
                                         },
                                     },
                                 ],
@@ -138,5 +151,4 @@ wp.domReady(() => {
     );
 
     conditionalRegister();
-
 });

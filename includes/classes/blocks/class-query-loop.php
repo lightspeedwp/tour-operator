@@ -1,6 +1,10 @@
 <?php
 namespace lsx\blocks;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * The creation of the block variants and the code to control the display.
  *
@@ -59,7 +63,9 @@ class Query_Loop {
 		// Log pagination block parameters for debugging pagination issues.
 		add_filter( 'render_block', array( $this, 'maybe_hide_varitaion' ), 10, 3 );
 		add_filter( 'posts_pre_query', array( $this, 'posts_pre_query' ), 10, 2 );
-		add_filter( 'query_loop_block_query_vars', array( $this, 'query_args_filter' ), 1, 2 );
+		// Runs after Post_Visibility (priority 10) so the featured snapshot taken in
+		// find_featured_items() is built from the fully filtered query args.
+		add_filter( 'query_loop_block_query_vars', array( $this, 'query_args_filter' ), 20, 2 );
 		add_filter( 'lsx_to_query_orderby_post__in', array( $this, 'enable_post_in_ordering' ), 10, 3 );
 	}
 
@@ -96,36 +102,43 @@ class Query_Loop {
 			return $block_content;
 		}
 
-		if ( in_array( 'travel-information', $matches ) ) {
-			// Check if ANY travel information fields have content
-			$travel_info_keys = array(
-				'additional_info',
-				'banking',
-				'climate',
-				'cuisine',
-				'electricity',
-				'dress',
-				'health',
-				'safety',
-				'transport',
-				'visa',
-			);
-			
-			$has_travel_info = false;
-			foreach ( $travel_info_keys as $meta_key ) {
+		/**
+		 * Wrappers that house multiple meta fields: hide the block only when ALL fields are empty.
+		 * Add-on plugins register their own groups via this filter.
+		 *
+		 * @param array $wrappers Map of CSS wrapper key (without lsx- prefix / -wrapper suffix)
+		 *                        to an array of post-meta keys that belong to that wrapper.
+		 */
+		$multi_field_wrappers = apply_filters(
+			'lsx_to_multi_field_wrappers',
+			array(
+				'travel-information' => array(
+					'additional_info',
+					'banking',
+					'climate',
+					'cuisine',
+					'electricity',
+					'dress',
+					'health',
+					'safety',
+					'transport',
+					'visa',
+				),
+			)
+		);
+
+		$wrapper_key = isset( $matches[2] ) ? $matches[2] : '';
+
+		if ( isset( $multi_field_wrappers[ $wrapper_key ] ) ) {
+			$has_value = false;
+			foreach ( $multi_field_wrappers[ $wrapper_key ] as $meta_key ) {
 				$value = get_post_meta( get_the_ID(), $meta_key, true );
 				if ( ! empty( $value ) && '' !== $value ) {
-					$has_travel_info = true;
+					$has_value = true;
 					break;
 				}
 			}
-			
-			// If no travel info exists, hide the entire section
-			if ( ! $has_travel_info ) {
-				return '';
-			}
-
-			return $block_content;
+			return $has_value ? $block_content : '';
 		}
 
 		if ( ! empty( $matches ) && isset( $matches[0] ) ) {
@@ -181,6 +194,22 @@ class Query_Loop {
 						return '';
 					}
 
+					/*
+					 * Only the "{$to}-related-{$from}" keys encode a post type in their
+					 * first segment. Keys such as "featured-tours" do not, so running the
+					 * post type check against them would always fail and wrongly discard
+					 * the block.
+					 */
+					if ( false !== strpos( $query_key, '-related-' ) ) {
+						// Get the _to_ and _from_ directions.
+						$directions = explode( '-related-', $query_key );
+
+						// Check if the post type exists, maybe the plugin is disabled.
+						if ( ! post_type_exists( $directions[0] ) ) {
+							return '';
+						}
+					}
+
 					break;
 			}
 		} elseif ( taxonomy_exists( $key ) ) {
@@ -191,7 +220,7 @@ class Query_Loop {
 			if ( empty( wp_get_post_terms( get_the_ID(), $key, $tax_args ) ) ) {
 				$block_content = '';
 			}
-		} elseif ( 'location' === $key || 'wetu_map' === $key || 'google_map' === $key ) {
+		} elseif ( 'location' === $key || 'wetu_map' === $key || 'google_map' === $key || 'wetu-map' === $key || 'google-map' === $key ) {
 			if ( ! lsx_to_has_map() ) {
 				$block_content = '';
 			}
@@ -230,7 +259,7 @@ class Query_Loop {
 					continue;
 				}
 
-				if ( ! empty( $value ) && '' !== $value ) {
+				if ( ! empty( $value ) && '' !== $value && 'none' !== $value ) {
 					$has_values = true;
 				}
 
@@ -378,6 +407,9 @@ class Query_Loop {
 			case 'featured-accommodation':
 			case 'featured-tours':
 			case 'featured-destinations':
+			case 'featured-review':
+			case 'featured-special':
+			case 'featured-team':
 				$query = $this->featured_query( $query, $key );
 				break;
 
@@ -387,6 +419,9 @@ class Query_Loop {
 				// Tour Query Loops
 			case 'tour-related-accommodation':
 			case 'accommodation-related-accommodation':
+			case 'review-related-review':
+			case 'special-related-special':
+			case 'team-related-team':
 				$to         = '';
 				$from       = '';
 				$directions = explode( '-related-', $key );
@@ -413,7 +448,9 @@ class Query_Loop {
 
 				$query = $this->related_taxonomy_query( $query, $key );
 
-				if ( ! isset( $query['post__in'] ) && ! isset( $query['tax_query'] ) ) {
+				do_action( 'qm/debug', $query );
+
+				if ( ( ! isset( $query['post__in'] ) && ! isset( $query['tax_query'] ) ) || ( empty( $query['post__in'] ) && empty( $query['tax_query'] ) ) ) {
 					$this->disabled[ $key ] = true;
 				}
 
@@ -427,6 +464,16 @@ class Query_Loop {
 			// 'review-related-tour':
 			// 'review-related-accommodation':
 			// 'review-related-destination':
+
+			// CPTs Specials Query Loops
+			// 'special-related-destination':
+			// 'special-related-accommodation':
+			// 'special-related-tour':
+
+			// CPTs Team Query Loops
+			// 'team-related-destination':
+			// 'team-related-accommodation':
+			// 'team-related-tour':
 			default:
 				$to         = '';
 				$from       = '';
@@ -528,14 +575,32 @@ class Query_Loop {
 	 * @return array
 	 */
 	public function featured_query( $query, $key ) {
-		// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+		/*
+		 * Append to any existing meta_query rather than replacing it, and join with
+		 * AND. Other callers on query_loop_block_query_vars (Post_Visibility, for one)
+		 * add their own clauses, and an OR relation here would widen the query to
+		 * "featured OR <their clause>" instead of narrowing it.
+		 */
+		if ( ! isset( $query['meta_query'] ) || ! is_array( $query['meta_query'] ) ) {
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+			$query['meta_query'] = array();
+		}
+
+		// Combine featured with any existing meta_query without changing its internal relation.
+		$existing_meta_query = $query['meta_query'];
+
 		$query['meta_query'] = array(
-			'relation' => 'OR',
-			array(
-				'key'     => 'featured',
-				'value'   => true,
-				'compare' => '=',
-			),
+			'relation' => 'AND',
+		);
+
+		if ( ! empty( $existing_meta_query ) ) {
+			$query['meta_query'][] = $existing_meta_query;
+		}
+
+		$query['meta_query'][] = array(
+			'key'     => 'featured',
+			'value'   => true,
+			'compare' => '=',
 		);
 
 		$featured_items = $this->find_featured_items( $query );

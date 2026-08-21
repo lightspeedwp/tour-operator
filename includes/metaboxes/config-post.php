@@ -10,6 +10,10 @@
  * @copyright 2025 lightspeedwp
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 $metabox = array(
 	'title'  => esc_html__('Media', 'tour-operator'),
 	'pages'  => 'post',

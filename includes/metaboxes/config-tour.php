@@ -10,6 +10,10 @@
  * @copyright 2017 lightspeedwp
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 $metabox = array(
 	'title'  => esc_html__('Details', 'tour-operator'),
 	'pages'  => 'tour',
@@ -207,12 +211,16 @@ $itinerary_fields[] = array(
 );
 
 $itinerary_fields[] = array(
-	'id'         => 'featured_image',
-	'name'       => esc_html__('Featured Image', 'tour-operator'),
-	'desc'       => esc_html__('Upload or select a featured image for the itinerary entry.', 'tour-operator'),
-	'type'       => 'file',
-	'show_size'  => false,
-	'query_args' => array(
+	'id'              => 'featured_image',
+	'name'            => esc_html__('Featured Image', 'tour-operator'),
+	'desc'            => esc_html__('Upload or select a featured image for the itinerary entry.', 'tour-operator'),
+	'type'            => 'file',
+	'show_size'       => false,
+	// Pre-empts CMB2's own URL sanitizer, which corrupts a bare attachment ID
+	// into "https://<id>" -- see lsx_to_sanitize_itinerary_featured_image()
+	// and lsx_to_resolve_itinerary_featured_image() in includes/functions.php.
+	'sanitization_cb' => 'lsx_to_sanitize_itinerary_featured_image',
+	'query_args'      => array(
 		'type' => array(
 			'image/gif',
 			'image/jpeg',
@@ -303,6 +311,10 @@ $metabox['fields'][] = array(
 		'add_button'    => __('Add Another', 'tour-operator'),
 		'remove_button' => __('Remove', 'tour-operator'),
 		'sortable'      => false,
+		// Render rows collapsed so their WYSIWYG editors are not all initialised on
+		// page load. Combined with admin-itinerary-lazy-wysiwyg.js this keeps the
+		// tour edit screen fast regardless of how many itinerary days exist.
+		'closed'        => true,
 	),
 );
 

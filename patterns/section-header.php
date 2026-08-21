@@ -11,6 +11,10 @@
  * @version    2.1.0
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 return array(
 	'title'         => __( 'Section Header', 'tour-operator' ),
 	'description'   => __( 'A section header with centered heading text flanked by horizontal separators.', 'tour-operator' ),

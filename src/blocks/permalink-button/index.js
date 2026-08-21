@@ -5,7 +5,7 @@
  * Available across all post types and templates.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 import { __ } from '@wordpress/i18n';
 
@@ -13,7 +13,10 @@ wp.domReady(() => {
     wp.blocks.registerBlockVariation('core/buttons', {
         name: 'lsx-tour-operator/permalink-button',
         title: __('Permalink Button', 'tour-operator'),
-        description: __('Add a button with a link to the current item.', 'tour-operator'),
+        description: __(
+            'Add a button with a link to the current item.',
+            'tour-operator'
+        ),
         category: 'lsx-tour-operator',
         attributes: {
             metadata: {
@@ -36,11 +39,10 @@ wp.domReady(() => {
                     metadata: {
                         name: __('Permalink', 'tour-operator'),
                     },
-                }
-            ]
+                },
+            ],
         ],
-        example:
-        {
+        example: {
             attributes: {
                 className: 'lsx-to-link permalink',
             },
@@ -52,8 +54,8 @@ wp.domReady(() => {
                         text: __('View More', 'tour-operator'),
                         url: '#permalink',
                     },
-                }
+                },
             ],
-        }
+        },
     });
 });

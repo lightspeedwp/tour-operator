@@ -1,6 +1,28 @@
 # Changelog
 
-## [[2.1.2]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.2) - WIP
+## [Unreleased]
+
+### Fixed
+
+#### Query Loops
+- **Featured blocks rendered nothing** - The `Featured Tours`, `Featured Destinations` and `Featured Accommodation` variations (and `featured-review` / `featured-special` / `featured-team` in the add-ons) were stripped from the front end entirely — wrapper, heading and grid — since 2.2.0. The post-type-existence guard added in 2.2.0 ran against every key reaching the `default:` arm of `Query_Loop::maybe_hide_varitaion()`, but only `{$to}-related-{$from}` keys encode a post type in their first segment. `post_type_exists( 'featured-tours' )` is always false, so the block was always discarded. The guard is now scoped to `-related-` keys, preserving its original purpose of hiding related queries whose add-on plugin is deactivated - Issue [#1284](https://github.com/lightspeedwp/tour-operator/issues/1284)
+- **Featured query returned every post when nothing was featured** - `Query_Loop::featured_query()` overwrote `meta_query` and wrapped its single clause in an `OR` relation. Once `Post_Visibility::filter_query_block_args()` appended its hide-from-listings group on the same filter, the query became "featured **OR** not-hidden", which matches everything. The corrupted query only executed when the featured set was empty (no `posts_pre_query` short-circuit), so an empty Featured block would have rendered the entire archive. The clause is now appended to any existing `meta_query` and joined with `AND` - Issue [#1284](https://github.com/lightspeedwp/tour-operator/issues/1284)
+- **Featured blocks ignored "Hide from Listings"** - `find_featured_items()` snapshotted its result set on `query_loop_block_query_vars` at priority 1, before `Post_Visibility` appended its clause at priority 10, and `posts_pre_query` then served that snapshot. Items flagged *Hide from Listings* consequently still appeared in Featured blocks. `Query_Loop::query_args_filter()` now runs at priority 20 so the snapshot is built from the fully filtered query args - Issue [#1284](https://github.com/lightspeedwp/tour-operator/issues/1284)
+
+#### Data Integrity
+- **Itinerary featured image URL corruption** - CMB2's default sanitizer was overwriting a valid attachment URL/ID in the itinerary `featured_image` field on every save, corrupting it into a non-functional value. A dedicated sanitization callback now resolves and stores the correct URL and attachment ID instead.
+
+### Changed
+
+#### Requirements
+- **Minimum PHP version raised from 8.0 to 8.2** - PHP 8.0 and 8.1 have both reached end of life (2023-11-26 and 2025-12-31 respectively) and no longer receive security fixes. `Requires PHP` (plugin header, `composer.json`, `readme.txt`) now floors at 8.2, the earliest version still supported - matching what CI already tests against. `phpcs.xml.dist`'s PHPCompatibilityWP `testVersion` raised to match; confirmed no new compatibility findings from the change.
+
+## [[2.2.0]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.2.0) - 2026-07-30
+
+### Fixed
+
+#### Performance
+- **Tour itinerary edit screen load time** - Itinerary day rows now render collapsed (`'closed' => true`) and their WYSIWYG (TinyMCE) editors initialise lazily the first time a day is expanded, instead of all editors initialising on page load. Previously a tour with many days spawned one TinyMCE instance per WYSIWYG field per day at once (e.g. a 15-day tour = 45 editors), each re-fetching the full editor asset bundle and pushing edit-screen load times into the minutes. Load cost no longer scales with the number of itinerary days. All three itinerary WYSIWYG fields (Description, Included, Excluded) remain full rich-text editors.
 
 ### Added
 
@@ -20,6 +42,13 @@
 - **FacetWP Indexing** - added in a `lsx_to_facetwp_index_skip_row` to allow the user to skip certain items from being indexed.
 - **Itinerary Room Basis Label** - added in a `lsx_to_room_basis_label` filter to allow 3rd party plugins to override the room basis label on itinerary items.
 - **Itinerary Drinks Basis Label** - added in a `lsx_to_drinks_basis_label` filter to allow 3rd party plugins to override the drinks basis label on itinerary items.
+- **Multi-Field Wrapper Groups** - added a `lsx_to_multi_field_wrappers` filter so 3rd party plugins can register their own "hide wrapper unless one of these meta fields has content" groups in Query Loop rendering, alongside the built-in `travel-information` group.
+- **Map Location Override** - added a `lsx_to_has_maps_location` filter, applied per map type (tour, destination, continent archive) in `lsx_to_has_map()`, to allow 3rd party plugins to alter the location/connections data used to build a map before it is cached.
+- **Custom Field Group Debugging** - added a `qm/debug` action around custom field binding lookups in `Bindings::get_custom_field_value()` to aid 3rd party plugins/debugging when building custom field groups (temporary debug output was removed before release).
+
+#### Query Loops
+- **Additional CPT Query Loop Support** - Added `featured-review`, `featured-special`, `featured-team`, `review-related-review`, `special-related-special`, and `team-related-team` query loop variations, extending featured/related query support beyond tour, accommodation, and destination to the review, special, and team content types.
+- **Additional Map Attribute Keys** - Query Loop visibility checks for map blocks now also recognise the hyphenated `wetu-map` and `google-map` attribute keys, in addition to the existing `wetu_map`/`google_map`/`location` keys.
 
 ### Fixed
 
@@ -38,6 +67,13 @@
 #### Blocks
 
 - **Wetu Map block variation** - Removed className from Wetu Map block variation to prevent style conflicts and reverted build version in index.asset.php for consistency
+
+#### Maps
+
+- **Map data caching** - Refactored `lsx_to_map()`/`lsx_to_has_map()` in `includes/template-tags/maps.php` to resolve and cache the fully-built map render args (not just raw location data) in the `_location` transient, reducing duplicate arg-building work across tour, destination, region, and continent map contexts
+- **Destination map zoom for auto-clustered maps** - `Bindings::get_wetu_map_link()` now sets an explicit zoom when a destination's accommodation cluster resolves to a single point, rather than relying on the map auto-calculating around a single marker
+- **Destination default map zoom** - Increased the default zoom for the generic map binding from 5 to 15 for a closer initial view
+- **Custom field group debug statements** - Removed temporary `qm/debug` calls added while building the 3rd-party custom field group support
 
 #### Layout & Styling
 
@@ -65,6 +101,13 @@
 - **On sale query loops** - Fixed query loop filtering to properly detect and display tours marked as "on sale". Changed the checkbox functionality for adding/removing the on-sale class. - PR [#1008](https://github.com/lightspeedwp/tour-operator/pull/1008)
 - **Filter by On Sale visibility** - Restricted "Filter by On Sale" checkbox to only display in query loop settings when post type is set to 'tour'. - PR [#1009](https://github.com/lightspeedwp/tour-operator/pull/1009)
 - **Terms Query slider support** - Extended slider block controls and frontend slider initialisation to support the Terms Query block (`core/terms-query`) and term templates, while keeping tour-only on-sale behaviour limited to Query Loop.
+- **Multi-field wrapper visibility** - Generalised the "hide wrapper unless a meta field has content" logic in `Query_Loop::render_query_loop_dynamic()` from a hard-coded `travel-information` check into a filterable, reusable `lsx_to_multi_field_wrappers` map
+
+#### Facets & Filtering
+
+- **Destination facet HTML rendering** - Guarded `destination_facet_html()` against a missing `$params['facet']['source']` key before checking it against the registered facet sources
+- **Destination facet depth/parent hierarchy** - `destination_facet_render()` now rebuilds each facet value's `depth`/`parent_id` from the actual post hierarchy (and continent taxonomy, when the continent filter is enabled) instead of trusting FacetWP's indexed values, fixing incorrectly nested continent/country/region facet options
+- **Facet depth comparisons** - Normalised `depth`/`parent_id` comparisons in `get_regions()`/`get_countries()` to consistent `(int)`/`(string)` casts, fixing sibling-depth matches that could fail due to mixed string/int types from FacetWP
 
 ### Enhancements
 
@@ -86,6 +129,16 @@
 - **Content Model Class Cleanup** - Removed unused methods and filters from `Content_Model` class, reducing codebase complexity and improving maintainability (removed 310+ lines of unused code)
 - **JSON Initializer Removed** - Eliminated deprecated `Content_Model_JSON_Initializer` class and related loader files, consolidating functionality into `Content_Model_Manager` for a cleaner architecture
 - **Permalink Handler Updated** - Updated permalink handling to work with refactored content model structure
+
+### Removed
+
+- **Review-related query loop blocks** - Removed the `review-related-accommodation`, `review-related-destination`, and `review-related-tour` blocks; this functionality has been migrated to the TO Reviews plugin
+
+### Known Issues
+
+- **Map zoom field type mismatch** - The `disable_auto_zoom` destination field renders as a checkbox when a Google Maps API key is configured, but as a numeric 0-15 select when it isn't, while the same stored meta value is read as a single consistent zoom by `maps.php`/`class-bindings.php`. Saving a destination with no API key configured can persist `0` and force the map to render fully zoomed out - needs a fix before release.
+- **Wetu map blank on parent destinations and non-destination archives** - `Bindings::get_wetu_map_link()`'s accommodation-cluster case now reuses cached map connection data that can hold region/destination IDs rather than accommodation IDs (on parent destinations), and routes any post type archive into the same cluster path even though `lsx_to_has_map()` only builds cluster data for destination archives - needs a fix before release.
+- **Empty continent archive map** - `lsx_to_has_map()`'s continent-archive branch doesn't fall back to `false` when no countries are found, so a continent with zero destinations still renders an empty cluster map rather than hiding it - needs a fix before release.
 
 ## [[2.1.1]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.1) - 2026-01-05
 

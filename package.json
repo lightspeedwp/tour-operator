@@ -23,32 +23,26 @@
     "npm": ">=10.0.0"
   },
   "main": "package-lock.json",
-  "dependencies": {
-    "classnames": "^2.5.1"
-  },
   "devDependencies": {
-    "@babel/cli": "8.0.1",
-    "@babel/core": "8.0.0",
-    "@babel/preset-react": "^8.0.0",
-    "@wordpress/a11y": "4.48.1",
-    "@wordpress/babel-preset-default": "8.48.1",
-    "@wordpress/block-library": "9.48.1",
-    "@wordpress/blocks": "15.21.1",
-    "@wordpress/e2e-test-utils-playwright": "1.48.1",
-    "@wordpress/eslint-plugin": "25.4.1",
-    "@wordpress/i18n": "6.21.1",
-    "@wordpress/jest-preset-default": "12.48.1",
-    "@wordpress/npm-package-json-lint-config": "5.48.1",
-    "@wordpress/prettier-config": "4.48.1",
-    "@wordpress/scripts": "^32.4.1",
-    "@wordpress/stylelint-config": "^23.37.0",
+    "@babel/core": "^7.29.7",
+    "@wordpress/a11y": "4.51.0",
+    "@wordpress/babel-preset-default": "8.52.0",
+    "@wordpress/blocks": "15.25.0",
+    "@wordpress/e2e-test-utils-playwright": "1.53.0",
+    "@wordpress/eslint-plugin": "25.9.0",
+    "@wordpress/i18n": "6.26.0",
+    "@wordpress/jest-preset-default": "14.0.0",
+    "@wordpress/npm-package-json-lint-config": "5.53.0",
+    "@wordpress/prettier-config": "4.53.0",
+    "@wordpress/scripts": "^34.1.0",
+    "@wordpress/stylelint-config": "^24.1.0",
     "copy-webpack-plugin": "^14.0.0",
-    "eslint": "10.5.0",
+    "eslint": "10.8.0",
     "jest": "30.4.2",
     "npm-package-json-lint": "10.4.1",
-    "prettier": "3.8.4",
+    "prettier": "3.9.6",
     "stylelint": "16.26.1",
-    "webpack-cli": "7.0.3",
+    "webpack-cli": "7.2.1",
     "webpack-remove-empty-scripts": "^1.1.1"
   },
   "scripts": {
@@ -69,10 +63,10 @@
     "build:pot": "wp i18n make-pot . languages/tour-operator.pot",
     "build:mopo": "rm -R languages/tour-operator-en_EN.mo && cp languages/tour-operator.pot languages/tour-operator-en_EN.po && wp i18n make-mo languages",
     "build:translate-US": "cp languages/tour-operator-en_EN.po languages/tour-operator-en_US.po && cp languages/tour-operator-en_EN.mo languages/tour-operator-en_US.mo",
-    "lint:js": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
-    "lint:js:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
-    "lint:css": "stylelint 'src/**/*.{css,scss}'",
-    "lint:css:fix": "stylelint 'src/**/*.{css,scss}' --fix",
+    "lint:js": "wp-scripts lint-js src",
+    "lint:js:fix": "wp-scripts lint-js src --fix",
+    "lint:css": "wp-scripts lint-style 'src/**/*.{css,scss}'",
+    "lint:css:fix": "wp-scripts lint-style 'src/**/*.{css,scss}' --fix",
     "lint:php": "composer phpcs",
     "lint:php:fix": "composer phpcbf",
     "lint:php:report": "composer phpcs:report",
@@ -83,5 +77,8 @@
     "format": "npm run lint:php:fix && wp-scripts format",
     "format:js": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
     "generate-readme": "node .github/scripts/update-readme.js"
+  },
+  "overrides": {
+    "linkify-it": "^5.0.2"
   }
 }

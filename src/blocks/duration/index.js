@@ -5,7 +5,7 @@
  * Only available on tour post type edit screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -14,13 +14,15 @@ import { registerForPostTypesAndTemplates } from '@utils/conditional-block-regis
 wp.domReady(() => {
     // Register variation function
     const registerDurationVariation = () => {
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/duration',
             title: __('Duration', 'tour-operator'),
             icon: 'clock',
             category: 'lsx-tour-operator',
-            description: __('Displays the duration of the tour in days.', 'tour-operator'),
+            description: __(
+                'Displays the duration of the tour in days.',
+                'tour-operator'
+            ),
             keywords: [
                 __('duration', 'tour-operator'),
                 __('time', 'tour-operator'),
@@ -30,7 +32,9 @@ wp.domReady(() => {
                 __('tour', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -40,7 +44,7 @@ wp.domReady(() => {
                 layout: {
                     type: 'flex',
                     flexWrap: 'nowrap',
-					verticalAlignment: 'top'
+                    verticalAlignment: 'top',
                 },
             },
             innerBlocks: [
@@ -60,7 +64,7 @@ wp.domReady(() => {
                                 iconType: 'outline',
                                 iconName: 'durationIcon',
                             },
-                        ]
+                        ],
                     ],
                 ],
                 [
@@ -85,8 +89,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefix : __('Duration:', 'tour-operator'),
-								prefixBold: true,
+                                prefix: __('Duration:', 'tour-operator'),
+                                prefixBold: true,
                                 content: '',
                             },
                         ],
@@ -125,7 +129,15 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: '<strong>' + __('Duration: ', 'tour-operator') + '</strong>' + ' ' + __('7 Days', 'tour-operator'),
+                                            content:
+                                                '<strong>' +
+                                                __(
+                                                    'Duration:',
+                                                    'tour-operator'
+                                                ) +
+                                                '</strong>' +
+                                                ' ' +
+                                                __('7 Days', 'tour-operator'),
                                         },
                                     },
                                 ],

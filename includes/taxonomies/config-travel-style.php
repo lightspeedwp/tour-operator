@@ -10,6 +10,10 @@
  * @copyright 2017 lightspeedwp
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 $taxonomy = array(
 	'object_types'  => array(
 		'accommodation',

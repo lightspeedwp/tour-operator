@@ -9,6 +9,10 @@
 
 namespace lsx\frontend;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Class Post_Visibility
  *
