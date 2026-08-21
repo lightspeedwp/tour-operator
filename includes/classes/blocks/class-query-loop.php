@@ -29,6 +29,7 @@ class Query_Loop {
 	 * it.
 	 *
 	 * @var int
+	 * @since 2.3.0
 	 */
 	const FEATURED_CACHE_TTL = HOUR_IN_SECONDS;
 
@@ -88,11 +89,11 @@ class Query_Loop {
 		add_filter( 'lsx_to_query_orderby_post__in', array( $this, 'enable_post_in_ordering' ), 10, 3 );
 
 		// Bust the featured-query cache as soon as the thing it depends on changes,
-		// rather than waiting out FEATURED_CACHE_TTL. Post_Visibility's own toggle
-		// (self::META_KEY there) also affects the query, but that class already
-		// fires on the same updated_postmeta/added_postmeta/deleted_postmeta hooks
-		// for its own key, so listening for 'featured' here covers this class's
-		// half without duplicating the other's.
+		// rather than waiting out FEATURED_CACHE_TTL. Post_Visibility's own
+		// "Hide from Listings" toggle also affects the query (ANDed in via
+		// query_args_filter()), but that class has no postmeta hooks of its
+		// own, so maybe_flush_featured_cache_on_meta_change() checks for both
+		// meta keys on these same hooks.
 		add_action( 'updated_postmeta', array( $this, 'maybe_flush_featured_cache_on_meta_change' ), 10, 4 );
 		add_action( 'added_postmeta', array( $this, 'maybe_flush_featured_cache_on_meta_change' ), 10, 4 );
 		add_action( 'deleted_postmeta', array( $this, 'maybe_flush_featured_cache_on_meta_change' ), 10, 4 );
@@ -663,6 +664,7 @@ class Query_Loop {
 	 *
 	 * @param array $query WP_Query arguments, already filtered by featured_query().
 	 * @return array Post objects (or IDs, matching $query['fields']) for the featured set.
+	 * @since 2.3.0
 	 */
 	public function find_featured_items( $query ): array {
 		if ( ! is_array( $query ) ) {
@@ -688,7 +690,11 @@ class Query_Loop {
 	}
 
 	/**
-	 * Flush the featured-query cache when the 'featured' meta itself changes.
+	 * Flush the featured-query cache when a meta key the featured query depends
+	 * on changes: the 'featured' flag itself, or Post_Visibility's "Hide from
+	 * Listings" key -- that class ANDs its own clause into the same query in
+	 * query_args_filter(), but has no postmeta hooks of its own, so this class
+	 * has to cover both.
 	 *
 	 * Cache keys are a hash of the full query args, so there's no way to target
 	 * just the affected transient -- this orphans every currently-cached
@@ -702,9 +708,10 @@ class Query_Loop {
 	 * @param string $meta_key   Meta key that changed.
 	 * @param mixed  $meta_value New meta value (unused, part of the hook signature).
 	 * @return void
+	 * @since 2.3.0
 	 */
 	public function maybe_flush_featured_cache_on_meta_change( $meta_id, $object_id, $meta_key, $meta_value ): void { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $meta_value is unused, but the hook signature requires it to receive $meta_key at all.
-		if ( 'featured' !== $meta_key ) {
+		if ( 'featured' !== $meta_key && \lsx\frontend\Post_Visibility::META_KEY !== $meta_key ) {
 			return;
 		}
 		self::bump_featured_cache_generation();
@@ -717,6 +724,7 @@ class Query_Loop {
 	 *
 	 * @param int $post_id Post ID being saved.
 	 * @return void
+	 * @since 2.3.0
 	 */
 	public function flush_featured_cache_for_post( $post_id ): void {
 		if ( wp_is_post_revision( $post_id ) || wp_is_post_autosave( $post_id ) ) {
@@ -741,6 +749,7 @@ class Query_Loop {
 	 * options blob.
 	 *
 	 * @var string
+	 * @since 2.3.0
 	 */
 	const FEATURED_CACHE_GENERATION_OPTION = 'lsx_to_featured_query_generation';
 
@@ -753,6 +762,7 @@ class Query_Loop {
 	 * transients age out on their own via self::FEATURED_CACHE_TTL.
 	 *
 	 * @return int
+	 * @since 2.3.0
 	 */
 	protected static function get_featured_cache_generation(): int {
 		return (int) get_option( self::FEATURED_CACHE_GENERATION_OPTION, 1 );
@@ -764,6 +774,7 @@ class Query_Loop {
 	 * own via self::FEATURED_CACHE_TTL; nothing has to reap them.
 	 *
 	 * @return void
+	 * @since 2.3.0
 	 */
 	protected static function bump_featured_cache_generation(): void {
 		update_option( self::FEATURED_CACHE_GENERATION_OPTION, self::get_featured_cache_generation() + 1, false );
