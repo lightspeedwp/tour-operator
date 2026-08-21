@@ -5,7 +5,7 @@
  * Only available on tour post type edit screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -14,39 +14,51 @@ import { registerForPostTypesAndTemplates } from '@utils/conditional-block-regis
 wp.domReady(() => {
     const registerWetuMapBlock = () => {
         // Check if lsxToEditor and assetsUrl are available
-        const hasAssetsUrl = typeof lsxToEditor !== 'undefined' && lsxToEditor?.assetsUrl;
+        const hasAssetsUrl =
+            typeof lsxToEditor !== 'undefined' && lsxToEditor?.assetsUrl;
 
         // Build innerBlocks conditionally
-        const groupInnerBlocks = hasAssetsUrl ? [
-            [
-                'core/image',
-                {
-                    align: 'full',
-                    sizeSlug: 'large',
-                    url: lsxToEditor.assetsUrl + 'blocks/wetu-map-figme-prototype-image.png',
-                    alt: '',
-                },
-            ],
-        ] : [];
+        const groupInnerBlocks = hasAssetsUrl
+            ? [
+                  [
+                      'core/image',
+                      {
+                          align: 'full',
+                          sizeSlug: 'large',
+                          url:
+                              lsxToEditor.assetsUrl +
+                              'blocks/wetu-map-figme-prototype-image.png',
+                          alt: '',
+                      },
+                  ],
+              ]
+            : [];
 
         // Build example innerBlocks conditionally
-        const exampleInnerBlocks = hasAssetsUrl ? [
-            {
-                name: 'core/image',
-                attributes: {
-                    align: 'full',
-                    sizeSlug: 'large',
-                    url: lsxToEditor.assetsUrl + 'blocks/wetu-map-figme-prototype-image.png',
-                },
-            }
-        ] : [];
+        const exampleInnerBlocks = hasAssetsUrl
+            ? [
+                  {
+                      name: 'core/image',
+                      attributes: {
+                          align: 'full',
+                          sizeSlug: 'large',
+                          url:
+                              lsxToEditor.assetsUrl +
+                              'blocks/wetu-map-figme-prototype-image.png',
+                      },
+                  },
+              ]
+            : [];
 
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/wetu-map',
             title: __('WETU Map', 'tour-operator'),
             icon: 'admin-site-alt3',
             category: 'lsx-tour-operator',
-            description: __('Displays a WETU map for itineraries.', 'tour-operator'),
+            description: __(
+                'Displays a WETU map for itineraries.',
+                'tour-operator'
+            ),
             keywords: [
                 __('wetu', 'tour-operator'),
                 __('map', 'tour-operator'),
@@ -91,13 +103,15 @@ wp.domReady(() => {
                         },
                         innerBlocks: exampleInnerBlocks,
                     },
-                ]
+                ],
             },
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
         });
-    }
+    };
 
     // Initialize conditional registration for tour context
     const conditionalRegister = registerForPostTypesAndTemplates(

@@ -8,11 +8,11 @@
 /**
  * Creates a conditional block registration handler
  *
- * @param {Object} config - Configuration object
- * @param {string[]} config.postTypes - Array of post types that support the block
- * @param {string[]} config.templateSlugs - Array of template slug patterns to match
+ * @param {Object}   config                  - Configuration object
+ * @param {string[]} config.postTypes        - Array of post types that support the block
+ * @param {string[]} config.templateSlugs    - Array of template slug patterns to match
  * @param {Function} config.registerFunction - Function to call when conditions are met
- * @param {number} [config.timeout=100] - Initial timeout before checking registration
+ * @param {number}   [config.timeout=100]    - Initial timeout before checking registration
  *
  * @return {Function} A function that handles the conditional registration logic
  */
@@ -53,10 +53,12 @@ export function createConditionalRegistration(config) {
                 }
 
                 // Check template context
-                const isTemplateContext = postType === 'wp_template' || postType === 'wp_template_part';
+                const isTemplateContext =
+                    postType === 'wp_template' ||
+                    postType === 'wp_template_part';
 
                 if (isTemplateContext && postSlug && templateSlugs.length > 0) {
-                    return templateSlugs.some(slugPattern => {
+                    return templateSlugs.some((slugPattern) => {
                         if (typeof slugPattern === 'string') {
                             return postSlug.includes(slugPattern);
                         }
@@ -126,13 +128,17 @@ export function createConditionalRegistration(config) {
 /**
  * Simplified registration for blocks that only support specific post types
  *
- * @param {string[]} postTypes - Array of supported post types
+ * @param {string[]} postTypes        - Array of supported post types
  * @param {Function} registerFunction - Function to call for registration
- * @param {Object} options - Additional options
+ * @param {Object}   options          - Additional options
  *
  * @return {Function} Registration handler function
  */
-export function registerForPostTypes(postTypes, registerFunction, options = {}) {
+export function registerForPostTypes(
+    postTypes,
+    registerFunction,
+    options = {}
+) {
     return createConditionalRegistration({
         postTypes,
         registerFunction,
@@ -143,13 +149,17 @@ export function registerForPostTypes(postTypes, registerFunction, options = {}) 
 /**
  * Simplified registration for blocks that support templates with specific slug patterns
  *
- * @param {string[]} templateSlugs - Array of template slug patterns
+ * @param {string[]} templateSlugs    - Array of template slug patterns
  * @param {Function} registerFunction - Function to call for registration
- * @param {Object} options - Additional options
+ * @param {Object}   options          - Additional options
  *
  * @return {Function} Registration handler function
  */
-export function registerForTemplates(templateSlugs, registerFunction, options = {}) {
+export function registerForTemplates(
+    templateSlugs,
+    registerFunction,
+    options = {}
+) {
     return createConditionalRegistration({
         templateSlugs,
         registerFunction,
@@ -160,14 +170,19 @@ export function registerForTemplates(templateSlugs, registerFunction, options = 
 /**
  * Registration for blocks that support both post types and template patterns
  *
- * @param {string[]} postTypes - Array of supported post types
- * @param {string[]} templateSlugs - Array of template slug patterns
+ * @param {string[]} postTypes        - Array of supported post types
+ * @param {string[]} templateSlugs    - Array of template slug patterns
  * @param {Function} registerFunction - Function to call for registration
- * @param {Object} options - Additional options
+ * @param {Object}   options          - Additional options
  *
  * @return {Function} Registration handler function
  */
-export function registerForPostTypesAndTemplates(postTypes, templateSlugs, registerFunction, options = {}) {
+export function registerForPostTypesAndTemplates(
+    postTypes,
+    templateSlugs,
+    registerFunction,
+    options = {}
+) {
     return createConditionalRegistration({
         postTypes,
         templateSlugs,

@@ -5,7 +5,7 @@
  * Only available on accommodation post type edit screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -16,7 +16,10 @@ wp.domReady(() => {
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/minimum-child-age',
             title: __('Minimum Child Age', 'tour-operator'),
-            description: __('Display minimum child age requirements for accommodations.', 'tour-operator'),
+            description: __(
+                'Display minimum child age requirements for accommodations.',
+                'tour-operator'
+            ),
             icon: wp.element.createElement(
                 'svg',
                 {
@@ -51,7 +54,9 @@ wp.domReady(() => {
                 __('requirements', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -61,7 +66,7 @@ wp.domReady(() => {
                 layout: {
                     type: 'flex',
                     flexWrap: 'nowrap',
-					verticalAlignment: 'top'
+                    verticalAlignment: 'top',
                 },
             },
             innerBlocks: [
@@ -84,7 +89,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'minimumChildAgeIcon',
                             },
-                        ]
+                        ],
                     ],
                 ],
                 [
@@ -109,8 +114,11 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefix : __('Minimum Child Age:', 'tour-operator'),
-								prefixBold: true,
+                                prefix: __(
+                                    'Minimum Child Age:',
+                                    'tour-operator'
+                                ),
+                                prefixBold: true,
                             },
                         ],
                     ],
@@ -148,7 +156,13 @@ wp.domReady(() => {
                             {
                                 name: 'core/paragraph',
                                 attributes: {
-                                    content: '<strong>' + __('Minimum Child Age:', 'tour-operator') + '</strong>',
+                                    content:
+                                        '<strong>' +
+                                        __(
+                                            'Minimum Child Age:',
+                                            'tour-operator'
+                                        ) +
+                                        '</strong>',
                                 },
                             },
                         ],
@@ -168,7 +182,10 @@ wp.domReady(() => {
                             {
                                 name: 'core/paragraph',
                                 attributes: {
-                                    content: __('12 years old', 'tour-operator'),
+                                    content: __(
+                                        '12 years old',
+                                        'tour-operator'
+                                    ),
                                 },
                             },
                         ],

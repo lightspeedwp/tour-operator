@@ -5,7 +5,7 @@
  * Only available on tour post type edit screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -19,7 +19,10 @@ wp.domReady(() => {
             title: __('Price', 'tour-operator'),
             category: 'lsx-tour-operator',
             icon: 'money-alt',
-            description: __('Displays the starting price of a tour.', 'tour-operator'),
+            description: __(
+                'Displays the starting price of a tour.',
+                'tour-operator'
+            ),
             keywords: [
                 __('price', 'tour-operator'),
                 __('cost', 'tour-operator'),
@@ -28,7 +31,9 @@ wp.domReady(() => {
                 __('starting', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -38,7 +43,7 @@ wp.domReady(() => {
                 layout: {
                     type: 'flex',
                     flexWrap: 'nowrap',
-					verticalAlignment: 'top'
+                    verticalAlignment: 'top',
                 },
                 className: 'lsx-price-wrapper',
             },
@@ -58,7 +63,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'priceIcon',
                             },
-                        ]
+                        ],
                     ],
                 ],
                 [
@@ -74,8 +79,8 @@ wp.domReady(() => {
                                 },
                             },
                         },
-						prefix : __('From:', 'tour-operator'),
-						prefixBold: true,
+                        prefix: __('From:', 'tour-operator'),
+                        prefixBold: true,
                         className: 'amount',
                     },
                 ],
@@ -112,7 +117,11 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: '<strong>' + __('From: ', 'tour-operator') + '</strong>' + '$1,999',
+                                            content:
+                                                '<strong>' +
+                                                __('From:', 'tour-operator') +
+                                                '</strong>' +
+                                                '$1,999',
                                         },
                                     },
                                 ],

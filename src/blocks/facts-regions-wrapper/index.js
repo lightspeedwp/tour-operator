@@ -5,13 +5,11 @@
  * Only available on destination post types, destinations, country, and region templates screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
 import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
-
-
 
 wp.domReady(() => {
     const registerFactsRegionsWrapperVariation = () => {
@@ -20,7 +18,10 @@ wp.domReady(() => {
             title: __('Regions list', 'tour-operator'),
             icon: 'admin-site-alt',
             category: 'lsx-tour-operator',
-            description: __('Displays a list of regions associated with this destination.', 'tour-operator'),
+            description: __(
+                'Displays a list of regions associated with this destination.',
+                'tour-operator'
+            ),
             keywords: [
                 __('regions', 'tour-operator'),
                 __('destination', 'tour-operator'),
@@ -28,7 +29,9 @@ wp.domReady(() => {
                 __('facts', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -38,7 +41,7 @@ wp.domReady(() => {
                 layout: {
                     type: 'flex',
                     flexWrap: 'nowrap',
-					verticalAlignment: 'top'
+                    verticalAlignment: 'top',
                 },
             },
             innerBlocks: [
@@ -58,7 +61,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'destinationIcon',
                             },
-                        ]
+                        ],
                     ],
                 ],
                 [
@@ -83,8 +86,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefix : __( 'Regions', 'tour-operator' ),
-								prefixBold: true,
+                                prefix: __('Regions', 'tour-operator'),
+                                prefixBold: true,
                                 content: '',
                             },
                         ],
@@ -117,7 +120,18 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: '<strong>' + __('Regions: ', 'tour-operator') + '</strong>' + ' ' + __('Kilimanjaro region', 'tour-operator'),
+                                            content:
+                                                '<strong>' +
+                                                __(
+                                                    'Regions:',
+                                                    'tour-operator'
+                                                ) +
+                                                '</strong>' +
+                                                ' ' +
+                                                __(
+                                                    'Kilimanjaro region',
+                                                    'tour-operator'
+                                                ),
                                         },
                                     },
                                 ],
@@ -127,7 +141,7 @@ wp.domReady(() => {
                 ],
             },
         });
-    }
+    };
 
     // Initialize conditional registration
     const conditionalRegister = registerForPostTypesAndTemplates(

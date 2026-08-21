@@ -5,7 +5,7 @@
  * Available across all post types and templates.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { registerBlockType } from '@wordpress/blocks';
@@ -33,11 +33,7 @@ const IconsBlockIcon = () => (
 );
 
 // Validate icons object
-if (
-    !icons ||
-    typeof icons !== 'object' ||
-    Object.keys(icons).length === 0
-) {
+if (!icons || typeof icons !== 'object' || Object.keys(icons).length === 0) {
     console.error('Icons not properly loaded. Please run generate-icons.js');
 }
 
@@ -61,8 +57,8 @@ registerBlockType('lsx-tour-operator/icons', {
         const iconList = Object.keys(icons[localType]);
         const filteredIconList = filter
             ? iconList.filter((name) =>
-                name.toLowerCase().includes(filter.toLowerCase())
-            )
+                  name.toLowerCase().includes(filter.toLowerCase())
+              )
             : iconList;
 
         const updateType = (type) => {
@@ -89,9 +85,12 @@ registerBlockType('lsx-tour-operator/icons', {
         return (
             <div {...blockProps}>
                 <InspectorControls>
-                    <PanelBody title={__("Icon Settings", "lsx-tour-operator")} initialOpen={true}>
+                    <PanelBody
+                        title={__('Icon Settings', 'lsx-tour-operator')}
+                        initialOpen={true}
+                    >
                         <RadioControl
-                            label={__("Type", "lsx-tour-operator")}
+                            label={__('Type', 'lsx-tour-operator')}
                             onChange={updateType}
                             selected={localType}
                             options={iconTypes.map((type) => ({
@@ -113,11 +112,14 @@ registerBlockType('lsx-tour-operator/icons', {
                     <>
                         <input
                             type="text"
-                            placeholder={__("Search icons...", "lsx-tour-operator")}
+                            placeholder={__(
+                                'Search icons…',
+                                'lsx-tour-operator'
+                            )}
                             value={filter}
                             onChange={(e) => setFilter(e.target.value)}
                             className="lsx-icons-search"
-                            aria-label={__("Search icons", "lsx-tour-operator")}
+                            aria-label={__('Search icons', 'lsx-tour-operator')}
                             autoComplete="off"
                         />
                         <div
@@ -133,8 +135,7 @@ registerBlockType('lsx-tour-operator/icons', {
                             }}
                         >
                             {filteredIconList.map((name) => {
-                                const IconComponent =
-                                    icons[localType][name];
+                                const IconComponent = icons[localType][name];
                                 return (
                                     <div
                                         key={name}
@@ -164,9 +165,7 @@ registerBlockType('lsx-tour-operator/icons', {
                                 );
                             })}
                         </div>
-                        <div
-                            style={{ padding: '16px 0', textAlign: 'center' }}
-                        >
+                        <div style={{ padding: '16px 0', textAlign: 'center' }}>
                             <div className="block-icon-svg">
                                 {(() => {
                                     const IconComponent =

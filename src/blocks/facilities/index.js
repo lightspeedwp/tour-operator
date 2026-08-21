@@ -5,7 +5,7 @@
  * Only available on accommodation post type edit screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -16,7 +16,10 @@ wp.domReady(() => {
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/facilities',
             title: __('Facilities', 'tour-operator'),
-            description: __('Displays the list of facilities for this accommodation.', 'lsx-tour-operator'),
+            description: __(
+                'Displays the list of facilities for this accommodation.',
+                'lsx-tour-operator'
+            ),
             icon: wp.element.createElement(
                 'svg',
                 {
@@ -37,7 +40,9 @@ wp.domReady(() => {
                 __('amenities', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -143,7 +148,13 @@ wp.domReady(() => {
                                         name: 'core/paragraph',
                                         attributes: {
                                             align: 'center',
-                                            content: '<strong>' + __('Facilities', 'tour-operator') + '</strong>',
+                                            content:
+                                                '<strong>' +
+                                                __(
+                                                    'Facilities',
+                                                    'tour-operator'
+                                                ) +
+                                                '</strong>',
                                         },
                                     },
                                 ],
@@ -159,7 +170,10 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: __('Swimming pools, fitness center, and spa.', 'tour-operator'),
+                                            content: __(
+                                                'Swimming pools, fitness center, and spa.',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                 ],
@@ -169,8 +183,7 @@ wp.domReady(() => {
                 ],
             },
         });
-    }
-
+    };
 
     // Initialize conditional registration
     const conditionalRegister = registerForPostTypesAndTemplates(
