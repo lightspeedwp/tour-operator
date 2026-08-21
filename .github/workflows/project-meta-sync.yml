@@ -33,7 +33,7 @@ jobs:
         id: app-token
         uses: actions/create-github-app-token@v3
         with:
-          app-id: ${{ secrets.LS_APP_ID }}
+          client-id: ${{ secrets.LS_APP_ID }}
           private-key: ${{ secrets.LS_APP_PRIVATE_KEY }}
           # Optionally scope permissions tighter (inherits installation perms by default)
           # permission-issues: read
@@ -103,10 +103,84 @@ jobs:
 
       - name: Update project fields
         if: steps.addp.outputs.itemId != ''
-        uses: titoportas/update-project-fields@v0.1.0
+        uses: actions/github-script@v9
         with:
-          project-url: ${{ env.PROJECT_URL }}
           github-token: ${{ steps.app-token.outputs.token }}
-          item-id: ${{ steps.addp.outputs.itemId }}
-          field-keys: Status,Priority,Type
-          field-values: ${{ steps.derive.outputs.status }},${{ steps.derive.outputs.priority }},${{ steps.derive.outputs.type }}
+          script: |
+            // Replaces titoportas/update-project-fields@v0.1.0: that action has
+            // had a single release since 2023, is pinned to the retired node16
+            // runtime with no newer version to move to, and this does the same
+            // single-select field update directly against the Projects v2
+            // GraphQL API instead.
+            const projectUrl = process.env.PROJECT_URL;
+            const itemId = process.env.ITEM_ID;
+            const fieldValues = {
+              Status: process.env.STATUS,
+              Priority: process.env.PRIORITY,
+              Type: process.env.TYPE,
+            };
+
+            const match = projectUrl.match(/github\.com\/(orgs|users)\/([^/]+)\/projects\/(\d+)/);
+            if (!match) {
+              core.setFailed(`Could not parse owner/number from PROJECT_URL: ${projectUrl}`);
+              return;
+            }
+            const [, ownerType, owner, numberStr] = match;
+            const number = parseInt(numberStr, 10);
+            const ownerField = ownerType === 'orgs' ? 'organization' : 'user';
+
+            const { [ownerField]: ownerNode } = await github.graphql(
+              `query($login: String!, $number: Int!) {
+                ${ownerField}(login: $login) {
+                  projectV2(number: $number) {
+                    id
+                    fields(first: 50) {
+                      nodes {
+                        ... on ProjectV2SingleSelectField {
+                          id
+                          name
+                          options { id name }
+                        }
+                      }
+                    }
+                  }
+                }
+              }`,
+              { login: owner, number }
+            );
+            const project = ownerNode.projectV2;
+
+            for (const [fieldName, value] of Object.entries(fieldValues)) {
+              if (!value) {
+                continue;
+              }
+              const field = project.fields.nodes.find((f) => f && f.name === fieldName);
+              if (!field) {
+                core.warning(`Project has no single-select field named "${fieldName}", skipping.`);
+                continue;
+              }
+              const option = field.options.find((o) => o.name === value);
+              if (!option) {
+                core.warning(`Field "${fieldName}" has no option named "${value}", skipping.`);
+                continue;
+              }
+              await github.graphql(
+                `mutation($project: ID!, $item: ID!, $field: ID!, $option: String!) {
+                  updateProjectV2ItemFieldValue(input: {
+                    projectId: $project
+                    itemId: $item
+                    fieldId: $field
+                    value: { singleSelectOptionId: $option }
+                  }) {
+                    projectV2Item { id }
+                  }
+                }`,
+                { project: project.id, item: itemId, field: field.id, option: option.id }
+              );
+            }
+        env:
+          PROJECT_URL: ${{ env.PROJECT_URL }}
+          ITEM_ID: ${{ steps.addp.outputs.itemId }}
+          STATUS: ${{ steps.derive.outputs.status }}
+          PRIORITY: ${{ steps.derive.outputs.priority }}
+          TYPE: ${{ steps.derive.outputs.type }}
