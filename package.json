@@ -39,7 +39,7 @@
     "copy-webpack-plugin": "^14.0.0",
     "eslint": "10.9.1",
     "jest": "30.4.2",
-    "npm-package-json-lint": "10.4.1",
+    "npm-package-json-lint": "11.0.0",
     "prettier": "3.9.6",
     "stylelint": "16.26.1",
     "webpack-cli": "7.2.3",
