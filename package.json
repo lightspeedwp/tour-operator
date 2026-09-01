@@ -30,7 +30,7 @@
     "@wordpress/blocks": "15.27.0",
     "@wordpress/e2e-test-utils-playwright": "1.53.0",
     "@wordpress/eslint-plugin": "25.10.0",
-    "@wordpress/i18n": "6.26.0",
+    "@wordpress/i18n": "6.27.0",
     "@wordpress/jest-preset-default": "14.1.0",
     "@wordpress/npm-package-json-lint-config": "5.53.0",
     "@wordpress/prettier-config": "4.53.0",
