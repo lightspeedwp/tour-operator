@@ -207,6 +207,8 @@ class Frontend extends Tour_Operator
 			$crumbs = $this->tour_breadcrumb_links($crumbs);
 		}
 
+		$crumbs = apply_filters( 'lsx_to_breadcrumb_links', $crumbs, $this );
+
 		return $crumbs;
 	}
 

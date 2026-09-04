@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+### Added
+
+#### Filters
+- **Breadcrumb Links Override** - added a `lsx_to_breadcrumb_links` filter in `Frontend::get_breadcrumb_links()`, applied to the final crumbs array before it is returned, to allow 3rd party plugins to alter or extend Tour Operator breadcrumb links.
+
 ### Fixed
 
 #### Query Loops
