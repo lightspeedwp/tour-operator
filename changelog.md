@@ -33,12 +33,12 @@
 - **Version drift now fails CI** - `npm run lint:version` (`scripts/check-version-sync.mjs`) asserts that the plugin header, the readme `Stable tag`, the version constant and `package.json` all agree, and runs on every push and pull request. It exits non-zero listing each source and its value, so these cannot drift apart again unnoticed.
 
 #### Build toolchain
-- **Node engines aligned with the pinned LTS** - `.nvmrc` pins 24.20.0 (the current Krypton LTS) but `engines` allowed `node >=24.11.0` and `npm >=10.0.0`. Both now match the `.nvmrc`, so a contributor on an older 24.x or on npm 10 is told up front rather than finding out through a lockfile that will not reproduce.
+- **Node and npm requirements brought up to date** - `.nvmrc` pins Node 24.20.0 (the current Krypton LTS), and `engines` now requires `node >=24.20.0` to match it. `.nvmrc` says nothing about npm, so the npm floor is set separately, raised from `>=10.0.0` to `>=11.0.0`. A contributor on an older 24.x or on npm 10 is now told up front rather than finding out through a lockfile that will not reproduce.
 
 ### Security
 
 #### Dependencies
-- **All 9 Dependabot alerts cleared** - every one was a transitive dev dependency of `@wordpress/scripts` or `copy-webpack-plugin`, with no direct dependency to bump, so one-package-at-a-time updates could not close them: each moved a single lockfile entry that the next `npm install` resolved straight back. They are now pinned with `overrides` in `package.json`, so the constraint is declared once and holds across lockfile regeneration.
+- **All 9 Dependabot alerts cleared** - every one was a transitive dev dependency of `@wordpress/scripts` or `copy-webpack-plugin`, with no direct dependency to bump, so one-package-at-a-time updates could not close them: each moved a single lockfile entry that the next `npm install` resolved straight back. They are now constrained with `overrides` in `package.json`, so the constraint is declared once and holds across lockfile regeneration. The values below are caret ranges, not exact pins: they set a patched floor and let npm resolve upwards within the major.
   - `fast-uri ^3.1.6` - 4 high: SSRF via malformed IPv6 normalisation and via repeated hostname percent-decoding, host confusion via percent-encoded scheme normalisation and via skipped IDN canonicalisation.
   - `serialize-javascript ^7.0.5` - high RCE via `RegExp.flags` and `Date.prototype.toISOString()`, plus a moderate CPU-exhaustion DoS via crafted array-like objects.
   - `markdownlint-cli ^0.49.1` - `@wordpress/scripts` depends on `markdownlint-cli@^0.31.1`, which drags in `markdown-it@12` and `minimatch@3.0.8`. Overriding the parent clears the `markdown-it` smartquotes ReDoS and the `minimatch` `matchOne` backtracking alerts with a coherent tree, rather than forcing 2026 packages into a 2022-era parent. Nothing in this plugin runs `lint-md-docs`.
