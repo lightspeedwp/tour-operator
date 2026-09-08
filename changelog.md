@@ -28,6 +28,25 @@
 #### Requirements
 - **Minimum PHP version raised from 8.0 to 8.2** - PHP 8.0 and 8.1 have both reached end of life (2023-11-26 and 2025-12-31 respectively) and no longer receive security fixes. `Requires PHP` (plugin header, `composer.json`, `readme.txt`) now floors at 8.2, the earliest version still supported - matching what CI already tests against. `phpcs.xml.dist`'s PHPCompatibilityWP `testVersion` raised to match; confirmed no new compatibility findings from the change.
 
+#### Versioning
+- **All version sources reconciled on 2.2.0** - the plugin header and the readme `Stable tag` read `2.2`, `LSX_TO_VER` read `2.2.0`, and `package.json` was further behind still at `2.1.2`. Only `2.2.0` has ever existed as a git tag, and `10up/action-wordpress-plugin-deploy` derives the WordPress.org SVN tag from the git tag, so `Stable tag: 2.2` pointed at a tag that was never created. All four sources now read `2.2.0`.
+- **Version drift now fails CI** - `npm run lint:version` (`scripts/check-version-sync.mjs`) asserts that the plugin header, the readme `Stable tag`, the version constant and `package.json` all agree, and runs on every push and pull request. It exits non-zero listing each source and its value, so these cannot drift apart again unnoticed.
+
+#### Build toolchain
+- **Node and npm requirements brought up to date** - `.nvmrc` pins Node 24.20.0 (the current Krypton LTS), and `engines` now requires `node >=24.20.0` to match it. `.nvmrc` says nothing about npm, so the npm floor is set separately, raised from `>=10.0.0` to `>=11.0.0`. A contributor on an older 24.x or on npm 10 is now told up front rather than finding out through a lockfile that will not reproduce.
+
+### Security
+
+#### Dependencies
+- **All 9 Dependabot alerts cleared** - every one was a transitive dev dependency of `@wordpress/scripts` or `copy-webpack-plugin`, with no direct dependency to bump, so one-package-at-a-time updates could not close them: each moved a single lockfile entry that the next `npm install` resolved straight back. They are now constrained with `overrides` in `package.json`, so the constraint is declared once and holds across lockfile regeneration. The values below are caret ranges, not exact pins: they set a patched floor and let npm resolve upwards within the major.
+  - `fast-uri ^3.1.6` - 4 high: SSRF via malformed IPv6 normalisation and via repeated hostname percent-decoding, host confusion via percent-encoded scheme normalisation and via skipped IDN canonicalisation.
+  - `serialize-javascript ^7.0.5` - high RCE via `RegExp.flags` and `Date.prototype.toISOString()`, plus a moderate CPU-exhaustion DoS via crafted array-like objects.
+  - `markdownlint-cli ^0.49.1` - `@wordpress/scripts` depends on `markdownlint-cli@^0.31.1`, which drags in `markdown-it@12` and `minimatch@3.0.8`. Overriding the parent clears the `markdown-it` smartquotes ReDoS and the `minimatch` `matchOne` backtracking alerts with a coherent tree, rather than forcing 2026 packages into a 2022-era parent. Nothing in this plugin runs `lint-md-docs`.
+  - `sockjs > uuid ^11.1.1` - missing buffer bounds check in v3/v5/v6. Scoped to `sockjs` so the root `uuid` stays on 14.x for `@wordpress/blocks`.
+
+#### Tooling
+- **`npm run lint:css` runs again** - `.stylelintrc.json` extended `@humanmade/stylelint-config`, which is not installed, so stylelint aborted with a `ConfigurationError` before linting a single file. It now extends `@wordpress/stylelint-config`, already a dev dependency. The pre-existing rule violations this exposes are untouched and remain non-blocking, as `ci.yml` documents.
+
 ## [[2.2.0]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.2.0) - 2026-07-30
 
 ### Fixed
