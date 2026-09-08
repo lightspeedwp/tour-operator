@@ -6,7 +6,7 @@
  * Description:       Showcase tours, destinations, and accommodations with digital itineraries, galleries, and integrated maps.
  * Author:            lightspeedwp
  * Author URI:        https://lightspeedwp.agency/
- * Version:           2.2
+ * Version:           2.2.0
  * Requires at least: 6.7
  * Tested up to:      7.1
  * Requires PHP:      8.2

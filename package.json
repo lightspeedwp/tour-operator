@@ -1,6 +1,6 @@
 {
   "name": "tour-operator",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "description": "Tour Operators for LSX",
   "author": "LightSpeed",
   "license": "ISC",
@@ -76,7 +76,8 @@
     "lint:all": "npm run lint:php && npm run lint:js && npm run lint:css && npm run lint:pkg-json && npm run lint:yaml:workflows",
     "format": "npm run lint:php:fix && wp-scripts format",
     "format:js": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
-    "generate-readme": "node .github/scripts/update-readme.js"
+    "generate-readme": "node .github/scripts/update-readme.js",
+    "lint:version": "node scripts/check-version-sync.mjs"
   },
   "overrides": {
     "linkify-it": "^5.0.2",

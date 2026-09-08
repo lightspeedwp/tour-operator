@@ -32,6 +32,11 @@ jobs:
       - name: Build block assets
         run: npm run build
 
+      # Guards against the plugin header, readme Stable tag, LSX_TO_VER and
+      # package.json drifting apart, which they had.
+      - name: Check version sources agree
+        run: npm run lint:version
+
       # --- PHP ---
       - uses: shivammathur/setup-php@v2
         with:

@@ -28,6 +28,10 @@
 #### Requirements
 - **Minimum PHP version raised from 8.0 to 8.2** - PHP 8.0 and 8.1 have both reached end of life (2023-11-26 and 2025-12-31 respectively) and no longer receive security fixes. `Requires PHP` (plugin header, `composer.json`, `readme.txt`) now floors at 8.2, the earliest version still supported - matching what CI already tests against. `phpcs.xml.dist`'s PHPCompatibilityWP `testVersion` raised to match; confirmed no new compatibility findings from the change.
 
+#### Versioning
+- **All version sources reconciled on 2.2.0** - the plugin header and the readme `Stable tag` read `2.2`, `LSX_TO_VER` read `2.2.0`, and `package.json` was further behind still at `2.1.2`. Only `2.2.0` has ever existed as a git tag, and `10up/action-wordpress-plugin-deploy` derives the WordPress.org SVN tag from the git tag, so `Stable tag: 2.2` pointed at a tag that was never created. All four sources now read `2.2.0`.
+- **Version drift now fails CI** - `npm run lint:version` (`scripts/check-version-sync.mjs`) asserts that the plugin header, the readme `Stable tag`, the version constant and `package.json` all agree, and runs on every push and pull request. It exits non-zero listing each source and its value, so these cannot drift apart again unnoticed.
+
 #### Build toolchain
 - **Node engines aligned with the pinned LTS** - `.nvmrc` pins 24.20.0 (the current Krypton LTS) but `engines` allowed `node >=24.11.0` and `npm >=10.0.0`. Both now match the `.nvmrc`, so a contributor on an older 24.x or on npm 10 is told up front rather than finding out through a lockfile that will not reproduce.
 
