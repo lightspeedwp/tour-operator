@@ -40,9 +40,14 @@ if (!mainPhp) {
 	process.exit(1);
 }
 
-// readme.txt casing is inconsistent across these repos.
+// readme.txt casing is inconsistent across these repos. A missing readme is
+// recorded as a null source rather than skipped, so renaming or dropping it
+// fails this check instead of quietly removing WordPress.org release metadata
+// from the things being validated.
 const readme = fs.readdirSync(root).find((f) => f.toLowerCase() === 'readme.txt');
-if (readme) {
+if (!readme) {
+	sources.push({ file: 'readme.txt', field: 'Stable tag', value: null });
+} else {
 	const head = fs.readFileSync(path.join(root, readme), 'utf8').slice(0, 4096);
 	const match = head.match(/^\s*Stable tag\s*:\s*(\S+)\s*$/im);
 	sources.push({ file: readme, field: 'Stable tag', value: match ? match[1] : null });
