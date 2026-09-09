@@ -3,7 +3,11 @@ name: CI
 on:
   pull_request:
   push:
-    branches: ["develop", "2.1-trunk"]
+    # main included so a broken dependency tree there is caught by CI rather than
+    # discovered by the next pull request opened against it. Push events use the
+    # workflow file from the pushed branch, so this has to be set on main itself,
+    # not only on develop.
+    branches: ["main", "develop", "2.1-trunk"]
 
 # Narrowed CI: gates on the checks that reliably pass today — block asset build
 # and the standalone PHPUnit suite. PHPCS runs but is non-blocking while the
