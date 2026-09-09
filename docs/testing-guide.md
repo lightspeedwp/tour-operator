@@ -12,7 +12,7 @@ The plugin includes two types of tests:
 - Can be run immediately after installing Composer dependencies
 
 ### 2. WordPress Integration Tests (Requires WordPress Test Environment)
-- Located in: `tests/php/test-basic.php` and `tests/php/utils/`
+- Located in: `tests/php/TourOperatorBasicTest.php` and `tests/php/RegistrationTest.php`, with helpers in `tests/php/utils/`
 - These tests require a full WordPress testing environment
 - Test plugin functionality within WordPress context
 
@@ -112,8 +112,10 @@ composer test:wp
 - `tests/php/bootstrap.php` - WordPress test environment bootstrap
 
 ### Test Files
-- `tests/php/SimpleFunctionsTest.php` - Simple unit tests
-- `tests/php/test-basic.php` - WordPress integration tests
+- `tests/php/*Test.php` - test suites, discovered by PHPUnit's default
+  `*Test.php` convention
+- `tests/php/TourOperatorBasicTest.php`, `tests/php/RegistrationTest.php` -
+  WordPress integration tests, run by `phpunit.xml` against a live database
 - `tests/php/utils/` - Test utilities and helper classes
 - `tests/e2e/` - Playwright E2E tests
 
