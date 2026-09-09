@@ -26,6 +26,17 @@
 
 ### Changed
 
+#### CI and dependency hygiene
+- **Grouped interdependent npm updates so peer conflicts stop recurring** - Dependabot opened a separate PR per package, so one member of a peer-linked toolchain could be bumped past its siblings and leave an unresolvable dependency tree that fails `npm ci` on every branch carrying it. That has broken CI four times (LS-1234, LS-2732, LS-2929, LS-3714), each a Babel package moving independently of `@babel/core`. `.github/dependabot.yml` now groups `@babel/*`, `@wordpress/*`, `eslint*`, `stylelint*`, `webpack*` and Playwright so each set moves as a unit, and ignores major updates for `@babel/*` specifically: Babel 8 only peer-accepts Babel 8 core, and this project's Babel setup comes from `@wordpress/babel-preset-default` via wp-scripts, so adopting it is a deliberate toolchain change rather than a dependency bump. Minor and patch updates still flow through the group.
+- **CI now runs on pushes to `main`** - the `push` trigger covered `develop` and `2.1-trunk` only, so a dependency tree that could not install on `main` went unnoticed until someone opened a pull request against it and saw the install step fail.
+
+#### Dependencies
+- **Removed two unused devDependencies** - `@wordpress/eslint-plugin` was declared but nothing references it - there is no ESLint configuration anywhere in the repository, and `wp-scripts lint-js` supplies its own. `@wordpress/a11y` was declared but never imported. `eslint` itself is deliberately kept: removing it made npm satisfy a transitive peer requirement with a deprecated ESLint 9.39.5 at the root, so the declaration is what pins the root resolution to 10.9.1. Verified by re-running the full toolchain with them removed: `npm ci`, `npm run build`, `jest`, `lint:pkg-json` and `lint:version` all pass, and `lint:js` / `lint:css` report byte-identical pre-existing counts (676 and 218) to before the change. `webpack-cli` was also flagged as unused by `depcheck` but is genuinely required - the build prompts to install it when absent - so it stays.
+
+#### Dead configuration files
+- **Removed `.babel.config.cjs`** - Babel resolves `babel.config.js`, not `.babel.config.cjs`, so this file was never loaded. Confirmed with `babel.loadPartialConfig()`, which reports `babel.config.js` and zero plugins even under `envName: production`. Its `@wordpress/babel-plugin-makepot` step therefore never ran, and that package was not even declared as a dependency. POT generation is already handled by the `build:pot` script via `wp i18n make-pot`, so nothing is lost.
+- **Removed `.stylelint.config.cjs`** - stylelint resolves `.stylelintrc.json` (and `stylelint.config.cjs`), not `.stylelint.config.cjs`. Confirmed with `stylelint --print-config`, which shows the rules from `.stylelintrc.json` and none of the BEM `selector-class-pattern` / `custom-property-pattern` rules this file defined. Those rules have never been enforced; adopting them is a deliberate change for a separate PR rather than a side effect of deleting a file nothing reads.
+
 #### Compatibility
 - **Tested up to WordPress 7.1** - WordPress 7.1 released 2026-08-19; `Tested up to` in the plugin header and `readme.txt` raised from 7.0 to 7.1. `Requires at least` stays at 6.7 (the minimum-supported floor, unaffected by a new release). No code changes required for compatibility.
 

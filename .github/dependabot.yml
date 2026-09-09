@@ -20,6 +20,45 @@ updates:
     open-pull-requests-limit: 10
     labels:
       - area:dependencies
+    # Packages within these toolchains peer-depend on each other, so bumping one
+    # on its own produces an unresolvable peer tree and npm ci fails for every
+    # branch that carries it. Grouping makes each set move as a unit, so a PR
+    # either resolves as a whole or fails visibly instead of landing half-applied.
+    groups:
+      babel:
+        patterns:
+          - "@babel/*"
+          - "babel-loader"
+          - "babel-jest"
+      wordpress:
+        patterns:
+          - "@wordpress/*"
+      eslint:
+        patterns:
+          - "eslint"
+          - "eslint-*"
+      stylelint:
+        patterns:
+          - "stylelint"
+          - "stylelint-*"
+      webpack:
+        patterns:
+          - "webpack"
+          - "webpack-*"
+          - "copy-webpack-plugin"
+      playwright:
+        patterns:
+          - "@playwright/*"
+          - "playwright"
+    ignore:
+      # Babel 8 only peer-accepts Babel 8 core, and this project's Babel setup is
+      # driven by @wordpress/babel-preset-default via wp-scripts. Moving to it is a
+      # deliberate toolchain change, not a dependency bump. Independent major bumps
+      # of single @babel packages have broken CI four times (LS-1234, LS-2732,
+      # LS-2929, LS-3714); minor and patch updates still flow through the group above.
+      - dependency-name: "@babel/*"
+        update-types:
+          - version-update:semver-major
 
   - package-ecosystem: composer
     directory: "/"
