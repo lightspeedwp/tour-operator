@@ -1,7 +1,10 @@
 # Dependencies
 node_modules/
 # Exclude vendor directory (Composer dependencies) - custom plugins are in /plugins/
+# Both forms are needed: "vendor/" does not match a symlink named vendor, which is
+# a normal way to share one Composer install across git worktrees.
 vendor/
+/vendor
 
 # Build artifacts and compiled files (but keep build/ for WordPress plugin distribution)
 /assets/dist/

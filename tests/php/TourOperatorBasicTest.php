@@ -7,7 +7,7 @@
  * @subpackage Tests
  */
 
-class TestTourOperatorBasic extends Tour_Operator_Test_Case
+class TourOperatorBasicTest extends Tour_Operator_Test_Case
 {
 
 	/**

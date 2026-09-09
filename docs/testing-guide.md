@@ -7,7 +7,7 @@ This document explains how to set up and run tests for the Tour Operator Plugin.
 The plugin includes two types of tests:
 
 ### 1. Simple Unit Tests (No WordPress Required)
-- Located in: `tests/php/TestSimpleFunctions.php`
+- Located in: `tests/php/SimpleFunctionsTest.php`
 - These tests verify basic PHP functionality and plugin logic without requiring WordPress
 - Can be run immediately after installing Composer dependencies
 
@@ -28,7 +28,7 @@ composer install
 # Run basic tests (no WordPress environment needed)
 composer test:simple
 # OR directly:
-./vendor/bin/phpunit --no-configuration tests/php/TestSimpleFunctions.php
+./vendor/bin/phpunit --no-configuration tests/php/SimpleFunctionsTest.php
 ```
 
 ### Run WordPress Integration Tests
@@ -112,7 +112,7 @@ composer test:wp
 - `tests/php/bootstrap.php` - WordPress test environment bootstrap
 
 ### Test Files
-- `tests/php/TestSimpleFunctions.php` - Simple unit tests
+- `tests/php/SimpleFunctionsTest.php` - Simple unit tests
 - `tests/php/test-basic.php` - WordPress integration tests
 - `tests/php/utils/` - Test utilities and helper classes
 - `tests/e2e/` - Playwright E2E tests
@@ -141,7 +141,7 @@ This error occurs when trying to run WordPress integration tests without the pro
 
 ### "No tests executed" Error
 This usually means PHPUnit couldn't find the test files. Ensure:
-1. Test files are named correctly (e.g., `TestSimpleFunctions.php`)
+1. Test files are named correctly (e.g., `SimpleFunctionsTest.php`)
 2. Test classes extend `PHPUnit\Framework\TestCase` or `Tour_Operator_Test_Case`
 3. Test methods are named with `test_` prefix
 
@@ -151,7 +151,7 @@ Make sure the class name matches the filename and follows PSR-4 naming conventio
 ## Contributing
 
 When adding new tests:
-1. Simple functionality tests should go in separate files like `TestSimpleFunctions.php`
+1. Simple functionality tests should go in separate files like `SimpleFunctionsTest.php`
 2. WordPress integration tests should extend `Tour_Operator_Test_Case`
 3. E2E tests should be added to the `tests/e2e/` directory
 4. Always run the test suite before submitting changes
