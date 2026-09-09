@@ -94,9 +94,16 @@ class Query_Loop {
 		// query_args_filter()), but that class has no postmeta hooks of its
 		// own, so maybe_flush_featured_cache_on_meta_change() checks for both
 		// meta keys on these same hooks.
-		add_action( 'updated_postmeta', array( $this, 'maybe_flush_featured_cache_on_meta_change' ), 10, 4 );
-		add_action( 'added_postmeta', array( $this, 'maybe_flush_featured_cache_on_meta_change' ), 10, 4 );
-		add_action( 'deleted_postmeta', array( $this, 'maybe_flush_featured_cache_on_meta_change' ), 10, 4 );
+		//
+		// Use the canonical added_/updated_/deleted_post_meta hooks, all of which pass
+		// four arguments. The legacy *_postmeta spellings are not interchangeable:
+		// deleted_postmeta passes only the meta IDs, so a four-argument callback on it
+		// raises ArgumentCountError and fatals any wp_delete_post() on a post with
+		// meta, and added_postmeta does not exist at all, so meta being added for the
+		// first time never busted the cache.
+		add_action( 'added_post_meta', array( $this, 'maybe_flush_featured_cache_on_meta_change' ), 10, 4 );
+		add_action( 'updated_post_meta', array( $this, 'maybe_flush_featured_cache_on_meta_change' ), 10, 4 );
+		add_action( 'deleted_post_meta', array( $this, 'maybe_flush_featured_cache_on_meta_change' ), 10, 4 );
 		add_action( 'save_post', array( $this, 'flush_featured_cache_for_post' ), 10, 1 );
 	}
 
