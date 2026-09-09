@@ -11,32 +11,20 @@ if (! defined('LSX_TO_TESTING')) {
 	define('LSX_TO_TESTING', true);
 }
 
-// Set up the WordPress testing environment
+// Composer autoload also runs wp-phpunit's __loaded.php, which exports WP_PHPUNIT__DIR.
+require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
+
+// The WordPress test suite comes from the wp-phpunit/wp-phpunit package. WP_TESTS_DIR
+// still wins so an externally installed suite can be used instead.
 $_tests_dir = getenv('WP_TESTS_DIR');
 
-// If WP_TESTS_DIR is not set, try to find it
 if (! $_tests_dir) {
-	$_tests_dir = rtrim(sys_get_temp_dir(), '/\\') . '/wordpress-tests-lib';
+	$_tests_dir = getenv('WP_PHPUNIT__DIR');
 }
 
-// If it still doesn't exist, try common locations
-if (! file_exists($_tests_dir . '/includes/functions.php')) {
-	$possible_locations = [
-		'/tmp/wordpress-tests-lib',
-		dirname(__DIR__) . '/wordpress-tests-lib',
-		dirname(dirname(dirname(__DIR__))) . '/wordpress-tests-lib',
-	];
-
-	foreach ($possible_locations as $location) {
-		if (file_exists($location . '/includes/functions.php')) {
-			$_tests_dir = $location;
-			break;
-		}
-	}
-}
-
-if (! file_exists($_tests_dir . '/includes/functions.php')) {
-	echo "Could not find WordPress test suite. Please set WP_TESTS_DIR environment variable.\n";
+if (! $_tests_dir || ! file_exists($_tests_dir . '/includes/functions.php')) {
+	echo "Could not find the WordPress test suite.\n";
+	echo "Run 'composer install' to fetch wp-phpunit/wp-phpunit, or set WP_TESTS_DIR.\n";
 	exit(1);
 }
 
@@ -49,20 +37,11 @@ require_once $_tests_dir . '/includes/functions.php';
 function _manually_load_plugin()
 {
 	// Define plugin constants
-	if (! defined('LSX_TO_PATH')) {
-		define('LSX_TO_PATH', dirname(dirname(__FILE__)) . '/');
-	}
-
-	if (! defined('LSX_TO_URL')) {
-		define('LSX_TO_URL', plugin_dir_url(dirname(__FILE__)));
-	}
-
-	if (! defined('LSX_TO_VER')) {
-		define('LSX_TO_VER', '2.1.0');
-	}
-
-	// Load the plugin
-	require dirname(dirname(__FILE__)) . '/tour-operator.php';
+	// Do not pre-define LSX_TO_PATH, LSX_TO_URL or LSX_TO_VER here. The plugin defines
+	// all three itself, and defining them first wins — which previously pinned
+	// LSX_TO_VER to a hardcoded 2.1.0 for the whole test run regardless of the real
+	// plugin version.
+	require dirname(__DIR__, 2) . '/tour-operator.php';
 }
 
 tests_add_filter('muplugins_loaded', '_manually_load_plugin');

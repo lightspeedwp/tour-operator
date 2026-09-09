@@ -90,18 +90,18 @@ class RegistrationTest extends Tour_Operator_Test_Case
 	{
 		// Get all registered patterns
 		$patterns_registry = WP_Block_Patterns_Registry::get_instance();
-		$all_patterns = $patterns_registry->get_all_registered();
 
-		// Expected patterns from includes/patterns/ directory
-		$expected_patterns = array(
-			'lsx-tour-operator/accommodation-card',
-			'lsx-tour-operator/destination-card',
-			'lsx-tour-operator/gallery',
-			'lsx-tour-operator/itinerary-list',
-			'lsx-tour-operator/room-card',
-			'lsx-tour-operator/tour-card',
-			'lsx-tour-operator/travel-information',
-		);
+		// Derive the expectation from the patterns directory rather than hardcoding a
+		// list. Patterns::register_block_patterns() keys each pattern as
+		// 'lsx-tour-operator/' plus the filename, so the directory is the source of
+		// truth; a hardcoded list silently drifts when a pattern is added or renamed.
+		$pattern_files = glob(dirname(__DIR__, 2) . '/patterns/*.php');
+		$this->assertNotEmpty($pattern_files, 'The patterns directory should contain patterns');
+
+		$expected_patterns = array();
+		foreach ($pattern_files as $pattern_file) {
+			$expected_patterns[] = 'lsx-tour-operator/' . basename($pattern_file, '.php');
+		}
 
 		foreach ($expected_patterns as $pattern_name) {
 			$this->assertTrue(
@@ -134,8 +134,10 @@ class RegistrationTest extends Tour_Operator_Test_Case
 			'Bindings class should exist in lsx\blocks namespace'
 		);
 
-		// Verify block bindings sources are registered
-		$bindings_registry = get_all_block_bindings_sources();
+		// Verify block bindings sources are registered. The core function is
+		// get_all_registered_block_bindings_sources(); there is no
+		// get_all_block_bindings_sources().
+		$bindings_registry = get_all_registered_block_bindings_sources();
 
 		$this->assertArrayHasKey(
 			'lsx/post-connection',
