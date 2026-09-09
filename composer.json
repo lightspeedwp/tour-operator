@@ -25,8 +25,7 @@
       "test:simple": "vendor/bin/phpunit -c phpunit-simple.xml",
       "test:wp": "vendor/bin/phpunit -c phpunit.xml",
       "test:wp:downgrade": "composer update --with phpunit/phpunit:^9.6 --with yoast/phpunit-polyfills:^1.1 --no-interaction --no-progress",
-      "test:coverage": "vendor/bin/phpunit -c phpunit-simple.xml --coverage-html tests/coverage",
-      "test:unit": "vendor/bin/phpunit -c phpunit.xml --testsuite='Tour Operator Plugin Test Suite'"
+      "test:coverage": "vendor/bin/phpunit -c phpunit-simple.xml --coverage-html tests/coverage"
     },
     "repositories": [
         {

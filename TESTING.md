@@ -32,6 +32,8 @@ is collected by nothing and its tests silently never run.
 
 Shared helpers and fixtures belong in `tests/php/utils/`, which discovery ignores.
 
+**Two PHPUnit majors.** The WordPress core test suite supports PHPUnit 8 and 9 only, so the integration suites run on PHPUnit 9 while the standalone suite runs on PHPUnit 10. Run `composer test:wp:downgrade` once before `composer test:wp` (or `npm run test:php:registration`); CI does this automatically in the `wp-integration` job.
+
 - **RegistrationTest.php** - Verifies core WordPress component registration:
   - Custom Post Types (tour, accommodation, destination)
   - Taxonomies (travel-style, accommodation-type, etc.)
