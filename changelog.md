@@ -22,6 +22,13 @@
 
 ### Changed
 
+#### Dependencies
+- **Removed three unused devDependencies** - `eslint` and `@wordpress/eslint-plugin` were declared but no ESLint configuration exists anywhere in the repository; `wp-scripts lint-js` supplies its own. `@wordpress/a11y` was declared but never imported. Verified by re-running the full toolchain with them removed: `npm ci`, `npm run build`, `jest`, `lint:pkg-json` and `lint:version` all pass, and `lint:js` / `lint:css` report byte-identical pre-existing counts (676 and 218) to before the change. `webpack-cli` was also flagged as unused by `depcheck` but is genuinely required - the build prompts to install it when absent - so it stays.
+
+#### Dead configuration files
+- **Removed `.babel.config.cjs`** - Babel resolves `babel.config.js`, not `.babel.config.cjs`, so this file was never loaded. Confirmed with `babel.loadPartialConfig()`, which reports `babel.config.js` and zero plugins even under `envName: production`. Its `@wordpress/babel-plugin-makepot` step therefore never ran, and that package was not even declared as a dependency. POT generation is already handled by the `build:pot` script via `wp i18n make-pot`, so nothing is lost.
+- **Removed `.stylelint.config.cjs`** - stylelint resolves `.stylelintrc.json` (and `stylelint.config.cjs`), not `.stylelint.config.cjs`. Confirmed with `stylelint --print-config`, which shows the rules from `.stylelintrc.json` and none of the BEM `selector-class-pattern` / `custom-property-pattern` rules this file defined. Those rules have never been enforced; adopting them is a deliberate change for a separate PR rather than a side effect of deleting a file nothing reads.
+
 #### Compatibility
 - **Tested up to WordPress 7.1** - WordPress 7.1 released 2026-08-19; `Tested up to` in the plugin header and `readme.txt` raised from 7.0 to 7.1. `Requires at least` stays at 6.7 (the minimum-supported floor, unaffected by a new release). No code changes required for compatibility.
 
