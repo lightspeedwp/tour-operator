@@ -65,7 +65,7 @@ Validates GitHub Actions workflows and YAML configuration files for syntax and b
 npm test
 
 # Run comprehensive test suite
-npm run test:all
+npm test
 ```
 
 ### Individual Test Suites
@@ -74,10 +74,10 @@ npm run test:all
 
 ```bash
 # Run all PHPUnit tests
-npm run test:php:all
+npm run test:php
 
 # Run specific test file
-npm run test:php:registration
+composer test:wp:downgrade && composer test:wp
 
 # Run with PHPUnit directly
 ./vendor/bin/phpunit
@@ -341,7 +341,7 @@ Run the same checks as CI locally:
 npm run lint:all
 
 # All tests
-npm run test:all
+npm test
 ```
 
 ## Best Practices
