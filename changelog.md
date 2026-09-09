@@ -22,6 +22,10 @@
 
 ### Changed
 
+#### CI and dependency hygiene
+- **Grouped interdependent npm updates so peer conflicts stop recurring** - Dependabot opened a separate PR per package, so one member of a peer-linked toolchain could be bumped past its siblings and leave an unresolvable dependency tree that fails `npm ci` on every branch carrying it. That has broken CI four times (LS-1234, LS-2732, LS-2929, LS-3714), each a Babel package moving independently of `@babel/core`. `.github/dependabot.yml` now groups `@babel/*`, `@wordpress/*`, `eslint*`, `stylelint*`, `webpack*` and Playwright so each set moves as a unit, and ignores major updates for `@babel/*` specifically: Babel 8 only peer-accepts Babel 8 core, and this project's Babel setup comes from `@wordpress/babel-preset-default` via wp-scripts, so adopting it is a deliberate toolchain change rather than a dependency bump. Minor and patch updates still flow through the group.
+- **CI now runs on pushes to `main`** - the `push` trigger covered `develop` and `2.1-trunk` only, so a dependency tree that could not install on `main` went unnoticed until someone opened a pull request against it and saw the install step fail.
+
 #### Dependencies
 - **Removed three unused devDependencies** - `eslint` and `@wordpress/eslint-plugin` were declared but no ESLint configuration exists anywhere in the repository; `wp-scripts lint-js` supplies its own. `@wordpress/a11y` was declared but never imported. Verified by re-running the full toolchain with them removed: `npm ci`, `npm run build`, `jest`, `lint:pkg-json` and `lint:version` all pass, and `lint:js` / `lint:css` report byte-identical pre-existing counts (676 and 218) to before the change. `webpack-cli` was also flagged as unused by `depcheck` but is genuinely required - the build prompts to install it when absent - so it stays.
 
