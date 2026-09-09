@@ -359,7 +359,7 @@ tour-operator/
 
 - `npm run build` - Production build
 - `npm run start` - Development build with watch mode
-- `npm run build-pot` - Generate translation file
+- `npm run build:pot` - Generate translation file
 
 #### Testing
 

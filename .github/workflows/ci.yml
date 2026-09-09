@@ -15,6 +15,11 @@ on:
 #   - npm run lint:js / lint:css  -> large pre-existing prettier/import debt
 #   - Playwright e2e              -> needs a running WordPress server (wp-env),
 #                                    the playwright webServer block is disabled
+#
+# The wp-integration job below runs the WordPress integration suite against a
+# MariaDB service container. WordPress core and its PHPUnit test suite both come
+# from Composer (roots/wordpress-no-content and wp-phpunit/wp-phpunit), so there
+# is no download script and no Subversion dependency.
 
 jobs:
   build-test:
@@ -66,3 +71,62 @@ jobs:
       - name: PHP CodeSniffer (WPCS) — non-blocking
         continue-on-error: true
         run: composer phpcs
+
+  wp-integration:
+    name: WordPress integration tests
+    runs-on: ubuntu-latest
+
+    services:
+      database:
+        image: mariadb:11.4
+        env:
+          MARIADB_ROOT_PASSWORD: root
+          MARIADB_DATABASE: tour_operator_test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
+    env:
+      WP_TESTS_DB_NAME: tour_operator_test
+      WP_TESTS_DB_USER: root
+      WP_TESTS_DB_PASSWORD: root
+      WP_TESTS_DB_HOST: 127.0.0.1
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mysqli, mbstring, xml, zip, intl
+          coverage: none
+          tools: composer
+
+      - name: Get Composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/cache@v6
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install Composer deps
+        run: composer install --no-interaction --no-progress
+
+      # The WordPress core test suite only supports PHPUnit 8 and 9: its
+      # expectDeprecated() calls PHPUnit\Util\Test::parseTestMethodAnnotations(),
+      # removed in PHPUnit 10 (core.trac.wordpress.org/ticket/59486). The standalone
+      # suite still runs on PHPUnit 10 in the build-test job; only this one downgrades.
+      - name: Resolve PHPUnit 9 for the WordPress test suite
+        run: composer test:wp:downgrade
+
+      - name: PHPUnit (WordPress integration)
+        run: composer test:wp

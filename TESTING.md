@@ -13,7 +13,7 @@ composer install
 npm test
 
 # Run specific test suites
-npm run test:php:all      # PHPUnit (all tests)
+npm run test:php      # PHPUnit (all tests)
 npm run test:unit         # Jest (JavaScript)
 npm run test:e2e          # Playwright (E2E)
 npm run lint:yaml         # YAML validation
@@ -32,6 +32,8 @@ is collected by nothing and its tests silently never run.
 
 Shared helpers and fixtures belong in `tests/php/utils/`, which discovery ignores.
 
+**Two PHPUnit majors.** The WordPress core test suite supports PHPUnit 8 and 9 only, so the integration suites run on PHPUnit 9 while the standalone suite runs on PHPUnit 10. Run `composer test:wp:downgrade` once before `composer test:wp`; CI does this automatically in the `wp-integration` job.
+
 - **RegistrationTest.php** - Verifies core WordPress component registration:
   - Custom Post Types (tour, accommodation, destination)
   - Taxonomies (travel-style, accommodation-type, etc.)
@@ -41,8 +43,8 @@ Shared helpers and fixtures belong in `tests/php/utils/`, which discovery ignore
 **Run:**
 
 ```bash
-npm run test:php:all
-npm run test:php:registration
+npm run test:php
+composer test:wp:downgrade && composer test:wp
 ```
 
 ### ✅ Jest Tests (Frontend)
@@ -226,20 +228,18 @@ YAML rules are in `.yamllint` - no additional setup needed.
 
 ```bash
 npm test            # PHPUnit + Jest + Playwright
-npm run test:all    # All PHPUnit tests + Jest + Playwright
 ```
 
 ### PHPUnit (PHP Backend)
 
 ```bash
-npm run test:php              # Single test file
-npm run test:php:all          # All PHPUnit tests
-npm run test:php:registration # Registration tests only
+npm run test:php                                # Standalone PHPUnit suite
+composer test:wp:downgrade && composer test:wp  # WordPress integration suite
 
-# Direct PHPUnit usage
-./vendor/bin/phpunit
-./vendor/bin/phpunit tests/php/RegistrationTest.php
-./vendor/bin/phpunit --filter test_post_types_registered
+# Direct PHPUnit usage. Always name the config: a bare `phpunit` picks up
+# phpunit.xml, which is the integration suite and needs PHPUnit 9 plus a database.
+./vendor/bin/phpunit -c phpunit-simple.xml --filter SimpleFunctionsTest
+./vendor/bin/phpunit -c phpunit.xml --filter test_post_types_registered
 ```
 
 ### Jest (JavaScript)
@@ -317,7 +317,7 @@ Run the same checks as CI:
 npm run lint:all
 
 # All tests
-npm run test:all
+npm test
 ```
 
 ## Writing New Tests

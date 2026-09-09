@@ -7,9 +7,11 @@
         "composer/installers": "^2.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "^10.5",
+        "phpunit/phpunit": "^9.6 || ^10.5",
         "10up/phpcs-composer": "^3.0",
-        "yoast/phpunit-polyfills": "^2.0"
+        "yoast/phpunit-polyfills": "^1.1 || ^2.0",
+        "wp-phpunit/wp-phpunit": "^7.1",
+        "roots/wordpress-no-content": "^7.1"
     },
     "scripts": {
     "phpcs": "vendor/bin/phpcs -d memory_limit=1G tour-operator.php includes templates post-types src",
@@ -21,9 +23,9 @@
     "phpcs:baseline": "vendor/bin/phpcs -d memory_limit=1G tour-operator.php includes templates post-types src --report=checkstyle --report-file=phpcs-baseline.xml || true",
       "test": "vendor/bin/phpunit -c phpunit-simple.xml",
       "test:simple": "vendor/bin/phpunit -c phpunit-simple.xml",
-      "test:wp": "./bin/run-wp-tests.sh",
-      "test:coverage": "vendor/bin/phpunit -c phpunit-simple.xml --coverage-html tests/coverage",
-      "test:unit": "vendor/bin/phpunit -c phpunit.xml --testsuite='Tour Operator Plugin Test Suite'"
+      "test:wp": "vendor/bin/phpunit -c phpunit.xml",
+      "test:wp:downgrade": "composer update --with phpunit/phpunit:^9.6 --with yoast/phpunit-polyfills:^1.1 --no-interaction --no-progress",
+      "test:coverage": "vendor/bin/phpunit -c phpunit-simple.xml --coverage-html tests/coverage"
     },
     "repositories": [
         {
@@ -34,6 +36,11 @@
     "license": "GPL-3.0-or-later",
     "prefer-stable": true,
     "minimum-stability": "dev",
+    "extra": {
+        "installer-paths": {
+            "vendor/roots/wordpress-no-content/": ["roots/wordpress-no-content"]
+        }
+    },
     "config": {
         "allow-plugins": {
             "composer/installers": true,

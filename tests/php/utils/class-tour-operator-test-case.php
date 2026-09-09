@@ -206,10 +206,16 @@ class Tour_Operator_Test_Case extends WP_UnitTestCase
 	}
 
 	/**
-	 * Clean up global scope
+	 * Clean up global scope.
+	 *
+	 * Must stay public: WP_UnitTestCase_Base declares this public, and narrowing the
+	 * access level of an inherited method is a fatal error. The parent call keeps
+	 * core's own global teardown, so this override adds to it rather than replacing it.
 	 */
-	protected function clean_up_global_scope()
+	public function clean_up_global_scope()
 	{
+		parent::clean_up_global_scope();
+
 		$_GET = [];
 		$_POST = [];
 		$_REQUEST = [];

@@ -1,19 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  WordPress integration tests.
+
+  These boot a real WordPress through the wp-phpunit/wp-phpunit test suite against a
+  live database, so a MySQL or MariaDB server is required. Tests that need no
+  WordPress live in phpunit-simple.xml.
+
+  This file deliberately targets the PHPUnit 9.6 schema, not 10.5 like
+  phpunit-simple.xml. The WordPress core test suite only supports PHPUnit 8 and 9:
+  WP_UnitTestCase_Base::expectDeprecated() calls PHPUnit\Util\Test::parseTestMethodAnnotations(),
+  which PHPUnit removed in 10.0, so every test errors on PHPUnit 10. See
+  https://core.trac.wordpress.org/ticket/59486. Run this suite with
+  `composer test:wp:downgrade` first, which resolves PHPUnit 9.6 for this tree; the
+  standalone suite continues to run on PHPUnit 10.
+-->
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.6/phpunit.xsd"
          bootstrap="tests/php/bootstrap.php"
          colors="true"
          processIsolation="false"
          stopOnFailure="false"
-         backupGlobals="false">
+         backupGlobals="false"
+         convertDeprecationsToExceptions="false">
 
     <testsuites>
         <testsuite name="Tour Operator Plugin Test Suite">
-            <file>./tests/php/TourOperatorBasicTest.php</file>
+            <directory>./tests/php/integration</directory>
         </testsuite>
     </testsuites>
 
-    <source>
+    <coverage>
         <include>
             <directory suffix=".php">./includes</directory>
             <directory suffix=".php">./src</directory>
@@ -24,47 +40,26 @@
             <directory>./build</directory>
             <directory>./assets</directory>
             <file>./tour-operator.php</file>
-            <file>./tour-operator-bootstrap.php</file>
         </exclude>
-    </source>
-
-    <coverage includeUncoveredFiles="true">
-        <report>
-            <html outputDirectory="tests/coverage/html"/>
-            <clover outputFile="tests/coverage/clover.xml"/>
-        </report>
     </coverage>
 
     <logging>
-        <junit outputFile="tests/results/junit.xml"/>
+        <junit outputFile="tests/results/junit-wp.xml"/>
     </logging>
 
     <php>
-        <!-- WordPress test environment variables -->
-        <const name="WP_TESTS_DOMAIN" value="example.org"/>
-        <const name="WP_TESTS_EMAIL" value="admin@example.org"/>
-        <const name="WP_TESTS_TITLE" value="Test Blog"/>
-        <const name="WP_PHP_BINARY" value="php"/>
-        <const name="WP_TESTS_FORCE_KNOWN_BUGS" value="true"/>
+        <!-- Tells wp-phpunit which config to load. tests/wp-tests-config.php reads the
+             WP_TESTS_DB_* variables below from the environment, and points ABSPATH at
+             the Composer-installed WordPress core. -->
+        <env name="WP_PHPUNIT__TESTS_CONFIG" value="tests/wp-tests-config.php"/>
+        <env name="WP_PHPUNIT__TABLE_PREFIX" value="wptests_"/>
 
-        <!-- Plugin specific constants -->
-        <const name="LSX_TO_TESTING" value="true"/>
-
-        <!-- Database settings for testing -->
+        <!-- Local defaults. These are not forced, so a real environment variable of the
+             same name wins — which is how CI points at its service container. -->
         <env name="WP_TESTS_DB_NAME" value="tour_operator_test"/>
         <env name="WP_TESTS_DB_USER" value="root"/>
         <env name="WP_TESTS_DB_PASSWORD" value=""/>
-        <env name="WP_TESTS_DB_HOST" value="localhost"/>
-        <env name="WP_TESTS_DB_CHARSET" value="utf8"/>
-        <env name="WP_TESTS_DB_COLLATE" value=""/>
-
-        <!-- WordPress test table prefix -->
-        <env name="WP_TESTS_TABLE_PREFIX" value="wptests_"/>
-
-        <!-- WordPress multisite testing -->
+        <env name="WP_TESTS_DB_HOST" value="127.0.0.1"/>
         <env name="WP_TESTS_MULTISITE" value="0"/>
-
-        <!-- Skip certain tests -->
-        <env name="WP_TESTS_SKIP_INSTALL" value="0"/>
     </php>
 </phpunit>
