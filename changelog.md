@@ -4,10 +4,20 @@
 
 ### Added
 
+#### WP-CLI
+- **`wp tour-operator normalise-relationships`** - converts relationship meta held across multiple rows into the single serialised array in bulk, for sites that would otherwise wait for every affected post to be re-saved. Supports `--dry-run` and `--key=<key>` - Issue [#1363](https://github.com/lightspeedwp/tour-operator/issues/1363)
+
 #### Filters
 - **Breadcrumb Links Override** - added a `lsx_to_breadcrumb_links` filter in `Frontend::get_breadcrumb_links()`, applied to the final crumbs array before it is returned, to allow 3rd party plugins to alter or extend Tour Operator breadcrumb links.
 
 ### Fixed
+
+#### Post Connections
+- **Fatal error when saving a post that drops a connection** - `remove_connected_id()` passed the raw result of `get_post_meta( $id, $key, true )` to `array_diff()`. Where the reciprocal relationship meta is stored as one row per connected ID rather than a single serialised array, that result is a string and PHP 8 raised `Uncaught TypeError: array_diff(): Argument #1 ($array) must be of type array, string given`, aborting the save and triggering WordPress recovery mode. Relationship meta is now read and written through a new `lsx\legacy\Relationship_Meta` helper that reads every row for a key and flattens both storage shapes - Issue [#1363](https://github.com/lightspeedwp/tour-operator/issues/1363)
+- **Connections silently half-removed on multi-row meta** - disconnecting a post wrote the new list with a `$prev_value` argument, which restricts the update to rows matching the old value. On a key holding several rows only one was rewritten and the rest survived, leaving the connection partly in place. Relationship keys are now rewritten as a single serialised array, so a key in the older multi-row shape repairs itself the next time it is saved - Issue [#1363](https://github.com/lightspeedwp/tour-operator/issues/1363)
+- **Warning when clearing every connection on a field** - the branch handling "all connections removed" iterated the previous values without the array normalisation applied elsewhere in `cpt_relations()`, warning `foreach() argument must be of type array|object` and skipping the cleanup when the meta was a scalar - Issue [#1363](https://github.com/lightspeedwp/tour-operator/issues/1363)
+- **Editor showing only one connection on multi-row meta** - CMB2 reads meta as a single value, so a relationship field whose meta was stored as one row per connected ID displayed only the first connection, and saving wrote that one value over all the others. The connection fields now feed CMB2 every stored row via `cmb2_override_{$field_id}_meta_value` - Issue [#1363](https://github.com/lightspeedwp/tour-operator/issues/1363)
+- **Row duplication on the edited post's own relationship key** - CMB2 saves with `update_post_meta()`, which rewrites every existing row for a key, so saving a post whose relationship meta was held across several rows produced that many rows each holding the full array. The key is now collapsed before CMB2 writes it - Issue [#1363](https://github.com/lightspeedwp/tour-operator/issues/1363)
 
 #### Data Integrity
 - **Fatal error deleting any post that has meta** - `Query_Loop` registered its four-argument `maybe_flush_featured_cache_on_meta_change()` callback on the legacy `deleted_postmeta` hook, which passes only the meta IDs. WordPress therefore called a four-argument method with one argument, raising `ArgumentCountError: Too few arguments`. Every path reaching `delete_metadata_by_mid()` fatalled, `wp_delete_post()` included, so deleting a post with any postmeta was a hard fatal regardless of the meta key - the callback's own `$meta_key` guard is never reached, because the error happens on invocation. Now uses the canonical `deleted_post_meta`, which passes four arguments - Issue [#1370](https://github.com/lightspeedwp/tour-operator/issues/1370)

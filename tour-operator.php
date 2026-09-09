@@ -73,6 +73,14 @@ spl_autoload_register('tour_operator_autoload_class', true, false);
 // Init Plugin.
 tour_operator();
 
+// Relationship meta maintenance command.
+if (defined('WP_CLI') && WP_CLI) {
+	\WP_CLI::add_command(
+		'tour-operator normalise-relationships',
+		array(new \lsx\legacy\Relationship_CLI(), 'normalise_relationships')
+	);
+}
+
 /**
  * Include sticky menu block filters. This adds mobile section headers to group blocks.
  */
