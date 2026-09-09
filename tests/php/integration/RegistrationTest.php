@@ -95,7 +95,7 @@ class RegistrationTest extends Tour_Operator_Test_Case
 		// list. Patterns::register_block_patterns() keys each pattern as
 		// 'lsx-tour-operator/' plus the filename, so the directory is the source of
 		// truth; a hardcoded list silently drifts when a pattern is added or renamed.
-		$pattern_files = glob(dirname(__DIR__, 2) . '/patterns/*.php');
+		$pattern_files = glob(dirname(__DIR__, 3) . '/patterns/*.php');
 		$this->assertNotEmpty($pattern_files, 'The patterns directory should contain patterns');
 
 		$expected_patterns = array();

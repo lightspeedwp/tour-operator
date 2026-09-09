@@ -240,7 +240,7 @@ npm run test:php:registration # Registration tests only
 
 # Direct PHPUnit usage
 ./vendor/bin/phpunit
-./vendor/bin/phpunit tests/php/RegistrationTest.php
+composer test:wp:downgrade && composer test:wp
 ./vendor/bin/phpunit --filter test_post_types_registered
 ```
 

@@ -15,9 +15,11 @@
              A new test file is included automatically by being named *Test.php. -->
         <testsuite name="Simple Tests">
             <directory>./tests/php</directory>
-            <!-- These need the WordPress test bootstrap; see phpunit.xml. -->
-            <exclude>./tests/php/RegistrationTest.php</exclude>
-            <exclude>./tests/php/TourOperatorBasicTest.php</exclude>
+            <!-- Everything needing a real WordPress lives in integration/ and is run
+                 by phpunit.xml instead. Excluding the directory rather than naming
+                 files means a new integration test cannot be collected here by
+                 accident. -->
+            <exclude>./tests/php/integration</exclude>
         </testsuite>
     </testsuites>
 

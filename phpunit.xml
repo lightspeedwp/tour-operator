@@ -25,8 +25,7 @@
 
     <testsuites>
         <testsuite name="Tour Operator Plugin Test Suite">
-            <file>./tests/php/TourOperatorBasicTest.php</file>
-            <file>./tests/php/RegistrationTest.php</file>
+            <directory>./tests/php/integration</directory>
         </testsuite>
     </testsuites>
 
