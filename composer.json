@@ -36,6 +36,11 @@
     "license": "GPL-3.0-or-later",
     "prefer-stable": true,
     "minimum-stability": "dev",
+    "extra": {
+        "installer-paths": {
+            "vendor/roots/wordpress-no-content/": ["roots/wordpress-no-content"]
+        }
+    },
     "config": {
         "allow-plugins": {
             "composer/installers": true,

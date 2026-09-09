@@ -128,17 +128,5 @@ jobs:
       - name: Resolve PHPUnit 9 for the WordPress test suite
         run: composer test:wp:downgrade
 
-      - name: Wait for the database
-        run: |
-          for i in $(seq 1 30); do
-            if mysqladmin ping -h 127.0.0.1 -u root -proot --silent; then
-              echo "database is up"
-              exit 0
-            fi
-            sleep 2
-          done
-          echo "database did not become ready" >&2
-          exit 1
-
       - name: PHPUnit (WordPress integration)
         run: composer test:wp
