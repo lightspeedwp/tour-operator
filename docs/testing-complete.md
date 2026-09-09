@@ -61,10 +61,7 @@ Validates GitHub Actions workflows and YAML configuration files for syntax and b
 ### Quick Start
 
 ```bash
-# Run all tests
-npm test
-
-# Run comprehensive test suite
+# Run everything: PHPUnit, Jest and Playwright
 npm test
 ```
 
@@ -72,21 +69,26 @@ npm test
 
 #### PHPUnit Tests
 
+The two suites run on different PHPUnit majors, because the WordPress core test
+suite supports PHPUnit 8 and 9 only. Run them separately:
+
 ```bash
-# Run all PHPUnit tests
-npm run test:php
+# Standalone suite: no WordPress, no database
+composer test
 
-# Run specific test file
+# WordPress integration suite: needs a database, and PHPUnit 9
 composer test:wp:downgrade && composer test:wp
+```
 
-# Run with PHPUnit directly
-./vendor/bin/phpunit
+Narrow a run with `--filter`, naming the config explicitly so the right suite is
+picked up:
 
-# Run specific test class
-composer test:wp:downgrade && composer test:wp
+```bash
+# One standalone test class
+./vendor/bin/phpunit -c phpunit-simple.xml --filter SimpleFunctionsTest
 
-# Run specific test method
-./vendor/bin/phpunit --filter test_post_types_registered
+# One integration test method, after the downgrade above
+./vendor/bin/phpunit -c phpunit.xml --filter test_post_types_registered
 ```
 
 #### Jest Tests

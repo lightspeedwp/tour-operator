@@ -228,20 +228,18 @@ YAML rules are in `.yamllint` - no additional setup needed.
 
 ```bash
 npm test            # PHPUnit + Jest + Playwright
-npm test    # All PHPUnit tests + Jest + Playwright
 ```
 
 ### PHPUnit (PHP Backend)
 
 ```bash
-npm run test:php              # Single test file
-npm run test:php          # All PHPUnit tests
-composer test:wp:downgrade && composer test:wp # Registration tests only
+npm run test:php                                # Standalone PHPUnit suite
+composer test:wp:downgrade && composer test:wp  # WordPress integration suite
 
-# Direct PHPUnit usage
-./vendor/bin/phpunit
-composer test:wp:downgrade && composer test:wp
-./vendor/bin/phpunit --filter test_post_types_registered
+# Direct PHPUnit usage. Always name the config: a bare `phpunit` picks up
+# phpunit.xml, which is the integration suite and needs PHPUnit 9 plus a database.
+./vendor/bin/phpunit -c phpunit-simple.xml --filter SimpleFunctionsTest
+./vendor/bin/phpunit -c phpunit.xml --filter test_post_types_registered
 ```
 
 ### Jest (JavaScript)
