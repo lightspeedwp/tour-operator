@@ -24,7 +24,7 @@
 
 use PHPUnit\Framework\TestCase;
 
-class TestItineraryEditorPerformance extends TestCase
+class ItineraryEditorPerformanceTest extends TestCase
 {
 	/** @var array The built tour metabox config. */
 	private static $metabox;

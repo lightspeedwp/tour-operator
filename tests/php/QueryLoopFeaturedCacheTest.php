@@ -3,7 +3,7 @@
 /**
  * Unit tests for Query_Loop's featured-query cache-generation logic.
  *
- * Runs without a WordPress environment (see TestSimpleFunctions.php for the same
+ * Runs without a WordPress environment (see SimpleFunctionsTest.php for the same
  * approach): the handful of WP functions the class calls are stubbed with a
  * simple in-memory array so the actual class methods under test are exercised
  * directly, not a re-implementation of them.
@@ -133,7 +133,7 @@ require_once dirname( __DIR__, 2 ) . '/includes/classes/blocks/class-query-loop.
  *
  * @since 2.3.0
  */
-class TestQueryLoopFeaturedCache extends TestCase {
+class QueryLoopFeaturedCacheTest extends TestCase {
 
 	/**
 	 * Reflection handle on Query_Loop::get_featured_cache_generation(), which

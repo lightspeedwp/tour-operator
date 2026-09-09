@@ -83,7 +83,7 @@ npm run test:php:registration
 ./vendor/bin/phpunit
 
 # Run specific test class
-./vendor/bin/phpunit tests/php/TestRegistration.php
+./vendor/bin/phpunit tests/php/RegistrationTest.php
 
 # Run specific test method
 ./vendor/bin/phpunit --filter test_post_types_registered

@@ -19,10 +19,10 @@
                 "@phpcs"
             ],
     "phpcs:baseline": "vendor/bin/phpcs -d memory_limit=1G tour-operator.php includes templates post-types src --report=checkstyle --report-file=phpcs-baseline.xml || true",
-      "test": "vendor/bin/phpunit --no-configuration tests/php/TestSimpleFunctions.php",
-      "test:simple": "vendor/bin/phpunit --no-configuration tests/php/TestSimpleFunctions.php",
+      "test": "vendor/bin/phpunit -c phpunit-simple.xml",
+      "test:simple": "vendor/bin/phpunit -c phpunit-simple.xml",
       "test:wp": "./bin/run-wp-tests.sh",
-      "test:coverage": "vendor/bin/phpunit --no-configuration --coverage-html tests/coverage tests/php/TestSimpleFunctions.php",
+      "test:coverage": "vendor/bin/phpunit -c phpunit-simple.xml --coverage-html tests/coverage",
       "test:unit": "vendor/bin/phpunit -c phpunit.xml --testsuite='Tour Operator Plugin Test Suite'"
     },
     "repositories": [

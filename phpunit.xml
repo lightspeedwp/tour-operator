@@ -9,7 +9,7 @@
 
     <testsuites>
         <testsuite name="Tour Operator Plugin Test Suite">
-            <file>./tests/php/TestTourOperatorBasic.php</file>
+            <file>./tests/php/TourOperatorBasicTest.php</file>
         </testsuite>
     </testsuites>
 
