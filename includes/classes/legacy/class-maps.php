@@ -91,8 +91,6 @@ class Maps
 			$api_key = $settings['googlemaps_key'];
 		}
 
-		do_action( 'qm/debug', $api_key );
-
 		if (defined('SCRIPT_DEBUG') && SCRIPT_DEBUG) {
 			$prefix = 'src/js/';
 			$suffix = '';
@@ -121,8 +119,6 @@ class Maps
 		);
 
 		$dependacies = array('jquery', 'lsx_to_google_maps_api', 'lsx_to_google_marker_cluster');
-
-		do_action( 'qm/debug', LSX_TO_URL . $prefix . 'maps' . $suffix . '.js' );
 
 		wp_register_script(
 			'lsx_to_maps',

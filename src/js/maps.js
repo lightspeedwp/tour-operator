@@ -9,6 +9,9 @@ var LSX_TO_Maps = {
     initThis() {
         const $map = jQuery('.lsx-map:eq(0)');
 
+		console.log(jQuery('.lsx-map'));
+		console.log($map);
+
         const lat = Number($map.attr('data-lat'));
         const lng = Number($map.attr('data-long'));
         const zoom = Number($map.attr('data-zoom'));
@@ -511,14 +514,11 @@ var LSX_TO_Maps = {
     },
 
     watchMapTriggers() {
-		console.log(jQuery('.lsx-map-preview a'));
         jQuery('.lsx-map-preview a').on('click', function (event) {
-			console.log(this);
             event.preventDefault();
 			LSX_TO_Maps.initThis();
             /*jQuery.getScript(lsx_to_maps_params.google_url, function () {
                 jQuery.getScript(lsx_to_maps_params.google_cluster_url);
-                
             });*/
         });
     },
