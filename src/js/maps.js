@@ -511,12 +511,15 @@ var LSX_TO_Maps = {
     },
 
     watchMapTriggers() {
+		console.log(jQuery('.lsx-map-preview a'));
         jQuery('.lsx-map-preview a').on('click', function (event) {
+			console.log(this);
             event.preventDefault();
-            jQuery.getScript(lsx_to_maps_params.google_url, function () {
+			LSX_TO_Maps.initThis();
+            /*jQuery.getScript(lsx_to_maps_params.google_url, function () {
                 jQuery.getScript(lsx_to_maps_params.google_cluster_url);
-                LSX_TO_Maps.initThis();
-            });
+                
+            });*/
         });
     },
 };
