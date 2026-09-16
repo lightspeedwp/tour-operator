@@ -235,26 +235,6 @@ if (! function_exists('lsx_to_map')) {
 			//return $map;
 		}
 
-		/*$map_data = get_transient(get_the_ID() . '_location');
-
-		do_action('qm/debug', $map_data);
-
-		if (! is_array($map_data) || ! isset($map_data['args']) || ! is_array($map_data['args'])) {
-			if (false === $echo) {
-				return '';
-			}
-			return;
-		}
-
-		do_action('qm/debug', $map_data);
-
-		$map_override = apply_filters('lsx_to_map_override', false);
-		if (false === $map_override) {
-			$map = tour_operator()->frontend->maps->map_output(get_the_ID(), $map_data['args']);
-		} else {
-			$map = $map_override;
-		}*/
-
 		if (true === $echo) {
 			// @codingStandardsIgnoreLine
 			echo $before . $map . $after;
