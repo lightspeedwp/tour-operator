@@ -70,6 +70,7 @@ if (! function_exists('lsx_to_map')) {
 		if (false !== $location) {
 			$map          = '';
 			$map_override = apply_filters('lsx_to_map_override', false);
+			
 			if (false === $map_override) {
 				$zoom = 15;
 				if (is_array($location) && isset($location['zoom'])) {
@@ -231,23 +232,7 @@ if (! function_exists('lsx_to_map')) {
 			} else {
 				$map = $map_override;
 			}
-			return;
-		}
-
-		$map_data = get_transient(get_the_ID() . '_location');
-
-		if (! is_array($map_data) || ! isset($map_data['args']) || ! is_array($map_data['args'])) {
-			if (false === $echo) {
-				return '';
-			}
-			return;
-		}
-
-		$map_override = apply_filters('lsx_to_map_override', false);
-		if (false === $map_override) {
-			$map = tour_operator()->frontend->maps->map_output(get_the_ID(), $map_data['args']);
-		} else {
-			$map = $map_override;
+			//return $map;
 		}
 
 		if (true === $echo) {

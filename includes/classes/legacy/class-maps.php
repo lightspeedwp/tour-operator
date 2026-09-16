@@ -72,12 +72,14 @@ class Maps
 			'tour',
 		);
 		add_filter('lsx_to_maps_tour_connections', [$this, 'map_start_end_points'], 40, 1);
+		add_action('wp_enqueue_scripts', [$this, 'register_assets']);
 	}
 
 	/**
-	 * Enques the assets
+	 * Registers the assets, so they are ready to be enqueued on demand
+	 * from map_output() when a map is actually rendered.
 	 */
-	public function assets()
+	public function register_assets()
 	{
 		if ($this->is_a_bot() || ! lsx_to_has_map() || true === apply_filters('lsx_to_disable_map_js', false)) {
 			return;
@@ -98,11 +100,27 @@ class Maps
 			// $suffix = '.min';
 		}
 
-		$dependacies           = array('jquery');
 		$google_url            = 'https://maps.googleapis.com/maps/api/js?key=' . $api_key . '&libraries=places';
 		$google_marker_cluster = LSX_TO_URL . 'assets/js/vendor/google-markerCluster.js';
 
-		wp_enqueue_script(
+		wp_register_script(
+			'lsx_to_google_maps_api',
+			$google_url,
+			array(),
+			null,
+			true
+		);
+		wp_register_script(
+			'lsx_to_google_marker_cluster',
+			$google_marker_cluster,
+			array('jquery'),
+			LSX_TO_VER,
+			true
+		);
+
+		$dependacies = array('jquery', 'lsx_to_google_maps_api', 'lsx_to_google_marker_cluster');
+
+		wp_register_script(
 			'lsx_to_maps',
 			LSX_TO_URL . $prefix . 'maps' . $suffix . '.js',
 			$dependacies,
@@ -160,7 +178,7 @@ class Maps
 		);
 
 		$args        = wp_parse_args($args, $defaults);
-		$map_classes = array_merge(['lsx-map'], $args['classes']);
+		$map_classes = array_merge(['lsx-map-details'], $args['classes']);
 
 		if (true === $args['disable_auto_zoom']) {
 			$map_classes[] = 'disable-auto-zoom';
@@ -249,7 +267,7 @@ class Maps
 			$map .= '</div>';
 			$map .= '</div>';
 
-			$this->assets();
+			wp_enqueue_script('lsx_to_maps');
 
 			return $map;
 		}
