@@ -139,6 +139,9 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								style: {
+									display: "none"
+								}
                             },
                             [],
                         ],
