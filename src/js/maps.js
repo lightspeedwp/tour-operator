@@ -10,9 +10,6 @@ var LSX_TO_Maps = {
         const $map        = jQuery('.lsx-map:eq(0)');
 		const $mapDetails = $map.find('.lsx-map-details');
 
-		console.log($map);
-		console.log($mapDetails);
-
         const lat  = Number($mapDetails.attr('data-lat'));
         const lng  = Number($mapDetails.attr('data-long'));
         const zoom = Number($mapDetails.attr('data-zoom'));
@@ -125,8 +122,6 @@ var LSX_TO_Maps = {
             }
         }
 
-		console.log(this.bounds);
-
         //Do we fit to the screen or center the view.
         if (
             !$map.hasClass('disable-auto-zoom') &&
@@ -137,7 +132,6 @@ var LSX_TO_Maps = {
                 this.setBounds();
             } else {
                 this.latlng = this.bounds[0];
-                console.log(this.latlng);
                 this.setCenter();
             }
             $footerMap.css('height', height);
@@ -378,10 +372,6 @@ var LSX_TO_Maps = {
 
                     let icon_url = jQuery(this).attr('data-icon');
 
-                    console.log(icon_url);
-                    console.log(counter);
-                    console.log(marker_length);
-
                     if (
                         'route' == $this.type &&
                         (0 == counter || marker_length == counter)
@@ -447,8 +437,6 @@ var LSX_TO_Maps = {
     },
 
     createMarker(position, icon) {
-        console.log(position);
-        console.log(jQuery(position.title).text());
         const marker = new google.maps.Marker({
             position: position.marker,
             map: this.mapObj,
@@ -493,12 +481,10 @@ var LSX_TO_Maps = {
     },
 
     addRoute(kml) {
-        console.log(kml);
-        const ctaLayer = new google.maps.KmlLayer({
+        new google.maps.KmlLayer({
             url: kml,
             map: this.mapObj,
         });
-        console.log(ctaLayer);
         this.resizeThis();
     },
 
