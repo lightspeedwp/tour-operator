@@ -178,7 +178,7 @@ class Maps
 		);
 
 		$args        = wp_parse_args($args, $defaults);
-		$map_classes = array_merge(['lsx-map'], $args['classes']);
+		$map_classes = array_merge(['lsx-map-details'], $args['classes']);
 
 		if (true === $args['disable_auto_zoom']) {
 			$map_classes[] = 'disable-auto-zoom';

@@ -7,26 +7,25 @@ let infowindow,
 
 var LSX_TO_Maps = {
     initThis() {
-        const $map = jQuery('.lsx-map:eq(0)');
+        const $map        = jQuery('.lsx-map:eq(0)');
+		const $mapDetails = $map.find('.lsx-map-details');
 
-		console.log(jQuery('.lsx-map'));
 		console.log($map);
+		console.log($mapDetails);
 
-        const lat = Number($map.attr('data-lat'));
-        const lng = Number($map.attr('data-long'));
-        const zoom = Number($map.attr('data-zoom'));
-        const type = $map.attr('data-type');
-        this.type = type;
+        const lat  = Number($mapDetails.attr('data-lat'));
+        const lng  = Number($mapDetails.attr('data-long'));
+        const zoom = Number($mapDetails.attr('data-zoom'));
+        const type = $mapDetails.attr('data-type');
+        this.type  = type;
 
-        const height = Number($map.attr('data-height'));
-        const banner_class = $map.attr('data-class');
-        const icon_url = $map.attr('data-icon');
-
-        const framework_url = $map.attr('data-url');
-
-        const cluster_small = $map.attr('data-cluster-small');
-        const cluster_medium = $map.attr('data-cluster-medium');
-        const cluster_large = $map.attr('data-cluster-large');
+        const height         = Number($mapDetails.attr('data-height'));
+        const banner_class   = $mapDetails.attr('data-class');
+        const icon_url       = $mapDetails.attr('data-icon');
+        const framework_url  = $mapDetails.attr('data-url');
+        const cluster_small  = $mapDetails.attr('data-cluster-small');
+        const cluster_medium = $mapDetails.attr('data-cluster-medium');
+        const cluster_large  = $mapDetails.attr('data-cluster-large');
 
         if (
             'undefined' == cluster_small &&
@@ -43,13 +42,13 @@ var LSX_TO_Maps = {
 
         // Fusion Tables
         this.fusion_tables_countries = {};
-        this.fusion_tables_colour_border = $map.attr(
+        this.fusion_tables_colour_border = $mapDetails.attr(
             'data-fusion-tables-colour-border'
         );
-        this.fusion_tables_width_border = $map.attr(
+        this.fusion_tables_width_border = $mapDetails.attr(
             'data-fusion-tables-width-border'
         );
-        this.fusion_tables_colour_background = $map.attr(
+        this.fusion_tables_colour_background = $mapDetails.attr(
             'data-fusion-tables-colour-background'
         );
 
@@ -75,8 +74,8 @@ var LSX_TO_Maps = {
 
         const $footerMap = jQuery(banner_class + ':eq(0)');
         $footerMap.css('height', height);
-        if ('route' === type && 'undefined' !== $map.attr('data-kml')) {
-            kml = $map.attr('data-kml');
+        if ('route' === type && 'undefined' !== $mapDetails.attr('data-kml')) {
+            kml = $mapDetails.attr('data-kml');
         }
 
         var snazzyMapsStyle = null,
