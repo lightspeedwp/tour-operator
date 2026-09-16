@@ -125,6 +125,8 @@ var LSX_TO_Maps = {
             }
         }
 
+		console.log(this.bounds);
+
         //Do we fit to the screen or center the view.
         if (
             !$map.hasClass('disable-auto-zoom') &&
