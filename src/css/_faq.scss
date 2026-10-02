@@ -1,0 +1,125 @@
+/**
+ * FAQ Accordion (Yoast FAQ block)
+ *
+ * Collapses the Yoast `yoast/faq-block` into an accordion. The `.is-accordion`
+ * and `.is-open` classes are added by src/js/faq-accordion.js, so without
+ * JavaScript the FAQ stays fully expanded.
+ *
+ * Ported from ls-theme (src/scss/structural/faq.scss). The ls-theme custom
+ * tokens are used first, with fallbacks so the accordion still works on themes
+ * that do not define them.
+ *
+ * @package LightSpeed_Tour_Operator
+ */
+
+.schema-faq {
+	--lsx-to-faq-duration: var(--wp--custom--animation--duration--base, 220ms);
+	--lsx-to-faq-easing: var(--wp--custom--animation--easing--standard, ease);
+	--lsx-to-faq-easing-emphasised: var(--wp--custom--animation--easing--emphasised, cubic-bezier(0.4, 0, 0.2, 1));
+	--lsx-to-faq-accent: var(--wp--custom--color--link--accent, var(--wp--preset--color--primary, currentcolor));
+	--lsx-to-faq-focus: var(--wp--custom--color--focus--ring, var(--lsx-to-faq-accent));
+
+	display: flex;
+	flex-direction: column;
+	gap: var(--wp--preset--spacing--20);
+
+	&.is-accordion {
+
+		.schema-faq-section {
+			--lsx-to-faq-border-rest: var(--wp--custom--color--border--card, color-mix(in srgb, currentcolor 15%, transparent));
+			--lsx-to-faq-border-active: var(--lsx-to-faq-accent);
+
+			position: relative;
+			overflow: hidden;
+			border: 1px solid var(--lsx-to-faq-border-rest);
+			border-radius: var(--wp--preset--border-radius--200, 0.5rem);
+			background: var(--wp--custom--color--surface--card, transparent);
+			box-shadow: none;
+			transition:
+				background-color var(--lsx-to-faq-duration) var(--lsx-to-faq-easing),
+				border-color var(--lsx-to-faq-duration) var(--lsx-to-faq-easing);
+
+			&:hover {
+				border-color: var(--lsx-to-faq-border-active);
+			}
+
+			&.is-open {
+				background: var(--wp--custom--color--surface--card-raised, color-mix(in srgb, currentcolor 4%, transparent));
+				border-color: var(--lsx-to-faq-border-active);
+			}
+
+			&:focus-within {
+				border-color: var(--lsx-to-faq-border-active);
+				box-shadow: 0 0 0 2px var(--lsx-to-faq-focus);
+			}
+		}
+
+		.schema-faq-question {
+			display: flex;
+			align-items: center;
+			gap: var(--wp--preset--spacing--20);
+			margin: 0;
+			padding: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30);
+			font-weight: var(--wp--custom--typography--font-weight--bold, 700);
+			cursor: pointer;
+			transition: inherit;
+
+			&::after {
+				content: "";
+				display: block;
+				flex: none;
+				width: 0.625rem;
+				height: 0.625rem;
+				margin-inline-start: auto;
+				border-right: 2px solid var(--lsx-to-faq-accent);
+				border-bottom: 2px solid var(--lsx-to-faq-accent);
+				transform: translateY(-1px) rotate(45deg);
+				transform-origin: center;
+				transition:
+					transform var(--lsx-to-faq-duration) var(--lsx-to-faq-easing-emphasised),
+					border-color var(--lsx-to-faq-duration) var(--lsx-to-faq-easing);
+			}
+
+			&:focus-visible {
+				outline: 2px solid var(--lsx-to-faq-focus);
+				outline-offset: -2px;
+			}
+		}
+
+		.schema-faq-section.is-open > .schema-faq-question::after {
+			transform: translateY(1px) rotate(-135deg);
+		}
+
+		/*
+		 * max-height rather than grid-template-rows 0fr -> 1fr: the answer is both
+		 * the grid container and its only item, so 0fr never resolves to zero.
+		 * The open cap is generous enough that no realistic answer is clipped.
+		 */
+		.schema-faq-answer {
+			max-height: 0;
+			margin: 0;
+			padding: 0 var(--wp--preset--spacing--30);
+			overflow: hidden;
+			opacity: 0;
+			transition:
+				max-height var(--lsx-to-faq-duration) var(--lsx-to-faq-easing),
+				opacity var(--lsx-to-faq-duration) var(--lsx-to-faq-easing),
+				padding var(--lsx-to-faq-duration) var(--lsx-to-faq-easing);
+		}
+
+		.schema-faq-section.is-open > .schema-faq-answer {
+			max-height: 1000px;
+			padding: 0 var(--wp--preset--spacing--30) var(--wp--preset--spacing--20);
+			opacity: 1;
+		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	.schema-faq.is-accordion .schema-faq-section,
+	.schema-faq.is-accordion .schema-faq-question::after,
+	.schema-faq.is-accordion .schema-faq-answer {
+		transition: none;
+	}
+}
