@@ -57,18 +57,8 @@ class Template_Parts {
 		$fast_facts_exists = false;
 		$modals_exists = false;
 
-		foreach ( $areas as $area ) {
-			if ( isset( $area['area'] ) ) {
-				if ( 'fast-facts' === $area['area'] ) {
-					$fast_facts_exists = true;
-				}
-				if ( 'modals' === $area['area'] ) {
-					$modals_exists = true;
-				}
-			}
-		}
-
-		if ( ! $fast_facts_exists ) {
+		$registered_areas = wp_list_pluck( $areas, 'area' );
+		if ( ! in_array( 'fast-facts', $registered_areas ) ) {
 			$areas[] = [
 				'area'        => 'fast-facts',
 				'label'       => __( 'Fast Facts Sidebar', 'tour-operator' ),
@@ -78,13 +68,23 @@ class Template_Parts {
 			];
 		}
 
-		if ( ! $modals_exists ) {
+		if ( ! in_array( 'modals', $registered_areas ) ) {
 			$areas[] = [
 				'area'        => 'modals',
 				'label'       => __( 'Modals', 'tour-operator' ),
 				'description' => __( 'Template parts for customizing the modals.', 'tour-operator' ),
 				'icon'        => 'welcome-widgets-menus',
 				'area_tag'    => 'div',
+			];
+		}
+
+		if ( ! in_array( 'faq', $registered_areas ) ) {
+			$areas[] = [
+				'area'        => 'faq',
+				'label'       => __( 'FAQ', 'tour-operator' ),
+				'description' => __( 'Template parts for the FAQ area.', 'tour-operator' ),
+				'icon'        => 'phone',
+				'area_tag'    => 'section',
 			];
 		}
 
