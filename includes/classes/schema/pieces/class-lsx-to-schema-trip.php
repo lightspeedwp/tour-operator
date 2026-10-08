@@ -291,22 +291,36 @@ class Trip {
 			// Build itinerary stop list for this day.
 			$stops = array();
 
-			$accom_id = isset( $day['accommodation_to_tour'] ) ? (int) $day['accommodation_to_tour'] : 0;
-			if ( $accom_id > 0 && get_post( $accom_id ) ) {
-				$stops[] = array(
-					'@type' => 'LodgingBusiness',
-					'name'  => get_the_title( $accom_id ),
-					'url'   => get_permalink( $accom_id ),
-				);
-			}
+			do_action( 'qm/debug', $day );
 
-			$dest_id = isset( $day['destination_to_tour'] ) ? (int) $day['destination_to_tour'] : 0;
-			if ( $dest_id > 0 && get_post( $dest_id ) ) {
-				$stops[] = array(
-					'@type' => 'TouristDestination',
-					'name'  => get_the_title( $dest_id ),
-					'url'   => get_permalink( $dest_id ),
-				);
+			if ( isset( $day['accommodation_to_tour'] ) ) {
+				if ( is_array( $day['accommodation_to_tour'] ) ) {
+					$accom_id = array_pop( $day['accommodation_to_tour'] );
+				} else {
+					$accom_id = (int) $day['accommodation_to_tour'];
+				}
+				if ( $accom_id > 0 && get_post( $accom_id ) ) {
+					$stops[] = array(
+						'@type' => 'LodgingBusiness',
+						'name'  => get_the_title( $accom_id ),
+						'url'   => get_permalink( $accom_id ),
+					);
+				}
+			}	
+			
+			if ( isset( $day['destination_to_tour'] ) ) {
+				if ( is_array( $day['destination_to_tour'] ) ) {
+					$dest_id = array_pop( $day['destination_to_tour'] );
+				} else {
+					$dest_id = (int) $day['destination_to_tour'];
+				}
+				if ( $dest_id > 0 && get_post( $dest_id ) ) {
+					$stops[] = array(
+						'@type' => 'TouristDestination',
+						'name'  => get_the_title( $dest_id ),
+						'url'   => get_permalink( $dest_id ),
+					);
+				}
 			}
 
 			if ( ! empty( $stops ) ) {
