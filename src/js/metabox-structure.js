@@ -1,9 +1,9 @@
-! ( function ( $ ) {
-    $( function () {
+!(function ($) {
+    $(function () {
         const get_box = function () {
-            let box = $( '#tour-operator-plugin .inside' );
-            if ( ! box.length ) {
-                box = $( '#lsx-tour-operators .inside' );
+            let box = $('#tour-operator-plugin .inside');
+            if (!box.length) {
+                box = $('#lsx-tour-operators .inside');
             }
             return box;
         };
@@ -15,18 +15,18 @@
             ),
             current_tab = 'general';
 
-        tour_operators.find( '.cmb-row' ).each( function () {
-            const row = $( this ),
-                title = row.find( '.CMB_Title' );
+        tour_operators.find('.cmb-row').each(function () {
+            const row = $(this),
+                title = row.find('.CMB_Title');
 
-            if ( title.length ) {
-                const label = title.find( '.field-title > h3' ).html();
+            if (title.length) {
+                const label = title.find('.field-title > h3').html();
                 current_tab = label
-                    .split( ' ' )
-                    .join( '_' )
-                    .split( '-' )
-                    .join( '_' )
-                    .replace( /[^a-z0-9_]/gi, '' )
+                    .split(' ')
+                    .join('_')
+                    .split('-')
+                    .join('_')
+                    .replace(/[^a-z0-9_]/gi, '')
                     .toLowerCase();
                 tab_wrapper.append(
                     $(
@@ -38,25 +38,25 @@
                     )
                 );
             }
-            row.addClass( 'lsx_tab_' + current_tab );
-        } );
+            row.addClass('lsx_tab_' + current_tab);
+        });
 
         // add tabs.
         tour_operators
-            .prepend( tab_wrapper )
-            .append( '<div class="lsx_tabs_clear"></div>' );
+            .prepend(tab_wrapper)
+            .append('<div class="lsx_tabs_clear"></div>');
 
         // Handle Clicks.
-        $( document ).on( 'click', '.lsx_tab', function () {
-            const clicked = $( this );
+        $(document).on('click', '.lsx_tab', function () {
+            const clicked = $(this);
 
-            $( '.lsx_tab.active' ).removeClass( 'active' ).data( 'tab' );
-            clicked.addClass( 'active' );
-            $( '.cmb-row' ).hide();
-            $( '.cmb-row.lsx_tab_' + clicked.data( 'tab' ) ).show();
-        } );
+            $('.lsx_tab.active').removeClass('active').data('tab');
+            clicked.addClass('active');
+            $('.cmb-row').hide();
+            $('.cmb-row.lsx_tab_' + clicked.data('tab')).show();
+        });
 
         // trigger the init.
-        $( '.lsx_tab' ).first().trigger( 'click' );
-    } );
-} )( jQuery );
+        $('.lsx_tab').first().trigger('click');
+    });
+})(jQuery);

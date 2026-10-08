@@ -1,6 +1,6 @@
 {
   "name": "tour-operator",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "description": "Tour Operators for LSX",
   "author": "LightSpeed",
   "license": "ISC",
@@ -19,44 +19,36 @@
     "url": "https://github.com/lightspeedwp/tour-operator/issues"
   },
   "engines": {
-    "node": ">=24.11.0",
-    "npm": ">=10.0.0"
+    "node": ">=24.20.0",
+    "npm": ">=11.0.0"
   },
   "main": "package-lock.json",
-  "dependencies": {
-    "classnames": "^2.5.1"
-  },
   "devDependencies": {
-    "@babel/cli": "7.28.6",
-    "@babel/core": "7.29.0",
-    "@babel/preset-react": "^7.28.5",
-    "@wordpress/a11y": "4.46.0",
-    "@wordpress/babel-preset-default": "8.46.0",
-    "@wordpress/block-library": "9.46.0",
-    "@wordpress/blocks": "15.18.0",
-    "@wordpress/e2e-test-utils-playwright": "1.46.0",
-    "@wordpress/eslint-plugin": "25.2.0",
-    "@wordpress/i18n": "6.19.0",
-    "@wordpress/jest-preset-default": "12.46.0",
-    "@wordpress/npm-package-json-lint-config": "5.45.0",
-    "@wordpress/prettier-config": "4.46.0",
-    "@wordpress/scripts": "^32.2.0",
-    "@wordpress/stylelint-config": "^23.37.0",
+    "@babel/core": "^7.29.7",
+    "@wordpress/babel-preset-default": "8.54.0",
+    "@wordpress/blocks": "15.27.0",
+    "@wordpress/e2e-test-utils-playwright": "1.54.0",
+    "@wordpress/i18n": "6.27.0",
+    "@wordpress/jest-preset-default": "14.1.0",
+    "@wordpress/npm-package-json-lint-config": "5.54.0",
+    "@wordpress/prettier-config": "4.54.0",
+    "@wordpress/scripts": "^34.2.0",
+    "@wordpress/stylelint-config": "^24.3.0",
     "copy-webpack-plugin": "^14.0.0",
-    "eslint": "10.4.0",
+    "eslint": "10.10.0",
     "jest": "30.4.2",
-    "npm-package-json-lint": "10.4.0",
-    "prettier": "3.8.3",
+    "npm-package-json-lint": "11.0.0",
+    "prettier": "3.9.9",
     "stylelint": "16.26.1",
-    "webpack-cli": "7.0.2",
+    "webpack-cli": "7.2.3",
     "webpack-remove-empty-scripts": "^1.1.1"
   },
   "scripts": {
     "test": "npm run test:php && npm run test:unit && npm run test:e2e",
     "test:all": "npm run test:php:all && npm run test:unit && npm run test:e2e",
-    "test:php": "./vendor/bin/phpunit --no-configuration tests/php/TestSimpleFunctions.php",
+    "test:php": "./vendor/bin/phpunit -c phpunit-simple.xml",
     "test:php:all": "./vendor/bin/phpunit",
-    "test:php:registration": "./vendor/bin/phpunit tests/php/TestRegistration.php",
+    "test:php:registration": "./vendor/bin/phpunit tests/php/RegistrationTest.php",
     "test:unit": "jest",
     "test:unit:watch": "jest --watch",
     "test:unit:coverage": "jest --coverage",
@@ -69,10 +61,10 @@
     "build:pot": "wp i18n make-pot . languages/tour-operator.pot",
     "build:mopo": "rm -R languages/tour-operator-en_EN.mo && cp languages/tour-operator.pot languages/tour-operator-en_EN.po && wp i18n make-mo languages",
     "build:translate-US": "cp languages/tour-operator-en_EN.po languages/tour-operator-en_US.po && cp languages/tour-operator-en_EN.mo languages/tour-operator-en_US.mo",
-    "lint:js": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
-    "lint:js:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
-    "lint:css": "stylelint 'src/**/*.{css,scss}'",
-    "lint:css:fix": "stylelint 'src/**/*.{css,scss}' --fix",
+    "lint:js": "wp-scripts lint-js src",
+    "lint:js:fix": "wp-scripts lint-js src --fix",
+    "lint:css": "wp-scripts lint-style 'src/**/*.{css,scss}'",
+    "lint:css:fix": "wp-scripts lint-style 'src/**/*.{css,scss}' --fix",
     "lint:php": "composer phpcs",
     "lint:php:fix": "composer phpcbf",
     "lint:php:report": "composer phpcs:report",
@@ -82,6 +74,17 @@
     "lint:all": "npm run lint:php && npm run lint:js && npm run lint:css && npm run lint:pkg-json && npm run lint:yaml:workflows",
     "format": "npm run lint:php:fix && wp-scripts format",
     "format:js": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
-    "generate-readme": "node .github/scripts/update-readme.js"
+    "generate-readme": "node .github/scripts/update-readme.js",
+    "lint:version": "node scripts/check-version-sync.mjs"
+  },
+  "overrides": {
+    "linkify-it": "^5.0.2",
+    "adm-zip": "^0.6.0",
+    "fast-uri": "^3.1.6",
+    "serialize-javascript": "^7.0.5",
+    "markdownlint-cli": "^0.49.1",
+    "sockjs": {
+      "uuid": "^11.1.1"
+    }
   }
 }

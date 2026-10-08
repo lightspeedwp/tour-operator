@@ -5,7 +5,7 @@
  * Only available on accommodation post type edit screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -18,14 +18,19 @@ wp.domReady(() => {
             title: __('Check in time', 'tour-operator'),
             icon: 'clock',
             category: 'lsx-tour-operator',
-            description: __('Displays the check-in time for this accommodation.', 'tour-operator'),
+            description: __(
+                'Displays the check-in time for this accommodation.',
+                'tour-operator'
+            ),
             keywords: [
                 __('check in', 'tour-operator'),
                 __('time', 'tour-operator'),
                 __('checkin', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -35,7 +40,7 @@ wp.domReady(() => {
                 layout: {
                     type: 'flex',
                     flexWrap: 'nowrap',
-					verticalAlignment: 'top'
+                    verticalAlignment: 'top',
                 },
             },
             innerBlocks: [
@@ -55,7 +60,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'checkInAccommodationIcon',
                             },
-                        ]
+                        ],
                     ],
                 ],
                 [
@@ -80,8 +85,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefix : __('Check in time: ', 'tour-operator'),
-								prefixBold: true,
+                                prefix: __('Check in time:', 'tour-operator'),
+                                prefixBold: true,
                             },
                         ],
                     ],
@@ -107,13 +112,22 @@ wp.domReady(() => {
                                         name: 'lsx-tour-operator/icons',
                                         attributes: {
                                             iconType: 'solid',
-                                            iconName: 'checkInAccommodationIcon',
+                                            iconName:
+                                                'checkInAccommodationIcon',
                                         },
                                     },
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: '<strong>' + __('Check in time: ', 'tour-operator') + '</strong>' + ' ' + __('11:00 AM', 'tour-operator'),
+                                            content:
+                                                '<strong>' +
+                                                __(
+                                                    'Check in time:',
+                                                    'tour-operator'
+                                                ) +
+                                                '</strong>' +
+                                                ' ' +
+                                                __('11:00 AM', 'tour-operator'),
                                         },
                                     },
                                 ],
@@ -123,7 +137,7 @@ wp.domReady(() => {
                 ],
             },
         });
-    }
+    };
 
     // Initialize conditional registration
     const conditionalRegister = registerForPostTypesAndTemplates(

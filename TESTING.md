@@ -25,7 +25,14 @@ npm run lint:yaml         # YAML validation
 
 **Location:** `tests/php/`
 
-- **TestRegistration.php** - Verifies core WordPress component registration:
+**Naming:** a test file must end in `Test.php`, with the class name matching the file
+name. That is PHPUnit's default discovery suffix, so a correctly named file is picked up
+by `phpunit-simple.xml` automatically, with no config change. A file named any other way
+is collected by nothing and its tests silently never run.
+
+Shared helpers and fixtures belong in `tests/php/utils/`, which discovery ignores.
+
+- **RegistrationTest.php** - Verifies core WordPress component registration:
   - Custom Post Types (tour, accommodation, destination)
   - Taxonomies (travel-style, accommodation-type, etc.)
   - Block Pattern categories and patterns
@@ -231,7 +238,7 @@ npm run test:php:registration # Registration tests only
 
 # Direct PHPUnit usage
 ./vendor/bin/phpunit
-./vendor/bin/phpunit tests/php/TestRegistration.php
+./vendor/bin/phpunit tests/php/RegistrationTest.php
 ./vendor/bin/phpunit --filter test_post_types_registered
 ```
 

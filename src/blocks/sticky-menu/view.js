@@ -4,7 +4,7 @@
  * Provides interactive functionality for the sticky menu block including
  * scroll spy, mobile collapsible sections, and smooth scrolling navigation.
  *
- * @package Tour_Operator
+ * @package
  * @subpackage Blocks
  * @since 2.1.0
  */
@@ -26,16 +26,16 @@ if (typeof lsx_to === 'undefined') {
  *
  * @since 2.1.0
  * @type {Object}
- * @property {string} current_section Currently active section ID.
- * @property {Array} menu_items Array of menu item objects.
- * @property {boolean} is_mobile Whether the interface is in mobile mode.
- * @property {IntersectionObserver|null} observer Intersection observer instance.
+ * @property {string}                    current_section Currently active section ID.
+ * @property {Array}                     menu_items      Array of menu item objects.
+ * @property {boolean}                   is_mobile       Whether the interface is in mobile mode.
+ * @property {IntersectionObserver|null} observer        Intersection observer instance.
  */
 lsx_to.sticky_menu = {
     current_section: '',
     menu_items: [],
     is_mobile: false,
-    observer: null
+    observer: null,
 };
 
 /**
@@ -53,7 +53,9 @@ lsx_to.get_extra_sticky_offset = function () {
     let extra = 0;
 
     // Selectors registered programmatically by themes / plugins.
-    const global_selectors = Array.isArray(window.lsx_to_sticky_offset_selectors)
+    const global_selectors = Array.isArray(
+        window.lsx_to_sticky_offset_selectors
+    )
         ? window.lsx_to_sticky_offset_selectors
         : [];
 
@@ -70,7 +72,9 @@ lsx_to.get_extra_sticky_offset = function () {
         : global_selectors;
 
     all_selectors.forEach(function (selector) {
-        if (!selector) return;
+        if (!selector) {
+            return;
+        }
         const el = document.querySelector(selector);
         if (el) {
             extra += el.offsetHeight;
@@ -90,7 +94,9 @@ lsx_to.get_extra_sticky_offset = function () {
  * @return {number} The applied pixel offset.
  */
 lsx_to.apply_sticky_menu_offset = function () {
-    const sticky_menu_block = document.querySelector('.wp-block-lsx-tour-operator-sticky-menu');
+    const sticky_menu_block = document.querySelector(
+        '.wp-block-lsx-tour-operator-sticky-menu'
+    );
     if (!sticky_menu_block) {
         return 0;
     }
@@ -107,7 +113,9 @@ lsx_to.apply_sticky_menu_offset = function () {
     sticky_menu_block.style.top = `${offset}px`;
 
     // Keep legacy selector support aligned if present in older markup.
-    const legacy_sticky_menu = sticky_menu_block.querySelector('.lsx-to-sticky-menu');
+    const legacy_sticky_menu = sticky_menu_block.querySelector(
+        '.lsx-to-sticky-menu'
+    );
     if (legacy_sticky_menu) {
         legacy_sticky_menu.style.top = `${offset}px`;
     }
@@ -130,12 +138,15 @@ lsx_to.scroll_to_section = function (section_id) {
     if (section) {
         // Calculate offset for admin bar and fixed headers
         let offset = 0;
-        offset += document.querySelector('#wpadminbar') ?
-            document.querySelector('#wpadminbar').offsetHeight : 0;
-        offset += document.querySelector('.top-menu-fixed #masthead') ?
-            document.querySelector('.top-menu-fixed #masthead').offsetHeight : 0;
-        offset += document.querySelector('.lsx-to-navigation') ?
-            document.querySelector('.lsx-to-navigation').offsetHeight : 0;
+        offset += document.querySelector('#wpadminbar')
+            ? document.querySelector('#wpadminbar').offsetHeight
+            : 0;
+        offset += document.querySelector('.top-menu-fixed #masthead')
+            ? document.querySelector('.top-menu-fixed #masthead').offsetHeight
+            : 0;
+        offset += document.querySelector('.lsx-to-navigation')
+            ? document.querySelector('.lsx-to-navigation').offsetHeight
+            : 0;
         offset += lsx_to.get_extra_sticky_offset();
 
         // Use getBoundingClientRect for accurate position relative to viewport
@@ -143,12 +154,14 @@ lsx_to.scroll_to_section = function (section_id) {
         const top = window.pageYOffset + rect.top - offset + 5;
 
         // Check user's motion preference
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const prefersReducedMotion = window.matchMedia(
+            '(prefers-reduced-motion: reduce)'
+        ).matches;
 
         // Smooth scroll to section (respect motion preferences)
         window.scrollTo({
-            top: top,
-            behavior: prefersReducedMotion ? 'auto' : 'smooth'
+            top,
+            behavior: prefersReducedMotion ? 'auto' : 'smooth',
         });
 
         // Update current section
@@ -159,21 +172,24 @@ lsx_to.scroll_to_section = function (section_id) {
         lsx_to.announce_section_change(section_id);
 
         // Focus management: Set focus to the section for keyboard users
-        setTimeout(() => {
-            // Make section focusable temporarily if not already
-            const originalTabIndex = section.getAttribute('tabindex');
-            if (!originalTabIndex) {
-                section.setAttribute('tabindex', '-1');
-            }
+        setTimeout(
+            () => {
+                // Make section focusable temporarily if not already
+                const originalTabIndex = section.getAttribute('tabindex');
+                if (!originalTabIndex) {
+                    section.setAttribute('tabindex', '-1');
+                }
 
-            // Focus the section without scrolling (preventScroll prevents interference)
-            section.focus({ preventScroll: true });
+                // Focus the section without scrolling (preventScroll prevents interference)
+                section.focus({ preventScroll: true });
 
-            // Remove temporary tabindex if we added it
-            if (!originalTabIndex) {
-                section.removeAttribute('tabindex');
-            }
-        }, prefersReducedMotion ? 0 : 500);
+                // Remove temporary tabindex if we added it
+                if (!originalTabIndex) {
+                    section.removeAttribute('tabindex');
+                }
+            },
+            prefersReducedMotion ? 0 : 500
+        );
     }
 };
 
@@ -187,7 +203,9 @@ lsx_to.scroll_to_section = function (section_id) {
  * @param {Element} element The section element or wrapper to toggle.
  */
 lsx_to.toggle_mobile_section = function (element) {
-    if (!element) return;
+    if (!element) {
+        return;
+    }
 
     // Find the wrapper (could be the element itself or its parent)
     let wrapper = element;
@@ -219,7 +237,10 @@ lsx_to.toggle_mobile_section = function (element) {
     // Update header button state
     const header_button = wrapper.querySelector('.lsx-to-section-header');
     if (header_button) {
-        header_button.setAttribute('aria-expanded', new_expanded_state.toString());
+        header_button.setAttribute(
+            'aria-expanded',
+            new_expanded_state.toString()
+        );
     }
 };
 
@@ -231,7 +252,7 @@ lsx_to.toggle_mobile_section = function (element) {
  *
  * @since 2.1.0
  * @param {Element} section The section element.
- * @param {Object} context Section context data including ID and title.
+ * @param {Object}  context Section context data including ID and title.
  */
 lsx_to.add_mobile_header = function (section, context) {
     // Find the wrapper containing this section
@@ -247,18 +268,21 @@ lsx_to.add_mobile_header = function (section, context) {
         return;
     }
 
-
     // Get colors from sticky menu block and apply to header
-    const sticky_menu = document.querySelector('.wp-block-lsx-tour-operator-sticky-menu');
-    const sticky_menu_buttons = sticky_menu ? sticky_menu.querySelectorAll('.lsx-to-sticky-menu-button') : null;
+    const sticky_menu = document.querySelector(
+        '.wp-block-lsx-tour-operator-sticky-menu'
+    );
+    const sticky_menu_buttons = sticky_menu
+        ? sticky_menu.querySelectorAll('.lsx-to-sticky-menu-button')
+        : null;
 
     if (sticky_menu) {
-        const color_classes = Array.from(sticky_menu.classList).filter(className =>
-            className.startsWith('has-') && (
-                className.includes('-color') ||
-                className.includes('-background-color') ||
-                className.includes('-background')
-            )
+        const color_classes = Array.from(sticky_menu.classList).filter(
+            (className) =>
+                className.startsWith('has-') &&
+                (className.includes('-color') ||
+                    className.includes('-background-color') ||
+                    className.includes('-background'))
         );
 
         const computedStyles = window.getComputedStyle(sticky_menu);
@@ -268,7 +292,9 @@ lsx_to.add_mobile_header = function (section, context) {
 
         // get padding from the buttons
         if (sticky_menu_buttons && sticky_menu_buttons.length > 0) {
-            const buttonStyles = window.getComputedStyle(sticky_menu_buttons[0]);
+            const buttonStyles = window.getComputedStyle(
+                sticky_menu_buttons[0]
+            );
             existing_header.style.padding = buttonStyles.padding;
         }
 
@@ -278,7 +304,9 @@ lsx_to.add_mobile_header = function (section, context) {
     }
 
     // check if header button already has click listener
-    const hasClickListener = existing_header.getAttribute('data-has-click-listener');
+    const hasClickListener = existing_header.getAttribute(
+        'data-has-click-listener'
+    );
     if (hasClickListener === 'true') {
         return;
     }
@@ -299,16 +327,16 @@ lsx_to.add_mobile_header = function (section, context) {
                 event.preventDefault();
                 lsx_to.toggle_mobile_section(wrapper);
                 break;
-            case 'Escape':
-                {
-                    event.preventDefault();
-                    // Always collapse on Escape if expanded
-                    const is_expanded = wrapper.getAttribute('aria-expanded') === 'true';
-                    if (is_expanded) {
-                        lsx_to.toggle_mobile_section(wrapper);
-                    }
-                    break;
+            case 'Escape': {
+                event.preventDefault();
+                // Always collapse on Escape if expanded
+                const is_expanded =
+                    wrapper.getAttribute('aria-expanded') === 'true';
+                if (is_expanded) {
+                    lsx_to.toggle_mobile_section(wrapper);
                 }
+                break;
+            }
             default:
                 break;
         }
@@ -326,14 +354,18 @@ lsx_to.add_mobile_header = function (section, context) {
  */
 lsx_to.update_active_menu_item = function (section_id) {
     // Remove active class and aria-current from all menu buttons
-    const menu_buttons = document.querySelectorAll('.wp-block-lsx-tour-operator-sticky-menu .lsx-to-sticky-menu-button');
-    menu_buttons.forEach(button => {
+    const menu_buttons = document.querySelectorAll(
+        '.wp-block-lsx-tour-operator-sticky-menu .lsx-to-sticky-menu-button'
+    );
+    menu_buttons.forEach((button) => {
         button.classList.remove('active');
         button.setAttribute('aria-current', 'false');
     });
 
     // Add active class and aria-current to current menu button
-    const active_button = document.querySelector(`.wp-block-lsx-tour-operator-sticky-menu .lsx-to-sticky-menu-button[data-section-id="${section_id}"]`);
+    const active_button = document.querySelector(
+        `.wp-block-lsx-tour-operator-sticky-menu .lsx-to-sticky-menu-button[data-section-id="${section_id}"]`
+    );
     if (active_button) {
         active_button.classList.add('active');
         active_button.setAttribute('aria-current', 'location');
@@ -351,7 +383,9 @@ lsx_to.update_active_menu_item = function (section_id) {
  */
 lsx_to.get_active_section_on_scroll = function () {
     const sections = document.querySelectorAll('[data-sticky-menu-section]');
-    if (sections.length === 0) return null;
+    if (sections.length === 0) {
+        return null;
+    }
 
     // Calculate offset for admin bar and fixed headers
     let offset = 10; // Base offset
@@ -359,9 +393,15 @@ lsx_to.get_active_section_on_scroll = function () {
     const masthead = document.querySelector('.top-menu-fixed #masthead');
     const stickyMenu = document.querySelector('.lsx-to-navigation');
 
-    if (adminBar) offset += adminBar.offsetHeight;
-    if (masthead) offset += masthead.offsetHeight;
-    if (stickyMenu) offset += stickyMenu.offsetHeight;
+    if (adminBar) {
+        offset += adminBar.offsetHeight;
+    }
+    if (masthead) {
+        offset += masthead.offsetHeight;
+    }
+    if (stickyMenu) {
+        offset += stickyMenu.offsetHeight;
+    }
     offset += lsx_to.get_extra_sticky_offset();
 
     let activeSection = null;
@@ -369,10 +409,10 @@ lsx_to.get_active_section_on_scroll = function () {
 
     // Find the section that is currently in view
     // The section whose top is closest to (but not below) the offset line is active
-    Array.from(sections).forEach(section => {
+    Array.from(sections).forEach((section) => {
         const rect = section.getBoundingClientRect();
         const sectionTop = rect.top;
-        
+
         // Check if section top is above or at the offset line
         if (sectionTop <= offset) {
             const distance = offset - sectionTop;
@@ -401,7 +441,9 @@ lsx_to.get_active_section_on_scroll = function () {
  * @since 2.1.0
  */
 lsx_to.handle_scroll_spy = function () {
-    if (lsx_to.sticky_menu.is_mobile) return;
+    if (lsx_to.sticky_menu.is_mobile) {
+        return;
+    }
 
     const activeSection = lsx_to.get_active_section_on_scroll();
 
@@ -433,7 +475,9 @@ lsx_to.initialize_scroll_spy = function () {
         } else {
             lsx_to.cleanup_mobile_sections();
             // Add scroll listener for desktop
-            window.addEventListener('scroll', lsx_to.handle_scroll_spy, { passive: true });
+            window.addEventListener('scroll', lsx_to.handle_scroll_spy, {
+                passive: true,
+            });
             // Initial check
             lsx_to.handle_scroll_spy();
         }
@@ -444,42 +488,63 @@ lsx_to.initialize_scroll_spy = function () {
 
     // Initialize Intersection Observer for scroll spy (desktop only)
     if (!lsx_to.sticky_menu.is_mobile) {
-        const sections = document.querySelectorAll('[data-sticky-menu-section]');
+        const sections = document.querySelectorAll(
+            '[data-sticky-menu-section]'
+        );
 
         // Only set up observer if sections exist
         if (sections.length > 0) {
             // Calculate offset for sticky headers
             let offset = 0;
             const adminBar = document.querySelector('#wpadminbar');
-            const masthead = document.querySelector('.top-menu-fixed #masthead');
+            const masthead = document.querySelector(
+                '.top-menu-fixed #masthead'
+            );
             const stickyMenu = document.querySelector('.lsx-to-navigation');
 
-            if (adminBar) offset += adminBar.offsetHeight;
-            if (masthead) offset += masthead.offsetHeight;
-            if (stickyMenu) offset += stickyMenu.offsetHeight;
+            if (adminBar) {
+                offset += adminBar.offsetHeight;
+            }
+            if (masthead) {
+                offset += masthead.offsetHeight;
+            }
+            if (stickyMenu) {
+                offset += stickyMenu.offsetHeight;
+            }
             offset += lsx_to.get_extra_sticky_offset();
 
             // Convert offset to percentage for rootMargin
-            const offsetPercentage = Math.min(50, Math.max(10, (offset / window.innerHeight) * 100));
+            const offsetPercentage = Math.min(
+                50,
+                Math.max(10, (offset / window.innerHeight) * 100)
+            );
 
             const observer_options = {
                 root: null,
                 rootMargin: `-${offsetPercentage}% 0px -${100 - offsetPercentage}% 0px`,
-                threshold: [0, 0.1, 0.25, 0.5, 0.75, 1.0]
+                threshold: [0, 0.1, 0.25, 0.5, 0.75, 1.0],
             };
 
-            lsx_to.sticky_menu.observer = new IntersectionObserver(function (entries) {
+            lsx_to.sticky_menu.observer = new IntersectionObserver(function (
+                entries
+            ) {
                 // Sort entries by their position in the viewport
                 const visibleSections = entries
-                    .filter(entry => entry.isIntersecting)
-                    .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+                    .filter((entry) => entry.isIntersecting)
+                    .sort(
+                        (a, b) =>
+                            a.boundingClientRect.top - b.boundingClientRect.top
+                    );
 
                 if (visibleSections.length > 0) {
                     // Get the topmost visible section
                     const topSection = visibleSections[0];
                     const sectionId = topSection.target.id;
 
-                    if (sectionId && lsx_to.sticky_menu.current_section !== sectionId) {
+                    if (
+                        sectionId &&
+                        lsx_to.sticky_menu.current_section !== sectionId
+                    ) {
                         lsx_to.sticky_menu.current_section = sectionId;
                         lsx_to.update_active_menu_item(sectionId);
                     }
@@ -495,18 +560,24 @@ lsx_to.initialize_scroll_spy = function () {
             setTimeout(() => {
                 // Find all visible sections
                 const visibleSections = Array.from(sections)
-                    .filter(section => {
+                    .filter((section) => {
                         const rect = section.getBoundingClientRect();
                         return rect.top <= offset + 50 && rect.bottom >= offset;
                     })
                     .sort((a, b) => {
                         // Sort by position - topmost first
-                        return a.getBoundingClientRect().top - b.getBoundingClientRect().top;
+                        return (
+                            a.getBoundingClientRect().top -
+                            b.getBoundingClientRect().top
+                        );
                     });
 
                 // Use the topmost visible section, or the first section if none are visible
-                const activeSection = visibleSections.length > 0 ? visibleSections[0] : sections[0];
-                
+                const activeSection =
+                    visibleSections.length > 0
+                        ? visibleSections[0]
+                        : sections[0];
+
                 if (activeSection) {
                     lsx_to.sticky_menu.current_section = activeSection.id;
                     lsx_to.update_active_menu_item(activeSection.id);
@@ -537,12 +608,14 @@ lsx_to.update_menu_items = function () {
         return;
     }
 
-    lsx_to.sticky_menu.menu_items = Array.from(sections).map(function (section) {
-        return {
-            id: section.id,
-            title: section.getAttribute('data-section-title') || section.id
-        };
-    });
+    lsx_to.sticky_menu.menu_items = Array.from(sections).map(
+        function (section) {
+            return {
+                id: section.id,
+                title: section.getAttribute('data-section-title') || section.id,
+            };
+        }
+    );
 };
 
 /**
@@ -554,7 +627,9 @@ lsx_to.update_menu_items = function () {
  * @since 2.1.0
  */
 lsx_to.setup_menu_click_handlers = function () {
-    const menu_items = document.querySelectorAll('.wp-block-lsx-tour-operator-sticky-menu .lsx-to-sticky-menu-item');
+    const menu_items = document.querySelectorAll(
+        '.wp-block-lsx-tour-operator-sticky-menu .lsx-to-sticky-menu-item'
+    );
 
     // Check if menu items exist before setting up handlers
     if (menu_items.length === 0) {
@@ -569,7 +644,10 @@ lsx_to.setup_menu_click_handlers = function () {
             const section_title = button.textContent.trim();
 
             // Add descriptive aria-label
-            button.setAttribute('aria-label', `Navigate to ${section_title} section`);
+            button.setAttribute(
+                'aria-label',
+                `Navigate to ${section_title} section`
+            );
 
             // Add role and aria-current for active state
             button.setAttribute('role', 'tab');
@@ -612,12 +690,13 @@ lsx_to.initialize_mobile_sections = function () {
     }
 
     sections.forEach(function (section, index) {
-        const section_title = section.getAttribute('data-section-title') || section.id;
+        const section_title =
+            section.getAttribute('data-section-title') || section.id;
         const is_first_section = index === 0;
         const context = {
             section_id: section.id,
-            section_title: section_title,
-            is_collapsed: !is_first_section
+            section_title,
+            is_collapsed: !is_first_section,
         };
 
         // Find the wrapper (new structure) or use section (legacy)
@@ -716,9 +795,9 @@ lsx_to.announce_section_change = function (section_id) {
 
     // Get section title for announcement
     const section = document.getElementById(section_id);
-    const section_title = section ?
-        (section.getAttribute('data-section-title') || section_id) :
-        section_id;
+    const section_title = section
+        ? section.getAttribute('data-section-title') || section_id
+        : section_id;
 
     // Announce the change
     announcer.textContent = `Navigated to ${section_title} section`;
@@ -739,7 +818,9 @@ lsx_to.announce_section_change = function (section_id) {
  */
 lsx_to.initialize_sticky_menu = function () {
     // Only initialize if sticky menu block exists
-    const sticky_menu_block = document.querySelector('.wp-block-lsx-tour-operator-sticky-menu');
+    const sticky_menu_block = document.querySelector(
+        '.wp-block-lsx-tour-operator-sticky-menu'
+    );
     if (!sticky_menu_block) {
         return;
     }
@@ -750,21 +831,22 @@ lsx_to.initialize_sticky_menu = function () {
     const sections = document.querySelectorAll('[data-sticky-menu-section]');
     if (sections.length === 0) {
         return;
-    } else {
-        for (const menuItem of sticky_menu_block.querySelectorAll('.lsx-to-sticky-menu-button')) {
-            const sectionId = menuItem.getAttribute('data-section-id');
-            const correspondingSection = document.getElementById(sectionId);
-
-            if (correspondingSection) {
-                menuItem.style.display = 'block';
-            } else {
-                menuItem.style.display = 'none';
-            }
-        }
-
-        // change the opacity of the sticky menu to 1
-        sticky_menu_block.style.opacity = '1';
     }
+    for (const menuItem of sticky_menu_block.querySelectorAll(
+        '.lsx-to-sticky-menu-button'
+    )) {
+        const sectionId = menuItem.getAttribute('data-section-id');
+        const correspondingSection = document.getElementById(sectionId);
+
+        if (correspondingSection) {
+            menuItem.style.display = 'block';
+        } else {
+            menuItem.style.display = 'none';
+        }
+    }
+
+    // change the opacity of the sticky menu to 1
+    sticky_menu_block.style.opacity = '1';
 
     // Small delay to ensure all blocks are rendered
     setTimeout(function () {

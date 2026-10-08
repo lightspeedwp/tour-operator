@@ -9,6 +9,10 @@
 
 namespace lsx\frontend;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Class Modals
  *
@@ -316,11 +320,22 @@ class Modals {
 
 		if ( get_post_type() === 'destination' && in_array( $meta_key, $ti_keys ) ) {
 
-			$title = $meta_key;
-			if ( 'additional_info' === $title ) {
-				$title = 'general';
-			}
-			$this->modal_contents[ $meta_key ] = '<h2 class="wp-block-heading" style="margin-top:0px;padding-right: 0px; padding-left: 0px;">' . ucwords( $title ) . '</h2>' . $html;
+			$titles = [
+				'electricity'      => __( 'Electricity', 'tour-operator' ),
+				'banking'          => __( 'Banking', 'tour-operator' ),
+				'cuisine'          => __( 'Cuisine', 'tour-operator' ),
+				'climate'          => __( 'Climate', 'tour-operator' ),
+				'transport'        => __( 'Transport', 'tour-operator' ),
+				'dress'            => __( 'Dress', 'tour-operator' ),
+				'health'           => __( 'Health', 'tour-operator' ),
+				'safety'           => __( 'Safety', 'tour-operator' ),
+				'visa'             => __( 'Visa', 'tour-operator' ),
+				'additional_info'  => __( 'General', 'tour-operator' ),
+			];
+			$titles = apply_filters( 'lsx_to_travel_info_modal_titles', $titles );
+			$title = $titles[ $meta_key ] ?? ucwords( $meta_key );
+
+			$this->modal_contents[ $meta_key ] = '<h2 class="wp-block-heading" style="margin-top:0px;padding-right: 0px; padding-left: 0px;">' . esc_html( $title ) . '</h2>' . $html;
 
 			$value = wp_trim_excerpt( wp_strip_all_tags( $html ) );
 			$value = str_replace( '<br>', ' ', $value );

@@ -9,6 +9,10 @@
 
 namespace lsx\frontend;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Class Taxonomy_Images
  *
@@ -179,7 +183,7 @@ class Taxonomy_Images {
 		if ( $is_link ) {
 			$term = get_term( $term_id );
 			if ( $term && ! is_wp_error( $term ) ) {
-				$attr['alt'] = trim( strip_tags( $term->name ) );
+				$attr['alt'] = trim( wp_strip_all_tags( $term->name ) );
 			} else {
 				$attr['alt'] = sprintf(
 					// translators: %d is the term ID.

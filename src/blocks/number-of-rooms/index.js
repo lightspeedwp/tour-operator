@@ -5,7 +5,7 @@
  * Available across accommodation post types and templates.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 import { __ } from '@wordpress/i18n';
 import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
@@ -17,14 +17,19 @@ wp.domReady(() => {
             title: __('Number of Rooms', 'tour-operator'),
             icon: 'admin-multisite',
             category: 'lsx-tour-operator',
-            description: __('Displays the number of rooms available for this accommodation.', 'tour-operator'),
+            description: __(
+                'Displays the number of rooms available for this accommodation.',
+                'tour-operator'
+            ),
             keywords: [
                 __('number', 'tour-operator'),
                 __('rooms', 'tour-operator'),
                 __('units', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -34,7 +39,7 @@ wp.domReady(() => {
                 layout: {
                     type: 'flex',
                     flexWrap: 'nowrap',
-					verticalAlignment: 'top'
+                    verticalAlignment: 'top',
                 },
             },
             innerBlocks: [
@@ -53,7 +58,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'numberOfUnitsIcon',
                             },
-                        ]
+                        ],
                     ],
                 ],
                 [
@@ -78,8 +83,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefix : __('Number of Units:', 'tour-operator'),
-								prefixBold: true,
+                                prefix: __('Number of Units:', 'tour-operator'),
+                                prefixBold: true,
                             },
                         ],
                     ],
@@ -107,7 +112,14 @@ wp.domReady(() => {
                             {
                                 name: 'core/paragraph',
                                 attributes: {
-                                    content: '<strong>' + __('Number of Units: ', 'tour-operator') + '</strong>' + '12',
+                                    content:
+                                        '<strong>' +
+                                        __(
+                                            'Number of Units:',
+                                            'tour-operator'
+                                        ) +
+                                        '</strong>' +
+                                        '12',
                                 },
                             },
                         ],
@@ -115,7 +127,7 @@ wp.domReady(() => {
                 ],
             },
         });
-    }
+    };
 
     // Initialize conditional registration
     const conditionalRegister = registerForPostTypesAndTemplates(

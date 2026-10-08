@@ -12,6 +12,10 @@
 
 namespace lsx\admin;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Registers our Custom Fields
  *
@@ -82,7 +86,6 @@ class Setup
 	 */
 	public function __construct()
 	{
-		add_action('init', array($this, 'load_plugin_textdomain'));
 		add_action('init', array($this, 'register_meta_with_rest'));
 		add_action('init', array($this, 'register_image_sizes'));
 		add_filter('image_size_names_choose', array($this, 'editor_image_sizes'), 10, 1);
@@ -115,11 +118,6 @@ class Setup
 	 *
 	 * @since 0.0.1
 	 */
-	public function load_plugin_textdomain()
-	{
-		load_plugin_textdomain('tour-operator', false, basename(LSX_TO_PATH) . '/languages');
-	}
-
 	/**
 	 * Register our sticky posts and disable_single meta fields with rest.
 	 *

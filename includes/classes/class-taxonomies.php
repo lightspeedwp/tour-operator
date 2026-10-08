@@ -12,6 +12,10 @@
 
 namespace lsx;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Class Taxonomies
  * Handles registration of taxonomies within the plugins taxonomies.

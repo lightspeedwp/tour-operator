@@ -5,7 +5,7 @@
  * Only available on destination post types and destination, country, and region templates screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -16,7 +16,10 @@ wp.domReady(() => {
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/banking',
             title: __('Banking', 'tour-operator'),
-            description: __('Display banking and financial information for destinations.', 'tour-operator'),
+            description: __(
+                'Display banking and financial information for destinations.',
+                'tour-operator'
+            ),
             icon: 'bank',
             category: 'lsx-tour-operator',
             keywords: [
@@ -26,7 +29,9 @@ wp.domReady(() => {
                 __('money', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -64,7 +69,10 @@ wp.domReady(() => {
                                     'core/paragraph',
                                     {
                                         align: 'center',
-                                        content: '<strong>' + __('Banking', 'tour-operator') + '</strong>',
+                                        content:
+                                            '<strong>' +
+                                            __('Banking', 'tour-operator') +
+                                            '</strong>',
                                     },
                                 ],
                             ],
@@ -149,7 +157,10 @@ wp.domReady(() => {
                                         name: 'core/paragraph',
                                         attributes: {
                                             align: 'center',
-                                            content: '<strong>' + __('Banking', 'tour-operator') + '</strong>',
+                                            content:
+                                                '<strong>' +
+                                                __('Banking', 'tour-operator') +
+                                                '</strong>',
                                         },
                                     },
                                 ],
@@ -159,7 +170,10 @@ wp.domReady(() => {
                                 attributes: {
                                     className: 'lsx-to-more-content',
                                     metadata: {
-                                        name: __('Description', 'tour-operator'),
+                                        name: __(
+                                            'Description',
+                                            'tour-operator'
+                                        ),
                                     },
                                     layout: {
                                         type: 'constrained',
@@ -169,7 +183,10 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: __('Local currency is widely accepted. ATMs are available throughout the city center. Major credit cards accepted at most establishments.', 'tour-operator'),
+                                            content: __(
+                                                'Local currency is widely accepted. ATMs are available throughout the city center. Major credit cards accepted at most establishments.',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                 ],
@@ -184,7 +201,10 @@ wp.domReady(() => {
                                 name: 'core/button',
                                 attributes: {
                                     metadata: {
-                                        name: __('More Button', 'tour-operator'),
+                                        name: __(
+                                            'More Button',
+                                            'tour-operator'
+                                        ),
                                     },
                                     className: 'lsx-to-more-link more-link',
                                     width: 100,

@@ -1,6 +1,85 @@
 # Changelog
 
-## [[2.1.2]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.2) - WIP
+## [Unreleased]
+
+### Added
+
+#### Filters
+- **Breadcrumb Links Override** - added a `lsx_to_breadcrumb_links` filter in `Frontend::get_breadcrumb_links()`, applied to the final crumbs array before it is returned, to allow 3rd party plugins to alter or extend Tour Operator breadcrumb links.
+
+### Fixed
+
+#### Maps
+- **Destination page Google Maps placeholder did not open** - clicking "Click here to display the map" fetched the Google Maps API and marker-cluster script ad hoc via `jQuery.getScript()`, racing with `maps.js`'s own script dependencies and frequently calling `google.maps.Map()` before the API had finished loading, so the map never rendered. The Google Maps API and marker-cluster scripts are now registered as proper dependencies of `lsx_to_maps` (`Maps::register_assets()`, hooked to `wp_enqueue_scripts`) and enqueued together via a single `wp_enqueue_script( 'lsx_to_maps' )` once `map_output()` actually renders a map, so WordPress loads and orders all three scripts itself; the placeholder's click handler now calls `LSX_TO_Maps.initThis()` directly instead of re-fetching the API - LS-4170
+- **Map data attributes could be read from the wrong element** - the "Map Container" group and its inner "Map Details" group both carried the `lsx-map` class, so `maps.js` and `Bindings::render_map_block()`'s `class="lsx-map"` string rewrite could each target either element. The data-carrying element is now `.lsx-map-details`, scoped inside `.lsx-map`, and `maps.js` reads its `data-*` attributes from that nested selector; the class-string rewriting workaround in `render_map_block()` has been removed - LS-4170
+- **Map details were briefly visible before the placeholder was clicked** - the hidden state depended on a `hidden` utility class applied through PHP string matching against the rendered block markup; the "Map Details" group now sets `display:none` directly, so hiding no longer depends on that PHP-side patch - LS-4170
+
+#### Test tooling
+- **`phpunit-simple.xml` ran no tests at all** - the suite pointed at a `<directory>` with no `suffix` attribute, and PHPUnit only discovers files ending in `Test.php`, whereas the files here were named `Test*.php`. Every run reported "No tests executed" and `composer test` passed without executing a single test, which is also why CI carried a hand-maintained list of test files. Test files now follow PHPUnit's `*Test.php` convention with class names to match, so discovery needs no workaround and collects only real test files - a new test file is picked up simply by being named correctly.
+- **A test file could silently end a whole run having executed nothing** - `ItineraryEditorPerformanceTest` requires `includes/metaboxes/config-tour.php`, which opens with an `ABSPATH` guard that calls `exit`. Run on its own it terminated PHPUnit with exit code 0 and zero tests, reporting success; in a full run it only worked because another test file happened to define `ABSPATH` first, so anything queued after it could have been skipped just as silently. The shared stub these tests load now defines `ABSPATH` itself.
+- **PHPUnit exited non-zero without a coverage driver** - `phpunit-simple.xml` configured coverage report output, which makes PHPUnit emit a runner warning and exit 1 when neither Xdebug nor PCOV is installed. Coverage is now requested on the command line by `composer test:coverage`.
+- **CI and the composer scripts ran an enumerated file list** - both now run `phpunit-simple.xml`, so new test files need no edit here. This alone raised the standalone run from 29 tests to 33, because `QueryLoopFeaturedCacheTest` was standalone-capable but had never been in CI's list.
+- **A `vendor` symlink could be committed** - `.gitignore` had `vendor/`, which does not match a symlink named `vendor`; sharing one Composer install across git worktrees is a normal pattern, so `/vendor` is now ignored too.
+
+#### Data Integrity
+- **Fatal error deleting any post that has meta** - `Query_Loop` registered its four-argument `maybe_flush_featured_cache_on_meta_change()` callback on the legacy `deleted_postmeta` hook, which passes only the meta IDs. WordPress therefore called a four-argument method with one argument, raising `ArgumentCountError: Too few arguments`. Every path reaching `delete_metadata_by_mid()` fatalled, `wp_delete_post()` included, so deleting a post with any postmeta was a hard fatal regardless of the meta key - the callback's own `$meta_key` guard is never reached, because the error happens on invocation. Now uses the canonical `deleted_post_meta`, which passes four arguments - Issue [#1370](https://github.com/lightspeedwp/tour-operator/issues/1370)
+- **Featured cache not busted when the flag was first set** - the same block registered `added_postmeta`, which is not a WordPress hook at all, so the registration was a silent no-op. Writing `featured` for the first time on a post (`add_post_meta` rather than `update_post_meta`) left the cache generation unbumped, and the featured blocks kept serving a stale list until the TTL expired - exactly the staleness the caching work was added to prevent. Now uses `added_post_meta` - Issue [#1370](https://github.com/lightspeedwp/tour-operator/issues/1370)
+
+#### Query Loops
+- **Featured blocks rendered nothing** - The `Featured Tours`, `Featured Destinations` and `Featured Accommodation` variations (and `featured-review` / `featured-special` / `featured-team` in the add-ons) were stripped from the front end entirely — wrapper, heading and grid — since 2.2.0. The post-type-existence guard added in 2.2.0 ran against every key reaching the `default:` arm of `Query_Loop::maybe_hide_varitaion()`, but only `{$to}-related-{$from}` keys encode a post type in their first segment. `post_type_exists( 'featured-tours' )` is always false, so the block was always discarded. The guard is now scoped to `-related-` keys, preserving its original purpose of hiding related queries whose add-on plugin is deactivated - Issue [#1284](https://github.com/lightspeedwp/tour-operator/issues/1284)
+- **Featured query returned every post when nothing was featured** - `Query_Loop::featured_query()` overwrote `meta_query` and wrapped its single clause in an `OR` relation. Once `Post_Visibility::filter_query_block_args()` appended its hide-from-listings group on the same filter, the query became "featured **OR** not-hidden", which matches everything. The corrupted query only executed when the featured set was empty (no `posts_pre_query` short-circuit), so an empty Featured block would have rendered the entire archive. The clause is now appended to any existing `meta_query` and joined with `AND` - Issue [#1284](https://github.com/lightspeedwp/tour-operator/issues/1284)
+- **Featured blocks ignored "Hide from Listings"** - `find_featured_items()` snapshotted its result set on `query_loop_block_query_vars` at priority 1, before `Post_Visibility` appended its clause at priority 10, and `posts_pre_query` then served that snapshot. Items flagged *Hide from Listings* consequently still appeared in Featured blocks. `Query_Loop::query_args_filter()` now runs at priority 20 so the snapshot is built from the fully filtered query args - Issue [#1284](https://github.com/lightspeedwp/tour-operator/issues/1284)
+
+#### Data Integrity
+- **Itinerary featured image URL corruption** - CMB2's default sanitizer was overwriting a valid attachment URL/ID in the itinerary `featured_image` field on every save, corrupting it into a non-functional value. A dedicated sanitization callback now resolves and stores the correct URL and attachment ID instead.
+
+#### Performance
+- **Featured query loop re-scanned wp_postmeta on every render** - `find_featured_items()` ran its `meta_query` as a fresh, uncached `WP_Query` on every render of every Featured Tours/Destinations/Accommodation block variation, with no caching layer anywhere in the path. On a site with a non-trivial `wp_postmeta` table this multi-joins the table once per meta_query clause; observed on a production incident at ~2.1M rows examined per call, 2.0-2.8s each, hit on effectively every front-end page load. Now cached through WordPress transients (using the object cache when a persistent backend is configured, falling back to `wp_options` otherwise), keyed by the query args, with a persisted generation counter (an option, not a cache entry, so it survives an object-cache eviction/restart) bumped on the relevant meta/post-save events for near-immediate invalidation, plus a one-hour TTL as a backstop - Issue [#1327](https://github.com/lightspeedwp/tour-operator/issues/1327)
+
+### Changed
+
+#### CI and dependency hygiene
+- **Grouped interdependent npm updates so peer conflicts stop recurring** - Dependabot opened a separate PR per package, so one member of a peer-linked toolchain could be bumped past its siblings and leave an unresolvable dependency tree that fails `npm ci` on every branch carrying it. That has broken CI four times (LS-1234, LS-2732, LS-2929, LS-3714), each a Babel package moving independently of `@babel/core`. `.github/dependabot.yml` now groups `@babel/*`, `@wordpress/*`, `eslint*`, `stylelint*`, `webpack*` and Playwright so each set moves as a unit, and ignores major updates for `@babel/*` specifically: Babel 8 only peer-accepts Babel 8 core, and this project's Babel setup comes from `@wordpress/babel-preset-default` via wp-scripts, so adopting it is a deliberate toolchain change rather than a dependency bump. Minor and patch updates still flow through the group.
+- **CI now runs on pushes to `main`** - the `push` trigger covered `develop` and `2.1-trunk` only, so a dependency tree that could not install on `main` went unnoticed until someone opened a pull request against it and saw the install step fail.
+
+#### Dependencies
+- **Removed two unused devDependencies** - `@wordpress/eslint-plugin` was declared but nothing references it - there is no ESLint configuration anywhere in the repository, and `wp-scripts lint-js` supplies its own. `@wordpress/a11y` was declared but never imported. `eslint` itself is deliberately kept: removing it made npm satisfy a transitive peer requirement with a deprecated ESLint 9.39.5 at the root, so the declaration is what pins the root resolution to 10.9.1. Verified by re-running the full toolchain with them removed: `npm ci`, `npm run build`, `jest`, `lint:pkg-json` and `lint:version` all pass, and `lint:js` / `lint:css` report byte-identical pre-existing counts (676 and 218) to before the change. `webpack-cli` was also flagged as unused by `depcheck` but is genuinely required - the build prompts to install it when absent - so it stays.
+
+#### Dead configuration files
+- **Removed `.babel.config.cjs`** - Babel resolves `babel.config.js`, not `.babel.config.cjs`, so this file was never loaded. Confirmed with `babel.loadPartialConfig()`, which reports `babel.config.js` and zero plugins even under `envName: production`. Its `@wordpress/babel-plugin-makepot` step therefore never ran, and that package was not even declared as a dependency. POT generation is already handled by the `build:pot` script via `wp i18n make-pot`, so nothing is lost.
+- **Removed `.stylelint.config.cjs`** - stylelint resolves `.stylelintrc.json` (and `stylelint.config.cjs`), not `.stylelint.config.cjs`. Confirmed with `stylelint --print-config`, which shows the rules from `.stylelintrc.json` and none of the BEM `selector-class-pattern` / `custom-property-pattern` rules this file defined. Those rules have never been enforced; adopting them is a deliberate change for a separate PR rather than a side effect of deleting a file nothing reads.
+
+#### Compatibility
+- **Tested up to WordPress 7.1** - WordPress 7.1 released 2026-08-19; `Tested up to` in the plugin header and `readme.txt` raised from 7.0 to 7.1. `Requires at least` stays at 6.7 (the minimum-supported floor, unaffected by a new release). No code changes required for compatibility.
+
+#### Requirements
+- **Minimum PHP version raised from 8.0 to 8.2** - PHP 8.0 and 8.1 have both reached end of life (2023-11-26 and 2025-12-31 respectively) and no longer receive security fixes. `Requires PHP` (plugin header, `composer.json`, `readme.txt`) now floors at 8.2, the earliest version still supported - matching what CI already tests against. `phpcs.xml.dist`'s PHPCompatibilityWP `testVersion` raised to match; confirmed no new compatibility findings from the change.
+
+#### Versioning
+- **All version sources reconciled on 2.2.0** - the plugin header and the readme `Stable tag` read `2.2`, `LSX_TO_VER` read `2.2.0`, and `package.json` was further behind still at `2.1.2`. Only `2.2.0` has ever existed as a git tag, and `10up/action-wordpress-plugin-deploy` derives the WordPress.org SVN tag from the git tag, so `Stable tag: 2.2` pointed at a tag that was never created. All four sources now read `2.2.0`.
+- **Version drift now fails CI** - `npm run lint:version` (`scripts/check-version-sync.mjs`) asserts that the plugin header, the readme `Stable tag`, the version constant and `package.json` all agree, and runs on every push and pull request. It exits non-zero listing each source and its value, so these cannot drift apart again unnoticed.
+
+#### Build toolchain
+- **Node and npm requirements brought up to date** - `.nvmrc` pins Node 24.20.0 (the current Krypton LTS), and `engines` now requires `node >=24.20.0` to match it. `.nvmrc` says nothing about npm, so the npm floor is set separately, raised from `>=10.0.0` to `>=11.0.0`. A contributor on an older 24.x or on npm 10 is now told up front rather than finding out through a lockfile that will not reproduce.
+
+### Security
+
+#### Dependencies
+- **All 9 Dependabot alerts cleared** - every one was a transitive dev dependency of `@wordpress/scripts` or `copy-webpack-plugin`, with no direct dependency to bump, so one-package-at-a-time updates could not close them: each moved a single lockfile entry that the next `npm install` resolved straight back. They are now constrained with `overrides` in `package.json`, so the constraint is declared once and holds across lockfile regeneration. The values below are caret ranges, not exact pins: they set a patched floor and let npm resolve upwards within the major.
+  - `fast-uri ^3.1.6` - 4 high: SSRF via malformed IPv6 normalisation and via repeated hostname percent-decoding, host confusion via percent-encoded scheme normalisation and via skipped IDN canonicalisation.
+  - `serialize-javascript ^7.0.5` - high RCE via `RegExp.flags` and `Date.prototype.toISOString()`, plus a moderate CPU-exhaustion DoS via crafted array-like objects.
+  - `markdownlint-cli ^0.49.1` - `@wordpress/scripts` depends on `markdownlint-cli@^0.31.1`, which drags in `markdown-it@12` and `minimatch@3.0.8`. Overriding the parent clears the `markdown-it` smartquotes ReDoS and the `minimatch` `matchOne` backtracking alerts with a coherent tree, rather than forcing 2026 packages into a 2022-era parent. Nothing in this plugin runs `lint-md-docs`.
+  - `sockjs > uuid ^11.1.1` - missing buffer bounds check in v3/v5/v6. Scoped to `sockjs` so the root `uuid` stays on 14.x for `@wordpress/blocks`.
+
+#### Tooling
+- **`npm run lint:css` runs again** - `.stylelintrc.json` extended `@humanmade/stylelint-config`, which is not installed, so stylelint aborted with a `ConfigurationError` before linting a single file. It now extends `@wordpress/stylelint-config`, already a dev dependency. The pre-existing rule violations this exposes are untouched and remain non-blocking, as `ci.yml` documents.
+
+## [[2.2.0]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.2.0) - 2026-07-30
+
+### Fixed
+
+#### Performance
+- **Tour itinerary edit screen load time** - Itinerary day rows now render collapsed (`'closed' => true`) and their WYSIWYG (TinyMCE) editors initialise lazily the first time a day is expanded, instead of all editors initialising on page load. Previously a tour with many days spawned one TinyMCE instance per WYSIWYG field per day at once (e.g. a 15-day tour = 45 editors), each re-fetching the full editor asset bundle and pushing edit-screen load times into the minutes. Load cost no longer scales with the number of itinerary days. All three itinerary WYSIWYG fields (Description, Included, Excluded) remain full rich-text editors.
 
 ### Added
 
@@ -18,6 +97,15 @@
 - **Post Connections** - added in a `lsx_to_post_connections_value` allowing you to alter the data before it is returned to the block render function. (e.g strip out the tags).
 - **Itinerary Meta** - added in a `lsx_to_itinerary_field_value` allowing you to alter the data before it is returned to the block render function. (e.g strip out the tags).
 - **FacetWP Indexing** - added in a `lsx_to_facetwp_index_skip_row` to allow the user to skip certain items from being indexed.
+- **Itinerary Room Basis Label** - added in a `lsx_to_room_basis_label` filter to allow 3rd party plugins to override the room basis label on itinerary items.
+- **Itinerary Drinks Basis Label** - added in a `lsx_to_drinks_basis_label` filter to allow 3rd party plugins to override the drinks basis label on itinerary items.
+- **Multi-Field Wrapper Groups** - added a `lsx_to_multi_field_wrappers` filter so 3rd party plugins can register their own "hide wrapper unless one of these meta fields has content" groups in Query Loop rendering, alongside the built-in `travel-information` group.
+- **Map Location Override** - added a `lsx_to_has_maps_location` filter, applied per map type (tour, destination, continent archive) in `lsx_to_has_map()`, to allow 3rd party plugins to alter the location/connections data used to build a map before it is cached.
+- **Custom Field Group Debugging** - added a `qm/debug` action around custom field binding lookups in `Bindings::get_custom_field_value()` to aid 3rd party plugins/debugging when building custom field groups (temporary debug output was removed before release).
+
+#### Query Loops
+- **Additional CPT Query Loop Support** - Added `featured-review`, `featured-special`, `featured-team`, `review-related-review`, `special-related-special`, and `team-related-team` query loop variations, extending featured/related query support beyond tour, accommodation, and destination to the review, special, and team content types.
+- **Additional Map Attribute Keys** - Query Loop visibility checks for map blocks now also recognise the hyphenated `wetu-map` and `google-map` attribute keys, in addition to the existing `wetu_map`/`google_map`/`location` keys.
 
 ### Fixed
 
@@ -37,11 +125,19 @@
 
 - **Wetu Map block variation** - Removed className from Wetu Map block variation to prevent style conflicts and reverted build version in index.asset.php for consistency
 
+#### Maps
+
+- **Map data caching** - Refactored `lsx_to_map()`/`lsx_to_has_map()` in `includes/template-tags/maps.php` to resolve and cache the fully-built map render args (not just raw location data) in the `_location` transient, reducing duplicate arg-building work across tour, destination, region, and continent map contexts
+- **Destination map zoom for auto-clustered maps** - `Bindings::get_wetu_map_link()` now sets an explicit zoom when a destination's accommodation cluster resolves to a single point, rather than relying on the map auto-calculating around a single marker
+- **Destination default map zoom** - Increased the default zoom for the generic map binding from 5 to 15 for a closer initial view
+- **Custom field group debug statements** - Removed temporary `qm/debug` calls added while building the 3rd-party custom field group support
+
 #### Layout & Styling
 
 - **Archive query loop padding** - Added top and bottom default padding to archive query loops and taxonomy archives for consistent spacing
 - **Card text clipping** - Fixed text clipping issues in cards to ensure all content is visible
 - **Booking validity wrapping** - Fixed booking validity text to wrap to next row when needed for better mobile responsiveness
+- **Slider width in collapsed mobile sections** - Refreshed Slick slider layout after opening collapsed mobile sections so slide widths recalculate correctly instead of rendering at zero width.
 - **Sticky menu overflow** - Fixed overflowing sticky menu to prevent layout issues
 - **Sticky menu offset selector positioning** - Fixed sticky menu overlap with additional sticky headers by applying the configured offset selector height to the sticky menu top position at runtime
 - **Fast facts rating display** - Fixed rating display in fast facts section and ensured dots are properly rendered as circles in the slider
@@ -51,6 +147,10 @@
 - **Accommodation price display** - Added price information to single accommodation template with improved layout for better presentation
 - **Rating stars styling** - Added new styles for rating stars display with improved spacing and alignment in accommodation info section
 
+#### Itinerary
+
+- **Itinerary connected field term list** - Fixed term list retrieval in `lsx_to_itinerary_connected_field()` by normalising the data array with `array_values()` before extracting the first element, ensuring `get_the_term_list()` always receives a valid post ID rather than a potentially non-zero-indexed array offset
+
 #### Query Loops & Filtering
 
 - **Query Block Class Detection** - Improved reliability of query block class detection by checking `innerHTML` instead of `attrs['className']`, ensuring custom classes like `on-sale`, `parents-only`, and `custom-order` are properly detected even when applied via block variations or programmatically
@@ -58,6 +158,13 @@
 - **On sale query loops** - Fixed query loop filtering to properly detect and display tours marked as "on sale". Changed the checkbox functionality for adding/removing the on-sale class. - PR [#1008](https://github.com/lightspeedwp/tour-operator/pull/1008)
 - **Filter by On Sale visibility** - Restricted "Filter by On Sale" checkbox to only display in query loop settings when post type is set to 'tour'. - PR [#1009](https://github.com/lightspeedwp/tour-operator/pull/1009)
 - **Terms Query slider support** - Extended slider block controls and frontend slider initialisation to support the Terms Query block (`core/terms-query`) and term templates, while keeping tour-only on-sale behaviour limited to Query Loop.
+- **Multi-field wrapper visibility** - Generalised the "hide wrapper unless a meta field has content" logic in `Query_Loop::render_query_loop_dynamic()` from a hard-coded `travel-information` check into a filterable, reusable `lsx_to_multi_field_wrappers` map
+
+#### Facets & Filtering
+
+- **Destination facet HTML rendering** - Guarded `destination_facet_html()` against a missing `$params['facet']['source']` key before checking it against the registered facet sources
+- **Destination facet depth/parent hierarchy** - `destination_facet_render()` now rebuilds each facet value's `depth`/`parent_id` from the actual post hierarchy (and continent taxonomy, when the continent filter is enabled) instead of trusting FacetWP's indexed values, fixing incorrectly nested continent/country/region facet options
+- **Facet depth comparisons** - Normalised `depth`/`parent_id` comparisons in `get_regions()`/`get_countries()` to consistent `(int)`/`(string)` casts, fixing sibling-depth matches that could fail due to mixed string/int types from FacetWP
 
 ### Enhancements
 
@@ -79,6 +186,16 @@
 - **Content Model Class Cleanup** - Removed unused methods and filters from `Content_Model` class, reducing codebase complexity and improving maintainability (removed 310+ lines of unused code)
 - **JSON Initializer Removed** - Eliminated deprecated `Content_Model_JSON_Initializer` class and related loader files, consolidating functionality into `Content_Model_Manager` for a cleaner architecture
 - **Permalink Handler Updated** - Updated permalink handling to work with refactored content model structure
+
+### Removed
+
+- **Review-related query loop blocks** - Removed the `review-related-accommodation`, `review-related-destination`, and `review-related-tour` blocks; this functionality has been migrated to the TO Reviews plugin
+
+### Known Issues
+
+- **Map zoom field type mismatch** - The `disable_auto_zoom` destination field renders as a checkbox when a Google Maps API key is configured, but as a numeric 0-15 select when it isn't, while the same stored meta value is read as a single consistent zoom by `maps.php`/`class-bindings.php`. Saving a destination with no API key configured can persist `0` and force the map to render fully zoomed out - needs a fix before release.
+- **Wetu map blank on parent destinations and non-destination archives** - `Bindings::get_wetu_map_link()`'s accommodation-cluster case now reuses cached map connection data that can hold region/destination IDs rather than accommodation IDs (on parent destinations), and routes any post type archive into the same cluster path even though `lsx_to_has_map()` only builds cluster data for destination archives - needs a fix before release.
+- **Empty continent archive map** - `lsx_to_has_map()`'s continent-archive branch doesn't fall back to `false` when no countries are found, so a continent with zero destinations still renders an empty cluster map rather than hiding it - needs a fix before release.
 
 ## [[2.1.1]](https://github.com/lightspeedwp/tour-operator/releases/tag/2.1.1) - 2026-01-05
 

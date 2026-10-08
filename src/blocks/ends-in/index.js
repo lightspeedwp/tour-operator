@@ -5,7 +5,7 @@
  * Only available on tour post type edit screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -17,7 +17,10 @@ wp.domReady(() => {
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/ends-in',
             title: __('Ends in', 'tour-operator'),
-            description: __('Displays the destination where the tour ends.', 'tour-operator'),
+            description: __(
+                'Displays the destination where the tour ends.',
+                'tour-operator'
+            ),
             icon: wp.element.createElement(
                 'svg',
                 {
@@ -39,18 +42,20 @@ wp.domReady(() => {
                 __('to', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
                     name: __('Ends in', 'tour-operator'),
                 },
                 className: 'lsx-ends-in-wrapper',
-				layout: {
-					type: 'flex',
-					flexWrap: 'nowrap',
-					verticalAlignment: 'top'
-				},
+                layout: {
+                    type: 'flex',
+                    flexWrap: 'nowrap',
+                    verticalAlignment: 'top',
+                },
             },
             innerBlocks: [
                 [
@@ -69,7 +74,7 @@ wp.domReady(() => {
                                 iconType: 'outline',
                                 iconName: 'departsFromEndsInIcon',
                             },
-                        ]
+                        ],
                     ],
                 ],
                 [
@@ -94,8 +99,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefix : __('Ends In:', 'tour-operator'),
-								prefixBold: true,
+                                prefix: __('Ends In:', 'tour-operator'),
+                                prefixBold: true,
                                 content: '',
                             },
                         ],
@@ -128,7 +133,18 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: '<strong>' + __('Ends In:', 'tour-operator') + '</strong>' + ' ' + __('Cape Town', 'tour-operator'),
+                                            content:
+                                                '<strong>' +
+                                                __(
+                                                    'Ends In:',
+                                                    'tour-operator'
+                                                ) +
+                                                '</strong>' +
+                                                ' ' +
+                                                __(
+                                                    'Cape Town',
+                                                    'tour-operator'
+                                                ),
                                         },
                                     },
                                 ],

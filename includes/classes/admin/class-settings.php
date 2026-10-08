@@ -12,6 +12,10 @@
 
 namespace lsx\admin;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Main plugin class.
  *
@@ -513,6 +517,12 @@ class Settings
 
 		$nonce = sanitize_key($_POST['lsx_to_nonce']);
 		if (false === wp_verify_nonce($nonce, 'lsx_to_settings_save')) {
+			return;
+		}
+
+		// The nonce guards against CSRF but not authorisation; require the same
+		// capability used to view this settings page before writing options.
+		if (! current_user_can('manage_options')) {
 			return;
 		}
 

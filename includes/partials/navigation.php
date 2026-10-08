@@ -1,5 +1,8 @@
 <?php
-$settings_pages = tour_operator()->legacy->get_post_types();
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+$settings_pages = tour_operator()->legacy->get_post_types(); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 ?>
 <h2 class="nav-tab-wrapper">
 	<?php

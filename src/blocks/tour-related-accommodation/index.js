@@ -5,7 +5,7 @@
  * Only available on accommodation post type edit screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { registerForPostTypesAndTemplates } from '@utils/conditional-block-registration.js';
@@ -19,7 +19,10 @@ function registerTourRelatedAccommodationVariation() {
         name: 'lsx-tour-operator/tour-related-accommodation',
         title: __('Related Tours', 'tour-operator'),
         icon: 'palmtree',
-        description: __('Displays tours related to this accommodation.', 'tour-operator'),
+        description: __(
+            'Displays tours related to this accommodation.',
+            'tour-operator'
+        ),
         category: 'lsx-tour-operator',
         keywords: [
             __('tours', 'tour-operator'),
@@ -80,7 +83,10 @@ function registerTourRelatedAccommodationVariation() {
                         'core/query',
                         {
                             metadata: {
-                                name: __('Related Tours Query', 'tour-operator'),
+                                name: __(
+                                    'Related Tours Query',
+                                    'tour-operator'
+                                ),
                             },
                             query: {
                                 perPage: 6,
@@ -94,7 +100,8 @@ function registerTourRelatedAccommodationVariation() {
                             [
                                 'core/post-template',
                                 {
-                                    className: 'lsx-tour-related-accommodation-query',
+                                    className:
+                                        'lsx-tour-related-accommodation-query',
                                     layout: {
                                         type: 'grid',
                                         columnCount: 3,
@@ -127,7 +134,10 @@ function registerTourRelatedAccommodationVariation() {
                             name: 'core/separator',
                             attributes: {
                                 style: {
-                                    layout: { selfStretch: 'fill', flexSize: null },
+                                    layout: {
+                                        selfStretch: 'fill',
+                                        flexSize: null,
+                                    },
                                 },
                             },
                         },
@@ -143,7 +153,10 @@ function registerTourRelatedAccommodationVariation() {
                             name: 'core/separator',
                             attributes: {
                                 style: {
-                                    layout: { selfStretch: 'fill', flexSize: null },
+                                    layout: {
+                                        selfStretch: 'fill',
+                                        flexSize: null,
+                                    },
                                 },
                             },
                         },
@@ -159,7 +172,8 @@ function registerTourRelatedAccommodationVariation() {
                         {
                             name: 'core/group',
                             attributes: {
-                                className: 'lsx-tour-related-accommodation-query',
+                                className:
+                                    'lsx-tour-related-accommodation-query',
                                 layout: {
                                     type: 'grid',
                                     columnCount: 3,
@@ -176,7 +190,14 @@ function registerTourRelatedAccommodationVariation() {
                                             name: 'core/group',
                                             attributes: {
                                                 style: {
-                                                    spacing: { padding: { top: '5px', bottom: '0px', left: '5px', right: '5px' } },
+                                                    spacing: {
+                                                        padding: {
+                                                            top: '5px',
+                                                            bottom: '0px',
+                                                            left: '5px',
+                                                            right: '5px',
+                                                        },
+                                                    },
                                                 },
                                                 layout: { type: 'constrained' },
                                             },
@@ -185,11 +206,19 @@ function registerTourRelatedAccommodationVariation() {
                                                     name: 'core/heading',
                                                     attributes: {
                                                         textAlign: 'center',
-                                                        content: __('African Safari Adventure', 'tour-operator'),
+                                                        content: __(
+                                                            'African Safari Adventure',
+                                                            'tour-operator'
+                                                        ),
                                                         level: 3,
                                                         fontSize: 'small',
                                                         style: {
-                                                            spacing: { margin: { top: '0', bottom: '0' } },
+                                                            spacing: {
+                                                                margin: {
+                                                                    top: '0',
+                                                                    bottom: '0',
+                                                                },
+                                                            },
                                                         },
                                                     },
                                                 },
@@ -197,23 +226,53 @@ function registerTourRelatedAccommodationVariation() {
                                                     name: 'core/group',
                                                     attributes: {
                                                         style: {
-                                                            spacing: { padding: { top: '5px', bottom: '10px', left: '5px', right: '5px' }, blockGap: '2px' },
-                                                            border: { top: { width: '2px' }, bottom: { width: '2px' } },
+                                                            spacing: {
+                                                                padding: {
+                                                                    top: '5px',
+                                                                    bottom: '10px',
+                                                                    left: '5px',
+                                                                    right: '5px',
+                                                                },
+                                                                blockGap: '2px',
+                                                            },
+                                                            border: {
+                                                                top: {
+                                                                    width: '2px',
+                                                                },
+                                                                bottom: {
+                                                                    width: '2px',
+                                                                },
+                                                            },
                                                         },
-                                                        layout: { type: 'constrained' },
+                                                        layout: {
+                                                            type: 'constrained',
+                                                        },
                                                     },
                                                     innerBlocks: [
                                                         {
                                                             name: 'core/paragraph',
                                                             attributes: {
-                                                                content: '<strong>' + __('From: $2,499', 'tour-operator') + '</strong>',
-                                                                className: 'amount price',
+                                                                content:
+                                                                    '<strong>' +
+                                                                    __(
+                                                                        'From: $2,499',
+                                                                        'tour-operator'
+                                                                    ) +
+                                                                    '</strong>',
+                                                                className:
+                                                                    'amount price',
                                                             },
                                                         },
                                                         {
                                                             name: 'core/paragraph',
                                                             attributes: {
-                                                                content: '<strong>' + __('Duration: 7 Days', 'tour-operator') + '</strong>',
+                                                                content:
+                                                                    '<strong>' +
+                                                                    __(
+                                                                        'Duration: 7 Days',
+                                                                        'tour-operator'
+                                                                    ) +
+                                                                    '</strong>',
                                                             },
                                                         },
                                                     ],
@@ -221,9 +280,17 @@ function registerTourRelatedAccommodationVariation() {
                                                 {
                                                     name: 'core/paragraph',
                                                     attributes: {
-                                                        content: __('Experience the breathtaking wildlife and stunning landscapes of Africa on this unforgettable safari adventure. Perfect for nature lovers and photography enthusiasts.', 'tour-operator'),
+                                                        content: __(
+                                                            'Experience the breathtaking wildlife and stunning landscapes of Africa on this unforgettable safari adventure. Perfect for nature lovers and photography enthusiasts.',
+                                                            'tour-operator'
+                                                        ),
                                                         style: {
-                                                            spacing: { padding: { left: '5px', right: '5px' } },
+                                                            spacing: {
+                                                                padding: {
+                                                                    left: '5px',
+                                                                    right: '5px',
+                                                                },
+                                                            },
                                                         },
                                                     },
                                                 },
@@ -236,7 +303,15 @@ function registerTourRelatedAccommodationVariation() {
                                     attributes: {
                                         className: 'is-style-shadow-sm',
                                         style: {
-                                            spacing: { blockGap: '0px', padding: { top: '0px', bottom: '0px', left: '0px', right: '0px' } },
+                                            spacing: {
+                                                blockGap: '0px',
+                                                padding: {
+                                                    top: '0px',
+                                                    bottom: '0px',
+                                                    left: '0px',
+                                                    right: '0px',
+                                                },
+                                            },
                                             border: { radius: '8px' },
                                         },
                                         backgroundColor: 'base',
@@ -247,7 +322,14 @@ function registerTourRelatedAccommodationVariation() {
                                             name: 'core/group',
                                             attributes: {
                                                 style: {
-                                                    spacing: { padding: { top: '5px', bottom: '0px', left: '5px', right: '5px' } },
+                                                    spacing: {
+                                                        padding: {
+                                                            top: '5px',
+                                                            bottom: '0px',
+                                                            left: '5px',
+                                                            right: '5px',
+                                                        },
+                                                    },
                                                 },
                                                 layout: { type: 'constrained' },
                                             },
@@ -256,11 +338,19 @@ function registerTourRelatedAccommodationVariation() {
                                                     name: 'core/heading',
                                                     attributes: {
                                                         textAlign: 'center',
-                                                        content: __('Kilimanjaro Trek and Safari', 'tour-operator'),
+                                                        content: __(
+                                                            'Kilimanjaro Trek and Safari',
+                                                            'tour-operator'
+                                                        ),
                                                         level: 3,
                                                         fontSize: 'small',
                                                         style: {
-                                                            spacing: { margin: { top: '0', bottom: '0' } },
+                                                            spacing: {
+                                                                margin: {
+                                                                    top: '0',
+                                                                    bottom: '0',
+                                                                },
+                                                            },
                                                         },
                                                     },
                                                 },
@@ -268,23 +358,53 @@ function registerTourRelatedAccommodationVariation() {
                                                     name: 'core/group',
                                                     attributes: {
                                                         style: {
-                                                            spacing: { padding: { top: '5px', bottom: '10px', left: '5px', right: '5px' }, blockGap: '2px' },
-                                                            border: { top: { width: '2px' }, bottom: { width: '2px' } },
+                                                            spacing: {
+                                                                padding: {
+                                                                    top: '5px',
+                                                                    bottom: '10px',
+                                                                    left: '5px',
+                                                                    right: '5px',
+                                                                },
+                                                                blockGap: '2px',
+                                                            },
+                                                            border: {
+                                                                top: {
+                                                                    width: '2px',
+                                                                },
+                                                                bottom: {
+                                                                    width: '2px',
+                                                                },
+                                                            },
                                                         },
-                                                        layout: { type: 'constrained' },
+                                                        layout: {
+                                                            type: 'constrained',
+                                                        },
                                                     },
                                                     innerBlocks: [
                                                         {
                                                             name: 'core/paragraph',
                                                             attributes: {
-                                                                content: '<strong>' + __('From: $1,899', 'tour-operator') + '</strong>',
-                                                                className: 'amount price',
+                                                                content:
+                                                                    '<strong>' +
+                                                                    __(
+                                                                        'From: $1,899',
+                                                                        'tour-operator'
+                                                                    ) +
+                                                                    '</strong>',
+                                                                className:
+                                                                    'amount price',
                                                             },
                                                         },
                                                         {
                                                             name: 'core/paragraph',
                                                             attributes: {
-                                                                content: '<strong>' + __('Duration: 10 Days', 'tour-operator') + '</strong>',
+                                                                content:
+                                                                    '<strong>' +
+                                                                    __(
+                                                                        'Duration: 10 Days',
+                                                                        'tour-operator'
+                                                                    ) +
+                                                                    '</strong>',
                                                             },
                                                         },
                                                     ],
@@ -292,9 +412,17 @@ function registerTourRelatedAccommodationVariation() {
                                                 {
                                                     name: 'core/paragraph',
                                                     attributes: {
-                                                        content: __('Discover the breathtaking landscapes and unique wildlife of Kilimanjaro. Experience an unforgettable adventure combining trekking and safari.', 'tour-operator'),
+                                                        content: __(
+                                                            'Discover the breathtaking landscapes and unique wildlife of Kilimanjaro. Experience an unforgettable adventure combining trekking and safari.',
+                                                            'tour-operator'
+                                                        ),
                                                         style: {
-                                                            spacing: { padding: { left: '5px', right: '5px' } },
+                                                            spacing: {
+                                                                padding: {
+                                                                    left: '5px',
+                                                                    right: '5px',
+                                                                },
+                                                            },
                                                         },
                                                     },
                                                 },
@@ -307,7 +435,15 @@ function registerTourRelatedAccommodationVariation() {
                                     attributes: {
                                         className: 'is-style-shadow-sm',
                                         style: {
-                                            spacing: { blockGap: '0px', padding: { top: '0px', bottom: '0px', left: '0px', right: '0px' } },
+                                            spacing: {
+                                                blockGap: '0px',
+                                                padding: {
+                                                    top: '0px',
+                                                    bottom: '0px',
+                                                    left: '0px',
+                                                    right: '0px',
+                                                },
+                                            },
                                             border: { radius: '8px' },
                                         },
                                         backgroundColor: 'base',
@@ -318,7 +454,14 @@ function registerTourRelatedAccommodationVariation() {
                                             name: 'core/group',
                                             attributes: {
                                                 style: {
-                                                    spacing: { padding: { top: '5px', bottom: '0px', left: '5px', right: '5px' } },
+                                                    spacing: {
+                                                        padding: {
+                                                            top: '5px',
+                                                            bottom: '0px',
+                                                            left: '5px',
+                                                            right: '5px',
+                                                        },
+                                                    },
                                                 },
                                                 layout: { type: 'constrained' },
                                             },
@@ -327,11 +470,19 @@ function registerTourRelatedAccommodationVariation() {
                                                     name: 'core/heading',
                                                     attributes: {
                                                         textAlign: 'center',
-                                                        content: __('Tropical Beach Getaway', 'tour-operator'),
+                                                        content: __(
+                                                            'Tropical Beach Getaway',
+                                                            'tour-operator'
+                                                        ),
                                                         level: 3,
                                                         fontSize: 'small',
                                                         style: {
-                                                            spacing: { margin: { top: '0', bottom: '0' } },
+                                                            spacing: {
+                                                                margin: {
+                                                                    top: '0',
+                                                                    bottom: '0',
+                                                                },
+                                                            },
                                                         },
                                                     },
                                                 },
@@ -339,23 +490,53 @@ function registerTourRelatedAccommodationVariation() {
                                                     name: 'core/group',
                                                     attributes: {
                                                         style: {
-                                                            spacing: { padding: { top: '5px', bottom: '10px', left: '5px', right: '5px' }, blockGap: '2px' },
-                                                            border: { top: { width: '2px' }, bottom: { width: '2px' } },
+                                                            spacing: {
+                                                                padding: {
+                                                                    top: '5px',
+                                                                    bottom: '10px',
+                                                                    left: '5px',
+                                                                    right: '5px',
+                                                                },
+                                                                blockGap: '2px',
+                                                            },
+                                                            border: {
+                                                                top: {
+                                                                    width: '2px',
+                                                                },
+                                                                bottom: {
+                                                                    width: '2px',
+                                                                },
+                                                            },
                                                         },
-                                                        layout: { type: 'constrained' },
+                                                        layout: {
+                                                            type: 'constrained',
+                                                        },
                                                     },
                                                     innerBlocks: [
                                                         {
                                                             name: 'core/paragraph',
                                                             attributes: {
-                                                                content: '<strong>' + __('From: $1,299', 'tour-operator') + '</strong>',
-                                                                className: 'amount price',
+                                                                content:
+                                                                    '<strong>' +
+                                                                    __(
+                                                                        'From: $1,299',
+                                                                        'tour-operator'
+                                                                    ) +
+                                                                    '</strong>',
+                                                                className:
+                                                                    'amount price',
                                                             },
                                                         },
                                                         {
                                                             name: 'core/paragraph',
                                                             attributes: {
-                                                                content: '<strong>' + __('Duration: 5 Days', 'tour-operator') + '</strong>',
+                                                                content:
+                                                                    '<strong>' +
+                                                                    __(
+                                                                        'Duration: 5 Days',
+                                                                        'tour-operator'
+                                                                    ) +
+                                                                    '</strong>',
                                                             },
                                                         },
                                                     ],
@@ -363,9 +544,17 @@ function registerTourRelatedAccommodationVariation() {
                                                 {
                                                     name: 'core/paragraph',
                                                     attributes: {
-                                                        content: __('Relax and unwind on pristine beaches with crystal clear waters. Enjoy water sports, local cuisine, and stunning sunsets.', 'tour-operator'),
+                                                        content: __(
+                                                            'Relax and unwind on pristine beaches with crystal clear waters. Enjoy water sports, local cuisine, and stunning sunsets.',
+                                                            'tour-operator'
+                                                        ),
                                                         style: {
-                                                            spacing: { padding: { left: '5px', right: '5px' } },
+                                                            spacing: {
+                                                                padding: {
+                                                                    left: '5px',
+                                                                    right: '5px',
+                                                                },
+                                                            },
                                                         },
                                                     },
                                                 },
@@ -381,9 +570,12 @@ function registerTourRelatedAccommodationVariation() {
         },
         isActive: (blockAttributes) => {
             return (
-                blockAttributes.className === 'lsx-tour-related-accommodation-query-wrapper' ||
+                blockAttributes.className ===
+                    'lsx-tour-related-accommodation-query-wrapper' ||
                 (blockAttributes.className &&
-                    blockAttributes.className.includes('lsx-tour-related-accommodation-query-wrapper'))
+                    blockAttributes.className.includes(
+                        'lsx-tour-related-accommodation-query-wrapper'
+                    ))
             );
         },
     });

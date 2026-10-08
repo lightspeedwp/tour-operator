@@ -5,7 +5,7 @@
  * Available across all post types and templates.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 import { __ } from '@wordpress/i18n';
 
@@ -32,7 +32,10 @@ wp.domReady(() => {
         title: __('More Button', 'tour-operator'),
         icon: buttonIcon,
         category: 'lsx-tour-operator',
-        description: __('A button linking to more items in a list or collection.', 'tour-operator'),
+        description: __(
+            'A button linking to more items in a list or collection.',
+            'tour-operator'
+        ),
         keywords: [
             __('more', 'tour-operator'),
             __('link', 'tour-operator'),
@@ -56,8 +59,8 @@ wp.domReady(() => {
                     metadata: {
                         name: __('More Button', 'tour-operator'),
                     },
-                }
-            ]
+                },
+            ],
         ],
         example: {
             attributes: {
@@ -72,6 +75,6 @@ wp.domReady(() => {
                     },
                 },
             ],
-        }
+        },
     });
 });

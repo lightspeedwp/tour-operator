@@ -5,7 +5,7 @@
  * Available across tour post types and templates.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 import { __ } from '@wordpress/i18n';
 import { registerForPostTypesAndTemplates } from '../../js/conditional-block-registration.js';
@@ -17,9 +17,14 @@ wp.domReady(() => {
             title: __('Itinerary', 'tour-operator'),
             icon: 'clipboard',
             category: 'lsx-tour-operator',
-            description: __('A block to display the tour itinerary with a title and a list of day-by-day activities.', 'tour-operator'),
+            description: __(
+                'A block to display the tour itinerary with a title and a list of day-by-day activities.',
+                'tour-operator'
+            ),
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             keywords: [
                 __('itinerary', 'tour-operator'),
@@ -169,7 +174,10 @@ wp.domReady(() => {
                                         name: 'core/heading',
                                         attributes: {
                                             level: 3,
-                                            content: __('Day 1', 'tour-operator'),
+                                            content: __(
+                                                'Day 1',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                     {
@@ -179,7 +187,10 @@ wp.domReady(() => {
                                         name: 'core/paragraph',
                                         attributes: {
                                             fontSize: 'small',
-                                            content: __('Arrival and transfer to hotel', 'tour-operator'),
+                                            content: __(
+                                                'Arrival and transfer to hotel',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                 ],
@@ -191,14 +202,20 @@ wp.domReady(() => {
                                         name: 'core/paragraph',
                                         attributes: {
                                             fontSize: 'small',
-                                            content: __('Accommodation:', 'tour-operator'),
+                                            content: __(
+                                                'Accommodation:',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
                                             fontSize: 'small',
-                                            content: __('Post Hotel', 'tour-operator'),
+                                            content: __(
+                                                'Post Hotel',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                 ],
@@ -217,7 +234,10 @@ wp.domReady(() => {
                                         name: 'core/heading',
                                         attributes: {
                                             level: 3,
-                                            content: __('Day 2', 'tour-operator'),
+                                            content: __(
+                                                'Day 2',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                     {
@@ -227,7 +247,10 @@ wp.domReady(() => {
                                         name: 'core/paragraph',
                                         attributes: {
                                             fontSize: 'small',
-                                            content: __('Safari activities and details', 'tour-operator'),
+                                            content: __(
+                                                'Safari activities and details',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                 ],
@@ -239,14 +262,20 @@ wp.domReady(() => {
                                         name: 'core/paragraph',
                                         attributes: {
                                             fontSize: 'small',
-                                            content: __('Accommodation:', 'tour-operator'),
+                                            content: __(
+                                                'Accommodation:',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
                                             fontSize: 'small',
-                                            content: __('Grand Hotel Africa', 'tour-operator'),
+                                            content: __(
+                                                'Grand Hotel Africa',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                 ],
@@ -256,7 +285,7 @@ wp.domReady(() => {
                 ],
             },
         });
-    }
+    };
 
     // Initialize conditional registration for tour context
     const conditionalRegister = registerForPostTypesAndTemplates(

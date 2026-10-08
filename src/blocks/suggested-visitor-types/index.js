@@ -5,7 +5,7 @@
  * Only available on accommodation post types and templates screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -17,7 +17,10 @@ wp.domReady(() => {
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/suggested-visitor-types',
             title: __('Suggested Visitor Types', 'tour-operator'),
-            description: __('Display suggested visitor types suitable for this accommodation.', 'tour-operator'),
+            description: __(
+                'Display suggested visitor types suitable for this accommodation.',
+                'tour-operator'
+            ),
             icon: wp.element.createElement(
                 'svg',
                 {
@@ -40,7 +43,9 @@ wp.domReady(() => {
                 __('suitable', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -48,9 +53,9 @@ wp.domReady(() => {
                 },
                 className: 'lsx-suggested-visitor-types-wrapper',
                 layout: {
-					type: 'flex',
-					flexWrap: 'nowrap',
-					verticalAlignment: 'top'
+                    type: 'flex',
+                    flexWrap: 'nowrap',
+                    verticalAlignment: 'top',
                 },
             },
             innerBlocks: [
@@ -73,7 +78,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'groupSizeIcon',
                             },
-                        ]
+                        ],
                     ],
                 ],
                 [
@@ -101,8 +106,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefix : __('Suitable For:', 'tour-operator'),
-								prefixBold: true,
+                                prefix: __('Suitable For:', 'tour-operator'),
+                                prefixBold: true,
                             },
                         ],
                     ],
@@ -129,7 +134,7 @@ wp.domReady(() => {
                                     iconType: 'solid',
                                     iconName: 'groupSizeIcon',
                                 },
-                            }
+                            },
                         ],
                     },
                     {
@@ -144,7 +149,14 @@ wp.domReady(() => {
                             {
                                 name: 'core/paragraph',
                                 attributes: {
-                                    content: '<strong>' + __('Suitable For:', 'tour-operator') + '</strong>' + __('  Families, Couples, Business travelers, Solo travelers', 'tour-operator'),
+                                    content:
+                                        '<strong>' +
+                                        __('Suitable For:', 'tour-operator') +
+                                        '</strong>' +
+                                        __(
+                                            'Families, Couples, Business travelers, Solo travelers',
+                                            'tour-operator'
+                                        ),
                                 },
                             },
                         ],

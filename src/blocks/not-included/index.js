@@ -5,7 +5,7 @@
  * Only available on tour and accommodation post type edit screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -19,14 +19,19 @@ wp.domReady(() => {
             title: __('Excluded items', 'tour-operator'),
             icon: 'dismiss',
             category: 'lsx-tour-operator',
-            description: __('A block to list what is not included in the tour or accommodation price.', 'tour-operator'),
+            description: __(
+                'A block to list what is not included in the tour or accommodation price.',
+                'tour-operator'
+            ),
             keywords: [
                 __('excluded', 'tour-operator'),
                 __('items', 'tour-operator'),
                 __('what is excluded', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -38,7 +43,10 @@ wp.domReady(() => {
                 [
                     'core/paragraph',
                     {
-                        content: '<strong>' + __('Price excludes:', 'tour-operator') + '</strong>',
+                        content:
+                            '<strong>' +
+                            __('Price excludes:', 'tour-operator') +
+                            '</strong>',
                     },
                 ],
                 [
@@ -81,7 +89,13 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: '<strong>' + __('Price excludes:', 'tour-operator') + '</strong>',
+                                            content:
+                                                '<strong>' +
+                                                __(
+                                                    'Price excludes:',
+                                                    'tour-operator'
+                                                ) +
+                                                '</strong>',
                                         },
                                     },
                                 ],
@@ -95,13 +109,19 @@ wp.domReady(() => {
                             {
                                 name: 'core/list-item',
                                 attributes: {
-                                    content: __('International airfare', 'tour-operator'),
+                                    content: __(
+                                        'International airfare',
+                                        'tour-operator'
+                                    ),
                                 },
                             },
                             {
                                 name: 'core/list-item',
                                 attributes: {
-                                    content: __('Travel insurance', 'tour-operator'),
+                                    content: __(
+                                        'Travel insurance',
+                                        'tour-operator'
+                                    ),
                                 },
                             },
                             {

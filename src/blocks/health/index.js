@@ -5,7 +5,7 @@
  * Only available on destination post types, destinations, country, and region templates screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -14,11 +14,13 @@ import { registerForPostTypesAndTemplates } from '@utils/conditional-block-regis
 wp.domReady(() => {
     // Register variation function
     const registerHealthVariation = () => {
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/health',
             title: __('Health', 'tour-operator'),
-            description: __('Display health and medical information for destinations.', 'tour-operator'),
+            description: __(
+                'Display health and medical information for destinations.',
+                'tour-operator'
+            ),
             icon: 'insert',
             category: 'lsx-tour-operator',
             keywords: [
@@ -28,7 +30,9 @@ wp.domReady(() => {
                 __('vaccination', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -60,7 +64,10 @@ wp.domReady(() => {
                                     'core/paragraph',
                                     {
                                         align: 'center',
-                                        content: '<strong>' + __('Health', 'tour-operator') + '</strong>',
+                                        content:
+                                            '<strong>' +
+                                            __('Health', 'tour-operator') +
+                                            '</strong>',
                                     },
                                 ],
                             ],
@@ -132,7 +139,10 @@ wp.domReady(() => {
                                         name: 'core/paragraph',
                                         attributes: {
                                             align: 'center',
-                                            content: '<strong>' + __('Health', 'tour-operator') + '</strong>',
+                                            content:
+                                                '<strong>' +
+                                                __('Health', 'tour-operator') +
+                                                '</strong>',
                                         },
                                     },
                                 ],
@@ -148,7 +158,10 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: __('Consult your doctor for travel vaccinations. Quality medical facilities available in main cities. Travel insurance recommended.', 'tour-operator'),
+                                            content: __(
+                                                'Consult your doctor for travel vaccinations. Quality medical facilities available in main cities. Travel insurance recommended.',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                 ],

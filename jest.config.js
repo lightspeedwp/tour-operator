@@ -15,6 +15,6 @@ module.exports = {
     setupFiles: ['<rootDir>/tests/js/setup.js'],
     testEnvironment: 'jsdom',
     transformIgnorePatterns: [
-        'node_modules/(?!(@wordpress)/)',
+        'node_modules/(?!(@wordpress|uuid|marked)/)',
     ],
 };

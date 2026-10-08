@@ -5,7 +5,7 @@
  * Only available on destination post type edit screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -16,7 +16,10 @@ wp.domReady(() => {
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/additional-info',
             title: __('Additional Information', 'tour-operator'),
-            description: __('Display additional information content for destinations.', 'tour-operator'),
+            description: __(
+                'Display additional information content for destinations.',
+                'tour-operator'
+            ),
             icon: 'info-outline',
             category: 'lsx-tour-operator',
             keywords: [
@@ -26,7 +29,9 @@ wp.domReady(() => {
                 __('details', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -58,7 +63,10 @@ wp.domReady(() => {
                                     'core/paragraph',
                                     {
                                         align: 'center',
-                                        content: '<strong>' + __('General', 'tour-operator') + '</strong>',
+                                        content:
+                                            '<strong>' +
+                                            __('General', 'tour-operator') +
+                                            '</strong>',
                                     },
                                 ],
                             ],
@@ -129,7 +137,10 @@ wp.domReady(() => {
                                         name: 'core/paragraph',
                                         attributes: {
                                             align: 'center',
-                                            content: '<strong>' + __('General', 'tour-operator') + '</strong>',
+                                            content:
+                                                '<strong>' +
+                                                __('General', 'tour-operator') +
+                                                '</strong>',
                                         },
                                     },
                                 ],
@@ -145,7 +156,10 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: __('This destination provides excellent facilities and services for visitors. Local attractions include historical sites, natural wonders, and cultural experiences.', 'tour-operator'),
+                                            content: __(
+                                                'This destination provides excellent facilities and services for visitors. Local attractions include historical sites, natural wonders, and cultural experiences.',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                 ],

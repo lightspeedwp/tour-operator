@@ -5,7 +5,7 @@
  * Only available on tour post type edit screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -17,7 +17,10 @@ wp.domReady(() => {
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/group-size',
             title: __('Group size', 'tour-operator'),
-            description: __('Displays the group size for a tour.', 'tour-operator'),
+            description: __(
+                'Displays the group size for a tour.',
+                'tour-operator'
+            ),
             icon: 'groups',
             category: 'lsx-tour-operator',
             keywords: [
@@ -25,7 +28,9 @@ wp.domReady(() => {
                 __('size', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -35,7 +40,7 @@ wp.domReady(() => {
                 layout: {
                     type: 'flex',
                     flexWrap: 'nowrap',
-					verticalAlignment: 'top'
+                    verticalAlignment: 'top',
                 },
             },
             innerBlocks: [
@@ -55,8 +60,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'groupSizeIcon',
                             },
-
-                        ]
+                        ],
                     ],
                 ],
                 [
@@ -76,8 +80,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefix : __('Group size:', 'tour-operator'),
-								prefixBold: true,
+                                prefix: __('Group size:', 'tour-operator'),
+                                prefixBold: true,
                                 content: '',
                             },
                         ],
@@ -110,7 +114,18 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: '<strong>' + __('Group size: ', 'tour-operator') + '</strong>' + ' ' + __('10 people', 'tour-operator'),
+                                            content:
+                                                '<strong>' +
+                                                __(
+                                                    'Group size:',
+                                                    'tour-operator'
+                                                ) +
+                                                '</strong>' +
+                                                ' ' +
+                                                __(
+                                                    '10 people',
+                                                    'tour-operator'
+                                                ),
                                         },
                                     },
                                 ],

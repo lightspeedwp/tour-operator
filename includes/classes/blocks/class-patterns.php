@@ -13,6 +13,10 @@
 
 namespace lsx\blocks;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Class Patterns
  *

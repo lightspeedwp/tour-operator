@@ -5,7 +5,7 @@
  * Only available on tour and accommodation post type edit screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -19,14 +19,19 @@ wp.domReady(() => {
             title: __('Included items', 'tour-operator'),
             icon: 'plus-alt',
             category: 'lsx-tour-operator',
-            description: __('A block to list what is included in the tour or accommodation price.', 'tour-operator'),
+            description: __(
+                'A block to list what is included in the tour or accommodation price.',
+                'tour-operator'
+            ),
             keywords: [
                 __('included', 'tour-operator'),
                 __('items', 'tour-operator'),
                 __('what is included', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -38,7 +43,10 @@ wp.domReady(() => {
                 [
                     'core/paragraph',
                     {
-                        content: '<strong>' + __('Price includes:', 'tour-operator') + '</strong>',
+                        content:
+                            '<strong>' +
+                            __('Price includes:', 'tour-operator') +
+                            '</strong>',
                     },
                 ],
                 [
@@ -81,7 +89,13 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: '<strong>' + __('Price includes:', 'tour-operator') + '</strong>',
+                                            content:
+                                                '<strong>' +
+                                                __(
+                                                    'Price includes:',
+                                                    'tour-operator'
+                                                ) +
+                                                '</strong>',
                                         },
                                     },
                                 ],
@@ -95,19 +109,28 @@ wp.domReady(() => {
                             {
                                 name: 'core/list-item',
                                 attributes: {
-                                    content: __('Accommodation', 'tour-operator'),
+                                    content: __(
+                                        'Accommodation',
+                                        'tour-operator'
+                                    ),
                                 },
                             },
                             {
                                 name: 'core/list-item',
                                 attributes: {
-                                    content: __('All meals and local brand drinks', 'tour-operator'),
+                                    content: __(
+                                        'All meals and local brand drinks',
+                                        'tour-operator'
+                                    ),
                                 },
                             },
                             {
                                 name: 'core/list-item',
                                 attributes: {
-                                    content: __('Guided excursions', 'tour-operator'),
+                                    content: __(
+                                        'Guided excursions',
+                                        'tour-operator'
+                                    ),
                                 },
                             },
                         ],

@@ -1,6 +1,10 @@
 <?php
 namespace lsx\blocks;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * The creation of the block variants and the code to control the display.
  *
@@ -8,6 +12,26 @@ namespace lsx\blocks;
  * @author  LightSpeed
  */
 class Query_Loop {
+
+	/**
+	 * How long a featured-query result set is trusted before it's re-queried,
+	 * even without an explicit invalidation (belt-and-suspenders against a
+	 * missed hook, e.g. a meta value changed by direct SQL or an import tool).
+	 *
+	 * Backed by set_transient()/get_transient() rather than wp_cache_*()
+	 * directly: a transient uses the persistent object cache when one is
+	 * configured, and transparently falls back to a non-autoloaded row in
+	 * wp_options when it isn't -- so this cache is real on every site, not
+	 * only the ones with Redis/Memcached/etc. already set up. A plain
+	 * wp_cache_set() call on a site with no persistent backend is silently a
+	 * no-op past the current request, which would leave this exact
+	 * optimisation doing nothing on precisely the sites most likely to need
+	 * it.
+	 *
+	 * @var int
+	 * @since 2.3.0
+	 */
+	const FEATURED_CACHE_TTL = HOUR_IN_SECONDS;
 
 	protected $disabled = [];
 
@@ -59,8 +83,28 @@ class Query_Loop {
 		// Log pagination block parameters for debugging pagination issues.
 		add_filter( 'render_block', array( $this, 'maybe_hide_varitaion' ), 10, 3 );
 		add_filter( 'posts_pre_query', array( $this, 'posts_pre_query' ), 10, 2 );
-		add_filter( 'query_loop_block_query_vars', array( $this, 'query_args_filter' ), 1, 2 );
+		// Runs after Post_Visibility (priority 10) so the featured snapshot taken in
+		// find_featured_items() is built from the fully filtered query args.
+		add_filter( 'query_loop_block_query_vars', array( $this, 'query_args_filter' ), 20, 2 );
 		add_filter( 'lsx_to_query_orderby_post__in', array( $this, 'enable_post_in_ordering' ), 10, 3 );
+
+		// Bust the featured-query cache as soon as the thing it depends on changes,
+		// rather than waiting out FEATURED_CACHE_TTL. Post_Visibility's own
+		// "Hide from Listings" toggle also affects the query (ANDed in via
+		// query_args_filter()), but that class has no postmeta hooks of its
+		// own, so maybe_flush_featured_cache_on_meta_change() checks for both
+		// meta keys on these same hooks.
+		//
+		// Use the canonical added_/updated_/deleted_post_meta hooks, all of which pass
+		// four arguments. The legacy *_postmeta spellings are not interchangeable:
+		// deleted_postmeta passes only the meta IDs, so a four-argument callback on it
+		// raises ArgumentCountError and fatals any wp_delete_post() on a post with
+		// meta, and added_postmeta does not exist at all, so meta being added for the
+		// first time never busted the cache.
+		add_action( 'added_post_meta', array( $this, 'maybe_flush_featured_cache_on_meta_change' ), 10, 4 );
+		add_action( 'updated_post_meta', array( $this, 'maybe_flush_featured_cache_on_meta_change' ), 10, 4 );
+		add_action( 'deleted_post_meta', array( $this, 'maybe_flush_featured_cache_on_meta_change' ), 10, 4 );
+		add_action( 'save_post', array( $this, 'flush_featured_cache_for_post' ), 10, 1 );
 	}
 
 	/**
@@ -96,36 +140,43 @@ class Query_Loop {
 			return $block_content;
 		}
 
-		if ( in_array( 'travel-information', $matches ) ) {
-			// Check if ANY travel information fields have content
-			$travel_info_keys = array(
-				'additional_info',
-				'banking',
-				'climate',
-				'cuisine',
-				'electricity',
-				'dress',
-				'health',
-				'safety',
-				'transport',
-				'visa',
-			);
-			
-			$has_travel_info = false;
-			foreach ( $travel_info_keys as $meta_key ) {
+		/**
+		 * Wrappers that house multiple meta fields: hide the block only when ALL fields are empty.
+		 * Add-on plugins register their own groups via this filter.
+		 *
+		 * @param array $wrappers Map of CSS wrapper key (without lsx- prefix / -wrapper suffix)
+		 *                        to an array of post-meta keys that belong to that wrapper.
+		 */
+		$multi_field_wrappers = apply_filters(
+			'lsx_to_multi_field_wrappers',
+			array(
+				'travel-information' => array(
+					'additional_info',
+					'banking',
+					'climate',
+					'cuisine',
+					'electricity',
+					'dress',
+					'health',
+					'safety',
+					'transport',
+					'visa',
+				),
+			)
+		);
+
+		$wrapper_key = isset( $matches[2] ) ? $matches[2] : '';
+
+		if ( isset( $multi_field_wrappers[ $wrapper_key ] ) ) {
+			$has_value = false;
+			foreach ( $multi_field_wrappers[ $wrapper_key ] as $meta_key ) {
 				$value = get_post_meta( get_the_ID(), $meta_key, true );
 				if ( ! empty( $value ) && '' !== $value ) {
-					$has_travel_info = true;
+					$has_value = true;
 					break;
 				}
 			}
-			
-			// If no travel info exists, hide the entire section
-			if ( ! $has_travel_info ) {
-				return '';
-			}
-
-			return $block_content;
+			return $has_value ? $block_content : '';
 		}
 
 		if ( ! empty( $matches ) && isset( $matches[0] ) ) {
@@ -181,6 +232,22 @@ class Query_Loop {
 						return '';
 					}
 
+					/*
+					 * Only the "{$to}-related-{$from}" keys encode a post type in their
+					 * first segment. Keys such as "featured-tours" do not, so running the
+					 * post type check against them would always fail and wrongly discard
+					 * the block.
+					 */
+					if ( false !== strpos( $query_key, '-related-' ) ) {
+						// Get the _to_ and _from_ directions.
+						$directions = explode( '-related-', $query_key );
+
+						// Check if the post type exists, maybe the plugin is disabled.
+						if ( ! post_type_exists( $directions[0] ) ) {
+							return '';
+						}
+					}
+
 					break;
 			}
 		} elseif ( taxonomy_exists( $key ) ) {
@@ -191,7 +258,7 @@ class Query_Loop {
 			if ( empty( wp_get_post_terms( get_the_ID(), $key, $tax_args ) ) ) {
 				$block_content = '';
 			}
-		} elseif ( 'location' === $key || 'wetu_map' === $key || 'google_map' === $key ) {
+		} elseif ( 'location' === $key || 'wetu_map' === $key || 'google_map' === $key || 'wetu-map' === $key || 'google-map' === $key ) {
 			if ( ! lsx_to_has_map() ) {
 				$block_content = '';
 			}
@@ -230,7 +297,7 @@ class Query_Loop {
 					continue;
 				}
 
-				if ( ! empty( $value ) && '' !== $value ) {
+				if ( ! empty( $value ) && '' !== $value && 'none' !== $value ) {
 					$has_values = true;
 				}
 
@@ -378,6 +445,9 @@ class Query_Loop {
 			case 'featured-accommodation':
 			case 'featured-tours':
 			case 'featured-destinations':
+			case 'featured-review':
+			case 'featured-special':
+			case 'featured-team':
 				$query = $this->featured_query( $query, $key );
 				break;
 
@@ -387,6 +457,9 @@ class Query_Loop {
 				// Tour Query Loops
 			case 'tour-related-accommodation':
 			case 'accommodation-related-accommodation':
+			case 'review-related-review':
+			case 'special-related-special':
+			case 'team-related-team':
 				$to         = '';
 				$from       = '';
 				$directions = explode( '-related-', $key );
@@ -413,7 +486,7 @@ class Query_Loop {
 
 				$query = $this->related_taxonomy_query( $query, $key );
 
-				if ( ! isset( $query['post__in'] ) && ! isset( $query['tax_query'] ) ) {
+				if ( ( ! isset( $query['post__in'] ) && ! isset( $query['tax_query'] ) ) || ( empty( $query['post__in'] ) && empty( $query['tax_query'] ) ) ) {
 					$this->disabled[ $key ] = true;
 				}
 
@@ -427,6 +500,16 @@ class Query_Loop {
 			// 'review-related-tour':
 			// 'review-related-accommodation':
 			// 'review-related-destination':
+
+			// CPTs Specials Query Loops
+			// 'special-related-destination':
+			// 'special-related-accommodation':
+			// 'special-related-tour':
+
+			// CPTs Team Query Loops
+			// 'team-related-destination':
+			// 'team-related-accommodation':
+			// 'team-related-tour':
 			default:
 				$to         = '';
 				$from       = '';
@@ -528,14 +611,32 @@ class Query_Loop {
 	 * @return array
 	 */
 	public function featured_query( $query, $key ) {
-		// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+		/*
+		 * Append to any existing meta_query rather than replacing it, and join with
+		 * AND. Other callers on query_loop_block_query_vars (Post_Visibility, for one)
+		 * add their own clauses, and an OR relation here would widen the query to
+		 * "featured OR <their clause>" instead of narrowing it.
+		 */
+		if ( ! isset( $query['meta_query'] ) || ! is_array( $query['meta_query'] ) ) {
+			// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
+			$query['meta_query'] = array();
+		}
+
+		// Combine featured with any existing meta_query without changing its internal relation.
+		$existing_meta_query = $query['meta_query'];
+
 		$query['meta_query'] = array(
-			'relation' => 'OR',
-			array(
-				'key'     => 'featured',
-				'value'   => true,
-				'compare' => '=',
-			),
+			'relation' => 'AND',
+		);
+
+		if ( ! empty( $existing_meta_query ) ) {
+			$query['meta_query'][] = $existing_meta_query;
+		}
+
+		$query['meta_query'][] = array(
+			'key'     => 'featured',
+			'value'   => true,
+			'compare' => '=',
 		);
 
 		$featured_items = $this->find_featured_items( $query );
@@ -549,18 +650,139 @@ class Query_Loop {
 	}
 
 	/**
-	 * Find the featured items for the current query
+	 * Find the featured items for the current query.
 	 *
-	 * @param array $query
-	 * @return array
+	 * This meta_query (featured, ANDed with whatever Post_Visibility already
+	 * attached) joins wp_postmeta once per clause with no LIMIT on the read side
+	 * of the join, and query_args_filter() calls this on every render of every
+	 * Query Loop block variation on the page -- with no cache, that is a full
+	 * multi-join postmeta scan per block, per page load, unconditionally. Wrapped
+	 * in a transient: a cache hit costs one lookup instead of the query above,
+	 * and it stays a real cache hit even on a site with no persistent object
+	 * cache configured, since a transient falls back to a non-autoloaded
+	 * wp_options row rather than silently doing nothing past the current
+	 * request the way a bare wp_cache_set() call would. self::FEATURED_CACHE_TTL
+	 * plus the invalidation hooks in the constructor mean a change to the
+	 * underlying data is never stale for longer than one hour, and typically
+	 * not at all (invalidated immediately on the relevant meta/post-save
+	 * action).
+	 *
+	 * @param array $query WP_Query arguments, already filtered by featured_query().
+	 * @return array Post objects (or IDs, matching $query['fields']) for the featured set.
+	 * @since 2.3.0
 	 */
-	public function find_featured_items( $query ) {
+	public function find_featured_items( $query ): array {
+		if ( ! is_array( $query ) ) {
+			return [];
+		}
+
+		$cache_key = 'lsx_to_ft_' . md5( self::get_featured_cache_generation() . '_' . maybe_serialize( $query ) );
+		$items     = get_transient( $cache_key );
+
+		if ( false !== $items ) {
+			return $items;
+		}
+
 		$items      = [];
 		$item_query = new \WP_Query( $query );
 		if ( $item_query->have_posts() ) {
 			$items = $item_query->posts;
 		}
+
+		set_transient( $cache_key, $items, self::FEATURED_CACHE_TTL );
+
 		return $items;
+	}
+
+	/**
+	 * Flush the featured-query cache when a meta key the featured query depends
+	 * on changes: the 'featured' flag itself, or Post_Visibility's "Hide from
+	 * Listings" key -- that class ANDs its own clause into the same query in
+	 * query_args_filter(), but has no postmeta hooks of its own, so this class
+	 * has to cover both.
+	 *
+	 * Cache keys are a hash of the full query args, so there's no way to target
+	 * just the affected transient -- this orphans every currently-cached
+	 * featured query at once (via the generation bump below), which on a
+	 * normal edit frequency (a handful of featured toggles, not thousands) is
+	 * cheap next to what it protects against: a stale featured list for up to
+	 * an hour.
+	 *
+	 * @param int    $meta_id    ID of the metadata entry (unused, part of the hook signature).
+	 * @param int    $object_id  Post ID the meta belongs to (unused, part of the hook signature).
+	 * @param string $meta_key   Meta key that changed.
+	 * @param mixed  $meta_value New meta value (unused, part of the hook signature).
+	 * @return void
+	 * @since 2.3.0
+	 */
+	public function maybe_flush_featured_cache_on_meta_change( $meta_id, $object_id, $meta_key, $meta_value ): void { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed -- $meta_value is unused, but the hook signature requires it to receive $meta_key at all.
+		if ( 'featured' !== $meta_key && \lsx\frontend\Post_Visibility::META_KEY !== $meta_key ) {
+			return;
+		}
+		self::bump_featured_cache_generation();
+	}
+
+	/**
+	 * Flush the featured-query cache on save of any post that could be a featured
+	 * candidate. Covers publish/unpublish/trash transitions -- 'featured' => true
+	 * on a post that just left publish status must not keep it showing.
+	 *
+	 * @param int $post_id Post ID being saved.
+	 * @return void
+	 * @since 2.3.0
+	 */
+	public function flush_featured_cache_for_post( $post_id ): void {
+		if ( wp_is_post_revision( $post_id ) || wp_is_post_autosave( $post_id ) ) {
+			return;
+		}
+		self::bump_featured_cache_generation();
+	}
+
+	/**
+	 * Option name the featured-query cache generation is persisted under.
+	 *
+	 * Deliberately a DB option, not an object-cache entry: this value has to
+	 * outlive both an object-cache eviction/restart AND its own TTL, because it
+	 * is what makes self::FEATURED_CACHE_TTL on the *entries* safe. If the
+	 * generation itself lived in the same volatile cache as the entries it
+	 * guards, a cold cache (evicted, restarted, or simply expired) would read
+	 * back as generation 1 and resurrect any not-yet-expired entry that was
+	 * ALSO written under generation 1 before the last bump -- silently serving
+	 * a stale featured list instead of the fresh one the bump was for.
+	 * Autoload is explicitly off: this is read once per uncached featured
+	 * query, not on every page load, so it has no business in the autoloaded
+	 * options blob.
+	 *
+	 * @var string
+	 * @since 2.3.0
+	 */
+	const FEATURED_CACHE_GENERATION_OPTION = 'lsx_to_featured_query_generation';
+
+	/**
+	 * Current featured-query cache generation. Folded into every cache key so
+	 * bumping it invalidates every previously-cached featured query in one
+	 * write, without deleting or even enumerating the individual transients --
+	 * there's no delete_transients_like() in WordPress, so this is what makes
+	 * a single bump equivalent to invalidating all of them at once. Orphaned
+	 * transients age out on their own via self::FEATURED_CACHE_TTL.
+	 *
+	 * @return int
+	 * @since 2.3.0
+	 */
+	protected static function get_featured_cache_generation(): int {
+		return (int) get_option( self::FEATURED_CACHE_GENERATION_OPTION, 1 );
+	}
+
+	/**
+	 * Advance the featured-query cache generation, orphaning every cache entry
+	 * written under the previous generation. Orphaned entries age out on their
+	 * own via self::FEATURED_CACHE_TTL; nothing has to reap them.
+	 *
+	 * @return void
+	 * @since 2.3.0
+	 */
+	protected static function bump_featured_cache_generation(): void {
+		update_option( self::FEATURED_CACHE_GENERATION_OPTION, self::get_featured_cache_generation() + 1, false );
 	}
 
 	/**

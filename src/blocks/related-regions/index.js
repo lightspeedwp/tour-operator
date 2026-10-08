@@ -5,7 +5,7 @@
  * Only available on destination post types, destinations, country, and region templates screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -17,7 +17,10 @@ wp.domReady(() => {
             name: 'lsx-tour-operator/related-regions',
             title: __('Related Regions', 'tour-operator'),
             icon: 'admin-site-alt3',
-            description: __('Displays any regions from the parent country.', 'tour-operator'),
+            description: __(
+                'Displays any regions from the parent country.',
+                'tour-operator'
+            ),
             category: 'lsx-tour-operator',
             keywords: [
                 __('related', 'tour-operator'),
@@ -48,19 +51,28 @@ wp.domReady(() => {
                             'core/separator',
                             {
                                 style: {
-                                    layout: { selfStretch: 'fill', flexSize: null },
+                                    layout: {
+                                        selfStretch: 'fill',
+                                        flexSize: null,
+                                    },
                                 },
                             },
                         ],
                         [
                             'core/heading',
-                            { textAlign: 'center', content: __('Related Regions', 'tour-operator') },
+                            {
+                                textAlign: 'center',
+                                content: __('Related Regions', 'tour-operator'),
+                            },
                         ],
                         [
                             'core/separator',
                             {
                                 style: {
-                                    layout: { selfStretch: 'fill', flexSize: null },
+                                    layout: {
+                                        selfStretch: 'fill',
+                                        flexSize: null,
+                                    },
                                 },
                             },
                         ],
@@ -74,7 +86,10 @@ wp.domReady(() => {
                             'core/query',
                             {
                                 metadata: {
-                                    name: __('Related Regions Query', 'tour-operator'),
+                                    name: __(
+                                        'Related Regions Query',
+                                        'tour-operator'
+                                    ),
                                 },
                                 query: {
                                     perPage: 8,
@@ -121,7 +136,10 @@ wp.domReady(() => {
                                 name: 'core/separator',
                                 attributes: {
                                     style: {
-                                        layout: { selfStretch: 'fill', flexSize: null },
+                                        layout: {
+                                            selfStretch: 'fill',
+                                            flexSize: null,
+                                        },
                                     },
                                 },
                             },
@@ -137,7 +155,10 @@ wp.domReady(() => {
                                 name: 'core/separator',
                                 attributes: {
                                     style: {
-                                        layout: { selfStretch: 'fill', flexSize: null },
+                                        layout: {
+                                            selfStretch: 'fill',
+                                            flexSize: null,
+                                        },
                                     },
                                 },
                             },
@@ -169,14 +190,20 @@ wp.domReady(() => {
                                             {
                                                 name: 'core/image',
                                                 attributes: {
-                                                    alt: __('Northern Region Image', 'tour-operator'),
+                                                    alt: __(
+                                                        'Northern Region Image',
+                                                        'tour-operator'
+                                                    ),
                                                     caption: '',
                                                 },
                                             },
                                             {
                                                 name: 'core/heading',
                                                 attributes: {
-                                                    content: __('Northern Region', 'tour-operator'),
+                                                    content: __(
+                                                        'Northern Region',
+                                                        'tour-operator'
+                                                    ),
                                                     level: 3,
                                                 },
                                             },
@@ -184,14 +211,20 @@ wp.domReady(() => {
                                                 name: 'core/separator',
                                                 attributes: {
                                                     style: {
-                                                        layout: { selfStretch: 'fill', flexSize: null },
+                                                        layout: {
+                                                            selfStretch: 'fill',
+                                                            flexSize: null,
+                                                        },
                                                     },
                                                 },
                                             },
                                             {
                                                 name: 'core/paragraph',
                                                 attributes: {
-                                                    content: __('Explore the stunning landscapes and wildlife of the northern regions.', 'tour-operator'),
+                                                    content: __(
+                                                        'Explore the stunning landscapes and wildlife of the northern regions.',
+                                                        'tour-operator'
+                                                    ),
                                                 },
                                             },
                                         ],
@@ -205,14 +238,20 @@ wp.domReady(() => {
                                             {
                                                 name: 'core/image',
                                                 attributes: {
-                                                    alt: __('Coastal Region Image', 'tour-operator'),
+                                                    alt: __(
+                                                        'Coastal Region Image',
+                                                        'tour-operator'
+                                                    ),
                                                     caption: '',
                                                 },
                                             },
                                             {
                                                 name: 'core/heading',
                                                 attributes: {
-                                                    content: __('Coastal Region', 'tour-operator'),
+                                                    content: __(
+                                                        'Coastal Region',
+                                                        'tour-operator'
+                                                    ),
                                                     level: 3,
                                                 },
                                             },
@@ -220,14 +259,20 @@ wp.domReady(() => {
                                                 name: 'core/separator',
                                                 attributes: {
                                                     style: {
-                                                        layout: { selfStretch: 'fill', flexSize: null },
+                                                        layout: {
+                                                            selfStretch: 'fill',
+                                                            flexSize: null,
+                                                        },
                                                     },
                                                 },
                                             },
                                             {
                                                 name: 'core/paragraph',
                                                 attributes: {
-                                                    content: __('Discover pristine beaches and vibrant coastal communities.', 'tour-operator'),
+                                                    content: __(
+                                                        'Discover pristine beaches and vibrant coastal communities.',
+                                                        'tour-operator'
+                                                    ),
                                                 },
                                             },
                                         ],
@@ -239,7 +284,9 @@ wp.domReady(() => {
                 ],
             },
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
         });
     };

@@ -5,7 +5,7 @@
  * Only available on destination post types, destinations, country, and region templates screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -17,7 +17,10 @@ wp.domReady(() => {
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/climate',
             title: __('Climate', 'tour-operator'),
-            description: __('Display climate and weather information for destinations.', 'tour-operator'),
+            description: __(
+                'Display climate and weather information for destinations.',
+                'tour-operator'
+            ),
             icon: wp.element.createElement(
                 'svg',
                 {
@@ -40,7 +43,9 @@ wp.domReady(() => {
                 __('season', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -72,7 +77,10 @@ wp.domReady(() => {
                                     'core/paragraph',
                                     {
                                         align: 'center',
-                                        content: '<strong>' + __('Climate', 'tour-operator') + '</strong>',
+                                        content:
+                                            '<strong>' +
+                                            __('Climate', 'tour-operator') +
+                                            '</strong>',
                                     },
                                 ],
                             ],
@@ -144,7 +152,10 @@ wp.domReady(() => {
                                         name: 'core/paragraph',
                                         attributes: {
                                             align: 'center',
-                                            content: '<strong>' + __('Climate', 'tour-operator') + '</strong>',
+                                            content:
+                                                '<strong>' +
+                                                __('Climate', 'tour-operator') +
+                                                '</strong>',
                                         },
                                     },
                                 ],
@@ -160,7 +171,10 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: __('Tropical climate with warm temperatures year-round. Dry season from May to October. Average temperature ranges from 24°C to 30°C.', 'tour-operator'),
+                                            content: __(
+                                                'Tropical climate with warm temperatures year-round. Dry season from May to October. Average temperature ranges from 24°C to 30°C.',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                 ],

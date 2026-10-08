@@ -10,6 +10,10 @@
  * @copyright 2017 lightspeedwp
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 $metabox = array(
 	'title'  => esc_html__('Travel Info', 'tour-operator'),
 	'pages'  => 'destination',
@@ -162,21 +166,46 @@ if (! isset(tour_operator()->options['display']['maps_disable']) && empty(tour_o
 		'name' => esc_html__('Location', 'tour-operator'),
 		'type' => 'title',
 	);
-	$metabox['fields'][] = array(
-		'id'   => 'disable_auto_zoom',
-		'name' => esc_html__('Disable Auto Zoom', 'tour-operator'),
-		'type' => 'checkbox',
-	);
 	$google_api_key      = '';
 	if (isset(tour_operator()->options['googlemaps_key']) && ! empty(tour_operator()->options['googlemaps_key'])) {
 		$google_api_key = tour_operator()->options['googlemaps_key'];
 	}
 	if ( ! empty($google_api_key) ) {
 		$metabox['fields'][] = array(
+			'id'   => 'disable_auto_zoom',
+			'name' => esc_html__('Disable Auto Zoom', 'tour-operator'),
+			'type' => 'checkbox',
+		);
+		$metabox['fields'][] = array(
 			'id'      => 'location',
 			'name'    => esc_html__('Address', 'tour-operator'),
 			'type'    => 'pw_map',
 			'api_key' => $google_api_key,
+		);
+	} else {
+		$metabox['fields'][] = array(
+			'id'   => 'disable_auto_zoom',
+			'name' => esc_html__( 'Zoom', 'tour-operator' ),
+			'type' => 'select',
+			'default' => 0,
+			'options' => [
+				0 => esc_html__( 'Auto Zoom', 'tour-operator' ),
+				1 => '1 ' . esc_html__( '(far)', 'tour-operator' ),
+				2 => '2',
+				3 => '3',
+				4 => '4',
+				5 => '5',
+				6 => '6',
+				7 => '7',
+				8 => '8',
+				9 => '9',
+				10 => '10',
+				11 => '11',
+				12 => '12',
+				13 => '13',
+				14 => '14',
+				15 => '15 ' . esc_html__( '(near)', 'tour-operator' ),
+			]
 		);
 	}
 	$metabox['fields'][] = array(

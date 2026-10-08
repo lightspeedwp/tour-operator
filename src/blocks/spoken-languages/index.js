@@ -5,7 +5,7 @@
  * Only available on accommodations post types and templates screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -14,11 +14,13 @@ import { registerForPostTypesAndTemplates } from '@utils/conditional-block-regis
 wp.domReady(() => {
     // Register variation function
     const registerSpokenLanguagesVariation = () => {
-
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/spoken-languages',
             title: __('Spoken Languages', 'tour-operator'),
-            description: __('Display spoken languages information for accommodations.', 'tour-operator'),
+            description: __(
+                'Display spoken languages information for accommodations.',
+                'tour-operator'
+            ),
             icon: 'translation',
             category: 'lsx-tour-operator',
             keywords: [
@@ -28,7 +30,9 @@ wp.domReady(() => {
                 __('multilingual', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -36,9 +40,9 @@ wp.domReady(() => {
                 },
                 className: 'lsx-spoken-languages-wrapper',
                 layout: {
-					type: 'flex',
-					flexWrap: 'nowrap',
-					verticalAlignment: 'top'
+                    type: 'flex',
+                    flexWrap: 'nowrap',
+                    verticalAlignment: 'top',
                 },
             },
             innerBlocks: [
@@ -61,7 +65,7 @@ wp.domReady(() => {
                                 iconType: 'solid',
                                 iconName: 'spokenLanguagesIcon',
                             },
-                        ]
+                        ],
                     ],
                 ],
                 [
@@ -89,8 +93,11 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefix : __('Spoken Languages:', 'tour-operator'),
-								prefixBold: true,
+                                prefix: __(
+                                    'Spoken Languages:',
+                                    'tour-operator'
+                                ),
+                                prefixBold: true,
                             },
                         ],
                     ],
@@ -121,7 +128,13 @@ wp.domReady(() => {
                             {
                                 name: 'core/paragraph',
                                 attributes: {
-                                    content: '<strong>' + __('Spoken Languages:', 'tour-operator') + '</strong>',
+                                    content:
+                                        '<strong>' +
+                                        __(
+                                            'Spoken Languages:',
+                                            'tour-operator'
+                                        ) +
+                                        '</strong>',
                                 },
                             },
                         ],
@@ -138,7 +151,10 @@ wp.domReady(() => {
                             {
                                 name: 'core/paragraph',
                                 attributes: {
-                                    content: __('English, Spanish, French, German', 'tour-operator'),
+                                    content: __(
+                                        'English, Spanish, French, German',
+                                        'tour-operator'
+                                    ),
                                 },
                             },
                         ],

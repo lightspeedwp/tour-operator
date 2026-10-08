@@ -50,11 +50,11 @@
 
     <!-- Minimum supported PHP version -->
     <config name="minimum_supported_wp_version" value="6.0"/>
-    <config name="testVersion" value="8.0-"/>
+    <config name="testVersion" value="8.2-"/>
 
     <!-- Check for cross-version compatibility -->
     <rule ref="PHPCompatibilityWP">
-        <config name="testVersion" value="8.0-"/>
+        <config name="testVersion" value="8.2-"/>
     </rule>
 
     <!-- Text domain check -->

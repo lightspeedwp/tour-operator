@@ -5,7 +5,7 @@
  * Only available on accommodation post type edit screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -18,14 +18,20 @@ wp.domReady(() => {
             title: __('Units', 'tour-operator'),
             icon: 'admin-multisite',
             category: 'lsx-tour-operator',
-            description: __('Displays all the unit (rooms/camps) types for this accommodation', 'tour-operator'),
+            description: __(
+                'Displays all the unit (rooms/camps) types for this accommodation',
+                'tour-operator'
+            ),
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             keywords: [
                 __('units', 'tour-operator'),
                 __('rooms', 'tour-operator'),
-                __('camps', 'tour-operator')],
+                __('camps', 'tour-operator'),
+            ],
             attributes: {
                 metadata: {
                     name: __('Units', 'tour-operator'),
@@ -165,7 +171,10 @@ wp.domReady(() => {
                                         name: 'core/heading',
                                         attributes: {
                                             level: 3,
-                                            content: __('Double Room', 'tour-operator'),
+                                            content: __(
+                                                'Double Room',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                     {
@@ -174,7 +183,10 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: __('Comfortable room with amenities', 'tour-operator'),
+                                            content: __(
+                                                'Comfortable room with amenities',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                 ],
@@ -185,13 +197,19 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: __('From:', 'tour-operator'),
+                                            content: __(
+                                                'From:',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: __('$150', 'tour-operator'),
+                                            content: __(
+                                                '$150',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                 ],
@@ -210,7 +228,10 @@ wp.domReady(() => {
                                         name: 'core/heading',
                                         attributes: {
                                             level: 3,
-                                            content: __('King Room', 'tour-operator'),
+                                            content: __(
+                                                'King Room',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                     {
@@ -219,7 +240,10 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: __('Luxury room with premium features', 'tour-operator'),
+                                            content: __(
+                                                'Luxury room with premium features',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                 ],
@@ -230,13 +254,19 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: __('From:', 'tour-operator'),
+                                            content: __(
+                                                'From:',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: __('$250', 'tour-operator'),
+                                            content: __(
+                                                '$250',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                 ],

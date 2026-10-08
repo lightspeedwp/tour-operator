@@ -5,7 +5,7 @@
  * Only available on destination post types, destinations, country, and region templates screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -17,7 +17,10 @@ wp.domReady(() => {
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/transport',
             title: __('Transport', 'tour-operator'),
-            description: __('Display transportation information and options for destinations.', 'tour-operator'),
+            description: __(
+                'Display transportation information and options for destinations.',
+                'tour-operator'
+            ),
             icon: 'car',
             category: 'lsx-tour-operator',
             keywords: [
@@ -27,7 +30,9 @@ wp.domReady(() => {
                 __('getting around', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
@@ -59,7 +64,10 @@ wp.domReady(() => {
                                     'core/paragraph',
                                     {
                                         align: 'center',
-                                        content: '<strong>' + __('Transport', 'tour-operator') + '</strong>',
+                                        content:
+                                            '<strong>' +
+                                            __('Transport', 'tour-operator') +
+                                            '</strong>',
                                     },
                                 ],
                             ],
@@ -130,7 +138,13 @@ wp.domReady(() => {
                                         name: 'core/paragraph',
                                         attributes: {
                                             align: 'center',
-                                            content: '<strong>' + __('Transport', 'tour-operator') + '</strong>',
+                                            content:
+                                                '<strong>' +
+                                                __(
+                                                    'Transport',
+                                                    'tour-operator'
+                                                ) +
+                                                '</strong>',
                                         },
                                     },
                                 ],
@@ -146,7 +160,10 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: __('Excellent public transport network including buses, trains, and taxis. Car rentals available. Airport transfers and shuttle services widely available.', 'tour-operator'),
+                                            content: __(
+                                                'Excellent public transport network including buses, trains, and taxis. Car rentals available. Airport transfers and shuttle services widely available.',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                 ],

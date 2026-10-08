@@ -5,7 +5,7 @@
  * Only available on accommodation post type edit screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -16,7 +16,10 @@ wp.domReady(() => {
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/price-include-exclude',
             title: __('Price Include & Exclude', 'tour-operator'),
-            description: __('Displays pricing inclusion and exclusion information for accommodations.', 'tour-operator'),
+            description: __(
+                'Displays pricing inclusion and exclusion information for accommodations.',
+                'tour-operator'
+            ),
             icon: 'money-alt',
             category: 'lsx-tour-operator',
             keywords: [
@@ -26,7 +29,9 @@ wp.domReady(() => {
                 __('pricing', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 align: 'wide',
@@ -53,7 +58,10 @@ wp.domReady(() => {
                             {
                                 width: '50%',
                                 metadata: {
-                                    name: __('Included Column', 'tour-operator'),
+                                    name: __(
+                                        'Included Column',
+                                        'tour-operator'
+                                    ),
                                 },
                                 className: 'lsx-included-wrapper',
                             },
@@ -61,7 +69,13 @@ wp.domReady(() => {
                                 [
                                     'core/paragraph',
                                     {
-                                        content: '<strong>' + __('Price Includes:', 'tour-operator') + '</strong>',
+                                        content:
+                                            '<strong>' +
+                                            __(
+                                                'Price Includes:',
+                                                'tour-operator'
+                                            ) +
+                                            '</strong>',
                                     },
                                 ],
                                 [
@@ -84,7 +98,10 @@ wp.domReady(() => {
                             {
                                 width: '50%',
                                 metadata: {
-                                    name: __('Excluded Column', 'tour-operator'),
+                                    name: __(
+                                        'Excluded Column',
+                                        'tour-operator'
+                                    ),
                                 },
                                 className: 'lsx-not-included-wrapper',
                             },
@@ -92,7 +109,13 @@ wp.domReady(() => {
                                 [
                                     'core/paragraph',
                                     {
-                                        content: '<strong>' + __('Price Excludes:', 'tour-operator') + '</strong>',
+                                        content:
+                                            '<strong>' +
+                                            __(
+                                                'Price Excludes:',
+                                                'tour-operator'
+                                            ) +
+                                            '</strong>',
                                     },
                                 ],
                                 [
@@ -102,7 +125,9 @@ wp.domReady(() => {
                                             bindings: {
                                                 content: {
                                                     source: 'lsx/post-meta',
-                                                    args: { key: 'not_included' },
+                                                    args: {
+                                                        key: 'not_included',
+                                                    },
                                                 },
                                             },
                                         },
@@ -135,13 +160,22 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: '<strong>' + __('Price Includes:', 'tour-operator') + '</strong>',
+                                            content:
+                                                '<strong>' +
+                                                __(
+                                                    'Price Includes:',
+                                                    'tour-operator'
+                                                ) +
+                                                '</strong>',
                                         },
                                     },
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: __('WiFi, breakfast, airport transfers, daily housekeeping', 'tour-operator'),
+                                            content: __(
+                                                'WiFi, breakfast, airport transfers, daily housekeeping',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                 ],
@@ -156,13 +190,22 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: '<strong>' + __('Price Excludes:', 'tour-operator') + '</strong>',
+                                            content:
+                                                '<strong>' +
+                                                __(
+                                                    'Price Excludes:',
+                                                    'tour-operator'
+                                                ) +
+                                                '</strong>',
                                         },
                                     },
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: __('Meals not mentioned, tours, spa treatments, minibar', 'tour-operator'),
+                                            content: __(
+                                                'Meals not mentioned, tours, spa treatments, minibar',
+                                                'tour-operator'
+                                            ),
                                         },
                                     },
                                 ],

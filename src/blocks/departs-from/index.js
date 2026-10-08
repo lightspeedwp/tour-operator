@@ -5,7 +5,7 @@
  * Only available on tour post type edit screens.
  *
  * @since 2.1.0
- * @package Tour_Operator
+ * @package
  */
 
 import { __ } from '@wordpress/i18n';
@@ -17,7 +17,10 @@ wp.domReady(() => {
         wp.blocks.registerBlockVariation('core/group', {
             name: 'lsx-tour-operator/departs-from',
             title: __('Departs from', 'tour-operator'),
-            description: __('Displays the departure location of the tour.', 'tour-operator'),
+            description: __(
+                'Displays the departure location of the tour.',
+                'tour-operator'
+            ),
             icon: wp.element.createElement(
                 'svg',
                 {
@@ -38,18 +41,20 @@ wp.domReady(() => {
                 __('from', 'tour-operator'),
             ],
             isActive: (blockAttributes, variationAttributes) => {
-                return blockAttributes.className === variationAttributes.className;
+                return (
+                    blockAttributes.className === variationAttributes.className
+                );
             },
             attributes: {
                 metadata: {
                     name: __('Departs from', 'tour-operator'),
                 },
                 className: 'lsx-departs-from-wrapper',
-				layout: {
-					type: 'flex',
-					flexWrap: 'nowrap',
-					verticalAlignment: 'top'
-				},
+                layout: {
+                    type: 'flex',
+                    flexWrap: 'nowrap',
+                    verticalAlignment: 'top',
+                },
             },
             innerBlocks: [
                 [
@@ -68,7 +73,7 @@ wp.domReady(() => {
                                 iconType: 'outline',
                                 iconName: 'departsFromEndsInIcon',
                             },
-                        ]
+                        ],
                     ],
                 ],
                 [
@@ -93,8 +98,8 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
-								prefix : __('Departs From:', 'tour-operator'),
-								prefixBold: true,
+                                prefix: __('Departs From:', 'tour-operator'),
+                                prefixBold: true,
                                 content: '',
                             },
                         ],
@@ -127,7 +132,18 @@ wp.domReady(() => {
                                     {
                                         name: 'core/paragraph',
                                         attributes: {
-                                            content: '<strong>' + __('Departs From:', 'tour-operator') + '</strong>' + ' ' + __('Cape Town', 'tour-operator'),
+                                            content:
+                                                '<strong>' +
+                                                __(
+                                                    'Departs From:',
+                                                    'tour-operator'
+                                                ) +
+                                                '</strong>' +
+                                                ' ' +
+                                                __(
+                                                    'Cape Town',
+                                                    'tour-operator'
+                                                ),
                                         },
                                     },
                                 ],

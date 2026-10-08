@@ -1,16 +1,16 @@
-( function ( blocks, element, editor, components ) {
+(function (blocks, element, editor, components) {
     const el = element.createElement;
     const __ = wp.i18n.__;
     const InspectorControls = editor.InspectorControls;
     const PanelBody = components.PanelBody;
     const CheckboxControl = components.CheckboxControl;
-    const supportedBlocks = [ 'core/query', 'core/terms-query' ];
+    const supportedBlocks = ['core/query', 'core/terms-query'];
 
     const withInspectorControls = wp.compose.createHigherOrderComponent(
-        function ( BlockEdit ) {
-            return function ( props ) {
-                if ( ! supportedBlocks.includes( props.name ) ) {
-                    return el( BlockEdit, props );
+        function (BlockEdit) {
+            return function (props) {
+                if (!supportedBlocks.includes(props.name)) {
+                    return el(BlockEdit, props);
                 }
 
                 const isQueryBlock = props.name === 'core/query';
@@ -20,36 +20,40 @@
                     isQueryBlock && props.attributes.query
                         ? props.attributes.query.postType
                         : null;
-                const previousPostType = wp.element.useRef( currentPostType );
-                
-                wp.element.useEffect( () => {
+                const previousPostType = wp.element.useRef(currentPostType);
+
+                wp.element.useEffect(() => {
                     if (
                         isQueryBlock &&
                         previousPostType.current === 'tour' &&
                         currentPostType !== 'tour'
                     ) {
                         // Post type changed from tour to something else, clear on-sale
-                        const hasOnSale = props.attributes.filterByOnsale || 
-                            ( props.attributes.className && props.attributes.className.includes( 'on-sale' ) );
-                        
-                        if ( hasOnSale ) {
+                        const hasOnSale =
+                            props.attributes.filterByOnsale ||
+                            (props.attributes.className &&
+                                props.attributes.className.includes('on-sale'));
+
+                        if (hasOnSale) {
                             const newAttributes = { filterByOnsale: false };
                             let className = props.attributes.className || '';
-                            className = className.replace( /\bon-sale\b\s*/g, '' ).trim();
-                            if ( className ) {
+                            className = className
+                                .replace(/\bon-sale\b\s*/g, '')
+                                .trim();
+                            if (className) {
                                 newAttributes.className = className;
                             }
-                            props.setAttributes( newAttributes );
+                            props.setAttributes(newAttributes);
                         }
                     }
                     previousPostType.current = currentPostType;
-                }, [ currentPostType, isQueryBlock ] );
+                }, [currentPostType, isQueryBlock]);
 
                 let hasCustomClass = props.attributes.hasCustomClass || false;
-                if ( undefined === props.attributes.hasCustomClass ) {
+                if (undefined === props.attributes.hasCustomClass) {
                     if (
                         props.attributes.className &&
-                        props.attributes.className.includes( 'lsx-to-slider' )
+                        props.attributes.className.includes('lsx-to-slider')
                     ) {
                         hasCustomClass = true;
                     }
@@ -58,10 +62,10 @@
                 }
 
                 let filterByOnsale = props.attributes.filterByOnsale || false;
-                if ( undefined === props.attributes.filterByOnsale ) {
+                if (undefined === props.attributes.filterByOnsale) {
                     if (
                         props.attributes.className &&
-                        props.attributes.className.includes( 'on-sale' )
+                        props.attributes.className.includes('on-sale')
                     ) {
                         filterByOnsale = true;
                     }
@@ -70,10 +74,10 @@
                 }
 
                 let parentsOnly = props.attributes.parentsOnly || false;
-                if ( undefined === props.attributes.parentsOnly ) {
+                if (undefined === props.attributes.parentsOnly) {
                     if (
                         props.attributes.className &&
-                        props.attributes.className.includes( 'parents-only' )
+                        props.attributes.className.includes('parents-only')
                     ) {
                         parentsOnly = true;
                     }
@@ -82,10 +86,10 @@
                 }
 
                 let customOrder = props.attributes.customOrder || false;
-                if ( undefined === props.attributes.customOrder ) {
+                if (undefined === props.attributes.customOrder) {
                     if (
                         props.attributes.className &&
-                        props.attributes.className.includes( 'custom-order' )
+                        props.attributes.className.includes('custom-order')
                     ) {
                         customOrder = true;
                     }
@@ -96,67 +100,83 @@
                 return el(
                     element.Fragment,
                     {},
-                    el( BlockEdit, props ),
+                    el(BlockEdit, props),
                     el(
                         InspectorControls,
                         {},
                         el(
                             PanelBody,
                             { title: 'Tour Operator', initialOpen: true },
-                            el( CheckboxControl, {
+                            el(CheckboxControl, {
                                 label: 'Enable Slider',
                                 checked: hasCustomClass,
-                                onChange( value ) {
-                                    props.setAttributes( {
+                                onChange(value) {
+                                    props.setAttributes({
                                         hasCustomClass: value,
-                                    } );
+                                    });
                                 },
-                            } ),
+                            }),
                             // Only show Filter by On Sale for tour post type
-                            isQueryBlock && props.attributes.query && props.attributes.query.postType === 'tour' && el( CheckboxControl, {
-                                label: 'Filter by On Sale',
-                                checked: filterByOnsale,
-                                onChange( value ) {
-                                    // Update the filterByOnsale attribute
-                                    const newAttributes = {
-                                        filterByOnsale: value,
-                                    };
-                                    
-                                    // Also update className attribute to include/remove 'on-sale'
-                                    let className = props.attributes.className || '';
-                                    if ( value ) {
-                                        // Add on-sale class if not present
-                                        if ( ! className.includes( 'on-sale' ) ) {
-                                            className = [ className.trim(), 'on-sale' ].filter( Boolean ).join( ' ' );
+                            isQueryBlock &&
+                                props.attributes.query &&
+                                props.attributes.query.postType === 'tour' &&
+                                el(CheckboxControl, {
+                                    label: 'Filter by On Sale',
+                                    checked: filterByOnsale,
+                                    onChange(value) {
+                                        // Update the filterByOnsale attribute
+                                        const newAttributes = {
+                                            filterByOnsale: value,
+                                        };
+
+                                        // Also update className attribute to include/remove 'on-sale'
+                                        let className =
+                                            props.attributes.className || '';
+                                        if (value) {
+                                            // Add on-sale class if not present
+                                            if (
+                                                !className.includes('on-sale')
+                                            ) {
+                                                className = [
+                                                    className.trim(),
+                                                    'on-sale',
+                                                ]
+                                                    .filter(Boolean)
+                                                    .join(' ');
+                                            }
+                                        } else {
+                                            // Remove on-sale class
+                                            className = className
+                                                .replace(/\bon-sale\b\s*/g, '')
+                                                .trim();
                                         }
-                                    } else {
-                                        // Remove on-sale class
-                                        className = className.replace( /\bon-sale\b\s*/g, '' ).trim();
-                                    }
-                                    newAttributes.className = className;
-                                    
-                                    props.setAttributes( newAttributes );
-                                },
-                            } ),
-                            el( CheckboxControl, {
+                                        newAttributes.className = className;
+
+                                        props.setAttributes(newAttributes);
+                                    },
+                                }),
+                            el(CheckboxControl, {
                                 label: 'Parents Only',
                                 checked: parentsOnly,
-                                onChange( value ) {
-                                    props.setAttributes( {
+                                onChange(value) {
+                                    props.setAttributes({
                                         parentsOnly: value,
-                                    } );
+                                    });
                                 },
-                            } ),
-                            el( CheckboxControl, {
-                                label: __( 'Custom Order', 'tour-operator' ),
+                            }),
+                            el(CheckboxControl, {
+                                label: __('Custom Order', 'tour-operator'),
                                 checked: customOrder,
-                                help: __( 'Preserve the order from connected posts (e.g., tours ordered in destination multiselect field)', 'tour-operator' ),
-                                onChange( value ) {
-                                    props.setAttributes( {
+                                help: __(
+                                    'Preserve the order from connected posts (e.g., tours ordered in destination multiselect field)',
+                                    'tour-operator'
+                                ),
+                                onChange(value) {
+                                    props.setAttributes({
                                         customOrder: value,
-                                    } );
+                                    });
                                 },
-                            } )
+                            })
                         )
                     )
                 );
@@ -174,54 +194,50 @@
     wp.hooks.addFilter(
         'blocks.getSaveContent.extraProps',
         'lsx-tour-operator/save-settings-panel',
-        function ( extraProps, blockType, attributes ) {
-            if ( supportedBlocks.includes( blockType.name ) ) {
-                if ( true === attributes.hasCustomClass ) {
+        function (extraProps, blockType, attributes) {
+            if (supportedBlocks.includes(blockType.name)) {
+                if (true === attributes.hasCustomClass) {
                     extraProps.className =
-                        ( extraProps.className || '' ) + ' lsx-to-slider';
+                        (extraProps.className || '') + ' lsx-to-slider';
                 } else if (
                     false === attributes.hasCustomClass &&
                     extraProps.className
                 ) {
                     extraProps.className = extraProps.className
-                        .replace( /\blsx-to-slider\b\s*/g, '' )
+                        .replace(/\blsx-to-slider\b\s*/g, '')
                         .trim();
                 }
 
-                if ( true === attributes.parentsOnly ) {
+                if (true === attributes.parentsOnly) {
                     extraProps.className =
-                        ( extraProps.className || '' ) + ' parents-only';
+                        (extraProps.className || '') + ' parents-only';
                 } else if (
                     false === attributes.parentsOnly &&
                     extraProps.className
                 ) {
                     extraProps.className = extraProps.className
-                        .replace( /\bparents-only\b\s*/g, '' )
+                        .replace(/\bparents-only\b\s*/g, '')
                         .trim();
                 }
 
-                if ( true === attributes.customOrder ) {
-                    if (
-                        ! /\bcustom-order\b/.test(
-                            extraProps.className || ''
-                        )
-                    ) {
+                if (true === attributes.customOrder) {
+                    if (!/\bcustom-order\b/.test(extraProps.className || '')) {
                         extraProps.className =
-                            ( extraProps.className || '' ) + ' custom-order';
+                            (extraProps.className || '') + ' custom-order';
                     }
                 } else if (
                     false === attributes.customOrder &&
                     extraProps.className
                 ) {
                     extraProps.className = extraProps.className
-                        .replace( /\bcustom-order\b\s*/g, '' )
+                        .replace(/\bcustom-order\b\s*/g, '')
                         .trim();
                 }
             }
             return extraProps;
         }
     );
-} )(
+})(
     window.wp.blocks,
     window.wp.element,
     window.wp.blockEditor,

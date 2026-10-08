@@ -10,6 +10,10 @@
 
 namespace lsx\legacy;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Plugin class.
  */
