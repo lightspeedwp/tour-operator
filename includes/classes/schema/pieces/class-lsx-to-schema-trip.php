@@ -381,8 +381,10 @@ class Trip {
 			$properties[] = Helpers::make_property_value( 'Not included', $not_included );
 		}
 
+		// Merge rather than replace: Duration and Ends in are appended earlier.
 		if ( ! empty( $properties ) ) {
-			$data['additionalProperty'] = $properties;
+			$existing                   = isset( $data['additionalProperty'] ) ? (array) $data['additionalProperty'] : array();
+			$data['additionalProperty'] = array_merge( $existing, $properties );
 		}
 
 		return $data;

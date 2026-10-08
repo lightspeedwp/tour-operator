@@ -110,7 +110,11 @@ class Helpers {
 	 * @return string Numeric string or empty string.
 	 */
 	public static function normalise_price( $value ) {
-		$value   = (string) $value;
+		$value = (string) $value;
+		// Treat a trailing ",d" or ",dd" as a decimal comma (e.g. "1.250,50").
+		if ( preg_match( '/,\d{1,2}$/', $value ) ) {
+			$value = str_replace( array( '.', ',' ), array( '', '.' ), $value );
+		}
 		$numeric = preg_replace( '/[^\d.]/', '', $value );
 		if ( '' === $numeric || ! is_numeric( $numeric ) || (float) $numeric <= 0 ) {
 			return '';
@@ -175,10 +179,10 @@ class Helpers {
 		if ( is_numeric( $value ) && (int) $value > 0 ) {
 			return gmdate( 'Y-m-d', (int) $value );
 		}
-		// Date string – attempt strtotime.
-		$ts = strtotime( $value );
-		if ( false !== $ts && $ts > 0 ) {
-			return gmdate( 'Y-m-d', $ts );
+		// Date string – parse in UTC so the result matches gmdate() above.
+		$date = date_create( $value, new \DateTimeZone( 'UTC' ) );
+		if ( false !== $date && $date->getTimestamp() > 0 ) {
+			return $date->format( 'Y-m-d' );
 		}
 		return '';
 	}
@@ -196,11 +200,12 @@ class Helpers {
 		if ( '' === $value ) {
 			return '';
 		}
-		$ts = strtotime( $value );
-		if ( false === $ts ) {
+		// Parse in UTC so the server time zone cannot shift the time.
+		$time = date_create( $value, new \DateTimeZone( 'UTC' ) );
+		if ( false === $time ) {
 			return '';
 		}
-		return gmdate( 'H:i', $ts );
+		return $time->format( 'H:i' );
 	}
 
 	/**

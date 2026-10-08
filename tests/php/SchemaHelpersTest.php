@@ -94,6 +94,14 @@ class SchemaHelpersTest extends TestCase
 	/**
 	 * Non-numeric input returns empty string.
 	 */
+	public function test_normalise_price_decimal_comma()
+	{
+		$this->assertSame('1250.5', Helpers::normalise_price('1.250,50'));
+		$this->assertSame('3.5', Helpers::normalise_price('3,50'));
+		$this->assertSame('1250', Helpers::normalise_price('1,250'));
+		$this->assertSame('1250', Helpers::normalise_price('R 1,250.00'));
+	}
+
 	public function test_normalise_price_non_numeric_returns_empty()
 	{
 		$this->assertSame('', Helpers::normalise_price('POA'));
@@ -143,7 +151,7 @@ class SchemaHelpersTest extends TestCase
 	public function test_format_iso_date_unix_timestamp()
 	{
 		// 2026-06-01 UTC
-		$ts = mktime(0, 0, 0, 6, 1, 2026);
+		$ts = gmmktime(0, 0, 0, 6, 1, 2026);
 		$this->assertSame('2026-06-01', Helpers::format_iso_date((string) $ts));
 	}
 
