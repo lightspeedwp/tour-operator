@@ -4,10 +4,19 @@
 
 ### Added
 
+#### Structured Data (JSON-LD)
+- **Schema 2.2 graph pieces for Tour, Accommodation and Destination** - New `lsx\schema\pieces\Trip` (`TouristTrip`), `Accommodation` (`LodgingBusiness`) and `Destination` (`TouristDestination`) classes map the approved Schema 2.2 fields, with tourism facts that have no schema.org property output as `additionalProperty` `PropertyValue` nodes. The pieces join the Yoast SEO graph when Yoast is active and print a standalone JSON-LD block when it is not - Issue [#1143](https://github.com/lightspeedwp/tour-operator/issues/1143), PR [#1148](https://github.com/lightspeedwp/tour-operator/pull/1148), TO-137
+- **Shared schema helpers** - `lsx\schema\Helpers` provides price normalisation, ISO 8601 duration/date/time formatting, month labels and `PropertyValue` builders, covered by `tests/php/SchemaHelpersTest.php` - PR [#1148](https://github.com/lightspeedwp/tour-operator/pull/1148)
+- **Schema filters** - `lsx_to_schema_trip_data`, `lsx_to_schema_accommodation_data` and `lsx_to_schema_destination_data` filter each piece's output; `lsx_to_official_rating_types` controls which rating types map to `starRating` (TGCSA and Hotelstars Union by default); `lsx_to_schema_month_labels` overrides month labels - PR [#1148](https://github.com/lightspeedwp/tour-operator/pull/1148)
+
 #### Filters
 - **Breadcrumb Links Override** - added a `lsx_to_breadcrumb_links` filter in `Frontend::get_breadcrumb_links()`, applied to the final crumbs array before it is returned, to allow 3rd party plugins to alter or extend Tour Operator breadcrumb links.
 
 ### Fixed
+
+#### Structured Data (JSON-LD)
+- **Schema never joined the Yoast SEO graph** - the Yoast integration was gated on the `WPSEO_Graph_Piece` interface, which Yoast removed in version 14, so with Yoast active the plugin printed a second, separate JSON-LD block and the Tour lost its `provider` and `#primaryimage` reference. Yoast is now detected by `WPSEO_VERSION` and the pieces are registered directly on `wpseo_schema_graph_pieces`. The adapter wrapper has been removed, which also stops all three pieces sharing a single Yoast piece identifier. The primary image `@id` now uses Yoast's current `Schema_IDs` class via `Helpers::primary_image_hash()` - Issue [#1143](https://github.com/lightspeedwp/tour-operator/issues/1143), PR [#1148](https://github.com/lightspeedwp/tour-operator/pull/1148), TO-137
+- **Tour itinerary days missing from schema** - the itinerary repeatable group is stored as a single serialised row, but the Trip piece read it as one row per day, so no `subTrip` days (or their accommodation and destination stops) were output. It is now read as a single row - Issue [#1143](https://github.com/lightspeedwp/tour-operator/issues/1143), PR [#1148](https://github.com/lightspeedwp/tour-operator/pull/1148), TO-137
 
 #### Maps
 - **Destination page Google Maps placeholder did not open** - clicking "Click here to display the map" fetched the Google Maps API and marker-cluster script ad hoc via `jQuery.getScript()`, racing with `maps.js`'s own script dependencies and frequently calling `google.maps.Map()` before the API had finished loading, so the map never rendered. The Google Maps API and marker-cluster scripts are now registered as proper dependencies of `lsx_to_maps` (`Maps::register_assets()`, hooked to `wp_enqueue_scripts`) and enqueued together via a single `wp_enqueue_script( 'lsx_to_maps' )` once `map_output()` actually renders a map, so WordPress loads and orders all three scripts itself; the placeholder's click handler now calls `LSX_TO_Maps.initThis()` directly instead of re-fetching the API - LS-4170
@@ -37,6 +46,9 @@
 - **Featured query loop re-scanned wp_postmeta on every render** - `find_featured_items()` ran its `meta_query` as a fresh, uncached `WP_Query` on every render of every Featured Tours/Destinations/Accommodation block variation, with no caching layer anywhere in the path. On a site with a non-trivial `wp_postmeta` table this multi-joins the table once per meta_query clause; observed on a production incident at ~2.1M rows examined per call, 2.0-2.8s each, hit on effectively every front-end page load. Now cached through WordPress transients (using the object cache when a persistent backend is configured, falling back to `wp_options` otherwise), keyed by the query args, with a persisted generation counter (an option, not a cache entry, so it survives an object-cache eviction/restart) bumped on the relevant meta/post-save events for near-immediate invalidation, plus a one-hour TTL as a backstop - Issue [#1327](https://github.com/lightspeedwp/tour-operator/issues/1327)
 
 ### Changed
+
+#### Structured Data (JSON-LD)
+- **Legacy schema output replaced** - `lsx\legacy\Schema` now only loads and registers the new graph pieces; the previous per-post-type schema classes in `includes/classes/legacy/schema/` are no longer loaded - PR [#1148](https://github.com/lightspeedwp/tour-operator/pull/1148)
 
 #### CI and dependency hygiene
 - **Grouped interdependent npm updates so peer conflicts stop recurring** - Dependabot opened a separate PR per package, so one member of a peer-linked toolchain could be bumped past its siblings and leave an unresolvable dependency tree that fails `npm ci` on every branch carrying it. That has broken CI four times (LS-1234, LS-2732, LS-2929, LS-3714), each a Babel package moving independently of `@babel/core`. `.github/dependabot.yml` now groups `@babel/*`, `@wordpress/*`, `eslint*`, `stylelint*`, `webpack*` and Playwright so each set moves as a unit, and ignores major updates for `@babel/*` specifically: Babel 8 only peer-accepts Babel 8 core, and this project's Babel setup comes from `@wordpress/babel-preset-default` via wp-scripts, so adopting it is a deliberate toolchain change rather than a dependency bump. Minor and patch updates still flow through the group.
