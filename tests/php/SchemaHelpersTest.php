@@ -50,7 +50,7 @@ use lsx\schema\Helpers;
 /**
  * Unit tests for lsx\schema\Helpers.
  */
-class TestSchemaHelpers extends TestCase
+class SchemaHelpersTest extends TestCase
 {
 
 	// -------------------------------------------------------------------------
