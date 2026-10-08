@@ -36,6 +36,22 @@ class Helpers {
 	}
 
 	/**
+	 * Get Yoast's primary image @id fragment.
+	 *
+	 * Uses the current Yoast Schema_IDs constant when available (the legacy
+	 * WPSEO_Schema_IDs class was removed in Yoast 14), falling back to the
+	 * value Yoast has always used.
+	 *
+	 * @return string Hash fragment, e.g. '#primaryimage'.
+	 */
+	public static function primary_image_hash() {
+		if ( class_exists( '\Yoast\WP\SEO\Config\Schema_IDs' ) ) {
+			return \Yoast\WP\SEO\Config\Schema_IDs::PRIMARY_IMAGE_HASH;
+		}
+		return '#primaryimage';
+	}
+
+	/**
 	 * Safely retrieve a multi-value post meta field as an array.
 	 *
 	 * Handles both CMB2 serialised multiselect values (stored as a single

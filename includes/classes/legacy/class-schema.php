@@ -50,7 +50,9 @@ class Schema
 		require_once LSX_TO_PATH . 'includes/classes/schema/pieces/class-lsx-to-schema-accommodation.php';
 		require_once LSX_TO_PATH . 'includes/classes/schema/pieces/class-lsx-to-schema-destination.php';
 
-		if (interface_exists('WPSEO_Graph_Piece')) {
+		// Yoast 14+ removed the WPSEO_Graph_Piece interface, so detect Yoast by
+		// its version constant (defined before plugins_loaded, when this runs).
+		if (defined('WPSEO_VERSION')) {
 			// Yoast SEO is active: register new pieces via its graph API.
 			add_filter('wpseo_schema_graph_pieces', array($this, 'add_graph_pieces'), 11, 2);
 		} else {
@@ -77,19 +79,19 @@ class Schema
 	/**
 	 * Adds new graph pieces to the Yoast SEO schema graph.
 	 *
-	 * Each piece is wrapped in a LSX_TO_Schema_Piece_Adapter so that it
-	 * satisfies the WPSEO_Graph_Piece interface without the piece classes
-	 * themselves depending on Yoast.
+	 * Yoast only requires is_needed() and generate() on each piece, so the
+	 * piece classes are registered directly. Yoast keys pieces by class name,
+	 * so each piece must keep its own class to avoid overwriting the others.
 	 *
-	 * @param array                 $pieces  Existing graph pieces.
-	 * @param \WPSEO_Schema_Context $context Yoast context object.
+	 * @param array                                   $pieces  Existing graph pieces.
+	 * @param \Yoast\WP\SEO\Context\Meta_Tags_Context $context Yoast context object.
 	 * @return array Updated graph pieces.
 	 */
 	public function add_graph_pieces($pieces, $context)
 	{
-		$pieces[] = new LSX_TO_Schema_Piece_Adapter(new \lsx\schema\pieces\Trip($context));
-		$pieces[] = new LSX_TO_Schema_Piece_Adapter(new \lsx\schema\pieces\Accommodation($context));
-		$pieces[] = new LSX_TO_Schema_Piece_Adapter(new \lsx\schema\pieces\Destination($context));
+		$pieces[] = new \lsx\schema\pieces\Trip($context);
+		$pieces[] = new \lsx\schema\pieces\Accommodation($context);
+		$pieces[] = new \lsx\schema\pieces\Destination($context);
 		return $pieces;
 	}
 
@@ -127,58 +129,6 @@ class Schema
 				// Only one piece should match per page.
 				break;
 			}
-		}
-	}
-}
-
-// ---------------------------------------------------------------------------
-// Yoast adapter – only defined when the WPSEO_Graph_Piece interface exists.
-// ---------------------------------------------------------------------------
-if (interface_exists('WPSEO_Graph_Piece') && ! class_exists(__NAMESPACE__ . '\LSX_TO_Schema_Piece_Adapter')) {
-	/**
-	 * Thin adapter that satisfies the WPSEO_Graph_Piece interface and
-	 * delegates to an LSX Tour Operator schema piece class.
-	 *
-	 * This keeps the piece classes themselves free of Yoast dependencies so
-	 * they can be instantiated and unit-tested without Yoast present.
-	 */
-	class LSX_TO_Schema_Piece_Adapter implements \WPSEO_Graph_Piece
-	{
-		/**
-		 * The wrapped schema piece instance.
-		 *
-		 * @var object
-		 */
-		private $piece;
-
-		/**
-		 * Constructor.
-		 *
-		 * @param object $piece Schema piece with is_needed() and generate() methods.
-		 */
-		public function __construct($piece)
-		{
-			$this->piece = $piece;
-		}
-
-		/**
-		 * Determines whether the piece should be added to the graph.
-		 *
-		 * @return bool
-		 */
-		public function is_needed()
-		{
-			return $this->piece->is_needed();
-		}
-
-		/**
-		 * Generates the piece data.
-		 *
-		 * @return array
-		 */
-		public function generate()
-		{
-			return $this->piece->generate();
 		}
 	}
 }
