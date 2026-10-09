@@ -129,6 +129,13 @@ class Trip {
 		// Additional properties.
 		$data = $this->add_additional_properties( $data );
 
+		// additionalProperty is not defined for TouristTrip, but is for Product.
+		// Only add Product when there is an Offer: Google requires a Product to
+		// have offers, review or aggregateRating, and reports an error otherwise.
+		if ( isset( $data['offers'] ) ) {
+			$data['@type'] = array( 'TouristTrip', 'Product' );
+		}
+
 		/**
 		 * Filter the complete Trip schema data array.
 		 *
@@ -378,20 +385,20 @@ class Trip {
 		}
 
 		// Highlights.
-		$highlights = Helpers::strip_to_text( Helpers::get_meta( $this->post_id, 'highlights' ) );
-		if ( '' !== $highlights ) {
+		$highlights = Helpers::html_to_list( Helpers::get_meta( $this->post_id, 'highlights' ) );
+		if ( ! empty( $highlights ) ) {
 			$properties[] = Helpers::make_property_value( 'Highlights', $highlights );
 		}
 
 		// Included.
-		$included = Helpers::strip_to_text( Helpers::get_meta( $this->post_id, 'included' ) );
-		if ( '' !== $included ) {
+		$included = Helpers::html_to_list( Helpers::get_meta( $this->post_id, 'included' ) );
+		if ( ! empty( $included ) ) {
 			$properties[] = Helpers::make_property_value( 'Included', $included );
 		}
 
 		// Not included.
-		$not_included = Helpers::strip_to_text( Helpers::get_meta( $this->post_id, 'not_included' ) );
-		if ( '' !== $not_included ) {
+		$not_included = Helpers::html_to_list( Helpers::get_meta( $this->post_id, 'not_included' ) );
+		if ( ! empty( $not_included ) ) {
 			$properties[] = Helpers::make_property_value( 'Not included', $not_included );
 		}
 

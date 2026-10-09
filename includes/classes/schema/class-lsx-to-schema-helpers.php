@@ -253,20 +253,36 @@ class Helpers {
 	/**
 	 * Build a schema.org PropertyValue node.
 	 *
-	 * @param string $name  Property name (human-readable label).
-	 * @param string $value Property value.
+	 * A list of values is output as a JSON array, or as a plain string when
+	 * it holds a single item.
+	 *
+	 * @param string          $name  Property name (human-readable label).
+	 * @param string|string[] $value Property value, or a list of values.
 	 * @return array PropertyValue array.
 	 */
 	public static function make_property_value( $name, $value ) {
+		if ( is_array( $value ) ) {
+			$value = array_values( array_map( 'strval', $value ) );
+			if ( 1 === count( $value ) ) {
+				$value = $value[0];
+			}
+		} else {
+			$value = (string) $value;
+		}
+
 		return array(
 			'@type' => 'PropertyValue',
 			'name'  => (string) $name,
-			'value' => (string) $value,
+			'value' => $value,
 		);
 	}
 
 	/**
 	 * Strip all HTML tags from a string and decode HTML entities.
+	 *
+	 * Block-level tags and line breaks become spaces so adjacent paragraphs do
+	 * not run together, and all whitespace (including non-breaking spaces,
+	 * tabs and line breaks) is collapsed to single spaces.
 	 *
 	 * Falls back to `strip_tags()` when `wp_strip_all_tags()` is not available
 	 * (e.g. in unit tests without a WordPress environment).
@@ -275,12 +291,35 @@ class Helpers {
 	 * @return string Plain text.
 	 */
 	public static function strip_to_text( $value ) {
-		$value = (string) $value;
+		$value = preg_replace( '/<\/(?:p|li|div|h[1-6])>|<br\s*\/?>/i', ' ', (string) $value );
 		if ( function_exists( 'wp_strip_all_tags' ) ) {
 			$clean = wp_strip_all_tags( $value );
 		} else {
 			$clean = strip_tags( $value );
 		}
-		return html_entity_decode( $clean, ENT_QUOTES, 'UTF-8' );
+		$clean = html_entity_decode( $clean, ENT_QUOTES, 'UTF-8' );
+		return trim( preg_replace( '/[\s\x{00A0}]+/u', ' ', $clean ) );
+	}
+
+	/**
+	 * Split an HTML or plain-text field into a list of clean text items.
+	 *
+	 * Each list item, paragraph, line break or plain-text line becomes one
+	 * item. Nested lists are flattened and empty items (such as a trailing
+	 * `&nbsp;`) are dropped.
+	 *
+	 * @param string $value Raw HTML or plain text.
+	 * @return string[] Clean text items.
+	 */
+	public static function html_to_list( $value ) {
+		$value = preg_replace( '/<\/?(?:li|p|div|ul|ol|h[1-6])\b[^>]*>|<br\s*\/?>/i', "\n", (string) $value );
+		$items = array();
+		foreach ( preg_split( '/\R/u', $value ) as $line ) {
+			$line = self::strip_to_text( $line );
+			if ( '' !== $line ) {
+				$items[] = $line;
+			}
+		}
+		return $items;
 	}
 }
