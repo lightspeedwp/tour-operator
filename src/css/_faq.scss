@@ -93,7 +93,9 @@
 		/*
 		 * max-height rather than grid-template-rows 0fr -> 1fr: the answer is both
 		 * the grid container and its only item, so 0fr never resolves to zero.
-		 * The open cap is generous enough that no realistic answer is clipped.
+		 * faq-accordion.js sets --lsx-to-faq-answer-height (in rem) from the
+		 * answer's scrollHeight, so long answers are never clipped. The bottom
+		 * padding is added on top for themes that use border-box sizing.
 		 */
 		.schema-faq-answer {
 			max-height: 0;
@@ -108,7 +110,7 @@
 		}
 
 		.schema-faq-section.is-open > .schema-faq-answer {
-			max-height: 1000px;
+			max-height: calc(var(--lsx-to-faq-answer-height, 62.5rem) + var(--wp--preset--spacing--20, 1rem));
 			padding: 0 var(--wp--preset--spacing--30) var(--wp--preset--spacing--20);
 			opacity: 1;
 		}
