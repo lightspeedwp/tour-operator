@@ -9,6 +9,10 @@
 - **Shared schema helpers** - `lsx\schema\Helpers` provides price normalisation, ISO 8601 duration/date/time formatting, month labels and `PropertyValue` builders, covered by `tests/php/SchemaHelpersTest.php` - PR [#1148](https://github.com/lightspeedwp/tour-operator/pull/1148)
 - **Schema filters** - `lsx_to_schema_trip_data`, `lsx_to_schema_accommodation_data` and `lsx_to_schema_destination_data` filter each piece's output; `lsx_to_official_rating_types` controls which rating types map to `starRating` (TGCSA and Hotelstars Union by default); `lsx_to_schema_month_labels` overrides month labels - PR [#1148](https://github.com/lightspeedwp/tour-operator/pull/1148)
 
+#### FAQ
+- **FAQ template part area** - Registers a `faq` template part area alongside `fast-facts` and `modals`, so FAQ template parts can be grouped in the Site Editor - TO-138
+- **Collapsible Yoast FAQ block** - New `lsx\frontend\Faq` class enqueues `build/faq-accordion.js` only on pages that render `yoast/faq-block`. The script turns each question into a keyboard-operable toggle (`role="button"`, `aria-expanded`, `aria-controls`) and the new `src/css/_faq.scss` styles the accordion with ls-theme tokens and fallbacks. Without JavaScript the FAQ stays fully expanded, and motion is disabled under `prefers-reduced-motion` - TO-138
+
 #### Filters
 - **Breadcrumb Links Override** - added a `lsx_to_breadcrumb_links` filter in `Frontend::get_breadcrumb_links()`, applied to the final crumbs array before it is returned, to allow 3rd party plugins to alter or extend Tour Operator breadcrumb links.
 
