@@ -11,7 +11,6 @@
 
 #### FAQ
 - **FAQ template part area** - Registers a `faq` template part area alongside `fast-facts` and `modals`, so FAQ template parts can be grouped in the Site Editor - TO-138
-- **Collapsible Yoast FAQ block** - New `lsx\frontend\Faq` class enqueues `build/faq-accordion.js` only on pages that render `yoast/faq-block`. The script turns each question into a keyboard-operable toggle (`role="button"`, `aria-expanded`, `aria-controls`) and the new `src/css/_faq.scss` styles the accordion with ls-theme tokens and fallbacks. Without JavaScript the FAQ stays fully expanded, and motion is disabled under `prefers-reduced-motion` - TO-138
 
 #### Filters
 - **Breadcrumb Links Override** - added a `lsx_to_breadcrumb_links` filter in `Frontend::get_breadcrumb_links()`, applied to the final crumbs array before it is returned, to allow 3rd party plugins to alter or extend Tour Operator breadcrumb links.
