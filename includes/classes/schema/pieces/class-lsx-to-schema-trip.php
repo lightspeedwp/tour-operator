@@ -129,6 +129,13 @@ class Trip {
 		// Additional properties.
 		$data = $this->add_additional_properties( $data );
 
+		// additionalProperty is not defined for TouristTrip, but is for Product.
+		// Only add Product when there is an Offer: Google requires a Product to
+		// have offers, review or aggregateRating, and reports an error otherwise.
+		if ( isset( $data['offers'] ) ) {
+			$data['@type'] = array( 'TouristTrip', 'Product' );
+		}
+
 		/**
 		 * Filter the complete Trip schema data array.
 		 *
@@ -291,22 +298,36 @@ class Trip {
 			// Build itinerary stop list for this day.
 			$stops = array();
 
-			$accom_id = isset( $day['accommodation_to_tour'] ) ? (int) $day['accommodation_to_tour'] : 0;
-			if ( $accom_id > 0 && get_post( $accom_id ) ) {
-				$stops[] = array(
-					'@type' => 'LodgingBusiness',
-					'name'  => get_the_title( $accom_id ),
-					'url'   => get_permalink( $accom_id ),
-				);
-			}
+			do_action( 'qm/debug', $day );
 
-			$dest_id = isset( $day['destination_to_tour'] ) ? (int) $day['destination_to_tour'] : 0;
-			if ( $dest_id > 0 && get_post( $dest_id ) ) {
-				$stops[] = array(
-					'@type' => 'TouristDestination',
-					'name'  => get_the_title( $dest_id ),
-					'url'   => get_permalink( $dest_id ),
-				);
+			if ( isset( $day['accommodation_to_tour'] ) ) {
+				if ( is_array( $day['accommodation_to_tour'] ) ) {
+					$accom_id = array_pop( $day['accommodation_to_tour'] );
+				} else {
+					$accom_id = (int) $day['accommodation_to_tour'];
+				}
+				if ( $accom_id > 0 && get_post( $accom_id ) ) {
+					$stops[] = array(
+						'@type' => 'LodgingBusiness',
+						'name'  => get_the_title( $accom_id ),
+						'url'   => get_permalink( $accom_id ),
+					);
+				}
+			}	
+			
+			if ( isset( $day['destination_to_tour'] ) ) {
+				if ( is_array( $day['destination_to_tour'] ) ) {
+					$dest_id = array_pop( $day['destination_to_tour'] );
+				} else {
+					$dest_id = (int) $day['destination_to_tour'];
+				}
+				if ( $dest_id > 0 && get_post( $dest_id ) ) {
+					$stops[] = array(
+						'@type' => 'TouristDestination',
+						'name'  => get_the_title( $dest_id ),
+						'url'   => get_permalink( $dest_id ),
+					);
+				}
 			}
 
 			if ( ! empty( $stops ) ) {
@@ -364,20 +385,20 @@ class Trip {
 		}
 
 		// Highlights.
-		$highlights = Helpers::strip_to_text( Helpers::get_meta( $this->post_id, 'highlights' ) );
-		if ( '' !== $highlights ) {
+		$highlights = Helpers::html_to_list( Helpers::get_meta( $this->post_id, 'highlights' ) );
+		if ( ! empty( $highlights ) ) {
 			$properties[] = Helpers::make_property_value( 'Highlights', $highlights );
 		}
 
 		// Included.
-		$included = Helpers::strip_to_text( Helpers::get_meta( $this->post_id, 'included' ) );
-		if ( '' !== $included ) {
+		$included = Helpers::html_to_list( Helpers::get_meta( $this->post_id, 'included' ) );
+		if ( ! empty( $included ) ) {
 			$properties[] = Helpers::make_property_value( 'Included', $included );
 		}
 
 		// Not included.
-		$not_included = Helpers::strip_to_text( Helpers::get_meta( $this->post_id, 'not_included' ) );
-		if ( '' !== $not_included ) {
+		$not_included = Helpers::html_to_list( Helpers::get_meta( $this->post_id, 'not_included' ) );
+		if ( ! empty( $not_included ) ) {
 			$properties[] = Helpers::make_property_value( 'Not included', $not_included );
 		}
 
