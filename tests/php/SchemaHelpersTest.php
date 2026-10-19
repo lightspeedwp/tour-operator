@@ -297,4 +297,60 @@ class SchemaHelpersTest extends TestCase
 	{
 		$this->assertSame('Plain text', Helpers::strip_to_text('Plain text'));
 	}
+
+	/**
+	 * Line breaks, tabs, non-breaking spaces and paragraph gaps collapse to single spaces.
+	 */
+	public function test_strip_to_text_collapses_whitespace()
+	{
+		$this->assertSame('Travel Accommodation', Helpers::strip_to_text("Travel\r\n\r\n\tAccommodation&nbsp;"));
+		$this->assertSame('One. Two.', Helpers::strip_to_text('<p>One.</p><p>Two.</p>'));
+	}
+
+	// -------------------------------------------------------------------------
+	// html_to_list
+	// -------------------------------------------------------------------------
+
+	/**
+	 * A WYSIWYG list becomes one item per list item.
+	 */
+	public function test_html_to_list_ul()
+	{
+		$html = "<ul>\n \t<li>Accommodation</li>\n \t<li>Speedboat Tickets</li>\n \t<li>Tuk Tuk Fare (in certain locations)</li>\n</ul>";
+		$this->assertSame(
+			array('Accommodation', 'Speedboat Tickets', 'Tuk Tuk Fare (in certain locations)'),
+			Helpers::html_to_list($html)
+		);
+	}
+
+	/**
+	 * Nested lists are flattened and a trailing &nbsp; is dropped.
+	 */
+	public function test_html_to_list_nested_and_nbsp()
+	{
+		$html = "<ul>\n \t<li style=\"list-style-type: none\">\n<ul>\n \t<li>Taxi Fare</li>\n</ul>\n</li>\n</ul>\n&nbsp;";
+		$this->assertSame(array('Taxi Fare'), Helpers::html_to_list($html));
+	}
+
+	/**
+	 * Plain-text lines and paragraphs each become an item; empty input gives no items.
+	 */
+	public function test_html_to_list_lines_and_paragraphs()
+	{
+		$this->assertSame(array('Travel', 'Accommodation'), Helpers::html_to_list("Travel\r\n\r\nAccommodation"));
+		$this->assertSame(array('Permits and Border Fees'), Helpers::html_to_list('<p>Permits and Border Fees</p>'));
+		$this->assertSame(array(), Helpers::html_to_list(''));
+	}
+
+	/**
+	 * A list value is output as an array, or as a string when it has one item.
+	 */
+	public function test_make_property_value_list()
+	{
+		$pv = Helpers::make_property_value('Included', array('Travel', 'Accommodation'));
+		$this->assertSame(array('Travel', 'Accommodation'), $pv['value']);
+
+		$pv = Helpers::make_property_value('Not included', array('Meals'));
+		$this->assertSame('Meals', $pv['value']);
+	}
 }
