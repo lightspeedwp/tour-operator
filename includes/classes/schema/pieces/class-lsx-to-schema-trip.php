@@ -16,7 +16,9 @@
  *   subTrip → itinerary day list (typed as TouristTrip),
  *   additionalProperty → tagline, duration, ends_in, single_supplement,
  *                         best_time_to_visit, group_size, highlights,
- *                         included, not_included.
+ *                         included, not_included. Only output when the tour
+ *                         has an Offer and is typed as Product, because
+ *                         TouristTrip does not define additionalProperty.
  *
  * @package    Tour_Operator
  * @subpackage Schema
@@ -132,8 +134,11 @@ class Trip {
 		// additionalProperty is not defined for TouristTrip, but is for Product.
 		// Only add Product when there is an Offer: Google requires a Product to
 		// have offers, review or aggregateRating, and reports an error otherwise.
+		// An unpriced tour stays a plain TouristTrip, so drop additionalProperty.
 		if ( isset( $data['offers'] ) ) {
 			$data['@type'] = array( 'TouristTrip', 'Product' );
+		} else {
+			unset( $data['additionalProperty'] );
 		}
 
 		/**
