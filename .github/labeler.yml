@@ -96,7 +96,7 @@
         - "package-lock.json"
         - "composer.json"
         - "composer.lock"
-        - ".github/dependabot.yml"
+        - "renovate.json"
 
 "area:security":
   - changed-files:

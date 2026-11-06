@@ -24,7 +24,14 @@ jobs:
     # needs that token, and there's no board-triage value in placing an
     # auto-merged version-bump PR on the project board anyway, so skip the
     # whole job for that actor rather than let it fail on the first step.
-    if: github.actor != 'dependabot[bot]'
+    #
+    # Renovate PRs can read the secrets, but they are version bumps with the
+    # same lack of board-triage value, so skip them too. This matches on the
+    # PR author rather than the actor, so a person labelling or editing a
+    # Renovate PR does not put it on the board either.
+    if: >-
+      github.actor != 'dependabot[bot]' &&
+      github.event.pull_request.user.login != 'renovate[bot]'
     steps:
       - name: Checkout repo
         uses: actions/checkout@v7
