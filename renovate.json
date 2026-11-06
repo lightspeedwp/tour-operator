@@ -1,0 +1,49 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "timezone": "Africa/Johannesburg",
+  "schedule": ["before 6am on monday"],
+  "labels": ["area:dependencies"],
+  "prConcurrentLimit": 10,
+  "enabledManagers": ["github-actions", "npm", "composer"],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 6am on monday"]
+  },
+  "packageRules": [
+    {
+      "matchManagers": ["github-actions"],
+      "addLabels": ["github_actions"]
+    },
+    {
+      "groupName": "babel",
+      "matchPackageNames": ["@babel/**", "babel-loader", "babel-jest"]
+    },
+    {
+      "groupName": "wordpress",
+      "matchPackageNames": ["@wordpress/**"]
+    },
+    {
+      "groupName": "eslint",
+      "matchPackageNames": ["eslint", "eslint-*"]
+    },
+    {
+      "groupName": "stylelint",
+      "matchPackageNames": ["stylelint", "stylelint-*"]
+    },
+    {
+      "groupName": "webpack",
+      "matchPackageNames": ["webpack", "webpack-*", "copy-webpack-plugin"]
+    },
+    {
+      "groupName": "playwright",
+      "matchPackageNames": ["@playwright/**", "playwright"]
+    },
+    {
+      "description": "Babel 8 is a deliberate toolchain change via @wordpress/babel-preset-default, not a bump (LS-1234, LS-2732, LS-2929, LS-3714).",
+      "matchPackageNames": ["@babel/**"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    }
+  ]
+}
