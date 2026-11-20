@@ -302,6 +302,10 @@ function lsx_to_sentry_init() {
 			'send_default_pii'   => false,
 			// WordPress core and other plugins raise many deprecation notices; report warnings and worse.
 			'error_types'        => E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED & ~E_NOTICE & ~E_USER_NOTICE,
+			// Mark only Tour Operator frames as in-app. The SDK treats every frame as in-app unless a
+			// path is excluded; include wins over exclude, so excluding everything (the WordPress root,
+			// any absolute path and WP-CLI's phar) leaves just the plugin in.
+			'in_app_exclude'     => array( ABSPATH, '/', 'phar://' ),
 			'in_app_include'     => array( LSX_TO_PATH ),
 			'before_send'        => 'lsx_to_sentry_before_send',
 		)
@@ -418,6 +422,7 @@ function lsx_to_sentry_enqueue_browser() {
 				'release'          => 'tour-operator@' . LSX_TO_VER,
 				'tracesSampleRate' => lsx_to_sentry_traces_sample_rate(),
 				'siteUrl'          => home_url( '/' ),
+				'pluginUrl'        => LSX_TO_URL,
 			)
 		) . ';',
 		'before'
