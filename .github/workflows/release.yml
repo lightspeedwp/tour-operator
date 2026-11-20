@@ -5,6 +5,10 @@ on:
       version:
         description: 'Semver (e.g. 2.1.0)'
         required: true
+# The org default token is read-only; this workflow pushes a release tag.
+permissions:
+  contents: write
+
 jobs:
   tag:
     runs-on: ubuntu-latest

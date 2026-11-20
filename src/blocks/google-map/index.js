@@ -93,6 +93,7 @@ wp.domReady(() => {
                         metadata: {
                             name: 'Map Container',
                         },
+						className: 'lsx-map',
                     },
                     [
                         [
@@ -138,6 +139,9 @@ wp.domReady(() => {
                                         },
                                     },
                                 },
+								style: {
+									display: "none"
+								}
                             },
                             [],
                         ],

@@ -8,6 +8,14 @@
  * @subpackage Tests
  */
 
+// The metabox config files open with `if ( ! defined( 'ABSPATH' ) ) { exit; }`. Without
+// this, requiring one of them terminates the whole PHPUnit process silently with exit
+// code 0 — reporting success while running no tests, and skipping every test queued
+// after it. Do not rely on another test file having defined this first.
+if (! defined('ABSPATH')) {
+	define('ABSPATH', dirname(__DIR__, 3) . '/');
+}
+
 if (! function_exists('esc_html__')) {
 	function esc_html__($text, $domain = 'default')
 	{

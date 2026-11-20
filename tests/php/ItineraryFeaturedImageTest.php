@@ -110,7 +110,7 @@ class Test_Fake_CMB2_Field {
 	}
 }
 
-class TestItineraryFeaturedImage extends TestCase {
+class ItineraryFeaturedImageTest extends TestCase {
 
 	/**
 	 * Resets the fake attachment table before every test so one test's

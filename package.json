@@ -25,6 +25,7 @@
   "main": "package-lock.json",
   "devDependencies": {
     "@babel/core": "^7.29.7",
+    "@sentry/browser": "11.12.0",
     "@wordpress/babel-preset-default": "8.54.0",
     "@wordpress/blocks": "15.27.0",
     "@wordpress/e2e-test-utils-playwright": "1.54.0",
@@ -35,10 +36,10 @@
     "@wordpress/scripts": "^34.2.0",
     "@wordpress/stylelint-config": "^24.3.0",
     "copy-webpack-plugin": "^14.0.0",
-    "eslint": "10.10.0",
+    "eslint": "10.13.0",
     "jest": "30.4.2",
     "npm-package-json-lint": "11.0.0",
-    "prettier": "3.9.6",
+    "prettier": "3.9.10",
     "stylelint": "16.26.1",
     "webpack-cli": "7.2.3",
     "webpack-remove-empty-scripts": "^1.1.1"
@@ -46,9 +47,9 @@
   "scripts": {
     "test": "npm run test:php && npm run test:unit && npm run test:e2e",
     "test:all": "npm run test:php:all && npm run test:unit && npm run test:e2e",
-    "test:php": "./vendor/bin/phpunit --no-configuration tests/php/TestSimpleFunctions.php",
+    "test:php": "./vendor/bin/phpunit -c phpunit-simple.xml",
     "test:php:all": "./vendor/bin/phpunit",
-    "test:php:registration": "./vendor/bin/phpunit tests/php/TestRegistration.php",
+    "test:php:registration": "./vendor/bin/phpunit tests/php/RegistrationTest.php",
     "test:unit": "jest",
     "test:unit:watch": "jest --watch",
     "test:unit:coverage": "jest --coverage",
@@ -79,7 +80,7 @@
   },
   "overrides": {
     "linkify-it": "^5.0.2",
-    "adm-zip": "^0.6.0",
+    "adm-zip": "^0.6.1",
     "fast-uri": "^3.1.6",
     "serialize-javascript": "^7.0.5",
     "markdownlint-cli": "^0.49.1",

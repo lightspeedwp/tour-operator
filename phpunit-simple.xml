@@ -7,14 +7,21 @@
          backupGlobals="false">
 
     <testsuites>
-        <!-- Simple tests that don't require WordPress -->
+        <!-- Tests that run without a WordPress install.
+
+             Test files follow PHPUnit's default *Test.php convention, so discovery
+             needs no suffix attribute and picks up only real test files: bootstrap.php
+             and the helpers under utils/ are not collected because they do not match.
+             A new test file is included automatically by being named *Test.php. -->
         <testsuite name="Simple Tests">
             <directory>./tests/php</directory>
-            <exclude>./tests/php/bootstrap.php</exclude>
-            <exclude>./tests/php/test-basic.php</exclude>
-            <exclude>./tests/php/utils</exclude>
+            <!-- These need the WordPress test bootstrap; see phpunit.xml. -->
+            <exclude>./tests/php/RegistrationTest.php</exclude>
+            <exclude>./tests/php/TourOperatorBasicTest.php</exclude>
         </testsuite>
-    </testsuites>    <source>
+    </testsuites>
+
+    <source>
         <include>
             <directory suffix=".php">./includes</directory>
             <directory suffix=".php">./src</directory>
@@ -29,12 +36,11 @@
         </exclude>
     </source>
 
-    <coverage includeUncoveredFiles="true">
-        <report>
-            <html outputDirectory="tests/coverage/html"/>
-            <clover outputFile="tests/coverage/clover.xml"/>
-        </report>
-    </coverage>
+    <!-- No report element here on purpose: configuring coverage output when no
+         coverage driver (Xdebug or PCOV) is installed makes PHPUnit emit a runner
+         warning and exit non-zero, which would fail CI. Request coverage explicitly
+         with composer test:coverage, which passes the flag on the command line. -->
+    <coverage includeUncoveredFiles="true"/>
 
     <logging>
         <junit outputFile="tests/results/junit.xml"/>

@@ -56,14 +56,10 @@ jobs:
       - name: Install Composer deps
         run: composer install --no-interaction --no-progress
       - name: PHPUnit (standalone, no WordPress required)
-        # tests/php also holds WordPress-integration tests (bootstrap.php
-        # loads a full WP test suite), so this stays an explicit file list
-        # rather than the directory as a whole -- see TESTING.md.
-        run: >-
-          vendor/bin/phpunit --no-configuration
-          tests/php/TestSimpleFunctions.php
-          tests/php/TestItineraryEditorPerformance.php
-          tests/php/TestItineraryFeaturedImage.php
+        # phpunit-simple.xml scopes the run to the standalone tests and excludes
+        # the WordPress-integration ones, so new test files are picked up without
+        # editing a list here -- see TESTING.md.
+        run: vendor/bin/phpunit -c phpunit-simple.xml
 
       # Non-blocking until the legacy WPCS debt is cleared (or scoped to changed
       # files). Flip continue-on-error to false to make it gate the build.

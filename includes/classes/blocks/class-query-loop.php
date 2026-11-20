@@ -486,8 +486,6 @@ class Query_Loop {
 
 				$query = $this->related_taxonomy_query( $query, $key );
 
-				do_action( 'qm/debug', $query );
-
 				if ( ( ! isset( $query['post__in'] ) && ! isset( $query['tax_query'] ) ) || ( empty( $query['post__in'] ) && empty( $query['tax_query'] ) ) ) {
 					$this->disabled[ $key ] = true;
 				}

@@ -22,6 +22,9 @@ module.exports = {
 		'scporder': path.resolve( process.cwd(), 'src/js/scporder.js' ),
 		'metabox-structure': path.resolve( process.cwd(), 'src/js/metabox-structure.js' ),
 
+		// Development only: excluded from git and from the release by .gitignore and .distignore.
+		'sentry': path.resolve( process.cwd(), 'src/js/sentry.js' ),
+
 		// blocks
 		'general': path.resolve( process.cwd(), 'src/js/blocks/general.js' ),
 		'linked-cover': path.resolve( process.cwd(), 'src/js/blocks/linked-cover.js' ),
