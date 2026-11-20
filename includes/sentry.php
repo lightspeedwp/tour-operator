@@ -365,8 +365,26 @@ function lsx_to_sentry_init() {
 			'environment'        => wp_get_environment_type(),
 			'release'            => lsx_to_sentry_release(),
 			'traces_sample_rate' => lsx_to_sentry_traces_sample_rate(),
-			// Staging sites can hold copies of real customer data, so leave out IPs, cookies and headers.
+			// Staging sites can hold copies of real customer data (enquiries, traveller details), so
+			// collect the minimum: no user info or IPs, cookies, headers, request bodies, URL query
+			// strings, database query values or stack frame arguments.
 			'send_default_pii'   => false,
+			'data_collection'    => array(
+				'user_info'             => false,
+				'cookies'               => array( 'mode' => 'off' ),
+				'http_headers'          => array(
+					'request'  => array( 'mode' => 'off' ),
+					'response' => array( 'mode' => 'off' ),
+				),
+				'http_bodies'           => array(),
+				'url_query_params'      => array( 'mode' => 'off' ),
+				'gen_ai'                => array(
+					'inputs'  => false,
+					'outputs' => false,
+				),
+				'database_query_data'   => false,
+				'stack_frame_variables' => false,
+			),
 			// WordPress core and other plugins raise many deprecation notices; report warnings and worse.
 			'error_types'        => E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED & ~E_NOTICE & ~E_USER_NOTICE,
 			// Mark only Tour Operator frames as in-app. The SDK treats every frame as in-app unless a
