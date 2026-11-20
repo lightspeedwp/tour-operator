@@ -1,0 +1,94 @@
+name: Sentry release
+
+# Staging sites run a git checkout of develop. includes/sentry.php reports each
+# site's release as tour-operator@<version>+<short commit>, so this creates the
+# same release in Sentry for every push: linked commits (for suspect commits)
+# and source maps for build/*.js (readable browser stack traces).
+on:
+  push:
+    branches: ["develop"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sentry-release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_GITHUB_ACTIONS }}
+    steps:
+      - name: Skip when the Sentry token is not set
+        if: env.SENTRY_AUTH_TOKEN == ''
+        run: echo "::notice::SENTRY_GITHUB_ACTIONS is not set; skipping the Sentry release."
+
+      - uses: actions/checkout@v7
+        if: env.SENTRY_AUTH_TOKEN != ''
+        with:
+          # Full history so Sentry can link every commit since the last release.
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Work out the release name
+        if: env.SENTRY_AUTH_TOKEN != ''
+        id: version
+        run: |
+          version=$(sed -n "s/.*define( *'LSX_TO_VER', *'\([^']*\)'.*/\1/p" tour-operator.php)
+          if [ -z "$version" ]; then
+            echo "::error::Could not read LSX_TO_VER from tour-operator.php."
+            exit 1
+          fi
+          # Must match lsx_to_sentry_release() in includes/sentry.php.
+          echo "release=tour-operator@${version}+${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-node@v7
+        if: env.SENTRY_AUTH_TOKEN != ''
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - run: npm ci
+        if: env.SENTRY_AUTH_TOKEN != ''
+
+      - name: Build with hidden source maps
+        if: env.SENTRY_AUTH_TOKEN != ''
+        env:
+          SENTRY_SOURCEMAPS: '1'
+        run: npm run build
+
+      # A map only lines up with the exact JS file staging sites run, which is the
+      # committed one. Drop the maps of any JS file this build changed.
+      - name: Keep only maps that match the committed build/
+        if: env.SENTRY_AUTH_TOKEN != ''
+        id: build
+        run: |
+          changed=$(git diff --name-only -- 'build/*.js' 'build/**/*.js')
+          for file in $changed; do
+            echo "::warning file=$file::Fresh build differs from the committed file; its source map is not uploaded. Rebuild and commit build/ to fix."
+            rm -f "$file.map"
+          done
+          if find build -name '*.js.map' | grep -q .; then
+            echo "has_maps=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_maps=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create the Sentry release
+        if: env.SENTRY_AUTH_TOKEN != ''
+        uses: getsentry/action-release@2e505a70ff06dac263413242aa3617fec90134e5 # v3.9.1
+        env:
+          SENTRY_ORG: lightspeedwp
+        with:
+          release: ${{ steps.version.outputs.release }}
+          projects: tour-operator-server tour-operator-frontend
+          set_commits: auto
+          ignore_missing: true
+          sourcemaps: ${{ steps.build.outputs.has_maps == 'true' && './build' || '' }}
+          url_prefix: '~/wp-content/plugins/tour-operator/build'
+          # Sites run the committed files, which have no debug IDs, so match maps
+          # by release and URL instead of injecting debug IDs into this build.
+          inject: false
+          finalize: true
