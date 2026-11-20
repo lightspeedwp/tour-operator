@@ -1,9 +1,10 @@
 name: Sentry release
 
-# Staging sites run a git checkout of develop. includes/sentry.php reports each
-# site's release as tour-operator@<version>+<short commit>, so this creates the
-# same release in Sentry for every push: linked commits (for suspect commits)
-# and source maps for build/*.js (readable browser stack traces).
+# Sentry runs on developers' local sites only, which are git checkouts.
+# includes/sentry.php reports each site's release as
+# tour-operator@<version>+<short commit>, so this creates the same release in
+# Sentry for every push: linked commits (for suspect commits) and source maps
+# for build/*.js (readable browser stack traces).
 on:
   push:
     branches: ["develop"]
@@ -59,7 +60,7 @@ jobs:
           SENTRY_SOURCEMAPS: '1'
         run: npm run build
 
-      # A map only lines up with the exact JS file staging sites run, which is the
+      # A map only lines up with the exact JS file local sites run, which is the
       # committed one. Drop the maps of any JS file this build changed.
       - name: Keep only maps that match the committed build/
         if: env.SENTRY_AUTH_TOKEN != ''

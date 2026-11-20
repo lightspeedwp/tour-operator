@@ -30,7 +30,7 @@ define('LSX_TO_URL', plugin_dir_url(__FILE__));
 define('LSX_TO_VER', '2.2.0');
 
 // Sentry error monitoring. Uses the site's Sentry client when there is one; otherwise
-// starts its own only when the Composer dev dependencies and a DSN are present (development only).
+// starts its own only on local sites with the Composer dev dependencies and a DSN.
 require_once LSX_TO_PATH . 'includes/sentry.php';
 
 // Maintain a list of content model JSON paths consumed by the plugin.
