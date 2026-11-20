@@ -13,6 +13,27 @@ import * as Sentry from '@sentry/browser';
 
 const config = window.lsxToSentry;
 
+/**
+ * Whether any stack frame of the event comes from a Tour Operator script.
+ *
+ * The browser SDK sees errors from every script on the page. Like the PHP side,
+ * only errors that run through Tour Operator belong in this project.
+ *
+ * @param {Object} event Sentry event.
+ * @return {boolean} True when a frame's URL is under the plugin URL.
+ */
+const involvesTourOperator = ( event ) =>
+	( event.exception?.values || [] ).some( ( exception ) =>
+		( exception.stacktrace?.frames || [] ).some(
+			( frame ) =>
+				typeof frame.filename === 'string' &&
+				frame.filename.startsWith( config.pluginUrl ) &&
+				// The SDK wraps timers and event listeners, so its own bundle appears in
+				// other scripts' stack traces. Those frames don't count.
+				! frame.filename.includes( '/build/sentry.js' )
+		)
+	);
+
 if ( config && config.dsn ) {
 	Sentry.init( {
 		dsn: config.dsn,
@@ -25,5 +46,7 @@ if ( config && config.dsn ) {
 		initialScope: {
 			tags: { component: 'tour-operator' },
 		},
+		beforeSend: ( event ) =>
+			involvesTourOperator( event ) ? event : null,
 	} );
 }
