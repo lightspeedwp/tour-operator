@@ -225,6 +225,73 @@ function lsx_to_sentry_before_send( $event ) {
 }
 
 /**
+ * The Sentry release name: the plugin version, plus the commit on git checkouts.
+ *
+ * Staging sites run a git checkout, so `tour-operator@2.2.0+abc1234` ties each
+ * event to the exact commit. .github/workflows/sentry-release.yml creates the
+ * same release for every push to develop, with its commits and source maps.
+ *
+ * @return string
+ */
+function lsx_to_sentry_release() {
+	static $release = null;
+
+	if ( null !== $release ) {
+		return $release;
+	}
+
+	$release = 'tour-operator@' . LSX_TO_VER;
+	$sha     = lsx_to_sentry_git_sha();
+
+	if ( '' !== $sha ) {
+		$release .= '+' . substr( $sha, 0, 7 );
+	}
+
+	return $release;
+}
+
+/**
+ * The commit the plugin's git checkout is on, read straight from .git.
+ *
+ * @return string The full SHA, or an empty string when it can't be read.
+ */
+function lsx_to_sentry_git_sha() {
+	$git_dir = LSX_TO_PATH . '.git/';
+
+	if ( ! is_readable( $git_dir . 'HEAD' ) ) {
+		return '';
+	}
+
+	$head = trim( (string) file_get_contents( $git_dir . 'HEAD' ) ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Local file.
+
+	if ( preg_match( '/^[0-9a-f]{40}$/', $head ) ) {
+		return $head; // Detached HEAD.
+	}
+
+	if ( ! preg_match( '#^ref: (refs/[^\s]+)$#', $head, $match ) ) {
+		return '';
+	}
+
+	$ref = $match[1];
+
+	if ( is_readable( $git_dir . $ref ) ) {
+		$sha = trim( (string) file_get_contents( $git_dir . $ref ) ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents -- Local file.
+		return preg_match( '/^[0-9a-f]{40}$/', $sha ) ? $sha : '';
+	}
+
+	// Refs can also live in packed-refs: "<sha> refs/heads/name" per line.
+	if ( is_readable( $git_dir . 'packed-refs' ) ) {
+		foreach ( (array) file( $git_dir . 'packed-refs', FILE_IGNORE_NEW_LINES ) as $line ) {
+			if ( preg_match( '#^([0-9a-f]{40}) ' . preg_quote( $ref, '#' ) . '$#', $line, $packed ) ) {
+				return $packed[1];
+			}
+		}
+	}
+
+	return '';
+}
+
+/**
  * The trace sample rate: every trace on local and development sites, 10% elsewhere.
  *
  * @return float
@@ -296,7 +363,7 @@ function lsx_to_sentry_init() {
 		array(
 			'dsn'                => $dsn,
 			'environment'        => wp_get_environment_type(),
-			'release'            => 'tour-operator@' . LSX_TO_VER,
+			'release'            => lsx_to_sentry_release(),
 			'traces_sample_rate' => lsx_to_sentry_traces_sample_rate(),
 			// Staging sites can hold copies of real customer data, so leave out IPs, cookies and headers.
 			'send_default_pii'   => false,
@@ -419,7 +486,7 @@ function lsx_to_sentry_enqueue_browser() {
 			array(
 				'dsn'              => $dsn,
 				'environment'      => wp_get_environment_type(),
-				'release'          => 'tour-operator@' . LSX_TO_VER,
+				'release'          => lsx_to_sentry_release(),
 				'tracesSampleRate' => lsx_to_sentry_traces_sample_rate(),
 				'siteUrl'          => home_url( '/' ),
 				'pluginUrl'        => LSX_TO_URL,
