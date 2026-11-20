@@ -3,6 +3,10 @@ on:
   push:
     tags:
       - "*"
+# Creating the GitHub release and attaching the zip needs write access.
+permissions:
+  contents: write
+
 jobs:
   tag:
     name: New tag
@@ -12,8 +16,30 @@ jobs:
         uses: actions/checkout@v7
 
       - name: WordPress Plugin Deploy
+        id: deploy
         uses: 10up/action-wordpress-plugin-deploy@2.3.0
+        with:
+          generate-zip: true
         env:
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SLUG: tour-operator
+
+      # Sentry is a dev dependency (see includes/sentry.php). Fail if any of it reached the release.
+      - name: Check the release zip has no Sentry SDK
+        env:
+          ZIP_PATH: ${{ steps.deploy.outputs.zip-path }}
+        run: |
+          if unzip -l "$ZIP_PATH" | grep -E 'vendor/|build/sentry\.'; then
+            echo "::error::The release zip contains development-only files (vendor/ or build/sentry.*)."
+            exit 1
+          fi
+
+      - name: Attach the zip to the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+          ZIP_PATH: ${{ steps.deploy.outputs.zip-path }}
+        run: |
+          gh release view "$TAG" > /dev/null 2>&1 || gh release create "$TAG" --verify-tag --generate-notes
+          gh release upload "$TAG" "$ZIP_PATH" --clobber

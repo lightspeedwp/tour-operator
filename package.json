@@ -25,6 +25,7 @@
   "main": "package-lock.json",
   "devDependencies": {
     "@babel/core": "^7.29.7",
+    "@sentry/browser": "11.12.0",
     "@wordpress/babel-preset-default": "8.54.0",
     "@wordpress/blocks": "15.27.0",
     "@wordpress/e2e-test-utils-playwright": "1.54.0",
