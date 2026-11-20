@@ -82,6 +82,14 @@ class Admin extends Tour_Operator
 			add_action('cmb2_pre_save_field', array($this, 'cpt_relations'), 2, 20);
 
 			$this->connections   = $this->create_post_connections();
+
+			// Relationship keys can be stored as one row per connected ID. CMB2 reads meta
+			// as a single value, which would show only the first row in the editor and then
+			// save that back over the rest, so feed it every row instead.
+			foreach ($this->connections as $connection_key) {
+				add_filter('cmb2_override_' . $connection_key . '_meta_value', array($this, 'connection_meta_value'), 10, 3);
+			}
+
 			$this->single_fields = apply_filters('lsx_to_search_fields', array());
 			$this->taxonomies    = apply_filters('lsx_to_taxonomies', $this->taxonomies);
 
@@ -182,14 +190,17 @@ class Admin extends Tour_Operator
 
 		if (in_array($field_id, $this->connections)) {
 			$connected_id    = get_the_ID();
-			$previous_values = get_post_meta($connected_id, $field_id, true);
+			$previous_values = Relationship_Meta::get_ids($connected_id, $field_id);
 			$remote_key      = $this->reverse_key($field_id);
 
+			// This runs before CMB2 writes the field. CMB2 saves with update_post_meta(),
+			// which rewrites every existing row for the key, so a key left in the legacy
+			// multi-row shape would come out as N rows each holding the full array.
+			// Collapsing it here means CMB2 has a single row to write over.
+			Relationship_Meta::save_ids($connected_id, $field_id, $previous_values);
+
 			if (isset($field->data_to_save[$field_id])) {
-				$new_values = $field->data_to_save[$field_id];
-				if (! is_array($new_values)) {
-					$new_values = [$new_values];
-				}
+				$new_values = Relationship_Meta::normalise($field->data_to_save[$field_id]);
 			} else {
 				$new_values = [];
 			}
@@ -202,10 +213,6 @@ class Admin extends Tour_Operator
 					}
 				}
 			} else {
-
-				if (! is_array($previous_values)) {
-					$previous_values = [$previous_values];
-				}
 
 				// Now determine if we added or removed any values.
 				$is_removing = array_diff($previous_values, $new_values);
@@ -227,6 +234,36 @@ class Admin extends Tour_Operator
 	}
 
 	/**
+	 * Supplies CMB2 with every stored ID for a relationship field.
+	 *
+	 * CMB2 reads meta as a single value, which returns only the first row when a
+	 * relationship key is stored as one row per connected ID. Without this the editor
+	 * shows a single connection and saving writes that one value over all the others.
+	 *
+	 * @param mixed $data      The value CMB2 would otherwise read.
+	 * @param int   $object_id The post being edited.
+	 * @param array $args      CMB2 field arguments.
+	 * @return mixed The connected IDs, or $data to leave CMB2's own lookup alone.
+	 */
+	public function connection_meta_value($data, $object_id, $args)
+	{
+		if (! isset($args['type'], $args['field_id']) || 'post' !== $args['type']) {
+			return $data;
+		}
+
+		$ids = Relationship_Meta::get_ids($object_id, $args['field_id']);
+
+		// Nothing stored: hand back untouched so CMB2 runs its own lookup and any
+		// configured default still applies. Only override when there is something
+		// its single-value read would have missed.
+		if (empty($ids)) {
+			return $data;
+		}
+
+		return $ids;
+	}
+
+	/**
 	 * Reverses the key for the remote_key slug.
 	 *
 	 * @param [type] $meta_key
@@ -239,7 +276,7 @@ class Admin extends Tour_Operator
 	}
 
 	/**
-	 * Remove the connected ID from the serialized array.
+	 * Remove the connected ID from the reciprocal relationship meta.
 	 *
 	 * @param int    $remote_id
 	 * @param int    $connected_id
@@ -248,30 +285,20 @@ class Admin extends Tour_Operator
 	 */
 	public function remove_connected_id($remote_id, $connected_id, $meta_key)
 	{
-		$prev = get_post_meta($remote_id, $meta_key, true);
-		if (! empty($prev)) {
-			$diff = array_diff($prev, array($connected_id));
-			update_post_meta($remote_id, $meta_key, $diff, $prev);
-		}
+		Relationship_Meta::remove_id($remote_id, $meta_key, $connected_id);
 	}
 
+	/**
+	 * Add the connected ID to the reciprocal relationship meta.
+	 *
+	 * @param int    $remote_id
+	 * @param int    $connected_id
+	 * @param string $meta_key
+	 * @return void
+	 */
 	public function add_connected_id($remote_id, $connected_id, $meta_key)
 	{
-		$prev = get_post_meta($remote_id, $meta_key, true);
-		// No Previous items detected.
-		if (false === $prev || empty($prev)) {
-			delete_post_meta($remote_id, $meta_key);
-			$test = add_post_meta($remote_id, $meta_key, array($connected_id), true);
-		} else {
-			if (! is_array($prev)) {
-				$new = array($prev);
-			} else {
-				$new = $prev;
-			}
-			$new[]   = $connected_id;
-			$new     = array_unique($new);
-			$updated = update_post_meta($remote_id, $meta_key, $new, $prev);
-		}
+		Relationship_Meta::add_id($remote_id, $meta_key, $connected_id);
 	}
 
 
