@@ -9,6 +9,9 @@ const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
 
 module.exports = {
 	...defaultConfig,
+	// CI sets SENTRY_SOURCEMAPS to upload maps to Sentry. hidden-source-map writes
+	// .map files without changing the built JS, so it matches the committed build/.
+	devtool: process.env.SENTRY_SOURCEMAPS ? 'hidden-source-map' : defaultConfig.devtool,
 	entry: {
 		...defaultConfig.entry(),
 		'metaboxes': path.resolve( process.cwd(), 'src/css/metaboxes.scss' ),
