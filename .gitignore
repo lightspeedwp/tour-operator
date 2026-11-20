@@ -8,6 +8,9 @@ vendor/
 
 # Build artifacts and compiled files (but keep build/ for WordPress plugin distribution)
 /assets/dist/
+# Sentry browser SDK bundle (development only, see includes/sentry.php)
+/build/sentry.js
+/build/sentry.asset.php
 *.map
 
 # Temporary build files
