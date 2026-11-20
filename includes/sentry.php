@@ -1,6 +1,6 @@
 <?php
 /**
- * Sentry error monitoring and tracing for development and staging sites.
+ * Sentry error monitoring and tracing for local development sites only.
  *
  * Tour Operator never competes with site-level monitoring. It works in one of
  * three modes, decided on `plugins_loaded`:
@@ -10,15 +10,18 @@
  *   It only tags events whose stack trace runs through Tour Operator (or a
  *   registered extension) with `component` and `component.version`, so they can
  *   be told apart in the site's Sentry project.
- * - own: no site-level client exists, the Sentry SDK is installed and a DSN is
+ * - own: no site-level client exists, the site is a local or development site
+ *   (wp_get_environment_type()), the Sentry SDK is installed and a DSN is
  *   configured. Tour Operator starts its own client and sends only events that
  *   involve Tour Operator code. Errors from WordPress core or other plugins are
  *   dropped, because they belong to the site's monitoring, not this project.
  * - off: neither of the above. Nothing is loaded or sent.
  *
  * The Sentry PHP SDK (sentry/sentry) and browser SDK (@sentry/browser) are dev
- * dependencies. /vendor and build/sentry.* are excluded by .distignore, so the
- * WordPress.org release contains no Sentry code and never starts its own client.
+ * dependencies, installed only on developers' local sites. Staging and live sites
+ * never have them, and /vendor and build/sentry.* are excluded by .distignore, so
+ * the WordPress.org release contains no Sentry code. Own mode also refuses to start
+ * outside local and development environments, even if the SDK were present.
  *
  * Settings for own mode, in wp-config.php or the server environment:
  *     define( 'LSX_TO_SENTRY_DSN', '...' );          // PHP errors (tour-operator-server).
@@ -227,7 +230,7 @@ function lsx_to_sentry_before_send( $event ) {
 /**
  * The Sentry release name: the plugin version, plus the commit on git checkouts.
  *
- * Staging sites run a git checkout, so `tour-operator@2.2.0+abc1234` ties each
+ * Local sites run a git checkout, so `tour-operator@2.2.0+abc1234` ties each
  * event to the exact commit. .github/workflows/sentry-release.yml creates the
  * same release for every push to develop, with its commits and source maps.
  *
@@ -292,12 +295,21 @@ function lsx_to_sentry_git_sha() {
 }
 
 /**
- * The trace sample rate: every trace on local and development sites, 10% elsewhere.
+ * Whether this is a developer's local or development site, the only place own mode runs.
+ *
+ * @return bool
+ */
+function lsx_to_sentry_is_local_environment() {
+	return in_array( wp_get_environment_type(), array( 'local', 'development' ), true );
+}
+
+/**
+ * The trace sample rate. Own mode runs on local sites only, so every trace is kept.
  *
  * @return float
  */
 function lsx_to_sentry_traces_sample_rate() {
-	return in_array( wp_get_environment_type(), array( 'local', 'development' ), true ) ? 1.0 : 0.1;
+	return 1.0;
 }
 
 /**
@@ -347,7 +359,7 @@ function lsx_to_sentry_init() {
 	 *
 	 * @param bool $use_own_client Defaults to true when a DSN is configured.
 	 */
-	if ( '' === $dsn || ! apply_filters( 'lsx_to_sentry_use_own_client', true ) ) {
+	if ( '' === $dsn || ! lsx_to_sentry_is_local_environment() || ! apply_filters( 'lsx_to_sentry_use_own_client', true ) ) {
 		return;
 	}
 
@@ -365,7 +377,7 @@ function lsx_to_sentry_init() {
 			'environment'        => wp_get_environment_type(),
 			'release'            => lsx_to_sentry_release(),
 			'traces_sample_rate' => lsx_to_sentry_traces_sample_rate(),
-			// Staging sites can hold copies of real customer data (enquiries, traveller details), so
+			// Local sites often run on copies of live data (enquiries, traveller details), so
 			// collect the minimum: no user info or IPs, cookies, headers, request bodies, URL query
 			// strings, database query values or stack frame arguments.
 			'send_default_pii'   => false,

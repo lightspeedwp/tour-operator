@@ -1,5 +1,5 @@
 /**
- * Sentry browser SDK for development and staging sites.
+ * Sentry browser SDK for local development sites only.
  *
  * includes/sentry.php enqueues this file and sets window.lsxToSentry only when
  * Tour Operator runs its own Sentry client (no site-level Sentry is present).
