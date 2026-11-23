@@ -19,6 +19,9 @@
 
 ### Fixed
 
+#### Structured Data (hAtom)
+- **Tour Operator posts read as incomplete hAtom entries** - WordPress adds the `hentry` class to every post, so each tour, accommodation, destination and extension item in a query loop was reported by the Schema Markup Validator as an hAtom blog entry missing `entry-title`, `updated` and `author`. `hentry` is now removed from Tour Operator post types on the front end; their JSON-LD schema describes them instead. Other post types keep it, and the `lsx_to_remove_hentry` filter can keep it for a Tour Operator post
+
 #### Post Connections
 - **Fatal error when saving a post that drops a connection** - `remove_connected_id()` passed the raw result of `get_post_meta( $id, $key, true )` to `array_diff()`. Where the reciprocal relationship meta is stored as one row per connected ID rather than a single serialised array, that result is a string and PHP 8 raised `Uncaught TypeError: array_diff(): Argument #1 ($array) must be of type array, string given`, aborting the save and triggering WordPress recovery mode. Relationship meta is now read and written through a new `lsx\legacy\Relationship_Meta` helper that reads every row for a key and flattens both storage shapes - Issue [#1363](https://github.com/lightspeedwp/tour-operator/issues/1363)
 - **Connections silently half-removed on multi-row meta** - disconnecting a post wrote the new list with a `$prev_value` argument, which restricts the update to rows matching the old value. On a key holding several rows only one was rewritten and the rest survived, leaving the connection partly in place. Relationship keys are now rewritten as a single serialised array, so a key in the older multi-row shape repairs itself the next time it is saved - Issue [#1363](https://github.com/lightspeedwp/tour-operator/issues/1363)

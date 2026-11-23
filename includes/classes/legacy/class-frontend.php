@@ -63,6 +63,7 @@ class Frontend extends Tour_Operator
 
 		if (! is_admin()) {
 			add_filter('pre_get_posts', array($this, 'travel_style_post_types'), 10, 1);
+			add_filter('post_class', array($this, 'remove_hentry'), 10, 3);
 		}
 
 		$this->maps = new Maps();
@@ -155,6 +156,36 @@ class Frontend extends Tour_Operator
 		}
 
 		return $classes;
+	}
+
+	/**
+	 * Remove the `hentry` class from Tour Operator posts.
+	 *
+	 * WordPress adds `hentry` to every post for hAtom microformats, so each
+	 * item in a query loop is read by structured data validators as an hAtom
+	 * blog entry that lacks `entry-title`, `updated` and `author`. Tour
+	 * Operator content is described by its JSON-LD schema instead.
+	 *
+	 * @param string[] $classes   Post classes.
+	 * @param string[] $css_class Classes added by the caller (unused).
+	 * @param int      $post_id   Post ID.
+	 * @return string[]
+	 */
+	public function remove_hentry($classes, $css_class, $post_id)
+	{
+		$post_types = false !== $this->post_types ? array_keys((array) $this->post_types) : array();
+
+		/**
+		 * Filter whether to remove `hentry` from a Tour Operator post's classes.
+		 *
+		 * @param bool $remove  True to remove `hentry`.
+		 * @param int  $post_id Post ID.
+		 */
+		if (! in_array(get_post_type($post_id), $post_types, true) || ! apply_filters('lsx_to_remove_hentry', true, $post_id)) {
+			return $classes;
+		}
+
+		return array_values(array_diff($classes, array('hentry')));
 	}
 
 	/**
