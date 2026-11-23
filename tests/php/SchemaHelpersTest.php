@@ -353,4 +353,64 @@ class SchemaHelpersTest extends TestCase
 		$pv = Helpers::make_property_value('Not included', array('Meals'));
 		$this->assertSame('Meals', $pv['value']);
 	}
+
+	// -------------------------------------------------------------------------
+	// postal_address_from_places
+	// -------------------------------------------------------------------------
+
+	/**
+	 * Country > Area gives a locality and a country.
+	 */
+	public function test_postal_address_country_and_area()
+	{
+		$this->assertSame(
+			array(
+				'@type'           => 'PostalAddress',
+				'addressLocality' => 'Kigali',
+				'addressCountry'  => 'Rwanda',
+			),
+			Helpers::postal_address_from_places(array('Rwanda', 'Kigali'))
+		);
+	}
+
+	/**
+	 * Country > Region > Area adds the region.
+	 */
+	public function test_postal_address_three_levels()
+	{
+		$address = Helpers::postal_address_from_places(array('South Africa', 'Western Cape', 'Stellenbosch'));
+		$this->assertSame('Stellenbosch', $address['addressLocality']);
+		$this->assertSame('Western Cape', $address['addressRegion']);
+		$this->assertSame('South Africa', $address['addressCountry']);
+	}
+
+	/**
+	 * A country on its own gives only the country.
+	 */
+	public function test_postal_address_country_only()
+	{
+		$this->assertSame(
+			array('@type' => 'PostalAddress', 'addressCountry' => 'Zimbabwe'),
+			Helpers::postal_address_from_places(array('Zimbabwe'))
+		);
+	}
+
+	/**
+	 * Titles are cleaned of HTML and entities; empty names are skipped.
+	 */
+	public function test_postal_address_cleans_names()
+	{
+		$address = Helpers::postal_address_from_places(array('Mozambique', '', 'Bazaruto &#8211; Islands'));
+		$this->assertSame("Bazaruto \u{2013} Islands", $address['addressLocality']);
+		$this->assertSame('Mozambique', $address['addressCountry']);
+		$this->assertArrayNotHasKey('addressRegion', $address);
+	}
+
+	/**
+	 * No places gives no address.
+	 */
+	public function test_postal_address_empty()
+	{
+		$this->assertSame(array(), Helpers::postal_address_from_places(array()));
+	}
 }

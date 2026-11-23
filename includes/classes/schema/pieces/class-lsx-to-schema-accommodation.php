@@ -12,7 +12,8 @@
  *   numberOfRooms, checkinTime, checkoutTime, availableLanguage (Language[]),
  *   starRating (only for official ratings: TGCSA / Hotelstars Union),
  *   containedInPlace → destination_to_accommodation,
- *   address + geo → location meta,
+ *   address + geo → location meta (address falls back to the attached
+ *                   destination hierarchy as a PostalAddress),
  *   offers → Offer (price, sale_price, priceCurrency, priceSpecification),
  *   additionalProperty → tagline, single_supplement, best_time_to_visit,
  *                         minimum_child_age, suggested_visitor_types,
@@ -260,17 +261,25 @@ class Accommodation {
 	/**
 	 * Add address and geo coordinates from the `location` pw_map field.
 	 *
+	 * When the location has no address, the address is built from the
+	 * attached destination instead (see get_destination_address()).
+	 *
 	 * @param array $data Schema data.
 	 * @return array
 	 */
 	protected function add_location( array $data ) {
 		$location = get_post_meta( $this->post_id, 'location', true );
-		if ( ! is_array( $location ) || empty( $location ) ) {
-			return $data;
+		if ( ! is_array( $location ) ) {
+			$location = array();
 		}
 
 		if ( ! empty( $location['address'] ) ) {
 			$data['address'] = sanitize_text_field( $location['address'] );
+		} else {
+			$address = $this->get_destination_address();
+			if ( ! empty( $address ) ) {
+				$data['address'] = $address;
+			}
 		}
 
 		if ( ! empty( $location['latitude'] ) && ! empty( $location['longitude'] ) ) {
@@ -282,6 +291,61 @@ class Accommodation {
 		}
 
 		return $data;
+	}
+
+	/**
+	 * Build a PostalAddress from the destination attached to the accommodation.
+	 *
+	 * Uses the most specific attached destination (the one deepest in the
+	 * destination hierarchy) and its ancestors: the top-level destination
+	 * becomes the country, the attached one the locality.
+	 *
+	 * @return array PostalAddress array, or an empty array when no published destination is attached.
+	 */
+	protected function get_destination_address() {
+		$dest_ids = Helpers::get_meta_array( $this->post_id, 'destination_to_accommodation' );
+		$chain    = array();
+
+		foreach ( $dest_ids as $dest_id ) {
+			$dest_id = (int) $dest_id;
+			if ( $dest_id <= 0 || 'publish' !== get_post_status( $dest_id ) ) {
+				continue;
+			}
+
+			// get_post_ancestors() lists the parent first and the top level last.
+			$ancestors = array_map( 'intval', get_post_ancestors( $dest_id ) );
+
+			// Reject the whole chain if any ancestor is unpublished. Dropping just
+			// that ancestor would shift the levels, e.g. promote a region to the country.
+			foreach ( $ancestors as $ancestor_id ) {
+				if ( 'publish' !== get_post_status( $ancestor_id ) ) {
+					continue 2;
+				}
+			}
+
+			$ids   = array_reverse( $ancestors );
+			$ids[] = $dest_id;
+
+			if ( count( $ids ) > count( $chain ) ) {
+				$chain = $ids;
+			}
+		}
+
+		$places = array_map( 'get_the_title', $chain );
+
+		/**
+		 * Filter the address built from an accommodation's destinations.
+		 *
+		 * @param array $address PostalAddress array, or an empty array.
+		 * @param int[] $chain   Destination IDs, top level first.
+		 * @param int   $post_id Current accommodation post ID.
+		 */
+		return (array) apply_filters(
+			'lsx_to_schema_accommodation_destination_address',
+			Helpers::postal_address_from_places( $places ),
+			$chain,
+			$this->post_id
+		);
 	}
 
 	/**
