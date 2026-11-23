@@ -313,7 +313,17 @@ class Accommodation {
 			}
 
 			// get_post_ancestors() lists the parent first and the top level last.
-			$ids   = array_reverse( array_map( 'intval', get_post_ancestors( $dest_id ) ) );
+			$ancestors = array_map( 'intval', get_post_ancestors( $dest_id ) );
+
+			// Reject the whole chain if any ancestor is unpublished. Dropping just
+			// that ancestor would shift the levels, e.g. promote a region to the country.
+			foreach ( $ancestors as $ancestor_id ) {
+				if ( 'publish' !== get_post_status( $ancestor_id ) ) {
+					continue 2;
+				}
+			}
+
+			$ids   = array_reverse( $ancestors );
 			$ids[] = $dest_id;
 
 			if ( count( $ids ) > count( $chain ) ) {
