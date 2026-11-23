@@ -251,6 +251,41 @@ class Helpers {
 	}
 
 	/**
+	 * Build a schema.org PostalAddress from a destination hierarchy.
+	 *
+	 * Used when an accommodation has no address of its own. The places are
+	 * ordered from the top of the hierarchy down, e.g. Country > Region > Area:
+	 * the first is the country, the last the locality, and the one above the
+	 * locality (when there are three or more) the region.
+	 *
+	 * @param string[] $places Place names, country first.
+	 * @return array PostalAddress array, or an empty array when no names are given.
+	 */
+	public static function postal_address_from_places( array $places ) {
+		$places = array_values(
+			array_filter(
+				array_map( array( __CLASS__, 'strip_to_text' ), $places ),
+				'strlen'
+			)
+		);
+		$count  = count( $places );
+		if ( 0 === $count ) {
+			return array();
+		}
+
+		$address = array( '@type' => 'PostalAddress' );
+		if ( $count > 1 ) {
+			$address['addressLocality'] = $places[ $count - 1 ];
+		}
+		if ( $count > 2 ) {
+			$address['addressRegion'] = $places[ $count - 2 ];
+		}
+		$address['addressCountry'] = $places[0];
+
+		return $address;
+	}
+
+	/**
 	 * Build a schema.org PropertyValue node.
 	 *
 	 * A list of values is output as a JSON array, or as a plain string when
