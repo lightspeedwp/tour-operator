@@ -13,6 +13,10 @@
 /vendor
 /src
 
+# Sentry browser SDK bundle (development only, see includes/sentry.php)
+/build/sentry.js
+/build/sentry.asset.php
+
 # Development files
 .distignore
 .gitattributes

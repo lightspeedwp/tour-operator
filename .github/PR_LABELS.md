@@ -16,8 +16,8 @@ High‑signal, automated **PR labels** for review routing and release hygiene—
 - On open, PRs that look **user‑visible** get **`meta:needs-changelog`**. Maintainers remove it after updating `CHANGELOG.md` / `readme.txt` (WP.org) or add an explicit `no-changelog` label for internal‐only changes.
 - Paired rule in the labeler can **auto‑remove** `meta:needs-changelog` when a PR touches a changelog/readme file (`sync-labels: true`).
 
-## Dependabot PRs
-- Dependency updates are labelled by path (`area:dependencies`) so you can filter/batch them easily.
+## Dependency PRs
+- Renovate labels its version-update PRs `area:dependencies` (plus `github_actions` for workflow actions), and the labeler adds `area:dependencies` by path, so you can filter/batch them easily. Dependabot security-update PRs pick up the same label from the labeler.
 
 ## Security note
 - Using labeler on forks typically requires the **`pull_request_target`** event; follow GitHub’s security guidance when using it.
@@ -25,4 +25,4 @@ High‑signal, automated **PR labels** for review routing and release hygiene—
 ## Files powering this
 - `.github/labeler.yml` — path & branch rules.
 - `.github/workflows/labels-issues-prs.yml` — applies defaults, enforces status, nudges changelog.
-- `.github/dependabot.yml` — opens dependency PRs that will pick up `area:dependencies` from the labeler.
+- `renovate.json` — Renovate's settings; opens the weekly dependency PRs.

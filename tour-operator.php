@@ -29,6 +29,10 @@ define('LSX_TO_CORE', __FILE__);
 define('LSX_TO_URL', plugin_dir_url(__FILE__));
 define('LSX_TO_VER', '2.2.0');
 
+// Sentry error monitoring. Uses the site's Sentry client when there is one; otherwise
+// starts its own only on local sites with the Composer dev dependencies and a DSN.
+require_once LSX_TO_PATH . 'includes/sentry.php';
+
 // Maintain a list of content model JSON paths consumed by the plugin.
 // phpcs:disable WordPress.WP.GlobalVariablesOverride.Prohibited
 global $CONTENT_MODEL_JSON_PATH;
@@ -72,6 +76,14 @@ spl_autoload_register('tour_operator_autoload_class', true, false);
 
 // Init Plugin.
 tour_operator();
+
+// Relationship meta maintenance command.
+if (defined('WP_CLI') && WP_CLI) {
+	\WP_CLI::add_command(
+		'tour-operator normalise-relationships',
+		array(new \lsx\legacy\Relationship_CLI(), 'normalise_relationships')
+	);
+}
 
 /**
  * Include sticky menu block filters. This adds mobile section headers to group blocks.
