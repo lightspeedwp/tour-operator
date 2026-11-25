@@ -40,6 +40,9 @@
             "composer/installers": true,
             "10up/phpcs-composer": true,
             "dealerdirect/phpcodesniffer-composer-installer": true
+        },
+        "platform": {
+            "php": "8.2"
         }
     }
 }
