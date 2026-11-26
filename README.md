@@ -268,6 +268,7 @@ This repository features a comprehensive AI-assisted development system designed
   - [WordPress Packages Setup](docs/WORDPRESS-PACKAGES-SETUP.md)
   - [WordPress Packages Guide](docs/wordpress-packages.md)
   - [Playwright Testing Guide](docs/playwright-testing-guide.md)
+  - [Sentry Error Monitoring](docs/sentry.md) (local development only)
   - [Block Development](docs/block-development/)
   - [Coding Standards](docs/coding-standards/)
 
