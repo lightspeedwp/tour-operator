@@ -8,31 +8,116 @@
  * Session Replay is deliberately not loaded. It records page content, which can
  * include enquiries and traveller details, and needs its own privacy review and
  * approval before it is turned on (TO-271).
+ *
+ * Tour Operator extensions report through this same SDK. Their script URLs come
+ * in window.lsxToSentry.components, and each error is tagged with the extension
+ * it came from.
  */
 import * as Sentry from '@sentry/browser';
 
 const config = window.lsxToSentry;
 
 /**
- * Whether any stack frame of the event comes from a Tour Operator script.
+ * Tour Operator and its extensions, longest URL first so the most specific match wins.
+ * Older configs without `components` fall back to Tour Operator alone.
+ */
+const components = (
+    Array.isArray(config?.components) && config.components.length
+        ? config.components
+        : [{ name: 'tour-operator', url: config?.pluginUrl }]
+)
+    .filter((component) => typeof component.url === 'string' && component.url)
+    .sort((a, b) => b.url.length - a.url.length);
+
+/**
+ * The component a script URL belongs to.
+ *
+ * @param {string} filename Frame URL.
+ * @return {Object|undefined} The component, if the URL is under one.
+ */
+const componentFor = (filename) =>
+    typeof filename === 'string' &&
+    // The SDK wraps timers and event listeners, so its own bundle appears in other
+    // scripts' stack traces. Those frames don't count.
+    !filename.includes('/build/sentry.js')
+        ? components.find((component) => filename.startsWith(component.url))
+        : undefined;
+
+/**
+ * Finds the Tour Operator component closest to where the error was raised.
  *
  * The browser SDK sees errors from every script on the page. Like the PHP side,
- * only errors that run through Tour Operator belong in this project.
+ * only errors that run through Tour Operator or one of its extensions belong in
+ * this project. Frames run from the oldest call to the newest, so they are read
+ * newest first.
  *
  * @param {Object} event Sentry event.
- * @return {boolean} True when a frame's URL is under the plugin URL.
+ * @return {Object|undefined} The component, or undefined when none is involved.
  */
-const involvesTourOperator = (event) =>
-    (event.exception?.values || []).some((exception) =>
-        (exception.stacktrace?.frames || []).some(
-            (frame) =>
-                typeof frame.filename === 'string' &&
-                frame.filename.startsWith(config.pluginUrl) &&
-                // The SDK wraps timers and event listeners, so its own bundle appears in
-                // other scripts' stack traces. Those frames don't count.
-                !frame.filename.includes('/build/sentry.js')
-        )
-    );
+const findComponent = (event) => {
+    for (const exception of event.exception?.values || []) {
+        const frames = exception.stacktrace?.frames || [];
+        for (let i = frames.length - 1; i >= 0; i--) {
+            const component = componentFor(frames[i].filename);
+            if (component) {
+                return component;
+            }
+        }
+    }
+    return undefined;
+};
+
+/**
+ * Secrets that extensions put in URLs: the Wetu API key in the path, and keys or
+ * tokens in query strings (openexchangerates.org's app_id). Matches includes/sentry.php.
+ */
+const SECRET_PATTERNS = [
+    [/(wetu\.com\/API\/[A-Za-z]+\/)(?!V\d+\/)[^/\s?#"'<>]+/gi, '$1[Filtered]'],
+    [
+        /([?&](?:app_id|api_key|apikey|key|token|access_token|auth|password|secret)=)[^&\s#"'<>]+/gi,
+        '$1[Filtered]',
+    ],
+];
+
+/**
+ * Redacts secrets from text such as an error message.
+ *
+ * @param {*} value Text that might contain a URL.
+ * @return {*} The value with secrets replaced; non-strings unchanged.
+ */
+const redact = (value) =>
+    typeof value === 'string'
+        ? SECRET_PATTERNS.reduce(
+              (text, [pattern, replacement]) =>
+                  text.replace(pattern, replacement),
+              value
+          )
+        : value;
+
+/**
+ * Tags an error event with its component and release, and redacts secrets.
+ *
+ * @param {Object} event     Sentry error event.
+ * @param {Object} component The component the error belongs to.
+ * @return {Object} The same event.
+ */
+const tagEvent = (event, component) => {
+    event.tags = {
+        ...event.tags,
+        component: component.name,
+        ...(component.version
+            ? { 'component.version': component.version }
+            : {}),
+    };
+    if (component.release) {
+        event.release = component.release;
+    }
+    (event.exception?.values || []).forEach((exception) => {
+        exception.value = redact(exception.value);
+    });
+    event.message = redact(event.message);
+    return event;
+};
 
 /**
  * Removes query strings and fragments from a URL, or from URLs inside a span
@@ -44,7 +129,9 @@ const involvesTourOperator = (event) =>
  * @return {*} The value without query strings or fragments; non-strings unchanged.
  */
 const stripQuery = (value) =>
-    typeof value === 'string' ? value.replace(/[?#][^\s]*/g, '') : value;
+    typeof value === 'string'
+        ? redact(value).replace(/[?#][^\s]*/g, '')
+        : value;
 
 const URL_KEYS = ['url', 'from', 'to', 'http.url', 'server.address'];
 const QUERY_KEYS = ['http.query', 'http.fragment', 'url.query', 'url.full'];
@@ -106,8 +193,10 @@ if (config && config.dsn) {
         },
         // No IPs, cookies or user details (the SDK default, kept explicit).
         sendDefaultPii: false,
-        beforeSend: (event) =>
-            involvesTourOperator(event) ? scrubEvent(event) : null,
+        beforeSend: (event) => {
+            const component = findComponent(event);
+            return component ? scrubEvent(tagEvent(event, component)) : null;
+        },
         beforeSendTransaction: scrubEvent,
         beforeBreadcrumb: (breadcrumb) => {
             scrubData(breadcrumb.data);
